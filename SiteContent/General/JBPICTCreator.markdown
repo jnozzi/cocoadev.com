@@ -1,0 +1,1 @@
+A Cocoa class that allows you to do [[QuickDraw]] drawing and then retreive the data in PICT format.

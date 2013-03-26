@@ -1,0 +1,1 @@
+A generic base class used in [[CoreData]].

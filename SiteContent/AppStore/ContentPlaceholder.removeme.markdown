@@ -1,0 +1,1 @@
+This is a content placeholder to maintain the desired folder structure in the Git repo. Remove when there's actual content here.

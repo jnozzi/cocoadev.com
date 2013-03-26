@@ -1,0 +1,21 @@
+Unlike [[NSMutableString]], [[NSTextView]] has not implemented a convenient method to append text to its existing text object.
+
+You can append text to an [[NSTextView]] by creating a category on [[NSTextView]] and using code similar to that shown below:
+
+<code>
+
+@interface [[NSTextView]](Controller)
+- (void) appendString: ([[NSString]] '')str
+@end
+
+@implementation [[NSTextView]](Controller)
+-(void)appendString:([[NSString]] '')str
+{
+    int len = [[self textStorage] length];
+    [self replaceCharactersInRange:[[NSMakeRange]](len,0)withString:str];
+}
+</code>
+
+Invoke as usual, e.g., (a, b, and c are all declared integer variables)
+
+<code>[reportView appendString:[[[NSString]] stringWithFormat:@"%i.%i.%i", a, b, c]];</code>

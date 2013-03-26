@@ -1,0 +1,1 @@
+[[ESStackTrace]] is a generic category name that adds stack trace capabilities to [[NSException]].

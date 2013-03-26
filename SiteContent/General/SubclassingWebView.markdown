@@ -1,0 +1,1 @@
+Remember that [[WebView]] is not part of Cocoa, so if you want to [[SubClass]] it, you'll have to include its [[HeaderFile]].

@@ -1,0 +1,1 @@
+[[WordPad]] is a simple RTF text editor included with Microsoft Windows since around Windows 3.0.

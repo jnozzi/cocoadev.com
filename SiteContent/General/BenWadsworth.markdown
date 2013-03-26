@@ -1,0 +1,3 @@
+Hi - I'm a student from South London looking to learn to develop for Macs, mainly for something to put on my UCAS form (University Application) at the moment but it would also be a useful skill. If anyone knows of any good courses for Cocoa which I can use at my own - lazy - pace then please tell be about it at wadben@gmail.com
+
+Well that's pretty much is about me. Nice community. I'll probably add more if I end up doing more but until then watch this space - or don't - your preference

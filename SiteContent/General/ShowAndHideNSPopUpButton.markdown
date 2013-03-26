@@ -1,0 +1,9 @@
+Is there any method to show/hide an [[NSPopUpButton]] like the "Hidden" checkbox in Interface Builder does?
+
+----
+
+<code>-[[[NSView]] setHidden:]</code>.  [[NSPopUpButton]] is a subclass of [[NSView]].
+
+----
+
+Thanks. I missed that when looking through the docs.

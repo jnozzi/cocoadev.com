@@ -1,0 +1,1 @@
+See [[CocoaWrapperAroundConsoleApplication]] and the main [[NSTask]] page.

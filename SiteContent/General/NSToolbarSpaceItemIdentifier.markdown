@@ -1,0 +1,1 @@
+A basic square that seperates [[NSToolbarItem]]'s.

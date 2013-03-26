@@ -1,0 +1,4 @@
+
+
+
+I have about 7 years of programming, starting with Visual Basic 6 (Sorry for the Horror), and eventually moved on to C when I joined a robotics club in 6th grade (In 2004) and was taught by the programming leader. I have become a great programmer over the 7 years that I have been programming. Now, just during the Christmas of 2007 I got an iPod Touch and decided that I would like to develop for it as I had done with iPodLinux on my old iPod Nano 1st Gen. So I decided now was the time to learn [[ObjC]]. Good thing I had known how OOP worked! I had a few problems learning how the general thing worked, but I eventually pulled it out. And so yea, I hope I will get better through this site, and put things in.

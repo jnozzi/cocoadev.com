@@ -1,0 +1,1 @@
+For information on this topic goto the help menu and select -> Help/[[XCode]] Help/Managing Source Code

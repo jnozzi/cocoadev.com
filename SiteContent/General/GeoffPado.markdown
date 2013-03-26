@@ -1,0 +1,1 @@
+Developer of Misu, Bokeh (now Blitz), and Kineo and Soundbite, both for iPhone.

@@ -1,0 +1,1 @@
+Here is a blank page for all you Cocoa experts to explain about [[WebScriptObject]] here, seeing as I don't know anything about it! Some examples of how to do Obj-C/[[JavaScript]] interaction would be good, or other common tasks you've encountered before using [[WebScriptObject]] -- Theodore H. Smith

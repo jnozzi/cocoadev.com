@@ -1,0 +1,1 @@
+Cocoa, SQL, and Java programming. Working on a new project I'll call [[NKKit]], once I finish it.

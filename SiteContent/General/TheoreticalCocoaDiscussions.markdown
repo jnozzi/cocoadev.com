@@ -1,0 +1,3 @@
+Whereby you are warned that a page largely consists of abstractions, opinions, or '''gasp''' both...
+
+[Topic]

@@ -1,0 +1,41 @@
+
+
+[[ProcessManager]] is the Carbon API for, well, process management, though the most common use is merely to retrieve information about processes for other uses. Since 10.2 it has been part of the [[HIServices]] framework under [[ApplicationServices]]; before that you actually had to link to Carbon to use it.
+
+Most of [[ProcessManager]]'s API depends on being able to retrieve the "process serial number" of the process you're looking for. The best way of doing this uses [[ProcessManager]]'s own <code>[[GetNextProcess]]()</code>, which cycles through all of the current user's processes. Start at the beginning by passing in <code>{0, kNoProcess</code>} as the current process serial number. Each call to <code>[[GetNextProcess]]()</code> replaces the contents of its argument with the next process's serial number. When the function reaches the end of the list, it returns <code>procNotFound</code> and puts <code>{0, kNoProcess</code>} back into your serial number variable.
+
+<pre>
+NSDictionary *info;
+BOOL foundApp = NO;
+OSErr err;
+ProcessSerialNumber psn = {0, kNoProcess};
+
+while (!foundApp)
+{	
+    err = GetNextProcess(&psn);
+
+    if (!err)
+    {
+        info = (NSDictionary *)ProcessInformationCopyDictionary(&psn, kProcessDictionaryIncludeAllInformationMask);
+        foundApp = [@"com.apple.dock" isEqual:[info objectForKey:(NSString *)kCFBundleIdentifierKey]];
+        [info release];
+    }
+    else
+    {
+        break; // either a problem or the end of the list
+    }
+}
+</pre>
+
+[[NSWorkspace]] offers <code>-launchedApplications</code> as a little sliver of [[ProcessManager]] functionality; the same information (and more) can be obtained by stepping through all of the processes using <code>[[GetNextProcess]]()</code> and examining info with <code>[[ProcessInformationCopyDictionary]]()</code> as shown above. <code>-launchedApplications</code> also only lists applications, not other processes or UI elements (see [[LSUIElement]]). Both <code>-launchedApplications</code> and <code>[[GetNextProcess]]()</code> only return information for the current user's processes.
+
+----
+
+When you receive application-related [[NSWorkspace]] notifications, they contain the application's process serial number within the notification's user info dictionary. You can convert it to a <code>[[ProcessSerialNumber]]</code> struct using the following code:
+
+<pre>
+// Assuming the dictionary is called userInfo:
+ProcessSerialNumber psn;
+psn.lowLongOfPSN = [[userInfo objectForKey:@"NSApplicationProcessSerialNumberLow"] unsignedLongValue];
+psn.highLongOfPSN = [[userInfo objectForKey:@"NSApplicationProcessSerialNumberHigh"] unsignedLongValue];
+</pre>

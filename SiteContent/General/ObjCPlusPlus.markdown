@@ -1,0 +1,1 @@
+Please refer to [[ObjectiveCPlusPlus]], the main [[CocoaStub]] for this topic.

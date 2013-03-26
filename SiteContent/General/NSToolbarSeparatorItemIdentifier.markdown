@@ -1,0 +1,1 @@
+A dotted line that seperates [[NSToolbarItem]]'s.

@@ -1,0 +1,1 @@
+A software developer located in Pittsburgh, PA. I am the Chief Technology Officer of EyeSee360, Inc. My present project is [[PhotoWarp]] 2.0.

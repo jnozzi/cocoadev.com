@@ -1,0 +1,1 @@
+Describe [[NSStringPboardType]] [[NSString]]

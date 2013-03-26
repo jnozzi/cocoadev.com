@@ -1,0 +1,3 @@
+
+
+This is a useful class that you will never use directly, but might help debug problems related to multithreading. Recall that [[AppKit]] isn't thread safe, so you have to be sure you're only drawing from the main thread... IF %%BEGINCODESTYLE%%OMNI_ASSERTIONS_ON%%ENDCODESTYLE%% is defined, [[OAThreadCheckingView]] will pose as [[NSView]] and check assertions every time any view calls %%BEGINCODESTYLE%% lockFocus, setNeedsDisplay, %%ENDCODESTYLE%% or %%BEGINCODESTYLE%%setNeedsDisplayInRect%%ENDCODESTYLE%% to be sure that the call is coming from the main thread.

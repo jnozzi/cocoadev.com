@@ -1,0 +1,1 @@
+I am a beginning Cocoa developer, located on the Oregon Coast.

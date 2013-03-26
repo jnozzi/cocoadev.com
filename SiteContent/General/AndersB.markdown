@@ -1,0 +1,1 @@
+Rookie [[ObjC]]++ coder, well versed with C++.
