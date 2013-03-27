@@ -1,5 +1,5 @@
-See [[ObjC]].
+See General/ObjC.
 
-(why is there a separate, empty page for [[ObjectiveCee]]?)
+(why is there a separate, empty page for General/ObjectiveCee?)
 
-(Historical reasons. [[ObjC]] has only recently become a valid [[WordsJammedTogether]].)
+(Historical reasons. General/ObjC has only recently become a valid General/WordsJammedTogether.)

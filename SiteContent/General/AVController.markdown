@@ -1,28 +1,28 @@
-<code>- (id)init;</code>
+    - (id)init;
 
-<code>- (void)setDelegate:(id)delegate;</code>
+    - (void)setDelegate:(id)delegate;
 
-<code>- (void)setCurrentItem:(AVItem*)item;</code>
+    - (void)setCurrentItem:(AVItem*)item;
 
-<code>- (void)setCurrentItem:(AVItem*)item preservingRate:(BOOL)flag;</code>
+    - (void)setCurrentItem:(AVItem*)item preservingRate:(BOOL)flag;
 
-<code>- (void)setCurrentTime:(double)time;</code> // NSTimeInterval?
+    - (void)setCurrentTime:(double)time; // NSTimeInterval?
 
-<code>- (void)play:(NSError*')outError;</code>
+    - (void)play:(NSError*')outError;
 
-<code>- (BOOL)isCurrentItemReady;</code>
+    - (BOOL)isCurrentItemReady;
 
-<code>- (void)pause;</code>
+    - (void)pause;
 
-<code>- (void)setRate:(float)rate error:(NSError*')outError;</code> // 1.0 = normal?
+    - (void)setRate:(float)rate error:(NSError*')outError; // 1.0 = normal?
 
-<code>- (float)volume;</code>
+    - (float)volume;
 
-<code>- (void)setVolume:(float)volume;</code>
+    - (void)setVolume:(float)volume;
 
-'''AVController delegate methods'''
+**AVController delegate methods**
 
-<code>- (void)queueItemWasAdded:(id)foo;</code>
+    - (void)queueItemWasAdded:(id)foo;
 
 
-[[Category:PointlessInformation]]
+General/Category:PointlessInformation

@@ -1,11 +1,11 @@
 If I have a view with subviews (call masterView: A and the subviews, B-E) what I'd like to do is subclass A's drawRect and some how do:
 
-<code>
-- (void)drawRect:([[NSRect]])rect {
+    
+- (void)drawRect:(General/NSRect)rect {
   [super drawRect:rect];
-  [myAlphaMask compositeToPoint:[[MyLoc]] operation:[[NSCompositeSourceOut]]];
+  [myAlphaMask compositeToPoint:General/MyLoc operation:General/NSCompositeSourceOut];
 }
-</code>
+
 
 myAlphaMask is effectively a black circle with the alpha set on a gradient from 0 to 1.0 from radius r to radius 0. 
 

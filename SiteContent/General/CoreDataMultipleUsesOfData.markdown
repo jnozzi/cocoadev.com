@@ -5,43 +5,43 @@ The Problem. Lets say I have a list of people that I want to assign to a project
 
 For example, with these datamodels (removed the properties for simplicity):
 
-''' (entities) '''
+** (entities) **
 
 * (relationships)
 
 
-''' Project '''
+** Project **
 
 * jobs (to-many P<nowiki/>rojectJob)
 
 
-''' P<nowiki/>rojectJob '''
+** P<nowiki/>rojectJob **
 
 * project (to-one Project)
 * job (to-one Job)
 * workers (to-many P<nowiki/>rojectWorker)
 
 
-''' Job '''
+** Job **
 
 * projectJobs (to-many P<nowiki/>rojectJobs)
 * tools (to-many Tool)
 
 
-''' Tool '''
+** Tool **
 
 * job (to-one Job)
 * tool (to-many P<nowiki/>rojectWorker)
 
 
-''' P<nowiki/>rojectWorker '''
+** P<nowiki/>rojectWorker **
 
 * job (to-one P<nowiki/>rojectJob)
 * person (to-one Person)
 * tool (to-one Tool)
 
 
-''' Person '''
+** Person **
 
 * workingOn (to-many P<nowiki/>rojectWorker)
 

@@ -1,4 +1,4 @@
-If you are localizing a preference pane and you want to test the preference pane in the localized language, then [[SystemPreferences]] must also have a localization for that language.
+If you are localizing a preference pane and you want to test the preference pane in the localized language, then General/SystemPreferences must also have a localization for that language.
 
 This is true at least for Mac OS X 10.3.3 through 10.3.8.
 
@@ -16,4 +16,4 @@ It seems that System Preferences will only load language versions of preference 
 
 ----
 
-This is true of all localized applications loading localized bundles (including such bundles as [[APEs]] and [[InputManagers]]); the bundle inherits the application's language (which might not be the user's preferred language), ignoring any other localization in the bundle. The user's list of preferred languages is browsed iif the bundle does not have a language to match the application's one. -- l0ne aka [[EmanueleVulcano]]
+This is true of all localized applications loading localized bundles (including such bundles as General/APEs and General/InputManagers); the bundle inherits the application's language (which might not be the user's preferred language), ignoring any other localization in the bundle. The user's list of preferred languages is browsed iif the bundle does not have a language to match the application's one. -- l0ne aka General/EmanueleVulcano

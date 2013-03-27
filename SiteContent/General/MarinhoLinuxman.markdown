@@ -1,6 +1,6 @@
 
 
-Hello, I'm a Linux user since 1997, program since 94 and now I work in [[PacaBrasil]] Producoes Digitais (http://www.pacabrasil.com/) 
+Hello, I'm a Linux user since 1997, program since 94 and now I work in General/PacaBrasil Producoes Digitais (http://www.pacabrasil.com/) 
 
 I program in Delphi, PHP, Pascal, Kylix, and others languages, but now I'm trying learn more and more about Objective C and Cocoa.
 

@@ -1,1 +1,1 @@
-See [[StrongAI]]
+See General/StrongAI

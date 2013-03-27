@@ -2,7 +2,7 @@
 
 Donations to the cause:
 
-* [[JpegTwoThousandValueTransformer]] (de)compresses [[NSImages]]<nowiki/>s on the fly
-* [[BzipValueTransformer]] (de)compresses [[NSString]]<nowiki/>s on the fly
-* [[NSDataPlusBzip]]
-* [[NSArrayControllerPlusIKImageBrowserDataSource]]
+* General/JpegTwoThousandValueTransformer (de)compresses General/NSImages<nowiki/>s on the fly
+* General/BzipValueTransformer (de)compresses General/NSString<nowiki/>s on the fly
+* General/NSDataPlusBzip
+* General/NSArrayControllerPlusIKImageBrowserDataSource

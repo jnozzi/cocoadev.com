@@ -1,3 +1,3 @@
-[[UITextBorderStyleBezel]]
+General/UITextBorderStyleBezel
 OR
-[[UITextBorderStyleRoundedRect]]
+General/UITextBorderStyleRoundedRect

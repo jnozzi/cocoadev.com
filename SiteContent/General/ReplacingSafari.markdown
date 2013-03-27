@@ -1,4 +1,4 @@
-I'm writing a web browser for myself. It is intended to be a replacement for Safari. I can drag-and-drop [[URLs]] fine. What I cannot do is click on [[URLs]] in emails and have the [[URLs]] open up in my browser. I will kindly request that you also leave your solution as a comment under http://wits2020.net/archives/000464.html in addition to here as I don't usually check this site. Thanks a bunch!
+I'm writing a web browser for myself. It is intended to be a replacement for Safari. I can drag-and-drop General/URLs fine. What I cannot do is click on General/URLs in emails and have the General/URLs open up in my browser. I will kindly request that you also leave your solution as a comment under http://wits2020.net/archives/000464.html in addition to here as I don't usually check this site. Thanks a bunch!
 
 ----
 
@@ -10,9 +10,9 @@ That is now set in Safari -- sucks... what if I delete Safari? then I can't sele
 
 And to the OP -- if you are too lazy to check back for answers, you should not ask them!
 ----
-[[OmniGroup]] just released [[OmniWeb]] 5 beta 3 [http://omnigroup.com/omniweb/5/beta/] and it lets you select the default browser from [[OmniWeb]].
+General/OmniGroup just released General/OmniWeb 5 beta 3 [http://omnigroup.com/omniweb/5/beta/] and it lets you select the default browser from General/OmniWeb.
 
---[[JoshaChapmanDodson]]
+--General/JoshaChapmanDodson
 
 ----
 

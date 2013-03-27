@@ -5,17 +5,17 @@ What I would like to do is eliminate having to repeat the code that sets the com
 Can I do this by having each constructor call another method to set the common values (that does NOT end in a "return self;" statement) and then perform the "return self;" in the calling constructor?  Will this work?  Is this the best way to do this?  Is there a more standard way?
 
 Thanks,
-[[KentSignorini]]
+General/KentSignorini
 
 ----
 
-Yes this will work. In fact, it's how Cocoa's <code>initWith...</code> methods are implemented.
+Yes this will work. In fact, it's how Cocoa's     initWith... methods are implemented.
 
 ----
 
 One of the really nice things about Objective-C is that constructors aren't special at all (we only call them {{constructors}} so everyone will know what we are talking about).  This means you can do things like:
 
-<code>
+    
 
 - (id)init
 {
@@ -37,40 +37,40 @@ if (self != nil)
 return self;
 }
 
-</code>
+
 
 I think that it is preferred to make this happen in the other way but I, personally, like this way and it illustrates my point quite well.
 
-The important thing to realize is that <code>init</code> is just some other method.  The <code>alloc</code> or <code>allocWithZone:</code> messages are the ones that actually allocate the memory.  Even there, there isn't anything special about those names.  It is just a convention.
+The important thing to realize is that     init is just some other method.  The     alloc or     allocWithZone: messages are the ones that actually allocate the memory.  Even there, there isn't anything special about those names.  It is just a convention.
 
---[[JeffDisher]]
+--General/JeffDisher
 
 ----
 
-I'm sorry for a silly question, but don't you think that <code>
+I'm sorry for a silly question, but don't you think that     
 self = [self init];
-</code>
-doesn't make sense? --[[KonstantinAnoshkin]]
+
+doesn't make sense? --General/KonstantinAnoshkin
 
 ----
 
-It makes sense in that the value returned by <code>[self init]</code> may not actually be the original value of self.  By re-assigning the pointer, future calculations relative to it will be correct.  Plus, it is conceptually the same as any other call so it makes logical sense to do it.  This is very important to realize when you consider that you may be instantiating something which wants to change the object as it is instantiated.  Class clusters make heavy use of this, for example.  As a good example of this, consider that your <code>init</code> method has to do some sort of sanity check before initializing the object's instance variables.  If the sanity check fails, the init method will probably want to deallocate itself.  Thus, it would send <code>[self release]</code> and then would return nil to its caller.  If that were to happen, the re-assignment of self to nil would mean that the next line which checks its value would fail and the initializer would return nil (as it should).  If you don't re-assign the value and just assume that it is the same, you would try to access instance variables relative to this old self you would be trying to read or write memory at a now deallocated memory location and would cause a seg fault.
+It makes sense in that the value returned by     [self init] may not actually be the original value of self.  By re-assigning the pointer, future calculations relative to it will be correct.  Plus, it is conceptually the same as any other call so it makes logical sense to do it.  This is very important to realize when you consider that you may be instantiating something which wants to change the object as it is instantiated.  Class clusters make heavy use of this, for example.  As a good example of this, consider that your     init method has to do some sort of sanity check before initializing the object's instance variables.  If the sanity check fails, the init method will probably want to deallocate itself.  Thus, it would send     [self release] and then would return nil to its caller.  If that were to happen, the re-assignment of self to nil would mean that the next line which checks its value would fail and the initializer would return nil (as it should).  If you don't re-assign the value and just assume that it is the same, you would try to access instance variables relative to this old self you would be trying to read or write memory at a now deallocated memory location and would cause a seg fault.
 
 Does that make sense?
 
---[[JeffDisher]]
+--General/JeffDisher
 
 ----
 
-Yes, thank you. I was just confused by this example's simplicity, in which it doesn't do anything: since <code>-init</code> returns <code>self</code>, it's pointless to do <code>self = self</code>. In less obvious cases, such as class clusters, it does make sense. --[[KonstantinAnoshkin]]
+Yes, thank you. I was just confused by this example's simplicity, in which it doesn't do anything: since     -init returns     self, it's pointless to do     self = self. In less obvious cases, such as class clusters, it does make sense. --General/KonstantinAnoshkin
 
 ----
 
-It is unsafe to leave out lines like <code>self = [self init];</code> because a subclass may override some of the init methods.  You'd have to be able to remember/guarantee that no subclasses would do anything funky.
+It is unsafe to leave out lines like     self = [self init]; because a subclass may override some of the init methods.  You'd have to be able to remember/guarantee that no subclasses would do anything funky.
 
-It would be more normal, in the above example, for the plain <code>init</code> method to call <code>- (id)initWithSpecialArgs:(id)someStuff</code> with some default values instead of the other way around.  Then <code>- (id)initWithSpecialArgs:(id)someStuff</code>  is the designated initializer and it's the only init method that needs to be overridden by subclasses.
+It would be more normal, in the above example, for the plain     init method to call     - (id)initWithSpecialArgs:(id)someStuff with some default values instead of the other way around.  Then     - (id)initWithSpecialArgs:(id)someStuff  is the designated initializer and it's the only init method that needs to be overridden by subclasses.
 
-<code>
+    
 
 - (id)init
 {
@@ -87,13 +87,13 @@ if (self != nil)
 return self;
 }
 
-</code>
 
-But also:  What the original poster was suggesting is also fine.  Say you're inheriting from [[NSView]], which has two designated initializers:
 
-<code>
+But also:  What the original poster was suggesting is also fine.  Say you're inheriting from General/NSView, which has two designated initializers:
 
-- (id)initWithFrame:([[NSRect]])frameRect
+    
+
+- (id)initWithFrame:(General/NSRect)frameRect
 {
   self = [super initWithFrame:frameRect];
   if (self != nil)
@@ -104,7 +104,7 @@ But also:  What the original poster was suggesting is also fine.  Say you're inh
   return self;
 }
 
-- (id)initWithCoder:([[NSCoder]] '')decoder
+- (id)initWithCoder:(General/NSCoder *)decoder
 {
   self = [super initWithCoder: decoder];
   if (self != nil)
@@ -120,8 +120,8 @@ But also:  What the original poster was suggesting is also fine.  Say you're inh
 //do your initialization
 }
 
-</code>
+
  
 
 
--[[KenFerry]]
+-General/KenFerry

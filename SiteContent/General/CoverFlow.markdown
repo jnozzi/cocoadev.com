@@ -4,4 +4,4 @@ Some information on the undocumented API:
 http://macresearch.org/cocoa-tutorial-image-kit-cover-flow-and-quicklook-doing-things-we-shouldnt-are-too-fun-resist
 
 An example project:
-/Developer/Examples/Quartz/Core\ Animation/[[CovertFlow]]/
+/Developer/Examples/Quartz/Core\ Animation/General/CovertFlow/

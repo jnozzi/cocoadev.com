@@ -7,7 +7,7 @@ I dont' need an Alternate icon, and don't need to add image programmatically, ju
 
 ----
 
-The image needs to be in your Xcode project first. Drag the image (for user interface, use tiffs or pngs) into your Resources group in Xcode. Then switch to Interface Builder, and go to the attributes for your button and enter the name of the image you just dragged into Xcode into the Icon field. If the filename of the image is "[[MyIcon]].tif", then you enter [[MyIcon]] for the name.
+The image needs to be in your Xcode project first. Drag the image (for user interface, use tiffs or pngs) into your Resources group in Xcode. Then switch to Interface Builder, and go to the attributes for your button and enter the name of the image you just dragged into Xcode into the Icon field. If the filename of the image is "General/MyIcon.tif", then you enter General/MyIcon for the name.
 
 ----
 

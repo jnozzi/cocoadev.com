@@ -1,1 +1,1 @@
-See [[CFZombie]]
+See General/CFZombie

@@ -5,27 +5,27 @@ Thanks.
 ----
 
 
-<code>
+    
 
 -(void)awakeFromNib {
-    id center=[[[NSNotificationCenter]] defaultCenter];
+    id center=General/[NSNotificationCenter defaultCenter];
     [center addObserver:self
                 selector:@selector(applicationWillBecomeActive:)
-                name:[[NSApplicationWillBecomeActiveNotification]]
+                name:General/NSApplicationWillBecomeActiveNotification
                 object:nil];
 }
 
 -(void)dealloc {
-    id center=[[[NSNotificationCenter]] defaultCenter];
+    id center=General/[NSNotificationCenter defaultCenter];
     [center removeObserver:self];
     [super dealloc];
 }
 -(void)applicationWillBecomeActive:(id)note {
-    [[NSLog]](@"applicationWillBecomeActive");
+    General/NSLog(@"applicationWillBecomeActive");
     [window makeKeyAndOrderFront:self];
 }
 
-</code>
+
 
 --zootbobbalu
 
@@ -35,21 +35,21 @@ Brought back from the dead to answer a new question. That function - (void)appli
 
 What I want to know is how to bring the window to the front when the user simply closes the main window and clicks the dock icon without changing to another application. Is there any method to handle that?
 
--- [[MatPeterson]]
+-- General/MatPeterson
 
 ----
 
 Try this in your applications delegate:
 
-<code>
-- (BOOL)applicationShouldHandleReopen:([[NSApplication]] '')sender hasVisibleWindows:(BOOL)flag
+    
+- (BOOL)applicationShouldHandleReopen:(General/NSApplication *)sender hasVisibleWindows:(BOOL)flag
 {
     if (![aWindow isVisible])
         [aWindow makeKeyAndOrderFront:nil];
     return NO;
 }
-</code>
+
 
 Works great for me
 
--- [[KentSutherland]]
+-- General/KentSutherland

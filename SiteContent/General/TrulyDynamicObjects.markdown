@@ -11,37 +11,37 @@ A collection will be created using two specialized classes: one optimized for a 
 
 Another use of TDO can be for a class which operates on the network. When the network connection dies, this object will mutate itself into another object that�ll record all messages sent to it. When the computer goes back online, the original object will get all messages sent to it while offline, process them, and go back to its original state.
 
-- [[OfriWolfus]]
+- General/OfriWolfus
 
 ----
-If you don't mind the massive messaging performance hit, you can easily do this by subclassing [[NSProxy]] and using message forwarding.
+If you don't mind the massive messaging performance hit, you can easily do this by subclassing General/NSProxy and using message forwarding.
 
 ----
 I'm sure there are important uses for this sort of thing, but the way it's described above makes it sound rather like a solution in search of a problem. Consider your last example. Why not simply create a network connection object that knows how to cache messages when the network is down and send them when the network comes back? Why is it necessary for the object to morph into something else in order to provide this alternate behavior? What, exactly, does the morphing add? After all, if the object is going to morph back into its original state, then all of its original state information has to be preserved.
 
 Objective-C does in fact do something like this, by the way. When you initialize an object, the initializer may deallocate the original object and replace it with a different, presumably more appropriate object. That's why you usually say something like "if (self = [super init]) {..." in an initialization routine. [super init] may return something other than the original self pointer, and that return value might even be nil.
 
-If you really do have a need for this much dynamism, I think you could easily implement it in your own classes without having to resort to using pointers to pointers to objects. Instead, create a single class that contains an object pointer and passes all messages to the object it contains. Instances of your class are then free to change their contained object at will, and clients of your class don't need to know a thing about it. This is essentially what [[NSProxy]] does, but you may be able to avoid some of [[NSProxy]]'s overhead by rolling your own. -CS
+If you really do have a need for this much dynamism, I think you could easily implement it in your own classes without having to resort to using pointers to pointers to objects. Instead, create a single class that contains an object pointer and passes all messages to the object it contains. Instances of your class are then free to change their contained object at will, and clients of your class don't need to know a thing about it. This is essentially what General/NSProxy does, but you may be able to avoid some of General/NSProxy's overhead by rolling your own. -CS
 
 ----
-You may indeed consider this as a solution to a problem. It's pretty much like comparing an OO language to a functional one - a functional language has its own kind of classes and instances as structures and specific functions for them, but a OO language just makes them "native". Objective-C does this, but only in initialization time, and this doesn't give you the flexibility I'm talking about. At init time the object knows very little about the environment in which it's going to be used, and therefor, may not do the ''best'' decision about what object to actually return. When you say a "more appropriate object" may be returned, you're right, except usually there's no way for the object to know what object will be more appropriate. That's the entire point of my idea - let the object become a more appropriate one as needed.
+You may indeed consider this as a solution to a problem. It's pretty much like comparing an OO language to a functional one - a functional language has its own kind of classes and instances as structures and specific functions for them, but a OO language just makes them "native". Objective-C does this, but only in initialization time, and this doesn't give you the flexibility I'm talking about. At init time the object knows very little about the environment in which it's going to be used, and therefor, may not do the *best* decision about what object to actually return. When you say a "more appropriate object" may be returned, you're right, except usually there's no way for the object to know what object will be more appropriate. That's the entire point of my idea - let the object become a more appropriate one as needed.
 
-About my last example, lets take an object named [[MyNetworkObject]] that can respond to -sendString:, -sendInt:, -sendFloat:, -sendStruct:, -getString:, -getInt:, -getFloat: and -getStruct:. This will be the common pattern of the implementation of all of them (typed in safari):
-<code>
+About my last example, lets take an object named General/MyNetworkObject that can respond to -sendString:, -sendInt:, -sendFloat:, -sendStruct:, -getString:, -getInt:, -getFloat: and -getStruct:. This will be the common pattern of the implementation of all of them (typed in safari):
+    
 - method:arg {
  if ([self isConnected]) {
   ...
  } else {
-  [messagesArray addObject:[[[NSDictionary]] dictionaryWithObjectsAndKeys:[[NSStringFromSelector]](_cmd), @"sel", arg, @"arg", nil]];
+  [messagesArray addObject:General/[NSDictionary dictionaryWithObjectsAndKeys:General/NSStringFromSelector(_cmd), @"sel", arg, @"arg", nil]];
   return something;
  }
 }
-</code>
+
 Using a messages recorder object saves all this repeating code and allows the generic recorder class to be used for other stuff as well. Morphing the object doesn't necessarily mean you through the original away. You can always keep it around in a "private place" you know about, and reuse it as needed.
 
-Wrapping all my classes in a proxy is not good enough as it's going to be ''really'' slow (need to allocate double number of objects and send every message twice - assuming i use my one optimized proxy which doesn't create an [[NSInvocation]] for every message).
+Wrapping all my classes in a proxy is not good enough as it's going to be *really* slow (need to allocate double number of objects and send every message twice - assuming i use my one optimized proxy which doesn't create an General/NSInvocation for every message).
 
-- [[OfriWolfus]]
+- General/OfriWolfus
 ----
 
 Oh, it's far slower than you make it sound. My tests indicate that forwarded messages have approximately one hundred times the overhead of normal messages. But even given that, why do you think it will be "really slow"? Much code is written in Python, Perl, etc. which do all kinds of things slowly, and many apps still run fast. Slowness is always relative.
@@ -55,8 +55,8 @@ Your idea of replacing object pointers with handles (i.e. pointers to pointers) 
 
 
 ----
-There is nothing wrong with what Ofri is suggesting, it's just that it's not necessary to go to such lengths as to redefine what an object is. The behaviour described above is called the State pattern. "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class." (http://c2.com/cgi-bin/wiki?[[StatePattern]]). It's implementable in every OO language from C++ to [[JavaScript]].
+There is nothing wrong with what Ofri is suggesting, it's just that it's not necessary to go to such lengths as to redefine what an object is. The behaviour described above is called the State pattern. "Allow an object to alter its behavior when its internal state changes. The object will appear to change its class." (http://c2.com/cgi-bin/wiki?General/StatePattern). It's implementable in every OO language from C++ to General/JavaScript.
 
 What you have is an abstract superclass (or an interface/protocol) which serves as a public interface, and two or more concrete subclasses which implement the actual logic. The public object forwards all method calls to an instance of a subclass, and when it needs to change its behaviour it switches to another subclass.
 
- --[[TheoHultberg]]/Iconara
+ --General/TheoHultberg/Iconara

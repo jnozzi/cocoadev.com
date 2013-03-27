@@ -13,7 +13,7 @@ Once you have put the output of this into a file(~/foo in the example, change to
 
 *brings up the one-line summaries of each of the system calls that are made.  This tip will do this for you.
 
-whatis $(cat ~/foo | cut -f 3 -d " " | sort | uniq | sed -e 's/.''/&(2)/')
+whatis $(cat ~/foo | cut -f 3 -d " " | sort | uniq | sed -e 's/.*/&(2)/')
 
 whatis brings up the one-line'ers; however, it needs "(2)" added to the end or it will find lots of useless stuff too.  cut -f 3 -d " " pull out the system calls from the fs_usage output; sort and uniq do what you would think.  the sed command adds the "(2)" bit.
 
@@ -41,6 +41,6 @@ Parts of the output (with character postitions, useful for cut)
 
 Some good resources on fs_usage are: 
 
-*http://developer.apple.com/documentation/Darwin/Reference/[[ManPages]]/man1/fs_usage.1.html
+*http://developer.apple.com/documentation/Darwin/Reference/General/ManPages/man1/fs_usage.1.html
 *http://rentzsch.com/macosx/fs_usageIntro
 *http://www.macworld.com/weblogs/macosxhints/2005/08/filesystemusage/index.php?lsrc=mwrss

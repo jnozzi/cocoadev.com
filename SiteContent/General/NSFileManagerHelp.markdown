@@ -1,63 +1,63 @@
-I am attempting to make little cocoa applications to learn some basics. Currently I am having issues getting an [[NSMutableArray]] to recieve the list of directory items from [[NSFileManager]].
+I am attempting to make little cocoa applications to learn some basics. Currently I am having issues getting an General/NSMutableArray to recieve the list of directory items from General/NSFileManager.
 
 Here is my code.
 
-<code>
-- ([[IBAction]])actionLoadFolder:(id)sender
+    
+- (General/IBAction)actionLoadFolder:(id)sender
 {
 	// set open panel
-	[[NSOpenPanel]] ''oPanel = [[[NSOpenPanel]] openPanel];
+	General/NSOpenPanel *oPanel = General/[NSOpenPanel openPanel];
 	[oPanel setCanChooseDirectories:YES];
 	[oPanel setCanChooseFiles:NO];
 	
 	// run the panel and set the result
 	int result = [oPanel runModalForDirectory:nil file:nil types:nil];
-	if(result == [[NSOKButton]])
+	if(result == General/NSOKButton)
 	{
-		[[NSArray]] ''pathToOpen = [oPanel [[URLs]]];
-        NSURL ''pathURL = [pathToOpen objectAtIndex:0];
+		General/NSArray *pathToOpen = [oPanel General/URLs];
+        NSURL *pathURL = [pathToOpen objectAtIndex:0];
 		
 		if([pathURL isFileURL])
 		{
 		
 				// debug to console the path.
-				[[NSLog]](@"url is %@", pathURL);
+				General/NSLog(@"url is %@", pathURL);
 				
 			// for shits and giggles, lets attempt to get a list of files at that URL and just log them out?
 				
-				[[NSString]] '' pathToOpenString = [pathURL absoluteString]; 
+				General/NSString * pathToOpenString = [pathURL absoluteString]; 
 				
-				[[NSFileManager]] ''manager = [[[NSFileManager]] defaultManager];
+				General/NSFileManager *manager = General/[NSFileManager defaultManager];
 				
-				[[NSMutableArray]] ''itemsInPathToOpen = [[[[NSMutableArray]] alloc] init];
+				General/NSMutableArray *itemsInPathToOpen = General/[[NSMutableArray alloc] init];
 			
 				[itemsInPathToOpen setArray: [manager directoryContentsAtPath:pathToOpenString]];
 
-			/''
+			/*
 				[itemsInPathToOpen addObject:@"/this/is/path/1"];
 				[itemsInPathToOpen addObject:@"/this/is/path/2"];
 				[itemsInPathToOpen addObject:@"/this/is/path/3"];
 				[itemsInPathToOpen addObject:@"/this/is/path/4"];
 				[itemsInPathToOpen addObject:@"/this/is/path/5"];
 				[itemsInPathToOpen addObject:@"/this/is/path/6"];
-			''/
+			*/
 				
 				int i;
 				int pathcount;
 				pathcount = [itemsInPathToOpen count];
 				
-				[[NSLog]](@"pathcount %d", pathcount);
+				General/NSLog(@"pathcount %d", pathcount);
 				
 				for(i = 0; i <= pathcount; i++)
 				{
-					[[NSString]] '' item = [itemsInPathToOpen objectAtIndex:i];
+					General/NSString * item = [itemsInPathToOpen objectAtIndex:i];
 					printf("%s \n" ,[item UTF8String] );
 				}
 
 		}	
 		else
 		{
-			[[NSLog]](@"Not a path URL");
+			General/NSLog(@"Not a path URL");
 		}	
 	}
 	else
@@ -65,27 +65,27 @@ Here is my code.
 	
 	}
 }
-</code>
 
-This works if I un-comment the [itemsInPathToOpen addObject:@"path"]; so my error lies in how I am attempting to fill up my itemsInPathToOpen array from [[NSFileManager]] 'manager' instance?
+
+This works if I un-comment the [itemsInPathToOpen addObject:@"path"]; so my error lies in how I am attempting to fill up my itemsInPathToOpen array from General/NSFileManager 'manager' instance?
 
 Any help? This has been eluding me all day. Thanks.
 
 ----
 
 This looks like it should work, but try switching the following pieces of code:
-<code>
+    
 // Your code
-[[NSMutableArray]] ''itemsInPathToOpen = [[[[NSMutableArray]] alloc] init];
+General/NSMutableArray *itemsInPathToOpen = General/[[NSMutableArray alloc] init];
 [itemsInPathToOpen setArray: [manager directoryContentsAtPath:pathToOpenString]];
 
 // New code
-[[NSMutableArray]] ''itemsInPathToOpen = [[[[NSMutableArray]] alloc] initWithArray:[manager directoryContentsAtPath:pathToOpenString]];
+General/NSMutableArray *itemsInPathToOpen = General/[[NSMutableArray alloc] initWithArray:[manager directoryContentsAtPath:pathToOpenString]];
 
 // Other code that might work:
-[[NSMutableArray]] ''itemsInPathToOpen = [[manager directoryContentsAtPath:pathToOpenString] mutableCopy];
-</code>
-I don't know exactly why it should make a difference, but you can try it. --[[JediKnil]]
+General/NSMutableArray *itemsInPathToOpen = General/manager directoryContentsAtPath:pathToOpenString] mutableCopy];
+
+I don't know exactly why it should make a difference, but you can try it. --[[JediKnil
 
 ----
 
@@ -93,7 +93,7 @@ Thanks, but neither seem to work. Im pretty confused by this, to be honest, whic
 
 ----
 
-What is the output you are expecting? What do you get instead? -- [[MikeAmy]]
+What is the output you are expecting? What do you get instead? -- General/MikeAmy
 
 ----
 Your code is wrong in many aspects:
@@ -107,11 +107,11 @@ c) [itemsInPathToOpen setArray: [manager directoryContentsAtPath:pathToOpenStrin
 d)for(i = 0; i <= pathcount; i++) should be for(i = 0; i < pathcount; i++), otherwise the loop goes one more time than needed
 
 the correct code is:
-<code>
-- ([[IBAction]])actionLoadFolder:(id)sender
+    
+- (General/IBAction)actionLoadFolder:(id)sender
 {
 	// set open panel
-	[[NSOpenPanel]] ''oPanel = [[[NSOpenPanel]] openPanel];
+	General/NSOpenPanel *oPanel = General/[NSOpenPanel openPanel];
 	[oPanel setCanChooseDirectories:YES];
 	[oPanel setCanChooseFiles:NO];
 	[oPanel setAllowsMultipleSelection:YES];
@@ -119,24 +119,24 @@ the correct code is:
 	
 	// run the panel and set the result
 	int result = [oPanel runModalForDirectory:nil file:nil types:nil];
-	if(result == [[NSOKButton]])
+	if(result == General/NSOKButton)
 	{
-		[[NSArray]] ''pathsToOpen = [[[NSMutableArray]] arrayWithArray:[oPanel filenames]];
-		[[NSEnumerator]] ''e = [pathsToOpen objectEnumerator];
-		[[NSString]] ''tempPath;
-		[[NSFileManager]] ''manager = [[[NSFileManager]] defaultManager];
-		[[NSMutableArray]] ''paths = [[[NSMutableArray]] arrayWithCapacity:5];
+		General/NSArray *pathsToOpen = General/[NSMutableArray arrayWithArray:[oPanel filenames]];
+		General/NSEnumerator *e = [pathsToOpen objectEnumerator];
+		General/NSString *tempPath;
+		General/NSFileManager *manager = General/[NSFileManager defaultManager];
+		General/NSMutableArray *paths = General/[NSMutableArray arrayWithCapacity:5];
 		
 		while (tempPath = [e nextObject])
 		{
-			[[NSArray]] ''currPathContent = [[[NSArray]] arrayWithArray:[manager directoryContentsAtPath:tempPath]];
-			[[NSString]] ''temp;
-			[[NSEnumerator]] ''pathE = [currPathContent objectEnumerator];
+			General/NSArray *currPathContent = General/[NSArray arrayWithArray:[manager directoryContentsAtPath:tempPath]];
+			General/NSString *temp;
+			General/NSEnumerator *pathE = [currPathContent objectEnumerator];
 			
 			while (temp = [pathE nextObject])
 			{
 				[paths addObject:[tempPath stringByAppendingPathComponent:temp]];
-				[[NSLog]](@"%@", [tempPath stringByAppendingPathComponent:temp]);
+				General/NSLog(@"%@", [tempPath stringByAppendingPathComponent:temp]);
 			}
 			
 		}
@@ -144,14 +144,14 @@ the correct code is:
 	}
 }
 
-</code>
+
 HTH
-[[BobC]]
+General/BobC
 
 ----
 
-[[BobC]], thank you very much. Last night I noticed the memory leak and in the debugger that I was 'off by one', but my main issue was that I was feeding a 'malformed' path to [[NSFileManager]]. Thanks again! Im slowly learning all the class [[APIs]] and how to do things.. a lot to swallow. It seems using [[NSOpenPanel]] filenames method was the way to go. Thanks!
+General/BobC, thank you very much. Last night I noticed the memory leak and in the debugger that I was 'off by one', but my main issue was that I was feeding a 'malformed' path to General/NSFileManager. Thanks again! Im slowly learning all the class General/APIs and how to do things.. a lot to swallow. It seems using General/NSOpenPanel filenames method was the way to go. Thanks!
 
 ----
 
-What about using [[NSDirectoryEnumerator]]?
+What about using General/NSDirectoryEnumerator?

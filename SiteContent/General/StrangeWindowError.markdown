@@ -1,14 +1,14 @@
-I am getting a weird crasher which is apparently caused by something in a subclass of [[NSWindow]]. The crash dump gives me 508 lines of the same message:
+I am getting a weird crasher which is apparently caused by something in a subclass of General/NSWindow. The crash dump gives me 508 lines of the same message:
 
-<code>
-0   com.apple.[[AppKit]]  	0x92e2aad0 -[[[NSWindow]] validRequestorForSendType:returnType:] + 0x10
-1   com.apple.[[AppKit]]  	0x92e2ab58 -[[[NSWindow]] validRequestorForSendType:returnType:] + 0x98
-2   com.apple.[[AppKit]]  	0x92e2ab58 -[[[NSWindow]] validRequestorForSendType:returnType:] + 0x98
+    
+0   com.apple.General/AppKit  	0x92e2aad0 -General/[NSWindow validRequestorForSendType:returnType:] + 0x10
+1   com.apple.General/AppKit  	0x92e2ab58 -General/[NSWindow validRequestorForSendType:returnType:] + 0x98
+2   com.apple.General/AppKit  	0x92e2ab58 -General/[NSWindow validRequestorForSendType:returnType:] + 0x98
 ....
-506 com.apple.[[AppKit]]  	0x92e2ab58 -[[[NSWindow]] validRequestorForSendType:returnType:] + 0x98
-507 com.apple.[[AppKit]]  	0x92e2ab58 -[[[NSWindow]] validRequestorForSendType:returnType:] + 0x98
-508 com.apple.[[AppKit]]  	0x92e2ab58 -[[[NSWindow]] validRequestorForSendType:returnType:] + 0x98
-</code>
+506 com.apple.General/AppKit  	0x92e2ab58 -General/[NSWindow validRequestorForSendType:returnType:] + 0x98
+507 com.apple.General/AppKit  	0x92e2ab58 -General/[NSWindow validRequestorForSendType:returnType:] + 0x98
+508 com.apple.General/AppKit  	0x92e2ab58 -General/[NSWindow validRequestorForSendType:returnType:] + 0x98
+
 
 Does anyone have any idea what would cause this?
 
@@ -28,4 +28,4 @@ Are you sure that you aren't dealing with recursive calls, like:
 
 -- JP
 
-Could be in a validateMenuItem: method call. -[[RossDude]]
+Could be in a validateMenuItem: method call. -General/RossDude

@@ -1,1 +1,1 @@
-See [[InstanceMethod]]
+See General/InstanceMethod

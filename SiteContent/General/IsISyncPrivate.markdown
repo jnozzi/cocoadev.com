@@ -6,19 +6,19 @@ So, I ask -- is there developer documentation? And, if there isn't, why not? Ser
 
 I have to cool down, I sense a rant about Apple coming on...
 
---[[ShamylZakariya]]
+--General/ShamylZakariya
 
-To answer the one question I can ''is there developer documentation?''
+To answer the one question I can *is there developer documentation?*
 
-No. See the following link - [http://cocoa.mamasam.com/MACOSXDEV/2004/01/1/81551.php]. iSync does use [[SyncML]], which is a standard, so you may be able to work something out with that. [http://cocoa.mamasam.com/MACOSXDEV/2004/01/2/81639.php]
+No. See the following link - [http://cocoa.mamasam.com/MACOSXDEV/2004/01/1/81551.php]. iSync does use General/SyncML, which is a standard, so you may be able to work something out with that. [http://cocoa.mamasam.com/MACOSXDEV/2004/01/2/81639.php]
 
-The reason that iSync isn't open is the same reason that [[AddressBook]], for instance, wasn't open until 10.2 despite it existing for some long time before then.  The reason is that they completely changed the API between 10.1 and 10.2 - pre 10.2 it was under development.  iSync is in a very similar situation (ask me how I know!).
+The reason that iSync isn't open is the same reason that General/AddressBook, for instance, wasn't open until 10.2 despite it existing for some long time before then.  The reason is that they completely changed the API between 10.1 and 10.2 - pre 10.2 it was under development.  iSync is in a very similar situation (ask me how I know!).
 
 Hope this helps.
 
 ----
 
-I'll bite. "How do you know?" --[[ShamylZakariya]]
+I'll bite. "How do you know?" --General/ShamylZakariya
 
 Heh - that was sort of a glib/rhetorical remark.  Let's just say that I've had to work with both the AB pre-10.2 and iSync currently.  There are some similarities between the two, and some functionality in iSync itself for versioning of plugins.  So the writing on the wall is that they either intend to change it or were worried about changing it, and so they left that door open.
 
@@ -26,21 +26,21 @@ Heh - that was sort of a glib/rhetorical remark.  Let's just say that I've had t
 
 OK, that's reasonable. I'm not happy with it -- I'd rather see framework versioning be used with the intent of getting something out into the hands of developers so it can be tested in the real world, but hey... 
 
-I'd like to know, then, if there's a procedural way to attach folder actions. Perhaps a command line tool? The only way I know is via the dialogs in the finder. What I guess I might have to do, to get around the lack of iSync, is attach a folder action to /Volumes to be called when a new device is attached ( I know [[NSWorkspace]] can detect the insertion of new volumes but I'd rather not have a program have to be running 24/7 just to get notification ) I can then have the applescript run a helper app to detect if the mounted volume is holding sync'd folder and so on and so forth. Does that sound like a reasonable approach? 
+I'd like to know, then, if there's a procedural way to attach folder actions. Perhaps a command line tool? The only way I know is via the dialogs in the finder. What I guess I might have to do, to get around the lack of iSync, is attach a folder action to /Volumes to be called when a new device is attached ( I know General/NSWorkspace can detect the insertion of new volumes but I'd rather not have a program have to be running 24/7 just to get notification ) I can then have the applescript run a helper app to detect if the mounted volume is holding sync'd folder and so on and so forth. Does that sound like a reasonable approach? 
 
---[[ShamylZakariya]]
+--General/ShamylZakariya
 
 ----
 
-You mean you'd rather not have ''another'' program running to get notification ;) Folder actions are handled by a process launched at login - I think [[SystemUIServer]].
+You mean you'd rather not have *another* program running to get notification ;) Folder actions are handled by a process launched at login - I think General/SystemUIServer.
 
 There's an Applescript way to do it - check the System Events dictionary:
 
-<code>
+    
 attach action to: Attach an action to a folder
 	attach action to  folder  -- The folder to which the action is to be attached.
 		using  Unicode text  -- a file containing the script to attach
 	Result:   folder action  -- the reply for the command
-</code>
+
 
 hmmm... maybe this site could use a BEGINAPPLESCRIPTCODE style?

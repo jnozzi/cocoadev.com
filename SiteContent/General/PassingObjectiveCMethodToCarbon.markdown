@@ -1,1 +1,1 @@
-See [[PassingAnObjectiveCMethodToCarbon]].
+See General/PassingAnObjectiveCMethodToCarbon.

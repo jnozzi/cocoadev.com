@@ -1,5 +1,5 @@
 A book or manual reflecting blue light but absorbing all other wavelengths.
 
-Colloquially, [[TheOpenGLBlueBook]].
+Colloquially, General/TheOpenGLBlueBook.
 
-See also: [[RedBook]].
+See also: General/RedBook.

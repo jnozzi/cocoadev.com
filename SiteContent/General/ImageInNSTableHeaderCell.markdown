@@ -1,15 +1,15 @@
-I was wondering how I would put an image in a [[NSTableHeaderCell]]. Thanks.
+I was wondering how I would put an image in a General/NSTableHeaderCell. Thanks.
 ----
 Never mind, I found it out. I'll share.
-<code>
-[[NSTableColumn]] ''priorityColumn = [fileView tableColumnWithIdentifier:@"filePriority"];
-[[NSTableHeaderCell]] ''priorityHeader = [[[[NSTableHeaderCell]] alloc] initImageCell: [[[NSImage]] imageNamed:@"priority_header"]];
+    
+General/NSTableColumn *priorityColumn = [fileView tableColumnWithIdentifier:@"filePriority"];
+General/NSTableHeaderCell *priorityHeader = General/[[NSTableHeaderCell alloc] initImageCell: General/[NSImage imageNamed:@"priority_header"]];
 [priorityColumn setHeaderCell:priorityHeader];
 [priorityHeader release];
-[[NSImageCell]] ''priorityImageCell = [[[[NSImageCell]] alloc] init];
+General/NSImageCell *priorityImageCell = General/[[NSImageCell alloc] init];
 [priorityColumn setDataCell:priorityImageCell];
 [priorityImageCell release];
-</code>
+
 This helped me, I hope it helps you people too.
 
---[[JoshaChapmanDodson]]
+--General/JoshaChapmanDodson

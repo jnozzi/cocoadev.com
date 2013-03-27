@@ -1,8 +1,8 @@
-I have been REALLY trying to learn bindings by following [[CoreData]] documentation and the sample code provided by Apple.
+I have been REALLY trying to learn bindings by following General/CoreData documentation and the sample code provided by Apple.
 
-Last night I upgraded to Tiger 10.4.3 which notes some improvements to [[CoreData]].
+Last night I upgraded to Tiger 10.4.3 which notes some improvements to General/CoreData.
 
-This morning [[CoreDataRecipes]] no longer works correctly.
+This morning General/CoreDataRecipes no longer works correctly.
 
 To be sure I re-downloaded the sample code and sure 'nuf no longer works...
 The Groups rule specification pop-up do not populate - specifically the operator values.

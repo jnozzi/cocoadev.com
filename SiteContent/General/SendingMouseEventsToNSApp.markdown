@@ -6,7 +6,7 @@ A possible reason why someone may want to use this feature:  Lets say my mouse t
 
 ----
 
-Do you want to send mouse events system-wide? Then you would not involve [[NSEvent]] or [[NSApp]], both of which are local to a given application. Instead, take a look at the [[CGRemoteOperation]].h file. It's not well-documented, but it has functions for faking events, and they aren't extremely difficult to use.
+Do you want to send mouse events system-wide? Then you would not involve General/NSEvent or General/NSApp, both of which are local to a given application. Instead, take a look at the General/CGRemoteOperation.h file. It's not well-documented, but it has functions for faking events, and they aren't extremely difficult to use.
 
 ----
 
@@ -23,4 +23,4 @@ I tried the "Ignoring" feature, but it still thinks I want to select huge amount
 
 ----
 
-If you want to stop all mouse events your going to have to overload [[NSApp]]. Once you get that override the -(void)sendEvent:([[NSEvent]]'')event function. In there you want to test the event type to see if is one of the ones you dont want. If you dont want it, throw it away, if you want it to pass on ( only block the mouse stuff, there's a lot of other stuff that comes though there) send it to [super sendEvent:event]; Good luck with you editor. -- [[CurtisHoover]]
+If you want to stop all mouse events your going to have to overload General/NSApp. Once you get that override the -(void)sendEvent:(General/NSEvent*)event function. In there you want to test the event type to see if is one of the ones you dont want. If you dont want it, throw it away, if you want it to pass on ( only block the mouse stuff, there's a lot of other stuff that comes though there) send it to [super sendEvent:event]; Good luck with you editor. -- General/CurtisHoover

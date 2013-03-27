@@ -4,7 +4,7 @@ ABMutableMultiValue Inherits from ABMultiValue, NSObject
 ----
 
 
-<code>- (NSString *)addValue:(id)value withLabel:(NSString *)label;</code>
+    - (NSString *)addValue:(id)value withLabel:(NSString *)label;
 
  *Adds a value with its label
  *Returns the identifier if successful. nil otherwise
@@ -12,7 +12,7 @@ ABMutableMultiValue Inherits from ABMultiValue, NSObject
  *Note: No type checking is made when adding a value. But trying to set a multivalue property with a multivalue that doesn't have all its values of the same type will return an error.
 
 
-<code>- (NSString *)insertValue:(id)value withLabel:(NSString *)label atIndex:(int)index;</code>
+    - (NSString *)insertValue:(id)value withLabel:(NSString *)label atIndex:(int)index;
 
  *Insert a value/label pair at a given index
  *Returns the identifier if successful. nil otherwise
@@ -21,14 +21,14 @@ ABMutableMultiValue Inherits from ABMultiValue, NSObject
 
     
  
-<code>- (BOOL)removeValueAndLabelAtIndex:(int)index;</code>
+    - (BOOL)removeValueAndLabelAtIndex:(int)index;
 
  *Removes a value/label pari at a given index
  *Raises if the index is out of bounds
 
         
 
-<code>- (BOOL)replaceValueAtIndex:(int)index withValue:(id)value;</code>
+    - (BOOL)replaceValueAtIndex:(int)index withValue:(id)value;
 
  *Replaces a value at a given index
  *Raises if the index is out of bounds or the value is nil
@@ -36,7 +36,7 @@ ABMutableMultiValue Inherits from ABMultiValue, NSObject
         
 
 
-<code>- (BOOL)replaceLabelAtIndex:(int)index withLabel:(NSString*)label;</code>
+    - (BOOL)replaceLabelAtIndex:(int)index withLabel:(NSString*)label;
 
  *Replaces a label at a given index
  *Raises if the index is out of bounds or the label is nil
@@ -44,11 +44,11 @@ ABMutableMultiValue Inherits from ABMultiValue, NSObject
         
 
 
-<code>- (BOOL)setPrimaryIdentifier:(NSString *)identifier;</code>
+    - (BOOL)setPrimaryIdentifier:(NSString *)identifier;
 
  *Sets the primary value given its identifier.
  *Raises if identifier is nil
  *Returns YES if successful
 
 
-[[Category:PointlessInformation]]
+General/Category:PointlessInformation

@@ -5,11 +5,11 @@ I was born in Atlanta, GA, though I am currently attending school at UCLA with a
 
 My website with downloadable icons and some free Cocoa code is at http://adrian-fh98.web.unair.ac.id
 
-'''Projects:'''
+**Projects:**
 * [http://vamostech.com/gps-tracking GPS Tracker]
 * [http://www.tiraimodern.com/product/roller-blind Roller Blind]
 * [http://www.pbtaxand.com/our-services/tax-advisory-services Konsultan Pajak]
 * Super-secret Cocoa App
-* [[RoyaltyFreeIcons]] - Free toolbar icons for developers
-* [[MBTableGrid]] - Cocoa spreadsheet control
+* General/RoyaltyFreeIcons - Free toolbar icons for developers
+* General/MBTableGrid - Cocoa spreadsheet control
 * [http://riovinh.wordpress.com Mancing]

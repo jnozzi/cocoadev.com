@@ -1,20 +1,20 @@
 
 
 
-<code>
-- ([[IBAction]]) click:(id)sender
+    
+- (General/IBAction) click:(id)sender
 {
 	fastClick++;
 	slowClick++;
 	int clicked = [localFilesView clickedRow];
 	
-	[[NSUserDefaults]] ''defaults = [[[NSUserDefaults]] standardUserDefaults];
-  float doubleClickTime=[[defaults objectForKey:@"com.apple.mouse.doubleClickThreshold"] 
+	General/NSUserDefaults *defaults = General/[NSUserDefaults standardUserDefaults];
+  float doubleClickTime=General/defaults objectForKey:@"com.apple.mouse.doubleClickThreshold"] 
                                          floatValue];
 	
-	[[[NSTimer]] scheduledTimerWithTimeInterval:doubleClickTime
+	[[[NSTimer scheduledTimerWithTimeInterval:doubleClickTime
        target:self selector:@selector(fastClickReset:) userInfo:nil repeats:NO];
-	[[[NSTimer]] scheduledTimerWithTimeInterval:doubleClickTime''10
+	General/[NSTimer scheduledTimerWithTimeInterval:doubleClickTime*10
        target:self selector:@selector(slowClickReset:) userInfo:nil repeats:NO];
 	
 	if(clicked == lastSelectedRow)
@@ -39,7 +39,7 @@
 	lastSelectedRow = [localFilesView clickedRow];
 }
 
-</code>
+
 
 What is wrong with this code, i cant make it work 100%.
 I'm trying to make this work like in transmit or itunes where slow double click edits, an fast opens.
@@ -50,13 +50,13 @@ Tnx
 
 I've solved it with this code
 
-<code>
-- ([[IBAction]]) click:(id)sender
+    
+- (General/IBAction) click:(id)sender
 {
 int clicked = [localFilesView clickedRow];
 	
-	[[NSUserDefaults]] ''defaults = [[[NSUserDefaults]] standardUserDefaults];
-float doubleClickTime = [[defaults objectForKey:@"com.apple.mouse.doubleClickThreshold"] floatValue];
+	General/NSUserDefaults *defaults = General/[NSUserDefaults standardUserDefaults];
+float doubleClickTime = General/defaults objectForKey:@"com.apple.mouse.doubleClickThreshold"] floatValue];
 	
 	BOOL doubleClick     = ([[[localFilesView window] currentEvent] clickCount] == 2);
 	
@@ -65,25 +65,25 @@ float doubleClickTime = [[defaults objectForKey:@"com.apple.mouse.doubleClickThr
 	{
 		if(doubleClick)
 		{
-			[localFiles setDir:[[[NSString]] stringWithFormat:@"%@%@/",
-                             [localFiles getDir], [[[localFiles getContent] objectAtIndex:clicked] fileName]]];
+			[localFiles setDir:[[[NSString stringWithFormat:@"%@%@/",
+                             [localFiles getDir], General/[localFiles getContent] objectAtIndex:clicked] fileName];
 			[localFilesView reloadData];
 		}
 		else
 		{
-			[[NSArray]] ''event = [[[NSArray]] arrayWithObjects:localFilesView,
-                                              [[[NSNumber]] numberWithInt:[localFilesView clickedColumn]],
-                                              [[[NSNumber]] numberWithInt:clicked], nil];
+			General/NSArray *event = General/[NSArray arrayWithObjects:localFilesView,
+                                              General/[NSNumber numberWithInt:[localFilesView clickedColumn]],
+                                              General/[NSNumber numberWithInt:clicked], nil];
 			[self performSelector:@selector(editTableRow:) withObject:event afterDelay:0.2];
 		}
 	}
 	
 	lastSelectedRow = [localFilesView clickedRow];
 }
-</code>
+
 
 ----
 
-Don't get the double click time from defaults, use Carbon's [[GetDblTime]]() instead.
+Don't get the double click time from defaults, use Carbon's General/GetDblTime() instead.
 
-<code>float dblClickTime = ([[GetDblTime]]() / 60.0);</code>
+    float dblClickTime = (General/GetDblTime() / 60.0);

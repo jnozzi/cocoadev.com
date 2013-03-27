@@ -14,7 +14,7 @@ I am stumped by this behavior.
 
 ----
 
-On [[PowerPC]], the awakeFromNib method is not called in either case.
+On General/PowerPC, the awakeFromNib method is not called in either case.
 
 The signature of your -init method is wrong.  You have it returning void, but it must return the initialized object.  On intel with a release build, you're probably getting 'lucky' in that the pointer you ought to have returned happened to be in the return register anyway.
 
@@ -25,10 +25,10 @@ The signature of your -init method is wrong.  You have it returning void, but it
 Actually, your entire -init method is wrong.  Here's what it should look like:
 
 In GRAS.h:
-<code>-(id)init;</code>
+    -(id)init;
 
 In GRAS.m:
-<code>
+    
 -(id)init
 {
   self = [super init];  // forget this, and you can kiss your app goodbye
@@ -43,13 +43,13 @@ In GRAS.m:
 
   return self;
 }
-</code>
+
 
 You MUST (well, you'd have to search for a reason not to) call [super init] at the beginning of your -init method, and the way that Objective-C stores the self reference (a hidden parameter to the method) makes the format above the right way to write an initializer.
 
 Just to clarify: the return value on an Intel processor is put into register %eax.  If the last function call you make (which includes Objective-C method calls) puts self in %eax, but you forget to return from -init, then your house doesn't come crashing down.
 
-This is what upsets me about the gcc defaults: they simply warn you if you fail to return from a non-void function -- which for some stupid reason is ''still'' valid C, just like returning a value in a void function.  And it's also easy to forget that -init should return an id, not void.
+This is what upsets me about the gcc defaults: they simply warn you if you fail to return from a non-void function -- which for some stupid reason is *still* valid C, just like returning a value in a void function.  And it's also easy to forget that -init should return an id, not void.
 
 ----
 
@@ -57,7 +57,7 @@ Thanks all, I now have the program working, but this remains one of the confusin
 
 Anyway, I solved it by:
 
-<code>
+    
 -(id)init
 {
      if(!dayNight) dayNight...
@@ -69,11 +69,11 @@ Anyway, I solved it by:
 
   return ([super init]);
 }
-</code>
+
 
 Which does appear to work as well. It is an amazing feature of Cocoa and Mac OS X that I can write what are too me amazing programs without totally understanding what I am doing. 
 
-The finished program appears here, if anyone is interested: http://mrmac.mr.aps.anl.gov/~jterry/images/[[GRASDesktop]].dmg
+The finished program appears here, if anyone is interested: http://mrmac.mr.aps.anl.gov/~jterry/images/General/GRASDesktop.dmg
 
 Appreciate the help. 
 

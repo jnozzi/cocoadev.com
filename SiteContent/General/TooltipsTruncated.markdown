@@ -1,7 +1,7 @@
 
 This is somewhat a stupid question, but I hope I do get feedback on this matter. I'm quite new in the Cocoa development so I am not that knowledgeable on these matters. 
 Why are tooltip displays truncated at times? Is this an OS Limitation? I tried searching the Apple Mailing Lists but I couldn't find any information about it.
-As far as I know, it is the OS which controls the length of the tooltip display. I don't know if there are any [[APIs]] available which allows the user to set the size for the tooltip.
+As far as I know, it is the OS which controls the length of the tooltip display. I don't know if there are any General/APIs available which allows the user to set the size for the tooltip.
 Thanks in advance for helping me out with my stupid question.
 
 ----

@@ -1,5 +1,5 @@
 Sen:te, http://www.sente.ch
 
-Cocoa and [[WebObjects]] (among other things) developers from Lausanne, Switzerland. 
+Cocoa and General/WebObjects (among other things) developers from Lausanne, Switzerland. 
 
-Authors of [[OCUnit]], CVL, [[GPGMail]], Goban, all freely available from their website.
+Authors of General/OCUnit, CVL, General/GPGMail, Goban, all freely available from their website.

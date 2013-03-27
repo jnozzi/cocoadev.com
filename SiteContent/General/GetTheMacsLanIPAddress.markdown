@@ -1,28 +1,28 @@
 Anyone know the easiest way to get the local IPv4 address of
 
-the Mac an application is running on as an [[NSString]] ?
+the Mac an application is running on as an General/NSString ?
 
 Cheers.
 
-[[ChrisEccles]]
+General/ChrisEccles
 
 ----
 
 You should keep in mind that there is not necessarily any such thing as "the" local IPv4 address. It's very easy for a Mac to have multiple local addresses; any Mac that's sharing its internet connection or using a VPN will have multiple active non-loopback addresses.
 
-That said, you can get info on the local addresses by using [[NSHost]].
+That said, you can get info on the local addresses by using General/NSHost.
 
 ----
 
-Also look at [[HowToGetHardwareAndNetworkInfo]] --[[CharlesParnot]]
+Also look at General/HowToGetHardwareAndNetworkInfo --General/CharlesParnot
 
 ----
 
-[[HowToGetHardwareAndNetworkInfo]] IS really informative. Thanks Charles !
+General/HowToGetHardwareAndNetworkInfo IS really informative. Thanks Charles !
 
 The multiple local address thing is determined by active location, though, isn't it ? 
 
-Meaning, if you're not internet sharing and your location specifies ONE IP address for your LAN ?      [[ChrisEccles]]
+Meaning, if you're not internet sharing and your location specifies ONE IP address for your LAN ?      General/ChrisEccles
 
 ----
 

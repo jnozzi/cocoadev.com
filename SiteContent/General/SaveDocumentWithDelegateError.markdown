@@ -1,18 +1,18 @@
 I'm having problems when I need to be sure that all my documents are saved before the program continues executing:
 The example method below says it all. 
 I need to be sure that all documents are saved before I continue but after sending the message
-<code>
-[[[[NSDocumentController]] sharedDocumentController]saveAllDocuments];
-</code>
+    
+General/[[NSDocumentController sharedDocumentController]saveAllDocuments];
+
 the program continues without waiting. Perhaps a second thread is used to actually save the documents?
 How to handle this?
 
-In my subclass of [[NSDocument]]:
+In my subclass of General/NSDocument:
 
-<code>
+    
 -(void) doSomething
 {
-        [[[[NSDocumentControllersharedDocumentController]]]saveAllDocuments:nil];
+        General/[[NSDocumentControllersharedDocumentController]saveAllDocuments:nil];
         // now that all documents are saved and the user did not cancel saving untitled documents
 
         if( there are no more unsaved documents)
@@ -22,33 +22,33 @@ In my subclass of [[NSDocument]]:
         }
         ...return without continuing
 }  
-</code>
+
 
 ----
 
-''the program continues without waiting. Perhaps a second thread is used to actually save the documents?''
+*the program continues without waiting. Perhaps a second thread is used to actually save the documents?*
 
-It has to return, because the app is supposed to keep responding to input while the user reads the dialog(s) and decides what to do.  It probably isn't in a second thread, I'd expect it to use the runloop.  Anyway, I think you'll need to do this rather more manually.  Go through each unsaved document and tell it to save itself, maybe with <code>-[[[NSDocument]] saveDocumentWithDelegate:didSaveSelector:contextInfo:]</code> if that's the kind of behavior you want (some other related methods can be used to get different behavior).  If there aren't any unsaved documents directly call a method that does your real work.  In the didSaveSelector you specify, see if all the docs have been saved, and if so call that real work method.
+It has to return, because the app is supposed to keep responding to input while the user reads the dialog(s) and decides what to do.  It probably isn't in a second thread, I'd expect it to use the runloop.  Anyway, I think you'll need to do this rather more manually.  Go through each unsaved document and tell it to save itself, maybe with     -General/[NSDocument saveDocumentWithDelegate:didSaveSelector:contextInfo:] if that's the kind of behavior you want (some other related methods can be used to get different behavior).  If there aren't any unsaved documents directly call a method that does your real work.  In the didSaveSelector you specify, see if all the docs have been saved, and if so call that real work method.
 
 ----
 
-I have a [[NSDocument]] (myDocument) which displays a sheet (myDialog).
+I have a General/NSDocument (myDocument) which displays a sheet (myDialog).
 myDocument is an untitled, modified (changed) document.
 
-<code>
+    
 @implementation myDocument
 - (void) showDialog
 {
-	[[[[NSApplication]] sharedApplication] beginSheet: myDialogWindow 
+	General/[[NSApplication sharedApplication] beginSheet: myDialogWindow 
 				modalForWindow:[self window] modalDelegate:self 
 				didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
 @end
-</code>
+
 
 This sheet calls saveDocumentWithDelegate
 
-<code>
+    
 @implementation myDialog
 -(void) aMethod
 {
@@ -56,7 +56,7 @@ This sheet calls saveDocumentWithDelegate
 	[myDocument saveDocumentWithDelegate:self didSaveSelector:@selector( documentIsSaved:didSave:contextInfo:) contextInfo:nil];
 }
 
-- (void) documentIsSaved:([[NSDocument]] '')doc didSave:(BOOL)didSave contextInfo:(void'')contextInfo
+- (void) documentIsSaved:(General/NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void*)contextInfo
 {
 	if( didSave ==NO)
 	{
@@ -64,7 +64,7 @@ This sheet calls saveDocumentWithDelegate
 	}
 }
 @end
-</code>
+
 
 My problem is this:
 The only result I get is a beep and I can not check in my program why the document could not be saved.
@@ -74,7 +74,7 @@ Instead of this beep I need to write some code to handle this error.
 
 ----
 
-Have you tried ending the sheet before you call <code>saveDocumentWithDelegate:</code>? If so, have you tried putting it in a delayed perform (by calling <code>performSelector:withArgument:afterDelay:</code> with a delay of 0)?
+Have you tried ending the sheet before you call     saveDocumentWithDelegate:? If so, have you tried putting it in a delayed perform (by calling     performSelector:withArgument:afterDelay: with a delay of 0)?
 
 ----
 

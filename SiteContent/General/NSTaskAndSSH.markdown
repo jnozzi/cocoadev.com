@@ -1,23 +1,23 @@
-Any help on this would be appreciated. I am trying to launch an SSH session from a [[NSTask]], but keep receiving the following errors on launch:
-<code>
+Any help on this would be appreciated. I am trying to launch an SSH session from a General/NSTask, but keep receiving the following errors on launch:
+    
 Pseudo-terminal will not be allocated because stdin is not a terminal.
 Permission denied, please try again.
 Permission denied, please try again.
 Permission denied (gssapi,publickey,password,keyboard-interactive).
-</code>
-Does anybody know of a way to set a [[NSPipe]] or [[NSFileHandle]] to emulate a terminal?
+
+Does anybody know of a way to set a General/NSPipe or General/NSFileHandle to emulate a terminal?
 Currently my relevant code looks as follows:
-<code>
-myTask = [[[[NSTask]] alloc] init];
-inputPipe = [[[[NSPipe]] alloc] init]; 
+    
+myTask = General/[[NSTask alloc] init];
+inputPipe = General/[[NSPipe alloc] init]; 
 inputHandle = [inputPipe fileHandleForReading];
 
 [myTask setStandardInput:inputHandle];
 [myTask setLaunchPath:@"/usr/bin/ssh"];
-[myTask setArguments:[[[NSArray]] arrayWithObjects:@"-l", [kci [[UserName]]], Location, nil]];
+[myTask setArguments:General/[NSArray arrayWithObjects:@"-l", [kci General/UserName], Location, nil]];
 
 [myTask launch];
-</code>
+
 The basic problem that I am attempting to overcome is the need to pass in to the password to SSH after the task has been launched. If anybody can direct me to a good resource for this I would be grateful. So far Google, Apple Discussions, and macoshints have all turned up dry.
 
 ----
@@ -41,41 +41,41 @@ Thanks
 
 ----
 
-I believe DISPLAY is used for to designate an [[XWindows]] display for ssh to use during an X terminal session.
+I believe DISPLAY is used for to designate an General/XWindows display for ssh to use during an X terminal session.
 
 ----
 
 Take a look at cvsFinder which runs ssh and reads output. 
 http://cvs.sourceforge.net/viewcvs.py/cvsfinder/src/cvsCommands/CVS_Module.m?rev=1.3&view=auto
-<code>
+    
 			// see CVS_sshGetPassword for more on how SSH_ASKPASS works
-			[[NSString]] ''keyArray[] = {@"CVS_RSH", @"DISPLAY", @"SSH_ASKPASS"};
-			[[NSString]] ''valueArray[] = {@"ssh", @"localhost", NULL};
-			[[NSBundle]] ''bundle = [[[NSBundle]] bundleForClass:[self class]];
+			General/NSString *keyArray[] = {@"CVS_RSH", @"DISPLAY", @"SSH_ASKPASS"};
+			General/NSString *valueArray[] = {@"ssh", @"localhost", NULL};
+			General/NSBundle *bundle = General/[NSBundle bundleForClass:[self class]];
 			valueArray[2] = [bundle pathForResource:File_sshPassTool ofType:@""];
-			dict = [[[NSDictionary]] dictionaryWithObjects:valueArray
+			dict = General/[NSDictionary dictionaryWithObjects:valueArray
 						forKeys:keyArray count:3];
-			DEBUGS([[NSLog]](@"Env is %@", dict));
-</code>
+			DEBUGS(General/NSLog(@"Env is %@", dict));
+
 
 ----
 
 Note:
 According to
 
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSTask]].html#//apple_ref/doc/uid/20000317/BJFDJCCA 
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSTask.html#//apple_ref/doc/uid/20000317/BJFDJCCA 
 
-passing the filehandler for a [[NSPipe]] is a BAD IDEA. You should instead pass the pipe directly. IE use the following code.
-<code>
-myTask = [[[[NSTask]] alloc] init];
-inputPipe = [[[[NSPipe]] alloc] init]; 
+passing the filehandler for a General/NSPipe is a BAD IDEA. You should instead pass the pipe directly. IE use the following code.
+    
+myTask = General/[[NSTask alloc] init];
+inputPipe = General/[[NSPipe alloc] init]; 
 inputHandle = [inputPipe fileHandleForReading];
 
 [myTask setStandardInput: inputPipe];
 [myTask setLaunchPath:@"/usr/bin/ssh"];
-[myTask setArguments:[[[NSArray]] arrayWithObjects:@"-l", [kci [[UserName]]], Location, nil]];
+[myTask setArguments:General/[NSArray arrayWithObjects:@"-l", [kci General/UserName], Location, nil]];
 
 [myTask launch];
-</code>
+
 
 You can use the inputHandle to access the pipes contents with out a problem.

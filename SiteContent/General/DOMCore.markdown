@@ -1,70 +1,70 @@
 
 
-Cocoa's DOM ([[DocumentObjectModel]]) implementation.
+Cocoa's DOM (General/DocumentObjectModel) implementation.
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[DisplayWebContent]]/index.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/DisplayWebContent/index.html
 
 Classes:
 [Topic]
 
 ----
 
-The [[DOMDocument]], [[DOMNodeList]], [[DOMNamedNodeMap]] and [[DOMNode]] form the foundation for building HTML object trees. [[WebFrame]]'s method <code>[[DOMDocument]]</code> returns the root node for the frame's [[NSURLRequest]]. You can walk through the document tree starting with this node to examine all of the page's leafs.
+The General/DOMDocument, General/DOMNodeList, General/DOMNamedNodeMap and General/DOMNode form the foundation for building HTML object trees. General/WebFrame's method     General/DOMDocument returns the root node for the frame's General/NSURLRequest. You can walk through the document tree starting with this node to examine all of the page's leafs.
 
-<code>
-- (void)walkNodeTree:([[DOMNode]] '')parent {
-	[[DOMNodeList]] ''nodeList = [parent childNodes];
+    
+- (void)walkNodeTree:(General/DOMNode *)parent {
+	General/DOMNodeList *nodeList = [parent childNodes];
 	unsigned i, length = [nodeList length];
 	for (i = 0; i < length; i++) {
-		[[DOMNode]] ''node = [nodeList item:i];
+		General/DOMNode *node = [nodeList item:i];
 		[self walkNodeTree:node];
-		[[DOMNamedNodeMap]] ''attributes = [node attributes];
+		General/DOMNamedNodeMap *attributes = [node attributes];
 		unsigned a, attCount = [attributes length];
-		[[NSMutableString]] ''nodeInfo = [[[NSMutableString]] stringWithCapacity:0];
-		[[NSString]] ''nodeName = [node nodeName];
-		[[NSString]] ''nodeValue = [node nodeValue];
+		General/NSMutableString *nodeInfo = General/[NSMutableString stringWithCapacity:0];
+		General/NSString *nodeName = [node nodeName];
+		General/NSString *nodeValue = [node nodeValue];
 		[nodeInfo appendFormat:@"node[%i]:\nname: %@\nvalue: %@\nattributes:\n", 
 								i, nodeName, nodeValue];
 		for (a = 0; a < attCount; a++) {
-			[[DOMNode]] ''att = [attributes item:a];
-			[[NSString]] ''attName = [att nodeName];
-			[[NSString]] ''attValue = [att nodeValue];
+			General/DOMNode *att = [attributes item:a];
+			General/NSString *attName = [att nodeName];
+			General/NSString *attValue = [att nodeValue];
 			[nodeInfo appendFormat:@"\tatt[%i] name: %@ value: %@\n", a, attName, attValue];
 		}		
-		[[NSLog]](nodeInfo);
+		General/NSLog(nodeInfo);
 	}
 }
 
-- (void)webView:([[WebView]] '')sender didFinishLoadForFrame:([[WebFrame]] '')frame {
-	[[WebDataSource]] ''dataSource = [frame dataSource];
-	[[NSArray]] ''subresources = [dataSource subresources];
-	[[DOMDocument]] ''doc = [frame [[DOMDocument]]];
+- (void)webView:(General/WebView *)sender didFinishLoadForFrame:(General/WebFrame *)frame {
+	General/WebDataSource *dataSource = [frame dataSource];
+	General/NSArray *subresources = [dataSource subresources];
+	General/DOMDocument *doc = [frame General/DOMDocument];
 	[self walkNodeTree:[doc documentElement]];
 }
 
-</code> 
+ 
 
-You can edit HTML directly through Apple's DOM implementation by setting the supporting [[WebView]] to editable (<code>[webView setEditable:YES];</code>). Apple's documentation is kind of lean right now, so hopefully more can be posted here.
+You can edit HTML directly through Apple's DOM implementation by setting the supporting General/WebView to editable (    [webView setEditable:YES];). Apple's documentation is kind of lean right now, so hopefully more can be posted here.
 
 --zootbobbalu
 
 ----
 
-I want to set the values of specific HTML form fields in a web view. It seems like accessing the DOM is the way to do this (I don't see any hooks in the [[WebView]] [[APIs]]) but I just can't make it work. I started by finding the [[DOMNode]] I want to set using the walkNodeTree code above and then tried to manipulate a node using methods from http://developer.apple.com/documentation/Darwin/Reference/[[ManPages]]/mann/domNode.n.html. 
+I want to set the values of specific HTML form fields in a web view. It seems like accessing the DOM is the way to do this (I don't see any hooks in the General/WebView General/APIs) but I just can't make it work. I started by finding the General/DOMNode I want to set using the walkNodeTree code above and then tried to manipulate a node using methods from http://developer.apple.com/documentation/Darwin/Reference/General/ManPages/mann/domNode.n.html. 
 
-<code>
+    
 // inside the for() look in walkNodeTree, find a node with a "value" attribute (in my case, an input type=text)
 if( [attName isEqualToString:@"value"] ){
-    // warning: [[DOMNode]] does not respond to setAttribute
+    // warning: General/DOMNode does not respond to setAttribute
     [node setAttribute:@"value" :@"blah"];// attributeName newValue
 
     // this has no effect, probably b/c it doesn't set an attribute, but the "value"
     [node setNodeValue:@"blah"];
 
-    // this is the approach used in apple's [[DOMHTMLEditor]] example, except it still has no effect
-    [[DOMNode]] ''newNode = [parent replaceChild:node:[parent firstChild]];
+    // this is the approach used in apple's General/DOMHTMLEditor example, except it still has no effect
+    General/DOMNode *newNode = [parent replaceChild:node:[parent firstChild]];
 }
-</code>
+
 
 There must be a way to do this, or else how would Safari's "Remember password" feature work? 
 

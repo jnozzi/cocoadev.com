@@ -2,6 +2,6 @@ I am making a downloader app for a public website and currently I just want it t
 
 ----
 
-Have a look at file:///Developer/Examples/[[WebKit]]/Downloader/
+Have a look at file:///Developer/Examples/General/WebKit/Downloader/
 
 - Jacob

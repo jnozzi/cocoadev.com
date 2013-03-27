@@ -6,11 +6,11 @@ Thanks
 
 ----
 
-No idea if this is your problem, but I've seen similar things happen when using [[OpenGL]] in a window that's marked as One Shot. Undoing One Shot stops any flashing.
+No idea if this is your problem, but I've seen similar things happen when using General/OpenGL in a window that's marked as One Shot. Undoing One Shot stops any flashing.
 
 
 ----
 
 Hey,
 
-thanks for the help, unfortunately that did not fix the issue. I am not dealing with [[OpenGL]] either, just [[NSWindows]], [[NSViews]], [[NSImages]], and [[NSImageBitmapRef]]'s.
+thanks for the help, unfortunately that did not fix the issue. I am not dealing with General/OpenGL either, just General/NSWindows, General/NSViews, General/NSImages, and General/NSImageBitmapRef's.

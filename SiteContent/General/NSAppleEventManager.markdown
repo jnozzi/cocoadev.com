@@ -1,5 +1,5 @@
 Link:
-[[NSAppleEventManager]]
+General/NSAppleEventManager
 
 Masalah pajak merupakan komponen penting dalam operasi setiap perusahaan. Dengan peraturan pajak Indonesia tumbuh lebih rumit, dan pejabat pajak menjadi lebih rajin dalam melaksanakan audit, kegagalan untuk mematuhi peraturan pajak dapat menyebabkan eksposur keuangan yang signifikan dan biaya. Ini tidak pernah lebih penting untuk memastikan bahwa urusan pajak Anda dilakukan sesuai ketat dengan hukum.
 

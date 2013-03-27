@@ -1,3 +1,3 @@
 
 
-Deprecated, older version of [[OCBlock]].
+Deprecated, older version of General/OCBlock.

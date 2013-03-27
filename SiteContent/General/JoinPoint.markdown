@@ -1,1 +1,1 @@
-see [[PointCuts]]
+see General/PointCuts

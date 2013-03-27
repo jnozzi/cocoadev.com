@@ -2,15 +2,15 @@
 
 The network of classes that give Cocoa its powerful text handling capabilities
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[TextArchitecture]]/[[TextArchitecture]].html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/TextArchitecture/General/TextArchitecture.html
 
 Classes include:
 
 
-*[[NSTextView]]
-*[[NSLayoutManager]]
-*[[NSTextStorage]]
-*[[NSTextContainer]]
-*[[NSRulerView]]
-*[[NSParagraphStyle]]
-*[[NSTypesetter]]
+*General/NSTextView
+*General/NSLayoutManager
+*General/NSTextStorage
+*General/NSTextContainer
+*General/NSRulerView
+*General/NSParagraphStyle
+*General/NSTypesetter

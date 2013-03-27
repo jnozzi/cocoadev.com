@@ -1,81 +1,81 @@
 
 
-[[UnitTesting]] is a way of testing your own software while developing. Using a fairly simple Framework each class gets exercised as thoroughly as necessary. The testing code is separate from the class code but can be run at any time. It is a Tool for [[TestFirstProgramming]], a methodology that is part of [[ExtremeProgramming]]. http://goo.gl/[[OeSCu]]
+General/UnitTesting is a way of testing your own software while developing. Using a fairly simple Framework each class gets exercised as thoroughly as necessary. The testing code is separate from the class code but can be run at any time. It is a Tool for General/TestFirstProgramming, a methodology that is part of General/ExtremeProgramming. http://goo.gl/General/OeSCu
 
-The idea of [[UnitTesting]] is that _ALL_ the tests should be kept operational all the time. This means if you change something, do not work on something else while there is a test that fails. [[UnitTesting]] is not debugging, in debugging you try to find where your code is not working correctly, with unit testing you are asserting which parts of your code '''are''' working correctly. If you find a bug, first write a test and then fix the bug, this way if you reintroduce that bug it will be flagged immediately.
+The idea of General/UnitTesting is that _ALL_ the tests should be kept operational all the time. This means if you change something, do not work on something else while there is a test that fails. General/UnitTesting is not debugging, in debugging you try to find where your code is not working correctly, with unit testing you are asserting which parts of your code **are** working correctly. If you find a bug, first write a test and then fix the bug, this way if you reintroduce that bug it will be flagged immediately.
 
-One problem of [[UnitTesting]] is how to test UI elements. There are some parts that cannot be easily automated,
+One problem of General/UnitTesting is how to test UI elements. There are some parts that cannot be easily automated,
 although with the help of delegates one might be able to do some automatic tests even on the UI.
 
-[[TestFirstProgramming]] is a concept that makes you write the test '''before''' you write the actual software. The idea is that if an interface cannot be used in the test it should not be used at all. This idea from [[ExtremeProgramming]] forces you to use your interface before you actually code it. Also it gives you the tools to refactor.
+General/TestFirstProgramming is a concept that makes you write the test **before** you write the actual software. The idea is that if an interface cannot be used in the test it should not be used at all. This idea from General/ExtremeProgramming forces you to use your interface before you actually code it. Also it gives you the tools to refactor.
 
-There are several frameworks for [[ObjectiveCee]] that enable (encourages) [[UnitTesting]]
+There are several frameworks for General/ObjectiveCee that enable (encourages) General/UnitTesting
 
 
-* [[ObjCUnit]]: http://oops.se/objcunit/
+* General/ObjCUnit: http://oops.se/objcunit/
 
-* [[OCUnit]]: http://www.sente.ch/software/ocunit/
+* General/OCUnit: http://www.sente.ch/software/ocunit/
 
-* [[TestKit]]: http://testkit.sourceforge.net/
+* General/TestKit: http://testkit.sourceforge.net/
 
-* [[MPWTest]]: http://www.metaobject.com/Technology.html (scroll to the very bottom)
+* General/MPWTest: http://www.metaobject.com/Technology.html (scroll to the very bottom)
 
-* [[UnitKit]]: http://unitkit.org/
+* General/UnitKit: http://unitkit.org/
 
 
 
 Other frameworks/source that are useful for people doing unittesting:
 
 
-* [[OCMock]]: http://www.mulle-kybernetik.com/software/[[OCMock]]/ - Mock objects
+* General/OCMock: http://www.mulle-kybernetik.com/software/General/OCMock/ - Mock objects
 
-* [[GoogleToolboxForMac]]: http://code.google.com/p/google-toolbox-for-mac/wiki/[[CodeVerificationAndUnitTesting]] - iPhone Unit testing, UI Unit testing, Binding Unit testing and Log Tracking framework
+* General/GoogleToolboxForMac: http://code.google.com/p/google-toolbox-for-mac/wiki/General/CodeVerificationAndUnitTesting - iPhone Unit testing, UI Unit testing, Binding Unit testing and Log Tracking framework
 
 
 
 ----
 
-Starting with Mac OS X 10.4 and [[XCode]] 2.1 Apple included [[OCUnit]] (= [[SenTestingKit]]) with their developer tools. 
+Starting with Mac OS X 10.4 and General/XCode 2.1 Apple included General/OCUnit (= General/SenTestingKit) with their developer tools. 
 
 Documentation includes 
-html files in [[SenTestingKit]].framework
-http://developer.apple.com/documentation/[[DeveloperTools]]/Conceptual/[[UnitTesting]]/index.html
+html files in General/SenTestingKit.framework
+http://developer.apple.com/documentation/General/DeveloperTools/Conceptual/General/UnitTesting/index.html
 http://developer.apple.com/tools/unittest.html
 
-With this news the developer of [[UnitKit]] seems to have decided to discontinue development and to submit patches to [[OCUnit]] instead.
+With this news the developer of General/UnitKit seems to have decided to discontinue development and to submit patches to General/OCUnit instead.
 http://blog.x180.net/2005/06/the_future_of_u.html
 
 ----
 
-See http://www.cocoabuilder.com/archive/message/cocoa/2004/9/23/118083 for a September 2004 discussion of the merits and differences between the popular testing frameworks.  In particular, this illuminates the differences between [[OCUnit]] and [[MPWTest]].
+See http://www.cocoabuilder.com/archive/message/cocoa/2004/9/23/118083 for a September 2004 discussion of the merits and differences between the popular testing frameworks.  In particular, this illuminates the differences between General/OCUnit and General/MPWTest.
 
-Empirically, the most popular frameworks seem to be [[OCUnit]] and [[ObjCUnit]].
+Empirically, the most popular frameworks seem to be General/OCUnit and General/ObjCUnit.
 
-'' I would put [[UnitKit]] right up there as well. It's written by the same guy who created Ant and Tomcat. I can personally attest to its usefulness as I've explored it pretty thoroughly for one of my projects. ''
+* I would put General/UnitKit right up there as well. It's written by the same guy who created Ant and Tomcat. I can personally attest to its usefulness as I've explored it pretty thoroughly for one of my projects. *
 
--[[EricWang]]
+-General/EricWang
 
-'' I would recommend [[UnitKit]] because it smoothly integrates with [[XCode]]. I once used [[ObjCUnit]] and I wonder whether I should transform my test to be used with [[UnitKit]].''
+* I would recommend General/UnitKit because it smoothly integrates with General/XCode. I once used General/ObjCUnit and I wonder whether I should transform my test to be used with General/UnitKit.*
 
 -Roman Bertolami
 
-Here is an example of a test case using [[ObjCUnit]]. We are going to test some of the functionality of [[NSMutableArray]]:
+Here is an example of a test case using General/ObjCUnit. We are going to test some of the functionality of General/NSMutableArray:
 
-<code>
+    
 
-@interface [[NSMutableArrayTest]] : [[TestCase]] {
-    [[NSMutableArray]]	''empty;
-    [[NSMutableArray]]	''full;
+@interface General/NSMutableArrayTest : General/TestCase {
+    General/NSMutableArray	*empty;
+    General/NSMutableArray	*full;
     
 }
 @end
 
-@implementation [[NSMutableArrayTest]]
+@implementation General/NSMutableArrayTest
 
 // setUp gets run every time before a testcase
 - (void)setUp {
-    empty =[[[[NSMutableArry]] alloc] init];
-    full =[[[[NSMutableArry]] alloc] init];
+    empty =General/[[NSMutableArry alloc] init];
+    full =General/[[NSMutableArry alloc] init];
 	[full addObject:@"Test1"];
 	[full addObject:@"Test2"];
 }
@@ -109,58 +109,58 @@ Here is an example of a test case using [[ObjCUnit]]. We are going to test some 
 
 @end
 
-</code>
+
 
 The assert functions check if the Object you give equals the second parameter, and print a warning if it doesn't.
 
-''Hey, ummm...what's with the weird assertion messaging? There's no target.''
+*Hey, ummm...what's with the weird assertion messaging? There's no target.*
 
 Test cases can be grouped in suites that are run one after the other. Each test case can contain some setup code that gets run for each case.
 
 Usually a suite is used to run all the tests. It looks like the following.
 
-<code>
+    
 
-@interface [[AllTests]] : [[TestSuite]]
-+ ([[TestSuite]] '')suite;
+@interface General/AllTests : General/TestSuite
++ (General/TestSuite *)suite;
 @end
 
-@implementation [[AllTests]]
-+ ([[TestSuite]] '')suite {
+@implementation General/AllTests
++ (General/TestSuite *)suite {
 
-    [[TestSuite]] ''suite = [[[TestSuite]] suiteWithName:@"All My Tests"];
-    [suite addTest:[[[TestSuite]] suiteWithClass:[[[NSMutableArrayTest]] class]]];
+    General/TestSuite *suite = General/[TestSuite suiteWithName:@"All My Tests"];
+    [suite addTest:General/[TestSuite suiteWithClass:General/[NSMutableArrayTest class]]];
 
     return suite;
 }
 
-</code>
+
 
 The suite is run using 
 
-<code>
-[[TestRunnerMain]]([[[AllTests]] class]);
-</code>
+    
+General/TestRunnerMain(General/[AllTests class]);
+
 
 This runs all the tests in the suite and tallies up the successes and failures of all tests. You can either integrate that in your software so the tests are run every time it is started, or compile it into a separate Tool.
 
-I hope this helps -- [[HaRald]]
+I hope this helps -- General/HaRald
 
 ----
 I would love to see a complete example of a Cocoa app along with its unit tests.  Any pointers?
 
 ----
-Here's one pointer:  Source code for [[OCUnit]] includes a complete set of unit tests for the package.  As an added bonus, their Objective-C code is exceptionally nice and clean.  It's worth a read just to see how pretty good Objective-C code can be.
+Here's one pointer:  Source code for General/OCUnit includes a complete set of unit tests for the package.  As an added bonus, their Objective-C code is exceptionally nice and clean.  It's worth a read just to see how pretty good Objective-C code can be.
 
 New Question: Is their code good because they develop with unit tests?  Or do they develop clean code with unit tests because they're channelling some wicked Smalltalk voodoo?
 
 I don't know.  But whatever it is, you want some too.
 
 ----
-[[GoogleToolboxForMac]] also is fully unit tested, and shows how to do UI unit tests, binding unit tests, Log Tracking and even how do to unit tests on the iPhone (simulator and device).
+General/GoogleToolboxForMac also is fully unit tested, and shows how to do UI unit tests, binding unit tests, Log Tracking and even how do to unit tests on the iPhone (simulator and device).
 
 ----
-(Also related to unit testing) Added an [[XcodeGcovTutorial]]. -- [[MikeAmy]]
+(Also related to unit testing) Added an General/XcodeGcovTutorial. -- General/MikeAmy
 
 ----
 

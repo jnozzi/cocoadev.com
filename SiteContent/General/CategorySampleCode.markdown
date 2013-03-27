@@ -1,11 +1,11 @@
-'''Implementing [[ClassCategories]]'''
+**Implementing General/ClassCategories**
 
-This sample code comes from a mailing list post by Uli Zappe and shows how to implement [[ClassCategories]]:
+This sample code comes from a mailing list post by Uli Zappe and shows how to implement General/ClassCategories:
 
 
-'''[[MySillyStringAddition]].h'''
+**General/MySillyStringAddition.h**
 ----
-<code>
+    
  #import <Foundation/NSString.h>
  
  @interface NSString (MySillyStringAddition)
@@ -13,12 +13,12 @@ This sample code comes from a mailing list post by Uli Zappe and shows how to im
  - (NSString *)sillyMethodThatReturnHello;
  
  @end
-</code>
 
 
-'''[[MySillyStringAddition]].m'''
+
+**General/MySillyStringAddition.m**
 ----
-<code>
+    
  #import "MySillyStringAddition.h"
  
  @implementation NSString (MySillyStringAddition)
@@ -29,28 +29,28 @@ This sample code comes from a mailing list post by Uli Zappe and shows how to im
  	}
  
  @end
-</code>
+
 
 ----
 
-See also [[KissyFaceView]] for an example of hiding private API using [[ClassCategories]].  You may also want to see [[CocoaDevUsersAdditions]] for more keen categories.
+See also General/KissyFaceView for an example of hiding private API using General/ClassCategories.  You may also want to see General/CocoaDevUsersAdditions for more keen categories.
 ----
-I'm not sure of the value of this example but it was meant to serve as an example of what could usefully? be done, it's based on some [[SmallTalk]] code I once saw.
+I'm not sure of the value of this example but it was meant to serve as an example of what could usefully? be done, it's based on some General/SmallTalk code I once saw.
 
-'''[[URLString]].h'''
+**General/URLString.h**
 
-Add a Category so that a [[NSString]] can return the contents of a Web page as [[NSString]].
+Add a Category so that a General/NSString can return the contents of a Web page as General/NSString.
 
-<code>
+    
  #import <Foundation/NSString.h>
  
  @interface NSString (asURL)
  - (NSString *)asURL;
  @end
-</code>
+
  
-'''[[URLString]].m'''
-<code>
+**General/URLString.m**
+    
  #import <Foundation/Foundation.h>
  #import "URLString.h"
  @implementation NSString (asURL)
@@ -77,16 +77,16 @@ Add a Category so that a [[NSString]] can return the contents of a Web page as [
    return [output autorelease];
  }
  @end
-</code>
-'''main.m'''
+
+**main.m**
 
 Example of silly use.
 
-<code>
+    
  #import <Foundation/Foundation.h>
  #import "URLString.h"
  int main (int argc, const char * argv[]) {
-   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+   NSAutoreleasePool * pool = General/NSAutoreleasePool alloc] init];
    
    NSString *page = [@"http://www.google.com" asURL];
    NSLog(@"Page = %@", page);
@@ -94,8 +94,8 @@ Example of silly use.
    [pool release];
    return 0;
  }
-</code>
-''Ahh, [[StringWithCString]] strikes again! Please don't use it, it is evil.''
+
+*Ahh, [[StringWithCString strikes again! Please don't use it, it is evil.*
 
 
-[[Category:CocoaDevUsersAdditions]]
+General/Category:CocoaDevUsersAdditions

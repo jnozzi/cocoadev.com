@@ -1,10 +1,10 @@
-'''Interested in Finding Employment using Cocoa?'''----
+**Interested in Finding Employment using Cocoa?**----
 
 Employers, please list jobs below
 
-'''East Coast USA'''
+**East Coast USA**
 
-'''Midwest USA'''
+**Midwest USA**
 
 Lincoln NE, 9/20/04
 Mac Cocoa Developer Wanted - Full-time and Interns.
@@ -13,10 +13,10 @@ Send Resume & Code Sample to resume1@neb.rr.com
 
 ----
 
-'''West Coast USA'''
+**West Coast USA**
 
-[[PanicInc]] has an immediate opening for an experienced Cocoa programmer in the Portland, Oregon area.  Please see this page for requirements and details:
+General/PanicInc has an immediate opening for an experienced Cocoa programmer in the Portland, Oregon area.  Please see this page for requirements and details:
 
 http://panic.com/jobs/
 
--- [[StevenFrank]] July 13, 2005
+-- General/StevenFrank July 13, 2005

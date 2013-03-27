@@ -1,1 +1,1 @@
-See [[NeXT]].
+See General/NeXT.

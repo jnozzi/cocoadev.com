@@ -1,25 +1,25 @@
 I have a question..
 
-Why dosent OS X support (and Im not totally sure if it does not) cool animatable dock apps (like in [[NeXT]]). I wanted to know if it was possible to make a dock icon an openGL window with crazy 3D movement in the dock. I have not seen anything like this, and I am wondering why it is not possible (like it is with the openStep dock).
+Why dosent OS X support (and Im not totally sure if it does not) cool animatable dock apps (like in General/NeXT). I wanted to know if it was possible to make a dock icon an openGL window with crazy 3D movement in the dock. I have not seen anything like this, and I am wondering why it is not possible (like it is with the openStep dock).
 
 Thanks,
 KW
 
 ----
 
-Look at <code>[[[NSApplication]] setApplicationIconImage:([[NSImage]] '')anImage]</code>. Anything you can draw in a [[NSImage]] you can do in your dock icon.
+Look at     General/[NSApplication setApplicationIconImage:(General/NSImage *)anImage]. Anything you can draw in a General/NSImage you can do in your dock icon.
 
 ----
 
-Well, [[QuickTime]] movies can update (or play) in the Dock. So is there a way to create a view inside of the icon area that can hold an [[OpenGL]] view or [[QuickTime]] view??
+Well, General/QuickTime movies can update (or play) in the Dock. So is there a way to create a view inside of the icon area that can hold an General/OpenGL view or General/QuickTime view??
 
 ----
 
-I think you can set an image that only contains a single [[NSBitmapImageRep]] and manipulate the raw bytes to your hearts content. You can probably just keep setting the same icon image to get the dock to refresh the icon being set. This will avoid having to allocate an image for every frame or at least use two images to swap buffers (that is, change the icon image in the dock from one image the other icon image). --zootbobbalu
+I think you can set an image that only contains a single General/NSBitmapImageRep and manipulate the raw bytes to your hearts content. You can probably just keep setting the same icon image to get the dock to refresh the icon being set. This will avoid having to allocate an image for every frame or at least use two images to swap buffers (that is, change the icon image in the dock from one image the other icon image). --zootbobbalu
 
 ----
 
-Don't manipulate bitmap images' data after creation. The correct thing to do is create a new image for each animation frame. This sucks, but they're quite lightweight. -- [[JensAyton]]
+Don't manipulate bitmap images' data after creation. The correct thing to do is create a new image for each animation frame. This sucks, but they're quite lightweight. -- General/JensAyton
 
 ----
 
@@ -27,4 +27,4 @@ I don't think that it specifically isn't supported, just that it hasn't been don
 
 ----
 
-There are things like [[LoadInDock]], and [[ActivityMonitor]] can show cpu/network/memory graphs as its dock icon
+There are things like General/LoadInDock, and General/ActivityMonitor can show cpu/network/memory graphs as its dock icon

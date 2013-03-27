@@ -1,6 +1,6 @@
 
 
-I have a transparent [[NSTextView]] and the problem is that the text there drops a shadow to desktop, and so any editing results in 'dirty' text/shadow. Calling invalidateShadow each time is expensive, so I want text to not draw shadow at all, like terminal.app does. If you make a fully transparent backgroud in Terminal, you'll see that even it's window title doesn't have shadow (but the rest of the window does). I assume Apple did something tricky in Terminal textview, but I can't figure out what exactly. Searching archives reveals this question arise again and again over years, but no one did post a solution to that.
+I have a transparent General/NSTextView and the problem is that the text there drops a shadow to desktop, and so any editing results in 'dirty' text/shadow. Calling invalidateShadow each time is expensive, so I want text to not draw shadow at all, like terminal.app does. If you make a fully transparent backgroud in Terminal, you'll see that even it's window title doesn't have shadow (but the rest of the window does). I assume Apple did something tricky in Terminal textview, but I can't figure out what exactly. Searching archives reveals this question arise again and again over years, but no one did post a solution to that.
 
 Any ideas?
 --AK

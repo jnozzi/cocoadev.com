@@ -1,3 +1,3 @@
 
 
-Any ideas of how to use this [[NSButton]] subclass?
+Any ideas of how to use this General/NSButton subclass?

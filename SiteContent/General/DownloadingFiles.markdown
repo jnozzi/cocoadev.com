@@ -1,8 +1,8 @@
 A really simple example for downloading files in Cocoa. (Thanks to Austin Shoemaker!)
 
-<code>
-NSURL ''myURL = [NSURL [[URLWithString]]:@"http://www.apple.com/"];
-[[NSData]] ''urlContents = [myURL resourceDataUsingCache:YES];
+    
+NSURL *myURL = [NSURL General/URLWithString:@"http://www.apple.com/"];
+General/NSData *urlContents = [myURL resourceDataUsingCache:YES];
 
 if ([urlContents writeToFile:[@"~/Documents/applewebsite.html"
                  stringByExpandingTildeInPath]
@@ -12,24 +12,24 @@ if ([urlContents writeToFile:[@"~/Documents/applewebsite.html"
 } else {
 	// There was a problem writing the file
 }
-</code>
+
 
 ----
-A slightly more complicated example that will download asynchronously or "in the background" by [[PeterMonty]]. I've tried to keep it as similar to the one above as possible for comparison.
+A slightly more complicated example that will download asynchronously or "in the background" by General/PeterMonty. I've tried to keep it as similar to the one above as possible for comparison.
 
-<code>
+    
 
 // Starts download
 - (void)download
 {
-	NSURL ''myURL = [NSURL [[URLWithString]]:@"http://www.apple.com/"];
+	NSURL *myURL = [NSURL General/URLWithString:@"http://www.apple.com/"];
 	[myURL loadResourceDataNotifyingClient:self usingCache:YES];
 }
 
 // This method will be called when the download has finished
-- (void)[[URLResourceDidFinishLoading]]:(NSURL '')sender
+- (void)General/URLResourceDidFinishLoading:(NSURL *)sender
 {
-	[[NSData]] ''urlContents = [sender resourceDataUsingCache:YES];
+	General/NSData *urlContents = [sender resourceDataUsingCache:YES];
 
 	if ([urlContents writeToFile:[@"~/Documents/applewebsite.html"
                          stringByExpandingTildeInPath]
@@ -40,7 +40,7 @@ A slightly more complicated example that will download asynchronously or "in the
 		// There was a problem writing the file
 	}
 }
-</code>
+
 ----
 
 Is there anyway of putting a progress indicator to indicate how much it has downloaded?
@@ -49,154 +49,154 @@ Yes, read the docs, there is a method that will be called periodically. - SJI
 
 ----
 
-Does anyone know how to cancel loadResourceDataNotifyingClient once it's started?  Alternatively, how about some instructions on using [[CURLHandle]]?
+Does anyone know how to cancel loadResourceDataNotifyingClient once it's started?  Alternatively, how about some instructions on using General/CURLHandle?
 
 ----
 
     I had the same problem loading an image - it kept being loaded from the cache. Using NSURL's resourceDataUsingCache solves the problem and is just as easy - in this case for an image but the URL can be for anything.
 
-<code>
-[[NSData]] ''data = [[NSURL [[URLWithString]]:myURLString] resourceDataUsingCache:NO];
-[[NSImage]] ''image = [[[[NSImage]] alloc] initWithData:data];
-</code>
+    
+General/NSData *data = General/NSURL [[URLWithString:myURLString] resourceDataUsingCache:NO];
+General/NSImage *image = General/[[NSImage alloc] initWithData:data];
 
-- [[JoeZobkiw]]
 
-----
-
-For those with more advanced needs, [[CURLHandle]] by Dan Wood comes highly recommended ( http://curlhandle.sourceforge.net/ )
+- General/JoeZobkiw
 
 ----
 
-I highly recommend [[CURLHandle]] even for non-advanced needs. There are times when NSURL just won't do. For example, I've often found it has trouble downloading The Mac Observer and a few other sites.
+For those with more advanced needs, General/CURLHandle by Dan Wood comes highly recommended ( http://curlhandle.sourceforge.net/ )
+
+----
+
+I highly recommend General/CURLHandle even for non-advanced needs. There are times when NSURL just won't do. For example, I've often found it has trouble downloading The Mac Observer and a few other sites.
 
 ---- 
 
-I'm using code basically the same as the asynchronous example above. I also catch - URL: resourceDataDidBecomeAvailable: to display progress while the file is loading. But even though I have [[UsingCache]]:YES in both places, when I step over the line:
+I'm using code basically the same as the asynchronous example above. I also catch - URL: resourceDataDidBecomeAvailable: to display progress while the file is loading. But even though I have General/UsingCache:YES in both places, when I step over the line:
 
-<code>
-[[NSData]] ''urlContents = [sender resourceDataUsingCache:YES];
-</code>
+    
+General/NSData *urlContents = [sender resourceDataUsingCache:YES];
+
 
 The file is downloaded all over again... at least, I assume it is, because it takes ages to execute that one statement, during which time there is a lot of network activity. Has anyone come across that problem before?
--- [[AngelaBrett]]
+-- General/AngelaBrett
 
 ----
 
 Here's yet another snippet showing how to batch download files.
 
-<code>
+    
 
-/'' 
+/* 
 
 This code is licensed in the Public Domain. 
 Please contribute any fixes back to hakan@konstochvanligasaker.se 
 See http://konstochvanligasaker.se/code for det latest version. 
 
 source code taken from:
-http://konstochvanligasaker.se/code/src/[[BatchDownloader]].h
-http://konstochvanligasaker.se/code/src/[[BatchDownloader]].m
+http://konstochvanligasaker.se/code/src/General/BatchDownloader.h
+http://konstochvanligasaker.se/code/src/General/BatchDownloader.m
 
 patches:
-- BOOL succeeded = [[[[NSFileManager]] defaultManager] createDirectoryAtPath:path attributes:nil];
-+ BOOL succeeded = [[[[NSFileManager]] defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
+- BOOL succeeded = General/[[NSFileManager defaultManager] createDirectoryAtPath:path attributes:nil];
++ BOOL succeeded = General/[[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
 (see also // ADDED code)
 
 compile with:
-gcc -Wall -framework Foundation -o batchdownload [[BatchDownloader]].m
+gcc -Wall -framework Foundation -o batchdownload General/BatchDownloader.m
 
-gcc -c [[BatchDownloader]].m
-nm [[BatchDownloader]].o
+gcc -c General/BatchDownloader.m
+nm General/BatchDownloader.o
 
 test:
 ./batchdownload ~/Desktop/batchdownload http://www.google.com http://www.apple.com
 
-''/
+*/
    
 
 //#import <Cocoa/Cocoa.h>
 #import <Foundation/Foundation.h>
 
-@interface [[NSObject]] ([[BatchDownloaderDelegate]])
+@interface General/NSObject (General/BatchDownloaderDelegate)
 
 // fired when one or more downloads are ready. The array contains a dictionary
-// with [[URLs]] as the keys, and the local file paths as the keys.
-- (void)downloadsReady:([[NSDictionary]] '')downloads;
+// with General/URLs as the keys, and the local file paths as the keys.
+- (void)downloadsReady:(General/NSDictionary *)downloads;
 
-// array of [[URLs]] that could not be downloaded.
-- (void)downloadsFailed:([[NSArray]] '')downloads;
+// array of General/URLs that could not be downloaded.
+- (void)downloadsFailed:(General/NSArray *)downloads;
 
 @end
 
 
-@interface [[BatchDownloader]] : [[NSObject]] 
+@interface General/BatchDownloader : General/NSObject 
 {
   // fast (constant-time) lookup for a URL, just given a download object. 
-  // unfortunately we can't just use a dictionary with [[NSURLDownloads]] as keys, because it doesn't 
-  // implement the [[NSCopying]] protocol.
-  [[NSMutableDictionary]] ''downloadPtrsToURLs;
+  // unfortunately we can't just use a dictionary with General/NSURLDownloads as keys, because it doesn't 
+  // implement the General/NSCopying protocol.
+  General/NSMutableDictionary *downloadPtrsToURLs;
   
-  // URL => [[NSURLDownload]] 
-  [[NSMutableDictionary]] ''downloadURLsToObjects;
+  // URL => General/NSURLDownload 
+  General/NSMutableDictionary *downloadURLsToObjects;
   
   // URL => local file path
-  [[NSMutableDictionary]] ''downloadURLsToLocalPaths;
+  General/NSMutableDictionary *downloadURLsToLocalPaths;
   
   id delegate;
   
-  [[NSString]] ''destinationFolder;
+  General/NSString *destinationFolder;
 }
 
 // will try to create dest folder if it doesn't exist.
-- (id)initWithDestinationFolder:([[NSString]] '')path delegate:(id)delegate;
+- (id)initWithDestinationFolder:(General/NSString *)path delegate:(id)delegate;
 
-- (void)addDownload:([[NSString]] '')URL;
-- (void)addDownloads:([[NSArray]] '')[[URLs]];
+- (void)addDownload:(General/NSString *)URL;
+- (void)addDownloads:(General/NSArray *)General/URLs;
 
 @end
 
 
-/'' This code is licensed in the Public Domain. Please contribute any fixes back to hakan@konstochvanligasaker.se 
-   See http://konstochvanligasaker.se/code for det latest version. ''/
+/* This code is licensed in the Public Domain. Please contribute any fixes back to hakan@konstochvanligasaker.se 
+   See http://konstochvanligasaker.se/code for det latest version. */
    
-//#import "[[BatchDownloader]].h"
+//#import "General/BatchDownloader.h"
 
-@interface [[NSObject]] ([[PtrValueUtils]])
-- ([[NSValue]] '')ptrValue;
+@interface General/NSObject (General/PtrValueUtils)
+- (General/NSValue *)ptrValue;
 @end
 
-@implementation [[NSObject]] ([[PtrValueUtils]])
-- ([[NSValue]] '')ptrValue
+@implementation General/NSObject (General/PtrValueUtils)
+- (General/NSValue *)ptrValue
 {
-  return [[[NSValue]] valueWithPointer:self];
+  return General/[NSValue valueWithPointer:self];
 }
 @end
 
-@interface [[BatchDownloader]] (Private)
-- (void)removeAllTracesOfDownload:([[NSURLDownload]] '')download URL:([[NSString]] '')URL;
+@interface General/BatchDownloader (Private)
+- (void)removeAllTracesOfDownload:(General/NSURLDownload *)download URL:(General/NSString *)URL;
 @end
 
-@implementation [[BatchDownloader]]
+@implementation General/BatchDownloader
 
 - (id)init
 {
   if ((self = [super init])) {
-    downloadPtrsToURLs = [[[NSMutableDictionary]] new];
-    downloadURLsToObjects = [[[NSMutableDictionary]] new];
-    downloadURLsToLocalPaths = [[[NSMutableDictionary]] new];
+    downloadPtrsToURLs = General/[NSMutableDictionary new];
+    downloadURLsToObjects = General/[NSMutableDictionary new];
+    downloadURLsToLocalPaths = General/[NSMutableDictionary new];
   }
   return self;
 }
 
-- (id)initWithDestinationFolder:([[NSString]] '')path delegate:(id)theDelegate
+- (id)initWithDestinationFolder:(General/NSString *)path delegate:(id)theDelegate
 {
   if ((self = [self init])) {
     delegate = theDelegate;
     // does the dest dir exist?
-    if (! [[[[NSFileManager]] defaultManager] contentsAtPath:path]) {
+    if (! General/[[NSFileManager defaultManager] contentsAtPath:path]) {
       // try to create it.
-      //BOOL succeeded = [[[[NSFileManager]] defaultManager] createDirectoryAtPath:path attributes:nil];
-      BOOL succeeded = [[[[NSFileManager]] defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
+      //BOOL succeeded = General/[[NSFileManager defaultManager] createDirectoryAtPath:path attributes:nil];
+      BOOL succeeded = General/[[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:NO attributes:nil error:nil];
 
       // TODO: throw (or something) on failure
     }
@@ -219,12 +219,12 @@ test:
 
 #pragma mark -
 
-- (void)addDownload:([[NSString]] '')URL
+- (void)addDownload:(General/NSString *)URL
 {
 
-  [[NSURLDownload]] ''download = [[[[[NSURLDownload]] alloc] initWithRequest:[[[NSURLRequest]] requestWithURL:[NSURL [[URLWithString]]:URL]] delegate:self] autorelease];
+  General/NSURLDownload *download = General/[[[NSURLDownload alloc] initWithRequest:General/[NSURLRequest requestWithURL:[NSURL General/URLWithString:URL]] delegate:self] autorelease];
   
-  [[NSString]] ''destPath = [destinationFolder stringByAppendingPathComponent:[URL lastPathComponent]];
+  General/NSString *destPath = [destinationFolder stringByAppendingPathComponent:[URL lastPathComponent]];
 
   //printf("URL: %s\n", [URL UTF8String]);
   //printf("destPath: %s\n", [destPath UTF8String]);
@@ -234,19 +234,19 @@ test:
   [downloadPtrsToURLs setObject:URL forKey:[download ptrValue]];
 }
 
-- (void)addDownloads:([[NSArray]] '')downloadPaths
+- (void)addDownloads:(General/NSArray *)downloadPaths
 {
   // TODO: start notification timer so we can report back in batches as well
 
   // start downloading
-  [[NSString]] ''URL = nil;
-  [[NSEnumerator]] ''downloadEnumerator = [downloadPaths objectEnumerator];
+  General/NSString *URL = nil;
+  General/NSEnumerator *downloadEnumerator = [downloadPaths objectEnumerator];
   while ((URL = [downloadEnumerator nextObject])) {
     [self addDownload:URL];
   }
 }
 
-- (void)removeAllTracesOfDownload:([[NSURLDownload]] '')download URL:([[NSString]] '')URL
+- (void)removeAllTracesOfDownload:(General/NSURLDownload *)download URL:(General/NSString *)URL
 {
   [downloadPtrsToURLs removeObjectForKey:[download ptrValue]];
   [downloadURLsToObjects removeObjectForKey:URL];
@@ -254,41 +254,41 @@ test:
 
   // ADDED
   if([downloadPtrsToURLs count] == 0)
-       [[CFRunLoopStop]]([[CFRunLoopGetMain]]());
-       //[[CFRunLoopStop]]([[CFRunLoopGetCurrent]]());
+       General/CFRunLoopStop(General/CFRunLoopGetMain());
+       //General/CFRunLoopStop(General/CFRunLoopGetCurrent());
 
 }
 
 #pragma mark -
 
-- (void)download:([[NSURLDownload]] '')download didCreateDestination:([[NSString]] '')path
+- (void)download:(General/NSURLDownload *)download didCreateDestination:(General/NSString *)path
 {
   [downloadURLsToLocalPaths setObject:path forKey:[downloadPtrsToURLs objectForKey:[download ptrValue]]];
 }
 
-- (void)download:([[NSURLDownload]] '')download didFailWithError:([[NSError]] '')error
+- (void)download:(General/NSURLDownload *)download didFailWithError:(General/NSError *)error
 {
 
-  [[NSString]] ''URL = [downloadPtrsToURLs objectForKey:[download ptrValue]];
+  General/NSString *URL = [downloadPtrsToURLs objectForKey:[download ptrValue]];
 
   // notify delegate
   // TODO: batch these notifications
   if (delegate && [delegate respondsToSelector:@selector(downloadsFailed:)]) {
-    [delegate downloadsFailed:[[[NSArray]] arrayWithObject:URL]];
+    [delegate downloadsFailed:General/[NSArray arrayWithObject:URL]];
   }
   
   [self removeAllTracesOfDownload:download URL:URL];
 }
 
-- (void)downloadDidFinish:([[NSURLDownload]] '')download
+- (void)downloadDidFinish:(General/NSURLDownload *)download
 {
-  [[NSString]] ''URL = [downloadPtrsToURLs objectForKey:[download ptrValue]];
+  General/NSString *URL = [downloadPtrsToURLs objectForKey:[download ptrValue]];
   
   // notify delegate
   // TODO: batch these notifications
   if (delegate && [delegate respondsToSelector:@selector(downloadsReady:)]) {
-    [[NSString]] ''destPath = [downloadURLsToLocalPaths objectForKey:URL];
-    [delegate downloadsReady:[[[NSDictionary]] dictionaryWithObject:destPath forKey:URL]];
+    General/NSString *destPath = [downloadURLsToLocalPaths objectForKey:URL];
+    [delegate downloadsReady:General/[NSDictionary dictionaryWithObject:destPath forKey:URL]];
   }
   
   [self removeAllTracesOfDownload:download URL:URL];
@@ -298,24 +298,24 @@ test:
 
 
 // ADDED
-int main(int argc, const char ''argv[])
+int main(int argc, const char *argv[])
 {
 
   if (argc < 3) return 1;
 
-  [[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
+  General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
 
-  [[NSMutableArray]] ''commandLineArguments = [[[NSMutableArray]] arrayWithArray:[[[[NSProcessInfo]] processInfo] arguments]];
+  General/NSMutableArray *commandLineArguments = General/[NSMutableArray arrayWithArray:General/[[NSProcessInfo processInfo] arguments]];
   [commandLineArguments removeObjectAtIndex: 0];      // first object is the name of the executable
 
-  [[NSString]] ''destFolder = [commandLineArguments objectAtIndex: 0];
+  General/NSString *destFolder = [commandLineArguments objectAtIndex: 0];
   [commandLineArguments removeObjectAtIndex: 0];
 
-  [[BatchDownloader]] ''urls = [[ [[BatchDownloader]] alloc] init];
+  General/BatchDownloader *urls = General/ [[BatchDownloader alloc] init];
   [urls initWithDestinationFolder:destFolder  delegate:urls ];
   [urls addDownloads: commandLineArguments];
 
-  [[CFRunLoopRun]]();
+  General/CFRunLoopRun();
 
   [urls release];
 
@@ -324,4 +324,3 @@ int main(int argc, const char ''argv[])
 
 }
 
-</code>

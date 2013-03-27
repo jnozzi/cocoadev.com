@@ -8,7 +8,7 @@ Discussion:
 
 While browsing around in iCal's resources directory, I discovered several interesting files ending in an extension I had never seen before: .aplmodel. fullview.aplmodel and dayview.aplmodel, for example. Take a look at these files. They contain what seem to be XML definitions of UI. An excerpt:
 
-<code>
+    
  <page-templates>
    <template name="root-template" version="0.1" entity-types="detail, detail/2">
      <elements>
@@ -34,11 +34,11 @@ While browsing around in iCal's resources directory, I discovered several intere
          </group>
        </group>
      </elements>
-</code>
 
-It goes on like this for some time. A quick Google search yields not the slightest mention of the format, and given that there's no DTD specified, it's something of an enigma. There's an additional mysterious file with the extension .calcols, which seems to be linked into the aplmodel for... gradient definition? That's what it looks like. This raises the question: is Apple beating Microsoft to the punch on XML-based interfaces? Have they already and just not mentioned it? Is a tool for creating these kinds of custom views already available in-house? Will it be included in Xcode 3? Your thoughts, ladies and gentlemen? -- [[AndyMatuschak]]?
 
-''
-I dunno, but I protest the use of the term "root-packer" ... it sounds like an epithet ... ;-) Good catch, though, I have REALLY been wanting to see advancements in Interface Builder; it seems like the neglected tool and, IMHO, could stand an overhaul.''
+It goes on like this for some time. A quick Google search yields not the slightest mention of the format, and given that there's no DTD specified, it's something of an enigma. There's an additional mysterious file with the extension .calcols, which seems to be linked into the aplmodel for... gradient definition? That's what it looks like. This raises the question: is Apple beating Microsoft to the punch on XML-based interfaces? Have they already and just not mentioned it? Is a tool for creating these kinds of custom views already available in-house? Will it be included in Xcode 3? Your thoughts, ladies and gentlemen? -- General/AndyMatuschak?
 
-It's a likely assumption. It almost seems like iCal is Apple's testing ground for new ideas - I've spent the last few months digging through iCal (writing an [[InputManager]] to make the damn thing work like a decent calendar), and many classes in [[CALCore]] look like precursors to what you find in the Cocoa framework. (It's really obvious if you look at their preference pane handling.) Or maybe iCal is just old, and nobody at Apple cares about it any more... -- [[RobertBlum]]
+*
+I dunno, but I protest the use of the term "root-packer" ... it sounds like an epithet ... ;-) Good catch, though, I have REALLY been wanting to see advancements in Interface Builder; it seems like the neglected tool and, IMHO, could stand an overhaul.*
+
+It's a likely assumption. It almost seems like iCal is Apple's testing ground for new ideas - I've spent the last few months digging through iCal (writing an General/InputManager to make the damn thing work like a decent calendar), and many classes in General/CALCore look like precursors to what you find in the Cocoa framework. (It's really obvious if you look at their preference pane handling.) Or maybe iCal is just old, and nobody at Apple cares about it any more... -- General/RobertBlum

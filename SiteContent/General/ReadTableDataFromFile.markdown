@@ -21,4 +21,4 @@ Thanks,
 
 ----
 
-Use [[NSString]] stringWithContentsOfFile:encoding:error: to read the data into a string then use [[NSScanner]] to parse it.
+Use General/NSString stringWithContentsOfFile:encoding:error: to read the data into a string then use General/NSScanner to parse it.

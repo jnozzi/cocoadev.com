@@ -8,4 +8,4 @@ http://jumsoft.com/relationship/
 Does anyone have any insight or a solution to this problem?
 ----
 
-When autohiding the scrollers, make sure to set the [[NSScrollView]] to have both a vertical AND a horizontal scroller (via setHasHorizontalScroller:YES). Although the horizontal scroller is never shown, this eliminates the flickering vertical scroller bug.
+When autohiding the scrollers, make sure to set the General/NSScrollView to have both a vertical AND a horizontal scroller (via setHasHorizontalScroller:YES). Although the horizontal scroller is never shown, this eliminates the flickering vertical scroller bug.

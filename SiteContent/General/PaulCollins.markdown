@@ -7,7 +7,7 @@ Started learning Cocoa with the Rhapsody Developer Preview (my first Intel-based
 Most recent Cocoa work:
 
 http://www.gracion.com/pronto/ - Pronto Patent
-http://www.opendoor.com/doorstop/ - [[DoorStop]] X Firewall
+http://www.opendoor.com/doorstop/ - General/DoorStop X Firewall
 http://www.opendoor.com/envision/ - Envision, the new way to experience (images from) the web.
 
 Contact web form: http://blue.gracion.com/askG/

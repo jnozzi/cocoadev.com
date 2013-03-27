@@ -1,7 +1,7 @@
 
 
-'''[[AVQueue]]'''
+**General/AVQueue**
 
-%%BEGINCODESTYLE%%- (id)init;%%ENDCODESTYLE%%
+<code>- (id)init;</code>
 
-%%BEGINCODESTYLE%%- (void)appendItem:([[AVItem]]'')item error:([[NSError]]''')outError;%%ENDCODESTYLE%%
+<code>- (void)appendItem:(General/AVItem*)item error:(General/NSError**)outError;</code>

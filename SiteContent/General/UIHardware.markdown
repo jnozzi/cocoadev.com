@@ -1,16 +1,16 @@
 
 
-Part of the iPhone [[UIKit]] framework
+Part of the iPhone General/UIKit framework
 
-%%BEGINCODESTYLE%%+ ([[CGRect]])fullScreenApplicationContentRect;%%ENDCODESTYLE%%
+<code>+ (General/CGRect)fullScreenApplicationContentRect;</code>
 
 Returns the size of the phone's screen.
 
-%%BEGINCODESTYLE%%+ (int)deviceOrientation:(BOOL)flag;%%ENDCODESTYLE%%
+<code>+ (int)deviceOrientation:(BOOL)flag;</code>
 
-Returns the orientation of the phone, natch. (With the flag set, it does something on the corners.) The [[UIApplication]] method deviceOrientationChanged is called when the phone is rotated.
+Returns the orientation of the phone, natch. (With the flag set, it does something on the corners.) The General/UIApplication method deviceOrientationChanged is called when the phone is rotated.
 
-This seems to work only if the application is started from the [[SpringBoard]] GUI (rather than from an ssh command line).
+This seems to work only if the application is started from the General/SpringBoard GUI (rather than from an ssh command line).
 
 
 * 0 - Phone is flat (on a table?) with screen upwards
@@ -27,15 +27,15 @@ This seems to work only if the application is started from the [[SpringBoard]] G
 Was this removed/deprecated/replaced ? it does not exists in the 2.0 sdk anymore.
 
 ----
-Not removed, merely moved, to [[UIDevice]].
+Not removed, merely moved, to General/UIDevice.
 
 
 ----
-The file itself WAS removed [[UIHardware]].h from [[UIKIt]] , and [[UIDevice]] does not return any information about screen size  , only returns device orientation and device info.
+The file itself WAS removed General/UIHardware.h from General/UIKIt , and General/UIDevice does not return any information about screen size  , only returns device orientation and device info.
 
 ----
-I missed the screen size method. But doesn't [[UIScreen]] provide that information?
+I missed the screen size method. But doesn't General/UIScreen provide that information?
 
 ----
-1. screen size 2.0: [[[[UIScreen]] mainScreen] bound]
-2. [[UIHardware]] is still in 2.0 but it is hidden by official header file. So that for [[AppStore]] oriented developer, it is same as removed.
+1. screen size 2.0: General/[[UIScreen mainScreen] bound]
+2. General/UIHardware is still in 2.0 but it is hidden by official header file. So that for General/AppStore oriented developer, it is same as removed.

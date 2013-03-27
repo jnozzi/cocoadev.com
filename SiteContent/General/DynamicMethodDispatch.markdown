@@ -1,1 +1,1 @@
-See: [[MultipleDispatch]]
+See: General/MultipleDispatch

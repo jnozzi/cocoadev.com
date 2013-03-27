@@ -1,38 +1,38 @@
 
 
-Hope folks find this code useful. Please point out any defects or improvements. -[[ShawnErickson]]
+Hope folks find this code useful. Please point out any defects or improvements. -General/ShawnErickson
 
 The following code is an implementation of a base class that allows sub-classes to inherit singleton behavior including preventing deallocation of the singleton instance and related enforcement of the contract. This implementation is also thread safe. 
 
 (Are you sure? See: http://www.aristeia.com/Papers/DDJ_Jul_Aug_2004_revised.pdf) - Yes, this implementation uses synchronize (grab a lock) and not any broken double check, etc. scheme as outline in the PDF you referenced.
 
-[[FTSWAbstractSingleton]].h
-<code>
+General/FTSWAbstractSingleton.h
+    
 #import <Foundation/Foundation.h>
 
-@interface [[FTSWAbstractSingleton]] : [[NSObject]] {
+@interface General/FTSWAbstractSingleton : General/NSObject {
 }
 + (id)singleton;
-+ (id)singletonWithZone:([[NSZone]]'')zone;
++ (id)singletonWithZone:(General/NSZone*)zone;
 
 //designated initializer, subclasses must implement and call supers implementation
 - (id)initSingleton; 
 @end
-</code>
 
-[[FTSWAbstractSingleton]].m
-<code>
-#import "[[FTSWAbstractSingleton]].h"
 
-@implementation [[FTSWAbstractSingleton]]
+General/FTSWAbstractSingleton.m
+    
+#import "General/FTSWAbstractSingleton.h"
 
-static [[NSMutableDictionary]]  ''s_FTSWAbstractSingleton_singletons = nil;
+@implementation General/FTSWAbstractSingleton
+
+static General/NSMutableDictionary  *s_FTSWAbstractSingleton_singletons = nil;
 
 + (void)initialize
 {
-    @synchronized([[[FTSWAbstractSingleton]] class]) {
+    @synchronized(General/[FTSWAbstractSingleton class]) {
         if (s_FTSWAbstractSingleton_singletons == nil) {
-            s_FTSWAbstractSingleton_singletons = [[[[NSMutableDictionary]] alloc] init];
+            s_FTSWAbstractSingleton_singletons = General/[[NSMutableDictionary alloc] init];
         }
     }
 }
@@ -45,20 +45,20 @@ static [[NSMutableDictionary]]  ''s_FTSWAbstractSingleton_singletons = nil;
 }
 
 // Should be considered private to the abstract singleton class
-+ (id)singletonWithZone:([[NSZone]]'')zone
++ (id)singletonWithZone:(General/NSZone*)zone
 {
     id singleton = nil;
     Class class = [self class];
     
-    if (class == [[[FTSWAbstractSingleton]] class]) {
-        [[[NSException]] raise:[[NSInternalInconsistencyException]]
+    if (class == General/[FTSWAbstractSingleton class]) {
+        General/[NSException raise:General/NSInternalInconsistencyException
                     format:@"Not valid to request the abstract singleton."];
     }
     
-    @synchronized([[[FTSWAbstractSingleton]] class]) {
+    @synchronized(General/[FTSWAbstractSingleton class]) {
         singleton = [s_FTSWAbstractSingleton_singletons objectForKey:class];
         if (singleton == nil) {
-            singleton = [[NSAllocateObject]](class, 0U, zone);
+            singleton = General/NSAllocateObject(class, 0U, zone);
             if ((singleton = [singleton initSingleton]) != nil) {
                 [s_FTSWAbstractSingleton_singletons setObject:singleton forKey:class];
             }
@@ -89,7 +89,7 @@ static [[NSMutableDictionary]]  ''s_FTSWAbstractSingleton_singletons = nil;
     return [self singleton];
 }
 
-+ (id)allocWithZone:([[NSZone]] '')zone
++ (id)allocWithZone:(General/NSZone *)zone
 {
     return [self singletonWithZone:zone];
 }
@@ -105,7 +105,7 @@ static [[NSMutableDictionary]]  ''s_FTSWAbstractSingleton_singletons = nil;
     return self;
 }
 
-- (id)copyWithZone:([[NSZone]] '')zone
+- (id)copyWithZone:(General/NSZone *)zone
 {
     //[self doesNotRecognizeSelector:_cmd]; //optional, do if you want to force certain usage pattern
     return self;
@@ -117,7 +117,7 @@ static [[NSMutableDictionary]]  ''s_FTSWAbstractSingleton_singletons = nil;
     return self;
 }
 
-- (id)mutableCopyWithZone:([[NSZone]] '')zone
+- (id)mutableCopyWithZone:(General/NSZone *)zone
 {
     //[self doesNotRecognizeSelector:_cmd]; //optional, do if you want to force certain usage pattern
     return self;
@@ -149,29 +149,29 @@ static [[NSMutableDictionary]]  ''s_FTSWAbstractSingleton_singletons = nil;
 // ------------------------------------------------------------------------------
 
 @end
-</code>
+
 
 
 ----
 
 The following is an example sub-class...
-<code>
-#import "[[FTSWAbstractSingleton]].h"
+    
+#import "General/FTSWAbstractSingleton.h"
 
-@interface [[MySingleton]] : [[FTSWAbstractSingleton]] {
+@interface General/MySingleton : General/FTSWAbstractSingleton {
     ...blah...
 }
-+ ([[MySingleton]]'')sharedMySingleton;
++ (General/MySingleton*)sharedMySingleton;
 ...blah...
 @end
 
-@implementation [[MySingleton]]
+@implementation General/MySingleton
 
-+ ([[MySingleton]]'') sharedMySingleton
++ (General/MySingleton*) sharedMySingleton
 {
-    static [[MySingleton]] ''s_MySingleton = nil;
+    static General/MySingleton *s_MySingleton = nil;
     
-    @synchronized([[[MySingleton]] class]) {
+    @synchronized(General/[MySingleton class]) {
         if (s_MySingleton == nil) {
             s_MySingleton = [self singleton];
         }
@@ -193,6 +193,6 @@ The following is an example sub-class...
 
 ...blah...
 @end
-</code>
+
 
 ----

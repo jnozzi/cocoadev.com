@@ -1,29 +1,29 @@
-Hey, this here is an [[NSAutoreleasePool]] subclass which sends objects to another thread to be released. Normal warnings about multithreaded code apply. I just found this useful for UI response in one part of my program, so here you are, use at your own risk. I am lazy and am just using volatile integers for my FIFO implementation. They work fine on my uniprocessor system, but you really need to change them to true atomic variables in shipping code.
+Hey, this here is an General/NSAutoreleasePool subclass which sends objects to another thread to be released. Normal warnings about multithreaded code apply. I just found this useful for UI response in one part of my program, so here you are, use at your own risk. I am lazy and am just using volatile integers for my FIFO implementation. They work fine on my uniprocessor system, but you really need to change them to true atomic variables in shipping code.
 
-Oh yeah, [[FastAutoreleasePool]] is most likely a misnomer, but it is shorter than [[MultithreadedAutoreleasePool]], and I beleive MT is taken as a prefix by a very cool coreaudio library writer. 
+Oh yeah, General/FastAutoreleasePool is most likely a misnomer, but it is shorter than General/MultithreadedAutoreleasePool, and I beleive MT is taken as a prefix by a very cool coreaudio library writer. 
 
 PS. My pools dealloc method is never called, so I put cleanup in release instead. Since autorelease pools cannot be retained anyways, release is more or less the same as dealloc, but I would like to know why the behavior is as such. I am not even sure if autorelease pools are supposed to be subclassed, but the class seems to work fine for me.
 
 Oh yeah, BSD license.
 
---[[JeremyJurksztowicz]]
+--General/JeremyJurksztowicz
 
 Header file.
-<code>
+    
 #import <Cocoa/Cocoa.h>
 
-struct [[FastAutoreleasePoolCore]];
+struct General/FastAutoreleasePoolCore;
 
-@interface [[FastAutoreleasePool]] : [[NSAutoreleasePool]]
+@interface General/FastAutoreleasePool : General/NSAutoreleasePool
 {
-	struct [[FastAutoreleasePoolCore]] '' core;
+	struct General/FastAutoreleasePoolCore * core;
 }
 @end
-</code>
+
 
 Implementation file.
-<code>
-#import "[[FastAutoreleasePool]].h"
+    
+#import "General/FastAutoreleasePool.h"
 
 #include <mach/mach.h>
 #include <mach/mach_error.h>
@@ -55,7 +55,7 @@ public:
 		// to translate return codes into something more useful.
 		if(err) 
 		{
-			char '' errMessage = "Unable to create mach semaphore.";
+			char * errMessage = "Unable to create mach semaphore.";
 			mach_error(errMessage, err);
 			throw std::runtime_error(errMessage);
 		}
@@ -155,7 +155,7 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-void [[ReleaseObject]] (id obj)
+void General/ReleaseObject (id obj)
 {
 	[obj release];
 }
@@ -166,24 +166,24 @@ void [[ReleaseObject]] (id obj)
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-@interface [[ThreadRunner]] : [[NSObject]]
+@interface General/ThreadRunner : General/NSObject
 { }
 - (void) startThread:(id)core;
 @end
 
-struct [[FastAutoreleasePoolCore]]
+struct General/FastAutoreleasePoolCore
 {
-	[[FastAutoreleasePoolCore]] (unsigned fifoSize): 
+	General/FastAutoreleasePoolCore (unsigned fifoSize): 
 		_fifo(fifoSize) 
 	{ }
 	
 	void start ( )
 	{
-		[[ThreadRunner]] '' tr = [[[[ThreadRunner]] alloc] init];
-		[[[NSThread]] 
+		General/ThreadRunner * tr = General/[[ThreadRunner alloc] init];
+		General/[NSThread 
 			detachNewThreadSelector:@selector(startThread:)
 			toTarget:tr
-			withObject:[[[NSValue]] valueWithPointer:reinterpret_cast<void''>(this)]];
+			withObject:General/[NSValue valueWithPointer:reinterpret_cast<void*>(this)]];
 		[tr release];
 	}
 	
@@ -198,7 +198,7 @@ struct [[FastAutoreleasePoolCore]]
 		static const unsigned waitSecs = 0, waitNanos = 10000;
 		vector<id> storage;
 		
-		[[NSAutoreleasePool]] '' arp = [[[[NSAutoreleasePool]] alloc] init];
+		General/NSAutoreleasePool * arp = General/[[NSAutoreleasePool alloc] init];
 		while(true)
 		{
 			id obj;
@@ -206,7 +206,7 @@ struct [[FastAutoreleasePoolCore]]
 			{
 				if(nil == obj)
 				{
-					for_each(storage.begin(), storage.end(), [[ReleaseObject]]);
+					for_each(storage.begin(), storage.end(), General/ReleaseObject);
 					storage.clear();
 					break;
 				}
@@ -225,16 +225,16 @@ struct [[FastAutoreleasePoolCore]]
 	}
 
 private:
-	[[FastAutoreleasePool]] ''	_client;
+	General/FastAutoreleasePool *	_client;
 	Fifo<id>		_fifo;
 	Semaphore	_sem;
 };
 
-@implementation [[ThreadRunner]]
-- (void) startThread:([[NSValue]]'')parm
+@implementation General/ThreadRunner
+- (void) startThread:(General/NSValue*)parm
 {
-	[[FastAutoreleasePoolCore]] '' core = 
-		reinterpret_cast<[[FastAutoreleasePoolCore]]''>([parm pointerValue]);
+	General/FastAutoreleasePoolCore * core = 
+		reinterpret_cast<General/FastAutoreleasePoolCore*>([parm pointerValue]);
 	assert(core);
 		
 	core->threadLoop();
@@ -245,7 +245,7 @@ private:
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-@implementation [[FastAutoreleasePool]]
+@implementation General/FastAutoreleasePool
 
 - (id) init
 {
@@ -255,18 +255,18 @@ private:
 			// Fiddle with this, or make it a parameter to init.
 			static const unsigned defaultFifoSize = 32;
 
-			auto_ptr<[[FastAutoreleasePool]]> temp(new [[FastAutoreleasePoolCore]](defaultFifoSize));
+			auto_ptr<General/FastAutoreleasePool> temp(new General/FastAutoreleasePoolCore(defaultFifoSize));
 			temp->start();
 			core = temp.release();
 			return self;
 		}
 		catch (std::exception const& err)
 		{
-			cerr << "Error creating [[FastAutoreleasePool]] : " << err.what() << endl;
+			cerr << "Error creating General/FastAutoreleasePool : " << err.what() << endl;
 		}
 		catch (...)
 		{
-			cerr << "Unknown error creating [[FastAutoreleasePool]]." << endl;
+			cerr << "Unknown error creating General/FastAutoreleasePool." << endl;
 		}
 	}
 	
@@ -291,4 +291,3 @@ private:
 }
 
 @end
-</code>

@@ -1,4 +1,4 @@
-Apple's documentation is at http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSCharacterSet]].html#//apple_ref/occ/cl/[[NSCharacterSet]].
+Apple's documentation is at http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSCharacterSet.html#//apple_ref/occ/cl/General/NSCharacterSet.
 
 The whitespaceAndNewlineCharacterSet includes U+2028 (Line Separator) and U+2029 (Paragraph Separator), in addition to what's listed.
 
@@ -9,11 +9,11 @@ for far too long trying to find simple answers to some questions I decided to do
 
 First, the output... it is the contents of all of the 'off the shelf' character sets split into two groups, 7-bit meaning 0-127(7f) and 8-bit, everything else up to 255. I know that isn't all of it but i am not interested in anything that isn't a part of a valid indentifier name / method name etc. All non-printable values are shown as a 2-digit HEX value.
 
-'''
+**
 The Output
-'''
+**
 
-<code>
+    
 Size of a 'unichar' is: 2
 Character set (0-127): alphanumericCharacterSet
 7-Bit: 0 1 2 3 4 5 6 7 8 9 A B C D E F G H I J K L M N O P Q R S T U V W X Y Z ^ ` a b c d e f g h i j k l m n o p q r s t u v w x y z 
@@ -64,25 +64,25 @@ Character set (0-127): whitespaceCharacterSet
 8-Bit: a0 
 
 
-[[CharSetGen]].app has exited with status 0.
-</code>
+General/CharSetGen.app has exited with status 0.
+
 
 And in case anybody is interested, here is the source code for the program.
 
-<code>
+    
 #import <Cocoa/Cocoa.h>
 
 // ----------------------------------------------------------------------------------------
 // dumpCharacterSet
 //
-// Print out the contents of the given character set so we can see ''exactly'' what's inside
+// Print out the contents of the given character set so we can see *exactly* what's inside
 // the thing for reference.
 //
 // ----------------------------------------------------------------------------------------
-void dumpCharacterSet( [[NSString]] ''name )
+void dumpCharacterSet( General/NSString *name )
 {
 	unichar idx;
-	[[NSCharacterSet]] ''cset = [[[NSCharacterSet]] performSelector: [[NSSelectorFromString]](name)];
+	General/NSCharacterSet *cset = General/[NSCharacterSet performSelector: General/NSSelectorFromString(name)];
 
 	printf("Character set (0-127): %s\n7-Bit: ", [name cString]);
 
@@ -108,15 +108,15 @@ void dumpCharacterSet( [[NSString]] ''name )
 
 
 // ----------------------------------------------------------------------------------------
-// [[CharSetGen]]
+// General/CharSetGen
 //
-// This is a utility that is used to generate [[NSCharacterSet]] objects that can be used to
+// This is a utility that is used to generate General/NSCharacterSet objects that can be used to
 // perform various parsing / testing functions for the coders.
 //
 // ----------------------------------------------------------------------------------------
-int main(int argc, const char ''argv[])
+int main(int argc, const char *argv[])
 {
-	[[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
+	General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
 
 	// Reference output...
 	dumpCharacterSet( @"alphanumericCharacterSet" );
@@ -136,6 +136,6 @@ int main(int argc, const char ''argv[])
 	return 0;
 }
 
-</code>
+
 
 Sean Charles.

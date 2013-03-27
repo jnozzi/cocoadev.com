@@ -1,45 +1,45 @@
 
 
 
-I thought I might as well give back to the community by creating a tutorial on how to use  [[NSTableViews]] a different way, and, in my opinion a better way then most of the ones I have read. This will be a step-by-step guide.
+I thought I might as well give back to the community by creating a tutorial on how to use  General/NSTableViews a different way, and, in my opinion a better way then most of the ones I have read. This will be a step-by-step guide.
 
 ----
 
-''' 1. Setting up your Nib '''
+** 1. Setting up your Nib **
 
 
 * Open the nib which you wish to add a table to.
-* Drag a new [[NSTableView]] to the view you wish it to display in.
+* Drag a new General/NSTableView to the view you wish it to display in.
 * Select the "classes" tab in the nib window.
-* Double-click the [[NSTableView]] to select the actual [[NSTableView]] and not the [[NSScrollView]].
-* Go back to the nib window, [[NSTableView]] should be selected in the browser, press enter to subclass it, use a name such as [[TRTableView]] -- something to describe the object.
+* Double-click the General/NSTableView to select the actual General/NSTableView and not the General/NSScrollView.
+* Go back to the nib window, General/NSTableView should be selected in the browser, press enter to subclass it, use a name such as General/TRTableView -- something to describe the object.
 * In the 'Classes' menu create the files for the classes.
-* Select the [[TableView]] then open the info window if it is not open, choose "Custom Class" from the popup menu and select the name of your subclass (eg. [[TRBuddyList]]).
-* Return to [[XCode]], open your newly created class and change your header to include the following:
+* Select the General/TableView then open the info window if it is not open, choose "Custom Class" from the popup menu and select the name of your subclass (eg. General/TRBuddyList).
+* Return to General/XCode, open your newly created class and change your header to include the following:
 
-<code>
+    
 {
-	[[NSMutableArray]] '' items;
+	General/NSMutableArray * items;
 }
 
-/'' Accessor ''/
+/* Accessor */
 // Returns a mutable array with dictionaries of all the items
-- ([[NSMutableArray]] '')items;
-- (id)selectedRowItemforColumnIdentifier:([[NSString]] '')anIdentifier;
+- (General/NSMutableArray *)items;
+- (id)selectedRowItemforColumnIdentifier:(General/NSString *)anIdentifier;
 
-/'' Mutator ''/
-- (void)setItems:([[NSMutableArray]] '')anArray;
-- (void)addRow:([[NSDictionary]] '')item;
+/* Mutator */
+- (void)setItems:(General/NSMutableArray *)anArray;
+- (void)addRow:(General/NSDictionary *)item;
 - (void)removeRow:(unsigned)row;
 
-// [[IBActions]]
-</code>
+// General/IBActions
+
 
 * Then add this to the implementation file:
 
-<code>
+    
 - (void)awakeFromNib {
-	items = [[[NSMutableArray]] new];
+	items = General/[NSMutableArray new];
 	[self setDelegate:self];
 	[self setDataSource:self];
 	[self reloadData];
@@ -50,23 +50,23 @@ I thought I might as well give back to the community by creating a tutorial on h
 	[super dealloc];
 }
 
-</code>
-''' 2. Next we need to add the accessor methods '''
-<code>
-- ([[NSMutableArray]] '')items {
+
+** 2. Next we need to add the accessor methods **
+    
+- (General/NSMutableArray *)items {
 	return items;
 }
 
-- (id)selectedRowItemforColumnIdentifier:([[NSString]] '')anIdentifier {
+- (id)selectedRowItemforColumnIdentifier:(General/NSString *)anIdentifier {
 	if ([self selectedRow] != -1)
-		return [[items objectAtIndex:[self selectedRow]] objectForKey:anIdentifier];
+		return General/items objectAtIndex:[self selectedRow objectForKey:anIdentifier];
 
 	return nil;
 }
-</code>
-''' 3. Next we need to add the mutator methods '''
-<code>
-- (void)setItems:([[NSMutableArray]] '')anArray {
+
+** 3. Next we need to add the mutator methods **
+    
+- (void)setItems:(General/NSMutableArray *)anArray {
 
 	if (items == anArray)
                 return;
@@ -76,7 +76,7 @@ I thought I might as well give back to the community by creating a tutorial on h
 	[self reloadData];
 }
 
-- (void)addRow:([[NSDictionary]] '')item {
+- (void)addRow:(General/NSDictionary *)item {
 	[items addObject:item];
 	[self reloadData];
 }
@@ -85,21 +85,21 @@ I thought I might as well give back to the community by creating a tutorial on h
 	[items removeObjectAtIndex:row];
 	[self reloadData];
 }
-</code>
-''' 4. And finally add the data source objects: '''
-<code>
-- (int)numberOfRowsInTableView:([[NSTableView]] '')tableView {
+
+** 4. And finally add the data source objects: **
+    
+- (int)numberOfRowsInTableView:(General/NSTableView *)tableView {
 	return [items count];
 }
-- (id)tableView:([[NSTableView]] '')tableView objectValueForTableColumn:([[NSTableColumn]] '')tableColumn row:(int)row {
+- (id)tableView:(General/NSTableView *)tableView objectValueForTableColumn:(General/NSTableColumn *)tableColumn row:(int)row {
 	if (row != -1)
-		return [[items objectAtIndex:row] objectForKey:[tableColumn identifier]];
+		return General/items objectAtIndex:row] objectForKey:[tableColumn identifier;
 
 	return nil;
 }
-</code>
 
-So if you want to add items to this array, just set an [[NSMutableArray]] populated with [[NSDictionaries]] whose keys match the column identifiers! Very easy, and very reusable, very nice for showing lots of info with little code, I use this technique all the time and load contents from plist files, which makes it even easier to populate your tableview with the least amount of code as possible!
+
+So if you want to add items to this array, just set an General/NSMutableArray populated with General/NSDictionaries whose keys match the column identifiers! Very easy, and very reusable, very nice for showing lots of info with little code, I use this technique all the time and load contents from plist files, which makes it even easier to populate your tableview with the least amount of code as possible!
 
 One thing to note however is the method addRow: if you are adding more than one or two things, you may encounter problems so it is best to use setItems:.
 
@@ -107,17 +107,17 @@ I typed this up in class so once I get home I will verify the code and post a pr
 
 Later I will add to this how to make a custom cell close to what people can see in iChat.
 
-''' Comments: '''
+** Comments: **
 ----
 
 Hello, this is Uwe,
-I felt lucky to find such a simple sample about [[NSTableView]] -but-
+I felt lucky to find such a simple sample about General/NSTableView -but-
 it didn't. I get this:
-Illegal [[NSTableView]] data source (()).  Must implement numberOfRowsInTableView: and tableView:objectValueForTableColumn:row:
+Illegal General/NSTableView data source (()).  Must implement numberOfRowsInTableView: and tableView:objectValueForTableColumn:row:
 Changing a line in awakeFRomNib :  [self setDataSource:[self items]]; and added this line to setItems I got:
 
-<code>
-Illegal [[NSTableView]] data source ((
+    
+Illegal General/NSTableView data source ((
     {
         ID = 0; 
         frequence = 1; 
@@ -133,26 +133,26 @@ Illegal [[NSTableView]] data source ((
         phaseZ = "0.000000"; 
     }
 )). 
-</code>
+
  Must implement numberOfRowsInTableView: and tableView:objectValueForTableColumn:row:
 
 Can you see what's wrong ?
 Uwe
 ----
-You don't set the data source to your      , you set it to your ''controller'', and it then accesses the       to provide the responses.
+You don't set the data source to your      , you set it to your *controller*, and it then accesses the       to provide the responses.
 ----
 I remember, that was my first approach.From       i sent source to tableView, I got no error, but the view is empty.
 Uwe
 ----
-I don't know how many people check this post but can anyone give me instructions on how to load a file called: Bookmarks.plist that is packaged in the application bundle into the array and then into the table view. It is an Apple formatted plist file and I have implemented the [[NSTableView]] as per the insturctions above, the application compiles and runs without errors.
+I don't know how many people check this post but can anyone give me instructions on how to load a file called: Bookmarks.plist that is packaged in the application bundle into the array and then into the table view. It is an Apple formatted plist file and I have implemented the General/NSTableView as per the insturctions above, the application compiles and runs without errors.
 ----
 You can certainly read any plist file, but you will have to be careful to understand the format. Few plists are just flat arrays. They often contain specific types of values. Remember a plist is xml. It is a node structure, and each node can be a different data type that must be handled properly. You will need to put lots of checks in place to make sure the plist you are handling works the way you think it does. If if it has a standard, documented format, you should be ok if it is versioned. Otherwise, you may not have a complete understanding of the data types that might be possible in the plist.
 ----
-Cleaned up the setItems method. (24 Apr 06) -- [[JoshuaPenn]]
+Cleaned up the setItems method. (24 Apr 06) -- General/JoshuaPenn
 ----
-How do you access this table from a different class? Do you need to [[[[[TRTableView]] alloc] init] selectedRow] or create your own "accessor" type methods? I have one class that controls a nib with tabs (each tab having its own table) and I'd like to have a class for each table to separate out all the code. How can the class that controls the nib access the objects that are in the tables?
+How do you access this table from a different class? Do you need to General/[[[TRTableView alloc] init] selectedRow] or create your own "accessor" type methods? I have one class that controls a nib with tabs (each tab having its own table) and I'd like to have a class for each table to separate out all the code. How can the class that controls the nib access the objects that are in the tables?
 
 Thanks
 -Danprime
 ----
-Removed warnings in - (id)selectedRowItemforColumnIdentifier:([[NSString]] '')anIdentifier and - (id)tableView:([[NSTableView]] '')tableView objectValueForTableColumn:([[NSTableColumn]] '')tableColumn row:(int)row . -- [[SamSoffes]]
+Removed warnings in - (id)selectedRowItemforColumnIdentifier:(General/NSString *)anIdentifier and - (id)tableView:(General/NSTableView *)tableView objectValueForTableColumn:(General/NSTableColumn *)tableColumn row:(int)row . -- General/SamSoffes

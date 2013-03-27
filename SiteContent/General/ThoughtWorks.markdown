@@ -1,15 +1,15 @@
 
 
-[[ThoughtWorks]] is an IT consulting firm which is involved in various [[OpenSource]] projects. A list of their available Objective-C/Cocoa projects is here: http://opensource.thoughtworks.com/projects/objective-c.jsp
+General/ThoughtWorks is an IT consulting firm which is involved in various General/OpenSource projects. A list of their available Objective-C/Cocoa projects is here: http://opensource.thoughtworks.com/projects/objective-c.jsp
 
 Company home page: http://www.thoughtworks.com
 
 Details about what the company does: http://www.thoughtworks.com/who-we-are/ http://www.thoughtworks.com/what-we-do/ http://www.thoughtworks.com/how-we-do-it/
 ----
 
-'''Discussion:'''
+**Discussion:**
 
-Refactored the page to remove the argument and provide a bit of useful information. Could someone who can actually figure out what the heck this company ''does'' please fill in the ''mumble'' above to tell us about it?
+Refactored the page to remove the argument and provide a bit of useful information. Could someone who can actually figure out what the heck this company *does* please fill in the *mumble* above to tell us about it?
 
 I found the About page, but dismissed it. It's so general and fluffy that it may as well say, "We look for things. Things to make us go."
 
@@ -28,7 +28,7 @@ Java and .NET are our primary platforms because they are business's primary plat
 I do Cocoa - and I do a lot of it. Unfortunately it's all been on my own time. It's a catch 22 situation. TW as a whole isn't interested in pushing a particular technology. Our focus is on development process and practices. Yes, in order to do that our staff must have demonstrated technological skill, and Java and .NET have the most demand by far. Every T<nowiki/>houghtWorker I know who is involved in Cocoa is dreaming of an opportunity to join a Cocoa project and increase its presence in the market. The only way we can do that is to continue to push and promote Cocoa on our own time.
 
 By the way - I really don't like having this explanation here. This is definitely advertising, and not Cocoa related. It's only ancillary to being related to development. But speculation was high and I thought I'd put it to rest.
---[[TimHart]]
+--General/TimHart
 
 I appreciate the explanation, advertising or no. It's nice to get an idea of the company in language that doesn't require a frontal lobo^W^Wbusiness degree to understand.
 

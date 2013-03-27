@@ -1,6 +1,6 @@
 I'm not a cocoa programmer, but I play one on TV.
 
-I just really like the [[WikiWikiWeb]] script used here. :)
+I just really like the General/WikiWikiWeb script used here. :)
 
 toast1911 at mac dot com
 

@@ -7,4 +7,4 @@ It should be pretty easy, but I can't find any way how to do it in Cocoa. I don'
 http://www.cocoabuilder.com/archive/message/2003/2/25/90313
 
 
-[[CheckingOnlineStatus]]
+General/CheckingOnlineStatus

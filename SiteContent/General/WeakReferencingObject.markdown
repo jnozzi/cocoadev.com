@@ -1,10 +1,10 @@
-<insert>Can anyone tell me why this example is allowed to ignore the "must be the same size" rule of poseAsClass: by adding an extra int to the definition? Incidentally, I reformatted the code to stop it adding a horizontal scrollbar on my screen. --[[KritTer]] </insert>
+<insert>Can anyone tell me why this example is allowed to ignore the "must be the same size" rule of poseAsClass: by adding an extra int to the definition? Incidentally, I reformatted the code to stop it adding a horizontal scrollbar on my screen. --General/KritTer </insert>
 
-Have written it, I can't tell you that. It compiles... or did... maybe bit rot has set in, I'm not certain. As it is, I don't really have any use for it, so it's fallen by the proverbial wayside; thank you for the formatting, however (the horizontal scrollbar is bloody ''evil''). -- [[RobRix]]
+Have written it, I can't tell you that. It compiles... or did... maybe bit rot has set in, I'm not certain. As it is, I don't really have any use for it, so it's fallen by the proverbial wayside; thank you for the formatting, however (the horizontal scrollbar is bloody *evil*). -- General/RobRix
 
 ----
 
-[[FDWeakReferencingObject]] is a nice little class which poses as [[NSObject]] to give all objects some lovely little [[WeakReferencing]] methods.
+General/FDWeakReferencingObject is a nice little class which poses as General/NSObject to give all objects some lovely little General/WeakReferencing methods.
 
 Class reference:
 
@@ -19,25 +19,25 @@ Increments the weakRetainCount and retainCount.
 Decrements the weakRetainCount and retainCount.
 * -(void)release
 
-This is an extension of [[NSObject]]'s -release method (that is, it calls [[NSObject]]'s -release method within the implementation). All it adds is a short block of code to check whether or not the weakRetainCount and retainCount are the same, and if they are, it -releases and -weakReleases self till both counts are zero.
+This is an extension of General/NSObject's -release method (that is, it calls General/NSObject's -release method within the implementation). All it adds is a short block of code to check whether or not the weakRetainCount and retainCount are the same, and if they are, it -releases and -weakReleases self till both counts are zero.
 * -(unsigned int)weakRetainCount
 
 Returns weakRetainCount, which is the number of weak retains that have been made.
 * -(id)description
 
-Returns a description of the instance. This varies from [[NSObject]]'s version by putting the weakRetainCount in along with the class name.
+Returns a description of the instance. This varies from General/NSObject's version by putting the weakRetainCount in along with the class name.
 
 
 ----
 
 I have provided the code for your fancy (this is newer than the code on my site):
 
-'''From [[FDWeakReferencingObject]].h'''
+**From General/FDWeakReferencingObject.h**
 
-<code>
+    
 //
-//  [[FDWeakReferencingObject]].h
-//  [[FDFoundation]]
+//  General/FDWeakReferencingObject.h
+//  General/FDFoundation
 //
 //  Created by Rob Rix on Sun Jun 24 2001.
 //  Copyright (c) 2001 Rob Rix. All rights reserved.
@@ -49,12 +49,12 @@ I have provided the code for your fancy (this is newer than the code on my site)
 
 void setupWeakReferencing();
 // sets up weak referencing by making _certain_ that the
-// [[FDWeakReferencing]] Class has had a chance to pose as [[NSObject]].
+// General/FDWeakReferencing Class has had a chance to pose as General/NSObject.
 // It does this by allocating and releasing a temporary
 // object, so we know that the runtime has sent the +initialize
 // message to the class.
 
-@interface [[FDWeakReferencingObject]] : [[NSObject]]
+@interface General/FDWeakReferencingObject : General/NSObject
 {
 	unsigned int weakRetainCount;
 }
@@ -69,16 +69,16 @@ void setupWeakReferencing();
 
 -(id)description;
 @end
-</code>
+
 
 ----
 
-'''From [[FDWeakReferencingObject]].m'''
+**From General/FDWeakReferencingObject.m**
 
-<code>
+    
 //
-//  [[FDWeakReferencingObject]].m
-//  [[FDFoundation]]
+//  General/FDWeakReferencingObject.m
+//  General/FDFoundation
 //
 //  Created by Rob Rix on Sun Jun 24 2001.
 //  Copyright (c) 2001 Rob Rix. All rights reserved.
@@ -86,16 +86,16 @@ void setupWeakReferencing();
 
 //	v1.2
 
-#import "[[FDWeakReferencingObject]].h"
+#import "General/FDWeakReferencingObject.h"
 
-@implementation [[FDWeakReferencingObject]]
+@implementation General/FDWeakReferencingObject
 
 + (void)initialize
 {
 	static BOOL tooLate = NO;
 	if (tooLate == NO)
 	{
-		[[[FDWeakReferencingObject]] poseAsClass:[[[NSObject]] class]];
+		General/[FDWeakReferencingObject poseAsClass:General/[NSObject class]];
 		tooLate = YES;
 	}
 }
@@ -152,7 +152,7 @@ void setupWeakReferencing();
 
 -(id)description
 {
-	[[NSMutableString]] ''descriptionString = [[[[NSMutableString]] alloc] init];
+	General/NSMutableString *descriptionString = General/[[NSMutableString alloc] init];
 	
 	[descriptionString appendFormat:
         @"Instance of %@ with a weakRetainCount of %i",
@@ -169,9 +169,9 @@ void setupWeakReferencing()
 	
 	if(hasBeenSetUp == NO)
 	{
-		[[[FDWeakReferencingObject]] setupWeakReferencing];
+		General/[FDWeakReferencingObject setupWeakReferencing];
 	}
 }
-</code>
 
--- [[RobRix]]
+
+-- General/RobRix

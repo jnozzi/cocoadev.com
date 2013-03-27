@@ -1,13 +1,13 @@
 To make your class always return a single instance of itself, use this init routine.
 
-See also [[SingletonDesignPattern]], [[SingletonAlternatives]], 
-<code>
+See also General/SingletonDesignPattern, General/SingletonAlternatives, 
+    
 
 
 SINGLETON CLASSES
 
 - (id) init {
-    static [[YourClass]] ''sharedInstance = nil;
+    static General/YourClass *sharedInstance = nil;
 
     if (sharedInstance) {
         [self autorelease];
@@ -23,4 +23,4 @@ SINGLETON CLASSES
 
     return self;
 }
- </code>
+ 

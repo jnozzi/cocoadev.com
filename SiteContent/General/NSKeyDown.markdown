@@ -1,1 +1,1 @@
-see [[NSEventType]]
+see General/NSEventType

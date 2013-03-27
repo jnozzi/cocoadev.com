@@ -9,16 +9,16 @@ Great! never thought i would get reply soo soon. any way i will look into that. 
 ----
 I wrote a importer which gets the extended attribute and adds it. Now spotlight can see my keyword. But whati feel is this violates the the reason why we go for extended attributes. because importer will add the keywords metadata [keywords will be listed if you execute a command 'mdls']. we chose extended attributes becoz we donot want to add it to metadata.
 ----
-I am writing a importer for images. i have given the [[LSItemContentTpes]] as public.jpeg. when i debug my importer using mdimport -d1 path it shows my importer. [it uses my importer] but it wont display apple shipped image.importer. Why it is like that? even though it doesnt load image.importer spotlight works perfectly. How can i make both importer to load?
+I am writing a importer for images. i have given the General/LSItemContentTpes as public.jpeg. when i debug my importer using mdimport -d1 path it shows my importer. [it uses my importer] but it wont display apple shipped image.importer. Why it is like that? even though it doesnt load image.importer spotlight works perfectly. How can i make both importer to load?
 
 ----
 If there are multiple plug-ins for a particular file type (e.g. a generic image metadata importer and a JPEG metadata importer), the most specific plug-in wins. In other words, only one plug-in gets a shot at each file. I only hope Leopard fixes the hack known as spotlight....
 ----
 What is exported/imported UTI? I have read the documentation soo many times. still i could not understand it [from here http://developer.apple.com/documentation/Carbon/Conceptual/understanding_utis/understand_utis_conc/chapter_2_section_4.html#//apple_ref/doc/uid/TP40001319-CH202-BCGFBBIA ]. can any one exaplain here in nice way?
 ----
-If you provide the definition for a type, you export its UTI.  (Example: Word would export something like com.microsoft.[[WordDocument]])  If you can use those files in some way, but they're not "yours", you import them.  ([[TextEdit]], if it supported importing Word documents, would _import_ com.microsoft.[[WordDocument]]).
+If you provide the definition for a type, you export its UTI.  (Example: Word would export something like com.microsoft.General/WordDocument)  If you can use those files in some way, but they're not "yours", you import them.  (General/TextEdit, if it supported importing Word documents, would _import_ com.microsoft.General/WordDocument).
 ----
-Yes, and [[TextEdit]] does open Word documents.  Why don't you look at the source code to see how ?
+Yes, and General/TextEdit does open Word documents.  Why don't you look at the source code to see how ?
 ----
 Is there any way to edit kMDItemStarRating,kMDItemKeywords of images? I know there are methods to read those fields but could not find how to edit.
 
@@ -34,15 +34,15 @@ Can you please reveal the api set to edit the attributes? I wonder what 'clever'
 ----
 As a follow-up and a reply to some of the above posters, I've been storing my data in both the "Finder Comment" of the file and in an extended attribute.  However, I can never shake the feeling that my whole system is a big hackjob waiting to collapse on me.  Long story short, I need the capability to store arbitrary information about any arbitrary file, and I need any/all of the information to be searchable via Spotlight.  Basically... I put the data into the Finder comment so Spotlight sees it and indexes it; I put the data in the xattr so I can pull it back easily without too much worry that I've lost any information due to tampering with the Finder comment.
 
-I've also had huge trouble forcing Spotlight to re-index files.  Even if I went the route of writing an generic importer that adds my xattr to Spotlight, I don't know how I'd go about guaranteeing that Spotlight would even re-index that file when the xattr was modified.  Running `mdimport -f` will often have no effect whatsoever; the command will return without error but it appears to harbor some internal notion about what files actually deserve to be re-indexed and disregard the "force" flag from time to time.  My next attempt at 'encouraging' an re-index was to use both `touch` and a Cocoa-ized touch via changeFileAttributes:atPath: with N<nowiki/>[[SFileModificationDate]].  Neither worked.  For now, updating the Finder comment seems to get the job done... even if it's a dirty, dirty hack. :-/
+I've also had huge trouble forcing Spotlight to re-index files.  Even if I went the route of writing an generic importer that adds my xattr to Spotlight, I don't know how I'd go about guaranteeing that Spotlight would even re-index that file when the xattr was modified.  Running `mdimport -f` will often have no effect whatsoever; the command will return without error but it appears to harbor some internal notion about what files actually deserve to be re-indexed and disregard the "force" flag from time to time.  My next attempt at 'encouraging' an re-index was to use both `touch` and a Cocoa-ized touch via changeFileAttributes:atPath: with N<nowiki/>General/SFileModificationDate.  Neither worked.  For now, updating the Finder comment seems to get the job done... even if it's a dirty, dirty hack. :-/
 
 Any insight is very welcome.  I'd dump the system I've got in a heartbeat if I could come up with anything better (short of reinventing the wheel).
 
 ----
 Since they are named Finder comments it would seem logical that asking Finder to update them (via Applescript I assume) is the most correct and reliable way as opposed to the adhoc touch/mdimport.
 ----
-The reason I tried the touch/mdimport methods was that while the Finder flawlessly updates the comments (they appear in the Get Info window right away), Spotlight does not always re-import them.  A small amount of latency would be expected, I know, but on occasion the Spotlight database is ''never'' updated for the Finder Comments of the file until the file is physically altered somewhere down the road (ie, the image is edited, the text file appended, etc).
+The reason I tried the touch/mdimport methods was that while the Finder flawlessly updates the comments (they appear in the Get Info window right away), Spotlight does not always re-import them.  A small amount of latency would be expected, I know, but on occasion the Spotlight database is *never* updated for the Finder Comments of the file until the file is physically altered somewhere down the road (ie, the image is edited, the text file appended, etc).
 
 So far none of my users have reported the issue... but I know it's there lurking and I haven't been able to find a 100% solution.
 ----
-Does any one knows about how [[SpotMeta]] works? I tried analyzing the code. As far as i understand it works like this.      For all the types Initally [[SpotMeta]] importer is loaded, then this Importer loads the apple shipped importer or other importer. But i could not understand How the [[SpotMeta]] is made to load always?
+Does any one knows about how General/SpotMeta works? I tried analyzing the code. As far as i understand it works like this.      For all the types Initally General/SpotMeta importer is loaded, then this Importer loads the apple shipped importer or other importer. But i could not understand How the General/SpotMeta is made to load always?

@@ -2,9 +2,9 @@ EVERY time I create a custom DMG, using any way I can think of, when I mount it 
 
 I've set it that way, and it works fine if the image is read/write, but the moment I convert it to compressed, it changes to column view.
 
-And I tried using [[FileStorm]], but it doesn't help.
+And I tried using General/FileStorm, but it doesn't help.
 
-Help! --[[GarrettMurray]]
+Help! --General/GarrettMurray
 
 ----
 
@@ -14,7 +14,7 @@ I think the issue would be based on your Finder settings. Are you worried that u
 
 No, the problem seems to be that if a user has checked the "Open new windows in column view" box in Finder preferences, that no matter how you've formatted the DMG, the window will open in column view. This is a problem, obviously, since I don't want users to see the window that way.
 
-I've got a few disk images lying around that properly show a window in icon mode even if I've got that preference enabled (which I do), so it's got to be possible to do this. --[[GarrettMurray]]
+I've got a few disk images lying around that properly show a window in icon mode even if I've got that preference enabled (which I do), so it's got to be possible to do this. --General/GarrettMurray
 
 ----
 
@@ -22,4 +22,4 @@ Do you have the toolbar hidden on your window?
 
 ----
 
-Yes, but that shouldn't matter. Again, an example of a working version of this is [[CSSEdit]]'s DMG window. Down the disk image at http://www.macrabbit.com and you'll see what I mean. No toolbar, no status bar, 128x128 icon view. It works every time you mount it. Mine only works if you have Open new windows in column view disabled. --[[GarrettMurray]]
+Yes, but that shouldn't matter. Again, an example of a working version of this is General/CSSEdit's DMG window. Down the disk image at http://www.macrabbit.com and you'll see what I mean. No toolbar, no status bar, 128x128 icon view. It works every time you mount it. Mine only works if you have Open new windows in column view disabled. --General/GarrettMurray

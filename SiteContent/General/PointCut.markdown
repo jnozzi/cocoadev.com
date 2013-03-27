@@ -1,42 +1,42 @@
-A [[PointCut]] is an object that defines a set of methods and classes, by responding to the selector <code>joinPoints</code>
+A General/PointCut is an object that defines a set of methods and classes, by responding to the selector     joinPoints
 
-<code>joinPoints</code> is expected to return an [[NSArray]] of [[ACClass]] objects, each containing some number of [[ACMethod]] objects.
+    joinPoints is expected to return an General/NSArray of General/ACClass objects, each containing some number of General/ACMethod objects.
 
-The helper class [[ACPointCut]] may be used as follows to help create a point cut.  This particular example picks from all classes beginning with 'Test' all methods ending in ':'
-<code>
-    [[NSMutableArray]] '' joinPoints = [[[NSMutableArray]] new];
-    [[NSEnumerator]] ''classEnumerator = [[[ACPointCut]] enumerateClassesNamed: @"[[TestClass]]", @"[[TestSuper]]", nil];
-    [[ACClass]] '' acclass;
+The helper class General/ACPointCut may be used as follows to help create a point cut.  This particular example picks from all classes beginning with 'Test' all methods ending in ':'
+    
+    General/NSMutableArray * joinPoints = General/[NSMutableArray new];
+    General/NSEnumerator *classEnumerator = General/[ACPointCut enumerateClassesNamed: @"General/TestClass", @"General/TestSuper", nil];
+    General/ACClass * acclass;
     while (acclass = [classEnumerator nextObject]) {
-	if([[acclass className] hasPrefix: @"Test"]){ //Perform some test on acclass
+	if(General/acclass className] hasPrefix: @"Test"]){ //Perform some test on acclass
 	    [joinPoints addObject: acclass];
-	    [[NSEnumerator]] '' methodEnumerator = [acclass methodEnumerator];
-	    [[ACMethod]] '' acmethod;
+	    [[NSEnumerator * methodEnumerator = [acclass methodEnumerator];
+	    General/ACMethod * acmethod;
 	    while (acmethod = [methodEnumerator nextObject]) {
-		if([[acmethod methodName] hasSuffix: @":"]){ //Perform some test on acmethod
+		if(General/acmethod methodName] hasSuffix: @":"]){ //Perform some test on acmethod
 		    [acclass addMethod: acmethod];
 		}
 	    }
 	}
     }
 
-    [[ACPointCut]] '' pointCut = [[[ACPointCut]] pointCutWithJoinPoints: joinPoints];
-</code>
+    [[ACPointCut * pointCut = General/[ACPointCut pointCutWithJoinPoints: joinPoints];
 
-or, it may be preferable to implement a <code>joinPoints</code> method on some relevant class.
+
+or, it may be preferable to implement a     joinPoints method on some relevant class.
 note that in this case we are using the method signature to check that it has more than one argument, rather than checking that it ends in a ':'
-<code>
+    
 - (id) joinPoints{
-    [[NSMutableArray]] '' joinPoints = [[[NSMutableArray]] new];
-    [[NSEnumerator]] ''classEnumerator = [[[ACPointCut]] enumerateClassesNamed: @"[[TestClass]]", @"[[TestSuper]]", nil];
-    [[ACClass]] '' acclass;
+    General/NSMutableArray * joinPoints = General/[NSMutableArray new];
+    General/NSEnumerator *classEnumerator = General/[ACPointCut enumerateClassesNamed: @"General/TestClass", @"General/TestSuper", nil];
+    General/ACClass * acclass;
     while (acclass = [classEnumerator nextObject]) {
-	if([[acclass className] hasPrefix: @"Test"]){ //Perform some test on acclass
+	if(General/acclass className] hasPrefix: @"Test"]){ //Perform some test on acclass
 	    [joinPoints addObject: acclass];
-	    [[NSEnumerator]] '' methodEnumerator = [acclass methodEnumerator];
-	    [[ACMethod]] '' acmethod;
+	    [[NSEnumerator * methodEnumerator = [acclass methodEnumerator];
+	    General/ACMethod * acmethod;
 	    while (acmethod = [methodEnumerator nextObject]) { 
-		if([[acmethod getSignature] numberOfArguments] > 2){ //Perform some test on acmethod
+		if(General/acmethod getSignature] numberOfArguments] > 2){ //Perform some test on acmethod
 		    [acclass addMethod: acmethod];
 		}
 	    }
@@ -44,6 +44,6 @@ note that in this case we are using the method signature to check that it has mo
     }
     return joinPoints;
 }
-</code>
 
-As an alternative to using <code> [[[ACPointCut]] enumerateClassesNamed: ... ]</code> you can use <code>enumerateAllClasses</code> to go through every class in the runtime, or <code>enumerateDefaultClasses</code> to go through every class in the runtime which is not a part of foundation or appkit
+
+As an alternative to using      [[[ACPointCut enumerateClassesNamed: ... ] you can use     enumerateAllClasses to go through every class in the runtime, or     enumerateDefaultClasses to go through every class in the runtime which is not a part of foundation or appkit

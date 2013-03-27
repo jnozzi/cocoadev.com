@@ -1,7 +1,7 @@
 
 Sorry for the complicated name, but it was the closest i could come.
 
-I got an array with All Application [[URLs]] (_LSCopyAllApplicationURLs). The problem is that the method includes files in subfolders like application.app/application.app, or preferencePane.prefPane/application.app and so on. How would i do to remove such items from this array?
+I got an array with All Application General/URLs (_LSCopyAllApplicationURLs). The problem is that the method includes files in subfolders like application.app/application.app, or preferencePane.prefPane/application.app and so on. How would i do to remove such items from this array?
 
 ----
 

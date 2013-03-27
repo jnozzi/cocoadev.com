@@ -1,5 +1,5 @@
 
 
-moved the discussion into [[NSButtonCell]]
+moved the discussion into General/NSButtonCell
 
-[[DeleteMe]]
+General/DeleteMe

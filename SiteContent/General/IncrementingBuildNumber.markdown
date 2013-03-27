@@ -2,4 +2,4 @@ How do I automatically increment the active project's build number, every time t
 
 ----
 
-try [[AGVTool]] - (/Developer/Tools/agvtool help)
+try General/AGVTool - (/Developer/Tools/agvtool help)

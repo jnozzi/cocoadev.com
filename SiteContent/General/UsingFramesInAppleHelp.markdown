@@ -11,4 +11,4 @@ Any ideas?
 ----
 I'm having the same kinds of problems at the moment as well. I initially thought frames were only for dynamically generated parts of a help book, but now I don't know.
 
-Of course, it would help if Apple provided {{full}} examples, instead of just a bunch of snippets, as well as actual ''working'' samples (you readin' this, Apple??)
+Of course, it would help if Apple provided {{full}} examples, instead of just a bunch of snippets, as well as actual *working* samples (you readin' this, Apple??)

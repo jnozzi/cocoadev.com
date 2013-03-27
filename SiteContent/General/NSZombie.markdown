@@ -1,1 +1,1 @@
-#REDIRECT [[NSZombieEnabled]]
+#REDIRECT General/NSZombieEnabled

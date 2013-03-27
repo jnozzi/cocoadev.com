@@ -23,13 +23,13 @@ I've added the framework to an application, but when i run the application i get
 
 
 dyld: Library not loaded: /Users/me/Library/Frameworks/myFramework.framework/Versions/A/myFramework
-  Referenced from: /Users/me/Desktop/Media/Applications/myApp.app/Contents/[[MacOS]]/myApp
+  Referenced from: /Users/me/Desktop/Media/Applications/myApp.app/Contents/General/MacOS/myApp
   Reason: image not found
 
 when i look up  /Users/me/Library/Frameworks/ it doesnt exists
 
 ----
 
-You must build your framework specially if you intend to embed it in an application.  See [[EmbeddingFrameworksInApplications]] .
+You must build your framework specially if you intend to embed it in an application.  See General/EmbeddingFrameworksInApplications .
 
 Completely off-topic, but this wiki is a public archive and these pages will become part of the site permanently unless deleted. With that in mind, please try to use proper capitalization and punctuation, make a stab at decent grammar, and avoid shorthand in general.

@@ -1,4 +1,4 @@
 
 
-I'm Simon Strandgaard, author of [[GraphicDesignerToolbox]].
+I'm Simon Strandgaard, author of General/GraphicDesignerToolbox.
 http://graphicdesignertoolbox.com/

@@ -1,1 +1,1 @@
-Describe [[FTPConnection]] here.
+Describe General/FTPConnection here.

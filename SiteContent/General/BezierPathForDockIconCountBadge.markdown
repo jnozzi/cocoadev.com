@@ -2,7 +2,7 @@ Any hints for how I might draw the fancy badge that apple uses for drag and drop
 
 ----
 
-Chech out [[NSBezierPath]]'s constructor method <code>bezierPathWithOvalInRect:</code>. Then check out [[NSAttributedString]]'s documentation so you can draw number's with a white foreground color. You can also get the size of the number so you can make the badge large enough to surround the text drawn over the color filled circle. --zootbobbalu
+Chech out General/NSBezierPath's constructor method     bezierPathWithOvalInRect:. Then check out General/NSAttributedString's documentation so you can draw number's with a white foreground color. You can also get the size of the number so you can make the badge large enough to surround the text drawn over the color filled circle. --zootbobbalu
 
 ----
 
@@ -20,21 +20,21 @@ I think this is a case where a more general forum would be best able to help you
 
 ----
 
-Check out [[NSBezierPathCategory]] --zootbobbalu
+Check out General/NSBezierPathCategory --zootbobbalu
 
 ----
 
-or google for [[CTBadge]] :D  jkp
+or google for General/CTBadge :D  jkp
 
 ----
 
-[[CTBadge]] uses vector graphics, but still hard-coded bitmaps. 
+General/CTBadge uses vector graphics, but still hard-coded bitmaps. 
 
-[[NSBezierPathCategory]] is just what I was looking for. Thanks zootbobbalu.
+General/NSBezierPathCategory is just what I was looking for. Thanks zootbobbalu.
 
 ----
 
-[[CTBadge]] doesn't have hardcoded ''Bitmaps'', but does have hardcoded [[PDFs]] of the badge masks
+General/CTBadge doesn't have hardcoded *Bitmaps*, but does have hardcoded General/PDFs of the badge masks
 
 ----
 

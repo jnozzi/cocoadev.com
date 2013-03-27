@@ -1,11 +1,11 @@
-''Please remember to properly format your pages! :-) Also, please post some sort of explanation of this class!!!''
+*Please remember to properly format your pages! :-) Also, please post some sort of explanation of this class!!!*
 
 Yes, it's done now, i was a bit too slow :-))
 
-For sample use see: [[ClickThroughButtonInTableView]]
+For sample use see: General/ClickThroughButtonInTableView
 
-<code>
-//  2005 by St�phane BARON - [[MacAvocat]] . All rights reserved.
+    
+//  2005 by St�phane BARON - General/MacAvocat . All rights reserved.
 //  Derivated from work by Erik Doernenburg
 //  Derivated from work by Omnigroup, as i can remember.
 //  Derivated from work by Eric Petit
@@ -29,36 +29,36 @@ For sample use see: [[ClickThroughButtonInTableView]]
 //  DEALINGS IN THE SOFTWARE.
  
  
-#import <[[AppKit]]/[[NSTableView]].h>
-#import "[[MCButtonCell]].h"
+#import <General/AppKit/General/NSTableView.h>
+#import "General/MCButtonCell.h"
 
-@interface [[MCTableView]] : [[NSTableView]]
+@interface General/MCTableView : General/NSTableView
 {
 	
 	int clickedButtonNumber;
        int	clickedRowIdx, clickedColumnIdx;
 	int previousRow;
-	[[NSCell]] ''previousCell;
-	[[NSRect]] cellFrameDown;
+	General/NSCell *previousCell;
+	General/NSRect cellFrameDown;
 	BOOL isClickedButton;
 }
 
 
 - (void)setClickedButton:(int)aButton;
-- (void)mouseUp:([[NSEvent]] '')theEvent;
+- (void)mouseUp:(General/NSEvent *)theEvent;
 
 @end
 
 
 
-#import "[[MCTableView]].h"
-#import <[[AppKit]]/[[AppKit]].h>
-#import "[[MCButtonCell]].h"
+#import "General/MCTableView.h"
+#import <General/AppKit/General/AppKit.h>
+#import "General/MCButtonCell.h"
 
-@implementation [[MCTableView]]
+@implementation General/MCTableView
 
 
-- initWithFrame:([[NSRect]])frame
+- initWithFrame:(General/NSRect)frame
 {
     [super initWithFrame:frame];
 	
@@ -72,12 +72,12 @@ For sample use see: [[ClickThroughButtonInTableView]]
 }
 
 
-- (void)mouseDown:([[NSEvent]] '')theEvent
+- (void)mouseDown:(General/NSEvent *)theEvent
 {
-    [[NSTableColumn]]	''column;
-    [[NSCell]]			''cell;
-    [[NSRect]]			cellFrame;
-    [[NSPoint]]			location;
+    General/NSTableColumn	*column;
+    General/NSCell			*cell;
+    General/NSRect			cellFrame;
+    General/NSPoint			location;
 	
 	location = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     clickedRowIdx = [self rowAtPoint:location];
@@ -85,7 +85,7 @@ For sample use see: [[ClickThroughButtonInTableView]]
 	column = [_tableColumns objectAtIndex:clickedColumnIdx];
 	cell = [column dataCell];
 	
-    if((clickedColumnIdx == -1) || (clickedRowIdx == -1) ||	([cell isKindOfClass:[[[MCTCell]] class]]==NO))
+    if((clickedColumnIdx == -1) || (clickedRowIdx == -1) ||	([cell isKindOfClass:General/[MCTCell class]]==NO))
 	{
 		
 		isClickedButton=NO;
@@ -121,13 +121,13 @@ For sample use see: [[ClickThroughButtonInTableView]]
 	}
 }
 
--(void)mouseUp:([[NSEvent]] '')theEvent;
+-(void)mouseUp:(General/NSEvent *)theEvent;
 {
 	
-	[[NSTableColumn]]	''column;
-    [[NSCell]]			''cell;
-    [[NSRect]]			cellFrameUp;
-    [[NSPoint]]			location;
+	General/NSTableColumn	*column;
+    General/NSCell			*cell;
+    General/NSRect			cellFrameUp;
+    General/NSPoint			location;
 	
 	if(isClickedButton==NO)
 	{
@@ -144,7 +144,7 @@ For sample use see: [[ClickThroughButtonInTableView]]
 		cell = [column dataCell];
 		
 		
-		if((clickedColumnIdx == -1) || (clickedRowIdx == -1) ||([cell isKindOfClass:[[[MCTCell]] class]]==NO))
+		if((clickedColumnIdx == -1) || (clickedRowIdx == -1) ||([cell isKindOfClass:General/[MCTCell class]]==NO))
         {
 			[self setClickedButton:-1];
 			[previousCell mouseUp:theEvent];
@@ -156,7 +156,7 @@ For sample use see: [[ClickThroughButtonInTableView]]
         {
 			cellFrameUp = [self frameOfCellAtColumn:clickedColumnIdx row:clickedRowIdx];
 			
-			if([[NSEqualRects]](cellFrameUp,cellFrameDown))
+			if(General/NSEqualRects(cellFrameUp,cellFrameDown))
 			{
 				
 				if([cell isPointInImageRect:location forCell:cellFrameUp])
@@ -164,14 +164,14 @@ For sample use see: [[ClickThroughButtonInTableView]]
 					[cell mouseUp:theEvent];
 					[self displayRect:[self rectOfRow:clickedRowIdx]];					
 					[self setClickedButton:clickedRowIdx];
-					[[self target] performSelector:[self action] withObject:self];
+					General/self target] performSelector:[self action] withObject:self];
 					isClickedButton=NO;
 				}
 				else
 				{
 					[self setClickedButton:-1];
 					[previousCell mouseUp:theEvent];
-					[self displayRect:[self rectOfRow:previousRow]];
+					[self displayRect:[self rectOfRow:previousRow;
 					isClickedButton=NO;
 					
 				}
@@ -215,4 +215,3 @@ For sample use see: [[ClickThroughButtonInTableView]]
 }
 
 @end
-</code>

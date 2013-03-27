@@ -12,11 +12,11 @@ Although I see that the animation is different depending if the toolbar is colla
 
 ----
 
-Looks like a standard [[NSAlert]] window to me.
+Looks like a standard General/NSAlert window to me.
 
 ----
 It's all just standard sheets. The exact animation and look of the sheet depends on the relative sizes involved as well as the attributes of the sheet and the window it is attached to.
 
 ----
 
-To go into further detail, a sheet "pops out" if the window: 1) is smaller than the sheet width-wise, or 2) the window is metal or has the continuous toolbar/title bar style masks set. Otherwise it just pulls down, which only happens in original Aqua windows without toolbars or with pinstripe toolbars. --[[LoganCollins]]
+To go into further detail, a sheet "pops out" if the window: 1) is smaller than the sheet width-wise, or 2) the window is metal or has the continuous toolbar/title bar style masks set. Otherwise it just pulls down, which only happens in original Aqua windows without toolbars or with pinstripe toolbars. --General/LoganCollins

@@ -1,1 +1,1 @@
-See [[OSXThroughTheAges]].
+See General/OSXThroughTheAges.

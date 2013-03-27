@@ -1,6 +1,6 @@
 I'm not even sure to call what I need help with. However, I will explain it. 
 
-In my program I have a [[NSDictionary]], one of the dicitonary keys is an array. In this array each object can be an id key or another array depending on the situation. I have a method that is called to when a new item is found and it contains the position of the object down the tree.. so i have a for loop that loops through each position but I need the current [[MutableArray]] that the loop is working with. I have figured out how I can do it, just not how it can be implemented. 
+In my program I have a General/NSDictionary, one of the dicitonary keys is an array. In this array each object can be an id key or another array depending on the situation. I have a method that is called to when a new item is found and it contains the position of the object down the tree.. so i have a for loop that loops through each position but I need the current General/MutableArray that the loop is working with. I have figured out how I can do it, just not how it can be implemented. 
 
 I figure if I have a variable called previousObject. before the loop starts I set the "previousObject" to the main array then as the loop ends I change "previousObject" to the item of the array that is being worked with at the index specified.
 
@@ -12,4 +12,4 @@ Tommy
 
 ----
 
-Sure, just make previousObject be an [[NSMutableArray]]''. It's just an object pointer; you can copy those around with =. For example, <code>previousObject = someArray; [previousObject addObject:item];</code> will add <code>item</code> to <code>someArray</code>.
+Sure, just make previousObject be an General/NSMutableArray*. It's just an object pointer; you can copy those around with =. For example,     previousObject = someArray; [previousObject addObject:item]; will add     item to     someArray.

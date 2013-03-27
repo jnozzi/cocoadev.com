@@ -20,14 +20,14 @@ Also, I don't need to know which key is pressed, just on any key press it needs 
 
 I don't think this is possible as a Cocoa application. Your application only gets sent keyDown events when it is in the foreground, and I assume you are hoping to count all keypresses system wide.
 
-You could poll key status using Carbon (e.g. [[GetKeys]]) but that isn't very elegant.
+You could poll key status using Carbon (e.g. General/GetKeys) but that isn't very elegant.
 
 There may be some way of implementing this in the kernel extension, but I don't know anything about those.
 
-If all you want is to count keypresses when your application is frontmost, then subclass [[NSApplication]], and use the override the  - (void)sendEvent:([[NSEvent]] '')theEvent  method. Look in [[NSResponder]].h (I think) for constants relating to different types of event. You also have to set the Application Class in the Cocoa-Specific section of your target options to your [[NSApplication]] subclass.
+If all you want is to count keypresses when your application is frontmost, then subclass General/NSApplication, and use the override the  - (void)sendEvent:(General/NSEvent *)theEvent  method. Look in General/NSResponder.h (I think) for constants relating to different types of event. You also have to set the Application Class in the Cocoa-Specific section of your target options to your General/NSApplication subclass.
 
-[[SamTaylor]]
+General/SamTaylor
 
 ----
 
-also see [[KeyDownCharactersOutsideOfEventStream]]
+also see General/KeyDownCharactersOutsideOfEventStream

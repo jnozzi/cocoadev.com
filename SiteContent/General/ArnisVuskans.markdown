@@ -6,4 +6,4 @@ Having day job - Java, learning Cocoa. Hoping one day quit all Java stuff for Co
 
 ampatspell@gmail.com
 
-* [[CreatingInspectorPanelForDocumentBasedApplication]]
+* General/CreatingInspectorPanelForDocumentBasedApplication

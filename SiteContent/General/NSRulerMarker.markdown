@@ -1,1 +1,1 @@
-See [[NSRulerView]].
+See General/NSRulerView.

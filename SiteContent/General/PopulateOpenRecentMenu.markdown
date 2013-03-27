@@ -2,4 +2,4 @@ Hello Everyone, I am developing a document based Cocoa Application. In my applic
 
 ----
 
-See the bottom of [[SavingDataWithoutNSDocument]] for information about manually dealing with the menu.  We may need more detail to diagnose why your documents are not being handled automatically.
+See the bottom of General/SavingDataWithoutNSDocument for information about manually dealing with the menu.  We may need more detail to diagnose why your documents are not being handled automatically.

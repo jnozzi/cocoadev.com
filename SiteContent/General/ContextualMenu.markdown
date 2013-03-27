@@ -1,1 +1,1 @@
-See [[ContextualMenus]]. Sorry for the difficulties with plurals.
+See General/ContextualMenus. Sorry for the difficulties with plurals.

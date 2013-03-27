@@ -7,22 +7,22 @@ Biologist, always looking for a good excuse to write some Cocoa code to analyze 
 I contributed to:
 
 *
-[[PerlObjCBridge]] (with some code in [[AddSystemFramework]])
+General/PerlObjCBridge (with some code in General/AddSystemFramework)
 *
-[[XCodeAndNibFilesWithCVS]]
+General/XCodeAndNibFilesWithCVS
 *
-[[SavingFilePackageWithManySmallIndependentFiles]]
+General/SavingFilePackageWithManySmallIndependentFiles
 *
-[[XGridDummyPlugin]]
+General/XGridDummyPlugin
 *
-[[HowToGetHardwareAndNetworkInfo]]
+General/HowToGetHardwareAndNetworkInfo
 
 
 These are links of things I like or want to remember, so I like to have shortcuts to them:
 
-*[[AspectCocoa]]
-*[[FastTextRenderingInNSView]]
-*[[AltivecOptimization]]
+*General/AspectCocoa
+*General/FastTextRenderingInNSView
+*General/AltivecOptimization
 
 
 you may contact me at first.last at gmail.com

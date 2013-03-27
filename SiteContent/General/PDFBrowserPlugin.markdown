@@ -1,10 +1,10 @@
 PDF Browser Plugin: http://www.schubert-it.com/pluginpdf/
 
-''Allows you to view PDF files in browsers (and applications using the [[WebKit]]).''
+*Allows you to view PDF files in browsers (and applications using the General/WebKit).*
 
 This feature will be/is built into Safari in Tiger, so this plugin will soon be unnecessary.
 
-''As for now, it's just [[OffTopic]].''
+*As for now, it's just General/OffTopic.*
 
 ----
 

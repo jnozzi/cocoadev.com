@@ -1,7 +1,7 @@
-Describe [[CoreDataUsingPopUpButtonsToFilterTable]] here.
+Describe General/CoreDataUsingPopUpButtonsToFilterTable here.
 
 
-I am developing an [[NSPersistentDocument]] based player aid for a miniatures game in order to learn Core Data.  I have a Character entity, which has a relationship to another entity called Nationality.  The Nationality->Character entity is to-many.  The reverse is to-one.
+I am developing an General/NSPersistentDocument based player aid for a miniatures game in order to learn Core Data.  I have a Character entity, which has a relationship to another entity called Nationality.  The Nationality->Character entity is to-many.  The reverse is to-one.
 
 I have a tabview item for spotting, and I want the user to be able to select the nationality of the spotter, then have a list of the characters of that nationality either in a table or a popup (a popup would be best actually).  I have another tabViewItem where the user sets up the game (i.e. creates new nationalities for the game, and creates new characters assigning them to the nationalities).  That tab uses two tables, one for Nationality and one for Character, and has the binding set to an array controller for Nationality and another for Character.  The tableview for Nationality is bound to the Nationalities array controller and the character is bound to the Nationalities array controller on selection.characters.
 

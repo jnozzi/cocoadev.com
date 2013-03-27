@@ -1,6 +1,6 @@
-[[NSBrowserCell]] is a subclass of [[NSCell]] used by default to display data in the columns of an [[NSBrowser]]. (Each column contains an [[NSMatrix]] filled with [[NSBrowserCell]] objects.)
+General/NSBrowserCell is a subclass of General/NSCell used by default to display data in the columns of an General/NSBrowser. (Each column contains an General/NSMatrix filled with General/NSBrowserCell objects.)
 
-see [[IconAndTextInTableCell]] for much more information
+see General/IconAndTextInTableCell for much more information
 
 ----
 
@@ -8,18 +8,18 @@ How do I show an image and text in the same column and row? I don't want the ima
 
 ----
 
-One way is to use an [[NSBrowserCell]], return the text you want to display from your data source normally and override the delegate method -tableView:willDisplayCell:forTableColumn:row: to set the image (by calling -setImage: on the cell).  -- Bo
+One way is to use an General/NSBrowserCell, return the text you want to display from your data source normally and override the delegate method -tableView:willDisplayCell:forTableColumn:row: to set the image (by calling -setImage: on the cell).  -- Bo
 
 ----
 
-While I didn't try this yet, it should be possible to just use an [[NSAttributedString]] with an image as attachment. Anyone actually did this? --[[AndreasMayer]]
+While I didn't try this yet, it should be possible to just use an General/NSAttributedString with an image as attachment. Anyone actually did this? --General/AndreasMayer
 
 ----
 
-I have, you can see it in action in App Switcher's pref pane. It works just fine. My method was rather cumbersome, but you can see a better way of adding an image to an [[NSAttributedString]] at
+I have, you can see it in action in App Switcher's pref pane. It works just fine. My method was rather cumbersome, but you can see a better way of adding an image to an General/NSAttributedString at
 
-http://www.jabberstudio.org/cgi-bin/viewcvs.cgi/nitro/[[ChatWindowController]].m?rev=1.2
+http://www.jabberstudio.org/cgi-bin/viewcvs.cgi/nitro/General/ChatWindowController.m?rev=1.2
 
-(scroll to the -addEmoticon method). -- [[MikeAsh]]
+(scroll to the -addEmoticon method). -- General/MikeAsh
 
-Could try file:///Developer/Examples/[[AppKit]]/[[DragNDropOutlineView]]/[[ImageAndTextCell]].h
+Could try file:///Developer/Examples/General/AppKit/General/DragNDropOutlineView/General/ImageAndTextCell.h

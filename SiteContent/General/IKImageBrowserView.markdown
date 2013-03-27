@@ -1,1 +1,1 @@
-An iPhoto-like image browser for [[ImageKit]]
+An iPhoto-like image browser for General/ImageKit

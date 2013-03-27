@@ -1,10 +1,10 @@
 
 
-Mac OS X 10.2 includes a new [[WebServicesCore]] Framework (which is part of the [[CoreServices]] Framework) which allows one to make XML-RPC calls from Cocoa apps. (And Carbon apps, too, by the way.)
+Mac OS X 10.2 includes a new General/WebServicesCore Framework (which is part of the General/CoreServices Framework) which allows one to make XML-RPC calls from Cocoa apps. (And Carbon apps, too, by the way.)
 
 http://www.xmlrpc.com/
 
-[[SimpleObjectAccessProtocol]] is also used somehow - must read up!
+General/SimpleObjectAccessProtocol is also used somehow - must read up!
 
 Ranchero has a demo - http://ranchero.com/cocoa/xmlrpcdemo/
 
@@ -16,7 +16,7 @@ http://www.xmethods.com/
 
 Apple's docs:
 
-http://developer.apple.com/documentation/[[InternetWeb]]/[[WebServices]]-title.html
+http://developer.apple.com/documentation/General/InternetWeb/General/WebServices-title.html
 
 ----
 

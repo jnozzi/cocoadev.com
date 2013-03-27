@@ -1,8 +1,8 @@
 Hey
 
-I need to create multiple table views or multiple matrix's inside of a table view or matrix's. E.g. I would like to have one encompassing, lets say [[NSMatrix]]. Each cell in the Matrix would contain a [[NSTableView]] or another [[NSMatrix]].
+I need to create multiple table views or multiple matrix's inside of a table view or matrix's. E.g. I would like to have one encompassing, lets say General/NSMatrix. Each cell in the Matrix would contain a General/NSTableView or another General/NSMatrix.
 
-Does anyone have any suggestions on how to go about doing this? As it stands I am at the point where I am thinking I will have to write my own version of a [[NSMatrix]] that instead of using cells, uses [[NSViews]].... This might turn into a time consuming process :(
+Does anyone have any suggestions on how to go about doing this? As it stands I am at the point where I am thinking I will have to write my own version of a General/NSMatrix that instead of using cells, uses General/NSViews.... This might turn into a time consuming process :(
 
 Thanks 
 
@@ -12,7 +12,7 @@ This seems like a situation where you should probably seriously rethink your GUI
 
 http://www.stepwise.com/Articles/Technical/2003-12-20.01.html
 
-This allows views to take the place of cells in a table view. The concept is exactly the same -- you want views to replace the cells in [[NSMatrix]].
+This allows views to take the place of cells in a table view. The concept is exactly the same -- you want views to replace the cells in General/NSMatrix.
 
 
 ----

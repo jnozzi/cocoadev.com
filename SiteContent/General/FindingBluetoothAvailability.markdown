@@ -1,27 +1,27 @@
-Does anybody know how to find out if Bluetooth is available on the machine? I can't seem to find an [[IOBluetooth]] or [[IOKit]] call to search for it. Anybody have some hints?
+Does anybody know how to find out if Bluetooth is available on the machine? I can't seem to find an General/IOBluetooth or General/IOKit call to search for it. Anybody have some hints?
 
 ----
 
-http://developer.apple.com/documentation/[[DeviceDrivers]]/Reference/[[IOBluetooth]]/[[IOBluetoothUserLib]]/Functions/Functions.html
+http://developer.apple.com/documentation/General/DeviceDrivers/Reference/General/IOBluetooth/General/IOBluetoothUserLib/Functions/Functions.html
 
 As in
 
-<code>
-    if ([[IOBluetoothLocalDeviceAvailable]]()) {
+    
+    if (General/IOBluetoothLocalDeviceAvailable()) {
         // do a bunch of bluetooth stuff ...
     }
-</code>
 
--- [[MikeTrent]]
+
+-- General/MikeTrent
 ----
 It also makes sense to check whether the device is turned on:
 
-<code>
+    
 - (BOOL)localDeviceIsPowered {
-    [[BluetoothHCIPowerState]] powerState;
-    [[IOBluetoothLocalDeviceGetPowerState]](&powerState);
+    General/BluetoothHCIPowerState powerState;
+    General/IOBluetoothLocalDeviceGetPowerState(&powerState);
     if(powerState == kBluetoothHCIPowerStateOFF) return FALSE;
     return TRUE;
 }
-</code>
+
 Source: http://www.tims-weblog.com/sites/blog/content/view/50/44/

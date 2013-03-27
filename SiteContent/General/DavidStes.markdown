@@ -1,6 +1,6 @@
 
 
-The author of the [[PortableObjectCompiler]].
+The author of the General/PortableObjectCompiler.
 
 ---
 

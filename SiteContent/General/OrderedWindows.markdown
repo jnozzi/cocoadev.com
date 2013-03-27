@@ -1,12 +1,12 @@
 I need to traverse my windows in the front-to-back order they use on the display.
 
-There is orderedWindows in [[NSApplication]], but this one doesn't include miniaturized windows -- I could add these myself, but since it's not documented to not return miniaturized windows, I'd prefer simply to write my own implementation.
+There is orderedWindows in General/NSApplication, but this one doesn't include miniaturized windows -- I could add these myself, but since it's not documented to not return miniaturized windows, I'd prefer simply to write my own implementation.
 
 But how do I get the ordering of windows?
 
 ----
 
-Miniaturized windows don't have any sort of order, since the only way to unminiaturize them is to click them and bring them to the front. I suggest that you get the orderedWindows, and then ask [[NSApplication]] for all windows, and add in any ones that weren't in orderedWindows. Depending on how you want your program to work, you could add them at the beginning of the array, or the end, or wherever it makes sense for you.
+Miniaturized windows don't have any sort of order, since the only way to unminiaturize them is to click them and bring them to the front. I suggest that you get the orderedWindows, and then ask General/NSApplication for all windows, and add in any ones that weren't in orderedWindows. Depending on how you want your program to work, you could add them at the beginning of the array, or the end, or wherever it makes sense for you.
 
 ----
 
@@ -16,7 +16,7 @@ Yes, that's also what I do now -- as implied, I'd either like to avoid this or l
 ----
 
 Ordered windows are on screen. miniaturized windows are off screen and have no order...
-If you want to get all your application's windows, I think you must mix  '''windows ''' to get all windows, and   '''orderedWindows ''' to get window order for visible windows.
+If you want to get all your application's windows, I think you must mix  **windows ** to get all windows, and   **orderedWindows ** to get window order for visible windows.
 
 ----
 

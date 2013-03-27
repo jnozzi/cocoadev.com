@@ -1,1 +1,1 @@
-Describe [[MyDocument]] here.
+Describe General/MyDocument here.

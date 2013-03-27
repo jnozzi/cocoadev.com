@@ -8,11 +8,11 @@ I realise that resource forks will not be respected by cvs, ssh/scp or other uni
 
 The problem with resource forks is now, almost 20 years later, the other 98% of the computing world still doesn't know what they are and how to deal with them. Take a file that has critical data stored half in data and half in the resource fork. FTP that file to Windows. Oops, now you can throw the file away. Or 'cp' it from Terminal. Oops, shouldn't have done that either. Drag it into Mail.app and send it to your non-Mac-using-friend. Oops, it's not your lucky day.
 
-Add to that resource forks are a filesystem-specific feature, and HFS is just one of many, many file systems out there. Sure, [[CarbonCore]] does its best to emulate resource forks by creating many turd files on non HFS file systems. But [[CarbonCore]] only runs on Mac OS X ... not that other 98%.
+Add to that resource forks are a filesystem-specific feature, and HFS is just one of many, many file systems out there. Sure, General/CarbonCore does its best to emulate resource forks by creating many turd files on non HFS file systems. But General/CarbonCore only runs on Mac OS X ... not that other 98%.
 
 So clearly, resource forks have problems. They're an idea whose time has come ... and gone. 
 
-But the feature does exist on Mac OS X. '''The basic thrust coming out of Apple these days is resource forks (and HFS-specific file metadata, like types/creators) can be used for non-essential stuff''' -- stuff where it's no big deal if the data is lost (as in the cases above). For example, custom document icons like image thumbnails, labels, document visibility, and so on. 
+But the feature does exist on Mac OS X. **The basic thrust coming out of Apple these days is resource forks (and HFS-specific file metadata, like types/creators) can be used for non-essential stuff** -- stuff where it's no big deal if the data is lost (as in the cases above). For example, custom document icons like image thumbnails, labels, document visibility, and so on. 
 
 And resource forks will probably always remain supported for compatibility reasons. Some things, like really old plugin models, really old drivers, CFM binaries, and really old fonts, simply require HFS-style resource forks. If the resource fork is missing these files don't work. there's no assurance some programmer (now, in the future, or 15 years ago) isn't going to put meaningful data in a resource fork somewhere. So as a general rule you can't just strip all your resource fork data away.
 
@@ -24,12 +24,12 @@ But central repositories can serve a good purpose, especially as a data cache. I
 
 HTH
 
--- [[MikeTrent]]
+-- General/MikeTrent
 
 ----
 
-Mike, I removed the [[MacOS]] 9 reference from the mention of the desktop database, it always ''was'' a cache, and it was automatically rebuilt if it got deleted or damaged. Just like today's [[LaunchServices]] cache files, which have taken over the role of the desktop database, after all. -- [[UliKusterer]]
+Mike, I removed the General/MacOS 9 reference from the mention of the desktop database, it always *was* a cache, and it was automatically rebuilt if it got deleted or damaged. Just like today's General/LaunchServices cache files, which have taken over the role of the desktop database, after all. -- General/UliKusterer
 
-As I recall, Desktop Database was notorious for developing stale information and corrupting itself. It was not automatically rebuilt when corrupted, nor did the system remove files from the database when they were missing. So I suppose I'm claiming it was a buggy cache. -- [[MikeTrent]]
+As I recall, Desktop Database was notorious for developing stale information and corrupting itself. It was not automatically rebuilt when corrupted, nor did the system remove files from the database when they were missing. So I suppose I'm claiming it was a buggy cache. -- General/MikeTrent
 
-I don't remember having a corrupted DD, ever. Though I ''did'' have to delete the LS cache a number of times. But you're right, the DD did have the habit of accumulating cruft, which was especially annoying on small volumes like floppies. So I guess a general warning against keeping such data separate from documents without some scheme that cleans up old stuff would be in order. -- [[UliKusterer]]
+I don't remember having a corrupted DD, ever. Though I *did* have to delete the LS cache a number of times. But you're right, the DD did have the habit of accumulating cruft, which was especially annoying on small volumes like floppies. So I guess a general warning against keeping such data separate from documents without some scheme that cleans up old stuff would be in order. -- General/UliKusterer

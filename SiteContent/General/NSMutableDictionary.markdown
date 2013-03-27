@@ -1,3 +1,3 @@
-Subclass of [[NSDictionary]] with the advantage that it can be modified after its creation.
+Subclass of General/NSDictionary with the advantage that it can be modified after its creation.
 
-See [[FoundationCollections]] for a general overview.
+See General/FoundationCollections for a general overview.

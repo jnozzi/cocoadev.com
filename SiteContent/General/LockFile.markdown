@@ -1,4 +1,4 @@
-<<Need example of [[LockFile]] or PID file for using in Cocoa/Foundation programs.>>
+<<Need example of General/LockFile or PID file for using in Cocoa/Foundation programs.>>
 
 ----
-Please see: [[HowToUseThisSite]] [[HowToAskQuestions]] [[MailingListMode]] [[TextFormattingRules]]
+Please see: General/HowToUseThisSite General/HowToAskQuestions General/MailingListMode General/TextFormattingRules

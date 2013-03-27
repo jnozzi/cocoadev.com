@@ -1,7 +1,7 @@
 I wanted my application to be able to execute Perl scripts that in turn are supposed to communicate with it.
-My first thought was using Distributed Objects, so I set up an [[NSConnection]] using [[ObjC]], registered it and set a root Object.
+My first thought was using Distributed Objects, so I set up an General/NSConnection using General/ObjC, registered it and set a root Object.
 Then on the Perl part my approach was supposed to be:
-- getting an [[NSConnection]] object connected to the first one using the registered name
+- getting an General/NSConnection object connected to the first one using the registered name
 - retreiving a Proxy to the root object
 - send a few test messges
 
@@ -10,30 +10,30 @@ My code however fails at retrieving the root object and I just can't find out wh
 This is my Obj-C code:
 
 ----
-<code>
+    
 #import <Cocoa/Cocoa.h>
 
 BOOL didPerform = NO;
 
-@interface Logger : [[NSObject]]
+@interface Logger : General/NSObject
 {
 }
 
--(void) logNSString: ([[NSString]] '') str;
+-(void) logNSString: (General/NSString *) str;
 
 @end
 
 
-@interface [[PerlController]] : [[NSObject]]
+@interface General/PerlController : General/NSObject
 {
-	[[NSTask]] ''perl;
-	Logger ''logger;
+	General/NSTask *perl;
+	Logger *logger;
 }
 
 -(void) loadPerlStuff;
 -(void) unloadPerlStuff;
 
--(Logger '') logger;
+-(Logger *) logger;
 
 -(void) finish;
 
@@ -41,26 +41,26 @@ BOOL didPerform = NO;
 
 int main( void )
 {
-    [[NSAutoreleasePool]] '' pool = [[[[NSAutoreleasePool]] alloc] init];
+    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
 	
-	[[NSConnection]] ''con = [[[[NSConnection]] alloc] initWithReceivePort: [[[NSPort]] port] sendPort: [[[NSPort]] port]];
-	[[PerlController]] ''pCntl = [[[[PerlController]] alloc] init];
+	General/NSConnection *con = General/[[NSConnection alloc] initWithReceivePort: General/[NSPort port] sendPort: General/[NSPort port]];
+	General/PerlController *pCntl = General/[[PerlController alloc] init];
 	
 	[con setRootObject: pCntl];
-	if( [con registerName: @"[[PerlConnection]]"] == NO )
+	if( [con registerName: @"General/PerlConnection"] == NO )
 	{
-		[[NSLog]]( @"Could not register connection." );
+		General/NSLog( @"Could not register connection." );
 		[con release];
 		
 		[pool release];
 		return 1;
 	}
 	
-	[[NSRunLoop]] ''runLoop = [[[NSRunLoop]] currentRunLoop];
-	[runLoop performSelector: @selector(loadPerlStuff) target: pCntl argument: nil order: 1 modes: [[[NSArray]] arrayWithObject: [[NSDefaultRunLoopMode]]]];
+	General/NSRunLoop *runLoop = General/[NSRunLoop currentRunLoop];
+	[runLoop performSelector: @selector(loadPerlStuff) target: pCntl argument: nil order: 1 modes: General/[NSArray arrayWithObject: General/NSDefaultRunLoopMode]];
 	
 	while( didPerform == NO )
-		[runLoop runMode: [[NSDefaultRunLoopMode]] beforeDate: [[[NSDate]] distantFuture]];
+		[runLoop runMode: General/NSDefaultRunLoopMode beforeDate: General/[NSDate distantFuture]];
 	
 	[pCntl unloadPerlStuff];
 	[pCntl release];
@@ -74,34 +74,34 @@ int main( void )
 
 @implementation Logger
 		  
--(void) logNSString: ([[NSString]] '') str { [[NSLog]]( @"%@", str ); }
+-(void) logNSString: (General/NSString *) str { General/NSLog( @"%@", str ); }
 		  
 @end
 
-@implementation [[PerlController]] : [[NSObject]]
+@implementation General/PerlController : General/NSObject
 
 -(void) loadPerlStuff
 {
-	[[NSString]] ''path = @"/usr/bin/perl";
-	[[NSFileHandle]] ''handle = [[[NSFileHandle]] fileHandleForReadingAtPath: path];
+	General/NSString *path = @"/usr/bin/perl";
+	General/NSFileHandle *handle = General/[NSFileHandle fileHandleForReadingAtPath: path];
 	if( handle == nil )
 	{
 		path = @"/usr/local/bin/perl";
-		handle = [[[NSFileHandle]] fileHandleForReadingAtPath: path];
+		handle = General/[NSFileHandle fileHandleForReadingAtPath: path];
 		if( handle == nil )
 		{
-			[[NSLog]]( @"Could not locate perl" );
+			General/NSLog( @"Could not locate perl" );
 			return;
 		}
 	}
 	
-	perl = [[[[NSTask]] alloc] init];
+	perl = General/[[NSTask alloc] init];
 	
-	[perl setArguments: [[[NSArray]] arrayWithObject: @"script.pl"]];
+	[perl setArguments: General/[NSArray arrayWithObject: @"script.pl"]];
 	[perl setCurrentDirectoryPath: @"./"];
 	[perl setLaunchPath: path];
 	
-	logger = [[Logger alloc] init];
+	logger = General/Logger alloc] init];
 	
 	[perl launch];
 }
@@ -114,25 +114,25 @@ int main( void )
 	[logger release];
 }
 
--(Logger '') logger { return logger; }
+-(Logger *) logger { return logger; }
 
 -(void) finish { didPerform = YES; }
 
 @end
 
-</code>
+
 ----
 
 This is my Perl code:
 
 ----
-<code>
+    
 
 #!/usr/bin/perl
 
 use Foundation;
 
-my $con = [[NSConnection]]->connectionWithRegisteredName_host_([[NSString]]->stringWithCString_("[[PerlConnection]]"), 0);
+my $con = [[NSConnection->connectionWithRegisteredName_host_(General/NSString->stringWithCString_("General/PerlConnection"), 0);
 
 my $cntl = $con->rootProxy();
 
@@ -141,8 +141,8 @@ if( !$cntl or !$$cntl ) {
 	exit(1);
 }
 
-$cntl->logger()->logNSString_([[NSString]]->stringWithCString_("Log this!"));
+$cntl->logger()->logNSString_(General/NSString->stringWithCString_("Log this!"));
 $cntl->finish();
 
-</code>
+
 ----

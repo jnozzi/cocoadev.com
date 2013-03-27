@@ -3,36 +3,36 @@
 In my application I am trying to draw thumbnails of different images on another image.
 
 I took the sample code from following link
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[CocoaDrawingGuide]]/index.html#//apple_ref/doc/uid/TP40003290
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/CocoaDrawingGuide/index.html#//apple_ref/doc/uid/TP40003290
 Which I have modified later for my requirements.
 
-<code>
-[[NSRect]] offscreenRect = [[NSMakeRect]](0.0, 0.0, 1725.0, 1725.0);
-[[NSBitmapImageRep]]'' offscreenRep = nil;
+    
+General/NSRect offscreenRect = General/NSMakeRect(0.0, 0.0, 1725.0, 1725.0);
+General/NSBitmapImageRep* offscreenRep = nil;
 
-offscreenRep = [[[[NSBitmapImageRep]] alloc] initWithBitmapDataPlanes:nil
+offscreenRep = General/[[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
                         pixelsWide:offscreenRect.size.width
                         pixelsHigh:offscreenRect.size.height
                         bitsPerSample:8
                         samplesPerPixel:4
                         hasAlpha:YES
                         isPlanar:NO
-                        colorSpaceName:[[NSCalibratedRGBColorSpace]]
+                        colorSpaceName:General/NSCalibratedRGBColorSpace
                         bitmapFormat:0
-                        bytesPerRow:(4 '' offscreenRect.size.width)
+                        bytesPerRow:(4 * offscreenRect.size.width)
                         bitsPerPixel:32];
 
-[[[NSGraphicsContext]] saveGraphicsState];
-[[[NSGraphicsContext]] setCurrentContext:[[[NSGraphicsContext]] graphicsContextWithBitmapImageRep:offscreenRep]];
+General/[NSGraphicsContext saveGraphicsState];
+General/[NSGraphicsContext setCurrentContext:General/[NSGraphicsContext graphicsContextWithBitmapImageRep:offscreenRep]];
 
 // Draw your content...
-[[NSBitmapImageRep]]'' imageRep = [[[[NSBitmapImageRep]] alloc] initWithData:[[[NSData]] dataWithContentsOfFile:path]]; //Background image for the container bitmap rep
+General/NSBitmapImageRep* imageRep = General/[[NSBitmapImageRep alloc] initWithData:General/[NSData dataWithContentsOfFile:path]]; //Background image for the container bitmap rep
 
-[imageRep drawInRect:[[NSMakeRect]](0, 0, offscreenRep pixelsWide], offscreenRep pixelsHifh])];
+[imageRep drawInRect:General/NSMakeRect(0, 0, offscreenRep pixelsWide], offscreenRep pixelsHifh])];
 
 
-[[[NSGraphicsContext]] restoreGraphicsState];
-</code>
+General/[NSGraphicsContext restoreGraphicsState];
+
 
 Problem: Only a small portion of the imageRep, is drawn on offscreenRep.
 I have made sure the reolution of offscreenRep to be greater than imageRep. So

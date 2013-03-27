@@ -1,4 +1,4 @@
-I have a subclassed [[NSButton]], and I can't get mouseEntered: and mouseExited: to work, though mouseDown: does work. I'd post my code, but there isn't really anything to show, since the only other method I have is drawRect:. Unless drawRect: could have an effect on the mouse tracking?
+I have a subclassed General/NSButton, and I can't get mouseEntered: and mouseExited: to work, though mouseDown: does work. I'd post my code, but there isn't really anything to show, since the only other method I have is drawRect:. Unless drawRect: could have an effect on the mouse tracking?
 If anyone has any idea of what could be wrong, please help.
 Thanks.
 
@@ -8,7 +8,7 @@ Thanks.
 
 When in doubt, read the documentation. In this case, the documentation says:
 
-''Informs the receiver that the cursor has entered a tracking rectangle.''
+*Informs the receiver that the cursor has entered a tracking rectangle.*
 
 Have you, in fact, set up a tracking rectangle?
 
@@ -18,35 +18,35 @@ Aha, that was the problem, thanks. I guess I bypassed the addTrackingRect:etc: m
 
 ----
 
-There is also a <code>- (BOOL)acceptsMouseMovedEvents</code> method, which you must override in your [[NSWindow]] subclass to receive such events.
+There is also a     - (BOOL)acceptsMouseMovedEvents method, which you must override in your General/NSWindow subclass to receive such events.
 If you want to implement simple tracking of entire bounds of your control, implement something like this:
 
-<code>
+    
 
 //Add this instance variable to your view interface:
-   [[NSTrackingRectTag]]            tracking_tag;
+   General/NSTrackingRectTag            tracking_tag;
 
-- (id) initWithFrame:([[NSRect]])rect {
-  /'' your init here ''/
-  	[[[[NSNotificationCenter]] defaultCenter] addObserver:self
+- (id) initWithFrame:(General/NSRect)rect {
+  /* your init here */
+  	General/[[NSNotificationCenter defaultCenter] addObserver:self
 			selector:@selector(frameDidChange:)
-			 name:[[NSViewFrameDidChangeNotification]]
+			 name:General/NSViewFrameDidChangeNotification
 			  object:self];
 }
 
 - (void)viewDidMoveToWindow { [self addTrackingRect]; }
-- (void)frameDidChange:([[NSNotification]] '')aNotif { [self addTrackingRect]; }
+- (void)frameDidChange:(General/NSNotification *)aNotif { [self addTrackingRect]; }
 
 - (void) addTrackingRect {
 	if ( tracking_tag ) [self removeTrackingRect:tracking_tag];
-	tracking_tag = [self addTrackingRect:[[NSMakeRect]]( 0, 0, [self frame].size.width, [self frame].size.height ) owner:self userData:nil assumeInside:NO];
+	tracking_tag = [self addTrackingRect:General/NSMakeRect( 0, 0, [self frame].size.width, [self frame].size.height ) owner:self userData:nil assumeInside:NO];
 }
 
 //mouseEntered: and mouseExited: methods goes here. Don't forget to call [super ...] inside them.
 
-</code>
 
--- [[DenisGryzlov]]
+
+-- General/DenisGryzlov
 
 ----
 

@@ -5,11 +5,11 @@ When I double-click a file with associated file-tye, the application get focus b
 
 Does this work:
 
-- (BOOL)application:([[NSApplication]] '')theApplication openFile:([[NSString]] '')filename
+- (BOOL)application:(General/NSApplication *)theApplication openFile:(General/NSString *)filename
 
-http://developer.apple.com/documentation/Cocoa/Reference/[[ApplicationKit]]/ObjC_classic/Classes/[[NSApplication]].html
+http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSApplication.html
 
-(In your [[NSApplication]] delegate)
+(In your General/NSApplication delegate)
 
 ----
 

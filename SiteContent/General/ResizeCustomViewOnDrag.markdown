@@ -1,31 +1,31 @@
 
 
-I'm trying to create a custom size grip like that found at the bottom of Mail 2.0. I already have the one-pixel split view bar, etc. and all is working well there. I found the following example for handling continuous dragging events in the Cocoa docs and adapted it to my purposes. The problem is that it works ''too'' well. In other words, if I drag anywhere in the view, the resizing code is executed.
+I'm trying to create a custom size grip like that found at the bottom of Mail 2.0. I already have the one-pixel split view bar, etc. and all is working well there. I found the following example for handling continuous dragging events in the Cocoa docs and adapted it to my purposes. The problem is that it works *too* well. In other words, if I drag anywhere in the view, the resizing code is executed.
 
 The mouseDown: code is as follows:
 
-<code>
+    
 
-- (void)mouseDown:([[NSEvent]] '')event
+- (void)mouseDown:(General/NSEvent *)event
 {
     BOOL keepOn = YES;
 	BOOL isInside = YES;
-    [[NSPoint]] mouseLoc;
-	[[NSRect]] rect;
+    General/NSPoint mouseLoc;
+	General/NSRect rect;
     while (keepOn)
 	{
-        event = [[self window] nextEventMatchingMask:[[NSLeftMouseUpMask]] | [[NSLeftMouseDraggedMask]]];
+        event = General/self window] nextEventMatchingMask:[[NSLeftMouseUpMask | General/NSLeftMouseDraggedMask];
         mouseLoc = [self convertPoint:[event locationInWindow] fromView:nil];
 		isInside = [self mouse:mouseLoc inRect:GRIPRECT];
 		
 		switch ([event type]) {
-			case [[NSLeftMouseDragged]]:
+			case General/NSLeftMouseDragged:
 				rect = [self frame];
 				rect.size.width += [event deltaX];
 				[self setFrame:rect];
-				[[self superview] display];
+				General/self superview] display];
 				break;
-			case [[NSLeftMouseUp]]:
+			case [[NSLeftMouseUp:
 				keepOn = NO;
 				break;
 			default:
@@ -35,27 +35,27 @@ The mouseDown: code is as follows:
 	return;
 }
 
-</code>
+
 
 "GRIPRECT" is defined as follows:
 
-<code>
-#define GRIPRECT     [[NSMakeRect]]([[NSWidth]]([self frame]) - 17, 0, 17, BOTTOM_BAR_HEIGHT)
-</code>
+    
+#define GRIPRECT     General/NSMakeRect(General/NSWidth([self frame]) - 17, 0, 17, BOTTOM_BAR_HEIGHT)
 
-If I modify the <code>case [[NSLeftMouseDragged]]:</code> block to only execute if <code>isInside == YES</code>, if you drag too fast, the resize doesn't keep up and the drag ends because it's no longer "<code>isInside</code>". What's wrong with my assumptions? ;-)
+
+If I modify the     case General/NSLeftMouseDragged: block to only execute if     isInside == YES, if you drag too fast, the resize doesn't keep up and the drag ends because it's no longer "    isInside". What's wrong with my assumptions? ;-)
 
 ----
 
 Never mind ... ;-) I found it. I had to account for the initial mouseDown: event and react accordingly. The following seems to work.
 
-<code>
-- (void)mouseDown:([[NSEvent]] '')event
+    
+- (void)mouseDown:(General/NSEvent *)event
 {
-    [[NSPoint]] mouseLoc = [self convertPoint:[event locationInWindow] fromView:nil];
+    General/NSPoint mouseLoc = [self convertPoint:[event locationInWindow] fromView:nil];
 	BOOL isInside = [self mouse:mouseLoc inRect:GRIPRECT];;
     BOOL keepOn = isInside;
-	[[NSRect]] rect;
+	General/NSRect rect;
 	
 	if (!keepOn)
 	{
@@ -65,18 +65,18 @@ Never mind ... ;-) I found it. I had to account for the initial mouseDown: event
 	
     while (keepOn)
 	{
-        event = [[self window] nextEventMatchingMask:[[NSLeftMouseUpMask]] | [[NSLeftMouseDraggedMask]]];
+        event = General/self window] nextEventMatchingMask:[[NSLeftMouseUpMask | General/NSLeftMouseDraggedMask];
         mouseLoc = [self convertPoint:[event locationInWindow] fromView:nil];
 		isInside = [self mouse:mouseLoc inRect:GRIPRECT];
 		
 		switch ([event type]) {
-			case [[NSLeftMouseDragged]]:
+			case General/NSLeftMouseDragged:
 				rect = [self frame];
 				rect.size.width += [event deltaX];
 				[self setFrame:rect];
-				[[self superview] display];
+				General/self superview] display];
 				break;
-			case [[NSLeftMouseUp]]:
+			case [[NSLeftMouseUp:
 				keepOn = NO;
 				break;
 			default:
@@ -86,6 +86,6 @@ Never mind ... ;-) I found it. I had to account for the initial mouseDown: event
     }
 	return;
 }
-</code>
+
 
 Note the line commented as "//??" above. Is this necessary? I'll have other controls added to this view as subviews. I thought that line might be necessary to allow normal operation for subviews. Also, is there anything else wrong above?

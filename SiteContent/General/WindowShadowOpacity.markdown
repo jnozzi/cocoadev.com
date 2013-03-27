@@ -1,4 +1,4 @@
-I have been racking my brains searching through every private [[CoreGraphics]] header I can find... but to no avail.  Does anyone know how to adjust the opacity/strength of a window's shadow?  Thanks in advance.
+I have been racking my brains searching through every private General/CoreGraphics header I can find... but to no avail.  Does anyone know how to adjust the opacity/strength of a window's shadow?  Thanks in advance.
 
 ----Why do you need to do this?
 

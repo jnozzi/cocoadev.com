@@ -6,13 +6,13 @@ What is the best way to implement disappearing views just like in PB or IE? -- p
 
 ----
 
-I would like to make it slide away. Also, does anyone know how to get vertical tabs in IB (I mean without coding it)??? IB has the "direction" option disabled for any [[NSTabView]]) -- peacha
+I would like to make it slide away. Also, does anyone know how to get vertical tabs in IB (I mean without coding it)??? IB has the "direction" option disabled for any General/NSTabView) -- peacha
 
 ----
 
-Are you talking about an [[NSSplitView]] ?
+Are you talking about an General/NSSplitView ?
 
-About the vertical tabs, not only does IB not show it but the apple documentation also says that they are not implemented -- [[HaRald]]
+About the vertical tabs, not only does IB not show it but the apple documentation also says that they are not implemented -- General/HaRald
 
 ----
 A summary of some threaded discussion:

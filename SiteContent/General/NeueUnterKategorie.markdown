@@ -1,3 +1,3 @@
-This is a new subsection [[NeueUnterKategorie]]
+This is a new subsection General/NeueUnterKategorie
 
-''But why?!''
+*But why?!*

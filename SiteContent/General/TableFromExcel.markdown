@@ -1,4 +1,4 @@
-I'd like to load some data from a Mac Excel file. I was planning to load it into [[NSArray]] or [[KTMatrix]].  However, I would like to load each cell by rows  into an array or Matrix.  So there should be a way to  represent the "end of  a row (of the table)" ?   Also, if any of the cell in Excel file is null, could I still store it into the array, or Matrix?
+I'd like to load some data from a Mac Excel file. I was planning to load it into General/NSArray or General/KTMatrix.  However, I would like to load each cell by rows  into an array or Matrix.  So there should be a way to  represent the "end of  a row (of the table)" ?   Also, if any of the cell in Excel file is null, could I still store it into the array, or Matrix?
 
 thank you very much for help,
 
@@ -7,17 +7,17 @@ Redmac
 
 ----
 
-If each row is a fixed width, [[KTMatrix]] will do you fine, but I assume from the question they are variable. However, you ''could'' just take the largest width and top all the other rows up with nulls.
+If each row is a fixed width, General/KTMatrix will do you fine, but I assume from the question they are variable. However, you *could* just take the largest width and top all the other rows up with nulls.
 
-As for storing a null, that is what [[NSNull]] is there for. Hope that's been of some use.
+As for storing a null, that is what General/NSNull is there for. Hope that's been of some use.
 
--- [[KritTer]]
+-- General/KritTer
 
 
-Hi [[KritTer]], I appreciate you help. Number of colums of the table is fixed, but not for the row#. I could only find - readDataToEndOfFile - readDataOfLength
+Hi General/KritTer, I appreciate you help. Number of colums of the table is fixed, but not for the row#. I could only find - readDataToEndOfFile - readDataOfLength
 but non of them works for me at this point. 
 
-How could I know the "width" of a row?  How I suppose to load datas in to a [[KTMatrix]]? Would you please give me a detail guide?  
+How could I know the "width" of a row?  How I suppose to load datas in to a General/KTMatrix? Would you please give me a detail guide?  
 
 I should metion that the data table I'm using contains null cells too. It might appears at the beginning, middle or end of any row/column (Thus I'm not able to get "width of the row"?). And I need to record them in order to do some analysis later on.
 
@@ -27,36 +27,36 @@ Redmac
 
 Sorry, by "width of row" I mean the number of cells in the row, including cells with null contents. This is bounded above by 65536 in Excel, IIRC, but you might be able to get a nicer bound for a given file.
 
-To create a [[KTMatrix]], call <code>
-[[KTMutableMatrix]] ''myMatrix
-    = [[[KTMutableMatrix]] matrixWithCuboidBounds:colCount,
+To create a General/KTMatrix, call     
+General/KTMutableMatrix *myMatrix
+    = General/[KTMutableMatrix matrixWithCuboidBounds:colCount,
                                               rowCount,
                                               0];
-</code>
-where colCount could just be 65536, and rowCount the number of rows in the file, or 65536, whichever is easiest. To add an element, use <code>
+
+where colCount could just be 65536, and rowCount the number of rows in the file, or 65536, whichever is easiest. To add an element, use     
 [myMatrix setObject:anObject
       atCoordinates:column, row];
-</code>
-To have a null cell, either insert [[NSNull]] or, better, don't put any object there at all (this will save memory).
 
-If you wish faster access to cells than O(log n) and more efficient memory usage, and you suspect that more than a third of your cells will be full, then get the colCount and rowCount bounds as low as possible and use the alternative constructor <code>
-[[KTMutableMatrix]] ''myMatrix
-    = [[[KTMutableMatrix]] matrixWithCapacity:cellCount
+To have a null cell, either insert General/NSNull or, better, don't put any object there at all (this will save memory).
+
+If you wish faster access to cells than O(log n) and more efficient memory usage, and you suspect that more than a third of your cells will be full, then get the colCount and rowCount bounds as low as possible and use the alternative constructor     
+General/KTMutableMatrix *myMatrix
+    = General/[KTMutableMatrix matrixWithCapacity:cellCount
                              cuboidBounds:colCount,
                                           rowCount,
                                           0];
-</code>
+
 where cellCount is the number of non-null cells in the table. Now the most efficient implementation will be used automatically. Of course, you will need to pre-parse your Excel file to determine these numbers.
 
-If you wanted to use nested [[NSArrays]] instead of a single [[KTMatrix]], you would need to use [[NSNull]] to mark null cells, but [[KTMatrix]] allows empty cells.
+If you wanted to use nested General/NSArrays instead of a single General/KTMatrix, you would need to use General/NSNull to mark null cells, but General/KTMatrix allows empty cells.
 
-Finally, the version of [[KTMatrix]] accessible via http://www.geocities.com/kritter_cocoadev/[[KTMatrix]]/ is '''not''' the latest or most efficient; [[RobRix]] is currently in possession of that, and may be able to send it to you via email sometime.
+Finally, the version of General/KTMatrix accessible via http://www.geocities.com/kritter_cocoadev/General/KTMatrix/ is **not** the latest or most efficient; General/RobRix is currently in possession of that, and may be able to send it to you via email sometime.
 
 If any of this was unclear, I am very happy to try explaining it better. Good luck with your coding!
 
--- [[KritTer]]
+-- General/KritTer
 
-Thank you for the help. I'd appreciate if you or [[RobRix]] could send me a copy of  [[KTMatrix]] code to my email address: phyllis_feng@yahoo.com .
+Thank you for the help. I'd appreciate if you or General/RobRix could send me a copy of  General/KTMatrix code to my email address: phyllis_feng@yahoo.com .
 
 I am still confusing about how to read in the data from a formated data file(each of them are separated by tab space)? How could I iterate the raw data before I input them into any datastructure(like array or matrix)?
 
@@ -78,41 +78,41 @@ elephant	-------------?----------E	-------------------?--------------------E
 
 -- Redmac
 
-Are you asking how to read in text files in Cocoa? -- [[KritTer]]
+Are you asking how to read in text files in Cocoa? -- General/KritTer
 �
 
 No,  because my source files contain empty strings (tabs) and they are important. I have to record them and their location.  When I read in the file, I do not know how to save those Nil object and their position correctly in the array or matrix.
 
 Following is the code I've done:
-<code>
+    
 #import <Foundation/Foundation.h>
 
 
-int main (int argc, const char '' argv[]) {
+int main (int argc, const char * argv[]) {
     
-    [[NSAutoreleasePool]] '' pool = [[[[NSAutoreleasePool]] alloc] init];
+    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
    
     
-    [[NSString]] ''filename;
-    [[NSString]] ''source;
-    [[NSArray]] '' rowarray;
-    [[NSArray]] '' colarray;
+    General/NSString *filename;
+    General/NSString *source;
+    General/NSArray * rowarray;
+    General/NSArray * colarray;
     int count ;
     int i;
-    [[NSRange]] ''range;
+    General/NSRange *range;
     int colnum; //colum number
     
     filename = @"~/01PhyllisF/load/wzdata.txt";
     filename=[filename stringByStandardizingPath];
     printf("%s\n", [filename UTF8String]);
     
-    source=[[[NSString]] stringWithContentsOfFile:filename];
+    source=General/[NSString stringWithContentsOfFile:filename];
     rowarray =[source componentsSeparatedByString:@"\r"];
     count =[rowarray count];
    
      for (i=0; i< count; i++)
     {
-      printf("%s\n", [[rowarray objectAtIndex:i] UTF8String]);    
+      printf("%s\n", General/rowarray objectAtIndex:i] UTF8String]);    
      }
      
      colarray = [[rowarray objectAtIndex:1] componentsSeparatedByString:@" "];
@@ -124,12 +124,12 @@ int main (int argc, const char '' argv[]) {
     [pool release];
     return 0;
 }
-</code>
+
 
 I could end up only have the rowarray works. The colarray only has one components. Seems like components is not separated successfully.
 
 result:
-<code>
+    
 A-FEMALE: JAN/00				MEDIAL-1					MEDIAL-2							
 	INITIAL				SFWW		SIWW			SF	SIWW				FINAL		
 	C1	C2	C3	V(V)	C1	C2	C1	C2	V(V)	C1	C1	C2	V(V)	C1	C2	C3	
@@ -214,7 +214,7 @@ yes		n		@										ks
  row: 79
  column: 1
 
-</code>
+
 
 many thanks, --- Redmac
 
@@ -228,7 +228,7 @@ Then contents of every single cell will be nicely parsed.
 Thanks
 -- Redmac
 
-Good, glad you have it sorted :)  I've orphaned this page now. If you feel your code/ideas may benefit others, would you mind refactoring them into a page somewhere, Redmac? -- [[KritTer]]
+Good, glad you have it sorted :)  I've orphaned this page now. If you feel your code/ideas may benefit others, would you mind refactoring them into a page somewhere, Redmac? -- [[KritTer
 
 _____________________________________________________________________________________________
 
@@ -238,7 +238,7 @@ So has anyone written a csv parsing routine?  hmm, I do not know how to refactor
 
 ----
 
-[[ReadWriteCSVAndTSV]]
+General/ReadWriteCSVAndTSV
 
 ----
 I'm interested in parsing excel files directly, so the user doesn't have to export first to .csv format.  Is anyone in possession of knowledge which might help me on this quest?  I plead with you to share it with me...
@@ -246,6 +246,6 @@ I'm interested in parsing excel files directly, so the user doesn't have to expo
 ----
 The .xls format is available along with the other Office file formats from Microsoft, here:
 
-http://www.microsoft.com/interop/docs/[[OfficeBinaryFormats]].mspx
+http://www.microsoft.com/interop/docs/General/OfficeBinaryFormats.mspx
 
 However: abandon hope, ye who enter. The formats are crufty, bloated, complicated, and simply horrible in every way.

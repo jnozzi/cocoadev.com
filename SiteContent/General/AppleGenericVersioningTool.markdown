@@ -1,1 +1,1 @@
-See [[AGVTool]].
+See General/AGVTool.

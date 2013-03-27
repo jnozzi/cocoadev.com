@@ -20,7 +20,7 @@ Is there a header file called conio.h?  If so where do I find it.  If not, how d
 
 ----
 
-conio.h is a DOS thing. you should use curses under ''nix.
+conio.h is a DOS thing. you should use curses under *nix.
 
 [http://lists.debian.org/debian-user/2002/debian-user-200204/msg03137.html]
 

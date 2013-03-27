@@ -2,7 +2,7 @@ How does one move items (say buttons) along with the window when the window is r
 
 ----
 
-The four lines '''outside''' the box on the top/left/bottom/right can be springified too.  To get a button to stay a fixed distance from the right, make the outside left line 'springy' and the other 5 lines all 'straight'.  -- Bo
+The four lines **outside** the box on the top/left/bottom/right can be springified too.  To get a button to stay a fixed distance from the right, make the outside left line 'springy' and the other 5 lines all 'straight'.  -- Bo
 
 ----
 

@@ -1,14 +1,14 @@
 
 
-Cocoa's default key bindings are here: %%BEGINCODESTYLE%% file:///System/Library/Frameworks/[[AppKit]].framework/Resources/[[StandardKeyBinding]].dict %%ENDCODESTYLE%%
+Cocoa's default key bindings are here: <code> file:///System/Library/Frameworks/General/AppKit.framework/Resources/General/StandardKeyBinding.dict </code>
 
-The file %%BEGINCODESTYLE%%~/Library/[[KeyBindings]]/[[DefaultKeyBinding]].dict%%ENDCODESTYLE%% allows you to override the defaults.
+The file <code>~/Library/General/KeyBindings/General/DefaultKeyBinding.dict</code> allows you to override the defaults.
 
 Here's Apple's documentation on this topic:
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[BasicEventHandling]]/Tasks/[[TextDefaultsAndBindings]].html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/BasicEventHandling/Tasks/General/TextDefaultsAndBindings.html
 
 Here's everything I've figured out about the file format so far:
-<code>
+    
 Syntax notes:
      Modifiers:
          ^ : Ctrl
@@ -33,7 +33,7 @@ Syntax notes:
          Enter:      \U000A (newline) or \U000D (cr)?
 
          Other non-printing keys are represented by "unicodes" 0xF700-0xF8FF.  The
-         complete list can be found in the [[NSEvent]].h header file.  The availability of 
+         complete list can be found in the General/NSEvent.h header file.  The availability of 
          various keys will be system-dependent.
 
          Up Arrow:   \UF700
@@ -59,7 +59,7 @@ Syntax notes:
          Print Screen: \UF72E
          Scroll Lock:  \UF72F
          Pause:        \UF730
-         [[SysReq]]:       \UF731
+         General/SysReq:       \UF731
          Break:        \UF732
 
          Menu:         \UF735
@@ -72,12 +72,12 @@ Syntax notes:
              ( elt1, elt2, ... )
 
      The commands (like "pageUp:" and "moveToEndOfLine:") are Action methods
-     of the [[NSResponder]] class.
-</code>
+     of the General/NSResponder class.
+
 
 ----
 
 You can enter the code for any key by pressing Ctrl-q first. For example to set a keybinding for F1 you would hit Ctrl-q, then type F1 to insert the squiggley symbol that corresponds to the Unicode value for F1  into your keybindings file.
 
 
-You can bind any standard [[NSResponder]] message and expect it to work. <code>selectLine:</code> and <code>selectWord:</code> are quite useful...
+You can bind any standard General/NSResponder message and expect it to work.     selectLine: and     selectWord: are quite useful...

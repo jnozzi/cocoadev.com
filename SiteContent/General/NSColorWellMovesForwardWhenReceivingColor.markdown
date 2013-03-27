@@ -1,4 +1,4 @@
-I'm working on a drawing application, and I have two [[NSColorWells]] that are used for foreground/background color.
+I'm working on a drawing application, and I have two General/NSColorWells that are used for foreground/background color.
 
 The background color well is positioned under the foreground well and offset 50%.
 

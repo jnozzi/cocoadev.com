@@ -1,47 +1,46 @@
-Required for [[CCDTextField]] (again).
+Required for General/CCDTextField (again).
 
-Used for getting the <code>selectedRange</code> when the field editor returns garbage.
+Used for getting the     selectedRange when the field editor returns garbage.
 
-<code>
-// [[CCDPTextView]].h
-#import <[[AppKit]]/[[AppKit]].h>
+    
+// General/CCDPTextView.h
+#import <General/AppKit/General/AppKit.h>
 
-@interface [[CCDPTextView]] : [[NSTextView]] {}
-- ([[NSRange]])prvtSelectedRange;
+@interface General/CCDPTextView : General/NSTextView {}
+- (General/NSRange)prvtSelectedRange;
 @end
-</code>
 
-<code>
-// [[CCDPTextView]].m
-#import "[[CCDPTextView]].h"
+
+    
+// General/CCDPTextView.m
+#import "General/CCDPTextView.h"
 
 // This kinda sucks but it's not too terrible.
-@implementation [[CCDPTextView]]
+@implementation General/CCDPTextView
 
-static [[NSRange]] myPrvtSelectedRange;
+static General/NSRange myPrvtSelectedRange;
 
-- (void)setSelectedRange:([[NSRange]])aRange
+- (void)setSelectedRange:(General/NSRange)aRange
 {
     myPrvtSelectedRange = aRange;
     [super setSelectedRange:aRange];
 }
 
-- ([[NSRange]])prvtSelectedRange
+- (General/NSRange)prvtSelectedRange
 {
     return myPrvtSelectedRange;
 }
 @end
-</code>
+
 
 
 You will need to modify your main.m file to look like this...
-<code>
+    
 #import <Cocoa/Cocoa.h>
-#import "[[CCDPTextView]].h"
+#import "General/CCDPTextView.h"
 
-int main(int argc, const char ''argv[])
+int main(int argc, const char *argv[])
 {
-    [[[CCDPTextView]] poseAsClass:[[[NSTextView]] class]];
-    return [[NSApplicationMain]](argc, argv);
+    General/[CCDPTextView poseAsClass:General/[NSTextView class]];
+    return General/NSApplicationMain(argc, argv);
 }
-</code>

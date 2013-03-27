@@ -1,6 +1,6 @@
-I am trying to write a DICT dictionary client using [[SmallSockets]], and can connect to a DICT server properly, and retrieve the welcoming response from the server, all messages from the server I pop into a textview.
+I am trying to write a DICT dictionary client using General/SmallSockets, and can connect to a DICT server properly, and retrieve the welcoming response from the server, all messages from the server I pop into a textview.
 
-<code>
+    
 - (void)awakeFromNib
 {
 if ([self connectToServer] == YES)
@@ -12,7 +12,7 @@ else
 
 - (BOOL)connectToServer
 {
-/'' Set up a connection to the Dict.org server ''/
+/* Set up a connection to the Dict.org server */
 NS_DURING	
 
 theSocket = [Socket socket];
@@ -29,12 +29,12 @@ return YES;
 
 - (BOOL)listenToServer
 {
-response = [[[[NSMutableData]] alloc] init];
+response = General/[[NSMutableData alloc] init];
 
 [theSocket readData:response];
         
 // Display response in context textview
-responseString = [[[[NSString]] alloc] initWithData:response encoding:[[[NSString]] defaultCStringEncoding]];
+responseString = General/[[NSString alloc] initWithData:response encoding:General/[NSString defaultCStringEncoding]];
         
 [outputTextField insertText:@"\n"];
 [outputTextField insertText:responseString];
@@ -46,7 +46,7 @@ responseString = [[[[NSString]] alloc] initWithData:response encoding:[[[NSStrin
 }
 
 
-- ([[IBAction]])sendButton:(id)sender
+- (General/IBAction)sendButton:(id)sender
 {
 //send a command:
 [theSocket writeString:@"DEFINE hello"];
@@ -59,33 +59,33 @@ responseString = [[[[NSString]] alloc] initWithData:response encoding:[[[NSStrin
 [theSocket release];
 }
 
-</code>
+
 
 We start at awakeFromNib - call connectToServer(), which will init the smallSocket object and connect it to the DICT server. That completes and we get back to awakeFromNib, which calls listenToServer() to listen to the welcoming reply.
 
 There is a method sendButton: which is activated by a button on the interface.
 
-I've looked into the writeString: method in [[SmallSockets]], but I find that even if I comment out the entire content of the writeString: method (in the [[SmallSockets]] class) it still crashes!
+I've looked into the writeString: method in General/SmallSockets, but I find that even if I comment out the entire content of the writeString: method (in the General/SmallSockets class) it still crashes!
 
-If I do NOT listen at all to the server when it gives me its welcome after I connect, I can do a writeString:! So there must be something in listening that closes the socket or the object or something along those lines. There is indeed a call to close the socket in the listen method of [[SmallSockets]] that may be being called, but commenting out this does no different.
-
-----
-
-'''You create the socket with <code>theSocket = [Socket socket];</code>, and you don't retain it. If you don't alloc or copy an object, you must retain it if you want to keep it past the end of the current function or method.'''
+If I do NOT listen at all to the server when it gives me its welcome after I connect, I can do a writeString:! So there must be something in listening that closes the socket or the object or something along those lines. There is indeed a call to close the socket in the listen method of General/SmallSockets that may be being called, but commenting out this does no different.
 
 ----
 
-Now, my app hangs waiting to receive a response from the server, it hangs inside the [[SmallSocket]] class, when doing a readData: at this line:
+**You create the socket with     theSocket = [Socket socket];, and you don't retain it. If you don't alloc or copy an object, you must retain it if you want to keep it past the end of the current function or method.**
+
+----
+
+Now, my app hangs waiting to receive a response from the server, it hangs inside the General/SmallSocket class, when doing a readData: at this line:
 
  count = recv(socketfd, readBuffer, readBufferSize, 0);
 
 ----
 
- Still, I have a problem, the [[SmallSockets]] code says that the above line should return immediately if there is no data waiting - except it does not, it waits and waits.
+ Still, I have a problem, the General/SmallSockets code says that the above line should return immediately if there is no data waiting - except it does not, it waits and waits.
 
 ----
 
-I'm not familiar with [[SmallSockets]], but it should be setting the socket to non-blocking using setsockopt() if that is the behavior it's supposed to have. If it's not doing this, then the recv() will block if there is no data like you're seeing.
+I'm not familiar with General/SmallSockets, but it should be setting the socket to non-blocking using setsockopt() if that is the behavior it's supposed to have. If it's not doing this, then the recv() will block if there is no data like you're seeing.
 
 ----
 
@@ -97,7 +97,7 @@ At the moment I have the following setup, where I give the server a number of 'g
 
 Eg.
 
-<code>
+    
 int bitsRetrieved = 0;
 int emptyRetrieves = 5;
 
@@ -112,7 +112,7 @@ while (emptyRetrieves > 0)
 	else
 		emptyRetrieves = 5;
 	}
-</code>
+
 
 Must I parse my data in order to determine whether some is missing, and then go back to the buffer?
 
@@ -129,12 +129,12 @@ When you're writing network code always assume that the absolute worst can happe
 
 Your program should deal gracefully with all of these, and any other pathological scenarios you can come up with.
 
-[[SmallSockets]] should provide a way to get a notification or callback when new data arrives. You can read the data from there. That will solve your current problem. As you can see, sleeping for arbitrary amounts of time is not going to work in the general case at all. As for taking care of the rest of these potential problems, well, that's what makes network programming so fun!
+General/SmallSockets should provide a way to get a notification or callback when new data arrives. You can read the data from there. That will solve your current problem. As you can see, sleeping for arbitrary amounts of time is not going to work in the general case at all. As for taking care of the rest of these potential problems, well, that's what makes network programming so fun!
 
 ----
 I have a question regarding general socket use. If you're behind a network, and you use a program such as AIM or whatever, how does the router/AIM server know exactly which computer to go to on the network. Let's say there are multiple people on AIM...don't they all show up as the same IP address to the AIM server? I've never known how that works...someone want to try to clue me in?
 
-''Look up Network Address Translation, which is how these routers work.''
+*Look up Network Address Translation, which is how these routers work.*
 
 ----
 
@@ -142,6 +142,6 @@ Port Address Translation is a better description of the "NAT" that routers are d
 
 The end point of an IP connection is made up of 2 pieces of information: an IP address and port number. When a client connects to a server, that connection is distibguished the 2 end points: the server's IP, the server's port number, the client's IP, the client's port number. Every packet sent across the Internet has these 4 pieces of information inside it, so the receiving system knows what connection it's part of. (The IP stack in the operating system knows what connection should be delivered to what socket in what process...)
 
-When you make a connection to a server from behind an [[AirPort]] that's doing "NAT", the [[AirPort]] receives packets from you with your internal address in them (10.0.1.2) and a port on your computer (19872). It then edits the packet so that it appears to be coming from the [[AirPort]] itself (but it's real IP address : 67.1.2.209) before sending it out to the world. When the [[AirPort]] gets a packet, it looks at the destination port number, looks that up in a table, and then changes the packet to have your internal address and port number and sends it on to you.
+When you make a connection to a server from behind an General/AirPort that's doing "NAT", the General/AirPort receives packets from you with your internal address in them (10.0.1.2) and a port on your computer (19872). It then edits the packet so that it appears to be coming from the General/AirPort itself (but it's real IP address : 67.1.2.209) before sending it out to the world. When the General/AirPort gets a packet, it looks at the destination port number, looks that up in a table, and then changes the packet to have your internal address and port number and sends it on to you.
 
-Creating a socket using the standard BSD socket() and connect() calls, and then wrapping it with an [[NSFileHandle]] works really well. I've never used [[SmallSockets]], but I can't imagine it being much easier than [[NSFileHandle]]. You can even use [[NSSocketPort]] instead of socket() and connect() to create the socket if you don't want to get your hands dirty.
+Creating a socket using the standard BSD socket() and connect() calls, and then wrapping it with an General/NSFileHandle works really well. I've never used General/SmallSockets, but I can't imagine it being much easier than General/NSFileHandle. You can even use General/NSSocketPort instead of socket() and connect() to create the socket if you don't want to get your hands dirty.

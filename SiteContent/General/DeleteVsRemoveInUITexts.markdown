@@ -12,9 +12,9 @@ Maybe it's to do with how user-friendly the app is supposed to be. "Delete" soun
 
 Whatever you do, do not look too hard at Project Builder. PB is geared towards experts and not really an example of good UI.
 
-This is what the [[AquaHumanInterfaceGuidelines]] has to say about the delete menu item:
+This is what the General/AquaHumanInterfaceGuidelines has to say about the delete menu item:
 
-'' Delete: Removes selected data without storing the selection on the Clipboard.  Choosing Delete is the equivalent of pressing the Delete key or the Clear key.''
+* Delete: Removes selected data without storing the selection on the Clipboard.  Choosing Delete is the equivalent of pressing the Delete key or the Clear key.*
 
 ----
 
@@ -22,7 +22,7 @@ Favor using the more common, friendlier words.  Remove vs Delete, Stop vs. Abort
 
 ----
 
-Actually, it would seem that [[AddressBook]], iCal, Safari (bookmarks), and the System Preferences 'Accounts' all use Delete (this all about operations which loses the data, and does not just remove it from a listview, like e.g. the Login Items).
+Actually, it would seem that General/AddressBook, iCal, Safari (bookmarks), and the System Preferences 'Accounts' all use Delete (this all about operations which loses the data, and does not just remove it from a listview, like e.g. the Login Items).
 
 ----
 
@@ -34,4 +34,4 @@ The pace of inflation almost demands that you contribute your 167.39 HUF  http:/
 
 ----
 
-Delete is used for files in the file system and for selected text or objects; remove is used for everything else. - [[JonathanGrynspan]]
+Delete is used for files in the file system and for selected text or objects; remove is used for everything else. - General/JonathanGrynspan

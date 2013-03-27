@@ -1,1 +1,1 @@
-Plural of [[CFType]].
+Plural of General/CFType.

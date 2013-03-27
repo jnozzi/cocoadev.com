@@ -1,6 +1,6 @@
 
 
-'''Objective Modula-2'''
+**Objective Modula-2**
 
 Objective Modula-2 is a superset of Modula-2 with extensions to natively support the Objective-C object model and runtime. It borrows its syntax from both Modula-2 and Objective-C. Most of the syntax, including conventional function calls, is inherited from Modula-2, while the syntax for object-oriented features, including message-passing, is borrowed from Objective-C, which itself derived this syntax from Smalltalk.
 

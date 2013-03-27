@@ -18,4 +18,4 @@ It is available (6.3 MB dmg.bin via ftp) from:  http://developer.apple.com/hardw
 
 ----
 
-I put together some information I gathered about the API after trying to develop a custom plug-in. I posted it on this wiki at [[XGridDummyPlugin]].
+I put together some information I gathered about the API after trying to develop a custom plug-in. I posted it on this wiki at General/XGridDummyPlugin.

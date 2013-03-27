@@ -4,23 +4,23 @@ My idea is to have a "Manager" singleton class that the plugin uses to register 
 
 Something along these lines:
 
-<code>
+    
  //MyPlugin.m
  +load {
      ManagerClass* manager = [ManagerClass sharedInstance];
      [manager registerClass:[self class]];
  }
-</code>
+
 
 However, I have a little problem with this method.  Specifically, it seems that multiple manager instances are created, one for the bundle, and one for the host application.  A few quick debug statements show this:
 
-<code>
+    
  2004-04-04 14:44:10.817 Test[667] Created instance: <ManagerClass: 0x341810>
  2004-04-04 14:44:10.824 Test[667] Registering class PluginClass for manager <ManagerClass: 0x341810>
  2004-04-04 14:44:10.830 Test[667] Created instance: <ManagerClass: 0x33feb0>
-</code>
 
-Clearly to different instances of the singleton are being created.  The singleton is based on the most simple example over in [[SingletonDesignPattern]].
+
+Clearly to different instances of the singleton are being created.  The singleton is based on the most simple example over in General/SingletonDesignPattern.
 :
 I have found this site: http://freaky.staticusers.net/ugboard/viewtopic.php?p=27368#27368 which mentions a similar problem.  His solution was to not include the code (.m) in both the plugin and in the host application.  My plugin code does not include any code from the host app, and references the manager using a @class directive.  I have tried including just the "ManagerClass.h" file in the plugin target as well, with the same results.
 
@@ -37,7 +37,7 @@ I have no clue why it would be doing this, and I'm not sure how I'd be able to k
 
 Anytime you are NOT guaranteed that a method will be called only once (e.g. awakeFromNib, load, viewDidMoveToWindow...) you should test a condition before performing any setup:
 
-<code>
+    
  ManagerClass *ManagerClassSingletonInstance = nil;
  
  + load {
@@ -46,6 +46,6 @@ Anytime you are NOT guaranteed that a method will be called only once (e.g. awak
          [ManagerClassSingletonInstance registerClass:[self class]];
      }
  }
-</code>
 
-I'm assuming that <code>[ManagerClass sharedInstance]</code> creates the shared instance when this method is called.
+
+I'm assuming that     [ManagerClass sharedInstance] creates the shared instance when this method is called.

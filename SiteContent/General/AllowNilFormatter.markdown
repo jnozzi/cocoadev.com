@@ -1,14 +1,14 @@
 For a database app I'm writing I need text fields to preserve NULL values.
 
-In a normal text field, [NSNull null] as the value renders to the empty string, and tabbing through a field set to null will convert the field's value to the empty string. What we want is for the field to stay null if the value isn't changed, as some database columns may allow NULL as a value. I coded a solution by subclassing [[NSFormatter]] to preserve null values, and render them in a different color.
+In a normal text field, [NSNull null] as the value renders to the empty string, and tabbing through a field set to null will convert the field's value to the empty string. What we want is for the field to stay null if the value isn't changed, as some database columns may allow NULL as a value. I coded a solution by subclassing General/NSFormatter to preserve null values, and render them in a different color.
 
--- [[AdamVandenberg]]
+-- General/AdamVandenberg
 
 ----
 
-'''AllowNilFomatter.h'''
+**AllowNilFomatter.h**
 
-<code>
+    
  // This code is placed in the public domain - AdamVandeberg
  #import <Foundation/Foundation.h>
  
@@ -30,13 +30,13 @@ In a normal text field, [NSNull null] as the value renders to the empty string, 
  - (void) setAttributedStringForNil: (NSAttributedString *) anAttributedStringForNil;
  
  @end
-</code>
+
 
 ----
 
-'''AllowNilFomatter.m'''
+**AllowNilFomatter.m**
 
-<code>
+    
  // This code is placed in the public domain - AdamVandeberg
  #import "AllowNilFormatter.h"
  
@@ -49,9 +49,9 @@ In a normal text field, [NSNull null] as the value renders to the empty string, 
          nullString = @"<NULL>";
          
          _attributedStringForNil = 
-            [[NSAttributedString alloc] initWithString: nullString
+            General/NSAttributedString alloc] initWithString: nullString
              attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                 [NSColor redColor], NSForegroundColorAttributeName, nil]];
+                 [NSColor redColor], NSForegroundColorAttributeName, nil;
      }
      return self;
  }
@@ -63,7 +63,7 @@ In a normal text field, [NSNull null] as the value renders to the empty string, 
  }
  
  - (NSAttributedString *) attributedStringForNil 
- { return [[_attributedStringForNil retain] autorelease]; }
+ { return General/_attributedStringForNil retain] autorelease]; }
  
  - (void) setAttributedStringForNil: 
     (NSAttributedString *) anAttributedStringForNil {
@@ -126,13 +126,13 @@ In a normal text field, [NSNull null] as the value renders to the empty string, 
  }
  
  @end;
-</code>
+
 
 
 ----
 
-Note that this code only solves half of my problem, preserving and displaying null values in a field. The other half is setting null values in a field in the first place. I'd like to be able to hit ^0 (control-Zero)  in a field and get it set to [NSNull null], but I can't quite figure that out. I may have to dive into customizing the [[FieldEditor]] used for those cells, but I'd rather not. I did a partial solution that worked OK for text fields, but didn't work so well for cells in a table view (editing a cell and then pressing the key to change the value to null did that, except that the cell then displayed in white-on-white text.)
+Note that this code only solves half of my problem, preserving and displaying null values in a field. The other half is setting null values in a field in the first place. I'd like to be able to hit ^0 (control-Zero)  in a field and get it set to [NSNull null], but I can't quite figure that out. I may have to dive into customizing the [[FieldEditor used for those cells, but I'd rather not. I did a partial solution that worked OK for text fields, but didn't work so well for cells in a table view (editing a cell and then pressing the key to change the value to null did that, except that the cell then displayed in white-on-white text.)
 
 If anyone has an example of getting a text field / cell to respond to a custom control-key hot key, I'd love to see it.
 
--- [[AdamVandenberg]]
+-- General/AdamVandenberg

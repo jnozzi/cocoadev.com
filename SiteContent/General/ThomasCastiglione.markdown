@@ -5,9 +5,9 @@ Thomas Castiglione is a programmer.
 Things he has worked on which are finished enough to put here:
 
 
-* [[FocusLayer]] - a utility that dims the screen except for the active/frontmost window.
+* General/FocusLayer - a utility that dims the screen except for the active/frontmost window.
 * kpdecode - Kernel panic decoding tool
-* [[BSTrampoline]] - a [[TrampolineObject]]
+* General/BSTrampoline - a General/TrampolineObject
 
 
 ----

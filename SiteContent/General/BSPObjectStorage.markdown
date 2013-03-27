@@ -1,20 +1,20 @@
-Recently I ran into the need to optimise the performance of drawing many tens of thousands of objects. I started to notice that the time to traverse a linear array discovering which objects needed to be drawn (according to [[NSView]]'s -needsToDrawRect: method) was becoming significant. What I describe here is one possible solution to the problem of discovering objects needing to be drawn from an arbitrarily large set. Other solutions are also well-known, such as [[RTrees]], but I'll leave that for another day.
+Recently I ran into the need to optimise the performance of drawing many tens of thousands of objects. I started to notice that the time to traverse a linear array discovering which objects needed to be drawn (according to General/NSView's -needsToDrawRect: method) was becoming significant. What I describe here is one possible solution to the problem of discovering objects needing to be drawn from an arbitrarily large set. Other solutions are also well-known, such as General/RTrees, but I'll leave that for another day.
 
-This solution makes use of a common search algorithm - that of the [[BinarySearch]] - in fact given a sorted list of objects, the binary search is the fastest known method to find a given object.
+This solution makes use of a common search algorithm - that of the General/BinarySearch - in fact given a sorted list of objects, the binary search is the fastest known method to find a given object.
 
 Here, a binary search is extended into 2 dimensions, and the criterion for determining the location of any given object is its bounding rectangle. This is called Binary Search Partitioning, and is a well-known divide-and-conquer method for graphics.
 
 The overall area of a given view is alternately divided and subdivided horizontally and vertically into two partitions, forming a binary tree. The whole view is the root, and the leaves represent some small area of the view. The tree depth determines how small this area is. If the tree depth is 1, there is only one leaf, and the system is equivalent to the linear array case. The number of objects stored at each leaf will usually depend on the depth also - the more finely divided the view, the fewer objects tend to be stored at any given leaf, assuming that on average they are distributed evenly within the view.
 
-The advantage of this approach is that we can quickly return a small set of objects that intersect the view's drawing update area without having to test every one - the input to the tree is a rectangle, and the result is a list of objects that intersect it. [[NSView]] has the method -getRectsBeingDrawn:count: which will return a list of rectangles needing update. We can use this as input to our tree.
+The advantage of this approach is that we can quickly return a small set of objects that intersect the view's drawing update area without having to test every one - the input to the tree is a rectangle, and the result is a list of objects that intersect it. General/NSView has the method -getRectsBeingDrawn:count: which will return a list of rectangles needing update. We can use this as input to our tree.
 
 We might also need to consider the front-to-back ordering (Z-order) of the objects. The tree code here doesn't handle this part, but it's easy enough to do if each object maintains a Z-value - the returned list can simply be sorted according to Z. Naturally the Z-value must be maintained as objects are inserted and deleted into the storage.
 
-The tree code is presented below. To add or remove an object from the tree, a bounds parameter must be supplied which locates the object in 2-dimensional space. Typically an object would supply its own bounds, but in this code that is handled externally. In addition, should an object move, it needs to be repositioned in the tree. This is most easily accomplished by removing it using its old bounds value then adding it back with the new bounds. The tree itself uses recursion to accomplish the tree traversal, and the code here optimises the object-C method call to make that as fast as possible. It also makes use of toll-free bridging to [[CFArray]] and friends to speed up other operations. When a complex drawing is being repeatedly redrawn (as when scrolling for example) these optimisations are worth having. An object needs to respond to -setMarked: which is just a flag that the tree uses to avoid including the same object more than once. The objects should have this flag reset before the next search, on eopportunity to do this is when you iterate the returned list to draw the objects.
+The tree code is presented below. To add or remove an object from the tree, a bounds parameter must be supplied which locates the object in 2-dimensional space. Typically an object would supply its own bounds, but in this code that is handled externally. In addition, should an object move, it needs to be repositioned in the tree. This is most easily accomplished by removing it using its old bounds value then adding it back with the new bounds. The tree itself uses recursion to accomplish the tree traversal, and the code here optimises the object-C method call to make that as fast as possible. It also makes use of toll-free bridging to General/CFArray and friends to speed up other operations. When a complex drawing is being repeatedly redrawn (as when scrolling for example) these optimisations are worth having. An object needs to respond to -setMarked: which is just a flag that the tree uses to avoid including the same object more than once. The objects should have this flag reset before the next search, on eopportunity to do this is when you iterate the returned list to draw the objects.
 
-Hope this is useful to someone - a more complete implementation is found in [[DrawKit]]. --[[GrahamCox]].
+Hope this is useful to someone - a more complete implementation is found in General/DrawKit. --General/GrahamCox.
 
-<code>
+    
 
 typedef enum
 {
@@ -22,7 +22,7 @@ typedef enum
 	kOperationDelete,
 	kOperationAccumulate
 }
-[[BSPOperation]];
+General/BSPOperation;
 
 
 typedef enum
@@ -31,50 +31,50 @@ typedef enum
 	kNodeVertical,
 	kNodeLeaf
 }
-[[LeafType]];
+General/LeafType;
 
 
 
-@interface [[BSPTree]] : [[NSObject]]
+@interface General/BSPTree : General/NSObject
 {
 @protected
-	[[NSMutableArray]]''		mLeaves;
-	[[NSMutableArray]]''		mNodes;
-	[[NSSize]]				mCanvasSize;
-	[[BSPOperation]]		        mOp;
+	General/NSMutableArray*		mLeaves;
+	General/NSMutableArray*		mNodes;
+	General/NSSize				mCanvasSize;
+	General/BSPOperation		        mOp;
 @public
 	id	                                mObj;
-	[[NSMutableArray]]''		mFoundObjects;
+	General/NSMutableArray*		mFoundObjects;
 	unsigned				mObjectCount;
 }
 
-- (id)				initWithCanvasSize:([[NSSize]]) size depth:(unsigned) depth;
-- ([[NSSize]])			canvasSize;
+- (id)				initWithCanvasSize:(General/NSSize) size depth:(unsigned) depth;
+- (General/NSSize)			canvasSize;
 
 - (void)			setDepth:(unsigned) depth;
 - (unsigned)		countOfLeaves;
 
-- (void)			insertItem:(id) obj withRect:([[NSRect]]) rect;
-- (void)			removeItem:(id) obj withRect:([[NSRect]]) rect;
+- (void)			insertItem:(id) obj withRect:(General/NSRect) rect;
+- (void)			removeItem:(id) obj withRect:(General/NSRect) rect;
 - (void)			removeAllObjects;
 - (unsigned)		count;
 
 // tree returns mutable results so that they can be sorted in place without needing to be copied
 
-- ([[NSMutableArray]]'')	objectsIntersectingRects:(const [[NSRect]]'') rects count:(unsigned) count;
-- ([[NSMutableArray]]'')	objectsIntersectingRect:([[NSRect]]) rect;
-- ([[NSMutableArray]]'')	objectsIntersectingPoint:([[NSPoint]]) point;
+- (General/NSMutableArray*)	objectsIntersectingRects:(const General/NSRect*) rects count:(unsigned) count;
+- (General/NSMutableArray*)	objectsIntersectingRect:(General/NSRect) rect;
+- (General/NSMutableArray*)	objectsIntersectingPoint:(General/NSPoint) point;
 
 @end
 
 #pragma mark -
 
-/// node object - only used internally with [[BSPTree]]
+/// node object - only used internally with General/BSPTree
 
-@interface [[BSPNode]] : [[NSObject]]
+@interface General/BSPNode : General/NSObject
 {
 @public
-	[[LeafType]]		mType;
+	General/LeafType		mType;
 	union
 	{
 		float		mOffset;
@@ -82,8 +82,8 @@ typedef enum
 	}u;
 }
 
-- (void)			setType:([[LeafType]]) aType;
-- ([[LeafType]])		type;
+- (void)			setType:(General/LeafType) aType;
+- (General/LeafType)		type;
 - (void)			setLeafIndex:(unsigned) indx;
 - (unsigned)		leafIndex;
 - (void)			setOffset:(float) offset;
@@ -102,18 +102,18 @@ static inline unsigned childNodeAtIndex( unsigned nodeIndex )
 }
 
 
-@implementation [[BSPTree]]
+@implementation General/BSPTree
 
 
-- (id)				initWithCanvasSize:([[NSSize]]) size depth:(unsigned) depth
+- (id)				initWithCanvasSize:(General/NSSize) size depth:(unsigned) depth
 {
 	self = [super init];
 	if( self )
 	{
 		mCanvasSize = size;
-		mNodes = [[[[NSMutableArray]] alloc] init];
-		mLeaves = [[[[NSMutableArray]] alloc] init];
-                mFoundObjects = [[[[NSMutableArray]] alloc] init];		
+		mNodes = General/[[NSMutableArray alloc] init];
+		mLeaves = General/[[NSMutableArray alloc] init];
+                mFoundObjects = General/[[NSMutableArray alloc] init];		
 
 		[self setDepth:depth];
 	}
@@ -122,7 +122,7 @@ static inline unsigned childNodeAtIndex( unsigned nodeIndex )
 }
 
 
-- ([[NSSize]])			canvasSize
+- (General/NSSize)			canvasSize
 {
 	return mCanvasSize;
 }
@@ -139,14 +139,14 @@ static inline unsigned childNodeAtIndex( unsigned nodeIndex )
 	
 	for( i = 0; i < nodeCount; ++i )
 	{
-		[[BSPNode]]'' node = [[[[BSPNode]] alloc] init];
+		General/BSPNode* node = General/[[BSPNode alloc] init];
 		[mNodes addObject:node];
 		[node release];
 	}
 	
 	[self allocateLeaves:( 1 << depth )];
 	
-	[[NSRect]] canvasRect = [[NSZeroRect]];
+	General/NSRect canvasRect = General/NSZeroRect;
 	canvasRect.size = [self canvasSize];
 	
 	[self partition:canvasRect depth:depth index:0];
@@ -167,7 +167,7 @@ static inline unsigned childNodeAtIndex( unsigned nodeIndex )
 	
 	for( i = 0; i < howMany; ++i )
 	{
-		id leaf = [[[[NSMutableArray]] alloc] init];
+		id leaf = General/[[NSMutableArray alloc] init];
 		[mLeaves addObject:leaf];
 		[leaf release];
 	}
@@ -176,46 +176,46 @@ static inline unsigned childNodeAtIndex( unsigned nodeIndex )
 
 static unsigned sLeafCount = 0;
 
-- (void)			partition:([[NSRect]]) rect depth:(unsigned) depth index:(unsigned) indx
+- (void)			partition:(General/NSRect) rect depth:(unsigned) depth index:(unsigned) indx
 {
 	// recursively subdivide the total canvas size into equal halves in alternating horizontal and vertical directions.
 	// This is done once when the tree is built or rebuilt.
 	
-	[[BSPNode]]'' node = [mNodes objectAtIndex:indx];
+	General/BSPNode* node = [mNodes objectAtIndex:indx];
 	
 	if( indx == 0 )
 	{
 		[node setType:kNodeHorizontal];
-		[node setOffset:[[NSMidX]]( rect )];
+		[node setOffset:General/NSMidX( rect )];
 		sLeafCount = 0;
 	}
 	
 	if ( depth > 0 )
 	{
-		[[LeafType]]	type;
-		[[NSRect]]	ra, rb;
+		General/LeafType	type;
+		General/NSRect	ra, rb;
 		float		oa, ob;
 		
 		if([node type] == kNodeHorizontal)
 		{
 			type = kNodeVertical;
-			ra = [[NSMakeRect]]( [[NSMinX]]( rect ), [[NSMinY]]( rect ), [[NSWidth]]( rect ), [[NSHeight]]( rect) '' 0.5f);
-			rb = [[NSMakeRect]]( [[NSMinX]]( rect ), [[NSMaxY]]( ra ), [[NSWidth]]( rect ), [[NSHeight]]( rect ) - [[NSHeight]]( ra ));
-			oa = [[NSMidX]]( ra );
-			ob = [[NSMidX]]( rb );
+			ra = General/NSMakeRect( General/NSMinX( rect ), General/NSMinY( rect ), General/NSWidth( rect ), General/NSHeight( rect) * 0.5f);
+			rb = General/NSMakeRect( General/NSMinX( rect ), General/NSMaxY( ra ), General/NSWidth( rect ), General/NSHeight( rect ) - General/NSHeight( ra ));
+			oa = General/NSMidX( ra );
+			ob = General/NSMidX( rb );
 		}
 		else
 		{
 			type = kNodeHorizontal;
-			ra = [[NSMakeRect]]( [[NSMinX]]( rect ), [[NSMinY]]( rect ), [[NSWidth]]( rect ) '' 0.5f, [[NSHeight]]( rect ));
-			rb = [[NSMakeRect]]( [[NSMaxX]]( ra), [[NSMinY]]( rect ), [[NSWidth]]( rect ) - [[NSWidth]]( ra ), [[NSHeight]]( rect ));
-			oa = [[NSMidY]]( ra );
-			ob = [[NSMidY]]( rb );
+			ra = General/NSMakeRect( General/NSMinX( rect ), General/NSMinY( rect ), General/NSWidth( rect ) * 0.5f, General/NSHeight( rect ));
+			rb = General/NSMakeRect( General/NSMaxX( ra), General/NSMinY( rect ), General/NSWidth( rect ) - General/NSWidth( ra ), General/NSHeight( rect ));
+			oa = General/NSMidY( ra );
+			ob = General/NSMidY( rb );
 		}
 		
                 unsigned chIdx = childNodeAtIndex( indx );
 		
-                [[BSPNode]]'' child = [mNodes objectAtIndex:chIdx];
+                General/BSPNode* child = [mNodes objectAtIndex:chIdx];
 		[child setType:type];
 		[child setOffset:oa];
 		
@@ -239,29 +239,29 @@ static unsigned sLeafCount = 0;
 #define qUseImpCaching		1
 
 
-- (void)			recursivelySearchWithRect:([[NSRect]]) rect index:(unsigned) indx
+- (void)			recursivelySearchWithRect:(General/NSRect) rect index:(unsigned) indx
 {
 #if qUseImpCaching	
-	static void(''sfunc)( id, SEL, [[NSRect]], unsigned ) = nil;
+	static void(*sfunc)( id, SEL, General/NSRect, unsigned ) = nil;
 	
 	if ( sfunc == nil )
-		sfunc = (void('')( id, SEL, [[NSRect]], unsigned ))[[self class] instanceMethodForSelector:_cmd];
+		sfunc = (void(*)( id, SEL, General/NSRect, unsigned ))General/self class] instanceMethodForSelector:_cmd];
 #endif
 
-    [[BSPNode]]'' node = [mNodes objectAtIndex:indx];
+    [[BSPNode* node = [mNodes objectAtIndex:indx];
     unsigned subnode = childNodeAtIndex( indx );
 	
     switch ( node->mType )
 	{
 		case kNodeHorizontal:
-			if ( [[NSMinY]]( rect ) < node->u.mOffset )
+			if ( General/NSMinY( rect ) < node->u.mOffset )
 			{
 				#if qUseImpCaching	
 				sfunc( self, _cmd, rect, subnode );
 				#else
 				[self recursivelySearchWithRect:rect index:subnode];
 				#endif
-				if( [[NSMaxY]]( rect ) >= node->u.mOffset )
+				if( General/NSMaxY( rect ) >= node->u.mOffset )
 					#if qUseImpCaching	
 					sfunc( self, _cmd, rect, subnode + 1 );
 					#else
@@ -277,14 +277,14 @@ static unsigned sLeafCount = 0;
 			break;
 			
 		case kNodeVertical:
-			if ( [[NSMinX]]( rect ) < node->u.mOffset )
+			if ( General/NSMinX( rect ) < node->u.mOffset )
 			{
 				#if qUseImpCaching	
 				sfunc( self, _cmd, rect, subnode );
 				#else
 				[self recursivelySearchWithRect:rect index:subnode];
 				#endif
-				if( [[NSMaxX]]( rect ) >= node->u.mOffset )
+				if( General/NSMaxX( rect ) >= node->u.mOffset )
 					#if qUseImpCaching	
 					sfunc( self, _cmd, rect, subnode + 1 );
 					#else
@@ -310,9 +310,9 @@ static unsigned sLeafCount = 0;
 
 
 
-- (void)			recursivelySearchWithPoint:([[NSPoint]]) pt index:(unsigned) indx
+- (void)			recursivelySearchWithPoint:(General/NSPoint) pt index:(unsigned) indx
 {
-    [[BSPNode]]'' node = [mNodes objectAtIndex:indx];
+    General/BSPNode* node = [mNodes objectAtIndex:indx];
     unsigned subnode = childNodeAtIndex( indx );
 	
     switch ([node type])
@@ -343,15 +343,15 @@ static unsigned sLeafCount = 0;
 
 #define USE_CF_APPLIER         1
 
-static void			addValueToFoundObjects( const void'' value, void'' context )
+static void			addValueToFoundObjects( const void* value, void* context )
 {
 	id obj = (id)value;
 	
 	if(![obj isMarked] && [obj visible])
 	{
-		[[BSPTree]]'' tree = ([[BSPTree]]'')context;
+		General/BSPTree* tree = (General/BSPTree*)context;
 		[obj setMarked:YES];
-		[[CFArrayAppendValue]](([[CFMutableArrayRef]])tree->mFoundObjects, value );
+		General/CFArrayAppendValue((General/CFMutableArrayRef)tree->mFoundObjects, value );
 	}
 }
 
@@ -359,7 +359,7 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 
 - (void)			operateOnLeaf:(id) leaf
 {
-	// <leaf> is a pointer to the [[NSMutableArray]] at the leaf
+	// <leaf> is a pointer to the General/NSMutableArray at the leaf
 	
 	switch( mOp )
 	{
@@ -374,9 +374,9 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 		case kOperationAccumulate:
 		{
 #if USE_CF_APPLIER
-			[[CFArrayApplyFunction]](([[CFArrayRef]]) leaf, [[CFRangeMake]]( 0, [leaf count]), addValueToFoundObjects, self );
+			General/CFArrayApplyFunction((General/CFArrayRef) leaf, General/CFRangeMake( 0, [leaf count]), addValueToFoundObjects, self );
 #else			
-			[[NSEnumerator]]'' iter = [leaf objectEnumerator];
+			General/NSEnumerator* iter = [leaf objectEnumerator];
 			id anObject;
 			
 			while(( anObject = [iter nextObject]))
@@ -397,12 +397,12 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 }
 
 
-- (void)			insertItem:(id<[[DKStorableObject]]>) obj withRect:([[NSRect]]) rect
+- (void)			insertItem:(id<General/DKStorableObject>) obj withRect:(General/NSRect) rect
 {
     if ([mNodes count] == 0)
         return;
 	
-	if( obj && ![[NSIsEmptyRect]]( rect ))
+	if( obj && !General/NSIsEmptyRect( rect ))
 	{
 		mOp = kDKOperationInsert;
 		mObj = obj;
@@ -411,16 +411,16 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 		++mObjectCount;
 	}
 	
-	//[[NSLog]](@"inserted obj = %@, bounds = %@", obj, [[NSStringFromRect]]( rect ));
+	//General/NSLog(@"inserted obj = %@, bounds = %@", obj, General/NSStringFromRect( rect ));
 }
 
 
-- (void)			removeItem:(id<[[DKStorableObject]]>) obj withRect:([[NSRect]]) rect
+- (void)			removeItem:(id<General/DKStorableObject>) obj withRect:(General/NSRect) rect
 {
     if ([mNodes count] == 0)
         return;
 	
-	if( obj && ![[NSIsEmptyRect]]( rect ))
+	if( obj && !General/NSIsEmptyRect( rect ))
 	{
 		[obj setMarked:NO];
 		mOp = kOperationDelete;
@@ -435,8 +435,8 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 
 - (void)			removeAllObjects
 {
-	[[NSEnumerator]]'' iter = [mLeaves objectEnumerator];
-	[[NSMutableArray]]''	leaf;
+	General/NSEnumerator* iter = [mLeaves objectEnumerator];
+	General/NSMutableArray*	leaf;
 	
 	while(( leaf = [iter nextObject]))
 		[leaf removeAllObjects];
@@ -445,9 +445,9 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 }
 
 
-- ([[NSMutableArray]]'')	objectsIntersectingRects:(const [[NSRect]]'') rects count:(unsigned) count
+- (General/NSMutableArray*)	objectsIntersectingRects:(const General/NSRect*) rects count:(unsigned) count
 {
-	// this may be used in conjunction with [[NSView]]'s -getRectsBeingDrawn:count: to find those objects that intersect the non-rectangular update region.
+	// this may be used in conjunction with General/NSView's -getRectsBeingDrawn:count: to find those objects that intersect the non-rectangular update region.
 	
     if ([mNodes count] == 0)
         return nil;
@@ -464,7 +464,7 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 }
 
 
-- ([[NSMutableArray]]'')	objectsIntersectingRect:([[NSRect]]) rect
+- (General/NSMutableArray*)	objectsIntersectingRect:(General/NSRect) rect
 {
     if ([mNodes count] == 0)
         return nil;
@@ -477,7 +477,7 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 }
 
 
-- ([[NSMutableArray]]'')	objectsIntersectingPoint:([[NSPoint]]) point
+- (General/NSMutableArray*)	objectsIntersectingPoint:(General/NSPoint) point
 {
     if ([mNodes count] == 0)
         return nil;
@@ -506,27 +506,27 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 }
 
 
-- ([[NSString]]'')		description
+- (General/NSString*)		description
 {
 	// warning: description string can be very large, as it enumerates the leaves
 	
-	return [[[NSString]] stringWithFormat:@"<%@ %p>, %d leaves = %@", [[NSStringFromClass]]([self class]), self, [self countOfLeaves], mLeaves];
+	return General/[NSString stringWithFormat:@"<%@ %p>, %d leaves = %@", General/NSStringFromClass([self class]), self, [self countOfLeaves], mLeaves];
 }
 
 
 #pragma mark -
 
 
-@implementation [[BSPNode]]
+@implementation General/BSPNode
 
-- (void)			setType:([[LeafType]]) aType
+- (void)			setType:(General/LeafType) aType
 {
 	mType = aType;
 }
 
 
 
-- ([[LeafType]])		type
+- (General/LeafType)		type
 {
 	return mType;
 }
@@ -563,4 +563,3 @@ static void			addValueToFoundObjects( const void'' value, void'' context )
 
 @end
 
-</code>

@@ -8,7 +8,7 @@ Like most programmers, I've learned a lot of languages over the years, but I fou
 
 Because of my prediliction for C, though, I never did really get into GUI programming. I did a few small projects with Python and TK, but other than that my GUI programming experience was limited to a few experiments with Java/AWT, C/Xt, and C/GTK+. As of the end of 2001, if you'd have asked me if I'd ever be comfortable with programming GUI apps, I would have said, "No."
 
-Then Mac OS X came to my attention.  It's Mac, so it's easy to use. And it's UNIX, so it's powerful and stable.  Being tired of fussing with Linux and [[FreeBSD]] (and long ago having given up on Microsoft), I decided to make the jump.  I figured I'd be able to just pick up on the same type of progamming I'd been doing all along (C, Python, Perl, etc.).  At worst, I knew I could give Java GUI programming another try, since it's built in to Mac OS X.
+Then Mac OS X came to my attention.  It's Mac, so it's easy to use. And it's UNIX, so it's powerful and stable.  Being tired of fussing with Linux and General/FreeBSD (and long ago having given up on Microsoft), I decided to make the jump.  I figured I'd be able to just pick up on the same type of progamming I'd been doing all along (C, Python, Perl, etc.).  At worst, I knew I could give Java GUI programming another try, since it's built in to Mac OS X.
 
 Little did I know...
 
@@ -16,6 +16,6 @@ After doing some research, I decided to try programming in the Mac's native lang
 
 And, you know why?  It's mostly because Objective-C is just C with a few extensions. It's an absolutely fantastic language as far as I'm concerned. I get all my C goodness with some great object orientivity as well. It's sort of like Mac OS X itself: Apple ease of use with the power and stability of UNIX. With Mac and Objective-C/Cocoa, I got the best of all worlds.
 
-I'm continuing to learn to program in Objective-C using the Cocoa [[APIs]], and I'm having fun in the process.
+I'm continuing to learn to program in Objective-C using the Cocoa General/APIs, and I'm having fun in the process.
 
 I hope you're doing the same! :)

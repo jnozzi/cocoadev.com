@@ -1,4 +1,4 @@
-'''Object Design:''' ''Collections''
+**Object Design:** *Collections*
 
 ----
 

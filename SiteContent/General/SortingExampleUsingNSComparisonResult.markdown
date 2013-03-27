@@ -1,57 +1,57 @@
-Here is a simple example of sorting an array using NSC''''omparisonResult in the context of displaying it in an [[NSTableView]]:
+Here is a simple example of sorting an array using NSC**'omparisonResult in the context of displaying it in an General/NSTableView:
 
-This sorts a list of student grades by either name or by their grade percentages.  We assume you are familiar with actually creating, displaying and updating a [[NSTableView]] object through its [[NSMutableArray]] contents.  Assume that your [[NSTableView]] is fed by a [[NSMutableArray]] containing Student objects and you want to sort them by either grade or name.
+This sorts a list of student grades by either name or by their grade percentages.  We assume you are familiar with actually creating, displaying and updating a General/NSTableView object through its General/NSMutableArray contents.  Assume that your General/NSTableView is fed by a General/NSMutableArray containing Student objects and you want to sort them by either grade or name.
 
 Here is a piece of the interface code:
 
-<code>
-@interface Student : [[NSObject]]
+    
+@interface Student : General/NSObject
 {
-	[[NSString]]	''lastName;
-	[[NSString]]	''firstName;
+	General/NSString	*lastName;
+	General/NSString	*firstName;
 	float		result;
-	[[NSString]]	''grade;
+	General/NSString	*grade;
 }
 
-/'' definitions and other methods for Student objects would be here... ''/
+/* definitions and other methods for Student objects would be here... */
 
 // Comparator functions for sorting
-- ([[NSComparisonResult]])compareNames:(Student '')anotherStudent;
-- ([[NSComparisonResult]])compareResults:(Student '')anotherStudent;
-</code>
+- (General/NSComparisonResult)compareNames:(Student *)anotherStudent;
+- (General/NSComparisonResult)compareResults:(Student *)anotherStudent;
+
 
 We define two methods (compareNames: & compareResults:) whose sole responsibility is to compare one student object (self) to another student object (anotherStudent).  The implementation for these two methods looks like this:
 
-<code>
+    
 @implementation Student
-/'' Other methods implementations here... ''/
+/* Other methods implementations here... */
 
 // Comparison routines
-- ([[NSComparisonResult]])compareNames:(Student '')anotherStudent
+- (General/NSComparisonResult)compareNames:(Student *)anotherStudent
 {
 	return [lastName caseInsensitiveCompare:[anotherStudent lastName]];
 }
 
-- ([[NSComparisonResult]])compareResults:(Student '')anotherStudent
+- (General/NSComparisonResult)compareResults:(Student *)anotherStudent
 {
 	if (result < [anotherStudent result])
-		return [[NSOrderedAscending]];
+		return General/NSOrderedAscending;
 	else if (result > [anotherStudent result])
-		return [[NSOrderedDescending]];
+		return General/NSOrderedDescending;
 	else
-		return [[NSOrderedSame]];
+		return General/NSOrderedSame;
 }
-</code>
 
-compareNames: from above compares two [[NSString]] objects and returns the result of the compare.  compareResults: compares two float objects the same way.  So how do I sort the entire array in Cocoa?  It can actually be done in a single line of code (actually one for each column) and is shown below:
 
-<code>
+compareNames: from above compares two General/NSString objects and returns the result of the compare.  compareResults: compares two float objects the same way.  So how do I sort the entire array in Cocoa?  It can actually be done in a single line of code (actually one for each column) and is shown below:
+
+    
 	if ([sortByName intValue] == 1)
 		sortedArray = [students sortedArrayUsingSelector:@selector(compareNames:)];
 	else
 		sortedArray = [students sortedArrayUsingSelector:@selector(compareResults:)];
-</code>
 
-"students" is an [[NSMutableArray]] object containing a bunch of (Student) objects.  "sortedArray" is an [[NSArray]] or an [[NSMutableArray]] object containing the same objects as students but sorted in the order you want.  You can now either use sortedArray in your table view or just assign it back to the students if you choose. Then send a "reloadData" to your [[NSTableView]] object.  That is all there is to it.
 
---[[JohnathanSteere]]
+"students" is an General/NSMutableArray object containing a bunch of (Student) objects.  "sortedArray" is an General/NSArray or an General/NSMutableArray object containing the same objects as students but sorted in the order you want.  You can now either use sortedArray in your table view or just assign it back to the students if you choose. Then send a "reloadData" to your General/NSTableView object.  That is all there is to it.
+
+--General/JohnathanSteere

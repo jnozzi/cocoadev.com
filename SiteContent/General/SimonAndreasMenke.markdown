@@ -1,6 +1,6 @@
 
 
-hi, I'm [[SimonAndreasMenke]] (aka SAM aka luinithil) i've made my first [[FileMakerPro]] 'application' when i was 6 years old on a very old (still working) SE. after that i made some levels (in [[ClarisWorks]]) for a game called 'Avara', after that i started with [[RealBasic]] (i was 12 at that time, [[RealBasic]] is sooo easy but sooo slow). and now I'm writing cocoa applications that communicate with web-sites using SOAP, XML-RPC and AMF(Flash-Remoting). Currently I'm working on a PHP Framework for easy XML-RPC, SOAP service administration...
+hi, I'm General/SimonAndreasMenke (aka SAM aka luinithil) i've made my first General/FileMakerPro 'application' when i was 6 years old on a very old (still working) SE. after that i made some levels (in General/ClarisWorks) for a game called 'Avara', after that i started with General/RealBasic (i was 12 at that time, General/RealBasic is sooo easy but sooo slow). and now I'm writing cocoa applications that communicate with web-sites using SOAP, XML-RPC and AMF(Flash-Remoting). Currently I'm working on a PHP Framework for easy XML-RPC, SOAP service administration...
 
 luinithil
 

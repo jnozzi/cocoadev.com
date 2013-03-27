@@ -10,27 +10,27 @@ The desired effect is that it would push the text on the right over... but it do
 
 My Code:
 
-<code>I can't post this code because of wiki spam protection. http://catsdorule.torpedobird.com/tmp/code
-</code>
+    I can't post this code because of wiki spam protection. http://catsdorule.torpedobird.com/tmp/code
 
-<code>- ([[NSDictionary]] '')ingredientAttributes
+
+    - (General/NSDictionary *)ingredientAttributes
 {
-	[[NSMutableParagraphStyle]] '' paraStyle = [[TRNewMutableParagraphStyle]]();
+	General/NSMutableParagraphStyle * paraStyle = General/TRNewMutableParagraphStyle();
 	
-	[[NSTextTab]] '' rightTabStop = [[[[[NSTextTab]] alloc] initWithType:[[NSRightTabStopType]] location:80] autorelease];
-	[[NSTextTab]] '' leftTabStop = [[[[[NSTextTab]] alloc] initWithType:[[NSLeftTabStopType]] location:85] autorelease];
+	General/NSTextTab * rightTabStop = General/[[[NSTextTab alloc] initWithType:General/NSRightTabStopType location:80] autorelease];
+	General/NSTextTab * leftTabStop = General/[[[NSTextTab alloc] initWithType:General/NSLeftTabStopType location:85] autorelease];
 	
-	[paraStyle setTabStops:[[[NSArray]] arrayWithObjects:rightTabStop, leftTabStop, nil]];
+	[paraStyle setTabStops:General/[NSArray arrayWithObjects:rightTabStop, leftTabStop, nil]];
 	[paraStyle setHeadIndent:85];
-	[paraStyle setAlignment:[[NSJustifiedTextAlignment]]];
-	//[paraStyle setLineBreakMode:[[NSLineBreakByTruncatingTail]]];
+	[paraStyle setAlignment:General/NSJustifiedTextAlignment];
+	//[paraStyle setLineBreakMode:General/NSLineBreakByTruncatingTail];
 	
-	return [[[NSDictionary]] dictionaryWithObjectsAndKeys:
-		paraStyle,[[NSParagraphStyleAttributeName]],
+	return General/[NSDictionary dictionaryWithObjectsAndKeys:
+		paraStyle,General/NSParagraphStyleAttributeName,
 		@"",kTRIngredientAttributeName,
 		nil];
 }
-</code>
+
 
 Does anyone know how to fix this?
 

@@ -4,41 +4,41 @@ Does anybody know if this glyph has a legal unicode mapping?
 
 ----
 
-That glyph is for the Help key. [[NSEvent]].h defines it as U+F746, which is in Unicode's Private Use Area. -- [[DustinVoss]]
+That glyph is for the Help key. General/NSEvent.h defines it as U+F746, which is in Unicode's Private Use Area. -- General/DustinVoss
 
 ----
 
 I'm not sure if there's a single composed Unicode character representing this glyph, but one mapping that works is the following decomposed two-character sequence:
-<code>
+    
   0x003F   QUESTION MARK
   0x20DD   COMBINING ENCLOSING CIRCLE
-</code>
+
 
 You can get this glyph in a form that you can copy-and-paste using the following. This just prints out the Unicode dual-byte-ordering hint (0xFEFF) followed by the two characters, all using their octal equivalents. The glyph draws in most fonts, although the rendering in every font seems to be identical which makes me think that it's using a default glyph.
-<code>
+    
 printf "\376\377\000\077\040\335\000\n" > /tmp/qmic.txt
 open -e /tmp/qmic.txt
-</code>
 
---[[DrewThaler]]
+
+--General/DrewThaler
 
 ----
 
 Thanks, this works! except that the glyph has like a space in front of it or similar, and I get the following from the console:
-<code>
+    
 Font GB18030Bitmap: in _readBasicMetricsForSize, claims 0 max advance but is fixed-pitch.
 Font Screen-GB18030Bitmap: in _readBasicMetricsForSize, claims 0 max advance but is fixed-pitch.
-</code>
 
-This is how I create the string (which I use for a button title, using setTitle: on [[NSButton]]):
-<code>
+
+This is how I create the string (which I use for a button title, using setTitle: on General/NSButton):
+    
 unichar chars[] = { 0xFEFF, '?', 0x20DD };
-[[NSString]] ''str = [[[NSString]] stringWithCharacters:str length:sizeof(chars)/sizeof(chars[0])];
-</code>
+General/NSString *str = General/[NSString stringWithCharacters:str length:sizeof(chars)/sizeof(chars[0])];
+
 
 ----
 
-You shouldn't need the byte-order metacharacter in an [[NSString]]; all the unicode characters in an [[NSString]] are implicitly in native byte order. The 0xFEFF was simply to make sure [[TextEdit]] recognized the .txt file as unicode. Try it without the 0xFEFF.
+You shouldn't need the byte-order metacharacter in an General/NSString; all the unicode characters in an General/NSString are implicitly in native byte order. The 0xFEFF was simply to make sure General/TextEdit recognized the .txt file as unicode. Try it without the 0xFEFF.
 
 ----
 

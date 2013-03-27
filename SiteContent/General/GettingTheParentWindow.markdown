@@ -7,23 +7,23 @@ How do I get the parent window (Window A) from some function inside Window B, i.
 
 /Mads
 ----
-Well you could have them connected via IB or otherwise ie subclass [[NSWindow]] and use a custum show method that would take the calling window as a argument and store it like this:
-<code>
+Well you could have them connected via IB or otherwise ie subclass General/NSWindow and use a custum show method that would take the calling window as a argument and store it like this:
+    
 #import <Cocoa/Cocoa.h>
 
-@interface [[CustomWindow]] : [[NSWindow]]
+@interface General/CustomWindow : General/NSWindow
 {
-   [[NSWindow]] ''callingWindow;
+   General/NSWindow *callingWindow;
 }
--([[IBAction]])showWindowAndStoreParent:(id)sender;
+-(General/IBAction)showWindowAndStoreParent:(id)sender;
 @end
 
 
-#import "[[CustomWindow]].h"
+#import "General/CustomWindow.h"
 
-@implementation [[CustomWindow]]
+@implementation General/CustomWindow
 
--([[IBAction]])showWindowAndStoreParent:(id)sender
+-(General/IBAction)showWindowAndStoreParent:(id)sender
 {
    [self makeKeyAndOrderFront:sender];
 
@@ -32,15 +32,15 @@ Well you could have them connected via IB or otherwise ie subclass [[NSWindow]] 
    callingWindow = [sender retain];
 }
 @end
-</code>
+
 
 
 You could also ask the app's window controller for an array of windows and look for it. 
 
 It is also possible that your program would benifit from the child/parent approach. Look into that first.
 
-[[GormanChristian]]
+General/GormanChristian
 
 ----
 
-that should actually be [[sender window] retain], if the action is being called by a button. ''--boredzo''
+that should actually be [[sender window] retain], if the action is being called by a button. *--boredzo*

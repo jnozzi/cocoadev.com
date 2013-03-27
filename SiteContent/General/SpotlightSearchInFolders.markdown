@@ -6,14 +6,14 @@ Is there a way to make Spotlight return just those in the directories directly o
 
 -> You're searching for "Search Scope".
 
-[[NSMetadataQuery]] (http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSMetadataQuery]].html)
--(void)setSearchScopes:([[NSArray]] '')scopes
+General/NSMetadataQuery (http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSMetadataQuery.html)
+-(void)setSearchScopes:(General/NSArray *)scopes
 
 <br>
 
 inside of a "saved search" the XML for this looks like
       in search criteria - 
-<key>[[FXScopeArrayOfPaths]]</key>
+<key>General/FXScopeArrayOfPaths</key>
 		<array>
 			<string>/Users/(name)/(folder)</string>
 		</array>

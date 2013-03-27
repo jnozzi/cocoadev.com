@@ -7,6 +7,6 @@ oddy
 
 ----
 
-There is no public API with which to do this. You may want to check out the much-debated [[ApplicationEnhancer]] for a hackish work-around.
+There is no public API with which to do this. You may want to check out the much-debated General/ApplicationEnhancer for a hackish work-around.
 
-''You can also check out [[MikeSolomon]]'s SIMBL.''
+*You can also check out General/MikeSolomon's SIMBL.*

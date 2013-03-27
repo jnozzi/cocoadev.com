@@ -1,76 +1,76 @@
 
 
-Part of the iPhone [[UIKit]] framework. Subclass of [[UIScroller]].
+Part of the iPhone General/UIKit framework. Subclass of General/UIScroller.
 
-See also: [[UIPreferencesTable]] and [[UISectionList]].
+See also: General/UIPreferencesTable and General/UISectionList.
 
-'''Methods'''
+**Methods**
 
-%%BEGINCODESTYLE%%- (id)initWithFrame:([[CGRect]])frame;%%ENDCODESTYLE%%
+<code>- (id)initWithFrame:(General/CGRect)frame;</code>
 
-%%BEGINCODESTYLE%%- (void)addTableColumn:([[UITableColumn]]'')column;%%ENDCODESTYLE%%
+<code>- (void)addTableColumn:(General/UITableColumn*)column;</code>
 
-%%BEGINCODESTYLE%%- (void)setDataSource:(id)dataSource;%%ENDCODESTYLE%%
+<code>- (void)setDataSource:(id)dataSource;</code>
 
-%%BEGINCODESTYLE%%- (void)setDelegate:(id)delegate;%%ENDCODESTYLE%%
+<code>- (void)setDelegate:(id)delegate;</code>
 
-%%BEGINCODESTYLE%%- (void)setSeparatorStyle:(int)style%%ENDCODESTYLE%%
+<code>- (void)setSeparatorStyle:(int)style</code>
 
-[[SeparatorStyles]] are: 1 for a 1px grey line, 2 for a 2px grey line, 3 (default) for no separator lines.
+General/SeparatorStyles are: 1 for a 1px grey line, 2 for a 2px grey line, 3 (default) for no separator lines.
 
-%%BEGINCODESTYLE%%- (void)reloadData;%%ENDCODESTYLE%%
+<code>- (void)reloadData;</code>
 
 you can deselect the select row by calling the following at the end of the tableRowSelected callback:
 
-	%%BEGINCODESTYLE%%[[[notification object]cellAtRow:[[notification object]selectedRow]column:0] setSelected:FALSE withFade:TRUE];%%ENDCODESTYLE%%
+	<code>General/[notification object]cellAtRow:[[notification object]selectedRow]column:0] setSelected:FALSE withFade:TRUE];</code>
 
-[[EcumeDesJours]]
+[[EcumeDesJours
 
-Unlike in [[AppKit]], you must call reloadData for the table rows to appear.
+Unlike in General/AppKit, you must call reloadData for the table rows to appear.
 
 ----
 
-'''
+**
 Data source methods
-'''
+**
 
-%%BEGINCODESTYLE%%- (int)numberOfRowsInTable:([[UITable]]'')table;%%ENDCODESTYLE%%
+<code>- (int)numberOfRowsInTable:(General/UITable*)table;</code>
 
-%%BEGINCODESTYLE%%- ([[UITableCell]]'')table:([[UITable]]'')table cellForRow:(int)row column:([[UITableColumn]] '')column;%%ENDCODESTYLE%%
+<code>- (General/UITableCell*)table:(General/UITable*)table cellForRow:(int)row column:(General/UITableColumn *)column;</code>
 
-%%BEGINCODESTYLE%%- ([[UITableCell]]'')table:([[UITable]]'')table cellForRow:(int)row column:([[UITableColumn]] '')column reusing:(BOOL)flag;%%ENDCODESTYLE%%
+<code>- (General/UITableCell*)table:(General/UITable*)table cellForRow:(int)row column:(General/UITableColumn *)column reusing:(BOOL)flag;</code>
 
 ----
 
-'''
+**
 Delegate methods
-'''
+**
 
-%%BEGINCODESTYLE%%- (BOOL)table:([[UITable]] '')table showDisclosureForRow:(int)row %%ENDCODESTYLE%%
+<code>- (BOOL)table:(General/UITable *)table showDisclosureForRow:(int)row </code>
 
 Returns YES if a row shows the disclosure arrow, NO if not.
 
-%%BEGINCODESTYLE%%- (BOOL)table:([[UITable]] '')table disclosureClickableForRow:(int)row %%ENDCODESTYLE%%
+<code>- (BOOL)table:(General/UITable *)table disclosureClickableForRow:(int)row </code>
 
 If YES, table row will be selected if user clicks on disclosure arrow. If NO, selection won't change ("dead spot" on arrow). If not implemented, defaults to YES.
 
-%%BEGINCODESTYLE%%- (BOOL)table:([[UITable]]'')table canSelectRow:(int)row;%%ENDCODESTYLE%%
+<code>- (BOOL)table:(General/UITable*)table canSelectRow:(int)row;</code>
 
 Return value indicates whether the row can be selected. Defaults to YES.
 
-%%BEGINCODESTYLE%%- (void)tableRowSelected:([[NSNotification]]'')notification;%%ENDCODESTYLE%%
+<code>- (void)tableRowSelected:(General/NSNotification*)notification;</code>
 
-A [[UITableSelectionNotification]] notification. The notification's object is the [[UITable]]. Called when a row is clicked, even if it was already selected.
+A General/UITableSelectionNotification notification. The notification's object is the General/UITable. Called when a row is clicked, even if it was already selected.
 
-%%BEGINCODESTYLE%%- (void)tableSelectionDidChange:([[NSNotification]]'')notification;%%ENDCODESTYLE%%
+<code>- (void)tableSelectionDidChange:(General/NSNotification*)notification;</code>
 
-A [[UITableSelectionDidChangeNotification]] notification. The notification's object is the [[UITable]].
+A General/UITableSelectionDidChangeNotification notification. The notification's object is the General/UITable.
 
 ----
 
-'''
+**
 Misc. delegate methods
-'''
+**
 
 
 *scrollerDidScroll:
@@ -88,4 +88,4 @@ Misc. delegate methods
 
 ----
 
-(moved [[UISectionList]] sample code to a new [[UISectionList]] page..)
+(moved General/UISectionList sample code to a new General/UISectionList page..)

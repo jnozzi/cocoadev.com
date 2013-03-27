@@ -1,6 +1,6 @@
-I have created an [[NSTextFieldSubclass]] that I'm using to draw what is essential a bar graph representation of the cell's value in a table view. It works great - except for the row that is highlighted. If the row is highlighted, my bar graph completely dissapears.
+I have created an General/NSTextFieldSubclass that I'm using to draw what is essential a bar graph representation of the cell's value in a table view. It works great - except for the row that is highlighted. If the row is highlighted, my bar graph completely dissapears.
 
-Overriding ([[NSColor]] '')highlightColorWithFrame:([[NSRect]])cellFrame inView:([[NSView]] '')controlView produces some interesting results, but nothing usable.
+Overriding (General/NSColor *)highlightColorWithFrame:(General/NSRect)cellFrame inView:(General/NSView *)controlView produces some interesting results, but nothing usable.
 
 Has anyone encountered this before?
 
@@ -15,21 +15,21 @@ It is a fairly simple cell that takes the object value and uses that to calculat
 
 If I only override drawInteriorWithFrame, it works great as long as the row isn't selected. This is what I'm using to draw the cell:
 
-<code>
+    
 
-@implementation [[BarGraphCell]]
+@implementation General/BarGraphCell
 
-- (void) drawInteriorWithFrame: ([[NSRect]])inFrame inView: ([[NSView]]'')inView
+- (void) drawInteriorWithFrame: (General/NSRect)inFrame inView: (General/NSView*)inView
 {
-	[[NSRect]] theRect = [[NSMakeRect]](inFrame.origin.x,inFrame.origin.y,inFrame.size.width,inFrame.size.height);
-	theRect.size.width = theRect.size.width''([[self objectValue] floatValue]);
+	General/NSRect theRect = General/NSMakeRect(inFrame.origin.x,inFrame.origin.y,inFrame.size.width,inFrame.size.height);
+	theRect.size.width = theRect.size.width*(General/self objectValue] floatValue]);
 	//theRect.size.height = 10;
-	[[NSRectFill]](theRect);
-	[[[NSBezierPath]] strokeRect:theRect];
+	[[NSRectFill(theRect);
+	General/[NSBezierPath strokeRect:theRect];
 	
 }
 
-</code>
+
 
 I'll be reading up on copyWithZone today to see if that solves my problem. For some reason though, I had thought that I didn't need to implement in this case. I'm sure I am wrong!
 
@@ -41,15 +41,15 @@ If you don't have any ivars, you don't have to implement copyWithZone:.
 
 You aren't setting a color before you draw.  I'm guessing you wanted black, since that's probably what you (happened) to get in the usual case.  A few other minor bits you might want to be aware of inline:
 
-<code>
-- (void) drawInteriorWithFrame: ([[NSRect]])inFrame inView: ([[NSView]]'')inView
+    
+- (void) drawInteriorWithFrame: (General/NSRect)inFrame inView: (General/NSView*)inView
 {
-	[[NSRect]] theRect = inFrame;  // no need to call [[NSMakeRect]]
-	theRect.size.width ''= [self floatValue]; // [[NSCell]] has a floatValue method
-	[[[[NSColor]] blackColor] set]; // this is probably the important one
-	[[NSRectFill]](theRect); // stroke is probably not going to make it look better.  will probably fuzz the edges with the rect you used.
+	General/NSRect theRect = inFrame;  // no need to call General/NSMakeRect
+	theRect.size.width *= [self floatValue]; // General/NSCell has a floatValue method
+	General/[[NSColor blackColor] set]; // this is probably the important one
+	General/NSRectFill(theRect); // stroke is probably not going to make it look better.  will probably fuzz the edges with the rect you used.
 }
-</code>
+
 
 ----
 

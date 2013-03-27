@@ -1,23 +1,23 @@
 In my program that I'm working on, I have an outline view that has an endless number of folders and items in it.  My problem comes when a child of a folder is selected...  I need to be able to find out what child has been selected, and I don't know how.  I've been messing with this for a few months now and just recently found this:
 
-<code>
-- (BOOL)selectionShouldChangeInOutlineView:([[NSOutlineView]] '')outlineView
+    
+- (BOOL)selectionShouldChangeInOutlineView:(General/NSOutlineView *)outlineView
 {
-    [[NSArray]] ''selectedNodes = [self selectedNodes];
-    [[NSData]] ''data = [textField [[RTFDFromRange]]:[[NSMakeRange]](0, [[textField string] length])];
-    [[NSMutableDictionary]] ''d = [[[NSMutableDictionary]] dictionaryWithDictionary:[selectedNodes objectAtIndex:0]];
+    General/NSArray *selectedNodes = [self selectedNodes];
+    General/NSData *data = [textField General/RTFDFromRange:General/NSMakeRange(0, General/textField string] length])];
+    [[NSMutableDictionary *d = General/[NSMutableDictionary dictionaryWithDictionary:[selectedNodes objectAtIndex:0]];
     [d setObject:data forKey:@"Notes"];
-    [[NSLog]](@"...selectionShouldChangeInOutlineView");
+    General/NSLog(@"...selectionShouldChangeInOutlineView");
 }
-</code>
 
-That's all great, I can finally find out what the old item in an [[OutlineView]] was before changing, but I can't do anything with it because I have no idea what the child was that was selected.  See the third line of code:
 
-<code>
-    [[NSMutableDictionary]] ''d = [[[NSMutableDictionary]] dictionaryWithDictionary:[selectedNodes objectAtIndex:0]];
-</code>
+That's all great, I can finally find out what the old item in an General/OutlineView was before changing, but I can't do anything with it because I have no idea what the child was that was selected.  See the third line of code:
 
-At the very end is a zero.  From what I can tell, it's supposed to be a variable that represents the selected child inside a parent node.  Maybe I'm misunderstanding this, but what I'm trying to do isn't working.  I'm thinking it's just this.  I'm hoping someone has an answer or can point me in the right direction.  Apple's [[DragAndDropOutlineView]] does what I need, but it is very confusing.  The lack of commenting it makes it pretty hard to read.
+    
+    General/NSMutableDictionary *d = General/[NSMutableDictionary dictionaryWithDictionary:[selectedNodes objectAtIndex:0]];
+
+
+At the very end is a zero.  From what I can tell, it's supposed to be a variable that represents the selected child inside a parent node.  Maybe I'm misunderstanding this, but what I'm trying to do isn't working.  I'm thinking it's just this.  I'm hoping someone has an answer or can point me in the right direction.  Apple's General/DragAndDropOutlineView does what I need, but it is very confusing.  The lack of commenting it makes it pretty hard to read.
 
 Thanks in advance,
  - Daniel Howard | ideaSpiral | DVD Rack
@@ -26,21 +26,21 @@ Thanks in advance,
 
 I'm new to Cocoa so not sure if I understand correctly your question, but for the same sort of problem I've been using this
 
-<code>
+    
 
 - (id)selectedItem {
  return [anOutlineView itemAtRow: [anOutlineView selectedRow]]; }
 
-</code>
 
-where anOutlineView is the identifier of the [[IBOutlet]] to your [[NSOutlineView]].  This returns the currently selected item. The following returns a multiple selection:
 
-<code>
+where anOutlineView is the identifier of the General/IBOutlet to your General/NSOutlineView.  This returns the currently selected item. The following returns a multiple selection:
 
-- ([[NSArray]]'')allSelectedItems {
-    [[NSMutableArray]] ''items = [[[NSMutableArray]] array];
-    [[NSEnumerator]] ''selectedRows = [anOutlineView selectedRowEnumerator];
-    [[NSNumber]] ''selRow = nil;
+    
+
+- (General/NSArray*)allSelectedItems {
+    General/NSMutableArray *items = General/[NSMutableArray array];
+    General/NSEnumerator *selectedRows = [anOutlineView selectedRowEnumerator];
+    General/NSNumber *selRow = nil;
     while( (selRow = [selectedRows nextObject]) ) {
         if ([anOutlineView itemAtRow:[selRow intValue]]) 
             [items addObject: [listOfSpectra itemAtRow:[selRow intValue]]];
@@ -48,7 +48,7 @@ where anOutlineView is the identifier of the [[IBOutlet]] to your [[NSOutlineVie
     return items;
 }
 
-</code>
+
 
 I got these from a tutorial somewhere, or maybe from an Apple example- not sure where, so can't cite the source.
 

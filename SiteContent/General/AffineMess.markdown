@@ -1,15 +1,15 @@
 
 
 
-Questions about animating [[NSBezierPath]] through [[NSAffineTransform]] with [[NSTimer]]
+Questions about animating General/NSBezierPath through General/NSAffineTransform with General/NSTimer
 
-I am experimenting with [[NSAffineTransform]], specifically trying to rotate an [[NSBezierPath]] around its own center.
+I am experimenting with General/NSAffineTransform, specifically trying to rotate an General/NSBezierPath around its own center.
 
 What is necessary is to draw the object at the origin, do the rotation and translate it out to the desired position.
 
 Here is my custom view class.
 
-<code>
+    
  #import <AppKit/AppKit.h>
  
  @interface UFOView: NSView
@@ -24,9 +24,9 @@ Here is my custom view class.
  }
  
  @end
-</code>
 
-<code>
+
+    
  #import "UFOView.h"
  
  @implementation UFOView
@@ -98,20 +98,20 @@ Here is my custom view class.
  }
  
  @end
-</code>
+
 
 Great title to the page ... but are you asking a question? You might want to cache the path and only update it when the bounds change... likewise calculate and cache the local centre of the path to use in your transformation. Then it's just a matter of remembering what order to apply the translations ... 
 
 ----
 
 I am definitely asking questions, but they may need to go in a topic whose title focuses more on the problem - which now is the animation.
-I have it working now using an [[NSTimer]] to do the animation.
-Previous memory allocation problems that progressively slowed the animation were not detectable in [[ObjectAlloc]] because
-it was manufacturing [[NSPoint]] structs in the drawRect method. Fixed that!
+I have it working now using an General/NSTimer to do the animation.
+Previous memory allocation problems that progressively slowed the animation were not detectable in General/ObjectAlloc because
+it was manufacturing General/NSPoint structs in the drawRect method. Fixed that!
 I don't think the thing is leaking memory, now -- I have run it through Object Alloc. Do I need to explore multithreading now? (Yikes!)
 
 ----
-Manufacturing [[NSPoints]]? They're either statically or automatically allocated, so you won't be leaking memory unless you were allocating memory for them with something in the malloc(3) family. --[[BenStiglitz]]
+Manufacturing General/NSPoints? They're either statically or automatically allocated, so you won't be leaking memory unless you were allocating memory for them with something in the malloc(3) family. --General/BenStiglitz
 
 ----
 
@@ -122,12 +122,12 @@ a delegate method when the window resizes - I guess I could make my custom view 
 
 To put a humorous spin on it, this all feels a little like learning how to whistle... perhaps such learning is best done out of earshot of others?
 
-''Why? Anyone else with the same questions or going through the same process would find it immensely helpful. Whistle away! Just tape up all glass to keep the shards from scattering ...''
+*Why? Anyone else with the same questions or going through the same process would find it immensely helpful. Whistle away! Just tape up all glass to keep the shards from scattering ...*
 
 ----
 
-To be helpful I'll offer a robust and tidier (hopefully) solution -- [[RbrtPntn]]
-<code>
+To be helpful I'll offer a robust and tidier (hopefully) solution -- General/RbrtPntn
+    
  #import <Cocoa/Cocoa.h>
  @interface UFOView : NSView {
      float angle;
@@ -174,4 +174,3 @@ To be helpful I'll offer a robust and tidier (hopefully) solution -- [[RbrtPntn]
      [drawPath stroke];
  }
  @end
-</code>

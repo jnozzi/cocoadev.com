@@ -1,50 +1,50 @@
-Here is some code that removes white space from a string, like new lines, tabs, and double spaces (not single spaces). It's intended as to be used in an [[NSString]] category. Example could be [@"   h\nello\r" removeWhiteSpace] would return @"hello"
+Here is some code that removes white space from a string, like new lines, tabs, and double spaces (not single spaces). It's intended as to be used in an General/NSString category. Example could be [@"   h\nello\r" removeWhiteSpace] would return @"hello"
 
-Note: this is not to use as a trim function, for that use [[CFStringTrimWhitespace]] (([[CFMutableStringRef]]) yourStringHere);
+Note: this is not to use as a trim function, for that use General/CFStringTrimWhitespace ((General/CFMutableStringRef) yourStringHere);
 
-Enjoy!! --[[KevinWojniak]]
+Enjoy!! --General/KevinWojniak
 
-<code>- ([[NSString]] '')removeWhiteSpace
+    - (General/NSString *)removeWhiteSpace
 {
-    [[NSMutableString]] ''new = [[[NSMutableString]] string];
-    [[NSArray]] ''whites = [[[NSArray]] arrayWithObjects:@"\r", @"\n", @"  ", @"\t", nil];
-    [[NSEnumerator]] ''e = [whites objectEnumerator];
+    General/NSMutableString *new = General/[NSMutableString string];
+    General/NSArray *whites = General/[NSArray arrayWithObjects:@"\r", @"\n", @"  ", @"\t", nil];
+    General/NSEnumerator *e = [whites objectEnumerator];
     id item;
     
     [new setString:self];
 
     while (item = [e nextObject]) {
-        [[NSRange]] r = [new rangeOfString:item];
+        General/NSRange r = [new rangeOfString:item];
         
-        while (r.location != [[NSNotFound]]) {
-            [new replaceOccurrencesOfString:item withString:@"" options:nil range:[[NSMakeRange]](0, [new length])];
+        while (r.location != General/NSNotFound) {
+            [new replaceOccurrencesOfString:item withString:@"" options:nil range:General/NSMakeRange(0, [new length])];
             r = [new rangeOfString:item];
         }
     }
     
     return new;   
-}</code>
+}
 
 ----
 
-Sounds nifty.  Could be useful for someone trying to write an interpreter in Cocoa. --[[OwenAnderson]]
+Sounds nifty.  Could be useful for someone trying to write an interpreter in Cocoa. --General/OwenAnderson
 
 ----
-What you're doing is removing double spaces entirely - so if I wrote <code>"This is a  test."</code>  I'd get back <code>"This is atest."</code>
+What you're doing is removing double spaces entirely - so if I wrote     "This is a  test."  I'd get back     "This is atest."
 Since often when removing whitespace this isn't quite ideal, the following added in in place of the two-spacer works:
-<code>    
+        
 while([theString replaceOccurrencesOfString:@"  "
                                  withString:@" "
-                                 options:[[NSLiteralSearch]]
-                                 range:[[NSMakeRange]](0, [theString length])]);
-</code>
-This will reduce all blank space down to a single space, which is often more what is wanted.  Hope this helps --[[DanKeen]]
+                                 options:General/NSLiteralSearch
+                                 range:General/NSMakeRange(0, [theString length])]);
+
+This will reduce all blank space down to a single space, which is often more what is wanted.  Hope this helps --General/DanKeen
 
 ----
 
-Ah yes that was a ''bug'' - thanks for fixing it! --[[KevinWojniak]]
+Ah yes that was a *bug* - thanks for fixing it! --General/KevinWojniak
 
 ----
-Another option for a trimming function is [[NSString]]'s method stringByTrimmingCharactersInSet:  --[[SeanUnderwood]]
+Another option for a trimming function is General/NSString's method stringByTrimmingCharactersInSet:  --General/SeanUnderwood
 ----
-I'm pretty sure that stringByTrimmingCharactersInSet: is quite a bit slower than [[NSMutableString]]'s replace occurrences method.  Anyone know for sure?
+I'm pretty sure that stringByTrimmingCharactersInSet: is quite a bit slower than General/NSMutableString's replace occurrences method.  Anyone know for sure?

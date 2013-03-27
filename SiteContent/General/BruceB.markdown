@@ -1,6 +1,6 @@
 
 
-[[DeleteMe]]
+General/DeleteMe
 
 
-[[Category:DeleteMe]]
+General/Category:DeleteMe

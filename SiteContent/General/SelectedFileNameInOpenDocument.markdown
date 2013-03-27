@@ -1,11 +1,11 @@
-I am developing a document based cocoa application. I want to get the list of all the files selected from [[OpenPanel]]. Is there a way to get the list of files selected from the open panel.
+I am developing a document based cocoa application. I want to get the list of all the files selected from General/OpenPanel. Is there a way to get the list of files selected from the open panel.
 
 ----
 
-<code>
-[[NSOpenPanel]] ''op = [[[NSOpenPanel]] openPanel];
-if ([op runModal] == [[NSOKButton]])
-    [[NSLog]](@"%@", [op filenames]); // Note -([[NSArray]] '')filenames instead of -([[NSString]] '')filename
-</code>
+    
+General/NSOpenPanel *op = General/[NSOpenPanel openPanel];
+if ([op runModal] == General/NSOKButton)
+    General/NSLog(@"%@", [op filenames]); // Note -(General/NSArray *)filenames instead of -(General/NSString *)filename
+
 
 That should do it. -G

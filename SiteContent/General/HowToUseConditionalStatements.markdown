@@ -4,17 +4,17 @@ Here are some conditional statements that are used often in C and Objective-C
 ----
 The if conditional statement
 ----
-<code>
+    
 if (i<10)
 
 {
 
 }
-</code>
+
 ----
 The if-else conditional statement
 ----
-<code>
+    
 if (i<10)
 
 {
@@ -26,11 +26,11 @@ else
 {
 
 }
-</code>
+
 ----
 The switch conditional statement
 ----
-<code>
+    
 switch()
 
 {
@@ -48,6 +48,6 @@ switch()
                    break;
 
 }
-</code>
 
-Go back to [[HowToProgramInOSX]]
+
+Go back to General/HowToProgramInOSX

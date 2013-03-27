@@ -1,1 +1,1 @@
-The java version of the [[ObjectiveCee]] [[SeLector]].
+The java version of the General/ObjectiveCee General/SeLector.

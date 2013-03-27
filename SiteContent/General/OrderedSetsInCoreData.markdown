@@ -2,11 +2,11 @@
 
 Good morning everyone,
 
-I'm writing a [[CoreData]] app and am struggling to model an ordered to-many relationship. I can't find any docs detailing an appropraite solution. Any hints?
+I'm writing a General/CoreData app and am struggling to model an ordered to-many relationship. I can't find any docs detailing an appropraite solution. Any hints?
 
 Thanks.
 
-[[EliotSimcoe]]
+General/EliotSimcoe
 
 ----
 
@@ -22,23 +22,23 @@ I haven't personally read across anything in the docs myself.
 
 ----
 
-'''No, it's definite - there is no support for ordered anything in [[CoreData]]. The answer above is quite correct and complete. I have this working in my own app and it was fairly simple and straightforward.'''
+**No, it's definite - there is no support for ordered anything in General/CoreData. The answer above is quite correct and complete. I have this working in my own app and it was fairly simple and straightforward.**
 
 ----
 Or adding a next and previous property. That might perform better.
 
-''Known as a 'linked list' ... maybe someone can fill in a page for [[CoreDataLinkedLists]] or something similar.''
+*Known as a 'linked list' ... maybe someone can fill in a page for General/CoreDataLinkedLists or something similar.*
 
 ----
 Wouldn't a linked list require a lot of joins being fired to the underlying database?
 
-''Not sure what you mean, but re-indexing other instances because an instance near the 'top' of the list is moved would cause all of those instances to be faulted in (at least for a little while). There's really no way to avoid this, unless you create a separate entity for tracking index order. That same methodology could be applied to linked lists. In other words, create an entity called [[LinkedListJoin]] with relationships like "leftObject" and "rightObject". If the order of the linked objects are changed, all that gets faulted in is the [[LinkedListJoin]] objects. Now sorting by this would become a little more complicated .... :-)''
+*Not sure what you mean, but re-indexing other instances because an instance near the 'top' of the list is moved would cause all of those instances to be faulted in (at least for a little while). There's really no way to avoid this, unless you create a separate entity for tracking index order. That same methodology could be applied to linked lists. In other words, create an entity called General/LinkedListJoin with relationships like "leftObject" and "rightObject". If the order of the linked objects are changed, all that gets faulted in is the General/LinkedListJoin objects. Now sorting by this would become a little more complicated .... :-)*
 
 ----
-The advantage of a linked list is the constant time for insertion and removal, but getting the actual sorted array takes a lot of time because the faults for all the to-one relationships describing the linked list have to be fired. Batch-faulting could be a solution for this, but it is not yet reliable in [[CoreData]].
+The advantage of a linked list is the constant time for insertion and removal, but getting the actual sorted array takes a lot of time because the faults for all the to-one relationships describing the linked list have to be fired. Batch-faulting could be a solution for this, but it is not yet reliable in General/CoreData.
 A trick is to define your 'orderInList' as a floating point number. So you can easily provide constant insertion and removal.
 
-''Would you mind elaborating on this? This seems like a good idea.''
+*Would you mind elaborating on this? This seems like a good idea.*
 
 Sure. This is for sorting a to-many relationship. 
 

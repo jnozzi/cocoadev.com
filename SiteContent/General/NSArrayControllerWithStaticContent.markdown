@@ -1,40 +1,40 @@
-I've found that you sometimes need static content in an array controller, which doesn't seem possible without subclassing [[NSArrayController]].
+I've found that you sometimes need static content in an array controller, which doesn't seem possible without subclassing General/NSArrayController.
 
 An example of this is the "All Artists" entry at the top of the artist browse table in iTunes.
 
-To achieve this, define an [[NSArrayController]] subclass, e.g. [[JHStaticContentArrayController]]:
+To achieve this, define an General/NSArrayController subclass, e.g. General/JHStaticContentArrayController:
 
-<code>
-@interface [[JHStaticContentArrayController]] : [[NSArrayController]]
+    
+@interface General/JHStaticContentArrayController : General/NSArrayController
 {
-	[[NSArray]] ''staticContent;
+	General/NSArray *staticContent;
 }
 
-- ([[NSArray]] '')staticContent;
-- (void)setStaticContent:([[NSArray]] '')aStaticContent;
+- (General/NSArray *)staticContent;
+- (void)setStaticContent:(General/NSArray *)aStaticContent;
 
 @end
-</code>
+
 
 The setStaticContent: method obviously takes in an array of objects that you want added to the TOP (at least in this example) of the resulting content array. The magic happens in arrangeObjects:
 
-<code>
-- ([[NSArray]] '')arrangeObjects:([[NSArray]] '')objects
+    
+- (General/NSArray *)arrangeObjects:(General/NSArray *)objects
 {
 	// Do the normal arranging first
-	[[NSArray]] ''arrangedObjects = [super arrangeObjects:objects];
+	General/NSArray *arrangedObjects = [super arrangeObjects:objects];
 	
 	// If we don't have static content, proceed as normal
 	if (![self staticContent])
 		return arrangedObjects;
 	
 	// Otherwise add the static content to the start of the resulting array
-	[[NSMutableArray]] ''hybridArray = [[[[NSMutableArray]] alloc] init];
+	General/NSMutableArray *hybridArray = General/[[NSMutableArray alloc] init];
 	[hybridArray addObjectsFromArray:[self staticContent]];
 	[hybridArray addObjectsFromArray:arrangedObjects];
 	return [hybridArray autorelease];
 }
-</code>
+
 
 Some caveats:
 
@@ -42,4 +42,4 @@ Some caveats:
 * This implementation won't add the static content to anywhere but the start of the arrangedObjects array
 
 
--- [[JeremyHiggs]]
+-- General/JeremyHiggs

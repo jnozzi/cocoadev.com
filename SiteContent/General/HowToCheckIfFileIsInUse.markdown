@@ -8,11 +8,11 @@ Delete it using Carbon. Carbon doesn't let you delete files that are in use.
 
 ----
 
-Nor does Cocoa. If you look at the documentation for [[NSFileManager]], you'll see its delete method (the exact name escapes me at the moment) returns a BOOL indicating success or failure.
+Nor does Cocoa. If you look at the documentation for General/NSFileManager, you'll see its delete method (the exact name escapes me at the moment) returns a BOOL indicating success or failure.
 
 ----
 
-Huh? Just because it can fail doesn't mean it will fail in the specific case of deleting a file that's in use. The underlying UNIX system allows deletion of files that are still in use, and there is nothing in the [[NSFileManager]] docs to indicate that removeFileAtPath:handler: will fail in this case.
+Huh? Just because it can fail doesn't mean it will fail in the specific case of deleting a file that's in use. The underlying UNIX system allows deletion of files that are still in use, and there is nothing in the General/NSFileManager docs to indicate that removeFileAtPath:handler: will fail in this case.
 
 ----
 

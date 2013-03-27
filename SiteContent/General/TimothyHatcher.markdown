@@ -1,13 +1,13 @@
 
 
-'''Open Projects:'''
-Colloquy and [[ChatCore]]: http://colloquy.info
+**Open Projects:**
+Colloquy and General/ChatCore: http://colloquy.info
 
-'''Website:''' http://timothy.hatcher.name
+**Website:** http://timothy.hatcher.name
 
-'''Occupation:''' Graphic Designer (Web, Print, Interactive and Video)
+**Occupation:** Graphic Designer (Web, Print, Interactive and Video)
 
-'''Hobbies:''' Programming (Cocoa, Web)
+**Hobbies:** Programming (Cocoa, Web)
 
 ----
 

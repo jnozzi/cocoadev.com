@@ -2,33 +2,33 @@
 
 http://www.diggory.net/grazing/xgrid.jpg
 
-''Imagine waking up one day to find your Mac has solved a vexing scientific problem.''
+*Imagine waking up one day to find your Mac has solved a vexing scientific problem.*
 
 Xgrid is being developed by Apple to allow mac users to easily put together a cluster of mac for CPU-intensive calculations.
 
-'''Technology Preview 2 (TP2)'''
+**Technology Preview 2 (TP2)**
 
 At present, Xgrid is available as a "Technology Preview" (a fancy name for a beta version??).
-In this version, Xgrid plug-ins can be written using Cocoa and [[XCode]].
+In this version, Xgrid plug-ins can be written using Cocoa and General/XCode.
 
 
-'''Xgrid 1.0'''
+**Xgrid 1.0**
 
 Announced publicly by Steve Jobs at the WWDC keynote address, and on the apple mailing list:
 
-''
+*
 
 *The "GM" version, Xgrid 1.0, will be part of Tiger and Tiger Server (due first half of 2005)
 *We are describing a new Cocoa-based API at WWDC, but it is still under NDA
 *We are exploring the possibility of a Tech Preview 3 later this summer
 
-''
+*
 
 This means that one will be able to fully integrate the power of Xgrid in its application, through a new Cocoa framework.
 
 ----
 
-Pages of [[CocoaDev]] related to Xgrid: [Topic]
+Pages of General/CocoaDev related to Xgrid: [Topic]
 
 ----
 
@@ -72,4 +72,4 @@ http://www.mekentosj.com/xgrid
 
 *
 Xgrid Wiki 
-http://packmug.ncsu.edu/wolfgrid/[[XGridWiki]]/pmwiki/pmwiki.php
+http://packmug.ncsu.edu/wolfgrid/General/XGridWiki/pmwiki/pmwiki.php

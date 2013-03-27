@@ -4,4 +4,4 @@ In the latest available build of Panther (7B21), there is a horrendous bug that 
 
 ----
 
-I've noticed this... it seems 11pt and larger are OK, but 10pt and smaller are indeed affected. That's a good thing to know, because it doesn't seem to actually include Courier New. --[[AdamAtlas]]
+I've noticed this... it seems 11pt and larger are OK, but 10pt and smaller are indeed affected. That's a good thing to know, because it doesn't seem to actually include Courier New. --General/AdamAtlas

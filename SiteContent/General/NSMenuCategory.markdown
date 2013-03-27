@@ -1,19 +1,19 @@
 
 
-See also [[NSMenuItemCategory]]. -- [[DustinVoss]]
+See also General/NSMenuItemCategory. -- General/DustinVoss
 ----
-Header file for [[NSMenuCategory]]+[[CocoaDevUsersAdditions]]:
-<code>
+Header file for General/NSMenuCategory+General/CocoaDevUsersAdditions:
+    
  #import <AppKit/NSMenu.h>
  
  @interface NSMenu (CocoaDevUsersAdditions)
  - (NSMenuItem *)nestedItemWithTag:(int)aTag;
  - (void)setSelectedItem:(NSMenuItem *)aMenuItem;
  @end
-</code>
 
-Implementation file for [[NSMenuCategory]]+[[CocoaDevUsersAdditions]]:
-<code>
+
+Implementation file for General/NSMenuCategory+General/CocoaDevUsersAdditions:
+    
  #import "NSMenuCategory+CocoaDevUsersAdditions.h"
  
  @implementation NSMenu (CocoaDevUsersAdditions)
@@ -29,7 +29,7 @@ Implementation file for [[NSMenuCategory]]+[[CocoaDevUsersAdditions]]:
      item = [self itemAtIndex:i];
      if ([item hasSubmenu])
      {
-       found = [[item submenu] nestedItemWithTag:aTag];
+       found = General/item submenu] nestedItemWithTag:aTag];
        if (found != nil)	break;
      }
      else if ([item tag] == aTag)
@@ -53,14 +53,14 @@ Implementation file for [[NSMenuCategory]]+[[CocoaDevUsersAdditions]]:
    while (eachItem = [itemEnumerator nextObject])
    {
      [eachItem setState:([eachItem isEqual:aMenuItem] ? NSOnState : NSOffState)];
-     // isEqual: is not guaranteed to return [[NSOnState]] if it's true
+     // isEqual: is not guaranteed to return [[NSOnState if it's true
    }
  }
  
  @end
-</code>
-
-The [[NSMenuItem]] protocol is now deprecated, edited all id <[[NSMenuItem]]> to [[NSMenuItem]]''.
 
 
-[[Category:CocoaDevUsersAdditions]]
+The General/NSMenuItem protocol is now deprecated, edited all id <General/NSMenuItem> to General/NSMenuItem*.
+
+
+General/Category:CocoaDevUsersAdditions

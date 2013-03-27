@@ -1,3 +1,3 @@
-<code> [[[NSDate]] date]; </code>
+     General/[NSDate date]; 
 
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSDate]].html
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSDate.html

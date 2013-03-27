@@ -1,1 +1,1 @@
-See [[StackTraces]].
+See General/StackTraces.

@@ -6,10 +6,10 @@ So the question is, what directories are needed in Subversion?
 
 I know I need the following:
 
-Source Code (''.h, ''.m)
-[[XCode]] Project (''.xcodeproj)
-Property Lists (''.plist)
-Language Projects (''.lproj)
+Source Code (*.h, *.m)
+General/XCode Project (*.xcodeproj)
+Property Lists (*.plist)
+Language Projects (*.lproj)
 
 Do I need the build directory? If so, which files inside it are important?
 

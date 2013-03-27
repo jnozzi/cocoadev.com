@@ -1,70 +1,70 @@
 , 
 
-If you want your drawing to appear in a window, you should do it in a subclass of <code>[[NSView]]</code>. If you don't have a view, you will need to make one. Create:
+If you want your drawing to appear in a window, you should do it in a subclass of     General/NSView. If you don't have a view, you will need to make one. Create:
 
-* A view class that you want to draw for. See [[HowToCreateAClassInInterfaceBuilder]], [[HowToCreateAClassInXcode]].
-* An instance of the class you just created. See [[HowToInstantiateAClassInInterfaceBuilder]].
+* A view class that you want to draw for. See General/HowToCreateAClassInInterfaceBuilder, General/HowToCreateAClassInXcode.
+* An instance of the class you just created. See General/HowToInstantiateAClassInInterfaceBuilder.
 
 
-Then, do your drawing in an override of <code>-[[[NSView]] drawRect:]</code>. (For why, see [[HowToDrawToAViewOutsideOfDrawRect]].)
-<code>
-- (void)drawRect:([[NSRect]])needsDisplayInRect
+Then, do your drawing in an override of     -General/[NSView drawRect:]. (For why, see General/HowToDrawToAViewOutsideOfDrawRect.)
+    
+- (void)drawRect:(General/NSRect)needsDisplayInRect
 {
 	// Your drawing here.
 }
-</code>
 
-Drawing is done in an area limited only by the precision of floating point numbers, but not everything shows up. <code>-[[[NSView]] bounds]</code> returns an <code>[[NSRect]]</code> describing where the edges of the view are in drawing coordinates. For better performance, you can limit your drawing to the <code>[[NSRect]]</code> passed in to <code>-drawRect:</code>, which defines the area that needs display. This allows part of the view ''not'' to be redrawn.
 
-For the same reason that you should do your view drawing inside of <code>-drawRect:</code>, it's important that you ''do all of the drawing you want to for the rectangle passed in''. Before <code>-drawRect:</code> is sent, the areas marked as needing display are wiped clean, so you cannot draw incrementally without having an intermediate context (such as an <code>[[NSImage]]</code>). See [[DrawingAnimation]].
+Drawing is done in an area limited only by the precision of floating point numbers, but not everything shows up.     -General/[NSView bounds] returns an     General/NSRect describing where the edges of the view are in drawing coordinates. For better performance, you can limit your drawing to the     General/NSRect passed in to     -drawRect:, which defines the area that needs display. This allows part of the view *not* to be redrawn.
 
-Drawing commands typically rely on the current <code>[[NSGraphicsContext]]</code> to provide them with additional state. For example, to fill a rectangle, you might do the following:
-<code>
-[[[[NSColor]] redColor] set]; // Sets current drawing color.
-[[NSRectFill]]([[NSMakeRect]](10, 10, 2, 20)); // Defines a rectangle and then fills it with the current drawing color.
-[[[[NSColor]] colorWithCalibratedRed:0.7 green:0.9 blue:0.3 alpha:1.0] set]; // Sets a new color.
-[[[[NSBezierPath]] bezierPathWithOvalInRect:[[NSMakeRect]](5, 0, 10, 10)] fill]; // Draws a circle in the new color.
-</code>
+For the same reason that you should do your view drawing inside of     -drawRect:, it's important that you *do all of the drawing you want to for the rectangle passed in*. Before     -drawRect: is sent, the areas marked as needing display are wiped clean, so you cannot draw incrementally without having an intermediate context (such as an     General/NSImage). See General/DrawingAnimation.
 
-Once your view is able to draw, you have to make sure it does so whenever its state changes. You do this by sending <code>-[[[NSView]] setNeedsDisplay:]</code> or <code>-[[[NSView]] setNeedsDisplayInRect:]</code>. It's a good idea to send these in any setters that change what the view draws.
-<code>
-- (void)setBackgroundColor:([[NSColor]] '')aColor
+Drawing commands typically rely on the current     General/NSGraphicsContext to provide them with additional state. For example, to fill a rectangle, you might do the following:
+    
+General/[[NSColor redColor] set]; // Sets current drawing color.
+General/NSRectFill(General/NSMakeRect(10, 10, 2, 20)); // Defines a rectangle and then fills it with the current drawing color.
+General/[[NSColor colorWithCalibratedRed:0.7 green:0.9 blue:0.3 alpha:1.0] set]; // Sets a new color.
+General/[[NSBezierPath bezierPathWithOvalInRect:General/NSMakeRect(5, 0, 10, 10)] fill]; // Draws a circle in the new color.
+
+
+Once your view is able to draw, you have to make sure it does so whenever its state changes. You do this by sending     -General/[NSView setNeedsDisplay:] or     -General/[NSView setNeedsDisplayInRect:]. It's a good idea to send these in any setters that change what the view draws.
+    
+- (void)setBackgroundColor:(General/NSColor *)aColor
 {
 	if(aColor == backgroundColor) return;
 	[backgroundColor release];
 	backgroundColor = [aColor retain];
 	[self setNeedsDisplay:YES];
 }
-</code>
 
-A [[ClippingPath]] defines an area that drawing can be done into. Drawing done outside of this area is clipped (not shown). Clipping paths do not need to be rectangular and are defined with methods like <code>-[[[NSBezierPath]] addClip]</code>. All drawing done in <code>-drawRect:</code> has a clipping path set up by the system around the areas that need display. It's faster not to draw than to draw and clip, which is why you should pay attention to <code>-drawRect:</code>'s argument.
 
-Besides <code>[[NSView]]</code>, you can also draw into <code>[[NSImage]]</code>s:
-<code>
-[[NSImage]] ''image = [[[[[NSImage]] alloc] initWithSize:[[NSMakeSize]](50, 50)] autorelease];
+A General/ClippingPath defines an area that drawing can be done into. Drawing done outside of this area is clipped (not shown). Clipping paths do not need to be rectangular and are defined with methods like     -General/[NSBezierPath addClip]. All drawing done in     -drawRect: has a clipping path set up by the system around the areas that need display. It's faster not to draw than to draw and clip, which is why you should pay attention to     -drawRect:'s argument.
+
+Besides     General/NSView, you can also draw into     General/NSImages:
+    
+General/NSImage *image = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(50, 50)] autorelease];
 [image lockFocus];
 // Your drawing here.
 [image unlockFocus];
-</code>
+
 
 You can then draw the image itself:
-<code>
-[image drawInRect:[self bounds] fromRect:[[NSZeroRect]] operation:[[NSCompositeCopy]] fraction:1]; // Passing [[NSZeroRect]] causes the entire image to draw.
-</code>
+    
+[image drawInRect:[self bounds] fromRect:General/NSZeroRect operation:General/NSCompositeCopy fraction:1]; // Passing General/NSZeroRect causes the entire image to draw.
+
 
 Some drawing tools:
 
-* <code>[[NSView]]</code>: For drawing into a window (and thereby onto the screen).
-* <code>[[NSString]]</code> and <code>[[NSAttributedString]]</code>: For drawing text with fonts, colors, and other attributes.
-* <code>[[NSImage]]</code> and <code>[[NSImageRep]]</code>: For drawing bitmap or other image data.
-* <code>[[NSRectFill]]()</code> and <code>[[NSFrameRect]]()</code>: For drawing rectangles.
-* <code>[[NSBezierPath]]</code>: For drawing lines, curves and clipping paths.
-* <code>[[NSColor]]</code>: For setting the color other most drawing is done in.
-* <code>[[NSGraphicsContext]]</code>: For changing other drawing attributes.
-* <code>[[NSPoint]]</code>, <code>[[NSSize]]</code> and <code>[[NSRect]]</code>: For defining where drawing happens.
+*     General/NSView: For drawing into a window (and thereby onto the screen).
+*     General/NSString and     General/NSAttributedString: For drawing text with fonts, colors, and other attributes.
+*     General/NSImage and     General/NSImageRep: For drawing bitmap or other image data.
+*     General/NSRectFill() and     General/NSFrameRect(): For drawing rectangles.
+*     General/NSBezierPath: For drawing lines, curves and clipping paths.
+*     General/NSColor: For setting the color other most drawing is done in.
+*     General/NSGraphicsContext: For changing other drawing attributes.
+*     General/NSPoint,     General/NSSize and     General/NSRect: For defining where drawing happens.
 
 
-When drawing images and rectangles, you should be sure to understand <code>[[NSCompositingOperation]]</code>.
+When drawing images and rectangles, you should be sure to understand     General/NSCompositingOperation.
 
 [http://www.paintcodeapp.com PaintCode] is a drawing app that generates Objective-C Cocoa drawing code for you instantly.
 

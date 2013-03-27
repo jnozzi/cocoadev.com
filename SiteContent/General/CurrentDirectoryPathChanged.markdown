@@ -1,4 +1,4 @@
-I have an app that writes several temporary files upon launch, into a folder called Temp that it assumes to be in the same directory it's in. It checks for this folder during the writing of these files, a la <code>[[[[[NSFileManager]] defaultManager] currentDirectoryPath] stringByAppendingString:@"/Temp"]</code>. A new problem has suddenly appeared. Essentially, if I launch the app from Xcode, currentDirectoryPath returns the absolute path to the current directory. If I launch the app from the Finder, currentDirectoryPath is just returning /. This means that the app is checking for the Temp folder in the '/' directory, the top level of the HD.
+I have an app that writes several temporary files upon launch, into a folder called Temp that it assumes to be in the same directory it's in. It checks for this folder during the writing of these files, a la     General/[[[NSFileManager defaultManager] currentDirectoryPath] stringByAppendingString:@"/Temp"]. A new problem has suddenly appeared. Essentially, if I launch the app from Xcode, currentDirectoryPath returns the absolute path to the current directory. If I launch the app from the Finder, currentDirectoryPath is just returning /. This means that the app is checking for the Temp folder in the '/' directory, the top level of the HD.
 
 Anyone else have this?
 
@@ -21,11 +21,11 @@ not answering that question, just adding my 2 cents:
 
 Cocoa has some convenient methods for path manipulations. In your example, that would be
 
-<code>- ([[NSString]] '')stringByAppendingPathComponent:([[NSString]] '')aString</code>
+    - (General/NSString *)stringByAppendingPathComponent:(General/NSString *)aString
 
 ----
 
-Come to think of it, how do you pass in ~/Library/Application Support as a path? In UNIX, you'd put quotes around the last part, to get ~/Library/'Application Support". That'll get you there in the Terminal. I tried putting this into an [[NSString]], then calling [[NSString]]'s stringByStandardizingPath to fully expand it. This prints out what seems like a completely valid absolute path. If I try to give that path to [[NSFileManager]] though, it's not recognizing it. I just get falses for [[NSFileManager]]'s fileExistsAtPath: isDirectory: and createFileAtPath: contents: attributes:
+Come to think of it, how do you pass in ~/Library/Application Support as a path? In UNIX, you'd put quotes around the last part, to get ~/Library/'Application Support". That'll get you there in the Terminal. I tried putting this into an General/NSString, then calling General/NSString's stringByStandardizingPath to fully expand it. This prints out what seems like a completely valid absolute path. If I try to give that path to General/NSFileManager though, it's not recognizing it. I just get falses for General/NSFileManager's fileExistsAtPath: isDirectory: and createFileAtPath: contents: attributes:
 
 ----
 
@@ -33,8 +33,8 @@ Actually, quoting spaces and other characters in pathnames has nothing to do wit
 
 ----
 
-Ideally, The application support directory should be queried by [[NSSearchPathForDirectoriesInDomains]], but unfortunately that does not seem to be the case.
+Ideally, The application support directory should be queried by General/NSSearchPathForDirectoriesInDomains, but unfortunately that does not seem to be the case.
 
-''However, [[NSSearchPathForDirectoriesInDomains]] does return Library, and you can manually append Application Support on to that. Note that you do not want quotes, because this is not a UNIX shell.''
+*However, General/NSSearchPathForDirectoriesInDomains does return Library, and you can manually append Application Support on to that. Note that you do not want quotes, because this is not a UNIX shell.*
 
-''As for the original problem, there is an [[NSTemporaryDirectory]]() function that can be used to get a temporary directory.''
+*As for the original problem, there is an General/NSTemporaryDirectory() function that can be used to get a temporary directory.*

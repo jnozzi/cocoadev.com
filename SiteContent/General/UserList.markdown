@@ -1,1 +1,1 @@
-Renamed to: [[CocoaDevUsers]]
+Renamed to: General/CocoaDevUsers

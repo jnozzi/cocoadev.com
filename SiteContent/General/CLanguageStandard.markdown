@@ -1,4 +1,4 @@
-[[XCode]] lets you set which C Language Stardard to compile with in [[XCode]]'s target build settings (and probably PB does too, but I haven't checked).
+General/XCode lets you set which C Language Stardard to compile with in General/XCode's target build settings (and probably PB does too, but I haven't checked).
 
 To set which C standard to use, go to your build targets, select a build target and click Apple-i. This will popup the inspector for the selected build target. Under the build tab in the inspector there should be a setting for "C Language Standard".
 

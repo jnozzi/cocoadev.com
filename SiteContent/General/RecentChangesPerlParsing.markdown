@@ -1,18 +1,18 @@
-This is some Perl code I wrote a while ago to parse the [[RecentChanges]] page - it doesn't put it into RSS or anything. Probably not that great of parsing but I'm new(b) to Perl. --[[KevinWojniak]]
+This is some Perl code I wrote a while ago to parse the General/RecentChanges page - it doesn't put it into RSS or anything. Probably not that great of parsing but I'm new(b) to Perl. --General/KevinWojniak
 
 Execute it from Terminal like:
-<code>
-curl 'http://www.cocoadev.com/index.pl?[[RecentChanges]]' | ./cocoadev.pl
-</code>
+    
+curl 'http://www.cocoadev.com/index.pl?General/RecentChanges' | ./cocoadev.pl
 
-<code>
+
+    
 #!/usr/bin/perl
 
 while ($line = <STDIN>) {
 $html .= $line;
 }
 
-if ($html =~ m/<td id="mainContent" colspan="2">(.'')<\/td>/gi) {
+if ($html =~ m/<td id="mainContent" colspan="2">(.*)<\/td>/gi) {
 $html = $1;
 }
 
@@ -33,7 +33,7 @@ last;
 $count++;
 }
 
-if ($line =~ /<li>\s''<a href=".''">(.'')<\/a>.'' +(.'')/i) {
+if ($line =~ /<li>\s*<a href=".*">(.*)<\/a>.* +(.*)/i) {
 $page = $1;
 $date = $2;
 
@@ -42,27 +42,27 @@ print $page . ": " . $date . "\n";
 
 $lastline = $line;
 }
-</code>
+
 Sample output:
-<code>
+    
 September 21, 2004
-[[CocoaDevMostWanted]]: 10:33:54
-[[GeeFive]]: 09:43:28
-[[SubclassNSTableViewForCellDrag]]: 09:37:25
-[[WebServicesCore]]: 09:28:08
-[[QiYang]]: 01:30:50
-</code>
+General/CocoaDevMostWanted: 10:33:54
+General/GeeFive: 09:43:28
+General/SubclassNSTableViewForCellDrag: 09:37:25
+General/WebServicesCore: 09:28:08
+General/QiYang: 01:30:50
+
 
 ----
 
 Ok so I was bored and added RSS to this so it works as a feed for your newsreaders :)
 
-<code>#!/usr/bin/perl
+    #!/usr/bin/perl
 
 print "Content-type: text/xml\n\n";
 
-$html = `curl 'http://www.cocoadev.com/index.pl?[[RecentChanges]]'`;
-if ($html =~ m/<td id="mainContent" colspan="2">(.'')<\/td>/gi)
+$html = `curl 'http://www.cocoadev.com/index.pl?General/RecentChanges'`;
+if ($html =~ m/<td id="mainContent" colspan="2">(.*)<\/td>/gi)
 {
 	$html = $1;
 }
@@ -73,13 +73,13 @@ $lastline = "";
 
 print "<rss>\n";
 print "<channel>\n";
-print "<title>[[CocoaDev]] Recent Changes</title>\n";
-print "<link>http://www.cocoadev.com/index.pl?[[RecentChanges]]</link>\n";
+print "<title>General/CocoaDev Recent Changes</title>\n";
+print "<link>http://www.cocoadev.com/index.pl?General/RecentChanges</link>\n";
 
 @lines = split(/\n/, $html);
 foreach $line (@lines)
 {
-	if ($line =~ /<li>\s''<a href=".''">(.'')<\/a>.'' +(.'')/i)
+	if ($line =~ /<li>\s*<a href=".*">(.*)<\/a>.* +(.*)/i)
 	{
 		if ($count < $total)
 		{
@@ -100,20 +100,20 @@ foreach $line (@lines)
 }
  
 print "</channel>\n";
-print "</rss>\n";</code>
+print "</rss>\n";
 
-Or if you're lazy you can use what I have on my server: http://www.kainjow.com/scripts/cocoadev.pl - I realize [[CocoaDevRSSFeed]] does the same thing and probably better, but his source code isn't public (from what I could tell...) and it isn't instantly updated.
+Or if you're lazy you can use what I have on my server: http://www.kainjow.com/scripts/cocoadev.pl - I realize General/CocoaDevRSSFeed does the same thing and probably better, but his source code isn't public (from what I could tell...) and it isn't instantly updated.
 
 ----
 
-''Well, I'm sure if you ask Theo.. :-)''
+*Well, I'm sure if you ask Theo.. :-)*
 
-Not that anyone asked, but here is the PHP code that parses the [[RecentChanges]] page for [[CocoaDevRSSFeed]]:
+Not that anyone asked, but here is the PHP code that parses the General/RecentChanges page for General/CocoaDevRSSFeed:
 
-<code>
+    
 function CCD2Items( $limit=50 ) {
 	// my server runs in safemode, so I don't really use file()
-	$lines = file("http://www.cocoadev.com/index.pl?[[RecentChanges]]");
+	$lines = file("http://www.cocoadev.com/index.pl?General/RecentChanges");
 	
 	$currentDate = NULL;
 	
@@ -125,7 +125,7 @@ function CCD2Items( $limit=50 ) {
 			$currentDate = date("Y-m-d", strtotime($matches[0]));
 		}
 	
-		if ( preg_match( '/index.pl\?([A-Z]\w+)">\1<\/a>.''(\d\d:\d\d:\d\d)/', $line, $matches) ) {
+		if ( preg_match( '/index.pl\?([A-Z]\w+)">\1<\/a>.*(\d\d:\d\d:\d\d)/', $line, $matches) ) {
 			// it's an item line, save the item
 			$items[] = createItem(
 				$matches[1],
@@ -143,7 +143,7 @@ function CCD2Items( $limit=50 ) {
 }
 
 function createItem( $name, $date, $time ) {
-	$page = implode('', file("http://www.cocoadev.com/index.pl?$name"));
+	$page = implode(*, file("http://www.cocoadev.com/index.pl?$name"));
 
 	return array(
 		"title"       => $name,
@@ -152,8 +152,8 @@ function createItem( $name, $date, $time ) {
 		"description" => $page
 	);
 }
-</code>
 
-Naturally, there's a lot more to it, but nothing especially interesting. The items created by <code>CCD2Items</code> are written to a database, and when a client comes along and want's the feed the database is read and the feed is constructed (in different formats depending on the parameters). Since the data is abstracted and put in the DB the cache-script (above) and the server-script (that outputs the feed) are independent, which also means that the output format is independent of the input format. 
 
---[[TheoHultberg]]/Iconara
+Naturally, there's a lot more to it, but nothing especially interesting. The items created by     CCD2Items are written to a database, and when a client comes along and want's the feed the database is read and the feed is constructed (in different formats depending on the parameters). Since the data is abstracted and put in the DB the cache-script (above) and the server-script (that outputs the feed) are independent, which also means that the output format is independent of the input format. 
+
+--General/TheoHultberg/Iconara

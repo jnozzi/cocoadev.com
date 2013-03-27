@@ -1,4 +1,4 @@
- '''Apple Lossless Encoding''' (also known as Apple Lossless, Apple Lossless Audio Codec or ALE) is an audio codec developed by Apple Computer, for lossless encoding of digital music.
+ **Apple Lossless Encoding** (also known as Apple Lossless, Apple Lossless Audio Codec or ALE) is an audio codec developed by Apple Computer, for lossless encoding of digital music.
 
 Apple Lossless Encoding was introduced along-side iTunes 4.5 in April 2004.
 

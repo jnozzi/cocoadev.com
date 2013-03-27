@@ -2,11 +2,11 @@ I'm try to develop an app to lock my computer and log the password attempts and 
 
 ----
 
-'''Do you grab fullscreen etc? I think that would at least keep the force quit dialog from coming to the fore... If that isn't satisfying enough, probably there's a POSIX way to handle (i.e. ignore) the SIGINT or whatever it is you receive when the user force quits you.'''
+**Do you grab fullscreen etc? I think that would at least keep the force quit dialog from coming to the fore... If that isn't satisfying enough, probably there's a POSIX way to handle (i.e. ignore) the SIGINT or whatever it is you receive when the user force quits you.**
 
 ----
 
-Actually, I was able to figure it out. I used the [[CGCaptureAllDisplays]]() to get my app above everything else (there's a great article on Cocoa Dev Central [http://www.cocoadevcentral.com/] for this topic). The problem isn't that Force Quit window would come up, but the application would just quit itself instead. It was getting a SIGINT, but I'm not familiar enough with the POSIX functions anyway. So, I hunted around a bit and found the [[SetSystemUIMode]]() function in the Carbon framework. Here's the article on ADC about it (which is also a very good article): http://developer.apple.com/technotes/tn2002/tn2062.html
+Actually, I was able to figure it out. I used the General/CGCaptureAllDisplays() to get my app above everything else (there's a great article on Cocoa Dev Central [http://www.cocoadevcentral.com/] for this topic). The problem isn't that Force Quit window would come up, but the application would just quit itself instead. It was getting a SIGINT, but I'm not familiar enough with the POSIX functions anyway. So, I hunted around a bit and found the General/SetSystemUIMode() function in the Carbon framework. Here's the article on ADC about it (which is also a very good article): http://developer.apple.com/technotes/tn2002/tn2062.html
 
 ----
 
@@ -20,7 +20,7 @@ So the point is not to find a way to ignore, SIGKILL, it's to prevent the user f
 
 ----
 
-Long time lurker, first time poster, new to OS X, but long time Solaris, AIX, ''BSD, and Linux admin/user.  ''' If ''' OS X allows you do do this (via [[WindowServer]], [[KernelEventAgent]], or whatever) ''' don't '''.  What if a different program needs to be killed?  And if done via [[WindowServer]], or whatever mechanism is used to disable the Force Quit dialog, you've done nothing to prevent '' kill -9 <PID> '' .
+Long time lurker, first time poster, new to OS X, but long time Solaris, AIX, *BSD, and Linux admin/user.  ** If ** OS X allows you do do this (via General/WindowServer, General/KernelEventAgent, or whatever) ** don't **.  What if a different program needs to be killed?  And if done via General/WindowServer, or whatever mechanism is used to disable the Force Quit dialog, you've done nothing to prevent * kill -9 <PID> * .
 
 ----
 

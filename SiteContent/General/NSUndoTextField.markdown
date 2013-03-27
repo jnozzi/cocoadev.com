@@ -1,28 +1,28 @@
-[[NSUndoManager]] for Textfields. When you have a textField in a documenet based application, it automatically provides undo & redo when you change the text in textField. However it doesn't show that the document has been edited. The edit would invoke an edit notifcation in the close button of the window(the little dot that appears in the red close button). If you have a setter and getter method tied to that textfield. What extra code is required to invokes the edit function showing the window has been edited. eg
+General/NSUndoManager for Textfields. When you have a textField in a documenet based application, it automatically provides undo & redo when you change the text in textField. However it doesn't show that the document has been edited. The edit would invoke an edit notifcation in the close button of the window(the little dot that appears in the red close button). If you have a setter and getter method tied to that textfield. What extra code is required to invokes the edit function showing the window has been edited. eg
 
-<code>
--([[NSString]] '')myName
+    
+-(General/NSString *)myName
 {
     return myName;
 }
 
--(void)setMyName:([[NSString]] '')aName
+-(void)setMyName:(General/NSString *)aName
 {
    aName =[aName copy];
   [myName release];
   myName =aName;
 }
-</code>
+
 I tried the the following and it seems to work ok, except when I save and close the document and reopen it, it show as being edited.
-<code>
--([[NSString]] '')myName
+    
+-(General/NSString *)myName
 {
     return myName;
 }
 
--(void)setMyName:([[NSString]] '')aName
+-(void)setMyName:(General/NSString *)aName
 {
-    [[NSUndoManager]] ''undoManager - [self undoManager];
+    General/NSUndoManager *undoManager - [self undoManager];
     [[undo prepareWithInvocationTarget: self] setMyName: myName];
      if(![undo isUndoing]){
       [undo setActionName:@"Edit"];
@@ -31,5 +31,5 @@ I tried the the following and it seems to work ok, except when I save and close 
   [myName release];
   myName =aName;
 }
-</code>
+
 DSG

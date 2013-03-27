@@ -1,29 +1,29 @@
-Automatic HTML documentation generator for C/C++/[[ObjC]] code. Similar to javadoc, if you're from Java.
+Automatic HTML documentation generator for C/C++/General/ObjC code. Similar to javadoc, if you're from Java.
 
-An [[OpenSource]] project from Apple to be found at:
+An General/OpenSource project from Apple to be found at:
 http://developer.apple.com/darwin/projects/headerdoc/
 
 It is used for some of the apple documentation of darwin, according to apple.
 
-[[HeaderDoc]] is slightly less capable than [[AutoDoc]], as it only seems to output HTML. I think there is a request filed for it to output [[DocBook]] XML, which can be translated into anything, but who knows when that gets done...
+General/HeaderDoc is slightly less capable than General/AutoDoc, as it only seems to output HTML. I think there is a request filed for it to output General/DocBook XML, which can be translated into anything, but who knows when that gets done...
 
-It seemed more reliable than [[AutoDoc]] last time I tried both. It's a real pain (not at all worth it for even small projects, IMHO) to switch comment styles between [[AutoDoc]] and [[HeaderDoc]], so make the right choice at first!
-
-----
-
-Is anyone using [[HeaderDoc]]? I comment all my headers, classes, protocols, methods, functions, etc. with [[HeaderDoc]] documentation comments, but I don't generate any separate documentation from it. The reason is this: 1) the [[HeaderDoc]] default output is ugly and not very much more usable than reading comments in headers (imho) and 2) [[HeaderDoc]] is not easy to run and it only generates documentation for me on really good days.
-
-My framework ([[IconaraDOM]]) consists of around 35 classes, which means that it is quite big, and some kind of automated documentation generation is badly needed, but [[HeaderDoc]] just doesn't do.
-
-Are there any alternatives? [[AutoDoc]] died a long time ago, and I know of no other alternatives. [[HeaderDoc]] 8 seems to fix many of the problems I have had, and add lot's of new syntax, but I fear that it will be unusable because of major feature bloating. It's supposed to handle [[ObjectiveC]], [[JaVA]], [[PHPLang]], and probably Brainf'''k as well. I just want a clean and simple documentation generation tool for [[ObjectiveC]], do I really have to write my own? (How hard could it be...)
-
---[[TheoHultberg]]/Iconara
+It seemed more reliable than General/AutoDoc last time I tried both. It's a real pain (not at all worth it for even small projects, IMHO) to switch comment styles between General/AutoDoc and General/HeaderDoc, so make the right choice at first!
 
 ----
 
-Good question. I used doxygen [http://www.stack.nl/~dimitri/doxygen/index.html] to generate some documentation. It reads also comments in [[HeaderDoc]] style. Actually I used it to generate documentation for your framework. I think the result is a little bit better to read than the headerdoc one. But a real good tool for [[ObjectiveCee]] documentation would be nice. Maybe that is an idea for a new project...
+Is anyone using General/HeaderDoc? I comment all my headers, classes, protocols, methods, functions, etc. with General/HeaderDoc documentation comments, but I don't generate any separate documentation from it. The reason is this: 1) the General/HeaderDoc default output is ugly and not very much more usable than reading comments in headers (imho) and 2) General/HeaderDoc is not easy to run and it only generates documentation for me on really good days.
 
---[[ThomasSempf]]
+My framework (General/IconaraDOM) consists of around 35 classes, which means that it is quite big, and some kind of automated documentation generation is badly needed, but General/HeaderDoc just doesn't do.
+
+Are there any alternatives? General/AutoDoc died a long time ago, and I know of no other alternatives. General/HeaderDoc 8 seems to fix many of the problems I have had, and add lot's of new syntax, but I fear that it will be unusable because of major feature bloating. It's supposed to handle General/ObjectiveC, General/JaVA, General/PHPLang, and probably Brainf**k as well. I just want a clean and simple documentation generation tool for General/ObjectiveC, do I really have to write my own? (How hard could it be...)
+
+--General/TheoHultberg/Iconara
+
+----
+
+Good question. I used doxygen [http://www.stack.nl/~dimitri/doxygen/index.html] to generate some documentation. It reads also comments in General/HeaderDoc style. Actually I used it to generate documentation for your framework. I think the result is a little bit better to read than the headerdoc one. But a real good tool for General/ObjectiveCee documentation would be nice. Maybe that is an idea for a new project...
+
+--General/ThomasSempf
 
 ----
 
@@ -33,7 +33,7 @@ Autodoc is probably the best documentation tool for objective-c as far as automa
 
 Doxygen is an option, but the html output is not very readable for me. The source code documentation is similar to headerdoc.
 
-[[NaturalDocs]] can be adjusted for objective-c. The source code formatting approach is very interesting and the output is also ok, but a bit too complex for me. Since it's based on css, it can be re-formatted. I also don't like the "project directory" (where some intermediate files and project customizations are saved) approach; I think it just clutters the project directory.
+General/NaturalDocs can be adjusted for objective-c. The source code formatting approach is very interesting and the output is also ok, but a bit too complex for me. Since it's based on css, it can be re-formatted. I also don't like the "project directory" (where some intermediate files and project customizations are saved) approach; I think it just clutters the project directory.
 
 Another tool I found was robodoc. It works in a different way than other tools - it doesn't really parse source code, just the comments. After some testing I get nice results with it without being forced on duplicating information. It's also possible to group methods together.
 
@@ -41,33 +41,33 @@ As far as I've been testing, I like the robodoc source format/output combination
 
 ----
 
-I've been trying to use [[HeaderDoc]] to complete documentation for a project. I've run into a bug in the way that headerDoc treats multi-character operators in C++ and wonder if anyone else has found a solution.
+I've been trying to use General/HeaderDoc to complete documentation for a project. I've run into a bug in the way that headerDoc treats multi-character operators in C++ and wonder if anyone else has found a solution.
 
 Here's a simple test class:
-<code>
-/''!
+    
+/*!
     @header test
     @abstract   test
-''/
+*/
 
-/''! @class foo
+/*! @class foo
 	@discussion a test class
-''/
+*/
 class foo {
 	public:
-		/''! @function operator+
+		/*! @function operator+
 			@result a foo object
 			@param f a foo
-		''/
+		*/
 		foo operator+ (const foo& f) const;
-		/''! @function operator +=
+		/*! @function operator +=
 			@result a foo object
 			@param f a foo
-		''/
+		*/
 		foo operator+= (const foo& f);
 };
 
-</code>
+
 The resulting docs look like this (under headerDoc 8.0) :
 ----
 
@@ -119,17 +119,17 @@ function result
 a foo object
 
 
-''What gives with the first API doc? Is there any way to make this work correctly?''
+*What gives with the first API doc? Is there any way to make this work correctly?*
 
 -- Jeff Greenberg (jgreenb2@ford.com)
 
 ----
-The current version of [[HeaderDoc]] is 8.6, so a lot of the problems mentioned here were fixed years ago.  Unfortunately, the project page still shows 8.0 as the current version.  For a more recent version, see http://www.opensource.apple.com/darwinsource/10.5/
+The current version of General/HeaderDoc is 8.6, so a lot of the problems mentioned here were fixed years ago.  Unfortunately, the project page still shows 8.0 as the current version.  For a more recent version, see http://www.opensource.apple.com/darwinsource/10.5/
 
 
 ----
 
-How can I take my [[HeaderDoc]] HTML documentation and add it to a project so I can option-click on methods and symbols that I have created and have [[ProjectBuilder]] open up their documentation page? I can remember seeing this discussion on cocoabuilder, but can't find it now.
+How can I take my General/HeaderDoc HTML documentation and add it to a project so I can option-click on methods and symbols that I have created and have General/ProjectBuilder open up their documentation page? I can remember seeing this discussion on cocoabuilder, but can't find it now.
 
 ----
 

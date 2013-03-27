@@ -1,28 +1,28 @@
 
 
-I need some help, I want to make a [[NSTextView]] that has a picture as its background, and when you resize the view, then picture is also resized (just like in Terminal).
-I tried to subclass [[NSTextView]] and override <code>drawViewBackgroundInRect:</code>, but with no luck. Somehow picture appears in the view at 4 times smaller size, and it's not resized.
+I need some help, I want to make a General/NSTextView that has a picture as its background, and when you resize the view, then picture is also resized (just like in Terminal).
+I tried to subclass General/NSTextView and override     drawViewBackgroundInRect:, but with no luck. Somehow picture appears in the view at 4 times smaller size, and it's not resized.
 
-<code>
-- (void)drawViewBackgroundInRect:([[NSRect]])rect
+    
+- (void)drawViewBackgroundInRect:(General/NSRect)rect
 {
 	[super drawViewBackgroundInRect:rect];
-	[[NSString]] ''path = [[[NSString]] stringWithString:@"somepicture.jpg"];
-	[[NSImage]] ''backgroundImage = [[[[NSImage]] alloc] initWithContentsOfFile:path];
-	[backgroundImage drawInRect:[[NSMakeRect]](0, 0, 300, 500)
-				     fromRect:[[NSMakeRect]](0, 0, 300, 500)
-                                     operation:[[NSCompositeCopy]] fraction:1.0];	
+	General/NSString *path = General/[NSString stringWithString:@"somepicture.jpg"];
+	General/NSImage *backgroundImage = General/[[NSImage alloc] initWithContentsOfFile:path];
+	[backgroundImage drawInRect:General/NSMakeRect(0, 0, 300, 500)
+				     fromRect:General/NSMakeRect(0, 0, 300, 500)
+                                     operation:General/NSCompositeCopy fraction:1.0];	
 }
-</code>
 
-(300 '' 500 is a size of my image.)
-if i change last method to this: <code>[backgroundImage drawInRect:rect fromRect:[[NSMakeRect]](0, 0, 300, 500) operation:[[NSCompositeCopy]] fraction:1.0];</code>, then the picture is resized with the view, but it still 4 times smaller than original and when text is being edited a white background appears over an image.
+
+(300 * 500 is a size of my image.)
+if i change last method to this:     [backgroundImage drawInRect:rect fromRect:General/NSMakeRect(0, 0, 300, 500) operation:General/NSCompositeCopy fraction:1.0];, then the picture is resized with the view, but it still 4 times smaller than original and when text is being edited a white background appears over an image.
 Image is ok, it happens with any other picture also.
 
 I'm a newbie, so maybe I just do it in totally wrong&stupid way, I just need a direction where to dig...
 
 ----
 
-Perhaps make the background invisible and use an [[NSImageView]] behind it.
+Perhaps make the background invisible and use an General/NSImageView behind it.
 
-''Yeah, that's how I would have done it, but you can read my argument...ahem, '''discussion''' in [[TransparentNSTextViewBackground]] about this very issue. It turns out this is a bad idea, even though it might work, so try not to do it (I've started trying myself). That said, I have no idea what the "right" answer is. --[[JediKnil]]''
+*Yeah, that's how I would have done it, but you can read my argument...ahem, **discussion** in General/TransparentNSTextViewBackground about this very issue. It turns out this is a bad idea, even though it might work, so try not to do it (I've started trying myself). That said, I have no idea what the "right" answer is. --General/JediKnil*

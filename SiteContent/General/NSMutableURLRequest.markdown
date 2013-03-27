@@ -1,1 +1,1 @@
-See [[NSURLRequest]].
+See General/NSURLRequest.

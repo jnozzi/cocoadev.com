@@ -1,48 +1,48 @@
-'''NOTE: this posting needs a little organization that it does not presently have. I will get to work organizing it once I have time, but I'm a little busy as of now. -- [[RobRix]]'''
+**NOTE: this posting needs a little organization that it does not presently have. I will get to work organizing it once I have time, but I'm a little busy as of now. -- General/RobRix**
 
-Dennis C. De Mars answered a question on one of the development lists (either [[AppleComputer]]'s cocoadev list or [[TheOmniGroup]]'s macosx-dev list), and I followed up on it. He kindly provided some example code, as well as some general comments about the code. It may well be useful to you if you're interested in fractals, or if you want to know how to draw into an [[NSImage]] one pixel at a time (did anybody say image filters?).
+Dennis C. De Mars answered a question on one of the development lists (either General/AppleComputer's cocoadev list or General/TheOmniGroup's macosx-dev list), and I followed up on it. He kindly provided some example code, as well as some general comments about the code. It may well be useful to you if you're interested in fractals, or if you want to know how to draw into an General/NSImage one pixel at a time (did anybody say image filters?).
 
 The comments he sent me are as follows:
 
-''
-Here's the source code. All of the code that is relevant to the use of [[NSBitmapImage]] is in the method "generate" in [[MyImageController]].m. I don't know how much context should be included with the example, so I included the entire file along with the header file. I also include [[WindowSizing]].m which contains the definition of one small method used in [[MyImageController]].
+*
+Here's the source code. All of the code that is relevant to the use of General/NSBitmapImage is in the method "generate" in General/MyImageController.m. I don't know how much context should be included with the example, so I included the entire file along with the header file. I also include General/WindowSizing.m which contains the definition of one small method used in General/MyImageController.
 
-A rudimentary Mandelbrot set generator can be built from the included code with a few steps in Interface Builder. One would have to create a window with an [[NSImage]] inside it, and then put a scroller around the [[NSImage]]. Then the custom class [[MyImageController]] should be created with one outlet called imageView and one action called [[DoGenerate]]. An instance of [[MyImageController]] should be created. The imageView outlet should be connected to the [[NSImage]] that was placed in the window. A menu item called "Generate" should be created and connected to [[MyImageController]], invoking the action "[[DoGenerate]]." That's all there is to it.
+A rudimentary Mandelbrot set generator can be built from the included code with a few steps in Interface Builder. One would have to create a window with an General/NSImage inside it, and then put a scroller around the General/NSImage. Then the custom class General/MyImageController should be created with one outlet called imageView and one action called General/DoGenerate. An instance of General/MyImageController should be created. The imageView outlet should be connected to the General/NSImage that was placed in the window. A menu item called "Generate" should be created and connected to General/MyImageController, invoking the action "General/DoGenerate." That's all there is to it.
 
 A few things would have to be added to make an actual useful fractal generator. At the very minimum a way to zoom into the fractal should be added. That wouldn't be very hard. Then a dialog box to change a few things like the image size and escape count, and a way to save the fractal image as a graphics file would be about all that would be required for a rudimentary Mandelbrot set generator.
-''
+*
 
 And now for the code, straight from the files:
 
-'''[[MyImageController]].h'''
+**General/MyImageController.h**
 
-<code>
+    
 #import <Cocoa/Cocoa.h>
 
-@interface [[MyImageController]] : [[NSObject]]
+@interface General/MyImageController : General/NSObject
 {
-    [[IBOutlet]]	[[NSImageView]]''	imageView;
+    General/IBOutlet	General/NSImageView*	imageView;
     
-                [[NSSize]]		imageSize;
+                General/NSSize		imageSize;
 }
 
 - (void) generateImage;
 
-- (void) [[DoGenerate]]: (id) theObject;
+- (void) General/DoGenerate: (id) theObject;
 
 @end
-</code>
 
-'''[[MyImageController]].m'''
 
-<code>
-#import "[[MyImageController]].h"
-#import "[[WindowSizing]].h"
+**General/MyImageController.m**
+
+    
+#import "General/MyImageController.h"
+#import "General/WindowSizing.h"
 
 static int
-[[InSet]](int i, int j);
+General/InSet(int i, int j);
 
-struct [[PixelColors]]
+struct General/PixelColors
 {
     unsigned char red;
     unsigned char blue;
@@ -54,40 +54,40 @@ struct [[PixelColors]]
 
 const int imageWidthInPixels	= 200;
 const int imageHeightInPixels	= 200;
-const [[NSRect]] imageRectInComplexPlane = { {-2.0, -2.0}, {4.0,4.0} };
+const General/NSRect imageRectInComplexPlane = { {-2.0, -2.0}, {4.0,4.0} };
 const int maxCount = 200;
-const struct [[PixelColors]] blackPixelColor = {0x00, 0x00, 0x00, 0xff}; 
-const struct [[PixelColors]] toyFractalColors[6] 
+const struct General/PixelColors blackPixelColor = {0x00, 0x00, 0x00, 0xff}; 
+const struct General/PixelColors toyFractalColors[6] 
     = {	{0xff, 0xff, 0x00, 0xff}, {0xff, 0x00, 0xff, 0xff}, {0x00, 0xff, 0xff, 0xff}, 
         {0x00, 0xff, 0x00, 0xff}, {0xff, 0x00, 0x00, 0xff}, {0x00, 0x00, 0xff, 0xff} };
         
 // Class implementation
 
-@implementation [[MyImageController]]
+@implementation General/MyImageController
 
-- (void) [[DoGenerate]]: (id) theObject
+- (void) General/DoGenerate: (id) theObject
 {
-    [[NSSize]] theSize;
+    General/NSSize theSize;
     
     [self generateImage];
     // Adjust window
-    theSize = [[[NSScrollView]] frameSizeForContentSize:	[[imageView image] size]
+    theSize = General/[NSScrollView frameSizeForContentSize:	General/imageView image] size]
                             hasHorizontalScroller:	YES
                             hasVerticalScroller:	YES
-                            borderType:			[[NSBezelBorder]]
+                            borderType:			[[NSBezelBorder
                             ];
-    [[imageView window] setMaxContentSize: theSize];
+    General/imageView window] setMaxContentSize: theSize];
 }
 
 - (void) generateImage
 {
-    [[NSBitmapImageRep]]'' bitmap;
-    unsigned char'' pixels;
+    [[NSBitmapImageRep* bitmap;
+    unsigned char* pixels;
     int i,j;
-    [[NSImage]]'' theImage;
-    struct [[PixelColors]] fractColor;
+    General/NSImage* theImage;
+    struct General/PixelColors fractColor;
     
-    // We allocate the [[NSBitmapImageRep]] instance and initialize it.
+    // We allocate the General/NSBitmapImageRep instance and initialize it.
     // The initialization method has a lot of parameters because it is very versatile.
     // It can handle many different arrangements of pixel data.
     //
@@ -96,11 +96,11 @@ const struct [[PixelColors]] toyFractalColors[6]
     // red, blue, green, alpha (alpha is the "coverage" component, it determines 
     // the transparency of the pixel). Each component is eight bits (one byte).
     //
-    // Finally, we let the [[NSBitmapImageRep]] instance allocate a buffer of the proper size to handle
+    // Finally, we let the General/NSBitmapImageRep instance allocate a buffer of the proper size to handle
     // our image; alternatively, you could allocate your own buffer for the pixel data and pass the
-    // address to [[NSBitmapImageRep]] when initializing.
+    // address to General/NSBitmapImageRep when initializing.
     
-    bitmap = [[[[NSBitmapImageRep]] alloc]
+    bitmap = General/[[NSBitmapImageRep alloc]
                 initWithBitmapDataPlanes:	NULL	// Let the class allocate it
                 pixelsWide:			imageWidthInPixels
                 pixelsHigh:			imageHeightInPixels
@@ -108,12 +108,12 @@ const struct [[PixelColors]] toyFractalColors[6]
                 samplesPerPixel:		4	// Number of components (R, G, B, alpha)
                 hasAlpha:			YES
                 isPlanar:			NO
-                colorSpaceName:			[[NSDeviceRGBColorSpace]]
+                colorSpaceName:			General/NSDeviceRGBColorSpace
                 bytesPerRow:			0	// 0 means: Let the class figure it out
                 bitsPerPixel:			0	// 0 means: Let the class figure it out
                 ];
                 
-    // Now that we have created the [[NSBitmapImageRep]] instance, we will ask it for a pointer to the
+    // Now that we have created the General/NSBitmapImageRep instance, we will ask it for a pointer to the
     // buffer it created so we can write into it (this would be unnecessary if we had allocated our
     // own buffer). We store the pointer in the variable "pixels".
     
@@ -127,27 +127,27 @@ const struct [[PixelColors]] toyFractalColors[6]
     {
         for (i = 0; i < imageWidthInPixels; i++)
         {
-            int dwell = [[InSet]](i,j);
+            int dwell = General/InSet(i,j);
             if (dwell < 0)	// then point i,j is in Mandelbrot set
                 fractColor = blackPixelColor;
             else
                 fractColor = toyFractalColors[dwell % 6];
             
-            ''pixels++ = fractColor.red;
-            ''pixels++ = fractColor.blue;
-            ''pixels++ = fractColor.green;
-            ''pixels++ = fractColor.alpha;
+            *pixels++ = fractColor.red;
+            *pixels++ = fractColor.blue;
+            *pixels++ = fractColor.green;
+            *pixels++ = fractColor.alpha;
 
         }
     }
     
-    // In our NIB file, we've created an [[NSImageView]] instance in a window and connected it
+    // In our NIB file, we've created an General/NSImageView instance in a window and connected it
     // to an outlet in this class called "imageView"
-    /// So, now we create an [[NSImage]]... 
-    theImage = [[[[NSImage]] alloc] initWithSize: imageSize];
-    // ...place our [[NSBitmapImageRep]] in the [[NSImag]] ...
+    /// So, now we create an General/NSImage... 
+    theImage = General/[[NSImage alloc] initWithSize: imageSize];
+    // ...place our General/NSBitmapImageRep in the General/NSImag ...
     [theImage addRepresentation: bitmap];
-    // ...and place the [[NSImage]] in the [[NSImageView]].
+    // ...and place the General/NSImage in the General/NSImageView.
     [imageView setImage: theImage];
 }
 
@@ -162,25 +162,25 @@ const struct [[PixelColors]] toyFractalColors[6]
 @end
 
 int
-[[InSet]](int i, int j)
+General/InSet(int i, int j)
 {
     double x, y, re, im;
     int count;
-    [[NSPoint]] imageOrigin = imageRectInComplexPlane.origin;
-    [[NSSize]] imageSize = imageRectInComplexPlane.size;
+    General/NSPoint imageOrigin = imageRectInComplexPlane.origin;
+    General/NSSize imageSize = imageRectInComplexPlane.size;
     
     // Convert to floating point
-    x = imageOrigin.x + (i''imageSize.width)/imageWidthInPixels;
-    y = imageOrigin.y + (j''imageSize.height)/imageHeightInPixels;
+    x = imageOrigin.x + (i*imageSize.width)/imageWidthInPixels;
+    y = imageOrigin.y + (j*imageSize.height)/imageHeightInPixels;
     re = 0;
     im = 0;
     
     for(count = 0; count < maxCount; count++)
     {
         double reTemp, imTemp;
-        reTemp = re''re - im''im + x;
-        imTemp = 2.0''re''im + y;
-        if ((reTemp''reTemp + imTemp''imTemp) >= 4.0)
+        reTemp = re*re - im*im + x;
+        imTemp = 2.0*re*im + y;
+        if ((reTemp*reTemp + imTemp*imTemp) >= 4.0)
             break;
         else
         {
@@ -195,14 +195,14 @@ int
         return count;
     
 }
-</code>
 
-'''[[WindowSizing]].h'''
 
-<code>
+**General/WindowSizing.h**
+
+    
 //
-//  [[WindowSizing]].h
-//  [[ToyFractal]]
+//  General/WindowSizing.h
+//  General/ToyFractal
 //
 //  Created by demars on Sat May 05 2001.
 //  Copyright (c) 2001 Dennis C. De Mars. All rights reserved.
@@ -210,77 +210,77 @@ int
 
 #import <Cocoa/Cocoa.h>
 
-@interface [[NSWindow]] ([[WindowSizing]]) 
+@interface General/NSWindow (General/WindowSizing) 
 
-    - (void) setMaxContentSize: ([[NSSize]]) contentSize;
+    - (void) setMaxContentSize: (General/NSSize) contentSize;
 
 @end
-</code>
 
-'''[[WindowSizing]].m'''
 
-<code>
+**General/WindowSizing.m**
+
+    
 //
-//  [[WindowSizing]].m
-//  [[ToyFractal]]
+//  General/WindowSizing.m
+//  General/ToyFractal
 //
 //  Created by demars on Sat May 05 2001.
 //  Copyright (c) 2001 Dennis C. De Mars. All rights reserved.
 //
 
-#import "[[WindowSizing]].h"
+#import "General/WindowSizing.h"
 
 
-@implementation [[NSWindow]] ([[WindowSizing]])
+@implementation General/NSWindow (General/WindowSizing)
 
-    - (void) setMaxContentSize: ([[NSSize]]) contentSize
+    - (void) setMaxContentSize: (General/NSSize) contentSize
     {
-        [[NSRect]] contentRect = { {0.0, 0.0}, {0.0, 0.0} }, frameRect;
+        General/NSRect contentRect = { {0.0, 0.0}, {0.0, 0.0} }, frameRect;
         
         contentRect.size = contentSize;
-        frameRect = [[[NSWindow]] frameRectForContentRect:contentRect styleMask:[self styleMask]];
+        frameRect = General/[NSWindow frameRectForContentRect:contentRect styleMask:[self styleMask]];
 
         [self setMaxSize: frameRect.size];
     }
 
 @end
-</code>
 
 
 
--- Dennis C. De Mars, edited and posted by [[RobRix]]
+
+-- Dennis C. De Mars, edited and posted by General/RobRix
 
 ----
 
 One thing though, I think you'll want to [bitmap release] after [theImage addRepresentation: bitmap];  This fixed a memory leak for me.
 
--[[JustinGarcia]]
+-General/JustinGarcia
 
 ----
 
-Shouldn't theImage = [[[[NSImage]] alloc] init] be autoreleased before returning from the method -generateImage?
+Shouldn't theImage = General/[[NSImage alloc] init] be autoreleased before returning from the method -generateImage?
 -Mike Anen
 
 ----
 
 I found a major error, not in memory management, but with finding the actual set! This line:
-<code>
-if ((reTemp''reTemp + imTemp''imTemp) >= 2.0)
-</code>
-in the [[InSet]] method, is wrong. It should be 4.0 instead of 2.0. The author was avoiding the square root operation that you normally do when finding the modulus of a complex number, but forgot to square the other side. Because it makes the set come out wrong, I've gone ahead and fixed it in the original code listing. --[[OwenYamauchi]]
+    
+if ((reTemp*reTemp + imTemp*imTemp) >= 2.0)
 
-''If I had Dennis' e-mail address, I'd notify him... I don't, so I'll just say thanks Owen, Mike, Justin. I can't say much about the actual code unfortunately. -- [[RobRix]]''
+in the General/InSet method, is wrong. It should be 4.0 instead of 2.0. The author was avoiding the square root operation that you normally do when finding the modulus of a complex number, but forgot to square the other side. Because it makes the set come out wrong, I've gone ahead and fixed it in the original code listing. --General/OwenYamauchi
+
+*If I had Dennis' e-mail address, I'd notify him... I don't, so I'll just say thanks Owen, Mike, Justin. I can't say much about the actual code unfortunately. -- General/RobRix*
 
 ----
 
 Another mistake. This one isn't crippling, but if you try to implement another color scheme it screws things up. In these lines:
-<code>
-''pixels++ = fractColor.red;
-''pixels++ = fractColor.blue; ''//should be green''
-''pixels++ = fractColor.green; ''//should be blue''
-''pixels++ = fractColor.alpha;
-</code>
-blue and green are in the wrong order; switch them around. --[[OwenYamauchi]]
+    
+*pixels++ = fractColor.red;
+*pixels++ = fractColor.blue; *//should be green*
+*pixels++ = fractColor.green; *//should be blue*
+*pixels++ = fractColor.alpha;
+
+blue and green are in the wrong order; switch them around. --General/OwenYamauchi
 
 ----
 

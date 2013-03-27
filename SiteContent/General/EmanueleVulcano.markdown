@@ -2,4 +2,4 @@ A 20-year-old student living in Milan, Italy. Also, sometimes a Cocoa developer.
 
 
 
-I have my own personal "brand" page at http://infinite-labs.net/ where I also host what few projects I have � Afloat, the Core PHP framework, ''et al''.
+I have my own personal "brand" page at http://infinite-labs.net/ where I also host what few projects I have � Afloat, the Core PHP framework, *et al*.

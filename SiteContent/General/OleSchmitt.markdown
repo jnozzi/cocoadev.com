@@ -1,4 +1,4 @@
-''Freelance multitasker living in Sao Paulo City, Brazil''
+*Freelance multitasker living in Sao Paulo City, Brazil*
 
 
 

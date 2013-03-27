@@ -1,46 +1,46 @@
-'''When removing a set of selected objects from a mutable array, check for object identity, not simply equality, w.r.t. the base array'''
+**When removing a set of selected objects from a mutable array, check for object identity, not simply equality, w.r.t. the base array**
 
 ----
 
-Here's a familiar class for implementing a simple table view, given in its entirety; I made a slight modification to it to use an [[NSIndexSet]]
+Here's a familiar class for implementing a simple table view, given in its entirety; I made a slight modification to it to use an General/NSIndexSet
 when deleting multiple records from the table. If all the records are unique, things work fine, but if two records contain dictionaries
 with identical content, all records with that content will be deleted, ignoring whether they were selected before deletion.
 
 I expected that the enumerator for adding the objects to a temp array before deleting will only add the objects that I selected.
 
-<code>
+    
 #import <Cocoa/Cocoa.h>
 
-@interface [[BTVController]]: [[NSObject]]
+@interface General/BTVController: General/NSObject
 {
-	[[IBOutlet]] [[NSTextField]] ''addressField;
-	[[IBOutlet]] [[NSTextField]] ''emailField;
-	[[IBOutlet]] [[NSTextField]] ''firstNameField;
-	[[IBOutlet]] [[NSTextField]] ''lastNameField;
-	[[IBOutlet]] [[NSTableView]] ''tableView;
+	General/IBOutlet General/NSTextField *addressField;
+	General/IBOutlet General/NSTextField *emailField;
+	General/IBOutlet General/NSTextField *firstNameField;
+	General/IBOutlet General/NSTextField *lastNameField;
+	General/IBOutlet General/NSTableView *tableView;
 	
-	[[NSMutableArray]] ''records;
+	General/NSMutableArray *records;
 }
 
-- ( [[NSMutableDictionary]] '' ) createRecord;
+- ( General/NSMutableDictionary * ) createRecord;
 
-- ( [[IBAction]] ) addRecord: ( id ) sender;
-- ( [[IBAction]] ) deleteRecord: ( id ) sender;
-- ( [[IBAction]] ) insertRecord: ( id ) sender;
+- ( General/IBAction ) addRecord: ( id ) sender;
+- ( General/IBAction ) deleteRecord: ( id ) sender;
+- ( General/IBAction ) insertRecord: ( id ) sender;
  
 @end
-</code>
 
-<code>
-#import "[[BTVController]].h"
 
-@implementation [[BTVController]]
+    
+#import "General/BTVController.h"
+
+@implementation General/BTVController
 
 - ( id ) init
 {
 	if ( self = [ super init ] )
 	{
-		records = [ [ [[NSMutableArray]] alloc ] init ];
+		records = [ [ General/NSMutableArray alloc ] init ];
 	}
 	
 	return self;
@@ -52,9 +52,9 @@ I expected that the enumerator for adding the objects to a temp array before del
 	[ super dealloc ];
 }
 
-- ( [[NSMutableDictionary]] '' ) createRecord
+- ( General/NSMutableDictionary * ) createRecord
 {
-	[[NSMutableDictionary]] ''theRecord = [ [[NSMutableDictionary]] dictionary ];
+	General/NSMutableDictionary *theRecord = [ General/NSMutableDictionary dictionary ];
 	[ theRecord setObject: [ firstNameField stringValue ] forKey: @"firstName" ];
 	[ theRecord setObject: [ lastNameField stringValue ] forKey: @"lastName" ];
 	[ theRecord setObject: [ addressField stringValue ] forKey: @"address" ];
@@ -62,22 +62,22 @@ I expected that the enumerator for adding the objects to a temp array before del
 	return theRecord;
 }
 
-- ( [[IBAction]] ) addRecord: ( id ) sender
+- ( General/IBAction ) addRecord: ( id ) sender
 {
 	[ records addObject: [ self createRecord ] ];
 	[ tableView reloadData ];
 }
 
-- ( [[IBAction]] ) deleteRecord: ( id ) sender
+- ( General/IBAction ) deleteRecord: ( id ) sender
 {
-	[[NSEnumerator]] ''enumerator;
-	[[NSMutableArray]] ''tempArray;
-	[[NSIndexSet]] ''set;
+	General/NSEnumerator *enumerator;
+	General/NSMutableArray *tempArray;
+	General/NSIndexSet *set;
 	id tempObject;
 	int i = 0;
 	
 	enumerator = [ records objectEnumerator ];
-	tempArray = [ [[NSMutableArray]] array ];
+	tempArray = [ General/NSMutableArray array ];
 	set = [ tableView selectedRowIndexes ];
 	
 	while ( tempObject = [ enumerator nextObject ] )
@@ -92,7 +92,7 @@ I expected that the enumerator for adding the objects to a temp array before del
 	[ tableView reloadData ];
 }
 
-- ( [[IBAction]] ) insertRecord: ( id ) sender
+- ( General/IBAction ) insertRecord: ( id ) sender
 {
 	int index = [ tableView selectedRow ];
 	if ( index >= 0 )
@@ -100,15 +100,15 @@ I expected that the enumerator for adding the objects to a temp array before del
 	[ tableView reloadData ];
 }
 
-// [[NSTableDataSource]] methods
+// General/NSTableDataSource methods
 
-- ( int ) numberOfRowsInTableView: ( [[NSTableView]] '' ) aTableView
+- ( int ) numberOfRowsInTableView: ( General/NSTableView * ) aTableView
 {
 	return [ records count ];
 }
 
-- ( id ) tableView: ( [[NSTableView]] '' ) aTableView
-	objectValueForTableColumn: ( [[NSTableColumn]] '' ) aTableColumn row: ( int ) rowIndex
+- ( id ) tableView: ( General/NSTableView * ) aTableView
+	objectValueForTableColumn: ( General/NSTableColumn * ) aTableColumn row: ( int ) rowIndex
 {
 	id theRecord, theValue;
 	
@@ -118,10 +118,10 @@ I expected that the enumerator for adding the objects to a temp array before del
 	return theValue;
 }
 
-// [[NSTableDataSource]] method that we implement to edit values directly in the table...
+// General/NSTableDataSource method that we implement to edit values directly in the table...
 
-- ( void ) tableView: ( [[NSTableView]] '' ) aTableView setObjectValue: ( id ) anObject
-	forTableColumn: ( [[NSTableColumn]] '' ) aTableColumn row: ( int ) rowIndex
+- ( void ) tableView: ( General/NSTableView * ) aTableView setObjectValue: ( id ) anObject
+	forTableColumn: ( General/NSTableColumn * ) aTableColumn row: ( int ) rowIndex
 {
 	id theRecord;
 	
@@ -130,22 +130,22 @@ I expected that the enumerator for adding the objects to a temp array before del
 }
 
 @end
-</code>
+
 
 ----
 
-<code>
+    
 
-- ( [[IBAction]] ) deleteRecord: ( id ) sender
+- ( General/IBAction ) deleteRecord: ( id ) sender
 {
-        [[NSEnumerator]] ''enumerator;
-        [[NSMutableArray]] ''tempArray;
-        [[NSIndexSet]] ''set;
+        General/NSEnumerator *enumerator;
+        General/NSMutableArray *tempArray;
+        General/NSIndexSet *set;
         id tempObject;
         int i = 0;
 
         enumerator = [ records objectEnumerator ];
-        tempArray = [ [[NSMutableArray]] array ];
+        tempArray = [ General/NSMutableArray array ];
         set = [ tableView selectedRowIndexes ];
 
         while ( tempObject = [ enumerator nextObject ] )
@@ -159,29 +159,29 @@ I expected that the enumerator for adding the objects to a temp array before del
 
         [ tableView reloadData ];
 }
-</code>
+
 
 Why are you using an object enumerator when you are stepping the variable "i" to do the same thing?
 
-<code>
+    
     int count = [records count];
     while (count--) {
         if ([set containsIndex:count]) [tempArray addObject:[records objectAtIndex:count]];
     }
-</code>
+
 
 Actually the better thing to do would be this;
 
-<code>
+    
     if ([set count]) {
         int i = [set firstIndex];
         do
               [tempArray addObject: [records objectAtIndex:i]];
-        while        ((i = [set indexGreaterThanIndex:i]) != [[NSNotFound]]);
+        while        ((i = [set indexGreaterThanIndex:i]) != General/NSNotFound);
     }
-</code>
+
 
 
 ----
 
-I expect it's because you're removing based on equality, not identity. Try going through the array of objects to remove and use <code>removeObjectIdenticalTo:</code>
+I expect it's because you're removing based on equality, not identity. Try going through the array of objects to remove and use     removeObjectIdenticalTo:

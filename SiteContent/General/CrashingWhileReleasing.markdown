@@ -1,19 +1,19 @@
-I have a written a program that displays images in a [[CustomView]] using Core Image.  I added two [[CIFilters]] to it, and it started leaking memory.  I believe this is because I am retaining the filters, and not releasing them.  However when I try to release both filters and the image, my program crashes.  The relevant code from my [[CustomView]] follows:
+I have a written a program that displays images in a General/CustomView using Core Image.  I added two General/CIFilters to it, and it started leaking memory.  I believe this is because I am retaining the filters, and not releasing them.  However when I try to release both filters and the image, my program crashes.  The relevant code from my General/CustomView follows:
 
-<code>
-- (void)setImage: ([[CIImage]]'')image {
+    
+- (void)setImage: (General/CIImage*)image {
         originalImage = image;
         [originalImage retain];
         if(sharpenFilter == nil) {
-                sharpenFilter   = [[[CIFilter]] filterWithName: @"[[CISharpenLuminance]]"
+                sharpenFilter   = General/[CIFilter filterWithName: @"General/CISharpenLuminance"
                                                                          keysAndValues: @"inputImage", originalImage, nil];
-                [sharpenFilter setValue:[[[[NSNumber]] alloc] initWithFloat:0.0] forKey:@"inputSharpness"];
+                [sharpenFilter setValue:General/[[NSNumber alloc] initWithFloat:0.0] forKey:@"inputSharpness"];
                 [sharpenFilter retain];
         }
         if(contrastFilter == nil) {
-                contrastFilter = [[[CIFilter]] filterWithName: @"[[CIHueAdjust]]"
+                contrastFilter = General/[CIFilter filterWithName: @"General/CIHueAdjust"
                                                                         keysAndValues:@"inputImage", originalImage, nil];
-                [contrastFilter setValue:[[[[NSNumber]] alloc] initWithFloat:0.0] forKey:@"inputAngle"];
+                [contrastFilter setValue:General/[[NSNumber alloc] initWithFloat:0.0] forKey:@"inputAngle"];
                 [contrastFilter retain];
         }
 }
@@ -25,14 +25,14 @@ I have a written a program that displays images in a [[CustomView]] using Core I
 
         [super dealloc];
 }
-</code>
+
 
 Interestingly, I can release any one of the objects in my dealloc method, but if I try to do two or more, it crashes.
 Can someone straighten out my memory management?
 
 ----
 
-''Not without you telling us what line fails. Seriously, you can't expect help by saying 'one of the objects'. Tell us exactly what line crashes. You can use the debugger to do so. Set a breakpoint in your dealloc method and step through. Tell us what error you receive (just to make sure).''
+*Not without you telling us what line fails. Seriously, you can't expect help by saying 'one of the objects'. Tell us exactly what line crashes. You can use the debugger to do so. Set a breakpoint in your dealloc method and step through. Tell us what error you receive (just to make sure).*
 
 ----
 
@@ -42,79 +42,79 @@ It comes from the line [contrastFilter release].  However as I mentioned, if I r
 Here is the relevant stack trace:
 
 
-<code>
+    
 #0      0xfffeff20 in objc_msgSend_rtp
-#1      0x9285f708 in [[NSPopAutoreleasePool]]
-#2      0x9422abac in -[[[CIFilter]] dealloc]
-#3      0x0003f7c4 in -[[[MyCIView]] dealloc] at [[MyCIView]].m:69
-</code>
+#1      0x9285f708 in General/NSPopAutoreleasePool
+#2      0x9422abac in -General/[CIFilter dealloc]
+#3      0x0003f7c4 in -General/[MyCIView dealloc] at General/MyCIView.m:69
 
-''Please post all the relevant code for "[[MyCIView]]" ... the initialization routine and any routines that use the three ivars referenced above.''
+
+*Please post all the relevant code for "General/MyCIView" ... the initialization routine and any routines that use the three ivars referenced above.*
 
 ----
 
-You have a memory leak in the first line of <code>setImage:</code>. Your are setting <code>originalImage</code> without releasing <code>originalImage</code> if it has already been set from a previous call to this method. --zootobbalu
+You have a memory leak in the first line of     setImage:. Your are setting     originalImage without releasing     originalImage if it has already been set from a previous call to this method. --zootobbalu
 
-''Well that's certainly ''a'' problem, but not ''the'' problem. :-)'' 
+*Well that's certainly *a* problem, but not *the* problem. :-)* 
 
 ----
 I am only ever calling that method once, but I will update that in the future.
 
 Here's the class in it's entirety:
 
-<code>
+    
 
-#import "[[MyCIView]].h"
-#import <Foundation/[[NSDictionary]].h>
+#import "General/MyCIView.h"
+#import <Foundation/General/NSDictionary.h>
 
 enum {
-	[[MCContrast]], [[MCSharpen]]
+	General/MCContrast, General/MCSharpen
 };
 
-@implementation [[MyCIView]]
+@implementation General/MyCIView
 
-- (id)initWithFrame:([[NSRect]])frame {
+- (id)initWithFrame:(General/NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code here.
-		lastFilter = [[MCSharpen]];
+		lastFilter = General/MCSharpen;
     }
     return self;
 }
 
 - (void)setContrast:(float)value;
 {
-	[[NSLog]](@"Value set to: %f", value);
-	if(lastFilter != [[MCContrast]])
+	General/NSLog(@"Value set to: %f", value);
+	if(lastFilter != General/MCContrast)
 		[contrastFilter setValue:originalImage forKey:@"inputImage"];
-	lastFilter = [[MCContrast]];
-	[contrastFilter setValue:[[[[NSNumber]] alloc] initWithFloat:value] forKey:@"inputAngle"];
+	lastFilter = General/MCContrast;
+	[contrastFilter setValue:General/[[NSNumber alloc] initWithFloat:value] forKey:@"inputAngle"];
 	[self setNeedsDisplay:YES];
 }
 
 - (void)setSharpness:(float)value;
 {
-	[[NSLog]](@"Value set to: %f", value);
-	if(lastFilter != [[MCSharpen]])
+	General/NSLog(@"Value set to: %f", value);
+	if(lastFilter != General/MCSharpen)
 		[sharpenFilter setValue:originalImage forKey:@"inputImage"];
-	lastFilter = [[MCSharpen]];
-	[sharpenFilter setValue:[[[[NSNumber]] alloc] initWithFloat:value] forKey:@"inputSharpness"];
+	lastFilter = General/MCSharpen;
+	[sharpenFilter setValue:General/[[NSNumber alloc] initWithFloat:value] forKey:@"inputSharpness"];
 	[self setNeedsDisplay:YES];
 }
 
-- (void)setImage: ([[CIImage]]'')image {
+- (void)setImage: (General/CIImage*)image {
 	originalImage = image;
 	[originalImage retain];
 	if(sharpenFilter == nil) {
-		sharpenFilter   = [[[CIFilter]] filterWithName: @"[[CISharpenLuminance]]"
+		sharpenFilter   = General/[CIFilter filterWithName: @"General/CISharpenLuminance"
 									 keysAndValues: @"inputImage", originalImage, nil];
-		[sharpenFilter setValue:[[[[NSNumber]] alloc] initWithFloat:0.0] forKey:@"inputSharpness"];
+		[sharpenFilter setValue:General/[[NSNumber alloc] initWithFloat:0.0] forKey:@"inputSharpness"];
 		[sharpenFilter retain];
 	}
 	if(contrastFilter == nil) {
-		contrastFilter = [[[CIFilter]] filterWithName: @"[[CIHueAdjust]]"
+		contrastFilter = General/[CIFilter filterWithName: @"General/CIHueAdjust"
 									keysAndValues:@"inputImage", originalImage, nil];
-		[contrastFilter setValue:[[[[NSNumber]] alloc] initWithFloat:0.0] forKey:@"inputAngle"];
+		[contrastFilter setValue:General/[[NSNumber alloc] initWithFloat:0.0] forKey:@"inputAngle"];
 		[contrastFilter retain];
 	}
 }
@@ -127,17 +127,17 @@ enum {
 	[super dealloc];
 }
 
-- (void)drawRect:([[NSRect]])rect {
-	[[CGRect]] cg = [[CGRectMake]]([[NSMinX]](rect), [[NSMinY]](rect), [[NSWidth]](rect), [[NSHeight]](rect));
-	[[CIContext]]'' context = [[[[NSGraphicsContext]] currentContext] [[CIContext]]];
+- (void)drawRect:(General/NSRect)rect {
+	General/CGRect cg = General/CGRectMake(General/NSMinX(rect), General/NSMinY(rect), General/NSWidth(rect), General/NSHeight(rect));
+	General/CIContext* context = General/[[NSGraphicsContext currentContext] General/CIContext];
 	
 	if (context != nil) {
 		switch(lastFilter) {
-			case [[MCContrast]]:
+			case General/MCContrast:
 				[context drawImage: [contrastFilter valueForKey:@"outputImage"]
 									   atPoint: cg.origin fromRect: cg];
 				break;
-			case [[MCSharpen]]:
+			case General/MCSharpen:
 				[context drawImage: [sharpenFilter valueForKey:@"outputImage"]
 						   atPoint: cg.origin fromRect: cg];
 				break;
@@ -151,12 +151,12 @@ enum {
 
 @end
 
-</code>
 
-''In practice you should set your ivars (such as the filter, image, etc.) to nil in your initialization routine.''
 
-This is not true in [[ObjectiveC]]. The runtime sets (and is documented to set) all of your instance variables to 0/nil/NULL/0.0 when your object is created.
+*In practice you should set your ivars (such as the filter, image, etc.) to nil in your initialization routine.*
+
+This is not true in General/ObjectiveC. The runtime sets (and is documented to set) all of your instance variables to 0/nil/NULL/0.0 when your object is created.
 
 ----
 
-I have solved my own problem.  The argument I was passing into the setImage method was being autoreleased in the previous method.  So once it got into setImage, it's retain count would have already been decremented by the autorelease.  The retain call within setImage then sets the retainCount to 1 and finally when my method called release on it, the retainCount dropped to 0 and it released it not only in [[MyCIView]], but in the previous method as well.  Then when something else attempts to access it, it would crash.  Or at least that's how I believe it occurred.
+I have solved my own problem.  The argument I was passing into the setImage method was being autoreleased in the previous method.  So once it got into setImage, it's retain count would have already been decremented by the autorelease.  The retain call within setImage then sets the retainCount to 1 and finally when my method called release on it, the retainCount dropped to 0 and it released it not only in General/MyCIView, but in the previous method as well.  Then when something else attempts to access it, it would crash.  Or at least that's how I believe it occurred.

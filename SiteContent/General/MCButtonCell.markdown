@@ -1,9 +1,9 @@
-For explaination and sample use see: [[ClickThroughButtonInTableView]]
+For explaination and sample use see: General/ClickThroughButtonInTableView
 
-<code>
+    
 
 
-//  2005 by St�phane BARON - [[MacAvocat]] .
+//  2005 by St�phane BARON - General/MacAvocat .
 //  Derivated from work by Erik Doernenburg
 //  Derivated from work by Omnigroup
 //  Derivated from work by Eric Petit
@@ -28,34 +28,34 @@ For explaination and sample use see: [[ClickThroughButtonInTableView]]
  
 #import <Cocoa/Cocoa.h>
 
-@interface [[MCButtonCell]] : [[NSActionCell]] { 
+@interface General/MCButtonCell : General/NSActionCell { 
 	
-	[[NSRect]] imageRect;
-	[[NSMutableDictionary]] ''theAttributes;
-	[[NSImage]] ''currentImage;
-	[[NSImage]] ''image;
-	[[NSImage]] ''alternateImage;
-//	[[NSImage]] ''rolloverImage;
+	General/NSRect imageRect;
+	General/NSMutableDictionary *theAttributes;
+	General/NSImage *currentImage;
+	General/NSImage *image;
+	General/NSImage *alternateImage;
+//	General/NSImage *rolloverImage;
 	
 }
 
--([[NSImage]] '')image;
--(void)setImage:([[NSImage]] '')anImage;
--([[NSImage]] '')alternateImage;
--(void)setAlternateImage:([[NSImage]] '')anImage;
-//-([[NSImage]] '')rolloverImage;
-//-(void)setRolloverImage:([[NSImage]] '')anImage;
--([[NSImage]] '')currentImage;
--(void)setCurrentImage:([[NSImage]] '')anImage;
--(BOOL)isPointInImageRect:([[NSPoint]])location forCell:([[NSRect]])cellFrame;
-- (void) mouseDown: ([[NSEvent]] '')theEvent;
-- (void) mouseUp: ([[NSEvent]] '')theEvent;
+-(General/NSImage *)image;
+-(void)setImage:(General/NSImage *)anImage;
+-(General/NSImage *)alternateImage;
+-(void)setAlternateImage:(General/NSImage *)anImage;
+//-(General/NSImage *)rolloverImage;
+//-(void)setRolloverImage:(General/NSImage *)anImage;
+-(General/NSImage *)currentImage;
+-(void)setCurrentImage:(General/NSImage *)anImage;
+-(BOOL)isPointInImageRect:(General/NSPoint)location forCell:(General/NSRect)cellFrame;
+- (void) mouseDown: (General/NSEvent *)theEvent;
+- (void) mouseUp: (General/NSEvent *)theEvent;
 
 
 @end
 
 
-#import "[[MCButtonCell]].h"
+#import "General/MCButtonCell.h"
 
 #define TEXT_VERTICAL_OFFSET (-1.0)
 #define FLIP_VERTICAL_OFFSET (-9.0)
@@ -63,10 +63,10 @@ For explaination and sample use see: [[ClickThroughButtonInTableView]]
 #define BORDER_BETWEEN_IMAGE_AND_TEXT (3.0)
 #define SIZE_OF_TEXT_FIELD_BORDER (1.0)
 
-static [[NSMutableParagraphStyle]] ''[[MCTParagraphStyle]] = nil;
-[[NSString]] ''[[MCTStringKey]] = @"string";
+static General/NSMutableParagraphStyle *General/MCTParagraphStyle = nil;
+General/NSString *General/MCTStringKey = @"string";
 
-@implementation [[MCButtonCell]]
+@implementation General/MCButtonCell
 
 
 
@@ -86,9 +86,9 @@ static [[NSMutableParagraphStyle]] ''[[MCTParagraphStyle]] = nil;
 	
 }
 
--(BOOL)isPointInImageRect:([[NSPoint]])location forCell:([[NSRect]])cellFrame;
+-(BOOL)isPointInImageRect:(General/NSPoint)location forCell:(General/NSRect)cellFrame;
 {
-	[[NSSize]] theSize=[currentImage size];
+	General/NSSize theSize=[currentImage size];
 	if((location.x>theSize.width+cellFrame.origin.x) || (location.x<BORDER_BETWEEN_EDGE_AND_IMAGE+cellFrame.origin.x))
 	{
 		return NO;
@@ -98,17 +98,17 @@ static [[NSMutableParagraphStyle]] ''[[MCTParagraphStyle]] = nil;
 }
 
 
--([[NSSize]])imageSize;
+-(General/NSSize)imageSize;
 {
 return [currentImage size];
 }
 
--([[NSImage]] '')image;
+-(General/NSImage *)image;
 {
 	return image;
 }
 
--(void)setImage:([[NSImage]] '')anImage;
+-(void)setImage:(General/NSImage *)anImage;
 {
     if (anImage == image)
         return;
@@ -116,12 +116,12 @@ return [currentImage size];
     image = [anImage retain];
 }
 
--([[NSImage]] '')currentImage;
+-(General/NSImage *)currentImage;
 {
 return currentImage;
 }
 
--(void)setCurrentImage:([[NSImage]] '')anImage;
+-(void)setCurrentImage:(General/NSImage *)anImage;
 {
     if (anImage == currentImage)
         return;
@@ -129,12 +129,12 @@ return currentImage;
     currentImage = [anImage retain];
 }
 
--([[NSImage]] '')alternateImage;
+-(General/NSImage *)alternateImage;
 {
 return alternateImage;
 }
 
--(void)setAlternateImage:([[NSImage]] '')anImage;
+-(void)setAlternateImage:(General/NSImage *)anImage;
 {
     if (anImage == alternateImage)
         return;
@@ -142,12 +142,12 @@ return alternateImage;
     alternateImage = [anImage retain];
 }
 
-- (void)setControlView:([[NSView]]'')view
+- (void)setControlView:(General/NSView*)view
 {
 [super controlView];
 }
 
-- (void)drawInteriorWithFrame:([[NSRect]])cellFrame inView:([[NSView]] '')controlView
+- (void)drawInteriorWithFrame:(General/NSRect)cellFrame inView:(General/NSView *)controlView
 {
 
 if(currentImage==nil)
@@ -156,14 +156,14 @@ if(currentImage==nil)
 }
 
 
-	[[NSPoint]]        point;
-	[[NSSize]]        size;
-	[[NSPoint]]        origin;	
+	General/NSPoint        point;
+	General/NSSize        size;
+	General/NSPoint        origin;	
 	origin = cellFrame.origin;
-	imageRect=[[NSMakeRect]](origin.x+BORDER_BETWEEN_EDGE_AND_IMAGE,origin.y,[currentImage size].width,[currentImage size].height);
-	[[NSRect]] textRect=[[NSMakeRect]](origin.x+[currentImage size].width+BORDER_BETWEEN_EDGE_AND_IMAGE+BORDER_BETWEEN_IMAGE_AND_TEXT,origin.y,cellFrame.size.width-([currentImage size].width+BORDER_BETWEEN_EDGE_AND_IMAGE+BORDER_BETWEEN_IMAGE_AND_TEXT),cellFrame.size.height);
+	imageRect=General/NSMakeRect(origin.x+BORDER_BETWEEN_EDGE_AND_IMAGE,origin.y,[currentImage size].width,[currentImage size].height);
+	General/NSRect textRect=General/NSMakeRect(origin.x+[currentImage size].width+BORDER_BETWEEN_EDGE_AND_IMAGE+BORDER_BETWEEN_IMAGE_AND_TEXT,origin.y,cellFrame.size.width-([currentImage size].width+BORDER_BETWEEN_EDGE_AND_IMAGE+BORDER_BETWEEN_IMAGE_AND_TEXT),cellFrame.size.height);
 
-    textRect = [[NSInsetRect]](textRect, 1.0, 0.0);
+    textRect = General/NSInsetRect(textRect, 1.0, 0.0);
 
     if (![controlView isFlipped])
         textRect.origin.y -= (textRect.size.height + FLIP_VERTICAL_OFFSET);
@@ -174,7 +174,7 @@ if(currentImage==nil)
        size = [currentImage size];
        point.x = origin.x+BORDER_BETWEEN_EDGE_AND_IMAGE;
        point.y = origin.y+size.height+((cellFrame.size.height-size.height)/2);
-       [currentImage compositeToPoint: point operation:  [[NSCompositeSourceOver]]];
+       [currentImage compositeToPoint: point operation:  General/NSCompositeSourceOver];
        point.x = point.x + size.width;
        }
    else
@@ -184,57 +184,56 @@ if(currentImage==nil)
    point.y = origin.y;
 
 
-	[[NSMutableAttributedString]] ''label = [[[[NSMutableAttributedString]] alloc] initWithAttributedString:[self attributedStringValue]];
-    [[NSRange]] labelRange = [[NSMakeRange]](0, [label length]);
-    if ([[[NSColor]] respondsToSelector:@selector(alternateSelectedControlColor)]) 
+	General/NSMutableAttributedString *label = General/[[NSMutableAttributedString alloc] initWithAttributedString:[self attributedStringValue]];
+    General/NSRange labelRange = General/NSMakeRange(0, [label length]);
+    if (General/[NSColor respondsToSelector:@selector(alternateSelectedControlColor)]) 
 	{
-        [[NSColor]] ''highlightColor = [self highlightColorWithFrame:cellFrame inView:controlView];
+        General/NSColor *highlightColor = [self highlightColorWithFrame:cellFrame inView:controlView];
         BOOL highlighted = [self isHighlighted];
 
-        if (highlighted && [highlightColor isEqual:[[[NSColor]] alternateSelectedControlColor]]) 
+        if (highlighted && [highlightColor isEqual:General/[NSColor alternateSelectedControlColor]]) 
 		{
-            [label addAttribute:[[NSForegroundColorAttributeName]] value:[[[NSColor]] alternateSelectedControlTextColor] range:labelRange];
+            [label addAttribute:General/NSForegroundColorAttributeName value:General/[NSColor alternateSelectedControlTextColor] range:labelRange];
         }
     }
 
-    [label addAttribute:[[NSParagraphStyleAttributeName]] value:[[MCTParagraphStyle]] range:labelRange];
+    [label addAttribute:General/NSParagraphStyleAttributeName value:General/MCTParagraphStyle range:labelRange];
     [label drawInRect:textRect];
     [label release];
 
 }
 
 
-- (void)setObjectValue:(id <[[NSObject]], [[NSCopying]]>)obj;
+- (void)setObjectValue:(id <General/NSObject, General/NSCopying>)obj;
 {
 
-    if ([obj isKindOfClass:[[[NSString]] class]] || [obj isKindOfClass:[[[NSAttributedString]] class]]) {
+    if ([obj isKindOfClass:General/[NSString class]] || [obj isKindOfClass:General/[NSAttributedString class]]) {
         [super setObjectValue:obj];
         return;
-    } else if ([obj isKindOfClass:[[[NSDictionary]] class]]) {
-        [[NSDictionary]] ''dictionary = ([[NSDictionary]] '')obj;
+    } else if ([obj isKindOfClass:General/[NSDictionary class]]) {
+        General/NSDictionary *dictionary = (General/NSDictionary *)obj;
         
-        [super setObjectValue:[dictionary objectForKey:[[MCTStringKey]]]];
+        [super setObjectValue:[dictionary objectForKey:General/MCTStringKey]];
     }
 
 }
 
 
-- (void) mouseDown: ([[NSEvent]] '')theEvent;
+- (void) mouseDown: (General/NSEvent *)theEvent;
 {
 [self setCurrentImage:alternateImage];
 }
 
-- (void) mouseUp: ([[NSEvent]] '')theEvent
+- (void) mouseUp: (General/NSEvent *)theEvent
 {
 [self setCurrentImage:image];
 }
 
 + (void)initialize;
 {
-	[[MCTParagraphStyle]] = [[[[NSMutableParagraphStyle]] alloc] init];
-    [[[MCTParagraphStyle]] setLineBreakMode:[[NSLineBreakByTruncatingTail]]];
+	General/MCTParagraphStyle = General/[[NSMutableParagraphStyle alloc] init];
+    General/[MCTParagraphStyle setLineBreakMode:General/NSLineBreakByTruncatingTail];
 }
 @end
 
 
-</code>

@@ -19,7 +19,7 @@ and I never fixed it.
 
 If somebody has better idea then we will both learn something.
 
-<code>
+    
 // Setter accessor for a scaleFactor ivar in your zoomable view
 - ( void ) setScaleFactor: ( float ) aFactor     // you get this parameter by using your before and after sizes
 {
@@ -27,10 +27,9 @@ If somebody has better idea then we will both learn something.
 	{
 		float delta = aFactor / scaleFactor;
 		scaleFactor = aFactor;
-		'''[ [ self contentView ] scaleUnitSquareToSize: [[NSMakeSize]]( delta, delta ) ];'''      // here is the rescaling
+		**[ [ self contentView ] scaleUnitSquareToSize: General/NSMakeSize( delta, delta ) ];**      // here is the rescaling
 	}
 	
 	[ nzView setFrame: [ [ self contentView ] frame ] ];                 // nzView is an outlet to the non-zooming superclass of the
 	[ nzView setNeedsDisplayInRect: [ nzView bounds ] ];                   // zoomable view that this code came from
 }
-</code>

@@ -1,1 +1,1 @@
-Using Cocoa, [[OpenGL]] to make interactive geometry programs.
+Using Cocoa, General/OpenGL to make interactive geometry programs.

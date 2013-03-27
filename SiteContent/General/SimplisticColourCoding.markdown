@@ -1,37 +1,36 @@
-Hey, all. Recently wrote a project that stores a few [[NSColor]] objects in the [[UserDefaults]]. I ''still'' haven't really figured out [[NSCoding]] and [[NSArchiver]] and all that, so I just wrote a quick hack of a function which takes a colour, converts it to RGB space if necessary, and returns an [[NSDictionary]] with keys Red, Green, Blue, and Alpha. Here goes:
+Hey, all. Recently wrote a project that stores a few General/NSColor objects in the General/UserDefaults. I *still* haven't really figured out General/NSCoding and General/NSArchiver and all that, so I just wrote a quick hack of a function which takes a colour, converts it to RGB space if necessary, and returns an General/NSDictionary with keys Red, Green, Blue, and Alpha. Here goes:
 
-<code>
-[[NSDictionary]] ''[[BCDictionaryFromColour]]([[NSColor]] ''colour)
+    
+General/NSDictionary *General/BCDictionaryFromColour(General/NSColor *colour)
 {
-	[[NSMutableDictionary]] ''dict = [[[NSMutableDictionary]] dictionary];
-	if([colour colorSpaceName] == [[NSCalibratedRGBColorSpace]])
+	General/NSMutableDictionary *dict = General/[NSMutableDictionary dictionary];
+	if([colour colorSpaceName] == General/NSCalibratedRGBColorSpace)
 	{
-		[dict setObject:[[[NSNumber]] numberWithFloat:[colour redComponent]]
+		[dict setObject:General/[NSNumber numberWithFloat:[colour redComponent]]
 		forKey:@"Red"];
-		[dict setObject:[[[NSNumber]] numberWithFloat:[colour greenComponent]]
+		[dict setObject:General/[NSNumber numberWithFloat:[colour greenComponent]]
 		forKey:@"Green"];
-		[dict setObject:[[[NSNumber]] numberWithFloat:[colour blueComponent]]
+		[dict setObject:General/[NSNumber numberWithFloat:[colour blueComponent]]
 		forKey:@"Blue"];
-		[dict setObject:[[[NSNumber]] numberWithFloat:[colour alphaComponent]]
+		[dict setObject:General/[NSNumber numberWithFloat:[colour alphaComponent]]
 		forKey:@"Alpha"];
 	}
 	else
 	{
-		return [[BCDictionaryFromColour]]([colour
-		colorUsingColorSpaceName:[[NSCalibratedRGBColorSpace]]]);
+		return General/BCDictionaryFromColour([colour
+		colorUsingColorSpaceName:General/NSCalibratedRGBColorSpace]);
 	}
 	return dict;
 }
-</code>
+
 
 And then of course there's the vastly simpler partner function which takes such a dictionary and makes a colour out of it:
 
-<code>
-[[NSColor]] ''[[BCColourFromDictionary]]([[NSDictionary]] ''dict)
+    
+General/NSColor *General/BCColourFromDictionary(General/NSDictionary *dict)
 {
-	return [[[NSColor]] colorWithCalibratedRed:[[dict objectForKey:@"Red"] floatValue]
+	return General/[NSColor colorWithCalibratedRed:General/dict objectForKey:@"Red"] floatValue]
 		green:[[dict objectForKey:@"Green"] floatValue]
 		blue:[[dict objectForKey:@"Blue"] floatValue]
-		alpha:[[dict objectForKey:@"Alpha"] floatValue]];
+		alpha:[[dict objectForKey:@"Alpha"] floatValue;
 }
-</code>

@@ -1,1 +1,1 @@
-See [[DragAndDrop]].
+See General/DragAndDrop.

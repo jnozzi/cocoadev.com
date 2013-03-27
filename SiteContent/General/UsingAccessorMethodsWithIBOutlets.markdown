@@ -1,6 +1,6 @@
-I want to access var1, which resides in Class1, from Class2. So I set up accessor methods in Class1 to access and return the var.  Then I call this method from Class2 only to get 'selector not recognized errors'. This issue was dealt with in [[HowToTransmitDataBetweenClasses]] but the only solution involved using Interface builder and [[IBOutlets]] ?!?!?  surely this is one of the most common things that someone using objC would want to do?  is there a better way?  
+I want to access var1, which resides in Class1, from Class2. So I set up accessor methods in Class1 to access and return the var.  Then I call this method from Class2 only to get 'selector not recognized errors'. This issue was dealt with in General/HowToTransmitDataBetweenClasses but the only solution involved using Interface builder and General/IBOutlets ?!?!?  surely this is one of the most common things that someone using objC would want to do?  is there a better way?  
 
-[[EcumeDesJours]]
+General/EcumeDesJours
 
 ----
 
@@ -10,23 +10,23 @@ Post code and the exact error message. It's impossible to say what's going on ot
 
 in Class 2, I have the following function, attached to a button in IB:
 
-<code>
--([[IBAction]]) getMyVarFromTheOtherCLass:(id)sender{
-	[[NSString]] '' meNow = [[[ClassOne]] getMyVariable];
-	[[NSLog]](@"%@",meNow);
+    
+-(General/IBAction) getMyVarFromTheOtherCLass:(id)sender{
+	General/NSString * meNow = General/[ClassOne getMyVariable];
+	General/NSLog(@"%@",meNow);
 }
-</code>
+
 
 in Class 1, I have the accessor function:
 
-<code>
-- ([[NSString]]'') getMyVariable {
-	[[NSString]] '' lalala = @"lalala";
+    
+- (General/NSString*) getMyVariable {
+	General/NSString * lalala = @"lalala";
 	return lalala;
 }
-</code>
 
-pushing said button (invoking getMyVarFromTheOtherCLass) gets me:  ''''' +[[[ClassOne]] getMyVariable]: selector not recognized
+
+pushing said button (invoking getMyVarFromTheOtherCLass) gets me:  *** +General/[ClassOne getMyVariable]: selector not recognized
 
 ----
 
@@ -36,7 +36,7 @@ That's because you're sending a message to a class, while the method is defined 
 
 but class one has stuff running from when it was initially initialized during 'awakeFromNib' - I don't want to create another instance because it will launch all my running threads again.  Is there any way for class 2 to see that class 1 already has an instance and address that already running instance?
 
-''Yes - [[SingletonDesignPattern]], [[SingletonAlternatives]]''
+*Yes - General/SingletonDesignPattern, General/SingletonAlternatives*
 
 ----
 
@@ -44,14 +44,14 @@ hmmm...this singleton design makes sense in theory but in practice I can't figur
 
 I put this accessor in class 1:
 
-<code>
+    
 + classOne
-{        static classOne ''instance = nil;
+{        static classOne *instance = nil;
         if ( instance == nil )
-                instance = [[self alloc] init];
+                instance = General/self alloc] init];
         return instance;
 }
-</code>
+
 
 Now, normally I would instantiate an instance of classOne from classTwo with:
 
@@ -61,8 +61,8 @@ This will give me a NEW instance of classOne - how do I use that singleton acces
 
 ----
 
-Your <code>classOne</code> method is a class method, so you'd do <code>[[[ClassOne]] classOne]</code>. You should never send an alloc/init message to it. The method signature should also be <code>+([[ClassOne]] '')classOne</code>.
+Your     classOne method is a class method, so you'd do     [[[ClassOne classOne]. You should never send an alloc/init message to it. The method signature should also be     +(General/ClassOne *)classOne.
 
 ----
 
-Link to this discussion from [[HowToTransmitDataBetweenClasses]] and [[ClassMethodsAndInstanceVariables]]
+Link to this discussion from General/HowToTransmitDataBetweenClasses and General/ClassMethodsAndInstanceVariables

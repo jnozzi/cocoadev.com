@@ -1,18 +1,18 @@
-Here is a convenience function to make sure you do not overwrite any files: http://goo.gl/[[OeSCu]]
+Here is a convenience function to make sure you do not overwrite any files: http://goo.gl/General/OeSCu
 
-<code>
--([[NSString]] '')createSafeFilePathFromBase:([[NSString]] '')creationPath
+    
+-(General/NSString *)createSafeFilePathFromBase:(General/NSString *)creationPath
 {
 int numberWithName = 1;
 BOOL isDir;
-[[NSString]] ''safePath;
+General/NSString *safePath;
 safePath = [creationPath retain];
 
-while ([[[[NSFileManager]] defaultManager] fileExistsAtPath:safePath
+while (General/[[NSFileManager defaultManager] fileExistsAtPath:safePath
                                             isDirectory:&isDir])
     {
         [safePath release];
-        safePath = [[[[NSString]] alloc] initWithFormat:@"%@ %d.%@",
+        safePath = General/[[NSString alloc] initWithFormat:@"%@ %d.%@",
             [creationPath stringByDeletingPathExtension],
             numberWithName,[creationPath pathExtension]];
         
@@ -22,32 +22,32 @@ while ([[[[NSFileManager]] defaultManager] fileExistsAtPath:safePath
 
 return [safePath autorelease];
 }
-</code>
+
 
 Header:
-<code>
+    
 #import <Foundation/Foundation.h>
 
-@interface [[NSString]] ([[EXStringExtras]])
--([[NSString]] '')safeFilePath;
+@interface General/NSString (General/EXStringExtras)
+-(General/NSString *)safeFilePath;
 @end
-</code>
-Source:
-<code>
-#import "[[EXStringExtras]].h"
 
-@implementation [[NSString]] ([[EXStringExtras]])
--([[NSString]] '')safeFilePath
+Source:
+    
+#import "General/EXStringExtras.h"
+
+@implementation General/NSString (General/EXStringExtras)
+-(General/NSString *)safeFilePath
 {
 int numberWithName = 1;
 BOOL isDir;
-[[NSString]] ''safePath = [[[[NSString]] alloc] initWithString:self];
+General/NSString *safePath = General/[[NSString alloc] initWithString:self];
 
-while ([[[[NSFileManager]] defaultManager] fileExistsAtPath:safePath
+while (General/[[NSFileManager defaultManager] fileExistsAtPath:safePath
                                             isDirectory:&isDir])
     {
         [safePath release];
-        safePath = [[[[NSString]] alloc] initWithFormat:@"%@ %d.%@",
+        safePath = General/[[NSString alloc] initWithFormat:@"%@ %d.%@",
             [self 	stringByDeletingPathExtension],
             numberWithName,[self pathExtension]];
         
@@ -58,11 +58,11 @@ return [safePath autorelease];
 }
 
 @end
-</code>
+
 
 ----
 
-This is not quite solid. What if "self" is not a ''valid path'' to begin with? What if there are ''many'' numbered files in that folder?
+This is not quite solid. What if "self" is not a *valid path* to begin with? What if there are *many* numbered files in that folder?
 
 ----
 I am not sure in what context this is "Safe".  If you have this code running in two programs, they will corrupt each others files.  This is a classic race condition concurrency problem:
@@ -83,7 +83,7 @@ The mkstemp() function makes the same replacement to the template and
      file's existence and opening it for use.
 
 
-http://developer.apple.com/documentation/Darwin/Reference/[[ManPages]]/man3/mkstemp.3.html
+http://developer.apple.com/documentation/Darwin/Reference/General/ManPages/man3/mkstemp.3.html
 
 Note: creation and namig of temporary files can have serious security impacts.
 
@@ -102,9 +102,9 @@ Another "safety" issue is that overwriting temp files is a well known sucurity s
 
 I'm afraid I'm missing something fundamental, then. Why does it matter whether the path is passed directly into -writeToFile:atomically: from a save panel (chosen by a user while other apps are running and can potentially invalidate the path between choice and write) and a method that automatically finds its own potential path. In either case, there's a chance for the chosen path to become invalid. I just don't see any difference whatsoever between the two. Can you be more specific?
 
-That's not to say I'm dismissing the potential security problems, etc. but that's a '''completely''' separate issue from the implied meaning of this page (finding a 'safe' file name to which to automatically write a file in case the supplied name is already taken). You keep mentioning the security implications, but those pitfalls can exist in any case and that does not appear to be the goal of this particular snippet of code.
+That's not to say I'm dismissing the potential security problems, etc. but that's a **completely** separate issue from the implied meaning of this page (finding a 'safe' file name to which to automatically write a file in case the supplied name is already taken). You keep mentioning the security implications, but those pitfalls can exist in any case and that does not appear to be the goal of this particular snippet of code.
 
-Regardless, the use of a UUID for a file name when storing temporary files is the best approach, but '''this''' code snippet has nothing to do specifically with temporary files. It's just a demonstration of finding an unoccupied variant of a given file path.
+Regardless, the use of a UUID for a file name when storing temporary files is the best approach, but **this** code snippet has nothing to do specifically with temporary files. It's just a demonstration of finding an unoccupied variant of a given file path.
 
 ----
 

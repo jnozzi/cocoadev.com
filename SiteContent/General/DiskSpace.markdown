@@ -4,7 +4,7 @@ Cheers.
 
 ----
 
-easiest way would be to use popen() or [[NSTask]] to run the '''df''' command.  If that's not acceptable, then you can snarf the df command from Darwin and see how they do it.
+easiest way would be to use popen() or General/NSTask to run the **df** command.  If that's not acceptable, then you can snarf the df command from Darwin and see how they do it.
 
 ----
 
@@ -18,34 +18,33 @@ Interestingly... I found out Apple's own installers use df - when I replaced df 
 
 Another method that seems to work just fine...
 
-<code>
-- (void)traceFileSystemAttributesForPath:([[NSString]]'')path
+    
+- (void)traceFileSystemAttributesForPath:(General/NSString*)path
 {
     unsigned long long sizeValue;
-    [[NSString]] ''fullPath = [path stringByStandardizingPath];
+    General/NSString *fullPath = [path stringByStandardizingPath];
     if (fullPath)
     {
-        [[NSFileManager]] ''fileManager = [[[NSFileManager]] defaultManager];
+        General/NSFileManager *fileManager = General/[NSFileManager defaultManager];
         if (fileManager)
         {
-            [[NSDictionary]] ''fileSystemAttributes = [fileManager fileSystemAttributesAtPath:fullPath];
+            General/NSDictionary *fileSystemAttributes = [fileManager fileSystemAttributesAtPath:fullPath];
             if (fileSystemAttributes && [fileSystemAttributes count])
             {
-                [[NSNumber]] ''keyValue = [fileSystemAttributes objectForKey:[[NSFileSystemSize]]];
+                General/NSNumber *keyValue = [fileSystemAttributes objectForKey:General/NSFileSystemSize];
                 if (keyValue)
                 {
                     sizeValue = [keyValue unsignedLongLongValue];
-                    [[NSLog]](@"The total volume size containing the path \"%@\" is %qu", fullPath, sizeValue);
+                    General/NSLog(@"The total volume size containing the path \"%@\" is %qu", fullPath, sizeValue);
                 }
                 
-                keyValue = [fileSystemAttributes objectForKey:[[NSFileSystemFreeSize]]];
+                keyValue = [fileSystemAttributes objectForKey:General/NSFileSystemFreeSize];
                 if (keyValue)
                 {
                     sizeValue = [keyValue unsignedLongLongValue];
-                    [[NSLog]](@"The current free space on the volume containing \"%@\" is %qu", fullPath, sizeValue);
+                    General/NSLog(@"The current free space on the volume containing \"%@\" is %qu", fullPath, sizeValue);
                 }
             }
         }
     }
 }
-</code>

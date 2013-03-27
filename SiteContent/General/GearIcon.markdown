@@ -4,8 +4,8 @@ Any talented artists out there who would like to contribute one? My design skill
 
 Some examples:
 
-/System/Library/[[CoreServices]]/Finder.app/Contents/Resources/Gear.icns
-/System/Library/Components/[[CharacterPalette]].component/Contents/[[SharedSupport]]/[[CharPaletteServer]].app/Contents/Resources/Action.tiff
+/System/Library/General/CoreServices/Finder.app/Contents/Resources/Gear.icns
+/System/Library/Components/General/CharacterPalette.component/Contents/General/SharedSupport/General/CharPaletteServer.app/Contents/Resources/Action.tiff
 
 ----
 

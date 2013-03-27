@@ -2,33 +2,33 @@ I'm writing a HTML editor, I have some code that inserts some HTML code in the t
 
 ----
 
-That is one of the most insightful and interesting questions I have ever seen on [[CocoaDev]]. :)
+That is one of the most insightful and interesting questions I have ever seen on General/CocoaDev. :)
 
 ----
 
 I just ran into this last night and I thought it was great, so I'll have to post it here now.
 
-[[HowToAskQuestions]]
+General/HowToAskQuestions
 
 ----
 
 I really hate to dignify your question with an answer. Here it is: escape the double quotes. And if you don't know what that means, hide. Hide now.
 ----
 Ok, let me try this again. My code looks like this
-<code>    [[NSString]] ''image;
+        General/NSString *image;
     image = @"<img src="/images/htmledit.gif">";
-    [textView insertText:image];</code>
+    [textView insertText:image];
 And my errors are this
-<code>
+    
 
 *error: invalid operands to binary /
 *'htmledit' undeclared
 *error: parse error before string constant
 
-</code>
+
 I really need help with this.
 
-| [[JoshaChapmanDodson]] |
+| General/JoshaChapmanDodson |
 
 ----
 
@@ -61,15 +61,15 @@ I was feeding him for a day so that when he's hungry tomorrow he'll come back fo
 ----
 Don't you enjoy making fun of me! : P
 
---[[JoshaChapmanDodson]]
+--General/JoshaChapmanDodson
 
-''One of them does; the other is more interested in helping.''
+*One of them does; the other is more interested in helping.*
 
 I think everyone does, we just don't want to help him write all his code.
 ----
-I'm not ''asking'' you to write my code, I'm just asking things that I need help with.
+I'm not *asking* you to write my code, I'm just asking things that I need help with.
 
---[[JoshaChapmanDodson]]
+--General/JoshaChapmanDodson
 
 ----
 

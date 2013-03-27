@@ -10,21 +10,20 @@ What is #import ?
 
 It's a C preprocessor construct to "include" the textual content of another file while automatically avoiding multiple inclusions of the same file.
 
-<code>
+    
 #import <Object.h>
-</code>
+
 
 is an alternative to
 
-<code>
+    
 #include <Object.h>
-</code>
+
 
 If #include is used, the included file must provide "guards" such as the following to prevent multiple inclusions:
 
-<code>
+    
 #ifndef _OBJECT_H_
 ...
 #define _OBJECT_H_
 #endif
-</code>

@@ -1,26 +1,26 @@
 
 
-Part of the iPhone [[UIKit]] framework.
+Part of the iPhone General/UIKit framework.
 
-%%BEGINCODESTYLE%%+ (id)applicationImageNamed:([[NSString]]'')name;%%ENDCODESTYLE%%
+<code>+ (id)applicationImageNamed:(General/NSString*)name;</code>
 
 Instatiates the image from the application directory.
 
-%%BEGINCODESTYLE%%- (void)compositeToPoint:([[CGPoint]])p operation:(int)operation;%%ENDCODESTYLE%%
+<code>- (void)compositeToPoint:(General/CGPoint)p operation:(int)operation;</code>
 
-Composites the image into the current drawing context. Is operation same as [[NSCompositingOperation]]?
+Composites the image into the current drawing context. Is operation same as General/NSCompositingOperation?
 
-%%BEGINCODESTYLE%%- ([[CGSize]])size;%%ENDCODESTYLE%%
+<code>- (General/CGSize)size;</code>
 
 Crashes.
 
 ----
 
-I've been trying to find out how to draw an [[UIImage]] rotated 90�/-90�, but since you can't use (i think) [[AppKit]] you can't use whole of [[NSAffineTransform]] which makes it difficult. Any ideas on how to draw an [[UIImage]] rotated?
+I've been trying to find out how to draw an General/UIImage rotated 90�/-90�, but since you can't use (i think) General/AppKit you can't use whole of General/NSAffineTransform which makes it difficult. Any ideas on how to draw an General/UIImage rotated?
 
 ----
 
-I think you should be able to just go down into [[CoreGraphics]] and do this: http://developer.apple.com/documentation/[[GraphicsImaging]]/Reference/[[CGAffineTransform]]/Reference/reference.html
+I think you should be able to just go down into General/CoreGraphics and do this: http://developer.apple.com/documentation/General/GraphicsImaging/Reference/General/CGAffineTransform/Reference/reference.html
 
 Prolly not the answer you were looking for, but that's about the only thing I can come up with.
 
@@ -28,13 +28,13 @@ Prolly not the answer you were looking for, but that's about the only thing I ca
 
 ----
 
-The simplest method to rotate a [[UIImage]] is to use a [[CGAffineTransform]] and rotate its view. The nice thing is on the iPhone OS there are some convenience methods to do this, so the result looks something like this:
-<code>
-	[[CGAffineTransform]] rotate = [[CGAffineTransformMakeRotation]](1.57079633);
+The simplest method to rotate a General/UIImage is to use a General/CGAffineTransform and rotate its view. The nice thing is on the iPhone OS there are some convenience methods to do this, so the result looks something like this:
+    
+	General/CGAffineTransform rotate = General/CGAffineTransformMakeRotation(1.57079633);
 	[myImageView setTransform:rotate];
-</code>
 
-The [[CGAffineTransformMakeRotation]] takes a float in radians, so this example will rotate the image 90&#730; clockwise.
+
+The General/CGAffineTransformMakeRotation takes a float in radians, so this example will rotate the image 90&#730; clockwise.
 
 -- Pelted
 

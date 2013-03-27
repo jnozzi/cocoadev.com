@@ -6,7 +6,7 @@ I am wondering, is there anyway we can create other emoticons by passing around 
 
 (Just something fun for everyone to think about). ;)
 
--- [[MatPeterson]]
+-- General/MatPeterson
 
 ----
 
@@ -36,7 +36,7 @@ You can get :) easily too - @selector(moof:)
 
 8^(|) - homer simpson
 
-''How could you get ''that'' into working code?!?''
+*How could you get *that* into working code?!?*
 
 I'm pretty sure it's valid Perl. ;-)
 
@@ -58,6 +58,6 @@ C|=D (this one goes both ways, allowing for hats.)
 
 ----
 
-[[[NSString]] stringWithString: @"any emoticon code you want"];
+General/[NSString stringWithString: @"any emoticon code you want"];
 
-I know, I cheated. -[[FranciscoTolmasky]]
+I know, I cheated. -General/FranciscoTolmasky

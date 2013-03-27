@@ -1,6 +1,6 @@
 Unit Test : �Unit Test is a procedure used to validate that individual units of functional code are working properly. �
 
-� [[JUnit]] is very much about testing state and behaviour of individual methods. How about the interaction between classes?
+� General/JUnit is very much about testing state and behaviour of individual methods. How about the interaction between classes?
 � One way is to use mock objects (jMock, www.jmock.org) Mock means something made as an imitation
 � A mock object of a class C has all the methods of class C but instead of executing them, it records the calls to the 
   methods of C, which can then be tested.

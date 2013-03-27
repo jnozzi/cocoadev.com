@@ -3,7 +3,7 @@ Well I finally got the time to install Mac OS X Tiger recently and I love it for
 
 I, however, want to enable this by default so it does this all the time like I could in Xcode 1.5 preferences so that I don't have to hit Esc everytime I want a suggestion. I swear I looked for a preference for this in the Xcode prefs several times now, is there something simple I missed or where would I need to go to change this setting? Other than this I have no problems with Xcode 2 whatsoever and is almost perfect for the projects I work on. Thanks for your help!
 
-''Seconded!''
+*Seconded!*
 
 -1'd! I hated that option, but I kept it on for some reason. I'm glad Apple is taking care of me here :p
 
@@ -15,9 +15,9 @@ Thirded
 
 ----
 
-'''How about you just memorize the code like a good little programmer boy should. :)''' ''Or girl.''
+**How about you just memorize the code like a good little programmer boy should. :)** *Or girl.*
 
-''With automatic suggestion of ''everything'' in [[CodeSense]], like how it was in Xcode 1.5, I wrote code much, much quicker and it was far less prone to error, especially when using an API like Cocoa that prefers long, verbose variable & method names. Full [[CodeSense]] makes a lot of compile errors a thing of the past, and that saves a ''lot'' of time. Its got nothing to do with memorizing code, just not having to type patternGeneratorSizeField correctly hundreds of times.''
+*With automatic suggestion of *everything* in General/CodeSense, like how it was in Xcode 1.5, I wrote code much, much quicker and it was far less prone to error, especially when using an API like Cocoa that prefers long, verbose variable & method names. Full General/CodeSense makes a lot of compile errors a thing of the past, and that saves a *lot* of time. Its got nothing to do with memorizing code, just not having to type patternGeneratorSizeField correctly hundreds of times.*
 
 ----
 

@@ -1,75 +1,75 @@
  Please help me
-  How to get [[PicHandle]]
-  I  can get image Width, Height,Resolution&image data Buffer.But I don't know How to get "[[PicHandle]]".
+  How to get General/PicHandle
+  I  can get image Width, Height,Resolution&image data Buffer.But I don't know How to get "General/PicHandle".
   I do it in this way
 ----
-<code>
+    
 
-//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''//
+//******************************************************************************//
 2003-10-5
-[[GetImageHandle]]  
-Return   [[PicHandle]]
-//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''//
+General/GetImageHandle  
+Return   General/PicHandle
+//****************************************************************************'//
 
--([[PicHandle]])[[GetImageHandle]]{
+-(General/PicHandle)General/GetImageHandle{
    
- [[PicHandle]] hSMPicHandle;
+ General/PicHandle hSMPicHandle;
  hSMPicHandle=nil;
  unsigned Picsize;
 
 // 24bit color picture
-Picsize= [[ImageHeight]]'' [[ImageWidth]]''3 ; // Get image size;
+Picsize= General/ImageHeight* General/ImageWidth*3 ; // Get image size;
 
 // imageBlock.pBuffer:  The memory address that holds the image data.
 //get image data
-DS_RETURNCODE  result = [[[[SMClient]] shareSMClient ] [[SMQueryBlock]]:&imageBlock];       
+DS_RETURNCODE  result = General/[[SMClient shareSMClient ] General/SMQueryBlock:&imageBlock];       
 if (result != DSRC_SCANDONE && result != DSRC_SCANMORE) 
      { 
-        [[NSLog]](@"[[QueryBlock]] failed. result = %d",result); 
+        General/NSLog(@"General/QueryBlock failed. result = %d",result); 
         return  nil;  
      }
 
-[[OpenCPicParams]] Parameter;
-[[PicHandle]] [[TempPicHandle]];
+General/OpenCPicParams Parameter;
+General/PicHandle General/TempPicHandle;
 Handle dataHandle;
 
 //Init Parameter
-[self [[SetupOpenCPicture]]:&Parameter];
+[self General/SetupOpenCPicture:&Parameter];
 
-dataHandle= [[NewHandle]](Picsize+sizeof([[PicHandle]]));
+dataHandle= General/NewHandle(Picsize+sizeof(General/PicHandle));
 
-[[TempPicHandle]]= [[OpenCPicture]](&Parameter);
-/''
-// ('''[[TemPicHandle]]).picSize=40 is error
-//('''[[TemPicHandle]]).picFrame.top=840 is error
+General/TempPicHandle= General/OpenCPicture(&Parameter);
+/*
+// (**General/TemPicHandle).picSize=40 is error
+//(**General/TemPicHandle).picFrame.top=840 is error
 //
-//I thank ('''[[TemPicHandle]]).picFrame values should equal to
+//I thank (**General/TemPicHandle).picFrame values should equal to
  Paramteter->srcRect.top
  Paramteter ->srcRect.left
  Paramteter ->srcRect.bottom
  Paramteter ->srcRect.right
-''/ 
+*/ 
 
 // move Header information to dataHandle
-[[BlockMoveData]](''[[TempPicHandl]],''dataHandle,sizeof([[PicHandle]]));  
+General/BlockMoveData(*General/TempPicHandl,*dataHandle,sizeof(General/PicHandle));  
 
 // move image data to dataHandle; 
-[[BlockMoveData]](imageBlock.pBuffer,''dataHandle+sizeo([[PicHandle]] ),Picsize);
+General/BlockMoveData(imageBlock.pBuffer,*dataHandle+sizeo(General/PicHandle ),Picsize);
         
-hSMPicHandle=([[PicHandle]])dataHandle;
+hSMPicHandle=(General/PicHandle)dataHandle;
 
 return hSMPicHandle;
 }
 
 
 
-//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''//
+//******************************************************************************//
 2003-10-5
-[[SetupOpenCPicture]]  Init. "[[OpenCPicParams]]" structure
+General/SetupOpenCPicture  Init. "General/OpenCPicParams" structure
 Return   NULL
-//'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''//
+//****************************************************************************'//
 
-  -(void) [[SetupOpenCPicture]]:([[OpenCPicParams]]'') pOpenCPara{
+  -(void) General/SetupOpenCPicture:(General/OpenCPicParams*) pOpenCPara{
  pOpenCPara->srcRect.top=0;
  pOpenCPara->srcRect.left=0;
  pOpenCPara->srcRect.bottom=(short) Image.Height;//1170
@@ -80,27 +80,27 @@ Return   NULL
  pOpenCPara->reserved1=0;
  pOpenCPara->reserved2=0;
 }
-</code>
+
 ----
 Please help me
 ----
 Thank you for posting your code. What error(s) are you getting?
 
 ----
-This strikes me as the sort of thing that would have much more success on carbon-dev or the [[CarbonDev]] wiki or some other Carbon-oriented forum. Feel free to keep trying here, but it's really a Carbon question and I am personally clueless about it.
+This strikes me as the sort of thing that would have much more success on carbon-dev or the General/CarbonDev wiki or some other Carbon-oriented forum. Feel free to keep trying here, but it's really a Carbon question and I am personally clueless about it.
 
 ----
 
-Be advised that Apple deprecated [[QuickDraw]] in Tiger. If you can avoid using it in new projects, you should do so.
+Be advised that Apple deprecated General/QuickDraw in Tiger. If you can avoid using it in new projects, you should do so.
 
 ----
-You probably don't want to name your method "[[GetImageHandle]]" : 
+You probably don't want to name your method "General/GetImageHandle" : 
 Method names should start with a lower case letter.
 "Get" has a reserved meaning different for the meaning implied in your code.
 
-<http://developer.apple.com/documentation/Cocoa/Conceptual/[[CodingGuidelines]]/Articles/[[NamingMethods]].html>
+<http://developer.apple.com/documentation/Cocoa/Conceptual/General/CodingGuidelines/Articles/General/NamingMethods.html>
 
-<http://developer.apple.com/documentation/Cocoa/Conceptual/[[CodingGuidelines]]/[[CodingGuidelines]].html>
+<http://developer.apple.com/documentation/Cocoa/Conceptual/General/CodingGuidelines/General/CodingGuidelines.html>
 
 <http://www.stuffonfire.com/2007/04/29/get-stuffed/>
 

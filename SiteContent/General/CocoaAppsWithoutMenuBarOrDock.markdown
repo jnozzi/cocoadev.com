@@ -6,13 +6,13 @@ Jacob
 
 ----
 
-Easy to do. In project builder, goto the 'Project' menu, select 'Edit Active Target "Project Name"'. Select 'Expert View' out of the 'Info.plist Entries'. Add to this list, [[LSUIElement]] with a number value of 1.
+Easy to do. In project builder, goto the 'Project' menu, select 'Edit Active Target "Project Name"'. Select 'Expert View' out of the 'Info.plist Entries'. Add to this list, General/LSUIElement with a number value of 1.
 
 
 Enjoy!
 
 
--- [[MatPeterson]]
+-- General/MatPeterson
 
 ----
 

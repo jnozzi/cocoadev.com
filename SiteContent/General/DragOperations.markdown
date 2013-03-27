@@ -1,11 +1,11 @@
-[http://developer.apple.com/documentation/Cocoa/Reference/[[ApplicationKit]]/ObjC_classic/[[TypesAndConstants]]/[[AppKitTypes]].html#//apple_ref/doc/uid/20000019/BAJJFEEE]
+[http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/General/TypesAndConstants/General/AppKitTypes.html#//apple_ref/doc/uid/20000019/BAJJFEEE]
 
-[http://developer.apple.com/documentation/Cocoa/Reference/[[ApplicationKit]]/ObjC_classic/Protocols/[[NSDraggingInfo]].html]
+[http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Protocols/General/NSDraggingInfo.html]
 
 here are the main drag operations:
 
-� 	Control key: [[NSDragOperationLink]]
+� 	Control key: General/NSDragOperationLink
 
-� 	Option key: [[NSDragOperationCopy]]? 
+� 	Option key: General/NSDragOperationCopy? 
 
-� 	Command key: [[NSDragOperationGeneric]]
+� 	Command key: General/NSDragOperationGeneric

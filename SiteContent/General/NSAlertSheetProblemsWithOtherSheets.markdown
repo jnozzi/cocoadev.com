@@ -1,30 +1,30 @@
 Hi,
 
-I have an app which uses an [[NSAlert]] as a sheet, which I understand is quite a standard Cocoa thing., here is the code...
+I have an app which uses an General/NSAlert as a sheet, which I understand is quite a standard Cocoa thing., here is the code...
 
-<code>
-[[NSAlert]] ''alert = [[[[[NSAlert]] alloc] init] autorelease];
+    
+General/NSAlert *alert = General/[[[NSAlert alloc] init] autorelease];
 			[alert addButtonWithTitle:@"Switch"];
 			[alert addButtonWithTitle:@"Cancel"];
 			[alert setMessageText:@"Switch tasks?"];
 			[alert setInformativeText:@"You are currently working on another project, switching projects will end that work session, are you sure you want to switch?"];
-			[alert setAlertStyle:[[NSWarningAlertStyle]]];
+			[alert setAlertStyle:General/NSWarningAlertStyle];
 			
 			[alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
-</code>
+
 
 This displays the alert just fine, no problems here at all, when the user dismisses the alert with their answer ('yes switch' or 'cancel') the following method is called (by the 'didEndSelector' seen above):
 
-<code>
-- (void)alertDidEnd:([[NSAlert]] '')alert returnCode:(int)returnCode contextInfo:(void '')contextInfo 
+    
+- (void)alertDidEnd:(General/NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo 
 {
 	//an alert has ended...
-	if (returnCode == [[NSAlertFirstButtonReturn]]) 
+	if (returnCode == General/NSAlertFirstButtonReturn) 
 		{ 
 		[taskWindowController doSomething];
 		}
 }
-</code>
+
 
 As you can see, this method (called supposedly when the alert ends) calls another method in turn if the user selected the main button. No problems yet... until [taskWindowController doSomething] is called, because you see, this method opens a sheet of its own. I didn't think this would be a problem, because I assumed that by the time the 'alertDidEnd' was reached the original sheet... er... would have, well, ended?
 
@@ -40,4 +40,4 @@ Thankyou for your suggestions!
 
 ----
 
-You need to send your sheets an <code>orderOut:</code> message to get them to go away. See the section on multiple sheets at [http://developer.apple.com/documentation/Cocoa/Conceptual/Sheets/index.html]
+You need to send your sheets an     orderOut: message to get them to go away. See the section on multiple sheets at [http://developer.apple.com/documentation/Cocoa/Conceptual/Sheets/index.html]

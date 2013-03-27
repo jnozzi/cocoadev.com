@@ -1,13 +1,13 @@
 This is more of a unix question, but anyway...
 
-From a Cocoa app I am launching a process using <code>fork()</code>/<code>system()</code> (yes, I also tried [[NSTask]], but with the same problem).  The problem is, that the process I launch will also launch a process, and so, when I kill the process I launched, the child of it will stay around.
+From a Cocoa app I am launching a process using     fork()/    system() (yes, I also tried General/NSTask, but with the same problem).  The problem is, that the process I launch will also launch a process, and so, when I kill the process I launched, the child of it will stay around.
 
-This was initially why I switched from [[NSTask]] to <code>fork()</code>/<code>system()</code>, cause then I could use <code>setpgrp()</code> for the new process and use <code>killpg()</code> to kill the process group, but it gave the same result (and anyway, the child of the new process had the process group ID to be the process ID of the process, not the group ID.
+This was initially why I switched from General/NSTask to     fork()/    system(), cause then I could use     setpgrp() for the new process and use     killpg() to kill the process group, but it gave the same result (and anyway, the child of the new process had the process group ID to be the process ID of the process, not the group ID.
 
-I also tried <code>kill(-getpid(), SIGTERM)</code> but w/o luck.  The only thing which works is <code>kill(0, SIGTERM)</code>, but unfortunately that will also kill my own task.
+I also tried     kill(-getpid(), SIGTERM) but w/o luck.  The only thing which works is     kill(0, SIGTERM), but unfortunately that will also kill my own task.
 
 So my question is, how to kill a process with all its children?
-<code>
+    
 - (void)awakeFromNib
 {
    setpgrp(0, getpid());
@@ -20,14 +20,14 @@ So my question is, how to kill a process with all its children?
    }
 }
 
-- (void)applicationWillTerminate:([[NSNotification]]'')aNotification
+- (void)applicationWillTerminate:(General/NSNotification*)aNotification
 {
    kill(0, SIGTERM);
 }
-</code>
+
 
 ----
 
-I looked in the documentation for [[NSTask]].
+I looked in the documentation for General/NSTask.
 
-Is <code>- (void) terminate </code> the magic bullet for this one?
+Is     - (void) terminate  the magic bullet for this one?

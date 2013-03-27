@@ -1,4 +1,4 @@
-I had a problem that when I wanted to print a [[NSImage]] containing an [[NSPDFImageRep]], a TIFF drawing of the image and its bounding box appeared, and the Arcs and Text of the image were bitmaps.
+I had a problem that when I wanted to print a General/NSImage containing an General/NSPDFImageRep, a TIFF drawing of the image and its bounding box appeared, and the Arcs and Text of the image were bitmaps.
 
 The problem was that the original PDF representation was being discarded, and a TIFF cached image was being retained.  
 

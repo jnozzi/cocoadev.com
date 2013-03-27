@@ -1,1 +1,1 @@
-See [[DesignMatrix]].
+See General/DesignMatrix.

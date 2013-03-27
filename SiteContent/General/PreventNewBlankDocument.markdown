@@ -14,7 +14,7 @@ Any advice? Thanks.
 
 ----
 
-[[NSApplication]]'s -applicationShouldOpenUntitledFile: is what you're looking for.
+General/NSApplication's -applicationShouldOpenUntitledFile: is what you're looking for.
 
 ----
 
@@ -26,4 +26,4 @@ Not sure what subclassing has to do with anything in this case, but ... congrats
 
 ---- 
 
-I had the [[NSApplication]] class subclassed, and implemented -applicationShouldOpenUntitledFile: in that. It was never being called. Unwound the subclassing, wired up a delegate and implemented -applicationShouldOpenUntitledFile: in the delegate and it's working. Thanks again. --ch
+I had the General/NSApplication class subclassed, and implemented -applicationShouldOpenUntitledFile: in that. It was never being called. Unwound the subclassing, wired up a delegate and implemented -applicationShouldOpenUntitledFile: in the delegate and it's working. Thanks again. --ch

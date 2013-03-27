@@ -1,11 +1,11 @@
 
 
-Part of the iPhone [[UIKit]] framework. Defined in <[[UIKit]]/[[UIProgressHUD]].h>
+Part of the iPhone General/UIKit framework. Defined in <General/UIKit/General/UIProgressHUD.h>
 
-<code>
-- (void)showProgressHUD:([[NSString]] '')label withWindow:([[UIWindow]] '')w withView:([[UIView]] '')v withRect:(struct [[CGRect]])rect
+    
+- (void)showProgressHUD:(General/NSString *)label withWindow:(General/UIWindow *)w withView:(General/UIView *)v withRect:(struct General/CGRect)rect
 {
-        progress = [[[[UIProgressHUD]] alloc] initWithWindow: w];
+        progress = General/[[UIProgressHUD alloc] initWithWindow: w];
         [progress setText: label];
         [progress drawRect: rect];
         [progress show: YES];
@@ -18,7 +18,7 @@ Part of the iPhone [[UIKit]] framework. Defined in <[[UIKit]]/[[UIProgressHUD]].
         [progress show: NO];
         [progress removeFromSuperview];
 }
-</code>
+
 
 ----
-You can also use [[MBProgressHUD]] as an alternative if you want to avoid Apple's private API. http://www.bukovinski.com/2009/04/08/mbprogresshud-for-iphone/
+You can also use General/MBProgressHUD as an alternative if you want to avoid Apple's private API. http://www.bukovinski.com/2009/04/08/mbprogresshud-for-iphone/

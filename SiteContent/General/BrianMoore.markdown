@@ -1,5 +1,5 @@
 
 
-Brian Moore is a guy who runs [[BinaryMindedSoftware]].
+Brian Moore is a guy who runs General/BinaryMindedSoftware.
 
-[[OpenGL]] rules!
+General/OpenGL rules!

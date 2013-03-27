@@ -6,4 +6,4 @@ Manager and Mac/iOS developer.
 *http://www.linkedin.com/in/danielreese
  
 
-Author of [[FastSocket]] (https://github.com/dreese/fast-socket), a fast synchronous networking API for Objective-C (see [[SocketClasses]]). Much gratitude to Beej and others.
+Author of General/FastSocket (https://github.com/dreese/fast-socket), a fast synchronous networking API for Objective-C (see General/SocketClasses). Much gratitude to Beej and others.

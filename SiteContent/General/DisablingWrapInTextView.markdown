@@ -1,6 +1,6 @@
 
 
-Is there an easy way to prevent an [[NSTextView]] from wrapping it's contents... so it shows the horizontal scrollbar?
+Is there an easy way to prevent an General/NSTextView from wrapping it's contents... so it shows the horizontal scrollbar?
 
 ----
 You could try setting its springs in IB to stretch horizontally, but keep the containing scroll view on a fixed-width.
@@ -9,28 +9,27 @@ You could try setting its springs in IB to stretch horizontally, but keep the co
 Thanks, but I need to have the scroll view scale with the window. :)
 
 ----
-See file:///Developer/Examples/[[AppKit]]/[[TextSizingExample]]
+See file:///Developer/Examples/General/AppKit/General/TextSizingExample
 ----
 
 ----
 
-Here is a simple way to disable wrapping in an existing [[NSTextView]]:
+Here is a simple way to disable wrapping in an existing General/NSTextView:
 
-<code>
-const float [[LargeNumberForText]] = 1.0e7;
+    
+const float General/LargeNumberForText = 1.0e7;
 
-[[NSScrollView]] ''scrollView = [textView enclosingScrollView];
+General/NSScrollView *scrollView = [textView enclosingScrollView];
 [scrollView setHasVerticalScroller:YES];
 [scrollView setHasHorizontalScroller:YES];
-[scrollView setAutoresizingMask:([[NSViewWidthSizable]] | [[NSViewHeightSizable]])];
+[scrollView setAutoresizingMask:(General/NSViewWidthSizable | General/NSViewHeightSizable)];
 
-[[NSTextContainer]] ''textContainer = [textView textContainer];
-[textContainer setContainerSize:[[NSMakeSize]]([[LargeNumberForText]], [[LargeNumberForText]])];
+General/NSTextContainer *textContainer = [textView textContainer];
+[textContainer setContainerSize:General/NSMakeSize(General/LargeNumberForText, General/LargeNumberForText)];
 [textContainer setWidthTracksTextView:NO];
 [textContainer setHeightTracksTextView:NO];
 
-[textView setMaxSize:[[NSMakeSize]]([[LargeNumberForText]], [[LargeNumberForText]])];
+[textView setMaxSize:General/NSMakeSize(General/LargeNumberForText, General/LargeNumberForText)];
 [textView setHorizontallyResizable:YES];
 [textView setVerticallyResizable:YES];
-[textView setAutoresizingMask:[[NSViewNotSizable]]];
-</code>
+[textView setAutoresizingMask:General/NSViewNotSizable];

@@ -1,1 +1,1 @@
-Describe [[NSInputStream]] here.test
+Describe General/NSInputStream here.test

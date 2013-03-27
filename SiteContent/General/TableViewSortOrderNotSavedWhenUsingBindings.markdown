@@ -7,16 +7,16 @@ Is there any way I can force bindings to synchronize the GUI view with the under
 
 Some more details:
 
-The table view is bound to [[NSArrayController]], with controller key arrangedObjects, and model key path [[URLOfBookmark]]
-[[NSArrayController]]'s contentArray is bound to File's Owner with model key path bookmarksArray
+The table view is bound to General/NSArrayController, with controller key arrangedObjects, and model key path General/URLOfBookmark
+General/NSArrayController's contentArray is bound to File's Owner with model key path bookmarksArray
 
 I have tried to use 
-<code>
-- (void)tableView:([[NSTableView]] '')tableView sortDescriptorsDidChange:([[NSArray]] '')oldDescriptors
+    
+- (void)tableView:(General/NSTableView *)tableView sortDescriptorsDidChange:(General/NSArray *)oldDescriptors
 {
 	[bookmarksArray sortUsingDescriptors:[bookmarksController sortDescriptors]];
 }
-</code>
+
 While that sorts the array, the controller does not expect this, so if I do any subsequent additions and deletions, the wrong entries are removed.
 
 ----

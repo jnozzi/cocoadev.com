@@ -1,3 +1,3 @@
-appended to [[TerminateExplicitListWithNil]], where discussion was relevant
+appended to General/TerminateExplicitListWithNil, where discussion was relevant
 
-This page can point to [[ZeroLink]] [[BuildConfigurations]] etc
+This page can point to General/ZeroLink General/BuildConfigurations etc

@@ -5,7 +5,7 @@ I have a question regarding bindings, key-value-observing, and updating the pers
 Let's say have an entity called "Employee" with attributes "name", "dateCreated", and "dateModified".  After initially creating the object, I would like to update the attribute "dateModified" whenever I change something in my object.  Now, everything is done through bindings and it seems I can't get to permanently update "dateModified".
 
 I can get the "dateModified" updated on my screen (through key-value-observing) using "triggerChangeNotificationsForDependentKey" in "initialize":
-<code> 
+     
  +(void) initialize	{
  	if (self == [Employee class])	{
  		NSArray *keys = [NSArray arrayWithObjects:
@@ -14,16 +14,16 @@ I can get the "dateModified" updated on my screen (through key-value-observing) 
  		
  	}
  }
-</code>
+
 but I can't figure out how to make this change permanent when I save the document (I never use setValue:newDate forKey:@"dateModified" so obviously my changes are not permanent, but I don't know how to trigger this method and where to put this line in my code).
 
 Do I have to go through all the trouble of implementing "addObserver" in the document object to observe changes to the "Employee" objects or is there an elegant way to do it through bindings or only a few lines of code.
 
 Thanks a lot, Michael
 ----
-Well, for one thing, the <code>addObserver:...</code> methods are already implemented in all objects by default (see the Foundation [[NSKeyValueObserving]] protocol), so you can easily add an observer if you wish. However, there are two points you need to remember. First, any key-value compliant method (<code>-value</code> and <code>-setValue</code>) will notify observers, so there is not always a need to use <code>setValue:forKey:</code>. In your case, though, the easiest thing to do would be to set the date modified in all of your other methods (in addition to your current <code>initialize</code> code, which should probably be inheritable -- no <code>self == [Employee class]</code>), like so: --[[JediKnil]]
+Well, for one thing, the     addObserver:... methods are already implemented in all objects by default (see the Foundation General/NSKeyValueObserving protocol), so you can easily add an observer if you wish. However, there are two points you need to remember. First, any key-value compliant method (    -value and     -setValue) will notify observers, so there is not always a need to use     setValue:forKey:. In your case, though, the easiest thing to do would be to set the date modified in all of your other methods (in addition to your current     initialize code, which should probably be inheritable -- no     self == [Employee class]), like so: --General/JediKnil
 
-<code>
+    
  - (void)setName:(NSString *)newName
  {
  	if (newName != name) {
@@ -32,12 +32,12 @@ Well, for one thing, the <code>addObserver:...</code> methods are already implem
  		[self setDateModified:[NSDate date]];
  	}
  }
-</code>
+
 ----
-Thank you so much for the swift and clever answer.  What I did not state clearly in my initial post is that the "Employee" class is entirely coded with xcdatamodel (as Entity).  Hence, the above solution works only if you code your object programmatically.  I posted the code for working with Entities below (in case someone runs into the same problem) - which is exactly the same solution as [[JediKnil]] proposed.
+Thank you so much for the swift and clever answer.  What I did not state clearly in my initial post is that the "Employee" class is entirely coded with xcdatamodel (as Entity).  Hence, the above solution works only if you code your object programmatically.  I posted the code for working with Entities below (in case someone runs into the same problem) - which is exactly the same solution as General/JediKnil proposed.
 
 
-<code>
+    
  - (void)setName:(NSString *)newName	{
  	
  	[self willChangeValueForKey:@"name"];
@@ -53,4 +53,3 @@ Thank you so much for the swift and clever answer.  What I did not state clearly
  		[self didAccessValueForKey:@"name"];
  	}
  }
-</code>

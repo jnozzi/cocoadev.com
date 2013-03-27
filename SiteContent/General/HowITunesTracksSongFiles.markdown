@@ -3,7 +3,7 @@
 How does iTunes track the music files? For example if I go to iTunes Music folder and change a name of a music file, iTunes is still able to play and show it in Finder.
 
 ----
-I asume by using [[FSRef]], [[FSSpec]], Aliases and other yucky incompatible expectation dashing non standard but occasionally useful legacy Mac stuff.
+I asume by using General/FSRef, General/FSSpec, Aliases and other yucky incompatible expectation dashing non standard but occasionally useful legacy Mac stuff.
 
 "Bitter much?"
 ----
@@ -19,9 +19,9 @@ Just to head off somebody else saying it: Yes, I know that there are sometimes i
 Yep, I've got those scars too.
 
 Personally I can't understand the people who think its a Carbon vs Cocoa situation.
-The best thing about OSX is that we have a choice of [[APIs]] we can use: POSIX, Carbon and Cocoa. Bring it (all) on!
+The best thing about OSX is that we have a choice of General/APIs we can use: POSIX, Carbon and Cocoa. Bring it (all) on!
 
 
 ----
 
-I don't understand why debate is even necessary. The [[AliasManager]] and [[FileManager]] [[APIs]] work very well and are available to any developer who wishes to use them. Value judgements do not affect their availability. Use the right API for the right purpose and get on with making your app actually useful.
+I don't understand why debate is even necessary. The General/AliasManager and General/FileManager General/APIs work very well and are available to any developer who wishes to use them. Value judgements do not affect their availability. Use the right API for the right purpose and get on with making your app actually useful.

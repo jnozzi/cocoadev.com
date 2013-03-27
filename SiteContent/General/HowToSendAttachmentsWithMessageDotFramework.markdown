@@ -15,4 +15,4 @@ chris.giddings AT ripplesw.net
 
 No specific experience with Message.framework but in our app, we had a need to send attachments. We ended up scripting Mail (as per QA1018, see http://developer.apple.com/qa/qa2001/qa1018.html for the details). Note that the script posted in the Q&A does not work... you need to adapt it slightly but the principle outlined there works.
 
--- [[BenoitMarchal]]
+-- General/BenoitMarchal

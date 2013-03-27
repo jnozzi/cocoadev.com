@@ -1,19 +1,19 @@
 
 
-Part of the iPhone [[UIKit]] framework. Subclass of [[UIScroller]], implements [[UITextTraitsClient]].
+Part of the iPhone General/UIKit framework. Subclass of General/UIScroller, implements General/UITextTraitsClient.
 
-%%BEGINCODESTYLE%%- (id)initWithFrame:([[CGRect]])frame;%%ENDCODESTYLE%%
+<code>- (id)initWithFrame:(General/CGRect)frame;</code>
 
 Designated initializer!
 
-%%BEGINCODESTYLE%%- (void)setEditable:(BOOL)flag;%%ENDCODESTYLE%%
+<code>- (void)setEditable:(BOOL)flag;</code>
 
-%%BEGINCODESTYLE%%- (void)setHTML:(id)fp8;%%ENDCODESTYLE%%
+<code>- (void)setHTML:(id)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setText:(id)fp8;%%ENDCODESTYLE%%
+<code>- (void)setText:(id)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setTextColor:([[CGColorRef]])color;%%ENDCODESTYLE%%
+<code>- (void)setTextColor:(General/CGColorRef)color;</code>
 
-%%BEGINCODESTYLE%%- (void)setTextFont:(id)fp8;%%ENDCODESTYLE%%
+<code>- (void)setTextFont:(id)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setTextSize:(float)size;%%ENDCODESTYLE%%
+<code>- (void)setTextSize:(float)size;</code>

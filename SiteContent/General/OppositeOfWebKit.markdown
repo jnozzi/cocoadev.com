@@ -4,4 +4,4 @@ As a PS, I wanted to add that I don't really want to just run a CGI or perl scri
 
 ----
 
-You will want [[MiscMerge]]. It's great. Get it at http://www.misckit.com/ (I think). You can get it to work with RTF as well as HTML. It's a very powerful template language all written in Obj-C/Cocoa.
+You will want General/MiscMerge. It's great. Get it at http://www.misckit.com/ (I think). You can get it to work with RTF as well as HTML. It's a very powerful template language all written in Obj-C/Cocoa.

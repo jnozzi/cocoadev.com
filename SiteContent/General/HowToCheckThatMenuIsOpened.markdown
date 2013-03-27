@@ -20,11 +20,11 @@ d.
 
 ----
 
-The easy way to do this is to implement <code>validateMenuItem:</code> in the target of the menu item that you want to update. It's invoked just before the menu is displayed. It's intended to let you enable/disable the menu, but it works smashingly for changing states, titles, etc. as well. I'm a bit doubtful about this working for the Dock menu, though, but it's worth a try.
+The easy way to do this is to implement     validateMenuItem: in the target of the menu item that you want to update. It's invoked just before the menu is displayed. It's intended to let you enable/disable the menu, but it works smashingly for changing states, titles, etc. as well. I'm a bit doubtful about this working for the Dock menu, though, but it's worth a try.
 
 ----
 
-If it is just the dock menu, you can supply the dock menu dynamically. Have a look at the [[NSApplication]] delegate method "applicationDockMenu:".
+If it is just the dock menu, you can supply the dock menu dynamically. Have a look at the General/NSApplication delegate method "applicationDockMenu:".
 
 BTW, your english is fine.
 
@@ -42,4 +42,4 @@ d.
 
 ----
 
-Have a try with "menuNeedsUpdate:" delegate method from [[NSMenu]] class.
+Have a try with "menuNeedsUpdate:" delegate method from General/NSMenu class.

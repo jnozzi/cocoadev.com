@@ -1,30 +1,30 @@
 I wan't to implement something like Activity Window in Safari, so I do:
 
-<code>
+    
 [web setResourceLoadDelegate:self];
 
--(void)webView:([[WebView]] '')sender resource:(id)identifier didFinishLoadingFromDataSource:([[WebDataSource]] '')dataSource
+-(void)webView:(General/WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(General/WebDataSource *)dataSource
 
 {
-  [[NSLog]](@"did finish load, %s", [[[[dataSource request] URL] relativeString] cString]);
+  General/NSLog(@"did finish load, %s", General/[[dataSource request] URL] relativeString] cString]);
 }
-</code>
+
 
 But it always write only top-level url (domain name) i.e.:
 
 did finish load, http://www.site.com/
 
-for the page with text and three images on it. <code>absoluteString</code> will not help.
+for the page with text and three images on it.     absoluteString will not help.
 
 ----
 
 here is the solution:
-<code>
-- (id)webView:([[WebView]] '')sender identifierForInitialRequest:([[NSURLRequest]] '')request fromDataSource:([[WebDataSource]] '')dataSource
+    
+- (id)webView:([[WebView *)sender identifierForInitialRequest:(General/NSURLRequest *)request fromDataSource:(General/WebDataSource *)dataSource
 {
 	return (request); // see this? this is the solution
 }
-</code>
+
 
 ----
 
@@ -32,14 +32,14 @@ This doesn't help, identifier changes, but dataSource is still EXACTLY the same 
 It contains just the data from URL in it :(
 
 ----
-The [[WebDataSource]] in this case is the object that triggered the load. If you follow the example above you need to change your method accordingly:
-<code>
--(void)webView:([[WebView]] '')sender resource:(id)identifier didFinishLoadingFromDataSource:([[WebDataSource]] '')dataSource
+The General/WebDataSource in this case is the object that triggered the load. If you follow the example above you need to change your method accordingly:
+    
+-(void)webView:(General/WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(General/WebDataSource *)dataSource
 {
-  [[NSLog]](@"did finish load, %@", identifier);
+  General/NSLog(@"did finish load, %@", identifier);
 }
-</code>
--- [[MikeSolomon]]
+
+-- General/MikeSolomon
 
 ----
 

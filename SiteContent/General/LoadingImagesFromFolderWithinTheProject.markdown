@@ -1,4 +1,4 @@
-Describe [[LoadingImagesFromFolderWithinTheProject]] here.
+Describe General/LoadingImagesFromFolderWithinTheProject here.
 
 How I can load images from a folder within my Project? The folder is included in my project and copied to the target! When I added the folder to my project I used the following settings:
 
@@ -12,15 +12,15 @@ Create Folder References for any added folders:YES
 
 For now I use a folder outside the project, but that works only for my Computer. Because the app cant find the images when I use the following code on another Computer:
 
-<code>
-myImage = [[[[NSImage]] alloc] initWithContentsOfFile:[[[NSString]] stringWithFormat:@"/Users/ludwigvilliger/Desktop/[[TrainerBilder]]/Bild%@.png", index]];
-</code>
+    
+myImage = General/[[NSImage alloc] initWithContentsOfFile:General/[NSString stringWithFormat:@"/Users/ludwigvilliger/Desktop/General/TrainerBilder/Bild%@.png", index]];
+
 
 So I thougt, that would be a solution to add the folder to the target and load the images from there. But how?
 
 ----
 
-I believe the recommended solution is to simply have the image copied into the resources folder and then to use +[[[NSImage]] imageNamed:@"yourimage"]. --[[AndyMatuschak]]
+I believe the recommended solution is to simply have the image copied into the resources folder and then to use +General/[NSImage imageNamed:@"yourimage"]. --General/AndyMatuschak
 
 ----
 

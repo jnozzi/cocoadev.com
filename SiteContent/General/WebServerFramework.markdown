@@ -10,54 +10,54 @@ to the folder which contains the application called "Frameworks".
 
 I am providing this code with a Creative Commons NON-COMMERCIAL license. 
 Please read the "LICENSE". I would appreciate your requests for bugfixes
-and features so I can improve this framework for everyone, thanks - [[DavidThorpe]].
+and features so I can improve this framework for everyone, thanks - General/DavidThorpe.
 
 Download it here:
 
-http://mutablelogic.com/cocoa/[[WebServerFramework]].zip (52K)
+http://mutablelogic.com/cocoa/General/WebServerFramework.zip (52K)
 
 
 ----
 
 STARTING UP THE SERVER
 
-To create a web server in your application. create an instance of [[HTTPServer]] and
+To create a web server in your application. create an instance of General/HTTPServer and
 set the delegate:
 
-<code>
-  [[HTTPServer]]'' theServer = [[[[HTTPServer]] alloc] init];
-  Application'' theApplication = [[Application alloc] init];
+    
+  General/HTTPServer* theServer = General/[[HTTPServer alloc] init];
+  Application* theApplication = General/Application alloc] init];
 
   // set server's delegate to be the application
   [theServer setDelegate:theApplication];
-</code>
+
 
 You can set the port number and the name of the server before starting it:
 
-<code>
+    
   [theServer setName:@"Name for server"];
   [theServer setPort:8080];
-</code>
+
 
 If you don't do this, it will choose an available port and use a default name. You
 should tell the web server which HTTP methods you'll accept. These are global
 options at the moment and there is no concept of <Directory> and <Location>
 statements like apache yet:
 
-<code>
- [theServer setOptions:([[HTTPMethodGET]] | [[HTTPMethodHEAD]] | [[HTTPMethodPUT]])];
-</code>
+    
+ [theServer setOptions:([[HTTPMethodGET | General/HTTPMethodHEAD | General/HTTPMethodPUT)];
+
 
 When starting the webserver, an error code may be returned, a success value will
 also be returned:
 
-<code>
-  [[NSError]]'' theError = nil;
+    
+  General/NSError* theError = nil;
   [theServer start:&theError];
   if(theError) {
     // handle the error
   }
-</code>
+
 
 This will register the server with bonjour as well, so it will automatically be
 available to bonjour-enabled applications, like Safari.
@@ -66,27 +66,27 @@ The Web Server uses run loops for processing (not threads) so if this is a
 Foundation application you will need to use a run loop for processing. Here's
 an example way to create a run loop:
 
-<code>
+    
   // start the run loop
   double resolution = 300.0;
   BOOL isRunning;
   do {
-    [[NSDate]]'' theNextDate = [[[NSDate]] dateWithTimeIntervalSinceNow:resolution]; 
-    isRunning = [[[[NSRunLoop]] currentRunLoop] runMode:[[NSDefaultRunLoopMode]] beforeDate:theNextDate]; 
+    General/NSDate* theNextDate = General/[NSDate dateWithTimeIntervalSinceNow:resolution]; 
+    isRunning = General/[[NSRunLoop currentRunLoop] runMode:General/NSDefaultRunLoopMode beforeDate:theNextDate]; 
     // occasionally re-create the autorelease pool whilst program is running
     [pool release];
-    pool = [[[[NSAutoreleasePool]] alloc] init];            
+    pool = General/[[NSAutoreleasePool alloc] init];            
   } while(isRunning==YES);  
-</code>
+
 
 ----
 STOPPING THE SERVER
 
 You can stop the server using the "stop" method:
 
-<code>
+    
   [theServer stop];
-</code>
+
   
 This also returns a boolean success value.
 
@@ -98,17 +98,17 @@ You will need to handle requests in your delegate. At the moment, simple
 there are several phases.
 
  
-* %%BEGINCODESTYLE%%-([[NSString]]'' )pathForGetOrHeadRequest:([[HTTPRequest]]'' )theRequest;%%ENDCODESTYLE%%
+* <code>-(General/NSString* )pathForGetOrHeadRequest:(General/HTTPRequest* )theRequest;</code>
    This method is called for GET and HEAD requests. You need to return the path to
    the resource that is required. If you return nil, a "Not Found" 404 status code
    is returned to the client.
 
 
-* %%BEGINCODESTYLE%%-([[NSString]]'' )pathForPostRequest:([[HTTPRequest]]'' )theRequest;%%ENDCODESTYLE%%
+* <code>-(General/NSString* )pathForPostRequest:(General/HTTPRequest* )theRequest;</code>
    I don't think this one works yet. The theory is that you would treat it like a
    GET request.
 
-* %%BEGINCODESTYLE%%-([[NSString]]'' )pathForPutRequest:([[HTTPRequest]]'' )theRequest atomically:(BOOL'' )atomicWrite;%%ENDCODESTYLE%%
+* <code>-(General/NSString* )pathForPutRequest:(General/HTTPRequest* )theRequest atomically:(BOOL* )atomicWrite;</code>
    With this one, data is sent from client to server, and you will need to return
    the path of a filepath you would wish to write to. If you return nil, then a
    "Forbidden" status code is returned to the client. Additional checks are
@@ -122,16 +122,16 @@ there are several phases.
    The server either returns a "Success" or "Created" status code to the client
    depending on whether a new resource was created or an existing one overwritten.
 
-* %%BEGINCODESTYLE%%-([[NSString]]'' )pathForDeleteRequest:([[HTTPRequest]]'' )theRequest;%%ENDCODESTYLE%%
+* <code>-(General/NSString* )pathForDeleteRequest:(General/HTTPRequest* )theRequest;</code>
    If you want to delete a file or a whole directory on the server, you can return
    the path to the resource. If you return nil, "Forbidden" status code is 
    returned to the client.
 
-* %%BEGINCODESTYLE%%-(void)data:([[NSData]]'' )theData forRequest:([[HTTPRequest]]'' )theRequest;%%ENDCODESTYLE%%
+* <code>-(void)data:(General/NSData* )theData forRequest:(General/HTTPRequest* )theRequest;</code>
    Data from the client is passed through a delegate method to allow you to handle
    POST requests, although as I say this may not work correctly yet:
 
-* %%BEGINCODESTYLE%%-(void)finishedRequest:([[HTTPRequest]]'' )theRequest error:([[NSError]]'' )theError;%%ENDCODESTYLE%%
+* <code>-(void)finishedRequest:(General/HTTPRequest* )theRequest error:(General/NSError* )theError;</code>
    When a request is finished, this method is called. There may be an optional
    error code. If no error occurrred, then "theError" is nil.
 
@@ -149,14 +149,14 @@ In addition, MAKECOL, PROPFIND, COPY and MOVE requests should be implemented lat
 EXAMPLE CODE
 
 There is a simple example in the project file which is a mini-web-server which 
-uses your home directory as the document root. I've included a convenience method in the [[HTTPRequest]]
+uses your home directory as the document root. I've included a convenience method in the General/HTTPRequest
 method which will resolve to a path, given a server root:
 
-<code>
-[[NSString]]'' thePath = [theRequest pathWithRoot:[[NSHomeDirectory]]() followSymlinks:YES];  
-</code>
+    
+General/NSString* thePath = [theRequest pathWithRoot:General/NSHomeDirectory() followSymlinks:YES];  
 
-The "followSymlinks" variable is meant to be like Apache's [[FollowSymLinks]] option. It just makes sure
+
+The "followSymlinks" variable is meant to be like Apache's General/FollowSymLinks option. It just makes sure
 that what you're accessing is actually under your root path, if set to NO. Be careful - this whole
 HTTP Server thing is a security risk. When you're running your server under your home directory,
 anyone could now access files across the network (unless firewalled). Certainly, don't enable the
@@ -165,10 +165,10 @@ DELETE method unless you know what's going on!
 ----
 CODE FROM ELSEWHERE
 
-Some code was inspired by Apple's [[HTTPServer]], and the files "[[TCPServer]].h" and "[[TCPServer]].m"
+Some code was inspired by Apple's General/HTTPServer, and the files "General/TCPServer.h" and "General/TCPServer.m"
 are pretty much cut and paste in some sections. Their example code is here:
 
-http://developer.apple.com/samplecode/[[CocoaHTTPServer]]/index.html
+http://developer.apple.com/samplecode/General/CocoaHTTPServer/index.html
 
 There's also a tutorial on O'Reilly's "Mac Dev Center" on doing something similar:
 
@@ -177,4 +177,4 @@ http://www.macdevcenter.com/pub/a/mac/2006/11/14/how-to-write-a-cocoa-web-server
 Neither of these work well for POST and PUT requests.
 ----
 
-Nice effort! Thanks for sharing your work. -- [[RobRix]]
+Nice effort! Thanks for sharing your work. -- General/RobRix

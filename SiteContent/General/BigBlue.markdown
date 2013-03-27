@@ -1,1 +1,1 @@
-See [[InternationalBusinessMachines]].
+See General/InternationalBusinessMachines.

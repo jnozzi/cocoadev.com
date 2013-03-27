@@ -1,6 +1,6 @@
 
 
-I'm interested in writing my own protocol in Cocoa.  I've had a look at the [[NSURLProtocol]] class and understand that I have to subclass this.  Does anybody know of any good tutorials on this?
+I'm interested in writing my own protocol in Cocoa.  I've had a look at the General/NSURLProtocol class and understand that I have to subclass this.  Does anybody know of any good tutorials on this?
 
 -Chris
 
@@ -8,38 +8,38 @@ I'm interested in writing my own protocol in Cocoa.  I've had a look at the [[NS
 
 Hi everybody,
 
-I want  to handle custom type urls in my app. I'm registering [[CFBundleURLTypes]] in app's Info.plist and also I'm subclassing [[NSURLProtocol]] (and register it with <code>[[[NSURLProtocol]] registerClass:[[[MyURLProtocol]] class]]</code>). The problem is that when I click on myapp://link the app is launched but no one method of [[NSURLProtocol]] is called. What am I doing wrong?
+I want  to handle custom type urls in my app. I'm registering General/CFBundleURLTypes in app's Info.plist and also I'm subclassing General/NSURLProtocol (and register it with     General/[NSURLProtocol registerClass:General/[MyURLProtocol class]]). The problem is that when I click on myapp://link the app is launched but no one method of General/NSURLProtocol is called. What am I doing wrong?
 
 ----
-I believe that interaction takes place through [[AppleScript]]. I don't use anything related to [[NSURLProtocol]].
+I believe that interaction takes place through General/AppleScript. I don't use anything related to General/NSURLProtocol.
 Here's how it works for me:
 
 My scriptTerminology file contains the following:
 
-%%BEGINCODESTYLE%%
-"[[GetURL]]" =
+<code>
+"General/GetURL" =
                 {
-            [[CommandClass]] = someclass;
-            [[AppleEventCode]] = GURL;
-            [[AppleEventClassCode]] = GURL;
+            General/CommandClass = someclass;
+            General/AppleEventCode = GURL;
+            General/AppleEventClassCode = GURL;
          };
-%%ENDCODESTYLE%%
+</code>
 
 where someclass contains:
 
-%%BEGINCODESTYLE%%
+<code>
 - (id) performDefaultImplementation 
 {
-       [[NSLog]](@"Called as URL handler");
+       General/NSLog(@"Called as URL handler");
 }
-%%ENDCODESTYLE%%
+</code>
 
 Good luck,
 Cristi
 ----
 
-You want to do something like this: [[[[NSAppleEventManager]] sharedAppleEventManager] setEventHandler:self andSelector:@selector( handleURLEvent:withReplyEvent: ) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+You want to do something like this: General/[[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector( handleURLEvent:withReplyEvent: ) forEventClass:kInternetEventClass andEventID:kAEGetURL];
 
-[[HowToRegisterURLHandler]]
+General/HowToRegisterURLHandler
 
 -- will

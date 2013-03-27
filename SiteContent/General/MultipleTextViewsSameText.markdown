@@ -1,38 +1,38 @@
 
 
-Displaying the same text in multiple text views is as easy as replacing the text storage object of a text view with a shared <code>[[NSTextStorage]]</code> object.
+Displaying the same text in multiple text views is as easy as replacing the text storage object of a text view with a shared     General/NSTextStorage object.
 
-<code>
-@interface [[MyDocument]] : [[NSDocument]] {
-    [[IBOutlet]] [[NSTextView]] ''topTextView, ''bottomTextView;
+    
+@interface General/MyDocument : General/NSDocument {
+    General/IBOutlet General/NSTextView *topTextView, *bottomTextView;
 }
 @end
-</code>
+
 
 in your document implementation...
 
-<code>
+    
 - (id)init {
 
     if (self = [super init]) {
-        storage = [[[[NSTextStorage]] alloc] init];
+        storage = General/[[NSTextStorage alloc] init];
     }
     return self;
 
 }
 
-- (BOOL)loadDataRepresentation:([[NSData]] '')data ofType:([[NSString]] '')aType {
+- (BOOL)loadDataRepresentation:(General/NSData *)data ofType:(General/NSString *)aType {
 
-    [[NSString]] ''string = [[[[[NSString]] alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    General/NSString *string = General/[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if (string) {
-        [storage setAttributedString:[[[[[NSAttributedString]] alloc] initWithString:string] autorelease]];
+        [storage setAttributedString:General/[[[NSAttributedString alloc] initWithString:string] autorelease]];
         return YES;
     }
     return NO;
 
 }
 
-- (void)windowControllerDidLoadNib:([[NSWindowController]] '')aController {
+- (void)windowControllerDidLoadNib:(General/NSWindowController *)aController {
 
     [super windowControllerDidLoadNib:aController];
     if (storage) {
@@ -48,6 +48,6 @@ in your document implementation...
     [super dealloc];
 
 }
-</code>
 
-The nice thing about this is the undo manager will share the same target for edits performed in either view (don't forget to check "Undo Allowed" in IB for <code>topTextView</code> and <code>bottomTextView</code>). --zootbobbalu
+
+The nice thing about this is the undo manager will share the same target for edits performed in either view (don't forget to check "Undo Allowed" in IB for     topTextView and     bottomTextView). --zootbobbalu

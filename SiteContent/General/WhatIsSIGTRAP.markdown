@@ -6,7 +6,7 @@ Can anybody give me ore info on what exactly a Signal 5 SIGTRAP error entails.. 
 
 Thanks for your input (I'm pulling my hair out)...
 ----
-SIGTRAP is a Unix "signal". In my experience, if you're getting unexpected [[SIGTRAPs]], it means you've tried to access a pointer that's already been freed.
+SIGTRAP is a Unix "signal". In my experience, if you're getting unexpected General/SIGTRAPs, it means you've tried to access a pointer that's already been freed.
 
 In Cocoa terms, this means you've tried to send a message to an object that's been dealloc'ed. This usually occurs if you don't match up calls to the object's retain method with calls to its release method properly.
 
@@ -16,10 +16,10 @@ In Cocoa terms, this means you've tried to send a message to an object that's be
 
 SIGTRAP is used by debuggers so that you can control the execution of your program if you don't have (or can't use) hardware breakpoints.
 
-What do you mean by ''SIGTRAP errors?'', though?  Is your programming terminating with signal 5, or something?  I didn't think that an unhandled signal 5 resulted in termination.
+What do you mean by *SIGTRAP errors?*, though?  Is your programming terminating with signal 5, or something?  I didn't think that an unhandled signal 5 resulted in termination.
 
 OP - Yeah the app was terminating with a Signal 5. I have tracked down the problem, and it was to do with retaining/releasing problems with my objects. Strange because I was expecting Signal 10 or 11 for those kind of errors.
 
 ----
 
-See also: [[SignalsSentOnCrash]]
+See also: General/SignalsSentOnCrash

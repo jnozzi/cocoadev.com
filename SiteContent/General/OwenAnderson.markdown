@@ -8,9 +8,9 @@ I'm currently working on an Independent Project with compiler frontends.  So if 
 
 I've been absent for a while, but back in the day I floated by this website fairly regularly looking for interesting discussions or tidbits.  Now that I've got a bit more free time on my hands, I'm hoping to get back to being a regular reader.
 
-As of the moment I code for free, and I'm willing to help out with any [[OpenSource]] or Freeware apps that people need help with.
+As of the moment I code for free, and I'm willing to help out with any General/OpenSource or Freeware apps that people need help with.
 
---[[OwenAnderson]]
+--General/OwenAnderson
 resistor at mac.com
 
-''Looks like you're no longer a [[CocoaDevTeen]]!''
+*Looks like you're no longer a General/CocoaDevTeen!*

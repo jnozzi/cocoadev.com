@@ -4,4 +4,4 @@ There are several ways of extending an existing class, each with differing power
 
 [Topic]
 
-Also relevant: [[GlobalModifications]]/[[WindowShade]]
+Also relevant: General/GlobalModifications/General/WindowShade

@@ -1,17 +1,17 @@
-While trying to code a [[ClassCluster]], I came across a problem when calling [super alloc] and [super allocWithZone:]
+While trying to code a General/ClassCluster, I came across a problem when calling [super alloc] and [super allocWithZone:]
 
 Here's a small test case:
 
-<code>% cat > x.m 
+    % cat > x.m 
 
  #import <Foundation/Foundation.h> 
   
   
- @interface [[NSString]] (XXX) 
+ @interface General/NSString (XXX) 
  @end 
   
   
- @implementation [[NSString]] (XXX) 
+ @implementation General/NSString (XXX) 
   
  + (id) alloc
  { 
@@ -23,18 +23,18 @@ Here's a small test case:
 % gcc -c x.m
 x.m:12: illegal expression, found `unknown'
 cpp-precomp: warning: errors during smart preprocessing, retrying in basic mode
-x.m: In function `+[[[NSString]](XXX) alloc]':
+x.m: In function `+General/[NSString(XXX) alloc]':
 x.m:12: dereferencing pointer to incomplete type
 
 % gcc --version
 gcc (GCC) 3.1 20020420 (prerelease)
 Copyright (C) 2002 Free Software Foundation, Inc.
 
-</code>
+
 
 Any ideas as to what's going on there?
 
--- [[JensBaumeister]]
+-- General/JensBaumeister
 
 ----
 
@@ -42,14 +42,14 @@ J,
 
 You have got some funky character before the "return" statement. Try erasing everything before the "return" statement and recompiling. Also I don't think you want to be calling super in a constructor method. Class methods should do the following to allocate a new uninitialized instance of the class.
 
-<code>
+    
 
 + (id) alloc 
 { 
-    return [[[NSString]] alloc]; 
+    return General/[NSString alloc]; 
 } 
 
-</code>
+
 
 --zootbobbalu
 
@@ -59,6 +59,6 @@ I just looked at the raw data that exists in your source and for some reason you
 
 That gremlin character got in there somewhere during posting, but it's not in the original code. I tried re-typing the whole thing and still got the error.
 
-As for why I'm calling [super alloc], look at the code snippets for [[ClassClusters]] - that should clear that up. :-)
+As for why I'm calling [super alloc], look at the code snippets for General/ClassClusters - that should clear that up. :-)
 
--- [[JensBaumeister]]
+-- General/JensBaumeister

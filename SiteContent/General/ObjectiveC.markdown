@@ -1,1 +1,1 @@
-See [[ObjC]]
+See General/ObjC

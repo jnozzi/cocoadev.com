@@ -1,13 +1,13 @@
-'''[[NSMakePoint]]'''
+**General/NSMakePoint**
 
-Creates a new [[NSPoint]] from the specified values.
+Creates a new General/NSPoint from the specified values.
 
-<code> [[NSPoint]] [[NSMakePoint]](float x, float y) </code>
+     General/NSPoint General/NSMakePoint(float x, float y) 
 
-'''Discussion'''
+**Discussion**
 
-Creates an [[NSPoint]] having the coordinates ''x'' and ''y''.
+Creates an General/NSPoint having the coordinates *x* and *y*.
 
 For more information, see:
 
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Functions/[[FoundationFunctions]].html
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Functions/General/FoundationFunctions.html

@@ -15,19 +15,19 @@ Do I have any alternatives to this kind of single-threaded drawing?
 
 Maybe you can draw to an offscreen view in the separate thread. This might not interfere with the UI and you might be able to display it much quicker all at once. But OS X is double-buffered, so it seems to me it would already do this automatically�
 ----
-An offscreen image is definitely the way to go here. In addition, this will give you direct access to the image buffer and will yield '''FAR''' better performance when manipulating individual pixels (assuming your algorithm does) than fooling around trying to draw 'little  dots' with Quartz.
+An offscreen image is definitely the way to go here. In addition, this will give you direct access to the image buffer and will yield **FAR** better performance when manipulating individual pixels (assuming your algorithm does) than fooling around trying to draw 'little  dots' with Quartz.
 
 ----
-'''
+**
 OP again: Unfortunately, what I most want to see is the developing image, not just the finished one. Apologies for not making this clearer in the original question.
 It's like a trajectory. I want to see where it's meandering while it's wandering around, kind of like an animation of a random walk.
 In other words, the time evolution is not obvious from the final plot of the entire series (which is a 2D time series of individual states plotted in a plane)
 
 This is a tough one, and may be a more sophisticated problem than my level of expertise can handle. The real-time display is important because the
 trajectory itself has fractal properties - it sometimes just looks like an unraveled ball of yarn when the time series is finished.
-The part that computes each [[NSPoint]] in the time series is an ODE solver that spits out results pretty fast on the command line, so it's not hung up there.
-My drawing code actually draws a tiny [[NSRect]] at each of those points, but the resolution is such that for most of the trajectory the sequence of
-[[NSRect]] looks like a continuous line until about three or four steps of the solver are calculated for every state that is plotted.'''
+The part that computes each General/NSPoint in the time series is an ODE solver that spits out results pretty fast on the command line, so it's not hung up there.
+My drawing code actually draws a tiny General/NSRect at each of those points, but the resolution is such that for most of the trajectory the sequence of
+General/NSRect looks like a continuous line until about three or four steps of the solver are calculated for every state that is plotted.**
 
 ----
 

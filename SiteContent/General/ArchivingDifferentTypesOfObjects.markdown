@@ -2,13 +2,13 @@
 
 I have seen plenty of examples of archiving, but all show only a single type of object being used.   I'm trying to save multiple objects used in my app, but it's not clear how to do this.
 
-I took the [[RaiseMan]] example form the Hillegass book, and added a Department object (actually, an [[NSMutableArray]] of Departments, with an [[NSArrayController]] and [[NSTableView]]).
+I took the General/RaiseMan example form the Hillegass book, and added a Department object (actually, an General/NSMutableArray of Departments, with an General/NSArrayController and General/NSTableView).
 Each Employee object refers to a Department object, in a many to one relationship (many employees point to each department).
 
 I can archive the employees, including each of their department information, using the basic techniques described in the Hillegass Cocoa book.    But, I'm not sure how I would archive the list of departments along with the employee data.
 
 
-And, a related issue..  when restoring the archived data, can I retain the relationships between the department object associated with each employee, and the related department object in the departments [[NSArray]]? 
+And, a related issue..  when restoring the archived data, can I retain the relationships between the department object associated with each employee, and the related department object in the departments General/NSArray? 
 ----
 Archiving and unarchiving work with aribtrary graphs of interconnected objects just fine.  Think about the archives Interface Builder makes.  (A nib contains archived objects).
 
@@ -17,6 +17,6 @@ Just create a "root" object that contains at least one indirect reference to eve
 However, it seems like what you are trying to do is nicely done for you automatically by Core Data.
 ----
 
-Thanks for the response.   I added a 'Root' class, and allocated it in [[MyDocument]]'s init, pointing to both the Employee and Department [[NSMutableArrays]].  It seems to work fine.  Thanks!
+Thanks for the response.   I added a 'Root' class, and allocated it in General/MyDocument's init, pointing to both the Employee and Department General/NSMutableArrays.  It seems to work fine.  Thanks!
 
 I'll look into Core Data once I get a bit more comfortable with the fundamentals.  I've been extending the same app, with and without Bindings to get my Cocoa bearings.  I'll probably add a third variant, based on Core Data.

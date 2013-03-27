@@ -1,19 +1,19 @@
-If you need to turn off anti-aliasing in [[XCode]] (or any app), just do the following:
+If you need to turn off anti-aliasing in General/XCode (or any app), just do the following:
 
-<code>defaults write com.apple.Xcode [[AppleAntiAliasingThreshold]] 128</code>
+    defaults write com.apple.Xcode General/AppleAntiAliasingThreshold 128
 
 Gotta love Google!! --zootbobbalu
 
 ----
 
-'''Discussion: Problems with anti-aliasing or half-pixel offsets'''
+**Discussion: Problems with anti-aliasing or half-pixel offsets**
 
-I'm having some trouble drawing a grid in an [[NSView]]. It draws OK, but I am having trouble making it look good.
+I'm having some trouble drawing a grid in an General/NSView. It draws OK, but I am having trouble making it look good.
 
-<code>
+    
  NSRect bds = [self bounds];
      
- [[NSColor blackColor] set];
+ General/NSColor blackColor] set];
  int i;
  for(i = 0; i < bds.size.width; i += 15){
      NSPoint start = NSMakePoint(i,bds.size.height);
@@ -26,7 +26,7 @@ I'm having some trouble drawing a grid in an [[NSView]]. It draws OK, but I am h
      NSPoint end = NSMakePoint(0, i);
      [NSBezierPath strokeLineFromPoint:start toPoint:end];
  }
-</code>
+
 
 The drawing looks fuzzy. Can I make it black by turning off antialiasing or something? I really just want straight black lines. 
 
@@ -34,9 +34,9 @@ The drawing looks fuzzy. Can I make it black by turning off antialiasing or some
 
 Try offsetting the points by 0.5 along x and y. That should do it.
 
-<code>
+    
  [[NSGraphicsContext currentContext] setShouldAntialias:NO]
-</code>
+
 
 ----
 
@@ -44,7 +44,7 @@ For some reason I can't get a simple black line on my custom view.
 It is sort of gray and I need to draw it a few times to get it black.
 Same goes for other colors.
 
-<code> 
+     
  - (void)drawRect:(NSRect)aRect
  {
  	NSRect bounds=[self bounds];
@@ -55,7 +55,7 @@ Same goes for other colors.
  	[b lineToPoint: NSMakePoint(bounds.size.width,10)];
  	[b stroke];
  }
-</code>
+
 
 What am I doing wrong? (os 10.4.2)
 
@@ -63,7 +63,7 @@ What am I doing wrong? (os 10.4.2)
 
 Indeed, adding 
 
-<code>[[NSGraphicsContext currentContext] setShouldAntialias:NO];</code>
+    [[NSGraphicsContext currentContext] setShouldAntialias:NO];
 
 fixed this!
 
@@ -77,7 +77,7 @@ I think that'll only have the right effect on 10.4 though.. on earlier OSes, you
 
 Indeed, by default, the coordinate system is set so that pixels are at points in between whole number coordinates in untransformed space. You can either draw at half pixel positions to overcome this, or you can just perform an initial transform moving the origin by 0.5 pixels in the X and Y direction before drawing:
 
-<code> 
+     
  - (void)drawRect:(NSRect)aRect
  {
  	NSRect bounds=[self bounds];
@@ -95,8 +95,8 @@ Indeed, by default, the coordinate system is set so that pixels are at points in
  
         CGContextTranslateCTM(ctx, 0.5, 0.5);
  }
-</code>
+
 
 This will give you the 1 pixel black line you'd like, but it also preserves anti-aliasing for diagonals, text drawing, and the like.
 
-You can also use [[NSAffineTransform]] to move the coordinate system around.  You should probably save and restore the graphics state rather than moving it 0.5 each direction.  0.5 is exactly representable as a float, but other transforms that may be in effect might not be, so you could get repeated round-off error.
+You can also use [[NSAffineTransform to move the coordinate system around.  You should probably save and restore the graphics state rather than moving it 0.5 each direction.  0.5 is exactly representable as a float, but other transforms that may be in effect might not be, so you could get repeated round-off error.

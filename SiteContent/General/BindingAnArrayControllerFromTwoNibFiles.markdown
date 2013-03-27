@@ -2,7 +2,7 @@
 
 I'm still a beginner in cocoa but i'm getting close to what i'm searching to do.
 I've made a project with a button allowing me to add several subviews in a view. Each subview load a nib files for its UI and it works fine.
-Now i'm trying to collect the data in an [[ArrayController]] using bindings and it's almost working. The only way i found is to duplicate the [[ObjectController]] and [[ArrayController]] in each nib file to allow me to bind in each one. Well.. here the project :
+Now i'm trying to collect the data in an General/ArrayController using bindings and it's almost working. The only way i found is to duplicate the General/ObjectController and General/ArrayController in each nib file to allow me to bind in each one. Well.. here the project :
 
 http://www.langues-vivantes.u-bordeaux2.fr/SD/binding2nib.zip
 
@@ -18,7 +18,7 @@ You might do your friends who do not have a broadband connection a favor by remo
 your project before distributing it, and note that the download itself is an Xcode2 project. I (who do not have Xcode2)
 had to construct a new project from scratch. Trying to see what you are up to is almost more trouble than it's worth.
 
-It looks like the content of the object controller in [[MainMenu]] nib is Plan-Controller, and the content of the object
+It looks like the content of the object controller in General/MainMenu nib is Plan-Controller, and the content of the object
 controller in Element.nib is Element-Controller. You have an array controller in each nib file, each of which has a
 different set of attributes, but which each include properties.title as a key.
 
@@ -28,7 +28,7 @@ that you add through the button action - but so far it looks like you want each 
 Obviously if you want to change the content and display a different array in each new UI element, you are going to
 have to do some more work.
 
-��> ''ahh well.. i though i did it.. well it was 1.7MB and now it's only 56kB.. sorry''
+��> *ahh well.. i though i did it.. well it was 1.7MB and now it's only 56kB.. sorry*
 
 ----
 
@@ -40,7 +40,7 @@ It will be a nice trick when you can bring it off.
 
 ----
 
-Hmm hmm.. well.. i think i got your point : i have to deal with only one [[ObjectController]] in the main.nib and manually bind each new element to it, right?
+Hmm hmm.. well.. i think i got your point : i have to deal with only one General/ObjectController in the main.nib and manually bind each new element to it, right?
 
 Edit : in fact i would like an array of elements with a dictionary for each element, holding the properties
 

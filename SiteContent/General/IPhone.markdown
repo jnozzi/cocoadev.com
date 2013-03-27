@@ -1,18 +1,18 @@
 I guess someone has to start this page. Let's try to keep it organized. Only links to web pages and links to topics on top. --zootbobbalu
 
 
-'''Links'''
+**Links**
 
 *Main Page - http://www.apple.com/iphone 
-*[[MacNN]] says that the CPU comes from Intel. No further details on CPU yet. (http://www.macnn.com/articles/07/01/10/iphone.components/)
+*General/MacNN says that the CPU comes from Intel. No further details on CPU yet. (http://www.macnn.com/articles/07/01/10/iphone.components/)
 *Previous statement is wrong : http://news.yahoo.com/s/nm/20070110/tc_nm/corrected_apple_intel_dc_1
-*Could be an ARM processor ? : http://jobs.apple.com/index.ajs?BID=1&method=mExternal.showJob&RID=4063&[[CurrentPage]]=1
+*Could be an ARM processor ? : http://jobs.apple.com/index.ajs?BID=1&method=mExternal.showJob&RID=4063&General/CurrentPage=1
 *Optimised OS X : http://www.macworld.co.uk/ipod-itunes/news/index.cfm?newsid=16927
 
 
 ----
 
-[[IPhoneRuntime]] - Root page for pages concerning the [[APIs]] available on the iPhone.
+General/IPhoneRuntime - Root page for pages concerning the General/APIs available on the iPhone.
 
 ----
 
@@ -30,7 +30,7 @@ Lets wait and see anyway.
 
 ----
 
-It's for that reason (and the insane price tag) that I won't be buying one any time soon. They will have to 1) open it up to third party development and 2) either lower the price or ''significantly'' increase the storage for that price.
+It's for that reason (and the insane price tag) that I won't be buying one any time soon. They will have to 1) open it up to third party development and 2) either lower the price or *significantly* increase the storage for that price.
 ----
 If it isn't supporting third party s/w..i wont be buying it!
 
@@ -49,13 +49,13 @@ I really love Steve but I'm puzzled by his strange comments about "bringing down
 
 ----
 
-A [[DoS]] attack could take down a network. That's probably what he had in mind when he made that statement.
+A General/DoS attack could take down a network. That's probably what he had in mind when he made that statement.
 
 ----
 Ok fine.  But... the same could have happened with any of the OTHER smartphones.  And AFAIK it's never happened.  If anything, the iPhone should be less vulnerable to that kind of thing because presumably it runs some sort of OS X which has fairly advanced privileges -- meaning my guess is that it's harder for an app on an iPhone to gain unauthorized dialing privelleges than it is for an app on most other smartphones.
 
 ----
-Utter foolish nonsense. The bandwidth alloted to ''a single phone'' is nowhere near enough to bring down the network. That'd be like trying to perform a [[DoS]] attack on Google by hammering it with requests from a single dial-up connection. '' -- That kinda goes without saying.'' The only "S" you're "D'ing" is your own - Google wouldn't even notice your efforts. Now a virus spreading to multiple phones could be used to create a [[DDoS]] attack (the extra "D" is for "distributed", kiddies), but there is equal danger of that happening with '''any phone''', not even just smart phones. 
+Utter foolish nonsense. The bandwidth alloted to *a single phone* is nowhere near enough to bring down the network. That'd be like trying to perform a General/DoS attack on Google by hammering it with requests from a single dial-up connection. * -- That kinda goes without saying.* The only "S" you're "D'ing" is your own - Google wouldn't even notice your efforts. Now a virus spreading to multiple phones could be used to create a General/DDoS attack (the extra "D" is for "distributed", kiddies), but there is equal danger of that happening with **any phone**, not even just smart phones. 
 
 I believe there are two big reasons they want it closed: 1) there is no solid SDK so no easy way for developers to create a stable app that doesn't devour battery power, etc. and thereby make the phone "less attractive" or easy to use and, 2) it's very likely that their deal with Cingular has placed some restrictions on what their network is used for, how it's used, and how easy it is for the phone to be 'unlocked'.
 
@@ -93,7 +93,7 @@ I don't buy it. I've owned computers that were less capable and more expensive t
 
 ----
 
-The market for [[PalmOS]] and Windows Mobile applications is VERY large. The iPhone would be no different.
+The market for General/PalmOS and Windows Mobile applications is VERY large. The iPhone would be no different.
 
 ----
 Well, I threw it out there -- but I have to agree...  not a plausible explanation.

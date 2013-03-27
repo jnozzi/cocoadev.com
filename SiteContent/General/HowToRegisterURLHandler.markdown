@@ -1,24 +1,24 @@
-'''Overview:'''
+**Overview:**
 ----
 
 Registering a URL handler with your application will allow it to respond to users clicking on a link that uses the registered protocol. For example, an web browser would register a URL handler for the "http", or another example would be an application registering a custom protocol "myapp" which allows the application to handle any clicks on links using that protocol.
 
 
-'''Related Topics:'''
+**Related Topics:**
 ----
 
 [Topic]
 
 
 
-'''How it works:'''
+**How it works:**
 ----
 
 Here is what you need to do to register your app for a custom URL scheme (for the example we will use a "myapp" scheme).
 
-1) In your Info.plist, add a new entry for [[CFBundleURLTypes]]:
+1) In your Info.plist, add a new entry for General/CFBundleURLTypes:
 
-<code>
+    
  <key>CFBundleURLTypes</key>
  <array>
  	<dict>
@@ -30,14 +30,14 @@ Here is what you need to do to register your app for a custom URL scheme (for th
  		</array>
  	</dict>
  </array>
-</code>
 
-2) Somewhere in your application's startup code (e.g. <code>init</code>), add this code:
 
-<code>
+2) Somewhere in your application's startup code (e.g.     init), add this code:
+
+    
  - (void)registerMyApp
  {
- 	[[NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+ 	General/NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
  }
  
  - (void)getUrl:(NSAppleEventDescriptor)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent
@@ -45,10 +45,10 @@ Here is what you need to do to register your app for a custom URL scheme (for th
  	NSString *url = [[event paramDescriptorForKeyword:keyDirectObject] stringValue];
  	// Now you can parse the URL and perform whatever action is needed
  }
-</code>
 
 
-'''Related Tidbits:'''
+
+**Related Tidbits:**
 ----
 
-In Mac OS X Tiger and later, you can call [[LSSetDefaultHandlerForURLScheme]] to register an app as the default handler for a protocol, as would be need for a common protocol such as http, or ftp.
+In Mac OS X Tiger and later, you can call [[LSSetDefaultHandlerForURLScheme to register an app as the default handler for a protocol, as would be need for a common protocol such as http, or ftp.

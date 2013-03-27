@@ -1,1 +1,1 @@
-Thanks to layoffs at my company, I inherited our Mac client, so now I get to learn Cocoa!  I come mainly from a Linux background and so far I really like OS X as a platform.  Now if I could just get used to [[ObjC]].
+Thanks to layoffs at my company, I inherited our Mac client, so now I get to learn Cocoa!  I come mainly from a Linux background and so far I really like OS X as a platform.  Now if I could just get used to General/ObjC.

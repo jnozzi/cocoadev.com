@@ -1,1 +1,1 @@
-Describe [[NSAppleScriptAdditions]] here.
+Describe General/NSAppleScriptAdditions here.

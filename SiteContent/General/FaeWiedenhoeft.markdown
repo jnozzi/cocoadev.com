@@ -13,6 +13,6 @@ be well.
 
 ----
 
-Um ... wow. Welcome to [[CocoaDev]].
+Um ... wow. Welcome to General/CocoaDev.
 
-''Yes, welcome. You really need to hook up with the author of [[ChaosOrOrder]], and see if you can make this wiki implode.''
+*Yes, welcome. You really need to hook up with the author of General/ChaosOrOrder, and see if you can make this wiki implode.*

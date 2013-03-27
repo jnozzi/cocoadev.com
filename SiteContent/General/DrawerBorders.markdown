@@ -2,8 +2,8 @@ I'm developing a children's application and all the windows are relatively odd s
 
 ----
 
-There ''is'' no way to do this. The portion of code that draws the borders for the drawers is private. That is, it's not accessible to developers. You could use class dump to figure out which ''private'' methods are responsible for this, then override them and do what you want, but I would never recommend shipping this in a production app because any OS X update could break your code (since the methods weren't supposed to be "messed with" by developers anyway).
+There *is* no way to do this. The portion of code that draws the borders for the drawers is private. That is, it's not accessible to developers. You could use class dump to figure out which *private* methods are responsible for this, then override them and do what you want, but I would never recommend shipping this in a production app because any OS X update could break your code (since the methods weren't supposed to be "messed with" by developers anyway).
 
 ----
 
-It involves [[NSThemeFrame]] and friends; there's an [[NSDrawerFrame]] or some such subclass. [[AndyMatuschak]] has investigated much of this with his HUD views.
+It involves General/NSThemeFrame and friends; there's an General/NSDrawerFrame or some such subclass. General/AndyMatuschak has investigated much of this with his HUD views.

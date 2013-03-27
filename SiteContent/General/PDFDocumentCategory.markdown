@@ -1,40 +1,40 @@
 
 
-This lets you easily make a [[PDFDocument]] from an array containing [[PDFPage]] objects.
+This lets you easily make a General/PDFDocument from an array containing General/PDFPage objects.
 
-'''[[PDFDocument]]+[[CCDAdditions]].h'''
-<code>
+**General/PDFDocument+General/CCDAdditions.h**
+    
 #import <Cocoa/Cocoa.h>
-#import <[[PDFKit]]/[[PDFDocument]].h>
-#import <[[PDFKit]]/[[PDFPage]].h>
+#import <General/PDFKit/General/PDFDocument.h>
+#import <General/PDFKit/General/PDFPage.h>
 
-@interface [[PDFDocument]] ([[CCDAdditions]])
-+ ([[PDFDocument]] '')pdfDocumentFromArray:([[NSArray]] '')array;
+@interface General/PDFDocument (General/CCDAdditions)
++ (General/PDFDocument *)pdfDocumentFromArray:(General/NSArray *)array;
 
 // This pair will raise an exception if index is out of bounds.
-- ([[NSSize]])sizeOfPageAtIndex:(unsigned int)index;
-- ([[NSSize]])sizeInInchesOfPageAtIndex:(unsigned int)index;
+- (General/NSSize)sizeOfPageAtIndex:(unsigned int)index;
+- (General/NSSize)sizeInInchesOfPageAtIndex:(unsigned int)index;
 @end
-</code>
 
-'''[[PDFDocument]]+[[CCDAdditions]].m'''
-<code>
-#import "[[PDFDocument]]+[[CCDAdditions]].h"
 
-@implementation [[PDFDocument]] ([[CCDAdditions]])
-+ ([[PDFDocument]] '')pdfDocumentFromArray:([[NSArray]] '')array
+**General/PDFDocument+General/CCDAdditions.m**
+    
+#import "General/PDFDocument+General/CCDAdditions.h"
+
+@implementation General/PDFDocument (General/CCDAdditions)
++ (General/PDFDocument *)pdfDocumentFromArray:(General/NSArray *)array
 {
   if (!array) return nil;
   if ([array count] == 0) return nil;
 
-	[[PDFDocument]] ''masterDocument = nil;
-       [[NSEnumerator]] ''enumerator = [array objectEnumerator];
+	General/PDFDocument *masterDocument = nil;
+       General/NSEnumerator *enumerator = [array objectEnumerator];
 		id anObject;
 	
 			while (anObject = [enumerator nextObject])
-                          if ([anObject isKindOfClass:[[[PDFPage]] class]]) {
+                          if ([anObject isKindOfClass:General/[PDFPage class]]) {
                              if (!masterDocument)
-                                   masterDocument = [[[[PDFDocument]] alloc] initWithData:[anObject dataRepresentation]];
+                                   masterDocument = General/[[PDFDocument alloc] initWithData:[anObject dataRepresentation]];
                              else
 	                     	[masterDocument insertPage:anObject atIndex:[masterDocument pageCount]];
                           }
@@ -43,36 +43,36 @@ return [masterDocument autorelease];
 }
 
 
-- ([[NSSize]])sizeOfPageAtIndex:(unsigned int)index
+- (General/NSSize)sizeOfPageAtIndex:(unsigned int)index
 {
-	[[PDFPage]] ''pdfPage = [self pageAtIndex:index];
+	General/PDFPage *pdfPage = [self pageAtIndex:index];
 
-	if (!pdfPage) return [[NSZeroSize]];
+	if (!pdfPage) return General/NSZeroSize;
 
    return [pdfPage boundsForBox:kPDFDisplayBoxMediaBox].size;
 }
 
-- ([[NSSize]])sizeInInchesOfPageAtIndex:(unsigned int)index
+- (General/NSSize)sizeInInchesOfPageAtIndex:(unsigned int)index
 {
-	[[NSSize]] size = [self sizeOfPageAtIndex:index];
+	General/NSSize size = [self sizeOfPageAtIndex:index];
        float width=0, height=0;
 
         // no fair dividing zeros so we check for that...
-        if ([[NSEqualSizes]](size, [[NSZeroSize]])) return [[NSZeroSize]];
+        if (General/NSEqualSizes(size, General/NSZeroSize)) return General/NSZeroSize;
 
        // check each component too.
        if (size.width != 0) width = size.width / 72;
        if (size.height != 0) height = size.height / 72;
 
-return [[NSMakeSize]](width, height);
+return General/NSMakeSize(width, height);
 }
 
 @end
-</code>
 
-The next-obvious addition would be <code>- ([[NSArray]] '')pages;</code>. <code>-addPagesFromArray:</code> or similar would probably be good too.
+
+The next-obvious addition would be     - (General/NSArray *)pages;.     -addPagesFromArray: or similar would probably be good too.
 
 ----
-Borrowed the idea (and some implementation) for the <code>-size...</code> methods from [[ReadingPDFPageDimensions]].
+Borrowed the idea (and some implementation) for the     -size... methods from General/ReadingPDFPageDimensions.
 
 ...which will probably break in Leopard due to resolution independence. If this can be fixed now (legally) then please do. Otherwise, I guess we wait.

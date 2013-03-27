@@ -1,8 +1,8 @@
-Ok, before you all jump down my throat and say that adding items into an [[NSOutlineView]] is easy, let me explain my situation.  I'm trying to add an item into a selected folder in the outline view.  i.e. I have 3 nested folders and I'm currently selecting an item in the third folder.  When I click 'Add Item' I want an item to be added into the third folder.  I tried doing this and sort of got it to work.  The problem is the new item gets added to every folder that the nested folder is in (in other words, it creates three new items).  Here's my code:
+Ok, before you all jump down my throat and say that adding items into an General/NSOutlineView is easy, let me explain my situation.  I'm trying to add an item into a selected folder in the outline view.  i.e. I have 3 nested folders and I'm currently selecting an item in the third folder.  When I click 'Add Item' I want an item to be added into the third folder.  I tried doing this and sort of got it to work.  The problem is the new item gets added to every folder that the nested folder is in (in other words, it creates three new items).  Here's my code:
 
-<code>
-- (void)addNoteObject:([[NSMutableDictionary]]'')aKey intoArray:([[NSMutableArray]]'')anArray {
-    [[NSMutableArray]]'' children;
+    
+- (void)addNoteObject:(General/NSMutableDictionary*)aKey intoArray:(General/NSMutableArray*)anArray {
+    General/NSMutableArray* children;
     unsigned i;
     
     for(i = [anArray count]; i >= 0; )
@@ -15,11 +15,11 @@ Ok, before you all jump down my throat and say that adding items into an [[NSOut
         }
     }
 }
-</code>
+
 
 Any help would be greatly appreciated!
 
-Cheers, [[DanielHoward]]
+Cheers, General/DanielHoward
 
 ----
 
@@ -27,9 +27,9 @@ I think your problem is you are modifying your data source while you are calling
 
 ----
 
-If you're trying to find the parent of an item in an outline view, don't search the whole data source for it.  Either provide a parent link in your child items  or use -levelForRow: while decrementing the row number until you find a row with one less level than the item you're looking at.  Assuming you're not interested in the first, here's a quick (entirely untested, not even compiled) category on [[NSOutlineView]] demonstrating how to do the second.
-<code>
-@implementation [[NSOutlineView]] ([[ParentItemSearch]])
+If you're trying to find the parent of an item in an outline view, don't search the whole data source for it.  Either provide a parent link in your child items  or use -levelForRow: while decrementing the row number until you find a row with one less level than the item you're looking at.  Assuming you're not interested in the first, here's a quick (entirely untested, not even compiled) category on General/NSOutlineView demonstrating how to do the second.
+    
+@implementation General/NSOutlineView (General/ParentItemSearch)
 - (id)parentOfSelectedRow
 {
 	int currentRow = [self selectedRow];
@@ -46,11 +46,11 @@ If you're trying to find the parent of an item in an outline view, don't search 
 	return [self itemAtRow:currentRow];
 }
 @end
-</code>
+
 Best of luck.  -- Bo
 
 ----
-Did you ever run into an [[NSOutlineView]] (or [[NSTableView]] for that matter) that refuses to end editing? When I double click on an [[NSTextFieldCell]] in my outlineview, I can edit it, an the value is set when I hit Enter. But if I try to do it a second time, the cell sometimes refuses to get out of editingmode: it stays highlighted. Now if I doubleclick on another [[TextFieldCell]], the ''same'' editor is preserved, which means the value I typed previously is copied over to my new cell right away.
+Did you ever run into an General/NSOutlineView (or General/NSTableView for that matter) that refuses to end editing? When I double click on an General/NSTextFieldCell in my outlineview, I can edit it, an the value is set when I hit Enter. But if I try to do it a second time, the cell sometimes refuses to get out of editingmode: it stays highlighted. Now if I doubleclick on another General/TextFieldCell, the *same* editor is preserved, which means the value I typed previously is copied over to my new cell right away.
 Any ideas?
 
 Thanks -- Yannick

@@ -1,1 +1,1 @@
- - I'm a Mac & iPhone developer and founder of Object Media Inc.  Check out [[ShirtsNSkins]] in the App Store now.  I'm interested in meeting other Cocoa developers in the area for collaborative projects. mailto:robert.a.etheridge@gmail.com
+ - I'm a Mac & iPhone developer and founder of Object Media Inc.  Check out General/ShirtsNSkins in the App Store now.  I'm interested in meeting other Cocoa developers in the area for collaborative projects. mailto:robert.a.etheridge@gmail.com

@@ -1,1 +1,1 @@
-see [[FolderBasedDocuments]]
+see General/FolderBasedDocuments

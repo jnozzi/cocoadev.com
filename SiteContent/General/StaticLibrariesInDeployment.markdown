@@ -1,10 +1,10 @@
 
 
-I struggled with this for a long time, and the solution was a bit hard to find elsewhere in [[CocoaDev]], so I thought I'd add a separate topic.
+I struggled with this for a long time, and the solution was a bit hard to find elsewhere in General/CocoaDev, so I thought I'd add a separate topic.
 
 If you are creating your first tool with static libraries, and ready to make the final app, here are some important tips.
 
-1) Switch from Development to Deployment phase. Get there by the Project > Info window (select the project first) > Styles pane. This will turn [[ZeroLink]] off (there are other topics on this) which will build your app as a standalone program so you can distribute it with the static libraries built in.
+1) Switch from Development to Deployment phase. Get there by the Project > Info window (select the project first) > Styles pane. This will turn General/ZeroLink off (there are other topics on this) which will build your app as a standalone program so you can distribute it with the static libraries built in.
 
 2) You may have to add an -L<dir> flag to the "Other Linker Flags" line in the Project Info to tell Xcode where to find your static libraries. If the libraries have been added into the frameworks section (Groups & Files), you won't need the -l<lib.a> flags.
 

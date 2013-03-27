@@ -8,21 +8,21 @@ if you code your objects and drawing to deal gracefully with arbitrary sizes (su
 
 How do you lay out objects in interface builder based on the bounding rectangle of the window?  I have added some code in "awakeFromNib" in my main application to resize and reposition the windows proportionally for the screen size like this:
 
-<code>
+    
 - (void)awakeFromNib
 {
-	[[NSRect]]  screenRect;
-	[[NSRect]]  windowRect;
+	General/NSRect  screenRect;
+	General/NSRect  windowRect;
 
-	screenRect = [[[[NSScreen]] mainScreen] frame];
+	screenRect = General/[[NSScreen mainScreen] frame];
 	windowRect.origin.x = 0;
-	windowRect.origin.y = (screenRect.size.height '' 0.428);
-	windowRect.size.width = (screenRect.size.width '' 0.3);
-	windowRect.size.height = (screenRect.size.height '' 0.55);
+	windowRect.origin.y = (screenRect.size.height * 0.428);
+	windowRect.size.width = (screenRect.size.width * 0.3);
+	windowRect.size.height = (screenRect.size.height * 0.55);
 	[playerWindow setFrame:windowRect display:YES];
                      ...
 // Four other windows reset the same way follow
-</code>
+
 
 ----
 
@@ -32,7 +32,7 @@ http://developer.apple.com/samplecode/Sproing/Sproing.html
 
 Here's the basics: the outer springs determine the position of the view in the window. The inner springs determine the size. If the inner springs are set, the view will resize with the window, if not, it will stay the same size. If a line is set on one of the outer springs, the view will lock itself to that edge of the window. So, if you want the view to lock itself to the top right of the window, set a line to the top and right, and set a spring to the bottom and left. Hope that helps.
 
--- [[RyanBates]]
+-- General/RyanBates
 
 ----
 
@@ -40,34 +40,34 @@ Okay, I understand that.  But what about the system fonts in the dialog.  As the
 
 ----
 
-Generally, I would say changing the font size depending upon the user's screen resolution is a bad choice. However, if this is a game, it might be acceptable. A font at 10-12 points should be plenty readable on the higher resolutions - but it ultimately depends on the size and quality of the user's monitor. If the text doesn't fit on a small window at 11 points, then you may want to re-think the UI design or shorten the text. -- [[RyanBates]]
+Generally, I would say changing the font size depending upon the user's screen resolution is a bad choice. However, if this is a game, it might be acceptable. A font at 10-12 points should be plenty readable on the higher resolutions - but it ultimately depends on the size and quality of the user's monitor. If the text doesn't fit on a small window at 11 points, then you may want to re-think the UI design or shorten the text. -- General/RyanBates
 
 ----
 
-I did some more research and came up with a solution to my problem that looks like it will work quite well.  I made 3 copies of the [[MainMenu]].nib file, and loaded them into my project.  I will alter them as necessary to look good enough in the required resolutions.  I removed the above code in awakeFromNib since it won't be necessary anymore and altered main.m to look like this:
+I did some more research and came up with a solution to my problem that looks like it will work quite well.  I made 3 copies of the General/MainMenu.nib file, and loaded them into my project.  I will alter them as necessary to look good enough in the required resolutions.  I removed the above code in awakeFromNib since it won't be necessary anymore and altered main.m to look like this:
 
-<code>
-int main(int argc, const char ''argv[])
+    
+int main(int argc, const char *argv[])
 {
-	[[NSRect]]  screenRect;
+	General/NSRect  screenRect;
 
-	screenRect = [[[[NSScreen]] mainScreen] frame];
+	screenRect = General/[[NSScreen mainScreen] frame];
 
-	[[NSApp]] = [[[NSApplication]] sharedApplication];
+	General/NSApp = General/[NSApplication sharedApplication];
 
 	if (screenRect.size.width < 1000)
-		[[[NSBundle]] loadNibNamed:@"Main800" owner:[[NSApp]]];
+		General/[NSBundle loadNibNamed:@"Main800" owner:General/NSApp];
 	else if (screenRect.size.width < 1200)
-		[[[NSBundle]] loadNibNamed:@"Main1024" owner:[[NSApp]]];
+		General/[NSBundle loadNibNamed:@"Main1024" owner:General/NSApp];
 	else if (screenRect.size.width < 1600)
-		[[[NSBundle]] loadNibNamed:@"[[MainMenu]]" owner:[[NSApp]]];
+		General/[NSBundle loadNibNamed:@"General/MainMenu" owner:General/NSApp];
 	else
-		[[[NSBundle]] loadNibNamed:@"Main1600" owner:[[NSApp]]];
+		General/[NSBundle loadNibNamed:@"Main1600" owner:General/NSApp];
 
-	[[[NSApp]] run];
+	General/[NSApp run];
 	return 0;
-//  return [[NSApplicationMain]](argc, argv);
+//  return General/NSApplicationMain(argc, argv);
 }
-</code>
+
 
 I don't know if this is proper design, but I think it will suit my purposes.  Thank you for your help though.

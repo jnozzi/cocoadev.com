@@ -1,6 +1,6 @@
 Hi,
 
-My application has several [[NSObject]]'s instantiated within Interface Builder that act as the controllers for the different parts of my app. Pretty simple stuff.
+My application has several General/NSObject's instantiated within Interface Builder that act as the controllers for the different parts of my app. Pretty simple stuff.
 
 All of these controllers have awakeFromNib methods which handily set up the controller for proper use.
 
@@ -20,7 +20,7 @@ Any thoughts / help much appreciated,
 
 Make one of your objects the application's delegate, and put that code in the -applicationDidFinishLaunching: delegate method.  That method will always be called after the main nib is finished loading.  -- Bo
 
-If that's too late, put it in the -makeWindowControllers: method -- [[BrentGulanowski]]
+If that's too late, put it in the -makeWindowControllers: method -- General/BrentGulanowski
 
 ----
 

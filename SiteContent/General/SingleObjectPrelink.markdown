@@ -1,6 +1,6 @@
 
 
-This isn't so much of a question as something I think is worth sharing about [[XCode]], which I haven't seen described elsewhere. I wanted to create a reusable framework which can be included in other people's applications, which includes code from a static library (say, libmysqlclient.a). But I didn't want to have people install the [[MySQL]] client libraries in addition to the reusable framework.
+This isn't so much of a question as something I think is worth sharing about General/XCode, which I haven't seen described elsewhere. I wanted to create a reusable framework which can be included in other people's applications, which includes code from a static library (say, libmysqlclient.a). But I didn't want to have people install the General/MySQL client libraries in addition to the reusable framework.
 
 This is how you can achieve it, AFAIK:
 
@@ -29,4 +29,4 @@ When you compile your framework, the code gets sucked out of libmysqlclient.a an
 
 (To include this framework in your application, add it into the project target and add a new "Copy files" build phase with subdirectory "Frameworks" then add the framework into the build phase also.)
 
-- [[DavidThorpe]]
+- General/DavidThorpe

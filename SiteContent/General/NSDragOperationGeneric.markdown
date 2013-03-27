@@ -2,9 +2,9 @@ What exactly does this mean?
 
 What have me confused is that using modifier keys one can alter the drag operation:
 
-*Control: [[NSDragOperationLink]]
-*Option: [[NSDragOperationCopy]]
-*Command: [[NSDragOperationGeneric]]
+*Control: General/NSDragOperationLink
+*Option: General/NSDragOperationCopy
+*Command: General/NSDragOperationGeneric
 
 
 Normally data is either moved or it is copied (rarely linked, but that happens as well).

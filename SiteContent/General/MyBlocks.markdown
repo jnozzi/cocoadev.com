@@ -12,23 +12,23 @@ I succeeded and now have an implementation that works.
 
 Here's some teasers of what you can do with them:
 
-<code>
+    
 id aBlock = BLOCK(id, id each, return [each doSomethingThatReturnsAnID]);
 id result = [aBlock value: someObject];
 
-id aBlock = [[TestBlock]](return [each isMaried]);
+id aBlock = General/TestBlock(return [each isMaried]);
 BOOL result = [aBlock test: somePerson];
 
 id someObject = [self getAnotherObject];
-id aBlock = [[UnaryBlock]](if ([each isThisTrue]) {
+id aBlock = General/UnaryBlock(if ([each isThisTrue]) {
 					return [someObject getThis];
 				} else {
 					return [self getThatOtherThing];
 				});
 id result = [aBlock value: thatObject];
-</code>
 
-So I long for your comments and suggestions on how to improve this. :-) -- [[MartinHaecker]]
+
+So I long for your comments and suggestions on how to improve this. :-) -- General/MartinHaecker
 
 ----
 
@@ -38,42 +38,42 @@ The problem with this idea, the reason I never took it very far, is that it reli
 
 Otherwise, your code is very nice and well-constructed. Be careful of cases where your macros declare symbols, such as your CLOSURE macro. Here you declare a locally-visible function named "function". Although it won't affect code outside of the macro, if the code inside the CLOSURE happens to reference an external variable called "function", then unexpected things will happen. you should rename it to something that will be difficult to reference accidentally, like _MyBlockInternalCLOSUREFunction.
 
-Nice job, and I hope (although I'm not confident) that this approach could be practical. At the very least, it's a great illustration and implementation of this particular technique. -- [[MikeAsh]]
+Nice job, and I hope (although I'm not confident) that this approach could be practical. At the very least, it's a great illustration and implementation of this particular technique. -- General/MikeAsh
 
 ----
 
-Well thanks for the compliment. :) I'l keep on testing this and see how far I can push it. -- [[MartinHaecker]]
+Well thanks for the compliment. :) I'l keep on testing this and see how far I can push it. -- General/MartinHaecker
 
 ----
 
 I think this could be practical, I didn't know about nested functions http://gcc.gnu.org/onlinedocs/gcc/Nested-Functions.html in C until now. They are interesting, even with the limitations imposed by using nested functions, I think there's a lot of use blocks even with the limitation  of not being able to them after the function exits, or not being able to call stack variables out of scope (correction: actually you can call stack variables out of scope if the scope hasn't exited so it's just the same limitation as can't call the function after the scope exits which it was declared in, my bad I miss read the gcc docs and didn't really think about it), because the general syntax cleanliness change from this:
 
-<code>
-    [[NSEnumerator]] ''enumerator = [testArray objectEnumerator];
+    
+    General/NSEnumerator *enumerator = [testArray objectEnumerator];
     id object;
-    id tempArray = [[[NSMutableArray]] arrayWithCapacity:[self count]]; 
+    id tempArray = General/[NSMutableArray arrayWithCapacity:[self count]]; 
     while (object = [enumerator nextObject]) {
         if([object intValue] < 0)
              [tempArray addObject:object];
     }
-</code>
+
 
 to this:
 
-<code>
- id tempArray2 = [testArray select:[[TestBlock]](return [each intValue] < 0)];
-</code>
+    
+ id tempArray2 = [testArray select:General/TestBlock(return [each intValue] < 0)];
+
 
 Is very awesome. I think a way to keep people from trying to use them after a method exits is to put an assertion in retain so they only can have auto-released blocks and will quickly find out what's wrong when they try to retain for instance variable storage. Returning a block from the method it was declared in would still be a problem, but the assertion would help.
 
-I have categories for Objective-C Collection Classes for enumerating with [[MartinHaecker]]'s blocks at http://www.indyjt.com/wiki/pmwiki.php/Blocks/Index
+I have categories for Objective-C Collection Classes for enumerating with General/MartinHaecker's blocks at http://www.indyjt.com/wiki/pmwiki.php/Blocks/Index
 
-- [[JayTuley]]
+- General/JayTuley
 
-Those classes are now integrated into the main-package, so you can get them while they are hot. :) -- [[MartinHaecker]]
+Those classes are now integrated into the main-package, so you can get them while they are hot. :) -- General/MartinHaecker
 
 I figured out how it is possible to do block-returns, though I think that it is a bit messy. It can be done like this:
-<code>
+    
 - someMethod {
 	__label__ blockReturn;
 	id blockReturnValue = NULL;
@@ -82,6 +82,6 @@ I figured out how it is possible to do block-returns, though I think that it is 
 	[aBlock value];
 	exit(-1); // not reached
 }
-</code>
 
-Dunno where this could be usefull, but till then... -- [[MartinHaecker]]
+
+Dunno where this could be usefull, but till then... -- General/MartinHaecker

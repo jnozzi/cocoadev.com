@@ -1,1 +1,1 @@
-See http://www.c2.com/cgi/wiki?[[CopyAndPasteProgramming]]  ([[PortlandPatternRepository]])
+See http://www.c2.com/cgi/wiki?General/CopyAndPasteProgramming  (General/PortlandPatternRepository)

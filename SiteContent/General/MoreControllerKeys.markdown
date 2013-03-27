@@ -5,7 +5,7 @@ normaly you define them in IB but i want to do it in my palette, inspector or co
 
 ----
 
-This seems easy enough. Just use '''+ exposeBinding:''' and '''- unbind:''' from the '''[[NSKeyValueBindingCreation]]''' protocol.
+This seems easy enough. Just use **+ exposeBinding:** and **- unbind:** from the **General/NSKeyValueBindingCreation** protocol.
 
 ----
 

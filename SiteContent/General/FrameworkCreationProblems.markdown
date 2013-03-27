@@ -20,4 +20,4 @@ How should this post be disposed of? I am new to Wiki. Is this something worth k
 
 Thanks again --esimcoe
 
-''May as well just leave it here. Someone might find it by searching if they have problems, and it's not hurting anyone :)''
+*May as well just leave it here. Someone might find it by searching if they have problems, and it's not hurting anyone :)*

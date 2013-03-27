@@ -1,10 +1,10 @@
-New [[SpellCatcherX]] feature that uses accessibility and TSM / [[NSTextInput]] [[APIs]] to extract text and attributes from the underlying document, in order to render a transparent overlay window showing the errors in the document.
+New General/SpellCatcherX feature that uses accessibility and TSM / General/NSTextInput General/APIs to extract text and attributes from the underlying document, in order to render a transparent overlay window showing the errors in the document.
 
 Works in any app that supports the Mac OS X Dictionary panel (command-control-d, while hovering over a word).
 
 See: http://www.rainmakerinc.com/products/spellcatcherx/Spell%20Catcher%20Help/pgs/spelling/directcorrect.html
 
-[[DirectCorrect]]? has tools to help developers with their text-related accessibility and [[NSTextInput]]?? / TSM [[CarbonEvent]]?? implementations.
+General/DirectCorrect? has tools to help developers with their text-related accessibility and General/NSTextInput?? / TSM General/CarbonEvent?? implementations.
 See more about these tools at http://www.rainmakerinc.com/developer/
 
 Here are a couple of screenshots to illustrate the kind of information you can obtain:

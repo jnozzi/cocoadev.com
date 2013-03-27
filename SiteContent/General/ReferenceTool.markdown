@@ -1,8 +1,8 @@
 Tools for viewing development reference materials:
 
 
-*[[AppKiDo]] http://homepage.mac.com/aglee/downloads/
+*General/AppKiDo http://homepage.mac.com/aglee/downloads/
 
-*[[CocoaBrowser]]  http://homepage2.nifty.com/hoshi-takanori/cocoa-browser/
+*General/CocoaBrowser  http://homepage2.nifty.com/hoshi-takanori/cocoa-browser/
 
-*[[DocoaBrowser]]  http://docoabrowser.sourceforge.net/
+*General/DocoaBrowser  http://docoabrowser.sourceforge.net/

@@ -1,20 +1,20 @@
-Ok, I wish to put an [[NSSavePanel]] object inside a custom view object (Namely an [[NSView]] object). This is so that the [[NSSavePanel]] is surrounded by custom stuff (2 buttons, an [[NSTextView]] and an image). What I am trying to achieve is a "Wizard" type of panel, and at the end the user chooses where they wish to save thier work.
+Ok, I wish to put an General/NSSavePanel object inside a custom view object (Namely an General/NSView object). This is so that the General/NSSavePanel is surrounded by custom stuff (2 buttons, an General/NSTextView and an image). What I am trying to achieve is a "Wizard" type of panel, and at the end the user chooses where they wish to save thier work.
 
-I know that I can use accessoryView in the [[NSSavePanel]] but will that do what I want? I don't understand how it works, as far as I am aware setting the accessoryView will add extra features to the [[NSSavePanel]], not surround it with what I want. Thanks for any help.
-
-----
-
-First of all, a warning: most Mac users don't like "wizards," and barely tolerate "setup assistants". It's a lot better to do something like Xcode's "New Project" menu option, specifically the second panel. This way you can have whatever standard interface you need, in keeping with the rest of your panels, and show where the file will be saved (the Project Path text box), but also allow people to use the standard interface for choosing where to save something (the Choose button). That being said, you could try setting up the panel with the normal [[NSSavePanel]] methods, then pull the content out using <code>[[[NSSavePanel]] contentView]</code>. This may have some unwanted results, however; content views can (but don't always) act funny when detached from their window of origin. --[[JediKnil]]
+I know that I can use accessoryView in the General/NSSavePanel but will that do what I want? I don't understand how it works, as far as I am aware setting the accessoryView will add extra features to the General/NSSavePanel, not surround it with what I want. Thanks for any help.
 
 ----
 
-Ok then, well that makes it a little easier, but what do you mean by setting up the panel with the normal [[NSSavePanel]] methods? And also what do you mean by pull the content out using <code>[[[NSSavePanel]] contentView]</code>? Rather, how do I bring down a panel like that which is done when clicking "choose" in Xcode, is that panel a type of [[NSSavePanel]]?
+First of all, a warning: most Mac users don't like "wizards," and barely tolerate "setup assistants". It's a lot better to do something like Xcode's "New Project" menu option, specifically the second panel. This way you can have whatever standard interface you need, in keeping with the rest of your panels, and show where the file will be saved (the Project Path text box), but also allow people to use the standard interface for choosing where to save something (the Choose button). That being said, you could try setting up the panel with the normal General/NSSavePanel methods, then pull the content out using     General/[NSSavePanel contentView]. This may have some unwanted results, however; content views can (but don't always) act funny when detached from their window of origin. --General/JediKnil
 
 ----
 
-That kind of panel is called a "sheet", but yes, it is a type of [[NSSavePanel]]. Specifically, code like this will show one attached to a window called <code>mainWindow</code>. --[[JediKnil]]
-<code>
-[[NSSavePanel]] ''savePanel = [[[NSSavePanel]] savePanel];
+Ok then, well that makes it a little easier, but what do you mean by setting up the panel with the normal General/NSSavePanel methods? And also what do you mean by pull the content out using     General/[NSSavePanel contentView]? Rather, how do I bring down a panel like that which is done when clicking "choose" in Xcode, is that panel a type of General/NSSavePanel?
+
+----
+
+That kind of panel is called a "sheet", but yes, it is a type of General/NSSavePanel. Specifically, code like this will show one attached to a window called     mainWindow. --General/JediKnil
+    
+General/NSSavePanel *savePanel = General/[NSSavePanel savePanel];
 [savePanel setCanCreateDirectories:YES]; // or any other configuration stuff
 [savePanel beginSheetForDirectory:@"~"
                              file:nil
@@ -26,21 +26,21 @@ That kind of panel is called a "sheet", but yes, it is a type of [[NSSavePanel]]
 // (if this doesn't work, try file:@"")
 
 // ...somewhere else...
-- (void)savePanelDidEnd:([[NSSavePanel]] '')savePanel returnCode:(int)code contextInfo:(void '')unused
+- (void)savePanelDidEnd:(General/NSSavePanel *)savePanel returnCode:(int)code contextInfo:(void *)unused
 {
-    if (code == [[NSOKButton]])
+    if (code == General/NSOKButton)
     {
         // save to [savePanel filename]
     }
 }
-</code>
+
 
 ----
 
-No sorry, I meant how do I just make the [[NSSavePanel]] act like the "choose" panel as in xcode. Can I customize the [[NSSavePanel]] so that it says "choose" rather then save on the button? Thanks.
+No sorry, I meant how do I just make the General/NSSavePanel act like the "choose" panel as in xcode. Can I customize the General/NSSavePanel so that it says "choose" rather then save on the button? Thanks.
 
 ----
-Ah, well in that case, the first button (that calls up the panel) is just a button, and you can name it whatever you want. The one you're probably talking about can be set using [[NSSavePanel]]'s <code>setPrompt:</code> method. --[[JediKnil]]
+Ah, well in that case, the first button (that calls up the panel) is just a button, and you can name it whatever you want. The one you're probably talking about can be set using General/NSSavePanel's     setPrompt: method. --General/JediKnil
 
 ----
-Yep, and instead of using [[NSSavePanel]] I figured out to use [[NSOpenPanel]], and set <code>[openPanel setCanChooseDirectories:YES]</code>
+Yep, and instead of using General/NSSavePanel I figured out to use General/NSOpenPanel, and set     [openPanel setCanChooseDirectories:YES]

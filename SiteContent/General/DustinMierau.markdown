@@ -11,37 +11,37 @@ Hobbies:
 
 Projects:
 
-*'''Blackhole Media'''
+***Blackhole Media**
 *http://www.blackholemedia.com/
 
 
 
-*'''Napster'''
+***Napster**
 * http://www.napster.com/
 
 
 
-*'''iDo'''
+***iDo**
 * http://www.blackholemedia.com/ido/
 
 
 
-*'''Earphoria'''
+***Earphoria**
 * http://www.blackholemedia.com/beta/
 
 
 People:
 
-*'''[[AaronSittig]]''' - coder, designer
-*'''[[StevenFrank]]''' - coder, panic
-*'''[[SlavaKarpenko]]''' - coder, haxie founder
+***General/AaronSittig** - coder, designer
+***General/StevenFrank** - coder, panic
+***General/SlavaKarpenko** - coder, haxie founder
 
 
 Cool Cocoa apps:
 
-*'''[[OmniWeb]]''': http://www.omnigroup.com/omniweb/
-*'''Launchbar''': http://www.obdev.at/products/launchbar/
-*'''Docktastic Pro''': http://www.spiny.com/software/
-*'''Desktastic''': http://www.panic.com/desktastic/
-*'''Candy Bar''': http://www.iconfactory.com/cb_home.asp
-*'''[[OmniGraffle]]''': http://www.omnigroup.com/applications/omnigraffle/
+***General/OmniWeb**: http://www.omnigroup.com/omniweb/
+***Launchbar**: http://www.obdev.at/products/launchbar/
+***Docktastic Pro**: http://www.spiny.com/software/
+***Desktastic**: http://www.panic.com/desktastic/
+***Candy Bar**: http://www.iconfactory.com/cb_home.asp
+***General/OmniGraffle**: http://www.omnigroup.com/applications/omnigraffle/

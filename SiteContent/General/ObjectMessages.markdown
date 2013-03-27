@@ -1,1 +1,1 @@
-See [[ObjectMessage]]
+See General/ObjectMessage

@@ -1,19 +1,19 @@
-DICOM Viewer / PACS Workstation software for [[MacOS]] X.
+DICOM Viewer / PACS Workstation software for General/MacOS X.
 
 Cocoa source code is available on sourceforge.net:
 
-http://www.osirix-viewer.com/[[SourceCode]].html
+http://www.osirix-viewer.com/General/SourceCode.html
 
-[[OsiriX]] uses these [[MacOS]] X technologies:
-- [[CoreData]]
+General/OsiriX uses these General/MacOS X technologies:
+- General/CoreData
 - vImage
-- [[OpenGL]]
-- Multithreading ([[NSThread]])
+- General/OpenGL
+- Multithreading (General/NSThread)
 
 Toolkits:
 - VTK
 - ITK
-- [[LibTiff]]
+- General/LibTiff
 - Jasper
 - XML
 - DCMTK

@@ -1,4 +1,4 @@
-Alright, I have my custom window all set up and opens up great. I made a little button to be the close button in the top left (In Interface Builder). I cannot seem to get this to close the custom window, performClose does not work and just beeps at you. In the Cocoa docs I see an [[NSClosableWindowMask]]. Will this do anything for me?
+Alright, I have my custom window all set up and opens up great. I made a little button to be the close button in the top left (In Interface Builder). I cannot seem to get this to close the custom window, performClose does not work and just beeps at you. In the Cocoa docs I see an General/NSClosableWindowMask. Will this do anything for me?
 
 thanks,
 scott
@@ -13,7 +13,7 @@ Well, not really, I was not sure as how to do that.
 
 Anyone know?
 
-Like I said above, make the [[IBAction]] for your "little button" send -close to the window instead of -performClose:. I think the problem is that -performClose: (as it says in the docs for [[NSWindow]]) will make a system beep if the window cannot be closed (for several reasons listed in the docs... go and read them). Sending -close instead of -performClose: bypasses these checks and will forcibly close the window. -- [[KevinPerry]]
+Like I said above, make the General/IBAction for your "little button" send -close to the window instead of -performClose:. I think the problem is that -performClose: (as it says in the docs for General/NSWindow) will make a system beep if the window cannot be closed (for several reasons listed in the docs... go and read them). Sending -close instead of -performClose: bypasses these checks and will forcibly close the window. -- General/KevinPerry
 
 ----
 

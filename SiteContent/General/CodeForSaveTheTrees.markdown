@@ -1,52 +1,52 @@
-Code from the description/discussion of [[SaveTheTrees]].
+Code from the description/discussion of General/SaveTheTrees.
 
-<code>
+    
 #import <Foundation/Foundation.h>
 
 void putClassArtInDir(id path);
 
-@interface [[NSArray]] ([[UmArrayExt]]) 
--([[NSMutableArray]] '')pathsWithExtension:([[NSString]] '')ext;
+@interface General/NSArray (General/UmArrayExt) 
+-(General/NSMutableArray *)pathsWithExtension:(General/NSString *)ext;
 @end
 
-@interface [[NSString]] ([[UmStringExt]])
--([[NSArray]] '')pullSinglesWithStartTag:([[NSString]] '')startTag endTag:([[NSString]] '')endTag range:([[NSRange]])range;
+@interface General/NSString (General/UmStringExt)
+-(General/NSArray *)pullSinglesWithStartTag:(General/NSString *)startTag endTag:(General/NSString *)endTag range:(General/NSRange)range;
 @end
 
-@interface [[UmDocEdit]] : [[NSObject]] {}
-+(void)editTableOfContentsAtPath:([[NSString]] '')file;
-+(void)editClassAtPath:([[NSString]] '')file;
-+(void)editClassesInDirectory:([[NSString]] '')dir;
-+([[NSRange]])rangeOfMethodsInHTML:([[NSString]] '')file;
+@interface General/UmDocEdit : General/NSObject {}
++(void)editTableOfContentsAtPath:(General/NSString *)file;
++(void)editClassAtPath:(General/NSString *)file;
++(void)editClassesInDirectory:(General/NSString *)dir;
++(General/NSRange)rangeOfMethodsInHTML:(General/NSString *)file;
 @end
 
-@interface [[UmHTML]] : [[NSObject]] {}
-+([[NSString]] '')tableWithArray:(id)array columns:(int)columns upDown:(BOOL)upDown;
-+([[NSString]] '')tableWithAttributes:([[NSDictionary]] '')att;
+@interface General/UmHTML : General/NSObject {}
++(General/NSString *)tableWithArray:(id)array columns:(int)columns upDown:(BOOL)upDown;
++(General/NSString *)tableWithAttributes:(General/NSDictionary *)att;
 @end
 
-@implementation [[NSArray]] ([[UmArrayExt]]) 
--([[NSMutableArray]] '')pathsWithExtension:([[NSString]] '')ext {
+@implementation General/NSArray (General/UmArrayExt) 
+-(General/NSMutableArray *)pathsWithExtension:(General/NSString *)ext {
     id objEnum=[self objectEnumerator];
-    [[NSMutableArray]] ''returnArray=[[[NSMutableArray]] array];
+    General/NSMutableArray *returnArray=General/[NSMutableArray array];
     id path;
-    while (path=[objEnum nextObject]) if ([[path pathExtension] isEqualToString:ext]) [returnArray addObject:path];
+    while (path=[objEnum nextObject]) if (General/path pathExtension] isEqualToString:ext]) [returnArray addObject:path];
     return returnArray;
 }
 @end
 
-@implementation [[NSString]] ([[UmStringExt]])
--([[NSArray]] '')pullElementsWithStartTag:([[NSString]] '')startTag endTag:([[NSString]] '')endTag range:([[NSRange]])range {
-    [[NSMutableString]] ''tempString=[[[NSMutableString]] stringWithString:[self substringWithRange:range]];
-    [[NSMutableArray]] ''elements=[[[NSMutableArray]] array];
-    [[NSRange]] startTagRange, endTagRange, elementRange;
+@implementation [[NSString (General/UmStringExt)
+-(General/NSArray *)pullElementsWithStartTag:(General/NSString *)startTag endTag:(General/NSString *)endTag range:(General/NSRange)range {
+    General/NSMutableString *tempString=General/[NSMutableString stringWithString:[self substringWithRange:range]];
+    General/NSMutableArray *elements=General/[NSMutableArray array];
+    General/NSRange startTagRange, endTagRange, elementRange;
     while (1) {
         startTagRange=[tempString rangeOfString:startTag];
-        if (startTagRange.length>0) [tempString deleteCharactersInRange:[[NSMakeRange]](0, startTagRange.location)];
+        if (startTagRange.length>0) [tempString deleteCharactersInRange:General/NSMakeRange(0, startTagRange.location)];
         else break;
         endTagRange=[tempString rangeOfString:endTag];
         if (endTagRange.length==0) break;
-        elementRange=[[NSMakeRange]](0, endTagRange.location+endTagRange.length);
+        elementRange=General/NSMakeRange(0, endTagRange.location+endTagRange.length);
         [elements addObject:[tempString substringWithRange:elementRange]];
         [tempString deleteCharactersInRange:elementRange];
     }
@@ -54,72 +54,72 @@ void putClassArtInDir(id path);
 }
 @end
 
-@implementation [[UmDocEdit]] 
-+(void)editTableOfContentsAtPath:([[NSString]] '')file {
-    [[NSString]] ''toc=[[[NSString]] stringWithContentsOfFile:file];
-    [[NSString]] ''dir=[file stringByDeletingLastPathComponent];
-    [[NSMutableString]] ''quickTOC=[[[NSMutableString]] string];
-    [[NSString]] ''name=[[file lastPathComponent] stringByDeletingPathExtension];
-    [[NSArray]] ''classes, ''protocols;
-    [[NSString]] ''classTable, ''protocolTable;
-    protocols=[toc pullElementsWithStartTag:@"<a href = \"Protocols/" endTag:@"</a>" range:[[NSMakeRange]](0,[toc length])];
-    classes=[toc pullElementsWithStartTag:@"<a href = \"Classes/" endTag:@"</a>" range:[[NSMakeRange]](0,[toc length])];
+@implementation General/UmDocEdit 
++(void)editTableOfContentsAtPath:(General/NSString *)file {
+    General/NSString *toc=General/[NSString stringWithContentsOfFile:file];
+    General/NSString *dir=[file stringByDeletingLastPathComponent];
+    General/NSMutableString *quickTOC=General/[NSMutableString string];
+    General/NSString *name=General/file lastPathComponent] stringByDeletingPathExtension];
+    [[NSArray *classes, *protocols;
+    General/NSString *classTable, *protocolTable;
+    protocols=[toc pullElementsWithStartTag:@"<a href = \"Protocols/" endTag:@"</a>" range:General/NSMakeRange(0,[toc length])];
+    classes=[toc pullElementsWithStartTag:@"<a href = \"Classes/" endTag:@"</a>" range:General/NSMakeRange(0,[toc length])];
     protocols=[protocols sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
     classes=[classes sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-    classTable=[[[UmHTML]] tableWithArray:classes columns:4 upDown:YES];
-    protocolTable=[[[UmHTML]] tableWithArray:protocols columns:4 upDown:YES];
+    classTable=General/[UmHTML tableWithArray:classes columns:4 upDown:YES];
+    protocolTable=General/[UmHTML tableWithArray:protocols columns:4 upDown:YES];
     [quickTOC appendFormat:@"<HTML>\n\t<HEAD>\n\t<TITLE>%@</TITLE>\n\t</HEAD>\n<BODY>\n", name];
     [quickTOC appendFormat:@"<h1>%@</h1><br><br>\n", name];
     [quickTOC appendFormat:@"<b>Classes</b><br><hr><br>\n%@\n", classTable];
     [quickTOC appendFormat:@"<br><br><b>Protocols</b><br><hr><br>\n%@\n", protocolTable];
     [quickTOC appendString:@"</BODY>\n</HTML>\n"];
-    [quickTOC writeToFile:[dir stringByAppendingPathComponent:[[[NSString]] stringWithFormat:@"%@.html", name]] atomically:YES];
+    [quickTOC writeToFile:[dir stringByAppendingPathComponent:General/[NSString stringWithFormat:@"%@.html", name]] atomically:YES];
     
 }
-+(void)editClassesInDirectory:([[NSString]] '')dir {
-    [[NSFileManager]] ''myManager=[[[NSFileManager]] defaultManager];
-    [[NSArray]] ''htmlFiles=[[myManager directoryContentsAtPath:dir] pathsWithExtension:@"html"];
-    [[NSEnumerator]] ''objEnum;
++(void)editClassesInDirectory:(General/NSString *)dir {
+    General/NSFileManager *myManager=General/[NSFileManager defaultManager];
+    General/NSArray *htmlFiles=General/myManager directoryContentsAtPath:dir] pathsWithExtension:@"html"];
+    [[NSEnumerator *objEnum;
     id obj;
     
     htmlFiles=[dir stringsByAppendingPaths:htmlFiles];
     objEnum=[htmlFiles objectEnumerator];
     while (obj=[objEnum nextObject]) {
-        [[NSLog]](obj);
-        [[[UmDocEdit]] editClassAtPath:obj];
+        General/NSLog(obj);
+        General/[UmDocEdit editClassAtPath:obj];
     }
 }
-+(void)editClassAtPath:([[NSString]] '')file {
++(void)editClassAtPath:(General/NSString *)file {
     int i;
-    [[NSMutableString]] ''html=[[[NSMutableString]] stringWithContentsOfFile:file];
-    [[NSRange]] rangeOfMethods=[[[UmDocEdit]] rangeOfMethodsInHTML:html];
-    [[NSArray]] ''lines, ''elements;
-    [[NSString]] ''line;
-    [[NSEnumerator]] ''objEnum;
+    General/NSMutableString *html=General/[NSMutableString stringWithContentsOfFile:file];
+    General/NSRange rangeOfMethods=General/[UmDocEdit rangeOfMethodsInHTML:html];
+    General/NSArray *lines, *elements;
+    General/NSString *line;
+    General/NSEnumerator *objEnum;
     if (rangeOfMethods.length==0) return;
-    [[NSString]] ''API=[[[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent] lastPathComponent];
-    [[NSString]] ''blockOfMethods=[html substringWithRange:rangeOfMethods];
-    [[NSArray]] ''methods=[blockOfMethods pullElementsWithStartTag:@"<a href=\"#" 
+    General/NSString *API=General/[file stringByDeletingLastPathComponent] stringByDeletingLastPathComponent] lastPathComponent];
+    [[NSString *blockOfMethods=[html substringWithRange:rangeOfMethods];
+    General/NSArray *methods=[blockOfMethods pullElementsWithStartTag:@"<a href=\"#" 
                                                             endTag:@">" 
-                                                            range:[[NSMakeRange]](0, [blockOfMethods length])];
-    [[NSRange]] methodRange;
-    [[NSMutableArray]] ''internalLinks=[[[NSMutableArray]] array];
-    [[NSRange]] top=[html rangeOfString:@"</h1>"];
-    [[NSString]] ''classTag=[[file lastPathComponent] stringByDeletingPathExtension];
+                                                            range:General/NSMakeRange(0, [blockOfMethods length])];
+    General/NSRange methodRange;
+    General/NSMutableArray *internalLinks=General/[NSMutableArray array];
+    General/NSRange top=[html rangeOfString:@"</h1>"];
+    General/NSString *classTag=General/file lastPathComponent] stringByDeletingPathExtension];
     lines=[blockOfMethods componentsSeparatedByString:@"\n"];
     objEnum=[lines objectEnumerator];
-    [[NSString]] ''buttonElement=[[[NSString]] stringWithFormat:@"<br><a href=\"../%@TOC.html\"><img src=\"../Art/up.gif\" border=\"0\"\
+    [[NSString *buttonElement=General/[NSString stringWithFormat:@"<br><a href=\"../%@TOC.html\"><img src=\"../Art/up.gif\" border=\"0\"\
 alt=\"Table of Contents\"></a>   <a href=\"#//apple_ref/occ/cl/%@\"><img src=\"../Art/class.gif\" border=\"0\" alt=\"Table of \
 Contents\"></a><br>", API, classTag];
-    [[NSArray]] ''buttonArray=[[[NSArray]] arrayWithObjects:buttonElement, @"", @"", buttonElement, nil];
-    [[NSMutableString]] ''buttonTable=[[[UmHTML]] tableWithArray:buttonArray columns:4 upDown:NO];
+    General/NSArray *buttonArray=General/[NSArray arrayWithObjects:buttonElement, @"", @"", buttonElement, nil];
+    General/NSMutableString *buttonTable=General/[UmHTML tableWithArray:buttonArray columns:4 upDown:NO];
     [buttonTable appendString:@"<br>"];
     
     while (line=[objEnum nextObject]) {
         if ([line length]>0 && [line characterAtIndex:0]!='<') [internalLinks addObject:line];
-        elements=[line pullElementsWithStartTag:@"<a href=\"#" endTag:@"</a>" range:[[NSMakeRange]](0, [line length])];
+        elements=[line pullElementsWithStartTag:@"<a href=\"#" endTag:@"</a>" range:General/NSMakeRange(0, [line length])];
         if ([elements count]>0) {
-            line=[[[NSMutableString]] stringWithString:[elements objectAtIndex:0]];
+            line=General/[NSMutableString stringWithString:[elements objectAtIndex:0]];
             [internalLinks addObject:line];
         }
     }
@@ -128,7 +128,7 @@ Contents\"></a><br>", API, classTag];
             [internalLinks addObject:@""];
         }
     }
-    id tableOfInternalMethodLinks=[[[UmHTML]] tableWithArray:internalLinks columns:4 upDown:YES];
+    id tableOfInternalMethodLinks=General/[UmHTML tableWithArray:internalLinks columns:4 upDown:YES];
     if (top.length>0 && tableOfInternalMethodLinks) {
         [html insertString:tableOfInternalMethodLinks atIndex:top.location+top.length];
         [html insertString:buttonTable atIndex: top.location+top.length + [tableOfInternalMethodLinks length]];
@@ -136,7 +136,7 @@ Contents\"></a><br>", API, classTag];
     objEnum=[methods objectEnumerator];
     id method;
     while (method=[objEnum nextObject]) {
-        method=[[[NSMutableString]] stringWithString:method];
+        method=General/[NSMutableString stringWithString:method];
         [method replaceCharactersInRange:[method rangeOfString:@"<a href=\"#"] withString:@"<a name=\""];
         methodRange=[html rangeOfString:method];
         if (methodRange.length>0) [html insertString:buttonTable atIndex:methodRange.location];
@@ -146,31 +146,31 @@ Contents\"></a><br>", API, classTag];
 
 }
 
-+([[NSRange]])rangeOfMethodsInHTML:([[NSString]] '')html {
-    [[NSRange]] range, start, end1, end2, end;
++(General/NSRange)rangeOfMethodsInHTML:(General/NSString *)html {
+    General/NSRange range, start, end1, end2, end;
     start=[html rangeOfString:@"<h2>Method Types</h2>"];
     end1=[html rangeOfString:@"<h2>Instance Methods</h2>"];
     end2=[html rangeOfString:@"<h2>Class Methods</h2>"];
         if (end1.length>0) end=end1;
     if (end2.length>0) end=end2;
-    range=[[NSMakeRange]](start.location, end.location-start.location);
+    range=General/NSMakeRange(start.location, end.location-start.location);
     if (range.length>[html length]) range.length=0;
     if (start.length==0 || end.length==0) range.length=0;
     return range;
 }
 @end
 
-@implementation [[UmHTML]] 
-+([[NSString]] '')tableWithArray:(id)array columns:(int)columns upDown:(BOOL)upDown {
-    [[NSMutableDictionary]] ''att=[[[NSMutableDictionary]] dictionaryWithObjectsAndKeys:
+@implementation General/UmHTML 
++(General/NSString *)tableWithArray:(id)array columns:(int)columns upDown:(BOOL)upDown {
+    General/NSMutableDictionary *att=General/[NSMutableDictionary dictionaryWithObjectsAndKeys:
                     array, @"cells",
-                    [[[NSString]] stringWithFormat:@"%i", columns], @"columns", nil];
+                    General/[NSString stringWithFormat:@"%i", columns], @"columns", nil];
     if (upDown) [att setObject:@"YES" forKey:@"upDown"];
-    return [[[UmHTML]] tableWithAttributes:att];
+    return General/[UmHTML tableWithAttributes:att];
 }
 
-+([[NSString]] '')tableWithAttributes:([[NSDictionary]] '')att {
-    [[NSMutableString]] ''table=[[[NSMutableString]] string];
++(General/NSString *)tableWithAttributes:(General/NSDictionary *)att {
+    General/NSMutableString *table=General/[NSMutableString string];
     int rows, columns, row, column;
     id border=@"0";
     id cellpadding=@"0";
@@ -184,7 +184,7 @@ Contents\"></a><br>", API, classTag];
     int widthValue;
     id comp;
     BOOL widthIsPercent;
-    id tableWidth=[[[NSString]] stringWithFormat:@"100%c", '\%'];
+    id tableWidth=General/[NSString stringWithFormat:@"100%c", '\%'];
     id width;
     id blank=@"";
     for (i=0;i<100;i++) for (ii=0;ii<100;ii++) matrix[i][ii]=blank;
@@ -218,15 +218,15 @@ Contents\"></a><br>", API, classTag];
         percent=[comp objectAtIndex:0];
         widthValue=[percent intValue];
         widthValue=widthValue/columns;       
-        widths=[[[NSMutableArray]] array];
-        if (widthIsPercent) widthText=[[[NSString]] stringWithFormat:@"%i%c", widthValue, '\%'];
-        else widthText=[[[NSString]] stringWithFormat:@"%i", widthValue];
+        widths=General/[NSMutableArray array];
+        if (widthIsPercent) widthText=General/[NSString stringWithFormat:@"%i%c", widthValue, '\%'];
+        else widthText=General/[NSString stringWithFormat:@"%i", widthValue];
         for (i=0;i<columns;i++) {
             [widths addObject:widthText];
         }
     }
     rows=floor(cellCount/columns);
-    remainder=cellCount-(rows''columns);
+    remainder=cellCount-(rows*columns);
     if (remainder) {
         remainder=0;
         rows++;
@@ -272,23 +272,23 @@ Contents\"></a><br>", API, classTag];
 
 @end
 
-int main(int argc, const char ''argv[]) {
+int main(int argc, const char *argv[]) {
 
-    [[NSAutoreleasePool]] ''myPool=[[[[NSAutoreleasePool]] alloc] init];
-    [[NSFileManager]] ''myManager=[[[NSFileManager]] defaultManager];        
-    [[NSString]] ''workDir=[myManager currentDirectoryPath];
-    [[NSString]] ''appKitDir, ''foundationDir;
+    General/NSAutoreleasePool *myPool=General/[[NSAutoreleasePool alloc] init];
+    General/NSFileManager *myManager=General/[NSFileManager defaultManager];        
+    General/NSString *workDir=[myManager currentDirectoryPath];
+    General/NSString *appKitDir, *foundationDir;
     
-    appKitDir=[workDir stringByAppendingPathComponent:@"[[AppKit]]"];
+    appKitDir=[workDir stringByAppendingPathComponent:@"General/AppKit"];
     foundationDir=[workDir stringByAppendingPathComponent:@"Foundation"];
     putClassArtInDir([appKitDir stringByAppendingPathComponent:@"Art"]);
     putClassArtInDir([foundationDir stringByAppendingPathComponent:@"Art"]);
-    [[[UmDocEdit]] editTableOfContentsAtPath:[appKitDir stringByAppendingPathComponent:@"[[AppKitTOC]].html"]];
-    [[[UmDocEdit]] editTableOfContentsAtPath:[foundationDir stringByAppendingPathComponent:@"[[FoundationTOC]].html"]];
-    [[[UmDocEdit]] editClassesInDirectory:[appKitDir stringByAppendingPathComponent:@"Classes"]];
-    [[[UmDocEdit]] editClassesInDirectory:[appKitDir stringByAppendingPathComponent:@"Protocols"]];
-    [[[UmDocEdit]] editClassesInDirectory:[foundationDir stringByAppendingPathComponent:@"Classes"]];
-    [[[UmDocEdit]] editClassesInDirectory:[foundationDir stringByAppendingPathComponent:@"Protocols"]];
+    General/[UmDocEdit editTableOfContentsAtPath:[appKitDir stringByAppendingPathComponent:@"General/AppKitTOC.html"]];
+    General/[UmDocEdit editTableOfContentsAtPath:[foundationDir stringByAppendingPathComponent:@"General/FoundationTOC.html"]];
+    General/[UmDocEdit editClassesInDirectory:[appKitDir stringByAppendingPathComponent:@"Classes"]];
+    General/[UmDocEdit editClassesInDirectory:[appKitDir stringByAppendingPathComponent:@"Protocols"]];
+    General/[UmDocEdit editClassesInDirectory:[foundationDir stringByAppendingPathComponent:@"Classes"]];
+    General/[UmDocEdit editClassesInDirectory:[foundationDir stringByAppendingPathComponent:@"Protocols"]];
     [myPool release];
     return 0;
 }
@@ -296,10 +296,10 @@ int main(int argc, const char ''argv[]) {
 
 void putClassArtInDir(id path) {
 
-        [[NSMutableString]] ''classArt=[[[NSMutableString]] string];
+        General/NSMutableString *classArt=General/[NSMutableString string];
         [classArt appendString:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"];
         [classArt appendString:@"<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST \
-1.0//EN\" \"http://www.apple.com/[[DTDs]]/[[PropertyList]]-1.0.dtd\">\n"];
+1.0//EN\" \"http://www.apple.com/General/DTDs/General/PropertyList-1.0.dtd\">\n"];
         [classArt appendString:@"<plist version=\"1.0\">\n<dict>\n<key>data</key>\n"];
         [classArt appendString:@"<data>\
         R0lGODlhSAARAOcAAP////7+/ubm5q6uroWFhYCAgISEhHd3d3FxcX5+foaGhn19fXx8\
@@ -340,18 +340,18 @@ void putClassArtInDir(id path) {
         AHrQvcvcAQc8uExlTFAZFQQgCAIZTSQKMRsnHKIE8hNIAARiGYHYACidAUAOXJBAHOIA\
         KIcBECBmEhgEEkwmdJe5DABiIBDOAIAHQrwDC5IgCRTMJgCIsIIUgJCGDoQgTGZCgQCu\
         cqYOtCAFTGhBBzqAgiR8ywksYOMNvuWBJohgcSbSwQiaEAMQwLEJNRCBE8hQFgGkgAxJ\
-        [[YAAjZgOAGQogERaJyAImSclKWvKSmMykJivJEQUkQgCNDAgAOw]]==\
+        General/YAAjZgOAGQogERaJyAImSclKWvKSmMykJivJEQUkQgCNDAgAOw==\
         </data>\
 </dict>\
 </plist>"];
-[[CFStringRef]] errorString;
-[[NSData]] ''xmlData=[[[NSData]] dataWithBytes:[classArt cString] length:[classArt length]];
-id plist=(id)[[CFPropertyListCreateFromXMLData]](kCFAllocatorDefault, 
-                                ([[CFDataRef]])xmlData,
+General/CFStringRef errorString;
+General/NSData *xmlData=General/[NSData dataWithBytes:[classArt cString] length:[classArt length]];
+id plist=(id)General/CFPropertyListCreateFromXMLData(kCFAllocatorDefault, 
+                                (General/CFDataRef)xmlData,
                                 0, 
                                 &errorString);
 id artData=[plist objectForKey:@"data"];
-[[NSLog]](@"artPath: %@", path);
+General/NSLog(@"artPath: %@", path);
 [artData writeToFile:[path stringByAppendingPathComponent:@"class.gif"] atomically:YES];
     
     
@@ -361,4 +361,3 @@ id artData=[plist objectForKey:@"data"];
 
 
 
-</code>

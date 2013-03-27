@@ -1,1 +1,1 @@
-Typo.  Should be [[IORegistry]].
+Typo.  Should be General/IORegistry.

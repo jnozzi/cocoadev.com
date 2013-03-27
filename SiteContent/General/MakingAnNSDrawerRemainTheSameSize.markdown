@@ -3,18 +3,18 @@ If I have a parent window to which I've attached a drawer, and I resize my paren
 
 ----
 
-[drawerView setAutoresizingMask:[[NSViewMixX]]];
+[drawerView setAutoresizingMask:General/NSViewMixX];
 
 I think --zootbobbalu
 
 ----
 
-Not sure what you mean by "[[NSViewMixX]]" but I tried all reasonable variations... didn't work... :(
+Not sure what you mean by "General/NSViewMixX" but I tried all reasonable variations... didn't work... :(
 
 
 ----
 
-Oops, I'm on drugs!! That's [[NSViewMinXMargin]]
+Oops, I'm on drugs!! That's General/NSViewMinXMargin
 
 ----
 

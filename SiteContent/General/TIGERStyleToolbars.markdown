@@ -1,5 +1,5 @@
 
-I am wondering if anyone has any insight on creating Tiger style toolbars as seen in Mail 2.0. I have looked into subclassing [[NSToolbar]] to no avail. 
+I am wondering if anyone has any insight on creating Tiger style toolbars as seen in Mail 2.0. I have looked into subclassing General/NSToolbar to no avail. 
 
 -Julian
 
@@ -33,22 +33,22 @@ prior written approval of an authorized representative of Apple in each instance
 
 ----
 
-Which basically means that anybody with the seed CANNOT talk about Tiger, including you, before Tiger's officially out. Come back April 15th or whenever Tiger hits the shelves and ask us again. ''This sentence was removed because it '''is''' a NDA violation.''
+Which basically means that anybody with the seed CANNOT talk about Tiger, including you, before Tiger's officially out. Come back April 15th or whenever Tiger hits the shelves and ask us again. *This sentence was removed because it **is** a NDA violation.*
 
 ----
 
 Actually, the look of the toolbar hardly falls under "confidential information". You can see it in its full fuglyness at http://www.apple.com/macosx/tiger/mail.html . Why you would want to copy that look, though, is totally beyond me. I just hope there will be a way to turn it off.
 
-''The look doesn't, but the implementation certainly does.''
+*The look doesn't, but the implementation certainly does.*
 
 ----
 The icons are ugly, but the gradient is awesome all around.
 
-'' Agreed. The rounded toolbar buttons in Mail.app cause contrast problems, especially with the "junk mail" icon. But I do like the gradient toolbar look. ''
+* Agreed. The rounded toolbar buttons in Mail.app cause contrast problems, especially with the "junk mail" icon. But I do like the gradient toolbar look. *
 
 ----
 
-In the text I removed, you just posted something Tiger only from a header/documentation. Please do not do this. You'll have your butt in a sling if Apple comes after you, and [[StevenFrank]] could get in some hot water. So refrain from posting Tiger details against your NDA.
+In the text I removed, you just posted something Tiger only from a header/documentation. Please do not do this. You'll have your butt in a sling if Apple comes after you, and General/StevenFrank could get in some hot water. So refrain from posting Tiger details against your NDA.
 
 ----
 
@@ -60,15 +60,15 @@ Does anyone else find this toolbar hideous?
 
 ----
 
-What the heck is going on here??  The original poster is asking about getting the look of the toolbar by subclassing [[NSToolbar]].  There is NO WAY that that is an NDA violation.  Can we ease off on this NDA crap a bit?
+What the heck is going on here??  The original poster is asking about getting the look of the toolbar by subclassing General/NSToolbar.  There is NO WAY that that is an NDA violation.  Can we ease off on this NDA crap a bit?
 
-''I whole-heartedly agree. Apple themselves made the look and feel public months ago. Speculating on how to achieve it (which I assume must be for pre-Tiger apps) is none of Apple's damned business and far beyond the reach of an NDA.''
+*I whole-heartedly agree. Apple themselves made the look and feel public months ago. Speculating on how to achieve it (which I assume must be for pre-Tiger apps) is none of Apple's damned business and far beyond the reach of an NDA.*
 
 However, the issue at hand was that someone posted a constant name that can only be found in header files or the documention that is part of a Tiger install. Therefore, it is a breach of NDA, and should not be posted here.
 
 ----
 
-I am the original poster, and yes I am looking for a way to achieve this look by subclassing or other means for both PANTHER and TIGER. Anyway I figured out how it is done: It's not the [[NSToolbar]], it's the window itself. Subclass [[NSWindow]], when you init it set it to textured and call setBottomCornerRounded:NO] then in - (void)drawRect:([[NSRect]])rect {} just draw a gradient from top to bottom using [[NSBezierpath]]. Thats all folks!
+I am the original poster, and yes I am looking for a way to achieve this look by subclassing or other means for both PANTHER and TIGER. Anyway I figured out how it is done: It's not the General/NSToolbar, it's the window itself. Subclass General/NSWindow, when you init it set it to textured and call setBottomCornerRounded:NO] then in - (void)drawRect:(General/NSRect)rect {} just draw a gradient from top to bottom using General/NSBezierpath. Thats all folks!
 
 -Julian
 
@@ -82,25 +82,25 @@ Everyone file bug reports about Mail's ugly toolbar items. Oh lord, they're hide
 
 ----
 
-Hehe.  It might be a good idea to couch the complaint in objective language of sort.  For example, "inconsistent with standard Mac OS X toolbars without any added benefits" rather than "AUGH, IT BURNS!!!"  Even better would be if we could figure out why they ''did'' change the toolbar style (there oughta be some reason, right?) and see if we can't come up with an approach that accomplishes the same goal without looking like ass.
+Hehe.  It might be a good idea to couch the complaint in objective language of sort.  For example, "inconsistent with standard Mac OS X toolbars without any added benefits" rather than "AUGH, IT BURNS!!!"  Even better would be if we could figure out why they *did* change the toolbar style (there oughta be some reason, right?) and see if we can't come up with an approach that accomplishes the same goal without looking like ass.
 
 ----
 
-''It's not the [[NSToolbar]], it's the window itself.'' - Damn! Do you mean that Mail no longer has a customizable toolbar?! That's a shame, dammit. Oh, and by the way, you can mimic this ugly design in a real toolbar by installing your own views and controls into it. At the very least users will be able to hide those godawful buttons.
+*It's not the General/NSToolbar, it's the window itself.* - Damn! Do you mean that Mail no longer has a customizable toolbar?! That's a shame, dammit. Oh, and by the way, you can mimic this ugly design in a real toolbar by installing your own views and controls into it. At the very least users will be able to hide those godawful buttons.
 
 ----
 
 I notice that all of Apple's programs are moving more towards this style, but each with a different look. For example, Safari has similar buttons, but square and iTunes' are round. Is this the way of the future? I hope not! I like the traditional toolbar look. There is something very pleasent about the regular toolbar icons that is missing in these lousy buttons. However, I don't think the Mail buttons are inconsistent. If you look, they do line up to the standard square button. It is just that they are ulgy. What is inconsistent is the gradient replacing the pinstripe background and not in the brushed metal kind of way. -- However, the gradient is only an option for windows with a toolbar, you can IB in and remove that if you want.
 
-''Can you describe this process, or give a pointer that describes it?'' '''Not yet, Tiger isn't out yet! Wait until the 29th. :)'''
+*Can you describe this process, or give a pointer that describes it?* **Not yet, Tiger isn't out yet! Wait until the 29th. :)**
 
 ----
 
-They way to get this toolbar is pretty simple.  Interface Builder now has an option called "Unified title/toolbar look" associated with the attributes of [[NSWindow]].  Have that enabled and then go through the usual steps of adding a toolbar to your [[NSWindow]].  You could also accomplish the same through instantiating the [[NSWindow]] yourself and passing it the constant [[NSUnifiedTitleAndToolbarWindowMask]].
+They way to get this toolbar is pretty simple.  Interface Builder now has an option called "Unified title/toolbar look" associated with the attributes of General/NSWindow.  Have that enabled and then go through the usual steps of adding a toolbar to your General/NSWindow.  You could also accomplish the same through instantiating the General/NSWindow yourself and passing it the constant General/NSUnifiedTitleAndToolbarWindowMask.
 
 Hope that helps!
 
-''But please don't, its hideous, infact I wrote a hack to remove this all together!''
+*But please don't, its hideous, infact I wrote a hack to remove this all together!*
 
 Um... which is hideous, the icons or the title/toolbar gradient?
 

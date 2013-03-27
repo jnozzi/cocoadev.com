@@ -1,6 +1,6 @@
 Document Xcode bugs and work arounds.
 
-Anyone know what to do with Xcode not clearing the warnings and errors out of the file gutters on rebuild? ''Have you fixed them? Otherwise it's not supposed to - the warnings & errors in the gutters and [[SmartGroup]] represent the state of your code, and persist across builds. There was a long post on the subject on the xcode-users list by Chris Espinosa on 17 August. I don't know if that list is archived anywhere though.''
+Anyone know what to do with Xcode not clearing the warnings and errors out of the file gutters on rebuild? *Have you fixed them? Otherwise it's not supposed to - the warnings & errors in the gutters and General/SmartGroup represent the state of your code, and persist across builds. There was a long post on the subject on the xcode-users list by Chris Espinosa on 17 August. I don't know if that list is archived anywhere though.*
 
 Yes, of course I've fixed them :P , and it says build succeeded, but a VERY long list of errors say stays in the gutter and error window... which is a pain, b/c if you've fixed SOME of your errors you don't know which ones are still active... :( I wish I had seen that xcode-users list.  What was the gist?
 
@@ -9,7 +9,7 @@ Yes, of course I've fixed them :P , and it says build succeeded, but a VERY long
 Excerpts pasted below. Apple's archives are totally hosed right now, so they're not even of the minimal use they usually are. I suppose the gist is 'use the Build Results window.'
 
 ...[snippage]
-''
+*
 This is how the Errors and Warnings smartgroup is designed to work:
 
 - Start with a clean build.
@@ -50,11 +50,11 @@ This is probably the most common confusion about the Errors and
 Warnings smartgroup.  As a smartgroup, it persists the known status of 
 all project files, while the Build Results window gives you the 
 this-build-only errors and warnings, which may differ.
-''
+*
 
 [more snippage]
 
-''
+*
 
 because of dependencies, etc. in a 
 build that has errors, a given build command may not actually instigate 
@@ -85,13 +85,13 @@ If you rebuild a file and it shows up in the Build Results window with
 no errors or warnings, but its errors aren't removed from the 
 smartgroup, that's a bug.
 
-''
+*
 
 ----
 
 Aha! I've done some more digging in my archives and turned up this followup: (Date: Thu, 19 Aug 2004 Subject: Errors & Warnings (and Relative Paths)
 
-''
+*
 
 Since version 1.5 Xcode has problems with projects where the source 
 files are referenced by "Relative Path" and the path goes up (e.g. 
@@ -107,13 +107,13 @@ Marks do not disappear!
 I filed a bug report with a description at bugreport.apple.com (Problem 
 ID:  3767854)
 
-''
+*
 
 ----
 
 And this further followup by Chris Espinosa:
 
-''
+*
 
 I've confirmed that this is indeed the case: if a source file is 
 Relative to Project but not "below" the project's directory in the file 
@@ -141,7 +141,7 @@ Trees setting appropriate to their system.
 
 Chris
 
-''
+*
 
 ...I just knew those 3858 unread messages in my developer lists folder would be useful someday ;)
 

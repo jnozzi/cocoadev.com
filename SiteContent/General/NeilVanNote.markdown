@@ -1,7 +1,7 @@
 
 
-'''Neil A. Van Note'''
+**Neil A. Van Note**
 
-%%BEGINCODESTYLE%%coding%%ENDCODESTYLE%% like mad since 1980.
+<code>coding</code> like mad since 1980.
 
-''A belated welcome! -- [[KritTer]]''
+*A belated welcome! -- General/KritTer*

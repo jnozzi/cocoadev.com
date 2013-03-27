@@ -1,5 +1,5 @@
-Can [[NSTableView]] be subclassed so cells are draggable instead of just rows?  How would I go about that?
+Can General/NSTableView be subclassed so cells are draggable instead of just rows?  How would I go about that?
 
 ----
 
-It sounds like you're looking for [[NSMatrix]].
+It sounds like you're looking for General/NSMatrix.

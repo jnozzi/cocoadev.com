@@ -6,7 +6,7 @@ I'm the lead developer at The Little App Factory, makers of Connoisseur, iPodRip
 Recent work locations:
 
 *TLAF
-*[[BTLooksmart]] (when they used to exist....the internet bubble killed them)
+*General/BTLooksmart (when they used to exist....the internet bubble killed them)
 
 
 Experience in coding:

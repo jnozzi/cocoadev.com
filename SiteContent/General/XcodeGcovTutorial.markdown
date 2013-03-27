@@ -39,7 +39,7 @@ Now in theory this is enough, but actually this is where I started having lots o
 
 (If you don't mind using gcc3.1 system-wide then it can be easier to just use gcc_select to select which version you want to use. Open a terminal and type "sudo gcc_select 3" (You must be root to change such system settings).)
 
-6. Now there are some things that compile in gcc3.3.1 but not in gcc3.1, specifically, Objective C exception statements (@try @catch and @throw) and the @synchronized() statement. For the former you need to modify your code using the old style NS_DURING NS_HANDLER NS_ENDHANDLER syntax, for the latter you can replace @synchronized() with [[NSLocks]]. Console yourself that now your code will compile on more gcc platforms and that using [[NSLocks]] is supposedly faster than @synchronized, (I think I heard about 4 times faster). Your code will still compile on gcc3.3.1 when you go back to it. (If anyone knows any other things that need modifying for gcc3.1 please add a note here)
+6. Now there are some things that compile in gcc3.3.1 but not in gcc3.1, specifically, Objective C exception statements (@try @catch and @throw) and the @synchronized() statement. For the former you need to modify your code using the old style NS_DURING NS_HANDLER NS_ENDHANDLER syntax, for the latter you can replace @synchronized() with General/NSLocks. Console yourself that now your code will compile on more gcc platforms and that using General/NSLocks is supposedly faster than @synchronized, (I think I heard about 4 times faster). Your code will still compile on gcc3.3.1 when you go back to it. (If anyone knows any other things that need modifying for gcc3.1 please add a note here)
 
 7. Ok, now we are all set. Perform a clean and build. This should generate a load of .bb and .bbg files in your project directory, one for each source file. 
 
@@ -47,25 +47,25 @@ Now in theory this is enough, but actually this is where I started having lots o
 
 9. Open up a terminal, cd to your project directory and type "gcov sourcefile.m" where sourcefile is the name of the sourcefile you want profiling for. This will generate a file called sourcefile.m.gcov. Type "less sourcefile.m.gcov" to view the file. You should see your sourcecode with each line of code prefixed with either a number or ###### (or nothing it there was no code to execute there). If there is a number, this is how many times the line was executed. If you see ######, that means the line was never executed, ie, you need a new test to show that it works.
 
-10. It can be a hassle to keep on typing "gcov sourcefile.m", so here is a script you can use to do the whole lot in one go. Create a directory called [[CoverageData]] (cd [[MyProjectDir]]; mkdir [[CoverageData]]) in your project directory and copy the follwing script into a file called coverage.sh (again in your project directory):
+10. It can be a hassle to keep on typing "gcov sourcefile.m", so here is a script you can use to do the whole lot in one go. Create a directory called General/CoverageData (cd General/MyProjectDir; mkdir General/CoverageData) in your project directory and copy the follwing script into a file called coverage.sh (again in your project directory):
 
-<code>
+    
 #!/bin/csh
-foreach i ( $'' )
+foreach i ( $* )
  gcov $i ; 
 end
-mv ''.gcov [[CoverageData]]
-</code>
+mv *.gcov General/CoverageData
 
-call this script with something like "./coverage.sh ''.m"
 
-11. To have all the gcov data to hand in Xcode, create a new group in your project called [[CoverageData]] and Add-To-Project all the files in the [[MyProjectDir]]/[[CoverageData]] directory into that group. Now you will be able to flick between them and the source to find out where extra testing is required.
+call this script with something like "./coverage.sh *.m"
+
+11. To have all the gcov data to hand in Xcode, create a new group in your project called General/CoverageData and Add-To-Project all the files in the General/MyProjectDir/General/CoverageData directory into that group. Now you will be able to flick between them and the source to find out where extra testing is required.
 
 Hope this is useful. Certainly lost me some sleep to figure my way through this.
 
 Happy Coding for 2005!!
 
--- [[MikeAmy]]
+-- General/MikeAmy
 
 ----
 TODO : How to do the branch prediction thing.

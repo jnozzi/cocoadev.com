@@ -1,1 +1,1 @@
-Describe [[SystemUIPlugin]] here.
+Describe General/SystemUIPlugin here.

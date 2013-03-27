@@ -6,67 +6,67 @@ The program uses the JNI invocation interface to start a JVM in a seperate threa
 
 A lot of the example Cocoa code using Objective C assumes that one is writing a full-blown application complete with .nib files and such.  As such their main() functions are just:
 
-<code>
-int main( int argc, char ''argv[] ) {
-    return [[NSApplicationMain]]( argc, argv );
+    
+int main( int argc, char *argv[] ) {
+    return General/NSApplicationMain( argc, argv );
 }
-</code>
 
-But I don't think that will work for me (not to mention that it's not at all clear how [[NSApplicationMain]]() calls the rest of one's program to run it).
+
+But I don't think that will work for me (not to mention that it's not at all clear how General/NSApplicationMain() calls the rest of one's program to run it).
 
 Instead, my program basically is like:
 
-<code>
-int main( int argc, char ''argv[] ) {
-    [[[NSApplication]] sharedApplication];
+    
+int main( int argc, char *argv[] ) {
+    General/[NSApplication sharedApplication];
     readInfoPlist();
     // create a new POSIX thread for the JVM
     // spawn JVM thread
-    [[[NSApp]] run];
+    General/[NSApp run];
 }
-</code>
 
-I have no idea whether calling [[[NSApplication]] sharedApplication] is the right thing to do, but the code works better having it.
+
+I have no idea whether calling General/[NSApplication sharedApplication] is the right thing to do, but the code works better having it.
 
 The readInfoPlist() method is in Objective C.  It's basically:
 
-<code>
+    
 void readInfoPlist() {
-    [[NSAutoreleasePool]] ''pool = [[[NSAutoreleasePool]] alloc] init];
+    General/NSAutoreleasePool *pool = General/[NSAutoreleasePool alloc] init];
     // read Info.plist
     [pool release];
 }
-</code>
+
 
 And that's where my trouble starts.  Specifically, the application crashes on the [pool release].  The readInfoPlist() method does copy (via C++'s new operator and strcpy()) all needed data to a C++ data structure so the release shouldn't be deleting stuff I need later.  If I don't create/release any pool at all, then I get a lot of warnings about there not being a pool in place and that memory is leaking.
 
 I also have my own myAlert() method that's:
 
-<code>
-void myAlert( char const ''msg ) {
-    [[NSAlert]] ''const alert = [[[[NSAlert]] alloc] init];
-    [alert setMessageText:[[[NSString]] stringWithUTF8String:msg]];
+    
+void myAlert( char const *msg ) {
+    General/NSAlert *const alert = General/[[NSAlert alloc] init];
+    [alert setMessageText:General/[NSString stringWithUTF8String:msg]];
     [alert addButtonWithTitle:@"Quit"];
-    [alert setAlertStyle:[[NSCriticalAlertStyle]]];
+    [alert setAlertStyle:General/NSCriticalAlertStyle];
     [alert runModal];
     [alert release];
     ::exit( 1 );
 }
-</code>
+
 
 In my case, all alerts are fatal, so, ideally, I'd like myAlert() simply to exit.  Also note that myAlert() can be called either from the original thread or the JVM thread.
 
-In the case where the JVM is successfully launched, the application runs; then, if the user quits, the program is "stuck" presumebly because it's still sitting in [[[NSApp]] run].
+In the case where the JVM is successfully launched, the application runs; then, if the user quits, the program is "stuck" presumebly because it's still sitting in General/[NSApp run].
 
 So, assuming you've read all this, my questions are:
 
 
 *What's the correct way to initialize a Cocoa application such as mine?
-*How do I get the [[NSAutoreleasePool]] thing to work?
+*How do I get the General/NSAutoreleasePool thing to work?
 *Is the code for myAlert() correct?
 *Is it OK for myAlert() to call exit()?
 *It is OK for myAlert() to be called by any thread?
-*How to I break out of [[[NSApp]] run] (assuming I should have called it in the first place)?
+*How to I break out of General/[NSApp run] (assuming I should have called it in the first place)?
 
 
 Thanks much in advance!
@@ -75,10 +75,10 @@ Thanks much in advance!
 
 ----
 
-For the [[NSAutoreleasePool]], put that inside your main() function, not inside others. Then you won't have to worry about that. myAlert() is leaking because it's not inside an [[NSAutoreleasePool]] (unless you call it from readInfoPlist.
+For the General/NSAutoreleasePool, put that inside your main() function, not inside others. Then you won't have to worry about that. myAlert() is leaking because it's not inside an General/NSAutoreleasePool (unless you call it from readInfoPlist.
 
-To exit a Cocoa app, use <code>[[[NSApp]] terminate:nil]</code> - [[NSApp]] is short for <code>[[[NSApplication]] sharedApplication]</code>
+To exit a Cocoa app, use     General/[NSApp terminate:nil] - General/NSApp is short for     General/[NSApplication sharedApplication]
 
 ----
 
-But why doesn't use of an [[NSAutoreleasePool]] work anywhere?  Ideally, main() shoudn't have to know or care about how readInfoPlist is implemented.
+But why doesn't use of an General/NSAutoreleasePool work anywhere?  Ideally, main() shoudn't have to know or care about how readInfoPlist is implemented.

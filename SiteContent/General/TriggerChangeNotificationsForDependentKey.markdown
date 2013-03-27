@@ -5,26 +5,26 @@ I�d like to be able to establish a binding between the two kinds of obects:
 Let�s say I�ve got an Exercise class that knows how to calculate the obtained points for that exercise.
 The Test class owns an array of exercise�s instances and is able to compute the total points, accessing the "result" key of each the exercise instances.
 
-<code>
+    
     int i;
     float res;
     for (i = 0, res = 0.0; i <= 9; i++) {
-	res += [[exercises objectAtIndex:i] result];
+	res += General/exercises objectAtIndex:i] result];
     }
     return res;
-</code>
+
 
 The total points by exercise is displayed in several textFields and updated using KVO:
 
-<code>
+    
 +(void)initialize
 {
-    [Exercise setKeys:[[[NSArray]] arrayWithObjects:@"items", @"pointsToWin", @"score", nil]
+    [Exercise setKeys:[[[NSArray arrayWithObjects:@"items", @"pointsToWin", @"score", nil]
       triggerChangeNotificationsForDependentKey:@"result"];
 }
 
 // Result = score/(items/pointsToWin)
-</code>
+
 
 Any change in "items", "pointsToWin" or "score" triggers the updating of the result.
 
@@ -41,14 +41,14 @@ The Test class should probably observe the "result" key of each Exercise instanc
 ----
 
 That�s right: I�m new to bindings, I didn�t remember these methods. You mean:
-<code>
+    
 addObserver:forKeyPath:options:context:
 
 and
 
-- (void)observeValueForKeyPath:([[NSString]] '')keyPath ofObject:(id)object
-    change:([[NSDictionary]] '')change context:(void '')context
-</code>
+- (void)observeValueForKeyPath:(General/NSString *)keyPath ofObject:(id)object
+    change:(General/NSDictionary *)change context:(void *)context
+
 
 I�ll try and implement them� Thanks.
 
@@ -56,17 +56,17 @@ I�ll try and implement them� Thanks.
 
 I did this and after some debugging, it works�
 
-<code>
--(void)observeValueForKeyPath:([[NSString]] '')keyPath
+    
+-(void)observeValueForKeyPath:(General/NSString *)keyPath
 		     ofObject:(id)object
-		       change:([[NSDictionary]] '')change
-		      context:(void '')context
+		       change:(General/NSDictionary *)change
+		      context:(void *)context
 {
     if ([keyPath isEqual:@"result"]) {
 	[self willChangeValueForKey:@"totalPoints"];
 	[self didChangeValueForKey:@"totalPoints"];
     }
 }
-</code>
+
 
 I first tried to call only didChangeValueForKey: but it isn�t enough�

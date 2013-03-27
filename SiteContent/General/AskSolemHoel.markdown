@@ -1,12 +1,12 @@
-'''Ask Solem Hoel'''
-''-- developer/reverser''
+**Ask Solem Hoel**
+*-- developer/reverser*
 ----
 
-'''Homepage:''' http://ask.illformed.org
+**Homepage:** http://ask.illformed.org
 
-'''Technologies:'''
+**Technologies:**
 
-*[[ObjC]]
+*General/ObjC
 *C
 *C++
 *x86/PPC Asm

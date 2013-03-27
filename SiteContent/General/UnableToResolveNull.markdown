@@ -3,7 +3,7 @@ I think it has something to do with IB. (My IB is 2.4.2 (v364))
 
 I noticed that IB was keeping references to old disused classes that no longer existed. There were no instances of these classes, so I deleted them. I think it was about that time that I started getting this error (But I can't check since I am too dumb to use SCM). So I checked through the Interface to make sure there were no references to these classes. So I'm flummoxed - especially as this only seems to happen while debugging and the message is so cryptic. And I'm getting loads of inexplicable EXC_BAD_ACCESS and unrepeatable errors since that time even though I am very confident of my memory management. Sounds like something that should be there, isn't. Hmmm
 
-<code>
+    
 Loading program into debugger�
 Copyright 2003 Free Software Foundation, Inc.
 GDB is free software, covered by the GNU General Public License, and you are
@@ -22,7 +22,7 @@ Program loaded.
 (gdb) run
 [Switching to process 4749 local thread 0xd03]
 Running�
-</code> 
+ 
 
 Any ideas?
 
@@ -51,4 +51,4 @@ Cheers
 
 ----
 
-Okay, looking more closely, I see what you mean there. Since the errors are happening before the 'run', there might have been something screwed up with your [[XCode]] project. If anybody has any suggestions what to check, I'm sure we'd both appreciate it... ;-)
+Okay, looking more closely, I see what you mean there. Since the errors are happening before the 'run', there might have been something screwed up with your General/XCode project. If anybody has any suggestions what to check, I'm sure we'd both appreciate it... ;-)

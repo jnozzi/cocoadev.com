@@ -4,14 +4,14 @@ Jason Rusoff
 
 ----
 
-/System/Library/[[PrivateFrameworks]]/CHUD.framework
+/System/Library/General/PrivateFrameworks/CHUD.framework
 
 ----
 
-Thanks, I see it there. But I don't see the header files. In the 10.3.9 SDK there is chudRemote.h in [[ChudCore]].framework/Versions/A/Headers. I don't see the headers in the 10.4 SDK. I think I need that header to call into chudStartRemotePerfMonitor(). Could I have installed the wrong 10.4 SDK?
+Thanks, I see it there. But I don't see the header files. In the 10.3.9 SDK there is chudRemote.h in General/ChudCore.framework/Versions/A/Headers. I don't see the headers in the 10.4 SDK. I think I need that header to call into chudStartRemotePerfMonitor(). Could I have installed the wrong 10.4 SDK?
 Thanks for your help. 
 Jason
 
 ----
 
-CHUD.framework in the 10.4 SDK is a [[PrivateFramework]], meaning that the header's are stored in the framework, and aren't directly linkable. You'd have to reverse-engineer any private framework to get access to it. See [[LinkToAPrivateFramework]]. --[[LoganCollins]]
+CHUD.framework in the 10.4 SDK is a General/PrivateFramework, meaning that the header's are stored in the framework, and aren't directly linkable. You'd have to reverse-engineer any private framework to get access to it. See General/LinkToAPrivateFramework. --General/LoganCollins

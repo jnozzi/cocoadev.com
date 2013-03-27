@@ -1,5 +1,5 @@
-[[NSRange]]  fixRange=[fileName rangeOfString:@"."];
-[[NSString]]  ''fileRealExtension=[fileName substringFromIndex:fixRange.location];
+General/NSRange  fixRange=[fileName rangeOfString:@"."];
+General/NSString  *fileRealExtension=[fileName substringFromIndex:fixRange.location];
 
 that takes a string from position of first '.' (substringFromIndex:fixRange.location, searching from the left.
 
@@ -22,22 +22,22 @@ i am new to this btw
 
 You could use:
 
-<code>
+    
 fileRealExtension=[fileName pathExtension];
-</code>
+
 
 or 
-<code>
-fileRealExtension=[[fileName componentsSeparatedByString:@"."] lastObject];
-</code>
+    
+fileRealExtension=General/fileName componentsSeparatedByString:@"."] lastObject];
+
 
 or similar code to what you were using:
-<code>
-fixRange=[fileName rangeOfString:@"." options:[[NSBackwardsSearch]]];
-</code>
+    
+fixRange=[fileName rangeOfString:@"." options:[[NSBackwardsSearch];
 
-Note that the first two methods will just return @"jpg" without the dot at the start... there are several [[NSString]] methods you could use to make a string with the dot in front.
+
+Note that the first two methods will just return @"jpg" without the dot at the start... there are several General/NSString methods you could use to make a string with the dot in front.
 
 I'd say the first is the best if you want the file name extension, since it's especially for that and it's been done for you already... but the other methods might be useful to you for other things.
 
--- [[AngelaBrett]]
+-- General/AngelaBrett

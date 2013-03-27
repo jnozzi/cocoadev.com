@@ -1,7 +1,7 @@
 
 
-Part of the iPhone [[MusicLibraryFramework]].
+Part of the iPhone General/MusicLibraryFramework.
 
-%%BEGINCODESTYLE%%+ (id)sharedMusicLibrary;%%ENDCODESTYLE%%
+<code>+ (id)sharedMusicLibrary;</code>
 
-Have to call this before creating [[MLQuery]]<nowiki/>s?
+Have to call this before creating General/MLQuery<nowiki/>s?

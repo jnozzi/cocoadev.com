@@ -1,38 +1,38 @@
-Many classes in Cocoa have the concept of a 'designated initializer'. This is the method that is guaranteed to return a fully-initialized instance of the receiving class. For example, <code>- (id)initWithWindow:([[NSWindow]] '')window</code> is the designated initializer for the [[NSWindowController]] class. The other init... methods (<code>initWithWindowNibName:</code>, <code>initWithWindowNibName:owner:</code>, and <code>initWithWindowNibPath:owner:</code> simply retrieve an [[NSWindow]] object from whatever they're given and pass it to the designated initializer. Apple's documentation is usually pretty good about describing exactly what the various init methods do.
+Many classes in Cocoa have the concept of a 'designated initializer'. This is the method that is guaranteed to return a fully-initialized instance of the receiving class. For example,     - (id)initWithWindow:(General/NSWindow *)window is the designated initializer for the General/NSWindowController class. The other init... methods (    initWithWindowNibName:,     initWithWindowNibName:owner:, and     initWithWindowNibPath:owner: simply retrieve an General/NSWindow object from whatever they're given and pass it to the designated initializer. Apple's documentation is usually pretty good about describing exactly what the various init methods do.
 
-It's not hard to write designated and convenience init methods for your own classes. Your <code>init...</code> methods will usually 'cascade' from the one with the fewest to the one with the most parameters, with the last one calling <code>[super init]</code> and returning self - this is your designated initializer. Any other <code>init...</code> methods should simply return the result of calling the designated initializer, either passing some reasonable default values to it, or passing nil and letting the designated initializer set up its own defaults.
+It's not hard to write designated and convenience init methods for your own classes. Your     init... methods will usually 'cascade' from the one with the fewest to the one with the most parameters, with the last one calling     [super init] and returning self - this is your designated initializer. Any other     init... methods should simply return the result of calling the designated initializer, either passing some reasonable default values to it, or passing nil and letting the designated initializer set up its own defaults.
 
 Here's some sample code:
 
-<code>
+    
 
 // Do-nothing class that simply holds references to a string, an image, and a file path.
-@interface [[MyClass]] : [[NSObject]]
+@interface General/MyClass : General/NSObject
 {
-	[[NSString]] 	''myString;
-	[[NSImage]] 	''myImage;
-	[[NSString]] 	''myPath;
+	General/NSString 	*myString;
+	General/NSImage 	*myImage;
+	General/NSString 	*myPath;
 }
 
 // init methods
 - (id)init;
-- (id)initWithImage:([[NSImage]] '')anImage;
-- (id)initWithString:([[NSString]] '')aString;
-- (id)initWithPath:([[NSString]] '')aPath;
+- (id)initWithImage:(General/NSImage *)anImage;
+- (id)initWithString:(General/NSString *)aString;
+- (id)initWithPath:(General/NSString *)aPath;
 - (id)initWithPicturesFolder;
 
 // designated initializer
-- (id)initWithString:([[NSString]] '')aString image:([[NSImage]] '')anImage path:([[NSString]] '')aPath;
+- (id)initWithString:(General/NSString *)aString image:(General/NSImage *)anImage path:(General/NSString *)aPath;
 
 // setter methods
-- (void)setMyString:([[NSString]] '')newString;
-- (void)setMyImage:([[NSImage]] '')newImage;
-- (void)setMyPath:([[NSString]] '')newPath;
+- (void)setMyString:(General/NSString *)newString;
+- (void)setMyImage:(General/NSImage *)newImage;
+- (void)setMyPath:(General/NSString *)newPath;
 
 @end
 
 
-@implementation [[MyClass]]
+@implementation General/MyClass
 
 // initialize with all default values.
 -(id)init
@@ -41,17 +41,17 @@ Here's some sample code:
 }
 
 // 'convenience constructors' - initialize with the passed value, default values for the rest.
--(id)initWithImage:([[NSImage]] '')anImage
+-(id)initWithImage:(General/NSImage *)anImage
 {
 	return [self initWithString:nil image:anImage path:nil];
 }
 
-- (id)initWithString:([[NSString]] '')aString
+- (id)initWithString:(General/NSString *)aString
 {
 	return [self initWithString:aString image:nil path:nil];
 }
 
-- (id)initWithPath:([[NSString]] '')aPath
+- (id)initWithPath:(General/NSString *)aPath
 {
 	return [self initWithString:nil image:nil path:aPath];
 }
@@ -59,25 +59,25 @@ Here's some sample code:
 // another convenience method - set the path to the user's pictures folder.
 - (id)initWithPicturesFolder
 {
-	[[NSString]] ''picturesPath = [@"~/Pictures" stringByStandardizingPath];
+	General/NSString *picturesPath = [@"~/Pictures" stringByStandardizingPath];
 	return [self initWithString:nil image:nil path:picturesPath];
 }
 
 // designated initializer! call super, then set up our own stuff.
--(id)initWithString:([[NSString]] '')aString image:([[NSImage]] '')anImage path:([[NSString]] '')aPath
+-(id)initWithString:(General/NSString *)aString image:(General/NSImage *)anImage path:(General/NSString *)aPath
 {
 	self = [super init];
 	
 	if (self)
 	{
-		[[NSString]] ''tempString = aString;
-		[[NSImage]] ''tempImage = anImage;
-		[[NSString]] ''tempPath = aPath;
+		General/NSString *tempString = aString;
+		General/NSImage *tempImage = anImage;
+		General/NSString *tempPath = aPath;
 		
 		// if we're called with nil params, set up default values. 
 		if (!tempString) tempString = @"";
-		if (!tempImage) tempImage = [[[NSApp]] applicationIconImage];
-		if (!tempPath) tempPath = [[NSHomeDirectory]]();
+		if (!tempImage) tempImage = General/[NSApp applicationIconImage];
+		if (!tempPath) tempPath = General/NSHomeDirectory();
 		
 		[self setMyString:tempString];
 		[self setMyImage:tempImage];
@@ -88,7 +88,7 @@ Here's some sample code:
 }
 
 // just methods to set our ivars down here.
-- (void)setMyString:([[NSString]] '')newString
+- (void)setMyString:(General/NSString *)newString
 {
     if (myString != newString) 
     {
@@ -97,7 +97,7 @@ Here's some sample code:
     }
 }
 
-- (void)setMyImage:([[NSImage]] '')newImage
+- (void)setMyImage:(General/NSImage *)newImage
 {
     if (myImage != newImage) 
     {
@@ -106,7 +106,7 @@ Here's some sample code:
     }
 }
 
-- (void)setMyPath:([[NSString]] '')newPath
+- (void)setMyPath:(General/NSString *)newPath
 {
     if (myPath != newPath) 
     {
@@ -117,10 +117,10 @@ Here's some sample code:
 
 @end
 
-</code>
+
 
 ----
 
-I always wondered, but do you need <code>[super init]</code> for direct subclasses of [[NSObject]] ?
+I always wondered, but do you need     [super init] for direct subclasses of General/NSObject ?
 
-''Technically it is not necessary because [[NSObject]]'s <code>init</code> method simply returns <code>self</code> - it does nothing more. However, it is definitely good practice to do it all the time and it doesn't hurt anything.''
+*Technically it is not necessary because General/NSObject's     init method simply returns     self - it does nothing more. However, it is definitely good practice to do it all the time and it doesn't hurt anything.*

@@ -4,4 +4,4 @@ http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSNo
 
 ----
 
-We have an article about the [[NotificationCenter]] and some [[NotificationSampleCode]].
+We have an article about the General/NotificationCenter and some General/NotificationSampleCode.

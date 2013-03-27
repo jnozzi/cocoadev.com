@@ -1,3 +1,3 @@
 
 
-The receiver is [[AnObject]] to which an [[ObjectMessage]] is sent.
+The receiver is General/AnObject to which an General/ObjectMessage is sent.

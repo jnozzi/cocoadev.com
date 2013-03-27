@@ -1,19 +1,19 @@
 
 
-[[TollFreeBridging]] is what allows you to take [[CoreFoundation]] types and typecast them to Cocoa types (and vice versa).
+General/TollFreeBridging is what allows you to take General/CoreFoundation types and typecast them to Cocoa types (and vice versa).
 
-So, if you have to call a [[CoreFoundation]] function that takes a [[CFString]], but you have an [[NSString]], you can just pass it your [[NSString]] with:
+So, if you have to call a General/CoreFoundation function that takes a General/CFString, but you have an General/NSString, you can just pass it your General/NSString with:
 
-<code>
-[[CFStringRef]] myCFString = ([[CFStringRef]])someNSString;
-</code>
+    
+General/CFStringRef myCFString = (General/CFStringRef)someNSString;
 
-And if you need to get an [[NSString]] from a [[CFString]], you can do this:
 
-<code>
-[[NSString]]'' myNSString = ([[NSString]]'')someCFString;
-</code>
+And if you need to get an General/NSString from a General/CFString, you can do this:
 
-see also: [[HowToCreateTollFreeBridgedClass]]
+    
+General/NSString* myNSString = (General/NSString*)someCFString;
 
-See which classes are [[TollFreeBridged]].
+
+see also: General/HowToCreateTollFreeBridgedClass
+
+See which classes are General/TollFreeBridged.

@@ -1,1 +1,1 @@
-Describe [[NSStringPboardType]] [[NSString]]
+Describe General/NSStringPboardType General/NSString

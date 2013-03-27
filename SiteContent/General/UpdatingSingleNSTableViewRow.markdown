@@ -4,15 +4,14 @@ Is it possible to tell a tableview to update a single row somehow? I am using  b
 
 ----
 
-''noteNumberOfRowsChanged''
+*noteNumberOfRowsChanged*
 
 ----
 
 That is unrelated to the problem, however I did find a way to do it:
 
-<code>
-unsigned row = [[itemsController arrangedObjects] indexOfObject:convertingItem];
-[[NSRect]] updateRect = [moviesTableView rectOfRow:row];
-if(![[NSEqualRects]](updateRect, [[NSZeroRect]])) [moviesTableView setNeedsDisplayInRect:updateRect];
+    
+unsigned row = General/itemsController arrangedObjects] indexOfObject:convertingItem];
+[[NSRect updateRect = [moviesTableView rectOfRow:row];
+if(!General/NSEqualRects(updateRect, General/NSZeroRect)) [moviesTableView setNeedsDisplayInRect:updateRect];
 
-</code>

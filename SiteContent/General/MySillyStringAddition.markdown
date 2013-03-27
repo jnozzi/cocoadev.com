@@ -1,1 +1,1 @@
-See [[CategorySampleCode]].
+See General/CategorySampleCode.

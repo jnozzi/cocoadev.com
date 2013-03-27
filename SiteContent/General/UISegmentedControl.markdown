@@ -1,7 +1,7 @@
 
 
-%%BEGINCODESTYLE%%- (void)insertSegment:(int)segment withTitle:([[NSString]]'')title animated:(BOOL)flag;%%ENDCODESTYLE%%
+<code>- (void)insertSegment:(int)segment withTitle:(General/NSString*)title animated:(BOOL)flag;</code>
 
-%%BEGINCODESTYLE%%- (void)selectSegment:(int)segment;%%ENDCODESTYLE%%
+<code>- (void)selectSegment:(int)segment;</code>
 
-%%BEGINCODESTYLE%%- (int)selectedSegment;%%ENDCODESTYLE%%
+<code>- (int)selectedSegment;</code>

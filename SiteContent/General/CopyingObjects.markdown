@@ -1,1 +1,1 @@
-see [[ImplementingNSCopying]]
+see General/ImplementingNSCopying

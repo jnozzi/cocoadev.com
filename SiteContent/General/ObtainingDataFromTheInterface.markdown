@@ -2,21 +2,21 @@ My program will store what a user inputs in a text box into a variable after the
 
 ----
 
-<code>
+    
 - (void)textFieldChanged:(id)sender
 {
-    [[NSString]] ''string = [sender stringValue];
+    General/NSString *string = [sender stringValue];
 }
-</code>
+
 
 Note that you named "textFieldChanged:" in your nib file. it could just as easily been called "superInsanity_KILL_KILL_KILL:", or whatever.
 
--- [[MikeTrent]] 
+-- General/MikeTrent 
 
 ----
 
-There's a little mumbo-jumbo to be managed in Interface Builder in order to set this up: You need to select the text field and set its property so that it sends its action when the user presses ''Enter''. You do this with the Attributes view when you Show Info for the text field in IB. You also have to connect the text field to the <code>textFieldChanged: </code> action by control-dragging '''from''' the text field '''to''' a representation of the object that implements the above action. If you haven't yet got that "representation", find the class name in the IB class browser and '''instantiate''' it in the nib file. Then you will have something to connect '''to'''.
+There's a little mumbo-jumbo to be managed in Interface Builder in order to set this up: You need to select the text field and set its property so that it sends its action when the user presses *Enter*. You do this with the Attributes view when you Show Info for the text field in IB. You also have to connect the text field to the     textFieldChanged:  action by control-dragging **from** the text field **to** a representation of the object that implements the above action. If you haven't yet got that "representation", find the class name in the IB class browser and **instantiate** it in the nib file. Then you will have something to connect **to**.
 
 ----
 
-For an introduction to accessor method, try [[AccessorMethods]] or [[HowToTransmitDataBetweenClasses]]
+For an introduction to accessor method, try General/AccessorMethods or General/HowToTransmitDataBetweenClasses

@@ -2,15 +2,15 @@ http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSAr
 ----
 
 closely related:
-[[NSUnarchiver]]
+General/NSUnarchiver
 
-more flexible: [[NSKeyedArchiver]], [[NSKeyedUnarchiver]] (10.2 and later) - better forward/backward compatibility when you add or drop keys.
+more flexible: General/NSKeyedArchiver, General/NSKeyedUnarchiver (10.2 and later) - better forward/backward compatibility when you add or drop keys.
 
 useful class method:
-<code>
-+ ([[NSData]] '')archivedDataWithRootObject:(id)rootObject
-</code>
+    
++ (General/NSData *)archivedDataWithRootObject:(id)rootObject
 
-returns an [[NSData]] object representing an objectGraph of the rootObject (and therefore any objects encapsulated within that rootObject)
 
-This is particularly useful when using with the [[NSDocumentDesign]] and the [[ModelViewController]] pattern - see [[UsingArchiversAndUnarchivers]].
+returns an General/NSData object representing an objectGraph of the rootObject (and therefore any objects encapsulated within that rootObject)
+
+This is particularly useful when using with the General/NSDocumentDesign and the General/ModelViewController pattern - see General/UsingArchiversAndUnarchivers.

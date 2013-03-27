@@ -1,6 +1,6 @@
 
 
-I've having some problem to detect if mouse is over a line between to [[NSPoint]]?
+I've having some problem to detect if mouse is over a line between to General/NSPoint?
 
 If the line is vertical and horizontal its easy.
 
@@ -17,31 +17,31 @@ In practice it's a bit more complicated because you probably want to allow point
 
 ----
 
-The above method may be tricky if you consider a finite length line. Cocoa does it much more easily : You make a [[NSBezierPath]] with a rectangle that encloses your line an then you check if the mouse is inside with pathContaintsPoint. This method works also with curved lines with an arbitrary shape.
+The above method may be tricky if you consider a finite length line. Cocoa does it much more easily : You make a General/NSBezierPath with a rectangle that encloses your line an then you check if the mouse is inside with pathContaintsPoint. This method works also with curved lines with an arbitrary shape.
 
-<code>
+    
 
 float dx = p0.y - p1.y;
 float dy = p1.x - p0.x;
-float d = sqrt(dx''dx+dy''dy);
-dx = 5''dx/d;
-dy = 5''dy/d;
+float d = sqrt(dx*dx+dy*dy);
+dx = 5*dx/d;
+dy = 5*dy/d;
 
 // (dx;dy) is a 5 points length normal vector to your line.
 		
-[[NSBezierPath]] ''path = [[[NSBezierPath]] bezierPath];
-[path moveToPoint:[[NSMakePoint]](p0.x-dx, p0.y-dy)];
-[path lineToPoint:[[NSMakePoint]](p1.x-dx, p1.y-dy)]; // can be any curved line
-[path lineToPoint:[[NSMakePoint]](p1.x+dx, p1.y+dy)];
-[path lineToPoint:[[NSMakePoint]](p0.x+dx, p0.y+dy)]; // must be the inverse of the previous one
+General/NSBezierPath *path = General/[NSBezierPath bezierPath];
+[path moveToPoint:General/NSMakePoint(p0.x-dx, p0.y-dy)];
+[path lineToPoint:General/NSMakePoint(p1.x-dx, p1.y-dy)]; // can be any curved line
+[path lineToPoint:General/NSMakePoint(p1.x+dx, p1.y+dy)];
+[path lineToPoint:General/NSMakePoint(p0.x+dx, p0.y+dy)]; // must be the inverse of the previous one
 [path closePath];
 		
 if([path containsPoint:aPoint])
 		{
-			/'' do something ''/;
+			/* do something */;
 		}
 
-</code>
+
 
 ----
 

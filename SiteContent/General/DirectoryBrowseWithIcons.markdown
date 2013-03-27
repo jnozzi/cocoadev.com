@@ -6,13 +6,13 @@ I'm making a ftp server with directory browser, and I want it to look like the f
 
 the problem is that when i scale the images it doesnt have the same quality as finder, is there a way to keep tha quality.
 
-<code>
-[[NSImage]] ''image = [[[[NSImage]] alloc] initWithSize:[[NSMakeSize]](18, 18)];
-[[NSBitmapImageRep]] ''rep = [[[[NSBitmapImageRep]] alloc] initWithData:
-     [[[[[NSWorkspace]] sharedWorkspace] iconForFileType:@"ext"] [[TIFFRepresentation]]]];
-[rep setSize:[[NSMakeSize]](18, 18)];
+    
+General/NSImage *image = General/[[NSImage alloc] initWithSize:General/NSMakeSize(18, 18)];
+General/NSBitmapImageRep *rep = General/[[NSBitmapImageRep alloc] initWithData:
+     General/[[[NSWorkspace sharedWorkspace] iconForFileType:@"ext"] General/TIFFRepresentation]];
+[rep setSize:General/NSMakeSize(18, 18)];
 [image addRepresentation:rep];
-</code>
+
 
 I've tried this one, but the program is running slow when i use it.
 
@@ -21,12 +21,12 @@ tnx
 
 I haven't tried this, but using this code you make fewer calls, and I think the image will select the appropriate icon size and scale from that (in this case, it should scale from the 32x32 member)
 
-<code>
-[[NSImage]] ''icon = [[[[NSWorkspace]] sharedWorkspace] iconForFileType:@"ext"];
-[icon setSize:[[NSMakeSize]](18, 18)];
-</code>
+    
+General/NSImage *icon = General/[[NSWorkspace sharedWorkspace] iconForFileType:@"ext"];
+[icon setSize:General/NSMakeSize(18, 18)];
 
-[[EnglaBenny]]
+
+General/EnglaBenny
 
 ----
 
@@ -34,44 +34,43 @@ By all means, use 16x16 as your size. The native sizes for icon are 16, 32, 48 a
 
 ----
 
-Instead of using <code>setSize:</code> use <code>drawInRect:fromRect:operation:fraction:</code>.
+Instead of using     setSize: use     drawInRect:fromRect:operation:fraction:.
 
-<code>
-- (void)drawIcon:([[NSImage]] '')image inRect:([[NSRect]])destRect {
+    
+- (void)drawIcon:(General/NSImage *)image inRect:(General/NSRect)destRect {
     [image drawInRect:destRect 
-            fromRect:[[NSMakeRect]](0.0f, 0.0f, [image size].width, [image size].height)
-            options:[[NSCompositeSourceOver]]
+            fromRect:General/NSMakeRect(0.0f, 0.0f, [image size].width, [image size].height)
+            options:General/NSCompositeSourceOver
             fraction:1.0f];
 }
 
-</code>
+
 
 ----
 
-You can use [[IconFamily]] which makes it much easier. It's also part of [[OmniFoundation]].
-http://homepage.mac.com/troy_stephens/software/objects/[[IconFamily]]/
+You can use General/IconFamily which makes it much easier. It's also part of General/OmniFoundation.
+http://homepage.mac.com/troy_stephens/software/objects/General/IconFamily/
 
 ----
 
-I ended using a combination of the above methods: (Using [[IconFamily]])
-Unfortunately [[IconFamily]] does not _always_ give the small icon (if there is no small icon in the icns file I assume) so you have to explicity resize it. Otherwise this would be even simpler.
+I ended using a combination of the above methods: (Using General/IconFamily)
+Unfortunately General/IconFamily does not _always_ give the small icon (if there is no small icon in the icns file I assume) so you have to explicity resize it. Otherwise this would be even simpler.
 
-<code>
+    
 
-- ([[NSImage]] '')getIconForPath:([[NSString]] '')path {
+- (General/NSImage *)getIconForPath:(General/NSString *)path {
 	//set the desired size of icon
-	[[NSSize]] canvasSize = [[NSMakeSize]](15.0, 15.0);
+	General/NSSize canvasSize = General/NSMakeSize(15.0, 15.0);
 
-	[[IconFamily]] ''iconFamily = [[[IconFamily]] iconFamilyWithIconOfFile:path];
-	[[NSImage]] ''theIcon = [iconFamily imageWithAllReps];
-	[[NSRect]] srcRect = [[NSMakeRect]](0.0f, 0.0f, [theIcon size].width, [theIcon size].height);
-	[[NSRect]] destRect = [[NSMakeRect]](0.0f, 0.0f, canvasSize.width, canvasSize.height);
-	[[NSImage]] ''canvas = [[[[[NSImage]] alloc] initWithSize:canvasSize] autorelease];
+	General/IconFamily *iconFamily = General/[IconFamily iconFamilyWithIconOfFile:path];
+	General/NSImage *theIcon = [iconFamily imageWithAllReps];
+	General/NSRect srcRect = General/NSMakeRect(0.0f, 0.0f, [theIcon size].width, [theIcon size].height);
+	General/NSRect destRect = General/NSMakeRect(0.0f, 0.0f, canvasSize.width, canvasSize.height);
+	General/NSImage *canvas = General/[[[NSImage alloc] initWithSize:canvasSize] autorelease];
 	[canvas lockFocus];
 	[theIcon drawInRect:destRect fromRect:srcRect
-			 operation:[[NSCompositeSourceOver]] fraction:1.0f];
+			 operation:General/NSCompositeSourceOver fraction:1.0f];
 	[canvas unlockFocus];
 	return canvas;
 }
 
-</code>

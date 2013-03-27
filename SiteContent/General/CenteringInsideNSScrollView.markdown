@@ -1,6 +1,6 @@
 
 ----
-'''Overview'''
+**Overview**
 ----
 
 If you want to center the document view inside of a scrollview when the document view is smaller than the scrollview, you have a couple options. You can:
@@ -8,7 +8,7 @@ If you want to center the document view inside of a scrollview when the document
 
 * Rearchitect the document view so that it can draw its content centered within itself when needed
 * Put the document view inside another custom view, where the latter centers the subview.
-* Create a custom [[NSClipView]] which centeres the document view
+* Create a custom General/NSClipView which centeres the document view
 
 
 
@@ -16,7 +16,7 @@ The first option is simple, but can be annoying to deal with and cause other pro
 
 
 ----
-'''Centering [[NSClipView]]'''
+**Centering General/NSClipView**
 ----
 
 There is an article (dated 2002, but still relevant) which shows one approach to creating a centering clip view. The article is available here: http://www.bergdesign.com/developer/index_files/88a764e343ce7190c4372d1425b3b6a3-0.html
@@ -24,16 +24,16 @@ There is an article (dated 2002, but still relevant) which shows one approach to
 In my experience, this code no longer works out of the box. I have tweaked the code, and it now works properly in all of my tests. 
 
 The example project for this is here:
-http://www.sethwillits.com/temp/[[CenteredScrollView]].zip
+http://www.sethwillits.com/temp/General/CenteredScrollView.zip
 
 
-The only drawback to using an [[NSClipView]] subclass is that you need to replace the clipview in the scrollview at runtime since it's not possible in Interface Builder / Xcode 4. The [[AGCenteringClipView]] class includes a convenience method to aid with this.
+The only drawback to using an General/NSClipView subclass is that you need to replace the clipview in the scrollview at runtime since it's not possible in Interface Builder / Xcode 4. The General/AGCenteringClipView class includes a convenience method to aid with this.
 
 
-<code>
+    
 //
-//  [[AGCenteringClipView]].h
-//  [[CenteredScroll]]
+//  General/AGCenteringClipView.h
+//  General/CenteredScroll
 //
 //  Created by Seth Willits on 8/15/2011.
 //
@@ -41,44 +41,44 @@ The only drawback to using an [[NSClipView]] subclass is that you need to replac
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[AGCenteringClipView]] : [[NSClipView]] {
-	[[NSPoint]] mLookingAt; // the proportion up and across the view, not coordinates.
+@interface General/AGCenteringClipView : General/NSClipView {
+	General/NSPoint mLookingAt; // the proportion up and across the view, not coordinates.
 }
 
-+ (void)replaceClipViewInScrollView:([[NSScrollView]] '')scrollView;
++ (void)replaceClipViewInScrollView:(General/NSScrollView *)scrollView;
 
 @end
-</code>
 
 
-<code>
+
+    
 //
-//  [[AGCenteringClipView]].m
-//  [[CenteredScroll]]
+//  General/AGCenteringClipView.m
+//  General/CenteredScroll
 //
 //  Created by Seth Willits on 8/15/2011.
 //
 
-#import "[[AGCenteringClipView]].h"
+#import "General/AGCenteringClipView.h"
 
 
-@interface [[AGCenteringClipView]] (Private)
+@interface General/AGCenteringClipView (Private)
 - (void)centerDocument;
 @end
 
 
 
-@implementation [[AGCenteringClipView]]
+@implementation General/AGCenteringClipView
 
-+ (void)replaceClipViewInScrollView:([[NSScrollView]] '')scrollView
++ (void)replaceClipViewInScrollView:(General/NSScrollView *)scrollView
 {
-	[[NSView]] '' docView = [[scrollView documentView] retain];
-	[[AGCenteringClipView]] '' newClipView = nil;
+	General/NSView * docView = General/scrollView documentView] retain];
+	[[AGCenteringClipView * newClipView = nil;
 	
-	newClipView = [[[self class] alloc] initWithFrame:[[scrollView contentView] frame]];
-	[newClipView setBackgroundColor:[[scrollView contentView] backgroundColor]];
+	newClipView = General/[self class] alloc] initWithFrame:[[scrollView contentView] frame;
+	[newClipView setBackgroundColor:General/scrollView contentView] backgroundColor;
 	
-	[scrollView setContentView:([[NSClipView]] '')newClipView];
+	[scrollView setContentView:(General/NSClipView *)newClipView];
 	[scrollView setDocumentView:docView];
 	
 	[newClipView release];
@@ -88,12 +88,12 @@ The only drawback to using an [[NSClipView]] subclass is that you need to replac
 
 // ----------------------------------------
 // We need to override this so that the superclass doesn't override our new origin point.
-- ([[NSPoint]])constrainScrollPoint:([[NSPoint]])proposedNewOrigin
+- (General/NSPoint)constrainScrollPoint:(General/NSPoint)proposedNewOrigin
 {
-	[[NSRect]] docRect = [[self documentView] frame];
-	[[NSRect]] clipRect = [self bounds];
-	[[CGFloat]] maxX = docRect.size.width - clipRect.size.width;
-	[[CGFloat]] maxY = docRect.size.height - clipRect.size.height;
+	General/NSRect docRect = General/self documentView] frame];
+	[[NSRect clipRect = [self bounds];
+	General/CGFloat maxX = docRect.size.width - clipRect.size.width;
+	General/CGFloat maxY = docRect.size.height - clipRect.size.height;
 
 	clipRect.origin = proposedNewOrigin; // shift origin to proposed location
 
@@ -112,32 +112,32 @@ The only drawback to using an [[NSClipView]] subclass is that you need to replac
 	}
 	
 	// Save center of view as proportions so we can later tell where the user was focused.
-	mLookingAt.x = [[NSMidX]](clipRect) / docRect.size.width;
-	mLookingAt.y = [[NSMidY]](clipRect) / docRect.size.height;
+	mLookingAt.x = General/NSMidX(clipRect) / docRect.size.width;
+	mLookingAt.y = General/NSMidY(clipRect) / docRect.size.height;
 	
 	// The docRect isn't necessarily at (0, 0) so when it isn't, this correctly creates the correct scroll point
-	return [[NSMakePoint]](docRect.origin.x + clipRect.origin.x, docRect.origin.y + clipRect.origin.y);
+	return General/NSMakePoint(docRect.origin.x + clipRect.origin.x, docRect.origin.y + clipRect.origin.y);
 }
 
 
 
 // ----------------------------------------
-// These two methods get called whenever the [[NSClipView]]'s subview changes.
+// These two methods get called whenever the General/NSClipView's subview changes.
 // We save the old center of interest, call the superclass to let it do its work,
 // then move the scroll point to try and put the old center of interest
 // back in the center of the view if possible.
 
-- (void)viewBoundsChanged:([[NSNotification]] '')notification
+- (void)viewBoundsChanged:(General/NSNotification *)notification
 {
-	[[NSPoint]] savedPoint = mLookingAt;
+	General/NSPoint savedPoint = mLookingAt;
 	[super viewBoundsChanged:notification];
 	mLookingAt = savedPoint;
 	[self centerDocument];
 }
 
-- (void)viewFrameChanged:([[NSNotification]] '')notification
+- (void)viewFrameChanged:(General/NSNotification *)notification
 {
-	[[NSPoint]] savedPoint = mLookingAt;
+	General/NSPoint savedPoint = mLookingAt;
 	[super viewFrameChanged:notification];
 	mLookingAt = savedPoint;
 	[self centerDocument];
@@ -152,23 +152,23 @@ The only drawback to using an [[NSClipView]] subclass is that you need to replac
 // It's probably the result of a single UI action anyway so it's not like it's slowing
 // down a huge iteration by being called thousands of times.
 
-- (void)setFrameOrigin:([[NSPoint]])newOrigin
+- (void)setFrameOrigin:(General/NSPoint)newOrigin
 {
-	if (![[NSEqualPoints]](self.frame.origin, newOrigin)) {
+	if (!General/NSEqualPoints(self.frame.origin, newOrigin)) {
 		[super setFrameOrigin:newOrigin];
 		[self centerDocument];
 	}
 }
 
-- (void)setFrameSize:([[NSSize]])newSize
+- (void)setFrameSize:(General/NSSize)newSize
 {
-	if (![[NSEqualSizes]](self.frame.size, newSize)) {
+	if (!General/NSEqualSizes(self.frame.size, newSize)) {
 		[super setFrameSize:newSize];
 		[self centerDocument];
 	}
 }
 
-- (void)setFrameRotation:([[CGFloat]])angle
+- (void)setFrameRotation:(General/CGFloat)angle
 {
 	[super setFrameRotation:angle];
 	[self centerDocument];
@@ -181,73 +181,73 @@ The only drawback to using an [[NSClipView]] subclass is that you need to replac
 
 #pragma mark  
 
-@implementation [[AGCenteringClipView]] (Private)
+@implementation General/AGCenteringClipView (Private)
 
 - (void)centerDocument
 {
-	[[NSRect]] docRect = [[self documentView] frame];
-	[[NSRect]] clipRect = [self bounds];
+	General/NSRect docRect = General/self documentView] frame];
+	[[NSRect clipRect = [self bounds];
 
 	// The origin point should have integral values or drawing anomalies will occur.
 	// We'll leave it to the constrainScrollPoint: method to do it for us.
 	if (docRect.size.width < clipRect.size.width) {
 		clipRect.origin.x = (docRect.size.width - clipRect.size.width) / 2.0;
 	} else {
-		clipRect.origin.x = mLookingAt.x '' docRect.size.width - (clipRect.size.width / 2.0);
+		clipRect.origin.x = mLookingAt.x * docRect.size.width - (clipRect.size.width / 2.0);
 	}
 	
 	
 	if (docRect.size.height < clipRect.size.height) {
 		clipRect.origin.y = (docRect.size.height - clipRect.size.height) / 2.0;
 	} else {
-		clipRect.origin.y = mLookingAt.y '' docRect.size.height - (clipRect.size.height / 2.0);
+		clipRect.origin.y = mLookingAt.y * docRect.size.height - (clipRect.size.height / 2.0);
 	}
 	
 	// Probably the best way to move the bounds origin.
 	// Make sure that the scrollToPoint contains integer values
-	// or the [[NSView]] will smear the drawing under certain circumstances.
+	// or the General/NSView will smear the drawing under certain circumstances.
 	[self scrollToPoint:[self constrainScrollPoint:clipRect.origin]];
-	[[self superview] reflectScrolledClipView:self];
+	General/self superview] reflectScrolledClipView:self];
 }
 
 @end
 
 
-</code>
-
-
-
-----
-
-
-The Seashore Project (http://seashore.sourceforge.net/) has an [[NSClipView]] subclass that does just this. The source is free to download (GPL'd, I believe), so give it a look. Specifically, check out [[CenteringClipView]].h/m. - [[MattBall]]
-
-
 
 
 
 
 ----
-'''Centering Enclosing View'''
+
+
+The Seashore Project (http://seashore.sourceforge.net/) has an [[NSClipView subclass that does just this. The source is free to download (GPL'd, I believe), so give it a look. Specifically, check out General/CenteringClipView.h/m. - General/MattBall
+
+
+
+
+
+
+----
+**Centering Enclosing View**
 ----
 
-In this example, there's a 4-level view hierarchy: [[NSScrollView]] -> [[NSClipView]] -> [[ScrollDocumentView]] -> [[MyView]].
+In this example, there's a 4-level view hierarchy: General/NSScrollView -> General/NSClipView -> General/ScrollDocumentView -> General/MyView.
 
-The [[ScrollDocumentView]] always makes sure to resize itself so that it is at minimum the size of the scrollview's clip view, and always large enough to contain the real "document view", the "[[MyView]]". [[MyView]]'s responsibility is to always center itself in its superview when its frame changes.
+The General/ScrollDocumentView always makes sure to resize itself so that it is at minimum the size of the scrollview's clip view, and always large enough to contain the real "document view", the "General/MyView". General/MyView's responsibility is to always center itself in its superview when its frame changes.
 
-It's important that the [[MyView]] instance have no autoresizing for width/height resizing, and that all of its margins remain flexible.
-
-
+It's important that the General/MyView instance have no autoresizing for width/height resizing, and that all of its margins remain flexible.
 
 
-<code>
-@implementation [[ScrollDocumentView]]
 
-- (void)setFrame:([[NSRect]])frame;
+
+    
+@implementation General/ScrollDocumentView
+
+- (void)setFrame:(General/NSRect)frame;
 {
 	// Maintain a minimum size which fits the subview
 	if (self.subviews.count) {
-		[[NSView]] '' subview = [self.subviews objectAtIndex:0];
+		General/NSView * subview = [self.subviews objectAtIndex:0];
 		frame.size.width  = MAX(subview.frame.size.width,  self.enclosingScrollView.contentSize.width);
 		frame.size.height = MAX(subview.frame.size.height, self.enclosingScrollView.contentSize.height);
 	}
@@ -261,21 +261,21 @@ It's important that the [[MyView]] instance have no autoresizing for width/heigh
 
 
 
-- (void)didAddSubview:([[NSView]] '')subview
+- (void)didAddSubview:(General/NSView *)subview
 {
 	[super didAddSubview:subview];
-	[[[[NSNotificationCenter]] defaultCenter] addObserver:self selector:@selector(viewFrameDidChange:) name:[[NSViewFrameDidChangeNotification]] object:subview];
+	General/[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewFrameDidChange:) name:General/NSViewFrameDidChangeNotification object:subview];
 }
 
 
-- (void)willRemoveSubview:([[NSView]] '')subview
+- (void)willRemoveSubview:(General/NSView *)subview
 {
 	[super willRemoveSubview:subview];
-	[[[[NSNotificationCenter]] defaultCenter] removeObserver:self name:[[NSViewFrameDidChangeNotification]] object:subview];
+	General/[[NSNotificationCenter defaultCenter] removeObserver:self name:General/NSViewFrameDidChangeNotification object:subview];
 }
 
 
-- (void)viewFrameDidChange:([[NSNotification]] '')notification
+- (void)viewFrameDidChange:(General/NSNotification *)notification
 {
 	// When the subview's frame changes, we need
 	// make sure this view is big enough to fit it
@@ -288,35 +288,35 @@ It's important that the [[MyView]] instance have no autoresizing for width/heigh
 
 
 
-@implementation [[MyView]]
+@implementation General/MyView
 
-- (void)setFrame:([[NSRect]])frame;
+- (void)setFrame:(General/NSRect)frame;
 {
-	[[NSRect]] contentFrame = [[NSZeroRect]];
-	contentFrame.size = [[self enclosingScrollView] contentSize];
-	frame.origin.x = round([[NSMidX]](contentFrame) - [[NSWidth]](frame) / 2.0);
-	frame.origin.y = round([[NSMidY]](contentFrame) - [[NSHeight]](frame) / 2.0);
+	General/NSRect contentFrame = General/NSZeroRect;
+	contentFrame.size = General/self enclosingScrollView] contentSize];
+	frame.origin.x = round([[NSMidX(contentFrame) - General/NSWidth(frame) / 2.0);
+	frame.origin.y = round(General/NSMidY(contentFrame) - General/NSHeight(frame) / 2.0);
 	[super setFrame:frame];
 }
 
 
-- (void)drawRect:([[NSRect]])rect;
+- (void)drawRect:(General/NSRect)rect;
 {
-	[[[[NSColor]] whiteColor] set];
-	[[NSRectFill]]([self bounds]);
+	General/[[NSColor whiteColor] set];
+	General/NSRectFill([self bounds]);
 	
-	[[[[NSColor]] blackColor] set];
-	[[NSFrameRect]]([self bounds]);
+	General/[[NSColor blackColor] set];
+	General/NSFrameRect([self bounds]);
 }
 
 @end
 
-</code>
+
 
 
 
 The example project for this is here:
-http://www.sethwillits.com/temp/[[CenteredScrollView]].zip
+http://www.sethwillits.com/temp/General/CenteredScrollView.zip
 
 
 
@@ -325,17 +325,17 @@ http://www.sethwillits.com/temp/[[CenteredScrollView]].zip
 
 
 ----
-'''Miscellaneous'''
+**Miscellaneous**
 ----
 
 Note: not mentioned in this article, is that it appears you need to also provide this method in the view you are drawing:
 
-<code>
+    
 - (BOOL)copiesOnScroll
 {
 	return NO;
 }
-</code>
+
 
 When I did not do this, I was getting double images in the view. I guess if you really wanted to get "smart" about this, you would set NO if the document view was getting centered, and YES if not. 
 
@@ -345,15 +345,15 @@ When I did not do this, I was getting double images in the view. I guess if you 
 
 
 That's exactly what I did, and the code for copiesOnScroll looks like this
-<code>
+    
 - (BOOL)copiesOnScroll
 {
-	[[NSRect]] docRect = [[self documentView] frame];
-	[[NSRect]] clipRect = [self bounds];
+	General/NSRect docRect = General/self documentView] frame];
+	[[NSRect clipRect = [self bounds];
 
 	return (roundf(docRect.size.width - clipRect.size.width) >= 0) && (roundf(docRect.size.height - clipRect.size.height) >= 0);
 }
-</code>
+
 
 
 
@@ -361,14 +361,14 @@ That's exactly what I did, and the code for copiesOnScroll looks like this
 
 
 
-I had the same problem as the original poster, wanting to center an image (within an [[NSImageView]]) inside an [[NSScrollView]]. I have also experimented with subclassing the [[NSClipView]], but for the very problem of simply centering an image, I found another solution to be much easier and faster. I took advantage of [[NSImageView]] centering its image automatically if the image is smaller than the view's frame. Therefore I simply sublassed [[NSImageView]] (similarly as in the very elegant [[MarginView]] example above), having it resize to whatever is larger, its image or the frame of the containing [[NSClipView]]. It's that easy... Here's the code:
+I had the same problem as the original poster, wanting to center an image (within an General/NSImageView) inside an General/NSScrollView. I have also experimented with subclassing the General/NSClipView, but for the very problem of simply centering an image, I found another solution to be much easier and faster. I took advantage of General/NSImageView centering its image automatically if the image is smaller than the view's frame. Therefore I simply sublassed General/NSImageView (similarly as in the very elegant General/MarginView example above), having it resize to whatever is larger, its image or the frame of the containing General/NSClipView. It's that easy... Here's the code:
 
-<code>
+    
 In the .h file:
 
 #import <Cocoa/Cocoa.h>
 
-@interface [[SBSScrollableImageView]] : [[NSImageView]] {
+@interface General/SBSScrollableImageView : General/NSImageView {
 
 	BOOL			insideScrollView;
 }
@@ -378,11 +378,11 @@ In the .h file:
 
 In the .m file:
 
-#import "[[SBSScrollableImageView]].h"
+#import "General/SBSScrollableImageView.h"
 
-@implementation [[SBSScrollableImageView]]
+@implementation General/SBSScrollableImageView
 
-- (id)initWithFrame:([[NSRect]])frame {
+- (id)initWithFrame:(General/NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         insideScrollView = NO;
@@ -392,14 +392,14 @@ In the .m file:
 
 
 - (void)viewDidMoveToSuperview {
-	insideScrollView = ([[self superview] isKindOfClass:[[[NSClipView]] class]]);
+	insideScrollView = (General/self superview] isKindOfClass:[[[NSClipView class]]);
 }
 
 
-- (void) setFrame:([[NSRect]]) newFrame {
+- (void) setFrame:(General/NSRect) newFrame {
 	if (insideScrollView) {
-		[[NSSize]] superSize = (([[NSClipView]]'')_superview).frame.size;
-		[[NSSize]] imageSize = (([[NSImage]]'')[self image]).size;
+		General/NSSize superSize = ((General/NSClipView*)_superview).frame.size;
+		General/NSSize imageSize = ((General/NSImage*)[self image]).size;
 		
 		newFrame.size.width = MAX(imageSize.width, superSize.width);
 		newFrame.size.height = MAX(imageSize.height, superSize.height);
@@ -408,8 +408,8 @@ In the .m file:
 }
 
 @end
-</code>
+
 
 Hope it helps someone (probably not the original poster with one year's delay)...
 
---[[MarCocoa]]
+--General/MarCocoa

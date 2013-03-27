@@ -10,7 +10,7 @@ In particular I'd like to know if you think you would use any of the features, a
 
 Cheers for your time if you read it, anyone who gives useful feedback will be credited in the release.
 
--- [[MikeAmy]]
+-- General/MikeAmy
 
 Oh and Happy Christmas & New Year to you all.
 
@@ -25,116 +25,116 @@ All higher order messages are defined for root classes. Most except -all and -fo
 In the following, "message" refers to some arbitrary message with an arbitrary number of arguments. Where you see "id result =" that means that you don't have to wait for the result (say if it hasn't been computed yet).
 
  Forwarding
- <code>    [[object forward] message]</code>
+         General/object forward] message]
  "perform [(encapsulated message) invokeWithTarget:object] (Nothing really special)"
- <code>    [[object reforward] message]</code>
+         [[object reforward] message]
  "perform [object forwardInvocation:(encapsulated message)] (Useful for hiding methods behind a proxy)"
 
  Using Collections
 
  Referring to elements
- <code>    [collection elements]</code>
+         [collection elements]
  "each element in collection"
 
 Number elements
- <code>    [[[NSNumber]] ints:1 to:100]</code>
- "[[NSNumbers]] from 1 to 100 representing ints, all other primitive types (chars, shorts, longs, floats, etc) are also available."
+         [[[NSNumber ints:1 to:100]
+ "General/NSNumbers from 1 to 100 representing ints, all other primitive types (chars, shorts, longs, floats, etc) are also available."
 
  Collection operations
  Note that this is a subset of the possible collection manipulation higher order messages. You can also use collections as iterating arguments. Refer to the documentation for full details.
- <code>    [[[collection elements] all] message]</code>
+         General/[collection elements] all] message]
  "send message to each element in collection"
- <code>    [[[collection elements] collectEach] messageReturningObject] </code>
+         [[[collection elements] collectEach] messageReturningObject] 
  "collect each result from sending message to each element in collection in a matching collection"
- <code>    [[[collection elements] selectIf] messageReturningBOOL]</code>
+         [[[collection elements] selectIf] messageReturningBOOL]
  "select elements from collection if [element messageReturningBOOL] returns YES, in a matching collection"
- <code>    [[[collection elements] rejectIf] messageReturningBOOL]</code>
+         [[[collection elements] rejectIf] messageReturningBOOL]
  "opposite of selectIf"
- <code>    [[[collection elements] detectIf] messageReturningBOOL]</code>
+         [[[collection elements] detectIf] messageReturningBOOL]
  "return first element that meets criteria"
- <code>    [[[collection elements] detectIfNot] messageReturningBOOL]</code>
+         [[[collection elements] detectIfNot] messageReturningBOOL]
  "return first element that doesn't meet criteria"
- <code>    [[[collection elements] combine] combineMessage:initialElement]</code>
+         [[[collection elements] combine] combineMessage:initialElement]
  "combine all elements in collection into one object using combineMessage:, whose target and first argument types are the compatible"
 
- [[MultiProcessing]]
- <code>    id result = [[object inParallel] message]</code>
+ [[MultiProcessing
+         id result = General/object inParallel] message]
  "perform [object message] using symmetric multi processing if multiple processors are available, otherwise just perform [object message] normally. Result is available immediately."
- <code>    id result = [[object inNewThread] message]</code>
+         id result = [[object inNewThread] message]
  "perform [object message] in a new thread."
 
  Laziness
- <code>    id result = [[object lazily] message]</code>
+         id result = [[object lazily] message]
  "return result but don't bother to perform message until the result actually gets used"
- <code>    id result = [[object eagerly] message]</code>
+         id result = [[object eagerly] message]
  "same as lazily, but compute the result anyway if there is no other processing to perform"
 
  Scheduling
- <code>    id result = [[object scheduleFor:date] message]</code>
+         id result = [[object scheduleFor:date] message]
  "schedule message delivery for date" 
 
  Getting invocations
- <code>    [[object getMessage] message]</code>
- "return [object message] as an [[NSInvocation]] instead of performing it"
+         [[object getMessage] message]
+ "return [object message] as an [[NSInvocation instead of performing it"
 
  Wrapping primitives
- <code>    [[object wrapResult] messageReturningPrimitive]</code>
+         General/object wrapResult] messageReturningPrimitive]
  "Wrap primitive return values as objects"
- <code>    [[object unwrapArguments] messageWithPrimitive:object]</code>
+         [[object unwrapArguments] messageWithPrimitive:object]
  "Unwrap object arguments into primitives where necessary"
 
  Thread safety
- <code>    [object threadSafe]</code>
+         [object threadSafe]
  "Create a thread-safe access point to object"
 
  General control
- <code>    [[object repeat:n] message] </code>
+         [[object repeat:n] message] 
  "perform [object message] n times. Result is result of last message"
- <code>    [[object while:condition] message]</code>
+         [[object while:condition] message]
  "perform [object message] while condition evaluates to YES"
- <code>    [[object until:condition] message]</code>
+         [[object until:condition] message]
  "perform [object message] until condition evaluates to YES"
- <code>    [[object forever] message]</code>
+         [[object forever] message]
  "perform [object message] forever"
 
  Debugging, testing & performance
- <code>    [object logMessages]</code>
+         [object logMessages]
  "log every message received by object to standard output"
- <code>    [[object mustThrow:exception] message]</code>
+         [[object mustThrow:exception] message]
  "Ensure that object throws exception when sent message"
 
  Handling exceptions
- <code>    [[object ignoreExceptions] message]</code>
+         [[object ignoreExceptions] message]
  "try performing [object message] but ignore any exceptions"
- <code>    [[object logExceptions] message]</code>
+         [[object logExceptions] message]
  "try performing [object message] but log any exceptions"
- <code>    [[object ignore:exceptionName] message]</code>
+         [[object ignore:exceptionName] message]
  "perform [object message] ignoring specified exception"
- <code>    [[object ignoreFromSet:exceptionNameSet] message]</code>
+         [[object ignoreFromSet:exceptionNameSet] message]
  "perform [object message] ignoring any of a specified set of exceptions"
 
  Autorelease pools
- <code>    [[object inNewAutoreleasePool] message]</code>
+         [[object inNewAutoreleasePool] message]
  "perform [object message] using a new autorelease pool"
 
  Sorting
- <code>    [[collection sort:direction] message]</code>
+         [[collection sort:direction] message]
  "sort elements of collection using message"
 
  Repeating at specified interval
- <code>    id result = [[object repeatWithInterval:interval] message]</code>
+         id result = [[object repeatWithInterval:interval] message]
  "perform [object message] every interval seconds"
 
  State pattern
- <code>    [object changeClassTo:[[[NewState]] class]]</code> 
- "safely change class of object to [[NewState]]"
+         [object changeClassTo:[[[NewState class]] 
+ "safely change class of object to General/NewState"
 
  Observation
- <code>    [invocation invokeWhenever:object posts:notification]</code>
+         [invocation invokeWhenever:object posts:notification]
  "invoke invocation whenever object posts notification"
 
  Target action extension
- <code>    [invocation attachTo:object]</code>
+         [invocation attachTo:object]
  "attach invocation to object using the target action mechanism"
 
 ----

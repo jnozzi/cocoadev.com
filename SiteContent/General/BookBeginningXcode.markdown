@@ -1,31 +1,31 @@
 
 
 
-*'''Title:'''
+***Title:**
 Beginning Xcode
-*'''Author:'''
+***Author:**
 James Bucanek
-*'''Publisher:'''
+***Publisher:**
 Wrox
-*'''Release Date:'''
+***Release Date:**
 April 11, 2006
-*'''List Price:'''   
+***List Price:**   
 $39.99
-*'''ISBN:'''
+***ISBN:**
 0-471-75479-X
 
 
-*http://www.wiley.com/[[WileyCDA]]/[[WileyTitle]]/productCd-047175479X.html
+*http://www.wiley.com/General/WileyCDA/General/WileyTitle/productCd-047175479X.html
 *http://www.amazon.com/o/ASIN/047175479X/
 *http://search.barnesandnoble.com/booksearch/isbnInquiry.asp?isbn=047175479X
 
 
-*'''Summary:'''
+***Summary:**
 Being proficient in Xcode is a crucial part of being an effective Cocoa programmer. Beginning Xcode will introduce you to, and quickly get you started using, every major component and tool in the Xcode suite.
 
-*'''Description:'''
+***Description:**
 
-Xcode is a powerful suite of free development tools from Apple Computer that will allow you to create Macintosh applications, plug-ins, web components, applets, and more using languages such as C, C++, Objective-C, Java, and [[AppleScript]].
+Xcode is a powerful suite of free development tools from Apple Computer that will allow you to create Macintosh applications, plug-ins, web components, applets, and more using languages such as C, C++, Objective-C, Java, and General/AppleScript.
 
 What you will learn from this book: 
 
@@ -47,4 +47,4 @@ Instead of "cookbook" projects specific to a particular language, developer Jame
 
 
 
-----'''Comments'''----
+----**Comments**----

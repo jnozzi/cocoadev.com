@@ -10,7 +10,7 @@ Is it my brain that is off :)??
 
 ----
 
-Keep in mind that the point 0,0 starts in the ''lower left'' of the view. When composing any image, to get it to be further right, you'll have to increase the x component. Using drawAtPoint and the like, you can specify the coordinates easily. I've done the same thing you're doing effortlessly this way. A simple, friendly RTFM to you. ;-)
+Keep in mind that the point 0,0 starts in the *lower left* of the view. When composing any image, to get it to be further right, you'll have to increase the x component. Using drawAtPoint and the like, you can specify the coordinates easily. I've done the same thing you're doing effortlessly this way. A simple, friendly RTFM to you. ;-)
 
 ----
 

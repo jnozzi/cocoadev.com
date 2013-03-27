@@ -1,5 +1,5 @@
-Original content moved to [[ForceRedrawOfTableView]]
+Original content moved to General/ForceRedrawOfTableView
 
-see also [[NSTableViewTutorial]]
+see also General/NSTableViewTutorial
 
 Ask your quick or general Table View question here:

@@ -1,134 +1,134 @@
-As added comfort to the user you might want to offer the possibility of restoring all the documents that where open at the time of quitting at startup. This can be accomplished through various means. Here most of the work is done by the application controller, a delegate of the [[NSApplication]] instance, the defaults and the shared instance of the [[NSDocumentController]]. All the coding is done in the application controller http://goo.gl/[[OeSCu]]
+As added comfort to the user you might want to offer the possibility of restoring all the documents that where open at the time of quitting at startup. This can be accomplished through various means. Here most of the work is done by the application controller, a delegate of the General/NSApplication instance, the defaults and the shared instance of the General/NSDocumentController. All the coding is done in the application controller http://goo.gl/General/OeSCu
 
 ----
-'''Interface Builder'''
+**Interface Builder**
 ----
-If you don't have one for your document based application yet you need to create an empty class, drag the class into the [[MainMenu]].nib file, and create an instance. Ctrl-Drag a connection from the "Files owner" to your instance and make it the delegat. The files owner here represents the [[NSApplication]] object.
+If you don't have one for your document based application yet you need to create an empty class, drag the class into the General/MainMenu.nib file, and create an instance. Ctrl-Drag a connection from the "Files owner" to your instance and make it the delegat. The files owner here represents the General/NSApplication object.
 
-The [[NSApplication]] delegate gets called for application wide events like startup, quitting, hide and show. It is also very helpful if you want to direct events from the Menu to the current document in document based applications.
+The General/NSApplication delegate gets called for application wide events like startup, quitting, hide and show. It is also very helpful if you want to direct events from the Menu to the current document in document based applications.
 
-
-----
-'''[[NSUserDefaults]]'''
-----
-To use the defaults system you should declare an identifier for your applikation (in PB target settings, under "Applikation Settings" if you don't supply one the Name of the applikations is going to be used. Apple suggests that you use a java-like identifier (e.g. com.apple.[[ProjectBuilder]]).
 
 ----
-'''The Code'''
+**General/NSUserDefaults**
+----
+To use the defaults system you should declare an identifier for your applikation (in PB target settings, under "Applikation Settings" if you don't supply one the Name of the applikations is going to be used. Apple suggests that you use a java-like identifier (e.g. com.apple.General/ProjectBuilder).
+
+----
+**The Code**
 ----
 
-<code>
+    
 
-@implementation [[PWAppController]]
+@implementation General/PWAppController
 
 //Define these so the compiler can catch spelling errors
-[[NSString]] ''[[PWOpenDocListFlagKey]]	= @"Open Documents Flag";
-[[NSString]] ''[[PWOpenDocListKey]]	= @"Open Documents";
+General/NSString *General/PWOpenDocListFlagKey	= @"Open Documents Flag";
+General/NSString *General/PWOpenDocListKey	= @"Open Documents";
 
 
 //initialize gets called before any other call to the class
 //so the defaults are declared here (Hillebrand p. 161)
 + (void)initialize {
-    [[NSMutableDictionary]] ''defaultValues = [[[NSMutableDictionary]] dictionary];
+    General/NSMutableDictionary *defaultValues = General/[NSMutableDictionary dictionary];
 
-    [defaultValues setObject:[[[NSNumber]] numberWithBool:YES] 
-		              forKey:[[PWOpenDocListFlagKey]]];
+    [defaultValues setObject:General/[NSNumber numberWithBool:YES] 
+		              forKey:General/PWOpenDocListFlagKey];
 		              
-    [defaultValues setObject:[[[NSArray]] array] 
-                      forKey:[[PWOpenDocListKey]]];
+    [defaultValues setObject:General/[NSArray array] 
+                      forKey:General/PWOpenDocListKey];
     
-    [[[[NSUserDefaults]] standardUserDefaults] registerDefaults:defaultValues];
+    General/[[NSUserDefaults standardUserDefaults] registerDefaults:defaultValues];
     
-    [[NSLog]](@"Registered Defaults: %@",defaultValues);
+    General/NSLog(@"Registered Defaults: %@",defaultValues);
 }
 
 // This delegate message gets called whenever the application is quit
 // per apple docs this does NOT include poweroff and logoff events ...
 // more to come
-- ([[NSApplicationTerminateReply]]) applicationShouldTerminate:
-  	([[NSApplication]] '')sender {
+- (General/NSApplicationTerminateReply) applicationShouldTerminate:
+  	(General/NSApplication *)sender {
     
-    [[NSUserDefaults]] ''defaults = [[[NSUserDefaults]] standardUserDefaults];
-    [[NSMutableArray]] ''fileNames = [[[NSMutableArray]] array];
-    [[NSString]] ''fileName;
+    General/NSUserDefaults *defaults = General/[NSUserDefaults standardUserDefaults];
+    General/NSMutableArray *fileNames = General/[NSMutableArray array];
+    General/NSString *fileName;
 
 	// The application knows about what documents are currently open
 	// use sharedApplication: to get the correct instance of that class
-    [[NSEnumerator]] ''e = [[[[[NSApplication]] sharedApplication] orderedDocuments]
+    General/NSEnumerator *e = General/[[[NSApplication sharedApplication] orderedDocuments]
                     objectEnumerator];
 
-    while (fileName = [[e nextObject] fileName]) {
+    while (fileName = General/e nextObject] fileName]) {
         [fileNames addObject:fileName];
     }
-    [defaults setObject:[[[NSArray]] arrayWithArray:fileNames]
-                 forKey:[[PWOpenDocListKey]]];
+    [defaults setObject:[[[NSArray arrayWithArray:fileNames]
+                 forKey:General/PWOpenDocListKey];
     
     // The application is quitting so synchronize is called 
     // to ensure the defaults are saved
     [defaults synchronize];
     
-    [[NSLog]](@"saving Docs: %@",fileNames);
+    General/NSLog(@"saving Docs: %@",fileNames);
     
     return YES;
 }
 
 // After Launching reopen the saved files
-- (void)applicationWillFinishLaunching:([[NSNotification]] '')aNotification {
-    [[NSArray]] ''filenames = 
-      [[[[NSUserDefaults]] standardUserDefaults] arrayForKey:[[PWOpenDocListKey]]];
+- (void)applicationWillFinishLaunching:(General/NSNotification *)aNotification {
+    General/NSArray *filenames = 
+      General/[[NSUserDefaults standardUserDefaults] arrayForKey:General/PWOpenDocListKey];
     
-    [[NSEnumerator]] ''e = [filenames reverseObjectEnumerator];
-    [[NSString]] ''fileName;
+    General/NSEnumerator *e = [filenames reverseObjectEnumerator];
+    General/NSString *fileName;
     
-    if ([[[[NSUserDefaults]] standardUserDefaults] boolForKey:[[PWOpenDocListFlagKey]]])
+    if (General/[[NSUserDefaults standardUserDefaults] boolForKey:General/PWOpenDocListFlagKey])
     	return;
     	
     // Open all the files in the array, if a file does not
     // exist anymore, ... don't care
     
     while (fileName = [e nextObject]) {
-        [[[[NSDocumentController]] sharedDocumentController]
+        General/[[NSDocumentController sharedDocumentController]
            openDocumentWithContentsOfFile:fileName display:YES];
     }
 }
 
 @end
-</code>
 
--- [[HaRald]]
+
+-- General/HaRald
 
 ----
-'''Questions, Comments And Suggestions:'''
+**Questions, Comments And Suggestions:**
 ----
 
 I've found one error with this code in applicationWillFinishLaunching:
 
-<code>
+    
 
 // After Launching reopen the saved files
-- (void)applicationWillFinishLaunching:([[NSNotification]] '')aNotification {
+- (void)applicationWillFinishLaunching:(General/NSNotification *)aNotification {
 
     
     //...
 
     //Should return without loading files if the prefs value is false, not true (added ! to negate value)
 
-    if (![[[[NSUserDefaults]] standardUserDefaults] boolForKey:[[CPOpenDocsListFlagKey]]])
+    if (!General/[[NSUserDefaults standardUserDefaults] boolForKey:General/CPOpenDocsListFlagKey])
         return;
 
    //..
 }
 
-</code>
+
 
 ----
 
 SJI - It should be:
-<code>
-        [[[[NSDocumentController]] sharedDocumentController]openDocumentWithContentsOfURL:
+    
+        General/[[NSDocumentController sharedDocumentController]openDocumentWithContentsOfURL:
 							[NSURL fileURLWithPath:fileName] 
 							display:YES error:NULL];
-</code>
+
 
 ----
 
@@ -139,37 +139,37 @@ SJI - This fails if the user double clicks a document to launch the app with. Th
 Graham Perks:
 applicationShouldTerminate can't be used. If there's a dirty document, it is closed via the "Save this document" sheet before applicationShouldTerminate is called, so dirty docs never get re-opened. Instead, use
 
-- ([[IBAction]])terminate:(id)sender;
+- (General/IBAction)terminate:(id)sender;
 
-with the same content. Add [[[NSApp]] terminate:sender] to the end. Then go to IB and point the Quit menu at this terminate selector rather than the [[NSApplication]] one. Basically you're getting the Quit menu event, saving the list of open documents, then calling what the Quit menu would normally invoke.
+with the same content. Add General/[NSApp terminate:sender] to the end. Then go to IB and point the Quit menu at this terminate selector rather than the General/NSApplication one. Basically you're getting the Quit menu event, saving the list of open documents, then calling what the Quit menu would normally invoke.
 
 ----
 
-My (Pierre Bernard) solution involves a [[NSDocumentController]] subclass:
+My (Pierre Bernard) solution involves a General/NSDocumentController subclass:
 
-<code>
-@interface [[DocumentController]] (Private)
+    
+@interface General/DocumentController (Private)
 
-- (void) updateOpenDocList:([[NSDocument]] '')document;
+- (void) updateOpenDocList:(General/NSDocument *)document;
 
 @end
 
 
-@implementation [[DocumentController]]
+@implementation General/DocumentController
 
 - (void) applicationWillTerminate
 {
 	applicationWillTerminateFlag = YES;
 }
 
-- (void) noteNewRecentDocument:([[NSDocument]] '')document
+- (void) noteNewRecentDocument:(General/NSDocument *)document
 {
 	[self updateOpenDocList:document];
 	
 	[super noteNewRecentDocument:document];
 }
 
-- (void) removeDocument:([[NSDocument]] '')document
+- (void) removeDocument:(General/NSDocument *)document
 {
 	isRemovingDocumentFlag = YES;
 	
@@ -178,16 +178,16 @@ My (Pierre Bernard) solution involves a [[NSDocumentController]] subclass:
 	isRemovingDocumentFlag = NO;
 }
 
-- (void) updateOpenDocList:([[NSDocument]] '')document;
+- (void) updateOpenDocList:(General/NSDocument *)document;
 {
 	if (! applicationWillTerminateFlag) {
-		NSURL ''fileURL = [document fileURL];
+		NSURL *fileURL = [document fileURL];
 		
 		if (fileURL != nil) {
-			[[NSString]] ''path = [fileURL path];
-			[[NSUserDefaultsController]] ''userDefaultsController = [[[NSUserDefaultsController]] sharedUserDefaultsController];
-			[[NSArray]] ''openDocuments = ([[NSArray]]'') [[userDefaultsController values] valueForKey:[[HHOpenDocListKey]]];
-			[[NSMutableArray]] ''array = [[openDocuments mutableCopy] autorelease];
+			General/NSString *path = [fileURL path];
+			General/NSUserDefaultsController *userDefaultsController = General/[NSUserDefaultsController sharedUserDefaultsController];
+			General/NSArray *openDocuments = (General/NSArray*) General/userDefaultsController values] valueForKey:[[HHOpenDocListKey];
+			General/NSMutableArray *array = General/openDocuments mutableCopy] autorelease];
 			
 			if (isRemovingDocumentFlag) {
 				[array removeObject:path];
@@ -198,41 +198,41 @@ My (Pierre Bernard) solution involves a [[NSDocumentController]] subclass:
 				}
 			}
 			
-			[[userDefaultsController values] setValue:array forKey:[[HHOpenDocListKey]]];
-			[[[[NSUserDefaults]] standardUserDefaults] synchronize]; 
+			[[userDefaultsController values] setValue:array forKey:[[HHOpenDocListKey];
+			General/[[NSUserDefaults standardUserDefaults] synchronize]; 
 		}
 	}
 }
 
 @end
 
-</code>
+
 
 In the application delegate:
 
-<code>
+    
 
-- (void) applicationWillTerminate:([[NSNotification]] '')aNotification
+- (void) applicationWillTerminate:(General/NSNotification *)aNotification
 {
-	[[DocumentController]] ''documentController = [[[NSDocumentController]] sharedDocumentController];
+	General/DocumentController *documentController = General/[NSDocumentController sharedDocumentController];
 	
 	[documentController applicationWillTerminate];
 }
 
-- (void) applicationWillFinishLaunching:([[NSNotification]] '')aNotification
+- (void) applicationWillFinishLaunching:(General/NSNotification *)aNotification
 {
-	[[NSUserDefaultsController]] ''userDefaultsController = [[[NSUserDefaultsController]] sharedUserDefaultsController];
+	General/NSUserDefaultsController *userDefaultsController = General/[NSUserDefaultsController sharedUserDefaultsController];
 	
-    if ([([[NSNumber]]'')[[userDefaultsController values] valueForKey:[[HHOpenDocListFlagKey]]] boolValue]) {
-		[[DocumentController]] ''documentController = [[[NSDocumentController]] sharedDocumentController];
-		[[NSArray]] ''openDocuments = ([[NSArray]]'') [[userDefaultsController values] valueForKey:[[HHOpenDocListKey]]];
-		[[NSMutableArray]] ''array = [[openDocuments mutableCopy] autorelease];
-		[[NSEnumerator]] ''enumeration = [openDocuments objectEnumerator];
+    if ([(General/NSNumber*)General/userDefaultsController values] valueForKey:[[HHOpenDocListFlagKey] boolValue]) {
+		General/DocumentController *documentController = General/[NSDocumentController sharedDocumentController];
+		General/NSArray *openDocuments = (General/NSArray*) General/userDefaultsController values] valueForKey:[[HHOpenDocListKey];
+		General/NSMutableArray *array = General/openDocuments mutableCopy] autorelease];
+		[[NSEnumerator *enumeration = [openDocuments objectEnumerator];
 	
-		[[NSString]] ''fileName;
+		General/NSString *fileName;
 		while ((fileName = [enumeration nextObject]) != nil) {
-			[[NSError]] ''error = nil;
-			[[NSDocument]] ''document =[documentController openDocumentWithContentsOfURL:[NSURL fileURLWithPath:fileName] 
+			General/NSError *error = nil;
+			General/NSDocument *document =[documentController openDocumentWithContentsOfURL:[NSURL fileURLWithPath:fileName] 
 																			display:YES 
 																			  error:&error];
 			if (document == nil) {
@@ -241,10 +241,10 @@ In the application delegate:
 			}
 		}
 		
-		[[userDefaultsController values] setValue:array forKey:[[HHOpenDocListKey]]];
+		General/userDefaultsController values] setValue:array forKey:[[HHOpenDocListKey];
 	}
 }
-</code>
+
 http://jamtangankanan.blogspot.com/
 http://www.souvenirnikahku.com/
 http://xamthonecentral.com/

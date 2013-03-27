@@ -1,1 +1,1 @@
-see [[CocoaBindings]]
+see General/CocoaBindings

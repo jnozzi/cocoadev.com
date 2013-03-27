@@ -8,6 +8,6 @@ Thanks :)
 
 ----
 
-Is it possible this isn't mentioned anywhere else on the site? It doesn't seem to be, even though it's certainly a [[CommonProblem]].
+Is it possible this isn't mentioned anywhere else on the site? It doesn't seem to be, even though it's certainly a General/CommonProblem.
 
-You can add items to your [[NSPopUpButton]] by simply dragging menu items in from the menu palette in [[InterfaceBuilder]]. They're menus just like the menus in your [[MainMenu]].nib, and so you can manipulate them as such.
+You can add items to your General/NSPopUpButton by simply dragging menu items in from the menu palette in General/InterfaceBuilder. They're menus just like the menus in your General/MainMenu.nib, and so you can manipulate them as such.

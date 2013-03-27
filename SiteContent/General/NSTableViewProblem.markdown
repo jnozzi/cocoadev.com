@@ -1,5 +1,5 @@
-Original content moved to [[ConnectTableViewDataSourceOutlet]]
+Original content moved to General/ConnectTableViewDataSourceOutlet
 
-see also [[NSTableViewTutorial]]
+see also General/NSTableViewTutorial
 
-see also [[NSTableViewHelp]] if you have a non-specific issue
+see also General/NSTableViewHelp if you have a non-specific issue

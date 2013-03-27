@@ -2,23 +2,23 @@
 
 Miguel de Icaza, Gnome and Mono project founder, had this to say during an article (< http://primates.ximian.com/~miguel/archive/2004/Sep-09.html >) critiquing Avalon:
 
-''"Anyways, my problem is that it seems that Avalon is trying to do too much too soon.  It seems to be following the over-designed footsteps of Java's Swing: it avoids the over model-view-controller-itis, but it introduces its own pains and has the elements of a second system."''
+*"Anyways, my problem is that it seems that Avalon is trying to do too much too soon.  It seems to be following the over-designed footsteps of Java's Swing: it avoids the over model-view-controller-itis, but it introduces its own pains and has the elements of a second system."*
 
 What in the who now?  What is model-view-controller-itis?  
 
--[[KenFerry]]
+-General/KenFerry
 
 ----
 
-Not sure, but it sounds like inappropriate use of [[ModelViewController]].
+Not sure, but it sounds like inappropriate use of General/ModelViewController.
 
--- [[RobRix]]
+-- General/RobRix
 
 ----
 
 Figured that part. :-) But it isn't clear to me what either the symptoms or consequences would be.  If there's a known danger, it would be good to understand it/avoid it.  Right now, I can't think of a bad consequence of MVC thinking that would apply (if not avoided) to a layer like Avalon.  Seems like framework code is where you'd want to be most MVC-rigorous.
 
--[[KenFerry]]
+-General/KenFerry
 
 ----
 
@@ -26,11 +26,11 @@ Okay, here's someone who's down on MVC.  http://www.javaworld.com/javaworld/jw-0
 
 I'm still trying to make sure I understand what he's saying, but this particular article doesn't seem real convincing.  He doesn't like MVC at all, thinks it violates encapsulation.
 
--[[KenFerry]]
+-General/KenFerry
 
 ----
 
-Short summary of the above:  Holub thinks that view and model are too intimately tied to be factored into separate objects.  If you do so then you will break your encapsulation, and the result is that you will spend time and effort in keeping the view in sync with the model.    This whole thing goes along with his [[GettersAndSettersAreEvil]] article.  He isn't saying that every name object has to re-implement a text field, but that the code interface should look like "Hey name, display yourself on this canvas", in response to which the name object might instantiate a text field and tell it to draw itself on the canvas.
+Short summary of the above:  Holub thinks that view and model are too intimately tied to be factored into separate objects.  If you do so then you will break your encapsulation, and the result is that you will spend time and effort in keeping the view in sync with the model.    This whole thing goes along with his General/GettersAndSettersAreEvil article.  He isn't saying that every name object has to re-implement a text field, but that the code interface should look like "Hey name, display yourself on this canvas", in response to which the name object might instantiate a text field and tell it to draw itself on the canvas.
 
 I'm trying to be charitable with Holub, and this is the worst case I can think of:
 
@@ -44,7 +44,7 @@ Arguments against Holub in general (not this tableview bindings case) include th
 
 Also, I doubt this article expresses the problems that Icaza has with over-doing MVC.  This one's more like "MVC just plain sucks", and I think it isn't so hard to rip into most of what he says.  
 
--[[KenFerry]]
+-General/KenFerry
 
 ----
 
@@ -69,9 +69,9 @@ But it isn't free for you: You just spent an extra half hour reading the two-thi
 Programmers may have to communicate with their managers like this, but not with each other. Or so I hope.
 From the outset, Java seems designed to make programmers walk in nice straight ranks and files. That helps, but does not guarantee,
 the production of robust software. That's important when an army of drones is building a huge enterprise system.
-Extra hours spent in rigorous (sensu strictu) OO design ''might'' keep the whole rickety thing from later falling apart under its own weight.
+Extra hours spent in rigorous (sensu strictu) OO design *might* keep the whole rickety thing from later falling apart under its own weight.
 
-''He isn't saying that every name object has to re-implement a text field, but that the code interface should look like "Hey name, display yourself on this canvas", in response to which the name object might instantiate a text field and tell it to draw itself on the canvas.'' I guess that was his point.
+*He isn't saying that every name object has to re-implement a text field, but that the code interface should look like "Hey name, display yourself on this canvas", in response to which the name object might instantiate a text field and tell it to draw itself on the canvas.* I guess that was his point.
 
 Well, there's the Java UI design paradigm in a nutshell. I took up Cocoa precisely because I wanted to avoid having to do that every bloody time I wanted
 to communicate in the interface. If people tell you often enough that you're a dog, pretty soon you'll be howling like one and peeing on tree trunks.
@@ -89,12 +89,12 @@ Maybe you SHOULD do it that way If all you're doing is building a glorified cash
 Holub's arguments are by and large a relevant critique of certain types of RAD tools applied in certain types of environments, aimed at certain
 kinds of enterprise-level software.
 
-In fact, Holub (and those who think like him) want us to design software that has an ''indefinite'' degree of maintainability. Presumably because
+In fact, Holub (and those who think like him) want us to design software that has an *indefinite* degree of maintainability. Presumably because
 that is the only way the marketing department can deal with promises to customers. The marketing department is in the business of engendering
 unreasonable customer expectations. It's what they do. The tail wagging the poor dog in the previous paragraph. Embrace the pain.
 
 ----
 
-Holub's argument, like so many sermons I've seen on [[ObjectOrientedDesign]], relies entirely on a carefully-selected and overly-simplified example.  Adding a controller to handle displaying a string might be nothing but clutter, but what happens when you're trying to display information from more complicated objects?  I'm not interested in throwing delegates and notifications away and creating new subclass for every instance of [[NSTableView]] in my app.  I suppose I could modify my data classes to handle the display details instead, but then I'd have to start maintaining a slightly different version or subclass for each program, which is defeating one of the main purposes of modular design.  I'm not even going to think about the horrible tangle that would result if I tried to design my software the way he's suggesting in an application that provides more than one way to view the same data.  
+Holub's argument, like so many sermons I've seen on General/ObjectOrientedDesign, relies entirely on a carefully-selected and overly-simplified example.  Adding a controller to handle displaying a string might be nothing but clutter, but what happens when you're trying to display information from more complicated objects?  I'm not interested in throwing delegates and notifications away and creating new subclass for every instance of General/NSTableView in my app.  I suppose I could modify my data classes to handle the display details instead, but then I'd have to start maintaining a slightly different version or subclass for each program, which is defeating one of the main purposes of modular design.  I'm not even going to think about the horrible tangle that would result if I tried to design my software the way he's suggesting in an application that provides more than one way to view the same data.  
 
-With MVC, Apple throws the view junk in a framework and I can basically just leave it be.  I can throw the model junk in a framework and forget about it.  When the time comes to turn all of that into a real live application, I can just dust the two frameworks off and throw some logic between them, maybe taking some shortcuts with a few canned value transformers and the like, instead of wasting my time trying to teach a data type how to do glue code's job.  --[[SeanUnderwood]]
+With MVC, Apple throws the view junk in a framework and I can basically just leave it be.  I can throw the model junk in a framework and forget about it.  When the time comes to turn all of that into a real live application, I can just dust the two frameworks off and throw some logic between them, maybe taking some shortcuts with a few canned value transformers and the like, instead of wasting my time trying to teach a data type how to do glue code's job.  --General/SeanUnderwood

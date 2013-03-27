@@ -2,11 +2,11 @@
 
 http://www.macupdate.com
 
-Like [[VersionTracker]] except:
+Like General/VersionTracker except:
 
  
 * It's Mac-only (although it lists the few OS9 updates that still come out mixed in with the OSX listing.)
-* Its email-when-this-app-is-updated membership services are free. (''Jan 2006: Not so free any more.'')
+* Its email-when-this-app-is-updated membership services are free. (*Jan 2006: Not so free any more.*)
 * You don't have to click through multiple pages to download something.
 
 

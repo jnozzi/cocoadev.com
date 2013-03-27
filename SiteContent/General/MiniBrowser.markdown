@@ -1,1 +1,1 @@
-Describe [[MiniBrowser]] here.
+Describe General/MiniBrowser here.

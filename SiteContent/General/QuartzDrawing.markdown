@@ -1,17 +1,17 @@
 
 
-[[QuartzDrawing]] topics:
+General/QuartzDrawing topics:
 
-*[[QuartzGraphicsModel]]
-*[[NSGraphicsContext]]
-*[[PointsRectanglesAndTransforms]]
-*[[NSBezierPath]]
-*[[OptimizingDrawings]]
-*[[ImagesBitmapsAndOffscreenBuffers]]
-*[[TextFontsAndAttributedStrings]]
+*General/QuartzGraphicsModel
+*General/NSGraphicsContext
+*General/PointsRectanglesAndTransforms
+*General/NSBezierPath
+*General/OptimizingDrawings
+*General/ImagesBitmapsAndOffscreenBuffers
+*General/TextFontsAndAttributedStrings
 
 
 Drawing Examples:
 
 
-*[[QuartzPlotter]]
+*General/QuartzPlotter

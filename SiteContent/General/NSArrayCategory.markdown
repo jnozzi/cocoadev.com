@@ -1,17 +1,17 @@
 
 
-Some handy addenda to [[NSArray]], everybody's favorite Cocoa [[OrderedCollection]].  Some are for symmetry, some are for kicks, all are for free.  Enjoy.
+Some handy addenda to General/NSArray, everybody's favorite Cocoa General/OrderedCollection.  Some are for symmetry, some are for kicks, all are for free.  Enjoy.
 
-'''Source for [[NSArray]]+[[CocoaDevUsersAdditions]].h :'''
-<code>
+**Source for General/NSArray+General/CocoaDevUsersAdditions.h :**
+    
  #import <Foundation/Foundation.h>
  
  @interface NSArray(CocoaDevUsersAdditions)
  
  - (NSIndexSet *) indexesForObjects: (NSArray *) array; // returns the indexes which match objects
  
- + (NSArray *)arrayWithObjectsFromArrays:(NSArray *)arrays; //for handiness, especially with [[HigherOrderMessages]]
- + (NSArray *)arrayWithClonesOf:(id)object count:(unsigned)count; //for things like [[FlywheelPattern]] or maybe a [[RunArray]] implementation.
+ + (NSArray *)arrayWithObjectsFromArrays:(NSArray *)arrays; //for handiness, especially with General/HigherOrderMessages
+ + (NSArray *)arrayWithClonesOf:(id)object count:(unsigned)count; //for things like General/FlywheelPattern or maybe a General/RunArray implementation.
  
  /* please criticize these.... */
  + (NSArray *)arrayWithCRLFLinesOfFile:(NSString *)filePath; // assumes CRLF
@@ -21,7 +21,7 @@ Some handy addenda to [[NSArray]], everybody's favorite Cocoa [[OrderedCollectio
  - (BOOL)isEmpty;
  - (id)firstObject;
  
- // Unnecessary; can use -doesContain from [[NSComparisonMethods]].
+ // Unnecessary; can use -doesContain from General/NSComparisonMethods.
  - (BOOL)containsObjectIdenticalTo:(id)anObject;
  
  - (NSArray *)arrayByRemovingFirstObject;
@@ -34,7 +34,7 @@ Some handy addenda to [[NSArray]], everybody's favorite Cocoa [[OrderedCollectio
  - (NSArray *)choppedAtCount:(unsigned)count;
  - (NSArray *)reversedArray;
  
- // NOTE: results array contains instance of [[NSNull]] where result of performing selector is nil
+ // NOTE: results array contains instance of General/NSNull where result of performing selector is nil
  // a collection here is anything responding to -objectEnumerator
  - (NSArray *)resultsOfMakeObjectsPerformSelector:(SEL)aSelector;
  - (NSArray *)resultsOfMakeObjectsPerformSelector:(SEL)aSelector withObject:(id)anObject;
@@ -50,10 +50,10 @@ Some handy addenda to [[NSArray]], everybody's favorite Cocoa [[OrderedCollectio
  row:(int)rowIndex;
  
  @end
-</code>
 
-'''Source for [[NSArray]]+[[CocoaDevUsersAdditions]].m :'''
-<code>
+
+**Source for General/NSArray+General/CocoaDevUsersAdditions.m :**
+    
  #import "NSArray+CocoaDevUsersAdditions.h"
  
  @implementation NSArray(CocoaDevUsersAdditions)
@@ -67,7 +67,7 @@ Some handy addenda to [[NSArray]], everybody's favorite Cocoa [[OrderedCollectio
      index = [self indexOfObject:obj];
      if (index != NSNotFound) [indexSet addIndex:index];
    }
-   return [[[NSIndexSet alloc] initWithIndexSet:indexSet] autorelease];
+   return General/[NSIndexSet alloc] initWithIndexSet:indexSet] autorelease];
  }
  
  + (NSArray *)arrayWithObjectsFromArrays:(NSArray *)arrays
@@ -184,7 +184,7 @@ Some handy addenda to [[NSArray]], everybody's favorite Cocoa [[OrderedCollectio
  
  - (NSArray *)resultsOfMakeObjectsPerformSelector:(SEL)aSelector
  {
-   NSMutableArray *result = [NSMutableArray arrayWithCapacity:[self count]];
+   NSMutableArray *result = [NSMutableArray arrayWithCapacity:[self count;
    NSEnumerator *objectEnumerator;
    id obj;
    id objResult;
@@ -279,7 +279,7 @@ Some handy addenda to [[NSArray]], everybody's favorite Cocoa [[OrderedCollectio
  
  
  @end
-</code>
 
 
-[[Category:CocoaDevUsersAdditions]]
+
+General/Category:CocoaDevUsersAdditions

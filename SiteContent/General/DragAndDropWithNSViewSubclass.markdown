@@ -2,41 +2,41 @@
 
 Here's a simple drag and drop example for filenames dragged from the finder --zootbobbalu
 
-'''Header'''
-<code>
-#import <[[AppKit]]/[[AppKit]].h>
+**Header**
+    
+#import <General/AppKit/General/AppKit.h>
 
-@interface [[TestDragAndDropView]] : [[NSView]] {
-    [[NSColor]] ''backgroundColor, ''blueColor, ''greenColor;
+@interface General/TestDragAndDropView : General/NSView {
+    General/NSColor *backgroundColor, *blueColor, *greenColor;
 }
 
 @end
-</code>
 
-'''Source'''
 
-<code>
-#import "[[TestDragAndDropView]].h"
+**Source**
 
-@implementation [[TestDragAndDropView]]
+    
+#import "General/TestDragAndDropView.h"
 
-- (id)initWithFrame:([[NSRect]])frame {
+@implementation General/TestDragAndDropView
+
+- (id)initWithFrame:(General/NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [[NSArray]] ''draggedTypeArray = [[[NSArray]] arrayWithObjects:[[NSFilenamesPboardType]], nil];
+        General/NSArray *draggedTypeArray = General/[NSArray arrayWithObjects:General/NSFilenamesPboardType, nil];
         [self registerForDraggedTypes:draggedTypeArray];
         
-        /''
+        /*
         
             Since I'm not aware of any documentation explicitly telling
             you not to retain preset colors, I'm going to retain them 
             anyways!!
         
-        ''/
+        */
         
         
-        blueColor = backgroundColor = [[[[NSColor]] blueColor] retain];
-        greenColor = [[[[NSColor]] greenColor] retain]; 
+        blueColor = backgroundColor = General/[[NSColor blueColor] retain];
+        greenColor = General/[[NSColor greenColor] retain]; 
     }
     return self;
 }
@@ -50,63 +50,63 @@ Here's a simple drag and drop example for filenames dragged from the finder --zo
     [super dealloc];
 }
 
-- (void)drawRect:([[NSRect]])rect {
+- (void)drawRect:(General/NSRect)rect {
     [backgroundColor set];
-    [[NSRectFill]]([self visibleRect]);
+    General/NSRectFill([self visibleRect]);
 }
 
-- ([[NSDragOperation]])draggingEntered:(id <[[NSDraggingInfo]]>)sender {
-    [[NSPasteboard]] ''pboard = [sender draggingPasteboard];
-    [[NSArray]] ''filenames = [pboard propertyListForType:[[NSFilenamesPboardType]]];
-    [[NSLog]](@"draggingEntered: filenames: %@", [filenames description]);
-    [[NSArray]] ''supportedFiletypes = [[[NSArray]] arrayWithObjects:@"txt", @"rtf", @"html", 
+- (General/NSDragOperation)draggingEntered:(id <General/NSDraggingInfo>)sender {
+    General/NSPasteboard *pboard = [sender draggingPasteboard];
+    General/NSArray *filenames = [pboard propertyListForType:General/NSFilenamesPboardType];
+    General/NSLog(@"draggingEntered: filenames: %@", [filenames description]);
+    General/NSArray *supportedFiletypes = General/[NSArray arrayWithObjects:@"txt", @"rtf", @"html", 
                                                             @"htm", @"pdf", nil];
-    int dragOperation = [[NSDragOperationNone]];
+    int dragOperation = General/NSDragOperationNone;
     if ([filenames count]) {
     
-        /''
+        /*
             Decide here if you accept the filenames that are dragged into the view.
             If you do accept the dragged filenames then set dragOperation to 
-            [[NSDragOperationCopy]]:
+            General/NSDragOperationCopy:
             
-                dragOperation = [[NSDragOperationCopy]];
+                dragOperation = General/NSDragOperationCopy;
                 
             Here is where you can give some user feedback if the filenames
             are valid files (e.g. change a boarder color or the background color of the view)
                 
-        ''/
+        */
         
-        [[NSEnumerator]] ''filenameEnum = [filenames objectEnumerator]; 
-        [[NSString]] ''filename;
-        dragOperation = [[NSDragOperationCopy]];
+        General/NSEnumerator *filenameEnum = [filenames objectEnumerator]; 
+        General/NSString *filename;
+        dragOperation = General/NSDragOperationCopy;
         while (filename = [filenameEnum nextObject]) {
             if (![supportedFiletypes containsObject:[filename pathExtension]]) {
-                dragOperation = [[NSDragOperationNone]];
+                dragOperation = General/NSDragOperationNone;
                 break;
             }
         }
-        if (dragOperation == [[NSDragOperationCopy]]) backgroundColor = greenColor;
+        if (dragOperation == General/NSDragOperationCopy) backgroundColor = greenColor;
     }       
     [self setNeedsDisplay:YES];
     return dragOperation;
 }
 
--(void)draggingExited:(id <[[NSDraggingInfo]]>)sender {
-    [[NSPasteboard]] ''pboard = [sender draggingPasteboard];
-    [[NSArray]] ''filenames = [pboard propertyListForType:[[NSFilenamesPboardType]]];
+-(void)draggingExited:(id <General/NSDraggingInfo>)sender {
+    General/NSPasteboard *pboard = [sender draggingPasteboard];
+    General/NSArray *filenames = [pboard propertyListForType:General/NSFilenamesPboardType];
     backgroundColor = blueColor;
     [self setNeedsDisplay:YES];
-    [[NSLog]](@"draggingExited: filenames: %@", [filenames description]);
+    General/NSLog(@"draggingExited: filenames: %@", [filenames description]);
 }
 
-- (BOOL)performDragOperation:(id <[[NSDraggingInfo]]>)sender {
-    [[NSPasteboard]] ''pboard = [sender draggingPasteboard];
-    [[NSArray]] ''filenames = [pboard propertyListForType:[[NSFilenamesPboardType]]];
+- (BOOL)performDragOperation:(id <General/NSDraggingInfo>)sender {
+    General/NSPasteboard *pboard = [sender draggingPasteboard];
+    General/NSArray *filenames = [pboard propertyListForType:General/NSFilenamesPboardType];
     BOOL didPerformDragOperation = NO;
-    [[NSLog]](@"performDragOperation: filenames: %@", [filenames description]);
+    General/NSLog(@"performDragOperation: filenames: %@", [filenames description]);
     if ([filenames count]) {
         
-        /''
+        /*
             
             Do something here with filenames and 
             decide if a dragging operation was actually performed.
@@ -115,7 +115,7 @@ Here's a simple drag and drop example for filenames dragged from the finder --zo
             
                 didPerformDragOperation = YES;
         
-        ''/
+        */
     
     }
     backgroundColor = blueColor;
@@ -123,17 +123,16 @@ Here's a simple drag and drop example for filenames dragged from the finder --zo
     return didPerformDragOperation;
 }
 
--(void)concludeDragOperation:(id <[[NSDraggingInfo]]>)sender {
+-(void)concludeDragOperation:(id <General/NSDraggingInfo>)sender {
     
-    /''
+    /*
         This method gives you the chance to change any state variables that
         deal with dragAndDrop.
 
-    ''/
+    */
 
-    [[NSLog]](@"concludeDragOperation:");
+    General/NSLog(@"concludeDragOperation:");
 }
 
 @end
 
-</code>

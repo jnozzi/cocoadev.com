@@ -4,9 +4,9 @@ Problem:
 When using external (global) variables in C, how can the variable definitions be centralized into a single file for code upkeep?
 
 Declaration:
-<code>
+    
 extern char buffer[512];
-</code>
+
 
 All global declarations are stored in a file, data.h. One file, every global needed.
 
@@ -16,9 +16,9 @@ My solution (I are smart):
 Make a file, data.c (or whatever you want to call it). Add the definitions to this file.
 
 Definition:
-<code>
+    
 char buffer[512];
-</code>
+
 
 Then go to the Target tab of the PB and drag the source of data.c to the top of the Sources list.
 

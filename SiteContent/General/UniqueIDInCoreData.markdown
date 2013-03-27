@@ -1,11 +1,11 @@
-I'm trying to understand how best to implement a uniqueID for records inserted in [[CoreData]] entities (sql store if it matters).
+I'm trying to understand how best to implement a uniqueID for records inserted in General/CoreData entities (sql store if it matters).
 
 I can't seem to find any relevant verbiage in the Apple docs or google or here.
 But these things are a function of understanding -- you have a hard time searching for things if you don't understand them...
 
 The default values don't appear to offer a way to do this, neither do the attribute settings themselves.
 
-So it seems that I'm on my own to manifest an ID (I have found how to create [[UUIDs]]) and get it into the appropriate attribute.
+So it seems that I'm on my own to manifest an ID (I have found how to create General/UUIDs) and get it into the appropriate attribute.
 
 Is this correct?  Is there a better way?
 
@@ -16,7 +16,7 @@ I found this by sheer poking and mumbling...
 
 ----
 
-By reading the ''Core Data Programming Guide'' and following the references to the other documentation. Everything you've asked is well-documented.
+By reading the *Core Data Programming Guide* and following the references to the other documentation. Everything you've asked is well-documented.
 
 ----
 
@@ -24,18 +24,18 @@ What is the unique ID going to be used for? If it's just to be able to refer to 
 
 ----
 
-[[NSManagedObject]] has -objectID which is guaranteed to be unique in the current context and stay the same once the object is saved to the store. The id of the object before the save is temporary. The Core Data documentation would be an excellent place to start looking when looking for Core Data information. :-) If you're looking for creating your own unique values, you could look here: [[IDentifiers]]
+General/NSManagedObject has -objectID which is guaranteed to be unique in the current context and stay the same once the object is saved to the store. The id of the object before the save is temporary. The Core Data documentation would be an excellent place to start looking when looking for Core Data information. :-) If you're looking for creating your own unique values, you could look here: General/IDentifiers
 
 ----
 
-Thanks for the pointer to [[NSManagedObject]]! 
-However, in my feeble defense, this is actually this is a good example of what is so frustrating about Apple documentation.  I had read through all of:  "Data Modeling Guide"; "Core Data Programming Guide"; "Model Objects Implementation Guide"; "[[NSPersistentDocument]] Core Data Tutorial"; and the "Low-Level Core Data Tutorial" before posting this question.  The topic of object identity is never mentioned in these docs.  Apples stuff is academic in is tone.  People out in the real world need in line sample code snippets and usage case examples...
+Thanks for the pointer to General/NSManagedObject! 
+However, in my feeble defense, this is actually this is a good example of what is so frustrating about Apple documentation.  I had read through all of:  "Data Modeling Guide"; "Core Data Programming Guide"; "Model Objects Implementation Guide"; "General/NSPersistentDocument Core Data Tutorial"; and the "Low-Level Core Data Tutorial" before posting this question.  The topic of object identity is never mentioned in these docs.  Apples stuff is academic in is tone.  People out in the real world need in line sample code snippets and usage case examples...
 
-A good 3rd party book on [[CoreData]] and Bindings would be a relief.
+A good 3rd party book on General/CoreData and Bindings would be a relief.
 
 ----
 
-That is why the API reference exists. http://developer.apple.com/documentation/Cocoa/Reference/CoreData_ObjC/Classes/[[NSManagedObject]].html  ... it is up to you to read all of the relevant documentation. This wiki is definitely not a substitute for the reference material but rather a supportive augmentation. For easy navigation of the API reference, see [[AppKiDo]].
+That is why the API reference exists. http://developer.apple.com/documentation/Cocoa/Reference/CoreData_ObjC/Classes/General/NSManagedObject.html  ... it is up to you to read all of the relevant documentation. This wiki is definitely not a substitute for the reference material but rather a supportive augmentation. For easy navigation of the API reference, see General/AppKiDo.
 
 ----
 

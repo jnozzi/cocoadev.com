@@ -2,4 +2,4 @@
 
 
 * URL: http://codeforfun.wordpress.com
-* Current Cocoa Projects: [[MapQuest]] 4 Mobile
+* Current Cocoa Projects: General/MapQuest 4 Mobile

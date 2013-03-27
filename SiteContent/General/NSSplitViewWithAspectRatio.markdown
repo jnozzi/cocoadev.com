@@ -1,17 +1,17 @@
 
 
-I'm trying to create a subclassed [[NSSplitView]] for a specific need: I want a 2-subview split with one of them always keeping a specific aspect ratio (in this case, 2.5 times its width). To that end I've subclassed [[NSSplitView]], and I've determined that I really only need to override adjustSubviews as follows
+I'm trying to create a subclassed General/NSSplitView for a specific need: I want a 2-subview split with one of them always keeping a specific aspect ratio (in this case, 2.5 times its width). To that end I've subclassed General/NSSplitView, and I've determined that I really only need to override adjustSubviews as follows
 
  -(void)adjustSubviews
  {
-    [[NSLog]](@"adjust splitviews");
-    id left=[[self subviews] objectAtIndex:0];
+    General/NSLog(@"adjust splitviews");
+    id left=General/self subviews] objectAtIndex:0];
     id right=[[self subviews] objectAtIndex:1];
     float width;
     
     // determine if user resized the divider directly, or if this was
     // from another event such as a window resize with a "springy" splitview
-    if([[NSMouseInRect]]([[[NSEvent]] mouseLocation], [self bounds], NO))
+    if([[NSMouseInRect(General/[NSEvent mouseLocation], [self bounds], NO))
     {
         // divider resize, calculate based on new width
         width=[right frame].size.width;
@@ -23,8 +23,8 @@ I'm trying to create a subclassed [[NSSplitView]] for a specific need: I want a 
     }
     
     // resize the subview to the correct aspect, and resize the splitview for new height
-    [left setFrameSize:[[NSMakeSize]]([self frame].size.width-width-[self dividerThickness],round(width * 2.5))];
-    [self setFrameSize:[[NSMakeSize]]([self frame].size.width,round(width * 2.5))];
+    [left setFrameSize:General/NSMakeSize([self frame].size.width-width-[self dividerThickness],round(width * 2.5))];
+    [self setFrameSize:General/NSMakeSize([self frame].size.width,round(width * 2.5))];
     [super adjustSubviews];
  }
 
@@ -34,7 +34,7 @@ Is there a way I can detect a divider move?
 
 ----
 
-Instead of subclassing [[NSSplitView]], set an object as its delegate and implement the delegate methods. See [[SplitViewBasics]].
+Instead of subclassing General/NSSplitView, set an object as its delegate and implement the delegate methods. See General/SplitViewBasics.
 
 I've already tried this; it works, but the code is really messy, mostly due to the fact that I must disable/reenable notifications and delegates (for the splitview, windows, etc.) so that resizes work properly and isn't jittery due to the resize codes being called twice (from delegate + notifications), and I still haven't been able to really make that work perfectly (some notifications still occur dispite being removed), so I really think subclassing is a better solution in end, both for control of the resize, code size, and just plain simplicity.
 
@@ -43,13 +43,13 @@ I've already tried this; it works, but the code is really messy, mostly due to t
 I think you had your [super adjustSubviews] for nothing there, and the splitview tended to move up within the window when resizing the window. 
 I did have a similar need a while back; here's what I came up with (adapted your code above to keep it familiar to better see changes):
 
- @interface [[RatioSplitView]] : [[NSSplitView]] {
+ @interface General/RatioSplitView : General/NSSplitView {
     BOOL selfDrag;
  }
  -(id)init;
  @end
  
- @implementation [[RatioSplitView]]
+ @implementation General/RatioSplitView
  -(id)init
  {
     self=[super init];
@@ -60,12 +60,12 @@ I did have a similar need a while back; here's what I came up with (adapted your
  
  -(void)adjustSubviews
  {
-    id right=[[self subviews] objectAtIndex:0];
+    id right=General/self subviews] objectAtIndex:0];
     id left=[[self subviews] objectAtIndex:1];
     float width;
     float height;
     
-    [[NSEvent]] * theEvent=[[[NSApp]] currentEvent];
+    [[NSEvent * theEvent=General/[NSApp currentEvent];
     if( [self frame].size.height!=round([left frame].size.width * 2.5) || [theEvent deltaX] || [theEvent deltaY])
     {
         if(!selfDrag) // dragging divider
@@ -79,46 +79,46 @@ I did have a similar need a while back; here's what I came up with (adapted your
             height=round(width * 2.5);
         }
         // resize the subview to the correct aspect, and resize the splitview for new height
-        [right setFrameSize:[[NSMakeSize]]([self frame].size.width-width-[self dividerThickness],height)];
-        [left setFrame:[[NSMakeRect]]([self frame].size.width-width,[right frame].origin.y,width,height)];
-        [self setFrame:[[NSMakeRect]]([self frame].origin.x,[self frame].origin.y,[self frame].size.width,height)];
+        [right setFrameSize:General/NSMakeSize([self frame].size.width-width-[self dividerThickness],height)];
+        [left setFrame:General/NSMakeRect([self frame].size.width-width,[right frame].origin.y,width,height)];
+        [self setFrame:General/NSMakeRect([self frame].origin.x,[self frame].origin.y,[self frame].size.width,height)];
     }
     else
     {[super adjustSubviews];}
  }
  
- - (void)mouseDown:([[NSEvent]] *)theEvent
+ - (void)mouseDown:(General/NSEvent *)theEvent
  {
      BOOL keepOn = YES;
      BOOL isInside = YES;
-     [[NSPoint]] mouseLoc;
+     General/NSPoint mouseLoc;
      while (keepOn) {
-         theEvent = [[self window] nextEventMatchingMask: [[NSLeftMouseUpMask]] | [[NSLeftMouseDraggedMask]]];
+         theEvent = General/self window] nextEventMatchingMask: [[NSLeftMouseUpMask | General/NSLeftMouseDraggedMask];
          mouseLoc = [self convertPoint:[theEvent locationInWindow] fromView:nil];
          isInside = [self mouse:mouseLoc inRect:[self bounds]];
          switch ([theEvent type]) {
             
-        case [[NSLeftMouseDragged]]:
+        case General/NSLeftMouseDragged:
             selfDrag=YES;
-            id rightView=[[self subviews] objectAtIndex:0];
+            id rightView=General/self subviews] objectAtIndex:0];
             id leftView=[[self subviews] objectAtIndex:1];
                 
-            [[NSSize]] rightSize=[rightView frame].size;
-            [[NSSize]] leftSize=[leftView frame].size;
+            [[NSSize rightSize=[rightView frame].size;
+            General/NSSize leftSize=[leftView frame].size;
             leftSize.width-=[theEvent deltaX];
             rightSize.width+=[theEvent deltaX];
  
-            [[leftView superview] setNeedsDisplayInRect:[leftView frame]];
-            [[rightView superview] setNeedsDisplayInRect:[rightView frame]];
+            General/leftView superview] setNeedsDisplayInRect:[leftView frame;
+            General/rightView superview] setNeedsDisplayInRect:[rightView frame;
             [leftView setFrameSize:leftSize];
             [rightView setFrameSize:leftSize];
-            [[self superview] setNeedsDisplayInRect:[self frame]];
+            General/self superview] setNeedsDisplayInRect:[self frame;
                 
             [self setNeedsDisplay:YES];
             break;
             
             
-        case [[NSLeftMouseUp]]:
+        case General/NSLeftMouseUp:
             selfDrag=NO;
             keepOn = NO;
             break;

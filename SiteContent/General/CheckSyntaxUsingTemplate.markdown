@@ -1,8 +1,8 @@
 Maybe somebody can advice me. I have to read in files and process them. Those files has to be checked conform a syntax.
-What is the best approache to get his working, is this using [[NSScanner]] or is out there a better way? I would like to create a self contained class.
+What is the best approache to get his working, is this using General/NSScanner or is out there a better way? I would like to create a self contained class.
 
 the syntax
-<code>
+    
 info {
  [ option option_name ] {
 	( file pathname [ maxsize max_size_spec ][minsize ( min_size_spec | unlimited )]
@@ -18,9 +18,9 @@ info {
 	};]
 	...
 };
-</code>
+
 sample file
-<code>
+    
 ...
 info {
 option level42 {
@@ -42,10 +42,10 @@ category cat1 {
 	}
 }
 ...
-</code>
+
 Any pointers to information about this is welcome, thank you.
 ----
-Since there is no reply yet, I will offer some thoughts.  The format looks simple enough with some basic key value pairs.  Interestingly, the contents inside { } look like Apple/[[NeXT]]'s old standard plist format for dictionaries.   It may be relatively easy to parse most of this by breaking it into chunks parsable using +dictionaryWithContentsOfFile: and http://developer.apple.com/documentation/Cocoa/Conceptual/[[PropertyLists]]/index.html.
+Since there is no reply yet, I will offer some thoughts.  The format looks simple enough with some basic key value pairs.  Interestingly, the contents inside { } look like Apple/General/NeXT's old standard plist format for dictionaries.   It may be relatively easy to parse most of this by breaking it into chunks parsable using +dictionaryWithContentsOfFile: and http://developer.apple.com/documentation/Cocoa/Conceptual/General/PropertyLists/index.html.
 
 However, because only part of the format is compatible with property lists, the best bet, just like it is with almost every parser problem, is to use a proper parser and grammar.  See flex/bison or lex/yacc or your favorite recursive descent parser framework.  Parsing is one of the oldest and best understood programming problems.  You will find copious information on the net or relatively early in any computer science curriculum.
 ----

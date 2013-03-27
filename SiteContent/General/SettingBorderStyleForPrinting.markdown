@@ -1,4 +1,4 @@
-Hi.  I'm trying to print a window's contents.  Right now I'm calling [[window contentView] print:nil]; but this gives me a border that I do not want.  Is there any way to remove the border short of putting everything into a [[NSView]]?
+Hi.  I'm trying to print a window's contents.  Right now I'm calling General/window contentView] print:nil]; but this gives me a border that I do not want.  Is there any way to remove the border short of putting everything into a [[NSView?
 
 ----
 

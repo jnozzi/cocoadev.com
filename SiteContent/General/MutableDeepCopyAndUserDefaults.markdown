@@ -12,30 +12,30 @@ So should I make a mutable copy of each array member, during load?
 
 Is mutableCopy on an array guarantied to return an array of only mutable objects? or does the 'mutable' only apply to the array itself (in my case the dictionaries are mutable, but that could just be a coincidence)?
 
-Naturally it would be nice to be able to do this ''copy what is in user defaults'' lazy, but is there any neat way I can check weather or not a member of the array is the original (as returned by user defaults) or my copy (other than storing an extra element in the dictionary)?
+Naturally it would be nice to be able to do this *copy what is in user defaults* lazy, but is there any neat way I can check weather or not a member of the array is the original (as returned by user defaults) or my copy (other than storing an extra element in the dictionary)?
 
 ----
 
-The best way I've found to make a deep copy of something is to actually make an archive of it and immediately unarchive it into a different variable.  The only down-side is that the object to be copied must implement [[NSCoding]]... which really isn't that big a deal.  Here's the code to do so:
+The best way I've found to make a deep copy of something is to actually make an archive of it and immediately unarchive it into a different variable.  The only down-side is that the object to be copied must implement General/NSCoding... which really isn't that big a deal.  Here's the code to do so:
 
-<code>
-id foo = [[[[SomeObject]] alloc] init];
-id copyOfFoo = [[[NSUnarchiver]] unarchiveObjectWithData: [[[NSArchiver]] archivedDataWithRootObject: foo]];
-</code>
+    
+id foo = General/[[SomeObject alloc] init];
+id copyOfFoo = General/[NSUnarchiver unarchiveObjectWithData: General/[NSArchiver archivedDataWithRootObject: foo]];
 
-Like I said, the limitation on this is that you have to be able to isolate those objects you wish to copy from the rest of the object graph, and then, you have to have all the objects to be copied implement [[NSCoding]].  Not that big a deal, really.  In any case, this should work just fine for the example you gave without any extra work on your part.
 
-[[AndrewMiner]]
+Like I said, the limitation on this is that you have to be able to isolate those objects you wish to copy from the rest of the object graph, and then, you have to have all the objects to be copied implement General/NSCoding.  Not that big a deal, really.  In any case, this should work just fine for the example you gave without any extra work on your part.
+
+General/AndrewMiner
 
 ----
 
-In some situations, I use HOM via a trampoline, e.g. <code>copy = [[array collect] copy];</code>
+In some situations, I use HOM via a trampoline, e.g.     copy = General/array collect] copy];
 
-''But this is not a deep copy!?!''
+*But this is not a deep copy!?!*
 
 It's a deep copy, just not a deep deep copy.
 
-''I think it is well established terminology to speak of shallow and deep copies, where the latter is recursive. The example above is not a deep copy pr. common definition of the term.''
+*I think it is well established terminology to speak of shallow and deep copies, where the latter is recursive. The example above is not a deep copy pr. common definition of the term.*
 
 It is if the array doesn't contain any subarrays. Nevertheless it is neither shallow nor deep.
 
@@ -43,17 +43,17 @@ It is if the array doesn't contain any subarrays. Nevertheless it is neither sha
 
 :-)
 
-Point well taken.  The technique I mentioned is something I do when whatever the object is doesn't support [[NSCopying]].
+Point well taken.  The technique I mentioned is something I do when whatever the object is doesn't support [[NSCopying.
 
-[[AndrewMiner]]
+General/AndrewMiner
 
 ----
 
-This touches on something I've been feeling for a while. I like using [[NSArray]] and [[NSDictionary]], and I often start using them for the whole datastructure of my app, up until I want to encapsulate logic in the data objects. Problem is that issues with mutable/immutable, along with confusion on when a copy is made, especially with KVC, starts cropping up, and the feeling is not so nice anymore.
+This touches on something I've been feeling for a while. I like using General/NSArray and General/NSDictionary, and I often start using them for the whole datastructure of my app, up until I want to encapsulate logic in the data objects. Problem is that issues with mutable/immutable, along with confusion on when a copy is made, especially with KVC, starts cropping up, and the feeling is not so nice anymore.
 
-Also I made a design that perhaps deserves comments... I have a document object (no [[NSDocument]]) that keeps track of its core plist, which contains metadata and by relative paths references its attached files. I heavily use KVC against this object. The data structure for the live object is that I read in the plist, do a deep copy, and keep that single root object reference, setting and getting values out of it when requested via KVC methods. Maybe I should have typed instance variables instead.
+Also I made a design that perhaps deserves comments... I have a document object (no General/NSDocument) that keeps track of its core plist, which contains metadata and by relative paths references its attached files. I heavily use KVC against this object. The data structure for the live object is that I read in the plist, do a deep copy, and keep that single root object reference, setting and getting values out of it when requested via KVC methods. Maybe I should have typed instance variables instead.
 
-[[JoakimArfvidsson]]
+General/JoakimArfvidsson
 
 ----
 
@@ -67,19 +67,19 @@ Here is my not quite finished solution, for anyone to improve. I realize that I 
 
 Actually, I'm not even 100 % sure this works as expected, as it's old code.
 
-<code>
-@implementation [[NSDictionary]] ([[DeepCopy]])
+    
+@implementation General/NSDictionary (General/DeepCopy)
 
 - (id)deepMutableCopy
 {
 	id copy(id obj) {
 		id temp = [obj mutableCopy];
-		if ( [temp isKindOfClass:[[[NSArray]] class]] ) {
+		if ( [temp isKindOfClass:General/[NSArray class]] ) {
 			for ( int i = 0 ; i < [temp count] ; i++ )
 				[temp replaceObjectAtIndex:i withObject:copy([temp objectAtIndex:i])];
-		} else if ( [temp isKindOfClass:[[[NSDictionary]] class]] ) {
-			[[NSEnumerator]] ''enumerator = [temp keyEnumerator];
-			[[NSString]] ''nextKey;
+		} else if ( [temp isKindOfClass:General/[NSDictionary class]] ) {
+			General/NSEnumerator *enumerator = [temp keyEnumerator];
+			General/NSString *nextKey;
 			while (nextKey = [enumerator nextObject])
 				[temp setObject:copy([temp objectForKey:nextKey]) forKey:nextKey];
 		} 
@@ -92,18 +92,18 @@ Actually, I'm not even 100 % sure this works as expected, as it's old code.
 @end
 
 
-@implementation [[NSArray]] ([[DeepCopy]])
+@implementation General/NSArray (General/DeepCopy)
 
 - (id)deepMutableCopy
 {
 	id copy(id obj) {
 		id temp = [obj mutableCopy];
-		if ( [temp isKindOfClass:[[[NSArray]] class]] ) {
+		if ( [temp isKindOfClass:General/[NSArray class]] ) {
 			for ( int i = 0 ; i < [temp count] ; i++ )
 				[temp replaceObjectAtIndex:i withObject:copy([temp objectAtIndex:i])];
-		} else if ( [temp isKindOfClass:[[[NSDictionary]] class]] ) {
-			[[NSEnumerator]] ''enumerator = [temp keyEnumerator];
-			[[NSString]] ''nextKey;
+		} else if ( [temp isKindOfClass:General/[NSDictionary class]] ) {
+			General/NSEnumerator *enumerator = [temp keyEnumerator];
+			General/NSString *nextKey;
 			while (nextKey = [enumerator nextObject])
 				[temp setObject:copy([temp objectForKey:nextKey]) forKey:nextKey];
 		}
@@ -114,28 +114,28 @@ Actually, I'm not even 100 % sure this works as expected, as it's old code.
 }
 
 @end
-</code>
+
 
 ----
 
-From what I can tell from the documentation, <code>-mutableCopy</code> may not exist on every object, particularly if an object doesn't have a mutable/immutable distinction. Wouldn't it be better to check for <code>-mutableCopyWithZone:</code> and call it if it exists, but otherwise call <code>-copy</code>? Also, your use of inner functions makes each method prettier, but together it makes them highly redundant. I would prefer a shared function or, better yet, a <code>-mutableDeepCopy</code> method on [[NSObject]] that could recursively call itself.
+From what I can tell from the documentation,     -mutableCopy may not exist on every object, particularly if an object doesn't have a mutable/immutable distinction. Wouldn't it be better to check for     -mutableCopyWithZone: and call it if it exists, but otherwise call     -copy? Also, your use of inner functions makes each method prettier, but together it makes them highly redundant. I would prefer a shared function or, better yet, a     -mutableDeepCopy method on General/NSObject that could recursively call itself.
 
-One other minor nitpick, you forgot an implementation for [[NSSet]]. ;-)
+One other minor nitpick, you forgot an implementation for General/NSSet. ;-)
 
-''Also, you cannot extend this to include new classes without changing everything. It's a horrible example of abusing isKindOfClass - go to bed! And no supper!''
+*Also, you cannot extend this to include new classes without changing everything. It's a horrible example of abusing isKindOfClass - go to bed! And no supper!*
 
 ----
 
 Ok, I couldn't help but write up a quickie implementation according to my ideas above. Here it is. Comments are welcome as always.
-<code>
-@interface [[NSObject]] ([[MutableDeepCopy]])
+    
+@interface General/NSObject (General/MutableDeepCopy)
 
 - mutableDeepCopy;
 
 @end
 
 
-@implementation [[NSObject]] ([[MutableDeepCopy]])
+@implementation General/NSObject (General/MutableDeepCopy)
 
 - mutableDeepCopy
 {
@@ -149,16 +149,16 @@ Ok, I couldn't help but write up a quickie implementation according to my ideas 
 
 @end
 
-@implementation [[NSDictionary]] ([[MutableDeepCopy]])
+@implementation General/NSDictionary (General/MutableDeepCopy)
 
 - mutableDeepCopy
 {
-    [[NSMutableDictionary]] ''newDictionary = [[[[NSMutableDictionary]] alloc] init];
-    [[NSEnumerator]] ''enumerator = [self keyEnumerator];
+    General/NSMutableDictionary *newDictionary = General/[[NSMutableDictionary alloc] init];
+    General/NSEnumerator *enumerator = [self keyEnumerator];
     id key;
     while((key = [enumerator nextObject]))
     {
-        id obj = [[self objectForKey:key] mutableDeepCopy];
+        id obj = General/self objectForKey:key] mutableDeepCopy];
         [newDictionary setObject:obj forKey:key];
         [obj release];
     }
@@ -167,12 +167,12 @@ Ok, I couldn't help but write up a quickie implementation according to my ideas 
 
 @end
 
-@implementation [[NSArray]] ([[MutableDeepCopy]])
+@implementation [[NSArray (General/MutableDeepCopy)
 
 - mutableDeepCopy
 {
-    [[NSMutableArray]] ''newArray = [[[[NSMutableArray]] alloc] init];
-    [[NSEnumerator]] ''enumerator = [self objectEnumerator];
+    General/NSMutableArray *newArray = General/[[NSMutableArray alloc] init];
+    General/NSEnumerator *enumerator = [self objectEnumerator];
     id obj;
     while((obj = [enumerator nextObject]))
     {
@@ -185,12 +185,12 @@ Ok, I couldn't help but write up a quickie implementation according to my ideas 
 
 @end
 
-@implementation [[NSSet]] ([[MutableDeepCopy]])
+@implementation General/NSSet (General/MutableDeepCopy)
 
 - mutableDeepCopy
 {
-    [[NSMutableSet]] ''newSet = [[[[NSMutableSet]] alloc] init];
-    [[NSEnumerator]] ''enumerator = [self objectEnumerator];
+    General/NSMutableSet *newSet = General/[[NSMutableSet alloc] init];
+    General/NSEnumerator *enumerator = [self objectEnumerator];
     id obj;
     while((obj = [enumerator nextObject]))
     {
@@ -202,36 +202,36 @@ Ok, I couldn't help but write up a quickie implementation according to my ideas 
 }
 
 @end
-</code>
+
 
 ----
 I have used the above implementation and, while for the life of me I can't figure out why, it seems that -copy is always a copy of the pointers.  Examining two dictionaries in the debugger using this method shows that the objects have different pointers but their components are identical, STILL.  So it seems not to work.
 
-Consolation - Here's today's $1000 freebie: I have a program which has three layers of threads.  When the bottom thread has ready data, it passes it up to the next thread and so on, via Distributed Objects.  Problem was, when a thread finishes with all its data, it committed suicide, and that data, though theoretically already passed via DO to the next level, was being destroyed and causing the program to crash when next referencing said data.  The exact message actually was "[[NSDistantObject]] invalid".  This is due ultimately to the fact that said data was in the form of a dictionary and they are shallow-copied, meaning that only the top level is actually copied and the other items are once again referenced as in the first dictionary.  Therefore, the hunt began for a way to get the actual information from the dictionary and duplicate it, fully.  The best answer was [[NSArchiver]], as mentioned in this thread, but with one caveat:  As per the apple docs, [[NSDistantObject]] does not support the [[NSArchiving]] protocol so you ''cannot'' call [[[NSArchiver]] archivedDataWithRootObject:myDistantObject]; it will crash.  You must archive the object into data in the thread from which the object will be sent, and then unarchive it at its destination.
+Consolation - Here's today's $1000 freebie: I have a program which has three layers of threads.  When the bottom thread has ready data, it passes it up to the next thread and so on, via Distributed Objects.  Problem was, when a thread finishes with all its data, it committed suicide, and that data, though theoretically already passed via DO to the next level, was being destroyed and causing the program to crash when next referencing said data.  The exact message actually was "General/NSDistantObject invalid".  This is due ultimately to the fact that said data was in the form of a dictionary and they are shallow-copied, meaning that only the top level is actually copied and the other items are once again referenced as in the first dictionary.  Therefore, the hunt began for a way to get the actual information from the dictionary and duplicate it, fully.  The best answer was General/NSArchiver, as mentioned in this thread, but with one caveat:  As per the apple docs, General/NSDistantObject does not support the General/NSArchiving protocol so you *cannot* call General/[NSArchiver archivedDataWithRootObject:myDistantObject]; it will crash.  You must archive the object into data in the thread from which the object will be sent, and then unarchive it at its destination.
 
 In short, if you need to pass arbitrary objects between threads, and not just strings, the best method (I think) is to use archiving, as so (you must already know how to use DO to communicate between threads):
 
-<code>
+    
 
 In bottom thread:
 ...
-      owner = [[[[NSConnection]] 
+      owner = General/[[NSConnection 
 	rootProxyForConnectionWithRegisteredName:@"myApp thread results depository" 
 		host:nil] retain]; //Assumes in your main thread you have registered this name for self
       [owner setProtocolForProxy:@protocol(myThreadResultsProtocol)]; 
        //Assumes you have made this protocol somewhere, which consists of newItem:
 ...
-       [[NSMutableDictionary]] ''myDictionary = [self createDictionaryFromObject:anObject];
-       [owner newItem:[[[NSArchiver]] archivedDataWithRootObject:myDictionary]];
+       General/NSMutableDictionary *myDictionary = [self createDictionaryFromObject:anObject];
+       [owner newItem:General/[NSArchiver archivedDataWithRootObject:myDictionary]];
 ...
 
 In main thread:
 - (void)newItem:(id)sender
 {
-	[[NSLock]] ''newItemLock = [[[[NSLock]] alloc] init];
+	General/NSLock *newItemLock = General/[[NSLock alloc] init];
 		[newItemLock lock];	
 
-	[[NSDictionary]] ''itemRetainer = [[[NSUnarchiver]] unarchiveObjectWithData:sender];
+	General/NSDictionary *itemRetainer = General/[NSUnarchiver unarchiveObjectWithData:sender];
 
        //Do what your heart desires with itemRetainer, no thanks to -copy
 
@@ -239,13 +239,13 @@ In main thread:
 	return;
 }
 
-</code>
 
 
-This took two days to track down.  Rejoice!  I can't believe that [[NSObject]] doesn't implement a hardcore deep copy  "duplicate this resolving all pointers" method.  It's also especially shameful that [[NSDictionary]]'s method initWithDictionary:copyItems:, which claims to copy the VALUES of the dictionary as well as the keys, doesn't do so recursively and therefore is only useful if you know, for a fact, that your dictionary has no other container objects.
+
+This took two days to track down.  Rejoice!  I can't believe that General/NSObject doesn't implement a hardcore deep copy  "duplicate this resolving all pointers" method.  It's also especially shameful that General/NSDictionary's method initWithDictionary:copyItems:, which claims to copy the VALUES of the dictionary as well as the keys, doesn't do so recursively and therefore is only useful if you know, for a fact, that your dictionary has no other container objects.
 
 ----
-Question:  Is there any way to change the name of a page without killing all the references to it?  I think this page should just be called "[[DeepCopying]]", but I've seen it linked to elsewhere.
+Question:  Is there any way to change the name of a page without killing all the references to it?  I think this page should just be called "General/DeepCopying", but I've seen it linked to elsewhere.
 
 ----
 Answer: change all of the references! :-) For this page, there's only three.
@@ -254,18 +254,18 @@ Answer: change all of the references! :-) For this page, there's only three.
 ----
 
 ----
-<code>
+    
 - (id)mutableDeepCopy
 {
 //if id serializable
-	[[CFTypeRef]] copy = [[CFPropertyListCreateDeepCopy]](kCFAllocatorDefault, ([[CFTypeRef]])self, kCFPropertyListMutableContainers);
+	General/CFTypeRef copy = General/CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (General/CFTypeRef)self, kCFPropertyListMutableContainers);
 ...
 	// if copy
 		return [(id)copy autorelease];
-</code>
 
-bottom line it's enough easy to implement and add to the [[NSMutableCopying]] protocol, moreover, deepCopies are always memory inefficient 
-no matter what e.g a deep copy, but  here this is the fastest one, caveats, for sets; you have to create a tmp [[CFArray]], 
+
+bottom line it's enough easy to implement and add to the General/NSMutableCopying protocol, moreover, deepCopies are always memory inefficient 
+no matter what e.g a deep copy, but  here this is the fastest one, caveats, for sets; you have to create a tmp General/CFArray, 
 that's quite lame because a set if not counted, that's just an array with guarded methods against duplicates.
 
 

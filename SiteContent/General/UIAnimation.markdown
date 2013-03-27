@@ -2,167 +2,167 @@
 
 The following is from http://www.lucasnewman.com/iphone/
 
-'''[[UIAnimation]]'''
+**General/UIAnimation**
 
-An abstract superclass used to animate properties of a [[UIView]]. It is supported by a collection concrete subclasses provided for the alpha, frame, scroll position, affine transformation (including a special subclass for rotation), and zooming.
+An abstract superclass used to animate properties of a General/UIView. It is supported by a collection concrete subclasses provided for the alpha, frame, scroll position, affine transformation (including a special subclass for rotation), and zooming.
 
-<code>
+    
 typedef enum {
     kUIAnimationCurveEaseInEaseOut,
     kUIAnimationCurveEaseIn,
     kUIAnimationCurveEaseOut,
     kUIAnimationCurveLinear,
-} [[UIAnimationCurve]];
-</code>
+} General/UIAnimationCurve;
+
 
 // Creating animations
 
-%%BEGINCODESTYLE%%- (id)initWithTarget:(id)target;%%ENDCODESTYLE%%
+<code>- (id)initWithTarget:(id)target;</code>
 
 // Properties
 
-%%BEGINCODESTYLE%%- (id)target;%%ENDCODESTYLE%%
+<code>- (id)target;</code>
 
-%%BEGINCODESTYLE%%- (void)setDelegate:(id)delegate;%%ENDCODESTYLE%%
+<code>- (void)setDelegate:(id)delegate;</code>
 
-%%BEGINCODESTYLE%%- (id)delegate;%%ENDCODESTYLE%%
+<code>- (id)delegate;</code>
 
-%%BEGINCODESTYLE%%- (void)setAction:(SEL)action;%%ENDCODESTYLE%%
+<code>- (void)setAction:(SEL)action;</code>
 
-%%BEGINCODESTYLE%%- (SEL)action;%%ENDCODESTYLE%%
+<code>- (SEL)action;</code>
 
-%%BEGINCODESTYLE%%- (void)setAnimationCurve:([[UIAnimationCurve]])animationCurve;%%ENDCODESTYLE%%
+<code>- (void)setAnimationCurve:(General/UIAnimationCurve)animationCurve;</code>
 
-%%BEGINCODESTYLE%%- (float)progressForFraction:(float)fraction;%%ENDCODESTYLE%%
+<code>- (float)progressForFraction:(float)fraction;</code>
 
 // Implemented by subclasses
 
-%%BEGINCODESTYLE%%- (void)setProgress:(float)progress;%%ENDCODESTYLE%%
+<code>- (void)setProgress:(float)progress;</code>
 
 // Controlling animations
 
-%%BEGINCODESTYLE%%- (void)stopAnimation;%%ENDCODESTYLE%%
+<code>- (void)stopAnimation;</code>
 
 ----
 
-'''Provided [[UIAnimation]] subclasses:'''
+**Provided General/UIAnimation subclasses:**
 
-'''[[UIAlphaAnimation]]'''
+**General/UIAlphaAnimation**
 
-%%BEGINCODESTYLE%%- (void)setStartAlpha:(float)alpha;%%ENDCODESTYLE%%
+<code>- (void)setStartAlpha:(float)alpha;</code>
 
-%%BEGINCODESTYLE%%- (void)setEndAlpha:(float)alpha;%%ENDCODESTYLE%%
+<code>- (void)setEndAlpha:(float)alpha;</code>
 
-%%BEGINCODESTYLE%%- (float)alphaForFraction:(float)fraction;%%ENDCODESTYLE%%
+<code>- (float)alphaForFraction:(float)fraction;</code>
 
-'''[[UIFrameAnimation]]'''
+**General/UIFrameAnimation**
 
-%%BEGINCODESTYLE%%- (void)setStartFrame:([[CGRect]])frame;%%ENDCODESTYLE%%
+<code>- (void)setStartFrame:(General/CGRect)frame;</code>
 
-%%BEGINCODESTYLE%%- (void)setEndFrame:([[CGRect]])frame;%%ENDCODESTYLE%%
+<code>- (void)setEndFrame:(General/CGRect)frame;</code>
 
-%%BEGINCODESTYLE%%- ([[CGRect]])endFrame;%%ENDCODESTYLE%%
+<code>- (General/CGRect)endFrame;</code>
 
-'''[[UIRotationAnimation]]'''
+**General/UIRotationAnimation**
 
-%%BEGINCODESTYLE%%- (void)setStartRotationAngle:(float)angle;%%ENDCODESTYLE%%
+<code>- (void)setStartRotationAngle:(float)angle;</code>
 
-%%BEGINCODESTYLE%%- (void)setEndRotationAngle:(float)angle;%%ENDCODESTYLE%%
+<code>- (void)setEndRotationAngle:(float)angle;</code>
 
-'''[[UIScrollAnimation]]'''
+**General/UIScrollAnimation**
 
-%%BEGINCODESTYLE%%- (void)setStartPoint:([[CGPoint]])startPoint;%%ENDCODESTYLE%%
+<code>- (void)setStartPoint:(General/CGPoint)startPoint;</code>
 
-%%BEGINCODESTYLE%%- (void)setEndPoint:([[CGPoint]])endPoint;%%ENDCODESTYLE%%
+<code>- (void)setEndPoint:(General/CGPoint)endPoint;</code>
 
-'''[[UITransformAnimation]]'''
+**General/UITransformAnimation**
 
-%%BEGINCODESTYLE%%- (void)setStartTransform:([[CGAffineTransform]])transform;%%ENDCODESTYLE%%
+<code>- (void)setStartTransform:(General/CGAffineTransform)transform;</code>
 
-%%BEGINCODESTYLE%%- (void)setEndTransform:([[CGAffineTransform]])transform;%%ENDCODESTYLE%%
+<code>- (void)setEndTransform:(General/CGAffineTransform)transform;</code>
 
-%%BEGINCODESTYLE%%- ([[CGAffineTransform]])transformForFraction:(float)fraction;%%ENDCODESTYLE%%
+<code>- (General/CGAffineTransform)transformForFraction:(float)fraction;</code>
 
-'''[[UIZoomAnimation]]'''
+**General/UIZoomAnimation**
 
-%%BEGINCODESTYLE%%+ (float)defaultDuration;%%ENDCODESTYLE%%
+<code>+ (float)defaultDuration;</code>
 
-%%BEGINCODESTYLE%%+ (id)zoomAnimationForTarget:(id)target endScale:(float)scale endScrollPoint:([[CGPoint]])point;%%ENDCODESTYLE%%
+<code>+ (id)zoomAnimationForTarget:(id)target endScale:(float)scale endScrollPoint:(General/CGPoint)point;</code>
 
-%%BEGINCODESTYLE%%+ (id)zoomAnimationForTarget:(id)target focusRect:([[CGRect]])focusRect deviceBoundaryRect:([[CGRect]])deviceBoundaryRect scale:(float)scale;%%ENDCODESTYLE%%
+<code>+ (id)zoomAnimationForTarget:(id)target focusRect:(General/CGRect)focusRect deviceBoundaryRect:(General/CGRect)deviceBoundaryRect scale:(float)scale;</code>
 
-%%BEGINCODESTYLE%%- (void)setEndScale:(float)scale;%%ENDCODESTYLE%%
+<code>- (void)setEndScale:(float)scale;</code>
 
-%%BEGINCODESTYLE%%- (void)setStartScale:(float)scale;%%ENDCODESTYLE%%
+<code>- (void)setStartScale:(float)scale;</code>
 
-%%BEGINCODESTYLE%%- (void)setEndScrollPoint:([[CGPoint]])point;%%ENDCODESTYLE%%
+<code>- (void)setEndScrollPoint:(General/CGPoint)point;</code>
 
-%%BEGINCODESTYLE%%- (void)setStartScrollPoint:([[CGPoint]])point;%%ENDCODESTYLE%%
-
-----
-
-'''[[UIAnimator]]'''
-
-[[UIAnimator]] provides a shared controller for starting and stopping global animations.
-
-%%BEGINCODESTYLE%%+ (id)sharedAnimator;%%ENDCODESTYLE%%
-
-%%BEGINCODESTYLE%%+ (void)disableAnimation;%%ENDCODESTYLE%%
-
-%%BEGINCODESTYLE%%+ (void)enableAnimation;%%ENDCODESTYLE%%
-
-%%BEGINCODESTYLE%%- (void)addAnimation:([[UIAnimation]] '')animation withDuration:(double)duration start:(BOOL)start;%%ENDCODESTYLE%%
-
-%%BEGINCODESTYLE%%- (void)addAnimations:([[NSArray]] '')animations withDuration:(double)duration start:(BOOL)start;%%ENDCODESTYLE%%
-
-%%BEGINCODESTYLE%%- (void)removeAnimationsForTarget:(id)target;%%ENDCODESTYLE%%
-
-%%BEGINCODESTYLE%%- (void)removeAnimationsForTarget:(id)target ofKind:(Class)classOfTarget;%%ENDCODESTYLE%%
-
-%%BEGINCODESTYLE%%- (void)startAnimation:([[UIAnimation]] '')animation;%%ENDCODESTYLE%%
-
-%%BEGINCODESTYLE%%- (void)stopAnimation:([[UIAnimation]] '')animation;%%ENDCODESTYLE%%
-
-%%BEGINCODESTYLE%%- (float)fractionForAnimation:([[UIAnimation]] '')animation;%%ENDCODESTYLE%%
+<code>- (void)setStartScrollPoint:(General/CGPoint)point;</code>
 
 ----
 
-'''[[UIView]] (Animation)'''
+**General/UIAnimator**
 
-This category on [[UIView]] allows adding [[UIAnimations]] to the view, and also allows modifying global animation parameters.
+General/UIAnimator provides a shared controller for starting and stopping global animations.
 
-%%BEGINCODESTYLE%%+ (void)beginAnimations:([[NSArray]] '')animations;%%ENDCODESTYLE%%
+<code>+ (id)sharedAnimator;</code>
 
-%%BEGINCODESTYLE%%+ (void)endAnimations;%%ENDCODESTYLE%%
+<code>+ (void)disableAnimation;</code>
 
-%%BEGINCODESTYLE%%+ (void)enableAnimation;%%ENDCODESTYLE%%
+<code>+ (void)enableAnimation;</code>
 
-%%BEGINCODESTYLE%%+ (void)disableAnimation;%%ENDCODESTYLE%%
+<code>- (void)addAnimation:(General/UIAnimation *)animation withDuration:(double)duration start:(BOOL)start;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationAutoreverses:(BOOL)autoreverses;%%ENDCODESTYLE%%
+<code>- (void)addAnimations:(General/NSArray *)animations withDuration:(double)duration start:(BOOL)start;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationCurve:([[UIAnimationCurve]])animationCurve;%%ENDCODESTYLE%%
+<code>- (void)removeAnimationsForTarget:(id)target;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationDelay:(double)startDelay;%%ENDCODESTYLE%%
+<code>- (void)removeAnimationsForTarget:(id)target ofKind:(Class)classOfTarget;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationDelegate:(id)delegate;%%ENDCODESTYLE%%
+<code>- (void)startAnimation:(General/UIAnimation *)animation;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationDuration:(double)duration;%%ENDCODESTYLE%%
+<code>- (void)stopAnimation:(General/UIAnimation *)animation;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationFrameInterval:(double)minimumTimeIntervalBetweenFrames;%%ENDCODESTYLE%%
+<code>- (float)fractionForAnimation:(General/UIAnimation *)animation;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationFromCurrentState:(BOOL)shouldAnimateFromCurrentState;%%ENDCODESTYLE%%
+----
 
-%%BEGINCODESTYLE%%+ (void)setAnimationPosition:([[CGPoint]])position;%%ENDCODESTYLE%%
+**General/UIView (Animation)**
 
-%%BEGINCODESTYLE%%+ (void)setAnimationStartTime:(double)startTime;%%ENDCODESTYLE%%
+This category on General/UIView allows adding General/UIAnimations to the view, and also allows modifying global animation parameters.
 
-%%BEGINCODESTYLE%%+ (void)setAnimationRepeatCount:(float)repeatCount;%%ENDCODESTYLE%%
+<code>+ (void)beginAnimations:(General/NSArray *)animations;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationRoundsToInteger:(BOOL)shouldRoundToInteger;%%ENDCODESTYLE%%
+<code>+ (void)endAnimations;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationWillStartSelector:(SEL)willStartSelector;%%ENDCODESTYLE%%
+<code>+ (void)enableAnimation;</code>
 
-%%BEGINCODESTYLE%%+ (void)setAnimationDidStopSelector:(SEL)willEndSelector;%%ENDCODESTYLE%%
+<code>+ (void)disableAnimation;</code>
 
-%%BEGINCODESTYLE%%- (void)addAnimation:([[UIAnimation]] '')animation forKey:([[NSString]] '')key;%%ENDCODESTYLE%%
+<code>+ (void)setAnimationAutoreverses:(BOOL)autoreverses;</code>
+
+<code>+ (void)setAnimationCurve:(General/UIAnimationCurve)animationCurve;</code>
+
+<code>+ (void)setAnimationDelay:(double)startDelay;</code>
+
+<code>+ (void)setAnimationDelegate:(id)delegate;</code>
+
+<code>+ (void)setAnimationDuration:(double)duration;</code>
+
+<code>+ (void)setAnimationFrameInterval:(double)minimumTimeIntervalBetweenFrames;</code>
+
+<code>+ (void)setAnimationFromCurrentState:(BOOL)shouldAnimateFromCurrentState;</code>
+
+<code>+ (void)setAnimationPosition:(General/CGPoint)position;</code>
+
+<code>+ (void)setAnimationStartTime:(double)startTime;</code>
+
+<code>+ (void)setAnimationRepeatCount:(float)repeatCount;</code>
+
+<code>+ (void)setAnimationRoundsToInteger:(BOOL)shouldRoundToInteger;</code>
+
+<code>+ (void)setAnimationWillStartSelector:(SEL)willStartSelector;</code>
+
+<code>+ (void)setAnimationDidStopSelector:(SEL)willEndSelector;</code>
+
+<code>- (void)addAnimation:(General/UIAnimation *)animation forKey:(General/NSString *)key;</code>

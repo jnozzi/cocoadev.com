@@ -1,2 +1,2 @@
-Describe [[NSViewWidthSizable]] here.
-[[NSViewWidthSizable]]|[[NSViewHeightSizable]]
+Describe General/NSViewWidthSizable here.
+General/NSViewWidthSizable|General/NSViewHeightSizable

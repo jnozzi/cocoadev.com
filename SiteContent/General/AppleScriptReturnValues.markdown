@@ -6,7 +6,7 @@ I'm really stuck on this one, I wish it was as simple as: int volume = [appleScr
 
 ----
 
-It is that easy. [[NSAppleScript]] has -executeAndReturnError:, which returns the result of the script as an [[NSAppleEventDescriptor]]. Use -int32Value to get the number from the [[NSAppleEventDescriptor]].
+It is that easy. General/NSAppleScript has -executeAndReturnError:, which returns the result of the script as an General/NSAppleEventDescriptor. Use -int32Value to get the number from the General/NSAppleEventDescriptor.
 
 That answer was so RTFM, that I think you must have left something out.
 

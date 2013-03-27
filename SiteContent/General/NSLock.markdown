@@ -1,7 +1,7 @@
-What is the correct way to use [[NSLock]]?
+What is the correct way to use General/NSLock?
 
-a) enclose <code>[lock lock]</code> and <code>[lock unlock]</code> around a block of code with multiple variables that you want to keep safe, or
-b) enclose a different <code>[lock lock]</code> and <code>[lock unlock]</code> around EACH variable that you want to keep safe.
+a) enclose     [lock lock] and     [lock unlock] around a block of code with multiple variables that you want to keep safe, or
+b) enclose a different     [lock lock] and     [lock unlock] around EACH variable that you want to keep safe.
 
 Can someone help clarify for me? Thanks --Kevin
 
@@ -11,11 +11,11 @@ I would use a lock for a cluster of interdependent variables. If several variabl
 
 ----
 
-Here's my page that describes how to use [[NSLock]]:  http://alienryderflex.com/[[NSLock]].html
+Here's my page that describes how to use General/NSLock:  http://alienryderflex.com/General/NSLock.html
 
-Question:  How does [[NSLock]]'s "lock" method work?  What keeps its code from suffering the same problems that you use [[NSLock]] to prevent?  To clarify -- suppose [[NSLock]] contains code that looks like this:
+Question:  How does General/NSLock's "lock" method work?  What keeps its code from suffering the same problems that you use General/NSLock to prevent?  To clarify -- suppose General/NSLock contains code that looks like this:
 
-<code>
+    
 - (void) lock {
   if (![self isLocked]) {
     [self setLock:YES];
@@ -23,12 +23,12 @@ Question:  How does [[NSLock]]'s "lock" method work?  What keeps its code from s
   }
   else {
     ...suspend the current thread and add it to a list
-    of threads that are waiting on this [[NSLock]] object...
+    of threads that are waiting on this General/NSLock object...
   }
 }
-</code> 
+ 
 
-What would prevent the above code from malfunctioning when multiple threads execute it simultaneously?  (And you can't put lock/unlock around [[NSLock]]'s own code, as that would cause an infinite regress with stack overflow, and/or would require an infinite number of [[NSLock]] objects to implement!)
+What would prevent the above code from malfunctioning when multiple threads execute it simultaneously?  (And you can't put lock/unlock around General/NSLock's own code, as that would cause an infinite regress with stack overflow, and/or would require an infinite number of General/NSLock objects to implement!)
 
 I'm super-curious to know what the lock method does...  please illuminate the issue if you can.  Thanks, --Darel Rex Finley
 
@@ -36,7 +36,7 @@ I'm super-curious to know what the lock method does...  please illuminate the is
 
 OK, I think I figured out the answer to my own question!  It could work like this (function names are made up):
 
-<code>
+    
 - (void) lock {
 
   blockProcessorInterruptsForThisCore();
@@ -52,10 +52,10 @@ OK, I think I figured out the answer to my own question!  It could work like thi
 
   unblockProcessorInterruptsForThisCore();
   ...suspend the current thread and add it to a list
-     of threads that are waiting on this [[NSLock]] object...
+     of threads that are waiting on this General/NSLock object...
 
 }
-</code>
+
 
 Blocking interrupts (i.e. blocking preemptive multitasking for this particular processor core) guarantees that the
 checking and setting of threadId will take less time than the "dummy instructions".  That way, by the time the dummy
@@ -64,27 +64,27 @@ that threadId is non-nil, and won't even try).  Then, the one thread that sees i
 lock -- all others will be suspended.  --Darel Rex Finley
 
 ----
-You can implement a simple lock by using an atomic test-and-set instruction, which modern processors implement. You can use test-and-set to build more sophisticated constructs, such as atomic increment, etc. To see what OS X already provides for you, see [[OSAtomic]].h.
+You can implement a simple lock by using an atomic test-and-set instruction, which modern processors implement. You can use test-and-set to build more sophisticated constructs, such as atomic increment, etc. To see what OS X already provides for you, see General/OSAtomic.h.
 
 Once you have those, you can build a lock which operates entirely in userland unless there's contention. It would look something like this:
 
-<code>
+    
 -lock {
    int32_t numThreads = OSAtomicIncrement32(&lock);
    if(numThreads > 1)
-      [[SystemCallBlockUntilLockAvailable]](&lock);
+      General/SystemCallBlockUntilLockAvailable(&lock);
 }
 
 -unlock {
-   int32_t numThreads = [[OSAtomicDecrement]](&lock);
+   int32_t numThreads = General/OSAtomicDecrement(&lock);
    if(numThreads > 0)
-      [[SystemCallUnblockWaitingThreadOnLock]](&lock);
+      General/SystemCallUnblockWaitingThreadOnLock(&lock);
 }
-</code>
+
 
 Basically, use atomic operations to track the number of threads trying to get into the lock. If ever there is more than one, the extra threads call into the kernel which puts them to sleep and adds them to a queue. Then when a thread exits, it checks to see if any other threads are waiting, and if they are it calls into the kernel to have it unblock one.
 
-I'm handwaving a bit on how the kernel will do its part, but it can use atomic operations, (very) temporary interrupt disabling, and if really necessary it can use a spinlock to ensure that is internal queue is modified safely. -- [[MikeAsh]]
+I'm handwaving a bit on how the kernel will do its part, but it can use atomic operations, (very) temporary interrupt disabling, and if really necessary it can use a spinlock to ensure that is internal queue is modified safely. -- General/MikeAsh
 
 ----
 
@@ -92,9 +92,9 @@ Thanks!  (What's your name, BTW?)  I can see that an atomic (i.e. inseparable) t
 
 ----
 
-Stuff is now signed! I'm sure you're right about the original ISA. I couldn't tell you when it would have been added, but since the 386 was the first "modern" x86 processor (in the sense that it had a proper supervisor mode, MMU support, etc.), I would guess that it was introduced there. In any case, anything which can run OS X will have it. And of course the [[PowerPC]] has had such instructions since the beginning.
+Stuff is now signed! I'm sure you're right about the original ISA. I couldn't tell you when it would have been added, but since the 386 was the first "modern" x86 processor (in the sense that it had a proper supervisor mode, MMU support, etc.), I would guess that it was introduced there. In any case, anything which can run OS X will have it. And of course the General/PowerPC has had such instructions since the beginning.
 
-I've created the [[OSAtomic]] page with an overview of what it offers. Just be careful if you actually decide to use any of it, that stuff can burn. -- [[MikeAsh]]
+I've created the General/OSAtomic page with an overview of what it offers. Just be careful if you actually decide to use any of it, that stuff can burn. -- General/MikeAsh
 
 ----
 
@@ -102,17 +102,17 @@ Thanks again, Mike.  While you were posting that last reply, I found these:
 
 
 *Intel IA-32:  xchg
-*[[PowerPC]]:  lwarx/stwcx
+*General/PowerPC:  lwarx/stwcx
 
 
-They're signficiantly different in how they work, but both get the job done.  Anyway, it's good that Apple's wrapped it up in a neat thing like [[NSLock]] so I don't have to deal with it.  --Darel Rex Finley
+They're signficiantly different in how they work, but both get the job done.  Anyway, it's good that Apple's wrapped it up in a neat thing like General/NSLock so I don't have to deal with it.  --Darel Rex Finley
 
 ----
 
-According to Wikipedia, the LOCK and XCHG instructions have been part of the architecture since the 8086/8088. As for synchronization primatives, you should look at the pthread man page. Pthreads provides mutexes (which is what I suspect underlies the [[NSLock]] implementation), read/write locks, and conditions.
+According to Wikipedia, the LOCK and XCHG instructions have been part of the architecture since the 8086/8088. As for synchronization primatives, you should look at the pthread man page. Pthreads provides mutexes (which is what I suspect underlies the General/NSLock implementation), read/write locks, and conditions.
 
 Carbon multiprocessing services (http://developer.apple.com/documentation/Carbon/Reference/Multiprocessing_Services/index.html) also provides critical sections, events, semaphores, and queues. - Stephen Butler
 
 ----
 
-The pthread stuff underlies everything on OS X. [[NSLock]] and all of those Carbon things are layered on top of pthread primitives. In turn, the pthread functions are layered on top of those atomic operations and whatever kernel services they need. -- [[MikeAsh]]
+The pthread stuff underlies everything on OS X. General/NSLock and all of those Carbon things are layered on top of pthread primitives. In turn, the pthread functions are layered on top of those atomic operations and whatever kernel services they need. -- General/MikeAsh

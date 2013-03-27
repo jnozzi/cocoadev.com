@@ -1,1 +1,1 @@
-appended to discussion in [[XCodeVersionTwoDotOne]]
+appended to discussion in General/XCodeVersionTwoDotOne

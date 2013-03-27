@@ -13,18 +13,18 @@ CONNECTION class
 * time (int of travel time)
 
 
-<code>
+    
 
 Cocoa Code:
-- ([[NSMutableArray]]'')findPath:([[NSMutableArray]] '')stations start:(int)startStation end:(int)endStation path:([[NSMutableArray]]'')path {
+- (General/NSMutableArray*)findPath:(General/NSMutableArray *)stations start:(int)startStation end:(int)endStation path:(General/NSMutableArray*)path {
 
 }
 
 
-</code>
+
 
 Python Code:
-<code>
+    
 def find_shortest_path(graph, start, end, path=[]):
         path += [start]
         if start == end:
@@ -48,7 +48,7 @@ graph = {'A': ['B', 'C'],
              'F': ['C']}
 
 find_shortest_path(graph, 'A', 'D')
-</code>
+
 
 ----
 
@@ -67,9 +67,9 @@ P.S. If you are posting a homework problem to this site, shame on you.  Otherwis
 
 ----
 
-One of the solutions for solving a single instance of this problem (one routing) is the A'' search. http://en.wikipedia.org/wiki/A''_search_algorithm
+One of the solutions for solving a single instance of this problem (one routing) is the A* search. http://en.wikipedia.org/wiki/A*_search_algorithm
 
 For your first hack, depth-first if you think performance might not be a problem (will be fine if only local piece of railway)
 
 ----
-For an illustration of real-time shortest distance solving, see [[ChemicalBurn]] at http://mikeash.com/?page=software/chemicalburn/index.html . The source code is available.
+For an illustration of real-time shortest distance solving, see General/ChemicalBurn at http://mikeash.com/?page=software/chemicalburn/index.html . The source code is available.

@@ -1,59 +1,59 @@
 
 
-I have a program that exports PDF, TIFF, and PNG files so I followed Apple's Sketch example when declaring types in my <code>Info.plist</code> file:
+I have a program that exports PDF, TIFF, and PNG files so I followed Apple's Sketch example when declaring types in my     Info.plist file:
 
-<code>
+    
 <dict>
-     <key>[[CFBundleTypeExtensions]]</key>
+     <key>General/CFBundleTypeExtensions</key>
      <array>
           <string>foo</string>
      </array>
-     <key>[[CFBundleTypeName]]</key>
-     <string>[[MyDocumentFileType]]</string>
-     <key>[[CFBundleTypeRole]]</key>
+     <key>General/CFBundleTypeName</key>
+     <string>General/MyDocumentFileType</string>
+     <key>General/CFBundleTypeRole</key>
      <string>Editor</string>
-     <key>[[NSDocumentClass]]</key>
-     <string>[[MyDocument]]</string>
-     <key>[[NSExportableAs]]</key>
+     <key>General/NSDocumentClass</key>
+     <string>General/MyDocument</string>
+     <key>General/NSExportableAs</key>
      <array>
-          <string>[[NSPDFPboardType]]</string>
-          <string>[[NSTIFFPboardType]]</string>
-          <string>[[MyPNGFileType]]</string>
+          <string>General/NSPDFPboardType</string>
+          <string>General/NSTIFFPboardType</string>
+          <string>General/MyPNGFileType</string>
      </array>
 </dict>
 <dict>
-     <key>[[CFBundleTypeExtensions]]</key>
+     <key>General/CFBundleTypeExtensions</key>
      <array>
           <string>pdf</string>
      </array>
-     <key>[[CFBundleTypeName]]</key>
-     <string>[[NSPDFPboardType]]</string>
-     <key>[[CFBundleTypeRole]]</key>
+     <key>General/CFBundleTypeName</key>
+     <string>General/NSPDFPboardType</string>
+     <key>General/CFBundleTypeRole</key>
      <string>None</string>
 </dict>
 <dict>
-     <key>[[CFBundleTypeExtensions]]</key>
+     <key>General/CFBundleTypeExtensions</key>
      <array>
           <string>tiff</string>
           <string>tif</string>
      </array>
-     <key>[[CFBundleTypeName]]</key>
-     <string>[[NSTIFFPboardType]]</string>
-     <key>[[CFBundleTypeRole]]</key>
+     <key>General/CFBundleTypeName</key>
+     <string>General/NSTIFFPboardType</string>
+     <key>General/CFBundleTypeRole</key>
      <string>None</string>
 </dict>
 <dict>
-     <key>[[CFBundleTypeExtensions]]</key>
+     <key>General/CFBundleTypeExtensions</key>
      <array>
           <string>png</string>
      </array>
-     <key>[[CFBundleTypeName]]</key>
-     <string>[[MyPNGFileType]]</string>
-     <key>[[CFBundleTypeRole]]</key>
+     <key>General/CFBundleTypeName</key>
+     <string>General/MyPNGFileType</string>
+     <key>General/CFBundleTypeRole</key>
      <string>None</string>
 </dict>
-</code>
 
-Unfortunately, this has an unexpected consequence.  Calls to <code>-[[[NSDocumentController]] fileExtensionsFromType:]</code> with <code>@"[[NSPDFPboardType]]"</code> or <code>@"[[NSTIFFPboardType]]"</code> return <code>nil</code> but calling the method with <code>@"[[MyPNGFileType]]"</code> still works as expected.
+
+Unfortunately, this has an unexpected consequence.  Calls to     -General/[NSDocumentController fileExtensionsFromType:] with     @"General/NSPDFPboardType" or     @"General/NSTIFFPboardType" return     nil but calling the method with     @"General/MyPNGFileType" still works as expected.
 
 So why is this happening?  Thanks!

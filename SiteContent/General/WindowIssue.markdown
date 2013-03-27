@@ -12,13 +12,13 @@ Thanks in advance. I owe you all one.
 
 ----
 
-ehm... why don't they show up when you send them a makeKeyAndOrderFront? this is how I go about windows that are set not to be visible at launch time (with the exception of dynamically loaded windows, which I keep in their own nib and load with an [[NSWindowController]]).
+ehm... why don't they show up when you send them a makeKeyAndOrderFront? this is how I go about windows that are set not to be visible at launch time (with the exception of dynamically loaded windows, which I keep in their own nib and load with an General/NSWindowController).
 
 ----
 
 Are you sure your outlets are connected to actual windows? Have you logged window descriptions of all three windows?
 
-[[NSLog]](@"window1: %@ window2: %@ window3: %@", [window1 description], [window2 description], [window3 description]); 
+General/NSLog(@"window1: %@ window2: %@ window3: %@", [window1 description], [window2 description], [window3 description]); 
 
 If your windows are talking back to you, then I have to agree with the comment above.... ehm... why don't they show up?? The only other thing I can think of is maybe the frame origins are getting messed up somewhere and the windows are getting positioned by the table lamp next to your monitor :-)
 

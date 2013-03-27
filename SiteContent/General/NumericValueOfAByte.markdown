@@ -2,7 +2,7 @@
 
 Okay, I want something simple, but yet, I can't find the appropriate method to do it.
 
-I have a [[NSData]] with data in it, several thousands of hexadecimal values. I want to scan through the [[NSData]] and get something from every byte.
+I have a General/NSData with data in it, several thousands of hexadecimal values. I want to scan through the General/NSData and get something from every byte.
 
 For the first half of the byte (sometimes called nibble), I want it's string value. For example : 6 becomes "6" and A becomes "a"...
 For the other half, I want it's decimal value. For example : 6 gives me 6 and F gives me 15...
@@ -15,7 +15,7 @@ Any hint ?
 
 For starters play with this:
 
-<code>
+    
 
     unsigned char byte = 0xff;
     unsigned char fourMostSignificantBits = byte >> 4;
@@ -25,13 +25,13 @@ For starters play with this:
     printf("4msb %i 4lsb %i\n", fourMostSignificantBits, fourLeastSignificantBits);
     printf("4msb <%c> 4lsb <%c>\n", fourMostSignificantBits, fourLeastSignificantBits);
 
-</code>
+
 
 After you feel comfortable with these operations, you can move to pointers:
 
-<code>
+    
 
-    unsigned char ''bytes = (unsigned char '')[dataObject bytes];
+    unsigned char *bytes = (unsigned char *)[dataObject bytes];
     int i;
     int length = ([dataObject length] < 100) ? [dataObject length] : 100;
     for (i = 0; i < length; i++) {
@@ -41,13 +41,13 @@ After you feel comfortable with these operations, you can move to pointers:
         unsigned char fmsbASCI = fmsb + ((fmsb > 9) ? 87 : 48);
         unsigned char flsbASCI = flsb + ((flsb > 9) ? 87 : 48);
         
-        [[NSLog]](@"fmsb: hex: %x int: %2i asci: %c     flsb: hex: %x int: %2i asci: %c", fmsb, fmsb, fmsbASCI, flsb,  flsb, flsbASCI);
+        General/NSLog(@"fmsb: hex: %x int: %2i asci: %c     flsb: hex: %x int: %2i asci: %c", fmsb, fmsb, fmsbASCI, flsb,  flsb, flsbASCI);
         
     }
 
-</code>
 
-This is basic bit manipulation. Any good C book should cover shifting and masking bits. When you say a string value do you mean the asci value? When you say <code>6</code> do you mean 0110?
+
+This is basic bit manipulation. Any good C book should cover shifting and masking bits. When you say a string value do you mean the asci value? When you say     6 do you mean 0110?
 When you say A do you mean 1010? 
 
 ----

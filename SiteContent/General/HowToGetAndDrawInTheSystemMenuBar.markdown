@@ -1,6 +1,6 @@
-%%BEGINENTRY%%
+
 Drawing in the system menu bar.
-%%ENDENTRY%%
+
 
 I'm trying to get the System Menu Bar View and then draw in it... 
 
@@ -11,5 +11,5 @@ The system menu bar does not belong to you. There is no public mechanism to modi
 ----
 
 ----
-I've tidied up your wiki formatting. Theres a page about it at [[TextFormattingRules]].
+I've tidied up your wiki formatting. Theres a page about it at General/TextFormattingRules.
 ----

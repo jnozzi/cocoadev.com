@@ -1,13 +1,13 @@
 
 
-The just added methods are rather overly complicated..  I think I can fix hasKey without testing in [[ProjectBuilder]], but for the others I'm too chicken.  If I screw it up anyway, well, there's the history. :)
+The just added methods are rather overly complicated..  I think I can fix hasKey without testing in General/ProjectBuilder, but for the others I'm too chicken.  If I screw it up anyway, well, there's the history. :)
 
-By the way, to whoever coded hasKey:  I suspect you did it the way you did because you were worried about keys whose value is nil?  Worry not, [[NSDictionaries]] can't hold nil as a value.
+By the way, to whoever coded hasKey:  I suspect you did it the way you did because you were worried about keys whose value is nil?  Worry not, General/NSDictionaries can't hold nil as a value.
 
-''Through the magic of toll-free bridging, it can, since [[CFDictionary]] can. Of course, you would be perfectly justified in assuming your [[NSDictionaries]] are normal and can't hold nil. I don't know how you could check for it without dropping down to [[CFDictionary]] calls anyway.''
+*Through the magic of toll-free bridging, it can, since General/CFDictionary can. Of course, you would be perfectly justified in assuming your General/NSDictionaries are normal and can't hold nil. I don't know how you could check for it without dropping down to General/CFDictionary calls anyway.*
 
-'''[[NSDictionary]]_[[CocoaDevUsersAdditions]].h'''
-<code>
+**General/NSDictionary_General/CocoaDevUsersAdditions.h**
+    
  //NSDictionary_CocoaDevUsersAdditions.h
  
  #import <Foundation/Foundation.h>
@@ -28,10 +28,10 @@ By the way, to whoever coded hasKey:  I suspect you did it the way you did becau
  - (NSDictionary *)resultsOfMakeObjectsPerformSelector:(SEL)selector;
  - (NSDictionary *)resultsOfMakeObjectsPerformSelector:(SEL)selector withObject:(id)object;
  @end
-</code>
 
-'''[[NSDictionary]]_[[CocoaDevUsersAdditions]].m'''
-<code>
+
+**General/NSDictionary_General/CocoaDevUsersAdditions.m**
+    
  //NSDictionary_CocoaDevUsersAdditions.m
  #import "NSDictionary_CocoaDevUsersAdditions.h"
  
@@ -90,8 +90,8 @@ By the way, to whoever coded hasKey:  I suspect you did it the way you did becau
  
  -(NSArray *)allObjectsSortedByKeySelector:(SEL)sortSelector
  {
-   NSArray *sortedKeys = [[self allKeys] sortedArrayUsingSelector:sortSelector];
-   NSArray *resultArray = [self objectsForKeys:sortedKeys notFoundMarker:[NSNull null]];
+   NSArray *sortedKeys = General/self allKeys] sortedArrayUsingSelector:sortSelector];
+   NSArray *resultArray = [self objectsForKeys:sortedKeys notFoundMarker:[NSNull null;
    return resultArray;
  }
  
@@ -110,7 +110,7 @@ By the way, to whoever coded hasKey:  I suspect you did it the way you did becau
  }
  
  @end
-</code>
 
 
-[[Category:CocoaDevUsersAdditions]]
+
+General/Category:CocoaDevUsersAdditions

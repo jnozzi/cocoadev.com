@@ -1,8 +1,8 @@
 
 
-[[ObjC]] to [[PerlLang]] bridge. See http://www.camelbones.org/.
+General/ObjC to General/PerlLang bridge. See http://www.camelbones.org/.
 
-Written and maintained by [[ShermPendley]].  After [[CamelBones]] 1.0.3, Sherm took a long hiatus, during which CB went essentially unmaintained and supported neither Leopard nor Snow Leopard. Sherm returned to active development in 2009, and [[CamelBones]] 1.1 was released in November of 2009 with support for Panther, Tiger, Leopard, and Snow Leopard.
+Written and maintained by General/ShermPendley.  After General/CamelBones 1.0.3, Sherm took a long hiatus, during which CB went essentially unmaintained and supported neither Leopard nor Snow Leopard. Sherm returned to active development in 2009, and General/CamelBones 1.1 was released in November of 2009 with support for Panther, Tiger, Leopard, and Snow Leopard.
 
 ----
 
@@ -13,32 +13,32 @@ Here's an ok example, but you have to make your own project and interface in IB.
 4 - add the three interface elements specified in the header to your IB project, and connect them accordingly.
 5 - run
 
-<code>
+    
 
 #import <Cocoa/Cocoa.h>
-#import <[[CamelBones]]/[[CamelBones]].h>
+#import <General/CamelBones/General/CamelBones.h>
 
-@interface Controller : [[NSObject]]
+@interface Controller : General/NSObject
 {
 	//Make all three of these in your window and connect controller to them
-	[[IBOutlet]] id textField; // For entering the URL; connect action to getHTML
-	[[IBOutlet]] id tableView; // Connect datasource to controller
-       [[IBOutlet]] id textView;
+	General/IBOutlet id textField; // For entering the URL; connect action to getHTML
+	General/IBOutlet id tableView; // Connect datasource to controller
+       General/IBOutlet id textView;
     
-	[[NSMutableArray]] ''downloads;
-       [[CBPerl]] ''perlObject;
+	General/NSMutableArray *downloads;
+       General/CBPerl *perlObject;
 }
 
-- ([[IBAction]])getHTML:(id)sender;
-- ([[IBAction]])displayHTML:([[NSString]] '')displayString;
-- (void)parseHTML:([[NSString]] '')htmlString;
+- (General/IBAction)getHTML:(id)sender;
+- (General/IBAction)displayHTML:(General/NSString *)displayString;
+- (void)parseHTML:(General/NSString *)htmlString;
 - (void)setDownloads;
 
 @end
 
-</code>
 
-<code>
+
+    
 
 #import "Controller.h"
 
@@ -52,9 +52,9 @@ Here's an ok example, but you have to make your own project and interface in IB.
 	self = [super init];
 	
 	if ( self ) {		
-		downloads = [[[[NSMutableArray]] alloc] init];
-		perlObject = [[[[CBPerl]] alloc] init];
-			[perlObject useModule: @"HTML::[[LinkExtor]]"];
+		downloads = General/[[NSMutableArray alloc] init];
+		perlObject = General/[[CBPerl alloc] init];
+			[perlObject useModule: @"HTML::General/LinkExtor"];
 	}
 	
 	return self;
@@ -63,33 +63,33 @@ Here's an ok example, but you have to make your own project and interface in IB.
 #pragma mark -
 #pragma mark IB Actions
 
-- ([[IBAction]])getHTML:(id)sender
+- (General/IBAction)getHTML:(id)sender
 {
 	int encoding = 1; // Not neccessarily the best value
-	[[NSError]] ''error;
-	[[NSString]] ''html = [[[NSString]] stringWithContentsOfURL:[NSURL [[URLWithString]]:[sender stringValue]] encoding:encoding error:&error];
+	General/NSError *error;
+	General/NSString *html = General/[NSString stringWithContentsOfURL:[NSURL General/URLWithString:[sender stringValue]] encoding:encoding error:&error];
 
 	if ( html ) {
 		[self displayHTML:html];
 		[self parseHTML:html];
 		[self setDownloads];
 	} else {
-		[[NSLog]](@"Load failed with error %@", [error localizedDescription]);
+		General/NSLog(@"Load failed with error %@", [error localizedDescription]);
 	}
 }
 
-- ([[IBAction]])displayHTML:([[NSString]] '')displayString
+- (General/IBAction)displayHTML:(General/NSString *)displayString
 {
     [textView setString:displayString];
 }
 
 #pragma mark -
-#pragma mark Core functions illustrating embedded [[CamelBones]] perl
+#pragma mark Core functions illustrating embedded General/CamelBones perl
 
-- (void)parseHTML:([[NSString]] '')htmlString
+- (void)parseHTML:(General/NSString *)htmlString
 {
 	[perlObject setValue:htmlString forKey:@"string"];
-	[perlObject eval:@"$parser = HTML::[[LinkExtor]]->new;"];
+	[perlObject eval:@"$parser = HTML::General/LinkExtor->new;"];
 	[perlObject eval:@"$parser->parse($string);"];
 }
 
@@ -97,7 +97,7 @@ Here's an ok example, but you have to make your own project and interface in IB.
 {
 	[perlObject eval:@"@links = $parser->links;"];
 	
-	[[CBPerlArray]] ''links;
+	General/CBPerlArray *links;
 		links = [perlObject namedArray:@"links"];
 	
 	//[downloads removeAllObjects];
@@ -107,20 +107,20 @@ Here's an ok example, but you have to make your own project and interface in IB.
 }
 
 #pragma mark -
-#pragma mark [[TableView]] datasource methods
+#pragma mark General/TableView datasource methods
 
-- (id)tableView:([[NSTableView]] '')aTableView objectValueForTableColumn:([[NSTableColumn]] '')aTableColumn row:(int)rowIndex
+- (id)tableView:(General/NSTableView *)aTableView objectValueForTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
 {
     return [downloads objectAtIndex:rowIndex];
 }
 
-- (int)numberOfRowsInTableView:([[NSTableView]] '')aTableView
+- (int)numberOfRowsInTableView:(General/NSTableView *)aTableView
 {
     return [downloads count];
 }
 
 @end
 
-</code>
+
 
 -- Stephen

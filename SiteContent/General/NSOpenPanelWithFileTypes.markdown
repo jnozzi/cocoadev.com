@@ -1,57 +1,57 @@
-We've probably all seen the regular [[NSOpenPanel]] sample code from [[AppleComputer]] - it goes like this:
+We've probably all seen the regular General/NSOpenPanel sample code from General/AppleComputer - it goes like this:
 
-<code>
+    
 - (void)openDoc:(id)sender
 {
     int result;
-    [[NSArray]] ''fileTypes = [[[NSArray]] arrayWithObject:@"td"];
-    [[NSOpenPanel]] ''oPanel = [[[NSOpenPanel]] openPanel];
+    General/NSArray *fileTypes = General/[NSArray arrayWithObject:@"td"];
+    General/NSOpenPanel *oPanel = General/[NSOpenPanel openPanel];
 
     [oPanel setAllowsMultipleSelection:YES];
-    result = [oPanel runModalForDirectory:[[NSHomeDirectory]]() 
+    result = [oPanel runModalForDirectory:General/NSHomeDirectory() 
 file:nil types:fileTypes];
-    if (result == [[NSOKButton]]) {
-        [[NSArray]] ''filesToOpen = [oPanel filenames];
+    if (result == General/NSOKButton) {
+        General/NSArray *filesToOpen = [oPanel filenames];
         int i, count = [filesToOpen count];
         for (i=0; i<count; i++) {
-            [[NSString]] ''aFile = [filesToOpen objectAtIndex:i];
-            id currentDoc = [[[[ToDoDoc]] alloc] initWithFile:aFile];
+            General/NSString *aFile = [filesToOpen objectAtIndex:i];
+            id currentDoc = General/[[ToDoDoc alloc] initWithFile:aFile];
         }
     }
 }
-</code>
 
-This works only with filename extensions, however. Sometimes it might be desirable to display files that have a certain [[FileType]] instead of a filename extension.
+
+This works only with filename extensions, however. Sometimes it might be desirable to display files that have a certain General/FileType instead of a filename extension.
 
 
 To do that, simply change the line 
 
-<code>
-[[NSArray]] ''fileTypes = [[[NSArray]] arrayWithObject:@"td"];
-</code>
+    
+General/NSArray *fileTypes = General/[NSArray arrayWithObject:@"td"];
+
 
 in the above example to something like this:
 
-<code>
-[[NSArray]]'' fileTypes = [[[NSArray]] 
-arrayWithObjects:[[NSFileTypeForHFSTypeCode]]('TEXT'), nil];
-</code>
+    
+General/NSArray* fileTypes = General/[NSArray 
+arrayWithObjects:General/NSFileTypeForHFSTypeCode('TEXT'), nil];
+
 
 (Based on a a mailing list post by Brant Vasilieff.)
 
-'''Question:''' Does anyone know if the nil object in the last code line is really necessary?
+**Question:** Does anyone know if the nil object in the last code line is really necessary?
 ----
 
-''Answer:'' yes. 
+*Answer:* yes. 
 
-You bet your ASCII. Read up on 'arrayWithObjects' in [[NSArray]]. This is a varargs style list of inputs:
+You bet your ASCII. Read up on 'arrayWithObjects' in General/NSArray. This is a varargs style list of inputs:
 
-<code>
+    
 + (id)arrayWithObjects:(id)firstObj, ...;
-</code>
+
 
 The C spec basically requires variable-length parameter lists to declare their parameters explicitly (as in printf) or for lists to be null terminated. (Hmmm ... it's like the difference between pascal strings and c strings.) If you skip the nil your app will die a horrible death as it chews through your program's address space looking for a nil word.
 
 If you really hate nils just change 'arrayWithObjects' to 'arrayWithObject'. arrayWithObject takes only one parameter. But 'arrayWithObjects' is easier to extend when you copy/paste it into your next project ... 
 
--- [[MikeTrent]]
+-- General/MikeTrent

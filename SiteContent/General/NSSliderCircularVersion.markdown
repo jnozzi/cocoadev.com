@@ -1,8 +1,8 @@
-Hi, been playing with the new [[NSSlider]] in Panther, the little circular one. I can't find any documentation that would allow me to do the following...
+Hi, been playing with the new General/NSSlider in Panther, the little circular one. I can't find any documentation that would allow me to do the following...
 
-- There's no way to dictate that the circular slider should ''stop'' when it reaches its maximum value, it just instantly goes back to its min value and starts counting up again as you slide. This makes it almost impossible to quickly use the circular [[NSSlider]] to set it to the maximum value. Please tell me I am wrong about this, the cool new slider is useless to me without this.
+- There's no way to dictate that the circular slider should *stop* when it reaches its maximum value, it just instantly goes back to its min value and starts counting up again as you slide. This makes it almost impossible to quickly use the circular General/NSSlider to set it to the maximum value. Please tell me I am wrong about this, the cool new slider is useless to me without this.
 
-- I can't find a way to have it return only integer values without including the ugly tick-marks, is there a way to have my cake ''and'' eat it?
+- I can't find a way to have it return only integer values without including the ugly tick-marks, is there a way to have my cake *and* eat it?
 
 Let me know what you guys are thinking about this new widget,
 
@@ -10,31 +10,31 @@ Let me know what you guys are thinking about this new widget,
 
 ----
 
-The following code works just fine for me using an circular [[NSSlider]] without tick marks:
+The following code works just fine for me using an circular General/NSSlider without tick marks:
 
-<code>
+    
     int intValue = [_testSlider intValue];
     float floatValue = [_testSlider floatValue];
     
-    [[NSLog]](@"intValue = %i", intValue);
-    [[NSLog]](@"floatValue = %f", floatValue);
-</code>
+    General/NSLog(@"intValue = %i", intValue);
+    General/NSLog(@"floatValue = %f", floatValue);
+
 
 Giving me:
-<code>
-2003-11-18 20:30:07.640 [[SliderTest]][412] intValue = 50
-2003-11-18 20:30:07.641 [[SliderTest]][412] floatValue = 50.000000
-2003-11-18 20:30:07.781 [[SliderTest]][412] intValue = 46
-2003-11-18 20:30:07.781 [[SliderTest]][412] floatValue = 46.101044
-2003-11-18 20:30:07.834 [[SliderTest]][412] intValue = 42
-2003-11-18 20:30:07.835 [[SliderTest]][412] floatValue = 42.620819
-2003-11-18 20:30:08.581 [[SliderTest]][412] intValue = 39
-2003-11-18 20:30:08.581 [[SliderTest]][412] floatValue = 39.758362
-</code>
+    
+2003-11-18 20:30:07.640 General/SliderTest[412] intValue = 50
+2003-11-18 20:30:07.641 General/SliderTest[412] floatValue = 50.000000
+2003-11-18 20:30:07.781 General/SliderTest[412] intValue = 46
+2003-11-18 20:30:07.781 General/SliderTest[412] floatValue = 46.101044
+2003-11-18 20:30:07.834 General/SliderTest[412] intValue = 42
+2003-11-18 20:30:07.835 General/SliderTest[412] floatValue = 42.620819
+2003-11-18 20:30:08.581 General/SliderTest[412] intValue = 39
+2003-11-18 20:30:08.581 General/SliderTest[412] floatValue = 39.758362
 
-About the maximum value, maybe the circulat [[NSSlider]]  is designed to be used as Apple does in the Font panel, to select a shadow angle.
 
-[[JacobHazelgrove]]
+About the maximum value, maybe the circulat General/NSSlider  is designed to be used as Apple does in the Font panel, to select a shadow angle.
+
+General/JacobHazelgrove
 
 ----
 

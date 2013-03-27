@@ -145,7 +145,7 @@ NSImage_CoreImageAdditions.m
  	NSAutoreleasePool *pool;
  	NSBitmapImageRep *rep;
  		
- 	pool = [[NSAutoreleasePool alloc] init];
+ 	pool = General/NSAutoreleasePool alloc] init];
  	
  	if (filterName) {
  		rep = [self bitmapImageRepresentation];
@@ -180,7 +180,7 @@ NSImage_CoreImageAdditions.m
  	}
  	
  	if (!rep)
- 		rep = [NSBitmapImageRep imageRepWithData: [self TIFFRepresentation]];
+ 		rep = [NSBitmapImageRep imageRepWithData: [self TIFFRepresentation;
  	
  	return (NSBitmapImageRep *)rep;
  }

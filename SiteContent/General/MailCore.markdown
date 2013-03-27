@@ -1,23 +1,23 @@
-[[MailCore]] is a Cocoa e-mail framework built by Matt Ronge that is the core of the e-mail client Kiwi. [[MailCore]] provides a nice set of objects for working with IMAP, MIME and SMTP, all of which use the C e-mail library [[LibEtPan]].
+General/MailCore is a Cocoa e-mail framework built by Matt Ronge that is the core of the e-mail client Kiwi. General/MailCore provides a nice set of objects for working with IMAP, MIME and SMTP, all of which use the C e-mail library General/LibEtPan.
 
-Documentation is available: [http://www.theronge.com/[[MailCore]]/API/]
-Download from: [http://www.theronge.com/[[MailCore]]/]
+Documentation is available: [http://www.theronge.com/General/MailCore/API/]
+Download from: [http://www.theronge.com/General/MailCore/]
 Site: [http://www.theronge.com/mailcore/]
 
 ----
 
 From your site:
-<code>
-[[CTCoreAccount]] ''account = [[[[CTCoreAccount]] alloc] init];
+    
+General/CTCoreAccount *account = General/[[CTCoreAccount alloc] init];
 [account connectToServer:@"mail.theronge.com" port:143 connectionType:CONNECTION_TYPE_PLAIN authType:IMAP_AUTH_TYPE_PLAIN login:@"test" password:@"none"];
-</code>
+
 
 You may want to make this more Cocoa-ish and use enumerations instead of what appears to be #defines:
 
-<code>
-[[CTCoreAccount]] ''account = [[[[CTCoreAccount]] alloc] init];
-[account connectToServer:@"mail.theronge.com" port:143 connectionType:[[CTPlainConnection]] authType:[[CTIMAPAuthPlain]] login:@"test" password:@"none"];
-</code>
+    
+General/CTCoreAccount *account = General/[[CTCoreAccount alloc] init];
+[account connectToServer:@"mail.theronge.com" port:143 connectionType:General/CTPlainConnection authType:General/CTIMAPAuthPlain login:@"test" password:@"none"];
+
 
 Or something like that... :-)
 ----

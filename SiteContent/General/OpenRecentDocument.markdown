@@ -1,6 +1,6 @@
 Hi,
 
-I want to trap ([[NSDocumentController]]) _openRecentDocument in my document based application.
+I want to trap (General/NSDocumentController) _openRecentDocument in my document based application.
 
 I known that this function is private but can I do that ?
 
@@ -8,18 +8,18 @@ I known that this function is private but can I do that ?
 
 ----
 
-1) Creating a subclass of [[NSDocumentController]] like this :
+1) Creating a subclass of General/NSDocumentController like this :
 
-<code>
+    
 
-#import "[[AMDocumentController]].h"
+#import "General/AMDocumentController.h"
 #import "Controller.h"
 
-@implementation [[AMDocumentController]]
+@implementation General/AMDocumentController
 
--([[IBAction]]) _openRecentDocument:(id)sender
+-(General/IBAction) _openRecentDocument:(id)sender
 {
-	Controller ''ctrl = (Controller '')[[[NSApp]] delegate];
+	Controller *ctrl = (Controller *)General/[NSApp delegate];
 	
 	if([ctrl respondsToSelector:@selector(setFlagOpenRecentFile:)]){
 		[ctrl setFlagOpenRecentFile:YES];
@@ -31,7 +31,7 @@ I known that this function is private but can I do that ?
 
 @end
 
-</code>
+
 
 2) add member m_flagOpenRecentFile and function setFlagOpenRecentFile into your controller class.
 

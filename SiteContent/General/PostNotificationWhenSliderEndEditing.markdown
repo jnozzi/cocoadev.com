@@ -1,37 +1,37 @@
-If you need to have a continuous slider that updates one thing on the fly but has a major process you want done only when the user is done adjusting the slider, implement the following function in a category on [[NSSliderCell]].
+If you need to have a continuous slider that updates one thing on the fly but has a major process you want done only when the user is done adjusting the slider, implement the following function in a category on General/NSSliderCell.
 
-<code>
+    
 
-- (void)stopTracking:([[NSPoint]])lastPoint at:([[NSPoint]])stopPoint 
-    inView:([[NSView]] '')controlView mouseIsUp:(BOOL)flag
+- (void)stopTracking:(General/NSPoint)lastPoint at:(General/NSPoint)stopPoint 
+    inView:(General/NSView *)controlView mouseIsUp:(BOOL)flag
 {
 
     if (flag == YES) {
-        [[NSNotificationCenter]] ''nc = [[[NSNotificationCenter]] defaultCenter];
-        [nc postNotificationName:@"[[SliderEndEditing]]"
+        General/NSNotificationCenter *nc = General/[NSNotificationCenter defaultCenter];
+        [nc postNotificationName:@"General/SliderEndEditing"
                           object:[self controlView]];
     }
 
     [super stopTracking:lastPoint at:stopPoint 
                  inView:controlView mouseIsUp:flag];
 }
-</code>
+
 
 -Gorman
 
-''Does this count as a tutorial? It seems kinda small :)''
+*Does this count as a tutorial? It seems kinda small :)*
 Agreed. But it's not really a discussion either. Just thought it might be useful to somone so stuck it in somehwere. Feel free to delete it.
 
 ----
 
-AFAIK, this isn't a smart thing to do. The problem is you are '''replacing''' API with a category. You are, in effect, telling the [[ObjC]] runtime to use your version of -stopTracking:at:inView:mouseIsUp: instead of Apple's version. "super" here doesn't mean "[[NSSliderCell]]", it means "[[NSActionCell]]".
+AFAIK, this isn't a smart thing to do. The problem is you are **replacing** API with a category. You are, in effect, telling the General/ObjC runtime to use your version of -stopTracking:at:inView:mouseIsUp: instead of Apple's version. "super" here doesn't mean "General/NSSliderCell", it means "General/NSActionCell".
 
 Here's a test program that demonstrates this point. Note that when you run the program you'll get a runtime exception because "super" doesn't refer to the original version of the class we're modifying:
 
-<code>
+    
 #import <Foundation/Foundation.h>
 
-@interface Foo : [[NSObject]]
+@interface Foo : General/NSObject
 {
 }
 - (void)doWork;
@@ -39,7 +39,7 @@ Here's a test program that demonstrates this point. Note that when you run the p
 @implementation Foo
 - (void)doWork
 {
-    [[NSLog]](@"foo doWork");
+    General/NSLog(@"foo doWork");
 }
 @end
 
@@ -49,62 +49,62 @@ Here's a test program that demonstrates this point. Note that when you run the p
 @implementation Foo (bar_category)
 - (void)doWork
 {
-    [[NSLog]](@"bar doWork");
+    General/NSLog(@"bar doWork");
     [super doWork];
 }
 @end
 
-int main (int argc, const char '' argv[]) {
-    [[NSAutoreleasePool]] '' pool = [[[[NSAutoreleasePool]] alloc] init];
-    Foo ''foo = [[Foo alloc] init];
+int main (int argc, const char * argv[]) {
+    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+    Foo *foo = General/Foo alloc] init];
 
     [foo doWork];
 
     // insert code here...
-    [[NSLog]](@"Hello, World!");
+    [[NSLog(@"Hello, World!");
     [pool release];
     return 0;
 }
-</code>
+
 
 When I run it, I get this:
 
-<code>
+    
 bar doWork
-''''' -[Foo doWork]: selector not recognized
-''''' Uncaught exception: <[[NSInvalidArgumentException]]> 
-''''' -[Foo doWork]: selector not recognized
-</code>
+*** -[Foo doWork]: selector not recognized
+*** Uncaught exception: <General/NSInvalidArgumentException> 
+*** -[Foo doWork]: selector not recognized
 
-Why is this dangerous? Since you don't have source for [[NSSliderCell]], you don't know what code you've just replaced. Is it critical for the operation of the object? I guess it doesn't look like it now, but perhaps subtle runtime problems will start to appear. Or your app may break during the next OS release. 
 
-Of course, you won't have this problem if you simply subclass [[NSSliderCell]]. "super" will work properly, your modified sliders will be distinguishable from normal sliders, and so on. Subclassing is the proper thing to do here, not using a category. I would go so far as to say that while there are a few distinct cases where [[CategoriesAreGood]], most of the time [[CategoriesAreBad]]. I liken them to C's "goto" statement. I use them all the time to do the one thing they're good for, and acknowledge the rest of the time they are bad.
+Why is this dangerous? Since you don't have source for General/NSSliderCell, you don't know what code you've just replaced. Is it critical for the operation of the object? I guess it doesn't look like it now, but perhaps subtle runtime problems will start to appear. Or your app may break during the next OS release. 
+
+Of course, you won't have this problem if you simply subclass General/NSSliderCell. "super" will work properly, your modified sliders will be distinguishable from normal sliders, and so on. Subclassing is the proper thing to do here, not using a category. I would go so far as to say that while there are a few distinct cases where General/CategoriesAreGood, most of the time General/CategoriesAreBad. I liken them to C's "goto" statement. I use them all the time to do the one thing they're good for, and acknowledge the rest of the time they are bad.
 
 Here's a sample header
 
-<code>
+    
 
-#import <[[AppKit]]/[[AppKit]].h>
+#import <General/AppKit/General/AppKit.h>
 
-#define kNotifySliderCellDidEndEditing @"[[NotifySliderCellDidEndEditing]]"
+#define kNotifySliderCellDidEndEditing @"General/NotifySliderCellDidEndEditing"
 
-@interface [[NotifySliderCell]] : [[NSSliderCell]]
+@interface General/NotifySliderCell : General/NSSliderCell
 @end
-</code>
+
 
 Here's the implementation:
 
-<code>
-#import "[[NotifySliderCell]].h"
+    
+#import "General/NotifySliderCell.h"
 
-@implementation [[NotifySliderCell]]
+@implementation General/NotifySliderCell
 
-- (void)stopTracking:([[NSPoint]])lastPoint at:([[NSPoint]])stopPoint 
-    inView:([[NSView]] '')controlView mouseIsUp:(BOOL)flag
+- (void)stopTracking:(General/NSPoint)lastPoint at:(General/NSPoint)stopPoint 
+    inView:(General/NSView *)controlView mouseIsUp:(BOOL)flag
 {
 
     if (flag == YES) {
-        [[NSNotificationCenter]] ''nc = [[[NSNotificationCenter]] defaultCenter];
+        General/NSNotificationCenter *nc = General/[NSNotificationCenter defaultCenter];
         [nc postNotificationName:kNotifySliderCellDidEndEditing
                           object:[self controlView]];
     }
@@ -112,10 +112,10 @@ Here's the implementation:
     [super stopTracking:lastPoint at:stopPoint 
                  inView:controlView mouseIsUp:flag];
 }
-</code>
 
-In order to use this you need to set your slider's cell somewhere early on. You use -[[[NSControl]] setCell:] to do that.
+
+In order to use this you need to set your slider's cell somewhere early on. You use -General/[NSControl setCell:] to do that.
 
 Another approach, one I would be more likely to use, would be to send a special message, like a delegate message, to the cell's target. This target is the same object that is notified when the value changes in general, and is often interested in both intermediate and final results. So rather than post a notification, I would see if the target responds to my special selector, and send the message if true. I'll leave that variant as an exercise...
 
--- [[MikeTrent]]
+-- General/MikeTrent

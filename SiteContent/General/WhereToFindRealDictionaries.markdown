@@ -1,4 +1,4 @@
-I'm looking for dictionaries to transform them into [[NSDictionary]] or [[NSArray]] objects. If they can be found already formatted, it's even better. Does anyone know where I can find this ? I want to make a prog that can verify if a certain word exists. Also, if possible, a french list of words. In fact, as many languages as possible...
+I'm looking for dictionaries to transform them into General/NSDictionary or General/NSArray objects. If they can be found already formatted, it's even better. Does anyone know where I can find this ? I want to make a prog that can verify if a certain word exists. Also, if possible, a french list of words. In fact, as many languages as possible...
 
 -- Trax
 
@@ -8,9 +8,9 @@ How about [http://wordlist.sourceforge.net/]? And I'm assuming you know about /u
 
 ----
 
-The Cocoa [[NSSpellChecker]] class will let you check for the existence of a word.  See the methods <code>checkSpellingOfString:startingAt:</code> and <code>checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:</code> in http://developer.apple.com/documentation/Cocoa/Reference/[[ApplicationKit]]/ObjC_classic/Classes/[[NSSpellChecker]].html
+The Cocoa General/NSSpellChecker class will let you check for the existence of a word.  See the methods     checkSpellingOfString:startingAt: and     checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount: in http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSSpellChecker.html
 
---[[PhilippeMougin]]
+--General/PhilippeMougin
 
 ----
 
@@ -18,15 +18,15 @@ Those are good ideas, but I actually need the list itself because I want to sort
 
 ----
 
-I would use a text editor like [[BBEdit]] to do a find and replace on the wordlist file of your choice and format it in plist form, then use <code>- [[[NSString]] propertyList]</code> or <code>+ [[[NSArray]] arrayWithContentsOfFile:]</code> to convert it to an object of your choice. --[[RobinHP]]
+I would use a text editor like General/BBEdit to do a find and replace on the wordlist file of your choice and format it in plist form, then use     - General/[NSString propertyList] or     + General/[NSArray arrayWithContentsOfFile:] to convert it to an object of your choice. --General/RobinHP
 
 ----
 
-I think dict.org might have what you are looking for.  If you visit the links page http://www.dict.org/links.html you will find a list to ftp servers such as ftp://ftp.dict.org/pub/dict/ where you can download the Pre-formatted databases, their in the pre directory.  You will find [[WordNet]] and the Webster's Revised Unabridged Dictionary (1913) among many others.  You can also scroll down to the DICT Databases section of the page and download the raw data directly from the source of the dictionaries. If you visit http://www.freedict.de/ you will find a collection of free bilingual dictionaries.
+I think dict.org might have what you are looking for.  If you visit the links page http://www.dict.org/links.html you will find a list to ftp servers such as ftp://ftp.dict.org/pub/dict/ where you can download the Pre-formatted databases, their in the pre directory.  You will find General/WordNet and the Webster's Revised Unabridged Dictionary (1913) among many others.  You can also scroll down to the DICT Databases section of the page and download the raw data directly from the source of the dictionaries. If you visit http://www.freedict.de/ you will find a collection of free bilingual dictionaries.
 
---[[EdwardHillenbrand]]
+--General/EdwardHillenbrand
 
-''The freedict.de only has binary data for a particular - wie sagt man? - engine - but I found a nice German-English text set at''
+*The freedict.de only has binary data for a particular - wie sagt man? - engine - but I found a nice German-English text set at*
 
 http://dict.tu-chemnitz.de/
 
@@ -36,7 +36,7 @@ dict.org seems great, but alas, I can't get access to their ftp server. And all 
 
 ----
 
-The build in spellchecker dictionaries are at /System/Library/Services/[[AppleSpell]].service/Contents/Resources/ but they're binary files.
+The build in spellchecker dictionaries are at /System/Library/Services/General/AppleSpell.service/Contents/Resources/ but they're binary files.
 
 ----
 

@@ -6,4 +6,4 @@ http://developer.apple.com/library/mac/#samplecode/SimpleScriptingPlugin/Introdu
 
 -----
 
-[[HowToSupportAppleScript]]
+General/HowToSupportAppleScript

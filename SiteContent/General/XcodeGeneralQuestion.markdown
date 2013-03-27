@@ -1,4 +1,4 @@
-I am new to cocoa. The only coding I have done is with Actionscript, CSS, HTML, some [[JavaScript]], some XML and PHP. I am trying out the core data feature in xcode and have made a few things. Sometimes my apps wont work on any computer except the one it was created on. What exactly would contribute to that in the build settings?
+I am new to cocoa. The only coding I have done is with Actionscript, CSS, HTML, some General/JavaScript, some XML and PHP. I am trying out the core data feature in xcode and have made a few things. Sometimes my apps wont work on any computer except the one it was created on. What exactly would contribute to that in the build settings?
 
 email me at info@shadelandstudios.com if you have any helpful information.
 
@@ -7,15 +7,15 @@ Robert
 
 ----
 
-See [[HowToAskQuestions]] and [[HowToUseThisSite]]. In particular, give more details about what's happening, including console output from the computers that aren't working. Also, asking for replies by e-mail is considered impolite, since it implies that you can't make the time to come back and check the site, but you are willing to use the site's resources to get what you need.
+See General/HowToAskQuestions and General/HowToUseThisSite. In particular, give more details about what's happening, including console output from the computers that aren't working. Also, asking for replies by e-mail is considered impolite, since it implies that you can't make the time to come back and check the site, but you are willing to use the site's resources to get what you need.
 
 ----
 
-In addition, make sure you set your build configuration to "Release", rather than "Development" (or is it called "Debug" now?) - the problem you describe is a common one. [[ZeroLink]] is enabled and that executable will only work on your computer. Please RTFM; this is all in the [[XCode]] documentation!
+In addition, make sure you set your build configuration to "Release", rather than "Development" (or is it called "Debug" now?) - the problem you describe is a common one. General/ZeroLink is enabled and that executable will only work on your computer. Please RTFM; this is all in the General/XCode documentation!
 
 ----
 
-One more thing: if you're developing on an Intel-based Mac, but testing on a [[PowerPC]]-based Mac, your binaries won't run unless they're built universal. See Apple's [[UniversalBinary]] documentation for how to do that.
+One more thing: if you're developing on an Intel-based Mac, but testing on a General/PowerPC-based Mac, your binaries won't run unless they're built universal. See Apple's General/UniversalBinary documentation for how to do that.
 
 ----
 

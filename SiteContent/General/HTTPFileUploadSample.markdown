@@ -4,19 +4,19 @@ This sample code shows how to upload a file from a Cocoa application using HTTP 
 * Enable PHP on your server.
 * Write a small PHP program to receive your files.
 
-Each step will be described in detail below.  --[[SaileshAgrawal]]
+Each step will be described in detail below.  --General/SaileshAgrawal
 
 ----
 
-'''Step 1. The Uploader Class'''
+**Step 1. The Uploader Class**
 
 Add the code below to your application. The uploader class compresses the file before uploading it so you will have to add libz.dylib to your project.  You can find libz.dylib in /usr/lib.
 
-<code>
-@interface Uploader : [[NSObject]]
+    
+@interface Uploader : General/NSObject
 {
-   NSURL ''serverURL;
-   [[NSString]] ''filePath;
+   NSURL *serverURL;
+   General/NSString *filePath;
    id delegate;
    SEL doneSelector;
    SEL errorSelector;
@@ -24,36 +24,36 @@ Add the code below to your application. The uploader class compresses the file b
    BOOL uploadDidSucceed;
 }
 
-- (id)initWithURL: (NSURL '')serverURL
-         filePath: ([[NSString]] '')filePath
+- (id)initWithURL: (NSURL *)serverURL
+         filePath: (General/NSString *)filePath
          delegate: (id)delegate
      doneSelector: (SEL)doneSelector
     errorSelector: (SEL)errorSelector;
 
-- ([[NSString]] '')filePath;
+- (General/NSString *)filePath;
 
 @end
-</code> 
+ 
 
-<code>
+    
 #import "Uploader.h"
 #import "zlib.h"
 
-static [[NSString]] '' const BOUNDRY = @"0xKhTmLbOuNdArY";
-static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
+static General/NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
+static General/NSString * const FORM_FLE_INPUT = @"uploaded";
 
-#define ASSERT(x) [[NSAsert]](x, @"")
+#define ASSERT(x) General/NSAsert(x, @"")
 #define Log(x,y)
 
 @interface Uploader (Private)
 
 - (void)upload;
-- ([[NSURLRequest]] '')postRequestWithURL: (NSURL '')url
-                             boundry: ([[NSString]] '')boundry
-                                data: ([[NSData]] '')data;
-- ([[NSData]] '')compress: ([[NSData]] '')data;
+- (General/NSURLRequest *)postRequestWithURL: (NSURL *)url
+                             boundry: (General/NSString *)boundry
+                                data: (General/NSData *)data;
+- (General/NSData *)compress: (General/NSData *)data;
 - (void)uploadSucceeded: (BOOL)success;
-- (void)connectionDidFinishLoading:([[NSURLConnection]] '')connection;
+- (void)connectionDidFinishLoading:(General/NSURLConnection *)connection;
 
 @end
 
@@ -61,25 +61,25 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
 @implementation Uploader
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader initWithURL:filePath:delegate:doneSelector:errorSelector:] --
- ''
- ''      Initializer. Kicks off the upload. Note that upload will happen on a
- ''      separate thread.
- ''
- '' Results:
- ''      An instance of Uploader.
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader initWithURL:filePath:delegate:doneSelector:errorSelector:] --
+ *
+ *      Initializer. Kicks off the upload. Note that upload will happen on a
+ *      separate thread.
+ *
+ * Results:
+ *      An instance of Uploader.
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
-- (id)initWithURL: (NSURL '')aServerURL   // IN
-         filePath: ([[NSString]] '')aFilePath // IN
+- (id)initWithURL: (NSURL *)aServerURL   // IN
+         filePath: (General/NSString *)aFilePath // IN
          delegate: (id)aDelegate         // IN
      doneSelector: (SEL)aDoneSelector    // IN
     errorSelector: (SEL)anErrorSelector  // IN
@@ -103,21 +103,21 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
 }
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader dealloc] --
- ''
- ''      Destructor.
- ''
- '' Results:
- ''      None
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader dealloc] --
+ *
+ *      Destructor.
+ *
+ * Results:
+ *      None
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
 - (void)dealloc
 {
@@ -134,23 +134,23 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
 }
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader filePath] --
- ''
- ''      Gets the path of the file this object is uploading.
- ''
- '' Results:
- ''      Path to the upload file.
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader filePath] --
+ *
+ *      Gets the path of the file this object is uploading.
+ *
+ * Results:
+ *      Path to the upload file.
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
-- ([[NSString]] '')filePath
+- (General/NSString *)filePath
 {
    return filePath;
 }
@@ -162,26 +162,26 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
 @implementation Uploader (Private)
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader(Private) upload] --
- ''
- ''      Uploads the given file. The file is compressed before beign uploaded.
- ''      The data is uploaded using an HTTP POST command.
- ''
- '' Results:
- ''      None
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader(Private) upload] --
+ *
+ *      Uploads the given file. The file is compressed before beign uploaded.
+ *      The data is uploaded using an HTTP POST command.
+ *
+ * Results:
+ *      None
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
 - (void)upload
 {
-   [[NSData]] ''data = [[[NSData]] dataWithContentsOfFile:filePath];
+   General/NSData *data = General/[NSData dataWithContentsOfFile:filePath];
    ASSERT(data);
    if (!data) {
       [self uploadSucceeded:NO];
@@ -193,14 +193,14 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
       return;
    }
 
-   [[NSData]] ''compressedData = [self compress:data];
+   General/NSData *compressedData = [self compress:data];
    ASSERT(compressedData && [compressedData length] != 0);
    if (!compressedData || [compressedData length] == 0) {
       [self uploadSucceeded:NO];
       return;
    }
 
-   [[NSURLRequest]] ''urlRequest = [self postRequestWithURL:serverURL
+   General/NSURLRequest *urlRequest = [self postRequestWithURL:serverURL
                                                boundry:BOUNDRY
                                                   data:compressedData];
    if (!urlRequest) {
@@ -208,8 +208,8 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
       return;
    }
 
-   [[NSURLConnection]] '' connection =
-      [[[[NSURLConnection]] alloc] initWithRequest:urlRequest delegate:self];
+   General/NSURLConnection * connection =
+      General/[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
    if (!connection) {
       [self uploadSucceeded:NO];
    }
@@ -218,74 +218,74 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
 }
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader(Private) postRequestWithURL:boundry:data:] --
- ''
- ''      Creates a HTML POST request.
- ''
- '' Results:
- ''      The HTML POST request.
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader(Private) postRequestWithURL:boundry:data:] --
+ *
+ *      Creates a HTML POST request.
+ *
+ * Results:
+ *      The HTML POST request.
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
-- ([[NSURLRequest]] '')postRequestWithURL: (NSURL '')url        // IN
-                             boundry: ([[NSString]] '')boundry // IN
-                                data: ([[NSData]] '')data      // IN
+- (General/NSURLRequest *)postRequestWithURL: (NSURL *)url        // IN
+                             boundry: (General/NSString *)boundry // IN
+                                data: (General/NSData *)data      // IN
 {
-   // from http://www.cocoadev.com/index.pl?[[HTTPFileUpload]]
-   [[NSMutableURLRequest]] ''urlRequest =
-      [[[NSMutableURLRequest]] requestWithURL:url];
+   // from http://www.cocoadev.com/index.pl?General/HTTPFileUpload
+   General/NSMutableURLRequest *urlRequest =
+      General/[NSMutableURLRequest requestWithURL:url];
    [urlRequest setHTTPMethod:@"POST"];
    [urlRequest setValue:
-      [[[NSString]] stringWithFormat:@"multipart/form-data; boundary=%@", boundry]
+      General/[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundry]
       forHTTPHeaderField:@"Content-Type"];
 
-   [[NSMutableData]] ''postData =
-      [[[NSMutableData]] dataWithCapacity:[data length] + 512];
+   General/NSMutableData *postData =
+      General/[NSMutableData dataWithCapacity:[data length] + 512];
    [postData appendData:
-      [[[[NSString]] stringWithFormat:@"--%@\r\n", boundry] dataUsingEncoding:NSUTF8StringEncoding]];
+      General/[[NSString stringWithFormat:@"--%@\r\n", boundry] dataUsingEncoding:NSUTF8StringEncoding]];
    [postData appendData:
-      [[[[NSString]] stringWithFormat:
+      General/[[NSString stringWithFormat:
         @"Content-Disposition: form-data; name=\"%@\"; filename=\"test.bin\"\r\n\r\n", FORM_FLE_INPUT]
        dataUsingEncoding:NSUTF8StringEncoding]];
    [postData appendData:data];
    [postData appendData:
-      [[[[NSString]] stringWithFormat:@"\r\n--%@--\r\n", boundry] dataUsingEncoding:NSUTF8StringEncoding]];
+      General/[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundry] dataUsingEncoding:NSUTF8StringEncoding]];
 
    [urlRequest setHTTPBody:postData];
    return urlRequest;
 }
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader(Private) compress:] --
- ''
- ''      Uses zlib to compress the given data.
- ''
- '' Results:
- ''      The compressed data as a [[NSData]] object.
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader(Private) compress:] --
+ *
+ *      Uses zlib to compress the given data.
+ *
+ * Results:
+ *      The compressed data as a General/NSData object.
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
-- ([[NSData]] '')compress: ([[NSData]] '')data // IN
+- (General/NSData *)compress: (General/NSData *)data // IN
 {
    if (!data || [data length] == 0)
       return nil;
 
    // zlib compress doc says destSize must be 1% + 12 bytes greater than source.
-   uLong destSize = [data length] '' 1.001 + 12;
-   [[NSMutableData]] ''destData = [[[NSMutableData]] dataWithLength:destSize];
+   uLong destSize = [data length] * 1.001 + 12;
+   General/NSMutableData *destData = General/[NSMutableData dataWithLength:destSize];
 
    int error = compress([destData mutableBytes],
                         &destSize,
@@ -302,21 +302,21 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
 }
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader(Private) uploadSucceeded:] --
- ''
- ''      Used to notify the delegate that the upload did or did not succeed.
- ''
- '' Results:
- ''      None
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader(Private) uploadSucceeded:] --
+ *
+ *      Used to notify the delegate that the upload did or did not succeed.
+ *
+ * Results:
+ *      None
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
 - (void)uploadSucceeded: (BOOL)success // IN
 {
@@ -325,24 +325,24 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
 }
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader(Private) connectionDidFinishLoading:] --
- ''
- ''      Called when the upload is complete. We judge the success of the upload
- ''      based on the reply we get from the server.
- ''
- '' Results:
- ''      None
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader(Private) connectionDidFinishLoading:] --
+ *
+ *      Called when the upload is complete. We judge the success of the upload
+ *      based on the reply we get from the server.
+ *
+ * Results:
+ *      None
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
-- (void)connectionDidFinishLoading:([[NSURLConnection]] '')connection // IN
+- (void)connectionDidFinishLoading:(General/NSURLConnection *)connection // IN
 {
    LOG(6, ("%s: self:0x%p\n", __func__, self));
    [connection release];
@@ -350,79 +350,79 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
 }
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader(Private) connection:didFailWithError:] --
- ''
- ''      Called when the upload failed (probably due to a lack of network
- ''      connection).
- ''
- '' Results:
- ''      None
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader(Private) connection:didFailWithError:] --
+ *
+ *      Called when the upload failed (probably due to a lack of network
+ *      connection).
+ *
+ * Results:
+ *      None
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
-- (void)connection:([[NSURLConnection]] '')connection // IN
-  didFailWithError:([[NSError]] '')error              // IN
+- (void)connection:(General/NSURLConnection *)connection // IN
+  didFailWithError:(General/NSError *)error              // IN
 {
    LOG(1, ("%s: self:0x%p, connection error:%s\n",
-           __func__, self, [[error description] UTF8String]));
+           __func__, self, General/error description] UTF8String]));
    [connection release];
    [self uploadSucceeded:NO];
 }
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader(Private) connection:didReceiveResponse:] --
- ''
- ''      Called as we get responses from the server.
- ''
- '' Results:
- ''      None
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader(Private) connection:didReceiveResponse:] --
+ *
+ *      Called as we get responses from the server.
+ *
+ * Results:
+ *      None
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
--(void)       connection:([[NSURLConnection]] '')connection // IN
-      didReceiveResponse:([[NSURLResponse]] '')response     // IN
+-(void)       connection:([[NSURLConnection *)connection // IN
+      didReceiveResponse:(General/NSURLResponse *)response     // IN
 {
    LOG(6, ("%s: self:0x%p\n", __func__, self));
 }
 
 
-/''
- ''-----------------------------------------------------------------------------
- ''
- '' -[Uploader(Private) connection:didReceiveData:] --
- ''
- ''      Called when we have data from the server. We expect the server to reply
- ''      with a "YES" if the upload succeeded or "NO" if it did not.
- ''
- '' Results:
- ''      None
- ''
- '' Side effects:
- ''      None
- ''
- ''-----------------------------------------------------------------------------
- ''/
+/*
+ *-----------------------------------------------------------------------------
+ *
+ * -[Uploader(Private) connection:didReceiveData:] --
+ *
+ *      Called when we have data from the server. We expect the server to reply
+ *      with a "YES" if the upload succeeded or "NO" if it did not.
+ *
+ * Results:
+ *      None
+ *
+ * Side effects:
+ *      None
+ *
+ *-----------------------------------------------------------------------------
+ */
 
-- (void)connection:([[NSURLConnection]] '')connection // IN
-    didReceiveData:([[NSData]] '')data                // IN
+- (void)connection:(General/NSURLConnection *)connection // IN
+    didReceiveData:(General/NSData *)data                // IN
 {
    LOG(10, ("%s: self:0x%p\n", __func__, self));
 
-   [[NSString]] ''reply = [[[[[NSString]] alloc] initWithData:data
+   General/NSString *reply = General/[[[NSString alloc] initWithData:data
                                             encoding:NSUTF8StringEncoding]
                       autorelease];
    LOG(10, ("%s: data: %s\n", __func__, [reply UTF8String]));
@@ -434,42 +434,42 @@ static [[NSString]] '' const FORM_FLE_INPUT = @"uploaded";
 
 
 @end
-</code> 
+ 
 
 You can now upload a file using the following syntax:
-<code>
-      [[Uploader alloc] initWithURL:[NSURL [[URLWithString]]:@"http://my-server.com/uploader.php"
+    
+      General/Uploader alloc] initWithURL:[NSURL [[URLWithString:@"http://my-server.com/uploader.php"
                               filePath:@"/Users/someone/foo.jpg"
                               delegate:self
                           doneSelector:@selector(onUploadDone:)
                          errorSelector:@selector(onUploadError:)];
-</code>
+
 
 ----
 
-'''Step 2. Enable PHP'''
+**Step 2. Enable PHP**
 
 You need to enable PHP on your webserver. For testing purposes this means your local Macintosh.
 
 If you're on Tiger edit /etc/httpd/httpd.conf. On Leopard edit /etc/apache2/httpd.conf. For example:
-<code>
+    
 cd /etc/httpd
 sudo pico httpd.conf
-</code>
 
-Search for [[LoadModule]] php and remove the number sign (#) at the beginning of the line. Next, for Tiger only, search for [[AddModule]] php and remove the number sign at the beginning of the line too.
+
+Search for General/LoadModule php and remove the number sign (#) at the beginning of the line. Next, for Tiger only, search for General/AddModule php and remove the number sign at the beginning of the line too.
 
 Start your http server by going to System Preferences and enabling Web Sharing in the Sharing pane.
 
 ----
 
-'''Step 3. Write a PHP web application'''
+**Step 3. Write a PHP web application**
 
 The above code uses a HTML form to submit the file. This means that the fields of the form are specific to this web app. If you have a pre-existing web app then search for FORM_FLE_INPUT in the uploader code and change it to match your website.
 
 The following PHP code receives the name of the file in the "uploaded" parameter. If uploading was successful then the file is copied into the upload directory. Save this code as uploader.php and put it on your webserver.
 
-<code>
+    
 <?php
 $target = "upload/";
 $target = $target . basename( $_FILES['uploaded']['name']) ;
@@ -482,17 +482,17 @@ else {
    echo "NO";
 }
 ?> 
-</code>
+
 
 If you're having trouble getting your web application to work it may help to test it using a web browser. You can create a web page to upload a file using the following code. Same the code as test.php and put it on your webserver.
 
-<code>
+    
 <form enctype="multipart/form-data" action="uploader.php" method="POST">
 <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
 Choose a file to upload: <input name="uploaded" type="file" /><br />
 <input type="submit" value="Upload File" />
 </form>
-</code>
+
 
 ----
 
@@ -500,11 +500,11 @@ At this point you should be able to upload arbitrary data to your webserer. Note
 
 ----
 
-I just used your sample to great success, thankyou very much. However I needed to make a few tweaks to make it compile. The ASSET and LOG functions weren't working, so I commented them all out, and the #define markings you made for them. I'm not sure why they weren't but the code would compile and run fine afterwards. You might also want to add a bool flag to the [[UELUploader]] initWithURL: method to signal for compression - just for convenience. It is also authentication compatible, just add the name:password to the URL.
+I just used your sample to great success, thankyou very much. However I needed to make a few tweaks to make it compile. The ASSET and LOG functions weren't working, so I commented them all out, and the #define markings you made for them. I'm not sure why they weren't but the code would compile and run fine afterwards. You might also want to add a bool flag to the General/UELUploader initWithURL: method to signal for compression - just for convenience. It is also authentication compatible, just add the name:password to the URL.
 
-<code>
-[[Uploader alloc] initWithURL:[NSURL [[URLWithString]]:@"http://name:password@my-server.com/uploader.php" ...
-</code>
+    
+General/Uploader alloc] initWithURL:[NSURL [[URLWithString:@"http://name:password@my-server.com/uploader.php" ...
+
 
 ----
 

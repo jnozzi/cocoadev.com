@@ -1,3 +1,3 @@
-[[SuperCat]] aka sK0T.
+General/SuperCat aka sK0T.
 
-Senior [[FreeBSD]] and [[MacOS]] developer, both kernel and userland.
+Senior General/FreeBSD and General/MacOS developer, both kernel and userland.

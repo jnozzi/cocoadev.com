@@ -7,7 +7,7 @@ My question is what would be the best approach? Does anybody have any experience
 So far I have found references to three potential methods of storage.
 
 1) Each array is a column with each pixel on a row:
-<code>
+    
 x | y | map1 | map2 | ...|
 -------------------------|
 0 | 0 | 1000 |   1  | ...|
@@ -16,19 +16,19 @@ x | y | map1 | map2 | ...|
 . | . |    . |   .  | ...|
 . | . |    . |   .  | ...|
 . | . |    . |   .  | ...|
-</code>
+
 Benefits: Maps straight to arrays for which my analysis algorithms are already written.
 
 Deficiencies: Very large storage overhead. Can't take advantage of compression techniques.
 
 
 2) Each array is stored as binary data such that an array is contained in one column and row (shown as commas separated values for ease of reading):
-<code>
+    
 name | values
 -------------
 map1 | 1000, 1000, 1100, ....
 map2 | 1, 1, 4, ....
-</code>
+
 
 Benefits: When I need the data, I just pull the whole array and do something with it. Can take advantage of compression techniques such as run length encoding.
 
@@ -36,7 +36,7 @@ Deficiencies: Doesn't use the database paging system and large maps could cause 
 
 
 3) Store each map in a column, but each row is a map row:
-<code>
+    
 row | map1                  | map2 | ...
 ----------------------------------------------------
   0 | 1000, 1000, 1100, ....|   1, 1, 4, ....  | ...
@@ -44,7 +44,7 @@ row | map1                  | map2 | ...
   . |    .                  |   .              | ...
   . |    .                  |   .              | ...
   . |    .                  |   .              | ...
-</code>
+
 
 Benefits: Compromise between the two techniques. Can retrieve into memory only the rows I need at the present moment, taking advantage of database paging by row. Can compress each row and searching could go directly to a specific row to find a value at a specific x (column) location, thus not requiring a whole array search.
 
@@ -54,10 +54,10 @@ Deficiencies: If I pull up a row, decompress it for processing, release it, then
 Any input would be much appreciated!
 
 ----
-For the last solution, you could try adding a cache, which either stores the last few accessed rows, or just contains all the rows that have been accessed. Then, when your application quits, you can write the cache back into memory. --[[JediKnil]]
+For the last solution, you could try adding a cache, which either stores the last few accessed rows, or just contains all the rows that have been accessed. Then, when your application quits, you can write the cache back into memory. --General/JediKnil
 
 ----
-I was thinking the same thing, but have a cache that would store ''all'' the uncompressed rows, until it filled up (give it some maxiumum size, at which point it starts acting like a LIFO queue.  It seems like there should be some nifty data structure out there to do this.. 
+I was thinking the same thing, but have a cache that would store *all* the uncompressed rows, until it filled up (give it some maxiumum size, at which point it starts acting like a LIFO queue.  It seems like there should be some nifty data structure out there to do this.. 
 
 ----
 It seems like both answers are prefering option 3. If the majority of analyses proceed through the array row-by-row, wouldn't a FIFO queue be a better way? I have data structures for both in by "Algorithms in C" book by Sedgewick. The cache system seems to make the most sense for searching by row/column. I would appreciate any more input. In the mean time I will look at both LIFO and FIFO structures and see how I might implement it inside Cocoa for a test. For now I think I will ignore compression/decompression and concentrate on how well the cache works. 

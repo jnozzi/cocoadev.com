@@ -15,7 +15,7 @@ Any idea on how I could do that?
 
 ----
 
-You could look into [[ApplicationEnhancer]] and use it to release the window when needed.
+You could look into General/ApplicationEnhancer and use it to release the window when needed.
 
 ----
 

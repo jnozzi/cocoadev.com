@@ -16,6 +16,6 @@ See http://www.washington.edu/imap/.
 
 ----
 
-See also Pantomime, the framework half of the [[GNUMail]] email client.  
+See also Pantomime, the framework half of the General/GNUMail email client.  
 
 http://www.collaboration-world.com/cgi-bin/project/index.cgi?pid=3

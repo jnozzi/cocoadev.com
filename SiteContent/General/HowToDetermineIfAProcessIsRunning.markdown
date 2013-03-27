@@ -1,16 +1,16 @@
 
 
-I'm writing a program where I need to find out if Apache is running.  Is there an easy way to do this using Cocoa (or carbon for that matter)? I was thinking about using an [[NSTask]] with ps, but I'm hoping there's a better way. Suggestions?
+I'm writing a program where I need to find out if Apache is running.  Is there an easy way to do this using Cocoa (or carbon for that matter)? I was thinking about using an General/NSTask with ps, but I'm hoping there's a better way. Suggestions?
 
--[[JacobMarienthal]]
-
-----
-Yea, check out [[NSWorkspace]].
-
-[[GormanChristian]]
+-General/JacobMarienthal
 
 ----
-Unfortunately [[NSWorkspace]] only displays apps that have been switched on in the Dock so that does not help for apache. [[NSTask]] is the best approach I can think of at the moment. There must be an easier way to do it.
+Yea, check out General/NSWorkspace.
+
+General/GormanChristian
+
+----
+Unfortunately General/NSWorkspace only displays apps that have been switched on in the Dock so that does not help for apache. General/NSTask is the best approach I can think of at the moment. There must be an easier way to do it.
 
 -Mat
 
@@ -18,8 +18,8 @@ Unfortunately [[NSWorkspace]] only displays apps that have been switched on in t
 
 Normally, you'd use the Carbon Process Manager for something like this, but it only sees Carbon and Cocoa apps (maybe Apple X11 apps as well).
 
-'''Technical Q&A   QA1123''' ''also deals with this
-[ http://developer.apple.com/qa/qa2001/qa1123.html ] ''
+**Technical Q&A   QA1123** *also deals with this
+[ http://developer.apple.com/qa/qa2001/qa1123.html ] *
 
 Unfortunately, there's no reliable way to use ps or the underlying system calls that ps uses to find out if a particular process is running. Anything can appear as a BSD process name.
 
@@ -28,12 +28,12 @@ For apache, what you CAN do is find out where apache's logs reside (usually /usr
 ----
 That's a good idea.  I think I'll look into it.  What's the easiest way to check for the existence of the file then?
 
--[[JacobMarienthal]]
+-General/JacobMarienthal
 
 ----
-The easiest way in my opinion is to use [[NSFileManager]] and call 
+The easiest way in my opinion is to use General/NSFileManager and call 
 
-- (BOOL)fileExistsAtPath:([[NSString]] '')path
+- (BOOL)fileExistsAtPath:(General/NSString *)path
 
 If the file is there, bingo, you are home free. Remember of course to open the file, get the PID, check it against PS and then do everything that follows. 
 
@@ -41,12 +41,12 @@ If the file is there, bingo, you are home free. Remember of course to open the f
 
 ----
 Hmm, isn't there a (slight) maintainability issue here? - what if at sometime in the future or in some odd version/configuration, apache changes where the logs are, or what the log is called? Wouldn't that trip up the program? 
-Is there any way to find out if an arbitrary process is running? -- [[MikeAmy]]
+Is there any way to find out if an arbitrary process is running? -- General/MikeAmy
 
 ----
-A complete process list can be obtained from BSD/POSIX via the sysctl API. See: ''man 3 sysctl''.
+A complete process list can be obtained from BSD/POSIX via the sysctl API. See: *man 3 sysctl*.
 
-<code>
+    
 #include <sys/sysctl.h>
 
 #define countof(a) (sizeof(a)/sizeof(a[0]))
@@ -59,7 +59,7 @@ int find_processes_that_look_like_apache()
 	
 	int err;
 	
-	struct kinfo_proc ''kp = NULL;
+	struct kinfo_proc *kp = NULL;
 	
 	do
 	{
@@ -119,10 +119,10 @@ int find_processes_that_look_like_apache()
 	
 	return err;
 }
-</code>
+
 
 ----
 
-Here�s a neat Unix trick I like: call %%BEGINCODESTYLE%%kill(pid, 0)%%ENDCODESTYLE%%; if the return value is 0, the process is still running.  If the return value is -1 with an %%BEGINCODESTYLE%%errno%%ENDCODESTYLE%% value of %%BEGINCODESTYLE%%ESRCH%%ENDCODESTYLE%%, the process is not running.  If the return value is -1 with any other value of %%BEGINCODESTYLE%%errno%%ENDCODESTYLE%%, then something wonky has happened.
+Here�s a neat Unix trick I like: call <code>kill(pid, 0)</code>; if the return value is 0, the process is still running.  If the return value is -1 with an <code>errno</code> value of <code>ESRCH</code>, the process is not running.  If the return value is -1 with any other value of <code>errno</code>, then something wonky has happened.
 
-�[[SethKingsley]]
+�General/SethKingsley

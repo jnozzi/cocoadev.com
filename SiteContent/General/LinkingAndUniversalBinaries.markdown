@@ -8,7 +8,7 @@ I could compile the app but when it started to link I got lots of "Unknown symbo
 
 The project used the following static libraries from which the unresolved symbols came: libcrypto.a, libexpat.a, libssl.a and libz.a
 
-The problem turned out to be that the libs had been built for [[PowerPC]] processors but my project was built as a Universal Binary.
+The problem turned out to be that the libs had been built for General/PowerPC processors but my project was built as a Universal Binary.
 So I just removed i386 from the Architecture setting in my Target - Release settings
 
-further discussion of where to go from here is in [[HowToBuildUniversalLibraries]]
+further discussion of where to go from here is in General/HowToBuildUniversalLibraries

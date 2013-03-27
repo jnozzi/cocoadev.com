@@ -2,4 +2,4 @@ Having looked at Pixie and after a friend asking if a certain app was possible, 
 
 ----
 
-Well, I'm a tad busy at the moment, but checking it out with class-dump and otool might show up something interesting. -- [[RobRix]]
+Well, I'm a tad busy at the moment, but checking it out with class-dump and otool might show up something interesting. -- General/RobRix

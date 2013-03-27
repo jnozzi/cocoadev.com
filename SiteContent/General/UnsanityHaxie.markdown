@@ -1,6 +1,6 @@
-Unsanity's haxies are system additions that bring back certain functionality to [[MacOS]] X.
+Unsanity's haxies are system additions that bring back certain functionality to General/MacOS X.
 
-[[SlavaKarpenko]] is the lead programmer who develops all these gadgets.
+General/SlavaKarpenko is the lead programmer who develops all these gadgets.
 
 Haxies are at http://www.haxies.com/
 
@@ -9,14 +9,14 @@ Haxies are at http://www.haxies.com/
 Haxies currently out:
 
 
-* [[ShadowKiller]]
-* [[WindowShadeX]]
-* [[FruitMenu]]
+* General/ShadowKiller
+* General/WindowShadeX
+* General/FruitMenu
 * Xounds
 * Dock Detox
 * Silk
 * Menu Extra Enabler
-* [[ClearDock]]
+* General/ClearDock
 * Metallifizer
 * Mighty Mouse
 * Labels X

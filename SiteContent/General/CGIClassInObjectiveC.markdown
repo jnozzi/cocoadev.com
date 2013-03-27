@@ -2,19 +2,19 @@ I thought it would be interesting to write a CGI application in Objective C.   H
 
 You just create a Foundation tool and then work your way from the main function using the class.  For example, the following code will print out the name/value pairs passed to the CGI program:
 
-<code>
+    
 #import <Foundation/Foundation.h>
-#import "[[ObjectiveCGI]].h"
+#import "General/ObjectiveCGI.h"
 
-int main (int argc, const char '' argv[]) 
+int main (int argc, const char * argv[]) 
 {
-    [[NSAutoreleasePool]] '' pool = [[[[NSAutoreleasePool]] alloc] init];
+    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
 
 	// Create the CGI object
-    [[ObjectiveCGI]] ''cgi = [[[[ObjectiveCGI]] alloc] init];
+    General/ObjectiveCGI *cgi = General/[[ObjectiveCGI alloc] init];
 
-    [[NSDictionary]] ''params = [cgi getParams];
-    [[NSEnumerator]] ''enumerator = [params keyEnumerator];
+    General/NSDictionary *params = [cgi getParams];
+    General/NSEnumerator *enumerator = [params keyEnumerator];
     id key;
 
     printf("Content-type: text/plain\n\n");
@@ -23,7 +23,7 @@ int main (int argc, const char '' argv[])
     while ((key = [enumerator nextObject])) 
     {
         printf("%s=%s",[key cString], 
-                       [[params objectForKey: key] cString]);  
+                       General/params objectForKey: key] cString]);  
     }
         
     // Release the CGI object
@@ -32,31 +32,31 @@ int main (int argc, const char '' argv[])
     [pool release];
     return 0;
 }
-</code>
-
-I've written some CGI programs, such as Vox Machina CGI (http://voxmachina.sytes.net) and [[VirtualSafari]] (http://virtualsafari.sytes.net) using this class.  And here's the code to the CGI class itself.  
 
 
-<code>
-#import "[[ObjectiveCGI]].h"
+I've written some CGI programs, such as Vox Machina CGI (http://voxmachina.sytes.net) and [[VirtualSafari (http://virtualsafari.sytes.net) using this class.  And here's the code to the CGI class itself.  
 
-@implementation [[ObjectiveCGI]]
+
+    
+#import "General/ObjectiveCGI.h"
+
+@implementation General/ObjectiveCGI
 
 - (id) init
 {
 	// dictionary for query key value pairs
-	params = [[[[NSMutableDictionary]] alloc] initWithCapacity: 255];
+	params = General/[[NSMutableDictionary alloc] initWithCapacity: 255];
 
-	[[NSProcessInfo]] ''processInfo = [[[NSProcessInfo]] processInfo];
+	General/NSProcessInfo *processInfo = General/[NSProcessInfo processInfo];
 	env = [processInfo environment];
 	
-	if ([[env objectForKey: @"REQUEST_METHOD"] isEqualToString: @"GET"])
-		[self _parseGetQuery: [env objectForKey: @"QUERY_STRING"]];
-	else if ([[env objectForKey: @"REQUEST_METHOD"] isEqualToString: @"POST"])
+	if (General/env objectForKey: @"REQUEST_METHOD"] isEqualToString: @"GET"])
+		[self _parseGetQuery: [env objectForKey: @"QUERY_STRING";
+	else if (General/env objectForKey: @"REQUEST_METHOD"] isEqualToString: @"POST"])
 		[self _parsePostQuery];
 	else
 	{
-		[[NSLog]](@"Missing REQUEST_METHOD");
+		[[NSLog(@"Missing REQUEST_METHOD");
 		return NULL;
 	}
 	
@@ -70,55 +70,54 @@ I've written some CGI programs, such as Vox Machina CGI (http://voxmachina.sytes
 	[super dealloc];
 }
 
-- ([[NSString]] '')param: ([[NSString]] '')key
+- (General/NSString *)param: (General/NSString *)key
 {
 	return [params objectForKey: key];
 }
 
-- ([[NSDictionary]] '') getParams
+- (General/NSDictionary *) getParams
 {
 	return params;
 }
 
-- ([[NSDictionary]] '') env
+- (General/NSDictionary *) env
 {
 	return env;
 }
 
-- (void) _parseGetQuery: ([[NSString]] '')queryStr
+- (void) _parseGetQuery: (General/NSString *)queryStr
 {
 	int i;
 
 	if ([queryStr length] == 0)
 		return;
 	
-	[[NSArray]]	''pairs = [queryStr componentsSeparatedByString: @"&"];
+	General/NSArray	*pairs = [queryStr componentsSeparatedByString: @"&"];
 	
 	for (i = 0; i < [pairs count]; i++)
 	{
-		[[NSArray]] ''elem = [[pairs objectAtIndex: i] componentsSeparatedByString: @"="];
-		[params setObject: [[elem objectAtIndex: 1] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding] forKey: [elem objectAtIndex: 0]];
+		General/NSArray *elem = General/pairs objectAtIndex: i] componentsSeparatedByString: @"="];
+		[params setObject: [[elem objectAtIndex: 1] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding] forKey: [elem objectAtIndex: 0;
 	}
 }
 
 - (void) _parsePostQuery
 {
 	int i;
-	int len = [[env objectForKey: @"CONTENT_LENGTH"] intValue];
+	int len = General/env objectForKey: @"CONTENT_LENGTH"] intValue];
 	if (len == 0)
 		return;
 	
 	// read stdin for query string
-	[[NSData]] ''input = [[[[NSFileHandle]] fileHandleWithStandardInput] readDataOfLength: len];
-	[[NSString]] ''queryStr = [[[[NSString]] alloc] initWithData: input encoding: 1];
-	[[NSArray]]	''pairs = [queryStr componentsSeparatedByString: @"&"];
+	[[NSData *input = General/[[NSFileHandle fileHandleWithStandardInput] readDataOfLength: len];
+	General/NSString *queryStr = General/[[NSString alloc] initWithData: input encoding: 1];
+	General/NSArray	*pairs = [queryStr componentsSeparatedByString: @"&"];
 	
 	for (i = 0; i < [pairs count]; i++)
 	{
-		[[NSArray]] ''elem = [[pairs objectAtIndex: i] componentsSeparatedByString: @"="];
-		[params setObject: [[elem objectAtIndex: 1] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding] forKey: [elem objectAtIndex: 0]];
+		General/NSArray *elem = General/pairs objectAtIndex: i] componentsSeparatedByString: @"="];
+		[params setObject: [[elem objectAtIndex: 1] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding] forKey: [elem objectAtIndex: 0;
 	}
 }
 
 @end
-</code>

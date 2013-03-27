@@ -1,61 +1,61 @@
-I'm trying to use [[NSStream]]'s SOCKS Proxy support, and I cannot seem to get it to work.  I've written a class to wrap around the [[NSStream]] (for purposes of [[UnitTesting]]) and these are the two relevant methods:
+I'm trying to use General/NSStream's SOCKS Proxy support, and I cannot seem to get it to work.  I've written a class to wrap around the General/NSStream (for purposes of General/UnitTesting) and these are the two relevant methods:
 
-<code>
-- (BOOL) setProperty:(id)value forKey:([[NSString]] '')key
+    
+- (BOOL) setProperty:(id)value forKey:(General/NSString *)key
 {
   BOOL success;
-  [[NSLog]](@"Value before set: %@ forKey: %@", value, key);
+  General/NSLog(@"Value before set: %@ forKey: %@", value, key);
   success = [stream setProperty:value forKey:key];
-  [[NSLog]](@"Value after set: %@ forKey: %@",
+  General/NSLog(@"Value after set: %@ forKey: %@",
         [stream propertyForKey:key], key);
   return success;
 }
 
-- (id) propertyForKey:([[NSString]] '')key
+- (id) propertyForKey:(General/NSString *)key
 {
   return [stream propertyForKey:key];
 }
-</code>
+
 
 Elsewhere I call this code:
 
-<code>
-- (BOOL) enableProxyWithHostname:([[NSString]] '')hostname
+    
+- (BOOL) enableProxyWithHostname:(General/NSString *)hostname
                           onPort:(int)port
                          version:(int)version
-                        username:([[NSString]] '')username
-                        password:([[NSString]] '')password
+                        username:(General/NSString *)username
+                        password:(General/NSString *)password
 {
   BOOL success;
-  [[NSArray]] ''objects = [[[NSArray]] arrayWithObjects:
+  General/NSArray *objects = General/[NSArray arrayWithObjects:
     hostname,
-    [[[NSNumber]] numberWithInt:port],
+    General/[NSNumber numberWithInt:port],
     (version == 4 ? NSStreamSOCKSProxyVersion4 : NSStreamSOCKSProxyVersion5),
     username,
     password, nil];
   
-  [[NSArray]] ''keys = [[[NSArray]] arrayWithObjects:
-    [[NSStreamSOCKSProxyHostKey]],
-    [[NSStreamSOCKSProxyPortKey]],
-    [[NSStreamSOCKSProxyVersionKey]],
-    [[NSStreamSOCKSProxyUserKey]],
-    [[NSStreamSOCKSProxyPasswordKey]], nil];
+  General/NSArray *keys = General/[NSArray arrayWithObjects:
+    General/NSStreamSOCKSProxyHostKey,
+    General/NSStreamSOCKSProxyPortKey,
+    General/NSStreamSOCKSProxyVersionKey,
+    General/NSStreamSOCKSProxyUserKey,
+    General/NSStreamSOCKSProxyPasswordKey, nil];
   
-  [[NSDictionary]] ''proxyDictionary = [[[NSDictionary]] dictionaryWithObjects:objects
+  General/NSDictionary *proxyDictionary = General/[NSDictionary dictionaryWithObjects:objects
                                                               forKeys:keys];
   
-  [[NSLog]](@"Dictionary %@", proxyDictionary);
+  General/NSLog(@"Dictionary %@", proxyDictionary);
   
   success = [inputStream setProperty:proxyDictionary
-                              forKey:[[NSStreamSOCKSProxyConfigurationKey]]];  
+                              forKey:General/NSStreamSOCKSProxyConfigurationKey];  
   if (success)
   {
     success = [outputStream setProperty:proxyDictionary
-                                 forKey:[[NSStreamSOCKSProxyConfigurationKey]]];
+                                 forKey:General/NSStreamSOCKSProxyConfigurationKey];
   }
   
   return success;
 }
-</code>
+
 
 When I call that third method it returns success!  But, if I then check the stream, the property is nil.  Any ideas?

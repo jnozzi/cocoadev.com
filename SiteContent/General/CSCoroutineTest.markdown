@@ -1,21 +1,21 @@
-This is a small test for [[CSCoroutine]]. It simply runs two interleaved loops that count up and down.
+This is a small test for General/CSCoroutine. It simply runs two interleaved loops that count up and down.
 
 ----
 
 Update on September 12, 2007: Added a second test for thread-switching.
 
-Update on September 20, 2007: Changed code to use [[NSConditionLock]].
+Update on September 20, 2007: Changed code to use General/NSConditionLock.
 
 Update on October 10, 2007: Added an exception-throwing test, and comments.
 
 ----
 
-<code>
-#import "[[CSCoroutine]].h"
+    
+#import "General/CSCoroutine.h"
 
-@interface [[TestObject]]:[[NSObject]]
+@interface General/TestObject:General/NSObject
 {
-	[[NSConditionLock]] ''lock;
+	General/NSConditionLock *lock;
 }
 -(void)test;
 -(void)test1:(int)val;
@@ -23,11 +23,11 @@ Update on October 10, 2007: Added an exception-throwing test, and comments.
 -(void)test2;
 -(void)test2b;
 -(void)test3;
--(void)test3b:([[CSCoroutine]] '')coro;
+-(void)test3b:(General/CSCoroutine *)coro;
 -(void)test3c;
 @end
 
-@implementation [[TestObject]]
+@implementation General/TestObject
 
 -(void)test
 {
@@ -42,7 +42,7 @@ Update on October 10, 2007: Added an exception-throwing test, and comments.
 	printf("Test 1: Interleaved loops\n");
 
 	// Create and start coroutine which will return immediately.
-	[[CSCoroutine]] ''coro=[self newCoroutine];
+	General/CSCoroutine *coro=[self newCoroutine];
 	[(id)coro test1b:val];
 
 	// Print five numbers, invoking the coroutine after each.
@@ -58,13 +58,13 @@ Update on October 10, 2007: Added an exception-throwing test, and comments.
 -(void)test1b:(int)val
 {
 	// Return immediately to let main function run.
-	[[[CSCoroutine]] returnFromCurrent];
+	General/[CSCoroutine returnFromCurrent];
 
 	// Print five numbers, returning after each one
 	for(int i=0;i<=5;i++)
 	{
 		printf("b: %d\n",val-i);
-		[[[CSCoroutine]] returnFromCurrent];
+		General/[CSCoroutine returnFromCurrent];
 	}
 }
 
@@ -74,19 +74,19 @@ Update on October 10, 2007: Added an exception-throwing test, and comments.
 
 	// Save the current coroutine pointer before calling potentially
 	// exception-throwing coroutine.
-	[[CSCoroutine]] ''savedcoro=[[[CSCoroutine]] currentCoroutine];
+	General/CSCoroutine *savedcoro=General/[CSCoroutine currentCoroutine];
 
 	@try
 	{
 		// Create and start coroutine which will throw an exception.
-		[[CSCoroutine]] ''coro=[self newCoroutine];
+		General/CSCoroutine *coro=[self newCoroutine];
 		[(id)coro test2b];
 	}
 	@catch(id e)
 	{
 		// Clean up after the exception by explicitly restoring
 		// the current coroutine pointer. This is important!
-		[[[CSCoroutine]] setCurrentCoroutine:savedcoro];
+		General/[CSCoroutine setCurrentCoroutine:savedcoro];
 		printf("Exception caught!\n");
 	}
 }
@@ -94,7 +94,7 @@ Update on October 10, 2007: Added an exception-throwing test, and comments.
 -(void)test2b
 {
 	printf("In coroutine, throwing exception.\n");
-	[[[NSException]] raise:@"[[TestException]]" format:@"Test"];
+	General/[NSException raise:@"General/TestException" format:@"Test"];
 }
 
 -(void)test3
@@ -102,12 +102,12 @@ Update on October 10, 2007: Added an exception-throwing test, and comments.
 	printf("Test 3: Jumping threads\n");
 
 	// Create and start a coroutine on the main thread.
-	[[CSCoroutine]] ''coro=[self newCoroutine];
+	General/CSCoroutine *coro=[self newCoroutine];
 	[(id)coro test3c];
 
 	// Detach a secondary thread, which will also invoke the same coroutine.
-	lock=[[[[NSConditionLock]] alloc] initWithCondition:0];
-	[[[NSThread]] detachNewThreadSelector:@selector(test3b:) toTarget:self withObject:coro];
+	lock=General/[[NSConditionLock alloc] initWithCondition:0];
+	General/[NSThread detachNewThreadSelector:@selector(test3b:) toTarget:self withObject:coro];
 
 	// Wait until thread finishes.
 	[lock lockWhenCondition:1];
@@ -115,7 +115,7 @@ Update on October 10, 2007: Added an exception-throwing test, and comments.
 	[lock release];
 }
 
--(void)test3b:([[CSCoroutine]] '')coro
+-(void)test3b:(General/CSCoroutine *)coro
 {
 	printf("Separate thread started\n");
 
@@ -129,27 +129,27 @@ Update on October 10, 2007: Added an exception-throwing test, and comments.
 -(void)test3c
 {
 	printf("First invocation in main thread.\n");
-	[[[CSCoroutine]] returnFromCurrent];
+	General/[CSCoroutine returnFromCurrent];
 	printf("Second invocation in separate thread.\n");
 }
 
 @end
 
-int main(int argc,char '''argv)
+int main(int argc,char **argv)
 {
-	[[NSAutoreleasePool]] ''pool=[[[NSAutoreleasePool]] new];
+	General/NSAutoreleasePool *pool=General/[NSAutoreleasePool new];
 
-	[[TestObject]] ''test=[[[TestObject]] new];
+	General/TestObject *test=General/[TestObject new];
 	[test test];
 	[test release];
 
 	[pool release];
 }
-</code>
+
 
 The correct output should look something like this:
 
-<code>
+    
 Test 1: Interleaved loops
 a: 10
 b: 10
@@ -170,4 +170,3 @@ Test 3: Jumping threads
 First invocation in main thread.
 Separate thread started
 Second invocation in separate thread.
-</code>

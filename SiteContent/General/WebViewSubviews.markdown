@@ -1,6 +1,6 @@
 
 
-I know the answer might be quite simple, but I can't seem to be able to figure it out... I have a [[WebView]] in which I load a web page with 2 fields and a button. My question is if there is any way to access directly those fields to create something like a Autofill for the login & password...
+I know the answer might be quite simple, but I can't seem to be able to figure it out... I have a General/WebView in which I load a web page with 2 fields and a button. My question is if there is any way to access directly those fields to create something like a Autofill for the login & password...
 
 Thanks for all replies.
 
@@ -8,11 +8,11 @@ Charlie
 
 ----
 
-I'd suggest doing it via [[JavaScript]]. Check out [[WebView]]'s stringByEvaluatingJavaScriptFromString: method.
+I'd suggest doing it via General/JavaScript. Check out General/WebView's stringByEvaluatingJavaScriptFromString: method.
 
 ----
 
-For a similar application, I use DOM objects in [[WebKit]] to access or manipulate html tags as cocoa objects. This is a "bridge" which translate DOM access javascript methods in obj-C style methods.
+For a similar application, I use DOM objects in General/WebKit to access or manipulate html tags as cocoa objects. This is a "bridge" which translate DOM access javascript methods in obj-C style methods.
 
 An exemple :
 
@@ -32,7 +32,7 @@ An exemple :
    formIsSubmitted=NO;
 
    // loading of www.site.com site
-   [[webview mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.site.com"]]];
+   General/webview mainFrame] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.site.com"];
 }
 
 // delegate method of webview
@@ -80,4 +80,4 @@ An exemple :
 @end
 </nowiki>
 
-[[MrBru]]
+General/MrBru

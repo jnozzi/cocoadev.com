@@ -1,1 +1,1 @@
-See [[JavaVirtualMachine]].
+See General/JavaVirtualMachine.

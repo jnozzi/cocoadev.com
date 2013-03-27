@@ -1,1 +1,1 @@
-[[ArnanTrsyd]] == [[TonyArnold]];
+General/ArnanTrsyd == General/TonyArnold;

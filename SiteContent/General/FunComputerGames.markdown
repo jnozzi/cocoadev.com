@@ -1,6 +1,6 @@
 
 
-Computer programmers often like to play fun computer games. Cocoa programmers are no exception. Here's a list of fun computer games [[CocoaDevUsers]] have been known to ramble on and on about.
+Computer programmers often like to play fun computer games. Cocoa programmers are no exception. Here's a list of fun computer games General/CocoaDevUsers have been known to ramble on and on about.
 
 But please don't make special pages for these. Locating the desired game is left as an exercise for
 the sufficiently motivated "computer programmer".
@@ -15,7 +15,7 @@ the sufficiently motivated "computer programmer".
 * Deus Ex
 * Diablo II 
 
-http://www.blizzard.com/diablo2/   (Classic 3d [[RogueLike]] game)
+http://www.blizzard.com/diablo2/   (Classic 3d General/RogueLike game)
 
 * Dragon Warrior
 * Elite
@@ -53,6 +53,6 @@ http://www.blizzard.com/diablo2/   (Classic 3d [[RogueLike]] game)
 Some (off-off-topic?) things that might be of interest to many of the world's game developers:
 
 
-* [[OpenGL]]
-* [[ArtificialIntelligence]]
-* [[CrossPlatformObjC]]
+* General/OpenGL
+* General/ArtificialIntelligence
+* General/CrossPlatformObjC

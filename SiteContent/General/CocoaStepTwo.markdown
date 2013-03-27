@@ -1,8 +1,8 @@
-Previous [[CocoaStepOne]]
+Previous General/CocoaStepOne
 
-Skip to next [[CocoaStepThree]]
+Skip to next General/CocoaStepThree
 
-''' How to find Apple's Cocoa documentation and samples '''
+** How to find Apple's Cocoa documentation and samples **
 
 Apple's Cocoa developer documentation is located at http://developer.apple.com/cocoa/
 
@@ -20,14 +20,14 @@ If you have installed Apple's developer tools on your computer, most of the avai
 
 You can search Apple's documentation with the search built into the top right corner of every page of Apple's on-line documentation.  Many people prefer to just search with Google.
 
-''' Third Party Cocoa Books '''
+** Third Party Cocoa Books **
 
-[[CocoaBooks]] provides a list of books about Cocoa programming along with reader reviews and comments.
+General/CocoaBooks provides a list of books about Cocoa programming along with reader reviews and comments.
 
 
-''' Other Cocoa Resources '''
+** Other Cocoa Resources **
 
-Many resources are listed at [[CocoaResources]].  The following are of particular importance:
+Many resources are listed at General/CocoaResources.  The following are of particular importance:
 
 
 * Apple's Cocoa Developer Mailing List - http://lists.apple.com/mailman/listinfo/cocoa-dev
@@ -37,9 +37,9 @@ Many resources are listed at [[CocoaResources]].  The following are of particula
 * A frequently-updated list of Cocoa resources (articles, apps, books, etc) - http://cocoaheads.byu.edu/resources
 
 
-''' Object Oriented Design Patterns '''
+** Object Oriented Design Patterns **
 
-Cocoa is a pattern based framework.  Many of the recognized patterns were first identified in Cocoa or its predecessor technologies, Openstep and [[NeXTstep]].  Many other patterns even pre-date [[NeXTstep]] and were first identified in Smalltalk.
+Cocoa is a pattern based framework.  Many of the recognized patterns were first identified in Cocoa or its predecessor technologies, Openstep and General/NeXTstep.  Many other patterns even pre-date General/NeXTstep and were first identified in Smalltalk.
 
 The seminal text on Object Oriented Design Patterns is "Design Patterns: Elements of Reusable Object-Oriented Software" (Addison-Wesley Professional Computing Series) " by Erich Gamma (Author), Richard Helm (Author), Ralph Johnson (Author), and John M. Vlissides (Author) 
 Additional pattern resources include 
@@ -52,4 +52,4 @@ Additional pattern resources include
 * Another rehash - http://www.exciton.cs.rice.edu/JavaResources/DesignPatterns/
 
 
-next [[CocoaStepThree]]?
+next General/CocoaStepThree?

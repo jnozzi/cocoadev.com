@@ -1,4 +1,4 @@
-[[MacTech]] is, um, a magazine!
+General/MacTech is, um, a magazine!
 
 Their web site is http://www.mactech.com/
 

@@ -1,1 +1,1 @@
-replaced by [[LookupAspects]]
+replaced by General/LookupAspects

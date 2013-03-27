@@ -1,13 +1,13 @@
-Documentation from the [[AppleDeveloperConnection]]:
+Documentation from the General/AppleDeveloperConnection:
 
 https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSDictionary_Class/Reference/Reference.html
 
-See [[FoundationCollections]] for a general overview; see [[DesignDictionary]] for a critique of the dictionary design in general.
+See General/FoundationCollections for a general overview; see General/DesignDictionary for a critique of the dictionary design in general.
 
-----'''Notes:'''
+----**Notes:**
 
-Here's a little example I threw together to use [[NSDictionary]] with some strings.  It's not particularly good, but it might help you understand a little better.
-<code>
+Here's a little example I threw together to use General/NSDictionary with some strings.  It's not particularly good, but it might help you understand a little better.
+    
  #import <Cocoa/Cocoa.h>
  
  int main(int argc, const char *argv[])
@@ -15,7 +15,7 @@ Here's a little example I threw together to use [[NSDictionary]] with some strin
    NSDictionary *dict;
    NSEnumerator *enumerator;
    id key;
-   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+   NSAutoreleasePool * pool = General/NSAutoreleasePool alloc] init];
    
    dict = [NSDictionary dictionaryWithObjectsAndKeys:
            @"A beverage prepared by heating cocoa with water/milk",
@@ -33,22 +33,22 @@ Here's a little example I threw together to use [[NSDictionary]] with some strin
    // Use of the cString method is discouraged ASCII is out Unicode is in.
    // Also watch out for [[dict objectForKey:@"cocoa"]cString] notice the
    // lack of a space between the receiver and the message.
-   // And lastly since this is a Cocoa example why not use an [[NSLog]]()
+   // And lastly since this is a Cocoa example why not use an [[NSLog()
    NSLog(@"entry for cocoa: %@", [dict objectForKey:@"cocoa"]);
    
    enumerator = [dict keyEnumerator];
    
    while ((key = [enumerator nextObject])) {
      //printf("%s : %s\n", [key cString],
-     //        [[dict objectForKey: key] cString]);
+     //        General/dict objectForKey: key] cString]);
      NSLog(@"%@ : %@", key, [dict objectForKey:key]);
    }
    
    [pool release];
    
-   return 0;//[[NSApplicationMain]](argc, argv);
+   return 0;//[[NSApplicationMain(argc, argv);
  }
-</code>
+
 
 ----
-I switched the order of "dictionary" and its definition. It looked like it was in key-object order instead of object key. -- [[GKinnel]]
+I switched the order of "dictionary" and its definition. It looked like it was in key-object order instead of object key. -- General/GKinnel

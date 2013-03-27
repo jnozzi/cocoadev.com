@@ -1,5 +1,5 @@
-I'm the founder of and developer at Eternal Storms Software ( http://www.eternalstorms.at ), responsible for software like [[GimmeSomeTune]] or [[PresentYourApps]].
-One of my newer apps is [[HierarchicalDock]].
+I'm the founder of and developer at Eternal Storms Software ( http://www.eternalstorms.at ), responsible for software like General/GimmeSomeTune or General/PresentYourApps.
+One of my newer apps is General/HierarchicalDock.
 
 You can write me eMails at m.gansrigler (at) eternalstorms (dot) at, don't hesitate :)
 

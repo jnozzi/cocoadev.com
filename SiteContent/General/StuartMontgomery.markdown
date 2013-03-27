@@ -1,14 +1,14 @@
 
 
-'''Stuart Montgomery'''
+**Stuart Montgomery**
 
-'''Age:  '''16
+**Age:  **16
 
- '''Languages:  '''
+ **Languages:  **
 
 *PHP
 *Java
 *HTML
 *CSS
-*[[AppleScript]]
+*General/AppleScript
 *Objective-C (learning)

@@ -8,7 +8,7 @@ Wish I (newb) could help, but, nonetheless, that would be sweet.   ; D
 
 Could we have a bit more detail ?? Discussions on cocoadev.com or generic ?? What don't you like about using a web browser ?? How would / should the app be better ??
 
---[[SaileshAgrawal]]
+--General/SaileshAgrawal
 
 ----
 
@@ -16,9 +16,9 @@ I do mean cocoadev.com. I don't mean it as a replacement for the website  or usi
 
 ----
 
-It would also provide built in spell checking for those not using Safari, [[OmniWeb]], or some other browser with spell check.
+It would also provide built in spell checking for those not using Safari, General/OmniWeb, or some other browser with spell check.
 
--- [[MattGoodmen]]
+-- General/MattGoodmen
 
 ----
 
@@ -30,14 +30,14 @@ Yea live chat and the ability to send files to each other.
 
 ----
 
-''If you're interested in extending the Wiki paradigm, you might want to look at [[MeatballWiki]], a Wiki about Wikis.''
+*If you're interested in extending the Wiki paradigm, you might want to look at General/MeatballWiki, a Wiki about Wikis.*
 
 ----
 
-Well, there's always the cocoadev [[ChatRoom]].
+Well, there's always the cocoadev General/ChatRoom.
 
 ----
 
 Speaking of iChat... It seems interesting, but I don't have a .mac account. Is there any other way to create an iChat account ?
 
-This is kind of off-topic, but yes, you can use regular AIM accounts. I've got one of those. They're free (as in beer). -- [[RobRix]]
+This is kind of off-topic, but yes, you can use regular AIM accounts. I've got one of those. They're free (as in beer). -- General/RobRix

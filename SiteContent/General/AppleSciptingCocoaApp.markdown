@@ -1,1 +1,1 @@
-See [[AppleScriptingCocoaApp]].
+See General/AppleScriptingCocoaApp.

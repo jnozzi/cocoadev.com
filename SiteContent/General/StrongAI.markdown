@@ -1,10 +1,10 @@
-This is probably more of a philosophical debate than [[ComputerScience]], but anyway, according to John Searle (1980, "Minds, Brains, and Programs"):
+This is probably more of a philosophical debate than General/ComputerScience, but anyway, according to John Searle (1980, "Minds, Brains, and Programs"):
 
-[[StrongAI]]: ''the computer is not merely a tool in the study of the mind, rather the appropriately programmed computer really is a mind in the sense that computers given the right programs can be literally said to understand and have other cognitive states.''
+General/StrongAI: *the computer is not merely a tool in the study of the mind, rather the appropriately programmed computer really is a mind in the sense that computers given the right programs can be literally said to understand and have other cognitive states.*
 
-[[WeakAI]]: ''computers just simulate thought, their seeming understanding isn't real (just as-if) understanding, their seeming calculation as-if calculation, etc.; nevertheless, computer simulation is useful for studying the  mind (as for studying the weather and other things).'' 
+General/WeakAI: *computers just simulate thought, their seeming understanding isn't real (just as-if) understanding, their seeming calculation as-if calculation, etc.; nevertheless, computer simulation is useful for studying the  mind (as for studying the weather and other things).* 
 
-Searle gives an argument to why [[StrongAI]] can never be possible with a computer, named [[TheChineseRoom]]. Opinions have drastically divided, not only about whether [[TheChineseRoom]] argument is cogent; but, among those who think it is, as to why it is; and, among those who think it is not, as to why not.
+Searle gives an argument to why General/StrongAI can never be possible with a computer, named General/TheChineseRoom. Opinions have drastically divided, not only about whether General/TheChineseRoom argument is cogent; but, among those who think it is, as to why it is; and, among those who think it is not, as to why not.
 
 Source: http://www.utm.edu/research/iep/c/chineser.htm
 

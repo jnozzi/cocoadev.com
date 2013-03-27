@@ -1,16 +1,16 @@
-The easiest way to capture the [[EscapeKeyEvent]] from a text object (e.g. [[NSTextField]] or [[NSTextView]]) is to set the delegate to an object that responds to <code>control:textView:doCommandBySelector:</code>. Here's an example:
+The easiest way to capture the General/EscapeKeyEvent from a text object (e.g. General/NSTextField or General/NSTextView) is to set the delegate to an object that responds to     control:textView:doCommandBySelector:. Here's an example:
 
-<code>
-- (BOOL)control:([[NSControl]] '')control textView:([[NSTextView]] '')textView 
+    
+- (BOOL)control:(General/NSControl *)control textView:(General/NSTextView *)textView 
     doCommandBySelector:(SEL)command 
 {
     if (command == @selector(cancelOperation:)) {
-        [[NSLog]](@"escape key has been pressed");
+        General/NSLog(@"escape key has been pressed");
     }
     return NO;
 }
 
-</code>
+
 
 --zootbobbalu
 
@@ -25,7 +25,7 @@ cocoa
 escape 
 key 
 bindings 
-[[NSEvent]]
+General/NSEvent
 
 but I don't get anything
 
@@ -34,15 +34,15 @@ I know you can change the defaultKeyBindings to get the desired effect, but this
 ----
 My first responder gets escape keyDown messages, and plenty of them.
 
-<code>
-- (void)keyDown: ([[NSEvent]] '') event {
+    
+- (void)keyDown: (General/NSEvent *) event {
 
    if ([event keyCode] == 53){
-        [[NSLog]](@"Escape has been pressed");
+        General/NSLog(@"Escape has been pressed");
      }
   
 }
-</code>
+
 
 One thing that always bugs me is apple has constants for every damn key imaginable except the ones I want to use, so I am stuck using key codes.
 
@@ -52,15 +52,15 @@ Don't you love Cocoa!!! I wasn't sure if the object in question was in fact the 
 
 So now the question is: 
 
-If the [[NSWindow]] class forwards keyDown events to its delegate, then how can I be certain that nothing will ever stand between the window and the delegate to the window when keyDown events are involved? 
+If the General/NSWindow class forwards keyDown events to its delegate, then how can I be certain that nothing will ever stand between the window and the delegate to the window when keyDown events are involved? 
 
-Where should you implement your version of the keyDown method, in a subclass of an [[NSWindow]] or a window delegate?
+Where should you implement your version of the keyDown method, in a subclass of an General/NSWindow or a window delegate?
 
-
-----
-
-I think that perhaps passing it along to the delegate is best. Something about the [[ModelViewController]], I do not think anything can really stand between.
 
 ----
 
-The escape key gets converted to the '''_cancelKey:''' action, or '''cancelOperation:''' in Panther.
+I think that perhaps passing it along to the delegate is best. Something about the General/ModelViewController, I do not think anything can really stand between.
+
+----
+
+The escape key gets converted to the **_cancelKey:** action, or **cancelOperation:** in Panther.

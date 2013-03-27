@@ -1,4 +1,4 @@
-I have an [[NSView]] that basically draws a rectangle. At the moment, I have a tracking rect on one edge of the rectangle and I use this to detect when the mouse is near the right edge of the rectangle. When it is in the tracking rect ( �3 pixels of the edge - hopefully a good amount) the rectangle changes color so that it shows it can be manipulated by the mouse. When the mouse exits the tracking rect the rectangle goes back to its original color. So far so good :)
+I have an General/NSView that basically draws a rectangle. At the moment, I have a tracking rect on one edge of the rectangle and I use this to detect when the mouse is near the right edge of the rectangle. When it is in the tracking rect ( �3 pixels of the edge - hopefully a good amount) the rectangle changes color so that it shows it can be manipulated by the mouse. When the mouse exits the tracking rect the rectangle goes back to its original color. So far so good :)
 
 The edge of my rectangle can be dragged to extend/shrink it (really basic) but the problem occurs when the user drags the edge of the rectangle. As he/she drags the mouse,it leaves the tracking area, but because this is during a drag operation, mouseExited never gets called, and so it is possible for the rectangle to be resized, and the mouse released occurs outside the tracking rect. To still have my rectangle in the "yeah-sure-you-can-drag-me" color. This is then not rectified until the NEXT mouseExited operation, which involves entering the tracking rect and then leaving it again.
 
@@ -9,7 +9,7 @@ Is there any way I can check for mouse exited AS I drag?
 ----
 
 
-I don't entirely understand what you're trying to do here, but it seems to me that you wouldn't really want it updated as you drag, just to be the correct color when you finish the drag.  The easiest way to handle that IMHO would be to implement <code>-mouseUp:</code> and just set the rectangle to the correct color in that method.  -- Bo
+I don't entirely understand what you're trying to do here, but it seems to me that you wouldn't really want it updated as you drag, just to be the correct color when you finish the drag.  The easiest way to handle that IMHO would be to implement     -mouseUp: and just set the rectangle to the correct color in that method.  -- Bo
 
 ----
 

@@ -1,62 +1,62 @@
 
 
 
-Some documentation and Apple source examples reveal that [[XCode]] seems to support some helpful pragmas.
+Some documentation and Apple source examples reveal that General/XCode seems to support some helpful pragmas.
 
 The most notable of these is the pragma "mark". This pragma allows developers to suggest a description for groups of methods. This mark pragma most noticably affects the method finder menu at the top of each editor field. For example:
 
-%%BEGINCODESTYLE%%
+<code>
 #pragma mark Drag Helper Methods
-%%ENDCODESTYLE%%
+</code>
 
 Would place a mark in the menu, and subsequent methods will appear beneath it. It also seems that you can place a blank line in the menu (to help grouping) by making your mark just a dash, like so:
 
-%%BEGINCODESTYLE%%
+<code>
 #pragma mark -
-%%ENDCODESTYLE%%
+</code>
 
-Also, [[XCode]] interprets
+Also, General/XCode interprets
 
-%%BEGINCODESTYLE%%
+<code>
 #pragma mark - My Cool Group
-%%ENDCODESTYLE%%
+</code>
 
 as
 
-%%BEGINCODESTYLE%%
+<code>
 #pragma mark -
 
 #pragma mark My Cool Group
-%%ENDCODESTYLE%%
+</code>
 
 With these rules and the default indentation scheme, the menu becomes much easier to rapidly scan through. You can see a good example of this in 
-file:///Developer/Examples/[[DiscRecording]]/[[ObjectiveC]]/[[EnhancedDataBurn]]/[[AppController]].m
+file:///Developer/Examples/General/DiscRecording/General/ObjectiveC/General/EnhancedDataBurn/General/AppController.m
 
 You can also use more than just a dash. You can put any text you want in the pragma and it will show up in the fuction reference pop-up menu.
-<code>
+    
 #pragma mark Class methods
 #pragma mark Public object methods
 #pragma mark Private object methods
-</code>
+
 
 If you have large files, this can be very handy.
 
 Does anyone want to list other helpful pragmas if there are any?
--- [[DaveFayram]]
+-- General/DaveFayram
 
-As a side note: #pragma mark is new in PB2, IIRC. [[CodeWarrior]] also had that (or maybe it was MPW) and I really missed it in PB. Proof that Apple ''do'' listen to programmers' requests, so keep filing those bugs! :-) --[[UliKusterer]]
+As a side note: #pragma mark is new in PB2, IIRC. General/CodeWarrior also had that (or maybe it was MPW) and I really missed it in PB. Proof that Apple *do* listen to programmers' requests, so keep filing those bugs! :-) --General/UliKusterer
 
 Another side note, Xcode also accepts, e.g.:
-<code>
+    
 // MARK: Class methods
 // MARK: -
-</code>
-As an alternative to #pragma mark - [[ChristopherLloyd]] , credit goes to [[JensAyton]] for pointing this out
+
+As an alternative to #pragma mark - General/ChristopherLloyd , credit goes to General/JensAyton for pointing this out
 ----
 
-%%BEGINCODESTYLE%%
+<code>
 #warning !FIX! only one element and Document Type allowed
-%%ENDCODESTYLE%%
+</code>
 
 Not a #pragma but this creates a compiler warning. It's often more useful than e.g. "fixme" comments because of the increased visibility.
 
@@ -68,23 +68,23 @@ There's also
 
 which comes in useful inside preprocessor conditionals:
 
-<code>
+    
 #if TARGET_RT_MACHO
-#include "[[MachoDefinitions]].h"
+#include "General/MachoDefinitions.h"
 #else
 #error Unsupported runtime - No customized definitions available
 #endif
-</code>
+
 
 and there is
 
-<code>
+    
 #pragma unused(varname)
-</code>
+
 
 which lets you suppress the "unused variable" warning for dummy parameters.
 
---[[UliKusterer]]
+--General/UliKusterer
 
 ----
 

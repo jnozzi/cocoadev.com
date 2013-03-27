@@ -1,1 +1,1 @@
-See [[MacOSClassic]]
+See General/MacOSClassic

@@ -1,6 +1,6 @@
-<code>
-	[[NSWindow]] ''myWindow = [[[[NSWindow]] alloc] initWithContentRect: [[NSMakeRect]](10,10,50,50) styleMask: [[NSBorderlessWindowMask]] backing: [[NSBackingStoreRetained]] defer: NO];
-	[myWindow setBackgroundColor: [[[NSColor]] clearColor]];
+    
+	General/NSWindow *myWindow = General/[[NSWindow alloc] initWithContentRect: General/NSMakeRect(10,10,50,50) styleMask: General/NSBorderlessWindowMask backing: General/NSBackingStoreRetained defer: NO];
+	[myWindow setBackgroundColor: General/[NSColor clearColor]];
 	[myWindow setHasShadow: NO];
 	[myWindow setOpaque: NO];
 	[myWindow retain];
@@ -10,7 +10,7 @@
 ...
 	[myWindow orderOut: sender];
 	[myWindow release];
-</code>
+
 
 Why doesn't this show my window ? When I used IB and made a window and an outlet, much the same code worked. So I'm wondering what my error is. I just want to show a gif animation for x seconds and thought this would be a good idea...
 
@@ -20,4 +20,4 @@ It's not showing your window because you're making a completely transparent, sha
 
 On a completely unrelated note, the retain is redundant (and will in fact cause a leak), because you already alloc'd the window.
 
-One other thing, you really should use <code>[[NSBackingStoreBuffered]]</code> instead of <code>[[NSBackingStoreRetained]]</code>. The latter will disable the double-buffering which makes OS X's windowing system so nice to use.
+One other thing, you really should use     General/NSBackingStoreBuffered instead of     General/NSBackingStoreRetained. The latter will disable the double-buffering which makes OS X's windowing system so nice to use.

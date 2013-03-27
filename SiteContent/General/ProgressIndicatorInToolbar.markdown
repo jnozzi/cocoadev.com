@@ -1,1 +1,1 @@
-Describe [[ProgressIndicatorInToolbar]] here.
+Describe General/ProgressIndicatorInToolbar here.

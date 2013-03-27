@@ -1,20 +1,20 @@
 Here's a simple class that lets your app respond to a Keyspan remote (URM - 15T).
 
-<code>
-@interface [[KeyspanObserver]] : [[NSObject]] {
+    
+@interface General/KeyspanObserver : General/NSObject {
 
 }
 @end
 
-static [[NSDictionary]] ''[[KeyspanActions]] = nil;
-static BOOL [[ShouldRespondToKeyspanActionsInBackground]] = NO;
+static General/NSDictionary *General/KeyspanActions = nil;
+static BOOL General/ShouldRespondToKeyspanActionsInBackground = NO;
 
-@implementation [[KeyspanObserver]]
+@implementation General/KeyspanObserver
 
-static BOOL [[KeyspanObserverAction]](SEL action, 
-								  [[NSResponder]] ''responder, 
-								  [[NSNotification]] ''note, 
-								  [[NSMethodSignature]] ''delegateSignature)
+static BOOL General/KeyspanObserverAction(SEL action, 
+								  General/NSResponder *responder, 
+								  General/NSNotification *note, 
+								  General/NSMethodSignature *delegateSignature)
 {
 	if ([responder respondsToSelector:action]) {
 		[responder performSelector:action withObject:note];
@@ -22,7 +22,7 @@ static BOOL [[KeyspanObserverAction]](SEL action,
 	}
 	id delegate;				
 	if ([responder respondsToSelector:@selector(delegate)] &&
-		[[responder methodSignatureForSelector:@selector(delegate)] isEqual:delegateSignature] &&
+		General/responder methodSignatureForSelector:@selector(delegate)] isEqual:delegateSignature] &&
 		[(delegate = [responder performSelector:@selector(delegate)]) respondsToSelector:action])
 	{
 		[delegate performSelector:action withObject:note];
@@ -31,45 +31,45 @@ static BOOL [[KeyspanObserverAction]](SEL action,
 	return NO;
 }
 
-+ ([[NSResponder]] '')firstResponder {
-	[[NSResponder]] ''firstResponder = [[[[NSApp]] keyWindow] firstResponder];
-	[[NSArray]] ''orderedWindows;
-	if (!firstResponder && [(orderedWindows = [[[NSApp]] orderedWindows]) count])
-		firstResponder = [([[NSWindow]] '')[orderedWindows objectAtIndex:0] firstResponder];
++ ([[NSResponder *)firstResponder {
+	General/NSResponder *firstResponder = General/[[NSApp keyWindow] firstResponder];
+	General/NSArray *orderedWindows;
+	if (!firstResponder && [(orderedWindows = General/[NSApp orderedWindows]) count])
+		firstResponder = [(General/NSWindow *)[orderedWindows objectAtIndex:0] firstResponder];
 	return firstResponder;
 }
 
-+ (void)keyspanMessage:([[NSNotification]] '')note {
++ (void)keyspanMessage:(General/NSNotification *)note {
 
-	if (![[[NSApp]] isActive] && ![[ShouldRespondToKeyspanActionsInBackground]])
+	if (!General/[NSApp isActive] && !General/ShouldRespondToKeyspanActionsInBackground)
 		return;
 
-	[[NSString]] ''message = [[note userInfo] objectForKey:@"message"];
-	if ([message isKindOfClass:[[[NSString]] class]]) {
-		SEL action = [[NSSelectorFromString]]([[[KeyspanActions]] objectForKey:message]);
-		[[NSResponder]] ''responder;		
-		[[NSMethodSignature]] ''sig = [[[NSWindow]] instanceMethodSignatureForSelector:@selector(delegate)];
+	General/NSString *message = General/note userInfo] objectForKey:@"message"];
+	if ([message isKindOfClass:[[[NSString class]]) {
+		SEL action = General/NSSelectorFromString(General/[KeyspanActions objectForKey:message]);
+		General/NSResponder *responder;		
+		General/NSMethodSignature *sig = General/[NSWindow instanceMethodSignatureForSelector:@selector(delegate)];
 		if (action) {
 			BOOL didHandle = NO;
 			for (responder = [self firstResponder]; 
-				 responder && !(didHandle = [[KeyspanObserverAction]](action, responder, note, sig)); 
+				 responder && !(didHandle = General/KeyspanObserverAction(action, responder, note, sig)); 
 				 responder = [responder nextResponder]);
 			if (!didHandle) 
-				[[KeyspanObserverAction]](action, [[NSApp]], note, sig);
+				General/KeyspanObserverAction(action, General/NSApp, note, sig);
 		}
 	}
 
 }
 
 + (void)initialize {
-	if (![[KeyspanActions]]) {
-		[[[[NSDistributedNotificationCenter]] defaultCenter] addObserver:self
+	if (!General/KeyspanActions) {
+		General/[[NSDistributedNotificationCenter defaultCenter] addObserver:self
 															selector:@selector(keyspanMessage:)
 																name:@"com.Keyspan.DMR.IAC.notification"
 															  object:@"button"];		
-		[[ShouldRespondToKeyspanActionsInBackground]] = 
-			([[[[NSUserDefaults]] standardUserDefaults] objectForKey:@"[[ShouldRespondToKeyspanActionsInBackground]]"]) ? YES : NO;
-		[[KeyspanActions]] = [[[[NSDictionary]] alloc] initWithObjectsAndKeys:
+		General/ShouldRespondToKeyspanActionsInBackground = 
+			(General/[[NSUserDefaults standardUserDefaults] objectForKey:@"General/ShouldRespondToKeyspanActionsInBackground"]) ? YES : NO;
+		General/KeyspanActions = General/[[NSDictionary alloc] initWithObjectsAndKeys:
                                                     @"keyspanRemoteSelectButtonDown:", @"DWN SELECT",
                                                     @"keyspanRemoteSelectButtonUp:", @"UPP SELECT",
                                                     @"keyspanRemoteCycleButtonDown:", @"DWN CYCLE",
@@ -107,28 +107,28 @@ static BOOL [[KeyspanObserverAction]](SEL action,
 }
 @end
 
-</code>
 
-The responder chain is searched first for an action handler. If the responder chain doesn't handle the action, [[NSApp]] and its delegate get a shot at it.
+
+The responder chain is searched first for an action handler. If the responder chain doesn't handle the action, General/NSApp and its delegate get a shot at it.
 
 You can have a document object, an app delegate or a responder object handle remote button actions.
 
-<code>
+    
 
-- (void)keyspanRemotePlayButtonUp:([[NSNotification]] '')note {
-	[[NSLog]](@"<%p>%s:", self, __PRETTY_FUNCTION__);
+- (void)keyspanRemotePlayButtonUp:(General/NSNotification *)note {
+	General/NSLog(@"<%p>%s:", self, __PRETTY_FUNCTION__);
 }
-- (void)keyspanRemotePlayButtonDown:([[NSNotification]] '')note {
-	[[NSLog]](@"<%p>%s:", self, __PRETTY_FUNCTION__);
-}
-
-- (void)keyspanRemoteStopButtonUp:([[NSNotification]] '')note {
-	[[NSLog]](@"<%p>%s:", self, __PRETTY_FUNCTION__);
-}
-- (void)keyspanRemoteStopButtonDown:([[NSNotification]] '')note {
-	[[NSLog]](@"<%p>%s:", self, __PRETTY_FUNCTION__);
+- (void)keyspanRemotePlayButtonDown:(General/NSNotification *)note {
+	General/NSLog(@"<%p>%s:", self, __PRETTY_FUNCTION__);
 }
 
-</code>
+- (void)keyspanRemoteStopButtonUp:(General/NSNotification *)note {
+	General/NSLog(@"<%p>%s:", self, __PRETTY_FUNCTION__);
+}
+- (void)keyspanRemoteStopButtonDown:(General/NSNotification *)note {
+	General/NSLog(@"<%p>%s:", self, __PRETTY_FUNCTION__);
+}
+
+
 
 --zootbobbalu

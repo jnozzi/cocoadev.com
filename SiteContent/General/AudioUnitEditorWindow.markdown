@@ -3,73 +3,73 @@ I've been using this class for a while, and thought that someone might find this
 
 - Jeremy Jurksztowicz
 
-<code>
-#import <[[AppKit]]/[[AppKit]].h>
-#include <[[AudioUnit]]/[[AudioUnit]].h>
+    
+#import <General/AppKit/General/AppKit.h>
+#include <General/AudioUnit/General/AudioUnit.h>
 
 // ============================================================================================
 //
-@interface [[MYAudioUnitEditor]] : [[NSWindowController]]
+@interface General/MYAudioUnitEditor : General/NSWindowController
 {
-	[[ComponentDescription]] _editUnitCD;
-	[[AudioUnit]] _editUnit;
-	[[AudioUnitCarbonView]] _editView;
-	[[WindowRef]] _carbonWindow;
-	[[NSWindow]] '' _cocoaWindow;
-	[[NSSize]] _defaultViewSize;
+	General/ComponentDescription _editUnitCD;
+	General/AudioUnit _editUnit;
+	General/AudioUnitCarbonView _editView;
+	General/WindowRef _carbonWindow;
+	General/NSWindow * _cocoaWindow;
+	General/NSSize _defaultViewSize;
 	id _delegate;
 }
 
 // --------------------------------------------------------------------------------------------
 
-+ ([[MYAudioUnitEditor]]'') editorForAudioUnit:([[AudioUnit]])unit 
++ (General/MYAudioUnitEditor*) editorForAudioUnit:(General/AudioUnit)unit 
 	forceGeneric:(BOOL)forceGeneric delegate:(id)delegate;
 
-- (id) initWithAudioUnit:([[AudioUnit]])unit forceGeneric:(BOOL)forceGeneric delegate:(id)delegate;
+- (id) initWithAudioUnit:(General/AudioUnit)unit forceGeneric:(BOOL)forceGeneric delegate:(id)delegate;
 
-- ([[WindowRef]]) carbonWindow;
+- (General/WindowRef) carbonWindow;
 
-- ([[AudioUnit]]) editedUnit;
+- (General/AudioUnit) editedUnit;
 
 @end
 
 // ============================================================================================
 
-@interface [[NSObject]] ([[MYAudioUnitEditorDelegate]])
-- (void) audioUnitEditorClosed:([[MYAudioUnitEditor]]'')auEditor;
+@interface General/NSObject (General/MYAudioUnitEditorDelegate)
+- (void) audioUnitEditorClosed:(General/MYAudioUnitEditor*)auEditor;
 @end
-</code>
+
 
 Implementation:
 
-<code>
-#import "[[MYAudioUnitEditor]].h"
-#import <[[AudioUnit]]/[[AUCocoaUIView]].h>
+    
+#import "General/MYAudioUnitEditor.h"
+#import <General/AudioUnit/General/AUCocoaUIView.h>
 
 // ============================================================================================
 // Carbon implementation from code at the old ucsb audio tutorial website by Chris Reed (no longer up).
 
-@interface [[MYAudioUnitEditor]]([[MYAudioUnitEditorPrivate]])
+@interface General/MYAudioUnitEditor(General/MYAudioUnitEditorPrivate)
 - (void) _editWindowClosed;
-- (BOOL) _error:([[NSString]]'')errString status:([[OSStatus]])err;
+- (BOOL) _error:(General/NSString*)errString status:(General/OSStatus)err;
 @end
 
 // Carbon event handler.
-static [[OSStatus]] [[WindowClosedHandler]] (
-	[[EventHandlerCallRef]] myHandler, [[EventRef]] theEvent, void'' userData)
+static General/OSStatus General/WindowClosedHandler (
+	General/EventHandlerCallRef myHandler, General/EventRef theEvent, void* userData)
 {
-	[[MYAudioUnitEditor]]'' me = ([[MYAudioUnitEditor]]'')userData;
+	General/MYAudioUnitEditor* me = (General/MYAudioUnitEditor*)userData;
 	[me close];
 	return noErr;
 }
 
 // ============================================================================================
-@implementation [[MYAudioUnitEditor]]
+@implementation General/MYAudioUnitEditor
 
-+ ([[MYAudioUnitEditor]]'') editorForAudioUnit:([[AudioUnit]])unit 
++ (General/MYAudioUnitEditor*) editorForAudioUnit:(General/AudioUnit)unit 
 	forceGeneric:(BOOL)forceGeneric delegate:(id)delegate
 {
-	return [[[[[MYAudioUnitEditor]] alloc] initWithAudioUnit:unit 
+	return General/[[[MYAudioUnitEditor alloc] initWithAudioUnit:unit 
 		forceGeneric:forceGeneric delegate:delegate] autorelease];
 }
 // --------------------------------------------------------------------------------------------
@@ -79,33 +79,33 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 	[_delegate audioUnitEditorClosed:self];
 }
 
-- (BOOL) _error:([[NSString]]'')errString status:([[OSStatus]])err
+- (BOOL) _error:(General/NSString*)errString status:(General/OSStatus)err
 {
-	[[NSString]] '' errorString = [[[NSString]] stringWithFormat:@"%@ failed; %i / %s", 
-		errString, err, (char'')&err];
+	General/NSString * errorString = General/[NSString stringWithFormat:@"%@ failed; %i / %s", 
+		errString, err, (char*)&err];
 		
 	// We just send error to console, do what you will with it.
-	[[NSLog]](errorString);
+	General/NSLog(errorString);
 	return NO;
 }
 // --------------------------------------------------------------------------------------------
-- ([[WindowRef]]) carbonWindow
+- (General/WindowRef) carbonWindow
 {
 	return _carbonWindow;
 }
 
-- ([[AudioUnit]]) editedUnit
+- (General/AudioUnit) editedUnit
 {
 	return _editUnit;
 }
 // --------------------------------------------------------------------------------------------
 - (BOOL) installWindowCloseHandler
 {
-	[[EventTypeSpec]] eventList[] = {{kEventClassWindow, kEventWindowClose}};	
-	[[EventHandlerUPP]]	handlerUPP = [[NewEventHandlerUPP]]([[WindowClosedHandler]]);
+	General/EventTypeSpec eventList[] = {{kEventClassWindow, kEventWindowClose}};	
+	General/EventHandlerUPP	handlerUPP = General/NewEventHandlerUPP(General/WindowClosedHandler);
 	
-	[[OSStatus]] err = [[InstallWindowEventHandler]](
-		_carbonWindow, handlerUPP, [[GetEventTypeCount]](eventList), eventList, self, NULL);
+	General/OSStatus err = General/InstallWindowEventHandler(
+		_carbonWindow, handlerUPP, General/GetEventTypeCount(eventList), eventList, self, NULL);
 	if(err != noErr) 
 		return [self _error: @"Install close window handler" status: err];
 		
@@ -114,7 +114,7 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 // --------------------------------------------------------------------------------------------
 - (void) initializeEditViewComponentDescription:(BOOL)forceGeneric;
 {
-	[[OSStatus]] err;
+	General/OSStatus err;
 	
 	// set up to use generic UI component
 	_editUnitCD.componentType = kAudioUnitCarbonViewComponentType;
@@ -126,18 +126,18 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 	if(forceGeneric) return;
 		
 	UInt32 propertySize;
-	err = [[AudioUnitGetPropertyInfo]](
+	err = General/AudioUnitGetPropertyInfo(
 		_editUnit, kAudioUnitProperty_GetUIComponentList, 
 		kAudioUnitScope_Global, 0, &propertySize, NULL);
 	
 	// An error occured so we will just have to use the generic control.
 	if(err != noErr) {
-		[[NSLog]](@"Error setting up carbon interface, falling back to generic interface.");
+		General/NSLog(@"Error setting up carbon interface, falling back to generic interface.");
 		return;
 	}
 		
-	[[ComponentDescription]] ''editors = malloc(propertySize);
-	err = [[AudioUnitGetProperty]](
+	General/ComponentDescription *editors = malloc(propertySize);
+	err = General/AudioUnitGetProperty(
 		_editUnit, kAudioUnitProperty_GetUIComponentList, kAudioUnitScope_Global,
 		0, editors, &propertySize);
 		
@@ -149,7 +149,7 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 // --------------------------------------------------------------------------------------------
 + (BOOL) pluginClassIsValid:(Class)pluginClass 
 {
-	if([pluginClass conformsToProtocol: @protocol([[AUCocoaUIBase]])]) {
+	if([pluginClass conformsToProtocol: @protocol(General/AUCocoaUIBase)]) {
 		if([pluginClass instancesRespondToSelector: @selector(interfaceVersion)] &&
 		   [pluginClass instancesRespondToSelector: @selector(uiViewForAudioUnit:withSize:)]) {
 				return YES;
@@ -162,19 +162,19 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 {
 	UInt32 dataSize   = 0;
 	Boolean isWritable = 0;
-	[[OSStatus]] err = [[AudioUnitGetPropertyInfo]](_editUnit,
+	General/OSStatus err = General/AudioUnitGetPropertyInfo(_editUnit,
 		kAudioUnitProperty_CocoaUI, kAudioUnitScope_Global,
 		0, &dataSize, &isWritable);
 									
 	return dataSize > 0 && err == noErr;
 }
 
-- ([[NSView]] '') getCocoaView
+- (General/NSView *) getCocoaView
 {
-	[[NSView]] ''theView = nil;
+	General/NSView *theView = nil;
 	UInt32 dataSize = 0;
 	Boolean isWritable = 0;
-	[[OSStatus]] err = [[AudioUnitGetPropertyInfo]](_editUnit,
+	General/OSStatus err = General/AudioUnitGetPropertyInfo(_editUnit,
 		kAudioUnitProperty_CocoaUI, kAudioUnitScope_Global, 
 		0, &dataSize, &isWritable);
 									
@@ -182,19 +182,19 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 		return theView;
 									
 	// If we have the property, then allocate storage for it.
-	[[AudioUnitCocoaViewInfo]] '' cvi = malloc(dataSize);
-	err = [[AudioUnitGetProperty]](_editUnit, 
+	General/AudioUnitCocoaViewInfo * cvi = malloc(dataSize);
+	err = General/AudioUnitGetProperty(_editUnit, 
 		kAudioUnitProperty_CocoaUI, kAudioUnitScope_Global, 0, cvi, &dataSize);
 
 	// Extract useful data.
-	unsigned numberOfClasses = (dataSize - sizeof([[CFURLRef]])) / sizeof([[CFStringRef]]);
-	[[NSString]] '' viewClassName = ([[NSString]]'')(cvi->mCocoaAUViewClass[0]);
-	[[NSString]] '' path = ([[NSString]]'')([[CFURLCopyPath]](cvi->mCocoaAUViewBundleLocation));
-	[[NSBundle]] '' viewBundle = [[[NSBundle]] bundleWithPath:[path autorelease]];
+	unsigned numberOfClasses = (dataSize - sizeof(General/CFURLRef)) / sizeof(General/CFStringRef);
+	General/NSString * viewClassName = (General/NSString*)(cvi->mCocoaAUViewClass[0]);
+	General/NSString * path = (General/NSString*)(General/CFURLCopyPath(cvi->mCocoaAUViewBundleLocation));
+	General/NSBundle * viewBundle = General/[NSBundle bundleWithPath:[path autorelease]];
 	Class viewClass = [viewBundle classNamed:viewClassName];
 	
-	if([[[MYAudioUnitEditor]] pluginClassIsValid:viewClass]) {
-		id factory = [[[viewClass alloc] init] autorelease];
+	if(General/[MYAudioUnitEditor pluginClassIsValid:viewClass]) {
+		id factory = General/[viewClass alloc] init] autorelease];
 		theView = [factory uiViewForAudioUnit:_editUnit withSize:_defaultViewSize];
 	}
 	
@@ -202,9 +202,9 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 	if(cvi) {
         int i;
         for(i = 0; i < numberOfClasses; i++)
-            [[CFRelease]](cvi->mCocoaAUViewClass[i]);
+            [[CFRelease(cvi->mCocoaAUViewClass[i]);
         
-        [[CFRelease]](cvi->mCocoaAUViewBundleLocation);
+        General/CFRelease(cvi->mCocoaAUViewBundleLocation);
         free(cvi);
     }
 	
@@ -213,13 +213,13 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 // --------------------------------------------------------------------------------------------
 - (BOOL) createCarbonWindow
 {
-	Component editComponent = [[FindNextComponent]](NULL, &_editUnitCD);
-	[[OpenAComponent]](editComponent, &_editView);
+	Component editComponent = General/FindNextComponent(NULL, &_editUnitCD);
+	General/OpenAComponent(editComponent, &_editView);
 	if (!_editView)
-		[[[NSException]] raise:[[NSGenericException]] format:@"Could not open audio unit editor component"];
+		General/[NSException raise:General/NSGenericException format:@"Could not open audio unit editor component"];
 	
 	Rect bounds = { 100, 100, 100, 100 }; // Generic resized later
-	[[OSStatus]] res = [[CreateNewWindow]](kFloatingWindowClass, 
+	General/OSStatus res = General/CreateNewWindow(kFloatingWindowClass, 
 		kWindowCloseBoxAttribute | kWindowCollapseBoxAttribute | kWindowStandardHandlerAttribute |
 		kWindowCompositingAttribute | kWindowSideTitlebarAttribute, &bounds, &_carbonWindow);
 		
@@ -227,23 +227,23 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 		return [self _error:@"Create new carbon window" status:res];
 	
 	// create the edit view
-	[[ControlRef]] rootControl;
-	res = [[GetRootControl]](_carbonWindow, &rootControl);
+	General/ControlRef rootControl;
+	res = General/GetRootControl(_carbonWindow, &rootControl);
 	if(!rootControl) 
 		return [self _error:@"Get root control of carbon window" status:res];
 
-	[[ControlRef]] viewPane;
+	General/ControlRef viewPane;
 	Float32Point loc  = { 0.0, 0.0 };
 	Float32Point size = { 0.0, 0.0 } ;
-	[[AudioUnitCarbonViewCreate]](_editView, _editUnit, _carbonWindow, 
+	General/AudioUnitCarbonViewCreate(_editView, _editUnit, _carbonWindow, 
 		rootControl, &loc, &size, &viewPane);
 		
 	// resize and move window
-	[[GetControlBounds]](viewPane, &bounds);
+	General/GetControlBounds(viewPane, &bounds);
 	size.x = bounds.right-bounds.left;
 	size.y = bounds.bottom-bounds.top;
-	[[SizeWindow]](_carbonWindow, (short) (size.x + 0.5), (short) (size.y + 0.5),  true);
-	[[RepositionWindow]](_carbonWindow, NULL, kWindowCenterOnMainScreen);
+	General/SizeWindow(_carbonWindow, (short) (size.x + 0.5), (short) (size.y + 0.5),  true);
+	General/RepositionWindow(_carbonWindow, NULL, kWindowCenterOnMainScreen);
 	
 	return YES;
 }
@@ -252,12 +252,12 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 {
 	if([self hasCocoaView])
 	{
-		[[NSView]] '' res = [self getCocoaView];
+		General/NSView * res = [self getCocoaView];
 		if(res) {
-			[[NSWindow]] '' window = [[[[[NSWindow]] alloc] initWithContentRect:
-				[[NSMakeRect]](100, 400, [res frame].size.width, [res frame].size.height) styleMask:
-				[[NSTitledWindowMask]] | [[NSClosableWindowMask]] | [[NSMiniaturizableWindowMask]] | [[NSResizableWindowMask]]
-				backing:[[NSBackingStoreBuffered]] defer:NO] autorelease];
+			General/NSWindow * window = General/[[[NSWindow alloc] initWithContentRect:
+				General/NSMakeRect(100, 400, [res frame].size.width, [res frame].size.height) styleMask:
+				General/NSTitledWindowMask | General/NSClosableWindowMask | General/NSMiniaturizableWindowMask | General/NSResizableWindowMask
+				backing:General/NSBackingStoreBuffered defer:NO] autorelease];
 				
 			[window setContentView:res];
 			[window setIsVisible:YES];
@@ -274,7 +274,7 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 	if(_cocoaWindow)
 		[super showWindow:sender];
 	else if(_carbonWindow)
-		[[SelectWindow]](_carbonWindow);
+		General/SelectWindow(_carbonWindow);
 }
 
 - (void) close
@@ -284,17 +284,17 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 		_cocoaWindow = nil;
 	}
 	else if(_carbonWindow) {
-		[[DisposeWindow]](_carbonWindow);
+		General/DisposeWindow(_carbonWindow);
 		_carbonWindow = 0;
 	}
 	[self _editWindowClosed];
 }
 // --------------------------------------------------------------------------------------------
-- (id) initWithAudioUnit: ([[AudioUnit]]) unit forceGeneric: (BOOL) forceGeneric delegate: (id) delegate
+- (id) initWithAudioUnit: (General/AudioUnit) unit forceGeneric: (BOOL) forceGeneric delegate: (id) delegate
 {
 	_editUnit = unit;
 	_delegate = delegate;
-	_defaultViewSize = [[NSMakeSize]](400, 300);
+	_defaultViewSize = General/NSMakeSize(400, 300);
 	
 	// We need to chack this in showWindow:
 	_carbonWindow = 0;
@@ -324,7 +324,7 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 		}
 
 		// create the cocoa window for the carbon one and make it visible.
-		[[NSWindow]] ''cWindow = [[[[NSWindow]] alloc] initWithWindowRef:_carbonWindow];
+		General/NSWindow *cWindow = General/[[NSWindow alloc] initWithWindowRef:_carbonWindow];
 		[self setWindow:cWindow];
 		[cWindow setIsVisible:YES];
 	}
@@ -335,12 +335,11 @@ static [[OSStatus]] [[WindowClosedHandler]] (
 {
 	[self setWindow:nil];
 	if(_editView)
-		[[CloseComponent]](_editView);
+		General/CloseComponent(_editView);
 	if(_carbonWindow)
-		[[DisposeWindow]](_carbonWindow);
+		General/DisposeWindow(_carbonWindow);
 		
 	[super dealloc];
 }
 
 @end
-</code>

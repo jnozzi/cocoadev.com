@@ -1,4 +1,4 @@
-Describe [[ForgiveMeStillANewb]] here.
+Describe General/ForgiveMeStillANewb here.
 
 
 simply trying to grasp this concept.
@@ -7,7 +7,7 @@ when i declare a BOOL variable as an instance variable, and then create an acces
 
 I.E.
 
-@interface Creator : [[NSObject]]
+@interface Creator : General/NSObject
 
 {
 
@@ -61,11 +61,11 @@ do i need to do some type of retain on the fileMade to get it to work.... i have
 
 ----
 
-I think we need more info. Show us more code, such as the call to <code>-makeFile</code>, etc.
+I think we need more info. Show us more code, such as the call to     -makeFile, etc.
 
 ----
 
-make file is actually called as a result of an [[IBAction]], along with some other code.  I know the call works because the rest of the code in makeFile executes fine.
+make file is actually called as a result of an General/IBAction, along with some other code.  I know the call works because the rest of the code in makeFile executes fine.
 
 also, if i change the logic to
 
@@ -75,4 +75,4 @@ it will execute the code that follows.  Almost like the fileMade variable forget
 
 ----
 
-Please see [[HowToUseThisSite]]. Pay particular attention to [[TextFormattingRules]] and the bits that talk about giving your pages a descriptive name. [[MailingListMode]] would also be a good read. Once you've done that, check out [[CommonProblem]], and particularly the linked [[IBOutletNSViewIsNil]] page, which describes a similar problem.
+Please see General/HowToUseThisSite. Pay particular attention to General/TextFormattingRules and the bits that talk about giving your pages a descriptive name. General/MailingListMode would also be a good read. Once you've done that, check out General/CommonProblem, and particularly the linked General/IBOutletNSViewIsNil page, which describes a similar problem.

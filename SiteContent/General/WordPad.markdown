@@ -1,1 +1,1 @@
-[[WordPad]] is a simple RTF text editor included with Microsoft Windows since around Windows 3.0.
+General/WordPad is a simple RTF text editor included with Microsoft Windows since around Windows 3.0.

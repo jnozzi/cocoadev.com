@@ -14,7 +14,7 @@ Some works:
 
  
 *Iconara DOM Framework,
-A Cocoa-framework for manipulating XML-data, [[IconaraDOM]]
+A Cocoa-framework for manipulating XML-data, General/IconaraDOM
 
 *Nudie Jeans Co., the hottest clothing company in Sweden.
 http://www.nudiejeans.com
@@ -33,7 +33,7 @@ http://www.iconara.net
 Some knowledge:
 
 
-*Languages: [[ObjC]], C, Java, [[JavaScript]], Perl, Python, PHP, Ruby, and a few others. I wish I had used [[SmallTalk]] and Lisp more. English, Swedish, French and Spanish, wish I knew Russian and German.
+*Languages: General/ObjC, C, Java, General/JavaScript, Perl, Python, PHP, Ruby, and a few others. I wish I had used General/SmallTalk and Lisp more. English, Swedish, French and Spanish, wish I knew Russian and German.
 *Other things: photography, graphic design
 
 
@@ -43,6 +43,6 @@ Some knowledge:
 Hellos:
 ----
 
-''Welcome! -- [[KritTer]]''
+*Welcome! -- General/KritTer*
 
-And ''especially'' me, for that madness bit. -- [[RobRix]]
+And *especially* me, for that madness bit. -- General/RobRix

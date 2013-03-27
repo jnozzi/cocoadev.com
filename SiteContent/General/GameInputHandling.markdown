@@ -4,18 +4,18 @@ Seems to be at least three ways to handle events in Cocoa games.
 2.) Override sendEvent
 3.) Use HID code
 
-Can someone critique this example of #2 with multithreaded drawing thrown in. Would it be preferable to just create your own run loop? One of the main reasons I would say that this is preferable to #1 is that finding good examples of creating a run loop are few and far between and it is not recommended in the offical docs of [[NSApplication]] that you do so.
+Can someone critique this example of #2 with multithreaded drawing thrown in. Would it be preferable to just create your own run loop? One of the main reasons I would say that this is preferable to #1 is that finding good examples of creating a run loop are few and far between and it is not recommended in the offical docs of General/NSApplication that you do so.
 
---Overridden [[NSApplication]]--
-<code>
--(void)sendEvent:([[NSEvent]] '')anEvent {
+--Overridden General/NSApplication--
+    
+-(void)sendEvent:(General/NSEvent *)anEvent {
 	switch ([anEvent type]) {
-		case [[NSLeftMouseUp]]:
-		case [[NSLeftMouseDown]]:
-		case [[NSRightMouseUp]]:
-		case [[NSRightMouseDown]]:
-		case [[NSKeyUp]]:
-		case [[NSKeyDown]]: {
+		case General/NSLeftMouseUp:
+		case General/NSLeftMouseDown:
+		case General/NSRightMouseUp:
+		case General/NSRightMouseDown:
+		case General/NSKeyUp:
+		case General/NSKeyDown: {
 			[input queueEvent:anEvent];
 			break;
 		}
@@ -25,16 +25,16 @@ Can someone critique this example of #2 with multithreaded drawing thrown in. Wo
 		}
 	}
 }
-</code>
+
 
 --Input class--
-<code>
+    
 -(id)init {
 	self = [super init];
 	
 	if (self != nil) {
-		eventQueue = [[[[NSMutableArray]] alloc] initWithCapacity:256];
-		queueLock = [[[[NSConditionLock]] alloc] initWithCondition:NO_DATA];
+		eventQueue = General/[[NSMutableArray alloc] initWithCapacity:256];
+		queueLock = General/[[NSConditionLock alloc] initWithCondition:NO_DATA];
 	}
 	
 	return self;
@@ -55,14 +55,14 @@ Can someone critique this example of #2 with multithreaded drawing thrown in. Wo
 	[super dealloc];
 }
 
--(void)queueEvent:([[NSEvent]] '')anEvent {
+-(void)queueEvent:(General/NSEvent *)anEvent {
 	[queueLock lock];
 	[eventQueue addObject:anEvent];
 	[queueLock unlockWithCondition:HAS_DATA];
 }
 
--([[NSEvent]] '')dequeueEventNoWait {
-	[[NSEvent]] ''event = nil;
+-(General/NSEvent *)dequeueEventNoWait {
+	General/NSEvent *event = nil;
 	
 	if ([queueLock tryLockWhenCondition:HAS_DATA]) {
 		event = [eventQueue objectAtIndex:0];
@@ -79,8 +79,8 @@ Can someone critique this example of #2 with multithreaded drawing thrown in. Wo
 	return event;
 }
 
--([[NSEvent]] '')dequeueEventWait {
-	[[NSEvent]] ''event = nil;
+-(General/NSEvent *)dequeueEventWait {
+	General/NSEvent *event = nil;
 	
 	[queueLock lockWhenCondition:HAS_DATA];
 	
@@ -96,33 +96,33 @@ Can someone critique this example of #2 with multithreaded drawing thrown in. Wo
 	
 	return event;
 }
-</code>
+
 
 --Game Loop--
-<code>
+    
 -(void)playGame:(id)anObject {
-    [[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
-	[[NSDate]] ''frameStart;
-	[[NSDate]] ''frameEnd;
+    General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+	General/NSDate *frameStart;
+	General/NSDate *frameEnd;
 	
 	[self loadGame]; // Load resources for game
 
 	while (gameRunning) {
-		frameStart = [[[[NSDate]] alloc] init];
-		frameEnd = [[[[NSDate]] alloc] initWithTimeInterval:0.016 sinceDate:frameStart];
+		frameStart = General/[[NSDate alloc] init];
+		frameEnd = General/[[NSDate alloc] initWithTimeInterval:0.016 sinceDate:frameStart];
 
 		// Wait for events to be posted and act accordingly
-		[[NSEvent]] ''event = [input dequeueEventNoWait];
+		General/NSEvent *event = [input dequeueEventNoWait];
 		
 		if (event != nil) {
 			switch ([event type]) {
-				case [[NSLeftMouseDown]]: {
+				case General/NSLeftMouseDown: {
 					[self openInGameMenu];
 					break;
 				}
 			
-				case [[NSKeyDown]]: {
-					[[[NSApp]] terminate:nil];
+				case General/NSKeyDown: {
+					General/[NSApp terminate:nil];
 					break;
 				}
 			
@@ -139,7 +139,7 @@ Can someone critique this example of #2 with multithreaded drawing thrown in. Wo
 		
 		[self drawFrame]; // Draw single frame of animation
 
-		[[[NSThread]] sleepUntilDate:frameEnd];
+		General/[NSThread sleepUntilDate:frameEnd];
 		[frameStart release];
 		[frameEnd release];
 	}
@@ -155,10 +155,9 @@ Can someone critique this example of #2 with multithreaded drawing thrown in. Wo
     [pool release];
 	
 	if (menuActive) {
-		[[[NSThread]] detachNewThreadSelector:@selector(openMainMenu:) toTarget:self withObject:nil];
+		General/[NSThread detachNewThreadSelector:@selector(openMainMenu:) toTarget:self withObject:nil];
 	} else {
-		[[NSLog]](@"Shouldn't be able to get here");
-		[[[NSApp]] terminate:nil];
+		General/NSLog(@"Shouldn't be able to get here");
+		General/[NSApp terminate:nil];
 	}
 }
-</code>

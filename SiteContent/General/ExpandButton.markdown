@@ -7,20 +7,20 @@ Paul
 
 ----
 
-Well, I know it's called the Toolbar's Overflow Button, but I haven't seen any way to implement it other then in the toolbar. -- [[RyanBates]]
+Well, I know it's called the Toolbar's Overflow Button, but I haven't seen any way to implement it other then in the toolbar. -- General/RyanBates
 
 ----
 
-I think you are going to have to make a custom control for it, because I don't think it exists otherwise. -[[RossDude]]
+I think you are going to have to make a custom control for it, because I don't think it exists otherwise. -General/RossDude
 
 ----
 
 Ok I guess I will have to make my own toolbar.  Thanks a lot
 -Paul
 
-''What exactly are you trying to do?''
+*What exactly are you trying to do?*
 
 ----
-Isn't that called a chevron? --[[JoeRanieri]]
+Isn't that called a chevron? --General/JoeRanieri
 
-''A transformed chevron, maybe. Chevrons point downward''
+*A transformed chevron, maybe. Chevrons point downward*

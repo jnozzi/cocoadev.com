@@ -1,6 +1,6 @@
 
 
-Is it possible to have willChangeValueForKey / didChangeValueForKey (KVC) notifications for a remote object? For example, I need to have an animation in an [[NSTableView]]  row on the client, but I want to animate it from the server...
+Is it possible to have willChangeValueForKey / didChangeValueForKey (KVC) notifications for a remote object? For example, I need to have an animation in an General/NSTableView  row on the client, but I want to animate it from the server...
 
 ----
 

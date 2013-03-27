@@ -1,6 +1,6 @@
-Probably a really simple question, but I can't get a good answer. How do you duplicate items in an array? I have an [[NSArrayController]], and I set up an action to do as follows:
+Probably a really simple question, but I can't get a good answer. How do you duplicate items in an array? I have an General/NSArrayController, and I set up an action to do as follows:
 
-<code>
+    
 
 - (void)duplicate:(id)sender {
 
@@ -8,7 +8,7 @@ Probably a really simple question, but I can't get a good answer. How do you dup
 
 }
 
-</code>
+
 
 This works fine except it returns an error when removing the original items that the duplicates were created from. Any idea what I'm doing wrong or is there a much better way to duplicate items?
 

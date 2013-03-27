@@ -1,6 +1,6 @@
 
 
-Author of [[MacFOH]], which is based on frameworks by SKW Development.
+Author of General/MacFOH, which is based on frameworks by SKW Development.
 
 Website:  http://www.macfoh.com
 

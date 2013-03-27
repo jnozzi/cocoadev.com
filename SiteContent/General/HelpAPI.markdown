@@ -1,3 +1,3 @@
 
 
-[[HelpAPI]] lets you manage help books and tell the [[HelpViewer]] application to do things.
+General/HelpAPI lets you manage help books and tell the General/HelpViewer application to do things.

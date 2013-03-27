@@ -8,7 +8,7 @@ I can certainly put a button with a plain square bezel in the border, but it loo
 
 -- Talin
 
-[Talin, I personally think this is a Good Thing(tm). Since the zoom button isn't really part of the scrollbar, it should look different. As to why the Appearance Manager's themes don't work the way you expect they were written to be used from a Quickdraw [[GrafPort]]. Until now, Apple haven't exposed the internal [[CoreGraphics]] implementation of these. -- [[UliKusterer]]]
+[Talin, I personally think this is a Good Thing(tm). Since the zoom button isn't really part of the scrollbar, it should look different. As to why the Appearance Manager's themes don't work the way you expect they were written to be used from a Quickdraw General/GrafPort. Until now, Apple haven't exposed the internal General/CoreGraphics implementation of these. -- General/UliKusterer]
 
 ----
 
@@ -28,4 +28,4 @@ OK thanks for the answers. I kind of suspected this would be the case. What I th
 
 ----
 
-What I ended up doing was subclassing [[NSButton]] and then overriding ''a lot'' of its methods to get the background of a button, but with the behavior of my widget.  Maybe that would work for you too?
+What I ended up doing was subclassing General/NSButton and then overriding *a lot* of its methods to get the background of a button, but with the behavior of my widget.  Maybe that would work for you too?

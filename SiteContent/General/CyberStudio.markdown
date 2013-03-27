@@ -1,1 +1,1 @@
-The old name for Adobe [[GoLive]].
+The old name for Adobe General/GoLive.

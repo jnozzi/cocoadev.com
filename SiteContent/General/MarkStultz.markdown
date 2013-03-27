@@ -1,1 +1,1 @@
-I'm a Mac programmer for [[MumboJumbo]] in Dallas.
+I'm a Mac programmer for General/MumboJumbo in Dallas.

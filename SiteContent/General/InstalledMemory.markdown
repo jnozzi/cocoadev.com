@@ -2,7 +2,7 @@ Does anyone know of an easy way to get the value for the amount of installed mem
 
 ----
 
-The sysctl() function can give you that info (and a whole lot more too), but it's usage can be a little tricky at first.  I'd advise checking out it's man page (<code>man 3 sysctl</code>), the header (at <code>/usr/include/sys/sysctl.h</code>) and this page which has a code snippet using it to check the number of cpus ([[CheckNumberOfCPUs]]).  -- Bo
+The sysctl() function can give you that info (and a whole lot more too), but it's usage can be a little tricky at first.  I'd advise checking out it's man page (    man 3 sysctl), the header (at     /usr/include/sys/sysctl.h) and this page which has a code snippet using it to check the number of cpus (General/CheckNumberOfCPUs).  -- Bo
 
 ----
 
@@ -10,10 +10,10 @@ Thanks Bo!!
 
 Here's the code that worked for me:
 
-<code>
+    
 #import <sys/sysctl.h>
 
-static int [[MegabytesOfPhysicalMemory]]() {
+static int General/MegabytesOfPhysicalMemory() {
 
     int mib[] = {CTL_HW, HW_PHYSMEM};
     size_t len = sizeof(int);
@@ -23,33 +23,33 @@ static int [[MegabytesOfPhysicalMemory]]() {
 
 }
 
-</code>
+
 
 ----
 
-Looks good, except that I think that <code>physmem</code> should actually be an <code>unsigned long long</code> (i.e. 64 bits), especially now that those G5s are out. ;)  -- Bo
+Looks good, except that I think that     physmem should actually be an     unsigned long long (i.e. 64 bits), especially now that those G5s are out. ;)  -- Bo
 
 ----
 
-Are you sure that <code>physmem</code> is a 64 bit value?
+Are you sure that     physmem is a 64 bit value?
 
 this:
 
-<code>
+    
     int mib[] = {CTL_HW, HW_PHYSMEM};
     size_t len = 8;
     char eightBytes[8];
     sysctl(mib, 2, eightBytes, &len, NULL, 0);
-    unsigned long long int ''longlongintPtr = (unsigned long long int '')eightBytes;
-    int ''intPtr = (int '')eightBytes;
-    [[NSLog]](@"%i %qu", ''intPtr, ''longlongintPtr);
-</code>
+    unsigned long long int *longlongintPtr = (unsigned long long int *)eightBytes;
+    int *intPtr = (int *)eightBytes;
+    General/NSLog(@"%i %qu", *intPtr, *longlongintPtr);
+
 
 outputs this:
 
-<code>
+    
 2004-02-02 19:45:32.377 Test[1149] 805306368 3458764516094219155
-</code>
+
 
 BTW I'm running 768 MB of physical memory (i.e. 805306368 bytes)
 
@@ -57,8 +57,8 @@ BTW I'm running 768 MB of physical memory (i.e. 805306368 bytes)
 
 Note that sysctl returns an error value that should be checked. Otherwise, the result number that you are looking at is as good as nonsense. In addition, a quick browse through the man page says { CTL_HW, HW_PHYSMEM } is an integer. This also reveals that sysctl does not like a 64 bit value for this property name.
 
-<code>
-unsigned long [[MegabytesOfPhysicalMemory]]() {
+    
+unsigned long General/MegabytesOfPhysicalMemory() {
     int mib[] = {CTL_HW, HW_PHYSMEM};
     unsigned long physmem;
     size_t len = sizeof(physmem);
@@ -73,7 +73,7 @@ unsigned long long MegabytesOfPhysicalMemory64() {
     size_t len = sizeof(physmem);
     return (-1 != sysctl(mib, 2, &physmem, &len, NULL, 0)) ? physmem / (1 << 20) : 0;
 }
-</code>
+
 
 ----
 

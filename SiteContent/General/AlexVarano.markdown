@@ -2,4 +2,4 @@
 
 Information Deleted
 
-[[Category:DeleteMe]]
+General/Category:DeleteMe

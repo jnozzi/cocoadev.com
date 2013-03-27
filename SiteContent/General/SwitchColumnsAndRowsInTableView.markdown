@@ -1,4 +1,4 @@
-I would like to "rotate" a [[NSTableView]], in order to have the columns playing the role of rows, and rows playing the role of columns.
+I would like to "rotate" a General/NSTableView, in order to have the columns playing the role of rows, and rows playing the role of columns.
 
 ie : display data for a set of related records, with columns representing individual records and rows representing the attributes of those records.
 
@@ -20,8 +20,8 @@ Well, first you'll likely need to build the table programmatically. In other wor
 
 Second, you'll need to make your datasource able to add /remove columns based on the number of records. 
 
-Third, you'll need to return the number of ''FIELDS'' in the number-of-rows-in-table-view data source method (since columns are now rows and vice-versa).
+Third, you'll need to return the number of *FIELDS* in the number-of-rows-in-table-view data source method (since columns are now rows and vice-versa).
 
-Fourth, you'll need to implement the datasource doing everything you'd normally do, just swapping the roles of the columns and rows. It really is that simple (there should be no magic, in other words). IE, instead of using the current row (in the 'get data for column, row method), you'd use the ''index'' of the ''current column'', then use the row index to determine the field. Basically, a complete reversal of roles.
+Fourth, you'll need to implement the datasource doing everything you'd normally do, just swapping the roles of the columns and rows. It really is that simple (there should be no magic, in other words). IE, instead of using the current row (in the 'get data for column, row method), you'd use the *index* of the *current column*, then use the row index to determine the field. Basically, a complete reversal of roles.
 
 Before you do any of this, get VERY VERY familiar with table data sources and how to manually manipulate columns, etc.

@@ -1,1 +1,1 @@
-see [[GetKeys]]
+see General/GetKeys

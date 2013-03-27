@@ -1,1 +1,1 @@
-[[GregWilson]]; ten letters... umm... starts with a G, ends with an n.
+General/GregWilson; ten letters... umm... starts with a G, ends with an n.

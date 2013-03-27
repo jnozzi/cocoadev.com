@@ -9,7 +9,7 @@ http://finance.yahoo.com/d/quotes.csv?s=AAPL&f=sl1d1t1c1ohgv&e=.csv - replace AA
 ----
 DSG
 
-''What's DSG stand for?''
+*What's DSG stand for?*
 
 Thanks! 
 DSG is a signiture to look up posts.

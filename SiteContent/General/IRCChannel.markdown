@@ -8,9 +8,9 @@ Thanks!
 
 ----
 
-There are some mac programmers on '''#macdev''' on irc.freenode.net (formerly known as [[OpenProjects]]).  They're a pretty grouchy crew, but sometimes they'll answer some cocoa questions.
+There are some mac programmers on **#macdev** on irc.freenode.net (formerly known as General/OpenProjects).  They're a pretty grouchy crew, but sometimes they'll answer some cocoa questions.
 
-I second there grouchyness! // Perhaps you mean "I second their grouchyness" - [[JosephSpiros]] (Psuedo-Grouchy) <--Perhaps you meant Pseudo-Grouchy
+I second there grouchyness! // Perhaps you mean "I second their grouchyness" - General/JosephSpiros (Psuedo-Grouchy) <--Perhaps you meant Pseudo-Grouchy
 
 Grouchy? Only for cluelessness 8) Seriously tho, come into the channel with an attitude of wanting to learn, realize you need to do a little bit of legwork on your own and we're a fountain of knowledge.
 
@@ -22,4 +22,4 @@ It's also a nice place to lurk and pick up tidbits of information.
 
 ----
 
-You might also try the [[CocoaHotlineServer]].
+You might also try the General/CocoaHotlineServer.

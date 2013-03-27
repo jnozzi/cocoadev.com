@@ -1,7 +1,7 @@
 
 
-	UFS is a [[FileSystem]] type that is common on
-	Solaris and BSD systems (in fact, the native [[FileSystem]] type there).
+	UFS is a General/FileSystem type that is common on
+	Solaris and BSD systems (in fact, the native General/FileSystem type there).
 It is also usable on Mac OS X and Linux systems.
 	
 
@@ -24,13 +24,13 @@ But, in particular, old style Mac OS 9 software can't see it at all.
 
 Some unix projects will require a UFS partition.  If your make or build procedure
 assumes that it can create distinct filenames that only differ in case it will break on HFS+.  I have been told that you can make an on-disk UFS filesystem
-with [[DiskCopy]], for those times you need to.
+with General/DiskCopy, for those times you need to.
 Seems easier than allocating some gigabytes to a UFS partition, but people also do
 that and it seems to work OK, as long as you avoid using it for things that break.
 
 
 UFS stands for the Unix File System.  It descended from the Fast File System developed
-	by Kirk [[McCusick]] (also creator of the lovable BSD Daemon mascot) in the groundbreaking Berkeley 4.2 system (4.2 BSD) in the early 1980's.
+	by Kirk General/McCusick (also creator of the lovable BSD Daemon mascot) in the groundbreaking Berkeley 4.2 system (4.2 BSD) in the early 1980's.
 
 Unfortunately, the split between BSD and Solaris flavors of UFS happened in the
 	1980's, and they are now incompatible and mutually incomprehensible by their respective
@@ -38,5 +38,5 @@ Unfortunately, the split between BSD and Solaris flavors of UFS happened in the
 	variation.  Linux can often mount any flavor, but read-only.
 ----
 
-See http://developer.apple.com/techpubs/macosx/Essentials/[[SystemOverview]]/Finder/The_Finder___Operations.html
+See http://developer.apple.com/techpubs/macosx/Essentials/General/SystemOverview/Finder/The_Finder___Operations.html
 for more info on copying files between file systems, including information on ._ files.

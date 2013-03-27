@@ -5,14 +5,14 @@ The code can be cocoa or carbon as well.
 Any suggestions?
 
 Thanks,
-[[LucaC]].
+General/LucaC.
 
 ----
 
-There's a sample project, [[OpenFinderInfoWindow]], in the [[ObjCAppscript]] repository that does this:
+There's a sample project, General/OpenFinderInfoWindow, in the General/ObjCAppscript repository that does this:
 
-http://appscript.svn.sourceforge.net/viewvc/appscript/objc-appscript/trunk/sample/[[OpenFinderInfoWindow]]/
+http://appscript.svn.sourceforge.net/viewvc/appscript/objc-appscript/trunk/sample/General/OpenFinderInfoWindow/
 
 ----
 
-This is not the way i intended, but it works great.  Thanks --[[LucaC]].
+This is not the way i intended, but it works great.  Thanks --General/LucaC.

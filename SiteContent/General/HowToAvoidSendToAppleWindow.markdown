@@ -10,11 +10,11 @@ If you mean that you'd like to stop all the annoying crash dialogs while you're 
 
 If you mean you'd like to avoid the dialog for users as well, take a look at the Adium source code.  They have a scheme to grab bug reports for themselves and skip the Apple dialog.  I believe it uses a child process that really runs the app and a master process that catches crashes in the child.
 
--[[KenFerry]]
+-General/KenFerry
 
 ----
 
-Why does it ''need'' to crash? What kind of crash does it need to do? You might be able to get away with registering a signal handler for whatever signal gets sent when you crash, and having it call <code>exit()</code>.
+Why does it *need* to crash? What kind of crash does it need to do? You might be able to get away with registering a signal handler for whatever signal gets sent when you crash, and having it call     exit().
 
 ----
 
@@ -22,8 +22,8 @@ Okay, so you're writing a Windows app? ;-)
 
 ----
 
-yeah yeah, that's the ticket - it's crashing because it ''needs'' to crash
+yeah yeah, that's the ticket - it's crashing because it *needs* to crash
 
 ----
 
-Duuuuuuuude. That's ''deep''.
+Duuuuuuuude. That's *deep*.

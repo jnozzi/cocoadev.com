@@ -1,1 +1,1 @@
-See [[FormalProtocols]].
+See General/FormalProtocols.

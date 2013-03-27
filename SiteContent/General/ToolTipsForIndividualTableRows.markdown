@@ -1,16 +1,16 @@
 
 
-Is it possible to display a different tooltip for each row in an [[NSTableView]]? I've got an [[NSTableView]] with a bunch of rows (700) and some of the entries are fairly long - too wide for the [[NSTableView]], and making the view wider isn't an option. I'd like to have it so that hovering over a row displays a tooltip containing the full contents of that row. How would I go about doing that?
+Is it possible to display a different tooltip for each row in an General/NSTableView? I've got an General/NSTableView with a bunch of rows (700) and some of the entries are fairly long - too wide for the General/NSTableView, and making the view wider isn't an option. I'd like to have it so that hovering over a row displays a tooltip containing the full contents of that row. How would I go about doing that?
 
---[[OwenYamauchi]]
-
-----
-
-Use [[AMToolTipTableView]], from [[ObjectLibrary]]
+--General/OwenYamauchi
 
 ----
 
-Yay Tiger now makes this easier! <code>tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:</code>
+Use General/AMToolTipTableView, from General/ObjectLibrary
+
+----
+
+Yay Tiger now makes this easier!     tableView:toolTipForCell:rect:tableColumn:row:mouseLocation:
 
 ----
 

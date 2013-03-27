@@ -1,1 +1,1 @@
-See [[ClassDeconstruction]]
+See General/ClassDeconstruction

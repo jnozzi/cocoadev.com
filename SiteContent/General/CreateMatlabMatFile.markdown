@@ -1,10 +1,10 @@
 Create a MATLAB .MAT / .MEX file using Xcode
 
-Several people have posted tips on the web on techniques to link to MATLAB dylibs using Xcode. The root problem is that [[MathWorks]] uses localized embedded names, and also relative path references to other linked [[MathWorks]] libraries. The libraries are in located in the /Applications/MATLAB??/bin/maci directory. In my case, I'm using MATLAB74, so what follows is most relevant for that release and creating an environment to support building a ".mat" file. However, the technique can clearly be extended to new versions, and / or .mex files.
+Several people have posted tips on the web on techniques to link to MATLAB dylibs using Xcode. The root problem is that General/MathWorks uses localized embedded names, and also relative path references to other linked General/MathWorks libraries. The libraries are in located in the /Applications/MATLAB??/bin/maci directory. In my case, I'm using MATLAB74, so what follows is most relevant for that release and creating an environment to support building a ".mat" file. However, the technique can clearly be extended to new versions, and / or .mex files.
 
 Looking at one such library using otool:
 
-<code>
+    
 ]o[ otool -D libmat.dylib
 libmat.dylib:
     ../../bin/maci/libmat.dylib
@@ -18,7 +18,7 @@ libmat.dylib:
     libhdf5.0.0.0.dylib (compatibility version 1.0.0, current version 1.0.0)
     /usr/lib/libstdc++.6.dylib (compatibility version 7.0.0, current version 7.4.0)
     /usr/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0)
-</code>
+
 
 The use of relative paths makes it impossible to get Xcode to build a command line program that will both load and run (you can get it to load with some effort). If the option is available to you, you can set DYLD_LIBRARY_PATH to /Applications/MATLAB??/bin/maci and the program will run. However, if for any reason you cannot force the caller to have set that variable, well, you are sol (as far as I can see).
 
@@ -38,7 +38,7 @@ NOTE: don't forget to modify the Library Search Path in "Edit Active Target" - i
 
 Shell script to move and modify a core group of libraries (must be run with "sudo"):
 
-<code>
+    
 #!/bin/ksh
 
 # set the folders you want here
@@ -50,12 +50,12 @@ path="../../bin/maci/"
 newpath="${newlibraries}/"
 
 # create the new folders if needbe (-p says do intermediates if needed)
-if [[ ! -e $newheaders ]]
+if General/ ! -e $newheaders 
 then
 	print "Make new directory: $newheaders"
 	mkdir -p $newheaders
 fi
-if [[ ! -e $newlibraries ]]
+if General/ ! -e $newlibraries 
 then
 	print "Make new directory: $newlibraries"
 	mkdir -p $newlibraries
@@ -96,7 +96,7 @@ cp \\
 	$newlibraries
 
 cd $newlibraries
-for library in lib''
+for library in lib*
 do
 	# change internal name to use a fully qualified path
 	/usr/bin/install_name_tool -id ${newpath}${library} ./${library}
@@ -108,25 +108,25 @@ do
 	do
 		# ksh command to strip $path from the $lib and return the result
 		name=${lib#$path}
-		if [[ $lib != $name ]] 
+		if General/ $lib != $name  
 		then
 			print "   Changing $lib to ${newpath}${name} in file $library"
 			/usr/bin/install_name_tool -change $lib ${newpath}${name} ./${library}
 		fi
 		name=${lib#lib}
 		# if this name starts with "lib" then its a local reference, so fully quality it
-		if [[ $lib != $name ]] 
+		if General/ $lib != $name  
 		then
 			print "   Changing $lib to ${newpath}${lib} in file $library"
 			/usr/bin/install_name_tool -change $lib ${newpath}${lib} ./${library}
 		fi
 	done
 done
-</code>
+
 
 Lets look at what the modified libraries look like:
 
-<code>
+    
 o[ otool -D libmat.dylib
 libmat.dylib:
 /usr/local/lib/matlab/libmat.dylib
@@ -140,7 +140,7 @@ libmat.dylib:
 	/usr/local/lib/matlab/libhdf5.0.0.0.dylib (compatibility version 1.0.0, current version 1.0.0)
 	/usr/lib/libstdc++.6.dylib (compatibility version 7.0.0, current version 7.4.0)
 	/usr/lib/libgcc_s.1.dylib (compatibility version 1.0.0, current version 1.0.0)
-</code>
+
 
 The list of files I included was arrived at by iteratively trying to get the program to build and run, starting with libmat and libmx. Note that the file icudt32l.dat is also needed by one of the icu libraries.
 

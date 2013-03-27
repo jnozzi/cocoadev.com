@@ -1,7 +1,7 @@
 
 
 I have been digging through this site and Apple docs, but I am still lost. 
-I am '''very''' new to cocoa, so please exuse me if I am missing something fundamental.
+I am **very** new to cocoa, so please exuse me if I am missing something fundamental.
 
 I am seeking design advice on approaching the following problem:
 
@@ -28,7 +28,7 @@ But I am struggling to figure out how to use those mechanisms to design a soluti
 
 It seems as though a few key overrides will do the trick, but as I spend (hours upon hours) reading through the Cocoa docs, my feeling of being "buried" grows...
 
-Any help on design approach '''GREATLY''' appreciated. 
+Any help on design approach **GREATLY** appreciated. 
 
 Brian :)
 
@@ -45,7 +45,7 @@ Thanks,
 Brian
 
 ----
-Hmm.. continuing to dig. Went to book store last night and bought all the cocoa books I could find. One is "Step into [[XCode]]". It is looking like I will have to manage the second documebnt COMPLETELY by hand sans cocoa bindings.. Thought I would update the page. If I find a solution I will post it.
+Hmm.. continuing to dig. Went to book store last night and bought all the cocoa books I could find. One is "Step into General/XCode". It is looking like I will have to manage the second documebnt COMPLETELY by hand sans cocoa bindings.. Thought I would update the page. If I find a solution I will post it.
 
 Why is this so convoluted? I would think SOMONE would have run into this before (I.e. are there NO applications with need more than one document open at a time?).
 

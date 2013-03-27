@@ -2,4 +2,4 @@ Web Design Networks System Support
 
 Raleigh Durham Chapel Hill, North Carolina 
 
-http://www.[[DirectInfoSys]].com
+http://www.General/DirectInfoSys.com

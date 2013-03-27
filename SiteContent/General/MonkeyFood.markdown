@@ -1,5 +1,5 @@
 http://www.monkeyfood.com
 
-[[DiggoryLaycock]] publishes stuff there.
+General/DiggoryLaycock publishes stuff there.
 
-Watch out for the wing'ed monkeys. -- they ''bite''
+Watch out for the wing'ed monkeys. -- they *bite*

@@ -1,90 +1,90 @@
 Hello there, I am having trouble getting my code to detect the current operating system using Gestalt, I am running 10.3.
 
-[[NSProcessInfo]] Category:<code>typedef enum {
-	[[TRUnknownVersion]] = -1,
-	[[TRCheetahVersion]] = 0,
-	[[TRPumaVersion]] = 1,
-	[[TRJaguarVersion]] = 2,
-	[[TRPantherVersion]] = 3,
-	[[TRTigerVersion]] = 4
-} [[TROperatingSystemVersion]];
+General/NSProcessInfo Category:    typedef enum {
+	General/TRUnknownVersion = -1,
+	General/TRCheetahVersion = 0,
+	General/TRPumaVersion = 1,
+	General/TRJaguarVersion = 2,
+	General/TRPantherVersion = 3,
+	General/TRTigerVersion = 4
+} General/TROperatingSystemVersion;
 
-+ ([[TROperatingSystemVersion]])operatingSystemVersion
++ (General/TROperatingSystemVersion)operatingSystemVersion
 {
 	long response;
 	
-	if (Gestalt(gestaltSystemVersion,(SInt32 '')&response) != noErr)
+	if (Gestalt(gestaltSystemVersion,(SInt32 *)&response) != noErr)
 	{
-		return [[TRUnknownVersion]];
+		return General/TRUnknownVersion;
 	}
 	
 	switch (response)
 	{
 		case 0x1000:
 		{
-			return [[TRCheetahVersion]];
+			return General/TRCheetahVersion;
 			break;
 		}
 		case 0x1020:
 		{
-			return [[TRJaguarVersion]];
+			return General/TRJaguarVersion;
 			break;
 		}
 		case 0x1030:
 		{
-			return [[TRPantherVersion]];
+			return General/TRPantherVersion;
 			break;
 		}
 		case 0x1040:
 		{
-			return [[TRTigerVersion]];
+			return General/TRTigerVersion;
 			break;
 		}
 	}
 }
-</code>
 
-Code I am using to test it:<code>- action:(id)sender
+
+Code I am using to test it:    - action:(id)sender
 {
-	switch ([[[NSProcessInfo]] operatingSystemVersion]) {
-		case [[TRUnknownVersion]]: default:
+	switch (General/[NSProcessInfo operatingSystemVersion]) {
+		case General/TRUnknownVersion: default:
 		{
-			[[NSLog]](@"Unknown");
+			General/NSLog(@"Unknown");
 			break;
 		}
-		case [[TRCheetahVersion]]:
+		case General/TRCheetahVersion:
 		{
-			[[NSLog]](@"10.0");
+			General/NSLog(@"10.0");
 			break;
 		}
-		case [[TRPumaVersion]]:
+		case General/TRPumaVersion:
 		{
-			[[NSLog]](@"10.1");
+			General/NSLog(@"10.1");
 			break;
 		}
-		case [[TRJaguarVersion]]:
+		case General/TRJaguarVersion:
 		{
-			[[NSLog]](@"10.2");
+			General/NSLog(@"10.2");
 			break;
 		}
-		case [[TRPantherVersion]]:
+		case General/TRPantherVersion:
 		{
-			[[NSLog]](@"10.3");
+			General/NSLog(@"10.3");
 			break;
 		}
-		case [[TRTigerVersion]]:
+		case General/TRTigerVersion:
 		{
-			[[NSLog]](@"10.4");
+			General/NSLog(@"10.4");
 			break;
 		}
 	}
-}</code>
+}
 
-It always ends up telling me that it is 10.0 (or 0 basically) no matter how I create the enum'd value. I haven't had much experiance with Gestalt but it seems like I am doing the correct things, unfortunately I can't test the current [[AppKit]] version or I would.
+It always ends up telling me that it is 10.0 (or 0 basically) no matter how I create the enum'd value. I haven't had much experiance with Gestalt but it seems like I am doing the correct things, unfortunately I can't test the current General/AppKit version or I would.
 
 ----
 
-is SInt32 equivalent to a long? ''And are you sure it's signed? (My previous comment was wrong...sorry)''
+is SInt32 equivalent to a long? *And are you sure it's signed? (My previous comment was wrong...sorry)*
 
 ----
 
@@ -98,9 +98,9 @@ Additionally, you should probably use the 0 enum value to be something invalid s
 
 ----
 
-Thanks for the rash response. Continuing, I was using sample code to do this, I rewrote it completely from scratch and it worked. I am using the int values to correspond to the versions of [[MacOS]] X. Anyways I fixed it for all who are interested.
+Thanks for the rash response. Continuing, I was using sample code to do this, I rewrote it completely from scratch and it worked. I am using the int values to correspond to the versions of General/MacOS X. Anyways I fixed it for all who are interested.
 
-<code>enum {
+    enum {
 	kSystemVersionCheetah = 0x01000,
 	kSystemVersionPuma = 0x01010,
 	kSystemVersionJaguar = 0x01020,
@@ -109,29 +109,29 @@ Thanks for the rash response. Continuing, I was using sample code to do this, I 
 	kSystemVersionMaxKnown = kSystemVersionTiger
 };
 
-- ([[TROperatingSystemVersion]])operatingSystemVersion
+- (General/TROperatingSystemVersion)operatingSystemVersion
 {
 	long response = NULL;
 	Gestalt(gestaltSystemVersion, &response);
 	
-	if (response > kSystemVersionMaxKnown) return [[TRGreaterVersion]];
-	if (response >= kSystemVersionTiger) return [[TRTigerVersion]];
-	if (response >= kSystemVersionPanther) return [[TRPantherVersion]];
-	if (response >= kSystemVersionPanther) return [[TRJaguarVersion]];
-	if (response >= kSystemVersionPanther) return [[TRPumaVersion]];
-	if (response >= kSystemVersionPanther) return [[TRCheetahVersion]];
-	return [[TRUnknownVersion]];
-}</code>
+	if (response > kSystemVersionMaxKnown) return General/TRGreaterVersion;
+	if (response >= kSystemVersionTiger) return General/TRTigerVersion;
+	if (response >= kSystemVersionPanther) return General/TRPantherVersion;
+	if (response >= kSystemVersionPanther) return General/TRJaguarVersion;
+	if (response >= kSystemVersionPanther) return General/TRPumaVersion;
+	if (response >= kSystemVersionPanther) return General/TRCheetahVersion;
+	return General/TRUnknownVersion;
+}
 
 
 
 ----
 No, that code is still flawed.
-<code>
-	if (response >= kSystemVersionPanther) return [[TRJaguarVersion]];
-	if (response >= kSystemVersionPanther) return [[TRPumaVersion]];
-	if (response >= kSystemVersionPanther) return [[TRCheetahVersion]];
-</code>
+    
+	if (response >= kSystemVersionPanther) return General/TRJaguarVersion;
+	if (response >= kSystemVersionPanther) return General/TRPumaVersion;
+	if (response >= kSystemVersionPanther) return General/TRCheetahVersion;
+
 Is wrong.
 ----
 Okay, whatever.

@@ -2,16 +2,16 @@
 
 I'm brand new to the Objective-C platform, and I've run into the following error that has really left me scratching my head, and I'm pretty sure that I'm missing something fundemental.  So I've put together the following example that produces the problem (this was done with Xcode 2.4 on 10.4.10)
 
-<code>
+    
 -- Model.h --
 #import <Cocoa/Cocoa.h>
 #import "Part.h";
 
-@interface Model : [[NSObject]] {
+@interface Model : General/NSObject {
 }
 
-- (Model'')initWithName:([[NSString]]'') theName color:([[NSColor]]'') theColor;
-- (void)addPart:(Part'') part;
+- (Model*)initWithName:(General/NSString*) theName color:(General/NSColor*) theColor;
+- (void)addPart:(Part*) part;
 
 @end
 ---
@@ -20,12 +20,12 @@ I'm brand new to the Objective-C platform, and I've run into the following error
 #import "Model.h"
 
 @implementation Model
-- (Model'')initWithName:([[NSString]]'') theName color:([[NSColor]]'') theColor {
+- (Model*)initWithName:(General/NSString*) theName color:(General/NSColor*) theColor {
     self = [super init];
     return self;
 }
 
-- (void)addPart:(Part'') part {
+- (void)addPart:(Part*) part {
 }
 
 @end
@@ -34,13 +34,13 @@ I'm brand new to the Objective-C platform, and I've run into the following error
 -- Part.h --
 #import <Cocoa/Cocoa.h>
 
-typedef enum { RED, GREEN, BLUE } [[IndexedColor]];
+typedef enum { RED, GREEN, BLUE } General/IndexedColor;
 
-@interface Part : [[NSObject]] {
+@interface Part : General/NSObject {
 
 }
 
-- (Part'')initWithName:([[NSString]]'') theName color:([[IndexedColor]]) colorIndex;
+- (Part*)initWithName:(General/NSString*) theName color:(General/IndexedColor) colorIndex;
 
 @end
 ---
@@ -50,7 +50,7 @@ typedef enum { RED, GREEN, BLUE } [[IndexedColor]];
 
 @implementation Part
 
-- (Part'')initWithName:([[NSString]]'') theName color:([[IndexedColor]]) colorIndex {
+- (Part*)initWithName:(General/NSString*) theName color:(General/IndexedColor) colorIndex {
     self = [super init];
     return self;
 }
@@ -60,13 +60,13 @@ typedef enum { RED, GREEN, BLUE } [[IndexedColor]];
 
 -- elsewhere --
   void test() {
-->    Model'' m = [[Model alloc] initWithName:@"foo" color:[[[NSColor]] blueColor]];
+->    Model* m = General/Model alloc] initWithName:@"foo" color:[[[NSColor blueColor]];
       [m description];
-      Part'' p = [[Part alloc] initWithName:@"bar" color: 1];
+      Part* p = General/Part alloc] initWithName:@"bar" color: 1];
       [m addPart: p];
   }
 --
-</code>
+
 
 Compiling this produces the error...
 
@@ -79,17 +79,17 @@ I'm having a hard time believing that I have to worry about selector name collis
 ----
 
 You want your initWithName:color: methods to return id, not specific classes:
-<code>
--(id) initWithName:([[NSString]] '')name color:([[NSColor]] '')color
-</code>
+    
+-(id) initWithName:([[NSString *)name color:(General/NSColor *)color
+
 
 ----
-While that's true, it's not the problem. (And, it's just a convention; Cococa programs work perfectly fine if you use a static type for <code>-init</code> methods.)  --[[JediKnil]]
+While that's true, it's not the problem. (And, it's just a convention; Cococa programs work perfectly fine if you use a static type for     -init methods.)  --General/JediKnil
 
 ----
-It does this because <code>+alloc</code> returns id, and therefore the compiler doesn't know which init method to use, so it picks one arbitrarily. It'll pick the same one arbitrarily each time, so one of the two message sends in this code will be wrong.
+It does this because     +alloc returns id, and therefore the compiler doesn't know which init method to use, so it picks one arbitrarily. It'll pick the same one arbitrarily each time, so one of the two message sends in this code will be wrong.
 
-The general answer to this is that if your type signatures do not match, your selector names should not match either. In this case I would rename the second init method to <code>initWithName:indexedColor:</code> which will not only solve the error and allow the compiler to better check your code, but it will also make the programmer much less prone to mistakes in coding, especially in the special case of mistakenly passing 0 to the [[NSColor]] method which will be interpreted as nil with no warnings. -- [[MikeAsh]]
+The general answer to this is that if your type signatures do not match, your selector names should not match either. In this case I would rename the second init method to     initWithName:indexedColor: which will not only solve the error and allow the compiler to better check your code, but it will also make the programmer much less prone to mistakes in coding, especially in the special case of mistakenly passing 0 to the General/NSColor method which will be interpreted as nil with no warnings. -- General/MikeAsh
 
 ----
 
@@ -98,38 +98,38 @@ To clarify: The underlying problem is that when the Objective-C compiler can't t
 There are two solutions:
 
 1) Tell the Objective-C compiler the specific type with a cast:
-<code>
+    
   void test() {
-      Model'' m = [(Model '')[Model alloc] initWithName:@"foo" color:[[[NSColor]] blueColor]];
+      Model* m = [(Model *)[Model alloc] initWithName:@"foo" color:General/[NSColor blueColor]];
       [m description];
-      Part'' p = [(Part '')[Part alloc] initWithName:@"bar" color: GREEN];
+      Part* p = [(Part *)[Part alloc] initWithName:@"bar" color: GREEN];
       [m addPart: p];
 
       [m release];
       [p release];
   }
-</code>
+
 
 2) Don't define same selector with multiple different argument types
-<code>
-@interface Part : [[NSObject]] {
+    
+@interface Part : General/NSObject {
 
 }
 
-- (Part'')initWithName:([[NSString]]'') theName indexedColor:([[IndexedColor]]) colorIndex;
+- (Part*)initWithName:(General/NSString*) theName indexedColor:(General/IndexedColor) colorIndex;
 
 @end
 
   void test() {
-      Model'' m = [[Model alloc] initWithName:@"foo" color:[[[NSColor]] blueColor]];
+      Model* m = General/Model alloc] initWithName:@"foo" color:[[[NSColor blueColor]];
       [m description];
-      Part'' p = [[Part alloc] initWithName:@"bar" indexedColor: GREEN];
+      Part* p = General/Part alloc] initWithName:@"bar" indexedColor: GREEN];
       [m addPart: p];
 
       [m release];
       [p release];
   }
-</code>
+
 
 ----
 Thank you for the elaboration, masked stranger. You probably saved some head scratching.
@@ -140,17 +140,17 @@ Thanks for the detailed explanations guys!  I'm on the right track now.  The exp
 
 ----
 
-Well, I think you've reasoned yourself in the wrong direction.  You should probably stick to the standard of returning an <code>id</code> from <code>[-init]</code>.  Class clusters are a good reason for this behavior (a bit of an advanced topic, but an important one nonetheless).  In fact, by declaring a static return type for <code>[-init]</code>, you'll be doing the following, which is semantically invalid:
+Well, I think you've reasoned yourself in the wrong direction.  You should probably stick to the standard of returning an     id from     [-init].  Class clusters are a good reason for this behavior (a bit of an advanced topic, but an important one nonetheless).  In fact, by declaring a static return type for     [-init], you'll be doing the following, which is semantically invalid:
 
-<code>
-@implementation [[MyClass]] // a subclass of... well, anything, really
+    
+@implementation [[MyClass // a subclass of... well, anything, really
 
-- ([[MyClass]])init
+- (General/MyClass)init
 {
   return [super init];
 }
 
 @end
-</code>
+
 
 Think about it.  There's absolutely no reason this shouldn't work, as the most generic possible initializer.  And, of course, it's not going to cause any invalid behavior, but it just doesn't make sense, and will generate a warning.  Typically, it's always a good idea when learning a new language to stick to standard behavior.

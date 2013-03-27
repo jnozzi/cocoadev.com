@@ -4,11 +4,11 @@ LZW: Lempel-Ziv-Welch. Compression algorithm
 
 MVC:  Model-View-Controller
 
-[[NaN]]:  Not a Number (possible result of a numeric computation)
+General/NaN:  Not a Number (possible result of a numeric computation)
 
 NTP: Network Time Protocol
 
-OBEX: Object Exchange (see [[ObEX]]) [Someone apparently can't count to three] -- Whoops, that would be [[DiggoryLaycock]] - It works if you start counting from 0!
+OBEX: Object Exchange (see General/ObEX) [Someone apparently can't count to three] -- Whoops, that would be General/DiggoryLaycock - It works if you start counting from 0!
 
 OOO: Orthodox Object Oriented
 
@@ -28,4 +28,4 @@ POC:  Proof-Of-Concept, also  Plain Old C, also Piece Of Crap (the latter two ar
 
 POD: Plain Old Data, frequently used to describe a struct that simply contains public data but does not specify any significant behavior. Actually, POD has an exact definition and is used in the C++ standard.
 
-PPC:  [[PowerPC]]
+PPC:  General/PowerPC

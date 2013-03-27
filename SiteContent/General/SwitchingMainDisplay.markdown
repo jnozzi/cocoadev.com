@@ -11,9 +11,9 @@ Any pointers / clues?
 Cheers,  Tom
 
 
-''Such.... helpful... advice. If ever an answer on this wiki deserved a pointer to [[HowToWriteHelpfulAnswers]], this one does. If your response does not contribute, then why post it at all?''
+*Such.... helpful... advice. If ever an answer on this wiki deserved a pointer to General/HowToWriteHelpfulAnswers, this one does. If your response does not contribute, then why post it at all?*
 
-Be patient. If '' is older than about age 14, I shall be most surprised. One thing we do know, he discovered Carbon and just had to tell us. [[CocoaDev]] has always had its Joshas. Now we have a ''.
+Be patient. If * is older than about age 14, I shall be most surprised. One thing we do know, he discovered Carbon and just had to tell us. General/CocoaDev has always had its Joshas. Now we have a *.
 
 ----
 
@@ -29,7 +29,7 @@ Tom
 
 ----
 
-I'll admit I'm a noob at this stuff. Forgive me for my "advice". I will definitly review the [[HowToWriteHelpfulAnswers]]. I just came across this site during my comp science class and was doing a couple things at once.
+I'll admit I'm a noob at this stuff. Forgive me for my "advice". I will definitly review the General/HowToWriteHelpfulAnswers. I just came across this site during my comp science class and was doing a couple things at once.
 
 P.S. Feel free to delete this as it is a pointless confession
 

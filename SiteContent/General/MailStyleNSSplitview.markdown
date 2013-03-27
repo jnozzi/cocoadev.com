@@ -1,22 +1,22 @@
 {{#Del:}}
 
-<span style="color:red">'''This is irrelevant in 10.5+ and not worth a topic since it's a simply an option in IB.'''</span>
+<span style="color:red">**This is irrelevant in 10.5+ and not worth a topic since it's a simply an option in IB.**</span>
 
 
 ----
 
-Note that in Leopard, this effect can be achieved by setting the [[NSSplitView]] to use a thin divider (in Interface Builder) and the additional grabber can be made by implementing the 
+Note that in Leopard, this effect can be achieved by setting the General/NSSplitView to use a thin divider (in Interface Builder) and the additional grabber can be made by implementing the 
 
-<code>
+    
 
-- ([[NSRect]])splitView:([[NSSplitView]] '')splitView additionalEffectiveRectOfDividerAtIndex:([[NSInteger]])dividerIndex
+- (General/NSRect)splitView:(General/NSSplitView *)splitView additionalEffectiveRectOfDividerAtIndex:(General/NSInteger)dividerIndex
 
 
-</code>
+
 
 delegate method. -BB
 
-(More information on this in [[NSSplitViewWithResizeControl]])
+(More information on this in General/NSSplitViewWithResizeControl)
 
 ----
 
@@ -25,53 +25,53 @@ I am trying to design a splitview like it mail, the one that seperates the mail 
 
 ----
 
-Take a look at [[ResizeCustomViewOnDrag]] to see how to get the drag and drop to work right. You need this in a custom view that draws the grip however you wish and defines a "grip rect", a rectangle defining your grip's area. In the example, "GRIPRECT" could be a macro or even just a function like [self gripRect] that calculates and returns the grip rectangle. The mouseDown method in the example will check to see if the grip rect is being dragged and reacts accordingly.
+Take a look at General/ResizeCustomViewOnDrag to see how to get the drag and drop to work right. You need this in a custom view that draws the grip however you wish and defines a "grip rect", a rectangle defining your grip's area. In the example, "GRIPRECT" could be a macro or even just a function like [self gripRect] that calculates and returns the grip rectangle. The mouseDown method in the example will check to see if the grip rect is being dragged and reacts accordingly.
 
 ----
 
-[[RBSplitView]] can do this also. You can get the Mail grab image/look from [[RSControls]] [http://blogs.roguesheep.com/2006/10/23/for-your-ui-pleasurerscontrols]
+General/RBSplitView can do this also. You can get the Mail grab image/look from General/RSControls [http://blogs.roguesheep.com/2006/10/23/for-your-ui-pleasurerscontrols]
 
 ----
-Here is my solution, which I basically stole from Colloquy but slimmed down and added the autosave function listed on another page here.  It relies on three classes: a subclass of [[NSSplitview]], a view class for the background, and a view class for the slider portion.  You also will need to rob the slider image from Mail.app and dissect a 1-pixel-wide shot of the part that expands.  Basically, you configure it like so:
+Here is my solution, which I basically stole from Colloquy but slimmed down and added the autosave function listed on another page here.  It relies on three classes: a subclass of General/NSSplitview, a view class for the background, and a view class for the slider portion.  You also will need to rob the slider image from Mail.app and dissect a 1-pixel-wide shot of the part that expands.  Basically, you configure it like so:
 
 * Add the three classes below to your project
-* Add the two necessary images to your project, and just make sure that the names of the images correspond to what's called in the files.  In the example, they are called "[[MailSliderBackground]]" and "sidebarResizeWidget"
-* In an empty window, place an [[NSView]] object and set it to resize horizontally, and make it of class [[MailStyleFunctionBarBackground]].  It should be 23 pixels high and around 100 wide.
-* Drag an [[NSImageView]] to the right side of this view, and make it of class [[SDSliderImageView]].  Set the Image: as "sidebarResizeWidget" right there in IB
-* Place other buttons you might want to the left, and maybe an [[NSOutlineview]] above it, set to resize but to keep its distance from the bottom.
+* Add the two necessary images to your project, and just make sure that the names of the images correspond to what's called in the files.  In the example, they are called "General/MailSliderBackground" and "sidebarResizeWidget"
+* In an empty window, place an General/NSView object and set it to resize horizontally, and make it of class General/MailStyleFunctionBarBackground.  It should be 23 pixels high and around 100 wide.
+* Drag an General/NSImageView to the right side of this view, and make it of class General/SDSliderImageView.  Set the Image: as "sidebarResizeWidget" right there in IB
+* Place other buttons you might want to the left, and maybe an General/NSOutlineview above it, set to resize but to keep its distance from the bottom.
 * Select all 3 or more items you have created and group them under a custom view via the "Layout -> make subviews of" menu
-* Select this new view and your right-side view and make make them subviews of a splitview.  Set up your splitview and make it of class [[MySplitView]].  The left side should contain your view
+* Select this new view and your right-side view and make make them subviews of a splitview.  Set up your splitview and make it of class General/MySplitView.  The left side should contain your view
 * You should be good. Your splitView should now look like this in IB: 
 
 
-http://idisk.mac.com/omnius/Public/[[MailSplitView]].tiff
+http://idisk.mac.com/omnius/Public/General/MailSplitView.tiff
 
-[[MySplitView]]
-<code>
+General/MySplitView
+    
 #import <Cocoa/Cocoa.h>
 
-@interface [[MySplitView]] : [[NSSplitView]]
+@interface General/MySplitView : General/NSSplitView
 {
-	[[IBOutlet]] id leftView;
-	[[IBOutlet]] id resizeSlider;
+	General/IBOutlet id leftView;
+	General/IBOutlet id resizeSlider;
 
-	[[IBOutlet]] id outlineView;  //You have to make this in your IB
-	[[IBOutlet]] id actionButon;  //You have to make this in your IB
-	[[IBOutlet]] id favoritesButton; //You have to make this in your IB
+	General/IBOutlet id outlineView;  //You have to make this in your IB
+	General/IBOutlet id actionButon;  //You have to make this in your IB
+	General/IBOutlet id favoritesButton; //You have to make this in your IB
 	
 	BOOL inResizeMode;
 }
 
-- ([[IBAction]])adjustSubviews:(id)sender;
+- (General/IBAction)adjustSubviews:(id)sender;
 
-- (void)storeLayoutWithName:([[NSString]] '')name;
-- (void)loadLayoutWithName:([[NSString]] '')name;
+- (void)storeLayoutWithName:(General/NSString *)name;
+- (void)loadLayoutWithName:(General/NSString *)name;
 
 @end
 
-#import "[[MySplitView]].h"
+#import "General/MySplitView.h"
 
-@implementation [[MySplitView]]
+@implementation General/MySplitView
 
 #pragma mark -
 #pragma mark Original Methods
@@ -81,53 +81,53 @@ http://idisk.mac.com/omnius/Public/[[MailSplitView]].tiff
 	[self setDelegate:self];
 }
 
-- ([[IBAction]])adjustSubviews:(id)sender
+- (General/IBAction)adjustSubviews:(id)sender
 {
 	[self adjustSubviews];
 }
 
 #pragma mark -
-#pragma mark Overridden from [[NSSplitView]]
+#pragma mark Overridden from General/NSSplitView
 
 - (float)dividerThickness
 {
 	return .5;
 }
 
-- (void)drawDividerInRect:([[NSRect]])aRect
+- (void)drawDividerInRect:(General/NSRect)aRect
 {
-	[[[[NSColor]] colorWithDeviceWhite:.75 alpha:1] setFill];
-	[[[NSBezierPath]] fillRect:aRect];
+	General/[[NSColor colorWithDeviceWhite:.75 alpha:1] setFill];
+	General/[NSBezierPath fillRect:aRect];
 }
 
 #pragma mark -
-#pragma mark [[NSSplitView]] delegate methods
+#pragma mark General/NSSplitView delegate methods
 
-- (BOOL)splitView:([[NSSplitView]] '')sender canCollapseSubview:([[NSView]] '')subview
+- (BOOL)splitView:(General/NSSplitView *)sender canCollapseSubview:(General/NSView *)subview
 {
-	if ( [[subview className] isEqualToString:@"[[NSScrollView]]"] ) //What's in the right view
+	if ( General/subview className] isEqualToString:@"[[NSScrollView"] ) //What's in the right view
 		return NO;
 		
 	return YES;
 }
 
-- (float)splitView:([[NSSplitView]] '')sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
+- (float)splitView:(General/NSSplitView *)sender constrainMaxCoordinate:(float)proposedMax ofSubviewAt:(int)offset
 {
 	return 260.0; //Max width
 }
 
-- (float)splitView:([[NSSplitView]] '')sender constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)offset
+- (float)splitView:(General/NSSplitView *)sender constrainMinCoordinate:(float)proposedMin ofSubviewAt:(int)offset
 {
 	return 140.0; //Min width
 }
 
-- (void)splitView:([[NSSplitView]] '')sender resizeSubviewsWithOldSize:([[NSSize]])oldSize
+- (void)splitView:(General/NSSplitView *)sender resizeSubviewsWithOldSize:(General/NSSize)oldSize
 {	
-	[[NSRect]] newFrame = [sender frame]; // get the new size of the whole splitView
-	[[NSView]] ''left = [[sender subviews] objectAtIndex:0];
-		[[NSRect]] leftFrame = [left frame];
-	[[NSView]] ''right = [[sender subviews] objectAtIndex:1];
-		[[NSRect]] rightFrame = [right frame];
+	General/NSRect newFrame = [sender frame]; // get the new size of the whole splitView
+	General/NSView *left = General/sender subviews] objectAtIndex:0];
+		[[NSRect leftFrame = [left frame];
+	General/NSView *right = General/sender subviews] objectAtIndex:1];
+		[[NSRect rightFrame = [right frame];
  
 	float dividerThickness = [sender dividerThickness];
       
@@ -148,120 +148,120 @@ http://idisk.mac.com/omnius/Public/[[MailSplitView]].tiff
 {
 	[super resetCursorRects];
 		
-	[[NSRect]] location = [resizeSlider frame];
+	General/NSRect location = [resizeSlider frame];
 		location.origin.y = [self frame].size.height - location.size.height;
 
-	[self addCursorRect:location cursor:[[[NSCursor]] resizeLeftRightCursor]];
+	[self addCursorRect:location cursor:General/[NSCursor resizeLeftRightCursor]];
 }
 
-- (void)mouseDown:([[NSEvent]] '')theEvent 
+- (void)mouseDown:(General/NSEvent *)theEvent 
 {
-	//[[NSLog]](@"mouseDown in splitView");
-	[[NSPoint]] clickLocation = [theEvent locationInWindow];
+	//General/NSLog(@"mouseDown in splitView");
+	General/NSPoint clickLocation = [theEvent locationInWindow];
 
-	[[NSView]] ''clickReceiver = [self hitTest:clickLocation];
-	if ( [[clickReceiver className] isEqualToString:@"[[SDSliderImageView]]"] ) {
-		//[[NSLog]](@"Entering drag");
+	General/NSView *clickReceiver = [self hitTest:clickLocation];
+	if ( General/clickReceiver className] isEqualToString:@"[[SDSliderImageView"] ) {
+		//General/NSLog(@"Entering drag");
 		inResizeMode = YES;
 	} else {
-		//[[NSLog]]([clickReceiver className]);
+		//General/NSLog([clickReceiver className]);
 		inResizeMode = NO;
 		[super mouseDown:theEvent];
 	}
-	//[[NSLog]](@"mouseDown in splitView done");
+	//General/NSLog(@"mouseDown in splitView done");
 }
 
-- (void)mouseUp:([[NSEvent]] '')theEvent
+- (void)mouseUp:(General/NSEvent *)theEvent
 {
-	//[[NSLog]](@"Exiting drag");
+	//General/NSLog(@"Exiting drag");
 	inResizeMode = NO;
 }
 
-- (void)mouseDragged:([[NSEvent]] '')theEvent 
+- (void)mouseDragged:(General/NSEvent *)theEvent 
 {
-	//[[NSLog]](@"mouseDragged in splitView");
+	//General/NSLog(@"mouseDragged in splitView");
 	if ( inResizeMode == NO ) {
 		[super mouseDragged:theEvent];
 		return;
 	}
 		
-	[[[[NSNotificationCenter]] defaultCenter] postNotificationName:[[NSSplitViewWillResizeSubviewsNotification]] object:self];
+	General/[[NSNotificationCenter defaultCenter] postNotificationName:General/NSSplitViewWillResizeSubviewsNotification object:self];
 	
-    [[NSPoint]] clickLocation = [theEvent locationInWindow];	
-	[[NSRect]] newFrame = [leftView frame];
+    General/NSPoint clickLocation = [theEvent locationInWindow];	
+	General/NSRect newFrame = [leftView frame];
 		newFrame.size.width = clickLocation.x;
 	
 	id delegate = [self delegate];
 	if( delegate && [delegate respondsToSelector:@selector( splitView:constrainSplitPosition:ofSubviewAt: )] ) {
 		float new = [delegate splitView:self constrainSplitPosition:newFrame.size.width ofSubviewAt:0];
 		newFrame.size.width = new;
-		//[[NSLog]](@"Constrained width to: %f", new);
+		//General/NSLog(@"Constrained width to: %f", new);
 	}
 	
 	if( delegate && [delegate respondsToSelector:@selector( splitView:constrainMinCoordinate:ofSubviewAt: )] ) {
 		float min = [delegate splitView:self constrainMinCoordinate:0. ofSubviewAt:0];
 		newFrame.size.width = MAX( min, newFrame.size.width );
-		//[[NSLog]](@"Constrained width to: %f", newFrame.size.width);
+		//General/NSLog(@"Constrained width to: %f", newFrame.size.width);
 	}
 	
 	if( delegate && [delegate respondsToSelector:@selector( splitView:constrainMaxCoordinate:ofSubviewAt: )] ) {
 		float max = [delegate splitView:self constrainMaxCoordinate:0. ofSubviewAt:0];
 		newFrame.size.width = MIN( max, newFrame.size.width );
-		//[[NSLog]](@"Constrained width to: %f", newFrame.size.width);
+		//General/NSLog(@"Constrained width to: %f", newFrame.size.width);
 	}
 	
 	[leftView setFrame:newFrame];
 	[self adjustSubviews];
 	
-	[[[[NSNotificationCenter]] defaultCenter] postNotificationName:[[NSSplitViewDidResizeSubviewsNotification]] object:self];
+	General/[[NSNotificationCenter defaultCenter] postNotificationName:General/NSSplitViewDidResizeSubviewsNotification object:self];
 }
 
 
 #pragma mark -
 #pragma mark Position save support
 
-- ([[NSString]]'')ccd__keyForLayoutName: ([[NSString]]'')name
+- (General/NSString*)ccd__keyForLayoutName: (General/NSString*)name
 {
-	return [[[NSString]] stringWithFormat: @"[[CCDNSSplitView]] Layout %@", name];
+	return General/[NSString stringWithFormat: @"General/CCDNSSplitView Layout %@", name];
 }
 
-- (void)storeLayoutWithName: ([[NSString]]'')name
+- (void)storeLayoutWithName: (General/NSString*)name
 {
-	[[NSString]]''		key = [self ccd__keyForLayoutName: name];
-	[[NSMutableArray]]''	viewRects = [[[NSMutableArray]] array];
-	[[NSEnumerator]]''	viewEnum = [[self subviews] objectEnumerator];
-	[[NSView]]''			view;
-	[[NSRect]]			frame;
+	General/NSString*		key = [self ccd__keyForLayoutName: name];
+	General/NSMutableArray*	viewRects = General/[NSMutableArray array];
+	General/NSEnumerator*	viewEnum = General/self subviews] objectEnumerator];
+	[[NSView*			view;
+	General/NSRect			frame;
 	
 	while( (view = [viewEnum nextObject]) != nil )
 	{
 		if( [self isSubviewCollapsed: view] )
-			frame = [[NSZeroRect]];
+			frame = General/NSZeroRect;
 		else
 			frame = [view frame];
 		
-		[viewRects addObject: [[NSStringFromRect]]( frame )];
+		[viewRects addObject: General/NSStringFromRect( frame )];
 	}
 	
-	[[[[NSUserDefaults]] standardUserDefaults] setObject: viewRects forKey: key];
+	General/[[NSUserDefaults standardUserDefaults] setObject: viewRects forKey: key];
 }
 
-- (void)loadLayoutWithName: ([[NSString]]'')name
+- (void)loadLayoutWithName: (General/NSString*)name
 {
-	[[NSString]]''		key = [self ccd__keyForLayoutName: name];
-	[[NSMutableArray]]''	viewRects = [[[[NSUserDefaults]] standardUserDefaults] objectForKey: key];
-	[[NSArray]]''		views = [self subviews];
+	General/NSString*		key = [self ccd__keyForLayoutName: name];
+	General/NSMutableArray*	viewRects = General/[[NSUserDefaults standardUserDefaults] objectForKey: key];
+	General/NSArray*		views = [self subviews];
 	int				i, count;
-	[[NSRect]]			frame;
+	General/NSRect			frame;
 	
 	count = MIN( [viewRects count], [views count] );
 	
 	for( i = 0; i < count; i++ )
 	{
-		frame = [[NSRectFromString]]( [viewRects objectAtIndex: i] );
-		if( [[NSIsEmptyRect]]( frame ) )
+		frame = General/NSRectFromString( [viewRects objectAtIndex: i] );
+		if( General/NSIsEmptyRect( frame ) )
 		{
-			frame = [[views objectAtIndex: i] frame];
+			frame = General/views objectAtIndex: i] frame];
 			if( [self isVertical] )
 				frame.size.width = 0;
 			else
@@ -274,27 +274,27 @@ http://idisk.mac.com/omnius/Public/[[MailSplitView]].tiff
 
 @end
 
-</code>
 
-[[MailStyleFunctionBarBackground]]
-<code>
+
+[[MailStyleFunctionBarBackground
+    
 #import <Cocoa/Cocoa.h>
 
-@interface [[MailStyleFunctioBarBackgroundView]] : [[NSView]]
+@interface General/MailStyleFunctioBarBackgroundView : General/NSView
 {
-	[[NSImage]] ''backgroundImageForSelectedStyle;
+	General/NSImage *backgroundImageForSelectedStyle;
 }
 
 @end
 
-#import "[[MailStyleFunctioBarBackgroundView]].h"
+#import "General/MailStyleFunctioBarBackgroundView.h"
 
-@implementation [[MailStyleFunctioBarBackgroundView]]
+@implementation General/MailStyleFunctioBarBackgroundView
 
-- (id)initWithFrame:([[NSRect]])frameRect
+- (id)initWithFrame:(General/NSRect)frameRect
 {
 	if ((self = [super initWithFrame:frameRect]) != nil) {
-		backgroundImageForSelectedStyle = [[[NSImage]] imageNamed:@"[[MailSliderBackground]]"];
+		backgroundImageForSelectedStyle = General/[NSImage imageNamed:@"General/MailSliderBackground"];
 	}
 	return self;
 }
@@ -302,47 +302,47 @@ http://idisk.mac.com/omnius/Public/[[MailSplitView]].tiff
 #pragma mark -
 #pragma mark Display
 
-- (void)drawRect:([[NSRect]])rect
+- (void)drawRect:(General/NSRect)rect
 {
-	//[[NSLog]](@"drawRect");
+	//General/NSLog(@"drawRect");
 	//Draw the background, tiling a 1px-wide image horizontally	
 	[backgroundImageForSelectedStyle drawInRect:[self bounds]
-									   fromRect:[[NSMakeRect]](0, 0, [backgroundImageForSelectedStyle size].width, [backgroundImageForSelectedStyle size].height)
-									  operation:[[NSCompositeSourceAtop]] 
+									   fromRect:General/NSMakeRect(0, 0, [backgroundImageForSelectedStyle size].width, [backgroundImageForSelectedStyle size].height)
+									  operation:General/NSCompositeSourceAtop 
 									   fraction:1.0];
 	[super drawRect:rect];
 }
 
 @end
-</code>
 
-[[SDSliderImageView]]
-<code>
+
+General/SDSliderImageView
+    
 #import <Cocoa/Cocoa.h>
 
-@interface [[SDSliderImageView]] : [[NSImageView]]
+@interface General/SDSliderImageView : General/NSImageView
 {
 }
 @end
 
-#import "[[SDSliderImageView]].h"
+#import "General/SDSliderImageView.h"
 
-@implementation [[SDSliderImageView]]
+@implementation General/SDSliderImageView
 
-- (void)mouseDown:([[NSEvent]] '')theEvent
+- (void)mouseDown:(General/NSEvent *)theEvent
 {
-	//[[NSLog]](@"mouseDown in sliderImage");
-	[[[self superview] superview] mouseDown:theEvent];
+	//General/NSLog(@"mouseDown in sliderImage");
+	General/[self superview] superview] mouseDown:theEvent];
 }
 
-- (void)mouseDragged:([[NSEvent]] '')theEvent
+- (void)mouseDragged:([[NSEvent *)theEvent
 {
-	//[[NSLog]](@"mouseDragged in sliderImage");
-	[[[self superview] superview] mouseDragged:theEvent];
+	//General/NSLog(@"mouseDragged in sliderImage");
+	General/[self superview] superview] mouseDragged:theEvent];
 }
 
 @end
-</code>
+
 
 ----
 
@@ -350,7 +350,7 @@ I've posted a sample project that demonstrates some good techniques for creating
 
 [http://www.mere-mortal-software.com/blog/details.php?d=2006-12-21]
 
-http://www.mere-mortal-software.com/blog/blogimages/2006/12/21/[[FinalWindow]].jpg
+http://www.mere-mortal-software.com/blog/blogimages/2006/12/21/[[FinalWindow.jpg
 
 ----
 

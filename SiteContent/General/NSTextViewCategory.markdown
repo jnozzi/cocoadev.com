@@ -1,7 +1,7 @@
 
 
-'''[[NSTextView]]+[[CocoaDevUsersAdditions]].h'''
-<code>
+**General/NSTextView+General/CocoaDevUsersAdditions.h**
+    
  @interface NSTextView (CocoaDevUsersAdditions)
  
  - (NSRange) visibleRange;
@@ -12,7 +12,7 @@
  
  - (void) appendString: (NSString *)str;
  // How could they leave this one out??
- // See [[BookBuildingCocoaApplications]] p.341
+ // See General/BookBuildingCocoaApplications p.341
  
  @end
  
@@ -33,18 +33,18 @@
  
  - (void) appendString: (NSString *) str
  {
-     int len = [[self textStorage] length];
+     int len = General/self textStorage] length];
      [self replaceCharactersInRange:NSMakeRange(len, 0) withString:str];
  }
  
  @end
-</code>
 
-''Ummm, can't you just do <code>[[[self textStorage] mutableString] appendString:str]</code> instead of the much more complex method <code>replaceCharactersInRange:withString:</code>? (By complex I mean algorithmically) --[[JediKnil]]''
+
+*Ummm, can't you just do     [[[self textStorage] mutableString] appendString:str] instead of the much more complex method     replaceCharactersInRange:withString:? (By complex I mean algorithmically) --[[JediKnil*
 
 I rather doubt that it is more complex algorithmically. In fact, the two different methods will probably end up invoking the exact same core method to do the actual work.
 
-''True, but JK's method is easier to grok. Someone make sure it works and change the code snippet, plz k thx! [[DustinVoss]]''
+*True, but JK's method is easier to grok. Someone make sure it works and change the code snippet, plz k thx! General/DustinVoss*
 
 
-[[Category:CocoaDevUsersAdditions]]
+General/Category:CocoaDevUsersAdditions

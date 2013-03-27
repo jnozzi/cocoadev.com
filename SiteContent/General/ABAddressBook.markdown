@@ -1,45 +1,45 @@
-<code>+ (ABAddressBook *)sharedAddressBook;</code>
+    + (ABAddressBook *)sharedAddressBook;
 
  *Returns the unique shared instance of ABAddressBook
  *The addressbook returned will be for the effective user ID at the time of the call. setuid calls can be used to change the current user if you are trying to look through addressbooks.
 
 
-<code>- (NSArray *)recordsMatchingSearchElement:(ABSearchElement *)search;</code>
+    - (NSArray *)recordsMatchingSearchElement:(ABSearchElement *)search;
 
  *Returns an array of record matching the given search element
   *Raises if search is nil
   *Returns an empty array if no matches
 
 
-<code>- (BOOL)save;</code>
+    - (BOOL)save;
 
 
   *Saves changes made since the last save
   *Return YES if successful (or there was no change)
 
 
-<code>- (BOOL)hasUnsavedChanges;</code>
+    - (BOOL)hasUnsavedChanges;
 
 
    *Returns YES if they are unsaved changes
    *The unsaved changes flag is automatically set when changes are made
 
 
-<code>- (ABPerson *)me;</code>
+    - (ABPerson *)me;
 
 
    *Returns the person that represents the user
    *Returns nil if "me" was never set
 
 
-<code>- (void)setMe:(ABPerson *)moi;</code>
+    - (void)setMe:(ABPerson *)moi;
 
 
    *Sets "Me" to moi.
    *Pass nil to clear "Me"
 
 
-<code>- (ABRecord *)recordForUniqueId:(NSString *)uniqueId;</code>
+    - (ABRecord *)recordForUniqueId:(NSString *)uniqueId;
 
 
    *Returns a record (ABPerson or ABGroup) matching a given unique ID
@@ -47,7 +47,7 @@
    *Returns nil if the record could not be found
 
 
-<code>- (BOOL)addRecord:(ABRecord *)record;</code>
+    - (BOOL)addRecord:(ABRecord *)record;
 
 
    *Adds a record (ABPerson or ABGroup) to the AddressBook Database
@@ -55,7 +55,7 @@
    *Returns YES if the addition was successful
 
 
-<code>- (BOOL)removeRecord:(ABRecord *)record;</code>
+    - (BOOL)removeRecord:(ABRecord *)record;
 
 
    *Removes a record (ABPerson or ABGroup) from the AddressBook Database
@@ -63,14 +63,14 @@
    *Returns YES if the removal was successful
 
 
-<code>- (NSArray *)people;</code>
+    - (NSArray *)people;
 
 
    *Returns an array of all the people in the AddressBook database
    *Returns an empty array in case the DB doesn't contain any body
 
 
-<code>- (NSArray *)groups;</code>
+    - (NSArray *)groups;
 
 
    *Returns an array of all the groups in the AddressBook database
@@ -78,4 +78,4 @@
 
 
 
-[[Category:PointlessInformation]]
+General/Category:PointlessInformation

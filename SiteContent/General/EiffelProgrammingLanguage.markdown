@@ -1,1 +1,1 @@
-See [[LanguageEiffel]]
+See General/LanguageEiffel

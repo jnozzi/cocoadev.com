@@ -1,9 +1,9 @@
 
 
-I want to use a [[NSStepper]] to increment or decrement a date, by day, that is in a [[NSTextField]] with a Date Formatter on it.  Is this possible?  Here's the basic form i thought would work:
+I want to use a General/NSStepper to increment or decrement a date, by day, that is in a General/NSTextField with a Date Formatter on it.  Is this possible?  Here's the basic form i thought would work:
 
-<code>
-[[NSDate]] ''date = [[[NSDate]] dateWithNaturalLanguageString:[dateField stringValue]];
+    
+General/NSDate *date = General/[NSDate dateWithNaturalLanguageString:[dateField stringValue]];
 
 if( 1 == [dateStepper intValue] )
 	// increment date
@@ -12,17 +12,17 @@ elseif( -1 == [dateStepper intValue] )
 
 [dateStepper setIntValue:0];
 	
-[dateField setObjectValue:date];</code>
+[dateField setObjectValue:date];
 
 ----
 
-Convert your date to a [[NSCalendarDate]] using <code>dateWithCalendarFormat:timeZone:</code> and then use the <code>dateByAddingYears:months:days:hours:minutes:seconds:</code> method.
+Convert your date to a General/NSCalendarDate using     dateWithCalendarFormat:timeZone: and then use the     dateByAddingYears:months:days:hours:minutes:seconds: method.
 
-You may be tempted to use [[NSDate]]'s <code>addTimeInterval:</code> method. For your purposes avoid it. [[NSCalendarDate]] will deal with Summer Time Saving adjustments for free. -- GCM
+You may be tempted to use General/NSDate's     addTimeInterval: method. For your purposes avoid it. General/NSCalendarDate will deal with Summer Time Saving adjustments for free. -- GCM
 
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSDate]].html
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSCalendarDate]].html
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSDate.html
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSCalendarDate.html
 
 ----
 
-Yeah, i used <code>addTimeInterval:</code> before i posted here, and found it didnt work.  but [[NSCalendarDate]] worked great.   thanks.
+Yeah, i used     addTimeInterval: before i posted here, and found it didnt work.  but General/NSCalendarDate worked great.   thanks.

@@ -1,16 +1,16 @@
-'''Class Description'''
+**Class Description**
 
-[[NSDecimalNumber]], an immutable subclass of [[NSNumber]], provides an object-oriented wrapper for doing base-10 arithmetic. An instance can represent any number that can be expressed as <code>mantissa x 10^exponent</code> where mantissa is a decimal integer up to 38 digits long, and exponent is an integer from -128 through 127.
+General/NSDecimalNumber, an immutable subclass of General/NSNumber, provides an object-oriented wrapper for doing base-10 arithmetic. An instance can represent any number that can be expressed as     mantissa x 10^exponent where mantissa is a decimal integer up to 38 digits long, and exponent is an integer from -128 through 127.
 ----
 
-'''Apple Documentation'''
+**Apple Documentation**
 
 http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSDecimalNumber_Class/
 
 ----
 
-'''See Also'''
+**See Also**
 
-*[[NSDecimalNumberHandler]]
-*[[NSDecimalNumberBehaviors]]
-*[[NSNumber]]
+*General/NSDecimalNumberHandler
+*General/NSDecimalNumberBehaviors
+*General/NSNumber

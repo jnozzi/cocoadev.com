@@ -1,1 +1,1 @@
-see [[NSTextField]]
+see General/NSTextField

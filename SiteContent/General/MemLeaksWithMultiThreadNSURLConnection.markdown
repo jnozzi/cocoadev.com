@@ -2,23 +2,23 @@
 
 Hi There:
 
-I'm having some issues with Memory Leaking from [[NSURLConnection]] (either from calling it directly, or when it's used in another method [eg initWithContentsOfURL]. The problem seems to appear when it's used on a thread other than the main one. Here's my code:
+I'm having some issues with Memory Leaking from General/NSURLConnection (either from calling it directly, or when it's used in another method [eg initWithContentsOfURL]. The problem seems to appear when it's used on a thread other than the main one. Here's my code:
 
-<code>
+    
 
 // This is released when the program begins, by a thread that is in turn released by the initWithFrame method
 
 - (void)getNextPhotos:(id)anObject
 {	
 	
-	[[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
+	General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
 	
 	gettingMorePhotos = YES;
 	
 	// start a loop...
 	while (1) {
 	
-	[[NSLog]](@"checking to see if we need to get some photos....");
+	General/NSLog(@"checking to see if we need to get some photos....");
 	
 	if ([nextPhotos count] < 10 && hasSession == YES) {
 		
@@ -39,7 +39,7 @@ I'm having some issues with Memory Leaking from [[NSURLConnection]] (either from
 						
 						if ([filteredFriends objectAtIndex:i]) {
 							
-							[self getUserPhotos:[[filteredFriends objectAtIndex:i] uid]];
+							[self getUserPhotos:General/filteredFriends objectAtIndex:i] uid;
 							
 							
 							}
@@ -65,55 +65,55 @@ I'm having some issues with Memory Leaking from [[NSURLConnection]] (either from
 
 
 /// the method above in turn calls this method...
-- (void)getUserPhotos:([[NSString]] '')uid
+- (void)getUserPhotos:(General/NSString *)uid
 {
 	
 	
 	
 	// get the user photos and put them in an array
-	tempphotos = [[[[NSMutableArray]] alloc] initWithCapacity:100];
+	tempphotos = General/[[NSMutableArray alloc] initWithCapacity:100];
 	
-	[[NSMutableDictionary]] ''tempDictionary = [[[[NSMutableDictionary]] alloc] init];	
+	General/NSMutableDictionary *tempDictionary = General/[[NSMutableDictionary alloc] init];	
 	[tempDictionary setValue:@"facebook.photos.get" forKey:@"method"];
 	[tempDictionary setValue:api_key forKey:@"api_key"];
 	[tempDictionary setValue:@"1.0" forKey:@"v"];
 	[tempDictionary setValue:session forKey:@"session_key"];
-	[[NSString]] '' current_time = [self getCurrentTime];
+	General/NSString * current_time = [self getCurrentTime];
 	[tempDictionary setValue:current_time forKey:@"call_id"];
 	[tempDictionary setValue:uid forKey:@"subj_id"];
 	
-	//[[NSLog]](uid);
+	//General/NSLog(uid);
 	
-	[[NSString]]'' s = [self createSecret:tempDictionary];		
+	General/NSString* s = [self createSecret:tempDictionary];		
 	
 	[tempDictionary release];
 	
-	[[NSMutableString]] ''postArgs = [[[[NSMutableString]] alloc]  initWithString:@""];
+	General/NSMutableString *postArgs = General/[[NSMutableString alloc]  initWithString:@""];
 	
-	[[NSArray]] ''urlArguments = [[[NSArray]] arrayWithObjects:@"method=facebook.photos.get&sig=", s, @"&api_key=", api_key, @"&v=", @"1.0", @"&session_key=", session, @"&call_id=", current_time, @"&subj_id=", uid, nil];
+	General/NSArray *urlArguments = General/[NSArray arrayWithObjects:@"method=facebook.photos.get&sig=", s, @"&api_key=", api_key, @"&v=", @"1.0", @"&session_key=", session, @"&call_id=", current_time, @"&subj_id=", uid, nil];
 	
 	[postArgs appendString:[urlArguments componentsJoinedByString:@""]];
-	//[[NSLog]](urlToCall);
+	//General/NSLog(urlToCall);
 	
 	
 	// [photos release];
 	
 	
-	[[NSXMLDocument]] ''tokenXML = [[[[NSXMLDocument]] alloc] initWithData:[self fetchXMLData:postArgs]
+	General/NSXMLDocument *tokenXML = General/[[NSXMLDocument alloc] initWithData:[self fetchXMLData:postArgs]
 														 options:nil
 														  error:nil];
-	//[[NSString]] ''tempString;
+	//General/NSString *tempString;
 	
 	
-	if([[[tokenXML rootElement] name] isEqualToString:@"photos_get_response"])
+	if(General/[tokenXML rootElement] name] isEqualToString:@"photos_get_response"])
 	{
-			[[NSLog]](@"photos getting..");
+			[[NSLog(@"photos getting..");
 			
 			int i;
 			int i2;
 			int i4;
 			id aNode;
-			for (i = 0; i < [[tokenXML rootElement] childCount]; i++) {
+			for (i = 0; i < General/tokenXML rootElement] childCount]; i++) {
 				
 				aNode = [[tokenXML rootElement] childAtIndex: i];
 				
@@ -125,20 +125,20 @@ I'm having some issues with Memory Leaking from [[NSURLConnection]] (either from
 						/// add to photos
 						
 						// create new photo object
-						Photo ''tempPhoto = [[Photo alloc] init];
+						Photo *tempPhoto = [[Photo alloc] init];
 						
 						// will this work??
-						[[NSString]]'' tempString = [[[[NSString]] alloc] initWithString:[[aNode childAtIndex:i2] stringValue]];
+						[[NSString* tempString = General/[[NSString alloc] initWithString:General/aNode childAtIndex:i2] stringValue;
 						[tempPhoto setUrl:tempString];
 						[tempString release];
 						
 						/// find the friend's name
 						for (i4=0; i4 < [friends count]; i4++) {
 							
-							if ([[[friends objectAtIndex:i4] uid] isEqualToString:uid]) {
+							if (General/[friends objectAtIndex:i4] uid] isEqualToString:uid]) {
 								// found friend
 								
-								 [tempPhoto setName:[[friends objectAtIndex:i4] name]];
+								 [tempPhoto setName:[[friends objectAtIndex:i4] name;
 								
 								}
 							
@@ -175,16 +175,16 @@ I'm having some issues with Memory Leaking from [[NSURLConnection]] (either from
 			[tokenXML release];
 			
 	} else {
-		[[NSLog]](@"There was an error getting user's photos..");
+		General/NSLog(@"There was an error getting user's photos..");
 		
-		if ([[[tokenXML rootElement] name] isEqualToString:@"error_response"]) {
+		if (General/[tokenXML rootElement] name] isEqualToString:@"error_response"]) {
 			// error... output the msg
 			
-			[[NSArray]] ''tempArray = [[tokenXML rootElement] elementsForName:@"error_msg"];
+			[[NSArray *tempArray = General/tokenXML rootElement] elementsForName:@"error_msg"];
 			
 			if ([tempArray objectAtIndex:0]) {
-				[[NSString]] ''tempString = [[[[NSString]] alloc] initWithString:[[tempArray objectAtIndex:0] stringValue]];
-				[[NSLog]](@"xml error message: %@", tempString);
+				[[NSString *tempString = General/[[NSString alloc] initWithString:General/tempArray objectAtIndex:0] stringValue;
+				General/NSLog(@"xml error message: %@", tempString);
 				[tempString release];
 				}
 			
@@ -202,32 +202,32 @@ I'm having some issues with Memory Leaking from [[NSURLConnection]] (either from
 
 // which in turn calls this method...
 
-- ([[NSData]] '')fetchXMLData:([[NSString]] '')post
+- (General/NSData *)fetchXMLData:(General/NSString *)post
 {
 	
 	
-	[[NSData]] ''postData = [post dataUsingEncoding:[[NSASCIIStringEncoding]] allowLossyConversion:YES];
+	General/NSData *postData = [post dataUsingEncoding:General/NSASCIIStringEncoding allowLossyConversion:YES];
 
-	[[NSString]] ''postLength = [[[NSString]] stringWithFormat:@"%d", [postData length]];
+	General/NSString *postLength = General/[NSString stringWithFormat:@"%d", [postData length]];
 
-	[[NSMutableURLRequest]] ''request = [[[[NSMutableURLRequest]] alloc] init];
-	[request setURL:[NSURL [[URLWithString]]:@"http://api.facebook.com/restserver.php"]];
+	General/NSMutableURLRequest *request = General/[[NSMutableURLRequest alloc] init];
+	[request setURL:[NSURL General/URLWithString:@"http://api.facebook.com/restserver.php"]];
 	[request setHTTPMethod:@"POST"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 	[request setHTTPBody:postData];
-	[request setCachePolicy:[[NSURLRequestReloadIgnoringCacheData]]];
+	[request setCachePolicy:General/NSURLRequestReloadIgnoringCacheData];
 	connectionTimeoutInterval = 0.5;
 	[request setTimeoutInterval:connectionTimeoutInterval];
 	
-	/''
-	[[NSURLRequest]] ''urlRequest = [[[NSURLRequest]] requestWithURL:theURL 
-												cachePolicy:[[NSURLRequestReloadIgnoringCacheData]]
+	/*
+	General/NSURLRequest *urlRequest = General/[NSURLRequest requestWithURL:theURL 
+												cachePolicy:General/NSURLRequestReloadIgnoringCacheData
 											timeoutInterval:connectionTimeoutInterval];
-	''/
-	[[NSHTTPURLResponse]] ''xmlResponse;  //not used right now
-	[[NSError]] ''fetchError;
-	[[NSData]] ''xmlData = [[[NSURLConnection]] sendSynchronousRequest:request
+	*/
+	General/NSHTTPURLResponse *xmlResponse;  //not used right now
+	General/NSError *fetchError;
+	General/NSData *xmlData = General/[NSURLConnection sendSynchronousRequest:request
 											returningResponse:&xmlResponse
 														error:&fetchError];
 	
@@ -245,10 +245,10 @@ I'm having some issues with Memory Leaking from [[NSURLConnection]] (either from
 
 
 
-</code>
 
 
-I don't ''think'' there are any leaks in the code... but [[MallocDebug]] says otherwise. It's a screensaver, so it's running for a long time - and thus memory leaks are a big issue.
+
+I don't *think* there are any leaks in the code... but General/MallocDebug says otherwise. It's a screensaver, so it's running for a long time - and thus memory leaks are a big issue.
 
 I've tried to use curlHandle - but I couldn't get it to link properly. Could this have something to do with it being a screensaver?
 
@@ -259,7 +259,7 @@ Alexandre
 
 
 ----
-There's a well-known bug that <code>sendSynchronousRequest:</code> will leak when used from multiple threads. The workaround is to use the asynchronous delegate-based [[NSURLConnection]] methods instead.
+There's a well-known bug that     sendSynchronousRequest: will leak when used from multiple threads. The workaround is to use the asynchronous delegate-based General/NSURLConnection methods instead.
 
 ----
 Hmm... OK, thanks. I'm assuming Apple is aware of this bug?
@@ -268,7 +268,7 @@ Alexandre
 ----
 I wouldn't asume that, I did submit a bug that was also well known, but it toke a long time before it became a duplicate. I would say submit it anyway, it will also get more and more awareness.
 
-[[RvA]]
+General/RvA
 
 ----
 It looks like it's pretty well known, both in and outside of Apple:
@@ -279,37 +279,37 @@ However, filing a bug wouldn't hurt; Apple uses the number of bugs filed about a
 
 ----
 
-Ok, so right now I'm trying to set up the asynchronous connection. I can do it fine when I run it from the main thread, but I run into problems when I try doing it from a thread that I have detached from the main. The reason I need to do it is because it's a screensaver, and if I do it in the [[AnimateOneFrame]] method the animation lags. I've created a new object "Downloader" to use as the delegate. I can set some variables in the Downloader instance that I create so that I know what to do with the data after It's been received (I do several different types of requests, sometimes at the same time). 
+Ok, so right now I'm trying to set up the asynchronous connection. I can do it fine when I run it from the main thread, but I run into problems when I try doing it from a thread that I have detached from the main. The reason I need to do it is because it's a screensaver, and if I do it in the General/AnimateOneFrame method the animation lags. I've created a new object "Downloader" to use as the delegate. I can set some variables in the Downloader instance that I create so that I know what to do with the data after It's been received (I do several different types of requests, sometimes at the same time). 
 
 Anyways, here's the code:
 
-<code>
+    
 
 // this is in a different thread, in a loop... so the thread does not exit. Also, this doesn't get called again until the connection is finished (there's a variable called gettingMorePhotos that is set to true to avoid calling two at once).
 
-Downloader ''photoDownloader = [[Downloader alloc] initWithType:@"userPhotos" andMainClass:self];
+Downloader *photoDownloader = General/Downloader alloc] initWithType:@"userPhotos" andMainClass:self];
 
-[photoDownloader setString:[[filteredFriends objectAtIndex:0] uid]];
+[photoDownloader setString:[[filteredFriends objectAtIndex:0] uid;
 					
-[[NSURLConnection]] ''theConnection=[[[[NSURLConnection]] alloc] initWithRequest:request delegate:photoDownloader];
+General/NSURLConnection *theConnection=General/[[NSURLConnection alloc] initWithRequest:request delegate:photoDownloader];
 
 if (theConnection) {
 						
-// Create the [[NSMutableData]] that will hold
+// Create the General/NSMutableData that will hold
 // the received data
 [photoDownloader createData];
 						
-[[NSLog]](@"Connection created");
+General/NSLog(@"Connection created");
 						
 } else {
 						
-[[NSLog]](@"could not create connection..");
+General/NSLog(@"could not create connection..");
 // inform the user that the download could not be made
 
 }
 
 
-</code>
+
 
 This code works fine when it's not in a new thread. But when it is in a new thread, the Connection gets created, but the delegate methods do not get called. What's the deal here? What am I doing wrong?
 

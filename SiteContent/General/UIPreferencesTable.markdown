@@ -1,17 +1,17 @@
 
 
-Subclass of [[UITable]].
+Subclass of General/UITable.
 
-'''[[UIPreferencesTable]] delegate methods'''
+**General/UIPreferencesTable delegate methods**
 
-%%BEGINCODESTYLE%%- (int)numberOfGroupsInPreferencesTable:([[UIPreferencesTable]]'')aTable;
+<code>- (int)numberOfGroupsInPreferencesTable:(General/UIPreferencesTable*)aTable;
 
-%%BEGINCODESTYLE%%- (int)preferencesTable:([[UIPreferencesTable]]'')aTable numberOfRowsInGroup:(int)group;
+<code>- (int)preferencesTable:(General/UIPreferencesTable*)aTable numberOfRowsInGroup:(int)group;
 
-%%BEGINCODESTYLE%%- ([[UIPreferencesTableCell]]'')preferencesTable:([[UIPreferencesTable]]'')aTable cellForGroup:(int)group;
+<code>- (General/UIPreferencesTableCell*)preferencesTable:(General/UIPreferencesTable*)aTable cellForGroup:(int)group;
 
-%%BEGINCODESTYLE%%- (float)preferencesTable:([[UIPreferencesTable]]'')aTable heightForRow:(int)row inGroup:(int)group withProposedHeight:(float)proposed;
+<code>- (float)preferencesTable:(General/UIPreferencesTable*)aTable heightForRow:(int)row inGroup:(int)group withProposedHeight:(float)proposed;
 
-%%BEGINCODESTYLE%%- (BOOL)preferencesTable:([[UIPreferencesTable]]'')aTable isLabelGroup:(int)group;
+<code>- (BOOL)preferencesTable:(General/UIPreferencesTable*)aTable isLabelGroup:(int)group;
 
-%%BEGINCODESTYLE%%- ([[UIPreferencesTableCell]]'')preferencesTable:([[UIPreferencesTable]]'')aTable cellForRow:(int)row inGroup:(int)group;
+<code>- (General/UIPreferencesTableCell*)preferencesTable:(General/UIPreferencesTable*)aTable cellForRow:(int)row inGroup:(int)group;

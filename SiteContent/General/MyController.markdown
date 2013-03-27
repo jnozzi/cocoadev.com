@@ -1,1 +1,1 @@
-Describe [[MyController]] here.
+Describe General/MyController here.

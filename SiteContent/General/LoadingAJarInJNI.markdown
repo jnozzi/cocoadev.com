@@ -4,9 +4,9 @@ I've never used JNI before and I'm trying to load classes from a jar.
 
 Here's what I've got.
 
-<code>
-	[[JNIEnv]] ''env;
-	[[JavaVM]] ''jvm;
+    
+	General/JNIEnv *env;
+	General/JavaVM *jvm;
 	jint res;
 	jclass cls;
 	jmethodID mid;
@@ -14,23 +14,23 @@ Here's what I've got.
 	jclass stringClass;
 	jobjectArray args;
 	
-	[[JavaVMInitArgs]] vm_args;
-	[[JavaVMOption]] options[1];
+	General/JavaVMInitArgs vm_args;
+	General/JavaVMOption options[1];
 	options[0].optionString = "-Djava.class.path=/Users/me/Desktop/myJarFile.jar";
 	vm_args.version = JNI_VERSION_1_4;
 	vm_args.options = options;
 	vm_args.nOptions = 1;
 	vm_args.ignoreUnrecognized = JNI_TRUE;
-	res = JNI_CreateJavaVM(&jvm, (void''')&env, &vm_args);
+	res = JNI_CreateJavaVM(&jvm, (void**)&env, &vm_args);
 	if (res < 0) {
 		fprintf(stderr, "Can't create Java VM\n");
 		exit(1);
 	
-cls = (''env)->[[FindClass]](env, "[[MyJavaClass]]");
-</code>
+cls = (*env)->General/FindClass(env, "General/MyJavaClass");
 
-What I get is the following:	''Exception in thread "main" java.lang.[[NoClassDefFoundError]]: [[MyJavaClass]]''.  What am I doing wrong?
-(PS: Had a similar problem when trying to use the [[JavaBridge]] -- I couldn't find the classes in my Jar file.)
+
+What I get is the following:	*Exception in thread "main" java.lang.General/NoClassDefFoundError: General/MyJavaClass*.  What am I doing wrong?
+(PS: Had a similar problem when trying to use the General/JavaBridge -- I couldn't find the classes in my Jar file.)
 
 ----
 

@@ -1,17 +1,17 @@
 
 
-I have a custom [[NSView]] where I draw several objects. I add to the [[NSView]] 2 standard buttons. Everything draws perfectly, but when I click on the buttons, and subsequent mouse moves on them, the view appears to be drawing objects repeatedly without clearing it. Here is an example of how text is supposed to be drawn, and then how it gets all funky:
+I have a custom General/NSView where I draw several objects. I add to the General/NSView 2 standard buttons. Everything draws perfectly, but when I click on the buttons, and subsequent mouse moves on them, the view appears to be drawing objects repeatedly without clearing it. Here is an example of how text is supposed to be drawn, and then how it gets all funky:
 
 http://img291.imageshack.us/img291/9121/untitled1hs8.jpg
 
-I tried using [[NSRectFill]]() to clear the view with white, but that doesn't help. Is there something I need to be doing with the [[NSButton]] in order for its superview to draw correctly? Thanks.
+I tried using General/NSRectFill() to clear the view with white, but that doesn't help. Is there something I need to be doing with the General/NSButton in order for its superview to draw correctly? Thanks.
 
 ----
 
 Well I fixed it - in drawRect:, I check to see if the passed rect matches one of the button's frames, and if so, I don't draw anything. Is there a better way to fix this?
 
 ----
-Yes, ignore the passed rect entirely. You're using it as the area to draw, but it's just telling you what area needs to be ''redrawn'', which in the case of the buttons is a small area around them. The only reason to use the rect parameter is to optimize your drawing by not drawing objects that fall outside of it, and this is entirely optional.
+Yes, ignore the passed rect entirely. You're using it as the area to draw, but it's just telling you what area needs to be *redrawn*, which in the case of the buttons is a small area around them. The only reason to use the rect parameter is to optimize your drawing by not drawing objects that fall outside of it, and this is entirely optional.
 
 ----
 
@@ -19,7 +19,7 @@ Well in my case, the area around the buttons doesn't need to be redrawn. I know 
 
 ----
 
-Time to [[PostYourCode]], I think.
+Time to General/PostYourCode, I think.
 
 ----
 

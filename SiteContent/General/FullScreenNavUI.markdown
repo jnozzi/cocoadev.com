@@ -5,16 +5,16 @@ Much thanks!
 
 ----
 
-Core Animation and [[NSView]]'s new (in Leopard) -enterFullScreenMode:withOptions: may be what you're looking for. -- [[EmanueleVulcano]] aka millenomi
+Core Animation and General/NSView's new (in Leopard) -enterFullScreenMode:withOptions: may be what you're looking for. -- General/EmanueleVulcano aka millenomi
 
 ----
 
-"Full screen mode" can be separated into two problems: 1) Taking over the whole screen, and 2) Animating entering fullscreen mode.  If you're targeting Leopard, -enterFullScreenMode:withOptions: covers both bases.  If you're targeting Tiger, then you can use [[NSScreen]] to get the size of the screen, set the frame of whatever window you want to be fullscreen to the size of the screen (make sure the window has had the borderless mask applied), and then use [[SetSystemUIMode]] (a C function) to hide the dock/menubar if you like.  The actual animation can then be done with [[NSAnimation]].
+"Full screen mode" can be separated into two problems: 1) Taking over the whole screen, and 2) Animating entering fullscreen mode.  If you're targeting Leopard, -enterFullScreenMode:withOptions: covers both bases.  If you're targeting Tiger, then you can use General/NSScreen to get the size of the screen, set the frame of whatever window you want to be fullscreen to the size of the screen (make sure the window has had the borderless mask applied), and then use General/SetSystemUIMode (a C function) to hide the dock/menubar if you like.  The actual animation can then be done with General/NSAnimation.
 
 ----
-See also: [[BreakItDown]]
+See also: General/BreakItDown
 
-Cocoa is just fine for this. However it's a large problem with many subproblems, and you need to [[BreakItDown]] to identify and solve the subproblems individually.
+Cocoa is just fine for this. However it's a large problem with many subproblems, and you need to General/BreakItDown to identify and solve the subproblems individually.
 
 enterFullScreenMode seems to stay /above/ the login prompt (when waking from sleep) - this seems like a very bad thing!
 

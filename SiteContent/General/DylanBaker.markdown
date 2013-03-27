@@ -6,9 +6,9 @@ I wrote a couple of... um... "bad" programs in TI-BASIC, then a couple good ones
 
 Well, technically, that's ALL history, since it's all gone past. Not to ruin the colloquialism or anything.
 
-So yeah, I know TI-BASIC, HTML, PHP (with [[MySQL]]), Inform, a smattering of C++, and now I'm learning Cocoa.
+So yeah, I know TI-BASIC, HTML, PHP (with General/MySQL), Inform, a smattering of C++, and now I'm learning Cocoa.
 
-'''Stuff Not Related To Programming'''
+**Stuff Not Related To Programming**
 I'm an Eagle Scout.
 I play violin.
 I would recommend a nice book called Macintosh... The Naked Truth by Scott Kelby to any serious Mac fan. :) Of which I am one.

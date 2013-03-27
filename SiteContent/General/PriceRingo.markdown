@@ -6,11 +6,11 @@ mailto:p.ringo@comcast.net
 
 ----
 
-Helpful [[CocoaDev]] Summaries
+Helpful General/CocoaDev Summaries
 
-*[[NSWorkspace]]
-*[[WebKit]]
-*[[MemoryManagement]]
+*General/NSWorkspace
+*General/WebKit
+*General/MemoryManagement
 
 
 ----
@@ -18,4 +18,4 @@ Helpful [[CocoaDev]] Summaries
 Online Documentation
 
 Aqua Human Interface Guidelines
-http://developer.apple.com/documentation/[[UserExperience]]/Conceptual/[[AquaHIGuidelines]]/[[AHIGUserInput]]/index.html
+http://developer.apple.com/documentation/General/UserExperience/Conceptual/General/AquaHIGuidelines/General/AHIGUserInput/index.html

@@ -1,4 +1,4 @@
-This page is for [[NSBezierPath]] tips:
+This page is for General/NSBezierPath tips:
 
 
-*[[NSBezierPathShortcuts]]
+*General/NSBezierPathShortcuts

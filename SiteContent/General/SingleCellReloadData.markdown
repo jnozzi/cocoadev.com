@@ -1,24 +1,24 @@
 
 
-Here is some code to make [[NSTableView]] only update one row, column, or cell at a time. These can be used instead of '''-reloadData''', which updates the entire table.
+Here is some code to make General/NSTableView only update one row, column, or cell at a time. These can be used instead of **-reloadData**, which updates the entire table.
 
-This code is from the cocoa-dev mailing list, and was not written by me. �[[DustinVoss]]
+This code is from the cocoa-dev mailing list, and was not written by me. �General/DustinVoss
 
 ----
 
-<code>@interface [[NSTableView]] ([[SingleCellUpdateAdditions]])
+    @interface General/NSTableView (General/SingleCellUpdateAdditions)
 
 - (void) reloadDataForColumn:(int) x;
 - (void) reloadDataForRow:(int) y;
 - (void) reloadDataForColumn:(int) x row:(int) y;
 
-@end</code>
+@end
 
-<code>@implementation [[NSTableView]] ([[SingleCellUpdateAdditions]])
+    @implementation General/NSTableView (General/SingleCellUpdateAdditions)
 
-- (void) updateInRect:([[NSRect]]) invalidRect
+- (void) updateInRect:(General/NSRect) invalidRect
 {
-	if (![[NSEqualRects]](invalidRect, [[NSZeroRect]]))
+	if (!General/NSEqualRects(invalidRect, General/NSZeroRect))
 	{
 		[self setNeedsDisplayInRect: invalidRect];
 	}
@@ -39,19 +39,19 @@ This code is from the cocoa-dev mailing list, and was not written by me. �[[Du
 	[self updateInRect: [self frameOfCellAtColumn: x row: y]];
 }
 
-@end</code>
+@end
 
 ----
 
-Doesn't '''-reloadData''' just update the visible rows? Dont get me wrong, I dont think that it is efficient to update the whole thing when only one row or cell needs to be updated. I just thought that it updated only the visible.
+Doesn't **-reloadData** just update the visible rows? Dont get me wrong, I dont think that it is efficient to update the whole thing when only one row or cell needs to be updated. I just thought that it updated only the visible.
 
 ----
 
-Aren't the row / column reload methods backwards? Shouldn't <code>reloadDataForRow</code> call <code>rectOfRow</code> and likewise for the columns?
+Aren't the row / column reload methods backwards? Shouldn't     reloadDataForRow call     rectOfRow and likewise for the columns?
 
 Next time you could just fix it and let everyone know what you did. And now they aren't backwards. :-)
 
-''I asked because I wasn't sure. I didn't test the code, and there could be some strange reason for it.''
+*I asked because I wasn't sure. I didn't test the code, and there could be some strange reason for it.*
 
 ----
 

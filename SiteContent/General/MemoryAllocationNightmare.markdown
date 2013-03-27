@@ -1,15 +1,15 @@
-I am fairly new to IOS Dev so please bear with me.  I am using X Code 4, and I have tried to upgrade my project to IOS 5, although I think that has little to do with anything.  I am calling an Odata Service that is returning data and I am calling [self.[[TableName]] reloadData].  The debugger does NOT get into the Cell Creation method...It just pops back out to the main application position and gives me a [[SigKill]] message or if I click on the arrow to keep debugging, I get the EXC_BAD_ACCESS method.  I know I am probably autoreleasing wrong or incorrectly...I've seen notes on using Zombies, but I don't think I enabled it correctly because it did not connect until I "attached to process" and pointed it at xcode.  It looked like it was doing something, but I didn't see anything that pointed to my bad objects...I have included my code below.  Any help would be greatly appreciated.
+I am fairly new to IOS Dev so please bear with me.  I am using X Code 4, and I have tried to upgrade my project to IOS 5, although I think that has little to do with anything.  I am calling an Odata Service that is returning data and I am calling [self.General/TableName reloadData].  The debugger does NOT get into the Cell Creation method...It just pops back out to the main application position and gives me a General/SigKill message or if I click on the arrow to keep debugging, I get the EXC_BAD_ACCESS method.  I know I am probably autoreleasing wrong or incorrectly...I've seen notes on using Zombies, but I don't think I enabled it correctly because it did not connect until I "attached to process" and pointed it at xcode.  It looked like it was doing something, but I didn't see anything that pointed to my bad objects...I have included my code below.  Any help would be greatly appreciated.
 
 thanks
 
 mark
 
 
-#import "[[CustomTalentSearchController]].h"
-#import "[[CAEntities]].h"
-#import "[[TalentDetailController]].h"
+#import "General/CustomTalentSearchController.h"
+#import "General/CAEntities.h"
+#import "General/TalentDetailController.h"
 
-@implementation [[CustomTalentSearchController]]
+@implementation General/CustomTalentSearchController
 
 @synthesize talentSearchResults;
 @synthesize talentSearchResultsTable;
@@ -17,7 +17,7 @@ mark
 @synthesize searchProgressTimer, searchProgressView, searchTalentProgressLabel, searchResultCountLabel;
 @synthesize currentProgress;
 
-- (id)initWithNibName:([[NSString]] '')nibNameOrNil bundle:([[NSBundle]] '')nibBundleOrNil
+- (id)initWithNibName:(General/NSString *)nibNameOrNil bundle:(General/NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -48,7 +48,7 @@ mark
 -(void)startTimer
 {
     [self.searchProgressTimer invalidate];
-    self.searchProgressTimer = [[[NSTimer]] scheduledTimerWithTimeInterval: 5.0
+    self.searchProgressTimer = General/[NSTimer scheduledTimerWithTimeInterval: 5.0
                                                                 target: self
                                                               selector: @selector(handleTimer:)
                                                               userInfo: nil
@@ -64,29 +64,29 @@ mark
     
 }
 
--(void)searchTalent:([[NSDictionary]] '')args
+-(void)searchTalent:(General/NSDictionary *)args
 {
     //---------------------------------
     //Create a proxy to the service...
     //---------------------------------
-    [[CAEntities]] ''proxy;
+    General/CAEntities *proxy;
     @try 
     {
         
-        proxy = [[[[CAEntities]] alloc] initWithUri:@"http://SERVERNAMEANDPORT/WCFODATASERVICE.svc/" credential:nil];
+        proxy = General/[[CAEntities alloc] initWithUri:@"http://SERVERNAMEANDPORT/WCFODATASERVICE.svc/" credential:nil];
         
         
         //[self performSelectorOnMainThread:@selector(initiateSearchProgress) withObject:nil waitUntilDone:NO];
         //[self performSelectorOnMainThread:@selector(startTimer) withObject:nil waitUntilDone:NO];
         
-        [[DataServiceQuery]] ''qry = [proxy talents];
+        General/DataServiceQuery *qry = [proxy talents];
         
         //BUILDING A FILTER STRING FOR SEARCHING TALENT ON THE SERVER...
-        [[NSMutableString]]'' filterString = [[[NSMutableString]] stringWithString: @"substringof('"];
+        General/NSMutableString* filterString = General/[NSMutableString stringWithString: @"substringof('"];
         
-        [[NSString]] ''searchName = [args objectForKey:@"searchName"];
-        [[NSString]] ''searchAgent = [args objectForKey:@"searchAgent"];
-        [[NSString]] ''searchAgency = [args objectForKey:@"searchAgency"];
+        General/NSString *searchName = [args objectForKey:@"searchName"];
+        General/NSString *searchAgent = [args objectForKey:@"searchAgent"];
+        General/NSString *searchAgency = [args objectForKey:@"searchAgency"];
         
         if([searchName length] > 0)
         {
@@ -124,16 +124,16 @@ mark
         
         [qry expand:@"Credits/Show,Credits/Craft,Credits/Show/Genre,Credits/Show/Studio,Strengths/Genre,Agency,Agent"];
         
-        [[QueryOperationResponse]] ''result = [qry execute];
+        General/QueryOperationResponse *result = [qry execute];
         
-        self.talentSearchResults = [[result getResult] retain];
+        self.talentSearchResults = General/result getResult] retain];
         
        //RELOAD THE TABLEVIEW DATA...
         [self.talentSearchResultsTable reloadData];
-        self.searchResultCountLabel.text = [[[NSString]] stringWithFormat:@"%d", [talentSearchResults count]];
+        self.searchResultCountLabel.text = [[[NSString stringWithFormat:@"%d", [talentSearchResults count]];
                 
     }
-    @catch([[DataServiceRequestException]] ''exception)
+    @catch(General/DataServiceRequestException *exception)
     {
         [self showErrorMessage:exception];
     }
@@ -155,15 +155,15 @@ mark
         {
             //Have to refresh the Data in the Table...
             //self.talentSearchResults = searchResults;
-            [[self talentSearchResultsTable] reloadData];
-            self.searchResultCountLabel.text = [[[NSString]] stringWithFormat:@"%d", [talentSearchResults count]];
+            General/self talentSearchResultsTable] reloadData];
+            self.searchResultCountLabel.text = [[[NSString stringWithFormat:@"%d", [talentSearchResults count]];
             
             [self stopTimerAndProgressView];
         }
         else
         {
             //Show Simple Alert to let Viewer know they need to search again...
-            [[UIAlertView]]'' alertView = [[[[UIAlertView]] alloc] initWithTitle:@"Message Center"
+            General/UIAlertView* alertView = General/[[UIAlertView alloc] initWithTitle:@"Message Center"
                                                                 message:@"0 Search Results.  Please refine your search" delegate:self 
                                                       cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
@@ -171,8 +171,8 @@ mark
         }
 
     }
-    @catch ([[NSException]] ''exception) {
-        [[UIAlertView]] ''alertView = [[[[UIAlertView]] alloc] initWithTitle:@"Error Message Center"
+    @catch (General/NSException *exception) {
+        General/UIAlertView *alertView = General/[[UIAlertView alloc] initWithTitle:@"Error Message Center"
                                                             message:exception.reason delegate:self 
                                                   cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
@@ -184,11 +184,11 @@ mark
     }
 }
 
--(void)showErrorMessage:([[DataServiceRequestException]] '')exception
+-(void)showErrorMessage:(General/DataServiceRequestException *)exception
 {
-    [[NSString]] ''errMessage = [exception reason];
-    //[[NSLog]](errMessage);
-    [[UIAlertView]]'' alertView = [[[[UIAlertView]] alloc] initWithTitle:@"Message Center"
+    General/NSString *errMessage = [exception reason];
+    //General/NSLog(errMessage);
+    General/UIAlertView* alertView = General/[[UIAlertView alloc] initWithTitle:@"Message Center"
                                                         message:errMessage
                                                        delegate:self 
                                               cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -198,7 +198,7 @@ mark
     [self stopTimerAndProgressView];
 }
 
--(void)handleTimer:([[NSTimer]]'')theTimer
+-(void)handleTimer:(General/NSTimer*)theTimer
 {
     
     if(currentProgress < 1.0)
@@ -210,13 +210,13 @@ mark
 }
 
 //NOT USING THIS YET...USING THE ENTER KEY FOR SEARCHING CURRENTLY>>>>
--([[IBAction]])searchButtonClicked
+-(General/IBAction)searchButtonClicked
 {
-    [[NSString]] ''searchName = talentTitleTextField.text;
-    [[NSString]] ''searchAgent = talentAgentTextField.text;
-    [[NSString]] ''searchAgency = talentAgencyTextField.text;
+    General/NSString *searchName = talentTitleTextField.text;
+    General/NSString *searchAgent = talentAgentTextField.text;
+    General/NSString *searchAgency = talentAgencyTextField.text;
     
-    [[NSDictionary]] ''args = [[[NSDictionary]] dictionaryWithObjectsAndKeys:
+    General/NSDictionary *args = General/[NSDictionary dictionaryWithObjectsAndKeys:
                           searchName, @"searchName",
                           searchAgent, @"searchAgent",
                           searchAgency, @"searchAgency",
@@ -228,16 +228,16 @@ mark
 }
 
 //USING THIS METHOD TO SEARCH TALENT WHEN THE USER CLICKS THE ENTER KEY>>>>
-- (BOOL)textField:([[UITextField]] '')textField shouldChangeCharactersInRange: ([[NSRange]])range replacementString: ([[NSString]] '')string     
+- (BOOL)textField:(General/UITextField *)textField shouldChangeCharactersInRange: (General/NSRange)range replacementString: (General/NSString *)string     
 {
     
     if ([string isEqualToString:@"\n"]) 
     {
-        [[NSString]] ''searchName = talentTitleTextField.text;
-        [[NSString]] ''searchAgent = talentAgentTextField.text;
-        [[NSString]] ''searchAgency = talentAgencyTextField.text;
+        General/NSString *searchName = talentTitleTextField.text;
+        General/NSString *searchAgent = talentAgentTextField.text;
+        General/NSString *searchAgency = talentAgencyTextField.text;
         
-        [[NSDictionary]] ''args = [[[NSDictionary]] dictionaryWithObjectsAndKeys:
+        General/NSDictionary *args = General/[NSDictionary dictionaryWithObjectsAndKeys:
                               searchName , @"searchName",
                               searchAgent, @"searchAgent",
                               searchAgency, @"searchAgency",
@@ -285,43 +285,43 @@ mark
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:([[UIInterfaceOrientation]])interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(General/UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
 	return YES;
 }
 #pragma mark - Table view data source
 
-- ([[NSInteger]])numberOfSectionsInTableView:([[UITableView]] '')tableView
+- (General/NSInteger)numberOfSectionsInTableView:(General/UITableView *)tableView
 {
     return 1;
 }
 
-- ([[NSInteger]])tableView:([[UITableView]] '')tableView numberOfRowsInSection:([[NSInteger]])section
+- (General/NSInteger)tableView:(General/UITableView *)tableView numberOfRowsInSection:(General/NSInteger)section
 {
     // Return the number of rows in the section.
     return [self.talentSearchResults count];
 }
 
-- ([[UITableViewCell]] '')tableView:([[UITableView]] '')tableView cellForRowAtIndexPath:([[NSIndexPath]] '')indexPath
+- (General/UITableViewCell *)tableView:(General/UITableView *)tableView cellForRowAtIndexPath:(General/NSIndexPath *)indexPath
 {
-    static [[NSString]] ''[[CellIdentifier]] = @"Cell";
+    static General/NSString *General/CellIdentifier = @"Cell";
     
-    [[UITableViewCell]] ''cell = [tableView dequeueReusableCellWithIdentifier:[[CellIdentifier]]];
+    General/UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:General/CellIdentifier];
     if (cell == nil) {
-        cell = [[[[[UITableViewCell]] alloc] initWithStyle:[[UITableViewCellStyleDefault]] reuseIdentifier:[[CellIdentifier]]]autorelease];
+        cell = General/[[[UITableViewCell alloc] initWithStyle:General/UITableViewCellStyleDefault reuseIdentifier:General/CellIdentifier]autorelease];
     }
     
     // Configure the cell...
     
-    CAModel_Talent ''talent = [self.talentSearchResults objectAtIndex:indexPath.row];
+    CAModel_Talent *talent = [self.talentSearchResults objectAtIndex:indexPath.row];
     
-    [[NSMutableString]] ''talentRowText = [[[NSMutableString]] stringWithString:talent.m_name];
+    General/NSMutableString *talentRowText = General/[NSMutableString stringWithString:talent.m_name];
     
     if(talent.m_Agent !=nil)
     {
         [talentRowText appendString:@", Agent:  "];
-        CAModel_Agent ''agent = (CAModel_Agent'')[talent.m_Agent objectAtIndex:0];
+        CAModel_Agent *agent = (CAModel_Agent*)[talent.m_Agent objectAtIndex:0];
         
         [talentRowText appendString:agent.m_name];
     }
@@ -329,13 +329,13 @@ mark
     if(talent.m_Agency != nil)
     {
         [talentRowText appendString:@", Agency:  "];
-        CAModel_Agency ''agency = (CAModel_Agency'')[talent.m_Agency objectAtIndex:0];
+        CAModel_Agency *agency = (CAModel_Agency*)[talent.m_Agency objectAtIndex:0];
         [talentRowText appendString:agency.m_name];
     }
     
     cell.textLabel.text = talentRowText;
     
-    cell.accessoryType = [[UITableViewCellAccessoryDetailDisclosureButton]];
+    cell.accessoryType = General/UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
 }
@@ -343,9 +343,9 @@ mark
 #pragma mark - Table view delegate
 
 //NOT GETTING THIS FAR YET...CODE BLOWS UP WHEN TRYING TO RENDER THE TABLEVIEW>>>>
-- (void)tableView:([[UITableView]] '')tableView didSelectRowAtIndexPath:([[NSIndexPath]] '')indexPath
+- (void)tableView:(General/UITableView *)tableView didSelectRowAtIndexPath:(General/NSIndexPath *)indexPath
 {
-    [[TalentDetailController]] ''talentDetailController = [[[[TalentDetailController]] alloc] initWithNibName:@"[[TalentDetailController]]" bundle:nil];
+    General/TalentDetailController *talentDetailController = General/[[TalentDetailController alloc] initWithNibName:@"General/TalentDetailController" bundle:nil];
     
     talentDetailController.talentDetail = [self.talentSearchResults objectAtIndex:indexPath.row];
     

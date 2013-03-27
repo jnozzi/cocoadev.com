@@ -1,6 +1,6 @@
-Cocoa provides only almost static tooltips. When you want to implement something like Keynote tooltips in a canvas while editing, in mouseDown events, you are out of luck. To remedy that, I created a small class to do it. It tries to imitate as much as possible the Keynote look and feels. -- [[EricForget]]
+Cocoa provides only almost static tooltips. When you want to implement something like Keynote tooltips in a canvas while editing, in mouseDown events, you are out of luck. To remedy that, I created a small class to do it. It tries to imitate as much as possible the Keynote look and feels. -- General/EricForget
 
-See also [[LittleYellowBox]].
+See also General/LittleYellowBox.
 
 ----
 
@@ -8,58 +8,58 @@ I don't have Keynote. How are Keynote tooltips different from the standard ones?
 
 ----
 
-Normal tooltips are for views, but mostly for controls. When the user move the cursor over it, wait a few seconds the tooltip appears for 10 seconds and then disappear. Keynote tooltips looks the same but are there for displaying the position of the moving object, the dimension of the resizing object or the angle for the rotation. Those tooltips appear only during mouseDown:/mouseDragged events. -- [[EricForget]]
+Normal tooltips are for views, but mostly for controls. When the user move the cursor over it, wait a few seconds the tooltip appears for 10 seconds and then disappear. Keynote tooltips looks the same but are there for displaying the position of the moving object, the dimension of the resizing object or the angle for the rotation. Those tooltips appear only during mouseDown:/mouseDragged events. -- General/EricForget
 
-<code>
+    
 
-----'''[[ToolTipTextField]] Interface'''
+----**General/ToolTipTextField Interface**
 
-@interface [[ToolTipTextField]] : [[NSTextField]]
+@interface General/ToolTipTextField : General/NSTextField
 @end
 
-----'''[[ToolTipTextField]] Implementation'''
+----**General/ToolTipTextField Implementation**
 
-@implementation [[ToolTipTextField]]
+@implementation General/ToolTipTextField
 
-- (void) drawRect:([[NSRect]])aRect
+- (void) drawRect:(General/NSRect)aRect
 {
     [super drawRect:aRect];
     
-    [[[[NSColor]] colorWithCalibratedWhite:0.925 alpha:1.0] set];
-    [[NSFrameRect]](aRect);
+    General/[[NSColor colorWithCalibratedWhite:0.925 alpha:1.0] set];
+    General/NSFrameRect(aRect);
 }
 
 @end
 
-----'''[[ToolTip]] Interface'''
+----**General/ToolTip Interface**
 
-@interface [[ToolTip]] : [[NSObject]]
+@interface General/ToolTip : General/NSObject
 {
-    [[NSWindow]]                ''window;
-    [[NSTextField]]             ''textField;
-    [[NSDictionary]]            ''textAttributes;
+    General/NSWindow                *window;
+    General/NSTextField             *textField;
+    General/NSDictionary            *textAttributes;
 }
 
-+ (void) setString:([[NSString]] '')string forEvent:([[NSEvent]] '')theEvent;
++ (void) setString:(General/NSString *)string forEvent:(General/NSEvent *)theEvent;
 + (void) release;
 
 @end
 
-----'''[[ToolTip]] Implementation'''
+----**General/ToolTip Implementation**
 
-static [[ToolTip]]	''sharedToolTip = nil;
+static General/ToolTip	*sharedToolTip = nil;
 
-@interface [[ToolTip]] (Private)
+@interface General/ToolTip (Private)
 
-- (void) setString:([[NSString]] '')string forEvent:([[NSEvent]] '')theEvent;
+- (void) setString:(General/NSString *)string forEvent:(General/NSEvent *)theEvent;
 
 @end
 
-+ (void) setString:([[NSString]] '')string forEvent:([[NSEvent]] '')theEvent
++ (void) setString:(General/NSString *)string forEvent:(General/NSEvent *)theEvent
 {
     if (sharedToolTip == nil) {
         
-        sharedToolTip = [[[[ToolTip]] alloc] init];
+        sharedToolTip = General/[[ToolTip alloc] init];
     }
     
     [sharedToolTip setString:string forEvent:theEvent];
@@ -78,33 +78,33 @@ static [[ToolTip]]	''sharedToolTip = nil;
     if (retVal != nil) {
         
         // These size are not really import, just the relation between the two...
-        [[NSRect]]        contentRect       = { { 100, 100 }, { 100, 20 } };
-        [[NSRect]]        textFieldFrame    = { { 0, 0 }, { 100, 20 } };
+        General/NSRect        contentRect       = { { 100, 100 }, { 100, 20 } };
+        General/NSRect        textFieldFrame    = { { 0, 0 }, { 100, 20 } };
         
-        window = [[[[NSWindow]] alloc]
+        window = General/[[NSWindow alloc]
                     initWithContentRect:    contentRect
-                              styleMask:    [[NSBorderlessWindowMask]]
-                                backing:    [[NSBackingStoreBuffered]]
+                              styleMask:    General/NSBorderlessWindowMask
+                                backing:    General/NSBackingStoreBuffered
                                   defer:    YES];
         
         [window setOpaque:NO];
         [window setAlphaValue:0.80];
-        [window setBackgroundColor:[[[NSColor]] colorWithDeviceRed:1.0 green:0.96 blue:0.76 alpha:1.0]];
+        [window setBackgroundColor:General/[NSColor colorWithDeviceRed:1.0 green:0.96 blue:0.76 alpha:1.0]];
         [window setHasShadow:YES];
-        [window setLevel:[[NSStatusWindowLevel]]];
+        [window setLevel:General/NSStatusWindowLevel];
         [window setReleasedWhenClosed:YES];
         [window orderFront:nil];
         
-        textField = [[[[ToolTipTextField]] alloc] initWithFrame:textFieldFrame];
+        textField = General/[[ToolTipTextField alloc] initWithFrame:textFieldFrame];
         [textField setEditable:NO];
         [textField setSelectable:NO];
         [textField setBezeled:NO];
         [textField setBordered:NO];
         [textField setDrawsBackground:NO];
-        [textField setAlignment:[[NSCenterTextAlignment]]];
-        [textField setAutoresizingMask:[[NSViewWidthSizable]] | [[NSViewHeightSizable]]];
-        [textField setFont:[[[NSFont]] toolTipsFontOfSize:[[[NSFont]] systemFontSize]]];
-        [[window contentView] addSubview:textField];
+        [textField setAlignment:General/NSCenterTextAlignment];
+        [textField setAutoresizingMask:General/NSViewWidthSizable | General/NSViewHeightSizable];
+        [textField setFont:General/[NSFont toolTipsFontOfSize:General/[NSFont systemFontSize]]];
+        General/window contentView] addSubview:textField];
         
         [textField setStringValue:@" "]; // Just having at least 1 char to allow the next message...
         textAttributes = [[[textField attributedStringValue] attributesAtIndex:0 effectiveRange:nil] retain];
@@ -120,23 +120,23 @@ static [[ToolTip]]	''sharedToolTip = nil;
     [super dealloc];
 }
 
-- (void) setString:([[NSString]] '')string forEvent:([[NSEvent]] '')theEvent
+- (void) setString:([[NSString *)string forEvent:(General/NSEvent *)theEvent
 {
-    [[NSSize]]        size                    = [string sizeWithAttributes:textAttributes];
-    [[NSPoint]]       cursorScreenPosition    = [[theEvent window] convertBaseToScreen:[theEvent locationInWindow]];
+    General/NSSize        size                    = [string sizeWithAttributes:textAttributes];
+    General/NSPoint       cursorScreenPosition    = General/theEvent window] convertBaseToScreen:[theEvent locationInWindow;
     
     [textField setStringValue:string];
-    [window setFrameTopLeftPoint:[[NSMakePoint]](cursorScreenPosition.x + 10, cursorScreenPosition.y + 28)];
+    [window setFrameTopLeftPoint:General/NSMakePoint(cursorScreenPosition.x + 10, cursorScreenPosition.y + 28)];
     
-    [window setContentSize:[[NSMakeSize]](size.width + 20, size.height + 1)];
+    [window setContentSize:General/NSMakeSize(size.width + 20, size.height + 1)];
 }
 
-----'''[[ToolTip]] Usage Sample'''
+----**General/ToolTip Usage Sample**
 
-- (void) mouseDown:([[NSEvent]] '')theEvent
+- (void) mouseDown:(General/NSEvent *)theEvent
 {
-    [[NSPoint]]        where = [self convertPoint:[theEvent locationInWindow] fromView:nil];
-    [[NSPoint]]        objectOrigin;
+    General/NSPoint        where = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+    General/NSPoint        objectOrigin;
     
     // objectClicked is a object variable
     objectClicked    = [self objectClicked:where];
@@ -147,14 +147,14 @@ static [[ToolTip]]	''sharedToolTip = nil;
     // Setup Tooltip
     objectOrigin = [objectClicked bounds].origin;
     
-    [[[ToolTip]]
-            setString:  [[[NSString]] stringWithFormat:@"x: %.2f  y: %.2f", objectOrigin.x, objectOrigin.y]
+    General/[ToolTip
+            setString:  General/[NSString stringWithFormat:@"x: %.2f  y: %.2f", objectOrigin.x, objectOrigin.y]
              forEvent:  theEvent];
 }
 
-- (void) mouseDragged:([[NSEvent]] '')theEvent
+- (void) mouseDragged:(General/NSEvent *)theEvent
 {
-    [[NSPoint]]        objectOrigin;
+    General/NSPoint        objectOrigin;
     
     // Do your mouseDragged: job...
     
@@ -162,24 +162,24 @@ static [[ToolTip]]	''sharedToolTip = nil;
     // Update Tooltip
     objectOrigin = [objectClicked bounds].origin;
     
-    [[[ToolTip]]
-            setString:  [[[NSString]] stringWithFormat:@"x: %.2f  y: %.2f", objectOrigin.x, objectOrigin.y]
+    General/[ToolTip
+            setString:  General/[NSString stringWithFormat:@"x: %.2f  y: %.2f", objectOrigin.x, objectOrigin.y]
              forEvent:  theEvent];
     
     return retVal;
 }
 
-- (void) mouseUp:([[NSEvent]] '')theEvent
+- (void) mouseUp:(General/NSEvent *)theEvent
 {
     // Do your mouseUp: job...
     
     // Release Tooltip
-    [[[ToolTip]] release];
+    General/[ToolTip release];
 }
 
-</code>
 
--- [[EricForget]]
+
+-- General/EricForget
 
 ----
 
@@ -187,88 +187,88 @@ static [[ToolTip]]	''sharedToolTip = nil;
 
 How 'bout something like this?...
 
-<code>
+    
 
-#import <[[AppKit]]/[[AppKit]].h>
+#import <General/AppKit/General/AppKit.h>
 
-@interface [[TooltipWindow]] : [[NSWindow]]
+@interface General/TooltipWindow : General/NSWindow
 {
-    [[NSTimer]] ''closeTimer;
+    General/NSTimer *closeTimer;
     id tooltipObject;
 }
-+ (id)tipWithString:([[NSString]] '')tip frame:([[NSRect]])frame display:(BOOL)display;
-+ (id)tipWithAttributedString:([[NSAttributedString]] '')tip frame:([[NSRect]])frame display:(BOOL)display;
++ (id)tipWithString:(General/NSString *)tip frame:(General/NSRect)frame display:(BOOL)display;
++ (id)tipWithAttributedString:(General/NSAttributedString *)tip frame:(General/NSRect)frame display:(BOOL)display;
 
 // returns the approximate window size needed to display the tooltip string.
-+ ([[NSSize]])suggestedSizeForTooltip:(id)tooltip;
++ (General/NSSize)suggestedSizeForTooltip:(id)tooltip;
 
 // setting and getting the default duration..
-+ (void)setDefaultDuration:([[NSTimeInterval]])inSeconds;
-+ ([[NSTimeInterval]])defaultDuration;
++ (void)setDefaultDuration:(General/NSTimeInterval)inSeconds;
++ (General/NSTimeInterval)defaultDuration;
 
 // setting and getting the default bgColor
-+ (void)setDefaultBackgroundColor:([[NSColor]] '')bgColor;
-+ ([[NSColor]] '')defaultBackgroundColor;
++ (void)setDefaultBackgroundColor:(General/NSColor *)bgColor;
++ (General/NSColor *)defaultBackgroundColor;
 
 - (id)init;
 
 - (id)tooltip;
 - (void)setTooltip:(id)tip;
 
-- (void)orderFrontWithDuration:([[NSTimeInterval]])seconds;
+- (void)orderFrontWithDuration:(General/NSTimeInterval)seconds;
 
 @end
 
-</code>
-<code>
-#import "[[TooltipWindow]].h"
+
+    
+#import "General/TooltipWindow.h"
 
 float defaultDuration;
 BOOL doneInitialSetup;
-[[NSDictionary]] ''textAttributes;
-[[NSColor]] ''backgroundColor;
+General/NSDictionary *textAttributes;
+General/NSColor *backgroundColor;
 
-@implementation [[TooltipWindow]]
+@implementation General/TooltipWindow
 
-+ (void)setDefaultBackgroundColor:([[NSColor]] '')bgColor
++ (void)setDefaultBackgroundColor:(General/NSColor *)bgColor
 {
           [backgroundColor release];
     backgroundColor = [bgColor retain];
 }
-+ ([[NSColor]] '')defaultBackgroundColor
++ (General/NSColor *)defaultBackgroundColor
 {
     if (!backgroundColor)
-        [[[TooltipWindow]] setDefaultBackgroundColor: [[[NSColor]] colorWithDeviceRed:1.0 green:0.96 blue:0.76 alpha:1.0]];
+        General/[TooltipWindow setDefaultBackgroundColor: General/[NSColor colorWithDeviceRed:1.0 green:0.96 blue:0.76 alpha:1.0]];
 
     return backgroundColor;
 }
 
-+ (void)setDefaultDuration:([[NSTimeInterval]])inSeconds
++ (void)setDefaultDuration:(General/NSTimeInterval)inSeconds
 {
     doneInitialSetup = YES;
     defaultDuration = inSeconds;
 }
 
-+ ([[NSTimeInterval]])defaultDuration
++ (General/NSTimeInterval)defaultDuration
 {
     return defaultDuration;
 }
 
-+ (id)tipWithString:([[NSString]] '')tip frame:([[NSRect]])frame display:(BOOL)display
++ (id)tipWithString:(General/NSString *)tip frame:(General/NSRect)frame display:(BOOL)display
 {
-    return [[[TooltipWindow]] tipWithAttributedString:[[[[[NSAttributedString]] alloc] initWithString:tip] autorelease] frame:frame display:display];
+    return General/[TooltipWindow tipWithAttributedString:General/[[[NSAttributedString alloc] initWithString:tip] autorelease] frame:frame display:display];
 }
 
-+ (id)tipWithAttributedString:([[NSAttributedString]] '')tip frame:([[NSRect]])frame display:(BOOL)display
++ (id)tipWithAttributedString:(General/NSAttributedString *)tip frame:(General/NSRect)frame display:(BOOL)display
 {
-    [[TooltipWindow]] ''window = [[[[TooltipWindow]] alloc] init]; // blank slate
+    General/TooltipWindow *window = General/[[TooltipWindow alloc] init]; // blank slate
             
     // if the defaultDuration hasn't been set we set it to a default of 5 seconds
     // we like to cache the text attributes used for plain string drawing..
     if (!doneInitialSetup) {
-            [[[TooltipWindow]] setDefaultDuration:5];
+            General/[TooltipWindow setDefaultDuration:5];
             [window setTooltip:@" "]; // Just having at least 1 char to allow the next message...
-            textAttributes = [[[[window contentView] attributedStringValue] attributesAtIndex:0 effectiveRange:nil] retain];
+            textAttributes = General/[[window contentView] attributedStringValue] attributesAtIndex:0 effectiveRange:nil] retain];
     }
     
             [window setTooltip:tip]; // set the tip
@@ -276,7 +276,7 @@ BOOL doneInitialSetup;
             [window setFrame:frame display:YES];
 
         if (display) {
-            [window orderFrontWithDuration:[[[TooltipWindow]] defaultDuration]]; // this is affectively autoreleasing the window after 'defaultDuration'
+            [window orderFrontWithDuration:[[[TooltipWindow defaultDuration]]; // this is affectively autoreleasing the window after 'defaultDuration'
             return window;
        } else // it's not set to auto-magically go away so make the caller responsible..
             return [window autorelease];
@@ -284,17 +284,17 @@ BOOL doneInitialSetup;
     return nil; // should never get here
 }
 
-+ ([[NSSize]])suggestedSizeForTooltip:(id)tooltip
++ (General/NSSize)suggestedSizeForTooltip:(id)tooltip
 {
-    [[NSSize]] tipSize = [[NSZeroSize]];
+    General/NSSize tipSize = General/NSZeroSize;
 
-    if ([tooltip isKindOfClass:[[[NSAttributedString]] class]]) tipSize = [tooltip size];
+    if ([tooltip isKindOfClass:General/[NSAttributedString class]]) tipSize = [tooltip size];
     else
-    if ([tooltip isKindOfClass:[[[NSString]] class]]) tipSize = [tooltip sizeWithAttributes:textAttributes];
+    if ([tooltip isKindOfClass:General/[NSString class]]) tipSize = [tooltip sizeWithAttributes:textAttributes];
     else
         return tipSize; // we don't know how to get the size of 'tooltip'
 
-        if (![[NSEqualSizes]](tipSize, [[NSZeroSize]]))
+        if (!General/NSEqualSizes(tipSize, General/NSZeroSize))
             tipSize.width += 4;
 
 return tipSize;
@@ -304,36 +304,36 @@ return tipSize;
 
 - (id)init
 {
-    self = [super initWithContentRect:[[NSMakeRect]](0,0,0,0)
-                              styleMask:[[NSBorderlessWindowMask]]
-                                backing:[[NSBackingStoreBuffered]]
+    self = [super initWithContentRect:General/NSMakeRect(0,0,0,0)
+                              styleMask:General/NSBorderlessWindowMask
+                                backing:General/NSBackingStoreBuffered
                                   defer:NO];
      { // window setup...
         [self setAlphaValue:0.90];
         [self setOpaque:NO];
-        [self setBackgroundColor:[[[TooltipWindow]] defaultBackgroundColor]];
+        [self setBackgroundColor:General/[TooltipWindow defaultBackgroundColor]];
         [self setHasShadow:YES];
-        [self setLevel:[[NSStatusWindowLevel]]];
+        [self setLevel:General/NSStatusWindowLevel];
         [self setHidesOnDeactivate:YES];
         [self setIgnoresMouseEvents:YES];
      }
 
      { // textfield setup...
-        [[NSTextField]] ''field = [[[[NSTextField]] alloc] initWithFrame:[[NSMakeRect]](0,0,0,0)];
+        General/NSTextField *field = General/[[NSTextField alloc] initWithFrame:General/NSMakeRect(0,0,0,0)];
 
             [field setEditable:NO];
             [field setSelectable:NO];
             [field setBezeled:NO];
             [field setBordered:NO];
             [field setDrawsBackground:NO];
-            [field setAutoresizingMask:[[NSViewWidthSizable]] | [[NSViewHeightSizable]]];
+            [field setAutoresizingMask:General/NSViewWidthSizable | General/NSViewHeightSizable];
             [self setContentView:field];
             [self setFrame:[self frameRectForContentRect:[field frame]] display:NO];
             
                 if (!doneInitialSetup) {
-                    [[[TooltipWindow]] setDefaultDuration:5];
+                    General/[TooltipWindow setDefaultDuration:5];
                     [field setStringValue:@" "]; // Just having at least 1 char to allow the next message...
-                    textAttributes = [[[field attributedStringValue] attributesAtIndex:0 effectiveRange:nil] retain];
+                    textAttributes = General/[field attributedStringValue] attributesAtIndex:0 effectiveRange:nil] retain];
                 }
             
             [field release];
@@ -362,38 +362,38 @@ return tipSize;
     [tooltipObject release];
     tooltipObject = [tip retain];
     
-    if ([contentView isKindOfClass:[[[NSTextField]] class]]) {
-        if ([tip isKindOfClass:[[[NSString]] class]]) [contentView setStringValue:tip];
+    if ([contentView isKindOfClass:[[[NSTextField class]]) {
+        if ([tip isKindOfClass:General/[NSString class]]) [contentView setStringValue:tip];
         else
-        if ([tip isKindOfClass:[[[NSAttributedString]] class]]) [contentView setAttributedStringValue:tip];
+        if ([tip isKindOfClass:General/[NSAttributedString class]]) [contentView setAttributedStringValue:tip];
     }
 }
 
-- (void)orderFrontWithDuration:([[NSTimeInterval]])seconds
+- (void)orderFrontWithDuration:(General/NSTimeInterval)seconds
 {
     [super orderFront:nil];
     
     if (closeTimer) { [closeTimer invalidate]; [closeTimer release]; }
-    closeTimer = [[[[NSTimer]] scheduledTimerWithTimeInterval:seconds target:self selector:@selector(close) userInfo:nil repeats:NO] retain];
+    closeTimer = General/[[NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(close) userInfo:nil repeats:NO] retain];
 }
 
 
-- ([[NSString]] '')description
+- (General/NSString *)description
 {
-    return [[[NSString]] stringWithFormat:@"[[TooltipWindow]]:\n%@", [[self contentView] stringValue]];
+    return General/[NSString stringWithFormat:@"General/TooltipWindow:\n%@", General/self contentView] stringValue;
 }
 
 
 @end
-</code>
 
-I stuck a demo project that uses that there [[TooltipWindow]] class here: http://homepage.mac.com/ryanstevens/.Public/[[TooltipWindowDemo]].zip
+
+I stuck a demo project that uses that there General/TooltipWindow class here: http://homepage.mac.com/ryanstevens/.Public/General/TooltipWindowDemo.zip
 
 Maybe someone will find it useful. :)
 
 ----
 
-What are the differences between your implementation and the one from Cocoa, outside that you have to do everything by hand? What is the intent of your implementation, which doesn't seems to serves the same needs as the one I provided? --[[EricForget]]
+What are the differences between your implementation and the one from Cocoa, outside that you have to do everything by hand? What is the intent of your implementation, which doesn't seems to serves the same needs as the one I provided? --General/EricForget
 
 ----
 I think my implementation serves the same needs, just in a different way.
@@ -406,17 +406,17 @@ I tried out Ryan's version and it works beautifully. Thanks! --Daniel
 ----
 It's been ages since I've looked back at this...wow. I guess the demo link was broken (or was never right in the first place) - that should be fixed now.
 
-Just glad I could contribute back. --[[RyanStevens]]
+Just glad I could contribute back. --General/RyanStevens
 
 ----
 Thanks for showing me how to create handy little windows; I've wondered how to do this for quite some time, and I'm sure the knowledge will be dangerous in my hands :)
 
 I used Eric's implementation because it was less reading for me to understand.  I like the way that Eric uses class methods to communicate with his singleton, instead of the way Apple does it with stuff like their -sharedDocumentController.  Alot of brain-power and screen real estate is wasted when Apple makes us do:
-<code>
-    [[[[NSGobbleDeeGookManager]] sharedGobbleDeeGookManager] canYouPleaseDoSomething] ;
-</code>
+    
+    General/[[NSGobbleDeeGookManager sharedGobbleDeeGookManager] canYouPleaseDoSomething] ;
 
-You can also attach these tool tips to dragged rows of [[NSTableView]] or [[NSOutlineView]].  To do that, referring to Eric's "Tool Tip Usage Sample" above, move his code
+
+You can also attach these tool tips to dragged rows of General/NSTableView or General/NSOutlineView.  To do that, referring to Eric's "Tool Tip Usage Sample" above, move his code
 
 *from Eric's mouseDown: to your draggingEntered:
 *from Eric's mouseDragged: to your draggingUpdated:

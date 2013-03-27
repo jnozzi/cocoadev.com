@@ -1,8 +1,8 @@
-Trapper Keeper is a notebook which resides in your menubar and is designed to mimic the '''base''' appearance/behavior of Spotlight in order to be as familiar to new users as possible.
+Trapper Keeper is a notebook which resides in your menubar and is designed to mimic the **base** appearance/behavior of Spotlight in order to be as familiar to new users as possible.
 
-http://www.limbiclogic.com/[[TrapperKeeper]].html
+http://www.limbiclogic.com/General/TrapperKeeper.html
 
-http://www.limbiclogic.com/[[TKScreen]].jpg
+http://www.limbiclogic.com/General/TKScreen.jpg
 
 I currently have TK in beta, since only two people have tested it other than myself and I mostly am curious about workflow issues and whatnot.  Feedback is either going to be so compelling that I'll change something or at the very least end up in the help section.
 
@@ -13,7 +13,7 @@ Stephen
 *First, it's inappropriate to create an individual page for your applications unless they're open source. If your code doesn't benefit other Cocoa developers, why do we care about your product? Create a personal page for yourself ... feel free to mention (and link to) your products on that page.
 *Second, there are other pages on this wiki already which are for shareware topics, and the answers to your other questions are found on Google (and Apple's downloads submission page).
 *Third, why on earth would anyone pay any money for beta software? If it's beta, it's not whole and / or unstable. Ridiculous.
-*Fourth, '''Trapper Keeper is a trademarked name belonging to Mead''': http://en.wikipedia.org/wiki/Trapper_Keeper ... you're in violation of trademark law and are likely to get your a$$ handed to you in a lawsuit. You ought to know better ... if you don't, hire a lawyer.
+*Fourth, **Trapper Keeper is a trademarked name belonging to Mead**: http://en.wikipedia.org/wiki/Trapper_Keeper ... you're in violation of trademark law and are likely to get your a$$ handed to you in a lawsuit. You ought to know better ... if you don't, hire a lawyer.
 
 
 ----
@@ -27,7 +27,7 @@ As to the Trapper Keeper trademark thing, of course you're free to disregard tha
 One more suggestion - you should put some sort of identifying information on your site. Not many people are willing to pay for anything when they can't at least find contact information on the web site.
 
 ----
-Thanks, I am going to move my questions over to [[SharewareTips]] and create [[AppSubmissionGuidelines]] for the (consensus?) opinion that one shouldn't make a page for commercial apps.  I didn't realize I was going against the grain by putting this up.
+Thanks, I am going to move my questions over to General/SharewareTips and create General/AppSubmissionGuidelines for the (consensus?) opinion that one shouldn't make a page for commercial apps.  I didn't realize I was going against the grain by putting this up.
 
 Thanks for the suggestion about the contact info - that didn't even occur to me in my effort to keep the page clean and minimal.  I'll add that tonight!
 
@@ -48,11 +48,11 @@ It isn't a development tool and doesn't seem to be open source.
 Actually, I use it all the time as a developer.  I keep lots of code in it and certainly I use it as a pasteboard history.
 
 ----
-''"Right, you can make a different product with the same name and it's not a problem as long as they aren't in the same domain."''
+*"Right, you can make a different product with the same name and it's not a problem as long as they aren't in the same domain."*
 
-I wouldn't say this is incorrect, just incomplete. You can use another company's trademarked name for a separate product '''as long as it doesn't cause confusion of the two'''. A software application that is meant to organize random bits of information (like Mead's product does), named after that product for the purposes of suggesting your own application does what Mead's product does is '''most definitely''' grounds for lawsuit. I'd argue that it'd be a difficult one to defend, too. How do you think it'd turn out if Mead argued they were considering creating an electronic product that does what its [[TrapperKeeper]] product does? Your software product does what Mead's physical product does and uses their registered trademark to imply its function. It'd be easy for Joe Consumer to assume your product was created and/or sanctioned by Meade. Who do you think the law would side with? 
+I wouldn't say this is incorrect, just incomplete. You can use another company's trademarked name for a separate product **as long as it doesn't cause confusion of the two**. A software application that is meant to organize random bits of information (like Mead's product does), named after that product for the purposes of suggesting your own application does what Mead's product does is **most definitely** grounds for lawsuit. I'd argue that it'd be a difficult one to defend, too. How do you think it'd turn out if Mead argued they were considering creating an electronic product that does what its General/TrapperKeeper product does? Your software product does what Mead's physical product does and uses their registered trademark to imply its function. It'd be easy for Joe Consumer to assume your product was created and/or sanctioned by Meade. Who do you think the law would side with? 
 
-Now if you'll excuse me, the South Park [[TrapperKeeper]] episode (used as a parody, not a product) is now running through my head and making me giggle a little.
+Now if you'll excuse me, the South Park General/TrapperKeeper episode (used as a parody, not a product) is now running through my head and making me giggle a little.
 
 "I don't want to wait, for my trapper keeper to be over!" - Eric Cartman
 

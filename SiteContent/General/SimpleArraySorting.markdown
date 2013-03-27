@@ -1,10 +1,10 @@
 
 
-I want to sort an array of [[NSString]] either alphabetically, or sorted by length...
-Yet, the [[NSSortDescriptors]] are confusing me...
+I want to sort an array of General/NSString either alphabetically, or sorted by length...
+Yet, the General/NSSortDescriptors are confusing me...
 There's probably a single line of code that can solve my problem, but I can't figure...
 
-<code>- (void)sortUsingSelector:(SEL)comparator</code>
+    - (void)sortUsingSelector:(SEL)comparator
 In this method, how do I refer to the first and second object to be compared ?
 
 -- Trax
@@ -12,22 +12,22 @@ In this method, how do I refer to the first and second object to be compared ?
 ----
 
 The selector will be sent to one of your objects, with the other object as the parameter. For example:
-''(Rewritten for more clarity)''
-<code>
-@implementation [[FooHolder]]
-- (void)compareTo:([[FooHolder]] '')other {
+*(Rewritten for more clarity)*
+    
+@implementation General/FooHolder
+- (void)compareTo:(General/FooHolder *)other {
    if([self foo] < [other foo])
-      return [[NSOrderedAscending]];
+      return General/NSOrderedAscending;
    else if([self foo] > [other foo])
-      return [[NSOrderedDescending]];
+      return General/NSOrderedDescending;
    else
-      return [[NSOrderedSame]];
+      return General/NSOrderedSame;
 }
 @end
-</code>
+
 
 ----
-In the example above, where does the variable "foo" come from? ''Check out the rewritten version.''
+In the example above, where does the variable "foo" come from? *Check out the rewritten version.*
 
 To answer the original question: foo is an instance variable in the class that -compareTo: is in.
 
@@ -36,4 +36,4 @@ To answer the original question: foo is an instance variable in the class that -
 This may help:
 http://theocacao.com/document.page/87/
 
-It's a simple category that allows you to create inline arrays of sort descriptors. You can then use those descriptors on an array by calling -sortedArrayUsingDescriptors:.  - [[ScottStevenson]]
+It's a simple category that allows you to create inline arrays of sort descriptors. You can then use those descriptors on an array by calling -sortedArrayUsingDescriptors:.  - General/ScottStevenson

@@ -1,1 +1,1 @@
-See [[StandardService]]
+See General/StandardService

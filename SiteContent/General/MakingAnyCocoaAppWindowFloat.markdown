@@ -7,7 +7,7 @@ Thanks.
 
 ----
 
-Google is your friend. There's an instance method off [[NSWindow]] that does exactly what you want. Go forth and find it.
+Google is your friend. There's an instance method off General/NSWindow that does exactly what you want. Go forth and find it.
 
 ----
 
@@ -17,8 +17,8 @@ I hope that describes it better.
 
 ----
 
-An input manager could do it with the aforementioned method and with equivalent Carbon calls if needed. [[CoreGraphics]] probably has a set of functions for exactly this sort of thing anyway.
+An input manager could do it with the aforementioned method and with equivalent Carbon calls if needed. General/CoreGraphics probably has a set of functions for exactly this sort of thing anyway.
 
 ----
 
-There was Afloat at http://afloat.infinite-labs.net too, but it uses [[NSWindow]]'s methods rather than windowRefs (anyone knows what's up with window groups anyway?). -- [[EmanueleVulcano]] aka millenomi
+There was Afloat at http://afloat.infinite-labs.net too, but it uses General/NSWindow's methods rather than windowRefs (anyone knows what's up with window groups anyway?). -- General/EmanueleVulcano aka millenomi

@@ -2,7 +2,7 @@
 
 I've left my starter code here, but would suggest interested programers checkout:
 
-http://s.sudre.free.fr/Software/[[DevPotPourri]].html
+http://s.sudre.free.fr/Software/General/DevPotPourri.html
 
 first. It implements the entire Mail.app search text field behavior.
 
@@ -12,14 +12,14 @@ first. It implements the entire Mail.app search text field behavior.
 
 Here's some starter code for creating a Mail.app like search field (rounded, magnifying glass, close button...). But it doesn't really work! I've seen a number of questions regarding this, hopefully we can get this fully functional, will probably save many people lots of time.
 
-So here's my start, (I?ve come to the conclusion that I don?t really understand [[NSCell]]?s yet) I would encourage people to clean it up and make it as "cocoa" as possible, I'm looking for a working well done search field, I don't really care if it follows the design of my current partial solution. This code seems to draw mostly correctly, but I can?t seem to get mouse events and so can?t make the close button work. Also I haven?t added a popup menu for when the magnifying glass is clicked on, I don?t need that for my app, but it would still be nice to see how to do it.
+So here's my start, (I?ve come to the conclusion that I don?t really understand General/NSCell?s yet) I would encourage people to clean it up and make it as "cocoa" as possible, I'm looking for a working well done search field, I don't really care if it follows the design of my current partial solution. This code seems to draw mostly correctly, but I can?t seem to get mouse events and so can?t make the close button work. Also I haven?t added a popup menu for when the magnifying glass is clicked on, I don?t need that for my app, but it would still be nice to see how to do it.
 
-I've provided a project builder project along with image resources for this code at: http://www.hogbay.com/software/[[SearchTextAreaExample]].zip
+I've provided a project builder project along with image resources for this code at: http://www.hogbay.com/software/General/SearchTextAreaExample.zip
 
-<code>
+    
 
 //
-//  [[SearchFieldCell]].h
+//  General/SearchFieldCell.h
 //
 //  Created by Jesse Grosjean on Thu Nov 21 2002.
 //
@@ -27,51 +27,51 @@ I've provided a project builder project along with image resources for this code
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[SearchFieldCell]] : [[NSTextFieldCell]] {
+@interface General/SearchFieldCell : General/NSTextFieldCell {
     BOOL _showCancelButton;
 }
 
-- ([[NSRect]])textRectForFrame:([[NSRect]])frame;
+- (General/NSRect)textRectForFrame:(General/NSRect)frame;
 
 @end
 
 //
-//  [[SearchFieldCell]].m
+//  General/SearchFieldCell.m
 //
 //  Created by Jesse Grosjean on Thu Nov 21 2002.
 //
 
-#import "[[SearchFieldCell]].h"
+#import "General/SearchFieldCell.h"
 
 
-@implementation [[SearchFieldCell]]
+@implementation General/SearchFieldCell
 
-static [[NSImage]] ''leftSearchCapImage = nil;
-static [[NSImage]] ''middleSearchImage = nil;
-static [[NSImage]] ''rightSearchCapImage = nil;
-static [[NSImage]] ''rightSearchStopCapImage = nil;
-static [[NSImageCell]] ''_leftCapCell;
-static [[NSImageCell]] ''_middleCell;
-static [[NSImageCell]] ''_rightCapCell;
-static [[NSImageCell]] ''_rightStopCapCell;
+static General/NSImage *leftSearchCapImage = nil;
+static General/NSImage *middleSearchImage = nil;
+static General/NSImage *rightSearchCapImage = nil;
+static General/NSImage *rightSearchStopCapImage = nil;
+static General/NSImageCell *_leftCapCell;
+static General/NSImageCell *_middleCell;
+static General/NSImageCell *_rightCapCell;
+static General/NSImageCell *_rightStopCapCell;
 static float textOffset = 2.5; // yuck why do i use this?
 
 + (void)initialize {
-    leftSearchCapImage = [[[[NSImage]] imageNamed: @"[[LeftSearchCap]]"] retain];
-    middleSearchImage = [[[[NSImage]] imageNamed: @"[[MiddleSearch]]"] retain];
-    rightSearchCapImage = [[[[NSImage]] imageNamed: @"[[RightSearchCap]]"] retain];
-    rightSearchStopCapImage = [[[[NSImage]] imageNamed: @"[[RightSearchStopCap]]"] retain];
-    _leftCapCell = [[[[NSImageCell]] alloc] initImageCell:leftSearchCapImage];
-    _middleCell = [[[[NSImageCell]] alloc] initImageCell:middleSearchImage];
-    _rightCapCell = [[[[NSImageCell]] alloc] initImageCell:rightSearchCapImage];
-    _rightStopCapCell = [[[[NSImageCell]] alloc] initImageCell:rightSearchStopCapImage];
-    [_leftCapCell setImageAlignment:[[NSImageAlignLeft]]];
-    [_middleCell setImageScaling:[[NSScaleToFit]]];
-    [_rightCapCell setImageAlignment:[[NSImageAlignRight]]];
-    [_rightStopCapCell setImageAlignment:[[NSImageAlignRight]]];
+    leftSearchCapImage = General/[[NSImage imageNamed: @"General/LeftSearchCap"] retain];
+    middleSearchImage = General/[[NSImage imageNamed: @"General/MiddleSearch"] retain];
+    rightSearchCapImage = General/[[NSImage imageNamed: @"General/RightSearchCap"] retain];
+    rightSearchStopCapImage = General/[[NSImage imageNamed: @"General/RightSearchStopCap"] retain];
+    _leftCapCell = General/[[NSImageCell alloc] initImageCell:leftSearchCapImage];
+    _middleCell = General/[[NSImageCell alloc] initImageCell:middleSearchImage];
+    _rightCapCell = General/[[NSImageCell alloc] initImageCell:rightSearchCapImage];
+    _rightStopCapCell = General/[[NSImageCell alloc] initImageCell:rightSearchStopCapImage];
+    [_leftCapCell setImageAlignment:General/NSImageAlignLeft];
+    [_middleCell setImageScaling:General/NSScaleToFit];
+    [_rightCapCell setImageAlignment:General/NSImageAlignRight];
+    [_rightStopCapCell setImageAlignment:General/NSImageAlignRight];
 }
 
-- (id)initTextCell:([[NSString]] '')text {
+- (id)initTextCell:(General/NSString *)text {
     if (self = [super initTextCell:text]) {
         _showCancelButton = [text length] > 0;
     }
@@ -90,13 +90,13 @@ static float textOffset = 2.5; // yuck why do i use this?
     return YES;
 }
 
-- ([[NSText]] '')setUpFieldEditorAttributes:([[NSText]] '')textObj {
+- (General/NSText *)setUpFieldEditorAttributes:(General/NSText *)textObj {
     return [super setUpFieldEditorAttributes:textObj];
 }
 
-- (void)selectWithFrame:([[NSRect]])aRect 
-                 inView:([[NSView]] '')controlView 
-                 editor:([[NSText]] '')textObj 
+- (void)selectWithFrame:(General/NSRect)aRect 
+                 inView:(General/NSView *)controlView 
+                 editor:(General/NSText *)textObj 
                delegate:(id)anObject 
                   start:(int)selStart 
                  length:(int)selLength {
@@ -109,20 +109,20 @@ static float textOffset = 2.5; // yuck why do i use this?
                     length:selLength];
 }
 
-- (void)drawInteriorWithFrame:([[NSRect]])cellFrame inView:([[NSView]] '')controlView {
-    [[NSRect]] textRect = [self textRectForFrame:cellFrame];
-    [[NSRect]] middleRect = textRect;
+- (void)drawInteriorWithFrame:(General/NSRect)cellFrame inView:(General/NSView *)controlView {
+    General/NSRect textRect = [self textRectForFrame:cellFrame];
+    General/NSRect middleRect = textRect;
     middleRect.origin.y -= textOffset;
     middleRect.origin.x -= 1;
     middleRect.size.width += 2;
 
-    if ([super showsFirstResponder] && [[controlView window] isKeyWindow]) {
-        [[[NSGraphicsContext]] saveGraphicsState];
-        [[NSSetFocusRingStyle]]([[NSFocusRingOnly]]);
+    if ([super showsFirstResponder] && General/controlView window] isKeyWindow]) {
+        [[[NSGraphicsContext saveGraphicsState];
+        General/NSSetFocusRingStyle(General/NSFocusRingOnly);
         [_leftCapCell drawWithFrame:cellFrame inView:controlView];
         [_rightCapCell drawWithFrame:cellFrame inView:controlView];
         [_middleCell drawWithFrame:middleRect inView:controlView];
-        [[[NSGraphicsContext]] restoreGraphicsState];
+        General/[NSGraphicsContext restoreGraphicsState];
     }
     
     [_leftCapCell drawWithFrame:cellFrame inView:controlView];
@@ -137,11 +137,11 @@ static float textOffset = 2.5; // yuck why do i use this?
     [super drawInteriorWithFrame:textRect inView:controlView];
 }
 
-- (void)editWithFrame:([[NSRect]])aRect 
-               inView:([[NSView]] '')controlView 
-               editor:([[NSText]] '')textObj 
+- (void)editWithFrame:(General/NSRect)aRect 
+               inView:(General/NSView *)controlView 
+               editor:(General/NSText *)textObj 
              delegate:(id)anObject 
-                event:([[NSEvent]] '')theEvent {
+                event:(General/NSEvent *)theEvent {
 
     [super editWithFrame:[self textRectForFrame:aRect] 
                   inView:controlView 
@@ -150,7 +150,7 @@ static float textOffset = 2.5; // yuck why do i use this?
                    event:theEvent];
 }
 
-- ([[NSRect]])textRectForFrame:([[NSRect]])frame {
+- (General/NSRect)textRectForFrame:(General/NSRect)frame {
     frame.origin.x += [leftSearchCapImage size].width;
     frame.origin.y += textOffset;
     frame.size.width -= [leftSearchCapImage size].width;
@@ -158,46 +158,46 @@ static float textOffset = 2.5; // yuck why do i use this?
     return frame;
 }
 
-- ([[NSMenu]] '')menuForEvent:([[NSEvent]] '')anEvent 
-                  inRect:([[NSRect]])cellFrame ofView:([[NSView]] '')aView {
+- (General/NSMenu *)menuForEvent:(General/NSEvent *)anEvent 
+                  inRect:(General/NSRect)cellFrame ofView:(General/NSView *)aView {
     return [super menuForEvent:anEvent inRect:cellFrame ofView:aView];
 }
 
-- (void)resetCursorRect:([[NSRect]])cellFrame 
-                 inView:([[NSView]] '')controlView {
+- (void)resetCursorRect:(General/NSRect)cellFrame 
+                 inView:(General/NSView *)controlView {
 
     [super resetCursorRect:[self textRectForFrame:cellFrame]
                     inView:controlView];
 }
 
-- (void)setStringValue:([[NSString]] '')string {
+- (void)setStringValue:(General/NSString *)string {
     [super setStringValue:string];
     _showCancelButton = [string length] > 0;
 }
 
 // can't seem to get any mouse tracking to work.
-- (BOOL)trackMouse:([[NSEvent]] '')theEvent 
-            inRect:([[NSRect]])cellFrame 
-            ofView:([[NSView]] '')controlView 
+- (BOOL)trackMouse:(General/NSEvent *)theEvent 
+            inRect:(General/NSRect)cellFrame 
+            ofView:(General/NSView *)controlView 
        untilMouseUp:(BOOL)untilMouseUp {
 
-    [[NSLog]](@"tracking");
+    General/NSLog(@"tracking");
     return [super trackMouse:theEvent 
                       inRect:cellFrame 
                       ofView:controlView 
                 untilMouseUp:untilMouseUp];
 }
 
-- (BOOL)startTrackingAt:([[NSPoint]])startPoint inView:([[NSView]] '')controlView {
-    [[NSLog]](@"start tracking");
+- (BOOL)startTrackingAt:(General/NSPoint)startPoint inView:(General/NSView *)controlView {
+    General/NSLog(@"start tracking");
     return [self startTrackingAt:startPoint inView:controlView];
 //    return NO;
 }
 
 @end
 
-</code>
+
 
 ----
 
-You could probably subclass [[CCDTextField]] and/or [[CCDTextFieldCell]] and add some search-specific stuff pretty easily.
+You could probably subclass General/CCDTextField and/or General/CCDTextFieldCell and add some search-specific stuff pretty easily.

@@ -1,6 +1,6 @@
 Hi All, 
 
-The program I'm trying to create is to increase accessibility to text fields so for a given set of preset strings the user can click a button and the app will post that string (or single key) to whichever app is active. I found the method [[CGPostKeyboardEvent]] but it requires a keycode as opposed to a string. So in theory I thought I would iterate through each character in my string and "post" them separately. I'm trying to figure out how to get the keycode for a given character. 
+The program I'm trying to create is to increase accessibility to text fields so for a given set of preset strings the user can click a button and the app will post that string (or single key) to whichever app is active. I found the method General/CGPostKeyboardEvent but it requires a keycode as opposed to a string. So in theory I thought I would iterate through each character in my string and "post" them separately. I'm trying to figure out how to get the keycode for a given character. 
 
 Thanks in advance for any help.
 
@@ -11,41 +11,41 @@ Thanks in advance for any help.
 
 This is not exactly what you asked for (nor it is a perfect solution), but it's close enough that I'm sure it will be of some help to you.  I got most of this code elsewhere, from a google cache of an online forum post I can't find anymore (that was written in french, and loosely translated by me). I wish I could take credit, but somebody smarter than me figured it out.
 
-<code>
+    
 
-BOOL Ascii2Virtual(char pcar, BOOL ''pshift, BOOL ''palt, char ''pkeycode) 
+BOOL Ascii2Virtual(char pcar, BOOL *pshift, BOOL *palt, char *pkeycode) 
 {
-    [[KeyboardLayoutRef]] keyboard;
-    const void ''keyboardData; // keyboard layout data
+    General/KeyboardLayoutRef keyboard;
+    const void *keyboardData; // keyboard layout data
     UInt16 nbblocs;
-    char ''modblocs, ''blocs, ''deadkeys;
+    char *modblocs, *blocs, *deadkeys;
     int ix, ifin, numbloc, keycode;
     
     BOOL shift, alt;
     
     // r�cup�ration du clavier courant
     // get the current keyboard
-    if([[KLGetCurrentKeyboardLayout]](&keyboard)) return NO;
+    if(General/KLGetCurrentKeyboardLayout(&keyboard)) return NO;
     
     // r�cup�ration de la description (keyboard layout) du clavier courant
     // get the description of the current keyboard layout
-    if([[KLGetKeyboardLayoutProperty]](keyboard, kKLKCHRData, &keyboardData)) return NO;
+    if(General/KLGetKeyboardLayoutProperty(keyboard, kKLKCHRData, &keyboardData)) return NO;
     
     // r�cup�ration du pointeur de d�but des num�ros de blocs pour chaque combinaison de modifiers
     // get pointer early numbers of blocks for each combination of modifiers
-    modblocs = ((char '')keyboardData) + 2;
+    modblocs = ((char *)keyboardData) + 2;
     
     // r�cup�ration de nombre de blocs keycode->ascii
     // get number of blocks keycode->ascii
-    nbblocs = ''((UInt16 '')(keyboardData + 258));
+    nbblocs = *((UInt16 *)(keyboardData + 258));
     
     // r�cup�ration du pointeur de d�but des blocs keycode->ascii
     // get pointer early blocks keycode-> ascii
-    blocs = ((char '')keyboardData) + 260;
+    blocs = ((char *)keyboardData) + 260;
     
     // on d�termine la taille de toutes les tables keycode->ascii � scanner
     // determining the size of all tables keycode-> ascii a scanner
-    ifin = nbblocs''128;
+    ifin = nbblocs*128;
     
     // on d�termine le pointeur de d�but de la tables des dead keys
     // determining pointer early in the tables of dead keys
@@ -93,20 +93,20 @@ BOOL Ascii2Virtual(char pcar, BOOL ''pshift, BOOL ''palt, char ''pkeycode)
     
     // mise � jour des param�tres
     // save our parameters
-    ''pkeycode=keycode;
-    ''pshift=shift;
-    ''palt=alt;
+    *pkeycode=keycode;
+    *pshift=shift;
+    *palt=alt;
     
     return YES;
 }
 
-</code>
+
 
 Don't ask me how the guy who wrote that figured it out, but I can assure you that it does indeed work :P  You could then write a simple method to get every character in a string and send them.
 
-<code>
+    
 
-- (int)keyCodeForCharacter: ([[NSString]]'')character {
+- (int)keyCodeForCharacter: (General/NSString*)character {
     if(![character length]) return -1;
     
     char code;
@@ -117,6 +117,6 @@ Don't ask me how the guy who wrote that figured it out, but I can assure you tha
     return -1;
 }
 
-</code>
+
 
 I hope this helps you. - Jon

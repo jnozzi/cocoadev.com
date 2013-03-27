@@ -5,11 +5,11 @@ Back in Project Builder there was an info view or an inspector on some item, may
 I'm a little stumped when it comes to X Code 2: I can't seem to find out where to set this stuff.  I manually edited the plist file to set some of it but I need to know how to set that info in X Code 2.  I just know it's something that should be easy but I can't seem to locate it.
 
 Thanks so much
-[[CliffPruitt]]
+General/CliffPruitt
 
 ----
 
-Select the Targets tab, expand the Targets group in the outline view, click your target and press Cmd-I. Click the Properties tab. There you have it. By the way, in [[XCode]]'s help, typing "application icon" yields many results, the fourth result is called "Inspecting Targets" and contains the answer to each of your questions above. Well, not ''all'' of them. See also: [[HowToChangeAProjectsName]]
+Select the Targets tab, expand the Targets group in the outline view, click your target and press Cmd-I. Click the Properties tab. There you have it. By the way, in General/XCode's help, typing "application icon" yields many results, the fourth result is called "Inspecting Targets" and contains the answer to each of your questions above. Well, not *all* of them. See also: General/HowToChangeAProjectsName
 
 ----
 

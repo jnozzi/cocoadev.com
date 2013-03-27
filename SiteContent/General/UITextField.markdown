@@ -1,26 +1,25 @@
 
 
-Part of the iPhone [[UIKit]] framework. Subclass of [[UIControl]], implements [[UITextTraitsClient]].
+Part of the iPhone General/UIKit framework. Subclass of General/UIControl, implements General/UITextTraitsClient.
 
-%%BEGINCODESTYLE%%- (id)initWithFrame:([[CGRect]])frame;%%ENDCODESTYLE%%
+<code>- (id)initWithFrame:(General/CGRect)frame;</code>
 
 Designated initializer!
 
-%%BEGINCODESTYLE%%- (void)setFont:([[GSFont]]'')font;%%ENDCODESTYLE%%
+<code>- (void)setFont:(General/GSFont*)font;</code>
 
-Here's more info on [[GSFont]].
+Here's more info on General/GSFont.
 
-%%BEGINCODESTYLE%%- (void)setLabel:(id)arg;%%ENDCODESTYLE%%
+<code>- (void)setLabel:(id)arg;</code>
 
-%%BEGINCODESTYLE%%- (void)setText:(id)arg;%%ENDCODESTYLE%%
+<code>- (void)setText:(id)arg;</code>
 
-%%BEGINCODESTYLE%%- (void)setTextColor:([[CGColorRef]])color;%%ENDCODESTYLE%%
+<code>- (void)setTextColor:(General/CGColorRef)color;</code>
 
-%%BEGINCODESTYLE%%- (void)setBorderStyle:(int)fp8;%%ENDCODESTYLE%%
-enum values for [[BorderStyle]]:
-<code>
+<code>- (void)setBorderStyle:(int)fp8;</code>
+enum values for General/BorderStyle:
+    
 0,4+ = no border
 1 = fine outline
 2 = recessed rectangle
 3 = rounded, recessed rectangle
-</code>

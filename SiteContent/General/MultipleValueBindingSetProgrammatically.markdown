@@ -1,16 +1,16 @@
  I�ve got to set some bindings programmatically, everything was ok so far using the documentation but now I don�t find the recipe to program a multiple value binding without IB.
 
 I tried:
-<code>
-[bindingOptions setObject:@"%{value1}@ / %{value2}@" forKey:@"[[NSDisplayPattern]]"];
+    
+[bindingOptions setObject:@"%{value1}@ / %{value2}@" forKey:@"General/NSDisplayPattern"];
 
 [theTextField bind:@"displayPatternValue1" toObject:theObjToBind
     withKeyPath:@"result" options:bindingOptions];
 [theTextField bind:@"displayPatternValue2" toObject:theObjToBind
     withKeyPath:@"total" options:bindingOptions];
-</code>
 
-But I got the error �[<[[NSTextField]] 0x34b750> valueForUndefinedKey:]: this class is not key value coding-compliant for the key displayPatternValue1.�
+
+But I got the error �[<General/NSTextField 0x34b750> valueForUndefinedKey:]: this class is not key value coding-compliant for the key displayPatternValue1.�
 
 Has anybody some suggestion? Thanks.
 
@@ -22,7 +22,7 @@ Take a closer look at IB. It has "displayPatternValue" and "displayPatternValue2
 
 ----
 
-I�ll try your trick but in '''my''' IB, there are  "displayPatternValue1" and "displayPatternValue2"!!
+I�ll try your trick but in **my** IB, there are  "displayPatternValue1" and "displayPatternValue2"!!
 
 ��
 
@@ -30,18 +30,18 @@ Done. "displayPatternValue" returns the same error�
 
 ----
 
-Well the proper name is <code>displayPatternValue1</code>, see http://developer.apple.com/documentation/Cocoa/Reference/[[CocoaBindingsRef]]/[[BindingsText]]/[[NSTextField]].html
+Well the proper name is     displayPatternValue1, see http://developer.apple.com/documentation/Cocoa/Reference/General/CocoaBindingsRef/General/BindingsText/General/NSTextField.html
 
 I just tried the following code:
-<code>
-[[NSDictionary]]'' options = [[[NSDictionary]] dictionaryWithObject:@"-> %{value1}@ <-" forKey:@"[[NSDisplayPattern]]"];
+    
+General/NSDictionary* options = General/[NSDictionary dictionaryWithObject:@"-> %{value1}@ <-" forKey:@"General/NSDisplayPattern"];
 [textField bind:@"displayPatternValue1" toObject:arrayController withKeyPath:@"arrangedObjects.title" options:options];
-</code>
 
-And it works w/o problems for me. How did you instantiate the [[NSTextField]] (although the run-time exception seems to make clear that it really is an [[NSTextField]] instance)?
 
-Try sending <code>exposedBindings</code> to the text field and see what you get back, this is what I get:
-<code>
+And it works w/o problems for me. How did you instantiate the General/NSTextField (although the run-time exception seems to make clear that it really is an General/NSTextField instance)?
+
+Try sending     exposedBindings to the text field and see what you get back, this is what I get:
+    
 fontSize, 
 alignment, 
 fontName, 
@@ -55,7 +55,7 @@ textColor,
 value, 
 editable, 
 fontBold
-</code>
+
 
 ----
 Thank you!

@@ -16,7 +16,7 @@ You wouldn't store it. If you try it out, Apple's preference panes stay unlocked
 
 ----
 
-Actually, I think the OP is asking how to make system-wide preferences for an app, not necessarily a prefsPane. You need to store your preferences in the proper domain. See: http://developer.apple.com/documentation/[[CoreFoundation]]/Reference/[[CFPreferencesUtils]]/Reference/reference.html
+Actually, I think the OP is asking how to make system-wide preferences for an app, not necessarily a prefsPane. You need to store your preferences in the proper domain. See: http://developer.apple.com/documentation/General/CoreFoundation/Reference/General/CFPreferencesUtils/Reference/reference.html
 
 As to handling authorization (requesting permission to modify the permissions in a non-user domain), see: http://developer.apple.com/documentation/Security/Conceptual/authorization_concepts/index.html
 
@@ -38,7 +38,7 @@ But where is this info stored? Clearly it can�t just be a boolean in the prefe
 
 Well, if you're not an admin user and you try to click the 'unlock' button, it requires you to authenticate, right? The best place to store a persistent state (that is not user data) is the preferences/defaults system, right? I'd imagine this is a public (but protected by authentication) plist file somewhere, accessible through the system-wide domain. You need to authenticate to change it to "unlocked" if it's locked. All your app does is checks this flag via the defaults system and enable/disable the controls depending on the state.
 
-When you say "Clearly it can�t just be a boolean in the preferences domain, as then the non-admin user would simply be able to change it." this indicates to me that you ''do not'' understand what I tried to point out earlier. There are different preferences domains. One is system-wide (authentication is required). I suggest you read up on this part of the system. You'll be glad you did.
+When you say "Clearly it can�t just be a boolean in the preferences domain, as then the non-admin user would simply be able to change it." this indicates to me that you *do not* understand what I tried to point out earlier. There are different preferences domains. One is system-wide (authentication is required). I suggest you read up on this part of the system. You'll be glad you did.
 
 ----
 

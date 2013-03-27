@@ -1,5 +1,5 @@
-The Panther [[CoreFoundation]] release notes mention a new [[CFHost]]. I can't find it anywhere, though. Where is it?
+The Panther General/CoreFoundation release notes mention a new General/CFHost. I can't find it anywhere, though. Where is it?
 
-�[[DustinVoss]]
+�General/DustinVoss
 
-/System/Library/Frameworks/[[CoreServices]].framework/Frameworks/[[CFNetwork]].framework/Headers/[[CFHost]].h
+/System/Library/Frameworks/General/CoreServices.framework/Frameworks/General/CFNetwork.framework/Headers/General/CFHost.h

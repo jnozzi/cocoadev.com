@@ -15,7 +15,7 @@ No, look in Carbon's File Manager.
 
 ----
 
-I wouldn't make any reliance on type codes -- they are supported for compatibility reasons only, as Apple is moving to [[UniformTypeIdentifier]]<nowiki/>s.  They are not the primary manner of identifying file types any more, and won't get you any closer to supporting all files.  For example, you will not be able to associate your application with files having no extension and no type code (for example, by running `touch foo` in Terminal).  As far as I know, there's no way to associate an application with "all file types".
+I wouldn't make any reliance on type codes -- they are supported for compatibility reasons only, as Apple is moving to General/UniformTypeIdentifier<nowiki/>s.  They are not the primary manner of identifying file types any more, and won't get you any closer to supporting all files.  For example, you will not be able to associate your application with files having no extension and no type code (for example, by running `touch foo` in Terminal).  As far as I know, there's no way to associate an application with "all file types".
 
 ----
 
@@ -23,7 +23,7 @@ You could associate an application with all files by editing its Info.plist to a
 
 ----
 
-No, no, I want a file type created by me to be assigned to my application but without extensions... My app shouldn't open for all "public.data [[UTIs]]" but for my own file type.
+No, no, I want a file type created by me to be assigned to my application but without extensions... My app shouldn't open for all "public.data General/UTIs" but for my own file type.
 
 ----
 

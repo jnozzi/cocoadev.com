@@ -2,36 +2,35 @@
 
 if I have an
 
-[[NSString]] '' myString = @"blah : blah"
+General/NSString * myString = @"blah : blah"
 
 why does
 
-[[[[NSScanner]] scannerWithString:myString] scanUpToString:@":" intoString:&myResult];
+General/[[NSScanner scannerWithString:myString] scanUpToString:@":" intoString:&myResult];
 
 not give me "blah" for myResult?
 
-I have scoured documentation for [[NSScanner]] and can't get it to recognize symbol characters such as : and ' 
+I have scoured documentation for General/NSScanner and can't get it to recognize symbol characters such as : and ' 
 What am I missing?
 
 ----
 
-Your code should work. "myResult" is an [[NSString]] pointer right?
+Your code should work. "myResult" is an General/NSString pointer right?
 
 source:
 
-<code>
+    
 
-    [[NSString]] ''myResult = nil;
-    [[NSString]] ''myString = @"blah : blah";
-    [[[[NSScanner]] scannerWithString:myString] scanUpToString:@":" intoString:&myResult];
-    [[NSLog]](@"myResult: <%@> myString: <%@>", myResult, myString);
+    General/NSString *myResult = nil;
+    General/NSString *myString = @"blah : blah";
+    General/[[NSScanner scannerWithString:myString] scanUpToString:@":" intoString:&myResult];
+    General/NSLog(@"myResult: <%@> myString: <%@>", myResult, myString);
 
-</code>
+
 
 output:
 
-<code>
+    
 
 2004-07-25 16:39:59.734 test[2998] myResult: <blah > myString: <blah : blah>
 
-</code>

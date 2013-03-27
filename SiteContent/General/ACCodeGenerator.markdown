@@ -1,16 +1,16 @@
-[[AspectCocoa]] actually employs two different mechanisms under the hood for intercepting method calls.  One mechanism is slower and less reliable, but the faster one sometimes requires that sometimes code be generated.  This code can be generated based on a pointcut as follows:
-<code>
-[[[ACCodeGenerator]] generateCodeForPointCut: somePointcut writeTo: @"someoutputfilename"];
-</code>
-The [[AspectCocoa]] framework comes with code already generated for almost all of foundation and appkit, which means that in most cases (even when working with your own classes) [[AspectCocoa]] will use the already generated code, and you will automatically reap the benefits.
+General/AspectCocoa actually employs two different mechanisms under the hood for intercepting method calls.  One mechanism is slower and less reliable, but the faster one sometimes requires that sometimes code be generated.  This code can be generated based on a pointcut as follows:
+    
+General/[ACCodeGenerator generateCodeForPointCut: somePointcut writeTo: @"someoutputfilename"];
 
-Code generation is used to create a 'replacement IMP' for some method signature.  Once such a 'replacement IMP' has been generated and exists in the runtime, [[AspectCocoa]] will be able to use it for all methods of that signature.
+The General/AspectCocoa framework comes with code already generated for almost all of foundation and appkit, which means that in most cases (even when working with your own classes) General/AspectCocoa will use the already generated code, and you will automatically reap the benefits.
 
-In order to know how methods are being wrapped, and when code generation might be usefull, you can use [[ACAspectManager]] to enable/disable logging.
+Code generation is used to create a 'replacement IMP' for some method signature.  Once such a 'replacement IMP' has been generated and exists in the runtime, General/AspectCocoa will be able to use it for all methods of that signature.
+
+In order to know how methods are being wrapped, and when code generation might be usefull, you can use General/ACAspectManager to enable/disable logging.
 
 ----
 
-<code>
+    
  /* 
      Returns the shared instance of ACCodeGenerator.
      There is a single generator because we never want to generate code 
@@ -44,4 +44,3 @@ In order to know how methods are being wrapped, and when code generation might b
  */
  +(void)generateCodeForPointCut: (ACPointCut *)pointCut writeTo: (NSString *) destination;
  -(void)generateCodeForPointCut: (ACPointCut *)pointCut writeTo: (NSString *) destination;
-</code>

@@ -2,8 +2,8 @@
 
 I have a float pointer and want to return it from class, is this the right way?
 
-<code>
-- (float '')amb
+    
+- (float *)amb
 {
 	float ret[4] = {x, y, z, w};
 	return ret;
@@ -12,18 +12,18 @@ I have a float pointer and want to return it from class, is this the right way?
 
 //Another file
 
-float test[4] = [[[AClass]] amb];
+float test[4] = General/[AClass amb];
 
-</code>
+
 
 ----
 
 It's the right way to return a pointer, but your code is because your array will be deallocated when amb returns (it goes out of scope). Try this:
 
-<code>
-- (float '')amb
+    
+- (float *)amb
 {
-	float'' ret = calloc(sizeof(float),4);
+	float* ret = calloc(sizeof(float),4);
         ret[0] = x;
         ret[1] = y;
         ret[2] = z;
@@ -34,18 +34,18 @@ It's the right way to return a pointer, but your code is because your array will
 
 //Another file
 
-float'' test = [[[AClass]] amb];
-</code>
+float* test = General/[AClass amb];
 
-Don't forget to call <code>free(test)</code> when you're done.
 
-Alternatively, you could use an [[NSArray]] of [[NSNumber]]<nowiki/>s.
+Don't forget to call     free(test) when you're done.
+
+Alternatively, you could use an General/NSArray of General/NSNumber<nowiki/>s.
 
 ----
 
 Another way would be to make the caller take care of memory allocation:
-<code>
-- (void)getAmb:(float '')array {
+    
+- (void)getAmb:(float *)array {
 	array[0] = x;
 	array[1] = y;
 	array[2] = z;
@@ -56,14 +56,14 @@ Another way would be to make the caller take care of memory allocation:
 
 float test[4];
 [obj getAmb:test];
-</code>
 
-''this way would be more in keeping with Cocoa semantics''
+
+*this way would be more in keeping with Cocoa semantics*
 
 ----
 
 Since this is obviously a 4-vector, I'd do it like this:
-<code>
+    
 typedef struct
 {
 float x, y, z, w;
@@ -74,15 +74,15 @@ float x, y, z, w;
 V4 ret={x, y, z, w};
 return ret;
 }
-</code>
+
 Of course, that wouldn't be a pointer return.
 
 ----
 
-You could even wrap that 4-vector up in an [[ObjC]] class if you wanted.
+You could even wrap that 4-vector up in an General/ObjC class if you wanted.
 
-<code>
-@interface fourVector : [[NSObject]] {
+    
+@interface fourVector : General/NSObject {
    float x, y, z, w;
 }
 - (id)initWithX:(float)_x y:(float)_y z:(float)_z w:(float)_w;
@@ -91,14 +91,14 @@ You could even wrap that 4-vector up in an [[ObjC]] class if you wanted.
 - (float)getZ;
 - (float)getW;
 @end
-</code>
 
-That way, you can take advantage not only of adding transformations, etc., to the interface, you can use [[ObjC]]'s [[MemoryManagement]] to solve the return problem:
 
-<code>
--(fourVector'')getAmb {
+That way, you can take advantage not only of adding transformations, etc., to the interface, you can use General/ObjC's General/MemoryManagement to solve the return problem:
+
+    
+-(fourVector*)getAmb {
    return [[[fourVector alloc] initWithX:x y:y z:z w:w] autorelease];
 }
-</code>
 
-Indeed, you could simply store a <code>fourVector</code> in the class providing getAmb, instead of x,y,z and w. You could then give it a better name.
+
+Indeed, you could simply store a     fourVector in the class providing getAmb, instead of x,y,z and w. You could then give it a better name.

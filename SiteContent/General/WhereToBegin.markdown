@@ -2,6 +2,6 @@ I'm new to cocoa programming and I've been browsing through tutorials for hours 
 
 ----
 
-This page is one of those such that, if it didn't exist, it would have to be invented, and would be, sooner or later. As such it is a canonical page title, like [[NewbieProblem]] or [[WhereToStart]]. If it gets deleted, somebody will reinvent it.
+This page is one of those such that, if it didn't exist, it would have to be invented, and would be, sooner or later. As such it is a canonical page title, like General/NewbieProblem or General/WhereToStart. If it gets deleted, somebody will reinvent it.
 
-If you are just [[GettingStarted]], that page is a good jumping off point. If you feel you have special needs that aren't covered there, or if you're becoming aware of the vastness and flexibility of Cocoa and [[ObjectiveC]], feel free to post your insights or just dish a little, below:
+If you are just General/GettingStarted, that page is a good jumping off point. If you feel you have special needs that aren't covered there, or if you're becoming aware of the vastness and flexibility of Cocoa and General/ObjectiveC, feel free to post your insights or just dish a little, below:

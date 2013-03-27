@@ -1,25 +1,25 @@
-I'm trying to create a [[NSTableView]] by hand (I need it for a particular case where I can't use a nib) and add it to a window, but it is never displayed. The code I'm using is:
+I'm trying to create a General/NSTableView by hand (I need it for a particular case where I can't use a nib) and add it to a window, but it is never displayed. The code I'm using is:
 
-<code>
+    
 
 // ... window creation ...
 
-table = [[[[NSTableView]] alloc] initWithFrame:[[NSMakeRect]](x,y,w,h)];
+table = General/[[NSTableView alloc] initWithFrame:General/NSMakeRect(x,y,w,h)];
 
 [table setDataSource:myDataSource];
 [table setRowHeight:32];
 
-[[NSTableColumn]] ''column = [[[[NSTableColumn]] alloc] initWithIdentifier:@"myColumn"];
+General/NSTableColumn *column = General/[[NSTableColumn alloc] initWithIdentifier:@"myColumn"];
 
 [column setEditable: NO];
 
 [table addTableColumn: column];
 
-[[window contentView] addSubview:table];
+General/window contentView] addSubview:table];
 
 // ...
 
-</code>
+
 
 Any hint?
 
@@ -27,9 +27,9 @@ James
 
 ----
 
-Are you ''sure'' you can't use a nib? Why can't you? This is vastly easier if you use IB.
+Are you *sure* you can't use a nib? Why can't you? This is vastly easier if you use IB.
 
-You will at the very least need to wrap the table view in an [[NSScrollView]] to get correct behavior.
+You will at the very least need to wrap the table view in an [[NSScrollView to get correct behavior.
 
 ----
 
@@ -37,7 +37,7 @@ I'll need to create the window and all of its content in execution time (it will
 
 ----
 
-That means you can't have the ''window'' in a nib, but it doesn't mean you can't create a nib specially for your table view (and any other difficult-to-create interface items). Of course, if the text file specifies everything about the table view then this may not be too useful.
+That means you can't have the *window* in a nib, but it doesn't mean you can't create a nib specially for your table view (and any other difficult-to-create interface items). Of course, if the text file specifies everything about the table view then this may not be too useful.
 
 Are you sure you're specifying the proper frame rectangle in your code?
 
@@ -50,28 +50,28 @@ I would use a nib anyway - much easier to configure the table based on the the t
 
 ----
 
-I have a situation where I too am building a [[NSTableView]] by hand and not in IB.  I'm providing a menu that allows the user to choose which table columns are visible.  This breaks the traditional autosave behavior and requires me to code up the information for each field anyway, so it's not a great leap from there to just making it in code to begin with....  The example below should produce a visible table view...
+I have a situation where I too am building a General/NSTableView by hand and not in IB.  I'm providing a menu that allows the user to choose which table columns are visible.  This breaks the traditional autosave behavior and requires me to code up the information for each field anyway, so it's not a great leap from there to just making it in code to begin with....  The example below should produce a visible table view...
 
-<code>
+    
 
-[[NSWindow]] ''window --- should point to your window.
-[[NSView]] ''superView = [window contentView];
-[[NSTableView]] ''tableView = [[[[NSTableView]] alloc] initWithFrame:[superView frame]];
-[tableView addColumn:[[[[NSTableColumn]] alloc] initWithIdentifier:@"field1"]];
-[[NSScrollView]] ''scrollView = [[[[NSScrollView]] alloc] initWithFrame:[superView frame]];
+General/NSWindow *window --- should point to your window.
+General/NSView *superView = [window contentView];
+General/NSTableView *tableView = General/[[NSTableView alloc] initWithFrame:[superView frame]];
+[tableView addColumn:General/[[NSTableColumn alloc] initWithIdentifier:@"field1"]];
+General/NSScrollView *scrollView = General/[[NSScrollView alloc] initWithFrame:[superView frame]];
 [scrollView setDocumentView:tableView];
 [superView addSubview:scrollView];
 
-</code>
+
 
 ----
 
 If you want the above table view to be free floating in the window instead of taking up the entire window you need to add the following code to display the border:
 
-<code>
+    
 
-[scrollView setBorderType:[[NSBezelBorder]]];
+[scrollView setBorderType:General/NSBezelBorder];
 
-</code>
 
-I have also found that by changing the code from using initWithFrame to for the [[NSTableView]] to just init the column resizing works properly, not sure why.
+
+I have also found that by changing the code from using initWithFrame to for the General/NSTableView to just init the column resizing works properly, not sure why.

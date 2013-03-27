@@ -2,4 +2,4 @@ I'm a CS student at Georgia Tech.  Not that that means I know anything, in parti
 
 
 
-''Looks like you're no longer a [[CocoaDevTeen]]!''
+*Looks like you're no longer a General/CocoaDevTeen!*

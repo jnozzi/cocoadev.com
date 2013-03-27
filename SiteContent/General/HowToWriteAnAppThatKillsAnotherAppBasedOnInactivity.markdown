@@ -15,7 +15,7 @@ NOTE: The Hardware Monitor app author tells me it's impossible to implement some
 
 ----
 
-Use [[HIDIdleTime]]
+Use General/HIDIdleTime
 
 ----
 
@@ -36,14 +36,14 @@ Well I don't know about the oneliner because ps is braindead when reporting the 
 This prints the seconds since a given process has been started but using a C tool that computes the time difference.
 
 cristi:~ diciu$ cat timediff.c 
-<code>
-#define _XOPEN_SOURCE /'' glibc2 needs this ''/
+    
+#define _XOPEN_SOURCE /* glibc2 needs this */
 #include <time.h>
 
 #include <sys/time.h>
 #include <stdio.h>
 
-int main(int argc, char '''  argv)
+int main(int argc, char **  argv)
 {
 
 
@@ -68,7 +68,7 @@ int main(int argc, char '''  argv)
         printf("%d", timeNow - startTime); 
         return 0;
 }
-</code>
+
 
 You compile it to get the binary ./a.out:
 $ gcc -c timediff.c 
@@ -81,4 +81,4 @@ $ ps -xo lstart,pid,command | grep loginwindow | grep -v grep | awk -F '   ' '{p
 
 6948 seconds. That's a bit off because of a timezone issue I imagine but I'm sure you can figure that out.
 
---[[CristianDraghici]]
+--General/CristianDraghici

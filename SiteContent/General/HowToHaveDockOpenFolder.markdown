@@ -4,4 +4,4 @@ Does anyone know how to have the dock accept folders for a drop event? I would l
 
 ok, I figured it out. The link below shows how I solved this problem.
 
-see [[DroppingFolderIconsOnApplicationIconInDock]]
+see General/DroppingFolderIconsOnApplicationIconInDock

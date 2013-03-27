@@ -1,7 +1,7 @@
 
 
-'''Source for [[NSCalendarDate]]+[[CocoaDevUsersAdditions]].h :'''
-<code>
+**Source for General/NSCalendarDate+General/CocoaDevUsersAdditions.h :**
+    
  #import <Foundation/Foundation.h>
  
  @interface NSCalendarDate (CocoaDevUsersAdditions)
@@ -12,14 +12,14 @@
  -(float)minutesSinceDate:(NSCalendarDate *)referenceDate;
  -(float)secondsSinceDate:(NSCalendarDate *)referenceDate;
  @end
-</code>
 
-'''Source for [[NSCalendarDate]]+[[CocoaDevUsersAdditions]].m :'''
-<code>
+
+**Source for General/NSCalendarDate+General/CocoaDevUsersAdditions.m :**
+    
  #import "NSCalendarDate+CocoaDevUsersAdditions.h"
  
  @implementation  NSCalendarDate (CocoaDevUsersAdditions)
- //note-- refactoring by [[JoeOsborn]]...  I wish there
+ //note-- refactoring by General/JoeOsborn...  I wish there
  //were a better way to implement the first two.
  //um.. these are also untested.  Would someone please see if they work?
  
@@ -57,7 +57,7 @@
  }
  
  @end
-</code>
 
 
-[[Category:CocoaDevUsersAdditions]]
+
+General/Category:CocoaDevUsersAdditions

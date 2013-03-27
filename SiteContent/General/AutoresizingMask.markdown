@@ -1,34 +1,33 @@
 An autoresizing mask is used to determine how a view is resized relative to its parent view when its parent view resizes. The enumeration values are masked together.
 
-To have a view resize to fill its container, set it to [[NSViewWidthSizable]] | [[NSViewHeightSizable]].
+To have a view resize to fill its container, set it to General/NSViewWidthSizable | General/NSViewHeightSizable.
 
-To have a view float in the center, set it to [[NSViewNotSizable]].
+To have a view float in the center, set it to General/NSViewNotSizable.
 
 ----
 
 Here is a handy function to create a string from a mask value. Helpful in certain instances for debugging:
 
-<code>
-[[NSString]]'' [[StringFromAutoresizingMask]]([[NSUInteger]] mask)
+    
+General/NSString* General/StringFromAutoresizingMask(General/NSUInteger mask)
 {
-	if (mask == [[NSViewNotSizable]])
-		return @"[[NSViewNotSizable]]";
-	[[NSString]] ''sep = @" | ";
-	[[NSMutableString]] ''str = [[[NSMutableString]] string];
-	if (mask & [[NSViewWidthSizable]])
-		[str appendFormat:@"[[NSViewWidthSizable]]%@", sep];
-	if (mask & [[NSViewHeightSizable]])
-		[str appendFormat:@"[[NSViewHeightSizable]]%@", sep];
-	if (mask & [[NSViewMinXMargin]])
-		[str appendFormat:@"[[NSViewMinXMargin]]%@", sep];
-	if (mask & [[NSViewMaxXMargin]])
-		[str appendFormat:@"[[NSViewMaxXMargin]]%@", sep];
-	if (mask & [[NSViewMinYMargin]])
-		[str appendFormat:@"[[NSViewMinYMargin]]%@", sep];
-	if (mask & [[NSViewMaxYMargin]])
-		[str appendFormat:@"[[NSViewMaxYMargin]]%@", sep];
+	if (mask == General/NSViewNotSizable)
+		return @"General/NSViewNotSizable";
+	General/NSString *sep = @" | ";
+	General/NSMutableString *str = General/[NSMutableString string];
+	if (mask & General/NSViewWidthSizable)
+		[str appendFormat:@"General/NSViewWidthSizable%@", sep];
+	if (mask & General/NSViewHeightSizable)
+		[str appendFormat:@"General/NSViewHeightSizable%@", sep];
+	if (mask & General/NSViewMinXMargin)
+		[str appendFormat:@"General/NSViewMinXMargin%@", sep];
+	if (mask & General/NSViewMaxXMargin)
+		[str appendFormat:@"General/NSViewMaxXMargin%@", sep];
+	if (mask & General/NSViewMinYMargin)
+		[str appendFormat:@"General/NSViewMinYMargin%@", sep];
+	if (mask & General/NSViewMaxYMargin)
+		[str appendFormat:@"General/NSViewMaxYMargin%@", sep];
 	if ([str hasSuffix:sep])
-		[str deleteCharactersInRange:[[NSMakeRange]]([str length]-[sep length], [sep length])];
+		[str deleteCharactersInRange:General/NSMakeRange([str length]-[sep length], [sep length])];
 	return str;
 }
-</code>

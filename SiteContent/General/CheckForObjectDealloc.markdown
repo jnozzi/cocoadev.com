@@ -8,4 +8,4 @@ You could make the object unregister itself. Perhaps using a notification if you
 
 ----
 
-[[WeakReferences]] may be useful for you.
+General/WeakReferences may be useful for you.

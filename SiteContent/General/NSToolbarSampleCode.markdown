@@ -11,10 +11,10 @@ http://macdevcenter.com/pub/a/mac/2002/03/15/cocoa.html
 
 Careful with this sample code though, there is a small error:
 
-<code>
+    
 - (void)setupToolbar
 {
-    [[NSToolbar]] ''toolbar = [[[[NSToolbar]] alloc] initWithIdentifier:@"mainToolbar"];
+    General/NSToolbar *toolbar = General/[[NSToolbar alloc] initWithIdentifier:@"mainToolbar"];
     [toolbar autorelease]; // wrong
     [toolbar setDelegate:self];
     [toolbar setAllowsUserCustomization:YES];
@@ -22,7 +22,7 @@ Careful with this sample code though, there is a small error:
     [mainWindow setToolbar:[toolbar autorelease]];
 }
 
-</code>
+
 
 As you can see, there is a double autorelease, which is incorrect; it will cause the program to crash.  The first autorelease call should be removed.
 
@@ -30,47 +30,47 @@ As you can see, there is a double autorelease, which is incorrect; it will cause
 
 ----
 
-An efficient method to validate toolbar items based on multiple conditions. This needs to go in your toolbar's '''target''' not your toolbar controller
+An efficient method to validate toolbar items based on multiple conditions. This needs to go in your toolbar's **target** not your toolbar controller
 
-<code>
-- (BOOL)validateToolbarItem:([[NSToolbarItem]] '')theItem
+    
+- (BOOL)validateToolbarItem:(General/NSToolbarItem *)theItem
 {
-    [[NSMutableSet]] ''itemsToDisable = [[[NSMutableSet]] setWithCapacity:0];
+    General/NSMutableSet *itemsToDisable = General/[NSMutableSet setWithCapacity:0];
     
     if (someCondition)
       {
-	[[NSSet]] ''myItems = [[[NSSet]] setWithObjects:@"toolbarItemIdentifier1", @"toolbarItemIdentifier2", 
+	General/NSSet *myItems = General/[NSSet setWithObjects:@"toolbarItemIdentifier1", @"toolbarItemIdentifier2", 
                          @"toolbarItemIdentifier3", NULL];
 	[itemsToDisable unionSet:myItems];
       }
 
     if (!anotherCondition)
       {
-	[[NSSet]] ''myItems = [[[NSSet]] setWithObjects: @"toolbarItemIdentifier4", NULL];
+	General/NSSet *myItems = General/[NSSet setWithObjects: @"toolbarItemIdentifier4", NULL];
 	[itemsToDisable unionSet:myItems];
       }
     return ![itemsToDisable containsObject:[theItem itemIdentifier]];
 }
-</code>
+
 ----
-Ok, I have [[MainToolbar]].h and [[MainToolbar]].m, and then I have [[MainDocument]].h and [[MainDocument]].m. I want to know how to create an action for [[MainDocument]] that will change the the selected [[NSToolbarItem]]. How would I go about doing this?
+Ok, I have General/MainToolbar.h and General/MainToolbar.m, and then I have General/MainDocument.h and General/MainDocument.m. I want to know how to create an action for General/MainDocument that will change the the selected General/NSToolbarItem. How would I go about doing this?
 
 ----
 
-Add an action to [[FirstResponder]] in [[MainDocument]]'s nib, and implement the action in [[MainToolbar]] to call <code>setSelectedItemIdentifier:</code>
+Add an action to General/FirstResponder in General/MainDocument's nib, and implement the action in General/MainToolbar to call     setSelectedItemIdentifier:
 
 ----
 
 If you want to create a toolbar in Interface Builder 3 or higher, the instructions at http://www.katoemba.net/makesnosenseatall/tag/nstoolbar/ are of great help.
 
-In a nutshell, you need to add [[NSToolbar]] from the Library tools to the window of your choice, add [[NSToolbarItems]] as you see fit, and link the toolbar item to the function you want it to call.
+In a nutshell, you need to add General/NSToolbar from the Library tools to the window of your choice, add General/NSToolbarItems as you see fit, and link the toolbar item to the function you want it to call.
 You still need to implement the following function to make the buttons clickable:
-<code>
-- (BOOL)validateToolbarItem:([[NSToolbarItem]] '')theItem
+    
+- (BOOL)validateToolbarItem:(General/NSToolbarItem *)theItem
 {
     if ([theItem tag] == 1001) // Save toolbar item
         return [self isDocumentEdited];
     return YES;
 }
-</code>
+
  Pour devenir figurant sur   maintiennent numéro, vous aurez  votre compte   Agent  (code RIO ) [http://obtenir-rio.info numéro rio]. Vous obtiendrez  pouvez obtenir  pour  gratuit  par appelant   mots  du serveur ou du service à la clientèle  satisfaction client  votre propre  vieille fournisseur  [http://obtenir-rio.info/rio-bouygues rio bouygues] . Vous ne  CAN   get un SMS  avec vos . Avec  votre propre  [http://obtenir-rio.info/rio-orange code rio orange], alors  vous serez en mesure de vous abonner à l' offre de  de   en  rouge.

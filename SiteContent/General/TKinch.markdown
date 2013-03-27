@@ -6,9 +6,9 @@ Parts of the source are available (http://returnself.com/code.php ) along with a
 
 So far I have released:
 
-* a keyboard navigable subclass of [[NSTableView]].  Sorry, it only works if you are using [[CocoaBindings]].
+* a keyboard navigable subclass of General/NSTableView.  Sorry, it only works if you are using General/CocoaBindings.
 
-* a subclass of [[NSArrayController]] that allows searching via a one-method protocol in your model object and filtering on up to four criteria.
+* a subclass of General/NSArrayController that allows searching via a one-method protocol in your model object and filtering on up to four criteria.
 
 Both are dual-licensed: choose BSD or GPL depending on what sort of project you want to use it in.
 
@@ -18,4 +18,4 @@ I recently put up an article (http://returnself.com/blog/2005/03/09/beyond-bindi
 
 -- kinch
 
-''Welcome to [[CocoaDev]].''
+*Welcome to General/CocoaDev.*

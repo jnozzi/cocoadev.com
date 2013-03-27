@@ -1,1 +1,1 @@
-Please refer to the [[CPlusPlus]] page.
+Please refer to the General/CPlusPlus page.

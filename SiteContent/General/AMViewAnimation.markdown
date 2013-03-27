@@ -1,8 +1,8 @@
-Today, I discovered the magic of [[NSViewAnimation]]. But I found it rather awkward to use on a quick basis, so I cooked up a lovely category on [[NSView]] that allows you to send it messages like fadeOut and animateToFrame in about 1/10th the characters. Sensible defaults are provided for everything, but you can change them if necessary. MIT License.
+Today, I discovered the magic of General/NSViewAnimation. But I found it rather awkward to use on a quick basis, so I cooked up a lovely category on General/NSView that allows you to send it messages like fadeOut and animateToFrame in about 1/10th the characters. Sensible defaults are provided for everything, but you can change them if necessary. MIT License.
 
 
-'''[[NSView]]+AMAnimationAdditions.h'''
-<code>
+**General/NSView+AMAnimationAdditions.h**
+    
  //
  //  NSView+AMAnimationAdditions.h
  //  MovingView
@@ -23,10 +23,10 @@ Today, I discovered the magic of [[NSViewAnimation]]. But I found it rather awkw
  + (void)setDefaultBlockingMode:(NSAnimationBlockingMode)mode;
  + (void)setDefaultAnimationCurve:(NSAnimationCurve)curve;
  @end
-</code>
 
-'''[[NSView]]+AMAnimationAdditions.m'''
-<code>
+
+**General/NSView+AMAnimationAdditions.m**
+    
  //
  //  NSView+AMAnimationAdditions.m
  //  MovingView
@@ -52,7 +52,7 @@ Today, I discovered the magic of [[NSViewAnimation]]. But I found it rather awkw
  
  - (void)playAnimationWithParameters:(NSDictionary *)params
  {
- 	NSViewAnimation *animation = [[NSViewAnimation alloc] initWithViewAnimations:[self animationArrayForParameters:params]];
+ 	NSViewAnimation *animation = General/NSViewAnimation alloc] initWithViewAnimations:[self animationArrayForParameters:params;
  	[animation setAnimationBlockingMode:AMDefaultAnimationBlockingMode];
  	[animation setDuration:AMDefaultAnimationDuration];
  	[animation setAnimationCurve:AMDefaultAnimationCurve];
@@ -106,11 +106,11 @@ Today, I discovered the magic of [[NSViewAnimation]]. But I found it rather awkw
  }
  
  @end
-</code>
+
 
 Requires 10.4, of course. I hope these things prove useful. Please let me know if there are problems or suggestions.
 
--- [[AndyMatuschak]]
+-- General/AndyMatuschak
 
 
-[[Category:CocoaDevUsersAdditions]]
+General/Category:CocoaDevUsersAdditions

@@ -13,22 +13,22 @@ Any help would be appreciated.
 
 ----
 
-There's the [[FFArchive]] framework, which is part of the [[FFView]] application at http://www.feedface.com/projects/ffview.html. -- l0ne aka [[EmanueleVulcano]]
+There's the General/FFArchive framework, which is part of the General/FFView application at http://www.feedface.com/projects/ffview.html. -- l0ne aka General/EmanueleVulcano
 
 ----
 
 Alternatively, you could read the documentation for 'ditto'  (open terminal, type "man ditto") and create and launch a task. To get you started, here's a quick way of zipping the contents of a folder...
 
-<code>
+    
  /* Assumes sourcePath and targetPath are both
  valid, standardized paths. */
  
  // Create the zip task
- NSTask * backupTask = [[NSTask alloc] init];
+ NSTask * backupTask = General/NSTask alloc] init];
  [backupTask setLaunchPath:@"/usr/bin/ditto"];
  [backupTask setArguments:
   [NSArray arrayWithObjects:@"-c", @"-k", @"-X", @"--rsrc",
-   sourcePath, targetPath, nil]];
+   sourcePath, targetPath, nil;
  
  // Launch it and wait for execution
  [backupTask launch];
@@ -41,17 +41,17 @@ Alternatively, you could read the documentation for 'ditto'  (open terminal, typ
  // You *did* remember to wash behind your ears ...
  // ... right?
  [backupTask release];
-</code>
 
-Standard warning: This code was typed in the Wiki's edit window. It may not be perfect, efficient, sane, safe with children, etc. Figuring out ditto and how to manipulate it from within Cocoa is up to you. Well, alright, another hint. Check out [[NSTask]] documentation as well. In addition to asking it for its termination status, you can capture a task's output. Used with [[NSScanner]], you can parse the output and make it purdy.
+
+Standard warning: This code was typed in the Wiki's edit window. It may not be perfect, efficient, sane, safe with children, etc. Figuring out ditto and how to manipulate it from within Cocoa is up to you. Well, alright, another hint. Check out General/NSTask documentation as well. In addition to asking it for its termination status, you can capture a task's output. Used with General/NSScanner, you can parse the output and make it purdy.
 
 ----
 I wanted to save my document as a file that users can open as a zip file by just changing the extention to zip.
 So I made the following code using the above code. 
 
-If you don't want users to open a file as a zip archive, I think [[NSData]]+[[CocoaDevUsersAdditions]] in [[NSDataCategory]] is more handy to use.
+If you don't want users to open a file as a zip archive, I think General/NSData+General/CocoaDevUsersAdditions in General/NSDataCategory is more handy to use.
 
-<code>
+    
  /*
  
  Please change the scratch folder etc to appropriate ones.
@@ -72,21 +72,21 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
    /*
    NSData* convertedData = [self zip:data];
    
-   [convertedData writeToFile:[[[NSHomeDirectory]]() stringByAppendingPathComponent: @"Desktop/zip result"] atomically:YES];
+   [convertedData writeToFile:General/[NSHomeDirectory() stringByAppendingPathComponent: @"Desktop/zip result"] atomically:YES];
    
    
    */
    
    // Zip test 2
    
-   NSFileWrapper* zipwrap = [[[NSFileWrapper alloc] initDirectoryWithFileWrappers:NULL ] autorelease];
+   NSFileWrapper* zipwrap = General/[NSFileWrapper alloc] initDirectoryWithFileWrappers:NULL ] autorelease];
    
    [zipwrap addRegularFileWithContents:data   preferredFilename:@"data1" ];
    [zipwrap addRegularFileWithContents:data   preferredFilename:@"data2" ];
    
    NSData* convertedData = [self zip:zipwrap];
    
-   [convertedData writeToFile:[[[NSHomeDirectory]]() stringByAppendingPathComponent: @"Desktop/zip result"] atomically:YES];
+   [convertedData writeToFile:[[[NSHomeDirectory() stringByAppendingPathComponent: @"Desktop/zip result"] atomically:YES];
    
    
    
@@ -112,7 +112,7 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
   	
    }
    
-   [wrapper  writeToFile:[[[NSHomeDirectory]]() stringByAppendingPathComponent: @"Desktop/unzip result"] atomically:YES updateFilenames:YES];
+   [wrapper  writeToFile:General/[NSHomeDirectory() stringByAppendingPathComponent: @"Desktop/unzip result"] atomically:YES updateFilenames:YES];
    
  }
  
@@ -120,7 +120,7 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
  
  -(NSData*)zip:(id)raw //raw must be NSData or NSFileWrapper
  {
-   NSString* scratchFolder =[[[NSHomeDirectory]]() stringByAppendingPathComponent: @"Desktop/"];
+   NSString* scratchFolder =General/[NSHomeDirectory() stringByAppendingPathComponent: @"Desktop/"];
    
    
    NSString* sourceFilename = @"data";
@@ -154,11 +154,11 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
    
    //----------------
    // Create the zip task
-   NSTask * backupTask = [[NSTask alloc] init];
+   NSTask * backupTask = General/NSTask alloc] init];
    [backupTask setLaunchPath:@"/usr/bin/ditto"];
    [backupTask setArguments:
     [NSArray arrayWithObjects:@"-c", @"-k", @"-X", @"--rsrc",
-     sourcePath, targetPath, nil]];
+     sourcePath, targetPath, nil;
    
    // Launch it and wait for execution
    [backupTask launch];
@@ -176,7 +176,7 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
    [backupTask release];
    
    
-   NSData* convertedData = [[[NSData alloc] initWithContentsOfFile:targetPath] autorelease];
+   NSData* convertedData = General/[NSData alloc] initWithContentsOfFile:targetPath] autorelease];
    
    //delete scratch
    
@@ -193,7 +193,7 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
  
  -(NSFileWrapper*)unzip:(NSData*)zipData
  {
-   NSString* scratchFolder =[[[NSHomeDirectory]]()
+   NSString* scratchFolder =[[[NSHomeDirectory()
                                   stringByAppendingPathComponent: @"Desktop/"];
    
    NSString* sourceFilename = @"zipped data";
@@ -216,10 +216,10 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
    //Unzip
    
    //-------------------
-   NSTask *cmnd=[[NSTask alloc] init];
+   NSTask *cmnd=General/NSTask alloc] init];
    [cmnd setLaunchPath:@"/usr/bin/ditto"];
    [cmnd setArguments:[NSArray arrayWithObjects:
-                       @"-v",@"-x",@"-k",@"--rsrc",sourcePath,targetPath,nil]];
+                       @"-v",@"-x",@"-k",@"--rsrc",sourcePath,targetPath,nil;
    [cmnd launch];
    [cmnd waitUntilExit];
    
@@ -239,7 +239,7 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
    //unzip
    //
    
-   NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:targetPath];
+   NSArray* contents = General/NSFileManager defaultManager] directoryContentsAtPath:targetPath];
    
    
    NSFileWrapper* wrapper;
@@ -247,7 +247,7 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
    if( [contents count] == 1 )
    {
      NSString* onepath;
-     onepath = [targetPath stringByAppendingPathComponent:[contents lastObject]];
+     onepath = [targetPath stringByAppendingPathComponent:[contents lastObject;
      
      NSData* data = [NSData dataWithContentsOfFile:onepath];
      
@@ -288,4 +288,3 @@ If you don't want users to open a file as a zip archive, I think [[NSData]]+[[Co
    
    return wrapper;
  }
-</code>

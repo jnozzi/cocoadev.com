@@ -8,16 +8,16 @@ Thank you
 ----
 
 
-<code>
+    
 
-static int [[DaysInMonth]](int month, int year) {
-    [[NSTimeZone]] ''EST = [[[NSTimeZone]] timeZoneWithAbbreviation:@"EST"];
-    [[NSCalendarDate]] ''day27 = [[[NSCalendarDate]] dateWithYear:year month:month day:27 hour:12 minute:0 second:0 timeZone:EST];
-    [[NSCalendarDate]] ''day27Plus5Days = [day27 dateByAddingYears:0 months:0 days:5 hours:0 minutes:0 seconds:0];
+static int General/DaysInMonth(int month, int year) {
+    General/NSTimeZone *EST = General/[NSTimeZone timeZoneWithAbbreviation:@"EST"];
+    General/NSCalendarDate *day27 = General/[NSCalendarDate dateWithYear:year month:month day:27 hour:12 minute:0 second:0 timeZone:EST];
+    General/NSCalendarDate *day27Plus5Days = [day27 dateByAddingYears:0 months:0 days:5 hours:0 minutes:0 seconds:0];
     return 32 - [day27Plus5Days dayOfMonth];
 }
 
-</code>
+
 
 There has to be an easier way!!
 
@@ -26,11 +26,11 @@ There has to be an easier way!!
 ----
 
 This sounds like it would be easier to do manually:
-<code>
+    
 static int monthDaysTable[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 int daysInMonth(int month, int year)
 {
-	[[NSAssert]](month >= 1 && month <= 12, @"month is invalid");
+	General/NSAssert(month >= 1 && month <= 12, @"month is invalid");
 	// leap years occur when the year is divisible by 4 but not 100, unless it's divisible by 400 in which case it is again
 	if (month == 2 && (year % 4) == 0 && ((year % 100) != 0 || (year % 400) == 0)) {
 		return 29;
@@ -38,7 +38,7 @@ int daysInMonth(int month, int year)
 		return monthDaysTable[month-1];  // gotta subtract 1 to switch to 0-based index.
 	}
 }
-</code>
+
 I'm pretty sure that's the right algorithm but I didn't look it up to be totally sure. -- Bo
 
 ----
@@ -54,18 +54,17 @@ Fair enough. I always thought the Egyptian method of having 360 days in a year, 
 ----
 
 I could go for the party idea, How about Just forgetting the years and months altogether and just count rotations.
-<code>
+    
 .
 .
 .
-[[[[NSNotificationCenter]] defaultCenter] addObserver:self selector:@selector(solarOrbitComplete:) name:[[NSSolarOrbitComplete]] object:[[[HomeWorld]] defaultInstance]];
+General/[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(solarOrbitComplete:) name:General/NSSolarOrbitComplete object:General/[HomeWorld defaultInstance]];
 .
 .
 .
-- (void)solarOrbitComplete:([[NSNotification]]'')aNotification
+- (void)solarOrbitComplete:(General/NSNotification*)aNotification
 {
 	@synchronized (self) {
 		++m_day;
 	}
 }
-</code>

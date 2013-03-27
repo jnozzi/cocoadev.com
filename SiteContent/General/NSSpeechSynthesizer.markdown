@@ -1,7 +1,7 @@
-Describe [[NSSpeechSynthesizer]] here.
+Describe General/NSSpeechSynthesizer here.
 
-[[NSSpeechSynthesizer]] is the built in objective-c wrapper around the speech system introduced in 10.3
+General/NSSpeechSynthesizer is the built in objective-c wrapper around the speech system introduced in 10.3
 
-See http://developer.apple.com/documentation/Cocoa/Reference/[[ApplicationKit]]/Classes/NSSpeechSynthesizer_Class
+See http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/Classes/NSSpeechSynthesizer_Class
 
-And http://developer.apple.com/documentation/Cocoa/Conceptual/Speech/Articles/[[SynthesizeSpeech]].html
+And http://developer.apple.com/documentation/Cocoa/Conceptual/Speech/Articles/General/SynthesizeSpeech.html

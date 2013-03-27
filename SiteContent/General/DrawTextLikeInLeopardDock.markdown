@@ -5,7 +5,7 @@ I tried several attributes, but never even got close to those good-looking strin
 
 ----
 
-Just looks like white text with a dark gray outline to me. You can set the outline colour attribute on an [[NSAttributedString]]. --GC
+Just looks like white text with a dark gray outline to me. You can set the outline colour attribute on an General/NSAttributedString. --GC
 
 ----
 Yup, that's it. I thank you kindly.

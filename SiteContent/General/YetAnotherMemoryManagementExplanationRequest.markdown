@@ -1,28 +1,28 @@
-Sorry to ask this <code>autorelease</code> question for what must be the pow(n, n) th time...
+Sorry to ask this     autorelease question for what must be the pow(n, n) th time...
 
-1) Object A implements a <code>description</code> method in which the returned string is (assumed to be) autoreleased
+1) Object A implements a     description method in which the returned string is (assumed to be) autoreleased
 
 2) Object B asks Object A for that description as follows:
 
-<code>
+    
 
-// This works fine, because (??) the text view's [[NSText]] object is retaining the string for us
+// This works fine, because (??) the text view's General/NSText object is retaining the string for us
 [ objectBTextView setString: [ objectA description ] ];  
 
-</code>
+
 
 3) A long time ago, in a galaxy far, far away, Object B asked Object A for its description without really knowing what he was doing
 
-<code>
+    
 
-[[NSString]] ''descripString;
+General/NSString *descripString;
 
 // This does not work, because we did not do descripString = [ [ objectA description ] retain ];
 descripString = [ objectA description ];  
 // Fails, because (??) the autorelease pool is, como se dice, "drained" (?) after the above line 
 [ objectBTextView setString: descripString ];       
 
-</code>
+
 
 If my (commentary) analysis is correct, then I believe I finally understand what the autorelease pool is on about, in its heart-of-hearts
 Well? Is it?
@@ -30,19 +30,19 @@ Well? Is it?
 From my introductory reading, I have been led to believe that this autoreleased object would last long enough to get to the next line of code...
 
 ----
-descripString will remain in the auto-release pool until the auto-release pool is recycled/destroyed or if the string is subsequently retained. The auto-release pool can be cleaned up in one of two ways; by releasing an auto-release pool of your making that was active during the <code>description</code> call, as most often seen in command line Foundation applications or, as is it seems to be in your case, when the call stack gets back to Cocoa's internal event mechanism. As long as I am not missing anything in your example and the [[NSTextView]] (actualy a [[NSText]] method) retains the string, the code as presented should be fine.
+descripString will remain in the auto-release pool until the auto-release pool is recycled/destroyed or if the string is subsequently retained. The auto-release pool can be cleaned up in one of two ways; by releasing an auto-release pool of your making that was active during the     description call, as most often seen in command line Foundation applications or, as is it seems to be in your case, when the call stack gets back to Cocoa's internal event mechanism. As long as I am not missing anything in your example and the General/NSTextView (actualy a General/NSText method) retains the string, the code as presented should be fine.
 ----
 Temporary variables don't make any difference in the resulting code. The following pieces of code will result in exactly the same behavior, and probably exactly the same machine code:
 
-<code>
-[a setThing:[[b getThing] modifyThing]];
+    
+[a setThing:General/b getThing] modifyThing;
 
 id temp1 = [b getThing];
 id temp2 = [temp1 modifyThing];
 [a setThing:temp2];
-</code>
+
 ----
-I don't think it was the temporaries/assignments he was woried about, it was the lifetimes of the referenced objects, although I could be wrong. ''He posted two pieces of code that were identical other than temporaries, claiming that one worked and one didn't. I was just clarifying that the two situations and the object lifetimes involved are the same.''
+I don't think it was the temporaries/assignments he was woried about, it was the lifetimes of the referenced objects, although I could be wrong. *He posted two pieces of code that were identical other than temporaries, claiming that one worked and one didn't. I was just clarifying that the two situations and the object lifetimes involved are the same.*
 
 Both pieces of code are identical, by the time they get compiled. (The compiler will have to use a register as a temp, anyway. It doesn't make any difference if it has a name or not.) If the behaviour is inconsistent, something else is wrong. Autorelease pools aren't emptied by magic -- the app needs to actually run code to do it, and that can't happen while your method is executing. Please show us your real code.
 
@@ -51,37 +51,37 @@ Both pieces of code are identical, by the time they get compiled. (The compiler 
 Using the strategies I presented (which do not differ, as you remind me) does not in fact cause an memory error
 The crash is caused by the following scheme
 
-<code>
-- ( [[IBAction]] ) displayTheResult
+    
+- ( General/IBAction ) displayTheResult
 {
-[[NSString]] ''descripString = [ [ [[NSString]] alloc ] init ];
+General/NSString *descripString = [ [ General/NSString alloc ] init ];
 ...
 descripString = [ thing description ];
 [ theTextView setString: descripString ];
 ...
 [ descripString release ];
 }
-</code>
+
 
 The crash is avoided by
 
-<code>
-- ( [[IBAction]] ) displayTheResult
+    
+- ( General/IBAction ) displayTheResult
 {
-[[NSString]] ''descripString = [ [ [[NSString]] alloc ] init ];
+General/NSString *descripString = [ [ General/NSString alloc ] init ];
 ...
 //descripString = [ thing description ]; //never mind, don't need this line, it screws things up
 [ theTextView setString: [ thing description ] ];
 ...
 [ descripString release ];        // Cleans up an utterly superfluous alloc-release pair
 }
-</code>
+
 
 There is still something going on here that I do not entirely understand. The text view is fine with
 the string object (autoreleased) returned from the description method, but does not seem to
 be able to retain the object that we allocate, set into the text view, that we later release explicitly.
 
-I guess the retain given the object by the [[NSText]] in the text view does not overcome releasing
+I guess the retain given the object by the General/NSText in the text view does not overcome releasing
 the object  at the end of the method. Or maybe there isn't a retain after all......?????
 
 I was under the impression that the retain that descripString gets in the text view will increment its retain count and keep the
@@ -105,24 +105,24 @@ I'm embarrassed because this was not really a question about what alloc and auto
 
 ----
 
-''It is simply NOT invariably true that if you create an object with an alloc message to its class, that you MUST at some point send it a release message in order to avoid a memory leak.''
+*It is simply NOT invariably true that if you create an object with an alloc message to its class, that you MUST at some point send it a release message in order to avoid a memory leak.*
 
 Well, yes, it IS true. If you do the following:
 
-<code>
+    
 
-[[NSString]] ''someString = [[[[NSString]] alloc] init];
+General/NSString *someString = General/[[NSString alloc] init];
 someString = [somethingElse description];
 
-</code>
+
 
 you're leaking the original string object. And there's no way to fix it after the reassignment, since you no longer have any reference to that object. You'd need to release someString first, which results in some pretty obvious do-nothing code.
 
-<code>
-[[NSString]] ''someString = [[somethingElse description] retain];
+    
+General/NSString *someString = General/somethingElse description] retain];
 //do stuff with someString
 [someString release];
-</code>
+
 
 ----
 
@@ -157,14 +157,14 @@ And if it's all right, I will orphan this discussion forthwith.
 
 ----
 
-Agreed. My C is a bit rusty since I spent a good while focused on Java before turning to Cocoa and [[ObjectiveC]]. Should have brushed up a bit, I guess.
+Agreed. My C is a bit rusty since I spent a good while focused on Java before turning to Cocoa and [[ObjectiveC. Should have brushed up a bit, I guess.
 
 Anyway my new Cocoa-related question is this:
 
-If I create an autoreleased mutable array object inside one method, return it as type ([[NSArray]] '')
-and assign it to an [[NSArray]] pointer variable declared in the caller,
+If I create an autoreleased mutable array object inside one method, return it as type (General/NSArray *)
+and assign it to an General/NSArray pointer variable declared in the caller,
 (no pre-existing object this time, just the pointer - no more lost pointers for me!)
-will it actually '''be'''
+will it actually **be**
 immutable in the environment of the caller, or do I have to do some sort of copy out there in the caller?
 
 And yes, I understand that I have to do a retain (or copy?) out in the caller if I want to do anything subsequently with the array.
@@ -173,63 +173,63 @@ I know you can do mutable copy to keep an object mutable - so if I do an ordinar
 Or an irresistible coerce?     ;-)
 
 ----
-''so if I do an ordinary copy, do I get an immutable object''
+*so if I do an ordinary copy, do I get an immutable object*
 
-In the case of [[NSArray]]/[[NSMutableArray]], Yes.
+In the case of General/NSArray/General/NSMutableArray, Yes.
 
-For further explanation of why I say "''In the case of''", see the following
+For further explanation of why I say "*In the case of*", see the following
 
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Protocols/[[NSCopying]].html
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Protocols/[[NSMutableCopying]].html
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Protocols/General/NSCopying.html
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Protocols/General/NSMutableCopying.html
 
-It basically states that if an object to be copied makes a distinction of both immutable and mutable variants then adhere to both the [[NSCopying]]/[[NSMutableCopying]] protocols respectively otherwise only implement [[NSCopying]], immutable or not.
+It basically states that if an object to be copied makes a distinction of both immutable and mutable variants then adhere to both the General/NSCopying/General/NSMutableCopying protocols respectively otherwise only implement General/NSCopying, immutable or not.
 
-BTW, If you have an acquired an auto-released object of the correct type in your method (that you want to return) and your method contract says it will return an auto-released object, you do not need to <code>copy</code>/<code>retain</code>/<code>autorelease</code> it, you can just return it.
+BTW, If you have an acquired an auto-released object of the correct type in your method (that you want to return) and your method contract says it will return an auto-released object, you do not need to     copy/    retain/    autorelease it, you can just return it.
 
 I will also point out that a method implemented as such...
 
-<code>
-- ([[NSArray]]'')doSomethingReturningAnArray
+    
+- (General/NSArray*)doSomethingReturningAnArray
 {
-    [[NSMutableArray]] ''array = [[[NSMutableArray]] arrayWithCapacity:n];
+    General/NSMutableArray *array = General/[NSMutableArray arrayWithCapacity:n];
     .
     .
     .
     return array;
 }
-</code>
 
-Returns a Mutable array that can be modified further with a simple <code> [[NSMutableArray]] ''array = ([[NSMutableArray]] '') [someObject doSomethingReturningAnArray]; </code>.
 
-I point this out as an example/warning of something that should NOT be done, not something that CAN be done. When dealing with callers outside of your control, or even in your control, code defensively. So if you intend to return a [[NSArray]], return an [[NSArray]].
+Returns a Mutable array that can be modified further with a simple      General/NSMutableArray *array = (General/NSMutableArray *) [someObject doSomethingReturningAnArray]; .
+
+I point this out as an example/warning of something that should NOT be done, not something that CAN be done. When dealing with callers outside of your control, or even in your control, code defensively. So if you intend to return a General/NSArray, return an General/NSArray.
 
 ----
 
 Thank you. Those last remarks exactly address the problem I suspected. I take your words to mean that I should do something like
 
-<code>
-- ([[NSArray]]'')putNumbersInArray
+    
+- (General/NSArray*)putNumbersInArray
 {
-    [[NSMutableArray]] ''array = [ [ [[NSMutableArray]] alloc ] init ];
+    General/NSMutableArray *array = [ [ General/NSMutableArray alloc ] init ];
     ...
     do
     {
-          [ array addObject: [ [[NSNumber]] numberWithInt: nextNumber ] ];
+          [ array addObject: [ General/NSNumber numberWithInt: nextNumber ] ];
           // etc.
      }    while ( "nextNumber meets my criteria" );
     ...
    // This also gives me an autoreleased array to return
-    ''' [[NSArray]] ''defensiveArray = [ [[NSArray]] arrayWithArray: array ]; ''' 
-   ''' release array;'''
-   ''' return defensiveArray;'''
+    ** General/NSArray *defensiveArray = [ General/NSArray arrayWithArray: array ]; ** 
+   ** release array;**
+   ** return defensiveArray;**
 }
-</code>
+
 
 ----
 
-You don't need to declare a new [[NSArray]] at the end. You can replace the last 3 lines with <code>return [[array copy] autorelease]</code>
+You don't need to declare a new General/NSArray at the end. You can replace the last 3 lines with     return General/array copy] autorelease]
 
-Actually, you'd also need to change the first line to <code>[[NSMutableArray]] ''array = [[[NSMutableArray]] array]</code> to avoid leaking that.
+Actually, you'd also need to change the first line to     [[NSMutableArray *array = General/[NSMutableArray array] to avoid leaking that.
 
 ----
 
@@ -241,28 +241,28 @@ Is it true that accessor methods to return (rather than set) objects do not norm
  Thus I suspect it is not doing what an accessor method is normally expected to do.
 In a class intended to be reusable or in a framework, this might be better pitched as an initializer method, declared 
 
-<code>
-- ( id ) initWithSeed: (int) seed;  // or with a specific type ([[NSArray]] '') as the return value?
-</code>
+    
+- ( id ) initWithSeed: (int) seed;  // or with a specific type (General/NSArray *) as the return value?
+
 
 Would users understand such a class better if it were declared this way?
 (I understand this example is pretty useless except to me; this is a stylistic, rather than technical, question.)
 
 ----
-''Is it true that accessor methods to return (rather than set) objects do not normally take arguments''
+*Is it true that accessor methods to return (rather than set) objects do not normally take arguments*
 
-An accessor ''get'' method should not take an argument.
+An accessor *get* method should not take an argument.
 
-See: http://developer.apple.com/documentation/Cocoa/Conceptual/[[KeyValueObserving]]/index.html
+See: http://developer.apple.com/documentation/Cocoa/Conceptual/General/KeyValueObserving/index.html
 
 The init method is fine, as long as it is truly an init method. You may want to browse the following for more information.
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[CodingGuidelines]]/index.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/CodingGuidelines/index.html
 
-''Would users understand such a class better if it were declared this way?''
+*Would users understand such a class better if it were declared this way?*
 
-Yes, as long as it returns a class of the type it was intended. In your case, you want to return an [[NSArray]], it should be a category method for [[NSArray]].
+Yes, as long as it returns a class of the type it was intended. In your case, you want to return an General/NSArray, it should be a category method for General/NSArray.
 
-For your own objects. I guess you could also have a <code> - (void)setSeed:(int)seed; </code> method that re-factored some internals. But you could have a separate, non-accessor method, clearly named that did what you wanted, like <code> -([[NSArray]]'')refactorTheWorldWithSeed:(int)seed; </code>.
+For your own objects. I guess you could also have a      - (void)setSeed:(int)seed;  method that re-factored some internals. But you could have a separate, non-accessor method, clearly named that did what you wanted, like      -(General/NSArray*)refactorTheWorldWithSeed:(int)seed; .
 
 ----
 

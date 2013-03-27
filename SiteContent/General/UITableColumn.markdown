@@ -1,5 +1,5 @@
 
 
-Part of the iPhone [[UIKit]] framework. Represents a column in a [[UITable]].
+Part of the iPhone General/UIKit framework. Represents a column in a General/UITable.
 
-%%BEGINCODESTYLE%%- (id)initWithTitle:([[NSString]]'')title identifier:([[NSString]]'')identifier width:(float)width;%%ENDCODESTYLE%%
+<code>- (id)initWithTitle:(General/NSString*)title identifier:(General/NSString*)identifier width:(float)width;</code>

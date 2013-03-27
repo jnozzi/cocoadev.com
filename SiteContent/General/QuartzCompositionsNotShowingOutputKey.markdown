@@ -2,31 +2,31 @@
 
 Here's the thing...
 
-I'm loading a Quartz Composition in q [[QCView]] in Cocoa and when I start the rendering the first time, I can get the list of Output Keys, but not the value of a specific key. Here is the code:
+I'm loading a Quartz Composition in q General/QCView in Cocoa and when I start the rendering the first time, I can get the list of Output Keys, but not the value of a specific key. Here is the code:
 
 [circleGraphic loadCompositionFromFile:pointerPath];
-[[NSArray]] ''allOutputKeys = [[[NSArray]] arrayWithArray:[circleGraphic outputKeys]];
+General/NSArray *allOutputKeys = General/[NSArray arrayWithArray:[circleGraphic outputKeys]];
 [circleGraphic startRendering];
 		
-[[NSLog]](@"All output keys %@",[circleGraphic outputKeys]);
-[[NSLog]](@"Output key value (should be a string): '%@'",[circleGraphic valueForOutputKey:@"customName1"]);
+General/NSLog(@"All output keys %@",[circleGraphic outputKeys]);
+General/NSLog(@"Output key value (should be a string): '%@'",[circleGraphic valueForOutputKey:@"customName1"]);
 		
 Here is the result in console:
 
 
-2006-10-25 20:18:02.841 [[TestApp]][1217] Output keys (
+2006-10-25 20:18:02.841 General/TestApp[1217] Output keys (
     customName1,
 )
-2006-10-25 20:18:02.841 [[TestApp]][1217] Output key value  (should be a string): ''
+2006-10-25 20:18:02.841 General/TestApp[1217] Output key value  (should be a string): *
 
 So the value contained in this key seemsempty (but it is not!
 
 If I call this method twice, the second time I get:
 
-2006-10-25 20:18:02.841 [[TestApp]][1217] Output keys (
+2006-10-25 20:18:02.841 General/TestApp[1217] Output keys (
     customName1,
 )
-2006-10-25 20:18:02.841 [[TestApp]][1217] Output key value  (should be a string): 'Excellent Value'
+2006-10-25 20:18:02.841 General/TestApp[1217] Output key value  (should be a string): 'Excellent Value'
 
 
 Where "Excellent Value" is the proper value stored in the Composition's output key.

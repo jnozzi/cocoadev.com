@@ -4,71 +4,71 @@ Or even how to get the imagefiles icon?
 ----
 
 
-*[[LockingFocusOnAnImageInAnotherThread]]
-*[[ThreadSafety]]
-*[[NSBrowserIcons]]
+*General/LockingFocusOnAnImageInAnotherThread
+*General/ThreadSafety
+*General/NSBrowserIcons
 
 
 ----
 
 If you want to resize an image from a file, this code snippet should work:
 
-<code>
-[[NSImage]] ''sourceImage;
+    
+General/NSImage *sourceImage;
 
-sourceImage = [[[[[NSImage]] alloc] initWithContentsOfFile:@"path/to/image"] autorelease];
+sourceImage = General/[[[NSImage alloc] initWithContentsOfFile:@"path/to/image"] autorelease];
 
 // Report an error if the source isn't a valid image
 if (![sourceImage isValid]) {
-	[[NSLog]](@"Invalid Image");
+	General/NSLog(@"Invalid Image");
 } else {
-	[[NSImage]] ''smallImage;
+	General/NSImage *smallImage;
 	
-	smallImage = [[[[[NSImage]] alloc] initWithSize:[[NSMakeSize]](64, 64)] autorelease];
+	smallImage = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(64, 64)] autorelease];
 	[smallImage lockFocus];
-	[[[[NSGraphicsContext]] currentContext] setImageInterpolation:[[NSImageInterpolationHigh]]];
-	[sourceImage setSize:[[NSMakeSize]](64, 64)];
-	[sourceImage compositeToPoint:[[NSZeroPoint]] operation:[[NSCompositeCopy]]];
+	General/[[NSGraphicsContext currentContext] setImageInterpolation:General/NSImageInterpolationHigh];
+	[sourceImage setSize:General/NSMakeSize(64, 64)];
+	[sourceImage compositeToPoint:General/NSZeroPoint operation:General/NSCompositeCopy];
 	[smallImage unlockFocus];
 }
-</code>
+
 
 The small image will be 64 x 64 pixels in size. You can change the size to whatever you want. You may want to add some relational sizing so it doesn't stretch a rectangular image. Pour participer Orange et garder votre numéro, vous aurez peuvent avoir compte driver (code RIO ) [http://obtenir-rio.info rio bouygues]. Vous obtiendrez êtes certain d'obtenir pour aucun coût par entrer en contact avec la voix expression du serveur ou du service à la clientèle satisfaction client votre actuel vieille fournisseur [http://obtenir-rio.info/rio-bouygues code rio bouygues] . Vous ne CAN obtenir un SMS avec vos . Avec votre propre [http://obtenir-rio.info/rio-orange code rio orange], alors il est possible d' vers le offre de de à propos fruits .
 
--- [[RyanBates]]
+-- General/RyanBates
 
 Thanks, but my problem was more about files that have the thumbnailes already saved (as under os9 in the resourcefork) and I want to read them without reading the whole file.
-Nevertheless, your source solved a small other problem (-interpolation-) of mine, [[PaulD]]
+Nevertheless, your source solved a small other problem (-interpolation-) of mine, General/PaulD
 
 ----
 
 For dealing with Carbon icons, you may want to use Troy Stephens library. It may be downloaded at:
 
-    http://homepage.mac.com/troy_stephens/software/objects/[[IconFamily]]/
+    http://homepage.mac.com/troy_stephens/software/objects/General/IconFamily/
 
-For reading thumbnail resources, 'PICT' resource to be exact, you will need to use Carbon Resource Manager API. There may be more than one way to transfert the PICT image to an [[NSImage]].
+For reading thumbnail resources, 'PICT' resource to be exact, you will need to use Carbon Resource Manager API. There may be more than one way to transfert the PICT image to an General/NSImage.
 
--- [[EricForget]]
+-- General/EricForget
 
-the snippet from [[RyanBates]] produced in my hands only the center of the original  image, not a scaledup version (iccopied and pasted from the snippet to :
-<code>
-@implementation [[NSImage]] (thumbnail)
+the snippet from General/RyanBates produced in my hands only the center of the original  image, not a scaledup version (iccopied and pasted from the snippet to :
+    
+@implementation General/NSImage (thumbnail)
 
-- ([[NSImage]] '') thumbnailImage: (int) size;
+- (General/NSImage *) thumbnailImage: (int) size;
 {
-	[[NSImage]] ''sourceImage = [self copy];
+	General/NSImage *sourceImage = [self copy];
 	
 	// Report an error if the source isn't a valid image
 	if (![sourceImage isValid])
 	{
-		[[NSLog]](@"Invalid Image");
+		General/NSLog(@"Invalid Image");
 	} else
 	{
-		[[NSImage]] ''smallImage = [[[[[NSImage]] alloc] initWithSize:[[NSMakeSize]](size, size)] autorelease];
+		General/NSImage *smallImage = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(size, size)] autorelease];
 		[smallImage lockFocus];
-		[sourceImage setSize:[[NSMakeSize]](size, size)];
-		[[[[NSGraphicsContext]] currentContext] setImageInterpolation:[[NSImageInterpolationHigh]]];
-		[sourceImage compositeToPoint:[[NSZeroPoint]] operation:[[NSCompositeCopy]]];
+		[sourceImage setSize:General/NSMakeSize(size, size)];
+		General/[[NSGraphicsContext currentContext] setImageInterpolation:General/NSImageInterpolationHigh];
+		[sourceImage compositeToPoint:General/NSZeroPoint operation:General/NSCompositeCopy];
 		[smallImage unlockFocus];
 		[sourceImage release];
 		return smallImage;
@@ -76,56 +76,56 @@ the snippet from [[RyanBates]] produced in my hands only the center of the origi
 	return nil;
 }
 @end
-</code>
-I appreciate any comments, [[PaulD]]
+
+I appreciate any comments, General/PaulD
 
 ----
 
 Well, the example he has looks different from this code which I usually use to do image scaling.  Try this out (I will try to change it so it looks like a categorized method - their may be superficial mistakes):
 
-<code>
-- ([[NSImage]] '')imageWithSize:([[NSSize]])newSize
+    
+- (General/NSImage *)imageWithSize:(General/NSSize)newSize
 {
-	[[NSImage]] ''newImage = [[[[NSImage]] alloc] initWithSize:newSize];
-	[[NSRect]] oldRect = [[NSMakeRect]](0.0, 0.0, [self size].width, [self size].height);
-	[[NSRect]] newRect = [[NSMakeRect]](0.0, 0.0, newSize.width, newSize.height);
+	General/NSImage *newImage = General/[[NSImage alloc] initWithSize:newSize];
+	General/NSRect oldRect = General/NSMakeRect(0.0, 0.0, [self size].width, [self size].height);
+	General/NSRect newRect = General/NSMakeRect(0.0, 0.0, newSize.width, newSize.height);
 
 	[newImage lockFocus];
-	[self drawInRect:newRect fromRect:oldRect operation:[[NSCompositeCopy]] fraction:1.0];
+	[self drawInRect:newRect fromRect:oldRect operation:General/NSCompositeCopy fraction:1.0];
 	[newImage unlockFocus];
 	return [newImage autorelease];
 }
-</code>
 
-I had to inline some utility functions (like getting a rect) that I normally use but this looks more or less like what I have used before.  [[RyanBates]] solution may be do something better but I am not sure.  I know that this seems to work for arbitrary scaling.
+
+I had to inline some utility functions (like getting a rect) that I normally use but this looks more or less like what I have used before.  General/RyanBates solution may be do something better but I am not sure.  I know that this seems to work for arbitrary scaling.
 
 Does that help?
 
---[[JeffDisher]]
+--General/JeffDisher
 
 ----
 
-Sorry, I forgot one important method in my above code snippet: <code>[sourceImage setScalesWhenResized:YES]</code>. So, to alter your code [[PaulD]], this should work:
+Sorry, I forgot one important method in my above code snippet:     [sourceImage setScalesWhenResized:YES]. So, to alter your code General/PaulD, this should work:
 
-<code>
-@implementation [[NSImage]] (thumbnail)
+    
+@implementation General/NSImage (thumbnail)
 
-- ([[NSImage]] '') thumbnailImage: (int) size;
+- (General/NSImage *) thumbnailImage: (int) size;
 {
-	[[NSImage]] ''sourceImage = [self copy];
+	General/NSImage *sourceImage = [self copy];
 	[sourceImage setScalesWhenResized:YES];
 	
 	// Report an error if the source isn't a valid image
 	if (![sourceImage isValid])
 	{
-		[[NSLog]](@"Invalid Image");
+		General/NSLog(@"Invalid Image");
 	} else
 	{
-		[[NSImage]] ''smallImage = [[[[[NSImage]] alloc] initWithSize:[[NSMakeSize]](size, size)] autorelease];
+		General/NSImage *smallImage = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(size, size)] autorelease];
 		[smallImage lockFocus];
-		[sourceImage setSize:[[NSMakeSize]](size, size)];
-		[[[[NSGraphicsContext]] currentContext] setImageInterpolation:[[NSImageInterpolationHigh]]];
-		[sourceImage compositeToPoint:[[NSZeroPoint]] operation:[[NSCompositeCopy]]];
+		[sourceImage setSize:General/NSMakeSize(size, size)];
+		General/[[NSGraphicsContext currentContext] setImageInterpolation:General/NSImageInterpolationHigh];
+		[sourceImage compositeToPoint:General/NSZeroPoint operation:General/NSCompositeCopy];
 		[smallImage unlockFocus];
 		[sourceImage release];
 		return smallImage;
@@ -133,36 +133,36 @@ Sorry, I forgot one important method in my above code snippet: <code>[sourceImag
 	return nil;
 }
 @end
-</code>
 
-However, [[JeffDisher]]'s suggestion does look like a better alternative, for one thing it is not as much code. You may want to set the image interpolation to high before resizing though.
 
--- [[RyanBates]]
-Both Jeff and Ryan, thanks, [[PaulD]]
+However, General/JeffDisher's suggestion does look like a better alternative, for one thing it is not as much code. You may want to set the image interpolation to high before resizing though.
+
+-- General/RyanBates
+Both Jeff and Ryan, thanks, General/PaulD
 
 ----
 Here's a method you can use to resize an image and save it as a JPEG file.
 
-<code>
--(BOOL)scaleAndSaveAsJPEG:([[NSString]] '')source 
+    
+-(BOOL)scaleAndSaveAsJPEG:(General/NSString *)source 
 		 maxwidth:(int)width 
 		maxheight:(int)height 
 		  quality:(float)quality
-		   saveTo:([[NSString]] '')dest
+		   saveTo:(General/NSString *)dest
 {
-    [[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
-    [[NSBitmapImageRep]] ''rep = nil;
-    [[NSBitmapImageRep]] ''output = nil;
-    [[NSImage]] ''scratch = nil;
+    General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+    General/NSBitmapImageRep *rep = nil;
+    General/NSBitmapImageRep *output = nil;
+    General/NSImage *scratch = nil;
     int w,h,nw,nh;
-    [[NSData]] ''bitmapData;
+    General/NSData *bitmapData;
     
-    rep = [[[NSBitmapImageRep]] imageRepWithContentsOfFile:source];
+    rep = General/[NSBitmapImageRep imageRepWithContentsOfFile:source];
     
     // could not open file
     if (!rep)
     {
-	[[NSLog]](@"Could not load '%@'", source);
+	General/NSLog(@"Could not load '%@'", source);
 	[pool release];
 	return NO;
     };
@@ -205,44 +205,44 @@ Here's a method you can use to resize an image and save it as a JPEG file.
     };
     
     // image to render into
-    scratch = [[[[[NSImage]] alloc] initWithSize:[[NSMakeSize]](nw, nh)] autorelease];
+    scratch = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(nw, nh)] autorelease];
     
     // could not create image
     if (!scratch)
     {
-	[[NSLog]](@"Could not render image");
+	General/NSLog(@"Could not render image");
 	[pool release];
 	return NO;
     };
     
     // draw into image, to scale it
     [scratch lockFocus];
-    [[[[NSGraphicsContext]] currentContext] setImageInterpolation:[[NSImageInterpolationHigh]]];
-    [rep drawInRect:[[NSMakeRect]](0.0, 0.0, nw, nh)];
-    output = [[[[[NSBitmapImageRep]] alloc] initWithFocusedViewRect:[[NSMakeRect]](0,0,nw,nh)] autorelease];
+    General/[[NSGraphicsContext currentContext] setImageInterpolation:General/NSImageInterpolationHigh];
+    [rep drawInRect:General/NSMakeRect(0.0, 0.0, nw, nh)];
+    output = General/[[[NSBitmapImageRep alloc] initWithFocusedViewRect:General/NSMakeRect(0,0,nw,nh)] autorelease];
     [scratch unlockFocus];
     
     // could not get result
     if (!output)
     {
-	[[NSLog]](@"Could not scale image");
+	General/NSLog(@"Could not scale image");
 	[pool release];
 	return NO;
     };
     
     // save as JPEG
-    [[NSDictionary]] ''properties =
-        [[[NSDictionary]] dictionaryWithObjectsAndKeys:
-	    [[[NSNumber]] numberWithFloat:quality],
-	    [[NSImageCompressionFactor]], NULL];    
+    General/NSDictionary *properties =
+        General/[NSDictionary dictionaryWithObjectsAndKeys:
+	    General/[NSNumber numberWithFloat:quality],
+	    General/NSImageCompressionFactor, NULL];    
     
-    bitmapData = [output representationUsingType:[[NSJPEGFileType]]
+    bitmapData = [output representationUsingType:General/NSJPEGFileType
 				      properties:properties];
     
     // could not get result
     if (!bitmapData)
     {
-	[[NSLog]](@"Could not convert to JPEG");
+	General/NSLog(@"Could not convert to JPEG");
 	[pool release];
 	return NO;
     };
@@ -254,7 +254,7 @@ Here's a method you can use to resize an image and save it as a JPEG file.
     return ret;
 };
 
-</code>
+
 
 -Michael Rothwell
 
@@ -262,7 +262,7 @@ What's with the semicolons after the closing braces?  I've never seen that done 
 
 ----
 
-This is the code I use using Epeg ( http://www.rasterman.com/code.html ) and [[EpegWrapper]] from entropy.ch ( http://www.entropy.ch/viewcvs/trunk/[[EpegWrapper]]/  ).
+This is the code I use using Epeg ( http://www.rasterman.com/code.html ) and General/EpegWrapper from entropy.ch ( http://www.entropy.ch/viewcvs/trunk/General/EpegWrapper/  ).
 
 Epeg:
 - https://github.com/mattes/epeg
@@ -270,78 +270,78 @@ Epeg:
 EpegWrapper:
 - http://ftparmy.com/247634-epegwrapper.html
 
-Epeg creates thumbnails really fast, but are pixellated, that's why I first create a double sized thumbnail using Epeg, then resize it using [[NSImage]] interpolation.
+Epeg creates thumbnails really fast, but are pixellated, that's why I first create a double sized thumbnail using Epeg, then resize it using General/NSImage interpolation.
 
-'''If you try to build this, the project is set up to search inside the original developers home directory for the libjpeg.a library (something like /Users/NOTME/Desktop/[[EpegWrapper]]/libjpeg). You have to change the project settings so that the library search path directs [[XCode]] to look for libjpeg.a in the directory where you built/installed libjpeg.a. If you don't do this you will get the linker warning "can't locate file for: -ljpeg"''
+**If you try to build this, the project is set up to search inside the original developers home directory for the libjpeg.a library (something like /Users/NOTME/Desktop/General/EpegWrapper/libjpeg). You have to change the project settings so that the library search path directs General/XCode to look for libjpeg.a in the directory where you built/installed libjpeg.a. If you don't do this you will get the linker warning "can't locate file for: -ljpeg"*
 
 This is really impressive when used with big files (from digital cameras, > 3M in size)
 
-<code>
-+ ([[NSImage]] '') thumbnailImageWithFile:([[NSString]] '')filePath withSize:(int)size highQuality:(BOOL)hires
+    
++ (General/NSImage *) thumbnailImageWithFile:(General/NSString *)filePath withSize:(int)size highQuality:(BOOL)hires
 {
-	[[NSImage]]		''big_thumb;
-	[[NSImage]]		''thumbnail;
-	[[NSSize]]		thumbnailSize;
+	General/NSImage		*big_thumb;
+	General/NSImage		*thumbnail;
+	General/NSSize		thumbnailSize;
 
 	if (hires)
 	{
 		// create a double sized thumbnail
-		thumbnailSize = [[NSMakeSize]](size''2, size''2);
+		thumbnailSize = General/NSMakeSize(size*2, size*2);
 
 		// create the thumbnail using Epeg
-		big_thumb = [[[EpegWrapper]] imageWithPath:filePath boundingBox:thumbnailSize];
+		big_thumb = General/[EpegWrapper imageWithPath:filePath boundingBox:thumbnailSize];
 
 		if ([big_thumb isValid])
 		{
 			// the real thumbnail should be half the Epeg thumbail
-			thumbnailSize = [[NSMakeSize]]([big_thumb size].width/2, [big_thumb size].height/2);
+			thumbnailSize = General/NSMakeSize([big_thumb size].width/2, [big_thumb size].height/2);
 
-			thumbnail = [[[[[NSImage]] alloc] initWithSize:thumbnailSize] autorelease];
-			[[NSRect]] oldRect = [[NSMakeRect]](0.0, 0.0, [big_thumb size].width, [big_thumb size].height);
-			[[NSRect]] newRect = [[NSMakeRect]](0.0, 0.0, [big_thumb size].width/2, [big_thumb size].height/2);
+			thumbnail = General/[[[NSImage alloc] initWithSize:thumbnailSize] autorelease];
+			General/NSRect oldRect = General/NSMakeRect(0.0, 0.0, [big_thumb size].width, [big_thumb size].height);
+			General/NSRect newRect = General/NSMakeRect(0.0, 0.0, [big_thumb size].width/2, [big_thumb size].height/2);
 
 			[thumbnail lockFocus];
-			[[[[NSGraphicsContext]] currentContext] setImageInterpolation:[[NSImageInterpolationHigh]]];
-			[big_thumb drawInRect:newRect fromRect:oldRect operation:[[NSCompositeCopy]] fraction:1.0];
+			General/[[NSGraphicsContext currentContext] setImageInterpolation:General/NSImageInterpolationHigh];
+			[big_thumb drawInRect:newRect fromRect:oldRect operation:General/NSCompositeCopy fraction:1.0];
 			[thumbnail unlockFocus];
 		}
 	}
 	else
 	{
-		thumbnailSize = [[NSMakeSize]](size, size);
-		thumbnail = [[[EpegWrapper]] imageWithPath:filePath boundingBox:thumbnailSize];
+		thumbnailSize = General/NSMakeSize(size, size);
+		thumbnail = General/[EpegWrapper imageWithPath:filePath boundingBox:thumbnailSize];
 	}
 	return thumbnail;
 }
 
-</code>
 
-- [[StephanBurlot]]
+
+- General/StephanBurlot
 
 ----
 
-Have you looked into [[QuickTime]]'s call '[[GraphicsImportSetImageIndexToThumbnail]]'. It's carbon code, but should work fine in cocoa.
-There should be an explanation about how to use [[QuickTime]]'s [[GraphicsImporters]] with [[NSImage]]'s, on this site.'' Then you should write it! ([[StephanBurlot]]) ''
+Have you looked into General/QuickTime's call 'General/GraphicsImportSetImageIndexToThumbnail'. It's carbon code, but should work fine in cocoa.
+There should be an explanation about how to use General/QuickTime's General/GraphicsImporters with General/NSImage's, on this site.* Then you should write it! (General/StephanBurlot) *
 
 -Tim S Lefler
 
-[[GraphicsImportSetImageIndexToThumbnail]] will return a thumbnail if there is one embedded in the picture. When dealing with digital camera picture, the thumbnail is unusable, but this may be a time saver if the user can bear the low quality of theses thumbnails.
+General/GraphicsImportSetImageIndexToThumbnail will return a thumbnail if there is one embedded in the picture. When dealing with digital camera picture, the thumbnail is unusable, but this may be a time saver if the user can bear the low quality of theses thumbnails.
 
-- [[StephanBurlot]]
+- General/StephanBurlot
 
 ----
 
-The note above regarding libjpeg.a does no longer apply, I fixed that recently. The [[EpegWrapper]] project is now self-contained.
+The note above regarding libjpeg.a does no longer apply, I fixed that recently. The General/EpegWrapper project is now self-contained.
 
-If you can live with the quality produced by epeg, the code to use [[EpegWrapper]] is quite small:
+If you can live with the quality produced by epeg, the code to use General/EpegWrapper is quite small:
 
-<code>
-#import "Epeg/[[EpegWrapperPublic]].h"
+    
+#import "Epeg/General/EpegWrapperPublic.h"
 
 ...
 
-[[NSImage]] ''myImage = [[[EpegWrapper]] imageWithPath:@"/big/jpeg/some/where.jpg" boundingBox:[[NSMakeSize]](100, 80)];
-</code>
+General/NSImage *myImage = General/[EpegWrapper imageWithPath:@"/big/jpeg/some/where.jpg" boundingBox:General/NSMakeSize(100, 80)];
+
 
 - Marc Liyanage
 
@@ -351,22 +351,22 @@ Does anyone have a function that preserves aspect ratio?
 
 ~J
 
-<code>
-- ([[NSRect]])rescaleRect:([[NSRect]])rect toFitInSize:([[NSSize]])size
+    
+- (General/NSRect)rescaleRect:(General/NSRect)rect toFitInSize:(General/NSSize)size
 {
 	float heightQuotient = rect.size.height / size.height;
 	float widthQuotient = rect.size.width / size.width;
 	
 	if(heightQuotient > widthQuotient)
-		return [[NSMakeRect]](rect.origin.x, rect.origin.y, rect.size.width / heightQuotient, rect.size.height / heightQuotient);
+		return General/NSMakeRect(rect.origin.x, rect.origin.y, rect.size.width / heightQuotient, rect.size.height / heightQuotient);
 	else
-		return [[NSMakeRect]](rect.origin.x, rect.origin.y, rect.size.width / widthQuotient, rect.size.height / widthQuotient);
+		return General/NSMakeRect(rect.origin.x, rect.origin.y, rect.size.width / widthQuotient, rect.size.height / widthQuotient);
 }
-</code>
 
-The above function rescales a [[NSRect]] so that it fits in the [[NSSize]] provided.
+
+The above function rescales a General/NSRect so that it fits in the General/NSSize provided.
 - Gabriel
 
 ----
 
-[[NSImageInterpolation]] Caveat: I was using one of the above methods of scaling, whereby I take one [[NSImage]] and use -drawInRect into another [[NSImage]]. In this case [[NSImageInterpolation]] seemed to have no effect. Finally I found the only way I could get it to work in my app was to -lockFocus on BOTH [[NSImage]]'s, grab the current context (for each) and set their interpolation values to the same setting. I couldn't find any mention of this proviso anywhere in the apple docs, and it seems illogical to me personally (seems like only the source or the destination context would need to have the setting). So perhaps it is indicative of a problem elsewhere in my code. But if anyone else experiences that problem, try setting the interpolation value for both [[NSImage]]'s contexts before drawing/scaling and see if it solves your problem. Cheers, -Matt
+General/NSImageInterpolation Caveat: I was using one of the above methods of scaling, whereby I take one General/NSImage and use -drawInRect into another General/NSImage. In this case General/NSImageInterpolation seemed to have no effect. Finally I found the only way I could get it to work in my app was to -lockFocus on BOTH General/NSImage's, grab the current context (for each) and set their interpolation values to the same setting. I couldn't find any mention of this proviso anywhere in the apple docs, and it seems illogical to me personally (seems like only the source or the destination context would need to have the setting). So perhaps it is indicative of a problem elsewhere in my code. But if anyone else experiences that problem, try setting the interpolation value for both General/NSImage's contexts before drawing/scaling and see if it solves your problem. Cheers, -Matt

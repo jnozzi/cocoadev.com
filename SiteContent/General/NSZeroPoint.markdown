@@ -1,1 +1,1 @@
-[[NSZeroPoint]] is an [[NSPoint]] corresponding to (0.0, 0.0).
+General/NSZeroPoint is an General/NSPoint corresponding to (0.0, 0.0).

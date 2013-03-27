@@ -31,4 +31,4 @@ well, blank is NOT an option.  and using my attribute name throws an exception..
 what exactly should I be putting into the Bindings panel, value tab to make my text view Bind to my entity's attribute?
 
 
-''How about the attribute's name? :-) It's just that easy. Your array controller should be set to use an entity (specify its name). Bind the text view to the array controller's selection, using the attribute (name) as the key path. Your array controller's managedObjectContext binding should also be bound to an appropriate context. If it's document-based, just point it at File's Owner - it'll automagically pick up managedObjectContext in the key list.''
+*How about the attribute's name? :-) It's just that easy. Your array controller should be set to use an entity (specify its name). Bind the text view to the array controller's selection, using the attribute (name) as the key path. Your array controller's managedObjectContext binding should also be bound to an appropriate context. If it's document-based, just point it at File's Owner - it'll automagically pick up managedObjectContext in the key list.*

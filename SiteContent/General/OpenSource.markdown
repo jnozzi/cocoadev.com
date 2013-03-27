@@ -1,1 +1,1 @@
-Elision to make linking easier in other pages. See [[OpenSourceSoftware]] for commentary.
+Elision to make linking easier in other pages. See General/OpenSourceSoftware for commentary.

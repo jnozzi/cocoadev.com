@@ -5,11 +5,11 @@ If your code was use with this macro you must test with #ifdef because it's impl
 
 Example
 
-<code>
+    
 #ifdef check_compile_time
-check_compile_time(sizeof([[IPHeader]]) == 20);
+check_compile_time(sizeof(General/IPHeader) == 20);
 ...
 #endif
-</code>
+
 
 JM Marino http://jm.marino.free.fr

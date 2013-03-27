@@ -1,60 +1,60 @@
-I read this article about [[GlobalVariablesInCocoa]]. I try to make a global variable to share the [[NSMutableArray]] in the new nib i created at runtime. I create 3 classes to achieve this:
+I read this article about General/GlobalVariablesInCocoa. I try to make a global variable to share the General/NSMutableArray in the new nib i created at runtime. I create 3 classes to achieve this:
 
-<code>
+    
 // globalValues.h
 
 #import <Cocoa/Cocoa.h>
 
-extern [[NSMutableArray]] ''vertexOri, ''vertexTemp;
+extern General/NSMutableArray *vertexOri, *vertexTemp;
 
-@interface globalValues : [[NSObject]] {}
+@interface globalValues : General/NSObject {}
 @end
 // end of globalValues.h
 
 // globalValues.m
 #import "globalValues.h"
 
-[[NSMutableArray]] ''vertexOri;
-[[NSMutableArray]] ''vertexTemp;
+General/NSMutableArray *vertexOri;
+General/NSMutableArray *vertexTemp;
 
 @implementation globalValues
 @end
 // end of globalValues.m
-</code>
+
 
 i use this globalValues class in two different class 
 
-<code>
-// [[QuiXplorer]].h
+    
+// General/QuiXplorer.h
 #import <Cocoa/Cocoa.h>
 #import "vertex.h"
 #import "glViewerController.h"
 
-@interface [[QuiXplorerController]] : [[NSObject]]
+@interface General/QuiXplorerController : General/NSObject
 {
-	[[IBOutlet]] [[NSPanel]] ''mainMenu;
-	[[IBOutlet]] [[NSButton]] ''loadButton;
-	[[IBOutlet]] [[NSButton]] ''saveButton;
-	[[IBOutlet]] [[NSButton]] ''closeButton;
+	General/IBOutlet General/NSPanel *mainMenu;
+	General/IBOutlet General/NSButton *loadButton;
+	General/IBOutlet General/NSButton *saveButton;
+	General/IBOutlet General/NSButton *closeButton;
 	
-	glViewerController ''doc;
+	glViewerController *doc;
 }
 
-- ([[IBAction]])[[LoadFile]]:(id)sender;
+- (General/IBAction)General/LoadFile:(id)sender;
 @end
-// end of [[QuiXplorer]].h
+// end of General/QuiXplorer.h
 
-// [[QuiXplorer]].m
-#import "[[QuiXplorerController]].h"
+// General/QuiXplorer.m
+#import "General/QuiXplorerController.h"
 #import "globalValues.h"
 
-@implementation [[QuiXplorerController]]
-- ([[IBAction]])[[LoadFile]]:(id)sender
+@implementation General/QuiXplorerController
+- (General/IBAction)General/LoadFile:(id)sender
 {
-	[[NSLog]](@"Load File");
+	General/NSLog(@"Load File");
 	
-	[[NSString]] ''objFile;
-	if (objFile = [[[NSString]] stringWithContentsOfFile:[self getUserFileName:0]])
+	General/NSString *objFile;
+	if (objFile = General/[NSString stringWithContentsOfFile:[self getUserFileName:0]])
 	{
 		// Setting the buttons
 		[loadButton setEnabled:NO];
@@ -62,17 +62,17 @@ i use this globalValues class in two different class
 		[closeButton setEnabled:YES];
 		
 		// Extracting vertex from file;
-		[[NSScanner]] ''scanner;
-		[[NSCharacterSet]] ''newLineCharacterSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"\r\n"];
+		General/NSScanner *scanner;
+		General/NSCharacterSet *newLineCharacterSet = General/[NSCharacterSet characterSetWithCharactersInString:@"\r\n"];
 		
 		float x,y,z;
 		int jmhTitik = 0;
 		int jmhVn = 0;
 		int jmhF = 0;
-		vertex ''ttk = [[vertex alloc] init];
-		vertexOri = [[[[NSMutableArray]] alloc] init];		
+		vertex *ttk = General/vertex alloc] init];
+		vertexOri = [[[[NSMutableArray alloc] init];		
 
-		scanner = [[[NSScanner]] scannerWithString:objFile];	
+		scanner = General/[NSScanner scannerWithString:objFile];	
 		while ([scanner isAtEnd] == NO)
 		{
 			// Scanning Vektor
@@ -110,29 +110,29 @@ i use this globalValues class in two different class
 			}
 		}
 					
-		[[NSLog]](@"ttk terakhir : \n x=%f \n y=%f \n z=%f",[[vertexOri objectAtIndex:jmhTitik-1] getX],[[vertexOri objectAtIndex:jmhTitik-1] getY],[[vertexOri objectAtIndex:jmhTitik-1] getZ]);
+		General/NSLog(@"ttk terakhir : \n x=%f \n y=%f \n z=%f",General/vertexOri objectAtIndex:jmhTitik-1] getX],[[vertexOri objectAtIndex:jmhTitik-1] getY],[[vertexOri objectAtIndex:jmhTitik-1] getZ]);
 		
 		// releasing variables from memory
 		[ttk dealloc];		
 
-		[[[NSBundle]] loadNibNamed:@"glViewer" owner:self];
+		[[[NSBundle loadNibNamed:@"glViewer" owner:self];
 	}
 }
 @end
-// end of [[QuiXplorer]].m
-</code>
+// end of General/QuiXplorer.m
+
 
 and the last class is where i call the new nib
-<code>
+    
 // glViewerController.h
 #import <Cocoa/Cocoa.h>
 #import "glViewerView.h"
 #import "vertex.h"
 
-@interface glViewerController : [[NSResponder]]
+@interface glViewerController : General/NSResponder
 {
-	[[IBOutlet]] id glWindow;
-	glViewerView ''glView;
+	General/IBOutlet id glWindow;
+	glViewerView *glView;
 }
 
 - (void)awakeFromNib;
@@ -141,7 +141,7 @@ and the last class is where i call the new nib
 // glViewerController.m
 - (void)awakeFromNib
 {
-	[ [[NSApp]] setDelegate:self ];   // We want delegate notifications
+	[ General/NSApp setDelegate:self ];   // We want delegate notifications
 	[ glWindow makeFirstResponder:self ];
 	glView = [ [ glViewerView alloc ] init];
 	if ( glView != nil )
@@ -149,47 +149,47 @@ and the last class is where i call the new nib
 		[ glWindow setContentView:glView ];
 		[ glWindow makeKeyAndOrderFront:self ];
 		
-		vertex ''titik = [[vertex alloc] init];
+		vertex *titik = General/vertex alloc] init];
 
 		int jmhTtk = [vertexOri count];
-		[[NSLog]](@"jmh titik glviewer controller = %d",jmhTtk);
+		[[NSLog(@"jmh titik glviewer controller = %d",jmhTtk);
 		int ul = 0;
 
 		for (ul = 0 ; ul < jmhTtk ; ul++)
 		{
 			titik = [vertexOri objectAtIndex:1];
-			[[NSLog]](@"x = %f , y = %f , z = %f",[titik getX],[titik getY],[titik getZ]);
+			General/NSLog(@"x = %f , y = %f , z = %f",[titik getX],[titik getY],[titik getZ]);
 		}
 	}
 	else
 	{
-		[[NSLog]](@"Failed to create Window");
+		General/NSLog(@"Failed to create Window");
 	}
 }
 // end of glViewerController.m
-</code>
 
-then when i run the code and do the action here is what i get in the [[NSLog]] :
 
-<code>
-2005-11-14 18:06:58.089 3D [[QuiXplorer]][3527] jmh titik glviewer controller = 10
-2005-11-14 18:06:58.108 3D [[QuiXplorer]][3527] ''''' -[[[NSCheapMutableString]] getX]: selector not recognized [self = 0x3dbe60]
-2005-11-14 18:06:58.124 3D [[QuiXplorer]][3527] ''''' -[[[NSCheapMutableString]] getX]: selector not recognized [self = 0x3dbe60]
-</code>
+then when i run the code and do the action here is what i get in the General/NSLog :
 
-where do i do wrong? thanks - [[JuliusJuarsa]]
+    
+2005-11-14 18:06:58.089 3D General/QuiXplorer[3527] jmh titik glviewer controller = 10
+2005-11-14 18:06:58.108 3D General/QuiXplorer[3527] *** -General/[NSCheapMutableString getX]: selector not recognized [self = 0x3dbe60]
+2005-11-14 18:06:58.124 3D General/QuiXplorer[3527] *** -General/[NSCheapMutableString getX]: selector not recognized [self = 0x3dbe60]
+
+
+where do i do wrong? thanks - General/JuliusJuarsa
 
 ----
 
 The error message looks pretty self-explanatory: you're calling getX on a string. Not sure why.
 
-You should NOT allocate only one vertex and repeatedly call <code>-setVertexX:setVertexY:setVertexZ:</code> on it. Try using:
+You should NOT allocate only one vertex and repeatedly call     -setVertexX:setVertexY:setVertexZ: on it. Try using:
 
-<code>
+    
 // Scanning Vektor
 if ([scanner scanString:@"v " intoString:nil])
 {
-   vertex ''ttk = [[vertex alloc] init];
+   vertex *ttk = General/vertex alloc] init];
 
    [scanner scanFloat:&x];
    [scanner scanFloat:&y];
@@ -200,36 +200,36 @@ if ([scanner scanString:@"v " intoString:nil])
    [ttk release];
    jmhTitik++;
 } 
-</code>
 
-You probably want to capitalize the class <code>vertex</code>, too: use <code>Vertex</code> to be clearer. Ditto for <code>globalValues</code>.
 
-I also recommend you move <code>vertexOri</code> ''out'' of your global variables. Make it a class member of [[QuiXplorerController]]. Don't use globals unless you're sure.
+You probably want to capitalize the class     vertex, too: use     Vertex to be clearer. Ditto for     globalValues.
 
-The problem is the line <code>[ttk dealloc]</code>. Go read [[MemoryManagement]]. Don't ever call <code>dealloc</code> directly: use <code>release</code>. -- [[KritTer]]
+I also recommend you move     vertexOri *out* of your global variables. Make it a class member of [[QuiXplorerController. Don't use globals unless you're sure.
 
-One more thing, style-wise. Instead of providing separate <code>-init</code> and <code>-setVertexX:setVertexY:setVertexZ:</code> methods - the former of which can do nothing sensible - try providing one combined method, <code>-initWithVertexX:setVertexY:setVertexZ:</code>. If you want a mutable vertex class, <code>[[MutableVertex]]</code>, you can then make it a [[SubClass]] of <code>Vertex</code>. -- [[KritTer]]
+The problem is the line     [ttk dealloc]. Go read General/MemoryManagement. Don't ever call     dealloc directly: use     release. -- General/KritTer
+
+One more thing, style-wise. Instead of providing separate     -init and     -setVertexX:setVertexY:setVertexZ: methods - the former of which can do nothing sensible - try providing one combined method,     -initWithVertexX:setVertexY:setVertexZ:. If you want a mutable vertex class,     General/MutableVertex, you can then make it a General/SubClass of     Vertex. -- General/KritTer
 
 ----
 
-The reason i use global variable on [[VertexOri]] is that i want to use the [[NSMutableArray]] value on 2 different class. is there any other way of doing this than using the extern keyword??
-to [[KritTer]] : i replace the <code>[ttk dealloc]</code> with <code>[ttk release]</code> like your suggestion and it's working. but my question is what is the different? i am confused with the memory management stuff ^^
+The reason i use global variable on General/VertexOri is that i want to use the General/NSMutableArray value on 2 different class. is there any other way of doing this than using the extern keyword??
+to General/KritTer : i replace the     [ttk dealloc] with     [ttk release] like your suggestion and it's working. but my question is what is the different? i am confused with the memory management stuff ^^
 
 in cocoa, can i do 2 different initialization but with different parameter?? 
-ex : <code>-initWithVertexX:setVertexY:setVertexZ:</code>
-      <code>-initWithVertexX:getVertexY:getVertexZ:</code>
+ex :     -initWithVertexX:setVertexY:setVertexZ:
+          -initWithVertexX:getVertexY:getVertexZ:
 
-correct me if i'm wrong. so in [[NSMutableArray]], if I addObject: in the array (example Vertex) at index 1, when i retreive the object at index 1 i would get the same Vertex? - [[JuliusJuarsa]]
+correct me if i'm wrong. so in General/NSMutableArray, if I addObject: in the array (example Vertex) at index 1, when i retreive the object at index 1 i would get the same Vertex? - General/JuliusJuarsa
 
 ----
-The syntax is slightly off; it would be <code>-initWithVertexX:vertexY:vertexZ:</code>. Then you have accessors <code>-vertexX</code>, <code>-vertexY</code>, <code>-vertexZ</code>, and <code>-getVertexX:vertexY:vertexZ:</code>. The mutators would be <code>-setVertexX:</code>, <code>-setVertexY:</code>, <code>-setVertexZ:</code>, and <code>-setVertexX:vertexY:vertexZ:</code>. This is pretty much the standard format for a multiple-variable access: individual accessors and mutators, with a single init method. Also, you should only have one verb per method. <code>initWith...</code> means you are using the nouns following "with" to initialize the object. <code>set...</code> is similar. <code>get...</code> means you are returning by passed-in references (pointers). No verb means you are returning by value. For more information, check out the great naming stuff on http://www.cocoadevcentral.com/articles/000082.php --[[JediKnil]]
+The syntax is slightly off; it would be     -initWithVertexX:vertexY:vertexZ:. Then you have accessors     -vertexX,     -vertexY,     -vertexZ, and     -getVertexX:vertexY:vertexZ:. The mutators would be     -setVertexX:,     -setVertexY:,     -setVertexZ:, and     -setVertexX:vertexY:vertexZ:. This is pretty much the standard format for a multiple-variable access: individual accessors and mutators, with a single init method. Also, you should only have one verb per method.     initWith... means you are using the nouns following "with" to initialize the object.     set... is similar.     get... means you are returning by passed-in references (pointers). No verb means you are returning by value. For more information, check out the great naming stuff on http://www.cocoadevcentral.com/articles/000082.php --General/JediKnil
 
 ----
 Thanks, Jedi, that was a copy-n-paste error on my part
 ----
 
-If you want to access the array of vectors from another object, you need to find a way to give that object access to the [[QuiXplorerController]]. If you're setting this up from [[InterfaceBuilder]], you can add an outlet to the second class and link it to the controller. Alternatively, if the second object's method is called from the controller, the controller can pass the array of vectors as a parameter.
+If you want to access the array of vectors from another object, you need to find a way to give that object access to the General/QuiXplorerController. If you're setting this up from General/InterfaceBuilder, you can add an outlet to the second class and link it to the controller. Alternatively, if the second object's method is called from the controller, the controller can pass the array of vectors as a parameter.
 
-Retain/release are balanced pairs. When you pass an object to an array, the array retains it. When you remove an object from an array (or the array is deallocated after its final release), it releases it. When you create the object, you are also implicitly retaining it once, so when you've added it to the array, you should call <code>release</code> on it if you no longer need to access it. When the object has been released as many times as it was retained, it will <code>dealloc</code> itself, because (unless you've coded things incorrectly) it knows nobody wants it anymore.
+Retain/release are balanced pairs. When you pass an object to an array, the array retains it. When you remove an object from an array (or the array is deallocated after its final release), it releases it. When you create the object, you are also implicitly retaining it once, so when you've added it to the array, you should call     release on it if you no longer need to access it. When the object has been released as many times as it was retained, it will     dealloc itself, because (unless you've coded things incorrectly) it knows nobody wants it anymore.
 
-Arrays store the object passed to them, '''not copies'''. If you call <code>dealloc</code> directly, you bypass this [[MemoryManagement]] system, and delete the object held in the array. When you access the array again later, the memory the object used to take up will quite likely have been reused. In your code, it had been taken up by a string, hence the strange error. As you said, when you call <code>addObject:</code> then later retrieve the object at that location, you get '''the same Vertex''' that you put in. -- [[KritTer]]
+Arrays store the object passed to them, **not copies**. If you call     dealloc directly, you bypass this General/MemoryManagement system, and delete the object held in the array. When you access the array again later, the memory the object used to take up will quite likely have been reused. In your code, it had been taken up by a string, hence the strange error. As you said, when you call     addObject: then later retrieve the object at that location, you get **the same Vertex** that you put in. -- General/KritTer

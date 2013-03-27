@@ -1,3 +1,3 @@
-Objective-C Interface for [[SQLite]].
+Objective-C Interface for General/SQLite.
 
 http://www.webbotech.com/

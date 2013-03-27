@@ -1,27 +1,27 @@
 
 
-''' Olivier Scherler, a.k.a. �lbaum the Bold '''
+** Olivier Scherler, a.k.a. �lbaum the Bold **
 
 Hobby programmer, part time web designer and full time delirious
 
-''' Programming '''
+** Programming **
 
 I touched a bit of everything I could put a hand on.
 
 In chronological order:
 
 
-* [[HyperTalk]]
+* General/HyperTalk
 * Basic
 * Pascal
 * C
 * C++
-* [[AppleScript]]
+* General/AppleScript
 * Assembler (Z80, 68000, PIC)
 * Object Pascal
 * Perl
 * Java ( http://www-optics.unine.ch/education/optics_tutorials/optics_tutorials.html )
-* [[JavaScript]]
+* General/JavaScript
 * PHP
 * Objective-C
 
@@ -29,25 +29,25 @@ In chronological order:
 In decreasing order of preference:
 
 
-* [[HyperTalk]]
+* General/HyperTalk
 * Objective-C
 * Perl
 * Java
 * C++
 * PHP
 * C
-* [[AppleScript]]
+* General/AppleScript
 * Object Pascal
 * Pascal
 * Assembler
-* [[JavaScript]]
+* General/JavaScript
 * Basic
 
 
-''' Web design '''
+** Web design **
 
 Following web standards and good taste as much as possible.
 
-''' Delirium '''
+** Delirium **
 
 http://www.ithink.ch/blog/

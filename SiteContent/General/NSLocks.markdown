@@ -1,1 +1,1 @@
-The plural of [[NSLock]], of course. I just couldn't leave that question mark there!
+The plural of General/NSLock, of course. I just couldn't leave that question mark there!

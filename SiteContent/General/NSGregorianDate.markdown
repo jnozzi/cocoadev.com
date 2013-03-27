@@ -1,1 +1,1 @@
-Describe [[NSGregorianDate]] hxere.
+Describe General/NSGregorianDate hxere.

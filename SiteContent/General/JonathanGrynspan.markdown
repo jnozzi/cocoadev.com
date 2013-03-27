@@ -7,7 +7,7 @@ My biggest project so far (and the first one to mint me any coin, to date) has b
 I've chosen the prefix "GT" for my public projects. The following are the ones I've released so far:
 
 
-* [[GTResourceFork]], a Cocoa wrapper for the Resource Manager - http://www.ghosttiger.com/?p=117
+* General/GTResourceFork, a Cocoa wrapper for the Resource Manager - http://www.ghosttiger.com/?p=117
 * An Objective-C asynchronous messaging system - http://www.ghosttiger.com/?p=130
-* [[GTSubscription]], a Cocoa wrapper for the Carbon file system subscription system - http://www.ghosttiger.com/?p=132
+* General/GTSubscription, a Cocoa wrapper for the Carbon file system subscription system - http://www.ghosttiger.com/?p=132
 * An asynchronous keyboard state reader - http://www.ghosttiger.com/?p=136

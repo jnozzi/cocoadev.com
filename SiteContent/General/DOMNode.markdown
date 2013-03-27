@@ -1,3 +1,3 @@
 
 
-The basic building block for creating a [[DocumentObjectModel]] hierarchy.
+The basic building block for creating a General/DocumentObjectModel hierarchy.

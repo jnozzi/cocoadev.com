@@ -4,12 +4,12 @@ How do I launch it, get it ready to recieve distributed object commands, and the
 
 ----
 
-<code>
+    
 // will get the full path of your app if it is located in /Contents/Resources/
-[[NSString]] ''path = [[[[NSBundle]] mainBundle] pathForResource:@"myApp" ofType:@"app"];
+General/NSString *path = General/[[NSBundle mainBundle] pathForResource:@"myApp" ofType:@"app"];
  // will launch the app
-[[[[NSWorkspace]] sharedWorkspace] openFile:path];
-</code>
+General/[[NSWorkspace sharedWorkspace] openFile:path];
+
 
 ----
 
@@ -17,28 +17,28 @@ What's the easiest way to kill this other app once I've launched it, preferably 
 
 ----
 
-<code>
+    
 system("killall myApp"); // easiest - you asked for it :-)
-</code>
+
 
 ----
 I use 
-<code>
+    
 // pass the application bundle location as a url in the openURLs array
-[[[[NSWorkspace]] sharedWorkspace]
+General/[[NSWorkspace sharedWorkspace]
     openURLs:applicationURLinArray
     withAppBundleIdentifier:nil
     options:options
     additionalEventParamDescriptor:nil
     launchIdentifiers:nil];
-</code>
-to launc the application. This method will not cause a distributed [[NSWorkspaceDidLaunchApplicationNotification]] to be posted, but it has the advantage that you can use launch options like [[NSWorkspaceLaunchWithoutActivation]] and [[NSWorkspaceLaunchAsync]]. I would just post a distributed notification in my background application if you want your main application to be notified of the application launch.
+
+to launc the application. This method will not cause a distributed General/NSWorkspaceDidLaunchApplicationNotification to be posted, but it has the advantage that you can use launch options like General/NSWorkspaceLaunchWithoutActivation and General/NSWorkspaceLaunchAsync. I would just post a distributed notification in my background application if you want your main application to be notified of the application launch.
 
 To quit the background application you can send another distributed notification or you could use an applescript like:
-<code>
-tell application "[[MyBackgroundApp]]" to quit
-</code>
+    
+tell application "General/MyBackgroundApp" to quit
 
--- [[JorisKluivers]]
 
-See [[QuitApplicationUsingAppleEvent]] for faster quit code.
+-- General/JorisKluivers
+
+See General/QuitApplicationUsingAppleEvent for faster quit code.

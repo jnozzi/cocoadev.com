@@ -1,7 +1,7 @@
 
 
 
-Current projects: [[ChatKit]] (http://www.chatkit.net), Higher Order Messaging framework
+Current projects: General/ChatKit (http://www.chatkit.net), Higher Order Messaging framework
 Site: http://www.dpompa.com
 
 I also contributed to the Adium and Growl projects.

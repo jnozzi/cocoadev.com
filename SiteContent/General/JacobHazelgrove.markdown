@@ -21,6 +21,6 @@ Well the tear off menus, at this stage are going to be written specifically for 
 
 Cool, I've been bugging Unsanity for a while bout this.
 
-''Make sure you bug Apple too.''
+*Make sure you bug Apple too.*
 
 Tear off menus were lost because OS X uses Carbon functions to draw menus, not the original Cocoa methods.

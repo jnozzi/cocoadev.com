@@ -3,10 +3,10 @@
 Speech Synthesis is the technology for turning text into synthesized speech.
 
 ----
-'''[[CocoaWrappers]]''':
+**General/CocoaWrappers**:
 
 
-* [[SpeechUtilities]]
+* General/SpeechUtilities
 
 
 ----

@@ -1,1 +1,1 @@
-some hints and links are at [[InsertingGutterIntoNSScrollView]]
+some hints and links are at General/InsertingGutterIntoNSScrollView

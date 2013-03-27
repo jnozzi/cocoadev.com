@@ -1,4 +1,4 @@
-Describe [[DocumentBaseAndInitWithContentRect]] here.
+Describe General/DocumentBaseAndInitWithContentRect here.
 
 
 

@@ -1,4 +1,4 @@
-Yesterday IB started crashing when I open the NIB of the project I'm currently working on. It opens all other [[NIBs]] just fine. Has anyone had any problems with IB crashing suddenly when you try to open a NIB?
+Yesterday IB started crashing when I open the NIB of the project I'm currently working on. It opens all other General/NIBs just fine. Has anyone had any problems with IB crashing suddenly when you try to open a NIB?
 
 ----
 

@@ -1,2 +1,2 @@
 
-Hi! My name is Misha. I am a [[MacOSX]] user as well as a developer on different platforms for more then two decades.
+Hi! My name is Misha. I am a General/MacOSX user as well as a developer on different platforms for more then two decades.

@@ -9,37 +9,37 @@ Additionally, my makefile generates the dependencies with the -MM option, which 
 ----
 
 README.Apple from the GCC distribution says:
-<code>
+    
 Header mapfiles
 
 This is the support for a PB feature where actual pathnames for
 headers come from a given file rather than being searched for in the
 various include paths.  It's not useful outside of the PB environment.
-</code>
+
 
 Looking in the source of cpp, it seems that gcc can only read these files, so PB (Xcode) would probably be responsible for writing them. It is a binary format which can be seen in cpplib.h:
-<code>
+    
 struct hmap_bucket
 {
-  uint32 key;          /'' Offset (into strings) of key                ''/
+  uint32 key;          /* Offset (into strings) of key                */
   struct {
-    uint32 prefix;     /'' Offset (into strings) of value prefix   ''/
-    uint32 suffix;     /'' Offset (into strings) of value suffix   ''/
-  } value;             /'' Value (prefix- and suffix-strings)          ''/
+    uint32 prefix;     /* Offset (into strings) of value prefix   */
+    uint32 suffix;     /* Offset (into strings) of value suffix   */
+  } value;             /* Value (prefix- and suffix-strings)          */
 };
 
 struct hmap_header_map
 {
-  uint32 magic;             /'' Magic word, also indicates byte order       ''/
-  uint16 _reserved;         /'' Reserved for future use -- zero for now     ''/
-  uint32 strings_offset;    /'' Offset to start of string pool              ''/
-  uint32 count;             /'' Number of entries in the string table       ''/
-  uint32 capacity;          /'' Number of buckets (always a power of 2)     ''/
-  uint32 max_value_length;  /'' Length of longest result path (excl. '\0')  ''/
-  struct hmap_bucket buckets[0]; /'' Inline array of 'capacity' maptable buckets ''/
-  char strings[0];          /'' String contents follow the last bucket      ''/
+  uint32 magic;             /* Magic word, also indicates byte order       */
+  uint16 _reserved;         /* Reserved for future use -- zero for now     */
+  uint32 strings_offset;    /* Offset to start of string pool              */
+  uint32 count;             /* Number of entries in the string table       */
+  uint32 capacity;          /* Number of buckets (always a power of 2)     */
+  uint32 max_value_length;  /* Length of longest result path (excl. '\0')  */
+  struct hmap_bucket buckets[0]; /* Inline array of 'capacity' maptable buckets */
+  char strings[0];          /* String contents follow the last bucket      */
 };
-</code>
+
 
 There is actually a tool (pbxhmapdump) in /Developer/Tools/ to dump the contents of a header file.
 

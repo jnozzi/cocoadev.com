@@ -1,3 +1,3 @@
-See: [[InfiniteLoop]].
+See: General/InfiniteLoop.
 
-Note: [[RobRix]] thinks he's funny.
+Note: General/RobRix thinks he's funny.

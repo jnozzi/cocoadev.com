@@ -1,103 +1,103 @@
 (Based on mailing list posts by Nathan Day and Cynthia Copenhagen)
 
-'''Q: '''
+**Q: **
 How I can get strings out of some of the fields in the Apple System Profiler.
 
 The Apple Script goes something like:
 
-<code>
+    
 tell application "Apple System Profiler"
     get system version as text
 end tell
-</code>
 
-What I am not sure of is how to go through a Cocoa script to call the [[AppleScript]] command.
+
+What I am not sure of is how to go through a Cocoa script to call the General/AppleScript command.
 
 ----
 
-'''A: '''
+**A: **
 This is pretty much cut straight out out of a one of my own projects 
 with some small changes, you have to include Carbon. I haven't found a 
 way to do this sort of thing yet using straight Cocoa. 
 
-<code>
-+ (id)compileExecuteString:([[NSString]] '') aString
+    
++ (id)compileExecuteString:(General/NSString *) aString
 {
 	OSAID			theResultID;
-	[[AEDesc]]			theResultDesc = { typeNull, NULL },
+	General/AEDesc			theResultDesc = { typeNull, NULL },
 					theScriptDesc = { typeNull, NULL };
 	id				theResultObject = nil;
 
-	if( ([[AECreateDesc]]( typeChar, [aString cString], [aString 
-cStringLength], &theScriptDesc) ==  noErr) && ([[OSACompileExecute]]
-( [[[AppleScriptObject]] [[OSAComponent]]], &theScriptDesc, kOSANullScript, 
+	if( (General/AECreateDesc( typeChar, [aString cString], [aString 
+cStringLength], &theScriptDesc) ==  noErr) && (General/OSACompileExecute
+( General/[AppleScriptObject General/OSAComponent], &theScriptDesc, kOSANullScript, 
 kOSAModeNull, &theResultID) ==  noErr ) )
 	{
-		if( [[OSACoerceToDesc]]( [[[AppleScriptObject]] [[OSAComponent]]], 
+		if( General/OSACoerceToDesc( General/[AppleScriptObject General/OSAComponent], 
 theResultID, typeWildCard, kOSAModeNull, &theResultDesc ) == noErr )
 		{
 			if( theResultDesc.descriptorType == typeChar )
 			{
-				theResultObject = [[[NSString]] stringWithAEDesc:&theResultDesc];
-				[[AEDisposeDesc]]( &theResultDesc );
+				theResultObject = General/[NSString stringWithAEDesc:&theResultDesc];
+				General/AEDisposeDesc( &theResultDesc );
 			}
 		}
-		[[AEDisposeDesc]]( &theScriptDesc );
+		General/AEDisposeDesc( &theScriptDesc );
 		if( theResultID != kOSANullScript )
-			[[OSADispose]]( [[[AppleScriptObject]] [[OSAComponent]]], theResultID );
+			General/OSADispose( General/[AppleScriptObject General/OSAComponent], theResultID );
 	}
 	
 	return theResultObject;
 }
 
-+ ([[ComponentInstance]])[[OSAComponent]]
++ (General/ComponentInstance)General/OSAComponent
 {
-	static [[ComponentInstance]]		theComponent = NULL;
+	static General/ComponentInstance		theComponent = NULL;
 	
 	if( !theComponent )
 	{
-		theComponent = [[OpenDefaultComponent]]( kOSAComponentType, 
+		theComponent = General/OpenDefaultComponent( kOSAComponentType, 
 kAppleScriptSubtype );
 	}
 	return theComponent;
 }
 
-@implementation [[NSString]] ([[AEDescCreation]])
+@implementation General/NSString (General/AEDescCreation)
 
-/''
-  '' + stringWithAEDesc:
-  ''/
-+ (id)stringWithAEDesc:(const [[AEDesc]] '')aDesc
+/*
+  * + stringWithAEDesc:
+  */
++ (id)stringWithAEDesc:(const General/AEDesc *)aDesc
 {
-	[[NSData]]			'' theTextData;
+	General/NSData			* theTextData;
 	
-	theTextData = [[[NSData]] dataWithAEDesc: aDesc];
+	theTextData = General/[NSData dataWithAEDesc: aDesc];
 	
-	return ( theTextData == nil ) ? nil : [[[[[NSString]] 
-alloc]initWithData:theTextData encoding:[[NSMacOSRomanStringEncoding]]] 
+	return ( theTextData == nil ) ? nil : General/[[[NSString 
+alloc]initWithData:theTextData encoding:General/NSMacOSRomanStringEncoding] 
 autorelease];
 }
 
 @end
 
-</code>
+
 
 ----
 ====
-To use the [[AppleScript]] above use the following code (Cocoa, Mac OS X 10.2 and above):
+To use the General/AppleScript above use the following code (Cocoa, Mac OS X 10.2 and above):
 
-<code>
+    
 
 - (void)getSystemVersion
 {
- [[NSString]] ''myCode;
- [[NSAppleScript]] ''myAppleScript;
+ General/NSString *myCode;
+ General/NSAppleScript *myAppleScript;
 
  myCode = @"tell application \"Apple System Profiler\"\n set sysVersion to get system version as text\n display dialog sysVersion\n end tell";
- [[myAppleScript alloc] initWithSource:[[[NSString]] stringWithString:myCode]];
+ General/myAppleScript alloc] initWithSource:[[[NSString stringWithString:myCode]];
  [myAppleScript executeAndReturnError:nil];
  [myAppleScript release];
 }
 
-</code>
-- [[FernandoLucasSantos]](Brazil)
+
+- General/FernandoLucasSantos(Brazil)

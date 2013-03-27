@@ -1,12 +1,12 @@
 
 
-'''
+**
 St�phane Dassieu
 French, 33 years old.
-'''
+**
 ----
 Dev. History:
-Hypercard - Supercard - [[REALbasic]] and now Objective C (since 2005 march 15)
+Hypercard - Supercard - General/REALbasic and now Objective C (since 2005 march 15)
 
 http://www.stephanedassieu.com
 

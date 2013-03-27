@@ -1,14 +1,14 @@
 
 
-The [[FirstResponder]] is the first object in the [[ResponderChain]] that is given the opportunity to respond to [[AnEvent]].
+The General/FirstResponder is the first object in the General/ResponderChain that is given the opportunity to respond to General/AnEvent.
 
-see [[MenusAndDocuments]] for how to use the [[ResponderChain]] in document-based applications
+see General/MenusAndDocuments for how to use the General/ResponderChain in document-based applications
 
 ----
 
-In the context of [[InterfaceBuilder]], the [[FirstResponder]] instance icon is a proxy for the first object in the responder chain that implements an [[ActionMethod]].
+In the context of General/InterfaceBuilder, the General/FirstResponder instance icon is a proxy for the first object in the responder chain that implements an General/ActionMethod.
 
-[[InterfaceBuilder]] implements this by setting the [[ActionMethod]]'s target to nil. See [[NilTargetedAction]].
+General/InterfaceBuilder implements this by setting the General/ActionMethod's target to nil. See General/NilTargetedAction.
 
 ----
 
@@ -27,22 +27,22 @@ Also remember that performance is not an issue here -- finding first responder n
 
 ----
 
-I can add actions to the [[FirstResponder]] in the [[InterfaceBuilder]] class browser, but  I can't add outlets.  Why is that??
+I can add actions to the General/FirstResponder in the General/InterfaceBuilder class browser, but  I can't add outlets.  Why is that??
 
 ----
 
-No, it doesn't make sense to add outlets, because [[FirstResponder]] isn't a real object, it's just a proxy object for the "first responder" - the first real object that will respond to a [[NilTargetedAction]] at runtime.
+No, it doesn't make sense to add outlets, because General/FirstResponder isn't a real object, it's just a proxy object for the "first responder" - the first real object that will respond to a General/NilTargetedAction at runtime.
 
 ----
 
 The First Responder class in Interface Builder have some action methods which I do not see defined in the documentation. Anybody know what their purpose might be?
 
-*play: (not in any appkit or foundation header, probably related to the [[SoundKit]] where you could record and playback sounds)
+*play: (not in any appkit or foundation header, probably related to the General/SoundKit where you could record and playback sounds)
 *record: (same)
 *resume: (same)
 *run:
-*start: ~ [[NSMovieView]]
-*stop: ~ [[NSMovieView]], [[NSApplication]]
+*start: ~ General/NSMovieView
+*stop: ~ General/NSMovieView, General/NSApplication
 
 I am asking because I do have some stuff where they could be used, e.g. record/play for recording and replaying a macro and run to run an external script.  But I guess it would be better to introduce my own action methods named recordMacro, playMacro, runScript etc.
 

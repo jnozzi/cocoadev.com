@@ -1,23 +1,23 @@
 
 
 
-<code>
-- (void)drawString:([[NSString]] '')string inRect:([[NSRect]])rect {
+    
+- (void)drawString:(General/NSString *)string inRect:(General/NSRect)rect {
 
-    static [[NSDictionary]] ''att = nil;
+    static General/NSDictionary *att = nil;
     if (!att) {
-        [[NSMutableParagraphStyle]] ''style = [[[[NSParagraphStyle]] defaultParagraphStyle] mutableCopy];
-        [style setLineBreakMode:[[NSLineBreakByWordWrapping]]];
-        [style setAlignment:[[NSCenterTextAlignment]]];
-        att = [[[[NSDictionary]] alloc] initWithObjectsAndKeys:
-                            style, [[NSParagraphStyleAttributeName]], 
-                            [[[NSColor]] whiteColor], [[NSForegroundColorAttributeName]], nil];
+        General/NSMutableParagraphStyle *style = General/[[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+        [style setLineBreakMode:General/NSLineBreakByWordWrapping];
+        [style setAlignment:General/NSCenterTextAlignment];
+        att = General/[[NSDictionary alloc] initWithObjectsAndKeys:
+                            style, General/NSParagraphStyleAttributeName, 
+                            General/[NSColor whiteColor], General/NSForegroundColorAttributeName, nil];
         [style release];
     }
     [string drawInRect:rect withAttributes:att];
 
 }
 
-</code>
+
 
 --zootbobbalu

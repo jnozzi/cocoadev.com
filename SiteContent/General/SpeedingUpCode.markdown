@@ -1,1 +1,1 @@
-'''Moved to [[OptimizingCocoaCode]]...'''
+**Moved to General/OptimizingCocoaCode...**

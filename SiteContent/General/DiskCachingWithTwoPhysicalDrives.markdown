@@ -1,1 +1,1 @@
-Describe [[DiskCachingWithTwoPhysicalDrives]] here.
+Describe General/DiskCachingWithTwoPhysicalDrives here.

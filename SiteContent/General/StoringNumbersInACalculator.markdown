@@ -8,12 +8,12 @@ double lhs= [myTextField doubleValue];
 
 after plus is pushed or whatever.
 
-- [[FranciscoTolmasky]]
+- General/FranciscoTolmasky
 
 ----
 
-Thank you for reply. Yes well I could do that but how do I check for only 1 occurrence of '.' in the [[NSTextField]]? Do I dump the contents of the [[NSTextField]] into a variable and perform searches on that? Is there a better way? -- Saad R. Abbasi
+Thank you for reply. Yes well I could do that but how do I check for only 1 occurrence of '.' in the General/NSTextField? Do I dump the contents of the General/NSTextField into a variable and perform searches on that? Is there a better way? -- Saad R. Abbasi
 
 ----
 
-Attach a [[NSFormatter]] to the text field. Drag it onto the field from IB's Attributes palette.
+Attach a General/NSFormatter to the text field. Drag it onto the field from IB's Attributes palette.

@@ -1,7 +1,7 @@
 Hi, I am trying to scan a text file using nsscanner. but it failed somehow and i don't know why.
 
 here is the file example : 
-<code>
+    
 v -0.38733 14.14545 -0.06502
 v 0.19083 14.34016 -0.98115
 v -0.50296 14.58355 -2.12632
@@ -29,17 +29,17 @@ f 7 6 8
 f 8 9 6 
 f 8 10 9 
 f 10 11 9
-</code>
+
 
 and here is my code : 
-<code>
+    
  // this is the filename -> objFileName
 
-[[NSString]] ''objFile = [[[NSString]] stringWithContentsOfFile:objFileName];
-[[NSScanner]] ''scanner;
+General/NSString *objFile = General/[NSString stringWithContentsOfFile:objFileName];
+General/NSScanner *scanner;
 
 float x,y,z;
-scanner = [[[NSScanner]] scannerWithString:objFile];
+scanner = General/[NSScanner scannerWithString:objFile];
 
 while (![scanner isAtEnd])
 {
@@ -49,17 +49,17 @@ while (![scanner isAtEnd])
       [scanner scanFloat:&y];
       [scanner scanFloat:&z];
    }
-   [[NSLog]](@"x = %f , y = %f , z = %f", x,y,z);
+   General/NSLog(@"x = %f , y = %f , z = %f", x,y,z);
 }
-</code>
 
-this code end up with displaying all the "x = <blah> , y = <blah> , z = <blah>" but then my application freeze up. Thanks in advance - [[JuliusJuarsa]]
 
-''Where does it freeze?''
+this code end up with displaying all the "x = <blah> , y = <blah> , z = <blah>" but then my application freeze up. Thanks in advance - General/JuliusJuarsa
+
+*Where does it freeze?*
 
 I think it was right after the application displays all the v and then it try to scan the next line i guest;
 but then i try to add few of these line  between the while iteration :
-<code>
+    
    if .....
    }
    else if ([scanner scanString:@"vn" intoString:nil])
@@ -68,29 +68,29 @@ but then i try to add few of these line  between the while iteration :
       [scanner scanFloat:&y];
       [scanner scanFloat:&z];
    }
-   [[NSLog]](@"x = %f , y = %f , z = %f", x,y,z);
+   General/NSLog(@"x = %f , y = %f , z = %f", x,y,z);
 }
-</code>
 
-the run log window shows nothing T.T - [[JuliusJuarsa]]
 
-''"I think" is a bad thing here. Run your program in the debugger and find out exactly where it's getting stuck.''
+the run log window shows nothing T.T - General/JuliusJuarsa
+
+*"I think" is a bad thing here. Run your program in the debugger and find out exactly where it's getting stuck.*
 
 ----
 
 thanks for the tip on using the debugger. Still my first time using it though but it's proven to be usefull ^^, i've found the problem. it stuck because when the scanner didn't find any of the 'v','vn' or 'f' i didn't scan for the newLineCharacterSet. here is the final code :
 
-<code>
-	[[NSString]] ''objFile = [[[NSString]] stringWithContentsOfFile:objFileName];
+    
+	General/NSString *objFile = General/[NSString stringWithContentsOfFile:objFileName];
 
-	[[NSScanner]] ''scanner;
-	[[NSCharacterSet]] ''newLineCharacterSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"\n"];
+	General/NSScanner *scanner;
+	General/NSCharacterSet *newLineCharacterSet = General/[NSCharacterSet characterSetWithCharactersInString:@"\n"];
 		
 	float x,y,z;
 	int jmhTitik = 0;
 	int jmhVn = 0;
 	int jmhF = 0;
-	scanner = [[[NSScanner]] scannerWithString:objFile];
+	scanner = General/[NSScanner scannerWithString:objFile];
 
 	while ([scanner isAtEnd] == NO)
 	{
@@ -122,63 +122,63 @@ thanks for the tip on using the debugger. Still my first time using it though bu
 		}
 	}
 		
-	[[NSLog]](@"jumlah titik = %d ; jumlah vn = %d ; jumlah f = %d",jmhTitik,jmhVn,jmhF);
-</code>
+	General/NSLog(@"jumlah titik = %d ; jumlah vn = %d ; jumlah f = %d",jmhTitik,jmhVn,jmhF);
+
 
 ----
 
-I am trying to use [[NSScanner]] on some malformed HTML but immediately ran into problems. Here is some [[SenTestingKit]] code to illustrate the problem.
+I am trying to use General/NSScanner on some malformed HTML but immediately ran into problems. Here is some General/SenTestingKit code to illustrate the problem.
 
-<code>
-@implementation [[MyScanner]]
+    
+@implementation General/MyScanner
 
 - (void)test_MyScanner
 {
-    [[NSString]]  ''row  = nil;
-    [[NSScanner]] ''html = [[[NSScanner]] scannerWithString:@"<html><body><tr><td>index 0</td></tr></body></html>"];
+    General/NSString  *row  = nil;
+    General/NSScanner *html = General/[NSScanner scannerWithString:@"<html><body><tr><td>index 0</td></tr></body></html>"];
     
-    /'' Capture @"<tr><td>index 0</td></tr>" in variable row ''/
+    /* Capture @"<tr><td>index 0</td></tr>" in variable row */
     
     [html scanUpToString:@"<tr>" intoString:nil];
-    [[STAssertTrue]]( ([html scanLocation] == 12), @"(1) scanner @ %d", [html scanLocation] );
+    General/STAssertTrue( ([html scanLocation] == 12), @"(1) scanner @ %d", [html scanLocation] );
 
     [html scanString:@"</tr>" intoString:&row];
-    [[STAssertTrue]]( ([html scanLocation] == 37), @"(2) scanner @ %d", [html scanLocation] );
+    General/STAssertTrue( ([html scanLocation] == 37), @"(2) scanner @ %d", [html scanLocation] );
 }
 @end
-</code>
+
 
 This code fails with the following assertion print.
 
-%%BEGINCODESTYLE%%
-error: -[[[MyScanner]] test_MyScanner]: "([html scanLocation] == 37)" should be true, (2) scanner @ 12
-%%ENDCODESTYLE%%
+<code>
+error: -General/[MyScanner test_MyScanner]: "([html scanLocation] == 37)" should be true, (2) scanner @ 12
+</code>
 
 Repeating with the following also fails.
 
-<code>
-@implementation [[MyScanner]]
+    
+@implementation General/MyScanner
 
 - (void)test_MyScanner
 {
-    [[NSString]]  ''row  = nil;
-    [[NSScanner]] ''html = [[[NSScanner]] scannerWithString:@"<html><body><tr><td>index 0</td></tr></body></html>"];
+    General/NSString  *row  = nil;
+    General/NSScanner *html = General/[NSScanner scannerWithString:@"<html><body><tr><td>index 0</td></tr></body></html>"];
     
-    /'' Just try to advance the scanner to after </tr> ''/
+    /* Just try to advance the scanner to after </tr> */
 
     [html scanString:@"</tr>" intoString:nil];
-    [[STAssertTrue]]( ([html scanLocation] == 37), @"(2) scanner @ %d", [html scanLocation] );
+    General/STAssertTrue( ([html scanLocation] == 37), @"(2) scanner @ %d", [html scanLocation] );
 }
 @end
-</code>
+
 
 This code fails with the following assertion print.
 
-%%BEGINCODESTYLE%%
-error: -[[[MyScanner]] test_MyScanner]: "([html scanLocation] == 37)" should be true, (2) scanner @ 0
-%%ENDCODESTYLE%%
+<code>
+error: -General/[MyScanner test_MyScanner]: "([html scanLocation] == 37)" should be true, (2) scanner @ 0
+</code>
 
-Using only scanUpToString for both tags works but I can't use the [[NSString]]'' returned in the intoString argument.  I have to use math to advance the cursor past the trailing tag and then an [[NSString]] method to actual extract the subrange.  What am I missing?  Why can't I use the first code snippet?
+Using only scanUpToString for both tags works but I can't use the General/NSString* returned in the intoString argument.  I have to use math to advance the cursor past the trailing tag and then an General/NSString method to actual extract the subrange.  What am I missing?  Why can't I use the first code snippet?
 
 ----
-Use both. <code>scanUpToString:</code> followed by <code>scanString:</code> for both tags. <code>scanString:</code> will not move the scan location, so the string you scan must be at the current location. Likewise, <code>scanUpToString:</code> will not move the location past the string, so you have to advance past it by actually scanning the string as well.
+Use both.     scanUpToString: followed by     scanString: for both tags.     scanString: will not move the scan location, so the string you scan must be at the current location. Likewise,     scanUpToString: will not move the location past the string, so you have to advance past it by actually scanning the string as well.

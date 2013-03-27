@@ -1,12 +1,12 @@
-I created a custom class from [[NSView]] and did all my drawing in drawRect.  Also, inside this class I export the drawing to pdf and gif.  I currently have the custom view inside a window.  Here is my question:  Since I just need to render my drawing to pdf and gif, is there a way to accomplish this without displaying the view.  Aslo, why does my gif have a gray background when I already set to white.  Thanks so much.
+I created a custom class from General/NSView and did all my drawing in drawRect.  Also, inside this class I export the drawing to pdf and gif.  I currently have the custom view inside a window.  Here is my question:  Since I just need to render my drawing to pdf and gif, is there a way to accomplish this without displaying the view.  Aslo, why does my gif have a gray background when I already set to white.  Thanks so much.
 ----
-Have you heard of [[NSImage]]?
+Have you heard of General/NSImage?
 
 ----
 
-[[NSImage]] cannot create a PDF out of non-PDF data (such as arbitrary drawing commands). A view can, so the questioner is on the right track.
+General/NSImage cannot create a PDF out of non-PDF data (such as arbitrary drawing commands). A view can, so the questioner is on the right track.
 
-The method - dataWithPDFInsideRect: works whether or not the view is visible, in a window or whatever. So all you need to do is instantiate the view, call this method to get the PDF data, then discard the view.Don't know about the gray GIF background. --[[GrahamCox]]
+The method - dataWithPDFInsideRect: works whether or not the view is visible, in a window or whatever. So all you need to do is instantiate the view, call this method to get the PDF data, then discard the view.Don't know about the gray GIF background. --General/GrahamCox
 
 ----
 
@@ -14,7 +14,7 @@ Thanks!  With your suggestion,  I instantiated the view and in my controller cla
 
 Method in custom view class
 
--(BOOL) generateImageToPath:([[NSString]]'')fPath withDataOject:(id) dataObj
+-(BOOL) generateImageToPath:(General/NSString*)fPath withDataOject:(id) dataObj
 
 {
 
@@ -22,7 +22,7 @@ Method in custom view class
 
 	[self display];	//This does not trigger drawRect as expected
 
-	[[NSData]] '' pdfData =[self dataWithPDFInsideRect:[[NSMakeRect]](0,0,442,height)]; //height is calculated in drawRect 
+	General/NSData * pdfData =[self dataWithPDFInsideRect:General/NSMakeRect(0,0,442,height)]; //height is calculated in drawRect 
 
 						//If I just specifies a number for height, it works just fine
 

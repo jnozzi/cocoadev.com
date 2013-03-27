@@ -1,1 +1,1 @@
-see [[NSDocumentProblems]]
+see General/NSDocumentProblems

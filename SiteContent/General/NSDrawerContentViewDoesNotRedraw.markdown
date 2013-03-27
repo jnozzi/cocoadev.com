@@ -11,7 +11,7 @@ not re-draw itself properly, and neither does the border of the drawer.
 But toggling the drawer closed and open again
 solves that in a clumsy way.
 
-It looks as if I need to specificallly order the [[DrawerContentView]] to re-draw
+It looks as if I need to specificallly order the General/DrawerContentView to re-draw
 itself (I guess that's done with setNeedsDisplay, or something).
 
 However, rather than wiring up all the machinery needed to (1) get
@@ -38,4 +38,4 @@ D j S
 
 I believe the correct way to do this is to close the drawer when hiding the window and reopening the drawer when showing it again.
 
---  [[AndreasMayer]]
+--  General/AndreasMayer

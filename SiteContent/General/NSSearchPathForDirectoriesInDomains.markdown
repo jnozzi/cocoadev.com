@@ -1,1 +1,1 @@
-Describe [[NSSearchPathForDirectoriesInDomains]] here.
+Describe General/NSSearchPathForDirectoriesInDomains here.

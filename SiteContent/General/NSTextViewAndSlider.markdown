@@ -1,43 +1,43 @@
-I am creating an application in which a person sets the font size of a [[TextView]] through a slider. I can't seem to find a method for this. Please help.
+I am creating an application in which a person sets the font size of a General/TextView through a slider. I can't seem to find a method for this. Please help.
 
 ----
 
-You need to modify the attributes of the text storage to change the font size.  [[NSTextStorage]] is a subclass of [[NSMutableAttributedString]], so read the docs on attributed string to see how to modify it.  Even worse, the font size isn't a standalone attribute; it's part of a compound attribute, [[NSFontAttributeName]], that encapsulates the font name, some style info and the size.  Here's some (Warning: entirely untested!) code for changing a text view's font size, implemented as a category on [[NSTextView]]:
-<code>
-@interface [[NSTextView]] ([[FontSizeChanging]])
+You need to modify the attributes of the text storage to change the font size.  General/NSTextStorage is a subclass of General/NSMutableAttributedString, so read the docs on attributed string to see how to modify it.  Even worse, the font size isn't a standalone attribute; it's part of a compound attribute, General/NSFontAttributeName, that encapsulates the font name, some style info and the size.  Here's some (Warning: entirely untested!) code for changing a text view's font size, implemented as a category on General/NSTextView:
+    
+@interface General/NSTextView (General/FontSizeChanging)
 - (void)resizeFontTo:(float)inNewSize;
 @end
 
-@implementation [[NSTextView]] ([[FontSizeChanging]])
+@implementation General/NSTextView (General/FontSizeChanging)
 - (void)resizeFontTo:(float)inNewSize
 {
 	// get the text view's storage
-	[[NSTextStorage]]'' storage = [self textStorage];
+	General/NSTextStorage* storage = [self textStorage];
 	// find out what the current font info is
-	[[NSFont]]'' currFont = [storage attribute:[[NSFontAttributeName]] atIndex:0 effectiveRange:nil];
+	General/NSFont* currFont = [storage attribute:General/NSFontAttributeName atIndex:0 effectiveRange:nil];
 	// create a new font with the new size
-	[[NSFont]]'' newFont = [[[[NSFontManager]] sharedFontManager] convertFont:currFont toSize:inNewSize];
+	General/NSFont* newFont = General/[[NSFontManager sharedFontManager] convertFont:currFont toSize:inNewSize];
 	// make a range encompassing every character
-	[[NSRange]] allChars = [[NSMakeRange]](0, [storage length]);
+	General/NSRange allChars = General/NSMakeRange(0, [storage length]);
 	// set the font attribute to the new font
-	[storage addAttribute:[[NSFontAttributeName]] value:newFont range:allChars];
+	[storage addAttribute:General/NSFontAttributeName value:newFont range:allChars];
 }
 @end
-</code>
+
 One big caveat with this method is that it fails horribly if you try to use multiple fonts; it sets the entire text to the exact same font whenever it's called.  If you need it to preserve fonts while changing size then post back here and I'll fix it up a bit. -- Bo
 
 ----
 
 I saw this in an example from the ADC website:
 
-<code>
-    [[NSFont]] ''theFont;
+    
+    General/NSFont *theFont;
     
     [fontSizeField takeIntValueFrom:fontSizeStepper];
     theFont=[contentView font];
-    theFont=[[[[NSFontManager]] sharedFontManager] convertFont:theFont toSize:[fontSizeStepper intValue]];
+    theFont=General/[[NSFontManager sharedFontManager] convertFont:theFont toSize:[fontSizeStepper intValue]];
     [contentView setFont:theFont];
-</code>
+
 Thanks for the help.
 
 ----

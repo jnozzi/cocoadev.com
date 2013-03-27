@@ -4,11 +4,11 @@ Is there an easy way to get an array listing all installed applications on the c
 
 Get the directory contents of /Applications and ~/Applications and check either the Mac type for APPL or the bundle extension for .app
 
-see also [[NSPathUtilities]]
+see also General/NSPathUtilities
 
 ----
 
-There has to be some service for this because [[NSWorkspace]] provides a method to update Finder's database for installed applications <code>[[[[NSWorkspace]] sharedWorkspace] findApplications]</code> Maybe [[CoreFoundation]] provides a function that returns an array of all installed applications. --zootbobbalu 
+There has to be some service for this because General/NSWorkspace provides a method to update Finder's database for installed applications     General/[[NSWorkspace sharedWorkspace] findApplications] Maybe General/CoreFoundation provides a function that returns an array of all installed applications. --zootbobbalu 
 
 ----
 
@@ -18,50 +18,50 @@ I just checked - findApplications searches /Applications, /Network/Applications 
 
 ----
 
-<code>[[[[NSWorkspace]] sharedWorkspace] findApplications]</code> and anything it uses is not much different than searching standard application paths. 
+    General/[[NSWorkspace sharedWorkspace] findApplications] and anything it uses is not much different than searching standard application paths. 
 
 ----
 
 Dynamically how can I provide option to use to open a file with a particular application?
 
-<code>
+    
 #import <Cocoa/Cocoa.h>
 
-void [[ApplicationsInDirectory]]([[NSString]] ''searchPath, [[NSMutableArray]] ''applications) {
+void General/ApplicationsInDirectory(General/NSString *searchPath, General/NSMutableArray *applications) {
     BOOL isDir;
-    [[NSFileManager]] ''manager = [[[NSFileManager]] defaultManager];
-    [[NSArray]] ''files = [manager directoryContentsAtPath:searchPath];
-    [[NSEnumerator]] ''fileEnum = [files objectEnumerator]; [[NSString]] ''file;
+    General/NSFileManager *manager = General/[NSFileManager defaultManager];
+    General/NSArray *files = [manager directoryContentsAtPath:searchPath];
+    General/NSEnumerator *fileEnum = [files objectEnumerator]; General/NSString *file;
     while (file = [fileEnum nextObject]) {
         [manager changeCurrentDirectoryPath:searchPath];
         if ([manager fileExistsAtPath:file isDirectory:&isDir] && isDir) {
-            [[NSString]] ''fullpath = [searchPath stringByAppendingPathComponent:file];
-            if ([[file pathExtension] isEqualToString:@"app"]) [applications addObject:fullpath];
-            else [[ApplicationsInDirectory]](fullpath, applications);
+            General/NSString *fullpath = [searchPath stringByAppendingPathComponent:file];
+            if (General/file pathExtension] isEqualToString:@"app"]) [applications addObject:fullpath];
+            else [[ApplicationsInDirectory(fullpath, applications);
         }
     }
 }
 
-[[NSArray]] ''[[AllApplications]]([[NSArray]] ''searchPaths) {
-    [[NSMutableArray]] ''applications = [[[NSMutableArray]] array];
-    [[NSEnumerator]] ''searchPathEnum = [searchPaths objectEnumerator]; [[NSString]] ''path;
-    while (path = [searchPathEnum nextObject]) [[ApplicationsInDirectory]](path, applications);
+General/NSArray *General/AllApplications(General/NSArray *searchPaths) {
+    General/NSMutableArray *applications = General/[NSMutableArray array];
+    General/NSEnumerator *searchPathEnum = [searchPaths objectEnumerator]; General/NSString *path;
+    while (path = [searchPathEnum nextObject]) General/ApplicationsInDirectory(path, applications);
     return ([applications count]) ? applications : nil;
 }
 
 
-int main(int argc, char ''argv[]) {
-    [[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
-    [[NSString]] ''homeAppDir = [[@"~" stringByExpandingTildeInPath] stringByAppendingPathComponent:@"Applications"];
-    [[NSArray]] ''searchPaths = [[[NSArray]] arrayWithObjects:@"/Applications", @"/Network/Applications", 
+int main(int argc, char *argv[]) {
+    General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+    General/NSString *homeAppDir = General/@"~" stringByExpandingTildeInPath] stringByAppendingPathComponent:@"Applications"];
+    [[NSArray *searchPaths = General/[NSArray arrayWithObjects:@"/Applications", @"/Network/Applications", 
                                                         @"/Developer/Applications", homeAppDir, nil];
-    [[NSLog]](@"start application search");
-    [[NSArray]] ''applications = [[AllApplications]](searchPaths);
-    [[NSLog]](@"end application search\napplications: \n%@", applications);
+    General/NSLog(@"start application search");
+    General/NSArray *applications = General/AllApplications(searchPaths);
+    General/NSLog(@"end application search\napplications: \n%@", applications);
     [pool release];
     return 0;
 }
-</code>
+
 
 ----
 
@@ -69,79 +69,79 @@ I noticed the search path "/Network/Applications" -- how would one set up such a
 
 ----
 
-How to set up Network-accessible apps? Man, I wish I knew. Probably something to do with [[MacOSXServer]]...
+How to set up Network-accessible apps? Man, I wish I knew. Probably something to do with General/MacOSXServer...
 
 ----
 
 The search path "/Network/Application" is probably for a local network application server. I added it to this example for no special reason. --zootbobbalu
 
-Perhaps, but I've heard of wider use in e.g. lab setups. I would ''love'' to try something like that, but can't afford three Macs and OS X Server, so it's not gonna happen. But I'd still like to serve my apps across the network to my Dad's machine. Hm.
+Perhaps, but I've heard of wider use in e.g. lab setups. I would *love* to try something like that, but can't afford three Macs and OS X Server, so it's not gonna happen. But I'd still like to serve my apps across the network to my Dad's machine. Hm.
 
 ----
 
-'''/Network/Applications'''
+**/Network/Applications**
 
-I did some research on this and while I am not 100% positive (I have not spent a lot of time in front of Mac OS X Server), It would appear the Workgroup Manager on Mac OS X Server can limit what Applications a client machine executes (locally or remotely) as well as limiting the ability to see the local drive to begin with. So, I suspect if an Application is ''approved'', it becomes available in an Applications folder along with the other /Network entities?
-
-----
-
-See topic [[ServingTheNetworkDirectory]] for details
+I did some research on this and while I am not 100% positive (I have not spent a lot of time in front of Mac OS X Server), It would appear the Workgroup Manager on Mac OS X Server can limit what Applications a client machine executes (locally or remotely) as well as limiting the ability to see the local drive to begin with. So, I suspect if an Application is *approved*, it becomes available in an Applications folder along with the other /Network entities?
 
 ----
 
-[[LaunchServices]] has an undocumented API to get all applications. It probably checks ''/Network/Applications'', as well.
+See topic General/ServingTheNetworkDirectory for details
+
+----
+
+General/LaunchServices has an undocumented API to get all applications. It probably checks */Network/Applications*, as well.
 
 see http://developer.apple.com/technotes/tn/tn2029.html
 
 ----
 
-'''A note on all of these solutions for finding Applications directories.'''
+**A note on all of these solutions for finding Applications directories.**
 
 How about just asking Cocoa? It may come back with a longer list than you were expecting.
 
-<code>
-	[[NSArray]] ''array = [[NSSearchPathForDirectoriesInDomains]]([[NSAllApplicationsDirectory]],  [[NSAllDomainsMask]], TRUE);
-	[[NSEnumerator]] ''dirs = [array objectEnumerator];
-	[[NSString]] ''path;
+    
+	General/NSArray *array = General/NSSearchPathForDirectoriesInDomains(General/NSAllApplicationsDirectory,  General/NSAllDomainsMask, TRUE);
+	General/NSEnumerator *dirs = [array objectEnumerator];
+	General/NSString *path;
 	while (path = [dirs nextObject])
-		[[NSLog]](@"%@", path);
-</code>
+		General/NSLog(@"%@", path);
+
 
 ----
 
-'''All Running Application Names'''
+**All Running Application Names**
 
-I am trying to create a [[NSTableView]] that contains all running application names. My problem code is this:
+I am trying to create a General/NSTableView that contains all running application names. My problem code is this:
 
-<code>return [[processList objectAtIndex:rowIndex] objectForKey: @"[[NSApplicationName]]"];</code>
+    return General/processList objectAtIndex:rowIndex] objectForKey: @"[[NSApplicationName"];
 
-processList is an [[NSArray]] '' initialized in the init routine of the dataSource object initialized by:
+processList is an General/NSArray * initialized in the init routine of the dataSource object initialized by:
 
-<code>
+    
 - (id)init
 {
-	processList = [[[[NSWorkspace]] sharedWorkspace] launchedApplications];
+	processList = General/[[NSWorkspace sharedWorkspace] launchedApplications];
 	return self;
 }
-</code>
+
 
  The pointer fails in 
 
-<code>-(id)tableView:([[NSTableView]] '')aTableView objectValueForTableColumn:([[NSTableColumn]] '')aTableColumn row:(int)rowIndex</code>
+    -(id)tableView:(General/NSTableView *)aTableView objectValueForTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
 
 ----
 
 try
 
-<code>processList = [[[[[NSWorkspace]] sharedWorkspace] launchedApplications] '''retain'''];</code>.  See [[MemoryManagement]] for some pointers.  -- Bo
+    processList = General/[[[NSWorkspace sharedWorkspace] launchedApplications] **retain**];.  See General/MemoryManagement for some pointers.  -- Bo
 
 ----
 
-The code above for searching for applications won't necessarily get all of them (it misses unbundled applications). The correct way to do this is certainly [[LaunchServices]], it provides an API for testing to see if a URL is an application or not IIRC. There is a very easy (but private) interface for copying a list of all applications registered with its database -- if you'd like this to be made public then please file an enhancement request with the [[BugReporter]]. --[[FinlayDobbie]]
+The code above for searching for applications won't necessarily get all of them (it misses unbundled applications). The correct way to do this is certainly General/LaunchServices, it provides an API for testing to see if a URL is an application or not IIRC. There is a very easy (but private) interface for copying a list of all applications registered with its database -- if you'd like this to be made public then please file an enhancement request with the General/BugReporter. --General/FinlayDobbie
 
 ----
 
-In my program, I wish to list all application files (except the Utilities folder) all inside a [[NSTableView]].
+In my program, I wish to list all application files (except the Utilities folder) all inside a General/NSTableView.
 
 I managed to do the applescript, which doesn't exclude the utilities folder. I can paste the line I want to run:
 tell application "Finder" to return name of application files of entire contents of (path to applications folder)
@@ -150,79 +150,79 @@ When I run this it performs well. It gives me a big array of applications. The q
 
 ----
 
-I don't think [[AppleScript]] is the best way to attack this.  Perhaps you could investigate [[LaunchServices]].
+I don't think General/AppleScript is the best way to attack this.  Perhaps you could investigate General/LaunchServices.
 
 see also http://developer.apple.com/technotes/tn/tn2029.html
 
 some excerpts from the page:
-<code>
-[[NSArray]] ''urls;
+    
+General/NSArray *urls;
 _LSCopyAllApplicationURLs(&urls);
-</code>
+
 
 _LSCopyAllApplicationiURLs is unsupported, you have to supply the prototype yourself.
 The following code worked OK on my 10.3.9:
 
-<code>
+    
 #import <Foundation/Foundation.h>
-extern void _LSCopyAllApplicationURLs([[NSArray]]''');
+extern void _LSCopyAllApplicationURLs(General/NSArray**);
 
 int main(){
-        id pool=[[[[NSAutoreleasePool]] alloc] init];
-        [[NSArray]] ''urls;
+        id pool=General/[[NSAutoreleasePool alloc] init];
+        General/NSArray *urls;
         _LSCopyAllApplicationURLs(&urls);
         int i;
         for(i=0;i<[urls count];i++){
-                [[NSLog]](@"%@",[urls objectAtIndex:i]);
+                General/NSLog(@"%@",[urls objectAtIndex:i]);
         }
         [pool release];
         return 0;
 }
-</code>
+
 
 Save, say, to foo.m and compile with "gcc -o foo foo.m -framework Foundation -framework Carbon" and run ./foo !
 
-If what you're after is a listing of the /Applications folder, try using [[NSFileManager]] to list all files in /Applications. You can then filter them however you want to: only show the ones with a ".app" extension, etc. [[LaunchServices]] and the Finder have more sophisticated definitions of what "all applications" means (it's not just simply a list of the files in /Applications).
+If what you're after is a listing of the /Applications folder, try using General/NSFileManager to list all files in /Applications. You can then filter them however you want to: only show the ones with a ".app" extension, etc. General/LaunchServices and the Finder have more sophisticated definitions of what "all applications" means (it's not just simply a list of the files in /Applications).
 
 ----
 
 This seems to work, but takes ages  to load! Can I make it more effective somehow?
-<code>
-	[[ApplicationList]] = [[[[NSMutableArray]] alloc] init];
-	[[UtilityList]] = [[[[NSMutableArray]] alloc] init];
-	[[NSString]] ''file;
-	[[NSString]] ''appsDir = @"/Applications";
-	[[NSDirectoryEnumerator]] ''dirEnum = [[[[NSFileManager]] defaultManager] enumeratorAtPath: appsDir];
+    
+	General/ApplicationList = General/[[NSMutableArray alloc] init];
+	General/UtilityList = General/[[NSMutableArray alloc] init];
+	General/NSString *file;
+	General/NSString *appsDir = @"/Applications";
+	General/NSDirectoryEnumerator *dirEnum = General/[[NSFileManager defaultManager] enumeratorAtPath: appsDir];
 	while (file = [dirEnum nextObject]) {
-		if ([[file pathExtension] isEqualToString: @"app"]) {
+		if (General/file pathExtension] isEqualToString: @"app"]) {
 			if(![[file pathComponents] containsObject:@"Utilities"]) {
-				[[[ApplicationList]] addObject: file];
+				[[[ApplicationList addObject: file];
 			} else  {
-				[[[UtilityList]] addObject: file];
+				General/[UtilityList addObject: file];
 			}
 		}
 	}
-</code>
+
 
 It sometimes displays the contents in the app files! like Program.app/Contents ...
 
 ----
 
-Your code will display the package contents of any app in /Applications/Utilities/. Use <code>- (BOOL)isFilePackageAtPath:([[NSString]] '')fullPath</code> from [[NSWorkspace]] to check for packages, not an .app extension.
+Your code will display the package contents of any app in /Applications/Utilities/. Use     - (BOOL)isFilePackageAtPath:(General/NSString *)fullPath from General/NSWorkspace to check for packages, not an .app extension.
 
 Your code is flawed, though. Try something like
 
-<code>
-		if(![[file pathComponents] containsObject:@"Utilities"]){
-			if ([[[[NSWorkspace]] sharedWorkspace] isFilePackageAtPath:file]) {
-				[[[ApplicationList]] addObject: file];
+    
+		if(!General/file pathComponents] containsObject:@"Utilities"]){
+			if ([[[[NSWorkspace sharedWorkspace] isFilePackageAtPath:file]) {
+				General/[ApplicationList addObject: file];
                             }
 			} else  {
-			if ([[[[NSWorkspace]] sharedWorkspace] isFilePackageAtPath:file]) {
-				[[[UtilityList]] addObject: file];
+			if (General/[[NSWorkspace sharedWorkspace] isFilePackageAtPath:file]) {
+				General/[UtilityList addObject: file];
                             }
 			}
 		}
-</code>
 
-This will only find apps which are packages anyway. Some Carbon apps aren't, and [[RealBasic]] apps aren't. Using [[LaunchServices]] to find all apps, then checking if the returned apps are in /Applications would be a better way.
+
+This will only find apps which are packages anyway. Some Carbon apps aren't, and General/RealBasic apps aren't. Using General/LaunchServices to find all apps, then checking if the returned apps are in /Applications would be a better way.

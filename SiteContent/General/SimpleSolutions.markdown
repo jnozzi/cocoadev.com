@@ -1,16 +1,16 @@
  (Begun November, 2004)
 ----
-[[SimpleSolutions]] -- '''Table of Contents Page'''.
+General/SimpleSolutions -- **Table of Contents Page**.
 ----
 
-If you've spent hours trying to get Cocoa/[[ObjC]] to do some "little" thing that, for whatever reason, isn't well documented (or is just plain unintuitive), you aren't the only one. But now that you've got it solved, why not add the solution to the appropriate [[SimpleSolutions]] page(s) and spare someone else a little of the aggravation.
+If you've spent hours trying to get Cocoa/General/ObjC to do some "little" thing that, for whatever reason, isn't well documented (or is just plain unintuitive), you aren't the only one. But now that you've got it solved, why not add the solution to the appropriate General/SimpleSolutions page(s) and spare someone else a little of the aggravation.
 
 ----
-'''Table of Contents:'''
+**Table of Contents:**
 
-* [[SimpleSolutionsNSTableView]]
-* [[SimpleSolutionsNSColor]]
-* [[SimpleSolutionsNSArrayExcBadAccess]]
+* General/SimpleSolutionsNSTableView
+* General/SimpleSolutionsNSColor
+* General/SimpleSolutionsNSArrayExcBadAccess
 
 ----
 

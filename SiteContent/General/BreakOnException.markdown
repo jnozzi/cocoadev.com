@@ -1,3 +1,3 @@
-see [[ExceptionHandling]]
+see General/ExceptionHandling
 
-see also [[StackTraces]] and [[DebuggingTechniques]]
+see also General/StackTraces and General/DebuggingTechniques

@@ -1,3 +1,3 @@
 
 
-see [[JavaBridge]]
+see General/JavaBridge

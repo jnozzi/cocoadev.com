@@ -1,9 +1,9 @@
-[[ProgrammaticallyChangeHTMLSelectOption]]
+General/ProgrammaticallyChangeHTMLSelectOption
 
 
 I want to be able to change the page http://www.wrcc.dri.edu/cgi-bin/wea_windrose.pl?caCFEN to different day, month, and year and then click "submit info" programmatically. I've looked at NSURL and don't see any way to do this. Can anybody give me a clue? Here is the html source:
 
-<code>
+    
 <H3> Set the starting date. </H3>
 <TABLE> <TR> <TD>
 Select the <BR> Month:
@@ -21,8 +21,8 @@ Select the <BR> Month:
 <option value="10">October</option>
 <option value="11">November</option>
 <option value="12">December</option>
-</code>
+
 
 ----
 
-Easiest way would be to use curl (see "man curl" in the Terminal, or the [[CURLHandle]] framework) to submit the form data via POST.
+Easiest way would be to use curl (see "man curl" in the Terminal, or the General/CURLHandle framework) to submit the form data via POST.

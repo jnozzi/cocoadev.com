@@ -1,15 +1,15 @@
 I wish to launch a command and show the result of this command in the GUI as it becomes available.
 
-For this I was using [[NSTask]] with an [[NSPipe]] for its output, which I read from in the background.
+For this I was using General/NSTask with an General/NSPipe for its output, which I read from in the background.
 
 Unfortunately data only becomes available when the underlying buffer is full, which is everything but desired in this situation.
 
 I have tried to disable buffering using:
-<code>
-[[NSPipe]] ''outPipe = [[[NSPipe]] pipe];
-int fd = [[outPipe fileHandleForReading] fileDescriptor];
+    
+General/NSPipe *outPipe = General/[NSPipe pipe];
+int fd = General/outPipe fileHandleForReading] fileDescriptor];
 int err = fcntl(fd, F_NOCACHE, true);
-</code>
+
 
 But I get -1 back from fcntl() (which indicate error).
 
@@ -25,4 +25,4 @@ If line-by-line is good enough then you may want to run it under a pty pseudo-te
 
 The method that I use is to use the pty program as outlined in "Advanced Programming in the UNIX Environment" by Richard Stevens. It can be built from the sources at http://www.yendor.com/programming/unix/apue/ch19.html which will also require the sources at http://www.yendor.com/programming/unix/apue/lib.44/
 
--[[NeilVanNote]]
+-[[NeilVanNote

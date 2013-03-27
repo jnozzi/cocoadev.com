@@ -1,4 +1,4 @@
-<code>
+    
  
  /* 
      Returns a point cut object for all methods on all classes in the runtime, 
@@ -51,7 +51,7 @@
  */
  +(ACPointCut *)pointCutForClasses:(NSArray *)classes andMethods: (NSArray *)methods;
 
-</code>
 
 
-[[Category:PointlessInformation‏‎]]
+
+General/Category:PointlessInformation‏‎

@@ -1,1 +1,1 @@
-Moved (appended) to [[UniCode]].
+Moved (appended) to General/UniCode.

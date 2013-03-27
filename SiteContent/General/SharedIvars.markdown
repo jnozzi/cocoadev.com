@@ -53,8 +53,8 @@ Not sure if I have understood, but I'll try:
 
 Somewhere in myDocument, when you create the myClass instance, you may do:
 
-  myClass* inst = [[myClass alloc] initWithMyDocument:self]; 
+  myClass* inst = General/myClass alloc] initWithMyDocument:self]; 
 
-A faster way would be to use outlets in the [[InterfaceBuilder]] file for your document (create an instance there of myClass with an outlet and attach that outlet to File's Owner -- that is, the myDocument instance).
+A faster way would be to use outlets in the [[InterfaceBuilder file for your document (create an instance there of myClass with an outlet and attach that outlet to File's Owner -- that is, the myDocument instance).
 
-Remember that a '''class''' is just a blueprint for '''instances''', that is, a class has no "values" of its own; it's just a model used to create instances, which hold these values (it might help to think of the class myDocument as "the abstract concept of a myDocument", which is then used to create any number of documents on-screen -- the instances of this class. Each of them will have a different value1, and you must make sure the instance of myClass references the right instance by getting a reference to it, either manually as above or with outlets).
+Remember that a **class** is just a blueprint for **instances**, that is, a class has no "values" of its own; it's just a model used to create instances, which hold these values (it might help to think of the class myDocument as "the abstract concept of a myDocument", which is then used to create any number of documents on-screen -- the instances of this class. Each of them will have a different value1, and you must make sure the instance of myClass references the right instance by getting a reference to it, either manually as above or with outlets).

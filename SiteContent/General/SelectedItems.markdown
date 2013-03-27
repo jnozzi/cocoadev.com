@@ -1,16 +1,15 @@
-add this method as a category or subclass method of [[NSOutlineView]]
+add this method as a category or subclass method of General/NSOutlineView
 
-<code>
-- ([[NSArray]] '')selectedItems
+    
+- (General/NSArray *)selectedItems
 {
-	[[NSIndexSet]] ''selectedRowsIndexSet = [self selectedRowIndexes];
+	General/NSIndexSet *selectedRowsIndexSet = [self selectedRowIndexes];
 	int i;
 	
-	[[NSMutableArray]] ''itemsArray = [[[NSMutableArray]] array];
-	while ((i = [selectedRowsIndexSet indexGreaterThanIndex:i]) != [[NSNotFound]]) {
+	General/NSMutableArray *itemsArray = General/[NSMutableArray array];
+	while ((i = [selectedRowsIndexSet indexGreaterThanIndex:i]) != General/NSNotFound) {
 		[itemsArray addObject:[self itemAtRow:i]];
 	}
 	
 	return itemsArray;
 }
-</code>

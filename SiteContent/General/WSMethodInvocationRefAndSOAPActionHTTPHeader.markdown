@@ -1,9 +1,9 @@
-I've discovered how to make SOAP calls with the [[WSMethodInvocationRef]] and related functions, but I cannot make a [[SOAPAction]] appear in the outgoing HTTP header. Does anyone know how to do this?
+I've discovered how to make SOAP calls with the General/WSMethodInvocationRef and related functions, but I cannot make a General/SOAPAction appear in the outgoing HTTP header. Does anyone know how to do this?
 
-It seems like it ought to be <code>[[WSMethodInvocationSetProperty]]( 
+It seems like it ought to be     General/WSMethodInvocationSetProperty( 
     soapCall, 
     kWSSOAPMethodSOAPAction , 
-    ([[CFTypeRef]] @"http://ws.cdyne.com/[[AdvancedCheckAddress]]" );</code>
+    (General/CFTypeRef @"http://ws.cdyne.com/General/AdvancedCheckAddress" );
 
 but there is no such constant as kWSSOAPMethodSOAPAction.
 
@@ -11,16 +11,16 @@ but there is no such constant as kWSSOAPMethodSOAPAction.
 
 ----
 
-You can create a kWSHTTPExtraHeaders property for the invocation which is a [[CFDictionary]] of { key ([[CFString]]), val ([[CFString]]) } pairs. See:
-http://developer.apple.com/documentation/Networking/Conceptual/[[WebServices]]/3_ref_folder/chapter_3_section_33.html
+You can create a kWSHTTPExtraHeaders property for the invocation which is a General/CFDictionary of { key (General/CFString), val (General/CFString) } pairs. See:
+http://developer.apple.com/documentation/Networking/Conceptual/General/WebServices/3_ref_folder/chapter_3_section_33.html
 for details. The snippet below should be enough to get you going.
-<code>
-[[NSDictionary]] ''headers = [[[NSDictionary]] dictionaryWithObject:@"urn:[[GoogleSearchAction]]" forKey:@"[[SOAPAction]]"];
-/'' your code to create the invocation and set its parameters - see [[WSMethodInvocationRef]] ''/
-[[WSMethodInvocationSetProperty]] (rpcCall, ([[CFStringRef]]) kWSHTTPExtraHeaders, ([[CFTypeRef]]) headers);
-</code>
+    
+General/NSDictionary *headers = General/[NSDictionary dictionaryWithObject:@"urn:General/GoogleSearchAction" forKey:@"General/SOAPAction"];
+/* your code to create the invocation and set its parameters - see General/WSMethodInvocationRef */
+General/WSMethodInvocationSetProperty (rpcCall, (General/CFStringRef) kWSHTTPExtraHeaders, (General/CFTypeRef) headers);
 
-The headers dictionary could also contain @"[[MyFunkyApp]] 1.0 (Macintosh; Mac OS X)" with key @"User-Agent" if you want fame in server logs :)
+
+The headers dictionary could also contain @"General/MyFunkyApp 1.0 (Macintosh; Mac OS X)" with key @"User-Agent" if you want fame in server logs :)
 
 -- Merman
 
@@ -31,50 +31,50 @@ It seem's that something is missing but i had several sleepless nights because o
 
 --JJ
 
-<code>
+    
 
-#import <[[CoreServices]]/[[CoreServices]].h>
+#import <General/CoreServices/General/CoreServices.h>
 #import "soap.h"
 
 
 @implementation soap
 
 
-- ([[IBAction]]) getQuote: (id) sender {	
+- (General/IBAction) getQuote: (id) sender {	
 																																											
 	
-	[[WSMethodInvocationRef]] soapCall;
-	[[NSMutableDictionary]] ''params;
-	params     = [[[[[NSMutableDictionary]] alloc] init] retain];
+	General/WSMethodInvocationRef soapCall;
+	General/NSMutableDictionary *params;
+	params     = General/[[[NSMutableDictionary alloc] init] retain];
 
 
 
 	[params setObject:@"AAPL" forKey:@"symbol"];
 	
 		
-	[[NSMutableDictionary]] ''headers = [[[NSMutableDictionary]] dictionaryWithObject:@"http://www.webserviceX.NET/[[GetQuote]]" forKey:@"[[SOAPAction]]"];	
-	NSURL ''rpcURL = [NSURL [[URLWithString]]: @"http://www.webservicex.net/stockquote.asmx"];	
-	[[NSString]] ''methodName = @"[[GetQuote]]";	
+	General/NSMutableDictionary *headers = General/[NSMutableDictionary dictionaryWithObject:@"http://www.webserviceX.NET/General/GetQuote" forKey:@"General/SOAPAction"];	
+	NSURL *rpcURL = [NSURL General/URLWithString: @"http://www.webservicex.net/stockquote.asmx"];	
+	General/NSString *methodName = @"General/GetQuote";	
 	
-	[[NSDictionary]] ''result;
+	General/NSDictionary *result;
 	
 
-	soapCall = [[WSMethodInvocationCreate]] (([[CFURLRef]]) rpcURL, ([[CFStringRef]]) methodName, kWSSOAP2001Protocol);
+	soapCall = General/WSMethodInvocationCreate ((General/CFURLRef) rpcURL, (General/CFStringRef) methodName, kWSSOAP2001Protocol);
 	
-	[[WSMethodInvocationSetParameters]] (soapCall, ([[CFDictionaryRef]]) params,([[CFArrayRef]]) NULL);
+	General/WSMethodInvocationSetParameters (soapCall, (General/CFDictionaryRef) params,(General/CFArrayRef) NULL);
 	
-	[[WSMethodInvocationSetProperty]] (soapCall, ([[CFStringRef]]) kWSHTTPExtraHeaders, ([[CFTypeRef]]) headers);
-	result = ([[NSDictionary]] '') ([[WSMethodInvocationInvoke]] (soapCall));
+	General/WSMethodInvocationSetProperty (soapCall, (General/CFStringRef) kWSHTTPExtraHeaders, (General/CFTypeRef) headers);
+	result = (General/NSDictionary *) (General/WSMethodInvocationInvoke (soapCall));
 		
 
-if ([[WSMethodResultIsFault]] (([[CFDictionaryRef]]) result)) 
+if (General/WSMethodResultIsFault ((General/CFDictionaryRef) result)) 
 	
-	[[NSLog]] (@"%@", result);//[resultField setStringValue: [result objectForKey: ([[NSString]] '') kWSFaultString]];	
+	General/NSLog (@"%@", result);//[resultField setStringValue: [result objectForKey: (General/NSString *) kWSFaultString]];	
 
 
 else 
-	[[NSLog]] (@"%@", result);	
-	[resultField setStringValue: [result objectForKey: ([[NSDictionary]] '') kWSMethodInvocationResult]];	
+	General/NSLog (@"%@", result);	
+	[resultField setStringValue: [result objectForKey: (General/NSDictionary *) kWSMethodInvocationResult]];	
 	
 	[params release];
 	params = nil;
@@ -85,7 +85,7 @@ else
 @end
 
 
-</code>
+
 ----
 These examples are great and I've been able to use these as a model to call my .NET web services, so thanks to everyone for contributing. I need to take things a little further, now.
 

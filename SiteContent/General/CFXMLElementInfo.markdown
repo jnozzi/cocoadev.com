@@ -1,1 +1,1 @@
-Used by [[CFXMLParser]].  For more info see Apple's documentation: http://developer.apple.com/documentation/[[CoreFoundation]]/Reference/[[CFXMLNodeRef]]/Reference/[[DataTypeGroupIndex]].html#//apple_ref/doc/uid/20001233/C014941
+Used by General/CFXMLParser.  For more info see Apple's documentation: http://developer.apple.com/documentation/General/CoreFoundation/Reference/General/CFXMLNodeRef/Reference/General/DataTypeGroupIndex.html#//apple_ref/doc/uid/20001233/C014941

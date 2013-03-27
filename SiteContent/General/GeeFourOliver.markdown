@@ -4,8 +4,8 @@ Cya!
 
 ----
 
-'''Threads I started:'''
+**Threads I started:**
 
-*[[SlowLaunchTime]]
-*[[TakeSeveralFloatsAndConcatThem]]
-*[[PassAnArrayFromAFunction]]
+*General/SlowLaunchTime
+*General/TakeSeveralFloatsAndConcatThem
+*General/PassAnArrayFromAFunction

@@ -6,4 +6,4 @@ Not too much to it here.
 
 Think of the .h file as how you advertise your services to the world. Since folks need to include your header file to use your methods (at least use them without compiler warnings), that should be where you keep your public declarations.  Keep private stuff and implementation details in your .m file.
 
-Back to [[HowToProgramInOSX]]
+Back to General/HowToProgramInOSX

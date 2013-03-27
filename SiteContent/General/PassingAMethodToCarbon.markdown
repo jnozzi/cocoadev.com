@@ -1,1 +1,1 @@
-[[CocoaDiscussions]] - Passing a method to Carbon?
+General/CocoaDiscussions - Passing a method to Carbon?

@@ -2,28 +2,27 @@
 
 class methods:
 
-<code>
+    
 
-+(void)fillRect:([[NSRect]])rect
-+(void)strokeRect:([[NSRect]])rect
-+(void)clipRect:([[NSRect]])rect
-+(void)strokeLineFromPoint:([[NSPoint]])point1 toPoint:([[NSPoint]])point2
++(void)fillRect:(General/NSRect)rect
++(void)strokeRect:(General/NSRect)rect
++(void)clipRect:(General/NSRect)rect
++(void)strokeLineFromPoint:(General/NSPoint)point1 toPoint:(General/NSPoint)point2
 
-</code>
+
 
 if speed is critical there here are some C functions you can call directly:
 
-<code>
+    
 
-void [[NSRectFill]]([[NSRect]] rect);
-void [[NSRectFillList]](const [[NSRect]] ''rects, int count);
-void [[NSRectFillListWithGrays]](const [[NSRect]] ''rects, const float ''grays, int num);
-void [[NSRectFillListWithColors]](const [[NSRect]] ''rects, [[NSColor]] '''colors, int num);
+void General/NSRectFill(General/NSRect rect);
+void General/NSRectFillList(const General/NSRect *rects, int count);
+void General/NSRectFillListWithGrays(const General/NSRect *rects, const float *grays, int num);
+void General/NSRectFillListWithColors(const General/NSRect *rects, General/NSColor **colors, int num);
 
 //drawing outlines
 
-void [[NSFrameRect]]([[NSRect]] rect);
-void [[NSFrameRectWithWidth]]([[NSRect]] rect, float frameWidth);
-void [[NSFrameRectWithWidthUsingOperation]]([[NSRect]] rect, float frameWidth, [[NSCompositingOperation]] op);
+void General/NSFrameRect(General/NSRect rect);
+void General/NSFrameRectWithWidth(General/NSRect rect, float frameWidth);
+void General/NSFrameRectWithWidthUsingOperation(General/NSRect rect, float frameWidth, General/NSCompositingOperation op);
 
-</code>

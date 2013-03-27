@@ -1,1 +1,1 @@
-See [[CocoaSampleCode]]
+See General/CocoaSampleCode

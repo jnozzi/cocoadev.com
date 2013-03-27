@@ -1,4 +1,4 @@
-What's the best way to subclass [[NSScrollView]] or otherwise access it so that I can create my own scroller. All I really need is to create two buttons that will act as the up and down scroll buttons, I don't need the bar in between. Can an action be sent that will tell the [[NSScrollView]] to go down or up one line or page? --[[LoganCollins]]
+What's the best way to subclass General/NSScrollView or otherwise access it so that I can create my own scroller. All I really need is to create two buttons that will act as the up and down scroll buttons, I don't need the bar in between. Can an action be sent that will tell the General/NSScrollView to go down or up one line or page? --General/LoganCollins
 
 ----
 
@@ -6,7 +6,7 @@ I can't tell what you really want.  Mac OS X and Cocoa already supprt line and p
 
 If ypu really want to control how a scroll view draws itself, see the -tile method.  You can use that method to add sub-controls, hide sub-controls, remove sub-controls and otherwise mess with what scroll views do.  You can also deconstruct the scroll view and find out what actions or other methods the up and down arrows within a scroll bar call.
 
-Finally, the fact that you can post to this forum suggests that you could look all of this up yourself.  If I don't understand what you really want or the cited documentation doesn't help you, I suggest you do a google searchs for examples of [[NSScrollView]] subclasses.
+Finally, the fact that you can post to this forum suggests that you could look all of this up yourself.  If I don't understand what you really want or the cited documentation doesn't help you, I suggest you do a google searchs for examples of General/NSScrollView subclasses.
 
 
 Apple's documentation:
@@ -14,7 +14,7 @@ Apple's documentation:
 setVerticalLineScroll:
 - (void)setVerticalLineScroll:(float)aFloat
 
-Sets the amount by which the receiver scrolls itself vertically when scrolling line by line to aFloat, expressed in the content view�s coordinate system. This value is the amount used when the user clicks the scroll arrows on the vertical scroll bar without holding down a modifier key. When displaying text in an [[NSScrollView]], for example, you might set this value to the height of a single line of text in the default font.
+Sets the amount by which the receiver scrolls itself vertically when scrolling line by line to aFloat, expressed in the content view�s coordinate system. This value is the amount used when the user clicks the scroll arrows on the vertical scroll bar without holding down a modifier key. When displaying text in an General/NSScrollView, for example, you might set this value to the height of a single line of text in the default font.
 See Also: � verticalLineScroll, � setHorizontalLineScroll:, � lineScroll, � setVerticalPageScroll:
 
 setVerticalPageScroll:

@@ -2,7 +2,7 @@ The only Cocoa programmer at Northern Kentucky University (http://www.nku.edu/ )
 
 Personal homepage/weblog: Among Other Things (http://www.interalia.org/ ).
 
-Created: [[EspressoBlog]] (http://iaware.interalia.org/espressoblog/ ).
+Created: General/EspressoBlog (http://iaware.interalia.org/espressoblog/ ).
 
 Currently trying to win: Apple Student Design Awards (http://developer.apple.com/students/design/ ).
 

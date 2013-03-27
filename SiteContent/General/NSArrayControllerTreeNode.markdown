@@ -1,9 +1,9 @@
-_NSArrayControllerTreeNode is often returned by [[[NSOutlineView]] itemAtRow:i]. There is no documentation on it. The header for it can be found at http://www.blueboxmoon.com/wiki/?page=Binding%20Tree
+_NSArrayControllerTreeNode is often returned by General/[NSOutlineView itemAtRow:i]. There is no documentation on it. The header for it can be found at http://www.blueboxmoon.com/wiki/?page=Binding%20Tree
 
-As always, be wary of undocumented [[APIs]]. Apple will feel no reservations about pulling them right out from under you.
+As always, be wary of undocumented General/APIs. Apple will feel no reservations about pulling them right out from under you.
 
-<code>
-@interface _NSArrayControllerTreeNode : [[NSObject]]
+    
+@interface _NSArrayControllerTreeNode : General/NSObject
 
 //
 // Get the number of child nodes under this node.
@@ -13,7 +13,7 @@ As always, be wary of undocumented [[APIs]]. Apple will feel no reservations abo
 //
 // Get the index path of this node in the tree.
 //
-- ([[NSIndexPath]] '')indexPath;
+- (General/NSIndexPath *)indexPath;
 
 //
 // Insert the given user object at the specified index number.
@@ -24,7 +24,7 @@ As always, be wary of undocumented [[APIs]]. Apple will feel no reservations abo
 // Insert the given user object at the specified index path, relative
 // to this node.
 //
-- (void)insertObject:(id)aObject atIndexPath:([[NSIndexPath]] '')indexPath;
+- (void)insertObject:(id)aObject atIndexPath:(General/NSIndexPath *)indexPath;
 
 //
 // Returns YES if this node is a leaf (no children), NO if it has children.
@@ -34,12 +34,12 @@ As always, be wary of undocumented [[APIs]]. Apple will feel no reservations abo
 //
 // Get the child node at the given index path, relative to this node.
 //
-- (_NSArrayControllerTreeNode '')nodeAtIndexPath:([[NSIndexPath]] '')indexPath;
+- (_NSArrayControllerTreeNode *)nodeAtIndexPath:(General/NSIndexPath *)indexPath;
 
 //
 // Get the user object at the given index path, relative to this node.
 //
-- (id)objectAtIndexPath:([[NSIndexPath]] '')indexPath;
+- (id)objectAtIndexPath:(General/NSIndexPath *)indexPath;
 
 //
 // Retrieve the user object for this node.
@@ -61,7 +61,7 @@ As always, be wary of undocumented [[APIs]]. Apple will feel no reservations abo
 //
 // Remove the child node at the given index path, relative to this node.
 //
-- (int)removeObjectAtIndexPath:([[NSIndexPath]] '')indexPath;
+- (int)removeObjectAtIndexPath:(General/NSIndexPath *)indexPath;
 
 //
 // Set the user object to be observed by this node. Probably a dangerous method
@@ -75,18 +75,18 @@ As always, be wary of undocumented [[APIs]]. Apple will feel no reservations abo
 // work when called directly. It probably is meant to be used in combination
 // (or via) the insertObject: methods.
 //
-- (id)setParentNode:(_NSArrayControllerTreeNode '')aNode;
+- (id)setParentNode:(_NSArrayControllerTreeNode *)aNode;
 
 //
 // Set the sort descriptors for this node. This sorts only
 // the children of this node and not the entire tree.
 //
-- (void)setSortDescriptors:([[NSArray]] '')sortDescriptors;
+- (void)setSortDescriptors:(General/NSArray *)sortDescriptors;
 
 //
 // Retrieve the child node at the given index under this node.
 //
-- (_NSArrayControllerTreeNode '')subnodeAtIndex:(int)nIndex;
+- (_NSArrayControllerTreeNode *)subnodeAtIndex:(int)nIndex;
 
 //
 // These are completely unknown methods.
@@ -99,7 +99,7 @@ As always, be wary of undocumented [[APIs]]. Apple will feel no reservations abo
 // nm
 
 @end
-</code>
+
 
 Include that header to get rid of warnings when using itemAtRow:
 

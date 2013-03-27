@@ -1,4 +1,4 @@
-Is there an easy way to apply a CSS style to a page in a [[WebView]]?
+Is there an easy way to apply a CSS style to a page in a General/WebView?
 
 Thanks.
 
@@ -6,13 +6,13 @@ Thanks.
 
 I just insert this into the <head> tag:
 
-<code>
+    
 <link REL="STYLESHEET" TYPE="text/css" HREF="style.css">
-</code>
+
 
 There should be a better way though...
 
---[[ZacWhite]]
+--General/ZacWhite
 
 ----
 

@@ -8,7 +8,7 @@ Is there something in Cocoa like it?
 
 Well... I can answer this.
 
-illegalSet = [[[NSCharacterSet]] illegalCharacterSet] will give you a character set of the illegal characters.
+illegalSet = General/[NSCharacterSet illegalCharacterSet] will give you a character set of the illegal characters.
 
 You can then use [illegalSet characterIsMember:uChar] to determine if uChar is illegal. Note this wont tell you if the character exists in a font, but it will always be printable.
 
@@ -18,4 +18,4 @@ Will
 
 Thanks!
 
-'''''Page orphaned'''''
+***Page orphaned***

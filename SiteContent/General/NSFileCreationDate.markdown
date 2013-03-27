@@ -1,37 +1,37 @@
 Hello,
 
-how can i find the creation date of a file? i know that i need to use [[NSFileCreationDate]], but i am not sure how to tell it which path, and then convert the [[NSDate]] to [[NSString]].
+how can i find the creation date of a file? i know that i need to use General/NSFileCreationDate, but i am not sure how to tell it which path, and then convert the General/NSDate to General/NSString.
 
 - jeremy
 
 ----
 
-I can help you with the last one. On the [[NSDate]] page, follow the link to Apple's documentation and look around. (Hint: it's the -description set of methods.)
+I can help you with the last one. On the General/NSDate page, follow the link to Apple's documentation and look around. (Hint: it's the -description set of methods.)
 
 ----
 
-Here's some sample code.  It's largely stolen from Apple's documentation on [[NSFileManager]].  Let's say you want to check something on the file ~/Documents/Contract.rtf
+Here's some sample code.  It's largely stolen from Apple's documentation on General/NSFileManager.  Let's say you want to check something on the file ~/Documents/Contract.rtf
 
-<code>
-[[NSString]] ''path = [[[NSString]] stringWithString:@"~/Documents/Contract.rtf"];
-[[NSString]] ''fixedPath = [path stringByStandardizingPath];
-[[NSFileManager]] ''manager = [[[NSFileManager]] defaultManager];
-[[NSDictionary]] ''dict = [manager fileAttributesAtPath:fixedPath traverseLink:YES];
-[[NSDate]] ''fileCreationDate = [dict objectForKey:[[NSFileCreationDate]]];
-[[NSString]] ''fileCreationDateString = [fileCreationDate description];
-</code>
+    
+General/NSString *path = General/[NSString stringWithString:@"~/Documents/Contract.rtf"];
+General/NSString *fixedPath = [path stringByStandardizingPath];
+General/NSFileManager *manager = General/[NSFileManager defaultManager];
+General/NSDictionary *dict = [manager fileAttributesAtPath:fixedPath traverseLink:YES];
+General/NSDate *fileCreationDate = [dict objectForKey:General/NSFileCreationDate];
+General/NSString *fileCreationDateString = [fileCreationDate description];
+
 ----
-<code>
+    
 Slightly messier but more compact:
 
-[[[[[[NSFileManager]] defaultManager] fileAttributesAtPath:[[[[NSString]] stringWithString:@"~/Documents/Contract.rtf"] stringByStandardizingPath] traverseLink:YES] objectForKey:[[NSFileCreationDate]]] description];
+General/[[[[NSFileManager defaultManager] fileAttributesAtPath:General/[[NSString stringWithString:@"~/Documents/Contract.rtf"] stringByStandardizingPath] traverseLink:YES] objectForKey:General/NSFileCreationDate] description];
 
-</code>
+
 
 
 If you do it this way, fileCreationDateString will look like "2001-03-24 10:45:32 +0600".
-If you want it output in some other, perhaps prettier, format, you'll need to use [[NSDate]]'s
-'''descriptionWithLocale:''' or '''descriptionWithCalendarFormat:timeZone:locale:'''
+If you want it output in some other, perhaps prettier, format, you'll need to use General/NSDate's
+**descriptionWithLocale:** or **descriptionWithCalendarFormat:timeZone:locale:**
 
 ----
 

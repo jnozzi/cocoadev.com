@@ -14,4 +14,4 @@ Thanks in advance, Michael
 
 ----
 
-One way to do this is to edit the popup's bindings in Interface Builder, checking "Allows Null". If the reportsTo relationship is null, null is selected in the popup. You can specify (in the bindings settings) what the popup will display if the selection is null (in your case, "Self"). This assumes that, by your application's logic, having ''NO'' reportsTo relationship always means the employee reports to self.
+One way to do this is to edit the popup's bindings in Interface Builder, checking "Allows Null". If the reportsTo relationship is null, null is selected in the popup. You can specify (in the bindings settings) what the popup will display if the selection is null (in your case, "Self"). This assumes that, by your application's logic, having *NO* reportsTo relationship always means the employee reports to self.

@@ -1,22 +1,22 @@
 
 
-People have expressed their desire for greater functionality from [[NSSet]].  Anyone who wants to write a few of the methods (or improve existing methods) should feel more than welcome.
+People have expressed their desire for greater functionality from General/NSSet.  Anyone who wants to write a few of the methods (or improve existing methods) should feel more than welcome.
 
 At least one person has said they want:
 
 
-*- ([[NSSet]] *)intersectionWithSet:([[NSSet]] *)aSet;
-*- ([[NSSet]] *)setByAddingSet:([[NSSet]] *)aSet;
-*- ([[NSSet]] *)setByRemovingSet:([[NSSet]] *)aSet;
-*- ([[NSSet]] *)setByAddingObject:(id)anObject;
-*- ([[NSSet]] *)setByRemovingObject:(id)anObject;
+*- (General/NSSet *)intersectionWithSet:(General/NSSet *)aSet;
+*- (General/NSSet *)setByAddingSet:(General/NSSet *)aSet;
+*- (General/NSSet *)setByRemovingSet:(General/NSSet *)aSet;
+*- (General/NSSet *)setByAddingObject:(id)anObject;
+*- (General/NSSet *)setByRemovingObject:(id)anObject;
 
 
 ----
-'''[[NSSet]] category [[CocoaDevUsersAdditions]]:'''
+**General/NSSet category General/CocoaDevUsersAdditions:**
 
-'''[[NSSet]]+[[CocoaDevUsersAdditions]].h'''
-<code>
+**General/NSSet+General/CocoaDevUsersAdditions.h**
+    
  #import <Foundation/Foundation.h>
  
  @interface NSSet (CocoaDevUsersAdditions)
@@ -34,18 +34,18 @@ At least one person has said they want:
  - (NSSet *)resultsOfMakeObjectsPerformSelector:(SEL)aSelector withObject:(id)anObject;
  
  @end
-</code>
 
 
-'''[[NSSet]]+[[CocoaDevUsersAdditions]].m'''
-<code>
+
+**General/NSSet+General/CocoaDevUsersAdditions.m**
+    
  #import "NSSet+CocoaDevUsersAdditions.h"
  
  @implementation NSSet (CocoaDevUsersAdditions)
  
  - (NSSet *)setByUnioningSet:(NSSet *)aSet
  {
-   id ret = [[self mutableCopy] autorelease];
+   id ret = General/self mutableCopy] autorelease];
    [ret unionSet:aSet];
    return ret;
  }
@@ -65,12 +65,12 @@ At least one person has said they want:
  {
    id ret = [[self mutableCopy] autorelease];
    [ret unionSet:aSet];
-   [ret minusSet:[self setByIntersectingSet:aSet]];
+   [ret minusSet:[self setByIntersectingSet:aSet;
    return ret;
  }
  - (NSSet *)setByAddingObject:(id)anObject
  {
-   id ret = [[self mutableCopy] autorelease];
+   id ret = General/self mutableCopy] autorelease];
    [ret addObject:anObject];
    return ret;
  }
@@ -133,9 +133,9 @@ At least one person has said they want:
    return result;
  }
  @end
-</code>
+
 
 ----
 
 
-[[Category:CocoaDevUsersAdditions]]
+[[Category:CocoaDevUsersAdditions

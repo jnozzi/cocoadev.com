@@ -1,46 +1,46 @@
-<code>
-[[NSAlertPanel]].beginAlertSheet(
+    
+General/NSAlertPanel.beginAlertSheet(
 	String title, 
 	String defaultButton, 
 	String alternateButton, 
 	String otherButton, 
-	[[NSWindow]] docWindow, 
+	General/NSWindow docWindow, 
 	Object modalDelegate, 
-	[[NSSelector]] willEndSelector, 
-	[[NSSelector]] didEndSelector, 
+	General/NSSelector willEndSelector, 
+	General/NSSelector didEndSelector, 
 	Object contextInfo, 
 	String msg);
-</code>
+
 The two selectors must have the following signature:
-<code>
-public void willEndAlert([[NSWindow]] sheet, int returnCode, Object contextInfo)
-public void didEndAlert([[NSWindow]] sheet, int returnCode, Object contextInfo)
-</code>
-Return codes are statics in [[NSAlertPanel]]
-<code>
-    public static final int [[DefaultReturn]] = 1;
-    public static final int [[AlternateReturn]] = 0;
-    public static final int [[OtherReturn]] = -1;
-    public static final int [[ErrorReturn]] = -2;
-</code>
+    
+public void willEndAlert(General/NSWindow sheet, int returnCode, Object contextInfo)
+public void didEndAlert(General/NSWindow sheet, int returnCode, Object contextInfo)
+
+Return codes are statics in General/NSAlertPanel
+    
+    public static final int General/DefaultReturn = 1;
+    public static final int General/AlternateReturn = 0;
+    public static final int General/OtherReturn = -1;
+    public static final int General/ErrorReturn = -2;
+
 
 Example:
-<code>
-public void willEndAlert([[NSWindow]] sheet, int returnCode, Object contextInfo) {
+    
+public void willEndAlert(General/NSWindow sheet, int returnCode, Object contextInfo) {
 	switch (returnCode) {
-	case [[NSAlertPanel]].[[DefaultReturn]]:
+	case General/NSAlertPanel.General/DefaultReturn:
 		System.out.println("modalDelegate.willEndAlert() Save");
 		break;
-	case [[NSAlertPanel]].[[AlternateReturn]]:
+	case General/NSAlertPanel.General/AlternateReturn:
 		System.out.println("modalDelegate.willEndAlert() Don't Save");
 		break;
-	case [[NSAlertPanel]].[[OtherReturn]]:
+	case General/NSAlertPanel.General/OtherReturn:
 		System.out.println("modalDelegate.willEndAlert() Cancel");
 		break;
 	default:
 		System.out.println("modalDelegate.willEndAlert() Error " + returnCode);
 	}
 }
-</code>
 
-[[FrancoisFrisch]]
+
+General/FrancoisFrisch

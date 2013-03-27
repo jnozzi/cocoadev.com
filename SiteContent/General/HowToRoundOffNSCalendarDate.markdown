@@ -1,6 +1,6 @@
 Hi,
 
-is there any way I can get an [[NSCalendarDate]] to round itself to the nearest 5 minutes?
+is there any way I can get an General/NSCalendarDate to round itself to the nearest 5 minutes?
 
 If not, can anyone point me in the right direction on how to achieve this manually?
 
@@ -9,28 +9,27 @@ Thanks for your help!
 -P
 
 ----
-'''Interface'''
+**Interface**
 
-<code>
-@interface [[NSDate]] ([[MyAdditions]])
+    
+@interface General/NSDate (General/MyAdditions)
 
-- ([[NSDate]]'')roundedToNearestFiveMinuteMark;
+- (General/NSDate*)roundedToNearestFiveMinuteMark;
 
 @end
-</code>
 
-'''Implementation'''
 
-<code>
-@implementation [[NSDate]] ([[MyAdditions]])
+**Implementation**
 
-- ([[NSDate]]'')roundedToNearestFiveMinuteMark
+    
+@implementation General/NSDate (General/MyAdditions)
+
+- (General/NSDate*)roundedToNearestFiveMinuteMark
 {
-	[[NSTimeInterval]] interval = [self timeIntervalSinceReferenceDate];
+	General/NSTimeInterval interval = [self timeIntervalSinceReferenceDate];
 	long int lquo = lrint(interval / 300.0);
-	[[NSTimeInterval]] seconds = (lrint(remainder(interval, 300.0)) < 150) ? (lquo '' 300) : ((lquo + 1) '' 300);
-	return [[[NSDate]] dateWithTimeIntervalSinceReferenceDate:seconds];
+	General/NSTimeInterval seconds = (lrint(remainder(interval, 300.0)) < 150) ? (lquo * 300) : ((lquo + 1) * 300);
+	return General/[NSDate dateWithTimeIntervalSinceReferenceDate:seconds];
 }
 
 @end
-</code>

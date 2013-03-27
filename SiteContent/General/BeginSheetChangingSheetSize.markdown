@@ -2,35 +2,35 @@
 
 I'm trying to programmatically change the height of my sheet, but an interesting thing happens.  The first time I open the sheet, it is about 20 pixels too short, cutting off the top.  But, every time it is opened after that, it's the correct height.
 
-Here is my Code, along with some checks via [[NSLog]]:
+Here is my Code, along with some checks via General/NSLog:
 
-<code>
+    
 
-[[NSLog]]( @"Before Resize: %d", (int)[[NSHeight]]([exportWindow frame]) );
+General/NSLog( @"Before Resize: %d", (int)General/NSHeight([exportWindow frame]) );
 		
-[[NSRect]] r;
+General/NSRect r;
 int newWinSizeV = 204;
-int newWinSizeH = (int) [[NSWidth]]([exportWindow frame]);
+int newWinSizeH = (int) General/NSWidth([exportWindow frame]);
 		
-r = [[NSMakeRect]]([exportWindow frame].origin.x, [exportWindow frame].origin.y, newWinSizeH, newWinSizeV);
+r = General/NSMakeRect([exportWindow frame].origin.x, [exportWindow frame].origin.y, newWinSizeH, newWinSizeV);
 [exportWindow setFrame:r display:YES animate:NO];
 		
-[[NSLog]]( @"After Resize: %d", (int)[[NSHeight]]([exportWindow frame]) );
+General/NSLog( @"After Resize: %d", (int)General/NSHeight([exportWindow frame]) );
 		
-[[[NSApp]] beginSheet: exportSheet
+General/[NSApp beginSheet: exportSheet
    modalForWindow: mainWindow
    modalDelegate: self
    didEndSelector: nil
    contextInfo: nil];
 		
-[[NSLog]]( @"After Showing Sheet: %d", (int)[[NSHeight]]([exportWindow frame]) );
-[[NSLog]]( @"  " );
+General/NSLog( @"After Showing Sheet: %d", (int)General/NSHeight([exportWindow frame]) );
+General/NSLog( @"  " );
 
-</code>
 
-And here is the [[NSLog]] result
 
-<code>
+And here is the General/NSLog result
+
+    
 
 2005-12-18 14:32:24.131 Application[2867] Before Resize: 226
 2005-12-18 14:32:24.132 Application[2867] After Resize: 204
@@ -46,11 +46,11 @@ And here is the [[NSLog]] result
 2005-12-18 14:32:26.100 Application[2867]   
 ...
 
-</code>
 
-So, it is clear that the window resizes appropriately the first time, but after the %%BEGINCODESTYLE%%beginSheet:%%ENDCODESTYLE%% call, the window is too small.  But every time after that, the window is correct and stays correct.
 
-Does anybody have any insight as to why this might be happening?  Does %%BEGINCODESTYLE%%beginSheet:%%ENDCODESTYLE%% do something to the window size when running, but only the first time?  Thanks for the help.
+So, it is clear that the window resizes appropriately the first time, but after the <code>beginSheet:</code> call, the window is too small.  But every time after that, the window is correct and stays correct.
+
+Does anybody have any insight as to why this might be happening?  Does <code>beginSheet:</code> do something to the window size when running, but only the first time?  Thanks for the help.
 
 ----
 

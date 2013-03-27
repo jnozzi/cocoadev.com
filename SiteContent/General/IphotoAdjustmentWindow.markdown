@@ -15,7 +15,7 @@ Thanks, anyone that has some example code?
 
 ----
 
-Check out [[BorderlessWindow]] and [[NSBezierPathCategory]] - these two together will give you everything you need. Just create a borderless window using custom view. In that custom view, draw a rounded rect (with [[NSBezierPath]] - the category provided in [[NSBezierPathCategory]] will help you here) with an alpha faded black color as the bezier path's fill color). Make some controls and add them to the custom view and viola!
+Check out General/BorderlessWindow and General/NSBezierPathCategory - these two together will give you everything you need. Just create a borderless window using custom view. In that custom view, draw a rounded rect (with General/NSBezierPath - the category provided in General/NSBezierPathCategory will help you here) with an alpha faded black color as the bezier path's fill color). Make some controls and add them to the custom view and viola!
 
 
 ----
@@ -28,12 +28,12 @@ I recently found myself implementing some of the HUD interface for the preview w
 
 http://www.opensword.org/Images/hudbuttons.jpg
 
-[[PXHUDButton]].h:
+General/PXHUDButton.h:
 
-<code>
+    
 //
-//  [[PXHUDButton]].h
-//  Pixen-[[XCode]]
+//  General/PXHUDButton.h
+//  Pixen-General/XCode
 //
 //  Created by Andy Matuschak on 5/7/05.
 //  Copyright 2005 Open Sword Group. All rights reserved.
@@ -42,56 +42,56 @@ http://www.opensword.org/Images/hudbuttons.jpg
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[PXHUDButton]] : [[NSView]]
+@interface General/PXHUDButton : General/NSView
 {
-	[[NSString]] '' title;
-	[[NSImage]] '' buttonFillUp, '' buttonFillDown;
-	[[NSImage]] '' buttonLeftUp, '' buttonLeftDown;
-	[[NSImage]] '' buttonRightUp, '' buttonRightDown;
+	General/NSString * title;
+	General/NSImage * buttonFillUp, * buttonFillDown;
+	General/NSImage * buttonLeftUp, * buttonLeftDown;
+	General/NSImage * buttonRightUp, * buttonRightDown;
 	int pressed;
 	
 	id target;
 	SEL action;
 }
 
-- (void)setTitle:([[NSString]] '')title;
+- (void)setTitle:(General/NSString *)title;
 - (void)setTarget:target;
 - (void)setAction:(SEL)action;
 
 @end
-</code>
 
-[[PXHUDButton]].m:
 
-<code>
+General/PXHUDButton.m:
+
+    
 //
-//  [[PXHUDButton]].m
-//  Pixen-[[XCode]]
+//  General/PXHUDButton.m
+//  Pixen-General/XCode
 //
 //  Created by Andy Matuschak on 5/7/05.
 //  Copyright 2005 Open Sword Group. All rights reserved.
 //
 
-#import "[[PXHUDButton]].h"
+#import "General/PXHUDButton.h"
 
 
-@implementation [[PXHUDButton]]
+@implementation General/PXHUDButton
 
-- (id)initWithFrame:([[NSRect]])frame {
+- (id)initWithFrame:(General/NSRect)frame {
     self = [super initWithFrame:frame];
     if (self)
 	{
-		buttonFillUp = [[[[NSImage]] imageNamed:@"hudButtonFillUp"] retain];
-		buttonFillDown = [[[[NSImage]] imageNamed:@"hudButtonFillDown"] retain];
-		buttonLeftUp = [[[[NSImage]] imageNamed:@"hudButtonLeftUp"] retain];
-		buttonLeftDown = [[[[NSImage]] imageNamed:@"hudButtonLeftDown"] retain];
-		buttonRightUp = [[[[NSImage]] imageNamed:@"hudButtonRightUp"] retain];
-		buttonRightDown = [[[[NSImage]] imageNamed:@"hudButtonRightDown"] retain];
+		buttonFillUp = General/[[NSImage imageNamed:@"hudButtonFillUp"] retain];
+		buttonFillDown = General/[[NSImage imageNamed:@"hudButtonFillDown"] retain];
+		buttonLeftUp = General/[[NSImage imageNamed:@"hudButtonLeftUp"] retain];
+		buttonLeftDown = General/[[NSImage imageNamed:@"hudButtonLeftDown"] retain];
+		buttonRightUp = General/[[NSImage imageNamed:@"hudButtonRightUp"] retain];
+		buttonRightDown = General/[[NSImage imageNamed:@"hudButtonRightDown"] retain];
     }
     return self;
 }
 
-- (void)setTitle:([[NSString]] '')newTitle
+- (void)setTitle:(General/NSString *)newTitle
 {
 	[title release];
 	title = [newTitle retain];
@@ -115,30 +115,30 @@ http://www.opensword.org/Images/hudbuttons.jpg
 	[self setNeedsDisplay:YES];
 }
 
-- (void)mouseDown:([[NSEvent]] '')event
+- (void)mouseDown:(General/NSEvent *)event
 {
-	[self setButtonState:[[NSOnState]]];
+	[self setButtonState:General/NSOnState];
 }
 
-- (void)mouseUp:([[NSEvent]] '')event
+- (void)mouseUp:(General/NSEvent *)event
 {
-	[self setButtonState:[[NSOffState]]];
+	[self setButtonState:General/NSOffState];
 	if (target)
 	{
 		[target performSelector:action withObject:self];
 	}
 }
 
-- (void)mouseDragged:([[NSEvent]] '')event
+- (void)mouseDragged:(General/NSEvent *)event
 {
-	[[NSPoint]] point = [event locationInWindow];
-	if (![[NSPointInRect]](point, [self frame]) && pressed == YES)
+	General/NSPoint point = [event locationInWindow];
+	if (!General/NSPointInRect(point, [self frame]) && pressed == YES)
 	{
-		[self setButtonState:[[NSOffState]]];
+		[self setButtonState:General/NSOffState];
 	}
-	else if ([[NSPointInRect]](point, [self frame]) && pressed == NO)
+	else if (General/NSPointInRect(point, [self frame]) && pressed == NO)
 	{
-		[self setButtonState:[[NSOnState]]];
+		[self setButtonState:General/NSOnState];
 	}
 }
 
@@ -152,53 +152,53 @@ http://www.opensword.org/Images/hudbuttons.jpg
 	action = anAction;
 }
 
-- (void)drawRect:([[NSRect]])rect
+- (void)drawRect:(General/NSRect)rect
 {
 	// draw left side
-	[(pressed ? buttonLeftDown : buttonLeftUp) compositeToPoint:[[NSZeroPoint]] operation:[[NSCompositeSourceAtop]]];
+	[(pressed ? buttonLeftDown : buttonLeftUp) compositeToPoint:General/NSZeroPoint operation:General/NSCompositeSourceAtop];
 	
 	// draw right side
-	[[NSPoint]] right;
-	right.x = [[NSMaxX]]([self bounds]) - [buttonRightUp size].width;
+	General/NSPoint right;
+	right.x = General/NSMaxX([self bounds]) - [buttonRightUp size].width;
 	right.y = 0;
-	[(pressed ? buttonRightDown : buttonRightUp) compositeToPoint:right operation:[[NSCompositeSourceAtop]]];
+	[(pressed ? buttonRightDown : buttonRightUp) compositeToPoint:right operation:General/NSCompositeSourceAtop];
 	
 	// draw middle
-	[[NSRect]] middle;
+	General/NSRect middle;
 	middle.origin.x = [buttonLeftUp size].width;
 	middle.origin.y = 0;
 	middle.size.width = [self frame].size.width - [buttonLeftUp size].width - [buttonRightUp size].width;
 	middle.size.height = [buttonFillUp size].height;
-	[(pressed ? buttonFillDown : buttonFillUp) drawInRect:middle fromRect:[[NSMakeRect]](0,0,1,[buttonFillUp size].height) operation:[[NSCompositeSourceAtop]] fraction:1];
+	[(pressed ? buttonFillDown : buttonFillUp) drawInRect:middle fromRect:General/NSMakeRect(0,0,1,[buttonFillUp size].height) operation:General/NSCompositeSourceAtop fraction:1];
 	
-	[[NSString]] ''actualString = [[[NSString]] stringWithFormat:@"<span style=\"font-size: 10px; font-family: 'Lucida Grande'; color: #ffffff;\"><strong>%@</strong></span>",title];
-	[[NSAttributedString]] '' actual = [[[[NSAttributedString]] alloc] initWithHTML:[actualString dataUsingEncoding:[[NSASCIIStringEncoding]]] documentAttributes:NULL];
-	[[NSPoint]] stringPoint;
+	General/NSString *actualString = General/[NSString stringWithFormat:@"<span style=\"font-size: 10px; font-family: 'Lucida Grande'; color: #ffffff;\"><strong>%@</strong></span>",title];
+	General/NSAttributedString * actual = General/[[NSAttributedString alloc] initWithHTML:[actualString dataUsingEncoding:General/NSASCIIStringEncoding] documentAttributes:NULL];
+	General/NSPoint stringPoint;
 	stringPoint.x = [self frame].size.width / 2 - [actual size].width / 2;
 	stringPoint.y = 4;
 	[actual drawAtPoint:stringPoint];
 }
 
 @end
-</code>
 
-You'll need the images for it (ganked from iPhoto ^_^;;). You can download them (hudButton''.tiff) from our SVN repository here: http://www.andymatuschak.org/websvn/listing.php?repname=Open%20Sword%20SVN&path=/Pixen/trunk/&rev=0&sc=1
 
-Just do [[PXHUDButton]] ''myButton = [[[[PXHUDButton]] alloc] initWithFrame:someFrame] and make it a subview of something. The height has to be 20, I'm afraid. Use setTitle: to set the caption that appears inside the button, and setTarget: and setAction: to set up what happens when you click it. If someone feels like making an [[IBPalette]], that'd be kinda sweet. I'm not entirely sure how.
+You'll need the images for it (ganked from iPhoto ^_^;;). You can download them (hudButton*.tiff) from our SVN repository here: http://www.andymatuschak.org/websvn/listing.php?repname=Open%20Sword%20SVN&path=/Pixen/trunk/&rev=0&sc=1
 
-I was thinking of making a whole suite of these things. Like, an overridden [[NSWindow]], too, and so on. iPhoto has images for these widgets: spinner, slider, and button. It seems like Motion has many, many more, but I can't find the images for them in any of the frameworks included. Other things like text boxes can be drawn with bezier paths. Oh, and the window that contains this button should have 66% alpha if you're trying to replicate the HUD look. Here's the code I use to draw the main window view:
+Just do General/PXHUDButton *myButton = General/[[PXHUDButton alloc] initWithFrame:someFrame] and make it a subview of something. The height has to be 20, I'm afraid. Use setTitle: to set the caption that appears inside the button, and setTarget: and setAction: to set up what happens when you click it. If someone feels like making an General/IBPalette, that'd be kinda sweet. I'm not entirely sure how.
 
-<code>
-id path = [[[NSBezierPath]] bezierPathWithRoundedRect:[[NSInsetRect]](frame, 1, 1) cornerRadius:8];
-[[[[NSColor]] blackColor] set];
+I was thinking of making a whole suite of these things. Like, an overridden General/NSWindow, too, and so on. iPhoto has images for these widgets: spinner, slider, and button. It seems like Motion has many, many more, but I can't find the images for them in any of the frameworks included. Other things like text boxes can be drawn with bezier paths. Oh, and the window that contains this button should have 66% alpha if you're trying to replicate the HUD look. Here's the code I use to draw the main window view:
+
+    
+id path = General/[NSBezierPath bezierPathWithRoundedRect:General/NSInsetRect(frame, 1, 1) cornerRadius:8];
+General/[[NSColor blackColor] set];
 [path fill];
-</code>
 
-Pretty simple. It uses the [[RoundedRectangles]] category.
+
+Pretty simple. It uses the General/RoundedRectangles category.
 
 Oh, and I couldn't figure out how to make the tiny drop shadow draw under the button. It just didn't want to render no matter what I did. Anyone have any advice on that?
 
--- [[AndyMatuschak]]
+-- General/AndyMatuschak
 
 ----
 
@@ -206,14 +206,14 @@ Andy,
 
 It appears that the images you're rendering are being drawn upside-down. If you look closely, you'll notice that the gradient is flipped, and the shadow is on top. Just to make sure I wasn't seeing things (no pun intended), I flipped the images vertically in Photoshop and sure enough, they drew as expected.
 
-Unfortunately, I can't figure out ''why'' they're being drawn upside-down. There doesn't seem to be anything explicity wrong with your drawing code.
+Unfortunately, I can't figure out *why* they're being drawn upside-down. There doesn't seem to be anything explicity wrong with your drawing code.
 
 The non-destructive workaround would be to set the isFlipped attribute of each image to YES with -setFlipped and then adjust the vertical positioning of the title string with:
 
-<code>
+    
 // minus one extra pixel for the shadow at the bottom
 stringPoint.y = [self frame].size.height / 2 - [actual size].height / 2 - 1;
-</code>
+
 
 -- Michael Watson
 

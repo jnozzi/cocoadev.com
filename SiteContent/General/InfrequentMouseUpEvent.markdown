@@ -1,11 +1,11 @@
-Hey, I have my app set up to get [[MouseDown]] and [[MouseUp]] events in a [[NSView]]. 
+Hey, I have my app set up to get General/MouseDown and General/MouseUp events in a General/NSView. 
 
-- (void)mouseUp:([[NSEvent]] '')theEvent; {
-		[[NSLog]](@"Up");
+- (void)mouseUp:(General/NSEvent *)theEvent; {
+		General/NSLog(@"Up");
 }
 
-- (void)mouseDown:([[NSEvent]] '')theEvent; {
-		[[NSLog]](@"Down");
+- (void)mouseDown:(General/NSEvent *)theEvent; {
+		General/NSLog(@"Down");
 }
 
 

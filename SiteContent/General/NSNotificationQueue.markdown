@@ -1,3 +1,3 @@
-[[NSNotificationQueue]] takes notifications, coalesces and prioritizes them, and sends them to an [[NSNotificationCenter]]. You may have multiple [[NSNotificationQueues]] referring to one [[NSNotificationCenter]].
+General/NSNotificationQueue takes notifications, coalesces and prioritizes them, and sends them to an General/NSNotificationCenter. You may have multiple General/NSNotificationQueues referring to one General/NSNotificationCenter.
 
-They can be very useful for filtering lots of messages down to essential information. They are also good for use in drawing operations and event handling, as they return right after queueing the notification (I do not know if queueing the message itself entails an [[NSLock]]), and thus do not slow down the operation much.
+They can be very useful for filtering lots of messages down to essential information. They are also good for use in drawing operations and event handling, as they return right after queueing the notification (I do not know if queueing the message itself entails an General/NSLock), and thus do not slow down the operation much.

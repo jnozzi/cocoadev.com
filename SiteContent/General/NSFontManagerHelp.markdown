@@ -1,8 +1,8 @@
-Basically, i'm trying to make an app which will take an array of the available fonts on the computer, and put them all in an [[NSTableView]].  Simple enough, right?
+Basically, i'm trying to make an app which will take an array of the available fonts on the computer, and put them all in an General/NSTableView.  Simple enough, right?
 
 Here's what I wrote.
 
-<code>
+    
 
 #import "Controller.h"
 
@@ -10,25 +10,25 @@ Here's what I wrote.
 
 -(void)awakeFromNib
 {
-    fontManager = [[[NSFontManager]] sharedFontManager];
+    fontManager = General/[NSFontManager sharedFontManager];
     array = [fontManager availableFonts];
 }
-- ([[IBAction]])update:(id)sender
+- (General/IBAction)update:(id)sender
 {
 }
-- (int)numberOfRowsInTableView:([[NSTableView]] '')aTableView
+- (int)numberOfRowsInTableView:(General/NSTableView *)aTableView
 {
     return [array count];
 }
-- (id)tableView:([[NSTableView]] '')aTableView objectValueForTableColumn:([[NSTableColumn]] '')aTableColumn row:(int)rowIndex
+- (id)tableView:(General/NSTableView *)aTableView objectValueForTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
 {
     return [array objectAtIndex:rowIndex];
 }
 @end
 
-</code>
 
-[[FontManager]] is an [[NSFontManager]] pointer... Array is an [[NSArray]] pointer.  Can someone help me out here?  Here's what happens when I compile and run.  I see a few fonts, but font all of them... then it crashes and says this 
+
+General/FontManager is an General/NSFontManager pointer... Array is an General/NSArray pointer.  Can someone help me out here?  Here's what happens when I compile and run.  I see a few fonts, but font all of them... then it crashes and says this 
 
 ## Component Manager: attempting to find symbols in a component alias of type (regR/carP/x!bt)
 
@@ -36,13 +36,13 @@ Font Tester has exited due to signal 10 (SIGBUS).
 
 Thanks.
 
---[[CharlieMiller]]
+--General/CharlieMiller
 
 ----
 
 availableFonts is autoreleased... remember to retain it !
 
-/[[PtxMac]]
+/General/PtxMac
 
 ----
 
@@ -62,4 +62,4 @@ Do you have Suitcase or anything else that messes with fonts installed on the iB
 
 ----
 
-It's a bug in Roxio Toast 5 VCD plug-in. Either delete /Library/[[QuickTime]]/Toast Video CD Support.qtx or get Toast 6.
+It's a bug in Roxio Toast 5 VCD plug-in. Either delete /Library/General/QuickTime/Toast Video CD Support.qtx or get Toast 6.

@@ -1,8 +1,8 @@
-First time [[ObjC]] developer. Wannabe game developer for iPhone OS.
+First time General/ObjC developer. Wannabe game developer for iPhone OS.
 
 Thanks to whoever replied to this \o/
 
-[[CocoaBlog]]: http://cocoakids.net/
+General/CocoaBlog: http://cocoakids.net/
 
 Wanna join with your experience? 
 

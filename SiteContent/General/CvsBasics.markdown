@@ -1,15 +1,15 @@
 
 
 
-'''What is CVS?'''
+**What is CVS?**
 
 CVS is the Concurrent Versioning System, a system that is used to log changes to software projects. This is an important safety measure when collaborating on large projects, but it's also useful for lone developers, because, among many other things, it allows you at any time to go back to the source code of any previous version, which can be a life-saver sometimes.
 
 The CVS homepage is at: http://www.cvshome.org/
 
-'''How do I use CVS?'''
+**How do I use CVS?**
 
-This page will not give an all-purpose CVS Introduction but rather show how [[ProjectBuilder]] integrates CVS support and how to uses that integration.
+This page will not give an all-purpose CVS Introduction but rather show how General/ProjectBuilder integrates CVS support and how to uses that integration.
 
 If you've never heard of CVS before, or are unsure just how it works, we recommend the following links to get you started:
 
@@ -19,12 +19,12 @@ If you've never heard of CVS before, or are unsure just how it works, we recomme
 * http://www.cvshome.org/docs/index.html - An extensive list of CVS documentation
 
 
-O'Reilly [[MacDevCenter]] Articles:
+O'Reilly General/MacDevCenter Articles:
 
 * http://www.macdevcenter.com/pub/a/mac/2003/07/18/version_control_one.html - Version Control on Mac OS X, Part 1
 
 
-[[MacEdition]]:
+General/MacEdition:
 
 *
 http://macedition.com/bolts/bolts_20021016.php
@@ -34,35 +34,35 @@ Also, _Open Source Development With CVS_ by Fogel is a great introductory book.
 
 Some of its content is available online here: http://cvsbook.red-bean.com/cvsbook.html
 
-'''Additional Software:'''
+**Additional Software:**
 
-There is an open-souce frontend to CVS that is independent from [[ProjectBuilder]]. It's called CVL and has its own homepage here:
+There is an open-souce frontend to CVS that is independent from General/ProjectBuilder. It's called CVL and has its own homepage here:
 
 http://www.sente.ch/software/cvl/
 
 And there's some others :
 
-'''[[MacCVSClient]]''' : http://www.heilancoo.net/[[MacCVSClient]]
-'''[[LinCVS]]''' : http://www.lincvs.org/ (cross-platform and very complete) 
+**General/MacCVSClient** : http://www.heilancoo.net/General/MacCVSClient
+**General/LinCVS** : http://www.lincvs.org/ (cross-platform and very complete) 
 
-'''Using CVS with [[ProjectBuilder]]'''
+**Using CVS with General/ProjectBuilder**
 
-[[ProjectBuilder]] offers a feature called SCM (Source Code Management) which right now is just a more user-friendly front-end for the CVS command-line tool.  It allows you to perform common CVS functions such as updates, compares, and commits, right from the IDE.
+General/ProjectBuilder offers a feature called SCM (Source Code Management) which right now is just a more user-friendly front-end for the CVS command-line tool.  It allows you to perform common CVS functions such as updates, compares, and commits, right from the IDE.
 
-In order to use SCM, your code must already be checked out from a CVS repository.  That is to say, it must have a "CVS" directory at the top of each directory in the project.  If it doesn't, see [[SettingUpCvsRepositories]].
+In order to use SCM, your code must already be checked out from a CVS repository.  That is to say, it must have a "CVS" directory at the top of each directory in the project.  If it doesn't, see General/SettingUpCvsRepositories.
 
-If your project meets this criterion, [[ProjectBuilder]] will display a new column in the Files tab with an icon of a yellow cylinder.  This is the SCM / CVS column.  It tells you the state of each file in relation to the current copy in the repository.
+If your project meets this criterion, General/ProjectBuilder will display a new column in the Files tab with an icon of a yellow cylinder.  This is the SCM / CVS column.  It tells you the state of each file in relation to the current copy in the repository.
 
-An '''M''' in this column indicates that  the file has been modified from the copy in the repository.  A '''?''' indicates an unknown file (one that is not in the repository, and may need to be added).  No mark in this column indicates that the file is in sync with the copy in the repository.
+An **M** in this column indicates that  the file has been modified from the copy in the repository.  A **?** indicates an unknown file (one that is not in the repository, and may need to be added).  No mark in this column indicates that the file is in sync with the copy in the repository.
 
-CVS operations can be performed by [[ProjectBuilder]] either on an individual file basis, or a group of files at a time.  You can select any combination of files or groups to apply your CVS command to.
+CVS operations can be performed by General/ProjectBuilder either on an individual file basis, or a group of files at a time.  You can select any combination of files or groups to apply your CVS command to.
 
-The options in [[ProjectBuilder]]'s SCM menu are:
+The options in General/ProjectBuilder's SCM menu are:
 
 
 * Refresh Status
 
-Does the equivalent of a <code>cvs update </code>.  It talks the repository and sees what files you have modified locally.
+Does the equivalent of a     cvs update .  It talks the repository and sees what files you have modified locally.
 
 * Update to Latest Revision
 
@@ -75,7 +75,7 @@ Update frequently while working on a project and always update before you modify
 * Compare With Base
 * Compare/Merge With Latest Revision
 
-The compare/merge options allow you to visually compare the differences between two versions of a source file, and make changes/integrations to the version you are editing, if necessary.  [[ProjectBuilder]] uses [[FileMerge]] to perform version comparisons and merging.
+The compare/merge options allow you to visually compare the differences between two versions of a source file, and make changes/integrations to the version you are editing, if necessary.  General/ProjectBuilder uses General/FileMerge to perform version comparisons and merging.
 
 
 * Add to Repository
@@ -89,9 +89,9 @@ If the file has been modified from the copy in the repository, CVS will attempt 
 
 More description forthcoming.
 
-See [[CvsWrappers]] for information about storing binary files in CVS.
+See General/CvsWrappers for information about storing binary files in CVS.
 
-But don't use the tar wrappers.  They only exist for one version of CVS, and if you end up using someone else's repository (like [[SourceForge]]), it just Won't Work.  Just add the nib or project directory and add the files contained therein.
+But don't use the tar wrappers.  They only exist for one version of CVS, and if you end up using someone else's repository (like General/SourceForge), it just Won't Work.  Just add the nib or project directory and add the files contained therein.
 
 
 A great article on SVN in xcode 3

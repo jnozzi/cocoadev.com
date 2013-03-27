@@ -1,4 +1,4 @@
-I have modified the code at [[FieldEditorIssues]] to produce a text field which has the appearance of the [[AddressBook]] / Library text fields mentioned in [[HighlightButtonsLikeDLandAB]].
+I have modified the code at General/FieldEditorIssues to produce a text field which has the appearance of the General/AddressBook / Library text fields mentioned in General/HighlightButtonsLikeDLandAB.
 
 I'm completely at a loss as to how to go about turning one of these into a view with many editable text fields. Does anyone have any suggestions as to the best way to approach this? My preliminary thoughts are:
 
@@ -8,23 +8,23 @@ I'll post any improvements made back here as it seems to be a popular subject at
 
 Code follows:
 
-<code>
-@interface [[FieldEditorTestView]] : [[NSView]]
+    
+@interface General/FieldEditorTestView : General/NSView
 {
-    [[NSRect]] itemRect;
-    [[NSString]] ''itemTitle;
-    [[NSSize]] maxSize;
-    [[NSTextView]] ''mEditor;
-	[[IBOutlet]] [[NSButton]] ''editButton;
+    General/NSRect itemRect;
+    General/NSString *itemTitle;
+    General/NSSize maxSize;
+    General/NSTextView *mEditor;
+	General/IBOutlet General/NSButton *editButton;
 }
 - (void)calculateMaxSize;
 @end
-</code>
 
-<code>
-#import "[[FieldEditorTestView]].h"
 
-@implementation [[FieldEditorTestView]]
+    
+#import "General/FieldEditorTestView.h"
+
+@implementation General/FieldEditorTestView
 
 - (BOOL)isFlipped
 {
@@ -36,7 +36,7 @@ Code follows:
     return NO;
 }
 
-- (void)setString:([[NSString]] '')s
+- (void)setString:(General/NSString *)s
 {
     [itemTitle release];
     itemTitle = [s retain];
@@ -50,75 +50,75 @@ Code follows:
 
 - (void)calculateMaxSize 
 {
-	maxSize = [[self superview] frame].size;
+	maxSize = General/self superview] frame].size;
 	maxSize.width -= itemRect.origin.x + 5;
 	maxSize.height -= itemRect.origin.y + 5;
 }
 
 - (void)awakeFromNib
 { 
-	itemRect.origin = [[NSMakePoint]](5, 5);   
+	itemRect.origin = [[NSMakePoint(5, 5);   
 	[self calculateMaxSize];
 	
     [self setString: @"Hello World"];
 }
 
--(void)drawRect:([[NSRect]])r
+-(void)drawRect:(General/NSRect)r
 {
-	[[[[NSColor]] whiteColor] set];
-    [[NSRectFill]](r);
+	General/[[NSColor whiteColor] set];
+    General/NSRectFill(r);
     
     if (mEditor == nil) {
-        [[[[NSColor]] textBackgroundColor] set];
-        [[NSRectFill]](itemRect);
+        General/[[NSColor textBackgroundColor] set];
+        General/NSRectFill(itemRect);
         
-        [[[[NSColor]] textColor] set];
-        [[NSMutableParagraphStyle]] ''style = [[[[[NSMutableParagraphStyle]] alloc] init] autorelease];
-        [style setLineBreakMode:[[NSLineBreakByTruncatingMiddle]]];
-        [[NSMutableAttributedString]] ''truncatedMiddle = [[[[NSMutableAttributedString]] alloc] initWithString:itemTitle];
-        [truncatedMiddle addAttribute:[[NSParagraphStyleAttributeName]] 
+        General/[[NSColor textColor] set];
+        General/NSMutableParagraphStyle *style = General/[[[NSMutableParagraphStyle alloc] init] autorelease];
+        [style setLineBreakMode:General/NSLineBreakByTruncatingMiddle];
+        General/NSMutableAttributedString *truncatedMiddle = General/[[NSMutableAttributedString alloc] initWithString:itemTitle];
+        [truncatedMiddle addAttribute:General/NSParagraphStyleAttributeName 
 								value:style 
-								range:[[NSMakeRange]](0, [itemTitle length])];
+								range:General/NSMakeRange(0, [itemTitle length])];
 								
-		if ([itemTitle isEqualToString:[[NSLocalizedString]](@"no value", nil)]) {
-			[truncatedMiddle addAttribute:[[NSForegroundColorAttributeName]]
-									value:[[[NSColor]] grayColor]
-									range:[[NSMakeRange]](0, [itemTitle length])];
+		if ([itemTitle isEqualToString:General/NSLocalizedString(@"no value", nil)]) {
+			[truncatedMiddle addAttribute:General/NSForegroundColorAttributeName
+									value:General/[NSColor grayColor]
+									range:General/NSMakeRange(0, [itemTitle length])];
 		}
         
         [truncatedMiddle drawInRect:itemRect];
 		
     } else {
-        [[NSResponder]] ''resp = [[self window] firstResponder];
+        General/NSResponder *resp = General/self window] firstResponder];
         if ([[self window] isKeyWindow] &&
-            [resp isKindOfClass:[[[NSView]] class]] &&
-            [([[NSView]] '')resp isDescendantOf:self]) {
+            [resp isKindOfClass:[[[NSView class]] &&
+            [(General/NSView *)resp isDescendantOf:self]) {
            
-			[[[NSGraphicsContext]] saveGraphicsState];
+			General/[NSGraphicsContext saveGraphicsState];
            
 			
-				[self setFocusRingType:[[NSFocusRingTypeNone]]];
+				[self setFocusRingType:General/NSFocusRingTypeNone];
 				
-				[[NSRect]] outerRect = [mEditor frame];
+				General/NSRect outerRect = [mEditor frame];
 				outerRect.size.width += 2;
 				outerRect.size.height += 4;
 				outerRect.origin.x -= 1;
 				outerRect.origin.y -= 2;
 				
 				// Shadow for line
-				[[NSShadow]] ''shadow = [[[[NSShadow]] alloc] init];
-				[shadow setShadowOffset:[[NSMakeSize]](0, -2)];
+				General/NSShadow *shadow = General/[[NSShadow alloc] init];
+				[shadow setShadowOffset:General/NSMakeSize(0, -2)];
 				[shadow setShadowBlurRadius:4.0];
-				[shadow setShadowColor:[[[NSColor]] colorWithDeviceWhite:0.5 alpha:0.3]];
+				[shadow setShadowColor:General/[NSColor colorWithDeviceWhite:0.5 alpha:0.3]];
 				[shadow set];
 				
-				[[[[NSColor]] colorWithCalibratedRed:0.2226 green:0.46875 blue:0.83593 alpha:1.0] set];
-				[[NSFrameRect]](outerRect);
+				General/[[NSColor colorWithCalibratedRed:0.2226 green:0.46875 blue:0.83593 alpha:1.0] set];
+				General/NSFrameRect(outerRect);
 
 				// A sort of nil-shadow to avoid restoring the graphics state already
-				[shadow setShadowOffset:[[NSZeroSize]]];
+				[shadow setShadowOffset:General/NSZeroSize];
 				[shadow setShadowBlurRadius:0];
-				[shadow setShadowColor:[[[NSColor]] clearColor]];
+				[shadow setShadowColor:General/[NSColor clearColor]];
 				[shadow set];
 				
 				// Shrink outerRect to avoid drawing over line
@@ -126,36 +126,36 @@ Code follows:
 				outerRect.size.height -= 2;
 				outerRect.origin.x += 1;
 				outerRect.origin.y += 1;
-				[[[[NSColor]] whiteColor] set];
-				[[NSRectFill]](outerRect);	
+				General/[[NSColor whiteColor] set];
+				General/NSRectFill(outerRect);	
 				
 				[shadow release];
 				shadow = nil;
-            [[[NSGraphicsContext]] restoreGraphicsState];
+            General/[NSGraphicsContext restoreGraphicsState];
         }
     }
 }
 
 - (void)fixEditor
 {
-    [mEditor setFrameSize:[[NSMakeSize]](maxSize.width, 10000)];
+    [mEditor setFrameSize:General/NSMakeSize(maxSize.width, 10000)];
     [mEditor sizeToFit];
 		// Uncomment the following two lines to resize from centre
-		//[[NSRect]] r = [mEditor frame];
-		//[mEditor setFrameOrigin:[[NSMakePoint]]([[NSMidX]](itemRect) - r.size.width / 2, r.origin.y)];
+		//General/NSRect r = [mEditor frame];
+		//[mEditor setFrameOrigin:General/NSMakePoint(General/NSMidX(itemRect) - r.size.width / 2, r.origin.y)];
     [self setNeedsDisplay:YES];
 }
 
 - (void)startEditing:(id)sender
 {
 	[self calculateMaxSize];
-    mEditor = ([[NSTextView]] '')[[self window] fieldEditor:YES forObject:self];
+    mEditor = (General/NSTextView *)General/self window] fieldEditor:YES forObject:self];
     [mEditor setDelegate:self];
     [mEditor setHorizontallyResizable:YES];
     [mEditor setVerticallyResizable:YES];
-    [mEditor setFrameSize:[[NSMakeSize]](maxSize.width, 10000)];
-    [[mEditor textContainer] setContainerSize:[[NSMakeSize]](maxSize.width, 10000)];
-    [[mEditor textContainer] setHeightTracksTextView:NO];
+    [mEditor setFrameSize:[[NSMakeSize(maxSize.width, 10000)];
+    General/mEditor textContainer] setContainerSize:[[NSMakeSize(maxSize.width, 10000)];
+    General/mEditor textContainer] setHeightTracksTextView:NO];
     [[mEditor textContainer] setWidthTracksTextView:NO];
     [mEditor setString:itemTitle];
     [mEditor selectAll:self];
@@ -165,47 +165,47 @@ Code follows:
     [self fixEditor];
 }
 
-- (void)textDidChange:([[NSNotification]] '')notification;
+- (void)textDidChange:([[NSNotification *)notification;
 {
     [self fixEditor];
 }
 
-- (void)textDidEndEditing:([[NSNotification]] '')aNotification
+- (void)textDidEndEditing:(General/NSNotification *)aNotification
 {
     // you have to copy the string because it's mutable and gets reused!
-	if ([[[aNotification object] string] isEqualToString:@""]) {
-		[self setString:[[[NSString]] stringWithString:@"no value"]];
+	if (General/[aNotification object] string] isEqualToString:@""]) {
+		[self setString:[[[NSString stringWithString:@"no value"]];
 	} else {
-		[self setString:[[[NSString]] stringWithString:[[aNotification object] string]]];
+		[self setString:General/[NSString stringWithString:General/aNotification object] string];
 	}
-    [[self window] makeFirstResponder:nil];
+    General/self window] makeFirstResponder:nil];
     [mEditor removeFromSuperview];
     mEditor = nil;
     [self setNeedsDisplay:YES];
 }
 
-- (void)mouseDown:([[NSEvent]] '')theEvent
+- (void)mouseDown:([[NSEvent *)theEvent
 {
-    [[NSPoint]] p = [self convertPoint: [theEvent locationInWindow] fromView: nil];
+    General/NSPoint p = [self convertPoint: [theEvent locationInWindow] fromView: nil];
     if (mEditor != nil) {
-        [[self window] makeFirstResponder: nil];
+        General/self window] makeFirstResponder: nil];
     }
-    if ([[NSPointInRect]](p, itemRect)) {
+    if ([[NSPointInRect(p, itemRect)) {
         if ([theEvent clickCount] > 1) {
 				[self startEditing:self];
         } else {
-            [[NSSize]] offset = [[NSMakeSize]](p.x - itemRect.origin.x,
+            General/NSSize offset = General/NSMakeSize(p.x - itemRect.origin.x,
                                        p.y - itemRect.origin.y);
-            while (theEvent = [[self window] nextEventMatchingMask:
-                [[NSLeftMouseDraggedMask]]|[[NSLeftMouseUpMask]]]) {
-                if ([theEvent type] == [[NSLeftMouseDragged]]) {
-                    [[NSPoint]] p = [self convertPoint: [theEvent locationInWindow]
+            while (theEvent = General/self window] nextEventMatchingMask:
+                [[NSLeftMouseDraggedMask|General/NSLeftMouseUpMask]) {
+                if ([theEvent type] == General/NSLeftMouseDragged) {
+                    General/NSPoint p = [self convertPoint: [theEvent locationInWindow]
                                           fromView: nil];
                     [self setNeedsDisplayInRect: itemRect];
                     itemRect.origin.x = p.x - offset.width;
                     itemRect.origin.y = p.y - offset.height;
                     [self setNeedsDisplayInRect: itemRect];
-                    [self setNeedsDisplayInRect: [[NSMakeRect]](0,0,100,20)];
+                    [self setNeedsDisplayInRect: General/NSMakeRect(0,0,100,20)];
                     
                 }
                 else break;
@@ -215,4 +215,3 @@ Code follows:
 }
 
 @end
-</code>

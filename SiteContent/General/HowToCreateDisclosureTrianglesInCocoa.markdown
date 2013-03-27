@@ -1,6 +1,6 @@
 
 
-You can steal a disclosure triangle from another app's .nib.  For example, there's one in: <code>/Applications/Utilities/Process Viewer.app/Contents/Resources/English.lproj/[[ProcessViewer]].nib</code>
+You can steal a disclosure triangle from another app's .nib.  For example, there's one in:     /Applications/Utilities/Process Viewer.app/Contents/Resources/English.lproj/General/ProcessViewer.nib
 It's just a toggle button with a left-pointing and a down-pointing icon.
 
 ----
@@ -9,19 +9,19 @@ I don't have an answer for this one yet, but I'm looking.  The basic idea is tha
 
 Anyone?
 
--- [[LeslieOrchard]], 27 Jul 2001
+-- General/LeslieOrchard, 27 Jul 2001
 
 It's not a UI element in Cocoa. You can fake it like PPP connect does, just have a look at their nib -- it's basically a button that changes its icon. This has been discussed several times on the cocoa-dev list at lists.apple.com, btw.
 
--- [[FinlayDobbie]]
+-- General/FinlayDobbie
 
-Thanks, I'll take a look there.  I ''am'' on the cocoa-dev list and asked about it, but didn't seem to get any answer.  Figured I'd ask here too :)
+Thanks, I'll take a look there.  I *am* on the cocoa-dev list and asked about it, but didn't seem to get any answer.  Figured I'd ask here too :)
 
--- [[LeslieOrchard]]
+-- General/LeslieOrchard
 
 ----
 
-In Panther, the disclosure triangle is a type of [[NSButton]]. What I would like to know is an easy way to resize a window with it.
+In Panther, the disclosure triangle is a type of General/NSButton. What I would like to know is an easy way to resize a window with it.
 
 ----
 
@@ -29,8 +29,8 @@ When the button clicks, resize the window. There is no easier way than that.
 
 ----
 
-You want to do <code>[[window setFrame:newFrame display:YES animate:YES]]</code>
+You want to do     General/window setFrame:newFrame display:YES animate:YES
 
 ----
 
-There's some discussion of window resizing at [[WhereIsCoolSystemPrefsWindowEffect]].
+There's some discussion of window resizing at General/WhereIsCoolSystemPrefsWindowEffect.

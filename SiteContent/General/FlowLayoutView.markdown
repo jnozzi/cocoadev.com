@@ -1,14 +1,14 @@
-I had need recently to lay out a ( varying ) number of procedurally-generated same-size elements in a window such that the elements would layout out in a grid with an optimal number of rows and columns for window dimensions. These had to be [[NSView]] subclasses since some of them had to be able to hold arbitrary controls and some were just text views.
+I had need recently to lay out a ( varying ) number of procedurally-generated same-size elements in a window such that the elements would layout out in a grid with an optimal number of rows and columns for window dimensions. These had to be General/NSView subclasses since some of them had to be able to hold arbitrary controls and some were just text views.
 
-Having written layout managers before for [[BeOS]] and for Qt & for Java I decided why not attempt to make a general purpose "flow layout" for Cocoa...
+Having written layout managers before for General/BeOS and for Qt & for Java I decided why not attempt to make a general purpose "flow layout" for Cocoa...
 
-Here's the header ( [[ZFlowLayout]].h )
+Here's the header ( General/ZFlowLayout.h )
 
-<code>
+    
 
 #import <Cocoa/Cocoa.h>
 
-/''
+/*
 	No spring will let elements stretch to fit width
 
 	Left spring will push elements to right side, 
@@ -18,27 +18,27 @@ Here's the header ( [[ZFlowLayout]].h )
 	with no stretching.
 
 	Spring on left & right will squish layout into center.
-''/
+*/
 typedef enum _ZFlowLayoutSpring
 {
-	[[ZNoSpring]] = 0,
-	[[ZSpringLeft]] = 1,
-	[[ZSpringRight]] = 2,
-	[[ZSpringLeftRight]] = 3,
-} [[ZFlowLayoutSpring]];
+	General/ZNoSpring = 0,
+	General/ZSpringLeft = 1,
+	General/ZSpringRight = 2,
+	General/ZSpringLeftRight = 3,
+} General/ZFlowLayoutSpring;
 
 typedef struct _ZFlowLayoutSizing
 {
-	[[NSSize]] minSize;
+	General/NSSize minSize;
 	int padding;
 	int spring;
 	bool oneColumn;
-} [[ZFlowLayoutSizing]];
+} General/ZFlowLayoutSizing;
 
-static inline [[ZFlowLayoutSizing]] [[ZMakeFlowLayoutSizing]]( [[NSSize]] minSize, int padding, 
+static inline General/ZFlowLayoutSizing General/ZMakeFlowLayoutSizing( General/NSSize minSize, int padding, 
     int spring, BOOL oneColumn )
 {
-	[[ZFlowLayoutSizing]] sizing;
+	General/ZFlowLayoutSizing sizing;
 	sizing.minSize = minSize;
 	sizing.padding = padding;
 	sizing.spring = spring;
@@ -46,32 +46,32 @@ static inline [[ZFlowLayoutSizing]] [[ZMakeFlowLayoutSizing]]( [[NSSize]] minSiz
 	return sizing;
 }
 
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-	[[ZFlowLayout]]
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/******************************************************************************
+	General/ZFlowLayout
+******************************************************************************/
 
-@interface [[ZFlowLayout]] : [[NSView]]
+@interface General/ZFlowLayout : General/NSView
 {
-	[[ZFlowLayoutSizing]] _sizing;
-	[[NSSize]] _lastSize;
+	General/ZFlowLayoutSizing _sizing;
+	General/NSSize _lastSize;
 	int _numElements;
 	unsigned int _gridMask;
 	BOOL _ignoreThisLayoutPass, _alternatingRowColors;
-	[[NSColor]] ''_backgroundColor, ''_gridColor;
+	General/NSColor *_backgroundColor, *_gridColor;
 }
 
-- (void) setSizing: ([[ZFlowLayoutSizing]]) sizing;
-- ([[ZFlowLayoutSizing]]) sizing;
+- (void) setSizing: (General/ZFlowLayoutSizing) sizing;
+- (General/ZFlowLayoutSizing) sizing;
 
-/''
+/*
 	Draw a solid background color
-''/
-- (void) setBackgroundColor: ([[NSColor]] '') color;
-- ([[NSColor]] '') backgroundColor;
+*/
+- (void) setBackgroundColor: (General/NSColor *) color;
+- (General/NSColor *) backgroundColor;
 
-/''
+/*
 	Draw background using system alternating row colors
-''/
+*/
 - (void) setUsesAlternatingRowBackgroundColors: 
 	(BOOL)useAlternatingRowColors;
 
@@ -80,33 +80,33 @@ static inline [[ZFlowLayoutSizing]] [[ZMakeFlowLayoutSizing]]( [[NSSize]] minSiz
 - (void) setGridStyleMask:(unsigned int)gridType;
 - (unsigned int) gridStyleMask;
 
-- (void) setGridColor:([[NSColor]] '')aColor;
-- ([[NSColor]] '') gridColor;
+- (void) setGridColor:(General/NSColor *)aColor;
+- (General/NSColor *) gridColor;
 
 @end
 
 
-</code>
 
-And here's the implementation ( [[ZFlowLayout]].m ):
 
-<code>
+And here's the implementation ( General/ZFlowLayout.m ):
 
-#import "[[ZFlowLayout]].h"
+    
 
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-	[[ZFlowLayout]]
+#import "General/ZFlowLayout.h"
 
-	[[ZFlowLayoutSizing]] _sizing;
-	[[NSSize]] _lastSize;
+/******************************************************************************
+	General/ZFlowLayout
+
+	General/ZFlowLayoutSizing _sizing;
+	General/NSSize _lastSize;
 	int _numElements;
 	unsigned int _gridMask;
 	BOOL _ignoreThisLayoutPass, _alternatingRowColors;
-	[[NSColor]] ''_backgroundColor, ''_gridColor;
+	General/NSColor *_backgroundColor, *_gridColor;
 
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+******************************************************************************/
 
-@interface [[ZFlowLayout]] (Internal)
+@interface General/ZFlowLayout (Internal)
 
 - (void) layout;
 - (int) numElements;
@@ -114,28 +114,28 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 
 @end
 
-@implementation [[ZFlowLayout]]
+@implementation General/ZFlowLayout
 
-- (id)initWithFrame:([[NSRect]])frameRect
+- (id)initWithFrame:(General/NSRect)frameRect
 {
 	if ((self = [super initWithFrame:frameRect]) != nil) 
 	{
-		_sizing = [[ZMakeFlowLayoutSizing]]( [[NSMakeSize]]( 100, 100 ), 10, 0, NO );
-		_lastSize = [[NSMakeSize]]( 0, 0 );
+		_sizing = General/ZMakeFlowLayoutSizing( General/NSMakeSize( 100, 100 ), 10, 0, NO );
+		_lastSize = General/NSMakeSize( 0, 0 );
 		_numElements = 0;
 		_ignoreThisLayoutPass = NO;
 		_alternatingRowColors = NO;
 		_backgroundColor = nil;
-		_gridColor = [[[[NSColor]] colorWithDeviceWhite: 0.5 alpha: 0.4] retain];
-		_gridMask = [[NSTableViewGridNone]];
+		_gridColor = General/[[NSColor colorWithDeviceWhite: 0.5 alpha: 0.4] retain];
+		_gridMask = General/NSTableViewGridNone;
 
 	
 		[self setPostsFrameChangedNotifications: YES];
 		
-		[[NSNotificationCenter]] ''nc = [[[NSNotificationCenter]] defaultCenter];
+		General/NSNotificationCenter *nc = General/[NSNotificationCenter defaultCenter];
 		[nc addObserver:self 
 			selector: @selector( frameSizeChanged: ) 
-			name: [[NSViewFrameDidChangeNotification]] 
+			name: General/NSViewFrameDidChangeNotification 
 			object: nil ];
 
 	}
@@ -144,22 +144,22 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 
 - (void) awakeFromNib 
 {
-	[[NSScrollView]] ''sv;
+	General/NSScrollView *sv;
 	if ( sv = [self enclosingScrollView] )
 	{
-		/''
+		/*
 			Resize self to fit scrollview
 			And set width/height resizable
-		''/
+		*/
 		
-		[[NSSize]] contentSize = [sv contentSize];
+		General/NSSize contentSize = [sv contentSize];
 		[self setFrameSize: contentSize];		
 		[self setAutoresizingMask: 
-			[[NSViewWidthSizable]] | [[NSViewHeightSizable]]];
+			General/NSViewWidthSizable | General/NSViewHeightSizable];
 	}   
 }
 
-- (void) setSizing: ([[ZFlowLayoutSizing]]) sizing
+- (void) setSizing: (General/ZFlowLayoutSizing) sizing
 {
 	if ( _sizing.minSize.width != sizing.minSize.width ||
 	     _sizing.minSize.height != sizing.minSize.height ||
@@ -173,18 +173,18 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 	}
 }
 
-- ([[ZFlowLayoutSizing]]) sizing
+- (General/ZFlowLayoutSizing) sizing
 {
 	return _sizing;
 }
 
-- (void) setBackgroundColor: ([[NSColor]] '') color
+- (void) setBackgroundColor: (General/NSColor *) color
 {
 	[_backgroundColor autorelease];
 	_backgroundColor = [color retain];
 }
 
-- ([[NSColor]] '') backgroundColor
+- (General/NSColor *) backgroundColor
 {
 	return _backgroundColor;
 }
@@ -210,13 +210,13 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 	return _gridMask;
 }
 
-- (void) setGridColor:([[NSColor]] '')aColor
+- (void) setGridColor:(General/NSColor *)aColor
 {
 	[_gridColor autorelease];
 	_gridColor = [aColor retain];
 }
 
-- ([[NSColor]] '') gridColor
+- (General/NSColor *) gridColor
 {
 	return _gridColor;
 }
@@ -236,10 +236,10 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 	return YES;
 }
 
-- (void)drawRect:([[NSRect]])rect 
+- (void)drawRect:(General/NSRect)rect 
 {
-	[[NSRect]] bounds = [self bounds];
-	[[NSBezierPath]] ''fill = [[[NSBezierPath]] bezierPathWithRect: bounds];
+	General/NSRect bounds = [self bounds];
+	General/NSBezierPath *fill = General/[NSBezierPath bezierPathWithRect: bounds];
 
 	if ( !_alternatingRowColors )
 	{
@@ -249,18 +249,18 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 	}
 	else
 	{
-		[[NSArray]] ''colors = [[[NSColor]] controlAlternatingRowBackgroundColors];
-		[[NSColor]] ''color = nil;
+		General/NSArray *colors = General/[NSColor controlAlternatingRowBackgroundColors];
+		General/NSColor *color = nil;
 		
 		int row = 0;
 		float rowHeight = _sizing.minSize.height + _sizing.padding;
-		[[NSRect]] rowRect = [[NSMakeRect]]( 0, bounds.size.height - rowHeight, 
+		General/NSRect rowRect = General/NSMakeRect( 0, bounds.size.height - rowHeight, 
                     bounds.size.width, rowHeight);
 				
 		while ( 1 )
 		{
 			color = [colors objectAtIndex: (row % [colors count])];
-			[[NSBezierPath]] ''fill = [[[NSBezierPath]] bezierPathWithRect: rowRect];
+			General/NSBezierPath *fill = General/[NSBezierPath bezierPathWithRect: rowRect];
 
 			[color set];
 			[fill fill];
@@ -272,14 +272,14 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 		}
 	}
 	
-	if ( _gridMask & [[NSTableViewSolidVerticalGridLineMask]] )
+	if ( _gridMask & General/NSTableViewSolidVerticalGridLineMask )
 	{
 
 	}
 	
-	if ( _gridMask & [[NSTableViewSolidHorizontalGridLineMask]] )
+	if ( _gridMask & General/NSTableViewSolidHorizontalGridLineMask )
 	{
-		[[NSBezierPath]] ''hLines = [[[NSBezierPath]] bezierPath];
+		General/NSBezierPath *hLines = General/[NSBezierPath bezierPath];
 		
 		int row = 0;
 		float rowHeight = _sizing.minSize.height + _sizing.padding, 
@@ -289,8 +289,8 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 		{
 			if ( row > 0 )
 			{			
-				[hLines moveToPoint: [[NSMakePoint]]( 0, y )];
-				[hLines lineToPoint: [[NSMakePoint]]( bounds.size.width, y )];
+				[hLines moveToPoint: General/NSMakePoint( 0, y )];
+				[hLines lineToPoint: General/NSMakePoint( bounds.size.width, y )];
 			}
 			
 			y-= rowHeight;
@@ -307,8 +307,8 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 
 - (void) layout
 {
-	[[NSRect]] bounds = [self bounds], elementRect;
-	[[NSPoint]] origin;
+	General/NSRect bounds = [self bounds], elementRect;
+	General/NSPoint origin;
 
 	if ( bounds.size.width == _lastSize.width &&
 		 bounds.size.height == _lastSize.height  )
@@ -322,21 +322,21 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 		heightAccumulator, count;
 
 	float widthPad, minWidth;
-	int innerWidth = bounds.size.width - ( 2 '' _sizing.padding );
-	int innerHeight = bounds.size.height - ( 2 '' _sizing.padding );
+	int innerWidth = bounds.size.width - ( 2 * _sizing.padding );
+	int innerHeight = bounds.size.height - ( 2 * _sizing.padding );
 	float remainingWidth = 0;
 	
-	/''
+	/*
 		Do one-column as an absurdly big minimum width
-	''/
+	*/
 	minWidth = _sizing.oneColumn ? innerWidth : _sizing.minSize.width;
 	if ( minWidth > innerWidth ) minWidth = innerWidth;
 	
 	count = [self numElements];
 	
-	/''
+	/*
 		Determine max number of rows and columns
-	''/
+	*/
 
 	widthAccumulator = 0;
 	numCols = 0;
@@ -361,13 +361,13 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 	if ( count < numCols )
 	{
 		remainingWidth = (float) (innerWidth + _sizing.padding) - 
-                    ( count '' (minWidth + _sizing.padding )); 
+                    ( count * (minWidth + _sizing.padding )); 
 		widthPad = remainingWidth / (float) count;
 	}
 	else
 	{	
 		remainingWidth = (float) (innerWidth + _sizing.padding) - 
-                    ( numCols '' (minWidth + _sizing.padding )); 
+                    ( numCols * (minWidth + _sizing.padding )); 
 		widthPad = remainingWidth / (float) numCols;
 	}
 	
@@ -376,42 +376,42 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 	elementRect.size.width = minWidth;
 	elementRect.size.height = _sizing.minSize.height;
 	
-	if ( !(_sizing.spring & [[ZSpringLeft]]) && !(_sizing.spring & [[ZSpringRight]]) )
+	if ( !(_sizing.spring & General/ZSpringLeft) && !(_sizing.spring & General/ZSpringRight) )
 		elementRect.size.width += widthPad;
 
 
 	origin.x = _sizing.padding;
 	origin.y = _sizing.padding / 2;
 
-	/''
+	/*
 		Set up origin for left & right springs
-	''/
+	*/
 
 	// left spring only
-	if ( (_sizing.spring & [[ZSpringLeft]]) && !(_sizing.spring & [[ZSpringRight]]))
+	if ( (_sizing.spring & General/ZSpringLeft) && !(_sizing.spring & General/ZSpringRight))
 	{
 		origin.x = _sizing.padding + remainingWidth;
 	}
 	//right spring only
-	else if ( !(_sizing.spring & [[ZSpringLeft]]) && (_sizing.spring & [[ZSpringRight]]))
+	else if ( !(_sizing.spring & General/ZSpringLeft) && (_sizing.spring & General/ZSpringRight))
 	{
 		origin.x = _sizing.padding;
 	}
 	//both left and right springs
-	else if ( (_sizing.spring & [[ZSpringLeft]]) && (_sizing.spring & [[ZSpringRight]]))
+	else if ( (_sizing.spring & General/ZSpringLeft) && (_sizing.spring & General/ZSpringRight))
 	{
 		origin.x = _sizing.padding + remainingWidth / 2.0;
 	}
 	
-	/''
+	/*
 		Now, do layout on each element rect. Use slightly 
 		different methods if in a scrollview or not. In
 		a scrollview, we layout all elements, and resize 
 		vertically to fit. Otherwise, drop any that
 		don't fit.
-	''/
+	*/
 	
-	[[NSArray]] ''views = [self subviews];
+	General/NSArray *views = [self subviews];
 
 	if ( ![self enclosingScrollView] )
 	{
@@ -423,12 +423,12 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 				if ( k >= count ) break;
 			
 				elementRect.origin.x = origin.x + 
-					( j '' (elementRect.size.width + _sizing.padding) );
+					( j * (elementRect.size.width + _sizing.padding) );
 				elementRect.origin.y = bounds.size.height - origin.y - 
-				    ( (i + 1) '' (elementRect.size.height) );
-				if ( i > 0 ) elementRect.origin.y -= ( i '' _sizing.padding);
+				    ( (i + 1) * (elementRect.size.height) );
+				if ( i > 0 ) elementRect.origin.y -= ( i * _sizing.padding);
 
-				[[NSView]] ''view = [views objectAtIndex: k];	
+				General/NSView *view = [views objectAtIndex: k];	
 				[view setFrame: elementRect];
 				[view setHidden: NO];
 		
@@ -438,21 +438,21 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 			if ( k >= count ) break;
 		}
 		
-		/''
+		/*
 			Now, hide any element which was unable 
 			to be fitted into the layout
-		''/
+		*/
 		
 		while ( k < count )
 		{
-			[[views objectAtIndex: k++] setHidden: YES];
+			General/views objectAtIndex: k++] setHidden: YES];
 		}
 	}
 	else
 	{
-		/''
+		/*
 			We're in a scrollview, need to layout differently.
-		''/
+		*/
 
 		k = 0;
 		i = 0;
@@ -463,12 +463,12 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 				if ( k >= count ) break;
 			
 				elementRect.origin.x = origin.x + 
-					( j '' (elementRect.size.width + _sizing.padding) );
+					( j * (elementRect.size.width + _sizing.padding) );
 				elementRect.origin.y = bounds.size.height - origin.y - 
-					( (i + 1) '' (elementRect.size.height) );
-				if ( i > 0 ) elementRect.origin.y -= ( i '' _sizing.padding);
+					( (i + 1) * (elementRect.size.height) );
+				if ( i > 0 ) elementRect.origin.y -= ( i * _sizing.padding);
 
-				[[NSView]] ''view = [views objectAtIndex: k];	
+				[[NSView *view = [views objectAtIndex: k];	
 				[view setFrame: elementRect];
 				[view setHidden: NO];
 		
@@ -478,18 +478,18 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 			i++; //bump row
 		}
 		
-		float minHeight = ( i '' ( elementRect.size.height + _sizing.padding ));
-		[[NSSize]] contentSize = [[self enclosingScrollView] contentSize];
+		float minHeight = ( i * ( elementRect.size.height + _sizing.padding ));
+		General/NSSize contentSize = General/self enclosingScrollView] contentSize];
 		
-		/''
+		/*
 			One-time ignore, since changing our size, here, would 
 			otherwise result in an infinite loop.
-		''/
+		*/
 		_ignoreThisLayoutPass = YES;
 
 		if ( minHeight > contentSize.height )
 		{
-			[self setFrameSize: [[NSMakeSize]]( contentSize.width, minHeight )];
+			[self setFrameSize: [[NSMakeSize( contentSize.width, minHeight )];
 		}
 		else
 		{
@@ -506,14 +506,14 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 
 - (void) forceLayout
 {
-	_lastSize = [[NSMakeSize]]( 0, 0 );
+	_lastSize = General/NSMakeSize( 0, 0 );
 	[self layout];
 }
 
 ///////////////////////////////////////////////////////////////////////
-// Override [[NSView]]
+// Override General/NSView
 
-- (void) addSubview:([[NSView]] '')aView
+- (void) addSubview:(General/NSView *)aView
 {
 	[super addSubview: aView];
 	_numElements++;
@@ -521,7 +521,7 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 	[self display];
 }
 
-- (void)willRemoveSubview:([[NSView]] '')subview
+- (void)willRemoveSubview:(General/NSView *)subview
 {
 	[super willRemoveSubview: subview];
 	_numElements--;
@@ -531,7 +531,7 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 	[self display];
 }
 
-- (void) frameSizeChanged: ([[NSNotification]] '') aNotification
+- (void) frameSizeChanged: (General/NSNotification *) aNotification
 {
 	if ( _ignoreThisLayoutPass )
 	{
@@ -545,29 +545,28 @@ And here's the implementation ( [[ZFlowLayout]].m ):
 
 @end
 
-</code>
 
-Usage is straightforward enough, instead of adding elements via IB, you just create your object and add it via <code> [layout addSubview: someView]; </code>
 
---[[ShamylZakariya]]
+Usage is straightforward enough, instead of adding elements via IB, you just create your object and add it via      [layout addSubview: someView]; 
 
-----
-
-I fixed a potential linker error situation with the [[ZMakeFlowLayoutSizing]] function. Strangely, it was linking from Objective-C++ just fine, but not pure Objective-C. --SZ
+--General/ShamylZakariya
 
 ----
-This is an awesome piece of code. Best example I've seen of a custom [[NSView]]. Thanks! 
+
+I fixed a potential linker error situation with the General/ZMakeFlowLayoutSizing function. Strangely, it was linking from Objective-C++ just fine, but not pure Objective-C. --SZ
+
+----
+This is an awesome piece of code. Best example I've seen of a custom General/NSView. Thanks! 
 
 One nit - I think [self forceLayout]; is what we want inside frameSizeChanged. This makes it work nicely when resizing the window.
 
 ----
 
-'''How can we add the ability to drag-reorder objects in a 'pretty' way? I mean, having everything slide out of the way smoothly like an [[NSToolbar]], leaving room for the dropped element? 11/14/2005'''
+**How can we add the ability to drag-reorder objects in a 'pretty' way? I mean, having everything slide out of the way smoothly like an General/NSToolbar, leaving room for the dropped element? 11/14/2005**
 
 ----
 
 Instead of using notifications to get size change uh...notifications it works better to override
 
-<code>
- (void)resizeSubviewsWithOldSize:([[NSSize]])oldBoundsSize;
-</code>
+    
+ (void)resizeSubviewsWithOldSize:(General/NSSize)oldBoundsSize;

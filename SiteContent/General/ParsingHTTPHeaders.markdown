@@ -3,19 +3,19 @@ Does anyone know of a library or framework (Objective-C or C) that can do this?
 
 ----
 
-The [[CFHTTPMessage]] 'class' (it's C-based but somewhat object-oriented nonetheless) that's part of Apple's [[CFNetwork]] framework can parse HTTP.  [[CFNetwork]] is a sub-framework of the [[CoreServices]] framework.  -- Bo
+The General/CFHTTPMessage 'class' (it's C-based but somewhat object-oriented nonetheless) that's part of Apple's General/CFNetwork framework can parse HTTP.  General/CFNetwork is a sub-framework of the General/CoreServices framework.  -- Bo
 
 ----
 
-Use [[NSHTTPURLResponse]] class in Web Foundation. 
+Use General/NSHTTPURLResponse class in Web Foundation. 
 
 ----
 
-Note that although the docs say you can use [[[NSHTTPURLResponse]] allHeaderFields] to "see the 'raw' header information returned by the HTTP server", it isn't really "raw".  All the "Set-Cookie" headers, for example, are collapsed down to just one with the cookie info concatenated together ''separated by commas''!  The insanity of this will become clear when you try to unseparate the cookies if you need to deal with them individually as you'll note that the "expires" clause also contains commas making the parsing infinitely harder than it would be if they'd chosen a sensible separator.  In theory you should be able to use [[[NSHTTPCookie]] cookiesWithResponseHeaderFields] to undo the concatenation but it's buggy and can't handle cookies that lack explicit "domain" clauses. -- Perry
+Note that although the docs say you can use General/[NSHTTPURLResponse allHeaderFields] to "see the 'raw' header information returned by the HTTP server", it isn't really "raw".  All the "Set-Cookie" headers, for example, are collapsed down to just one with the cookie info concatenated together *separated by commas*!  The insanity of this will become clear when you try to unseparate the cookies if you need to deal with them individually as you'll note that the "expires" clause also contains commas making the parsing infinitely harder than it would be if they'd chosen a sensible separator.  In theory you should be able to use General/[NSHTTPCookie cookiesWithResponseHeaderFields] to undo the concatenation but it's buggy and can't handle cookies that lack explicit "domain" clauses. -- Perry
 
 ----
 
-More precisely, it appears that -[[[NSHTTPCookie]] initWithProperties] will not bake you a cookie if the ingredients don't include a "Domain" property.  This is probably the underlying reason why +cookiesWithResponseHeaderFields:forURL: omits such cookies; it probably sends -initWithProperties to make the cookies after it is done parsing.
+More precisely, it appears that -General/[NSHTTPCookie initWithProperties] will not bake you a cookie if the ingredients don't include a "Domain" property.  This is probably the underlying reason why +cookiesWithResponseHeaderFields:forURL: omits such cookies; it probably sends -initWithProperties to make the cookies after it is done parsing.
 
 Advice: Don't spend hours making a nice parser to replace +cookiesWithResponseHeaderFields:forURL.  :(
 
@@ -28,56 +28,55 @@ Below is example where there are two cookies (comma separated) and one of them h
 
 Note it doesn't do any security checks (even described in RFC)
 
-<code>
+    
 	int i;
-	[[NSDictionary]] ''dic = [[[NSDictionary]] dictionaryWithObject:@"name=value; path=/; domain=.test.com;, name2=value2; path=/;" forKey:@"Set-Cookie"];
-	[[NSArray]] ''cookies = [[[NSHTTPCookie]] cookiesWithResponseHeaderFields:dic forURL:[NSURL [[URLWithString]]:@"http://www.foo.com/"]];
+	General/NSDictionary *dic = General/[NSDictionary dictionaryWithObject:@"name=value; path=/; domain=.test.com;, name2=value2; path=/;" forKey:@"Set-Cookie"];
+	General/NSArray *cookies = General/[NSHTTPCookie cookiesWithResponseHeaderFields:dic forURL:[NSURL General/URLWithString:@"http://www.foo.com/"]];
 	
 	for (i = 0; i < [cookies count]; i++)
 	{
-		[[NSHTTPCookie]] ''cookie = [cookies objectAtIndex:i];
-		[[NSLog]](@"%@ for %@",[cookie name], [cookie domain]);
+		General/NSHTTPCookie *cookie = [cookies objectAtIndex:i];
+		General/NSLog(@"%@ for %@",[cookie name], [cookie domain]);
 	}
-</code> 
+ 
 
 ----
 
 After failing with the above code I decided to do it manually on the fly. I'm only looking for specific cookies if they are present. So the following code works fine if, for example you are looking for someCookieName01 and someCookieName02:
 
-<code>
-	[[NSHTTPURLResponse]] ''headerResponse;
-	headerResponse = ([[NSHTTPURLResponse]] '')response;
+    
+	General/NSHTTPURLResponse *headerResponse;
+	headerResponse = (General/NSHTTPURLResponse *)response;
 	
-	[[NSDictionary]] ''headerDictionary;
-	headerDictionary = [[headerResponse allHeaderFields] retain];
+	General/NSDictionary *headerDictionary;
+	headerDictionary = General/headerResponse allHeaderFields] retain];
 	
         //checking response data
-	[[NSLog]](@"[[NSHTTPURLResponse]]: %@",headerResponse);
-	[[NSLog]](@"[[NSDictionary]]: %@",headerDictionary);
-	[[NSLog]](@"Header Set-Cookie: %@",[headerDictionary valueForKey:@"Set-Cookie"]);
+	[[NSLog(@"General/NSHTTPURLResponse: %@",headerResponse);
+	General/NSLog(@"General/NSDictionary: %@",headerDictionary);
+	General/NSLog(@"Header Set-Cookie: %@",[headerDictionary valueForKey:@"Set-Cookie"]);
 	
 	
-	[[NSString]] ''theRAWCookie;
-	theRAWCookie = ([[NSString]] '')[headerDictionary valueForKey:@"Set-Cookie"];
+	General/NSString *theRAWCookie;
+	theRAWCookie = (General/NSString *)[headerDictionary valueForKey:@"Set-Cookie"];
 	
-	[[NSArray]] ''headerArray = [theRAWCookie componentsSeparatedByCharactersInSet:[[[NSCharacterSet]] characterSetWithCharactersInString:@";, "]];
+	General/NSArray *headerArray = [theRAWCookie componentsSeparatedByCharactersInSet:General/[NSCharacterSet characterSetWithCharactersInString:@";, "]];
 	
-	for ([[NSString]] ''cookie in headerArray) 
+	for (General/NSString *cookie in headerArray) 
 	{
-		//[[NSLog]](@"Cookie: %@", cookie);
+		//General/NSLog(@"Cookie: %@", cookie);
 		
 		if ([cookie hasPrefix:@"someCookieName01="])
 		{
-			[[NSLog]](@"Cookie: %@", cookie); 
-			self.[[UserLoginCookie]] = cookie;
+			General/NSLog(@"Cookie: %@", cookie); 
+			self.General/UserLoginCookie = cookie;
 		} else if ([cookie hasPrefix:@"someCookieName02="])
 		{
-			[[NSLog]](@"Cookie: %@", cookie);
-			self.[[SessionIDCookie]] = cookie;
+			General/NSLog(@"Cookie: %@", cookie);
+			self.General/SessionIDCookie = cookie;
 		}
 		
 	}
 		theRAWCookie = nil;
 		[headerDictionary release];
 		[headerResponse release];
-</code>

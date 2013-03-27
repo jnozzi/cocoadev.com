@@ -1,8 +1,8 @@
-I did found several pages about [[SubVersion]] acting as a client. None about a server setup. So I hope nobody will complain that I created a new page for this.
+I did found several pages about General/SubVersion acting as a client. None about a server setup. So I hope nobody will complain that I created a new page for this.
 
 For now I use a localy reposistory, but would like to use a server setup. I did find other pages about svnserver but used with apache cq webdav, but I do not want to use that. Also I have no experience with Fink, if that is what I also needs to use. Is it posible that someone would love to write down the steps or a tutorial to set this up? Thanks
 
-''Not to be discouraging, but you'll probably have a much better chance of getting help with this if you ask in a more appropriate place, like a site dedicated to [[SubVersion]].''
+*Not to be discouraging, but you'll probably have a much better chance of getting help with this if you ask in a more appropriate place, like a site dedicated to General/SubVersion.*
 ----
 I did look but couldn't find how to compile and install it on OSX ( tiger, server ). Any specific pointers? I was thinking that when the steps are here available it would benefit everybody.
 
@@ -14,7 +14,7 @@ First of all, there are three ways to access the repositories, once svn is insta
 
 
 *svnserve, the setup requires editing the inetd configuration, but the setup isn't very hard. The communication is not encrypted, but passwords are not send in clear text, so if the data isn't sensitive, that's no problem. Using svnserve means that you have to setup users on a repository basis, which is a pro and a con, at the same time.
-*Apache 2, the repositories are available as [[WebDAV]] directories, which can be handy, but otherwise I'd say that the setup is more complex than it has advantages. Repositories can be accessed with HTTPS for encrypted communications. The user setup is similar to svnserve. 
+*Apache 2, the repositories are available as General/WebDAV directories, which can be handy, but otherwise I'd say that the setup is more complex than it has advantages. Repositories can be accessed with HTTPS for encrypted communications. The user setup is similar to svnserve. 
 *ssh, my preferred way to access the repositories. Requires all users to have an account on the server machine, which can be a problem if you have many users, and don't want all of them to have shell access, but ssh is secure and trustworthy. Accessing a repository with ssh is the same thing as accessing it locally, the repository will be written and read as the actual user, not a server user as with Apache 2 and svnserve. Because of this, users' and groups' access rights are really important.
 
 
@@ -26,4 +26,4 @@ The most common problem I've had is with Berkeley DB, and I'm now going to migra
 
 If you have any more questions, don't hesitate to ask, or to contact me directly (iChat: iconara).
 
---[[TheoHultberg]]/Iconara
+--General/TheoHultberg/Iconara

@@ -4,23 +4,23 @@ I am not a Cocoa or Perl expert, so I imagine there is a simpler and/or more ele
 
 I use a debug build with following environment variables set:
 
-<code>
-[[MallocStackLogging]] 1
-[[MallocScribble]] 1
-[[MallocGuardEdges]] 1
-[[MallocCheckHeapStart]] 1
-[[MallocCheckHeapEach]] 10000
-[[NSDebugEnabled]] YES
-[[NSZombieEnabled]] YES
-[[NSHangOnUncaughtException]] YES
-</code>
+    
+General/MallocStackLogging 1
+General/MallocScribble 1
+General/MallocGuardEdges 1
+General/MallocCheckHeapStart 1
+General/MallocCheckHeapEach 10000
+General/NSDebugEnabled YES
+General/NSZombieEnabled YES
+General/NSHangOnUncaughtException YES
+
 
 - Eric
 
-<code>
+    
 #!/usr/bin/perl -w
 
-open LEAKS, "leaks -nocontext [[YourApplication]]|" or die "leaks: non-zero exit of $?";
+open LEAKS, "leaks -nocontext General/YourApplication|" or die "leaks: non-zero exit of $?";
 
 %leaks = ();
 	
@@ -28,7 +28,7 @@ while (<LEAKS>)
 {
 	$line = $_;
 	chomp $line;
-	if (($line =~ /Leak/) and !($line =~ /[[NSZombie]]/))
+	if (($line =~ /Leak/) and !($line =~ /General/NSZombie/))
 	{
 		$leak = $line;
 		print $leak . "\n";
@@ -36,7 +36,7 @@ while (<LEAKS>)
 		$call_stack = <LEAKS>;
 		chomp $call_stack;
 		$call_stack =~ s/^\s+//;
-		$call_stack =~ s/\[thread.''\]://;
+		$call_stack =~ s/\[thread.*\]://;
 		
 		if (exists $leaks{$call_stack})
 		{
@@ -66,4 +66,3 @@ while (($call_stack, $leak_values) = each %leaks)
 	}
 	print "\n";
 }
-</code>

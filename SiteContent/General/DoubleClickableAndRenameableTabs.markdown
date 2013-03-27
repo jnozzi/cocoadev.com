@@ -6,4 +6,4 @@ For the curious: I'm a big fan of iTerm, as it works similar to what I'm used to
 So far, I'm pretty clueless. I know how to override mouseDown: to capture some mouse events - but unfortunately, the double click seems not to be a build-in event type. But e.g. the finder certainly uses it, so any ideas how to capture one?
 
 ----
-Check out the <code>clickCount</code> method.
+Check out the     clickCount method.

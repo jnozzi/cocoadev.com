@@ -1,19 +1,19 @@
-What do you think are the essential system (hardware) requirements for developing in Cocoa?  I'm using a [[PowerMac]] G4 500 with 768 MB ram (on 10.3), but I'm finding that [[InterfaceBuilder]] slows down to a crawl with even a moderately complex nib file open.  Is it a lack of RAM, or should I be looking elsewhere to eliminate this slowdown?  - [[NateClinton]]
+What do you think are the essential system (hardware) requirements for developing in Cocoa?  I'm using a General/PowerMac G4 500 with 768 MB ram (on 10.3), but I'm finding that General/InterfaceBuilder slows down to a crawl with even a moderately complex nib file open.  Is it a lack of RAM, or should I be looking elsewhere to eliminate this slowdown?  - General/NateClinton
 
-''I'd consider that about the low end of a usable system. Your IB slowness is probably just the system, but max out the RAM anyway.''
+*I'd consider that about the low end of a usable system. Your IB slowness is probably just the system, but max out the RAM anyway.*
 
-I'm running on an iMac 700MHz flat panel with only 256 MB of RAM and I haven't had a problem with IB slowing down. I would think 768 MB of RAM would be plenty. -- [[RyanBates]]
+I'm running on an iMac 700MHz flat panel with only 256 MB of RAM and I haven't had a problem with IB slowing down. I would think 768 MB of RAM would be plenty. -- General/RyanBates
 
-I'm running it on an iBook 600 with 384 megs with no real problems. So I guess it's really the CPU, or maybe your graphics card. I have a Rage 128 Mobility, what does yours have? -- [[UliKusterer]]
+I'm running it on an iBook 600 with 384 megs with no real problems. So I guess it's really the CPU, or maybe your graphics card. I have a Rage 128 Mobility, what does yours have? -- General/UliKusterer
 
-A [[TiBook]] 500 with 512mb of RAM is more than powerful enough to do a lot of Cocoa programming.  I upgraded to a gig of RAM because I was doing a client gig with an app that slung around a lot of data, but this is the main development machine for everything I do.  ++[[MarkDalrymple]]
+A General/TiBook 500 with 512mb of RAM is more than powerful enough to do a lot of Cocoa programming.  I upgraded to a gig of RAM because I was doing a client gig with an app that slung around a lot of data, but this is the main development machine for everything I do.  ++General/MarkDalrymple
 
-I use a G4/400 with only 256 RAM, and it works just fine. --[[OwenAnderson]]
+I use a G4/400 with only 256 RAM, and it works just fine. --General/OwenAnderson
 
-I used it on an old [[PowerMac]] G3 300mhz, it was slow. I use it now on my iMac 400mhz and it's pretty fast (but not loading...). --[[JoeRanieri]]
+I used it on an old General/PowerMac G3 300mhz, it was slow. I use it now on my iMac 400mhz and it's pretty fast (but not loading...). --General/JoeRanieri
 ----
-I'm running Mac OS X 10.3.2 off my iPod, booting up on a 450mhz Sage iMac, 190mb ram, and [[XCode]], and IB run perfectly.
--- [[JoshaChapmanDodson]]
+I'm running Mac OS X 10.3.2 off my iPod, booting up on a 450mhz Sage iMac, 190mb ram, and General/XCode, and IB run perfectly.
+-- General/JoshaChapmanDodson
 
 You do know that Mac OS X's big harddisk activity can kill your iPod?
 

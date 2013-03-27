@@ -2,11 +2,11 @@ Cocoa Sprite Kit is an "Artistic License" (very close to generic public source) 
 
 See http://csk.sourceforge.net/
 
-''If anyone wishes to add a review, that would be great.''
+*If anyone wishes to add a review, that would be great.*
 
 
 I vote for scrolling, no matter how slow it is ;)
--- [[KentSutherland]]
+-- General/KentSutherland
 
 I wrote it ;)  It's cool.  Use it.  Love it.  and Scrolling is coming eventually.  It's on the top of that long list of things to do we have.
 -- Vinay Venkatesh
@@ -17,7 +17,7 @@ Looks cool, but is it ever going to be released?
 
 ----
 
-Is the CSK project closed? - [[MACnus]]
+Is the CSK project closed? - General/MACnus
 
 ----
 
@@ -33,14 +33,14 @@ When will be be able to see some example code for the newest CVS framework?  I c
 
 ----
 
-What happened to [[CocoaSpriteKit]]? - It moved to http://csk.sourceforge.net/ ''Even so, the latest build is from March, 2004''
+What happened to General/CocoaSpriteKit? - It moved to http://csk.sourceforge.net/ *Even so, the latest build is from March, 2004*
 
 ----
 
-It's now known as [[SpriteMagic]], see http://vinay.afternight.org/Wiki/index.pl?[[SpriteMagic]]
+It's now known as General/SpriteMagic, see http://vinay.afternight.org/Wiki/index.pl?General/SpriteMagic
 
 ----
 
-both [[SpriteMagic]] and [[CocoaSpriteKit]] domains seem to be dead now. any other contenders in this area?
+both General/SpriteMagic and General/CocoaSpriteKit domains seem to be dead now. any other contenders in this area?
 ----
-Isn't it trivial to build your "spite" system with Quartz and/or [[OpenGL]]?  Perhaps there is no need for a Sprite Kit ?  List some features of a Sprite Kit and perhaps I can identify the easiest and best ways to achieve those features with the existing frameworks.
+Isn't it trivial to build your "spite" system with Quartz and/or General/OpenGL?  Perhaps there is no need for a Sprite Kit ?  List some features of a Sprite Kit and perhaps I can identify the easiest and best ways to achieve those features with the existing frameworks.

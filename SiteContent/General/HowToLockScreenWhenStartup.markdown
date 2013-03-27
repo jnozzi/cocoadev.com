@@ -6,6 +6,6 @@ On Mac OS X you can require the user to login by disabling the following checkbo
 
 If you want your application to request authentication details, take a look at: http://developer.apple.com/documentation/Security/Conceptual/authorization_concepts/index.html
 
--- [[GrahamMiln]]
+-- General/GrahamMiln
 
 ----

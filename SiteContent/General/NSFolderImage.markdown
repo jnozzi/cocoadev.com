@@ -1,21 +1,21 @@
-I am creating a source list ala iTunes/Mail/current fashionable look and have hit a snag with icons. Interface Builder on Leopard gives free icons for burnable and smart folders via [[[NSImage]] imagenamed:] but does not provide one for a standard folder nor home folder! 
+I am creating a source list ala iTunes/Mail/current fashionable look and have hit a snag with icons. Interface Builder on Leopard gives free icons for burnable and smart folders via General/[NSImage imagenamed:] but does not provide one for a standard folder nor home folder! 
 
 Can anyone please advise if there is one available, or failing that, where I might find the standard folder and home folder images on my computer so as to be able to copy them into my application bundle?
 
 ----
 
-You can use [[NSWorkspace]]'s <code>-iconForFileType:</code> to get this image. Admittedly it's a bit less elegant than it needs to be, but it should work. --[[JediKnil]]
-<code>
-[[NSImage]] ''folderIcon = [[[[NSWorkspace]] sharedWorkspace] iconForFileType:[[NSFileTypeForHFSTypeCode]](kGenericFolderIcon)];
-</code>
+You can use General/NSWorkspace's     -iconForFileType: to get this image. Admittedly it's a bit less elegant than it needs to be, but it should work. --General/JediKnil
+    
+General/NSImage *folderIcon = General/[[NSWorkspace sharedWorkspace] iconForFileType:General/NSFileTypeForHFSTypeCode(kGenericFolderIcon)];
+
 
 ----
 
-Many thanks, that works a treat. I honestly don't think I'd ever have spotted that way of doing it. Seems very strange to provide [[NSFolderSmart]] and [[NSFolderBurnable]] but not "[[NSFolderStandard]]" or similar.
+Many thanks, that works a treat. I honestly don't think I'd ever have spotted that way of doing it. Seems very strange to provide General/NSFolderSmart and General/NSFolderBurnable but not "General/NSFolderStandard" or similar.
 
 ----
 
-Try grabbing "[[GenericFolderIcon]]" from /System/Library/[[CoreServices]]/[[CoreTypes]].bundle  There's lots of other goodies in there too.
+Try grabbing "General/GenericFolderIcon" from /System/Library/General/CoreServices/General/CoreTypes.bundle  There's lots of other goodies in there too.
 - Harvey
 
 ----

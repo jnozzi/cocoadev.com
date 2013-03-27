@@ -1,6 +1,6 @@
 Does anybody know how to use the debugger with a framework.  Suppose I have the following code
 
-#import <[[MyFramework]]/[[MyFramework]].h>
+#import <General/MyFramework/General/MyFramework.h>
  
 .
 .
@@ -9,7 +9,7 @@ Does anybody know how to use the debugger with a framework.  Suppose I have the 
 - (void)someMethod
 {
 
-   [[MyFrameWorkObject]] ''object = [[[[MyFrameWorkObject]] alloc] init];
+   General/MyFrameWorkObject *object = General/[[MyFrameWorkObject alloc] init];
 
    [object frameWorkCall] // I want to step inside this call and actually move through my framework project with the debugger
 

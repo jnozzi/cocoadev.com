@@ -11,8 +11,8 @@ Website: http://www.loganscollins.com/
 
 E-mail: loganscollins [at] gmail [dot] com
 
-Languages: Objective-C, C++, Python, Ruby on Rails, [[JavaScript]], XHTML/CSS
+Languages: Objective-C, C++, Python, Ruby on Rails, General/JavaScript, XHTML/CSS
 
-Apps: Illustrator, Photoshop, [[InDesign]]
+Apps: Illustrator, Photoshop, General/InDesign
 
-Hardware: [[MacBook]] Pro/2.4 [[GHz]]/2GB RAM
+Hardware: General/MacBook Pro/2.4 General/GHz/2GB RAM

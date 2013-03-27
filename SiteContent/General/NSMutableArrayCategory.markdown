@@ -4,13 +4,13 @@ Sure looks bare up here with no comments.
 
 OK, here's one:
 
-'''19 March 2009''' - Added <code>moveObject: toIndex:</code> (Just to keep things alive!) -- ''this had a bug in it, now fixed --[[JediKnil]]''
+**19 March 2009** - Added     moveObject: toIndex: (Just to keep things alive!) -- *this had a bug in it, now fixed --General/JediKnil*
 
-'''4 June 2010''' - <code>moveObject: toIndex:</code> (Fixed yet again!)
+**4 June 2010** -     moveObject: toIndex: (Fixed yet again!)
 
 ----
-Source for [[NSMutableArray]] +[[CocoaDevUsersAdditions]].h :
-<code>
+Source for General/NSMutableArray +General/CocoaDevUsersAdditions.h :
+    
  #import <Foundation/Foundation.h>
  
  @interface NSMutableArray (CocoaDevUsersAdditions)
@@ -29,10 +29,10 @@ Source for [[NSMutableArray]] +[[CocoaDevUsersAdditions]].h :
  + (NSMutableArray *)arrayWithData:(NSData *)data;
  
  @end
-</code>
+
 ----
-Source for [[NSMutableArray]]+[[CocoaDevUsersAdditions]].m :
-<code>
+Source for General/NSMutableArray+General/CocoaDevUsersAdditions.m :
+    
  #import "NSMutableArray+CocoaDevUsersAdditions.h"
  
  @implementation NSMutableArray (CocoaDevUsersAdditions)
@@ -48,7 +48,7 @@ Source for [[NSMutableArray]]+[[CocoaDevUsersAdditions]].m :
    {
      return nil;
    }
-   res = [[[self lastObject] retain] autorelease];
+   res = General/[self lastObject] retain] autorelease];
    [self removeLastObject];
    return res;
  }
@@ -69,7 +69,7 @@ Source for [[NSMutableArray]]+[[CocoaDevUsersAdditions]].m :
    
    // The above doesn't work for arbitrary insertions!?! I propose instead:
    // NSMutableArray* newOrdering = [NSMutableArray array];
-   // [newOrdering addObjectsFromArray:[self subarrayWithRange:NSMakeRange(0, anIndex)]];
+   // [newOrdering addObjectsFromArray:[self subarrayWithRange:NSMakeRange(0, anIndex);
    // [newOrdering addObjectsFromArray:anArray];
    // [newOrdering addObjectsFromArray:[self subarrayWithRange:NSMakeRange(anIndex, [self count]-anIndex)]];
    // [self setArray:newOrdering];
@@ -105,18 +105,18 @@ Source for [[NSMutableArray]]+[[CocoaDevUsersAdditions]].m :
  
  + (NSMutableArray *)arrayWithData:(NSData *)data
  {
-   NSString *sData = [[[NSString allocWithZone:[self zone]] initWithData:data encoding:NSUTF8StringEncoding] autorelease] ;
+   NSString *sData = General/[NSString allocWithZone:[self zone initWithData:data encoding:NSUTF8StringEncoding] autorelease] ;
    if (sData != nil)
    {
      NSArray *thePropertyList = [sData propertyList];
      if (thePropertyList != nil)
-       return [[thePropertyList mutableCopy] autorelease];
+       return General/thePropertyList mutableCopy] autorelease];
    }
    return nil;
  }
  
  @end
-</code>
 
 
-[[Category:CocoaDevUsersAdditions]]
+
+[[Category:CocoaDevUsersAdditions

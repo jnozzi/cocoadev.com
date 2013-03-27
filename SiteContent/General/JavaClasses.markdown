@@ -1,1 +1,1 @@
-Describe [[JavaClasses]] here.
+Describe General/JavaClasses here.

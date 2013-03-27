@@ -1,6 +1,6 @@
 I asked this question at cocoa-dev@lists.apple.com but I got no reply... I am still working on the problem, but any help would be greatly appreciated.
 
-Here it is: I am working on an application (document-based) and I want to create/initialize a datastructure every single time a new document is created (as a part of the newly created [[MyDocument]] object). Mind you, that  data structure should not be touched when somebody simple wants to open a document, i.e. overriding
+Here it is: I am working on an application (document-based) and I want to create/initialize a datastructure every single time a new document is created (as a part of the newly created General/MyDocument object). Mind you, that  data structure should not be touched when somebody simple wants to open a document, i.e. overriding
 
 - (void) awakeFromNib; 
 
@@ -14,7 +14,7 @@ Nick
 
 This is a bit of a RTFM question, really, but here it goes anyhow.
 
-You need to '''initialise''' data as a part of your '''[[NSDocument]]''', whenever you create one.  To do this, you need to override the designated initialiser of your document.  Now, a glance at the [[NSDocument]] documentation should show you that there are two designated initialisers for an [[NSDocument]], viz:
+You need to **initialise** data as a part of your **General/NSDocument**, whenever you create one.  To do this, you need to override the designated initialiser of your document.  Now, a glance at the General/NSDocument documentation should show you that there are two designated initialisers for an General/NSDocument, viz:
 
 
 *
@@ -35,22 +35,22 @@ The choice, as ever, is yours.
 
 Oh, and by the way, awakeFromNib is only ever called for objects archived in a nib file.  You didn't instantiate your document class in a nib, did you?
 ----
-The above claim above is incorrect. -awakeFromNib is called for all objects in the loaded nib file AND for the file's owner specified when the nib is loaded.  Whenever an [[NSDocument]] instance is used as the file's owner for a loaded nib, the [[NSDocument]] instance's -awakeFromNib will be called.
+The above claim above is incorrect. -awakeFromNib is called for all objects in the loaded nib file AND for the file's owner specified when the nib is loaded.  Whenever an General/NSDocument instance is used as the file's owner for a loaded nib, the General/NSDocument instance's -awakeFromNib will be called.
 ----
 
 The bits of documentation to read are as follows:
 
-http://developer.apple.com/documentation/Cocoa/Reference/[[ApplicationKit]]/ObjC_classic/Classes/NSDocument_index.html
+http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/NSDocument_index.html
 *
 http://developer.apple.com/documentation/Cocoa/Conceptual/Documents/index.html#//apple_ref/doc/uid/10000006i
 *
-The section '''Creating a subclass of [[NSDocument]]''' within the above article, Creating Document Based Applications
+The section **Creating a subclass of General/NSDocument** within the above article, Creating Document Based Applications
 
 
-[[TufTy]]
+General/TufTy
 
 ----
 Or you could override newDocument in an application delegate.
 ----
 
-Which violates encapsulation completely.  What does the app delegate have to do with individual documents?  I might forgive you if you said [[NSDocumentController]], but the [[NSApp]] delegate?
+Which violates encapsulation completely.  What does the app delegate have to do with individual documents?  I might forgive you if you said General/NSDocumentController, but the General/NSApp delegate?

@@ -1,6 +1,6 @@
-I've got my table setup so one column is all [[NSButtonCells]]. However, I'd like for some of the rows to not show the cell, but just show blank. Is there an easy way to do this, or do I need to create a custom cell that internally has its own [[NSButtonCell]] and draws it only if <code>[self drawButton]</code> (or something like that) is true? I tried using <code>setType:</code> with [[NSNullCellType]] but that didn't work.
+I've got my table setup so one column is all General/NSButtonCells. However, I'd like for some of the rows to not show the cell, but just show blank. Is there an easy way to do this, or do I need to create a custom cell that internally has its own General/NSButtonCell and draws it only if     [self drawButton] (or something like that) is true? I tried using     setType: with General/NSNullCellType but that didn't work.
 
 ----
-You could <code>return @"";</code> from <code>tableView:objectValueForTableColumn:row:</code>...?
+You could     return @""; from     tableView:objectValueForTableColumn:row:...?
 
-Alternatively, you might <code>setTransparent:YES</code> from <code>tableView:willDisplayCell:forTableColumn:row:</code> and then check <code>isTransparent</code> when the action gets triggered.
+Alternatively, you might     setTransparent:YES from     tableView:willDisplayCell:forTableColumn:row: and then check     isTransparent when the action gets triggered.

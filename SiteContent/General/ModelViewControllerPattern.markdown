@@ -1,1 +1,1 @@
-see [[ModelViewController]]
+see General/ModelViewController

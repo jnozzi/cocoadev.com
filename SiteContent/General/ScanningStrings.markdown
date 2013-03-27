@@ -1,10 +1,10 @@
-I am using and [[NSSCanner]] to scan out some quotes in a text view subclass, but the following code causes and endless loop and I cannot find the problem.
+I am using and General/NSSCanner to scan out some quotes in a text view subclass, but the following code causes and endless loop and I cannot find the problem.
 
 Can anyone help :-)?
 
-<code>[[NSCharacterSet]] ''charSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"\""];
-[[NSScanner]] '' theScanner = [[[NSScanner]] scannerWithString:[self string]];
-[theScanner setCharactersToBeSkipped:[[[NSCharacterSet]] whitespaceCharacterSet]];	
+    General/NSCharacterSet *charSet = General/[NSCharacterSet characterSetWithCharactersInString:@"\""];
+General/NSScanner * theScanner = General/[NSScanner scannerWithString:[self string]];
+[theScanner setCharactersToBeSkipped:General/[NSCharacterSet whitespaceCharacterSet]];	
 	
 BOOL inQuote = NO;
 unsigned int quotePosition;
@@ -16,7 +16,7 @@ while ([theScanner isAtEnd] == NO)
 		if (inQuote)
 		{ 
 			// We found a quote, except it's not working ;)
-			[[NSLog]]([self substringWithRange:[[NSMakeRange]](quotePosition,[theScanner scanLocation]-quotePosition)]);
+			General/NSLog([self substringWithRange:General/NSMakeRange(quotePosition,[theScanner scanLocation]-quotePosition)]);
 		} else
 		{
 			inQuote = YES;
@@ -25,8 +25,8 @@ while ([theScanner isAtEnd] == NO)
 	}
 [theScanner scanUpToCharactersFromSet:charSet intoString:nil];
 }
-</code>
+
 ----
-Try adding <code>inQuote = NO;</code> after your [[NSLog]].
+Try adding     inQuote = NO; after your General/NSLog.
 ----
 Thanks

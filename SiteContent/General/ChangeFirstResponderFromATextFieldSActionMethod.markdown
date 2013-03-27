@@ -1,4 +1,4 @@
-At the end of my textField�s [[IBAction]] method, I�d like to make another textField firstResponder�
+At the end of my textField�s General/IBAction method, I�d like to make another textField firstResponder�
 
 Sounds easy, but�
 
@@ -16,21 +16,21 @@ It seems that you�ve got to check Enter Only in IB and not End Editing. That w
 
 ----
 
-You might need to override <code>keyDown:</code> in a [[NSTextView]] subclass (or category if you're adventurous), set it as the window's field editor, and check for the return key and not pass that event up to super.
+You might need to override     keyDown: in a General/NSTextView subclass (or category if you're adventurous), set it as the window's field editor, and check for the return key and not pass that event up to super.
 
 ----
 
 How do you set it to be the window's field editor?
 
-''implement'' <code>- (id)windowWillReturnFieldEditor:([[NSWindow]] '')sender toObject:(id)anObject</code> ''in your window's delegate and return your custom class. Also, you need to make an [[NSTextView]] subclass, not an [[NSTextField]] subclass as I said above, sorry. I changed it above as well.''
+*implement*     - (id)windowWillReturnFieldEditor:(General/NSWindow *)sender toObject:(id)anObject *in your window's delegate and return your custom class. Also, you need to make an General/NSTextView subclass, not an General/NSTextField subclass as I said above, sorry. I changed it above as well.*
 
-''Look at  the source for [[DTCPathView]] (in [[ObjectLibrary]]) for an example of how to do it.''
+*Look at  the source for General/DTCPathView (in General/ObjectLibrary) for an example of how to do it.*
 
 I once succeeded in catching the Return key, but it seems that pressing shift- or command-Return does nothing, whereas option-Return works� Any idea why this behavior occurs?
 
 ----
 
-Tentative solution: A working example with code is posted in [[ReturnInsteadOfTab]].
+Tentative solution: A working example with code is posted in General/ReturnInsteadOfTab.
 
 I made 2 columns of 4 texFields and am now able to tab horizontally through them (normally using Tab: 0-1-2-3-4-5-6-7-0�) or vertically (using Return: 0-2-4-6-0� or 1-3-5-7-1�).
 
@@ -40,11 +40,11 @@ You just cycle through that array to find the current view�s next "return-resp
 
 ----
 
-I have a similar problem. A simple data entry window with 3 text fields, an �Enter� and a �Finish� button. The Enter button has its key equivalent set to Return. The action is in a subclass of [[NSWindowController]], like so:
+I have a similar problem. A simple data entry window with 3 text fields, an �Enter� and a �Finish� button. The Enter button has its key equivalent set to Return. The action is in a subclass of General/NSWindowController, like so:
 
-<code>
+    
 
-- ([[IBAction]]) pressEnterButton: (id) sender;
+- (General/IBAction) pressEnterButton: (id) sender;
 {
    if ([myDataController validateField1:[field1 stringValue]
                               Field2:[field2 stringValue]
@@ -59,7 +59,7 @@ I have a similar problem. A simple data entry window with 3 text fields, an �E
           }
 }
 
-</code>
+
 
 Now if you click the Enter button with the mouse, the result is exactly as intended: the three fields are copied to the data controller, emptied, and focus is sent back to the beginning.
 
@@ -69,7 +69,7 @@ I don�t mind so much when I get huge bring-down-the-system bugs in my program,
 
 ----
 
-Have you tried something like <code>[window performSelector:@selector(makeFirstResponder:) withObject:field1 afterDelay:0]</code>?
+Have you tried something like     [window performSelector:@selector(makeFirstResponder:) withObject:field1 afterDelay:0]?
 
 ----
 

@@ -1,1 +1,1 @@
-See [[IBPalette]].
+See General/IBPalette.

@@ -1,4 +1,4 @@
-http://www.mere-mortal-software.com/blog/blogimages/061101-[[AboutFace]].gif
+http://www.mere-mortal-software.com/blog/blogimages/061101-General/AboutFace.gif
 
 Mac developer since 1986
 
@@ -11,7 +11,7 @@ My Stuff:
 
 * Blog [http://www.Mere-Mortal-Software.com/blog/]
 * Safe Place [http://www.Mere-Mortal-Software.com/blog/]
-* Foundation Shell [http://www.[[FoundationShell]].com/]
+* Foundation Shell [http://www.General/FoundationShell.com/]
 * 4DToday.com [http://www.4DToday.com]
 
 

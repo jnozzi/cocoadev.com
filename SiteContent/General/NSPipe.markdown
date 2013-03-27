@@ -1,4 +1,4 @@
-An object-oriented interface for accessing pipes usually used with [[NSTask]] to redirect task output to a Cocoa UI element.
+An object-oriented interface for accessing pipes usually used with General/NSTask to redirect task output to a Cocoa UI element.
 
 http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSPipe_Class/index.html
 
@@ -11,9 +11,9 @@ A "pipe" is a communications channel that links one process to another.  Data wr
 
 from: http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSPipe_Class/index.html
 
-The [[NSPipe]] buffer limit seems to be 4096 bytes (cf. /usr/include/limits.h: "... #define _POSIX_ARG_MAX          4096 ...")
+The General/NSPipe buffer limit seems to be 4096 bytes (cf. /usr/include/limits.h: "... #define _POSIX_ARG_MAX          4096 ...")
 
-And also see this related issue: Max arguments for [[NSTask]]? ( http://www.cocoabuilder.com/archive/message/cocoa/2002/10/27/66713 )
+And also see this related issue: Max arguments for General/NSTask? ( http://www.cocoabuilder.com/archive/message/cocoa/2002/10/27/66713 )
 
 Here's an Xcode Foundation Tool example: 
 
@@ -42,7 +42,7 @@ int main (int argc, char *argv[]) {
  
 	NSPipe *outPipe = [NSPipe pipe];
  
-	NSTask *task = [[[NSTask alloc] init] autorelease];
+	NSTask *task = General/[NSTask alloc] init] autorelease];
 	[task setStandardInput:inPipe];   
 	[task setStandardOutput:outPipe];
 	[task setLaunchPath:@"/bin/cat"]; 
@@ -62,16 +62,16 @@ int main (int argc, char *argv[]) {
 
 ----
 
-Another use for [[NSPipe]] is to capture data from a method which requires a file handle (FILE*) into an [[NSData]] object. This is useful for interacting with a lot of pesky non-objective-c  libraries:
+Another use for [[NSPipe is to capture data from a method which requires a file handle (FILE*) into an General/NSData object. This is useful for interacting with a lot of pesky non-objective-c  libraries:
 
 <source lang="objc">
 
 +(NSData*)captureFileStreamIntoDataObject {
-  NSPipe* thePipe = [[NSPipe alloc] init];  
-  [NSThread detachNewThreadSelector:@selector(backgroundThread:) toTarget:self withObject:[thePipe fileHandleForWriting]];  
+  NSPipe* thePipe = General/NSPipe alloc] init];  
+  [NSThread detachNewThreadSelector:@selector(backgroundThread:) toTarget:self withObject:[thePipe fileHandleForWriting;  
   NSData* theData = nil;
   NSMutableData* theMutableData = [NSMutableData data];
-  while((theData = [[thePipe fileHandleForReading] availableData]) && [theData length]) {
+  while((theData = General/thePipe fileHandleForReading] availableData]) && [theData length]) {
     [theMutableData appendData:theData];
   }
   [thePipe release];
@@ -91,7 +91,7 @@ Another use for [[NSPipe]] is to capture data from a method which requires a fil
 
 </source>
 
-- [[DavidThorpe]]
+- [[DavidThorpe
 
 ----
 
@@ -128,7 +128,7 @@ References:
 - "64KB limit in passed in text for a service using NSTask" (August 20, 2010),
   http://www.cocoabuilder.com/archive/cocoa/292247-64kb-limit-in-passed-in-text-for-service-using-nstask.html
 
-- http://developer.apple.com/library/mac/#documentation/Darwin/Reference/[[ManPages]]/man3/pthread.3.html
+- http://developer.apple.com/library/mac/#documentation/Darwin/Reference/General/ManPages/man3/pthread.3.html
 
 
 Todo:
@@ -148,7 +148,7 @@ static NSMutableString *outString = nil;
 void *threadFunction(NSPipe *pipe)
 {
 
-   [[NSAutoreleasePool alloc] init];
+   General/NSAutoreleasePool alloc] init];
 
    NSPipe *outPipe = [[NSPipe alloc] init];
    NSTask *task = [[NSTask alloc] init];
@@ -170,7 +170,7 @@ void *threadFunction(NSPipe *pipe)
 
    while ( (output = [[outPipe fileHandleForReading] availableData]) && [output length] ) 
    {
-      str = [[NSString alloc] initWithFormat:@"%.*s", [output length], [output bytes]];
+      str = [[NSString alloc] initWithFormat:@"%.*s", [output length], [output bytes;
       [outString appendString: str];
       [str release];
    }
@@ -186,7 +186,7 @@ void *threadFunction(NSPipe *pipe)
 int main(int argc, const char *argv[])
 {
 
-   [[NSAutoreleasePool alloc] init];
+   General/NSAutoreleasePool alloc] init];
 
    NSString *file = @"testfile.txt";   
 
@@ -276,7 +276,7 @@ int main(int argc, const char *argv[])
         const char *readDescriptorString = nil;
         
         pipe = [NSPipe pipe];
-        readDescriptorString = [[NSString stringWithFormat: @"%d", [[pipe fileHandleForReading] fileDescriptor]] UTF8String];
+        readDescriptorString = [[NSString stringWithFormat: @"%d", [[pipe fileHandleForReading] fileDescriptor UTF8String];
         fprintf(stdout, "readDescriptorString: %s\n", readDescriptorString);
 
         pid = fork();
@@ -299,8 +299,8 @@ int main(int argc, const char *argv[])
         uint32_t dataLength = DATA_LENGTH;
         
         // Assuming that both processes share same endianness (bad idea)
-        [[pipe fileHandleForWriting] writeData: [NSData dataWithBytes: &dataLength length: sizeof(dataLength)]];
-        [[pipe fileHandleForWriting] writeData: data];
+        General/pipe fileHandleForWriting] writeData: [NSData dataWithBytes: &dataLength length: sizeof(dataLength);
+        General/pipe fileHandleForWriting] writeData: data];
         
         NSLog(@"Parent: finished writing data, sleeping it off...");
         
@@ -646,13 +646,13 @@ void *threadFunction(void *arguments)
 
    while(!terminated) 
    {
-     //if (![[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:100000]])
-     if (![[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]) 
+     //if (![[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate dateWithTimeIntervalSinceNow:100000)
+     if (!General/NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture) 
      {
          break;
      }
       [pool release];
-      pool = [[NSAutoreleasePool alloc] init];
+      pool = General/NSAutoreleasePool alloc] init];
    }
 
    [pool release];
@@ -690,11 +690,11 @@ NSString *testfile = @"testfile.txt";
 NSData *data = [NSData dataWithContentsOfFile: testfile]; 
 
 FRCommand *newTask = [[[FRCommand alloc] initWithPath: @"/bin/cat"] autorelease];
-//[newTask setArgs: [NSArray arrayWithObjects: @"-n", nil ]];
+//[newTask setArgs: [NSArray arrayWithObjects: @"-n", nil ;
 [newTask setArgs: [NSArray arrayWithObjects: @"-u", @"-n", nil ]];
 
-//FRCommand *newTask = [[[FRCommand alloc] initWithPath: @"/usr/bin/tail"] autorelease];
-//[newTask setArgs: [NSArray arrayWithObjects: @"-n", @"10", nil ]];
+//FRCommand *newTask = General/[FRCommand alloc] initWithPath: @"/usr/bin/tail"] autorelease];
+//[newTask setArgs: [NSArray arrayWithObjects: @"-n", @"10", nil ;
 
 [newTask setInput: data];
 
@@ -704,20 +704,20 @@ FRCommand *newTask = [[[FRCommand alloc] initWithPath: @"/bin/cat"] autorelease]
 
 /*
 // ls
-FRCommand *newTask = [[[FRCommand alloc] initWithPath: @"/bin/ls"] autorelease];
-//[newTask setArgs: [NSArray arrayWithObjects: @"-l", nil ]];
+FRCommand *newTask = General/[FRCommand alloc] initWithPath: @"/bin/ls"] autorelease];
+//[newTask setArgs: [NSArray arrayWithObjects: @"-l", nil ;
 //[newTask setArgs: [NSArray arrayWithObjects: @"-l", @"fileDoesNotExist", nil ]];
 [newTask setArgs: [NSArray arrayWithObjects: @"-ld", @"/", @"fileDoesNotExist", nil ]];
 
 // tail -f test.log
 // uncomment the following line above:  NSLog(@"| %@", s);   
-//FRCommand *newTask = [[[FRCommand alloc] initWithPath: @"/usr/bin/tail"] autorelease];
-//[newTask setArgs: [NSArray arrayWithObjects: @"-f", @"/path/to/test.log", nil ]];
+//FRCommand *newTask = General/[FRCommand alloc] initWithPath: @"/usr/bin/tail"] autorelease];
+//[newTask setArgs: [NSArray arrayWithObjects: @"-f", @"/path/to/test.log", nil ;
 
-// curl -L -O http://mirror.ctan.org/systems/mac/mactex/[[MacTeX]].mpkg.zip
+// curl -L -O http://mirror.ctan.org/systems/mac/mactex/General/MacTeX.mpkg.zip
 // uncomment the following line above: fprintf(stderr, "\r\033[0K%s", [s UTF8String]);
-//FRCommand *newTask = [[[FRCommand alloc] initWithPath: @"/usr/bin/curl"] autorelease];
-//[newTask setArgs: [NSArray arrayWithObjects: @"-L", @"-O", @"http://mirror.ctan.org/systems/mac/mactex/[[MacTeX]].mpkg.zip", nil ]];
+//FRCommand *newTask = General/[FRCommand alloc] initWithPath: @"/usr/bin/curl"] autorelease];
+//[newTask setArgs: [NSArray arrayWithObjects: @"-L", @"-O", @"http://mirror.ctan.org/systems/mac/mactex/[[MacTeX.mpkg.zip", nil ]];
 
 */
 

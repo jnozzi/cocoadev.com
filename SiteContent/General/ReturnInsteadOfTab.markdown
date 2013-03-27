@@ -1,4 +1,4 @@
-[[NSTextField]] responds to TAB to move to next field on the layout.
+General/NSTextField responds to TAB to move to next field on the layout.
 How easy is it to make it respond to RETURN ?
 Or to respond to both Return OR tab ?
 
@@ -11,8 +11,8 @@ I�d like to be able to manage 2 responder chains: the normal one, accessed by 
 
 The Tab chain might be set up in IB. And I�m trying to handle navigation too when the user exits the textField by hitting Return. I added some code in the Action method of the field but I can never make first responder the textField I want�
 
-So I tried to override - (BOOL)textView:([[NSTextView]] '')aTextView doCommandBySelector:(SEL)aSelector. I can catch that the event is [[NSTabCharacter]] for example but then when attempting to do [[aTextView window] selectKeyViewFollowingView:aTextView]; nothing happens�
-Also [[NSLog]](@"= [[NSTabCharacter]] nextKey = %@", [aTextView nextValidKeyView]); returns null even if the responder chain and the initial first responder were set in IB.
+So I tried to override - (BOOL)textView:(General/NSTextView *)aTextView doCommandBySelector:(SEL)aSelector. I can catch that the event is General/NSTabCharacter for example but then when attempting to do General/aTextView window] selectKeyViewFollowingView:aTextView]; nothing happens�
+Also [[NSLog(@"= General/NSTabCharacter nextKey = %@", [aTextView nextValidKeyView]); returns null even if the responder chain and the initial first responder were set in IB.
 
 So here is my question: Has anyone done this before and is able to submit a How-To?? What would be the better strategy: the action method or what else?
 
@@ -21,7 +21,7 @@ Also, if we use the action method, how (and when) do we check for Shift-Return i
 ----
 God alone knows why you might want to do this. Two responder chains is terribly non-standard, and no one -- including the full keyboard access and speech recognition features -- will know about it.
 
-That said, I suggest you do the first responder like Apple does the first responder. Make a subclass of [[NSWindow]] and intercept the return and shift-return events at that level. [[NSWindow]] manages events dispatch and focus.
+That said, I suggest you do the first responder like Apple does the first responder. Make a subclass of General/NSWindow and intercept the return and shift-return events at that level. General/NSWindow manages events dispatch and focus.
 ----
 But in which method should I intercept those events?? And how??
 
@@ -35,60 +35,60 @@ I created a custom object that stores every TF�s next and previous responder.
 An array of such objects is build in the controller�s awakeFromNib.
 You just cycle through that array to find the current view�s next "return-responder", recursively if it turns up to be invisible�
 
-'''The custom object .h:'''
-<code>
+**The custom object .h:**
+    
 #import <Foundation/Foundation.h>
 
 
-@interface [[ResponderObject]] : [[NSObject]] {
+@interface General/ResponderObject : General/NSObject {
     
-    [[NSView]] '' resp;
-    [[NSView]] '' previousResp;
-    [[NSView]] '' nextResp;
+    General/NSView * resp;
+    General/NSView * previousResp;
+    General/NSView * nextResp;
     
 }
 
 // Accessor Methods
-- ([[NSView]]'')resp;
-- (void)setResp:([[NSView]]'')aResp;
+- (General/NSView*)resp;
+- (void)setResp:(General/NSView*)aResp;
 
-- ([[NSView]]'')previousResp;
-- (void)setPreviousResp:([[NSView]]'')aResp;
+- (General/NSView*)previousResp;
+- (void)setPreviousResp:(General/NSView*)aResp;
 
-- ([[NSView]]'')nextResp;
-- (void)setNextResp:([[NSView]]'')aResp;
+- (General/NSView*)nextResp;
+- (void)setNextResp:(General/NSView*)aResp;
 
 @end
-</code>
 
 
-'''Controller.h:'''
-<code>
+
+**Controller.h:**
+    
 #import <Foundation/Foundation.h>
 
-@interface Controller : [[NSObject]] {
+@interface Controller : General/NSObject {
     
-    [[IBOutlet]] [[NSTextField]] '' tf0;
-    [[IBOutlet]] [[NSTextField]] '' tf1;
-    [[IBOutlet]] [[NSTextField]] '' tf2;
-    [[IBOutlet]] [[NSTextField]] '' tf3;
+    General/IBOutlet General/NSTextField * tf0;
+    General/IBOutlet General/NSTextField * tf1;
+    General/IBOutlet General/NSTextField * tf2;
+    General/IBOutlet General/NSTextField * tf3;
     
-    [[IBOutlet]] [[NSTextField]] '' tf4;
-    [[IBOutlet]] [[NSTextField]] '' tf5;
-    [[IBOutlet]] [[NSTextField]] '' tf6;
-    [[IBOutlet]] [[NSTextField]] '' tf7;
+    General/IBOutlet General/NSTextField * tf4;
+    General/IBOutlet General/NSTextField * tf5;
+    General/IBOutlet General/NSTextField * tf6;
+    General/IBOutlet General/NSTextField * tf7;
     
-    [[NSArray]] '' respChainArray; // Our own responder chain!
+    General/NSArray * respChainArray; // Our own responder chain!
 }
 
-- ([[IBAction]])vertTab:(id)sender;
+- (General/IBAction)vertTab:(id)sender;
 
 @end
-</code>
-'''Controller.m:'''
-<code>
+
+**Controller.m:**
+    
 #import "Controller.h"
-#import "[[ResponderObject]].h"
+#import "General/ResponderObject.h"
 
 @implementation Controller
 
@@ -96,23 +96,23 @@ You just cycle through that array to find the current view�s next "return-resp
 { 
     int i;
     
-    // Array to cycle through all the textFields [[IBOutlets]].
-    [[NSArray]] '' tfArray = [[[[NSArray]] alloc] initWithObjects:
+    // Array to cycle through all the textFields General/IBOutlets.
+    General/NSArray * tfArray = General/[[NSArray alloc] initWithObjects:
 	tf0, tf1, tf2, tf3, tf4, tf5,tf6, tf7, nil];
     
     // Set Action, Target and sendActionOn for the tFs.
     for (i = 0; i <= 7; i++) {
-	[[tfArray objectAtIndex:i] setAction:@selector(vertTab:)];
+	General/tfArray objectAtIndex:i] setAction:@selector(vertTab:)];
 	[[tfArray objectAtIndex:i] setTarget:self];
 	[[[tfArray objectAtIndex:i] cell]setSendsActionOnEndEditing:NO];
     }
     
     // Temporary array to fill our responder chain array with.
-    [[NSMutableArray]] '' tempRCArray = [[[[NSMutableArray]] alloc] init];
+    [[NSMutableArray * tempRCArray = General/[[NSMutableArray alloc] init];
     
     for (i = 0; i <= 7; i++) { // Build our responder chain.
 	
-	[[FLResponderObject]] '' theRespObj = [[[[FLResponderObject]] alloc] init];
+	General/FLResponderObject * theRespObj = General/[[FLResponderObject alloc] init];
 	
 	[theRespObj setResp:[tfArray objectAtIndex:i]];
 	
@@ -133,37 +133,36 @@ You just cycle through that array to find the current view�s next "return-resp
 	
     }
     
-    respChainArray = [[[[NSArray]] alloc] initWithArray:tempRCArray];
+    respChainArray = General/[[NSArray alloc] initWithArray:tempRCArray];
     [tempRCArray release];
     [tfArray release];
     
 }
 
-- ([[IBAction]])vertTab:(id)sender;
-{ // Action of the [[TFs]] to be able to "Tab Vertically" (using the return key).
+- (General/IBAction)vertTab:(id)sender;
+{ // Action of the General/TFs to be able to "Tab Vertically" (using the return key).
     int i;
-    [[NSView]] '' newResp = nil;
+    General/NSView * newResp = nil;
     
     for (i = 0; i <= 7; i++) { // Find out our own nextResponder.
-	if ([sender isEqualTo:[[respChainArray objectAtIndex:i] resp]]) {
-	    newResp = [[respChainArray objectAtIndex:i] nextResp];
+	if ([sender isEqualTo:General/respChainArray objectAtIndex:i] resp) {
+	    newResp = General/respChainArray objectAtIndex:i] nextResp];
 	    break; }
     }
     
     while ([newResp isHidden]) { // While it isn�t Visible,
 	for (i = 0; i <= 7; i++) {  //take its nextResponder.
-	    if ([newResp isEqualTo:[[respChainArray objectAtIndex:i] resp]]) {
-		newResp = [[respChainArray objectAtIndex:i] nextResp];
+	    if ([newResp isEqualTo:[[respChainArray objectAtIndex:i] resp) {
+		newResp = General/respChainArray objectAtIndex:i] nextResp];
 		break; }
 	}
     }
     [[sender window] makeFirstResponder:newResp];
 }
 
-- ([[IBAction]])setTFHidden:(id)sender;
+- ([[IBAction)setTFHidden:(id)sender;
 { // Action for the checkboxes to make the textFields hidden.
-    [ [[[sender window] contentView] viewWithTag:[sender tag]] setHidden:[sender state]];
+    [ General/[sender window] contentView] viewWithTag:[sender tag setHidden:[sender state]];
 }
 
 @end
-</code>

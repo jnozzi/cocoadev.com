@@ -1,16 +1,16 @@
 
 
 
-Add your tips for [[XCode]] here:
+Add your tips for General/XCode here:
 
 ----
 
-'''Recent Tips''' (applicable to [[XCode]] 2.3)
+**Recent Tips** (applicable to General/XCode 2.3)
 
 
 
 *
-'''Enabling Warnings'''
+**Enabling Warnings**
 If you'd like to enable as many of gcc's compiler warnings as possible, there are a few pitfalls to be aware of when doing so with Xcode. The following is my advice based on my experience.
 
 First, go to your project or target settings and filter the build settings using the "Warnings" collection.  Now uncheck all the warning options.
@@ -31,7 +31,7 @@ So now the question is: which warnings are available that are not included by -W
 
 I have compiled a fairly comprehensive list, but I'm sure it's not fully complete.  I've organised them by language and included some comments, including the name of the built-in Xcode setting for the warning (ie the ones with corresponding checkboxes):
 
-<code>
+    
 
 ------
 C only
@@ -115,7 +115,7 @@ you have to pick len, for example: -Wlarger-than-10000
 
 -Wcast-qual
 Useless for Cocoa, will warn for:
-[[NSString]]''	str = @"hello";
+General/NSString*	str = @"hello";
 <rdar://4625600>
 
 -Wcast-align
@@ -164,11 +164,11 @@ GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES
 -Wnewline-eof 
 GCC_WARN_ABOUT_MISSING_NEWLINE = YES
 
-</code>
+
 
 For my projects, some of the above warnings are too obnoxious, here are the exact settings I use for my projects' xcconfig files:
 
-<code>
+    
 
 // C-only warnings
 GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES
@@ -190,14 +190,14 @@ GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES
 GCC_WARN_SHADOW = YES
 WARNING_CFLAGS = -Wall -Wextra -Wundef -Wendif-labels -Wlarger-than-10000 -Wpointer-arith -Wcast-align -Wwrite-strings -Wmissing-noreturn -Wmissing-format-attribute -Wpacked -Wredundant-decls -Winline -Winvalid-pch -Wdisabled-optimization -Wshorten-64-to-32 -Wformat=2
 
-</code>
+
 
 -- smcbride
 
 
 ----
 
-'''Recent Tips''' (applicable to [[XCode]] 2.1?)
+**Recent Tips** (applicable to General/XCode 2.1?)
 
 
 *By right-clicking in the breakpoints gutter (the thing on the left side of the editor window where you can click to set breakpoints), a contextual menu will appear with a bunch of useful options for debugging. You can "Continue to Here", add breakpoints with actions such as "Log stack trace and auto-continue", and a bunch of other nifty things.
@@ -205,54 +205,53 @@ WARNING_CFLAGS = -Wall -Wextra -Wundef -Wendif-labels -Wlarger-than-10000 -Wpoin
 
 ----
 
-'''Recent Tips''' (applicable to [[XCode]] 1.5)
+**Recent Tips** (applicable to General/XCode 1.5)
 
 
 * When configuring the toolbar, you can add custom items that contain several of the existing toolbar items. Drag one of those items into your toolbar, then double-click it to specify what items it is to list. The "auto-shuffle" option lets you set it up so the item in the toolbar is always the last one chosen. I kinda like that for a row of debug or run test runs.
 
-* Hold down command and double-click any class name, method, enum, global variable, etc. and Xcode will show you exactly where it's defined. Hold down option and double-click anything and Xcode will start a documentation search for that symbol. These shortcuts are extremely useful and I'm always shocked at how many people don't know about them. -- [[MikeAsh]]
+* Hold down command and double-click any class name, method, enum, global variable, etc. and Xcode will show you exactly where it's defined. Hold down option and double-click anything and Xcode will start a documentation search for that symbol. These shortcuts are extremely useful and I'm always shocked at how many people don't know about them. -- General/MikeAsh
 
-* If you want a more [[CodeWarrior]]-esque project window, just double click on the little box with the two stripes and the triangle, above the scrollbar in the middle. The right column will collapse. Drag it once it's in that state to make the window wider/narrower without screwing up its height. ''You can still get a [[CodeWarrior]]-esque window in 1.5, similar to how it was done in [[ProjectBuilder]] - double-click the vertical split view divider to collapse the files tree, then drag the split view all the way to the right, then resize the window to the left.''
+* If you want a more General/CodeWarrior-esque project window, just double click on the little box with the two stripes and the triangle, above the scrollbar in the middle. The right column will collapse. Drag it once it's in that state to make the window wider/narrower without screwing up its height. *You can still get a General/CodeWarrior-esque window in 1.5, similar to how it was done in General/ProjectBuilder - double-click the vertical split view divider to collapse the files tree, then drag the split view all the way to the right, then resize the window to the left.*
 
 * When auto-completing a method with arguments, use CNTL-/ to skip to the next placeholder.
-'' Thanks for this.  I've been wondering how to do this for a long time. ''
+* Thanks for this.  I've been wondering how to do this for a long time. *
 
-* After having a lots of problem getting [[XCode]] to correctly build depending projects I found a workaround based on xcodebuild and external targets, see http://machten.blogspot.com for details.
+* After having a lots of problem getting General/XCode to correctly build depending projects I found a workaround based on xcodebuild and external targets, see http://machten.blogspot.com for details.
 
-* Use the class browser! Project > Class Browser. It's a window listing either all of your classes, or your classes + framework classes (you choose), with a pane listing their methods, and, optionally instance variables. There's also an embedded editor. I recently discovered it, and it's one of [[XCode]]'s best features, IMO. I wish it had search though.
+* Use the class browser! Project > Class Browser. It's a window listing either all of your classes, or your classes + framework classes (you choose), with a pane listing their methods, and, optionally instance variables. There's also an embedded editor. I recently discovered it, and it's one of General/XCode's best features, IMO. I wish it had search though.
 
 
 ----
 
-'''Old Tips''' (not applicable to [[XCode]] 1.5)
+**Old Tips** (not applicable to General/XCode 1.5)
 
 
 * Resist the temptation to use the groups drawer attached to editor windows, as it will drive you mad.
-''I use it all the time... what's the problem?''  ''This doesn't even exist in Xcode in 1.5.  Kind of a useless feature anyway... -[[RossDude]]''  (Well, apparently not if you 'use it all the time' ... ;-)
+*I use it all the time... what's the problem?*  *This doesn't even exist in Xcode in 1.5.  Kind of a useless feature anyway... -General/RossDude*  (Well, apparently not if you 'use it all the time' ... ;-)
 
-* I'm not sure if anyone else had this problem, but if the little groups thing on the documentation window starts shrinking, and the resizer doohickey disappears, here's what you do.  Go into ~/Library/Preferences/com.apple.Xcode.plist.  After that, delete the keys [[PBXHelpWindowContentConfiguration]] and [[PBXHelpWindowGeometry]], and all will be well.  It got to the point with me that you couldn't even see the little books anymore! ''Great!! Thanks so much!! I had stopped using the doc because of that...'' Glad I could help. --[[RossDude]]
+* I'm not sure if anyone else had this problem, but if the little groups thing on the documentation window starts shrinking, and the resizer doohickey disappears, here's what you do.  Go into ~/Library/Preferences/com.apple.Xcode.plist.  After that, delete the keys General/PBXHelpWindowContentConfiguration and General/PBXHelpWindowGeometry, and all will be well.  It got to the point with me that you couldn't even see the little books anymore! *Great!! Thanks so much!! I had stopped using the doc because of that...* Glad I could help. --General/RossDude
 
-<code>defaults delete com.apple.Xcode [[PBXHelpWindowContentConfiguration]]</code>
+    defaults delete com.apple.Xcode General/PBXHelpWindowContentConfiguration
 
-<code>defaults delete com.apple.Xcode [[PBXHelpWindowGeometry]]</code>
+    defaults delete com.apple.Xcode General/PBXHelpWindowGeometry
 
--- note that you'll need to restart [[XCode]] to see the change
+-- note that you'll need to restart General/XCode to see the change
 
--- this is apparently fixed in 1.2: '' The Groups pane in the documentation window no longer disappears.'' (Release Notes)
+-- this is apparently fixed in 1.2: * The Groups pane in the documentation window no longer disappears.* (Release Notes)
 
-* Never turn on predictive compilation.  Sometimes it will freeze Xcode when you build your product.  Then you have to force quit Xcode and open your project up again. --[[RossDude]]
+* Never turn on predictive compilation.  Sometimes it will freeze Xcode when you build your product.  Then you have to force quit Xcode and open your project up again. --General/RossDude
 
--- this is fixed in 1.2 -- [[CatfishMan]]
+-- this is fixed in 1.2 -- General/CatfishMan
 
 
 
 ----
 
-See also:  [[ProjectBuilderTips]]
+See also:  General/ProjectBuilderTips
 
 ----
 
 Watch out! Xcode HATES spaces! Don't have your project or framework in a path that contains a space! From Apple's release notes:
-<code>
+    
 Any build setting that contains a path (or includes another build setting that resolves to a path) must be enclosed in double quotes if the path is likely to contain a space character. Xcode will handle the quoted value correctly, but will fail if an unquoted value resolves to a path that includes a space.
-</code>

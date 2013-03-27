@@ -1,8 +1,8 @@
 I am facing an extremely annoying problem that I hope some brainy individual could help me sort out.
 
-I have an app with an [[NSView]] subclass, call it oldView.
+I have an app with an General/NSView subclass, call it oldView.
 
-This [[NSView]] has a method addView that adds a view in the first view. In exact addView adds an [[NSView]] of a subclass, say newView. In oldView I have implemented mouse functionality that makes it possible for me to drag my added newViews around.
+This General/NSView has a method addView that adds a view in the first view. In exact addView adds an General/NSView of a subclass, say newView. In oldView I have implemented mouse functionality that makes it possible for me to drag my added newViews around.
 
  Now, everything works dandy as long as I do not add any UI elements to my newView�s. Adding any UI elements, like buttons, scrollviews or even nib elements make my views behave peculiar. Dragging the views around leaves a shadow of the UI element in oldView (only UI elements, not the rest of the view). This of course is sorted out by a setNeedsDisplay in my oldView or by setting a solid background, but it is somewhat annoying. What is worse is that the UI elements may show through my newViews if they overlap! In my application I need to be able to drag UI elements or views from nibs around in a particular view.
 

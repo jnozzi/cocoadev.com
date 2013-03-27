@@ -6,9 +6,9 @@ iTunes also has this for when you are downloading an item.
 Thanks..
 
 ----
-I don't think it's a separate column with a (rounded) gradient background. These list views probably use custom [[NSCell]]'s that also display a count aligned to the right.
+I don't think it's a separate column with a (rounded) gradient background. These list views probably use custom General/NSCell's that also display a count aligned to the right.
 
-Drawing a custom cell should be easy. See http://www.martinkahr.com/2006/11/04/data-for-a-custom-cell-in-a-nstableview/ for some strategies on how to get data in to the cell (in this case the normal text and the count). -- [[JorisKluivers]]
+Drawing a custom cell should be easy. See http://www.martinkahr.com/2006/11/04/data-for-a-custom-cell-in-a-nstableview/ for some strategies on how to get data in to the cell (in this case the normal text and the count). -- General/JorisKluivers
 
 ----
 

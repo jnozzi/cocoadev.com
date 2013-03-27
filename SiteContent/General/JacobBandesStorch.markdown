@@ -1,1 +1,1 @@
-Also known as [[User:Jtbandes|jtbandes]]. See [http://bandes-storch.net personal website] and [http://stackoverflow.com/users/23649/jtbandes StackOverflow profile].
+Also known as General/User:Jtbandes|jtbandes. See [http://bandes-storch.net personal website] and [http://stackoverflow.com/users/23649/jtbandes StackOverflow profile].

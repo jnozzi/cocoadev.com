@@ -1,4 +1,4 @@
-<code>
+    
  #import <Cocoa/Cocoa.h>
  #import <time.h>
  
@@ -56,13 +56,13 @@
    [pool release];
    return 0;
  }
-</code>
+
 
 ----
 
 on a 450 M'Hz MPC7400 (G4 Cube) running 10.3.5:
 
-<code>
+    
  make scan                                                 %/Volumes/RAM Disk(0)
  gcc scan.m -framework Cocoa -o scan -std=c99
  ___
@@ -75,6 +75,6 @@ on a 450 M'Hz MPC7400 (G4 Cube) running 10.3.5:
  2004-09-17 11:28:29.292 scan[1358] with character set: 8.710000
  2004-09-17 11:28:30.752 scan[1358] with string: 1.200000
  2004-09-17 11:28:42.678 scan[1358] with character set: 8.610000
-</code>
 
-''--boredzo''
+
+*--boredzo*

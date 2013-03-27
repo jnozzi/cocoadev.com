@@ -1,11 +1,11 @@
-A short story by [[NedO]]:
+A short story by General/NedO:
 
 While reading assorted Cocoa sources today I came across and interesting semicolon usage that is not familiar to me. I certainly make no claim of anything resembling expertise in Cocoa, but I do have a solid C background. These strange semicolons confused me somewhat and after a couple hours of seaching assorted online resources I am still at a bit of a loss. The best explanation of the semicolon is the code itself.
 
-<code>
+    
 // Random method chosen for illustrative purposes only.
 // This version of the method has no semicolon and works fine.
-- (id) initWithWindowNibName:([[NSString]] '') windowNibName
+- (id) initWithWindowNibName:(General/NSString *) windowNibName
 {
     self = [super initWithWindowNibName:windowNibName];
     return self;
@@ -13,43 +13,43 @@ While reading assorted Cocoa sources today I came across and interesting semicol
 
 // Second version with a semicolon at the end of the line.
 // This version also works fine
-- (id) initWithWindowNibName:([[NSString]] '') windowNibName;
+- (id) initWithWindowNibName:(General/NSString *) windowNibName;
 {
     self = [super initWithWindowNibName:windowNibName];
     return self;
 }
-</code>
 
-With many methods this seems to be of no consequence. As an aside it does change the method's name's appearance in the [[BBEdit]] function list pop-up from normal text sans semicolon to italicized text with semicolon. There are some methods/functions however that this does not work with, most obviously:
 
-<code>
-int main(int argc, const char ''argv[]);
+With many methods this seems to be of no consequence. As an aside it does change the method's name's appearance in the General/BBEdit function list pop-up from normal text sans semicolon to italicized text with semicolon. There are some methods/functions however that this does not work with, most obviously:
+
+    
+int main(int argc, const char *argv[]);
 {
-    return [[NSApplicationMain]](argc, argv);
+    return General/NSApplicationMain(argc, argv);
 }
-</code>
+
 
 This will fail to compile, returning a syntax error. Is this because this is a function and not a method? That is my thinking, but that didn't answer what that semicolon is doing there.
 
-Another example, taken from [[TheOmniGroup]] 's [[OmniFoundation]] -- [[OFNull]] class:
-<code>
-- ([[NSString]] '')descriptionWithLocale:([[NSDictionary]] '')locale
+Another example, taken from General/TheOmniGroup 's General/OmniFoundation -- General/OFNull class:
+    
+- (General/NSString *)descriptionWithLocale:(General/NSDictionary *)locale
                              indent:(unsigned)level
 {
-    return @"''null''";
+    return @"*null*";
 }
 
-- ([[NSString]] '')description;
+- (General/NSString *)description;
 {
-    return @"''null''";
+    return @"*null*";
 }
-</code>
+
 
 Two methods, one with semicolon and one without. I thought at first it might be the presence of multiple params but that still doesn't answer the question.
 
 So I hereby declare myself King of the Morons and do stoop to asking what seems to me to be the most basic of syntactical questions: What is that semicolon, why is it there, what does it do and does any of this really matter?
 
--[[NedO]]
+-General/NedO
 
 ----
 
@@ -61,9 +61,9 @@ Like the previous guy said.  It's just a convenience.  Personally, I would think
 
 Interestingly, I checked the Objective-C grammar, and it does not include the optional semicolon.  I suppose this is a gcc feature then.
 
-''It's been there since [[NeXTStep]], apparently, since Andrew Stone claims to have been using it since then. I don't think [[NeXTStep]] used GCC, did it?''
+*It's been there since General/NeXTStep, apparently, since Andrew Stone claims to have been using it since then. I don't think General/NeXTStep used GCC, did it?*
 
-According to [http://www.kernelthread.com/mac/oshistory/7.html]  ''"Cox and Love founded [[StepStone]] Corporation, from which [[NeXT]] licensed the language and created their own  compiler. In 1995, [[NeXT]] acquired all rights to [[StepStone]]'s Objective-C related intellectual property. Apple's Objective-C compiler used in Mac OS X is a modified version of the GNU compiler"''
+According to [http://www.kernelthread.com/mac/oshistory/7.html]  *"Cox and Love founded General/StepStone Corporation, from which General/NeXT licensed the language and created their own  compiler. In 1995, General/NeXT acquired all rights to General/StepStone's Objective-C related intellectual property. Apple's Objective-C compiler used in Mac OS X is a modified version of the GNU compiler"*
 
 ----
 
@@ -77,14 +77,14 @@ http://www.wodeveloper.com/omniLists/macosx-dev/2001/March/msg00807.html
 Objective-C grammar for Lex/Yacc Flex/Bison as I have typed it in from
 relevant books, compiled, and tested.  I had forgotten about this.
 
-http://www.antlr.org/1.33/contrib/[[ObjC]].g ANTLR-based grammar
+http://www.antlr.org/1.33/contrib/General/ObjC.g ANTLR-based grammar
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[ObjectiveC]]/[[LanguageGrammar]]/chapter_6_section_1.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/ObjectiveC/General/LanguageGrammar/chapter_6_section_1.html
 Close to BNF grammar
 
 http://www.toodarkpark.org/computers/objc/grammar.html Close to BNF grammar
 
-http://www.channelu.com/[[NeXT]]/[[NeXTStep]]/3.3/nd/Concepts/[[ObjectiveC]]/B_Grammar/Grammar.htmld/
+http://www.channelu.com/General/NeXT/General/NeXTStep/3.3/nd/Concepts/General/ObjectiveC/B_Grammar/Grammar.htmld/
 Close to BNF grammar
 
 http://64.233.167.104/search?q=cache:ioUWL8-tZMMJ:plg.uwaterloo.ca/~cforall/gcc.y.pdf+Objective-c+grammar&hl=en
@@ -92,17 +92,17 @@ YACC grammar for C and Objective-C extensions
 
 Plus of course the GNU Compiler Collection which includes Objective-C and is open source and has a bison grammar :)
 
-''cool :) I had been told there wasn't one. That'll teach me to believe anything I'm told...''
+*cool :) I had been told there wasn't one. That'll teach me to believe anything I'm told...*
 
 ----
 
-Very useful to have the typed in grammar!  But I see I should have been more specific.  :-)  The optional semicolon is not in the objective-C grammar given in the back of Apple's online [[ObjC]] book.
+Very useful to have the typed in grammar!  But I see I should have been more specific.  :-)  The optional semicolon is not in the objective-C grammar given in the back of Apple's online General/ObjC book.
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[ObjectiveC]]/[[LanguageGrammar]]/chapter_6_section_1.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/ObjectiveC/General/LanguageGrammar/chapter_6_section_1.html
 
 ----
 
-''What did the method definition say to the semicolon?''
+*What did the method definition say to the semicolon?*
 
 ----
 
@@ -110,9 +110,9 @@ The fact that the semicolon being in this place is a) causing so much confusion 
 
 ----
 
-''I don't know... what did the method definition say to the semicolon?''
+*I don't know... what did the method definition say to the semicolon?*
 
-'I ''told'' you that appendix was bad news!'
+'I *told* you that appendix was bad news!'
 
 Heh - you know, I've been trying to think of a response to that for a few days. I guess that's as good as any. ;-)
 

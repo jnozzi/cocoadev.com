@@ -1,6 +1,6 @@
 
 
-The following is the actual Objective C class that implements a doubly-linked list (a variation of [[LinkedList]]). It can do the following:
+The following is the actual Objective C class that implements a doubly-linked list (a variation of General/LinkedList). It can do the following:
 
 
 *Addition of new elements to the front of the list
@@ -11,25 +11,25 @@ The following is the actual Objective C class that implements a doubly-linked li
 
 Here's the interface .h file:
 
-<code>
+    
 //
-//  [[LinkedList]].h
+//  General/LinkedList.h
 //
 
 // Structure representing a 
 // doubly-linked list node.
-typedef struct [[ListNode]] [[ListNode]];
-struct [[ListNode]] {
+typedef struct General/ListNode General/ListNode;
+struct General/ListNode {
 	int value;
-	[[ListNode]] ''next;
-	[[ListNode]] ''prev;
+	General/ListNode *next;
+	General/ListNode *prev;
 };
 
 
-@interface [[LinkedList]] : [[NSObject]] {
+@interface General/LinkedList : General/NSObject {
 @private 
-	[[ListNode]] ''head;
-	[[ListNode]] ''iterator;
+	General/ListNode *head;
+	General/ListNode *iterator;
 	//bool reachedHead;
 	//bool reachedTail;
 }	
@@ -47,31 +47,31 @@ struct [[ListNode]] {
 - (int)removeCurrent;
 
 @end
-</code>
+
 
 Now for the implementation .m file:
 
-<code>
+    
 //
-//  [[LinkedList]].m
+//  General/LinkedList.m
 //
 
-#import "[[LinkedList]].h"
+#import "General/LinkedList.h"
 
 
-@implementation [[LinkedList]]
+@implementation General/LinkedList
 
 
-/'' Instantiates new linked list with a 
- '' given first element. 
- ''/
+/* Instantiates new linked list with a 
+ * given first element. 
+ */
 - (id)initWithHead: (int)value 
 {
-	[[ListNode]] ''n;
+	General/ListNode *n;
     self = [super init];
     if (self) {
 		// creating head node with given value
-		n = ([[ListNode]] '')malloc(sizeof([[ListNode]]));
+		n = (General/ListNode *)malloc(sizeof(General/ListNode));
 		n->value = value;
 		n->next = NULL;
 		n->prev = NULL;
@@ -83,11 +83,11 @@ Now for the implementation .m file:
 }
 
 
-/'' Adds a new element to the
- '' front of the list ''/
+/* Adds a new element to the
+ * front of the list */
 - (void)addToFront: (int)value
 {
-	[[ListNode]] ''n = ([[ListNode]] '')malloc(sizeof([[ListNode]]));
+	General/ListNode *n = (General/ListNode *)malloc(sizeof(General/ListNode));
 	n->value = value;
 	n->next = head;
 	n->prev = NULL;
@@ -97,9 +97,9 @@ Now for the implementation .m file:
 }
 
 
-/'' Sets internal iterator to
- '' the head node and returns its
- '' value ''/
+/* Sets internal iterator to
+ * the head node and returns its
+ * value */
 - (int)getFirst {
 	iterator = head;
 	//reachedHead = TRUE;
@@ -107,16 +107,16 @@ Now for the implementation .m file:
 	return (head->value);
 }
 
-/'' Returns the value of the iterator node
- ''/
+/* Returns the value of the iterator node
+ */
 - (int)getCurrent {
 	return (iterator->value);
 }
 
 
-/'' Iterates to the next node in order and
- '' returns its value ''/
-/''
+/* Iterates to the next node in order and
+ * returns its value */
+/*
 - (int)getNext
 {
 	// if we are finished iterating,
@@ -133,7 +133,7 @@ Now for the implementation .m file:
 	}
 	return (iterator->value);
 }
-''/
+*/
 - (int)getNext
 {
      if (iterator->next != NULL) {
@@ -143,9 +143,9 @@ Now for the implementation .m file:
 }
 
 
-/'' Iterates to the previous node in 
- '' order and returns its value ''/
-/''
+/* Iterates to the previous node in 
+ * order and returns its value */
+/*
 - (int)getPrevious
 {
 	if (iterator->prev == NULL) {
@@ -158,7 +158,7 @@ Now for the implementation .m file:
 	}
 	return (iterator->value);
 }
-''/
+*/
 - (int)getPrevious
 {
      if (iterator->prev != NULL) {
@@ -168,8 +168,8 @@ Now for the implementation .m file:
 }
 	
 
-/'' Indicates that iterator
- '' is at the first (head) node ''/
+/* Indicates that iterator
+ * is at the first (head) node */
 - (bool)atHead 
 {
 	//return reachedHead;
@@ -177,8 +177,8 @@ Now for the implementation .m file:
 }
 
 
-/'' Indicates that iterator
- '' is at the last (tail) node ''/
+/* Indicates that iterator
+ * is at the last (tail) node */
 - (bool)atTail 
 {
 	//return reachedTail;
@@ -186,15 +186,15 @@ Now for the implementation .m file:
 }
 
 
-/'' Removes the iterator node from
- '' the list and advances iterator to the
- '' next element. If there's no next element,
- '' then it backs iterator up to the previous
- '' element. Returns the old iterator value ''/
+/* Removes the iterator node from
+ * the list and advances iterator to the
+ * next element. If there's no next element,
+ * then it backs iterator up to the previous
+ * element. Returns the old iterator value */
 - (int)removeCurrent 
 {
 	int i = iterator->value;
-	[[ListNode]] ''l;
+	General/ListNode *l;
 	// if we have only 1 item in the list...
 	if ((iterator->next == NULL) && (iterator->prev == NULL)) {
 		//... then we can safely delete it and set head to null
@@ -225,71 +225,71 @@ Now for the implementation .m file:
 }
 
 @end
-</code>
+
 
 So, essentially this is it. I assume the basic knowledge of how linked list operates. You can just plug in this class and use it in your programs, although I think several things need to be added for comfortable operation, like element search e.t.c.
 You can test this class with a test sniplet like the following:
 
-<code>
+    
 #import <Foundation/Foundation.h>
-#import "[[LinkedList]].h"
+#import "General/LinkedList.h"
 
-int main (int argc, const char '' argv[]) {
-    [[NSAutoreleasePool]] '' pool = [[[[NSAutoreleasePool]] alloc] init];
+int main (int argc, const char * argv[]) {
+    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
 	
     // insert code here...
-	[[LinkedList]] ''test = [[[[LinkedList]] alloc] initWithHead: 0];
+	General/LinkedList *test = General/[[LinkedList alloc] initWithHead: 0];
 	
 	// testing addition
 	int i;
 	for (i = 1; i < 11; i++) {
 		[test addToFront: i];
 	}
-	[[NSLog]](@"-- Added 10 values");
+	General/NSLog(@"-- Added 10 values");
 	
 	// testing forward traversal
-	[[NSLog]](@"-- Setting iterator to first node: %d", [test getFirst]);
-	[[NSLog]](@"-- Going forward until we hit the last element...");
+	General/NSLog(@"-- Setting iterator to first node: %d", [test getFirst]);
+	General/NSLog(@"-- Going forward until we hit the last element...");
 	do {
-		[[NSLog]](@"---- Next element: %d", [test getNext]);
+		General/NSLog(@"---- Next element: %d", [test getNext]);
 	} while ([test atTail] == FALSE);
-	[[NSLog]](@"-- We've hit the last element");
+	General/NSLog(@"-- We've hit the last element");
 	
 	// testing back traversal
-	[[NSLog]](@"-- Going back until we hit the first element...");
+	General/NSLog(@"-- Going back until we hit the first element...");
 	do {
-		[[NSLog]](@"---- Previous element: %d", [test getPrevious]);
+		General/NSLog(@"---- Previous element: %d", [test getPrevious]);
 	} while ([test atHead] == FALSE);
-	[[NSLog]](@"-- We've hit the first element");
+	General/NSLog(@"-- We've hit the first element");
 
 	// testing removal
-	[[NSLog]](@"-- Going forward 5 times");
+	General/NSLog(@"-- Going forward 5 times");
 	for (i = 0; i < 5; i++)
-		[[NSLog]](@"-- Next element: %d", [test getNext]);
-	[[NSLog]](@"-- Current element with value %d", [test getCurrent]);
-	[[NSLog]](@"-- Removing element with value %d", [test removeCurrent]);
-	[[NSLog]](@"-- Continue forward traversal");
+		General/NSLog(@"-- Next element: %d", [test getNext]);
+	General/NSLog(@"-- Current element with value %d", [test getCurrent]);
+	General/NSLog(@"-- Removing element with value %d", [test removeCurrent]);
+	General/NSLog(@"-- Continue forward traversal");
 	do {
-		[[NSLog]](@"---- Next element: %d", [test getNext]);
+		General/NSLog(@"---- Next element: %d", [test getNext]);
 	} while ([test atTail] == FALSE);
-	[[NSLog]](@"-- We've hit the last element");
+	General/NSLog(@"-- We've hit the last element");
 
-	[[NSLog]](@"-- Returning to front, going forward until we reach end");
-	[[NSLog]](@"-- First element: %d", [test getFirst]);
+	General/NSLog(@"-- Returning to front, going forward until we reach end");
+	General/NSLog(@"-- First element: %d", [test getFirst]);
 	do {
-		[[NSLog]](@"---- Next element: %d", [test getNext]);
+		General/NSLog(@"---- Next element: %d", [test getNext]);
 	} while ([test atTail] == FALSE);
-	[[NSLog]](@"-- We've hit the last element");
+	General/NSLog(@"-- We've hit the last element");
 	
     [pool release];
     return 0;
 }
 
-</code>
+
 
 One thing that still bugs me is that when you traverse back in this test program, the last traversal element gets printed twice, I guess because of the way my flag works. 
 
---[[DimitriT]]
+--General/DimitriT
 
 ----
 
@@ -300,7 +300,7 @@ Yeah, I started with C++... not a smart move V_V...
 Anyone have any ideas on how to implement multidimensional lists? 
 Final note:
 Linked lists are GREAT for fetching command-line arguments. GREAT....
-Then, you could implement an array of strings with a sizeof(whatever''argc) or something...
+Then, you could implement an array of strings with a sizeof(whatever*argc) or something...
 But that wouldn't be fun, object-oriented or cool. Or obfuscated.
 
 ----
@@ -314,7 +314,7 @@ Shh! They aren't supposed to know about that!!!
 ----
 This is cool. I've made some code edits that correct the issue of the last traveral element being accessed twice -- fundamentally, the issue of course is that the boundary flag didn't get updated until after the next iteration/check had already taken place. Initially I modified getPrevious and getNext to make sure to update the flags before returning, but then I realized maybe everythings just simpler if we do away with maintaining flags, and simply evaluate our boundaries in place? Makes the code simpler anyway. Thoughts? (I just commented out the parts I changed for now).
 Another question -- is it better for getPrevious and getNext to keep returning the terminal value if the iterator is already at the boundary, or should it return NULL?
---[[WardR]]
+--General/WardR
 
 ----
 This is pretty cool, but if you change the way you detect the end/head to the way they do it on the STL library you could get a huge performance improvement when doing a lot of operations (i.e. particle systems). Instead of having the head and end pointing to nulls, create a NULL node and make it a circular list. That way you get rid of a lot of if statements.
@@ -322,7 +322,7 @@ This is pretty cool, but if you change the way you detect the end/head to the wa
 darionco
 
 ----
-I used this code for my game. (with changing int -> [[NSObject]]'', could contain all kind of classes)
+I used this code for my game. (with changing int -> General/NSObject*, could contain all kind of classes)
 It worked well, until remove nodes.
 I found that after remove first node, 'head' is unavailable so next 'getFirst' call causes problem.
 

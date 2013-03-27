@@ -1,8 +1,8 @@
 This page lists recent tutorial pages added to this site.
 
-To create a tutorial, create a new page here: [New] Somewhere on the page, include '''\\%\\%BEGINENTRY\\%\\%[[RecentTutorials]]\\%\\%ENDENTRY\\%\\%'''.
+To create a tutorial, create a new page here: [New] Somewhere on the page, include **\\%\\%BEGINENTRY\\%\\%General/RecentTutorials\\%\\%ENDENTRY\\%\\%**.
 
-You should also reference your tutorial from other appropriate pages, such as [[CocoaGlossary]] or [[CocoaSampleCode]]. Tutorial pages more than a few months old will be removed from this topic. Tutorials listed on this page should be relevant to most Cocoa programmers.
+You should also reference your tutorial from other appropriate pages, such as General/CocoaGlossary or General/CocoaSampleCode. Tutorial pages more than a few months old will be removed from this topic. Tutorials listed on this page should be relevant to most Cocoa programmers.
 
 ----
 

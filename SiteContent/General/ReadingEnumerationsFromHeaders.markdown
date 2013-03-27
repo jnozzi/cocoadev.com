@@ -7,11 +7,11 @@ I see 3 options to explore:
 *Can they be read from the object code itself? // I doubt it.
 
 
-Maybe this should be on a C wiki but as we all know [[ObjC]] programmers are an extension of C programmers.
+Maybe this should be on a C wiki but as we all know General/ObjC programmers are an extension of C programmers.
 
 Any ideas? In particular does anyone know how to or have a tool to read a precompiled header?
 
--- [[MikeAmy]]
+-- General/MikeAmy
 
 ----
 

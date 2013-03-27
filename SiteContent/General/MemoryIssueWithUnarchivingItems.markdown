@@ -1,22 +1,22 @@
-I have decided to broaden my Cocoa knowledge a little by creating an [[NSObject]] subclass that abides by [[NSCopying]] and [[NSCoding]]. Part of this experimentation was to provide my class with the ability to be archived to disk and unarchived, which I have succeeded except when throwing around multiple objects.
+I have decided to broaden my Cocoa knowledge a little by creating an General/NSObject subclass that abides by General/NSCopying and General/NSCoding. Part of this experimentation was to provide my class with the ability to be archived to disk and unarchived, which I have succeeded except when throwing around multiple objects.
 
-I want to copy the items into an array (they are distinct items) so I can reuse them later. I call [[NSKeyedUnarchiver]] which calls this:
+I want to copy the items into an array (they are distinct items) so I can reuse them later. I call General/NSKeyedUnarchiver which calls this:
 
-<code>
+    
 
-- (id)initWithCoder:([[NSCoder]] '')coder
+- (id)initWithCoder:(General/NSCoder *)coder
 {
     if (self = [super init])
     {
-        _contents = [[[[[NSMutableDictionary]] alloc] initWithDictionary:[coder decodeObjectForKey:@"SVCONTENTS"]] retain]; 
-        _name = [[coder decodeObjectForKey:@"SVNAME"] retain];
+        _contents = General/[[[NSMutableDictionary alloc] initWithDictionary:[coder decodeObjectForKey:@"SVCONTENTS"]] retain]; 
+        _name = General/coder decodeObjectForKey:@"SVNAME"] retain];
         _notes = [[coder decodeObjectForKey:@"SVNOTES"] retain];
         _type = [coder decodeIntForKey:@"SVTYPE"];        
     }
     return self;
 }
 
-</code>
+
 
 My issue is, _contents, _name, _notes and _type are overwriting each other each time I add the object into an array. For instance, when I load the first object, _name might be "Bob". When I load the second, the first objects _name changes to the seconds.
 
@@ -30,7 +30,7 @@ Thanks in advance,
 
 How do you encode/decode your array?
 
-Show your <code>-encodeWithCoder</code> and your <code>-save</code> methods. It seems that the object you encode is an array, but you only show the item method, which looks OK, so the problem is somewhere else.
+Show your     -encodeWithCoder and your     -save methods. It seems that the object you encode is an array, but you only show the item method, which looks OK, so the problem is somewhere else.
 
 ----
 
@@ -40,6 +40,6 @@ Please show us the code anyway.  You probably have a memory management error.
 
 ----
 
-Whomever SV is, you share my IP which means you are in Sydney connected via Optus. I would love to hear from you. -- [[MatPeterson]]
+Whomever SV is, you share my IP which means you are in Sydney connected via Optus. I would love to hear from you. -- [[MatPeterson
 ----
 Are you allowing Cocoa to encode/decode the array for you, or are you doing it yourself via enumeration? It almost seems like the later, reusing a single object when doing so. Just a thought.

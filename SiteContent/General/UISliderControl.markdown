@@ -1,29 +1,29 @@
 
 
-Subclass of [[UIControl]]. Part of the [[UIKit]] iPhone framework.
+Subclass of General/UIControl. Part of the General/UIKit iPhone framework.
 
-%%BEGINCODESTYLE%%- (void)setAllowsTickMarkValuesOnly:(BOOL)fp8;%%ENDCODESTYLE%%
+<code>- (void)setAllowsTickMarkValuesOnly:(BOOL)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setContinuous:(BOOL)fp8;%%ENDCODESTYLE%%
+<code>- (void)setContinuous:(BOOL)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setEnabled:(BOOL)fp8;%%ENDCODESTYLE%%
+<code>- (void)setEnabled:(BOOL)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setHighlighted:(BOOL)fp8;%%ENDCODESTYLE%%
+<code>- (void)setHighlighted:(BOOL)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setMaxValue:(float)fp8;%%ENDCODESTYLE%%
+<code>- (void)setMaxValue:(float)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setMaxValueImage:(id)fp8;%%ENDCODESTYLE%%
+<code>- (void)setMaxValueImage:(id)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setMinValue:(float)fp8;%%ENDCODESTYLE%%
+<code>- (void)setMinValue:(float)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setMinValueImage:(id)fp8;%%ENDCODESTYLE%%
+<code>- (void)setMinValueImage:(id)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setNumberOfTickMarks:(int)fp8;%%ENDCODESTYLE%%
+<code>- (void)setNumberOfTickMarks:(int)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setShowValue:(BOOL)fp8;%%ENDCODESTYLE%%
+<code>- (void)setShowValue:(BOOL)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setValue:(float)fp8;%%ENDCODESTYLE%%
+<code>- (void)setValue:(float)fp8;</code>
 
-%%BEGINCODESTYLE%%- (void)setValue:(float)fp8 animated:(BOOL)fp12;%%ENDCODESTYLE%%
+<code>- (void)setValue:(float)fp8 animated:(BOOL)fp12;</code>
 
-%%BEGINCODESTYLE%%- (void)setValue:(float)fp8 animated:(BOOL)fp12 animationCurve:(int)fp16;%%ENDCODESTYLE%%
+<code>- (void)setValue:(float)fp8 animated:(BOOL)fp12 animationCurve:(int)fp16;</code>

@@ -1,27 +1,27 @@
 Available in Mac OS X v10.3 and later.
 
-[[NSInputStream]] and [[NSOutputStream]] are [[TollFreeBridged]] with [[CFReadStream]] and [[CFWriteStream]].
+General/NSInputStream and General/NSOutputStream are General/TollFreeBridged with General/CFReadStream and General/CFWriteStream.
 
 ----
 
-Here's some code to get started with [[NSStream]]
+Here's some code to get started with General/NSStream
 
-<code>
+    
 
 // Header:
-@interface [[StreamTest]] : [[NSObject]] {
-    [[NSHost]] ''host;
+@interface General/StreamTest : General/NSObject {
+    General/NSHost *host;
     int port;
 
-    [[NSInputStream]] ''inputStream;
-    [[NSOutputStream]] ''outputStream;
+    General/NSInputStream *inputStream;
+    General/NSOutputStream *outputStream;
 }
 
 
 // Implementation:
 - (void)open
 {
-        [[[NSStream]] getStreamsToHost:host 
+        General/[NSStream getStreamsToHost:host 
                               port:port
                        inputStream:&inputStream
                       outputStream:&outputStream];
@@ -29,17 +29,17 @@ Here's some code to get started with [[NSStream]]
         [inputStream setDelegate:self];
         [outputStream setDelegate:self];
         
-        [inputStream scheduleInRunLoop:[[[NSRunLoop]] currentRunLoop]
-                               forMode:[[NSDefaultRunLoopMode]]];
-        [outputStream scheduleInRunLoop:[[[NSRunLoop]] currentRunLoop]
-                                forMode:[[NSDefaultRunLoopMode]]];
+        [inputStream scheduleInRunLoop:General/[NSRunLoop currentRunLoop]
+                               forMode:General/NSDefaultRunLoopMode];
+        [outputStream scheduleInRunLoop:General/[NSRunLoop currentRunLoop]
+                                forMode:General/NSDefaultRunLoopMode];
         
         [inputStream open];
         [outputStream open];
 }
 
 // Both streams call this when events happen
-- (void)stream:([[NSStream]] '')aStream handleEvent:([[NSStreamEvent]])eventCode
+- (void)stream:(General/NSStream *)aStream handleEvent:(General/NSStreamEvent)eventCode
 {
     if (aStream == inputStream) {
         [self handleInputStreamEvent:eventCode];
@@ -48,37 +48,37 @@ Here's some code to get started with [[NSStream]]
     }
 }
 
-- (void)handleInputStreamEvent:([[NSStreamEvent]])eventCode
+- (void)handleInputStreamEvent:(General/NSStreamEvent)eventCode
 {
     switch (eventCode) {
-        case [[NSStreamEventHasBytesAvailable]]:
+        case General/NSStreamEventHasBytesAvailable:
             [self readBytes];
             break;
-        case [[NSStreamEventOpenCompleted]]:
+        case General/NSStreamEventOpenCompleted:
             // Do Something
             break;
         default:
-        case [[NSStreamEventErrorOccurred]]:
-            [[NSLog]](@"An error occurred on the input stream.");
+        case General/NSStreamEventErrorOccurred:
+            General/NSLog(@"An error occurred on the input stream.");
             break;
     }
 }
 
-</code>
 
-I'll try to explain in more depth later -- [[PhilLarson]]
 
-----
-
-Here's more code. This is a sample implementation of a server using [[NSInputStream]] and [[NSOutputStream]]. Specifically, it makes it possible to use Foundation, not [[CFNetwork]], for listening to a TCP port.
-
-See [[NSStreamAdditions]] on http://homepage.mac.com/jrc/contrib/
-
-- [[JohnChang]]
+I'll try to explain in more depth later -- General/PhilLarson
 
 ----
 
-The following notes are credited to Mike Ash: Cocoa Guru.  They relate to the [[NSStreamAdditions]] code linked above.
+Here's more code. This is a sample implementation of a server using General/NSInputStream and General/NSOutputStream. Specifically, it makes it possible to use Foundation, not General/CFNetwork, for listening to a TCP port.
+
+See General/NSStreamAdditions on http://homepage.mac.com/jrc/contrib/
+
+- General/JohnChang
+
+----
+
+The following notes are credited to Mike Ash: Cocoa Guru.  They relate to the General/NSStreamAdditions code linked above.
 
 The string methods are broken for non-ASCII data they will not work with strings that have non-ASCII characters for the following two reasons:
 
@@ -88,23 +88,23 @@ The obvious one is that he uses [string length] as the number of bytes, but it's
 
 The subtle one is that individual unichars can get split across multiple bytes, and it's possible to receive the first part of a
                  unichar in one packet, and the last parts in another packet, or to have the first part lie at the end of your buffer, in which
-                 case the data read from the stream in -readString won't be valid UTF-8 and the [[NSString]] initialization will fail
+                 case the data read from the stream in -readString won't be valid UTF-8 and the General/NSString initialization will fail
 
 Finally the API also encourages you to think of writing one string, and reading one string but in fact it's entirely possible for -readString to return a partial string, or to return multiple sent strings concatenated together.
 
 ----
 
-It's not only possible for this to happen, it's normal, from what I've seen. -- [[RobRix]]
+It's not only possible for this to happen, it's normal, from what I've seen. -- General/RobRix
 
 ----
 
 Bug: 
 This line:
-<code>
+    
     struct sockaddr_in sin = { .sin_family = AF_INET, .sin_port = port };   //...
-</code>
+
 Should be:
-<code>
+    
     struct sockaddr_in sin = { .sin_family = AF_INET, .sin_port = htons(port) };   //...
-</code>
+
 Doesn't make a difference on PPC, but it does on INTEL. -Jas

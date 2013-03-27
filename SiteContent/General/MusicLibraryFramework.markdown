@@ -1,10 +1,10 @@
 
 
-The [[MusicLibrary]] interface allows access to the user's iPod track list.
+The General/MusicLibrary interface allows access to the user's iPod track list.
 
-'''Classes'''
+**Classes**
 
 
-*[[MusicLibrary]]
-*[[MLQuery]]
-*[[MLTrack]]
+*General/MusicLibrary
+*General/MLQuery
+*General/MLTrack

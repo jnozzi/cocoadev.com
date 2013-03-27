@@ -1,1 +1,1 @@
-Describe [[NSStrings]] here.
+Describe General/NSStrings here.

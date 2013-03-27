@@ -4,7 +4,7 @@ Thanks.
 
 ----
 
-See [[GlobalHotKeys]]
+See General/GlobalHotKeys
 
 ----
 

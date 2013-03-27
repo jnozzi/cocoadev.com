@@ -6,6 +6,6 @@ Any ideas/advice/suggestions?
 
 Thanks
 
-[[NSBox]] -setContentView:
+General/NSBox -setContentView:
 
-''Um, no, don't worry with setContentView ... use the tabbed view. In IB, turn off the tabs for your view, create an outlet and connect it to your tab view. Create an action outlet and connect your popup button to it. When the action is fired, get the [sender tag] (remember to set them for the combo's menu items) and tell the tab view to switch to the correct tab item. For the specifics to the 'but how' questions, you'll definitely want to read up on [[NSPopupButton]], [[NSTabView]], and [[NSTabViewItem]]. You'll also need to understand Interface Builder, outlets, actions, etc.''
+*Um, no, don't worry with setContentView ... use the tabbed view. In IB, turn off the tabs for your view, create an outlet and connect it to your tab view. Create an action outlet and connect your popup button to it. When the action is fired, get the [sender tag] (remember to set them for the combo's menu items) and tell the tab view to switch to the correct tab item. For the specifics to the 'but how' questions, you'll definitely want to read up on General/NSPopupButton, General/NSTabView, and General/NSTabViewItem. You'll also need to understand Interface Builder, outlets, actions, etc.*

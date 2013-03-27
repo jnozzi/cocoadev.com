@@ -2,7 +2,7 @@ What would be the best way [or even any way] to do this?
 
 Here is what I have so far, all I really know for sure is that it compiles and seems to do the job:
 
-<code>
+    
  static char ** convertPathArray(NSArray *files)
  {
      int i;
@@ -14,13 +14,13 @@ Here is what I have so far, all I really know for sure is that it compiles and s
      }
      return (char **)cfiles;
  }
-</code>
+
 
 ----
 
 uh, is that safe?  You're using the call stack for the cfiles array, and then returning that.  The address of cfiles gets returned, not the contents.  Whomever calls this now has a pointer into the stack which could get smashed.  Also, the docs say that the return value from cfiles 'will get freed' like autoreleased objects.  If you're going to be hanging on to them longer than the current event, you'll want to make a copy.  A safer way to do this would be to do something like this:
 
-<code>
+    
  static char ** convertPathArray(NSArray *files)
  {
      int i;
@@ -31,7 +31,7 @@ uh, is that safe?  You're using the call stack for the cfiles array, and then re
      }
      return cfiles;
  }
-</code>
+
 
 And then when you're done, walk the array free()ing the strings, then free the cfiles pointer.
 

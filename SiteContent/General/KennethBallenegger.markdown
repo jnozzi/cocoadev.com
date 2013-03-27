@@ -1,6 +1,6 @@
-Kenneth Ballenegger is a Cocoa/PHP/Java developper (former RB dev) and is owner of [[SeoSoft]] (http://www.seosoft.info).
+Kenneth Ballenegger is a Cocoa/PHP/Java developper (former RB dev) and is owner of General/SeoSoft (http://www.seosoft.info).
 
-Kenneth is 15 and is called [[SeoxyS]] and elf on the internet!
+Kenneth is 15 and is called General/SeoxyS and elf on the internet!
 
 
 

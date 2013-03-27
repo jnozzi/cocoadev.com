@@ -1,8 +1,8 @@
 Apple-provided class clusters:
 
-[[NSArray]]
-[[NSDictionary]]
-[[NSNumber]]
-[[NSString]]
+General/NSArray
+General/NSDictionary
+General/NSNumber
+General/NSString
 
-See [[ClassClusters]] for information on what class clusters are.
+See General/ClassClusters for information on what class clusters are.

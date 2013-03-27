@@ -1,12 +1,12 @@
 
 
-[[DssW]] is a Mac software company based in the UK. The company is owned by [[GrahamMiln]] a regular [[CocoaDev]] visitor.
+General/DssW is a Mac software company based in the UK. The company is owned by General/GrahamMiln a regular General/CocoaDev visitor.
 
 
 *http://www.dssw.co.uk/
 
 
-[[DssW]] stands for Dragon Systems Software Limited. The company publishes the following Mac software:
+General/DssW stands for Dragon Systems Software Limited. The company publishes the following Mac software:
 
 
 *Power Manager
@@ -19,4 +19,4 @@
 *Wake Assist
 
 
-[[DssW]] has been publishing Mac software since 1999.
+General/DssW has been publishing Mac software since 1999.

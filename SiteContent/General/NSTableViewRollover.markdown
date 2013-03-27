@@ -1,21 +1,21 @@
-An [[NSTableView]] subclass which allows for row highlighting on mouseover (a la [[NewsFire]]).
+An General/NSTableView subclass which allows for row highlighting on mouseover (a la General/NewsFire).
 
 Interface & Implementation:
 
-<code>
-@interface [[ROTableView]] : [[NSTableView]]
+    
+@interface General/ROTableView : General/NSTableView
 {
-	[[NSTrackingRectTag]] trackingTag;
+	General/NSTrackingRectTag trackingTag;
 	BOOL mouseOverView;
 	int mouseOverRow;
 	int lastOverRow;
 }
 @end
 
-@implementation [[ROTableView]]
+@implementation General/ROTableView
 - (void)awakeFromNib
 {
-	[[self window] setAcceptsMouseMovedEvents:YES];
+	General/self window] setAcceptsMouseMovedEvents:YES];
 	trackingTag = [self addTrackingRect:[self frame] owner:self userData:nil assumeInside:NO];
 	mouseOverView = NO;
 	mouseOverRow = -1;
@@ -28,12 +28,12 @@ Interface & Implementation:
 	[super dealloc];
 }
 
-- (void)mouseEntered:([[NSEvent]]'')theEvent
+- (void)mouseEntered:([[NSEvent*)theEvent
 {
 	mouseOverView = YES;
 }
 
-- (void)mouseMoved:([[NSEvent]]'')theEvent
+- (void)mouseMoved:(General/NSEvent*)theEvent
 {
 	id myDelegate = [self delegate];
 
@@ -56,7 +56,7 @@ Interface & Implementation:
 	}
 }
 
-- (void)mouseExited:([[NSEvent]] '')theEvent
+- (void)mouseExited:(General/NSEvent *)theEvent
 {
 	mouseOverView = NO;
 	[self setNeedsDisplayInRect:[self rectOfRow:mouseOverRow]];
@@ -79,54 +79,54 @@ Interface & Implementation:
 
 @end
 
-</code>
+
 
 And the delegate...
 
-<code>
-- (void)tableView:([[NSTableView]] '')aTableView willDisplayCell:(id)aCell forTableColumn:([[NSTableColumn]] '')aTableColumn row:(int)rowIndex
+    
+- (void)tableView:(General/NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
  {
 	if ([aTableView mouseOverRow] == rowIndex)
-		[[NSLog]](@"%d could be highlighted", rowIndex);
-	else [[NSLog]](@"%d shouldn't be highlighted", rowIndex);
+		General/NSLog(@"%d could be highlighted", rowIndex);
+	else General/NSLog(@"%d shouldn't be highlighted", rowIndex);
  }
-</code>
+
 
 ----
 
 I find this whole 'feature' vaguely disturbing. I hope it doesn't become common.
 
-''Reminds me of XP's "hot tracking' feature. bleh''
+*Reminds me of XP's "hot tracking' feature. bleh*
 
 ----
 
 I could see this being useful.  Is there an app out there that uses this code? 
 
-Sort of -- it's called [[NewsFire]]
+Sort of -- it's called General/NewsFire
 
-''It was done in the edit before yours (on the 26th) so I doubt anything uses this exactly but the general idea probably is used somewhere.''
+*It was done in the edit before yours (on the 26th) so I doubt anything uses this exactly but the general idea probably is used somewhere.*
 
 ----
-And here's a another delegate that draws the [[ITunesStyleGradient]] under the row the mouse is over. Should probably track the controlTint but you can add that if I don't at some point.
+And here's a another delegate that draws the General/ITunesStyleGradient under the row the mouse is over. Should probably track the controlTint but you can add that if I don't at some point.
 
-<code>
-[[NSString]] ''highlightImageData = @"<4d4d002a 00000048 800f4f6d a2ca65ca 564b390a 69371941 1ee22622 dc04743b 7c86826e 900fcdb1 d9e5b237 3ab60647 06b0b8d8 d5151a1a 82732348 46616888 4bcd00f9 719f0100 000d0100 00030000 00010001 00000101 00030000 00010012 00000102 00030000 00030000 00ea0103 00030000 00010005 00000106 00030000 00010002 00000111 00040000 00010000 00080115 00030000 00010003 00000116 00040000 00010000 2aaa0117 00040000 00010000 003f011a 00050000 00010000 00f0011b 00050000 00010000 00f8011c 00030000 00010001 00000128 00030000 00010002 00000000 00000008 00080008 000afc80 00002710 000afc80 00002710 >";
-[[NSImage]] ''highlightImage;
+    
+General/NSString *highlightImageData = @"<4d4d002a 00000048 800f4f6d a2ca65ca 564b390a 69371941 1ee22622 dc04743b 7c86826e 900fcdb1 d9e5b237 3ab60647 06b0b8d8 d5151a1a 82732348 46616888 4bcd00f9 719f0100 000d0100 00030000 00010001 00000101 00030000 00010012 00000102 00030000 00030000 00ea0103 00030000 00010005 00000106 00030000 00010002 00000111 00040000 00010000 00080115 00030000 00010003 00000116 00040000 00010000 2aaa0117 00040000 00010000 003f011a 00050000 00010000 00f0011b 00050000 00010000 00f8011c 00030000 00010001 00000128 00030000 00010002 00000000 00000008 00080008 000afc80 00002710 000afc80 00002710 >";
+General/NSImage *highlightImage;
 
-- (void)tableView:([[NSTableView]] '')aTableView willDisplayCell:(id)aCell forTableColumn:([[NSTableColumn]] '')aTableColumn row:(int)rowIndex
+- (void)tableView:(General/NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
  {
 	if ([aTableView mouseOverRow] == rowIndex && ([aTableView selectedRow] != rowIndex))
 			if ([aTableView lockFocusIfCanDraw]) {
-				[[NSRect]] rowRect = [aTableView rectOfRow:rowIndex];
-				[[NSRect]] columnRect = [aTableView rectOfColumn:[[aTableView tableColumns] indexOfObject:aTableColumn]];
+				General/NSRect rowRect = [aTableView rectOfRow:rowIndex];
+				General/NSRect columnRect = [aTableView rectOfColumn:General/aTableView tableColumns] indexOfObject:aTableColumn;
 
 					if (!highlightImage) {
-						highlightImage = [[[[NSImage]] alloc] initWithData:[highlightImageData propertyList]];
+						highlightImage = General/[[NSImage alloc] initWithData:[highlightImageData propertyList]];
 							[highlightImage setDataRetained:YES]; //?
-							[highlightImage setCacheMode:[[NSImageCacheAlways]]]; //?
+							[highlightImage setCacheMode:General/NSImageCacheAlways]; //?
 					}
 
-				[highlightImage drawInRect:[[NSIntersectionRect]](rowRect, columnRect) fromRect:[[NSMakeRect]](0,0,1,[highlightImage size].height) operation:[[NSCompositeSourceOver]] fraction:0.3];
+				[highlightImage drawInRect:General/NSIntersectionRect(rowRect, columnRect) fromRect:General/NSMakeRect(0,0,1,[highlightImage size].height) operation:General/NSCompositeSourceOver fraction:0.3];
 				[aTableView unlockFocus];
 			}
  }
@@ -136,17 +136,17 @@ And here's a another delegate that draws the [[ITunesStyleGradient]] under the r
   if (highlightImage) [highlightImage release];
 [super dealloc];
 }
-</code>
 
-Added <code>viewDidEndLiveResize</code> so the tracking rect keeps up with the table's frame. Also, if your table has more than one column the current delegate doesn't highlight properly, it draws over some rows instead of under them. I'm not sure how to fix that yet so if you've got an idea please share.
 
-''Nevermind, fixed that too. It turns out I'd had the solution a couple times already but didn't realize it - and compared to what I had before, this one is pretty succinct. Now I wonder if I should ''scratch'' draw something special if the column is selected...hmm...''
+Added     viewDidEndLiveResize so the tracking rect keeps up with the table's frame. Also, if your table has more than one column the current delegate doesn't highlight properly, it draws over some rows instead of under them. I'm not sure how to fix that yet so if you've got an idea please share.
+
+*Nevermind, fixed that too. It turns out I'd had the solution a couple times already but didn't realize it - and compared to what I had before, this one is pretty succinct. Now I wonder if I should *scratch* draw something special if the column is selected...hmm...*
 
 ----
 
-I have to agree that this is ugly, nonstandard behavior--reminiscent of Windows. I hope it does not get used much, to be quite honest. FYI, [[NewsFire]] uses [[WebKit]] and CSS to create the tables (at least it did in earlier versions, I haven't checked recently) which also strikes me as a rather unnecessary hack. --[[RobinHP]]
+I have to agree that this is ugly, nonstandard behavior--reminiscent of Windows. I hope it does not get used much, to be quite honest. FYI, General/NewsFire uses General/WebKit and CSS to create the tables (at least it did in earlier versions, I haven't checked recently) which also strikes me as a rather unnecessary hack. --General/RobinHP
 
-''See the first example delegate. Perhaps on a mouse-over you display more info about a row instead of drawing the provided highlightImage - who knows, it's a blank slate. That said, you could easily modify the second delegate to suit your needs since it just draws an image under the row the mouse is over.''
+*See the first example delegate. Perhaps on a mouse-over you display more info about a row instead of drawing the provided highlightImage - who knows, it's a blank slate. That said, you could easily modify the second delegate to suit your needs since it just draws an image under the row the mouse is over.*
 
 ----
 > this is ugly, nonstandard behavior--reminiscent of Windows
@@ -158,14 +158,14 @@ One place I'd like to see something like this used is in iTunes. Imagine if you 
 
 ----
 
-I've always thought that some apps start to feel clunky - like Keynote, for example, when they lack visual feedback. I wish Apple would offer an option to see that sort of behavior. If there was one app that I could tolerate from M$, it would be [[PowerPoint]], because it does this sort of thing. [[PowerPoint]] 2003 feels light and reactive, even on a 700 [[MHz]] Pentium 3, whereas Keynote feels sluggish on my G5. Of course, this is my perception, but I've used [[PowerPoint]] for a long time, and I loved the switch up from 2000 to 2003, but using the Mac version is excruciating! What does everyone else think?
+I've always thought that some apps start to feel clunky - like Keynote, for example, when they lack visual feedback. I wish Apple would offer an option to see that sort of behavior. If there was one app that I could tolerate from M$, it would be General/PowerPoint, because it does this sort of thing. General/PowerPoint 2003 feels light and reactive, even on a 700 General/MHz Pentium 3, whereas Keynote feels sluggish on my G5. Of course, this is my perception, but I've used General/PowerPoint for a long time, and I loved the switch up from 2000 to 2003, but using the Mac version is excruciating! What does everyone else think?
 
-''Get more RAM :-)''
+*Get more RAM :-)*
 
 Even with 2 GB of RAM, Keynote is a turtle in terms of user interaction, so that's probably not the issue.
 
 ----
-Shouldn't we add <code>mouseOverColumn</code> to kind of round this out?
+Shouldn't we add     mouseOverColumn to kind of round this out?
 ----
 
 Some fixes:
@@ -173,7 +173,7 @@ Some fixes:
 Move all calls to addTrackingRect to -resetCursorRects. Then, whenever the frame changes, your tracking rect will be updated. Do this instead of riding on viewDidEndLiveResize.  Further, instead of addTrackingRect:[self frame], you should addTrackingRect:[self visibleFrame]. Otherwise, there's a danger of tracking rects overlapping because you're not taking account parent view clipping.
 
 ----
-Mouse Over animations are only necessary when it is not obvious that the interface widget responds to a click, drag or other type of action. Or that you are providing auxiliary information about the object in question, ex. Tooltips Dock.app. Good examples of no-no mouse overs are Adobe PDF Reader and Microsoft Word, [[NewsFire]] at least does a good looking job, but nonetheless it is unnecessary. We're not building Web pages here.
+Mouse Over animations are only necessary when it is not obvious that the interface widget responds to a click, drag or other type of action. Or that you are providing auxiliary information about the object in question, ex. Tooltips Dock.app. Good examples of no-no mouse overs are Adobe PDF Reader and Microsoft Word, General/NewsFire at least does a good looking job, but nonetheless it is unnecessary. We're not building Web pages here.
 
 ----
 Mouse Over animations are useful in general to provide added feedback that your pointer is over the hittable area of a widget. Your standard Mac OS X menus, for example. The menu items they contain are obviously clickable, yet rolling over them produces a roll-over effect. Specifically, they are useful in adding graphical affordance to elements that otherwise don't have them. Table views don't have any more graphical affordance than menu items do.
@@ -185,26 +185,26 @@ I am trying to use this method of tracking the mouse over row, but I'm having a 
 ----
 Well, I recall not getting mouseMoved events at times when different views were first responder. 
 
-However, [[NSTrackingArea]] (OS X 10.5) is another way to do this, without subclassing. Your controller (the delegate of the tableview) would have a similar mouseOver method that calls -rowAtPoint:. See sample code [[TrackIt]].
+However, General/NSTrackingArea (OS X 10.5) is another way to do this, without subclassing. Your controller (the delegate of the tableview) would have a similar mouseOver method that calls -rowAtPoint:. See sample code General/TrackIt.
 
 
 
  ----
-One other even more flexible way is to create a custom [[NSView]], override drawRect: 
+One other even more flexible way is to create a custom General/NSView, override drawRect: 
 Than create and use an instance.
 
-<code>
-[[ATFontSampleView]] ''sampleView;
+    
+General/ATFontSampleView *sampleView;
 
-- (void)tableView:([[NSTableView]] '')aTableView willDisplayCell:(id)cell forTableColumn:([[NSTableColumn]] '')aTableColumn row:([[NSInteger]])rowIndex {    
-    [[NSLog]](@"<%@ 0x%lx %@>", [[NSStringFromClass]]([self class]), ([[NSInteger]])self, [[NSStringFromSelector]](_cmd));    
+- (void)tableView:(General/NSTableView *)aTableView willDisplayCell:(id)cell forTableColumn:(General/NSTableColumn *)aTableColumn row:(General/NSInteger)rowIndex {    
+    General/NSLog(@"<%@ 0x%lx %@>", General/NSStringFromClass([self class]), (General/NSInteger)self, General/NSStringFromSelector(_cmd));    
     if ([aTableView mouseOverRow] == rowIndex && ([aTableView selectedRow] != rowIndex)) {
         if ([aTableView lockFocusIfCanDraw]) {
-            [[NSRect]] rowRect = [aTableView rectOfRow:rowIndex];
-            [[NSRect]] columnRect = [aTableView rectOfColumn:[[aTableView tableColumns] indexOfObject:aTableColumn]];
+            General/NSRect rowRect = [aTableView rectOfRow:rowIndex];
+            General/NSRect columnRect = [aTableView rectOfColumn:General/aTableView tableColumns] indexOfObject:aTableColumn;
                         
             if (!sampleView) {
-                sampleView = [[[[ATFontSampleView]] alloc] initWithFrame:rowRect];
+                sampleView = General/[[ATFontSampleView alloc] initWithFrame:rowRect];
             }
             
             [sampleView drawRect:rowRect];
@@ -212,4 +212,3 @@ Than create and use an instance.
         }
     }
 }
-</code>

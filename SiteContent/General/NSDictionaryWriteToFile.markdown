@@ -1,14 +1,14 @@
 
-I'm not sure what I am doing wrong but, the [[NSMutableDictionary]] I created won't write to file.  When I tried wrote the description to file using [[NSString]], it seemed to work though.  
+I'm not sure what I am doing wrong but, the General/NSMutableDictionary I created won't write to file.  When I tried wrote the description to file using General/NSString, it seemed to work though.  
 
-<code>
-- (void)saveToFile: ([[NSString]] '')fileName
+    
+- (void)saveToFile: (General/NSString *)fileName
 {
-	[[NSLog]](@"%@", [profileList description]); // This Shows Up Fine
-	[[profileList description] writeToFile:@"List.xml" atomically:YES]; // This saves fine
-	[[[[NSDictionary]] dictionaryWithDictionary:profileList] writeToFile:fileName atomically:YES]; // This just doesn't work!
+	General/NSLog(@"%@", [profileList description]); // This Shows Up Fine
+	General/profileList description] writeToFile:@"List.xml" atomically:YES]; // This saves fine
+	[[[[NSDictionary dictionaryWithDictionary:profileList] writeToFile:fileName atomically:YES]; // This just doesn't work!
 }
-</code>
+
 
 Can anyone give me some ideas?
 
@@ -16,13 +16,13 @@ Thanks
 
 ----
 
-If your dictionary contains objects that aren't standard property list items ([[NSNumber]], [[NSString]], [[NSDictionary]], [[NSArray]], [[NSData]], [[NSDate]]) then it won't write out to file. The proper way to write a dictionary is:
-<code>
+If your dictionary contains objects that aren't standard property list items (General/NSNumber, General/NSString, General/NSDictionary, General/NSArray, General/NSData, General/NSDate) then it won't write out to file. The proper way to write a dictionary is:
+    
 [profileList writeToFile:fileName atomically:YES];
-</code>
+
 but only if you don't have any custom classes or stuff in there...
 
-If you have custom classes, then you can write them to a file by making them all conform to [[NSCoding]], and then using [[NSKeyedArchiver]] to transform them to [[NSData]].
+If you have custom classes, then you can write them to a file by making them all conform to General/NSCoding, and then using General/NSKeyedArchiver to transform them to General/NSData.
 
 ----
 
@@ -31,44 +31,44 @@ I suggest you look at permissions for the file you are trying to create - check 
 
 FYI, here's the test code:
 
-<code>
+    
 #import <Cocoa/Cocoa.h>
-@interface [[MyObject]]: [[NSObject]]
+@interface General/MyObject: General/NSObject
 @end
 
-@implementation [[MyObject]]
+@implementation General/MyObject
 
-- (void)saveToFile: ([[NSString]] '')fileName
+- (void)saveToFile: (General/NSString *)fileName
 {
-        [[NSDictionary]] '' profileList = [[[NSDictionary]] dictionaryWithObjectsAndKeys:@"Test string", @"test", nil];
-        [[NSLog]](@"%@", [profileList description]); // This Shows Up Fine
-        [[profileList description] writeToFile:@"List.xml" atomically:YES]; // This saves fine
-        [[[[NSDictionary]] dictionaryWithDictionary:profileList] writeToFile:fileName atomically:YES]; // This just doesn't work!
+        General/NSDictionary * profileList = General/[NSDictionary dictionaryWithObjectsAndKeys:@"Test string", @"test", nil];
+        General/NSLog(@"%@", [profileList description]); // This Shows Up Fine
+        General/profileList description] writeToFile:@"List.xml" atomically:YES]; // This saves fine
+        [[[[NSDictionary dictionaryWithDictionary:profileList] writeToFile:fileName atomically:YES]; // This just doesn't work!
 }
 @end
 
 
 int main()
 {
-        [[MyObject]] '' myObject = [[[[MyObject]] alloc] init];
+        General/MyObject * myObject = General/[[MyObject alloc] init];
         [myObject saveToFile:@"list2.xml"];
 }
 
-</code>
+
 
 
 BR,
 Cristi
 
 ----
-Please see [[HowToAskQuestions]] ... "doesn't work" is rather useless. What exactly happens. What error(s) are you receiving?
+Please see General/HowToAskQuestions ... "doesn't work" is rather useless. What exactly happens. What error(s) are you receiving?
 
 
 ----
-I'm having the same problem. Using Cristi's test function, [[profileList description] writeToFile:atomically:] succeeds but [[[NSDictionary]] writeToFile:atomically:] returns false and does not create the file. There is no permissions problem (both the working and non-working calls were writing to the same directory (/tmp), neither file existed beforehand, and there is ample free space on disk). dtruss shows this:
+I'm having the same problem. Using Cristi's test function, General/profileList description] writeToFile:atomically:] succeeds but [[[NSDictionary writeToFile:atomically:] returns false and does not create the file. There is no permissions problem (both the working and non-working calls were writing to the same directory (/tmp), neither file existed beforehand, and there is ample free space on disk). dtruss shows this:
 
-<code>
+    
 lstat64("myfilename\0", 0x7FFF5FBFC5B0, 0x7FFF70534630)		 = -1 Err#2
-</code>
+
  
 and nothing more. I tried using a .xml suffix for the filename, and that didn't help either. errno is "Operation timed out", which I suspect is irrelevant. This is on OS 10.6.4.

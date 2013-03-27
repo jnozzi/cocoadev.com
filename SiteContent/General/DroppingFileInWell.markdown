@@ -1,31 +1,31 @@
-I'm trying to add file dropping support to a custom [[NSImageView]] subclass.
+I'm trying to add file dropping support to a custom General/NSImageView subclass.
 
-<code>-(void)awakeFromNib
+    -(void)awakeFromNib
 {
-	[[NSArray]] ''draggedTypeArray = [[[NSArray]] arrayWithObjects:[[NSFilenamesPboardType]], nil];
+	General/NSArray *draggedTypeArray = General/[NSArray arrayWithObjects:General/NSFilenamesPboardType, nil];
 	[self registerForDraggedTypes:draggedTypeArray];
 }
 
-- ([[NSDragOperation]])draggingEntered:(id <[[NSDraggingInfo]]>)sender 
+- (General/NSDragOperation)draggingEntered:(id <General/NSDraggingInfo>)sender 
 {
-	return [[NSDragOperationMove]];
-}</code>
+	return General/NSDragOperationMove;
+}
 
 But the above code does not change the cursor when dragging a file over the well (implying that it is not accepting the drag) - what am I doing wrong�?
 ----
-You could try switching your draggedTypeArray to <code>[[[NSImage]] imagePasteboardTypes]</code>...
+You could try switching your draggedTypeArray to     General/[NSImage imagePasteboardTypes]...
 
-''But I need to support file drops.''
+*But I need to support file drops.*
 
-I meant in addition...so I should have said something like <code>[[[[NSImage]] imagePasteboardTypes] arrayByAddingObject:[[NSFilenamesPboardType]]];</code> (sorry). It's also possible that the file is automatically converted, but now that I think about it...no, probably not. However, there are other [[NSDraggingDestination]] methods you should probably implement; perhaps <code>draggingUpdated:</code> could help you here.
+I meant in addition...so I should have said something like     General/[[NSImage imagePasteboardTypes] arrayByAddingObject:General/NSFilenamesPboardType]; (sorry). It's also possible that the file is automatically converted, but now that I think about it...no, probably not. However, there are other General/NSDraggingDestination methods you should probably implement; perhaps     draggingUpdated: could help you here.
 
 ----
 
 Sending your image view subclass a setEditable:YES message should be enough for it to accept drops: (edit: accept and set its image to the dropped image, that is)
-<code>
+    
 [imageView setEditable:YES]
-</code>
-[[EnglaBenny]]
+
+General/EnglaBenny
 
 
 ----
@@ -33,9 +33,9 @@ Sending your image view subclass a setEditable:YES message should be enough for 
 Here's a full thing. Addition of delegate methods is left to the reader as an exercise :)
 
 
-<code>
+    
 //
-//  [[FileDropView]].h
+//  General/FileDropView.h
 //  Packager
 //
 //  Created by Seth Willits on 5/24/05.
@@ -45,85 +45,85 @@ Here's a full thing. Addition of delegate methods is left to the reader as an ex
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[FileDropView]] : [[NSImageView]] {
-	[[IBOutlet]] id delegate;
+@interface General/FileDropView : General/NSImageView {
+	General/IBOutlet id delegate;
 	BOOL highlight;
-	[[NSString]] '' mFilePath;
+	General/NSString * mFilePath;
 }
 
 
 @end
-</code>
 
 
-<code>
+
+    
 //
-//  [[FileDropView]].m
+//  General/FileDropView.m
 //  Packager
 //
 //  Created by Seth Willits on 5/24/05.
 //  Copyright 2005 Freak Software. All rights reserved.
 //
 
-#import "[[FileDropView]].h"
+#import "General/FileDropView.h"
 
 
-@implementation [[FileDropView]]
+@implementation General/FileDropView
 
 
 
-- (id)initWithCoder:([[NSCoder]] '')coder
+- (id)initWithCoder:(General/NSCoder *)coder
 {
 	self = [super initWithCoder:coder];
 	if (self) {
-		[self registerForDraggedTypes:[[[NSArray]] arrayWithObjects:[[NSFilenamesPboardType]], nil]];
+		[self registerForDraggedTypes:General/[NSArray arrayWithObjects:General/NSFilenamesPboardType, nil]];
 	}
 	return self;
 }
 
 
-- (id)initWithFrame:([[NSRect]])frame
+- (id)initWithFrame:(General/NSRect)frame
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		[self registerForDraggedTypes:[[[NSArray]] arrayWithObjects:[[NSFilenamesPboardType]], nil]];
+		[self registerForDraggedTypes:General/[NSArray arrayWithObjects:General/NSFilenamesPboardType, nil]];
 	}
 	return self;
 }
 
 
 
-- (void)setFile:([[NSString]] '')path
+- (void)setFile:(General/NSString *)path
 {
 	if (mFilePath) {
 		[mFilePath release];
 	}
 	
-	mFilePath = [[[[NSString]] stringWithString:path] retain];
-	[[NSImage]] '' image = [[[[NSWorkspace]] sharedWorkspace] iconForFile:mFilePath];
-	[image setSize:[[NSMakeSize]](48.0, 48.0)];
+	mFilePath = General/[[NSString stringWithString:path] retain];
+	General/NSImage * image = General/[[NSWorkspace sharedWorkspace] iconForFile:mFilePath];
+	[image setSize:General/NSMakeSize(48.0, 48.0)];
 	[self setImage:image];
 }
 
 
 
 
-- ([[NSDragOperation]])draggingEntered:(id <[[NSDraggingInfo]]>)sender
+- (General/NSDragOperation)draggingEntered:(id <General/NSDraggingInfo>)sender
 {
 	if ([self isEnabled]) {
 		highlight = YES;
 		[self setNeedsDisplay:YES];
-		return [[NSDragOperationCopy]];
+		return General/NSDragOperationCopy;
 	}
 	
-	return [[NSDragOperationNone]];
+	return General/NSDragOperationNone;
 }
 
 
 
 
 
-- (void)draggingExited:(id <[[NSDraggingInfo]]>)sender
+- (void)draggingExited:(id <General/NSDraggingInfo>)sender
 {
 	highlight = NO;
 	[self setNeedsDisplay:YES];
@@ -135,22 +135,22 @@ Here's a full thing. Addition of delegate methods is left to the reader as an ex
 //	Draw method is overridden to do drop highlighing
 ///////////////////////////////////////////////////////////
 
-- (void)drawRect:([[NSRect]])rect
+- (void)drawRect:(General/NSRect)rect
 {
 	// Draw the normal frame first
 	[super drawRect:rect];
 	
 	// Then do the highlighting
 	if (highlight) {
-		[[[[NSColor]] grayColor] set];
-		[[[NSBezierPath]] setDefaultLineWidth:5];
-		[[[NSBezierPath]] strokeRect:rect];
+		General/[[NSColor grayColor] set];
+		General/[NSBezierPath setDefaultLineWidth:5];
+		General/[NSBezierPath strokeRect:rect];
 	}
 }
 
 
 
-- (BOOL)prepareForDragOperation:(id <[[NSDraggingInfo]]>)sender
+- (BOOL)prepareForDragOperation:(id <General/NSDraggingInfo>)sender
 {
 	highlight = NO;
 	[self setNeedsDisplay:YES];
@@ -159,17 +159,17 @@ Here's a full thing. Addition of delegate methods is left to the reader as an ex
 
 
 
-- (BOOL)performDragOperation:(id <[[NSDraggingInfo]]>)info
+- (BOOL)performDragOperation:(id <General/NSDraggingInfo>)info
 {
-	[[NSPasteboard]] ''pboard = [info draggingPasteboard];
+	General/NSPasteboard *pboard = [info draggingPasteboard];
 	
 	
 	// Dragging Filenames From Finder or the List
-	if ([[pboard types] containsObject:[[NSFilenamesPboardType]]]) {
+	if (General/pboard types] containsObject:[[NSFilenamesPboardType]) {
 		
-		[[NSArray]] '' files = [pboard propertyListForType:[[NSFilenamesPboardType]]];
-		[[NSEnumerator]] '' enumerator = [files objectEnumerator];
-		[[NSString]] '' filePath;
+		General/NSArray * files = [pboard propertyListForType:General/NSFilenamesPboardType];
+		General/NSEnumerator * enumerator = [files objectEnumerator];
+		General/NSString * filePath;
 		
 		// Get the First File
 		if (filePath = [enumerator nextObject]) {
@@ -187,10 +187,10 @@ Here's a full thing. Addition of delegate methods is left to the reader as an ex
 
 @end
 
-</code>
+
 
 -- Seth Willits
 
 ----
 
-[[DroppingScreamingChildIntoWell]]  ... ''If someone fills in this stub, I'll toss ''them'' into a well.''
+General/DroppingScreamingChildIntoWell  ... *If someone fills in this stub, I'll toss *them* into a well.*

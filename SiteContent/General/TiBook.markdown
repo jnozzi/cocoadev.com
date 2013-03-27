@@ -1,1 +1,1 @@
-Apple Titanium [[PowerBook]]
+Apple Titanium General/PowerBook

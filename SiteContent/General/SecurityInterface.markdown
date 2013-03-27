@@ -1,3 +1,3 @@
 
 
-[[SecurityInterface]].framework provides [[UserInterface]] elements for working with authorisation and passwords. Among its best features is the [[PasswordAssistant]].
+General/SecurityInterface.framework provides General/UserInterface elements for working with authorisation and passwords. Among its best features is the General/PasswordAssistant.

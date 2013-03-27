@@ -1,34 +1,34 @@
-In a stripped down version of my issue, I have an interface with a pair of classes that need to talk to each other: [[ClassA]] and [[ClassB]].
+In a stripped down version of my issue, I have an interface with a pair of classes that need to talk to each other: General/ClassA and General/ClassB.
 
-<code>
+    
 #import <Cocoa/Cocoa.h>
-#import "[[ClassB]].h"
+#import "General/ClassB.h"
 
-@interface [[ClassA]] : [[NSObject]]
+@interface General/ClassA : General/NSObject
 {
-    [[IBOutlet]] [[ClassB]] ''classB;
+    General/IBOutlet General/ClassB *classB;
 }
 @end
 
 
 #import <Cocoa/Cocoa.h>
-#import "[[ClassA]].h"
+#import "General/ClassA.h"
 
-@interface [[ClassB]] : [[NSObject]]
+@interface General/ClassB : General/NSObject
 {
-    [[IBOutlet]] [[ClassA]] ''classA;
+    General/IBOutlet General/ClassA *classA;
 }
 @end
-</code>
 
-I've linked their instances together in interface builder, but when I compile I get a "parse error before [[ClassA]]". I'm pretty sure this is because they're importing each other, but using the "#ifndef __CLASS_A__" trick I'm used to didn't work.
+
+I've linked their instances together in interface builder, but when I compile I get a "parse error before General/ClassA". I'm pretty sure this is because they're importing each other, but using the "#ifndef __CLASS_A__" trick I'm used to didn't work.
 
 Help!
 ----
-See [[AvoidingBidirectionalOutlets]]. ''Note: that page was orphaned because the OP there assumed it was a unique mistake. Obviously it's not. Any ideas for the long-term location of this information?''
+See General/AvoidingBidirectionalOutlets. *Note: that page was orphaned because the OP there assumed it was a unique mistake. Obviously it's not. Any ideas for the long-term location of this information?*
 
 ----
-I'd say: move it to a page with a good name first, either [[CyclicClassDependencies]] or [[CyclicHeaderDependencies]].
+I'd say: move it to a page with a good name first, either General/CyclicClassDependencies or General/CyclicHeaderDependencies.
 
 ----
 Also, check out the @class compiler directive.
@@ -37,33 +37,33 @@ Also, check out the @class compiler directive.
 
 The previous response is correct; use @class for a forward declaration of your classes in your headers.
 
-The rule of thumb is that you should only import headers in your ''header'' file that are required for your class to compile: The header for your base class, the headers for any protocols your class itself declares that it implements, and the headers for any types that are used in the declarations in your header file that can't be used with just forward declarations (such as typedefs of primitive types).  You can substitute an umbrella header for the above if you wish, if your base class and declarations all come from it.
+The rule of thumb is that you should only import headers in your *header* file that are required for your class to compile: The header for your base class, the headers for any protocols your class itself declares that it implements, and the headers for any types that are used in the declarations in your header file that can't be used with just forward declarations (such as typedefs of primitive types).  You can substitute an umbrella header for the above if you wish, if your base class and declarations all come from it.
 
 Thus your declarations would best look like this:
 
-<code>
+    
 
 #import <Cocoa/Cocoa.h>
 
-@class [[ClassB]];
+@class General/ClassB;
 
-@interface [[ClassA]] : [[NSObject]]
+@interface General/ClassA : General/NSObject
 {
-    [[IBOutlet]] [[ClassB]] ''classB;
+    General/IBOutlet General/ClassB *classB;
 }
 @end
 
 
 #import <Cocoa/Cocoa.h>
 
-@class [[ClassA]];
+@class General/ClassA;
 
-@interface [[ClassB]] : [[NSObject]]
+@interface General/ClassB : General/NSObject
 {
-    [[IBOutlet]] [[ClassA]] ''classA;
+    General/IBOutlet General/ClassA *classA;
 }
 @end
 
-</code>
 
-In your implementation files for these classes you would actually import the header files for [[ClassA]] and [[ClassB]].
+
+In your implementation files for these classes you would actually import the header files for General/ClassA and General/ClassB.

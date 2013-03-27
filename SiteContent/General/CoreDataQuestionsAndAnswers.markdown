@@ -1,21 +1,21 @@
-'''Question:
+**Question:
 Whose idea  was it try to eliminate the controller layer?
-''' 
+** 
 
-'''Answer:''' 
+**Answer:** 
 This goes back to early Smalltalk work.
 
-'''Question: Is there a history to trying to do this outside of Apple/[[NeXT]]?''' 
+**Question: Is there a history to trying to do this outside of Apple/General/NeXT?** 
 
-'''Answer:''' 
+**Answer:** 
 Microsoft tried with DDE which I think stands for "Dynamic Data 
-Exchange" and the [[DoExchnage]]() features of MFC classes.  There is some 
+Exchange" and the General/DoExchnage() features of MFC classes.  There is some 
 support for automating these controller tasks in MS Visual Studio's 
 various editors.  Visual Basic from Version 3 at least had bindings capable
 controls using the COM and DAO (later ADO) subsystems to hook database
 data directly to onscreen controls.
 
- Borland's Delphi, [[IBMs]] Smalltalk, Java, and C++ 
+ Borland's Delphi, General/IBMs Smalltalk, Java, and C++ 
 environments provide some automation. 
 
 Ref: Microsoft's "Managed 
@@ -28,66 +28,66 @@ Automated menu validation and simple connection of menu items to
 objects eliminates a lot of controller code needed in other 
 environments.
 
-'''Question: If so, do those approaches go by a different name?
+**Question: If so, do those approaches go by a different name?
 Do other platforms that don't have the benefit of key/value runtime
 introspection have a different solution to this kind of thing, or do
-they all use some kind of "yucky controller layer" ?''' 
+they all use some kind of "yucky controller layer" ?** 
 
-'''Answer:''' 
+**Answer:** 
 Yes, yes, and yes.
 
-'''Question: Is this database technology?''' 
+**Question: Is this database technology?** 
 
-'''Answer:''' 
+**Answer:** 
 I seems similar to "Enterprise Objects Framework" (EOF) which Apple 
 still sells.  EOF has more of a database centric view of the world than 
-[[CoreData]].
+General/CoreData.
 
-'''Question: Is it "normal" to apply database technology to application design?''' 
+**Question: Is it "normal" to apply database technology to application design?** 
 
-'''Answer:''' 
+**Answer:** 
 My guess is that 90+ percent of all software written is database and 
 business automation related.  In that context, I would say not using 
 database technology influenced design is abnormal ;)
 
-'''Question: Is there a debate about whether database "entity modeling" should be
-used in desktop applications? ''' 
+**Question: Is there a debate about whether database "entity modeling" should be
+used in desktop applications? ** 
 
-'''Answer:''' 
+**Answer:** 
 Yes.  I think Apple engineers would be the first to tell you that 
-[[CoreData]] is not the best solution to every model layer problem just 
+General/CoreData is not the best solution to every model layer problem just 
 like the MVC pattern is not best applied to all application designs.  
 However, in both cases, the techniques are applicable to a surprisingly 
 broad range of applications.
 
-'''Question: Should I feel warm and fuzzy about designing my application's model
-this way instead of in a more "dictionary-oriented" way? ''' 
+**Question: Should I feel warm and fuzzy about designing my application's model
+this way instead of in a more "dictionary-oriented" way? ** 
 
-'''Answer:''' 
+**Answer:** 
 No.  The view of objects as dictionaries is just one implementation 
 technique, and it is useful but not very often the best solution IMHO 
 :)  I would say a better contrast would be entity relation diagrams and 
 traditional OO decomposition.
 
-''Could you elaborate on this, please? I'm very interested.''
+*Could you elaborate on this, please? I'm very interested.*
 
-'''Question: Are there times that I should favor "traditional" model design over
-this new format? ''' 
+**Question: Are there times that I should favor "traditional" model design over
+this new format? ** 
 
-'''Answer:''' 
+**Answer:** 
 Yes.  If the application is primarily computational instead of data 
-management oriented, I would probably not choose [[CoreData]].  I doubt 
+management oriented, I would probably not choose General/CoreData.  I doubt 
 Core Data can substantially automate or improve a ray tracer, a fractal 
 generator, a PDF viewer, an industrial equipment controller, a low 
 level DVD burner, many games, etc.  In fact, I am starting to think 
 that "real time" and Core Data are mutually exclusive.
 
 I can't wait to see Apple's Sketch example re-implemented with 
-[[CoreData]].  It could be Cool!
+General/CoreData.  It could be Cool!
 
-'''Question: Is good database design equivalent to good application model design?''' 
+**Question: Is good database design equivalent to good application model design?** 
 
-'''Answer:''' 
+**Answer:** 
 No.
 
 Apple has added a powerful tool to our tool boxes.  That is all.  The 

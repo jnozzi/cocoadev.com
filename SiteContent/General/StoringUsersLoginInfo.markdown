@@ -2,7 +2,7 @@ My app needs to authenticate the user frequently to run a task that requires roo
 
 ----
 
-I suggest searching the Apple documentation for "Security" ... this will link you to the various manuals for you to read. Once you read them, you'll see at least several reasons why it would indeed be "terrible" to do so. Authentication is '''NOT''' to be short-circuited. If I'd ever find out an application on my system tried to do such a thing, I'd run it up the news flagpoles faster than anything and you can be sure nobody in their right minds would use your application.
+I suggest searching the Apple documentation for "Security" ... this will link you to the various manuals for you to read. Once you read them, you'll see at least several reasons why it would indeed be "terrible" to do so. Authentication is **NOT** to be short-circuited. If I'd ever find out an application on my system tried to do such a thing, I'd run it up the news flagpoles faster than anything and you can be sure nobody in their right minds would use your application.
 
 ----
 Okay, thanks.

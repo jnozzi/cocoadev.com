@@ -1,7 +1,7 @@
 
 
 
-[[TreeHouseIdeas]] is my thing, which is responsible for [[CocoaDevCentral]] and [[DataCrux]].
+General/TreeHouseIdeas is my thing, which is responsible for General/CocoaDevCentral and General/DataCrux.
 
 Theocacao is my blog: http://theocacao.com/
 
@@ -15,4 +15,4 @@ Some tutorials I wrote:
 *Saving Cocoa Application Data: http://cocoadevcentral.com/articles/000084.php
 
 
-I moderate [[OmniGroup]]'s macosx-talk and macosx-dev lists.
+I moderate General/OmniGroup's macosx-talk and macosx-dev lists.

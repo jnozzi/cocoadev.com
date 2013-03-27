@@ -2,7 +2,7 @@
 
 My name is Jonathan Rogers. I am 26 years old.
 
-My best friend is [[RobRix]], who brought me to the mac, and to Cocoa. He is presently helping me to learn Cocoa programming and Objective-C, with the eventual goal of collaborating together on various game projects and other apps. We also have the goal of working together on development for the iPhone/iPod Touch platform.
+My best friend is General/RobRix, who brought me to the mac, and to Cocoa. He is presently helping me to learn Cocoa programming and Objective-C, with the eventual goal of collaborating together on various game projects and other apps. We also have the goal of working together on development for the iPhone/iPod Touch platform.
 
 I live in Atlanta, Georgia, and can be reached at quantumfoam at gmail dot com. 
 

@@ -17,18 +17,18 @@ This works for now in:
 
 So here's the Category stuff.
 
-<code>
-#import <[[AppKit]]/[[NSBezierPath]].h>
-#import <[[AppKit]]/[[NSTableView]].h>
+    
+#import <General/AppKit/General/NSBezierPath.h>
+#import <General/AppKit/General/NSTableView.h>
 
 
-@interface [[NSTableView]] ( newDragLineOrder )
+@interface General/NSTableView ( newDragLineOrder )
 
 @end
 
 
-@class [[NSBezierPath]],[[NSTableView]];
-@implementation [[NSTableView]] ( newDragLineOrder )
+@class General/NSBezierPath,General/NSTableView;
+@implementation General/NSTableView ( newDragLineOrder )
 
 static float widthOffset = 8.0; // offSet where start drawing the line
 static float eyeDim = 6.0;	   // size of the circle
@@ -38,16 +38,16 @@ static float eyeDim = 6.0;	   // size of the circle
 { 
 	[self lockFocus];
 	int selectedRow = [self selectedRow];
-	[[NSPoint]] startPoint, endPoint;
-	[[NSRect]] drawRect;
+	General/NSPoint startPoint, endPoint;
+	General/NSRect drawRect;
 	float endOffset = widthOffset + eyeDim;
-	[[NSColor]] ''lineColor = [[[NSColor]] colorWithDeviceCyan:0.65 magenta:0.37 yellow:0.01 black:0.0 alpha:1]; // a little more dark then the finder drag line
+	General/NSColor *lineColor = General/[NSColor colorWithDeviceCyan:0.65 magenta:0.37 yellow:0.01 black:0.0 alpha:1]; // a little more dark then the finder drag line
 	;
 	
 	// only to show what we can do above the selected row
 	if ( fp8 == -1 && selectedRow == fp12) {
 		//first row coloring
-		[[lineColor highlightWithLevel:0.60] set];
+		General/lineColor highlightWithLevel:0.60] set];
 	}
 	else if (selectedRow == fp12 || selectedRow == fp8 ) {
               // the selected row
@@ -59,28 +59,28 @@ static float eyeDim = 6.0;	   // size of the circle
 		// all the other rows
 		[[lineColor colorWithAlphaComponent:1]set];
 	}
-	[[NSBezierPath]] '' line = [[[NSBezierPath]] bezierPath];
-	[[[NSBezierPath]] setDefaultLineWidth:2.0];
+	[[NSBezierPath * line = General/[NSBezierPath bezierPath];
+	General/[NSBezierPath setDefaultLineWidth:2.0];
 	
 	if ( fp8 == -1 ) {
 		drawRect = [self rectOfRow:fp12];
-		startPoint = [[NSMakePoint]](drawRect.origin.x+= widthOffset/2.0, 1 );
-		endPoint = [[NSMakePoint]](drawRect.size.width-= endOffset, 1 );
+		startPoint = General/NSMakePoint(drawRect.origin.x+= widthOffset/2.0, 1 );
+		endPoint = General/NSMakePoint(drawRect.size.width-= endOffset, 1 );
 	} 
-	else if ( [[self dataSource] numberOfRowsInTableView:self] == fp12 ) {
+	else if ( General/self dataSource] numberOfRowsInTableView:self] == fp12 ) {
 		drawRect = [self rectOfRow:fp8];
-		startPoint = [[NSMakePoint]](drawRect.origin.x+= widthOffset/2.0,(drawRect.size.height '' fp12)-1 );
-		endPoint = [[NSMakePoint]](drawRect.size.width-= endOffset,(drawRect.size.height '' fp12)-1 );
+		startPoint = [[NSMakePoint(drawRect.origin.x+= widthOffset/2.0,(drawRect.size.height * fp12)-1 );
+		endPoint = General/NSMakePoint(drawRect.size.width-= endOffset,(drawRect.size.height * fp12)-1 );
 	}
 	else {
 		drawRect = [self rectOfRow:fp8];
-		startPoint = [[NSMakePoint]](drawRect.origin.x+= widthOffset/2.0,(drawRect.size.height '' fp12) );
-		endPoint = [[NSMakePoint]](drawRect.size.width-= endOffset,(drawRect.size.height '' fp12) );
+		startPoint = General/NSMakePoint(drawRect.origin.x+= widthOffset/2.0,(drawRect.size.height * fp12) );
+		endPoint = General/NSMakePoint(drawRect.size.width-= endOffset,(drawRect.size.height * fp12) );
 	}
 	
 	[line moveToPoint:startPoint];
 	[line lineToPoint:endPoint];
-	[line appendBezierPathWithOvalInRect:[[NSMakeRect]](endPoint.x,endPoint.y-(eyeDim/2), eyeDim, eyeDim)];
+	[line appendBezierPathWithOvalInRect:General/NSMakeRect(endPoint.x,endPoint.y-(eyeDim/2), eyeDim, eyeDim)];
 	[line stroke];
 
 
@@ -89,16 +89,16 @@ static float eyeDim = 6.0;	   // size of the circle
 	// it looks like it remembers a lighter color
 	// some one?
 //	if (selectedRow == fp12 || selectedRow == fp8  ) {
-//		[[lineColor highlightWithLevel:0.60] set];
-//		[[NSBezierPath]] '' contrastLine = [[[NSBezierPath]] bezierPath];
-//		[[[NSBezierPath]] setDefaultLineWidth:1];
+//		General/lineColor highlightWithLevel:0.60] set];
+//		[[NSBezierPath * contrastLine = General/[NSBezierPath bezierPath];
+//		General/[NSBezierPath setDefaultLineWidth:1];
 //		if (selectedRow == fp12 ) {
-//			startPoint = [[NSMakePoint]](startPoint.x,startPoint.y+2 );
-//			endPoint = [[NSMakePoint]](endPoint.x-1, endPoint.y+2  );
+//			startPoint = General/NSMakePoint(startPoint.x,startPoint.y+2 );
+//			endPoint = General/NSMakePoint(endPoint.x-1, endPoint.y+2  );
 //		}
 //		else {  // ( selectedRow == fp8  ) 
-//			startPoint = [[NSMakePoint]](startPoint.x,startPoint.y-1 );
-//			endPoint = [[NSMakePoint]](endPoint.x-1, endPoint.y-1 );
+//			startPoint = General/NSMakePoint(startPoint.x,startPoint.y-1 );
+//			endPoint = General/NSMakePoint(endPoint.x-1, endPoint.y-1 );
 //		}
 //		
 //		[contrastLine moveToPoint:startPoint];
@@ -109,31 +109,31 @@ static float eyeDim = 6.0;	   // size of the circle
 }
 
 @end
-</code>
+
 
 Of course you can set color as you like.
-If you have Photoshop you can use the cmyk color settings from the color panel. 65% == 0.65 in [[NSColor]]
+If you have Photoshop you can use the cmyk color settings from the color panel. 65% == 0.65 in General/NSColor
 
 Like the finder there is a circle at the end, but you can make one at the beginning to. Looks nice. 
 
 Or with one column.
 http://static.flickr.com/101/273430255_eb918b4bae.jpg
 
-<code>
-#import <[[AppKit]]/[[NSBezierPath]].h>
-#import <[[AppKit]]/[[NSTableView]].h>
-#import <[[AppKit]]/[[NSTableColumn]].h>
+    
+#import <General/AppKit/General/NSBezierPath.h>
+#import <General/AppKit/General/NSTableView.h>
+#import <General/AppKit/General/NSTableColumn.h>
 
-@interface [[NSTableView]] ( [[OneColumnDragLine]] )
+@interface General/NSTableView ( General/OneColumnDragLine )
 
 @end
 
-@class [[NSBezierPath]], [[NSTableColumn]];
+@class General/NSBezierPath, General/NSTableColumn;
 #define POINT_LEFT drawRect.origin.x+= ( widthOffset/2.0 + offsetLeftCol - eyeDim/2 )
 #define POINT_RIGHT drawRect.size.width-= ( widthOffset + eyeDim )
-#define POINT_HEIGHT (drawRect.size.height '' fp12)
+#define POINT_HEIGHT (drawRect.size.height * fp12)
 
-@implementation [[NSTableView]] ( [[OneColumnDragLine]] )
+@implementation General/NSTableView ( General/OneColumnDragLine )
 
 static float widthOffset = 8.0; // offSet where start drawing the line
 static float eyeDim = 6.0;		// size of the circle
@@ -145,18 +145,18 @@ static float eyeDim = 6.0;		// size of the circle
 	[self lockFocus];
 	int selectedRow = [self selectedRow];
 
-	[[NSTableColumn]] ''col =   [[self tableColumns]objectAtIndex:0];
+	General/NSTableColumn *col =   General/self tableColumns]objectAtIndex:0];
 	float offsetLeftCol = [col width];
 
-	[[NSPoint]] startPoint, endPoint;
-	[[NSRect]] drawRect;
+	[[NSPoint startPoint, endPoint;
+	General/NSRect drawRect;
 
-	[[NSColor]] ''lineColor = [[[NSColor]] colorWithDeviceCyan:0.65 magenta:0.37 yellow:0.01 black:0.0 alpha:1];
+	General/NSColor *lineColor = General/[NSColor colorWithDeviceCyan:0.65 magenta:0.37 yellow:0.01 black:0.0 alpha:1];
 	;
 	
 	// only to show what we can do above the selected row
 	if ( fp8 == -1 && selectedRow == fp12) {
-		[[lineColor highlightWithLevel:0.60] set];
+		General/lineColor highlightWithLevel:0.60] set];
 	}
 	else if (selectedRow == fp12 || selectedRow == fp8 ) {
 		[[lineColor highlightWithLevel:0.60] set];
@@ -164,28 +164,28 @@ static float eyeDim = 6.0;		// size of the circle
 	else {
 		[[lineColor colorWithAlphaComponent:1]set];
 	}
-	[[NSBezierPath]] '' line = [[[NSBezierPath]] bezierPath];
-	[[[NSBezierPath]] setDefaultLineWidth:2.0];
+	[[NSBezierPath * line = General/[NSBezierPath bezierPath];
+	General/[NSBezierPath setDefaultLineWidth:2.0];
 	if ( fp8 == -1 ) {
 		drawRect = [self rectOfRow:fp12];
-		startPoint = [[NSMakePoint]]( POINT_LEFT , 1 );
-		endPoint = [[NSMakePoint]]( POINT_RIGHT , 1 );
+		startPoint = General/NSMakePoint( POINT_LEFT , 1 );
+		endPoint = General/NSMakePoint( POINT_RIGHT , 1 );
 	} 
-	else if ( [[self dataSource] numberOfRowsInTableView:self] == fp12 ) {
+	else if ( General/self dataSource] numberOfRowsInTableView:self] == fp12 ) {
 		drawRect = [self rectOfRow:fp8];
-		startPoint = [[NSMakePoint]]( POINT_LEFT , POINT_HEIGHT-1 );
-		endPoint = [[NSMakePoint]]( POINT_RIGHT , POINT_HEIGHT-1 );
+		startPoint = [[NSMakePoint( POINT_LEFT , POINT_HEIGHT-1 );
+		endPoint = General/NSMakePoint( POINT_RIGHT , POINT_HEIGHT-1 );
 	}
 	else {
 		drawRect = [self rectOfRow:fp8];
-		startPoint = [[NSMakePoint]]( POINT_LEFT , POINT_HEIGHT );
-		endPoint = [[NSMakePoint]]( POINT_RIGHT , POINT_HEIGHT );
+		startPoint = General/NSMakePoint( POINT_LEFT , POINT_HEIGHT );
+		endPoint = General/NSMakePoint( POINT_RIGHT , POINT_HEIGHT );
 	}
 	
 	[line moveToPoint:startPoint];
 	[line lineToPoint:endPoint];
-	[line appendBezierPathWithOvalInRect:[[NSMakeRect]](endPoint.x,endPoint.y-(eyeDim/2), eyeDim, eyeDim)];
-	[line appendBezierPathWithOvalInRect:[[NSMakeRect]](startPoint.x-eyeDim,startPoint.y-(eyeDim/2), eyeDim, eyeDim)];
+	[line appendBezierPathWithOvalInRect:General/NSMakeRect(endPoint.x,endPoint.y-(eyeDim/2), eyeDim, eyeDim)];
+	[line appendBezierPathWithOvalInRect:General/NSMakeRect(startPoint.x-eyeDim,startPoint.y-(eyeDim/2), eyeDim, eyeDim)];
 	[line stroke];
 
 	[self unlockFocus];
@@ -193,10 +193,10 @@ static float eyeDim = 6.0;		// size of the circle
 
 @end
 
-</code>
 
-''' Bold means this can be important!! Its a Category for a [[NSTableView]] owned by Apple. If they change the call to this method inside then it could happen that or your app crashes or if Apple uses a new method name it uses Apples new method and will show things there way.
-'''
+
+** Bold means this can be important!! Its a Category for a General/NSTableView owned by Apple. If they change the call to this method inside then it could happen that or your app crashes or if Apple uses a new method name it uses Apples new method and will show things there way.
+**
 
 At least I hope that they give us a public delegate method in 10.4.9 and later to override their standard method.
 

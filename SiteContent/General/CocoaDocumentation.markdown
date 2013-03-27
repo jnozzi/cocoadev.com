@@ -1,21 +1,21 @@
-''See also [[CocoaResources]]''
+*See also General/CocoaResources*
 ----
 Sources of Cocoa documentation:
 
 
-* http://developer.apple.com/techpubs/macosx/Cocoa/[[CocoaTopics]].html
+* http://developer.apple.com/techpubs/macosx/Cocoa/General/CocoaTopics.html
 
 Apple's Cocoa documentation.
 
-* [[FoundationKit]], [[AppKit]]
+* General/FoundationKit, General/AppKit
 
-Entry points for [[CocoaDev]]'s coverage of Apple's Cocoa Frameworks 
+Entry points for General/CocoaDev's coverage of Apple's Cocoa Frameworks 
 
-* [[MemoryManagement]]
+* General/MemoryManagement
 
 A wiki page linking to various pages dealing with the many facets of managing memory in your Cocoa app.
 
-*[[CocoaBooks]]
+*General/CocoaBooks
 See for listing and reviews/comments on Cocoa Books.
 
 
@@ -24,7 +24,7 @@ See for listing and reviews/comments on Cocoa Books.
 
 ----
 
-Moved automatic documentation discussion to [[GeneratingHtmlDocs]].
+Moved automatic documentation discussion to General/GeneratingHtmlDocs.
 
 ----
 

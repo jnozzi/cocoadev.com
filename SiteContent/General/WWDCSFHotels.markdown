@@ -1,4 +1,4 @@
-Hotels for the [[WorldWideDevelopersConference]] in San Francisco. A wiki version of this blog entry: http://goo.gl/[[OeSu]] http://www.thefunnyquotessayings.com/cool-hilarious-funny-quotes-sayings/
+Hotels for the General/WorldWideDevelopersConference in San Francisco. A wiki version of this blog entry: http://goo.gl/General/OeSu http://www.thefunnyquotessayings.com/cool-hilarious-funny-quotes-sayings/
 
 http://rentzsch.com/notes/wwdc2004HotelBrainDump
 
@@ -12,9 +12,9 @@ http://www.moscone.com
 747 Howard Street; San Francisco CA 94103
 http://bit.ly/dt3ruz
 
-''The conference's location''
+*The conference's location*
 
-'''Comments:'''
+**Comments:**
 
 ----
 
@@ -25,7 +25,7 @@ http://bit.ly/1AHm7r
 
 "Practically on top of Moscone"
 
-'''Comments:'''
+**Comments:**
 
 ----
 
@@ -35,9 +35,9 @@ http://tinyurl.com/a6mm
 181 3rd St; San Francisco CA 94103
 http://tinyurl.com/2qsps
 
-''$300-350/night; 1 block from Moscone''
+*$300-350/night; 1 block from Moscone*
 
-'''Comments:'''
+**Comments:**
 
 Seems to be $25 a night for high-speed internet.
 
@@ -49,9 +49,9 @@ http://tinyurl.com/2jubf
 55 Fourth Street; San Francisco CA 94103
 http://tinyurl.com/2ty85
 
-''$204/night; 2 blocks from Moscone; Official WWDC Hotel; Probably where most Apple folks are staying''
+*$204/night; 2 blocks from Moscone; Official WWDC Hotel; Probably where most Apple folks are staying*
 
-'''Comments:'''
+**Comments:**
 
 Internet access costs an additional $12.50 a night and it's not even wireless
 
@@ -63,9 +63,9 @@ http://www.argenthotel.com
 50 Third St; San Francisco CA 94103
 http://tinyurl.com/28w8r
 
-''$200-$230/night; 2 blocks from Moscone''
+*$200-$230/night; 2 blocks from Moscone*
 
-'''Comments:'''
+**Comments:**
 
 D'Arcy Norman says it "is a total ripoff. Avoid it like the plague."
 
@@ -77,9 +77,9 @@ http://marriott.com/property/propertyPage.mi?marshaCode=SFOCD
 299 2nd St; San Francisco CA 94105
 http://tinyurl.com/2tvb4
 
-''$189/night; 2.5 blocks from Moscone; Includes unlimited high-speed internet''
+*$189/night; 2.5 blocks from Moscone; Includes unlimited high-speed internet*
 
-'''Comments:'''
+**Comments:**
 
 Peter Sichel had good experience there in 2003.
 
@@ -91,9 +91,9 @@ http://thepowellhotel.com
 28 Cyril Magnin St; San Francisco CA 94102
 http://tinyurl.com/2vph2
 
-''$109/night ($89/night sans breakfast); 3.5 blocks from Moscone; No A/C, but has working windows''
+*$109/night ($89/night sans breakfast); 3.5 blocks from Moscone; No A/C, but has working windows*
 
-'''Comments:'''
+**Comments:**
 
 Dave Polaschek had a good experience there.
 
@@ -107,9 +107,9 @@ http://www.hotelbritton.com/
 112 7th St; San Francisco CA 94103
 http://tinyurl.com/2prup
 
-''$79/night; 4.5 blocks from Moscone''
+*$79/night; 4.5 blocks from Moscone*
 
-'''Comments:'''
+**Comments:**
 
 Philippe Casgrain had a good experience there in 2003.
 
@@ -123,9 +123,9 @@ http://www.hotelnikkosf.com
 222 Mason St; San Francisco CA 94102
 http://tinyurl.com/yrkbz
 
-''$139/night thru travelhero.com; 4.5 blocks from Moscone; has pool''
+*$139/night thru travelhero.com; 4.5 blocks from Moscone; has pool*
 
-'''Comments:'''
+**Comments:**
 
 ----
 
@@ -139,11 +139,11 @@ E-mail: sfdowntown@norcalhostels.org
 $24.00-$29.00 per night (Dorm Style)
 $55.00-$69.00 per night (Private)
 
-''5 blocks from Moscone''
+*5 blocks from Moscone*
 
-'''Comments:'''
+**Comments:**
 I am cheap and broke.  I'll be staying here.
-As will I - [[DanKeen]]
+As will I - General/DanKeen
 
 ----
 
@@ -153,9 +153,9 @@ http://www.grantplaza.com
 465 Grant Ave; San Francisco CA 94108
 http://tinyurl.com/yrrsq
 
-''$69-$79/night; 6 blocks from Moscone''
+*$69-$79/night; 6 blocks from Moscone*
 
-'''Comments:'''
+**Comments:**
 
 D'Arcy Norman says "It's not exactly a 5 star hotel, but it wasn't scummy, and it looks 
 like they've really fixed the place up since I was there."
@@ -168,9 +168,9 @@ http://www.hilton.com/hotels/SFOFHHH/
 333 O'Farrell St; San Francisco CA 94102
 http://tinyurl.com/yvg7m
 
-''$165/night; 6.5 blocks from Moscone; Official WWDC Hotel''
+*$165/night; 6.5 blocks from Moscone; Official WWDC Hotel*
 
-'''Comments:'''
+**Comments:**
 
 For an official WWDC hotel, internet service is sure unreliable and pricey (my stay was in 2004). And Paris wasn't available for 'personal service,' to make up for it, either. Avoid.
 
@@ -182,16 +182,16 @@ http://www.ramadaplazasf.com
 1231 Market St; San Francisco CA 94103
 http://tinyurl.com/2y7gj
 
-''>$109/night (price not on website); 6.5 blocks from Moscone; No A/C, but has working windows''
+*>$109/night (price not on website); 6.5 blocks from Moscone; No A/C, but has working windows*
 
-'''Comments:'''
+**Comments:**
 
 Tom Becker says it's a nice old-fashioned touristy hotel.
 
 
 ----
 
-'''Unsorted:'''
+**Unsorted:**
 
 ----
 
@@ -201,9 +201,9 @@ http://grandsanfrancisco.hyatt.com/
 345 Stockton Street San Francisco, California 94108 USA
 http://grandsanfrancisco.hyatt.com/property/areaguide/maps/index.jhtml
 
-'' $70 a night via priceline for whole show. 0.79 miles from Moscone Ceneter. Price when booking direct: $179
+* $70 a night via priceline for whole show. 0.79 miles from Moscone Ceneter. Price when booking direct: $179
 
-'''Comments:'''
+**Comments:**
 Looks like a great hotel and  an absolute steal at 70 bucks. Great breakfast spot nearby and across the street from Macy's.
 Only down side is parking is too expensive. 36 bucks a night. -Lemont Washington
 
@@ -224,15 +224,15 @@ A few people I know have recommended this place. No A/C or high speed internet. 
 ----
 
 Taylor Hotel San Francisco
-http://goo.gl/[[PKsQv]]
+http://goo.gl/General/PKsQv
 
 615 Taylor Street; San Francisco CA 94102
 
-Simple budget hotel, Free internet access from the lobby (though perhaps the wireless reception extends to some of the rooms, it didn't reach mine -- [[AngelaBrett]]), Daily, Weekly, Extended stay rates.
+Simple budget hotel, Free internet access from the lobby (though perhaps the wireless reception extends to some of the rooms, it didn't reach mine -- General/AngelaBrett), Daily, Weekly, Extended stay rates.
 
-''$39-$79/night; 7 blocks from Moscone''
+*$39-$79/night; 7 blocks from Moscone*
 
 
 ----
 
-As WWDC draws closer: http://www.ratestogo.com usually is a great place to get last-minute deals (up to 20 days in advance) on hotels. For now I have to note that there seems to be no terrific deal. Hotel Nikko actually is more expensive there than noted on this page. I guess hotels are feeling the start of summer tourism, [[JavaOne]], WWDC, ... . Yet those who Pricelined got better deals on some of the hotels listes at
+As WWDC draws closer: http://www.ratestogo.com usually is a great place to get last-minute deals (up to 20 days in advance) on hotels. For now I have to note that there seems to be no terrific deal. Hotel Nikko actually is more expensive there than noted on this page. I guess hotels are feeling the start of summer tourism, General/JavaOne, WWDC, ... . Yet those who Pricelined got better deals on some of the hotels listes at

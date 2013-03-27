@@ -8,19 +8,19 @@ I'm trying to find out if there are any significant changes in the dev tools rec
 
 Depends what you mean by significant.  :)  Nothing too major has changed on the surface, but it seems like a number of under-the-hood bug fixes and so on.
 
-One thing I did notice is that the GDB included with [[CodeWarrior]] Pro 7 EA is more recent than the one on Apple's WWDC dev tools disk.  CW debugging is coming close to being usable on OS X, barring the speed issues.  
+One thing I did notice is that the GDB included with General/CodeWarrior Pro 7 EA is more recent than the one on Apple's WWDC dev tools disk.  CW debugging is coming close to being usable on OS X, barring the speed issues.  
 
--- [[StevenFrank]]
+-- General/StevenFrank
 
 ----
 
-Is this an official development tool review, Steven? Something along the lines of [[CocoaTools]] or [[CocoaReviews]]?
+Is this an official development tool review, Steven? Something along the lines of General/CocoaTools or General/CocoaReviews?
 
 Personally, I've seen nothing major, but I updated anyhow, partly because I enjoy updating my software (I am indeed a geek), and partly because I wanted to get that WO5 trial anyhow...
 
 Should be fun!
 
--- [[RobRix]]
+-- General/RobRix
 
 ----
 

@@ -1,4 +1,4 @@
-See [[ScreenShotCode]]
+See General/ScreenShotCode
 
 ----
 

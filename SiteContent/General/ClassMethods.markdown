@@ -1,1 +1,1 @@
-See: [[ClassMethod]]
+See: General/ClassMethod

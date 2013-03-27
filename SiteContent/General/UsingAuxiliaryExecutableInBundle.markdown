@@ -1,30 +1,30 @@
 
 
-'''Cocoa executable, auxiliary executable, and associated data resource in bundle Executables directory'''
+**Cocoa executable, auxiliary executable, and associated data resource in bundle Executables directory**
 
 To make a simple GUI wrapper around an interactive shell executable that reads its data from a read-only "resource" data file, with everything in the Executables directory of the app bundle, use a Copy Files build phase in the project to copy the shell executable and the data file to the Executables directory inside the bundle. Launch the auxiliary executable from the GUI with the following code (assuming the auxiliary executable is named Aux_Exec:
 
-<code>path = [ [ [[NSBundle]] mainBundle ] pathForAuxiliaryExecutable: @"Aux_Exec" ];</code>
+    path = [ [ General/NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Aux_Exec" ];
 
-Since the Cocoa and auxiliary executables (and the data file) are all in the same directory, explicitly set the current working directory for the auxiliary executable to be the ''directory'' containing all of it, so that it can read the resource data file:
+Since the Cocoa and auxiliary executables (and the data file) are all in the same directory, explicitly set the current working directory for the auxiliary executable to be the *directory* containing all of it, so that it can read the resource data file:
 
-<code>
-	auxExec = [ [ [[NSTask]] alloc ] init ];
+    
+	auxExec = [ [ General/NSTask alloc ] init ];
 	[ auxExec setCurrentDirectoryPath: [ path stringByDeletingLastPathComponent ] ];
 	[ auxExec setLaunchPath: path ];
-</code>
+
 
 ----
 
-'''Do not use relative paths with GUI apps'''
+**Do not use relative paths with GUI apps**
 
-'''Problem:''' To locate the cocoa app and the auxiliary executable at the same level in a single folder:
+**Problem:** To locate the cocoa app and the auxiliary executable at the same level in a single folder:
 
 So far, I have managed to get the output into the GUI when
 
-1) I specify the absolute path to the UNIX executable in the setLaunchPath method for [[NSTask]]
+1) I specify the absolute path to the UNIX executable in the setLaunchPath method for General/NSTask
 
-I use  <code>[ cliExecutable setLaunchPath: @"exFilePath" ];</code>  where the path is fully specified.
+I use      [ cliExecutable setLaunchPath: @"exFilePath" ];  where the path is fully specified.
 
 or
 
@@ -40,33 +40,33 @@ To recap, I am succeeding even with relative path when the cocoa app is still in
 
 ----
 
-Don't use relative paths with GUI apps. If you need to find something relative to your program's location, use [[NSBundle]] to find out where your program is stored, and then modify that path to get at things that are next to it.
+Don't use relative paths with GUI apps. If you need to find something relative to your program's location, use General/NSBundle to find out where your program is stored, and then modify that path to get at things that are next to it.
 
 ----
 
-'''Exec Format Error - more about not using relative paths for auxiliary executables'''
+**Exec Format Error - more about not using relative paths for auxiliary executables**
 
-My app downloads a shell script from a remote server and we chmod it to be executable. The script executes fine from the command line, but when I try to launch it with [[NSTask]], it gives an "Exec Format Error". This is the code I have:
+My app downloads a shell script from a remote server and we chmod it to be executable. The script executes fine from the command line, but when I try to launch it with General/NSTask, it gives an "Exec Format Error". This is the code I have:
 
-<code>
+    
 	//download executable
-	NSURL ''exeLocator = [NSURL [[URLWithString]]:@"http://www.exdev.dk/connector/locator.ind"];
-	[[NSData]] ''locationData = [exeLocator resourceDataUsingCache:NO];
-	[[NSString]] ''exeLocation = [[[[NSString]] alloc] initWithBytes:[locationData bytes] length:[locationData length] encoding:[[NSASCIIStringEncoding]]];
-	NSURL ''[[URLToExe]] = [NSURL [[URLWithString]]:[[[[[NSString]] alloc] initWithString:@"http://www.exdev.dk/connector/"] stringByAppendingString:exeLocation]];
-	[[NSData]] ''exeData = [[[URLToExe]] resourceDataUsingCache:NO];
+	NSURL *exeLocator = [NSURL General/URLWithString:@"http://www.exdev.dk/connector/locator.ind"];
+	General/NSData *locationData = [exeLocator resourceDataUsingCache:NO];
+	General/NSString *exeLocation = General/[[NSString alloc] initWithBytes:[locationData bytes] length:[locationData length] encoding:General/NSASCIIStringEncoding];
+	NSURL *General/URLToExe = [NSURL General/URLWithString:General/[[[NSString alloc] initWithString:@"http://www.exdev.dk/connector/"] stringByAppendingString:exeLocation]];
+	General/NSData *exeData = General/[URLToExe resourceDataUsingCache:NO];
 	[exeData writeToFile:exeLocation atomically:NO];
 	//chmod it
-	[[NSArray]] ''chmodArguments = [[[NSArray]] arrayWithObjects:@"775", exeLocation, nil];
-	[[NSTask]] ''chmod = [[[NSTask]] launchedTaskWithLaunchPath:@"/bin/chmod" arguments:chmodArguments];
+	General/NSArray *chmodArguments = General/[NSArray arrayWithObjects:@"775", exeLocation, nil];
+	General/NSTask *chmod = General/[NSTask launchedTaskWithLaunchPath:@"/bin/chmod" arguments:chmodArguments];
 	[chmod waitUntilExit];
 	//launch it -The problem occurs HERE:
-	[[NSArray]] ''exeArguments = [[[NSArray]] arrayWithObjects:@"Connector", nil];
-	[[NSString]] ''exePath = [[[[NSString]] stringWithString:@"./"] stringByAppendingString:exeLocation];
-	[[NSTask]] ''executable = [[[NSTask]] launchedTaskWithLaunchPath:exePath arguments:exeArguments];
+	General/NSArray *exeArguments = General/[NSArray arrayWithObjects:@"Connector", nil];
+	General/NSString *exePath = General/[[NSString stringWithString:@"./"] stringByAppendingString:exeLocation];
+	General/NSTask *executable = General/[NSTask launchedTaskWithLaunchPath:exePath arguments:exeArguments];
 	[executable waitUntilExit];
 	//...
-</code>
+
 
 The same method works fine for chmod, and when the script is executed from command line. I also tried passing the complete path, instead of just "./" with no luck whatsoever.
 

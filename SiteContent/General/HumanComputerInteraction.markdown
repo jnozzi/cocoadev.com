@@ -11,7 +11,7 @@ Resources:
 
 *Bruce Tognazzini (http://www.asktog.com), who usually has quite a lot to say about the state of interface design at Apple. Both Bruce and Donald have been Apple employees.
 
-*Eric Raymond ([[OpenSource]] evangelist) has some things to say as to the state of interface design in the open source world: http://www.catb.org/~esr/writings/cups-horror.html
+*Eric Raymond (General/OpenSource evangelist) has some things to say as to the state of interface design in the open source world: http://www.catb.org/~esr/writings/cups-horror.html
 
 *Too lazy (and bandwidth-deficient) to find the link at the moment, but John Gruber should definitely be mentioned here, especially given his comments on Eric Raymond's CUPS horrors. http://www.daringfireball.net/
 
@@ -20,8 +20,8 @@ Resources:
 *There's some (somewhat dated) articles at [http://www.mackido.com/Interface/index.html]
 
 
-* [[CocoaDev]]: [[DrawerAbuse]], [[OverComplexGuiSimplification]]
+* General/CocoaDev: General/DrawerAbuse, General/OverComplexGuiSimplification
 
 
 
--- [[TheoHultberg]]/Iconara
+-- General/TheoHultberg/Iconara

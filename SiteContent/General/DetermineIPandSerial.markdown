@@ -6,13 +6,13 @@ I'm new to mac programming, and I'm not having much success with the documentati
 Can anyone help point me in the right direction?
 
 ----
-Why do you need the user's computer's serial number? If you tell us what your ultimate goal is, we may be able to suggest a simpler alternative to collecting all that info. -[[JonathanGrynspan]]
+Why do you need the user's computer's serial number? If you tell us what your ultimate goal is, we may be able to suggest a simpler alternative to collecting all that info. -General/JonathanGrynspan
 
 ----
 
 Also, a small warning, in case you hadn't considered it: Laptop users. Their fully qualified domain name may actually change, depending on which network they're connected to. Consider a home user connecting to a directory server at their place of employment. Or someone connecting to many different networks, as their occupation demands. If you're using it for, say, registration validation or any kind of persistent identification, you may be unpleasantly surprised at the FQDN's unreliability as a "unique identifier". The FQDN, in this case, is more useful for "profiles" of the various network states in which the computer can exist.
 
-Beyond that, look into "gestalt" (search this site and the cocoa-dev mailing list archives, and google the term in general) to get a wealth of system information. I believe the machine's serial number is available there. Check into <code>[[NSHost]]</code> (the <code>+currentHost</code> class method) to get host information on the machine on which your app is running (the 'current host'). Check out all of <code>[[NSHost]]</code>'s instance methods - <code>-name</code> and <code>-address</code>, particularly. This should get all the information you asked for.
+Beyond that, look into "gestalt" (search this site and the cocoa-dev mailing list archives, and google the term in general) to get a wealth of system information. I believe the machine's serial number is available there. Check into     General/NSHost (the     +currentHost class method) to get host information on the machine on which your app is running (the 'current host'). Check out all of     General/NSHost's instance methods -     -name and     -address, particularly. This should get all the information you asked for.
 
 
 ----

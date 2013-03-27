@@ -1,1 +1,1 @@
-#REDIRECT [[NSURL]]
+#REDIRECT General/NSURL

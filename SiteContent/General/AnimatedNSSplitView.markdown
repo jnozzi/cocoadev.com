@@ -2,50 +2,50 @@ Animating
 
 
 
-== Using <code>-animator</code> Proxy ==
+== Using     -animator Proxy ==
 
 Here's a method written for a subclass using vertical dividers. Obviously this can be edited to be used in a controller object -- and two more lines of code can add support for horizontal dividers.
 
- - (void)setSplitterPosition:([[CGFloat]])newPosition
+ - (void)setSplitterPosition:(General/CGFloat)newPosition
  {
-     [[NSView]] * view0 = [self.subviews objectAtIndex:0];
-     [[NSView]] * view1 = [self.subviews objectAtIndex:1];
+     General/NSView * view0 = [self.subviews objectAtIndex:0];
+     General/NSView * view1 = [self.subviews objectAtIndex:1];
      
-     [[NSRect]] view0TargetFrame = [[NSMakeRect]](view0.frame.origin.x, view0.frame.origin.y, newPosition, view0.frame.size.height);
-     [[NSRect]] view1TargetFrame = [[NSMakeRect]](newPosition + self.dividerThickness, view1.frame.origin.y, [[NSMaxX]](view1.frame) - newPosition - self.dividerThickness, view1.frame.size.height);
+     General/NSRect view0TargetFrame = General/NSMakeRect(view0.frame.origin.x, view0.frame.origin.y, newPosition, view0.frame.size.height);
+     General/NSRect view1TargetFrame = General/NSMakeRect(newPosition + self.dividerThickness, view1.frame.origin.y, General/NSMaxX(view1.frame) - newPosition - self.dividerThickness, view1.frame.size.height);
      
-     [[[NSAnimationContext]] beginGrouping];
-     [[[[NSAnimationContext]] currentContext] setDuration:0.2];
-     [[view0 animator] setFrame:view0TargetFrame];
+     General/[NSAnimationContext beginGrouping];
+     General/[[NSAnimationContext currentContext] setDuration:0.2];
+     General/view0 animator] setFrame:view0TargetFrame];
      [[view1 animator] setFrame:view1TargetFrame];
-     [[[NSAnimationContext]] endGrouping];
+     [[[NSAnimationContext endGrouping];
  }
 
 
-I should also mention that for some reason -splitView:resizeSubviewsWithOldSize: gets repeated called during the animation, even though the splitView isn't being resized. This may or may not be what you want, so you may want to check [[NSEqualSizes]]( sender.frame.size, oldSize) at the beginning of the function.
+I should also mention that for some reason -splitView:resizeSubviewsWithOldSize: gets repeated called during the animation, even though the splitView isn't being resized. This may or may not be what you want, so you may want to check General/NSEqualSizes( sender.frame.size, oldSize) at the beginning of the function.
 -- Jeffrey
 
 
 
-== Using [[NSViewAnimation]] ==
+== Using General/NSViewAnimation ==
 
- - ([[IBAction]])animateSplitView:(id)sender
+ - (General/IBAction)animateSplitView:(id)sender
  {
      static float s_delta = 130;
  
-     [[NSRect]] frame = [targetView frame]; //assumes you have an outlet defined to the view you want to resize
+     General/NSRect frame = [targetView frame]; //assumes you have an outlet defined to the view you want to resize
   
      frame.origin.y += s_delta;
      frame.size.height -= s_delta;
  
-     [[NSDictionary]] *windowResize windowResize = [[[NSDictionary]] dictionaryWithObjectsAndKeys:
-         targetView, [[NSViewAnimationTargetKey]], 
-         [[[NSValue]] valueWithRect: frame],
-         [[NSViewAnimationEndFrameKey]],
+     General/NSDictionary *windowResize windowResize = General/[NSDictionary dictionaryWithObjectsAndKeys:
+         targetView, General/NSViewAnimationTargetKey, 
+         General/[NSValue valueWithRect: frame],
+         General/NSViewAnimationEndFrameKey,
          nil];
  
-     [[NSViewAnimation]] * animation = [[[[NSViewAnimation]] alloc] initWithViewAnimations:[[[NSArray]] arrayWithObject: windowResize]];
-     [animation setAnimationBlockingMode:[[NSAnimationBlocking]]];
+     General/NSViewAnimation * animation = General/[[NSViewAnimation alloc] initWithViewAnimations:General/[NSArray arrayWithObject: windowResize]];
+     [animation setAnimationBlockingMode:General/NSAnimationBlocking];
      [animation startAnimation];
      [animation release];
  
@@ -58,9 +58,9 @@ I should also mention that for some reason -splitView:resizeSubviewsWithOldSize:
 
 
 
-== Another With [[NSViewAnimation]] ==
+== Another With General/NSViewAnimation ==
 
-This code also works; put it in a subclass of [[NSSplitView]].
+This code also works; put it in a subclass of General/NSSplitView.
 
  // Unhides both subviews and changes the splitter position, possibly
  // with animation. This method's behavior is undefined if there are not
@@ -69,14 +69,14 @@ This code also works; put it in a subclass of [[NSSplitView]].
  
  - (void)setSplitterPosition:(float)newSplitterPosition animate:(BOOL)animate
  {
-    if ([[self subviews] count] < 2)
+    if (General/self subviews] count] < 2)
         return;
  
-    [[NSView]] *subview0 = [[self subviews] objectAtIndex:0];
-    [[NSView]] *subview1 = [[self subviews] objectAtIndex:1];
+    [[NSView *subview0 = General/self subviews] objectAtIndex:0];
+    [[NSView *subview1 = General/self subviews] objectAtIndex:1];
  
-    [[NSRect]] subview0EndFrame = [subview0 frame];
-    [[NSRect]] subview1EndFrame = [subview1 frame];
+    [[NSRect subview0EndFrame = [subview0 frame];
+    General/NSRect subview1EndFrame = [subview1 frame];
  
     if ([self isVertical]) {
         subview0EndFrame.size.width = newSplitterPosition;
@@ -96,17 +96,17 @@ This code also works; put it in a subclass of [[NSSplitView]].
  
     // Update subviewEndFrame.origin so that the frame is positioned
     if (animate) {
-        [[NSDictionary]] *subview0Animation = [[[NSDictionary]] dictionaryWithObjectsAndKeys:
-            subview0, [[NSViewAnimationTargetKey]],
-            [[[NSValue]] valueWithRect:subview0EndFrame], [[NSViewAnimationEndFrameKey]], nil];
-        [[NSDictionary]] *subview1Animation = [[[NSDictionary]] dictionaryWithObjectsAndKeys:
-            subview1, [[NSViewAnimationTargetKey]],
-            [[[NSValue]] valueWithRect:subview1EndFrame], [[NSViewAnimationEndFrameKey]], nil];
+        General/NSDictionary *subview0Animation = General/[NSDictionary dictionaryWithObjectsAndKeys:
+            subview0, General/NSViewAnimationTargetKey,
+            General/[NSValue valueWithRect:subview0EndFrame], General/NSViewAnimationEndFrameKey, nil];
+        General/NSDictionary *subview1Animation = General/[NSDictionary dictionaryWithObjectsAndKeys:
+            subview1, General/NSViewAnimationTargetKey,
+            General/[NSValue valueWithRect:subview1EndFrame], General/NSViewAnimationEndFrameKey, nil];
  
-        [[NSViewAnimation]] *animation = [[[[NSViewAnimation]] alloc] initWithViewAnimations:[[[NSArray]] arrayWithObjects:subview0Animation, subview1Animation, nil]];
-        [animation setAnimationBlockingMode:[[NSAnimationBlocking]]];
+        General/NSViewAnimation *animation = General/[[NSViewAnimation alloc] initWithViewAnimations:General/[NSArray arrayWithObjects:subview0Animation, subview1Animation, nil]];
+        [animation setAnimationBlockingMode:General/NSAnimationBlocking];
         [animation setDuration:0.3];
-        // Use default animation curve, [[NSAnimationEaseInOut]].
+        // Use default animation curve, General/NSAnimationEaseInOut.
  
         isSplitterAnimating = YES;
         [animation startAnimation];
@@ -124,7 +124,7 @@ This code also works; put it in a subclass of [[NSSplitView]].
  - (float)splitterPosition
  {
      if ([self isVertical])
-         return [self frame].size.width - [[[self subviews] objectAtIndex:0] frame].size.width;
+         return [self frame].size.width - General/[self subviews] objectAtIndex:0] frame].size.width;
      else
          return [self frame].size.height - [[[self subviews] objectAtIndex:0] frame].size.height;
  }
@@ -133,9 +133,9 @@ This code also works; put it in a subclass of [[NSSplitView]].
     return isSplitterAnimating;
  }
  
- ///////////// [[NSSplitView]] delegate
+ ///////////// [[NSSplitView delegate
  
- - (void)splitView:([[NSSplitView]] *)sender resizeSubviewsWithOldSize:([[NSSize]])oldSize {
+ - (void)splitView:(General/NSSplitView *)sender resizeSubviewsWithOldSize:(General/NSSize)oldSize {
     // Don't interfere with animation.
     if ([sender isSplitterAnimating]) {
         // I got infinite recursion when I used plain old -display.

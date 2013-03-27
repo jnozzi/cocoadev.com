@@ -2,10 +2,10 @@ The Dashboard zooms on top of your Desktop with a click of a function key and, l
 
 http://www.apple.com/macosx/tiger/dashboard.html
 
-Dashboard widgets are written in DHTML & [[JavaScript]]. http://developer.apple.com/macosx/dashboard.html
+Dashboard widgets are written in DHTML & General/JavaScript. http://developer.apple.com/macosx/dashboard.html
 
 ----
-Anyone know if widget preferences (<code>preferenceForKey()</code>) are compatible with [[NSUserDefaults]]?
-''They appear to be stored that way, though I am not sure.'' -- l0ne aka [[EmanueleVulcano]]
+Anyone know if widget preferences (    preferenceForKey()) are compatible with General/NSUserDefaults?
+*They appear to be stored that way, though I am not sure.* -- l0ne aka General/EmanueleVulcano
 
 Yes, the widget preferences are stored in a domain with "widget-" prepended to the bundle identifier, i.e. "widget-com.apple.widget.stocks".

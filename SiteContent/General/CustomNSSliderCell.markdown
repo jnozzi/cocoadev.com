@@ -1,17 +1,17 @@
-I've created a custom [[NSSlider]] and it looks wonderful. The problem is that when I set an action and target either in the interface builder or by code it doesnt work. The slider will not perform the action. Please help! Here is my code:
+I've created a custom General/NSSlider and it looks wonderful. The problem is that when I set an action and target either in the interface builder or by code it doesnt work. The slider will not perform the action. Please help! Here is my code:
 
-<code>
+    
 @implementation progressSliderCell
 
 - (id)init 
 {
 	self = [super init];
     if (self) {
-		progressLeftImage = [[[[NSImage]] imageNamed:@"[[LCDSliderLeft]]"] retain];
-		progressRightImage = [[[[NSImage]] imageNamed:@"[[LCDSliderRight]]"] retain];
-		progressCenterImage = [[[[NSImage]] imageNamed:@"[[LCDSliderCenter]]"] retain];
+		progressLeftImage = General/[[NSImage imageNamed:@"General/LCDSliderLeft"] retain];
+		progressRightImage = General/[[NSImage imageNamed:@"General/LCDSliderRight"] retain];
+		progressCenterImage = General/[[NSImage imageNamed:@"General/LCDSliderCenter"] retain];
 		
-		progressKnobImage = [[[[NSImage]] imageNamed:@"Scrub"] retain];
+		progressKnobImage = General/[[NSImage imageNamed:@"Scrub"] retain];
     }
     return self;
 }
@@ -26,14 +26,14 @@ I've created a custom [[NSSlider]] and it looks wonderful. The problem is that w
 	[super dealloc];
 }
 
-- (id)copyWithZone:([[NSZone]] '')zone {
-    progressSliderCell ''newCopy = [[progressSliderCell alloc] init];
+- (id)copyWithZone:(General/NSZone *)zone {
+    progressSliderCell *newCopy = General/progressSliderCell alloc] init];
     return newCopy;
 }
 
 - (void)sendActionToTarget {
     if ([self target] && [self action]) {
-        [([[NSControl]] '')[self controlView] sendAction:[self action] to:[self target]];
+        [([[NSControl *)[self controlView] sendAction:[self action] to:[self target]];
     }
 }
 
@@ -42,58 +42,58 @@ I've created a custom [[NSSlider]] and it looks wonderful. The problem is that w
 	return 11;
 }
 
-- (void)drawKnob:([[NSRect]])knobRect
+- (void)drawKnob:(General/NSRect)knobRect
 {	
 	// Create a Canvas
-	[[NSImage]] ''canvas = [[[[[NSImage]] alloc] initWithSize:knobRect.size] autorelease];
-	[[NSRect]] canvasRect = [[NSMakeRect]](0, 0, [canvas size].width, [canvas size].height);
+	General/NSImage *canvas = General/[[[NSImage alloc] initWithSize:knobRect.size] autorelease];
+	General/NSRect canvasRect = General/NSMakeRect(0, 0, [canvas size].width, [canvas size].height);
 	
 	// Draw fill onto Canvas
 	[canvas lockFocus];
 	[progressKnobImage setSize:knobRect.size];
-	[progressKnobImage compositeToPoint:[[NSMakePoint]](0,2)
-							  operation:[[NSCompositeSourceOver]]];
+	[progressKnobImage compositeToPoint:General/NSMakePoint(0,2)
+							  operation:General/NSCompositeSourceOver];
 	[canvas unlockFocus];
 	
-	[[self controlView] lockFocus];
+	General/self controlView] lockFocus];
 	[canvas drawInRect:knobRect
 			  fromRect:canvasRect
-			 operation:[[NSCompositeSourceOver]]
+			 operation:[[NSCompositeSourceOver
 			  fraction:1.0];
-	[[self controlView] unlockFocus];
+	General/self controlView] unlockFocus];
 }
 
-- (void)drawBarInside:([[NSRect]])aRect flipped:(BOOL)flipped
+- (void)drawBarInside:([[NSRect)aRect flipped:(BOOL)flipped
 {
 	// Create a Canvas
-	[[NSImage]] ''canvas = [[[[[NSImage]] alloc] initWithSize:aRect.size] autorelease];
-	[[NSRect]] canvasRect = [[NSMakeRect]](0, 0, [canvas size].width, [canvas size].height);
+	General/NSImage *canvas = General/[[[NSImage alloc] initWithSize:aRect.size] autorelease];
+	General/NSRect canvasRect = General/NSMakeRect(0, 0, [canvas size].width, [canvas size].height);
 	
 	// Draw fill onto Canvas
 	[canvas lockFocus];
-	[progressLeftImage compositeToPoint:[[NSMakePoint]](0, 2) 
-							 operation:[[NSCompositeSourceOver]]];
+	[progressLeftImage compositeToPoint:General/NSMakePoint(0, 2) 
+							 operation:General/NSCompositeSourceOver];
 	
-	[progressRightImage compositeToPoint:[[NSMakePoint]]([canvas size].width - [progressRightImage size].width, 2) 
-							   operation:[[NSCompositeSourceOver]]];
+	[progressRightImage compositeToPoint:General/NSMakePoint([canvas size].width - [progressRightImage size].width, 2) 
+							   operation:General/NSCompositeSourceOver];
 	
-	[[NSSize]] middleSize = [[NSMakeSize]]([canvas size].width - [progressLeftImage size].width - [progressRightImage size].width, [progressCenterImage size].height);
+	General/NSSize middleSize = General/NSMakeSize([canvas size].width - [progressLeftImage size].width - [progressRightImage size].width, [progressCenterImage size].height);
 	[progressCenterImage setScalesWhenResized:YES];
 	[progressCenterImage setSize:middleSize];
-	[progressCenterImage compositeToPoint:[[NSMakePoint]]([progressLeftImage size].width, 2) 
-								operation:[[NSCompositeSourceOver]]];
+	[progressCenterImage compositeToPoint:General/NSMakePoint([progressLeftImage size].width, 2) 
+								operation:General/NSCompositeSourceOver];
 	[canvas unlockFocus];
 		
 	// Draw canvas
-	[[self controlView] lockFocus];
+	General/self controlView] lockFocus];
 	[canvas drawInRect:aRect
 			  fromRect:canvasRect
-			 operation:[[NSCompositeSourceOver]]
+			 operation:[[NSCompositeSourceOver
 			  fraction:1.0];
-	[[self controlView] unlockFocus];
+	General/self controlView] unlockFocus];
 }
 
-- (void) drawInteriorWithFrame:([[NSRect]])cellFrame inView:([[NSView]]'')controlView {
+- (void) drawInteriorWithFrame:([[NSRect)cellFrame inView:(General/NSView*)controlView {
     cellFrame = [self drawingRectForBounds:cellFrame];
     [controlView lockFocus];
     //_trackRect = cellFrame;
@@ -120,9 +120,9 @@ I've created a custom [[NSSlider]] and it looks wonderful. The problem is that w
 {
 	self = [super init];
 	if (self) {
-		progressSliderCell ''aCell = [[[progressSliderCell alloc] init] autorelease];;
-		[aCell setControlSize:[[NSSmallControlSize]]];
-		[aCell setSliderType:[[NSLinearSlider]]];
+		progressSliderCell *aCell = General/[progressSliderCell alloc] init] autorelease];;
+		[aCell setControlSize:[[NSSmallControlSize];
+		[aCell setSliderType:General/NSLinearSlider];
 		
 		[self setCell:aCell];
 	}
@@ -135,54 +135,54 @@ I've created a custom [[NSSlider]] and it looks wonderful. The problem is that w
 }
 
 - (void)performClick:(id)sender {
-    [[self cell] performClick:sender];
+    General/self cell] performClick:sender];
 }
 
 @end
-</code>
+
 
 ----
 
-You should probably implement your <code>copyWithZone:</code> method to actually create a copy. The way you have it, it creates a new object, but copies no attributes over.
+You should probably implement your     copyWithZone: method to actually create a copy. The way you have it, it creates a new object, but copies no attributes over.
 
-Since you don't have any extra attributes to copy, you can probably just call through to <code>super</code>, or just remove your override altogether and let [[NSSliderCell]] take care of making copies.
+Since you don't have any extra attributes to copy, you can probably just call through to     super, or just remove your override altogether and let [[NSSliderCell take care of making copies.
 
-''There's probably no need to implement <code>performClick:</code> either.''
+*There's probably no need to implement     performClick: either.*
 
-'''Nor <code>sendAction:toTarget:</code>.  Nor dealloc on the [[NSSlider]] subclass.  If you aren't changing the parent's behavior, you don't have to implement the method.'''
+**Nor     sendAction:toTarget:.  Nor dealloc on the General/NSSlider subclass.  If you aren't changing the parent's behavior, you don't have to implement the method.**
 
 ----
 
 I tried to use this subclass in one of my projects, and it doesn't work. I put the interface declarations in, and it doesn't give any errors, but the slider doesn't work, either. What am I doing wrong? I put in the declarations in a .h file, and declared the nsimage instances, and then added it with the nsslider to the IB file (and applied it to the slider). What am I missing?
 ----
-Because of the way IB creates objects, you have to use a custom view and change its class to progressSlider (lowercase class names are about as far from the standard as you can get, by the way). If you change an [[NSSlider]]'s class, it will make it a progressSlider -- but the slider ''cell'' will still be an [[NSSliderCell]]. Alternatively, you could add code like this (modified from one of my own projects) to change the necessary [[NSSliderCell]]<nowiki/>s to progressSliderCells. --[[JediKnil]]
-<code>
+Because of the way IB creates objects, you have to use a custom view and change its class to progressSlider (lowercase class names are about as far from the standard as you can get, by the way). If you change an General/NSSlider's class, it will make it a progressSlider -- but the slider *cell* will still be an General/NSSliderCell. Alternatively, you could add code like this (modified from one of my own projects) to change the necessary General/NSSliderCell<nowiki/>s to progressSliderCells. --General/JediKnil
+    
 // Within the view class...
 
-- (id)initWithCoder:([[NSCoder]] '')decoder
+- (id)initWithCoder:(General/NSCoder *)decoder
 {
 	BOOL shouldUseSetClass = NO;
 	BOOL shouldUseDecodeClassName = NO;
 	if ([decoder respondsToSelector:@selector(setClass:forClassName:)]) {
 		shouldUseSetClass = YES;
-		[([[NSKeyedUnarchiver]] '')decoder setClass:[progressSliderCell class] forClassName:@"[[NSSliderCell]]"];
+		[(General/NSKeyedUnarchiver *)decoder setClass:[progressSliderCell class] forClassName:@"General/NSSliderCell"];
 		
 	} else if ([decoder respondsToSelector:@selector(decodeClassName:asClassName:)]) {
 		shouldUseDecodeClassName = YES;
-		[([[NSUnarchiver]] '')decoder decodeClassName:@"[[NSSliderCell]]" asClassName:@"progressSliderCell"];
+		[(General/NSUnarchiver *)decoder decodeClassName:@"General/NSSliderCell" asClassName:@"progressSliderCell"];
 	}
 
 	self = [super initWithCoder:decoder];
 
 	if (shouldUseSetClass) {
-		[([[NSKeyedUnarchiver]] '')decoder setClass:[[[NSSliderCell]] class] forClassName:@"[[NSSliderCell]]"];
+		[(General/NSKeyedUnarchiver *)decoder setClass:General/[NSSliderCell class] forClassName:@"General/NSSliderCell"];
 	} else if (shouldUseDecodeClassName) {
-		[([[NSUnarchiver]] '')decoder decodeClassName:@"[[NSSliderCell]]" asClassName:@"[[NSSliderCell]]"];
+		[(General/NSUnarchiver *)decoder decodeClassName:@"General/NSSliderCell" asClassName:@"General/NSSliderCell"];
 	}
 	
 	return self;
 }
-</code>
+
 
 ----
-[[JediKnil]]'s approach is a good and sound trick. However, it shouldn't hard-code the restoring of the class. Instead, before calling [[NSKeyedUnarchiver]]'s -setClass:forClassName: it should first call -classForClassName: and store the returned Class. Then when restoring, call -setClass:forClassName: passing the saved-off Class as the 1st argument.  In the [[NSUnarchiver]] case, call -classNameDecodedForArchiveClassName: to save off the [[NSString]]'' of the class name, then pass that back to -decodeClassName:asClassName: when restoring.  So, good approach, just don't assume what you're restoring is what you wanted to replace... save off the old value, set it to the new, then restore the old value.
+General/JediKnil's approach is a good and sound trick. However, it shouldn't hard-code the restoring of the class. Instead, before calling General/NSKeyedUnarchiver's -setClass:forClassName: it should first call -classForClassName: and store the returned Class. Then when restoring, call -setClass:forClassName: passing the saved-off Class as the 1st argument.  In the General/NSUnarchiver case, call -classNameDecodedForArchiveClassName: to save off the General/NSString* of the class name, then pass that back to -decodeClassName:asClassName: when restoring.  So, good approach, just don't assume what you're restoring is what you wanted to replace... save off the old value, set it to the new, then restore the old value.

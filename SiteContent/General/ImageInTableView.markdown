@@ -1,26 +1,26 @@
-Its pretty easy to setDataCell on an entire column in [[NSTableView]] but to add images as the table is updated, should you not create a cell and then add the cell using this method:
+Its pretty easy to setDataCell on an entire column in General/NSTableView but to add images as the table is updated, should you not create a cell and then add the cell using this method:
 
-<code>
+    
 
-- (void)tableView:([[NSTableView]] '')aTableView willDisplayCell:(id)aCell forTableColumn:([[NSTableColumn]] '')aTableColumn row:(int)rowIndex
+- (void)tableView:(General/NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-    if ([[aTableColumn identifier] isEqualToString:@"icon"])
+    if (General/aTableColumn identifier] isEqualToString:@"icon"])
     {
         aCell = icon;
     }
 }
 
-</code>
 
-Obviously this doesn't work or I wouldn't be here....so how can I make it work? I am fairly sure that my cell is created correctly and the same with the [[NSImage]] in it.
 
-----
-
-I don't know enough to tell you how to get an icon to display in an [[NSTableView]] (I've never done it, at least)-- but I can tell you why the code above doesn't work: you're merely setting the aCell variable to the address of your icon within the scope of this method. E.g., ''outside'' of the method, aCell still points to whatever it originally pointed to. You're probably going to have to somehow tell the cell to draw your icon, probably through [[[NSCell]] setImage: ([[NSImage]] '') image]
-
-Better yet, set the cell for the column you're interested in to an [[NSImageCell]].
---[[ShamylZakariya]]
+Obviously this doesn't work or I wouldn't be here....so how can I make it work? I am fairly sure that my cell is created correctly and the same with the [[NSImage in it.
 
 ----
 
-Please look for the [[DragNDropOutlineView]] example in your developer/examples folder.
+I don't know enough to tell you how to get an icon to display in an General/NSTableView (I've never done it, at least)-- but I can tell you why the code above doesn't work: you're merely setting the aCell variable to the address of your icon within the scope of this method. E.g., *outside* of the method, aCell still points to whatever it originally pointed to. You're probably going to have to somehow tell the cell to draw your icon, probably through General/[NSCell setImage: (General/NSImage *) image]
+
+Better yet, set the cell for the column you're interested in to an General/NSImageCell.
+--General/ShamylZakariya
+
+----
+
+Please look for the General/DragNDropOutlineView example in your developer/examples folder.

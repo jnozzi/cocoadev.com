@@ -2,20 +2,20 @@
 
 Just want to know how to get the memory footprint of an object.
 
-The code below prints "size of a [[NSObject]]: 4"
-<code>
-[[NSLog]] (@"size of a [[NSObject]]: %i", sizeof ([[NSObject]]));
-</code>
+The code below prints "size of a General/NSObject: 4"
+    
+General/NSLog (@"size of a General/NSObject: %i", sizeof (General/NSObject));
 
-Even according to Foundation/[[NSObject]].h it is 4 bytes:
 
-<code>
-@interface [[NSObject]]
+Even according to Foundation/General/NSObject.h it is 4 bytes:
+
+    
+@interface General/NSObject
 {
 	Class isa;
 }
 ...
-</code>
+
 
 but I know it can't be (i.e. what about the retain count and other stuff which is private???)
 
@@ -25,17 +25,17 @@ Is there any way to determine exactly the footprint of any object? Thx
 
 ----
 
-Because all you are really checking with the function sizeof is the size of the pointer to the object.  So 4 bytes is correct for that.  The size of the object itself has its size checked using a different method.  -- [[DavidKopec]]
+Because all you are really checking with the function sizeof is the size of the pointer to the object.  So 4 bytes is correct for that.  The size of the object itself has its size checked using a different method.  -- General/DavidKopec
 
-[[NSObject]] is not a pointer, it is the object itself. id is a pointer. -- [[KritTer]]
+General/NSObject is not a pointer, it is the object itself. id is a pointer. -- General/KritTer
 
 ----
 
-[[KritTer]] is right. If you want a proof:
+General/KritTer is right. If you want a proof:
 
-<code>
+    
 
-@interface [[MyObject]] : [[NSObject]]
+@interface General/MyObject : General/NSObject
 {
 	id anID;
 }
@@ -43,12 +43,12 @@ Because all you are really checking with the function sizeof is the size of the 
 
 void showMe ()
 {
-	[[NSLog]] (@"size of [[MyObject]]: %i", sizeof ([[MyObject]]));
+	General/NSLog (@"size of General/MyObject: %i", sizeof (General/MyObject));
 }
 
-</code>
 
-gives "size of [[MyObject]]: 8"
+
+gives "size of General/MyObject: 8"
 
 Back to the question: I haven't found find any class methods or whatever giving the size of an object... Any help?
 
@@ -58,18 +58,18 @@ Back to the question: I haven't found find any class methods or whatever giving 
 
 Alas, even the objc runtime agrees with sizeof. The following:
 
-<code>
-    [[NSLog]](@"[[NSObject]] size: %d",
-          ((struct objc_class '')[[[NSObject]] class])->instance_size);
-    [[NSLog]](@"[[NSObject]] ivars: %d",
-          ((struct objc_class '')[[[NSObject]] class])->ivars->ivar_count);
-</code>
+    
+    General/NSLog(@"General/NSObject size: %d",
+          ((struct objc_class *)General/[NSObject class])->instance_size);
+    General/NSLog(@"General/NSObject ivars: %d",
+          ((struct objc_class *)General/[NSObject class])->ivars->ivar_count);
 
-gives "[[NSObject]] size: 4" and "[[NSObject]] ivars: 1". ("ivars" = instance variables")
 
-I assume the retain count is kept elsewhere, perhaps by the [[NSAutoreleasePool]] class.
+gives "General/NSObject size: 4" and "General/NSObject ivars: 1". ("ivars" = instance variables")
 
---[[KritTer]]
+I assume the retain count is kept elsewhere, perhaps by the General/NSAutoreleasePool class.
+
+--General/KritTer
 
 ----
 
@@ -78,21 +78,21 @@ Thx -- peacha
 
 ----
 
-I don't know for sure how it's implemented by Apple, but I can tell you how it's implemented in [[GNUstep]]. Here is a small part of the [[NSObject]] code :
+I don't know for sure how it's implemented by Apple, but I can tell you how it's implemented in General/GNUstep. Here is a small part of the General/NSObject code :
 
-<code>
-/''    Copyright (C) 1994, 1995, 1996 Free Software Foundation, Inc.
- ''    This file is part of the [[GNUstep]] Base Library.
- ''    Released under the GPL v2
- ''/
+    
+/*    Copyright (C) 1994, 1995, 1996 Free Software Foundation, Inc.
+ *    This file is part of the General/GNUstep Base Library.
+ *    Released under the GPL v2
+ */
 - (id)retain
 {
-  [[NSIncrementExtraRefCount]](self);
+  General/NSIncrementExtraRefCount(self);
   return self;
 }
 
 void
-[[NSIncrementExtraRefCount]](id anObject)
+General/NSIncrementExtraRefCount(id anObject)
 {
   if (allocationLock != 0)
     {
@@ -105,14 +105,14 @@ void
       ((obj)anObject)[-1].retained++;
     }
 }
-</code>
 
-So the retain count is kept 4 bytes ''before'' the actual position of the 
+
+So the retain count is kept 4 bytes *before* the actual position of the 
 pointer. Why is it done like this ?
 
-Partly to support garbage collecting. It lets you add garbage collecting without changing the interface of any class, you would just need to change the alloc/retain/release/dealloc methods of [[NSObject]].
+Partly to support garbage collecting. It lets you add garbage collecting without changing the interface of any class, you would just need to change the alloc/retain/release/dealloc methods of General/NSObject.
 
-[[GNUstep]] does support garbage collecting for the base library (the equivalent of
-the [[FoundationKit]]), but I never tried 'cause it doesn't work for the gui part.
+General/GNUstep does support garbage collecting for the base library (the equivalent of
+the General/FoundationKit), but I never tried 'cause it doesn't work for the gui part.
 
---[[PierreYvesRivaille]]
+--General/PierreYvesRivaille

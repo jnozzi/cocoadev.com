@@ -1,21 +1,21 @@
 
 
-Code for using custom types with the [[NSUserDefaults]] class.
+Code for using custom types with the General/NSUserDefaults class.
 
-Modified from the [[NSColor]] sample code on Apple's developer web site
+Modified from the General/NSColor sample code on Apple's developer web site
 
-'''Source for [[NSUserDefaults]]+[[CocoaDevUsersAdditions]].h :'''
-<code>
+**Source for General/NSUserDefaults+General/CocoaDevUsersAdditions.h :**
+    
  #import <Foundation/Foundation.h>
  
  @interface NSUserDefaults(CocoaDevUsersAdditions)
  - (void)encodeObject:(id <NSCoding>)anObject forKey:(NSString*)aKey;
  - (id)decodeObjectForKey:(NSString*)aKey;
  @end
-</code>
+
  
-'''Source for [[NSUserDefaults]]+[[CocoaDevUsersAdditions]].m :'''
-<code>
+**Source for General/NSUserDefaults+General/CocoaDevUsersAdditions.m :**
+    
  #import "NSUserDefaults+CocoaDevUsersAdditions.h"
  
  @implementation NSUserDefaults(CocoaDevUsersAdditions)
@@ -34,7 +34,7 @@ Modified from the [[NSColor]] sample code on Apple's developer web site
  	return (theData != nil) ? [NSKeyedUnarchiver unarchiveObjectWithData:theData] : nil;
  }
  @end
-</code>
 
 
-[[Category:CocoaDevUsersAdditions]]
+
+General/Category:CocoaDevUsersAdditions

@@ -1,29 +1,29 @@
 Hi,
-I'm a real inexperienced programmer so please bare with me.  I'm trying to get some information from a file that is written after 5 different [[NSTasks]] end.  Now if this was only one [[NSTask]] I have no problem but with the code I'm using right now:
+I'm a real inexperienced programmer so please bare with me.  I'm trying to get some information from a file that is written after 5 different General/NSTasks end.  Now if this was only one General/NSTask I have no problem but with the code I'm using right now:
 
-[[[[NSNotificationCenter]] defaultCenter] addObserver:self 
+General/[[NSNotificationCenter defaultCenter] addObserver:self 
             selector:@selector(finishedDownload:) 
-            name:[[NSTaskDidTerminateNotification]] 
+            name:General/NSTaskDidTerminateNotification 
             object:nil];
 			
-In the -(id)init of my file, When 4 different [[NSTasks]] call it simulataneouly it crashes the application. Does anybody no how to work around this?  Or is there any other way to know when [[NSTasks]] end?
+In the -(id)init of my file, When 4 different General/NSTasks call it simulataneouly it crashes the application. Does anybody no how to work around this?  Or is there any other way to know when General/NSTasks end?
 
 Thanks
 
 ----
 
-What does your <code>finishedDownload:</code> look like?
+What does your     finishedDownload: look like?
 
-If the task order is determinate, and you have a pointer to your last [[NSTask]], you can pass that to [[NSNotificationCenter]] for <code>object:</code> and you'll only receive the notification for that task.
+If the task order is determinate, and you have a pointer to your last General/NSTask, you can pass that to General/NSNotificationCenter for     object: and you'll only receive the notification for that task.
 
 finishedDownload: looks like this:
-<code>
-- ([[NSString]] '')finishedDownload:([[NSNotification]] '')aNotification {
-	[[NSString]] ''lastUpdate;
-	home2=[[NSHomeDirectory]]();
+    
+- (General/NSString *)finishedDownload:(General/NSNotification *)aNotification {
+	General/NSString *lastUpdate;
+	home2=General/NSHomeDirectory();
 	
-	[[NSString]] ''updateString=[[[NSString]] stringWithContentsOfFile:home2];
-		[[NSRange]] range1;
+	General/NSString *updateString=General/[NSString stringWithContentsOfFile:home2];
+		General/NSRange range1;
 
 	if (totalMarker1 != nil) {
 home2=[home2 stringByAppendingString:@"/Library/Xplanet/markers/updatelabel"];
@@ -36,7 +36,7 @@ home2=[home2 stringByAppendingString:@"/Library/Xplanet/markers/updatelabel"];
 		range1=[updateString rangeOfString:@"color="];
         updateString=[updateString substringFromIndex:range1.location + range1.length];
 		range1=[updateString rangeOfString:@"image="];
-		[[NSString]] ''stormString = [updateString substringToIndex:range1.location-1];
+		General/NSString *stormString = [updateString substringToIndex:range1.location-1];
 					if ([stormString isEqualToString:@"Green"] == TRUE)
 				lastUpdate=[lastUpdate stringByAppendingString:@"Successful"];
 			else
@@ -48,7 +48,7 @@ home2=[home2 stringByAppendingString:@"/Library/Xplanet/markers/updatelabel"];
 	}
 
 else if (totalMarker2 != nil) {
-	updateString=[[[NSString]] stringWithContentsOfFile:home2];
+	updateString=General/[NSString stringWithContentsOfFile:home2];
 	lastUpdate=@"Last Satellite Update: ";
 		range1=[updateString rangeOfString:@"color="];
         updateString=[updateString substringFromIndex:range1.location + range1.length];
@@ -61,7 +61,7 @@ else if (totalMarker2 != nil) {
 		range1=[updateString rangeOfString:@"color="];
         updateString=[updateString substringFromIndex:range1.location + range1.length];
 		range1=[updateString rangeOfString:@"image="];
-		[[NSString]] ''satelliteString = [updateString substringToIndex:range1.location-1];
+		General/NSString *satelliteString = [updateString substringToIndex:range1.location-1];
 			if ([satelliteString isEqualToString:@"Green"] == TRUE)
 				lastUpdate=[lastUpdate stringByAppendingString:@"Successful"];
 			else
@@ -73,7 +73,7 @@ else if (totalMarker2 != nil) {
 			
 }
 else if (totalMarker3 != nil) {
-	updateString=[[[NSString]] stringWithContentsOfFile:home2];
+	updateString=General/[NSString stringWithContentsOfFile:home2];
 		lastUpdate=@"Last Volcano Update: ";
 		range1=[updateString rangeOfString:@"color="];
         updateString=[updateString substringFromIndex:range1.location + range1.length];
@@ -91,7 +91,7 @@ else if (totalMarker3 != nil) {
 		range1=[updateString rangeOfString:@"color="];
         updateString=[updateString substringFromIndex:range1.location + range1.length];
 		range1=[updateString rangeOfString:@"image="];
-		[[NSString]] ''volcanoString = [updateString substringToIndex:range1.location-1];
+		General/NSString *volcanoString = [updateString substringToIndex:range1.location-1];
 			if ([volcanoString isEqualToString:@"Green"] == TRUE)
 				lastUpdate=[lastUpdate stringByAppendingString:@"Successful"];
 			else
@@ -103,12 +103,12 @@ else if (totalMarker3 != nil) {
     [totalMarker3 release];
 }
 else if (totalMarker4 != nil) {
-	updateString=[[[NSString]] stringWithContentsOfFile:home2];
+	updateString=General/[NSString stringWithContentsOfFile:home2];
 lastUpdate=@"Last Earthquake Update: ";
 		range1=[updateString rangeOfString:@"color="];
         updateString=[updateString substringFromIndex:range1.location + range1.length];
 		range1=[updateString rangeOfString:@"image="];
-		[[NSString]] ''quakeString = [updateString substringToIndex:range1.location-1];
+		General/NSString *quakeString = [updateString substringToIndex:range1.location-1];
 			if ([quakeString isEqualToString:@"Green"] == TRUE)
 				lastUpdate=[lastUpdate stringByAppendingString:@"Successful"];
 			else
@@ -118,7 +118,7 @@ lastUpdate=@"Last Earthquake Update: ";
 			[totalMarker4 release];
 }
 else if (totalMarker5 != nil) {
-	updateString=[[[NSString]] stringWithContentsOfFile:home2];
+	updateString=General/[NSString stringWithContentsOfFile:home2];
 		lastUpdate=@"Last Cloud Update: ";
 		range1=[updateString rangeOfString:@"color="];
         updateString=[updateString substringFromIndex:range1.location + range1.length];
@@ -139,7 +139,7 @@ else if (totalMarker5 != nil) {
 		range1=[updateString rangeOfString:@"color="];
         updateString=[updateString substringFromIndex:range1.location + range1.length];
 		range1=[updateString rangeOfString:@"image="];
-		[[NSString]] ''cloudString = [updateString substringToIndex:range1.location-1];
+		General/NSString *cloudString = [updateString substringToIndex:range1.location-1];
 			if ([cloudString isEqualToString:@"Green"] == TRUE)
 				lastUpdate=[lastUpdate stringByAppendingString:@"Successful"];
 			
@@ -150,7 +150,7 @@ else if (totalMarker5 != nil) {
 			[totalMarker5 release];
 			
 }
-</code>
+
 This way I determine the different tasks are to see which one is nil.  This is very inefficent way of doing it.  I'd like some more details about this determinate thing you are talking about.  Exactly what do I have to do to the tasks?
 
 ----
@@ -161,8 +161,8 @@ Also, I don't think the notifications are sent "simultaneously", if by that you 
 
 ----
 
-Assuming the <code>totalMarker</code>s are [[NSTask]] objects, try changing the <code>if (totalMarker(X) != nil)</code> tests to <code>if ([totalMarker(X) isRunning])</code> or <code>if ([totalMarker(X) terminationStatus] != 0)</code>. See docs at [http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSTask]].html]
+Assuming the     totalMarkers are General/NSTask objects, try changing the     if (totalMarker(X) != nil) tests to     if ([totalMarker(X) isRunning]) or     if ([totalMarker(X) terminationStatus] != 0). See docs at [http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSTask.html]
 
-It's hard to tell what you're trying to do here - when one task finishes, you test all the tasks, then if they ''aren't'' nil (still running, presumably),  you update some UI state, then release the task.
+It's hard to tell what you're trying to do here - when one task finishes, you test all the tasks, then if they *aren't* nil (still running, presumably),  you update some UI state, then release the task.
 
-Also, don't forget that you can simply retrieve the object that posted the notification by doing <code>[aNotification object]</code> which may save you some testing.
+Also, don't forget that you can simply retrieve the object that posted the notification by doing     [aNotification object] which may save you some testing.

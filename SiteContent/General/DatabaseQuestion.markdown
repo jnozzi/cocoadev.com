@@ -5,17 +5,17 @@ The correct solution would be to create one table for artist, one for albums and
 
 If you dont't plan to update or delete records from the database once you have done the initial loading from the file there is nothing stopping you from having all information in one table and using index on some fields to speed up searches.
 
-[[JoakimDanielson]]
+General/JoakimDanielson
 
 ----
 
 Thanks for the input. I already started to do the last idea. I broke up artist names into a huge set of individual words. As I scanned each individual cddb album information file I parsed out the words that make up the artist's name and convert these words to all uppercase.
 
-Every word is a key to a mutable array that stores the discid associated with each word. All of these arrays are values stored in a core foundation mutable dictionary. I then used <code>qsort()</code> to sort the keys and created a lookup table based on the first two characters of every word. Then I store a word table with two fields (the word and the offset value for the storage location of the array of discid's associated with the word). 
+Every word is a key to a mutable array that stores the discid associated with each word. All of these arrays are values stored in a core foundation mutable dictionary. I then used     qsort() to sort the keys and created a lookup table based on the first two characters of every word. Then I store a word table with two fields (the word and the offset value for the storage location of the array of discid's associated with the word). 
 
 Basically the stucture of the database looks like this:
 
-<code>
+    
 [WORD INDEX TABLE] // two fields (first two characters, word table jump value)
     AA  10024
     AB  10444
@@ -40,7 +40,7 @@ Basically the stucture of the database looks like this:
     41B2F3E2
     ...
 [/DISCID TABLE]
-</code>
+
 
 The DISCID table is a continuous array of unsinged int values (shown in hex format here). The range of discid values associated with a particular word is calculated using the discid table jump value of the word and the jump value of the next word. 
 
@@ -48,13 +48,13 @@ Some statics for the database created from the album information for the genre "
 
 
 *number of cddb album information files (each file has a unique discid value) - 392,349 albums
-*size of all of these files concatenated together (this file is named <code>rock.cddb_cat</code>) - 335 MB
+*size of all of these files concatenated together (this file is named     rock.cddb_cat) - 335 MB
 *time to parse, sort and create database file (450MHz/768MB/80G) - ~60 sec 
 *total number of words parsed (includes duplicates) - 735,052
 *total number of unique words - 75,357
 *database file size - 5.6 MB
 
 
-<code>rock.cddb_cat</code> is presorted by discid and indexed. I plan on creating similar databases for the album titles and then test to see if merging all of these databases (10 genres '' 2) is worth doing. 
+    rock.cddb_cat is presorted by discid and indexed. I plan on creating similar databases for the album titles and then test to see if merging all of these databases (10 genres * 2) is worth doing. 
 
 I haven't finished the search engine yet, so I don't have any search times. I'm still trying to decide on the criteria for search scores. This database is only for situations where internet access is not available, so I will never add new entries (that's what iTunes is for). I'll just update this database periodically when www.freedb.com has a major update.

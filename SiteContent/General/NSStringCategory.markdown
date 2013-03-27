@@ -1,14 +1,14 @@
 
 
 
-[[GormanChristian]] thought it would be a good idea to start a page with useful string methods. Now, anyone in the community can feel free to add a method or two (or more)! (Functions are also acceptable.) Refactoring is also always welcome.
+General/GormanChristian thought it would be a good idea to start a page with useful string methods. Now, anyone in the community can feel free to add a method or two (or more)! (Functions are also acceptable.) Refactoring is also always welcome.
 
-''Be careful when using methods that return non-class types (such as int or [[NSRange]]). You'll need to #import the category's header file or declare the method some other way, or else the compiler will consider the return type to be id and complain''
+*Be careful when using methods that return non-class types (such as int or General/NSRange). You'll need to #import the category's header file or declare the method some other way, or else the compiler will consider the return type to be id and complain*
 
-'''[[NSString]] category [[CocoaDevUsersAdditions]]:'''
+**General/NSString category General/CocoaDevUsersAdditions:**
 
-'''[[NSString]]+[[CocoaDevUsersAdditions]].h'''
-<code>
+**General/NSString+General/CocoaDevUsersAdditions.h**
+    
  #import <Foundation/Foundation.h>
  
  @interface NSString (CocoaDevUsersAdditions)
@@ -62,17 +62,17 @@
  +(NSString*)pathFromFSRef:(FSRef*)ref;
  
  @end
-</code>
 
 
-'''[[NSString]]+[[CocoaDevUsersAdditions]].m'''
-<code>
+
+**General/NSString+General/CocoaDevUsersAdditions.m**
+    
  #import "NSString+CocoaDevUsersAdditions.h"
  
  @implementation NSString (CocoaDevUsersAdditions)
  
  + (NSString *)stringWithPascalString:(Str255)aString encoding:(CFStringEncoding)encoding {
-   return [[[self alloc] initWithPascalString:aString encoding:encoding] autorelease];
+   return General/[self alloc] initWithPascalString:aString encoding:encoding] autorelease];
  }
  
  - (id)initWithPascalString:(Str255)aString encoding:(CFStringEncoding)encoding {
@@ -135,7 +135,7 @@
      
      if ([scanner scanCharactersFromSet:tokenSet intoString:&destination])
      {
-       [tokens addObject:[NSString stringWithString:destination]];
+       [tokens addObject:[NSString stringWithString:destination;
      }
    }
    
@@ -149,10 +149,10 @@
    return [self tokensSeparatedByCharactersFromSet:[tokensSet invertedSet]];
  }
  
- //be careful if you're using [[SenTe]]'s [[SenFoundation]].  It implements -words as well,
+ //be careful if you're using General/SenTe's General/SenFoundation.  It implements -words as well,
  //and you may become confused in seeking bugs.
  
- //[[NSTextStorage]] implements a -words method as well (in 10.3, at least). You may be able to use that instead.
+ //General/NSTextStorage implements a -words method as well (in 10.3, at least). You may be able to use that instead.
  - (NSArray *)words
  {
    NSMutableCharacterSet *tokenSet = [NSMutableCharacterSet letterCharacterSet];
@@ -182,7 +182,7 @@
  }
  
  -(NSArray *)linesSortedByLength {
-   return [[self componentsSeparatedByString:@"\n"] sortedArrayUsingSelector:@selector(compareLength:)];
+   return General/self componentsSeparatedByString:@"\n"] sortedArrayUsingSelector:@selector(compareLength:)];
  }
  
  -(NSComparisonResult)compareLength:(NSString *)otherString {
@@ -194,7 +194,7 @@
  
  - (BOOL)smartWriteToFile:(NSString *)path atomically:(BOOL)atomically
  {
-   if([self isEqualToString:[NSString stringWithContentsOfFile:path]]) { return YES; }
+   if([self isEqualToString:[NSString stringWithContentsOfFile:path) { return YES; }
    return [self writeToFile:path atomically:atomically];
  }
  
@@ -269,7 +269,7 @@
   	[outputString appendString:temp];
      
    }
-   return [[outputString copy] autorelease];
+   return General/outputString copy] autorelease];
  }
  
  -(NSString*)newlineToCR
@@ -298,7 +298,7 @@
        [safePath release];
        safePath = [[NSString alloc] initWithFormat:@"%@ %d.%@",
                    [self       stringByDeletingPathExtension],
-                   numberWithName,[self pathExtension]];
+                   numberWithName,[self pathExtension;
        
        numberWithName++;
      }
@@ -309,7 +309,7 @@
  
  -(NSRange)whitespaceRangeForRange:(NSRange)characterRange
  {
-   NSString *string = [[self copy] autorelease];
+   NSString *string = General/self copy] autorelease];
    NSCharacterSet *whitespaceSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
    unsigned int areamax = NSMaxRange(characterRange);
    unsigned int length = [string length];
@@ -391,7 +391,7 @@
               errorSize, [errorString length]);
    
    [NSException raise: NSInvalidArgumentException
-                   format: @"%s: %s", name, [errorString bytes]];
+                   format: @"%s: %s", name, [errorString bytes;
  }
  
  - (NSArray *) findRegularExpression:(NSString *)re ignoreCase:(BOOL)ignoreCase;
@@ -494,23 +494,23 @@
  }
  
  @end
-</code>
+
 
 ----
-'''[[NSString]] category [[CocoaDevUsersAdditionsTest]] using [[ObjcUnit]] framework:'''
+**General/NSString category General/CocoaDevUsersAdditionsTest using General/ObjcUnit framework:**
 
-'''[[NSString]]+[[CocoaDevUsersAdditionsTest]].h'''
-<code>
+**General/NSString+General/CocoaDevUsersAdditionsTest.h**
+    
  #import <ObjcUnit/ObjcUnit.h>
  
  @interface NSString+CocoaDevUsersAdditionsTest: TestCase {
  }
  
  @end
-</code>
 
-'''[[NSString]]+[[CocoaDevUsersAdditionsTest]].m'''
-<code>
+
+**General/NSString+General/CocoaDevUsersAdditionsTest.m**
+    
  #import "NSString+CocoaDevUsersAdditionsTest.h"
  #import "NSString+CocoaDevUsersAdditions.h"
  
@@ -545,51 +545,51 @@
  }
  
  @end
-</code>
+
 
 ----
-'''Revision History'''
+**Revision History**
 
-Adjusted indentation, spacing, braces. -- [[DustinVoss]]
+Adjusted indentation, spacing, braces. -- General/DustinVoss
 
-Added header and implemetation files for unit tesing using [[ObjcUnit]]. I think it should be a part of any code. -- [[NirSoffer]]
+Added header and implemetation files for unit tesing using General/ObjcUnit. I think it should be a part of any code. -- General/NirSoffer
 
-Added someone's '''containsString:'''. -- [[DustinVoss]]
+Added someone's **containsString:**. -- General/DustinVoss
 
 7 November 2003 - added splitToSize:(unsigned)size, removeTabsAndReturns, newlineToCR methods
 
-'''25 November 2003''' - added [[GormanChristian]]'s safeFilePath method from the [[SafelyNamingFiles]] page
+**25 November 2003** - added General/GormanChristian's safeFilePath method from the General/SafelyNamingFiles page
 
-'''7 June 2004''' - added <code>whitespaceRangeForRange:</code> adapted from code by [[MikeTrent]] over at [[ImplementSyntaxHighlighting]]
+**7 June 2004** - added     whitespaceRangeForRange: adapted from code by General/MikeTrent over at General/ImplementSyntaxHighlighting
 
 
-'''13 June 2004''' - added <code>findRegularExpression:</code> -- [[PerryClarke]]
+**13 June 2004** - added     findRegularExpression: -- General/PerryClarke
 
-'''16 March 2005''' - added <code>-(BOOL)isValidURL</code>
+**16 March 2005** - added     -(BOOL)isValidURL
 
-'''16 March 2005''' - added <code>containsCharacterFromSet:</code>, <code>stringWithSubstitute:forCharactersFromSet:</code>, <code>stringSafeForXML</code>, and <code>substringBefore</code>/<code>[[AfterRange]]:</code> -- [[DustinVoss]]
+**16 March 2005** - added     containsCharacterFromSet:,     stringWithSubstitute:forCharactersFromSet:,     stringSafeForXML, and     substringBefore/    General/AfterRange: -- General/DustinVoss
 
-'''9 October 2005''' - cleaned up and modified -tokensSeparatedByCharactersFromSet: to behave as expected, that is, to return tokens separated by characters from specified set, instead of tokens separated by the inverse of the specified set.  Updated -words and -objCTokens accordingly and fixed compile error in -words, though I question the usefulness of these methods.  Corrected misuse of NULL in containsString: and eliminated C99 scoping in ''for'' loop within -findRegularExpression:ignoreCase: to eliminate compiler warnings.  Fixed bug in findRegularExpression:ignoreCase: where ''for'' loop would be exited prematurely if a subexpression was not matched; instead, now returns [[[NSNull]] null] in this case.  Also rewrote this method to use [[NSMutableData]], removing hard-coded space allocation, and added raise_reg_error_exception function to raise an exception on error.  -- [[TkM]]
+**9 October 2005** - cleaned up and modified -tokensSeparatedByCharactersFromSet: to behave as expected, that is, to return tokens separated by characters from specified set, instead of tokens separated by the inverse of the specified set.  Updated -words and -objCTokens accordingly and fixed compile error in -words, though I question the usefulness of these methods.  Corrected misuse of NULL in containsString: and eliminated C99 scoping in *for* loop within -findRegularExpression:ignoreCase: to eliminate compiler warnings.  Fixed bug in findRegularExpression:ignoreCase: where *for* loop would be exited prematurely if a subexpression was not matched; instead, now returns General/[NSNull null] in this case.  Also rewrote this method to use General/NSMutableData, removing hard-coded space allocation, and added raise_reg_error_exception function to raise an exception on error.  -- General/TkM
 
 ----
 
-'''[[NSString]] (rot13)'''
+**General/NSString (rot13)**
 
 This is a simple category to add a class function that allows ROT13 encoding to the string class. 
 A friend asked for a simple ROT13 encoder/decoder, so I hacked this together real quick while 
 having my morning coffee. I am sure I could probably have written this a touch cleaner, but as 
 of now it works and is compliant with ROT13 standards, and most of all, it's easy to use. 
 
-'''Example:'''
-<code>
+**Example:**
+    
  NSString *rotted = [NSString rot13:@"This text is encoded in ROT13 format"];
-</code>
+
 
 The same function encoded and decodes, so it's easy to use.
 
 
-'''[[NSString]]+rot13.h'''
-<code>
+**General/NSString+rot13.h**
+    
  //
  //  rot13.h
  //  iROT13
@@ -603,10 +603,10 @@ The same function encoded and decodes, so it's easy to use.
  @interface NSString (rot13)
  + (NSString *)rot13:(NSString *)theText;
  @end
-</code>
 
-'''[[NSString]]+rot13.m'''
-<code>
+
+**General/NSString+rot13.m**
+    
  //
  //  rot13.m
  //  iROT13
@@ -621,7 +621,7 @@ The same function encoded and decodes, so it's easy to use.
  @implementation NSString (rot13)
  
  + (NSString *)rot13:(NSString *)theText {
-   NSMutableString *holder = [[NSMutableString alloc] init];
+   NSMutableString *holder = General/NSMutableString alloc] init];
    unichar theChar;
    int i;
    
@@ -652,41 +652,41 @@ The same function encoded and decodes, so it's easy to use.
  }
  
  @end
-</code>
+
 
 I hope others find this of use... I have had to do this a few times over the years when some project called for ROT13, 
 so I figured this way, others can get the use of this, and I can look it up here later in case I look the original (again).
 
-[[DaveGiffin]]
+[[DaveGiffin
 
-''This code will break with characters that don't fit within a single byte, which is all unicode characters that are outside of the Latin1 charset. It will work fine for ASCII, but it will mangle general unicode text. Declaring theChar as a unichar and changing the append lines would fix it.''
+*This code will break with characters that don't fit within a single byte, which is all unicode characters that are outside of the Latin1 charset. It will work fine for ASCII, but it will mangle general unicode text. Declaring theChar as a unichar and changing the append lines would fix it.*
 
-''Thanks, I totally missed that. Still not used to messing with the unichar typedef... I just fixed this in the application and am updating the above posted code to reflect it. Again, thanks for the input.''
-[[DaveGiffin]]
+*Thanks, I totally missed that. Still not used to messing with the unichar typedef... I just fixed this in the application and am updating the above posted code to reflect it. Again, thanks for the input.*
+General/DaveGiffin
 
-''Great! I'm always keeping my eye out for things like that. I'm glad you were able to fix it so easily. It does make one wonder, what exactly is the proper way to rot13 a bunch of Chinese text? :-)''
+*Great! I'm always keeping my eye out for things like that. I'm glad you were able to fix it so easily. It does make one wonder, what exactly is the proper way to rot13 a bunch of Chinese text? :-)*
 
-'''It's probably like rot3000 or something...'''
+**It's probably like rot3000 or something...**
 
-By the way, you are leaking the local [[NSMutableString]] holder.
-<code>
+By the way, you are leaking the local General/NSMutableString holder.
+    
  NSString *rval = [NSString stringWithString:holder];
  [holder release];
  return rval;
-</code>
+
 
 Also stylistically, and performance wise, you would be best to burn another local variable to cache [theText length] so you don't recompute it every time through the loop.
-<code>
+    
  NSUInteger len = [theText length];
  for(i = 0; i < len; i++) {
-</code>
+
 ----
 
 Added pathToFSRef and pathFromFSRef.
 
 Usage:
 
-<code>
+    
  FSRef ref = {'\0'};			
  if ( [@"/System" pathToFSRef:&ref] == noErr )
  {
@@ -694,7 +694,7 @@ Usage:
    path = [NSString pathFromFSRef:&ref];
    NSLog(path);
  }
-</code>
 
 
-[[Category:CocoaDevUsersAdditions]]
+
+General/Category:CocoaDevUsersAdditions

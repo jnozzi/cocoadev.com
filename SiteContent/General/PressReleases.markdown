@@ -13,7 +13,7 @@ How about some press-addresses of well-known mac news sites? I thought I'd start
 *reviews@macworld.com
 *pr2003@macintouch.com
 ----
-''Now to the questions'':
+*Now to the questions*:
 
 What if no sites bring your news? Mail the press release the next day again? Or just accept it and get no media attention at all?
 
@@ -33,9 +33,9 @@ The following page includes some good suggestions: http://extension.oregonstate.
 
 You may find services such as Ray Barber's prMac useful: http://www.prmac.com/
 
-My personal experience in writing press releases is archived on [[DssW]]'s web site at: http://www.dssw.co.uk/press/index.html
+My personal experience in writing press releases is archived on General/DssW's web site at: http://www.dssw.co.uk/press/index.html
 
-With each [[DssW]] press release we tweak the style and format a little but always within the guidelines set out by common press release practice. That experience lets us discover what works and what does not. A good measure of success is how heavily your press release is edited before being published by the news sites.
+With each General/DssW press release we tweak the style and format a little but always within the guidelines set out by common press release practice. That experience lets us discover what works and what does not. A good measure of success is how heavily your press release is edited before being published by the news sites.
 
 You will find writing a good press release takes time. Those two to five hundred words should be crafted and considered. Anything less and you are denting your product's presentation.
 
@@ -46,7 +46,7 @@ Take the opportunity to browse the press releases of companies you like and resp
 *http://www.microsoft.com/presspass/
 
 
-With regard to paying for press release distribution, I recommend against paying. In the past I have paid for distribution with prWeb and the like but never been satisfied with the outcome. [[DssW]]'s internal press list is far more targeted and gets our press releases to the right people.
+With regard to paying for press release distribution, I recommend against paying. In the past I have paid for distribution with prWeb and the like but never been satisfied with the outcome. General/DssW's internal press list is far more targeted and gets our press releases to the right people.
 
 Building a good press release list takes time. Initially the time is spend visiting the news sites looking for each site's masthead and extracting the appropriate contact details. Dull but not difficult.
 
@@ -62,7 +62,7 @@ The following press release distribution services all offer free packages. Their
 
 Hope this helps.
 
--- [[GrahamMiln]]
+-- General/GrahamMiln
 ----
 Thanks, Graham, that helped. Especially prMac.
 

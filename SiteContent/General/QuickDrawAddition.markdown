@@ -1,1 +1,1 @@
-A category of [[NSBezierPath]] that draws the [[NSBezierPath]] using [[QuickDraw]] calls. This can be used in conjunction with [[JBPICTCreator]] to make a PICT representation of [[NSBezierPaths]] without having to go down to Carbon.
+A category of General/NSBezierPath that draws the General/NSBezierPath using General/QuickDraw calls. This can be used in conjunction with General/JBPICTCreator to make a PICT representation of General/NSBezierPaths without having to go down to Carbon.

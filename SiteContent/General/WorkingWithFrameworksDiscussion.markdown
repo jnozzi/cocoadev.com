@@ -1,5 +1,5 @@
 
-A comment on the [[SparkleUpdater]] page spawned this topic for me -> "Frameworks are unwieldy"
+A comment on the General/SparkleUpdater page spawned this topic for me -> "Frameworks are unwieldy"
 
 I've written a few Frameworks, and have used several. Frameworks have never seemed unwieldy. Integrating them with my apps always seemed straightforward. My experience with producing them for others was similar. I've never received any feedback (positive or negative) regarding how others have perceived integrating my frameworks with their code.
 
@@ -9,7 +9,7 @@ Please - comment on your use of various frameworks. Things that worked like magi
 
 ----
 
-I put all code which could be shared between projects (custom controls, useful categories etc) into a framework which I include into each of my projects as an external target to save on duplicate code. It works really nicely and [[XCode]] handles it well.
+I put all code which could be shared between projects (custom controls, useful categories etc) into a framework which I include into each of my projects as an external target to save on duplicate code. It works really nicely and General/XCode handles it well.
 
 ----
 
@@ -29,15 +29,15 @@ OP here. I read Wil Shipley's article mentioned above. His points were fairly we
 
 I'm currently writing a software suite that I hope will one day mature from a hobby to a nice little endeavor. The principal piece of this software suite is the framework. I also have a GUI app to aid in object graph configuration for the developer.
 
-Instead of having multiple projects, though, I have one project. I have 5 ''targets''. One target is the framework. Another is the unit test bundle for the framework. Then I have the target for the GUI app, and a target for the acceptance tests for the GUI app. The fifth target is a loadable bundle that is used for some of my unit tests.
+Instead of having multiple projects, though, I have one project. I have 5 *targets*. One target is the framework. Another is the unit test bundle for the framework. Then I have the target for the GUI app, and a target for the acceptance tests for the GUI app. The fifth target is a loadable bundle that is used for some of my unit tests.
 
-Setting up things this way, as opposed to the 'four separate projects' style, as suggested in Shipley's blog, seems much more natural for [[XCode]]. One mast build setting can be used as a basis for every target. If you need to override a build setting for one particular target only, you can through the target's specific settings. This doesn't completely solve build setting issues. Keeping track of whether a target takes it's build setting from the target's build setting, vs the project's build setting, is still somewhat problematic. It is significantly easier than having to keep build settings synchronized across several projects.
+Setting up things this way, as opposed to the 'four separate projects' style, as suggested in Shipley's blog, seems much more natural for General/XCode. One mast build setting can be used as a basis for every target. If you need to override a build setting for one particular target only, you can through the target's specific settings. This doesn't completely solve build setting issues. Keeping track of whether a target takes it's build setting from the target's build setting, vs the project's build setting, is still somewhat problematic. It is significantly easier than having to keep build settings synchronized across several projects.
 
 I guess that regarding Shipley's article, I'd have to conclude that there's another group of developers who benefit from building frameworks. It's rather obvious, but still overlooked in the blog. Those of us who are aiming to DELIVER frameworks to developers.
 
 If I were developing a single consumer app, I can't imagine wanting a framework (plugin architectures being a notable exception). Code I needed to reuse would be checked out of some source code repository. I've been in large development shops. Although none provided consumer apps, I can respect the issues involved in keeping frameworks up to date, versioned, and properly documented.
 
-Still, the point of view I was hoping for - and didn't clarify in my original question - was for framework consumers. For those that use frameworks (besides Foundation & [[AppKit]]), what are your unique experiences?
+Still, the point of view I was hoping for - and didn't clarify in my original question - was for framework consumers. For those that use frameworks (besides Foundation & General/AppKit), what are your unique experiences?
 
 ----
 

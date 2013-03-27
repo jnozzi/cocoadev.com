@@ -8,4 +8,4 @@ That's really not what a menu was made to do. You might want to consider pressin
 
 ---
 
-True, it isn't really what a menu was ''originally'' made to do.  But indulge this analogy for a minute:  Using the standard keyboard shortbuts, after I open a menu, I can hit a key to move to an item.  All I'm asking is for that idea '''already''' implemented to be extended, to allow the selection of a '''fixed''' menu item, rather than just what happens to be the fist one that starts with 'M' (or 'B').
+True, it isn't really what a menu was *originally* made to do.  But indulge this analogy for a minute:  Using the standard keyboard shortbuts, after I open a menu, I can hit a key to move to an item.  All I'm asking is for that idea **already** implemented to be extended, to allow the selection of a **fixed** menu item, rather than just what happens to be the fist one that starts with 'M' (or 'B').

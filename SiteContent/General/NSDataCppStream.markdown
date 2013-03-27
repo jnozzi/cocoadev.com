@@ -1,10 +1,10 @@
 Hey,
-I use Objective-C++ a lot, and some of my C++ classes support archiving using C++ iostreams. Now, I am not a big fan of iostreams, but am a fan of reuse, so I needed a way to make the archivable classes usable with undo. Unfourtunately, the Cocoa undo system needs to retain a reference to it's selector's arguments, and that is not quite possible with C++ stream objects. At first I used temporary files, and passed an [[NSString]] of the path to the undo facility, but this quickly became convoluted and difficult to maintain. So I wrote this custom object to stream to and from an [[NSMutableData]] object. I don't exactly know how to test iostreams, as they behave very oddly, and I am not an well versed in them. But I did do some tests by replacing the stream object with various 'tested and robust' stream classes (mostly fstream) and they behaved equally retarded. This code is preliminary, and I would like to add read-only (istream) version that accepts the non-mutable [[NSData]] class.
--[[JeremyJurksztowicz]]
+I use Objective-C++ a lot, and some of my C++ classes support archiving using C++ iostreams. Now, I am not a big fan of iostreams, but am a fan of reuse, so I needed a way to make the archivable classes usable with undo. Unfourtunately, the Cocoa undo system needs to retain a reference to it's selector's arguments, and that is not quite possible with C++ stream objects. At first I used temporary files, and passed an General/NSString of the path to the undo facility, but this quickly became convoluted and difficult to maintain. So I wrote this custom object to stream to and from an General/NSMutableData object. I don't exactly know how to test iostreams, as they behave very oddly, and I am not an well versed in them. But I did do some tests by replacing the stream object with various 'tested and robust' stream classes (mostly fstream) and they behaved equally retarded. This code is preliminary, and I would like to add read-only (istream) version that accepts the non-mutable General/NSData class.
+-General/JeremyJurksztowicz
 
-IMPORTANT> after streaming all of your data into an [[NSDataStream]] remember to call flush() or the data object will be incomplete.
+IMPORTANT> after streaming all of your data into an General/NSDataStream remember to call flush() or the data object will be incomplete.
 
-<code>
+    
 #include <string>
 #include <streambuf>
 #include <ostream>
@@ -15,21 +15,21 @@ IMPORTANT> after streaming all of your data into an [[NSDataStream]] remember to
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // This class prevents serious compiler (linker, assembler...?) errors.
 //
-class [[NSDataWrapper]]
+class General/NSDataWrapper
 {
-	[[NSMutableData]] '' _data;
+	General/NSMutableData * _data;
 public:
-        [[NSDataWrapper]]([[NSMutableData]] '' data): _data([data retain]) { }
-       ~[[NSDataWrapper]]( ) { [_data release]; }
+        General/NSDataWrapper(General/NSMutableData * data): _data([data retain]) { }
+       ~General/NSDataWrapper( ) { [_data release]; }
    
-	void read (unsigned char '' buf, unsigned pos, unsigned amt)
+	void read (unsigned char * buf, unsigned pos, unsigned amt)
 	{
-		[_data getBytes:reinterpret_cast<void''>(buf) range:[[NSMakeRange]](pos, amt)];
+		[_data getBytes:reinterpret_cast<void*>(buf) range:General/NSMakeRange(pos, amt)];
 	}
 	
-	void write (unsigned char '' buf, unsigned amt) 
+	void write (unsigned char * buf, unsigned amt) 
 	{
-		[_data appendBytes:reinterpret_cast<void''>(buf) length:amt];
+		[_data appendBytes:reinterpret_cast<void*>(buf) length:amt];
 	}
 	
 	unsigned byteCount ( ) const
@@ -40,14 +40,14 @@ public:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <class charT, class traits = std::char_traits<charT> >
-class [[NSDataStreamBuffer]] : public std::basic_streambuf<charT, traits>
+class General/NSDataStreamBuffer : public std::basic_streambuf<charT, traits>
 {
 	typedef std::basic_streambuf<charT, traits> sbuftype;
 	typedef typename sbuftype::int_type         int_type;
 	typedef charT                               char_type;
 
 public:
-	explicit [[NSDataStreamBuffer]]([[NSMutableData]] '' data, std::streamsize bufsize = 512):
+	explicit General/NSDataStreamBuffer(General/NSMutableData * data, std::streamsize bufsize = 512):
 		_nsdata		(data), 
 		_inbuf		(NULL), 
 		_outbuf		(NULL), 
@@ -57,7 +57,7 @@ public:
 		_remained	(0)
 	{ }
 
-	~[[NSDataStreamBuffer]]()
+	~General/NSDataStreamBuffer()
 	{
 		_flush();
 
@@ -69,7 +69,7 @@ public:
 	}
 
 protected:
-	sbuftype '' setbuf(char_type ''s, std::streamsize n)
+	sbuftype * setbuf(char_type *s, std::streamsize n)
 	{
 		if(!this->gptr())
 		{
@@ -92,8 +92,8 @@ protected:
 
 	void _flush()
 	{
-		_nsdata.write(reinterpret_cast<unsigned char''>(_outbuf), 
-			(this->pptr() - _outbuf) '' sizeof(char_type));
+		_nsdata.write(reinterpret_cast<unsigned char*>(_outbuf), 
+			(this->pptr() - _outbuf) * sizeof(char_type));
 	}
 
 	int_type overflow(int_type c = traits::eof())
@@ -130,13 +130,13 @@ protected:
 		if(_remained != 0)
 			_inbuf[0] = _remainedchar;
 
-		unsigned bufLeft = _bufsize '' sizeof(char_type) - _remained;
+		unsigned bufLeft = _bufsize * sizeof(char_type) - _remained;
 		unsigned datLeft = _nsdata.byteCount() - _readPos;
 		unsigned readn = MIN(bufLeft, datLeft);
 		if(readn == 0)
 			return traits::eof();
 		
-		_nsdata.read(reinterpret_cast<unsigned char''>(_inbuf + _remained), _readPos, readn);
+		_nsdata.read(reinterpret_cast<unsigned char*>(_inbuf + _remained), _readPos, readn);
 
 		_readPos += readn;
 		size_t totalbytes = readn + _remained;
@@ -150,12 +150,12 @@ protected:
 	}
 
 private:
-	[[NSDataStreamBuffer]]([[NSDataStreamBuffer]] const&);
-	[[NSDataStreamBuffer]]& operator=([[NSDataStreamBuffer]] const&);
+	General/NSDataStreamBuffer(General/NSDataStreamBuffer const&);
+	General/NSDataStreamBuffer& operator=(General/NSDataStreamBuffer const&);
 
-	[[NSDataWrapper]] _nsdata;
-	char_type '' _inbuf;
-	char_type '' _outbuf;
+	General/NSDataWrapper _nsdata;
+	char_type * _inbuf;
+	char_type * _outbuf;
 	bool _ownsBuffers;
 	std::streamsize _bufsize;
 	
@@ -166,22 +166,21 @@ private:
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 template <class charT, class traits = std::char_traits<charT> >
-class [[NSDataGenericStream]] :
+class General/NSDataGenericStream :
 	public std::basic_iostream<charT, traits>,
-	private [[NSDataStreamBuffer]]<charT, traits>
+	private General/NSDataStreamBuffer<charT, traits>
 {
 public:
-	explicit [[NSDataGenericStream]]([[NSMutableData]] '' data): 
+	explicit General/NSDataGenericStream(General/NSMutableData * data): 
 		std::basic_iostream<charT, traits>(this),
-		[[NSDataStreamBuffer]]<charT, traits>(data)
+		General/NSDataStreamBuffer<charT, traits>(data)
 	{ }
 
 private:
-	[[NSDataGenericStream]]([[NSDataGenericStream]] const&);
-	[[NSDataGenericStream]]& operator=([[NSDataGenericStream]] const&);
+	General/NSDataGenericStream(General/NSDataGenericStream const&);
+	General/NSDataGenericStream& operator=(General/NSDataGenericStream const&);
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-typedef [[NSDataGenericStream]]<char> [[NSDataStream]];
+typedef General/NSDataGenericStream<char> General/NSDataStream;
 
-</code>

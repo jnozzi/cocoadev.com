@@ -2,17 +2,17 @@ Hi, I need to implement a view much like the Find window in the finder (the 10.3
 
 My question is what is the best way to implement such a view/series of views?
 
---[[JonH]]
+--General/JonH
 
 ----
 
-A handy [[StepWise]] article with source:
+A handy General/StepWise article with source:
 http://www.stepwise.com/Articles/Technical/2003-12-20.01.html
 
 This article demonstrates using views as table cells but also has an excellent "rules editor" example as part of the views-as-tableview-cells example. -jln
 
 ----
 
-Ok thanks, that seems a neat solution, but my understanding of [[NSTableView]] is that all rows have to have the same height. My requirements are to have rows of varying height, dependent on the content (i.e. number of controls, etc) in each view. Has anyone got any ideas?
+Ok thanks, that seems a neat solution, but my understanding of General/NSTableView is that all rows have to have the same height. My requirements are to have rows of varying height, dependent on the content (i.e. number of controls, etc) in each view. Has anyone got any ideas?
 
---[[JonH]]
+--General/JonH

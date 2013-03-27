@@ -4,7 +4,7 @@ Ok, i'm new to Cocoa, but I have experience with C++ and Jav. I can't find any i
 
 ----
 
-As I understand it, docklings are deprecated by Apple. -- [[KritTer]]
+As I understand it, docklings are deprecated by Apple. -- General/KritTer
 
 ----
 
@@ -17,13 +17,13 @@ Hope that helps
 
 ----
 
-Be aware of the pitfalls in using a deprecated, private framework - changes by Apple are probable, and will almost surely break your code. If it's just a project to learn Cocoa, this may not matter to you -- [[KritTer]]
+Be aware of the pitfalls in using a deprecated, private framework - changes by Apple are probable, and will almost surely break your code. If it's just a project to learn Cocoa, this may not matter to you -- General/KritTer
 
 ----
 
 They're also not necessarily superior; docklings run in the Dock's address space, IIRC, which means that if they crash, the Dock goes with them. Not so good.
 
--- [[RobRix]]
+-- General/RobRix
 
 ----
 
@@ -33,13 +33,13 @@ This is true, but also remember that most docklings are quite lightweight, and r
 
 I dislike relying on the coding skills of others ;) Seriously, though, I guess it's a matter of what sort of load you're going to have. More complex things would probably be better off as applications, I suppose.
 
--- [[RobRix]]
+-- General/RobRix
 
 ----
 
-I am pretty sure docklings run in the adress space of the [[SystemUIServer]] (called [[DocklingServer]] in earlier OS versions). That means that when they crash they take other docklings and menulings with them, but everything else survives. [[SystemUI]] will then be restarted by the dock.
+I am pretty sure docklings run in the adress space of the General/SystemUIServer (called General/DocklingServer in earlier OS versions). That means that when they crash they take other docklings and menulings with them, but everything else survives. General/SystemUI will then be restarted by the dock.
 
--- [[DavidRemahl]]
+-- General/DavidRemahl
 
 ----
 
@@ -47,15 +47,15 @@ Why are they depreciated? What's their replacement?
 
 I have a Network Statistics dockling in my dock. How does one make something similar without docklings? Obviously a separate app with a dock menu and a changing tile would work but a dockling just seems so much more lightweight.
 
-[[DavidRemahl]]'s right about the [[SystemUIServer]] thing BTW.
+General/DavidRemahl's right about the General/SystemUIServer thing BTW.
 
--- [[PeterMonty]]
+-- General/PeterMonty
 
 ----
 
 Well, afaik, using applications with dynamic icons is the only way that apple supports in any way.
 
--- [[DavidRemahl]]
+-- General/DavidRemahl
 
 ----
 
@@ -69,4 +69,4 @@ I just hope Apple gives developers a better way to do dockling like things.
 
 Yes, I appreciate docklings as well. (http://www.ittpoi.com/clockling.html - but be aware that it doesn't run under 10.1). I used to put them in the doc part of the dock, but that possibility is now gone :(.
 
--- [[DavidRemahl]]
+-- General/DavidRemahl

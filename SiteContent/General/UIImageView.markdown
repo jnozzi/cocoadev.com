@@ -2,17 +2,17 @@
 
 
 
-%%BEGINCODESTYLE%%
+<code>
 
 //create background view
 	
-[[UIImageView]] ''background = [[[[[UIImageView]] alloc] initWithFrame:[[CGRectMake]](0.0f, 0.0f, 320.0f, 480.0f)] autorelease];
+General/UIImageView *background = General/[[[UIImageView alloc] initWithFrame:General/CGRectMake(0.0f, 0.0f, 320.0f, 480.0f)] autorelease];
 
-[background setImage:[[[UIImage]] imageAtPath:[[[[NSBundle]] mainBundle] 
+[background setImage:General/[UIImage imageAtPath:General/[[NSBundle mainBundle] 
              pathForResource:@"myGreatImage"
              ofType:@"png" 
              inDirectory:@"/"]]];
 
 @property (nonatomic, retain) image <- image is already retained!
 
-%%ENDCODESTYLE%%
+</code>

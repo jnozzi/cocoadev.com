@@ -4,6 +4,6 @@ I would like to make some very simple 3D games, but I don't want to mess with co
 
 ---
 
-[[OpenGL]] is probably your best bet.
+General/OpenGL is probably your best bet.
 
-See [[CocoaOpenGL]] or search for [[OpenGL]] on [[CocoaDev]] and you will find quite a bit of information.
+See General/CocoaOpenGL or search for General/OpenGL on General/CocoaDev and you will find quite a bit of information.

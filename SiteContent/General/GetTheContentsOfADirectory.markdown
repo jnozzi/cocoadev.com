@@ -1,1 +1,1 @@
-See [[NSFileManager]].
+See General/NSFileManager.

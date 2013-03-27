@@ -1,6 +1,6 @@
 How is it possible to make a button have 2 alternate images to be able to cycle through 3 images by clicking the button?
 
-Should I try to subclass [[NSButtonCell]] to obtain my custom images for every state (on, off and mixed)?
+Should I try to subclass General/NSButtonCell to obtain my custom images for every state (on, off and mixed)?
 
 If the better solution is to create a custom view, could you tell me how I can handle mouse events and update the image?
 
@@ -9,33 +9,33 @@ If the better solution is to create a custom view, could you tell me how I can h
 
 If all you want is an image which changes to the next image every time you click on it, then try this:
 
-Drag over an [[NSImageView]] in Interface Builder and create a subclass of [[NSImageView]] (I'm calling it [[ToggleImageView]]). Changed the [[NSImageView]] custom class to the new subclass you created (hit command-5 to bring up the panel). Use this code for your [[ToggleImageView]] class. Note: code has not been tested.
+Drag over an General/NSImageView in Interface Builder and create a subclass of General/NSImageView (I'm calling it General/ToggleImageView). Changed the General/NSImageView custom class to the new subclass you created (hit command-5 to bring up the panel). Use this code for your General/ToggleImageView class. Note: code has not been tested.
 
-<code>
+    
 
-// [[ToggleImageView]].h
+// General/ToggleImageView.h
 
-@interface [[ToggleImageView]] : [[NSImageView]]
+@interface General/ToggleImageView : General/NSImageView
 {
-	[[NSArray]] ''images;
+	General/NSArray *images;
 }
 
-- ([[NSImage]] '')nextImage;
+- (General/NSImage *)nextImage;
 
 @end
 
-// [[ToggleImageView]].m
+// General/ToggleImageView.m
 
-@implementation [[ToggleImageView]]
+@implementation General/ToggleImageView
 
-- (id)initWithFrame:([[NSRect]])frame {
+- (id)initWithFrame:(General/NSRect)frame {
 	self = [super initWithFrame:frame];
 	if (self) {
 		// You will need to change the names of these images
-		images = [[[[NSArray]] alloc] initWithObjects:
-					[[[NSImage]] imageNamed:@"firstImage"],
-					[[[NSImage]] imageNamed:@"secondImage"],
-					[[[NSImage]] imageNamed:@"thirdImage"],
+		images = General/[[NSArray alloc] initWithObjects:
+					General/[NSImage imageNamed:@"firstImage"],
+					General/[NSImage imageNamed:@"secondImage"],
+					General/[NSImage imageNamed:@"thirdImage"],
 					nil];
 	}
 	return self;
@@ -48,12 +48,12 @@ Drag over an [[NSImageView]] in Interface Builder and create a subclass of [[NSI
 }
 
 
-- (void)mouseDown:([[NSEvent]] '')theEvent
+- (void)mouseDown:(General/NSEvent *)theEvent
 {
 	[self setImage:[self nextImage]];
 }
 
-- ([[NSImage]] '')nextImage
+- (General/NSImage *)nextImage
 {
 	// Make sure we have at least one image to use
 	if ([images count] > 0) {
@@ -69,20 +69,20 @@ Drag over an [[NSImageView]] in Interface Builder and create a subclass of [[NSI
 
 @end
 
-</code>
 
-''Let me know if you get any warning or error messages.'' -- [[RyanBates]]
+
+*Let me know if you get any warning or error messages.* -- General/RyanBates
 ----
 
 I tried your code and it�s working perfectly.
 
 There�s a little problem:
 
-This custom view is supposed to replace an [[NSPopUpButton]] in my window. I used to programmatically bind the value "selectedIndex" of that [[NSPopUpButton]] to some value in a controller. When that value changes as another menu item is choosen, some transformations occur in the UI.
+This custom view is supposed to replace an General/NSPopUpButton in my window. I used to programmatically bind the value "selectedIndex" of that General/NSPopUpButton to some value in a controller. When that value changes as another menu item is choosen, some transformations occur in the UI.
 
 I added to your custom view a variable named "selectedIndex" so that I don�t have to modify the binding code.
 
-[[NSLog]] informs me that "selectedIndex" does change when I click the view, but the UI doesn�t change and the bound value is not updated either.
+General/NSLog informs me that "selectedIndex" does change when I click the view, but the UI doesn�t change and the bound value is not updated either.
 
 What might be the reason for this different behavior?
 
@@ -104,15 +104,15 @@ Any help will be appreciated.
 Well, I found a solution but it�s very strange: I add to reverse the binding.
 
 With the popup I had:
-<code>
+    
 [thePopUp bind:@"selectedIndex" toObject:myModel withKeyPath:@"theKeyPath" options:bindingOptions];
-</code>
+
 
 And now I�m using:
-<code>
+    
 [myModel bind:@"theKeyPath" toObject:thePopUp withKeyPath:@"selectedIndex" options:bindingOptions];
-</code>
 
-Why are my object and [[NSPopUpButton]] so different??
+
+Why are my object and General/NSPopUpButton so different??
 
 -- wdyp

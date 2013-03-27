@@ -7,39 +7,39 @@ The note 'A' transposed up four half-steps would be 'C#'.
 
 So I have, as I see it two ways to go.
 
-1. Create one object for a Musical Scale, and let musical notes be properties of that object.  Each "note" would be a two element [[NSArray]], with element 1 being the note itself and element 2 being the octive of the note (for example C1, C2, C3, etc...).
+1. Create one object for a Musical Scale, and let musical notes be properties of that object.  Each "note" would be a two element General/NSArray, with element 1 being the note itself and element 2 being the octive of the note (for example C1, C2, C3, etc...).
 
 2. Create one object for musical scales.  Create another object for musical notes.  The Scale Object would retain instances of Musical Note Objects & get the pitch & octive from the objects properties.  Essentially I'd be doing the same thing but the Note Object would manage the array as its own instance variables.
 
 It seems like it would be more extensable and better protected to use a dedicated note object, especially if I ever wanted to add on other properties like volume or duration, but if you talk about a song that has thousands of notes any small ammount of efficiency drain could add up right?  Though in this case it might not make a whole lot of difference, it would be good information to know for the future.  Should I try to make my objects encompas as much information as I can, or is it better to break out many simple classes?  Or, for that matter, does it even matter once its compiled?
 
-[[CliffPruitt]]
+General/CliffPruitt
 
 ----
 
-You have just described a textbook example of a good place to use the '''flyweight design pattern'''.  If you search on that you'll get the idea. (Unfortunately I don't know of a good link off the top of my head.  It's a Gang of Four design pattern.)
+You have just described a textbook example of a good place to use the **flyweight design pattern**.  If you search on that you'll get the idea. (Unfortunately I don't know of a good link off the top of my head.  It's a Gang of Four design pattern.)
 
-''C2's pattern wiki's normally a good one, though Google currently hates it. Try http://c2.com/cgi/wiki?[[FlyweightPattern]] ''
+*C2's pattern wiki's normally a good one, though Google currently hates it. Try http://c2.com/cgi/wiki?General/FlyweightPattern *
 
-''On the case at hand, why do you want an object for a Musical Scale? Why not just create a <code>[[MusicalNote]]</code> class with a <code>-transposeBy:</code> method? If you're worried about efficiency (and well you may be), consider using [[ObjCPlusPlus]] and making the notes [[CPlusPlus]] classes - they are generally much more efficient with space and time, as they do not by default support the incredible flexibility all [[ObjC]] classes provide. However, as a newbie, you're probably better off using a simple [[ObjC]] class for now, and rewriting it later when you feel like stretching yourself. Just be aware that there are solutions!''
+*On the case at hand, why do you want an object for a Musical Scale? Why not just create a     General/MusicalNote class with a     -transposeBy: method? If you're worried about efficiency (and well you may be), consider using General/ObjCPlusPlus and making the notes General/CPlusPlus classes - they are generally much more efficient with space and time, as they do not by default support the incredible flexibility all General/ObjC classes provide. However, as a newbie, you're probably better off using a simple General/ObjC class for now, and rewriting it later when you feel like stretching yourself. Just be aware that there are solutions!*
 
-'''I don't know about space.. an objective-C object's space is a single pointer (isa) plus all the ivars.  Can't get much smaller than that!'''
+**I don't know about space.. an objective-C object's space is a single pointer (isa) plus all the ivars.  Can't get much smaller than that!**
 
-''I'm not at all sure that that's true. There's also the retain count, and I'm not sure how objects are aligned-- I used to know, but it's been a long time since I was mucking about with Apple's zoned malloc implementation. Suffice it to say that it's still small, yes, but there may be other factors.''
+*I'm not at all sure that that's true. There's also the retain count, and I'm not sure how objects are aligned-- I used to know, but it's been a long time since I was mucking about with Apple's zoned malloc implementation. Suffice it to say that it's still small, yes, but there may be other factors.*
 
 ----
 
 First off, I'd go with the model that suits my needs best, regardless of its efficiency, and optimize it only when it's getting too slow for my needs.
 
 However, looking at your example, I find that the second option (i.e. dedicated object for notes) is the one that's more efficient:
-The first one uses one [[NSArray]] with two elements for every note. The smallest possible array would have at least
+The first one uses one General/NSArray with two elements for every note. The smallest possible array would have at least
 
 * the reference count (4 bytes)
-* the isa pointer, inherited from [[NSObject]] (4 bytes)
+* the isa pointer, inherited from General/NSObject (4 bytes)
 * the count of the array so [array count] is O(1) (I believe this is guaranteed, but I'm not sure) (4 bytes)
 * a pointer to the data block of the array (or, alternatively, the data) (4 bytes, alternatively 0 bytes if the data is just concatenated at the end of the array instance)
 
-The contents of your array would be two pointers to [[NSNumbers]] (you can't put primitives into an [[NSArray]]). That's at least another
+The contents of your array would be two pointers to General/NSNumbers (you can't put primitives into an General/NSArray). That's at least another
 
 * reference count (4 bytes)
 * id (to reference the object from the array) (4 bytes)
@@ -47,7 +47,7 @@ The contents of your array would be two pointers to [[NSNumbers]] (you can't put
 * value (4 bytes)
 
 
-Summed up that's at least 12+2''16=44 bytes per note. Compare this to the dedicated class:
+Summed up that's at least 12+2*16=44 bytes per note. Compare this to the dedicated class:
 
 * reference count (4 bytes)
 * isa pointer (4 bytes)
@@ -58,17 +58,17 @@ i.e. 16 bytes per note. Plus, you're using your own class, and can separate any 
 
 ----
 
-If memory were a huge concern it would be best to use a [[CArray]] of integers, with the integer storing the number of semi-tones from (say) bottom-A-flat. The octave would then be <code>(note / 13)</code> and the pitch <code>(node % 13)</code>. This kind of optimization would be best done with C++. But, as the last poster said, go with the model that suits your needs best, regardless of its efficiency! Certainly don't make your life harder by using the model I just suggested unless you find that ''in the real world'', a 4-fold memory overhead is rampantly too much.
+If memory were a huge concern it would be best to use a General/CArray of integers, with the integer storing the number of semi-tones from (say) bottom-A-flat. The octave would then be     (note / 13) and the pitch     (node % 13). This kind of optimization would be best done with C++. But, as the last poster said, go with the model that suits your needs best, regardless of its efficiency! Certainly don't make your life harder by using the model I just suggested unless you find that *in the real world*, a 4-fold memory overhead is rampantly too much.
 
 ----
 
 In answer to the first question about why I'd want a scale object instead of just transposing notes, its just part of the little study experament I'm doing to help teach myself Obj C.  The first test of the app is going to be transposing a note, but after than I'm going to see if I can figure out how to display a scale (Major, Minor, Etc...), then transpose scales, then spell the notes in a given chord for a given scale etc...  The best way I know how to do this would be to build a scale object & manipulating the notes in that object to find relative scales and chords.  Its not really anything that will be useful to me, I'm just trying to find things that are complex enough to make me work a bit but not so far outside of my ability that I cant figure them out.
 
-Next, I'm not sure how Obj-C works as far as memory & efficiency go.  The comments above discuss allocated memory (good to know), but the other question I have is wether or not there is a performance hit with creating independant objects.  I would suppose not, as either way you have to create an [[NSArray]] object or a custom object, but lets say I was either using an int variable or a custom object that just held a single int variable.  Obviously there is going to be more memory allocated for a custom object than a single int variable, but how much of a speed hit would that really take?
+Next, I'm not sure how Obj-C works as far as memory & efficiency go.  The comments above discuss allocated memory (good to know), but the other question I have is wether or not there is a performance hit with creating independant objects.  I would suppose not, as either way you have to create an General/NSArray object or a custom object, but lets say I was either using an int variable or a custom object that just held a single int variable.  Obviously there is going to be more memory allocated for a custom object than a single int variable, but how much of a speed hit would that really take?
 
 I think in some ways this is just an irrelivant question cause there are very few cases that I'd ever really be using an object for somethign so small as a single int, but I'm trying to understand a little more about how cocoa works.  I'm used to interperited web scripting languages so efficiency with a compiled executable in all new territory for me.
 
-[[CliffPruitt]]
+General/CliffPruitt
 
 ----
 
@@ -78,9 +78,9 @@ I would only consider optimizing (a) object creation, if it meets one of two cri
 Optimizing (b) is even less necessary, as the method invocation system is generally very fast. Perhaps in a tight loop with thousands of method calls would I consider optimization.
 
 That being said, if you would like to expand the scope of your study, and optimize for the challenge of it, the above mentioned flyweight pattern does seem to be quite applicable, and would probably be pretty fun to implement too... wow, I am such a nerd.
-- [[JeremyJurksztowicz]]
+- General/JeremyJurksztowicz
 
-''There are also ways of optimizing tight loops without sacrificing the use of [[ObjC]]. Check out [[OptimizingCocoaCode]] sometime.''
+*There are also ways of optimizing tight loops without sacrificing the use of General/ObjC. Check out General/OptimizingCocoaCode sometime.*
 
 ----
 Yeah... I think maybe you are a nerd. :-)
@@ -92,15 +92,15 @@ Am I understanding that the Flyweight deal is similar, in that rather than creat
 
 Or am I way off? :-)
 
-[[CliffPruitt]]
+General/CliffPruitt
 
 ----
 
 Yup, that's the idea.  Then you keep any extra state the notes might have externally, and pass it in when you're using the note.  You may be able to store the state more efficiently this way.  For example, you may have a state (e.g. fortissimo) that applies to a range of notes, so you can hold onto the range instead of using storage in each note.  Many of the methods on note will take a context, like this maybe:
 
-<code>
--(void)drawWithFrame:([[NSRect]])frame context:([[NSDictionary]] '')context;
-</code>
+    
+-(void)drawWithFrame:(General/NSRect)frame context:(General/NSDictionary *)context;
+
 
 Well, okay, maybe not draw since your note is probably a model object.   Anyway, in this way your notes are still objects, with all the goodness that entails, but can be pretty cheap to use.
 
@@ -108,7 +108,7 @@ Well, okay, maybe not draw since your note is probably a model object.   Anyway,
 
 Wow... its nice to finally understand some of this. :-)  I've gotten so sidetracked with daily workload (web scripting) and had to stop/restart learning Obj-C so many times now I was starting to wonder if I was every going to have the time to ever really get the hang of it.  Understanding this, and actually successfully re-writing one of my Applescript Studio apps in Obj-C have been a huge confidence booster.
 
-Thanks for the help.  [[CliffPruitt]]
+Thanks for the help.  General/CliffPruitt
 
 ----
 
@@ -128,4 +128,4 @@ lookups and calculations over them in 15 seconds. Performing well only gets an i
 below 0.05 s is irrelevant. 
 
 ----
-Irrelevant unless you have to do it a hundred times. I'm all for keeping the optimization gnomes away when they're not needed, but blanket statements like "Everything below 0.05 s is irrelevant" are bordering on the silly. A few megabytes could be irrelevant, or it could be crucial, it all depends on what you're doing. -- [[PrimeOperator]]
+Irrelevant unless you have to do it a hundred times. I'm all for keeping the optimization gnomes away when they're not needed, but blanket statements like "Everything below 0.05 s is irrelevant" are bordering on the silly. A few megabytes could be irrelevant, or it could be crucial, it all depends on what you're doing. -- General/PrimeOperator

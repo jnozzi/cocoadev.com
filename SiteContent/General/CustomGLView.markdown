@@ -1,25 +1,25 @@
 
 
-Here is an example of how to do Cocoa [[OpenGL]] drawing without using Apple's [[NSOpenGLView]] class. It requires that you drag an [[NSView]] custom view into the window in [[InterfaceBuilder]] and then set it to the customGLView class. This example also uses the customGLView as the application delegate in order to initialize the context's view to itself when the application is finished launching.
+Here is an example of how to do Cocoa General/OpenGL drawing without using Apple's General/NSOpenGLView class. It requires that you drag an General/NSView custom view into the window in General/InterfaceBuilder and then set it to the customGLView class. This example also uses the customGLView as the application delegate in order to initialize the context's view to itself when the application is finished launching.
 
 March 2nd, 2006: I tried using this code and found a few problems. First, there's a missing closing curly brace that prevents the compiler from recognizing the drawRect: method. After fixing that, I found that the window is blank (no triangles show up at all), and the window shows some garbage when you resize it.  Can anyone provide some suggestions on how to find the problems?
 
-March 3rd, 2007: I've fixed the example below, based on <a href="http://developer.apple.com/samplecode/Custom_Cocoa_OpenGL/index.html">Apple's Custom Cocoa [[OpenGL]] sample code</a>. I've tested the code below on 10.4.
+March 3rd, 2007: I've fixed the example below, based on <a href="http://developer.apple.com/samplecode/Custom_Cocoa_OpenGL/index.html">Apple's Custom Cocoa General/OpenGL sample code</a>. I've tested the code below on 10.4.
 
 
-<code>
+    
 // customGLView.h
 
-#import <[[AppKit]]/[[AppKit]].h>
-#import <[[OpenGL]]/[[OpenGL]].h>
-#import <[[OpenGL]]/gl.h>
+#import <General/AppKit/General/AppKit.h>
+#import <General/OpenGL/General/OpenGL.h>
+#import <General/OpenGL/gl.h>
 
 
-@interface customGLView : [[NSView]] {
+@interface customGLView : General/NSView {
 
-	[[NSOpenGLContext]] ''oglContext;
-	[[GLfloat]] ''verts;
-	[[GLubyte]] ''tris;
+	General/NSOpenGLContext *oglContext;
+	General/GLfloat *verts;
+	General/GLubyte *tris;
 }
 
 @end
@@ -35,15 +35,15 @@ March 3rd, 2007: I've fixed the example below, based on <a href="http://develope
 @implementation customGLView
 
 
-/'' default initializer for descendents of [[NSView]] ''/
-- (id)initWithFrame:([[NSRect]])frame {
+/* default initializer for descendents of General/NSView */
+- (id)initWithFrame:(General/NSRect)frame {
 
   self = [super initWithFrame:frame];
   if(self == nil)
     return nil;
   
-  // create and activate the context object which maintains the [[OpenGL]] state
-  oglContext = [[[[NSOpenGLContext]] alloc] initWithFormat: [[[NSOpenGLView]] defaultPixelFormat] shareContext: nil];
+  // create and activate the context object which maintains the General/OpenGL state
+  oglContext = General/[[NSOpenGLContext alloc] initWithFormat: General/[NSOpenGLView defaultPixelFormat] shareContext: nil];
   [oglContext makeCurrentContext];
   
   // set the background colour
@@ -51,8 +51,8 @@ March 3rd, 2007: I've fixed the example below, based on <a href="http://develope
   glClearDepth(1.0);
   
   // define a polygon primitive. first allocate some space for the data
-  verts = calloc( 3''3, sizeof([[GLfloat]]) );
-  tris = calloc( 3, sizeof([[GLubyte]]) );
+  verts = calloc( 3*3, sizeof(General/GLfloat) );
+  tris = calloc( 3, sizeof(General/GLubyte) );
   
   // initialize the values for the triangle's vertices and indices
   // this triangle is perpendicular to the default view vector
@@ -82,7 +82,7 @@ March 3rd, 2007: I've fixed the example below, based on <a href="http://develope
 
 - (void)lockFocus
 {
-  [[NSOpenGLContext]]'' context = oglContext;
+  General/NSOpenGLContext* context = oglContext;
   
   // make sure we are ready to draw
   [super lockFocus];
@@ -93,12 +93,12 @@ March 3rd, 2007: I've fixed the example below, based on <a href="http://develope
     [context setView:self];
   }
   
-  // make us the current [[OpenGL]] context
+  // make us the current General/OpenGL context
   [context makeCurrentContext];
 }
   
 // this is called whenever the view changes (is unhidden or resized)
-- (void)drawRect:([[NSRect]])frameRect {
+- (void)drawRect:(General/NSRect)frameRect {
   
   float aspectRatio;
   
@@ -150,4 +150,3 @@ March 3rd, 2007: I've fixed the example below, based on <a href="http://develope
 @end
 
 
-</code>

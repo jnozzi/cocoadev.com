@@ -2,7 +2,7 @@
 
 http://images.apple.com/macosx/features/bonjour/images/indextop20050412.jpg
 
-Bonjour is the new name in Tiger for Apple�s implementation of [[ZeroConf]], previously referred to as [[RendezVous]]. The name was changed as a result of a trademark dispute settlement with TIBCO Software. The older name is still used in Panther, so as to not confuse Panther users and to keep consistency throughout the system.
+Bonjour is the new name in Tiger for Apple�s implementation of General/ZeroConf, previously referred to as General/RendezVous. The name was changed as a result of a trademark dispute settlement with TIBCO Software. The older name is still used in Panther, so as to not confuse Panther users and to keep consistency throughout the system.
 
 Zeroconf is the combination of multicast DNS, IPv4LL (link-local addresses), and DNS service discovery to simplify network configuration. Bonjour in Tiger extends Panther�s Rendezvous with �wide-area� features such as browsing for Rendezvous services within a domain rather than the local network and NAT traversal.
 

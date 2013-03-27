@@ -1,1 +1,1 @@
-Short for [[UniformTypeIdentifier]].
+Short for General/UniformTypeIdentifier.

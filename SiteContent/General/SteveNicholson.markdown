@@ -11,7 +11,7 @@ So now I'm learning Objective-C and Cocoa in the hopes that I may be lucky enoug
 Also fun: playing in a band called The Universal Steve http://theuniversalsteve.com, singing in two choirs, drinking Martinis with my wife and watching Heros.
 
 ---- 
-''2008 update:'' I got a job at a physics lab that's doing research on fusion energy. They hired me as a programmer to write visualization software that interfaces with their physics simulation program to make the experimentation process more efficient. The best part is that we're working in OS X so my software is all Cocoa-based!
+*2008 update:* I got a job at a physics lab that's doing research on fusion energy. They hired me as a programmer to write visualization software that interfaces with their physics simulation program to make the experimentation process more efficient. The best part is that we're working in OS X so my software is all Cocoa-based!
 
 Now as 2009 draws to a close I've written a few more programs. Some even required Calculus!
 

@@ -14,15 +14,15 @@ Why not just enable and disable the menu items that apply in different situation
 Leaving the structure of the menus unchanged makes it easier to document the menus in your manual.  How many pictures of the different permutations of menu contents do you want in your manual ? Leaving the structure of the menus unchanged makes loacalization of menus easier.  There is only one place to do translations etc.
 
 But... to answer the question: 
-- (BOOL)validateMenuItem:(id <[[NSMenuItem]]>)menuItem
+- (BOOL)validateMenuItem:(id <General/NSMenuItem>)menuItem
 
 -or-
 
- [[NSMenu]]'s delegate's - (void)menuNeedsUpdate:([[NSMenu]] '')menu
+ General/NSMenu's delegate's - (void)menuNeedsUpdate:(General/NSMenu *)menu
 
 Called when a menu is about to be displayed at the start of a tracking session so the delegate can modify the menu.
 
-- (void)menuNeedsUpdate:([[NSMenu]] '')menu
+- (void)menuNeedsUpdate:(General/NSMenu *)menu
 
 Parameters
 menu  The menu object that is about to be displayed.

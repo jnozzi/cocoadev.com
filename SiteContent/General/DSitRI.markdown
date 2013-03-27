@@ -5,6 +5,6 @@ DSITRI (Dr. Schaller IT Research Initiative) [http://www.dsitri.de/wiki.php] is 
 Interesting Cocoa projects:
  
 *
-[[CocoaBasic]] [http://www.dsitri.de/wiki.php?page=[[CocoaBasic]]] - using and extended [[BaSIC]] language for Cocoa objects
+General/CocoaBasic [http://www.dsitri.de/wiki.php?page=General/CocoaBasic] - using and extended General/BaSIC language for Cocoa objects
 *
-[[MySTEP]] [http://www.dsitri.de/wiki.php?page=mySTEP] - bringing [[OpenSTEP]]/Cocoa to the Sharp Zaurus
+General/MySTEP [http://www.dsitri.de/wiki.php?page=mySTEP] - bringing General/OpenSTEP/Cocoa to the Sharp Zaurus

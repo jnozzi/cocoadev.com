@@ -1,16 +1,16 @@
 
 
 If I create a class such as
-<code>
-@interface [[ExampleClass]] : [[NSObject]]
+    
+@interface General/ExampleClass : General/NSObject
 {
-    [[IBOutlet]] [[NSTextField]]'' name;
+    General/IBOutlet General/NSTextField* name;
 }
 
 // methods...
 @end
-</code>
-without any accessor methods, can [[InterfaceBuilder]] still set the outlet?  If so, how?
+
+without any accessor methods, can General/InterfaceBuilder still set the outlet?  If so, how?
 
 ----
-Yes, and look through the nifty [[ObjC]] runtime API in <code>/usr/include/objc</code> for how.
+Yes, and look through the nifty General/ObjC runtime API in     /usr/include/objc for how.

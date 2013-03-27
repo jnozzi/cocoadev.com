@@ -1,8 +1,8 @@
 
 
 Jeremy K. (Jfro or Jerome)
-I've done a bit of dabbling in Cocoa, only released one program, way back and now kind of useless and better options out there... [[XLocate]] was it, also doesn't really work right anymore either.  
-Current Cocoa project I'm trying to work on is [[XSQLite]], a GUI for managing a [[SQLite]] database file with an uncreative name, interface design is mostly done for now, [[NSDocument]] base code I'm currently working on, which is slightly new to me.  
+I've done a bit of dabbling in Cocoa, only released one program, way back and now kind of useless and better options out there... General/XLocate was it, also doesn't really work right anymore either.  
+Current Cocoa project I'm trying to work on is General/XSQLite, a GUI for managing a General/SQLite database file with an uncreative name, interface design is mostly done for now, General/NSDocument base code I'm currently working on, which is slightly new to me.  
 
 I've done more work in PHP than Cocoa, actually having useful finished products, heh.  See my site below for various stuff I've dabbled in.
 

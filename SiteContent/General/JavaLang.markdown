@@ -1,1 +1,1 @@
-See [[JaVA]].
+See General/JaVA.

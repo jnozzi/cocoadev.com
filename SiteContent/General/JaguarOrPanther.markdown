@@ -11,20 +11,20 @@ I have a few free apps that I expect are downloaded mostly by power users, and e
 
 What features of 10.3 are attractive to you?  Bindings, for example, seem to me to be a sweetness that one can do without if necessary.  You can also use bindings in prototyping, then once things are fairly set go ahead and write the old style glue code in the controller.  Similarly, you can use key-value observing in prototyping, then switch to hand-coded notifications as your interfaces stabilize.  I do this, and I haven't had a problem expunging 10.3-only code.
 
-Some other 10.3 features you may be able to use as 'added-value' for your 10.3 customers.  This is an artificial example, but if you wanted to use <code>[[NSAlert]]</code> for something you could say:
+Some other 10.3 features you may be able to use as 'added-value' for your 10.3 customers.  This is an artificial example, but if you wanted to use     General/NSAlert for something you could say:
 
-<code>
-Class Alert = [[NSClassFromString]](@"[[NSAlert]]");
+    
+Class Alert = General/NSClassFromString(@"General/NSAlert");
 
 if (Alert != nil)
 {
-   id obj = [[Alert alloc] init]; // etc.
+   id obj = General/Alert alloc] init]; // etc.
 }
-</code>
+
 
 That's probably a bad example because an alert panel is probably integral to your program, you can't just leave it out for 10.2 customers.  But it's a 10.3 only class that I can think of off the top of my head. :-)
 
-''[[NSShadow]] is the canonical 10.3-only class foruse with [[NSClassFromString]]() examples.''
+*[[NSShadow is the canonical 10.3-only class foruse with General/NSClassFromString() examples.*
 
 ----
 
@@ -34,33 +34,33 @@ Thanks for taking the time to respond.
 
 -Paul
 ----
-I just noticed that [[BBEdit]]'s newest release requires 10.3.5+ so apparently ''they'' at least think the 10.3 market is large enough ...
+I just noticed that General/BBEdit's newest release requires 10.3.5+ so apparently *they* at least think the 10.3 market is large enough ...
 
 -Paul
 ----
 
-[[OmniGroup]] has posted the anonymous data gathered from their software update mechanism at  [http://update.omnigroup.com/]. Panther 92.5% over Jaguar.
+General/OmniGroup has posted the anonymous data gathered from their software update mechanism at  [http://update.omnigroup.com/]. Panther 92.5% over Jaguar.
 
 ----
 
-I want the [[OmniGroup]] to have my omni baby.  It's of course worth remembering that people who use pay money for browsers are probably not typical users.  Still, 92.5%?  mmmm.
+I want the General/OmniGroup to have my omni baby.  It's of course worth remembering that people who use pay money for browsers are probably not typical users.  Still, 92.5%?  mmmm.
 
-''The stats are for all their products, not just [[OmniWeb]]. [[OmniGraffle]] is pretty popular too. And it's worth noting that both [[OmniGraffle]] and [[OmniOutliner]] were (are?) bundled with new Macs.''
-
-----
-
-The # of [[CPUs]] statistics are interesting... I would've thought more people had 2, given that most of Apple's desktops for the past 2-3 years have had dual [[CPUs]]. I guess they really do sell a lot of [[PowerBooks]]. Well, iMacs too, I guess...
+*The stats are for all their products, not just General/OmniWeb. General/OmniGraffle is pretty popular too. And it's worth noting that both General/OmniGraffle and General/OmniOutliner were (are?) bundled with new Macs.*
 
 ----
-'''First things first:'''
 
-Thanks for the [[OmniGroup]] link, whoever you are. Much appreciated!
+The # of General/CPUs statistics are interesting... I would've thought more people had 2, given that most of Apple's desktops for the past 2-3 years have had dual General/CPUs. I guess they really do sell a lot of General/PowerBooks. Well, iMacs too, I guess...
 
-Regarding [[OmniGraffle]] and [[OmniOutliner]] being bundled with new Macs: they still are (at least new iMacs).
+----
+**First things first:**
+
+Thanks for the General/OmniGroup link, whoever you are. Much appreciated!
+
+Regarding General/OmniGraffle and General/OmniOutliner being bundled with new Macs: they still are (at least new iMacs).
 
 Omni babies... Every parent's dream: well behaved babies with functional interfaces.
 
-'''And then:'''
+**And then:**
 
 Have to say that those are some surprising (and puzzling) statistics. At first thought, it would seem to indicate that there was a mass exodus of sorts from Jaguar to Panther. More likely, perhaps, is that most of their data is coming from folks registering versions that were bundled with their new Mac (as they would all, or mostly, have Panther installed -- hasn't the bundling of their products only been going on since Panther was released?). 
 
@@ -71,4 +71,4 @@ Wish I could say that all this new info has made the choice completely obvious. 
 
 Graffle & Outliner were bundled since 10.2. The data is from their software update check, which happens whether or not the app is registered. So anyone that even launched the apps is included. I don't know how far back it goes though.
 
-Personally, I wouldn't worry too much about being 10.3-only. Bear in mind that if you're starting this project '''now''', by the time it's ready for release, you may be trying to decide between Tiger or Leopard.
+Personally, I wouldn't worry too much about being 10.3-only. Bear in mind that if you're starting this project **now**, by the time it's ready for release, you may be trying to decide between Tiger or Leopard.

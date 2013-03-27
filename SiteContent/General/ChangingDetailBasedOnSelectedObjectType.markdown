@@ -10,12 +10,12 @@ If you've seen an example with source, I'm more than happy to dig into that as w
 
 ----
 
-You might need to break it down further.  You're not thinking about your problem in Cocoa terms yet.  In Cocoa terms, it sounds like you want to show a different detail view for each type of Core Data entity, which means swapping between [[NSViews]].  Time to put together some key concepts:
+You might need to break it down further.  You're not thinking about your problem in Cocoa terms yet.  In Cocoa terms, it sounds like you want to show a different detail view for each type of Core Data entity, which means swapping between General/NSViews.  Time to put together some key concepts:
 
-1) [Core Data concept] Every Core Data entity has a type, which has an associated class -- by default, it's [[NSManagedObject]], but you can specify whatever [[NSManagedObject]] subclass you like.
-2) [[[AppKit]] concept] An [[NSView]] can contain other [[NSViews]], and can be inserted into and removed from an [[NSWindow]]'s view hierarchy.
-3) [Cocoa concept] You have some [[NSObjectController]] instance in your nib (probably an [[NSArray]] controller) that maintains a selection.  [[NSObjectController]] exposes a "selection" binding, which means that you can register for [[KeyValueObserving]] notifications on it.
+1) [Core Data concept] Every Core Data entity has a type, which has an associated class -- by default, it's General/NSManagedObject, but you can specify whatever General/NSManagedObject subclass you like.
+2) General/[AppKit concept] An General/NSView can contain other General/NSViews, and can be inserted into and removed from an General/NSWindow's view hierarchy.
+3) [Cocoa concept] You have some General/NSObjectController instance in your nib (probably an General/NSArray controller) that maintains a selection.  General/NSObjectController exposes a "selection" binding, which means that you can register for General/KeyValueObserving notifications on it.
 
-So what does this all mean?  When your selection changes (3), you want to swap out whatever detail view is currently being shown for the appropriate detail view for that entity type (2).  You can get this view from the entity type's object (1) -- your custom [[NSManagedObject]] subclass could have a class method that returns an instance of [[NSView]] (or maybe [[NSViewController]] on Leopard, since this is the exact circumstance that lends itself to using it) with appropriate bindings already set up.  You could even load this view (or view controller) from a nib at runtime.
+So what does this all mean?  When your selection changes (3), you want to swap out whatever detail view is currently being shown for the appropriate detail view for that entity type (2).  You can get this view from the entity type's object (1) -- your custom General/NSManagedObject subclass could have a class method that returns an instance of General/NSView (or maybe General/NSViewController on Leopard, since this is the exact circumstance that lends itself to using it) with appropriate bindings already set up.  You could even load this view (or view controller) from a nib at runtime.
 
 Hope that gets you on the right track.  --K

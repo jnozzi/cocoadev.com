@@ -24,7 +24,7 @@ Kolja
 
 ----
 
-I don't believe this is really possible in a way that would feel right to the user. Macs treat all screens as one connected space, so the user expects a window to move onto another screen when moved that way - this is what will happen in all applications except yours (assuming you could get it to work). In my experience applications that fundamentally don't behave according to expectations get trashed pretty quickly. What might work a little better would be to find the overall bounds of all of the screens, and move your window off the edge of that. On a single screen system, it would behave the way you describe. On a multiscreen system it would cross the second screen but at least that would be the expected behaviour even if it looked a little odd. I can't think of a way to implement what you have described even if you chose to ignore this advice. --[[GrahamCox]]
+I don't believe this is really possible in a way that would feel right to the user. Macs treat all screens as one connected space, so the user expects a window to move onto another screen when moved that way - this is what will happen in all applications except yours (assuming you could get it to work). In my experience applications that fundamentally don't behave according to expectations get trashed pretty quickly. What might work a little better would be to find the overall bounds of all of the screens, and move your window off the edge of that. On a single screen system, it would behave the way you describe. On a multiscreen system it would cross the second screen but at least that would be the expected behaviour even if it looked a little odd. I can't think of a way to implement what you have described even if you chose to ignore this advice. --General/GrahamCox
 
 ----
 
@@ -37,7 +37,7 @@ If your window doesn't have a title bar or shadow, you have a few options:
 
 * Swap the window's content view for an image of the view hierarchy that you then clip as necessary.
 * Turn off autoresizing for all of the content view's subviews for the duration of the animation, and resize the window to clip them.
-* Keep the content view itself at the same size while you resize the window. Although I'm not sure if [[NSView]] will let you do this.
+* Keep the content view itself at the same size while you resize the window. Although I'm not sure if General/NSView will let you do this.
 
 If your window does have a title bar, you'd swap the window for one that's borderless, and draw a title bar in addition to the content view.
 

@@ -1,28 +1,28 @@
 
 
-Defined in <[[AppKit]]/[[NSNibDeclarations]].h> as
+Defined in <General/AppKit/General/NSNibDeclarations.h> as
 
-<code>
-#ifndef [[IBOutlet]]
-#define [[IBOutlet]]
+    
+#ifndef General/IBOutlet
+#define General/IBOutlet
 #endif
-</code>
 
-Unlike [[IBAction]], which is defined as void, [[IBOutlet]]'s sole purpose is to alert Interface Builder of outlets, and is thus an empty macro that is skipped by the compiler.
+
+Unlike General/IBAction, which is defined as void, General/IBOutlet's sole purpose is to alert Interface Builder of outlets, and is thus an empty macro that is skipped by the compiler.
 
 ----
 
-'''Usage'''
+**Usage**
 
-<code>
+    
 @interface className
 {
- [[IBOutlet]] id outlet;
+ General/IBOutlet id outlet;
 }
 // ...
 @end
-</code>
+
 
 ----
 
-See also [[IBAction]].
+See also General/IBAction.

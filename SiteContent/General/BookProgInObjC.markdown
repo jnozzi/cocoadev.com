@@ -1,31 +1,31 @@
 
 
 
-*'''Title:'''
+***Title:**
 Programming in Objective-C
-*'''Author:'''
+***Author:**
 Stephen Kochan
-*'''Publisher:'''
+***Publisher:**
 SAMS
-*'''Release Date:'''
+***Release Date:**
 January 2004
-*'''List Price:'''   
+***List Price:**   
 $34.99
-*'''ISBN:''' 0672325861
+***ISBN:** 0672325861
 
 http://www.amazon.com/exec/obidos/tg/detail/-/0672325861/
 
-*'''Description:'''
+***Description:**
 
-Programming in Objective-C is a concise, carefully written tutorial on the basics of Objective-C and object-oriented programming. The book makes no assumption about prior experience with object-oriented programming languages or with the C language (upon which Objective-C is based). And because of this, both novice and experienced programmers alike can use this book to quickly and effectively learn the fundamentals of Objective-C. Readers can also learn the concepts of object-oriented programming without having to first learn all of the intricacies of the underlying procedural language (C). This approach, combined with many small program examples and exercises at the end of each chapter, makes it ideally suited for either classroom use or self-study.... ''See  [http://www.informit.com/store/product.aspx?isbn=0672325861]'' for more details.
+Programming in Objective-C is a concise, carefully written tutorial on the basics of Objective-C and object-oriented programming. The book makes no assumption about prior experience with object-oriented programming languages or with the C language (upon which Objective-C is based). And because of this, both novice and experienced programmers alike can use this book to quickly and effectively learn the fundamentals of Objective-C. Readers can also learn the concepts of object-oriented programming without having to first learn all of the intricacies of the underlying procedural language (C). This approach, combined with many small program examples and exercises at the end of each chapter, makes it ideally suited for either classroom use or self-study.... *See  [http://www.informit.com/store/product.aspx?isbn=0672325861]* for more details.
 
-*'''About the Author'''
+***About the Author**
 
 Stephen Kochan is the author or co-author of six classic books on programming and Unix, including Programming in C, Programming in ANSI C, and Unix Shell Programming. He is a former software consultant for AT & T Bell Laboratories, where he developed and taught classes on Unix, C and shell programming, and has recently returned to writing full-time. 
 
 
 
-----'''Comments'''----
+----**Comments**----
 
 
 Several (three, January 15, 2004) people have recommended buying this book.  How about some comments on why you feel this way?
@@ -36,7 +36,7 @@ Several (three, January 15, 2004) people have recommended buying this book.  How
 I'm reading the book and I find it the best book about Objective-C that's in the market.  It's very easy to read, it's context is clear and easy to follow.  I have made great improvement after reading five chapters.  Give it a shot.
 
 I totally agree.  It is a book on the language, not a book on Cocoa programming.  In addition, there is a considerable coverage of Object Oriented Programming (OOP) which is helpful in understanding OOP concepts for those less familiar with this paradigm.  Get
-Aaron Hillegass' Cocoa Programming for Mac OS X Book [[[BookCocoaProgMacOSX]]] for the GUI material.
+Aaron Hillegass' Cocoa Programming for Mac OS X Book General/[BookCocoaProgMacOSX] for the GUI material.
 
 ----
 
@@ -51,15 +51,15 @@ You can get it for $25.50 from here: http://www.bookpool.com/.x/zh6fc614z8/sm/06
 
 ----
 
-Fantastic book.  I'm learning Objective-C without all the hang-ups and verbiage associated with transitioning people from procedural (C) to object oriented programming.  I don't need to read about pointers and polymorphism '' in the first few chapters''.  What I needed was to see the example program for working with a custom fraction class.  A complete program shown on a page and a half.  To heck with learning C first. 
+Fantastic book.  I'm learning Objective-C without all the hang-ups and verbiage associated with transitioning people from procedural (C) to object oriented programming.  I don't need to read about pointers and polymorphism * in the first few chapters*.  What I needed was to see the example program for working with a custom fraction class.  A complete program shown on a page and a half.  To heck with learning C first. 
 
 -=- Bantok (On chapter 5 and still going strong)
 
 ----
 
-It's a very easy introduction to programming, but gets into the tasty [[ObjC]] stuff fairly early.  It's well written, except for his annoying habit of putting semicolons at the end of @implementation [[ClassName]] lines.
+It's a very easy introduction to programming, but gets into the tasty General/ObjC stuff fairly early.  It's well written, except for his annoying habit of putting semicolons at the end of @implementation General/ClassName lines.
 
-''That's not technically an error, is it?''
+*That's not technically an error, is it?*
 
 ----
 
@@ -73,9 +73,9 @@ BTW, for those of you in the US, the author is selling signed copies for $23
 http://half.ebay.com/shops/shops.jsp?member_name=sgkoch
 
 ----
-quote "It's well written, except for his annoying habit of putting semicolons at the end of @implementation [[ClassName]] lines." No it's been like that for a very long time, it's optional.
+quote "It's well written, except for his annoying habit of putting semicolons at the end of @implementation General/ClassName lines." No it's been like that for a very long time, it's optional.
 
-It's not rejected by the compiler, of course, but doesn't really make any sense, since @implementation [[ClassName]] is not a statement that needs termination.  By putting them in there (and why no semicolons after the @end statements?) it just seems weird.
+It's not rejected by the compiler, of course, but doesn't really make any sense, since @implementation General/ClassName is not a statement that needs termination.  By putting them in there (and why no semicolons after the @end statements?) it just seems weird.
 
 ----
 got it. buy it. but don't expect support worth a flip from the author's web site. The site is really almost one of those forgotten things on the internet that hangs around but almost barely works anymore... S.K. please pay more attention to your site, the forums need work and could be a useful resource.

@@ -4,11 +4,11 @@ An exciting public company in Louisville Colorado is looking for a dynamic and c
 
 Qualifications: 
 
-'' 10+ years of object-oriented software development
+* 10+ years of object-oriented software development
 
-'' 7+ years of application software development on the Mac platform
+* 7+ years of application software development on the Mac platform
 
-'' Direct programming experience using a majority of the following technologies:
+* Direct programming experience using a majority of the following technologies:
 
 o C++/Objective C
 
@@ -18,21 +18,21 @@ o Apple Xcode
 
 o Network & related communications protocols (TCP/IP, HTTP, SSL, XML)
 
-o [[CodeWarrior]] IDE
+o General/CodeWarrior IDE
 
-o [[PowerPlant]]
+o General/PowerPlant
 
 o Experience developing with embedded browsers
 
-'' Excellent communication and documentation skills required
+* Excellent communication and documentation skills required
 
-'' Familiarity with Linux/Unix a strong plus
+* Familiarity with Linux/Unix a strong plus
 
-'' Experience with web-based deployment helpful
+* Experience with web-based deployment helpful
 
-'' Prior Win32 client development experience helpful
+* Prior Win32 client development experience helpful
 
-'' BSCS or equivalent
+* BSCS or equivalent
 
 
 Responsibilities

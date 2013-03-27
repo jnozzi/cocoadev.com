@@ -5,80 +5,80 @@ Filesystem notifications is the mechanism that Mac OS X and the Finder uses to k
 There is API for FN both in Carbon and in Cocoa, but the Cocoa API is not complete at the moment.
 
 ----
-'''Cocoa'''
+**Cocoa**
 
-In Cocoa, the FN API is part of the [[NSWorkspace]] class.
-<code>
+In Cocoa, the FN API is part of the General/NSWorkspace class.
+    
 - (void)noteFileSystemChanged;
-- (void)noteFileSystemChanged:([[NSString]] '')path;
+- (void)noteFileSystemChanged:(General/NSString *)path;
 - (BOOL)fileSystemChanged;
-</code>
-<code>- (void)noteFileSystemChanged</code> is used to tell the system that a massive change was made, to many different locations throughout the file system. It should mainly be used by installers and other programs making many changes in a short time, but is inefficient for notifying a single modification.
-<code>- (void)noteFileSystemChanged:...</code> is used to tell the system that a modification was made to the directory at path.
-<code>- (BOOL)fileSystemChanged</code> is used for polling for changes. It returns true if there has been any file system changes since the last polling.
 
-Many Cocoa classes automatically notify changes to the file system. Those include [[NSSavePanel]] and [[NSDocument]].
+    - (void)noteFileSystemChanged is used to tell the system that a massive change was made, to many different locations throughout the file system. It should mainly be used by installers and other programs making many changes in a short time, but is inefficient for notifying a single modification.
+    - (void)noteFileSystemChanged:... is used to tell the system that a modification was made to the directory at path.
+    - (BOOL)fileSystemChanged is used for polling for changes. It returns true if there has been any file system changes since the last polling.
 
-'''WARNING!'''
+Many Cocoa classes automatically notify changes to the file system. Those include General/NSSavePanel and General/NSDocument.
+
+**WARNING!**
 
 According to Apple's documentation:
-[http://developer.apple.com/documentation/Cocoa/Reference/[[ApplicationKit]]/ObjC_classic/Classes/[[NSWorkspace]].html]
-''- (BOOL)fileSystemChanged
+[http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSWorkspace.html]
+*- (BOOL)fileSystemChanged
 
-Returns YES if a change to the file system has been registered with a noteFileSystemChanged message since the last fileSystemChanged message; NO otherwise. '''Currently always returns NO.'''
-''
+Returns YES if a change to the file system has been registered with a noteFileSystemChanged message since the last fileSystemChanged message; NO otherwise. **Currently always returns NO.**
+*
 
 So it looks like you have to use the Carbon approach for now.
 
 ----
-'''Carbon'''
+**Carbon**
 
 Carbon provides some additional functionality related to polling. The API is described in <Carbon/Files.h> and can be used without a problem from a Cocoa application (if Carbon.framework is included).
 
-<code>[[FNNotify]](
-  const [[FSRef]] ''  ref,
-  [[FNMessage]]      message,
-  [[OptionBits]]     flags)</code>
+    General/FNNotify(
+  const General/FSRef *  ref,
+  General/FNMessage      message,
+  General/OptionBits     flags)
 
-[[FNNotify]]() is used to tell the system a change was made. The only documentation that exists seems to be embedded into the Files.h file.
+General/FNNotify() is used to tell the system a change was made. The only documentation that exists seems to be embedded into the Files.h file.
 
-<code>[[FNNotifyByPath]](
-  const UInt8 ''  path,
-  [[FNMessage]]      message,
-  [[OptionBits]]     flags)</code>
+    General/FNNotifyByPath(
+  const UInt8 *  path,
+  General/FNMessage      message,
+  General/OptionBits     flags)
 
-Alternative to [[FNNotify]]().
+Alternative to General/FNNotify().
 
-<code>[[FNNotifyAll]](
-  [[FNMessage]]    message,
-  [[OptionBits]]   flags)</code>
+    General/FNNotifyAll(
+  General/FNMessage    message,
+  General/OptionBits   flags)
 
 Notify of massive changes.
 
-<code>[[FNSubscribe]](
-  const [[FSRef]] ''        directoryRef,
-  [[FNSubscriptionUPP]]    callback,
-  void ''               refcon,
-  [[OptionBits]]           flags,
-  [[FNSubscriptionRef]] ''  subscription)</code>
+    General/FNSubscribe(
+  const General/FSRef *        directoryRef,
+  General/FNSubscriptionUPP    callback,
+  void *               refcon,
+  General/OptionBits           flags,
+  General/FNSubscriptionRef *  subscription)
 
 This function is used to request notifications of a particular location. It uses a few different UPP's and structures that are outlined in Files.h.
 
-<code>[[FNUnsubscribe]]([[FNSubscriptionRef]] subscription)</code>
+    General/FNUnsubscribe(General/FNSubscriptionRef subscription)
 
 Cancel a subscription.
 
 ----
-'''Cocoa+Carbon'''
+**Cocoa+Carbon**
 
 Because I wanted access to the subscription services that Carbon provides, and avoid doing polling, I created a class to access those functions from a Cocoa interface.
 
-<code>@interface [[DRFileNotificationSubscription]] : [[NSObject]] {
+    @interface General/DRFileNotificationSubscription : General/NSObject {
     //removed to save space
 }
 
-- (id)initForDirectory:([[NSString]]'')path target:(id)newTarget action:(SEL)action;
-- (id)initForDirectoryURL:(NSURL'')url target:(id)newTarget action:(SEL)action;
+- (id)initForDirectory:(General/NSString*)path target:(id)newTarget action:(SEL)action;
+- (id)initForDirectoryURL:(NSURL*)url target:(id)newTarget action:(SEL)action;
 
 - (void)setTarget:(id)newTarget;
 - (void)setAction:(SEL)newAction;
@@ -86,14 +86,14 @@ Because I wanted access to the subscription services that Carbon provides, and a
 - (id)target;
 - (SEL)action;
 
-- ([[NSString]]'')watchedPath;
-- (NSURL'')watchedURL;
+- (General/NSString*)watchedPath;
+- (NSURL*)watchedURL;
 
 - (void)fire;
 
-@end</code>
+@end
 
-Each instance represents a subscription to a particular file system location. Once created, the subscription cannot be moved to another location, and the subscription exists until the object is deallocated. When the subscription receives a notification, it calls its target's action. action is a selector like an [[IBAction]], and (id)sender points to the subscription instance. The sender can be used to figure out what directory was meant ([sender watchedPath]).
+Each instance represents a subscription to a particular file system location. Once created, the subscription cannot be moved to another location, and the subscription exists until the object is deallocated. When the subscription receives a notification, it calls its target's action. action is a selector like an General/IBAction, and (id)sender points to the subscription instance. The sender can be used to figure out what directory was meant ([sender watchedPath]).
 
 You can download my class from http://ittpoi.com/drfns.tgz
 
@@ -101,24 +101,24 @@ One thing I noticed, was that Finder itself is not very good at sending notifica
 
 Enjoy.
 
--- [[DavidRemahl]]
+-- General/DavidRemahl
 
 ----
-'''BSD'''
+**BSD**
 
-The BSD layer provides a related API that allows monitoring of events associated with individual files: <code>kqueue(2)</code> [http://developer.apple.com/documentation/Darwin/Reference/[[ManPages]]/man2/kqueue.2.html].
+The BSD layer provides a related API that allows monitoring of events associated with individual files:     kqueue(2) [http://developer.apple.com/documentation/Darwin/Reference/General/ManPages/man2/kqueue.2.html].
 
-[[UKKQueue]] implements a simple Cocoa interface to the kqueue file change notification mechanism.
+General/UKKQueue implements a simple Cocoa interface to the kqueue file change notification mechanism.
 
 ----
-'''DISCUSSION:'''
+**DISCUSSION:**
 ----
 
 I'm looking for a way to be notified when any file on the filesystem changes. I thought I could use kqueue, but it seems that it only works for specific files (vnodes, actually). My second thought was periodically checking the journal file for recent changes (ugh, polling). This seems like a rather complicated, dangerous, and unelegant solution. If I can find a way to do this, I'm planning on making something similar to locate, but without the need to update the database periodically. Any suggestions?
 
 ----
 
-''any file on the filesystem changes????''
+*any file on the filesystem changes????*
 This is way too encompassing. I seriously doubt you would want to be notified of every single disk operation.
 
 ----
@@ -126,7 +126,7 @@ OK, so maybe not QUITE that extensive. Any user visible change (name, location, 
 
 ----
 
-Trying to watch for filesystem changes using these types of things (including kqueue) is problematic in many respects, but especially because it almost never works over a network. A good approach if you really need to know about changes to the filesystem (e.g., you're writing a new Finder) is to refresh your views when the user brings one of your windows to the front or clicks on the window. Most users find this intuitive, and it doesn't require polling ''or'' the use of relatively low-level [[APIs]] like kqueue.
+Trying to watch for filesystem changes using these types of things (including kqueue) is problematic in many respects, but especially because it almost never works over a network. A good approach if you really need to know about changes to the filesystem (e.g., you're writing a new Finder) is to refresh your views when the user brings one of your windows to the front or clicks on the window. Most users find this intuitive, and it doesn't require polling *or* the use of relatively low-level General/APIs like kqueue.
 
 It might also be worth looking at SGI's FAM [http://oss.sgi.com/projects/fam/], particularly if you have some time on your hands and can add support for kqueue.
 
@@ -142,51 +142,51 @@ you might want to have a look at this: [http://greenearthcommons.org/rian/gfslog
 
 ----
 
-I've got an app that produces sound files. One thing I'm trying to incorporate is that once a file is created, you hit a preview button and a drawer drops down with an [[NSMovieView]] that lets you preview the file that was created without having to go into the Finder. The problem is that there seems to be some lag time in OSX's file updates.
+I've got an app that produces sound files. One thing I'm trying to incorporate is that once a file is created, you hit a preview button and a drawer drops down with an General/NSMovieView that lets you preview the file that was created without having to go into the Finder. The problem is that there seems to be some lag time in OSX's file updates.
 
-For example, you make a file. It previews fine. But then you overwrite it with a new file. If you hit preview quickly once the creation process is done, the file that is loaded into the [[NSMovieView]] will actually be the old one as if the OS hasn't updated the file listing yet. If you count a slow 'one-one thousand' and then hit preview, the file will be fine.
+For example, you make a file. It previews fine. But then you overwrite it with a new file. If you hit preview quickly once the creation process is done, the file that is loaded into the General/NSMovieView will actually be the old one as if the OS hasn't updated the file listing yet. If you count a slow 'one-one thousand' and then hit preview, the file will be fine.
 
-To get around this, I included an [[[NSFileManager]] removeFileAtPath: handler:] call that is used to delete a file that is slated to be overwritten, with the hope that if the file was deleted, this problem wouldn't occur. No such luck. If the creation process is fast, and you hit preview as soon as its done, you get kind of a halfway file; it's usually the new file, but the wrong duration and with extra static added in. Again, if you count 'one-one thousand' before hitting preview, everything is OK.
+To get around this, I included an General/[NSFileManager removeFileAtPath: handler:] call that is used to delete a file that is slated to be overwritten, with the hope that if the file was deleted, this problem wouldn't occur. No such luck. If the creation process is fast, and you hit preview as soon as its done, you get kind of a halfway file; it's usually the new file, but the wrong duration and with extra static added in. Again, if you count 'one-one thousand' before hitting preview, everything is OK.
 
 Is there some way to get around this? Or force the application to wait until the filesystem updates before allowing a preview?
 
 ----
 
-[[TonyArnold]] - you'll want to look into kqueue and kevent (specific to Darwin) - I've not used them myself, but they allow kernel level notification of changes to the filesystem (or a specific file in your case). Post back if you work it out.
+General/TonyArnold - you'll want to look into kqueue and kevent (specific to Darwin) - I've not used them myself, but they allow kernel level notification of changes to the filesystem (or a specific file in your case). Post back if you work it out.
 
 ----
 
-How is your app writing to disc? If you are using an [[NSFileHandle]] there is a method to synchronize the file <code>[audioFileHandle synchronizeFile]</code>.
+How is your app writing to disc? If you are using an General/NSFileHandle there is a method to synchronize the file     [audioFileHandle synchronizeFile].
 
-If you are updating your file with <code>write()</code> then there is a <code>unistd</code> function that can synchronize your file <code>fsync()</code>. 
+If you are updating your file with     write() then there is a     unistd function that can synchronize your file     fsync(). 
 
-Once your file is synced you can create a new [[NSMovie]] with a reference to the file and set the movie to your movie view. --zootbobbalu
-
-----
-
-Well, it's a wrapper so I have no control over how the file is getting written. I tried just making an [[NSFileHandle]] for reading to the path and syncing it, but that didn't work. As for the kevent() and kqueue() calls...even reading those man pages, I'm a little confused about them (especially kevent(): it has 2 arrays of kevents?).
+Once your file is synced you can create a new General/NSMovie with a reference to the file and set the movie to your movie view. --zootbobbalu
 
 ----
 
-It sounds as though the [[NSFileHandle]], the cocoa file management layer, or [[QuickTime]] is keeping the file open for a while after the access since the filesystem layer in the OS core will be doing this correctly.  Have you tried sending the closeFile message to the file handle for the movie before trying to re-open it?  That should make sure that no component of the library is still holding the descriptor (since that would still point to the overwritten file until closed).
+Well, it's a wrapper so I have no control over how the file is getting written. I tried just making an General/NSFileHandle for reading to the path and syncing it, but that didn't work. As for the kevent() and kqueue() calls...even reading those man pages, I'm a little confused about them (especially kevent(): it has 2 arrays of kevents?).
 
 ----
 
-OK, just so I am clear, there is no reliable way to have the OS notify me (by invoking a callback function, or sending an [[NSNotification]]) when a file is written to.  kqueues involves polling, albeit efficient polling. And the [[CarbonFNSubscribe]] functions only work if the process that modifies the file is savvy enough to mention it via an [[FNNotify]].
+It sounds as though the General/NSFileHandle, the cocoa file management layer, or General/QuickTime is keeping the file open for a while after the access since the filesystem layer in the OS core will be doing this correctly.  Have you tried sending the closeFile message to the file handle for the movie before trying to re-open it?  That should make sure that no component of the library is still holding the descriptor (since that would still point to the overwritten file until closed).
+
+----
+
+OK, just so I am clear, there is no reliable way to have the OS notify me (by invoking a callback function, or sending an General/NSNotification) when a file is written to.  kqueues involves polling, albeit efficient polling. And the General/CarbonFNSubscribe functions only work if the process that modifies the file is savvy enough to mention it via an General/FNNotify.
 
 ----
 How do kqueues involve polling? I thought the whole point of kqueues was to avoid polling.
 
 ----
-[[FNSubscribe]] works fine in Tiger even with non-savvy apps. I wrote a wrapper class that might do what you want--see my personal page ([[JonathanGrynspan]]) for [[GTSubscription]].
+General/FNSubscribe works fine in Tiger even with non-savvy apps. I wrote a wrapper class that might do what you want--see my personal page (General/JonathanGrynspan) for General/GTSubscription.
 ----
-I tried using [[GTSubscription]] (basically reusing the example code on [[GTSubscription]] website). It works nicely when I use Finder to modify the folder (~/Library/Application Support/iCal), however, if i modify a file using e.g vi, it doesn't recognize changes. Nor does it recognize changes made to the nodes.plist file (by iCal) even though Finder updates itself every minute (approx) (The modified attribute reflects this) - Saptarshi
+I tried using General/GTSubscription (basically reusing the example code on General/GTSubscription website). It works nicely when I use Finder to modify the folder (~/Library/Application Support/iCal), however, if i modify a file using e.g vi, it doesn't recognize changes. Nor does it recognize changes made to the nodes.plist file (by iCal) even though Finder updates itself every minute (approx) (The modified attribute reflects this) - Saptarshi
 
 ----
-Leopard now provides the [[FSEvents]] API - this can be used for getting notification of directory changes including the entire filesystem (by looking for changes beneath "/"). Sample cocoa code demonstrating this is as http://www.fernlightning.com/doku.php?id=software:fseventer:leopard
+Leopard now provides the General/FSEvents API - this can be used for getting notification of directory changes including the entire filesystem (by looking for changes beneath "/"). Sample cocoa code demonstrating this is as http://www.fernlightning.com/doku.php?id=software:fseventer:leopard
 
 ----
-[[GTSubscription]] only works with directories because it is based on the Carbon [[FNSubscribe]] function. This is not a bug in [[GTSubscription]]. -[[JonathanGrynspan]]
+General/GTSubscription only works with directories because it is based on the Carbon General/FNSubscribe function. This is not a bug in General/GTSubscription. -General/JonathanGrynspan
 
 ----
 I notice that http://ittpoi.com/drfns.tgz from above is not available anymore. I like to see if I can use it. Does someone knows where I can find it or got a copy for me? lordanubis @ xs4all.nl
@@ -195,4 +195,4 @@ I notice that http://ittpoi.com/drfns.tgz from above is not available anymore. I
 The Wayback Machine is your friend. http://web.archive.org/web/20070708130924/www.ittpoi.com/ichatstatus/
 
 ----
-There is now a modernized, faster, more efficient version of [[UKKQueue]] called "[[VDKQueue]]". It is available here: http://github.com/bdkjones/[[VDKQueue]]
+There is now a modernized, faster, more efficient version of General/UKKQueue called "General/VDKQueue". It is available here: http://github.com/bdkjones/General/VDKQueue

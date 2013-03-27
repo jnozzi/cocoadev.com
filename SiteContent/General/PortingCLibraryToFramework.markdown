@@ -2,7 +2,7 @@ I ported a free C library to Mac OS X (actually I just changed one word on the l
 
 The library is buit like most unix tools in a very very complicated process, using 4 auto configuration systems. You know - /.configure make etc. 
 
-Can I covert it into a Project Builder framework project, or I should build a framework which use the compiled library? I guess I want the library to live inside the framework, so anyone can install and use it without an installer. --[[NirSoffer]]
+Can I covert it into a Project Builder framework project, or I should build a framework which use the compiled library? I guess I want the library to live inside the framework, so anyone can install and use it without an installer. --General/NirSoffer
 
 ----
 

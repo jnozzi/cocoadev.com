@@ -7,22 +7,22 @@ retainCount on server side is 2! but when I do release recieved object, it sigbu
 What happens, when I return object, when called remotely?
 It seems, like it is eating my memory!
 This is my method, wich is called from other application:
-<code>
+    
 -(void)awakeFromNib
 {
-    [[NSString]] ''serviceName = [[[NSString]] stringWithFormat:@"test1"];
-    [[NSConnection]] ''serverConnection=[[[NSConnection]] defaultConnection];
+    General/NSString *serviceName = General/[NSString stringWithFormat:@"test1"];
+    General/NSConnection *serverConnection=General/[NSConnection defaultConnection];
     [serverConnection setRootObject:self];
     [serverConnection registerName:serviceName];
 }
 
-- ([[NSData]] '') test
+- (General/NSData *) test
 {
-	[[NSData]] ''archive = [[[NSArchiver]] archivedDataWithRootObject:objects]; // objects is HUGE. say, 100MB.
+	General/NSData *archive = General/[NSArchiver archivedDataWithRootObject:objects]; // objects is HUGE. say, 100MB.
 	[objects release];
 	return archive;
 }
-</code>
+
 
 When I call this method via proxy, every call increases process consumed memory for about 100MB�
 
@@ -32,7 +32,7 @@ What and where is the code calling the method 'test'?
 
 ----
 
-Simple setup of [[NSProxy]] object with [[NSConnection]], and next call of method.
+Simple setup of General/NSProxy object with General/NSConnection, and next call of method.
 
 ----
 

@@ -1,12 +1,12 @@
 Spam on wikis is a sad, unavoidable fact of life.  They are good targets because they are link-rich sites favored by search engines.  Wiki spammers don't so much think that you, a Cocoa programmer, will visit their site -- they just want to increase their Google ranking.
 
-'''Wiki spam protection'''
+**Wiki spam protection**
 
 These are the current anti-spam measures in place:
 
 1. Page saves must be correctly timestamped, relative to when the "Edit" began.  Edit sessions eventually expire.  Likewise, saving too soon is an indicator that there is no human behind the wheel.
 
-2. There is a blacklist of [[URLs]] and keywords that are not allowed to be saved at any time.
+2. There is a blacklist of General/URLs and keywords that are not allowed to be saved at any time.
 
 3. There is an IP address blacklist.
 
@@ -14,15 +14,15 @@ These are the current anti-spam measures in place:
 
 5. History pages are served with meta tags to prevent search engine indexing.
 
-'''What to do if the wiki has been spammed:'''
+**What to do if the wiki has been spammed:**
 
-1. Revert to the most recent non-spammed version of the afflicted pages, using the page history feature.  If there are a lot of afflicted pages, email [[StevenFrank]] so recovery can be automated. ( Use my contact form: http://stevenf.com/contact/ )
+1. Revert to the most recent non-spammed version of the afflicted pages, using the page history feature.  If there are a lot of afflicted pages, email General/StevenFrank so recovery can be automated. ( Use my contact form: http://stevenf.com/contact/ )
 
-2. Email [[StevenFrank]] a uniquely identifying URL or keyword from the attack that can be added to the blacklist to prevent future attacks from the same organization.  
+2. Email General/StevenFrank a uniquely identifying URL or keyword from the attack that can be added to the blacklist to prevent future attacks from the same organization.  
 
 3. Recording the IP is not particularly useful for the long-term, as IP addresses are dynamic and easily spoofed.  Keyword blacklisting is much more effective.  However, if the spam attack is ongoing, a temporary block can be placed on a particular IP or range until the attack subsides.
 
-Thanks for helping keep [[CocoaDev]] spam-free!  -- [[StevenFrank]]
+Thanks for helping keep General/CocoaDev spam-free!  -- General/StevenFrank
 
 ----
 

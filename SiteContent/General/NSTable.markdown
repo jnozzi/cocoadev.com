@@ -1,1 +1,1 @@
-No such class.  Perhaps you wanted [[NSTableView]]?
+No such class.  Perhaps you wanted General/NSTableView?

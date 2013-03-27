@@ -20,11 +20,11 @@ Thanks in advance,
 RV
 
 ----
-This is becoming ''tiresome''. People, this is '''not a mailing list'''. See [[MailingListMode]], [[HowToAskQuestions]], [[HowToUseThisSite]], etc.
+This is becoming *tiresome*. People, this is **not a mailing list**. See General/MailingListMode, General/HowToAskQuestions, General/HowToUseThisSite, etc.
 
 ----
-You may want to check that the libraries exist in the places that they need to, and that the ''load commands'' and ''install name'' (<code>man otool</code>) are what you expect. It is possible that the linkage: ''framework'' -> ''static library'' -> ''dynamic library'' won't work anyway (the second relocation cannot be performed after linking to a static library), but you may have to wait for someone who knows more about linking than I comes along to explain this. You will probably have already noticed that the [[XCode]] tool chain makes it easier to work with dynamic libraries than static ones, and you might want to investigate some way of providing your <code>libembed.a</code> as a dynamic library.
+You may want to check that the libraries exist in the places that they need to, and that the *load commands* and *install name* (    man otool) are what you expect. It is possible that the linkage: *framework* -> *static library* -> *dynamic library* won't work anyway (the second relocation cannot be performed after linking to a static library), but you may have to wait for someone who knows more about linking than I comes along to explain this. You will probably have already noticed that the General/XCode tool chain makes it easier to work with dynamic libraries than static ones, and you might want to investigate some way of providing your     libembed.a as a dynamic library.
 
-See [[ApplicationLinkingIssues]] (linked from [[CommonProblem]] ) [[LinkingLibrariesIntoACocoaApp]] [[StaticVsDynamicLinking]] and [[StaticLibrariesInDeployment]] (which may have the exact answer to your problem).
+See General/ApplicationLinkingIssues (linked from General/CommonProblem ) General/LinkingLibrariesIntoACocoaApp General/StaticVsDynamicLinking and General/StaticLibrariesInDeployment (which may have the exact answer to your problem).
 
-Per [[MailingListMode]] , you are warmly invited to "refactor" and clean up this page, notably to remove any cruft that I have added!
+Per General/MailingListMode , you are warmly invited to "refactor" and clean up this page, notably to remove any cruft that I have added!

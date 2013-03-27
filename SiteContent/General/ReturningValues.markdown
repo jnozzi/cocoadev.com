@@ -2,36 +2,36 @@ Hi!
 This is a question and any help would be great
 Let me explain what I want to do
 I have
- 1. a custom class [[MyCustomClass]]
- 2. a Cocoa document class which I call [[MyDocument]]
- 3. a Custom View that I call [[MyView]]
+ 1. a custom class General/MyCustomClass
+ 2. a Cocoa document class which I call General/MyDocument
+ 3. a Custom View that I call General/MyView
 
-[[MyCustomClass]] looks like this
+General/MyCustomClass looks like this
 
-<code> @interface [[MyCustomClass]] : [[NSObject]] {
+     @interface General/MyCustomClass : General/NSObject {
   float a;
 }
 //OLD -(float)Returna; // Obvioulsy it returns a 
-//update : -(float)[[ReturnA]]; // Obvioulsy it returns a 
+//update : -(float)General/ReturnA; // Obvioulsy it returns a 
 
 
-@end</code>
+@end
 
 
-[[MyDocument]].h looks like 
+General/MyDocument.h looks like 
 
-<code> @interface [[MyDocument]] : [[NSDocument]] {
- [[MyCustomClass]]  myClass;
+     @interface General/MyDocument : General/NSDocument {
+ General/MyCustomClass  myClass;
 }
 -(float)returnA;  // this method here return [myClass returnFloat];
-@end</code>
+@end
 
 
-[[MyView]].h looks like this
+General/MyView.h looks like this
 
-<code> @interface [[MyView]] : [[NSView]] {
- [[IBOutlet]] id ''doc    // I then linked this outlet via IB to the [[MyDocument]] (First responder)
-}</code>
+     @interface General/MyView : General/NSView {
+ General/IBOutlet id *doc    // I then linked this outlet via IB to the General/MyDocument (First responder)
+}
 
 The problem that I encounter is that I cannot use the method [doc returnA] from myView. it looks like at the compilation, the Objc Compiler don't find the instance method , then don't allocate a return value placeholder.
 
@@ -43,7 +43,7 @@ Thank you
 
 ----
 
-Must we continue to use "My" everywhere? -- [[MikeTrent]] 
+Must we continue to use "My" everywhere? -- General/MikeTrent 
 
 Agreed.  "my" pretty pointless, and pretty juvenile.  // should I use "your" ? --Francois
 
@@ -51,32 +51,32 @@ Disagree. "my" is a namespace!
 
 ----
 
-I hope this isn't your real code, since [doc returnA] is doing a [myClass returnFloat] but you only have a Returna in myCustomClass (wrong name, and your capitalization conventions are inconsistent).  Assuming you're invoking [doc returnA] and that method actually exists, that should work.  You'll get a compiler warning since you declared "doc" in your view as an id, rather than a [[MyDocument]].  Stick in a @class [[MyDocument]];  and change your "id ''doc" to "[[MyDocument]] ''doc", and hopefully it should work.
+I hope this isn't your real code, since [doc returnA] is doing a [myClass returnFloat] but you only have a Returna in myCustomClass (wrong name, and your capitalization conventions are inconsistent).  Assuming you're invoking [doc returnA] and that method actually exists, that should work.  You'll get a compiler warning since you declared "doc" in your view as an id, rather than a General/MyDocument.  Stick in a @class General/MyDocument;  and change your "id *doc" to "General/MyDocument *doc", and hopefully it should work.
 
-'''
-''For the records, id is already a pointer, so id'' is a pointer to an object pointer.''
-'''
+**
+*For the records, id is already a pointer, so id* is a pointer to an object pointer.*
+**
 
 
 ----
 
 I made a capitalization mistake writing this code on the discussion forum.
-The Compiler returned an error (and not a warning ) since the "id '' is a pointer to an object pointer". Thanks for your comment. 
-Using "@class [[MyDocument]] [[MyDocument]] ''doc" produce the exact same error ( this is why I asked for Help )
+The Compiler returned an error (and not a warning ) since the "id * is a pointer to an object pointer". Thanks for your comment. 
+Using "@class General/MyDocument General/MyDocument *doc" produce the exact same error ( this is why I asked for Help )
 
 I solved this by doing the following
 
-1. [[MyDocument]] creates the object of type [[MyCustomClass]] which I called [[MyClass]]
-2. I declared a new object docView in [[MyDocument]] and it sends the message [docView setDoc:[[MyClass]]] which obvioulsy sets doc to [[MyClass]]
-3. Now I can directly call the instance methods of [[MyClass]] without having to have [[MyDocument]] as a proxy.
+1. General/MyDocument creates the object of type General/MyCustomClass which I called General/MyClass
+2. I declared a new object docView in General/MyDocument and it sends the message [docView setDoc:General/MyClass] which obvioulsy sets doc to General/MyClass
+3. Now I can directly call the instance methods of General/MyClass without having to have General/MyDocument as a proxy.
 
-Conclusion : This new code looks definitively more like [[ObjC]].
+Conclusion : This new code looks definitively more like General/ObjC.
 
 Thanks to all. -- Francois
 
 
-@class [[MyDocument]] [[MyDocument]] ''doc should produce an error, since it's bad syntax.  Put @class [[MyDocument]]; somewhere at the start of the file, then in your object structure, have [[MyDocument]] ''whatever.
+@class General/MyDocument General/MyDocument *doc should produce an error, since it's bad syntax.  Put @class General/MyDocument; somewhere at the start of the file, then in your object structure, have General/MyDocument *whatever.
 
 ----
 
-I will agree "my" is a namespace, but one that should never be used. to elaborate, names like "[[MyDocument]]" and "[[ReturnA]]" are useless because they're made without context. Of course you would never use them in real code (right?) but it begs the question why should we pollute our learning materials with examples that shouldn't be used? Why not define some context, such as "[[TextDocument]]" and "- (id)text;" and let the reader figure out how the example relates in their own situation? I.e., each by real-world example, not teach by [[FillInTheBlankProgramming]]. -- [[MikeTrent]]
+I will agree "my" is a namespace, but one that should never be used. to elaborate, names like "General/MyDocument" and "General/ReturnA" are useless because they're made without context. Of course you would never use them in real code (right?) but it begs the question why should we pollute our learning materials with examples that shouldn't be used? Why not define some context, such as "General/TextDocument" and "- (id)text;" and let the reader figure out how the example relates in their own situation? I.e., each by real-world example, not teach by General/FillInTheBlankProgramming. -- General/MikeTrent

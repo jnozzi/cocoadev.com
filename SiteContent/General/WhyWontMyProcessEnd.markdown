@@ -1,7 +1,7 @@
-'''Question: I have a Cocoa application that processes large data files.  When I force-quit my application, it won't end.  Why ?'''
+**Question: I have a Cocoa application that processes large data files.  When I force-quit my application, it won't end.  Why ?**
 
-'''Answer:'''
-I have encountered unkillable processes on several flavors of Unix including [[MacOS]] X.  
+**Answer:**
+I have encountered unkillable processes on several flavors of Unix including General/MacOS X.  
 When a Unix process dies, all file descriptors and heap memory are  
 automatically released.  [Beware of POSIX processor sets, message  
 queues, shared memory, semaphores, and other resources that are not  

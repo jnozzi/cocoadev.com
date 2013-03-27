@@ -1,18 +1,18 @@
 
 
-Here is better code for extracting an [[NSImage]] from a [[GWorld]] that doesn't involve copying pixel by pixel and is easily generalized - [[ChrisMeyer]]
+Here is better code for extracting an General/NSImage from a General/GWorld that doesn't involve copying pixel by pixel and is easily generalized - General/ChrisMeyer
 
-<code>
-
--([[NSImage]] '')imageFromGWorld:([[GWorldPtr]])gworld
-{
-    [[NSParameterAssert]]( gworld != NULL );
     
-    [[PixMapHandle]] pixMapHandle = [[GetGWorldPixMap]]( gworld );
-    if ( [[LockPixels]]( pixMapHandle ) )
+
+-(General/NSImage *)imageFromGWorld:(General/GWorldPtr)gworld
+{
+    General/NSParameterAssert( gworld != NULL );
+    
+    General/PixMapHandle pixMapHandle = General/GetGWorldPixMap( gworld );
+    if ( General/LockPixels( pixMapHandle ) )
     {
         Rect portRect;
-        [[GetPortBounds]]( gworld, &portRect );
+        General/GetPortBounds( gworld, &portRect );
         int pixels_wide = (portRect.right - portRect.left);
         int pixels_high = (portRect.bottom - portRect.top);
         
@@ -20,7 +20,7 @@ Here is better code for extracting an [[NSImage]] from a [[GWorld]] that doesn't
         int spp = 4;
         BOOL has_alpha = YES;
         
-        [[NSBitmapImageRep]] ''bitmap_rep = [[[[[NSBitmapImageRep]] alloc]
+        General/NSBitmapImageRep *bitmap_rep = General/[[[NSBitmapImageRep alloc]
             initWithBitmapDataPlanes:NULL
                           pixelsWide:pixels_wide
                           pixelsHigh:pixels_high
@@ -28,15 +28,15 @@ Here is better code for extracting an [[NSImage]] from a [[GWorld]] that doesn't
                      samplesPerPixel:spp
                             hasAlpha:has_alpha
                             isPlanar:NO
-                      colorSpaceName:[[NSDeviceRGBColorSpace]]
+                      colorSpaceName:General/NSDeviceRGBColorSpace
                          bytesPerRow:NULL
                         bitsPerPixel:NULL] autorelease];
         
-        [[CGColorSpaceRef]] dst_colorspaceref = [[CGColorSpaceCreateDeviceRGB]]();
+        General/CGColorSpaceRef dst_colorspaceref = General/CGColorSpaceCreateDeviceRGB();
         
-        [[CGImageAlphaInfo]] dst_alphainfo = has_alpha ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNone;
+        General/CGImageAlphaInfo dst_alphainfo = has_alpha ? kCGImageAlphaPremultipliedLast : kCGImageAlphaNone;
         
-        [[CGContextRef]] dst_contextref = [[CGBitmapContextCreate]]( [bitmap_rep bitmapData],
+        General/CGContextRef dst_contextref = General/CGBitmapContextCreate( [bitmap_rep bitmapData],
                                                              pixels_wide,
                                                              pixels_high,
                                                              bps,
@@ -44,24 +44,24 @@ Here is better code for extracting an [[NSImage]] from a [[GWorld]] that doesn't
                                                              dst_colorspaceref,
                                                              dst_alphainfo );
 
-        void ''pixBaseAddr = [[GetPixBaseAddr]](pixMapHandle);
+        void *pixBaseAddr = General/GetPixBaseAddr(pixMapHandle);
         
-        long pixmapRowBytes = [[GetPixRowBytes]](pixMapHandle);
+        long pixmapRowBytes = General/GetPixRowBytes(pixMapHandle);
             
-        [[CGDataProviderRef]] dataproviderref = [[CGDataProviderCreateWithData]]( NULL, pixBaseAddr, pixmapRowBytes '' pixels_high, NULL );
+        General/CGDataProviderRef dataproviderref = General/CGDataProviderCreateWithData( NULL, pixBaseAddr, pixmapRowBytes * pixels_high, NULL );
 
         int src_bps = 8;
         int src_spp = 4;
         BOOL src_has_alpha = YES;
         
-        [[CGColorSpaceRef]] src_colorspaceref = [[CGColorSpaceCreateDeviceRGB]]();
+        General/CGColorSpaceRef src_colorspaceref = General/CGColorSpaceCreateDeviceRGB();
         
-        [[CGImageAlphaInfo]] src_alphainfo = src_has_alpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNone;
+        General/CGImageAlphaInfo src_alphainfo = src_has_alpha ? kCGImageAlphaPremultipliedFirst : kCGImageAlphaNone;
         
-        [[CGImageRef]] src_imageref = [[CGImageCreate]]( pixels_wide,
+        General/CGImageRef src_imageref = General/CGImageCreate( pixels_wide,
                                                  pixels_high,
                                                  src_bps,
-                                                 src_bps '' src_spp,
+                                                 src_bps * src_spp,
                                                  pixmapRowBytes,
                                                  src_colorspaceref,
                                                  src_alphainfo,
@@ -70,66 +70,66 @@ Here is better code for extracting an [[NSImage]] from a [[GWorld]] that doesn't
                                                  NO, // shouldInterpolate
                                                  kCGRenderingIntentDefault );
         
-        [[CGRect]] rect = [[CGRectMake]]( 0, 0, pixels_wide, pixels_high );
+        General/CGRect rect = General/CGRectMake( 0, 0, pixels_wide, pixels_high );
         
-        [[CGContextDrawImage]]( dst_contextref, rect, src_imageref );
+        General/CGContextDrawImage( dst_contextref, rect, src_imageref );
         
-        [[CGImageRelease]]( src_imageref );
-        [[CGColorSpaceRelease]]( src_colorspaceref );
-        [[CGDataProviderRelease]]( dataproviderref );
-        [[CGContextRelease]]( dst_contextref );
-        [[CGColorSpaceRelease]]( dst_colorspaceref );
+        General/CGImageRelease( src_imageref );
+        General/CGColorSpaceRelease( src_colorspaceref );
+        General/CGDataProviderRelease( dataproviderref );
+        General/CGContextRelease( dst_contextref );
+        General/CGColorSpaceRelease( dst_colorspaceref );
         
-        [[UnlockPixels]]( pixMapHandle );
+        General/UnlockPixels( pixMapHandle );
         
-        [[NSImage]] ''image = [[[[[NSImage]] alloc] initWithSize:[[NSMakeSize]](pixels_wide, pixels_high)] autorelease];
+        General/NSImage *image = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(pixels_wide, pixels_high)] autorelease];
         [image addRepresentation:bitmap_rep];
         return image;
     }
     return NULL;
 }
 
-</code>
+
 
 ----
 
-This is some code I worked up a while ago to extract a single frame from a [[QuickTime]] movie and return it as an [[NSImage]]. Portions of this code are derived from Apple's [[QuickTime]] sample code, specifically [[CocoaVideoFrameFromNSImage]] ... which achieves almost what this code does, but not in such a self-contained manner. Apple's sample uses [[NSQuickdrawView]], and I wanted something that was a bit more abstract and not tied to an [[NSView]] class. -- [[DrewThaler]]
+This is some code I worked up a while ago to extract a single frame from a General/QuickTime movie and return it as an General/NSImage. Portions of this code are derived from Apple's General/QuickTime sample code, specifically General/CocoaVideoFrameFromNSImage ... which achieves almost what this code does, but not in such a self-contained manner. Apple's sample uses General/NSQuickdrawView, and I wanted something that was a bit more abstract and not tied to an General/NSView class. -- General/DrewThaler
 
-<code>
+    
 // ---------------------------------------
 //  imageFromMovie:atTime:
 // ---------------------------------------
 //
-- ([[NSImage]]'')imageFromMovie:(Movie)movie atTime:([[TimeValue]])time
+- (General/NSImage*)imageFromMovie:(Movie)movie atTime:(General/TimeValue)time
 {
     // Pin the time to legal values.
-    [[TimeValue]] duration = [[GetMovieDuration]](movie);
+    General/TimeValue duration = General/GetMovieDuration(movie);
     if (time > duration)
         time = duration;
     if (time < 0) time = 0;
     
-    // Create an offscreen [[GWorld]] for the movie to draw into.
-    [[GWorldPtr]] gworld = [self gworldForMovie:movie];
+    // Create an offscreen General/GWorld for the movie to draw into.
+    General/GWorldPtr gworld = [self gworldForMovie:movie];
     
-    // Set the [[GWorld]] for the movie.
-    [[GDHandle]] oldDevice;
-    [[CGrafPtr]] oldPort;
-    [[GetMovieGWorld]](movie,&oldPort,&oldDevice);
-    [[SetMovieGWorld]](movie,gworld,[[GetGWorldDevice]](gworld));
+    // Set the General/GWorld for the movie.
+    General/GDHandle oldDevice;
+    General/CGrafPtr oldPort;
+    General/GetMovieGWorld(movie,&oldPort,&oldDevice);
+    General/SetMovieGWorld(movie,gworld,General/GetGWorldDevice(gworld));
     
     // Advance the movie to the appropriate time value.
-    [[SetMovieTimeValue]](movie,time);
+    General/SetMovieTimeValue(movie,time);
     
     // Draw the movie.
-    [[UpdateMovie]](movie);
-    [[MoviesTask]](movie,0);
+    General/UpdateMovie(movie);
+    General/MoviesTask(movie,0);
     
-    // Create an [[NSImage]] from the [[GWorld]].
-    [[NSImage]] ''image = [self imageFromGWorld:gworld];
+    // Create an General/NSImage from the General/GWorld.
+    General/NSImage *image = [self imageFromGWorld:gworld];
     
-    // Restore the previous [[GWorld]], then dispose the one we allocated.
-    [[SetMovieGWorld]](movie,oldPort,oldDevice);
-    [[DisposeGWorld]](gworld);
+    // Restore the previous General/GWorld, then dispose the one we allocated.
+    General/SetMovieGWorld(movie,oldPort,oldDevice);
+    General/DisposeGWorld(gworld);
     
     return image;
 }
@@ -139,23 +139,23 @@ This is some code I worked up a while ago to extract a single frame from a [[Qui
 // ---------------------------------------
 // gworldForMovie:
 // ---------------------------------------
-//  Get the bounding rectangle of the Movie the create a 32-bit [[GWorld]]
+//  Get the bounding rectangle of the Movie the create a 32-bit General/GWorld
 //  with those dimensions.
-//  This [[GWorld]] will be used for rendering Movie frames into.
+//  This General/GWorld will be used for rendering Movie frames into.
 
--([[GWorldPtr]]) gworldForMovie:(Movie)movie
+-(General/GWorldPtr) gworldForMovie:(Movie)movie
 {
     Rect        srcRect;
-    [[GWorldPtr]]   newGWorld = NULL;
-    [[CGrafPtr]]    savedPort;
-    [[GDHandle]]    savedDevice;
+    General/GWorldPtr   newGWorld = NULL;
+    General/CGrafPtr    savedPort;
+    General/GDHandle    savedDevice;
     
-    [[OSErr]] err = noErr;
-    [[GetGWorld]](&savedPort, &savedDevice);
+    General/OSErr err = noErr;
+    General/GetGWorld(&savedPort, &savedDevice);
 
-    [[GetMovieBox]](movie,&srcRect);
+    General/GetMovieBox(movie,&srcRect);
     
-    err = [[NewGWorld]](&newGWorld,
+    err = General/NewGWorld(&newGWorld,
                     k32ARGBPixelFormat,
                     &srcRect,
                     NULL,
@@ -163,24 +163,24 @@ This is some code I worked up a while ago to extract a single frame from a [[Qui
                     0);
     if (err == noErr)
     {
-        if ([[LockPixels]]([[GetGWorldPixMap]](newGWorld)))
+        if (General/LockPixels(General/GetGWorldPixMap(newGWorld)))
         {
             Rect        portRect;
-            [[RGBColor]]    theBlackColor   = { 0, 0, 0 };
-            [[RGBColor]]    theWhiteColor   = { 65535, 65535, 65535 };
+            General/RGBColor    theBlackColor   = { 0, 0, 0 };
+            General/RGBColor    theWhiteColor   = { 65535, 65535, 65535 };
 
-            [[SetGWorld]](newGWorld, NULL);
-            [[GetPortBounds]](newGWorld, &portRect);
-            [[RGBBackColor]](&theBlackColor);
-            [[RGBForeColor]](&theWhiteColor);
-            [[EraseRect]](&portRect);
+            General/SetGWorld(newGWorld, NULL);
+            General/GetPortBounds(newGWorld, &portRect);
+            General/RGBBackColor(&theBlackColor);
+            General/RGBForeColor(&theWhiteColor);
+            General/EraseRect(&portRect);
             
-            [[UnlockPixels]]([[GetGWorldPixMap]](newGWorld));
+            General/UnlockPixels(General/GetGWorldPixMap(newGWorld));
         }
     }
     
-    [[SetGWorld]](savedPort, savedDevice);
-    [[NSAssert]](newGWorld != NULL, @"NULL gworld");
+    General/SetGWorld(savedPort, savedDevice);
+    General/NSAssert(newGWorld != NULL, @"NULL gworld");
     return newGWorld;
 }
 
@@ -188,19 +188,19 @@ This is some code I worked up a while ago to extract a single frame from a [[Qui
 // ---------------------------------------
 // imageFromGWorld:
 // ---------------------------------------
-// Convert contents of a gworld to an [[NSImage]] 
+// Convert contents of a gworld to an General/NSImage 
 //
--([[NSImage]] '')imageFromGWorld:([[GWorldPtr]]) gWorldPtr
+-(General/NSImage *)imageFromGWorld:(General/GWorldPtr) gWorldPtr
 {
-    [[PixMapHandle]]        pixMapHandle = NULL;
+    General/PixMapHandle        pixMapHandle = NULL;
     Ptr                 pixBaseAddr = nil;
-    [[NSBitmapImageRep]]    ''imageRep = nil;
-    [[NSImage]]             ''image = nil;
+    General/NSBitmapImageRep    *imageRep = nil;
+    General/NSImage             *image = nil;
     
-    [[NSAssert]](gWorldPtr != nil, @"nil gWorldPtr");
+    General/NSAssert(gWorldPtr != nil, @"nil gWorldPtr");
 
     // Lock the pixels
-    pixMapHandle = [[GetGWorldPixMap]](gWorldPtr);
+    pixMapHandle = General/GetGWorldPixMap(gWorldPtr);
     if (pixMapHandle)
     {
         Rect        portRect;
@@ -209,9 +209,9 @@ This is some code I worked up a while ago to extract a single frame from a [[Qui
         BOOL        hasAlpha, isPlanar;
         int         destRowBytes;
 
-        [[NSAssert]]([[LockPixels]](pixMapHandle) != false, @"[[LockPixels]] returns false");
+        General/NSAssert(General/LockPixels(pixMapHandle) != false, @"General/LockPixels returns false");
     
-        [[GetPortBounds]](gWorldPtr, &portRect);
+        General/GetPortBounds(gWorldPtr, &portRect);
         portWidth = (portRect.right - portRect.left);
         portHeight = (portRect.bottom - portRect.top);
     
@@ -219,51 +219,51 @@ This is some code I worked up a while ago to extract a single frame from a [[Qui
         samplesPerPixel = 4;
         hasAlpha        = YES;
         isPlanar        = NO;
-        destRowBytes    = portWidth '' samplesPerPixel;
-        imageRep        = [[[[NSBitmapImageRep]] alloc] initWithBitmapDataPlanes:NULL 
+        destRowBytes    = portWidth * samplesPerPixel;
+        imageRep        = General/[[NSBitmapImageRep alloc] initWithBitmapDataPlanes:NULL 
                                                                 pixelsWide:portWidth 
                                                                 pixelsHigh:portHeight 
                                                             bitsPerSample:bitsPerSample 
                                                         samplesPerPixel:samplesPerPixel 
                                                                 hasAlpha:hasAlpha 
                                                                 isPlanar:NO
-                                                          colorSpaceName:[[NSDeviceRGBColorSpace]] 
+                                                          colorSpaceName:General/NSDeviceRGBColorSpace 
                                                              bytesPerRow:destRowBytes 
                                                             bitsPerPixel:0];
         if (imageRep)
         {
-            char    ''theData;
+            char    *theData;
             int     pixmapRowBytes;
             int     rowByte,rowIndex;
 
             theData = [imageRep bitmapData];
         
-            pixBaseAddr = [[GetPixBaseAddr]](pixMapHandle);
+            pixBaseAddr = General/GetPixBaseAddr(pixMapHandle);
             if (pixBaseAddr)
             {
-                pixmapRowBytes = [[GetPixRowBytes]](pixMapHandle);
+                pixmapRowBytes = General/GetPixRowBytes(pixMapHandle);
             
                 for (rowIndex=0; rowIndex< portHeight; rowIndex++)
                 {
-                    unsigned char ''dst = theData + rowIndex '' destRowBytes;
-                    unsigned char ''src = pixBaseAddr + rowIndex '' pixmapRowBytes;
+                    unsigned char *dst = theData + rowIndex * destRowBytes;
+                    unsigned char *src = pixBaseAddr + rowIndex * pixmapRowBytes;
                     unsigned char a,r,g,b;
                     
                     for (rowByte = 0; rowByte < portWidth; rowByte++)
                     {
-                        a = ''src++;     // get source Alpha component
-                        r = ''src++;     // get source Red component
-                        g = ''src++;     // get source Green component
-                        b = ''src++;     // get source Blue component  
+                        a = *src++;     // get source Alpha component
+                        r = *src++;     // get source Red component
+                        g = *src++;     // get source Green component
+                        b = *src++;     // get source Blue component  
             
-                        ''dst++ = r;     // set dest. Alpha component
-                        ''dst++ = g;     // set dest. Red component
-                        ''dst++ = b;     // set dest. Green component
-                        ''dst++ = a;     // set dest. Blue component  
+                        *dst++ = r;     // set dest. Alpha component
+                        *dst++ = g;     // set dest. Red component
+                        *dst++ = b;     // set dest. Green component
+                        *dst++ = a;     // set dest. Blue component  
                     }
                 }
             
-                image = [[[[[NSImage]] alloc] initWithSize:[[NSMakeSize]](portWidth, portHeight)] autorelease];
+                image = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(portWidth, portHeight)] autorelease];
                 if (image)
                 {
                     [image addRepresentation:imageRep];
@@ -273,18 +273,18 @@ This is some code I worked up a while ago to extract a single frame from a [[Qui
         }
     }
 
-    [[NSAssert]](pixMapHandle != NULL, @"null pixMapHandle");
-    [[NSAssert]](imageRep != nil, @"nil imageRep");
-    [[NSAssert]](pixBaseAddr != nil, @"nil pixBaseAddr");
-    [[NSAssert]](image != nil, @"nil image");
+    General/NSAssert(pixMapHandle != NULL, @"null pixMapHandle");
+    General/NSAssert(imageRep != nil, @"nil imageRep");
+    General/NSAssert(pixBaseAddr != nil, @"nil pixBaseAddr");
+    General/NSAssert(image != nil, @"nil image");
 
     if (pixMapHandle)
     {
-        [[UnlockPixels]](pixMapHandle);
+        General/UnlockPixels(pixMapHandle);
     }
 
     return image;
 }
-</code>
+
 
 Unless I'm missing something, this code doesn't seem to respect movies that have had changes made to Hue, Saturation, Brightness, Contrast, etc. ?

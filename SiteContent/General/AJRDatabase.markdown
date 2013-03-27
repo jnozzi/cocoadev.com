@@ -1,4 +1,4 @@
-[[AJRDatabase]] is an opensource replacement for EOF ([[EntrepriseObjectFramework]])
+General/AJRDatabase is an opensource replacement for EOF (General/EntrepriseObjectFramework)
 
 Latest CVS (recommended): http://sourceforge.net/projects/ajrdatabase/
 

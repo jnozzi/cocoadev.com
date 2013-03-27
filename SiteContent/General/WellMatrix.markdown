@@ -1,6 +1,6 @@
 Hello.
 
-I have an [[NSMatrix]] made up of [[NSImageCells]].  I am using these cells as a sort of well, for the user to drop things.  I have two problems.
+I have an General/NSMatrix made up of General/NSImageCells.  I am using these cells as a sort of well, for the user to drop things.  I have two problems.
 
 First off, I have no idea how to accept a drop in an individual image cell, determine what cell it was dropped on, and modify the appearance of that cell accordingly.
 
@@ -8,4 +8,4 @@ Second, I need the user to be able to select an image cell and for it to appear 
 
 Perhaps I should not be using a matrix?  Thanks for any help.
 
-''You could try using [[NSButtonCell]] for the second problem; highlighting is a snap. As for the first problem, check out the methods <code>getRow:column:forPoint:</code> and <code>cellAtRow:column:</code> on [[NSMatrix]]. You're probably going to have to subclass [[NSMatrix]] and implement the methods of the [[NSDraggingDestination]] informal protocol. (At least, that's what I did when I had this problem, although my implementation is pretty specific to my program) --[[JediKnil]]''
+*You could try using General/NSButtonCell for the second problem; highlighting is a snap. As for the first problem, check out the methods     getRow:column:forPoint: and     cellAtRow:column: on General/NSMatrix. You're probably going to have to subclass General/NSMatrix and implement the methods of the General/NSDraggingDestination informal protocol. (At least, that's what I did when I had this problem, although my implementation is pretty specific to my program) --General/JediKnil*

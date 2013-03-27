@@ -1,1 +1,1 @@
-Describe [[NSForegroundColorAttributeName]] here.
+Describe General/NSForegroundColorAttributeName here.

@@ -1,16 +1,16 @@
-Apple's posted a tutorial on using [[WebKit]] to register an application online from within the app:
+Apple's posted a tutorial on using General/WebKit to register an application online from within the app:
 
 [http://developer.apple.com/internet/webservices/webkitreg.html]
 
 What does everyone think of it? Is it better or worse than just pointing the user's browser at a URL?
 
-'''Pro'''
+**Pro**
 
 * More control over registration environment
 * Better integrated into the application's UI
 
 
-'''Con'''
+**Con**
 
 * Users may be uncomfortable with security issues - "I trust Safari, but what is this app doing with my data?"
 * More code (both client & server) to maintain and debug

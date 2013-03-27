@@ -1,40 +1,40 @@
 
 
-I've subclassed [[NSTextView]] to make commented lines green, I use this code
+I've subclassed General/NSTextView to make commented lines green, I use this code
 
-<code>
+    
 - (void) didChangeText
 {
-	[[NSLayoutManager]] ''layoutManager = [self layoutManager];
-	[[NSRange]] lineGlyphRange, lineCharRange;
-	[[NSString]] ''prefix;
-	[[NSColor]] ''color;
-	[[NSRange]] range = [self rangeForUserTextChange];
+	General/NSLayoutManager *layoutManager = [self layoutManager];
+	General/NSRange lineGlyphRange, lineCharRange;
+	General/NSString *prefix;
+	General/NSColor *color;
+	General/NSRange range = [self rangeForUserTextChange];
 	
 	(void)[layoutManager lineFragmentRectForGlyphAtIndex:range.location
                             effectiveRange:&lineGlyphRange];  
 	lineCharRange = [layoutManager characterRangeForGlyphRange:lineGlyphRange
                            actualGlyphRange:NULL];
 	
-	prefix = [[[self string] substringWithRange:lineCharRange]
-                  tringByTrimmingCharactersInSet:[[[NSCharacterSet]] whitespaceCharacterSet]];
+	prefix = General/[self string] substringWithRange:lineCharRange]
+                  tringByTrimmingCharactersInSet:[[[NSCharacterSet whitespaceCharacterSet]];
 	if([prefix hasPrefix:@"#"])
-		color = [[[NSColor]] colorWithCalibratedRed:(float)42/255
+		color = General/[NSColor colorWithCalibratedRed:(float)42/255
                            green:(float)126/255 blue:(float)49/255 alpha:1.0f];
 	else
-		color = [[[NSColor]] blackColor];
+		color = General/[NSColor blackColor];
 		
   [layoutManager addTemporaryAttributes:
-    [[[NSDictionary]] dictionaryWithObjectsAndKeys:color, [[NSForegroundColorAttributeName]], nil]
+    General/[NSDictionary dictionaryWithObjectsAndKeys:color, General/NSForegroundColorAttributeName, nil]
               forCharacterRange:lineCharRange];
 }
-</code>
 
-the problem lies in ''(void)[layoutManager lineFragmentRectForGlyphAtIndex:range.location effectiveRange:&lineGlyphRange];''
 
-ex: when i type ''#colorize''
+the problem lies in *(void)[layoutManager lineFragmentRectForGlyphAtIndex:range.location effectiveRange:&lineGlyphRange];*
 
-it shows up like this ''##c#co#col#colo#color#colori#coloriz#colorize''
+ex: when i type *#colorize*
+
+it shows up like this *##c#co#col#colo#color#colori#coloriz#colorize*
 
 see the problem?
 
@@ -43,10 +43,9 @@ tnx
 ----
 
 Iv'e solved it
-when ''(void)[layoutManager lineFragmentRectForGlyphAtIndex:range.location effectiveRange:&lineGlyphRange]; '' is called it ''performs glyph generation and layout if needed.''
+when *(void)[layoutManager lineFragmentRectForGlyphAtIndex:range.location effectiveRange:&lineGlyphRange]; * is called it *performs glyph generation and layout if needed.*
 
 so i used
-<code>
-[[NSRange]] range = [self rangeForUserTextChange];
+    
+General/NSRange range = [self rangeForUserTextChange];
 lineCharRange = [[self string]lineRangeForRange:range];
-</code>

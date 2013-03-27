@@ -2,4 +2,4 @@ I've recently been battling with the problem of calculating the size of folders/
 
 http://lists.apple.com/archives/carbon-dev/2005/Oct/msg01216.html
 
-If only Apple would update [[NSFileManager]] to return the size of directories... Anyway, this works well.
+If only Apple would update General/NSFileManager to return the size of directories... Anyway, this works well.

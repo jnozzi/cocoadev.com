@@ -1,5 +1,5 @@
 
 
-"[[SubClass]]" refers to a class that is a child of another class.  The [[SubClass]] inherits the behaviors and data of the [[SuperClass]].
+"General/SubClass" refers to a class that is a child of another class.  The General/SubClass inherits the behaviors and data of the General/SuperClass.
 
-For example: [[NSMutableArray]] is a [[SubClass]] of both [[NSArray]] and [[NSObject]].
+For example: General/NSMutableArray is a General/SubClass of both General/NSArray and General/NSObject.

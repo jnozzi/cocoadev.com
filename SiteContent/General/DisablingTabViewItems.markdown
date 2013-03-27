@@ -18,8 +18,8 @@ Why not just leave the tab view enabled but disable all its contents?
 
 ----
 
-On a related matter, the AHIG says: ''If all of a menu�s commands are unavailable (dimmed) at the same time, dim the menu title. Users should still be able to open a dimmed menu to see its contents.''
+On a related matter, the AHIG says: *If all of a menu�s commands are unavailable (dimmed) at the same time, dim the menu title. Users should still be able to open a dimmed menu to see its contents.*
 
-It is the latter part I wish to emphasize (as the part of dimming the title is actually not possible with Cocoa's automatic menu validation). I think the thinking is something along the lines of: ''do not hide info (in the form of menu item titles) from the user, just because he is headed for a dead end, but make it visually clear to the user, that this is in fact a dead end.''
+It is the latter part I wish to emphasize (as the part of dimming the title is actually not possible with Cocoa's automatic menu validation). I think the thinking is something along the lines of: *do not hide info (in the form of menu item titles) from the user, just because he is headed for a dead end, but make it visually clear to the user, that this is in fact a dead end.*
 
-By disallowing the user access to the tab item, you limit ''end user innovation'', e.g. he may be helping a friend over the phone, and needs to see which options the page holds, without wanting to go through the steps to enable it or similar � you can't really know, and that is why I say ''end user innovation'', cause it covers all the cases you did not imagine would be done by the end user, when you designed the program.
+By disallowing the user access to the tab item, you limit *end user innovation*, e.g. he may be helping a friend over the phone, and needs to see which options the page holds, without wanting to go through the steps to enable it or similar � you can't really know, and that is why I say *end user innovation*, cause it covers all the cases you did not imagine would be done by the end user, when you designed the program.

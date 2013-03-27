@@ -1,8 +1,8 @@
 
 
-What do you do when some part of your program keeps track of open file descriptors only and for whatever reason suddenly needs to access the referring file by its full path? Well, you're in luck! Such a feature is available in Darwin from '''user space!''' Just call fcntl on it with the F_GETPATH command like so:
+What do you do when some part of your program keeps track of open file descriptors only and for whatever reason suddenly needs to access the referring file by its full path? Well, you're in luck! Such a feature is available in Darwin from **user space!** Just call fcntl on it with the F_GETPATH command like so:
 
-<code>
+    
 
 #include <fcntl.h>
 #include <stdio.h>
@@ -14,7 +14,7 @@ int main() {
         //new memory to hold our path; note that this is filled with 0s,
         //so you can't claim that any pointer magic is going on:
 
-        char ''newPath = calloc(4096, sizeof(char));
+        char *newPath = calloc(4096, sizeof(char));
         int pathIntPtr = (int)newPath;
 
         //let's open a random file as an example
@@ -33,25 +33,25 @@ int main() {
         return 0;
 }
 
-</code>
 
 
 
-To my knowledge, this feature is "documented" only in xnu''/bsd/kern/kern_descrip.c. It has existed at least since 10.3.0:
 
-<code>
+To my knowledge, this feature is "documented" only in xnu*/bsd/kern/kern_descrip.c. It has existed at least since 10.3.0:
+
+    
 
 case F_GETPATH: {
-		char ''pathbuf;
+		char *pathbuf;
 		int len;
-		extern int vn_getpath(struct vnode ''vp, char ''pathbuf, int ''len);
+		extern int vn_getpath(struct vnode *vp, char *pathbuf, int *len);
 
 		if (fp->f_type != DTYPE_VNODE)
 			return (EBADF);
-		vp = (struct vnode '')fp->f_data;
+		vp = (struct vnode *)fp->f_data;
 
 		len = MAXPATHLEN;
-		MALLOC(pathbuf, char '', len, M_TEMP, M_WAITOK);
+		MALLOC(pathbuf, char *, len, M_TEMP, M_WAITOK);
 
 		error = vn_lock(vp, LK_EXCLUSIVE|LK_RETRY, p);
 		if (error) {
@@ -65,7 +65,7 @@ case F_GETPATH: {
 		FREE(pathbuf, M_TEMP);
 		break;
 	}
-</code>
+
 
 
 (Apple engineers should blame Scrod.)

@@ -2,43 +2,43 @@
 
 http://www.top-house.dk/~aae0030/cocoastl/
 
-[[CocoaSTL]] is a header file with functions and classes to help use STL algorithms with Cocoa and Objective-C++. It contains amongst other:
+General/CocoaSTL is a header file with functions and classes to help use STL algorithms with Cocoa and Objective-C++. It contains amongst other:
 
 
-*iterators to traverse [[NSArray]], [[NSData]], [[NSDictionary]], [[NSIndexSet]], [[NSSet]] and [[NSString]],
-*output iterators for [[NSArray]], [[NSData]], [[NSIndexSet]], [[NSSet]] and [[NSString]],
-*smart pointer to handle retain/release for a wrapped [[ObjectiveC]] object, these also implement <code>operator<</code> and friends by sending <code>isEqual:</code> and <code>compare:</code> to the wrapped object,
+*iterators to traverse General/NSArray, General/NSData, General/NSDictionary, General/NSIndexSet, General/NSSet and General/NSString,
+*output iterators for General/NSArray, General/NSData, General/NSIndexSet, General/NSSet and General/NSString,
+*smart pointer to handle retain/release for a wrapped General/ObjectiveC object, these also implement     operator< and friends by sending     isEqual: and     compare: to the wrapped object,
 *function adaptor for selectors,
 *neat foreach macro,
 *helper functions to create iterators for any sequence in the same way (STL, C string, C array, Foundation class, ...).
 
 
 Some examples:
-<code>
+    
 // sort a primitive array of strings
 objc_ptr<> strings[] = { @"This", @"Is", @"A", @"Test" };
 std::sort(beginof(strings), endof(strings));
 
 // shuffle an array
-[[NSMutableArray]]'' a = ...;
+General/NSMutableArray* a = ...;
 std::random_shuffle(beginof(a), endof(a));
 
 // print all indices in an index-set
-[[NSIndexSet]]'' indices = ...;
+General/NSIndexSet* indices = ...;
 foreach(it, beginof(indices), endof(indices))
-   printf("\t%d\n", ''it);
+   printf("\t%d\n", *it);
 
-// convert an [[NSSet]] (with [[NSNumbers]]) to an [[NSIndexSet]] (of integers!)
-[[NSSet]]'' set = ...;
-[[NSIndexSet]]'' indices = [[[NSIndexSet]] indexSet];
+// convert an General/NSSet (with General/NSNumbers) to an General/NSIndexSet (of integers!)
+General/NSSet* set = ...;
+General/NSIndexSet* indices = General/[NSIndexSet indexSet];
 std::transform(beginof(set), endof(set), back_inserter(indices),
    method<int>("intValue"));
 
-// convert an [[NSIndexSet]] into an [[NSArray]] (of [[NSNumbers]])
-id make_number (int i) { return [[[NSNumber]] numberWithInt:i]; }
+// convert an General/NSIndexSet into an General/NSArray (of General/NSNumbers)
+id make_number (int i) { return General/[NSNumber numberWithInt:i]; }
 
-[[NSIndexSet]]'' indices = ...;
-[[NSMutableArray]]'' array = [[[NSMutableArray]] array];
+General/NSIndexSet* indices = ...;
+General/NSMutableArray* array = General/[NSMutableArray array];
 std::transform(beginof(indices), endof(indices), back_inserter(array),
    make_number);
 
@@ -46,7 +46,7 @@ std::transform(beginof(indices), endof(indices), back_inserter(array),
 // but I figured it would scare non-STL fans to see code like this:
    std::bind1st(
       unary_method<int, id>("numberWithInt:")
-      [[[NSNumber]] class]
+      General/[NSNumber class]
    );
 
 // what happens here is that unary_method returns a 'functor',
@@ -60,16 +60,16 @@ std::transform(beginof(indices), endof(indices), back_inserter(array),
 // So if we have:
 //    f = unary_method<int, id>("numberWithInt:");
 // then we can now do:
-//    g = bind1st(f, [[[NSNumber]] class]);
+//    g = bind1st(f, General/[NSNumber class]);
 // g is now a new functor with the prototype:
 //    id functor (int argument);
 // because the first argument has permanently been bound to
-// [[[NSNumber]] class]. So calling g(32) is now the same as:
-//    return [[[[NSNumber]] class] numberWithInt:32];
-</code>
+// General/[NSNumber class]. So calling g(32) is now the same as:
+//    return General/[[NSNumber class] numberWithInt:32];
+
 
 ----
-The link to the [[CocoaSTL]] homepage seems to be dead, unfortunately.  Does anyone have a new link for it?  -- [[AndrePang]].
+The link to the General/CocoaSTL homepage seems to be dead, unfortunately.  Does anyone have a new link for it?  -- General/AndrePang.
 ----
 me too want cocoaSTL. does any one has it?
 ----
@@ -79,10 +79,10 @@ Oh, that's so disappointing. I read through those examples thinking, yes! And th
 
 Until there's some official re-release or whatever, there's also archive.org:
 
-http://web.archive.org/web/''/http://www.top-house.dk/~aae0030/cocoastl/
+http://web.archive.org/web/*/http://www.top-house.dk/~aae0030/cocoastl/
 
 and more specifically:
 
-http://web.archive.org/web/''/www.top-house.dk/~aae0030/cocoastl/[[CocoaSTL]].h
+http://web.archive.org/web/*/www.top-house.dk/~aae0030/cocoastl/General/CocoaSTL.h
 
 I can't find the download page. Does anyone have a new link for it? Please help me.

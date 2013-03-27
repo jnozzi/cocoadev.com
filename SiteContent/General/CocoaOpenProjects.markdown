@@ -1,1 +1,1 @@
-see [[CocoaOpen]]
+see General/CocoaOpen

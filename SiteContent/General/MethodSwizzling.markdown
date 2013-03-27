@@ -1,28 +1,28 @@
 
 
-The Objective-C runtime lets you modify the mappings from a selector (method name) to an implementation (the method code itself).  This allows you to "patch" methods in code you don't have the source to ([[AppKit]], [[FoundationKit]], etc).  Unlike creating a category method with the same name as the original method (effectively replacing the original method), [[MethodSwizzling]] lets your replacement method make use of the original method, almost like subclassing.
+The Objective-C runtime lets you modify the mappings from a selector (method name) to an implementation (the method code itself).  This allows you to "patch" methods in code you don't have the source to (General/AppKit, General/FoundationKit, etc).  Unlike creating a category method with the same name as the original method (effectively replacing the original method), General/MethodSwizzling lets your replacement method make use of the original method, almost like subclassing.
 
-This is best used in cases where a single method needs substitution or extension;  If you need to modify many behaviours of a class, you may be better off using [[ClassPosing]].
+This is best used in cases where a single method needs substitution or extension;  If you need to modify many behaviours of a class, you may be better off using General/ClassPosing.
 
 December 29, 2007:
-[http://mjtsai.com/blog/2007/12/29/jrswizzle/]  Jonathan Rentzsch has started a project, [[JRSwizzle]]  [http://github.com/rentzsch/jrswizzle], to implement method swizzling correctly with different versions of the Objective-C runtime:
+[http://mjtsai.com/blog/2007/12/29/jrswizzle/]  Jonathan Rentzsch has started a project, General/JRSwizzle  [http://github.com/rentzsch/jrswizzle], to implement method swizzling correctly with different versions of the Objective-C runtime:
 
-There's at least four swizzling implementations floating around. Here's a comparison chart to help you make sense of how they relate to each other and why [[JRSwizzle]] exists.
+There's at least four swizzling implementations floating around. Here's a comparison chart to help you make sense of how they relate to each other and why General/JRSwizzle exists.
 
-----'''An illustration'''----
+----**An illustration**----
 
 For instance, let's pretend there's a class called Foo that implements the following method:
 
-<code>
+    
  // returns the login name of the current user
  - (NSString *)fooBar;
-</code>
 
-Now we've got applications that call [[Foo sharedFoo] fooBar] all over the place;  We'd like to modify the functionality of the fooBar method to append something silly to the result of the original fooBar return value.
+
+Now we've got applications that call General/Foo sharedFoo] fooBar] all over the place;  We'd like to modify the functionality of the fooBar method to append something silly to the result of the original fooBar return value.
 
 So, we'll implement a category method that does the work:
 
-<code>
+    
  @implementation Foo(specialfooBar)
  // returns the login name of the current user plus some other junk
  - (NSString *)myfooBar
@@ -30,49 +30,49 @@ So, we'll implement a category method that does the work:
      return [[self myfooBar] stringByAppendingString:@", bigtime luser"];
  }
  @end
-</code>
 
-"But wait", I hear you saying, "the myfooBar method is calling itself, generating infinite recursion!"  Well, that would be the case except for the fact that we're going to do some [[MethodSwizzling]] and swap the implementations of the two methods!  Here's the deal:  Right now, any code that calls -[Foo fooBar] is going to use the original implementation (let's call that "A"), and any code that calls -[Foo myfooBar] is going to use our new implementation (let's call that "B").  To summarize:
 
-<code>
+"But wait", I hear you saying, "the myfooBar method is calling itself, generating infinite recursion!"  Well, that would be the case except for the fact that we're going to do some [[MethodSwizzling and swap the implementations of the two methods!  Here's the deal:  Right now, any code that calls -[Foo fooBar] is going to use the original implementation (let's call that "A"), and any code that calls -[Foo myfooBar] is going to use our new implementation (let's call that "B").  To summarize:
+
+    
  selector "fooBar"    ->  implementation "A"
  selector "myfooBar"  ->  implementation "B"
  
  - implementation "A" returns @"username"
  - implementation "B" calls "myfooBar",
   appends some silly text, and returns that
-</code>
+
 
 So right now, calling "fooBar" invokes implementation "A" like it always has;  Calling "myfooBar", however, invokes implementation "B", which in turn calls "myfooBar", which invokes implementation "B", etc, leading to the unwanted infinite recursion.
 
-<code>
+    
  // Do the swizzling (see below for the function code)
- [[MethodSwizzle]]([Foo class],
+ General/MethodSwizzle([Foo class],
                @selector(fooBar)
                @selector(myfooBar));
-</code>
+
 After swizzling the two methods, we have the following situation:
 
-<code>
+    
  selector "fooBar"    ->  implementation "B"
  selector "myfooBar"  ->  implementation "A"
  
  - implementation "A" returns @"username"
  - implementation "B" calls "myfooBar",
    appends some silly text, and returns that
-</code>
+
 
 Now, after the swizzling, anybody who calls "fooBar" will invoke implementation "B", which calls "myfooBar" (invoking implementation "A" and appending some silly text).  In short, calling "fooBar" will now return @"username, bigtime luser"!
 
 Hopefully this makes sense to people!
 
---[[JackNutting]]
+--General/JackNutting
 
-----'''The [[MethodSwizzle]] function'''----
+----**The General/MethodSwizzle function**----
 
 Here's a C-function that does the trick:
 
-<code>
+    
  #import </usr/include/objc/objc-class.h>
  void MethodSwizzle(Class aClass, SEL orig_sel, SEL alt_sel)
  {
@@ -85,7 +85,7 @@ Here's a C-function that does the trick:
      // If both are found, swizzle them
      if ((orig_method != nil) && (alt_method != nil))
      {
-         char ''temp1;
+         char *temp1;
          IMP temp2;
  
          temp1 = orig_method->method_types;
@@ -97,12 +97,12 @@ Here's a C-function that does the trick:
          alt_method->method_imp = temp2;
      }
  }
-</code>
+
 
 ----
 
 Here's code that uses it:
-<code>
+    
  @interface T : NSObject { }
  - (void)swizzleMethod;
  @end
@@ -110,10 +110,10 @@ Here's code that uses it:
  - (void)altMethod;
  @end
  
- int main (int argc, const char '' argv[])
+ int main (int argc, const char * argv[])
  {
-     T ''t;
-     t = [[T alloc] init];
+     T *t;
+     t = General/T alloc] init];
      [t swizzleMethod];
  
      NSLog(@"Methods swizzled");
@@ -141,31 +141,31 @@ Here's code that uses it:
      [self altMethod];
  }
  @end
-</code>
+
 Note the use of a category, just to check everything works correctly.
 
 Here's the output as logged:
-<code>
+    
  2002-04-09 17:23:58.144 Swizzling[2285] Original method called
  2002-04-09 17:23:58.148 Swizzling[2285] Methods swizzled
  2002-04-09 17:23:58.150 Swizzling[2285] Alternative method called
  2002-04-09 17:23:58.152 Swizzling[2285] Original method called
-</code>
+
 
 ----
 
-Hurrah! It works! I have also checked it by swizzling the init method of [[NSObject]] (successfully).
+Hurrah! It works! I have also checked it by swizzling the init method of [[NSObject (successfully).
 
--- [[KritTer]]
+-- General/KritTer
 
 ----
 Indeed it does... but I wonder what difference it makes that you not only swap the IMP pointers in your implementation, but also the method_types... it seems to not make a difference.  Anybody know of a case where this matters?
 
--- [[IgotiMac]] & [[AspectCocoa]]
+-- General/IgotiMac & General/AspectCocoa
 
 ----
 
-Hmmm, this works partly. I also tried to swizzle the init method of [[NSObject]]. Somehow the altInit I provided only gets called when an instance of [[NSObject]] is created. It definitely is NOT called for things like myString = [[[NSString]] stringWithString:@"test"];
+Hmmm, this works partly. I also tried to swizzle the init method of General/NSObject. Somehow the altInit I provided only gets called when an instance of General/NSObject is created. It definitely is NOT called for things like myString = General/[NSString stringWithString:@"test"];
 
 This got me puzzled. I'm using GCC v3.3 and didn't have a chance yet to try with older versions. If anyone else has experience using these features I'd be interested in any information on this subject.
 
@@ -174,37 +174,37 @@ This got me puzzled. I'm using GCC v3.3 and didn't have a chance yet to try with
 ----
 Jan: A couple of points that might help:
 
-First:  The message <code>[NSString stringWithString:@"test"]</code> is equivalent to <code>[[[NSString alloc] initWithString: @"test"] autorelease]</code>.  So to understand what's going on you need to understand how the +alloc and -init messages are implemented.
+First:  The message     [NSString stringWithString:@"test"] is equivalent to     General/[NSString alloc] initWithString: @"test"] autorelease].  So to understand what's going on you need to understand how the +alloc and -init messages are implemented.
 
-Second:  [[NSString]] is a class cluster, which means that its +alloc method does not return an instance of [[NSString]].  It returns instead a (singleton) instance of a (private) subclass of [[NSString]].  (I think it's the [[NSPlaceholderString]] class, but the exact name doesn't matter so let's just suppose that name is correct.)  Thus the -initWithString: message is sent to the (singleton) instance of this (private) subclass and NOT to an instance of the [[NSString]] class.
+Second:  [[NSString is a class cluster, which means that its +alloc method does not return an instance of General/NSString.  It returns instead a (singleton) instance of a (private) subclass of General/NSString.  (I think it's the General/NSPlaceholderString class, but the exact name doesn't matter so let's just suppose that name is correct.)  Thus the -initWithString: message is sent to the (singleton) instance of this (private) subclass and NOT to an instance of the General/NSString class.
 
-Third:  The message <code>[NSPlaceholderString initWithString: @"test]</code> returns an instance of a concrete (private) subclasses of [[NSString]], where the appropriate concrete subclass is determined by the form of the initialization message -- eg, -initWithString, initWithCString, initWithFormat, etc.
+Third:  The message     [NSPlaceholderString initWithString: @"test] returns an instance of a concrete (private) subclasses of General/NSString, where the appropriate concrete subclass is determined by the form of the initialization message -- eg, -initWithString, initWithCString, initWithFormat, etc.
 
-Fourth:  Given the above, the message <code>[NSString stringWithString:@"test"]</code> does not invoke [[NSObject]]'s implementation of the -init method.
+Fourth:  Given the above, the message     [NSString stringWithString:@"test"] does not invoke General/NSObject's implementation of the -init method.
 
 ----
-Except that normally every class's init methods start out by calling the superclass's init methods.  However, you're right in this case.  For whatever reason, setting a breakpoint shows that <code>[NSString stringWithSting:@"test"]</code> doesn't call through to <code>-[NSObject init]</code>.  Maybe it's because of the bridging to [[CFString]] - a core foundation init method may be used instead.
+Except that normally every class's init methods start out by calling the superclass's init methods.  However, you're right in this case.  For whatever reason, setting a breakpoint shows that     [NSString stringWithSting:@"test"] doesn't call through to     -[NSObject init].  Maybe it's because of the bridging to General/CFString - a core foundation init method may be used instead.
 
 ----
 Question:  Why would Apple adopt use this sort of design? 
 
-Answer:  They want to be able to optimize string objects by having one implementation of [[NSString]]'s interface tuned specifically for C strings, another tuned specifically for Objective-C strings, etc in a way that encapsulates their implementation decisions.  Proof of the effectiveness of this design is that you've been using the nice, clean, elegant interface of the public class [[NSString]] without any idea that you were working with instances of multiple private subclasses!  Yet Another Proof of the great design of Cocoa frameworks ;-)
+Answer:  They want to be able to optimize string objects by having one implementation of General/NSString's interface tuned specifically for C strings, another tuned specifically for Objective-C strings, etc in a way that encapsulates their implementation decisions.  Proof of the effectiveness of this design is that you've been using the nice, clean, elegant interface of the public class General/NSString without any idea that you were working with instances of multiple private subclasses!  Yet Another Proof of the great design of Cocoa frameworks ;-)
 
 jd
 
 ----
 
-Works great, but for my project, I modified [[MethodSwizzle]]() to return an error code if one of the methods can't be found.
+Works great, but for my project, I modified General/MethodSwizzle() to return an error code if one of the methods can't be found.
 
 ----
 
-For a useful example of [[MethodSwizzling]] check out [[InstanceCounting]]. --[[TheoHultberg]]
+For a useful example of General/MethodSwizzling check out General/InstanceCounting. --General/TheoHultberg
 
 ----
 
 I suggest the following, to more closely match poseAsClass:'s interface...
 
-<code>
+    
  @implementation NSObject(Swizzle)
  
  + (void)swizzleMethod:(SEL)orig_sel withMethod:(SEL)alt_sel {
@@ -230,36 +230,36 @@ I suggest the following, to more closely match poseAsClass:'s interface...
  }
  
  @end
-</code>
+
 Edit: Sorry, I made a bad mistake in the code last time that could actually cause a possible crash instead of an error message... that's what happens when you don't test code before you post it, I guess. What horrible form. ;-)
 
---[[RobinHP]]
+--General/RobinHP
 
 ----
 
 Is it really necessary to copy over the "method_types"?  They should be same to the extent that the IMP your replacing should take the same arguments as the orginal, right?  Otherwise, would there not be a problem with missing or extra arguments?  Maybe, they would just be ignored or "nil/NULL" inserted as necessary?
 
-Others such code examples, specifically that in Anguish et al. in "Cocoa Programming" at page 1083 and those archived at [[CocoaBuilder]], mention the need to call "_objc_flush_caches_(Class)" after swizzling to keep the runtime kosher.  I have tried this and found that I still get some runtime strangeness, like specific confusion about inheritence and the states of ivars.  After reading this page, which does not mention the use of this function, I ran my software without it and my ivar state problem appeared to go away.  Does anybody know what the story with "_objc_flush_caches_(Class)" and method swizzling really is?
+Others such code examples, specifically that in Anguish et al. in "Cocoa Programming" at page 1083 and those archived at General/CocoaBuilder, mention the need to call "_objc_flush_caches_(Class)" after swizzling to keep the runtime kosher.  I have tried this and found that I still get some runtime strangeness, like specific confusion about inheritence and the states of ivars.  After reading this page, which does not mention the use of this function, I ran my software without it and my ivar state problem appeared to go away.  Does anybody know what the story with "_objc_flush_caches_(Class)" and method swizzling really is?
 
-- [[DumberThanDanQuayle]]
+- General/DumberThanDanQuayle
 
 ----
 
-This seems to have one ''huge'' disadvantage: If a class inherits its method from its superclass, this code will replace the method in the superclass. So, if you swizzle a method in [[NSButton]] that it actually inherits from [[NSView]], all other [[NSViews]] will also have that method. So, you can't willy-nilly swizzle methods in several subclasses of the same class unless you are sure they all implement their own version. Moreover, if you do it with an Apple class and Apple moves the implementation into the superclass, you're screwed.
+This seems to have one *huge* disadvantage: If a class inherits its method from its superclass, this code will replace the method in the superclass. So, if you swizzle a method in General/NSButton that it actually inherits from General/NSView, all other General/NSViews will also have that method. So, you can't willy-nilly swizzle methods in several subclasses of the same class unless you are sure they all implement their own version. Moreover, if you do it with an Apple class and Apple moves the implementation into the superclass, you're screwed.
 
--- [[UliKusterer]]
+-- General/UliKusterer
 
 ----
 Personally, I find this whole thing rather hackish and have avoided it altogether. I am fully prepared to admit this may be ignorance or fear of the unknown talking, but it just seems wrong. ;-)
 
 ----
-That's a very important point, Uli.  We should work on this code and see what can be done.  What comes to mind for me is that what we ''really'' want is dynamic subclassing + posing or isa-swizzling.  [[FScript]] has this, though sort of in beta, and (I think?) [[PyObjC]] has it, so we just need to get an [[ObjC]] implementatation going.  
+That's a very important point, Uli.  We should work on this code and see what can be done.  What comes to mind for me is that what we *really* want is dynamic subclassing + posing or isa-swizzling.  General/FScript has this, though sort of in beta, and (I think?) General/PyObjC has it, so we just need to get an General/ObjC implementatation going.  
 
 ----
 
 Alternatively, one could do the following:
 
-<code>
+    
  @implementation T (AltMethod)
  - (void)altMethod
  {
@@ -270,15 +270,15 @@ Alternatively, one could do the following:
      }
  }
  @end
-</code>
+
 
 I guess the above should be corrected as follows:
 
-<code>
+    
 ...
         [ExpectedClass instanceMethodForSelector:@selector(altMethod)](self,@selector(origMethod));
 ...
-</code>
+
 
 ----
 
@@ -289,7 +289,7 @@ Hackish?  Oh yeah.
 -- Brooke C.
 
 ----
-If you want to do this sort of thing with dynamically created classes take a look at my code at [[WeakPointers]]. The aforementioned code worked well so long as I didn't try it on any [[CoreFoundation]] classes.
+If you want to do this sort of thing with dynamically created classes take a look at my code at General/WeakPointers. The aforementioned code worked well so long as I didn't try it on any General/CoreFoundation classes.
 
 -jason
 
@@ -307,7 +307,7 @@ I updated Kevin's implementation to use the 10.5-style objc runtime API.
 - Aaron Harnly
 
 Pasted here:
-<code>
+    
  // if the origSel isn't present in the class, pull it up from where it exists
  // then do the swizzle
  BOOL _MyPluginTemplate_PerformSwizzle(Class klass, SEL origSel, SEL altSel, BOOL forInstance) {
@@ -374,10 +374,10 @@ Pasted here:
  	}
  	return NO;
  }
-</code>
 
-and here it's used to implement an [[NSObject]] category adding swizzling methods to all classes:
-<code>
+
+and here it's used to implement an General/NSObject category adding swizzling methods to all classes:
+    
  @interface NSObject (AWHSwizzle)
  + (void)swizzleMethod:(SEL)orig_sel withMethod:(SEL)alt_sel;
  + (void)swizzleClassMethod:(SEL)orig_sel withClassMethod:(SEL)alt_sel;
@@ -400,15 +400,15 @@ and here it's used to implement an [[NSObject]] category adding swizzling method
  }
  @end
  
-</code>
+
 
 
 ----
 
-The above code (Aaron's) had some problems, that, for me, resulted in a crash (maybe it works if you have GC or in some configuration; the problem was that at least one of the Method object used in the call to method_exchangeImplementations potentially points to a Method that is not the method created with class_addMethod). Hopefully, this will work - [[CharlesParnot]]
+The above code (Aaron's) had some problems, that, for me, resulted in a crash (maybe it works if you have GC or in some configuration; the problem was that at least one of the Method object used in the call to method_exchangeImplementations potentially points to a Method that is not the method created with class_addMethod). Hopefully, this will work - General/CharlesParnot
 
 Paste this in replacement of original Kevin's code for the function _PerformSwizzle:
-<code>
+    
  BOOL _PerformSwizzle(Class klass, SEL origSel, SEL altSel, BOOL forInstance) {
    
    // Make sure the class isn't nil
@@ -455,7 +455,7 @@ Paste this in replacement of original Kevin's code for the function _PerformSwiz
    
    // we now have to look up again for the methods in case they were not in the class implementation,
    //but in one of the superclasses. In the latter, that means we added the method to the class,
-   //but the Leopard [[APIs]] is only 'class_addMethod', in which case we need to have the pointer
+   //but the Leopard General/APIs is only 'class_addMethod', in which case we need to have the pointer
    //to the Method objects actually stored in the Class structure (in the Tiger implementation,
    //a new mlist was explicitely created with the added methods and directly added to the class;
    //thus we were able to add a new Method AND get the pointer to it)
@@ -488,21 +488,21 @@ Paste this in replacement of original Kevin's code for the function _PerformSwiz
    
    return YES;
  }
-</code>
 
-Note that the above code should probably use a plain old "unsigned int" instead of "[[NSUInteger]]" to match the signature of class_copyMethodList().
+
+Note that the above code should probably use a plain old "unsigned int" instead of "General/NSUInteger" to match the signature of class_copyMethodList().
 
 ----
 
 Make sure your calls to swizzleMethod only happen once. I made the mistake of putting the swizzle procedure in the '+initialize' method of a class in a category, and my swizzle procedure ended up running twice, effectively un-swizzling what had ben swizzled.
 
-- [[JaeKwon]]
+- General/JaeKwon
 
 ----
 
-In researching this, it seems to me that the existing solutions for the Leopard runtime are extremely over-engineered. There are two cases to consider: the subclass implements the method you're replacing, or it inherits it. In the former case, <code>method_exchangeImplementations</code> gets the job done. In the latter case, <code>class_addMethod</code> on the "old" selector with the new method, followed by <code>class_replaceMethod</code> on the "new" selector with the old method, will get things into a good place. Since <code>class_addMethod</code> returns success or failure based on whether the class in question already has such a method, this results in this easy code:
+In researching this, it seems to me that the existing solutions for the Leopard runtime are extremely over-engineered. There are two cases to consider: the subclass implements the method you're replacing, or it inherits it. In the former case,     method_exchangeImplementations gets the job done. In the latter case,     class_addMethod on the "old" selector with the new method, followed by     class_replaceMethod on the "new" selector with the old method, will get things into a good place. Since     class_addMethod returns success or failure based on whether the class in question already has such a method, this results in this easy code:
 
-<code>
+    
  void Swizzle(Class c, SEL orig, SEL new)
  {
      Method origMethod = class_getInstanceMethod(c, orig);
@@ -512,24 +512,24 @@ In researching this, it seems to me that the existing solutions for the Leopard 
      else
          method_exchangeImplementations(origMethod, newMethod);
  }
-</code>
 
-Seems foolproof, and of course is extremely simple compared to the other functions offered here. Have I missed something, or shall we remove those and leave this one as the example of the right way to do this? -- [[MikeAsh]]
+
+Seems foolproof, and of course is extremely simple compared to the other functions offered here. Have I missed something, or shall we remove those and leave this one as the example of the right way to do this? -- General/MikeAsh
 
 ----
-Corrected omitted code in [[MikeAsh]]'s code above. It does seem to work, at least with a quick test. Steve Weller.
+Corrected omitted code in General/MikeAsh's code above. It does seem to work, at least with a quick test. Steve Weller.
 
 ----
 If the subclass (B) inherits the old method from its superclass (A), won't pulling it down result in the method being called twice, if I call the old method in my new method?
 
 E.g. when swizzling release with myRelease, I would write somthing like:
 
-<code>
+    
  - (void) myRelease {
      NSLog(@"Extremely important log message");
      [self myRelease];
  }
-</code>
+
 
 This calls the "old" release method from B, which was pulled down from superclass A. This method most likely contains a "[super release]", which then calls the original release method from the superclass A. Or am I missing something?
 

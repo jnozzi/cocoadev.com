@@ -4,10 +4,10 @@ I had a need to display an interface as either a sheet or a stand-alone window d
 
 However it seems that the window gets permanently modified when displayed as a sheet and will no longer display its titlebar (and associated window controls) when displayed as a window later.
 
-So I decided instead to create (in IB) a blank window ("mySRwindow"), a blank panel ("[[SRWindowPanel]]") and a customView with the interface ("panelContentView") and switch in/out the view into the panel and window as needed.
+So I decided instead to create (in IB) a blank window ("mySRwindow"), a blank panel ("General/SRWindowPanel") and a customView with the interface ("panelContentView") and switch in/out the view into the panel and window as needed.
 
 I setup the code as follows:
-<code>
+    
 When showing as window:
 
 	// restores the view as needed and shows the window
@@ -17,9 +17,9 @@ When showing as window:
 When showing as a sheet:
 ..
 ...
-	[[[SRWindowPanel]] setContentView:panelContentView];
-	[[[NSApp]] beginSheet:[[SRWindowPanel]] modalForWindow:[[[NSApp]] keyWindow] modalDelegate:nil didEndSelector:nil contextInfo:nil];
+	General/[SRWindowPanel setContentView:panelContentView];
+	General/[NSApp beginSheet:General/SRWindowPanel modalForWindow:General/[NSApp keyWindow] modalDelegate:nil didEndSelector:nil contextInfo:nil];
 
-</code>
+
 
 -Seb

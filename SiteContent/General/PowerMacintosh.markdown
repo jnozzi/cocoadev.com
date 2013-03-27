@@ -1,1 +1,1 @@
-[[PowerMacintosh]] - Long for [[PowerMac]] !
+General/PowerMacintosh - Long for General/PowerMac !

@@ -1,6 +1,6 @@
 I have two projects.  One uses a toolbar to switch between two views that can be displayed in the main part of a window. Kinda like a tab view but the views are selected by toolbar items (and menu items) instead.  This project works fine.
 
-I tried to do the same thing in a second project and can't make it work. I have outlets on my controller class that are connected to the views (and yes, I quintuple-checked, they really are connected).  At runtime, the outlet variables are nil, verified by the debugger in awakeFromNib.  I changed the views to use a custom subclass and put an [[NSLog]] in their initializers and the [[NSLog]] is being printed; the views are being instantiated, but they are NOT being hooked up to my outlets, in spite of the fact that (yes, I sextuple-checked), Interface Builder shows them as being connected.
+I tried to do the same thing in a second project and can't make it work. I have outlets on my controller class that are connected to the views (and yes, I quintuple-checked, they really are connected).  At runtime, the outlet variables are nil, verified by the debugger in awakeFromNib.  I changed the views to use a custom subclass and put an General/NSLog in their initializers and the General/NSLog is being printed; the views are being instantiated, but they are NOT being hooked up to my outlets, in spite of the fact that (yes, I sextuple-checked), Interface Builder shows them as being connected.
 
 Any hints would be greatly appreciated.
 
@@ -12,10 +12,10 @@ I have a funny feeling I've seen (and solved) this one at some point in the past
 I suggest three possibilities. (1) If your views are subviews of the window in the nib file, I cannot see why the outlets are nil at runtime.
 (2) If they are not (that is they are custom view objects instantiated separately in your nib file), you may need to use something like 
 
-<code>
+    
 	// "What I want is a view" -- Hannibal Lecter, 'Silence of the Lambs'
 	[ theWindow setContentView: theSubView ];
-</code>
+
 
 (3) I can't think of a third possibility.
 
@@ -35,7 +35,7 @@ Thanks though.
 
 Solved this.  Boy, do I feel stupid now.  The solution to this one hit me in the forehead like a truck.  DOH!
 
-Each view was connected to an [[IBOutlet]] named "viewX", "viewY", "viewZ", etc.  The controller
+Each view was connected to an General/IBOutlet named "viewX", "viewY", "viewZ", etc.  The controller
 also had an action to show each of the views, which was connected to a menu item and to the toolbar item's action selector.  The
 actions were named "setViewX", "setViewY", etc.  When a nib is loaded and an outlet connected, first IB attempts to set the outlet
 using a "setOutletName" method, before setting the outletName instance variable directly.  Since my methods were named setViewName,

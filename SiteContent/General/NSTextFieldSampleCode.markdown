@@ -1,1 +1,1 @@
-Describe [[NSTextFieldSampleCode]] here.
+Describe General/NSTextFieldSampleCode here.

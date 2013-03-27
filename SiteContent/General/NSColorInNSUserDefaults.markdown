@@ -1,9 +1,9 @@
 
 
-I have a lingering question about storing [[NSColor]] data in the user defaults dictionary. I've read what there is about having
-to transform the color to an [[NSData]] object before associating it with a key, but I discovered that plain old
+I have a lingering question about storing General/NSColor data in the user defaults dictionary. I've read what there is about having
+to transform the color to an General/NSData object before associating it with a key, but I discovered that plain old
 
-<code> [ defaultsDict setObject: [ [[NSColor]] blackColor ] forKey: @"Text View Background Color" ] </code>
+     [ defaultsDict setObject: [ General/NSColor blackColor ] forKey: @"Text View Background Color" ] 
 
 actually worked, and could be restored from the defaults file. The color returned from a color well
 could not be digested by defaults in the same way.
@@ -14,39 +14,39 @@ Curious Cocoa Coder
 
 ----
 
-You should use the [[NSArchiver]] and [[NSUnarchiver]] classes for that. You could also store the color in a short, human readable form(e.g. #000000 = {0,0,0,1} = blackColor):
+You should use the General/NSArchiver and General/NSUnarchiver classes for that. You could also store the color in a short, human readable form(e.g. #000000 = {0,0,0,1} = blackColor):
 
-<code>
+    
 
-@interface [[NSColor]](Extras)
+@interface General/NSColor(Extras)
 
-+ ([[NSColor]] '')colorWithString:([[NSString]] '')string;
-- ([[NSString]] '')string;
++ (General/NSColor *)colorWithString:(General/NSString *)string;
+- (General/NSString *)string;
 
 @end
 
-@implementation [[NSColor]](Extras)
+@implementation General/NSColor(Extras)
 
-+ ([[NSColor]] '')colorWithString:([[NSString]] '')string
++ (General/NSColor *)colorWithString:(General/NSString *)string
 {
-    [[NSScanner]] ''scanner = [[[NSScanner]] scannerWithString:string];
+    General/NSScanner *scanner = General/[NSScanner scannerWithString:string];
     float red = 0.0;
     float green = 0.0;
     float blue = 0.0;
     float alpha = 1.0;
     
-    [scanner setCharactersToBeSkipped:[[[NSCharacterSet]] characterSetWithCharactersInString:@"{},\n\r\t "]];
+    [scanner setCharactersToBeSkipped:General/[NSCharacterSet characterSetWithCharactersInString:@"{},\n\r\t "]];
     [scanner scanFloat:&red];
     [scanner scanFloat:&green];
     [scanner scanFloat:&blue];
     [scanner scanFloat:&alpha];
     
-    return [[self class] colorWithDeviceRed:red green:green blue:blue alpha:alpha];
+    return General/self class] colorWithDeviceRed:red green:green blue:blue alpha:alpha];
 }
 
-- ([[NSString]] '')string
+- ([[NSString *)string
 {
-    [[NSColor]] ''rgbColor = [self colorUsingColorSpaceName:[[NSCalibratedRGBColorSpace]]];
+    General/NSColor *rgbColor = [self colorUsingColorSpaceName:General/NSCalibratedRGBColorSpace];
     float red = 0.0;
     float green = 0.0;
     float blue = 0.0;
@@ -54,47 +54,47 @@ You should use the [[NSArchiver]] and [[NSUnarchiver]] classes for that. You cou
     
     [rgbColor getRed:&red green:&green blue:&blue alpha:&alpha];
     
-    return [[[NSString]] stringWithFormat:@"{%g,%g,%g,%g}", red, green, blue, alpha];
+    return General/[NSString stringWithFormat:@"{%g,%g,%g,%g}", red, green, blue, alpha];
 }
 
 @end
-</code>
+
 
 -- JP
 
 ----
 
-<code> [ defaultsDict setObject: [ [[NSColor]] blackColor ] forKey: @"Text View Background Color" ] </code> doesn't work for me I get the following error:
+     [ defaultsDict setObject: [ General/NSColor blackColor ] forKey: @"Text View Background Color" ]  doesn't work for me I get the following error:
 
-<code> ''''' -[[[NSUserDefaults]] setObject:forKey:]: Attempt to insert non-property value '[[NSCalibratedWhiteColorSpace]] 0 1' of class '[[NSCachedWhiteColor]]'. </code>
+     *** -General/[NSUserDefaults setObject:forKey:]: Attempt to insert non-property value 'General/NSCalibratedWhiteColorSpace 0 1' of class 'General/NSCachedWhiteColor'. 
 
 ----
 
 Why create a -string method when -description works just fine.  For example:
 
-<code>
-[[NSLog]](@"%@", [[[[NSColor]] blackColor] description]); 
-[[NSLog]](@"%@", [[[[NSColor]] blueColor] description] );
-[[NSLog]](@"%@", [[[[NSColor]] colorWithCalibratedRed:.5 green:.5 blue:.5 alpha:1] description]);
-</code>
+    
+General/NSLog(@"%@", General/[[NSColor blackColor] description]); 
+General/NSLog(@"%@", General/[[NSColor blueColor] description] );
+General/NSLog(@"%@", General/[[NSColor colorWithCalibratedRed:.5 green:.5 blue:.5 alpha:1] description]);
+
 
 will print out:
 
-<code>2004-08-01 09:07:16.644 [[MyApp]][8352] [[NSCalibratedWhiteColorSpace]] 0 1
-2004-08-01 09:07:16.658 [[MyApp]][8352] [[NSCalibratedRGBColorSpace]] 0 0 1 1
-2004-08-01 09:07:16.666 [[MyApp]][8352] [[NSCalibratedRGBColorSpace]] 0.5 0.5 0.5 1
-</code>
+    2004-08-01 09:07:16.644 General/MyApp[8352] General/NSCalibratedWhiteColorSpace 0 1
+2004-08-01 09:07:16.658 General/MyApp[8352] General/NSCalibratedRGBColorSpace 0 0 1 1
+2004-08-01 09:07:16.666 General/MyApp[8352] General/NSCalibratedRGBColorSpace 0.5 0.5 0.5 1
+
 
 So, to save a color just use: 
 
-<code>[[[[NSUserDefaults]] standardUserDefaults] setObject:[[[[NSColor]] blackColor] description] forKey:@"A Color"];</code>
+    General/[[NSUserDefaults standardUserDefaults] setObject:General/[[NSColor blackColor] description] forKey:@"A Color"];
 
-You can then create a category method similar to the above +colorWithString except now thanks to -description it will tell you which factory method to use to create your [[NSColor]] object.
+You can then create a category method similar to the above +colorWithString except now thanks to -description it will tell you which factory method to use to create your General/NSColor object.
 
 ----
-[OP speaking] Yes. Well, I think that is just what the default system complains about when you try to send an object returned from an [[NSColorWell]] directly into the defaults dicitonary. That is, [[NSCalibratedRGBColorSpace]] is not acceptable.
+[OP speaking] Yes. Well, I think that is just what the default system complains about when you try to send an object returned from an General/NSColorWell directly into the defaults dicitonary. That is, General/NSCalibratedRGBColorSpace is not acceptable.
 
-What are the properties of the object returned from [ [[NSColor]] blackColor ] that allow it to go into the database?
+What are the properties of the object returned from [ General/NSColor blackColor ] that allow it to go into the database?
 
 ----
 
@@ -104,27 +104,27 @@ I would check it out for myself, but like I said I get an error.
 
 ----
 
-[ OP again, red-faced ] I am somewhat abashed at having dragged this out so long. In fact, I ''cannot''  put an [[NSColor]]
+[ OP again, red-faced ] I am somewhat abashed at having dragged this out so long. In fact, I *cannot*  put an General/NSColor
 object directly into the defaults database by using the setObject: forKey: method. I get the same error you do when I try.
 
-What I DID do was add such a key-value pair to an [[NSDictionary]] called defaultsDict followed by the
+What I DID do was add such a key-value pair to an General/NSDictionary called defaultsDict followed by the
 message  registerDefaults (with defaultsDict as its argument ) sent to the shared defaults object.
-Because I got away with that, I thought I had actually succeeded in placing the [[NSColor]] into the standardUserDefaults.
+Because I got away with that, I thought I had actually succeeded in placing the General/NSColor into the standardUserDefaults.
 
 But even though it is added to the dictionary, the defaults system cannot and does not write that object to the database.
 It just doesn't complain about it under those circumstances.
 
 ----
-Apple actually recommends archiving the [[NSColor]] if you need to store it in user defaults.
+Apple actually recommends archiving the General/NSColor if you need to store it in user defaults.
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[DrawColor]]/Tasks/[[StoringNSColorInDefaults]].html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/DrawColor/Tasks/General/StoringNSColorInDefaults.html
 
-Of course, this is an older example, and you should be using an [[NSKeyedArchiver]] rather than the deprecated [[NSArchiver]].
+Of course, this is an older example, and you should be using an General/NSKeyedArchiver rather than the deprecated General/NSArchiver.
 
-''Also see [[NSUserDefaultsCategory]].''
+*Also see General/NSUserDefaultsCategory.*
 
 ----
 
-''Why create a -string method when -description works just fine.''
+*Why create a -string method when -description works just fine.*
 
-Because the output of the description method is not in any way guaranteed - this could easily break in the future!  The description method should ''only'' be used for debugging.
+Because the output of the description method is not in any way guaranteed - this could easily break in the future!  The description method should *only* be used for debugging.

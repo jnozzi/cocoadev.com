@@ -1,6 +1,6 @@
 To add a picture to a page, all you need to do is enter the absolute URL to the image, and it will be replaced with the image after you save changes. JPG and GIF are the supported file types.
 
-To ensure that your image is not deleted in the future (if you post it at a temporarily location), use a site like [[ImageShack]]: http://imageshack.us
+To ensure that your image is not deleted in the future (if you post it at a temporarily location), use a site like General/ImageShack: http://imageshack.us
 
 ----
 

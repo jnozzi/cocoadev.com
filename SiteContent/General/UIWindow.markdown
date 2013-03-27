@@ -1,25 +1,25 @@
 
 
-Part of the iPhone [[UIKit]] framework. Subclass of [[UIView]].
+Part of the iPhone General/UIKit framework. Subclass of General/UIView.
 
-%%BEGINCODESTYLE%%- (id)initWithContentRect:([[CGRect]])rect;%%ENDCODESTYLE%%
+<code>- (id)initWithContentRect:(General/CGRect)rect;</code>
 
-%%BEGINCODESTYLE%%- (void)orderFront:(id)sender;%%ENDCODESTYLE%%
+<code>- (void)orderFront:(id)sender;</code>
 
-%%BEGINCODESTYLE%%- (void)makeKey:(id)sender;%%ENDCODESTYLE%%
+<code>- (void)makeKey:(id)sender;</code>
 
-%%BEGINCODESTYLE%%- (void)_setHidden:(BOOL)flag;%%ENDCODESTYLE%%
+<code>- (void)_setHidden:(BOOL)flag;</code>
 
-%%BEGINCODESTYLE%%- (void)setContentView:([[UIView]]'')view;%%ENDCODESTYLE%%
+<code>- (void)setContentView:(General/UIView*)view;</code>
 
 // setting the backlight level
 
-%%BEGINCODESTYLE%%- (void)setLevel:(float)level;%%ENDCODESTYLE%%
+<code>- (void)setLevel:(float)level;</code>
 
-%%BEGINCODESTYLE%%- (float)level;%%ENDCODESTYLE%%
+<code>- (float)level;</code>
 
 // handling interface events - ??
 
-%%BEGINCODESTYLE%%- (BOOL)shouldRespondToStatusBarHeightChange;%%ENDCODESTYLE%%
+<code>- (BOOL)shouldRespondToStatusBarHeightChange;</code>
 
-%%BEGINCODESTYLE%%- (void)handleStatusBarHeightChange;%%ENDCODESTYLE%%
+<code>- (void)handleStatusBarHeightChange;</code>

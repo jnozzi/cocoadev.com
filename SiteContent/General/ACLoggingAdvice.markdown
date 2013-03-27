@@ -1,11 +1,11 @@
-'''[[ACLoggingAdvice]]''' - an example [[AdviceObject]] related to [[AspectCocoa]]
+**General/ACLoggingAdvice** - an example General/AdviceObject related to General/AspectCocoa
 
-[[ACLoggingAdvice]] is a simple class intended for use as an [[AdviceObject]].  The result of applying an instance of this class as the [[AdviceObject]] to a given [[PointCut]] (via the loading of an Aspect), will be that whenever any method within the scope of that [[PointCut]] gets called, we will [[NSLog]] before it gets called, and after it has returned.
+General/ACLoggingAdvice is a simple class intended for use as an General/AdviceObject.  The result of applying an instance of this class as the General/AdviceObject to a given General/PointCut (via the loading of an Aspect), will be that whenever any method within the scope of that General/PointCut gets called, we will General/NSLog before it gets called, and after it has returned.
 
 
 
-'''ACLoggingAdvice.h'''
-<code>
+**ACLoggingAdvice.h**
+    
  #import <Foundation/Foundation.h>
  #import "ACInvocation.h"
  
@@ -21,10 +21,10 @@
  -(void)after:(ACInvocation  *)invocation;
  
  @end
-</code>
 
-'''ACLoggingAdvice.m'''
-<code>
+
+**ACLoggingAdvice.m**
+    
  #import "ACLoggingAdvice.h"
  #import </usr/include/objc/objc-class.h>
  
@@ -54,4 +54,3 @@
  }
  
  @end
-</code>

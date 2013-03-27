@@ -4,4 +4,4 @@
 
 Have you tried setmode()?
 
-''Or, more specifically, open your terminal and type (without quotes) "man setmode" ... this will tell you everything you ''should'' need to know. ;-) Though examples are what makes this site nice, aren't they? Hint hint, guys/gals?''
+*Or, more specifically, open your terminal and type (without quotes) "man setmode" ... this will tell you everything you *should* need to know. ;-) Though examples are what makes this site nice, aren't they? Hint hint, guys/gals?*

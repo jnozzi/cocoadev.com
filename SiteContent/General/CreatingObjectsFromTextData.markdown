@@ -23,56 +23,56 @@ So I'd like to know first how to objectify this data.  Is there some kind of an 
 Maybe this is beyond what I can do now, but I'd like to start working towards it.
 
 Thanks!
-[[CliffPruitt]]
+General/CliffPruitt
 
 ----
 
-You may want to check out this page if you stumbled across this looking for a way to deal with CSV and TSV files: [[ReadWriteCSVAndTSV]]
+You may want to check out this page if you stumbled across this looking for a way to deal with CSV and TSV files: General/ReadWriteCSVAndTSV
 
-[[ChrisMurphy]]
+General/ChrisMurphy
 
 ----
 
 It sounds like what you really want is to load your data into a relational database and query it programmatically. I think trying to do this through Cocoa might be a disaster.
 
-[[JeffHarrell]]
+General/JeffHarrell
 
 ----
 
 Entirely off the top of my head, since you'll be dealing with rather large amounts of data, you'll want to pre-process the text into a more useful form which you'll then access at run-time.  I don't think you'll want to parse a couple of Bibles on app launch.  With that being said, you can have all of the text as one big blob in a file.  mmap() it so you can treat it just like it's memory, and the OS will page in and page out stuff as you need (since random access of things will be pretty sparse)  That'll make (b) pretty fast, espeically if you use msync to invalidate regions you've visited but won't come back to.  That also makes (c) do-able. Create a bunch of indexes to indicate where chapters and verses start and end.  Arrays of these would be sufficient since you'll be able to access them numerically.  That'll make (d) possible.  
 
-I'd first do things procedurally to get this stuff basically working, and the see how it comes together, and then refactor and objectify it.  You could do (b) also by building a reverse-map of the text (make a concordance) - for each word, have a list of locations where they live.  Disk is plentiful these days, so you won't necessarily have to have really high powered algorithms here.  ++[[MarkDalrymple]]
+I'd first do things procedurally to get this stuff basically working, and the see how it comes together, and then refactor and objectify it.  You could do (b) also by building a reverse-map of the text (make a concordance) - for each word, have a list of locations where they live.  Disk is plentiful these days, so you won't necessarily have to have really high powered algorithms here.  ++General/MarkDalrymple
 
 ----
 
 After wandering around the 'net for what seemed like an age, I decided to roll my own.. below is a CSV parser, which
 also handles quoted lines correctly e.g. one,two,"three, four",five (Excel tends to export this way). I've left the 
-debugging in, it should be fairly obvious as to how it works.. will revise this when I get some spare time. Enjoy! [[[JayFenton]]]
+debugging in, it should be fairly obvious as to how it works.. will revise this when I get some spare time. Enjoy! General/[JayFenton]
 
-<code>
+    
 
 	// Character delimiter sets
-	[[NSCharacterSet]] ''lineCharacterSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"\r\n"];
-	[[NSCharacterSet]] ''fieldCharacterSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@","];
-	[[NSCharacterSet]] ''quotedCharacterSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"\""];
+	General/NSCharacterSet *lineCharacterSet = General/[NSCharacterSet characterSetWithCharactersInString:@"\r\n"];
+	General/NSCharacterSet *fieldCharacterSet = General/[NSCharacterSet characterSetWithCharactersInString:@","];
+	General/NSCharacterSet *quotedCharacterSet = General/[NSCharacterSet characterSetWithCharactersInString:@"\""];
 	
 	// Import the file as a single string
-	[[NSString]] ''csvData = [[[[NSString]] alloc] initWithContentsOfFile:@"filename.csv"];
+	General/NSString *csvData = General/[[NSString alloc] initWithContentsOfFile:@"filename.csv"];
 
 	// Temporary line and field holders
         // The scanner will alloc and init this variables as needed
-	[[NSString]] ''line;
-	[[NSString]] ''field;
+	General/NSString *line;
+	General/NSString *field;
  
 		
-	[[NSScanner]] ''mainScanner = [[[NSScanner]] scannerWithString:csvData];
+	General/NSScanner *mainScanner = General/[NSScanner scannerWithString:csvData];
 	while(![mainScanner isAtEnd]) {
 
 		[mainScanner scanUpToCharactersFromSet:lineCharacterSet intoString:&line];
 				
-		[[NSLog]](@"FROM %@\n", line, [mainScanner scanLocation]);
+		General/NSLog(@"FROM %@\n", line, [mainScanner scanLocation]);
 
-		[[NSScanner]] ''fieldScanner = [[[NSScanner]] scannerWithString:line];
+		General/NSScanner *fieldScanner = General/[NSScanner scannerWithString:line];
 		while(![fieldScanner isAtEnd]) {
 		
 			[fieldScanner scanUpToCharactersFromSet:fieldCharacterSet intoString:&field];
@@ -80,21 +80,21 @@ debugging in, it should be fairly obvious as to how it works.. will revise this 
 			if([field hasPrefix:@"\""] == YES && [field hasSuffix:@"\""] != YES) {
 
 				// No trailing speech mark, go back and take the token all the way up to the next " (ignoring commas)
-				[[NSString]] ''restOfQuotedString = [[[[NSString]] alloc] init];
+				General/NSString *restOfQuotedString = General/[[NSString alloc] init];
 				[fieldScanner scanUpToCharactersFromSet:quotedCharacterSet intoString:&restOfQuotedString];
 				
-				[[NSMutableString]] ''newField = [[[NSMutableString]] stringWithString:[field stringByTrimmingCharactersInSet:quotedCharacterSet]];
+				General/NSMutableString *newField = General/[NSMutableString stringWithString:[field stringByTrimmingCharactersInSet:quotedCharacterSet]];
 				[newField appendString:restOfQuotedString];
 
 				[fieldScanner scanCharactersFromSet:quotedCharacterSet intoString:nil];
                                 [fieldScanner scanCharactersFromSet:fieldCharacterSet intoString:nil];
 				
-				[[NSLog]](@"TO QUOTED TOKEN %@ (%d)\n", newField, [fieldScanner scanLocation]);
+				General/NSLog(@"TO QUOTED TOKEN %@ (%d)\n", newField, [fieldScanner scanLocation]);
 
 			} else {
 				
 				[fieldScanner scanCharactersFromSet:fieldCharacterSet intoString:nil];
-				[[NSLog]](@"TO TOKEN %@ (%d)\n", field, [fieldScanner scanLocation]);
+				General/NSLog(@"TO TOKEN %@ (%d)\n", field, [fieldScanner scanLocation]);
 			
 			}
 			
@@ -102,11 +102,11 @@ debugging in, it should be fairly obvious as to how it works.. will revise this 
 
 	}
 
-</code>
+
 
 ----
 
-There's also [[CSVImporter]], an RFC4180 compliant CSV parser implementation to show you the basics of writing a recursive descent parser for importing data into your Cocoa applications.
+There's also General/CSVImporter, an RFC4180 compliant CSV parser implementation to show you the basics of writing a recursive descent parser for importing data into your Cocoa applications.
 
 http://cocoawithlove.com/2009/11/writing-parser-using-nsscanner-csv.html
 

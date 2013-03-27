@@ -1,37 +1,37 @@
 Goal:
-To have textual changes in an [[NSTableView]] trigger an update of various other [[NSTextFields]].
+To have textual changes in an General/NSTableView trigger an update of various other General/NSTextFields.
 
-I am using an [[NSArrayController]] to manage the table via bindings.
+I am using an General/NSArrayController to manage the table via bindings.
 
 I have already tried using bindings, and they mostly work, but the update only occurs when a new row is added to the table. This is not acceptable.
 I used 'valueForKeyPath:@"@sum.total" on the default arrangedObjects. Where total is a method I wrote.
 
-Currently I am trying a delegate approach via an [[AppController]]. I have set the delegate of my [[NSTableView]] to the [[AppController]] and am trying to get the 'textDidChange:' selector to trigger the update. Unfortunately the 'textDidChange:' selector in my [[AppController]] is not being called. What have I done wrong or not done at all?
+Currently I am trying a delegate approach via an General/AppController. I have set the delegate of my General/NSTableView to the General/AppController and am trying to get the 'textDidChange:' selector to trigger the update. Unfortunately the 'textDidChange:' selector in my General/AppController is not being called. What have I done wrong or not done at all?
 
 Code snippet:
-<code>
-[[AppController]].h
+    
+General/AppController.h
 ------------------------
 #import <Cocoa/Cocoa.h>
-#import "[[MyDocument]].h"
+#import "General/MyDocument.h"
 #import "Transaction.h"
 
-@interface [[AppController]] : [[NSObject]] {
-    [[IBOutlet]] [[NSTextField]] ''balanceField;
-    [[IBOutlet]] [[NSTableView]] ''tableView;
-    [[IBOutlet]] [[MyDocument]] ''myDocument;
-    [[IBOutlet]] [[NSButton]] ''updateButton;
+@interface General/AppController : General/NSObject {
+    General/IBOutlet General/NSTextField *balanceField;
+    General/IBOutlet General/NSTableView *tableView;
+    General/IBOutlet General/MyDocument *myDocument;
+    General/IBOutlet General/NSButton *updateButton;
 }
 
-- ([[IBAction]])updateBalanceField:(id)sender;
+- (General/IBAction)updateBalanceField:(id)sender;
 
 @end
 
-[[AppController]].m
+General/AppController.m
 ------------------------
-#import "[[AppController]].h"
+#import "General/AppController.h"
 
-@implementation [[AppController]]
+@implementation General/AppController
 
 - (id)init
 {
@@ -39,21 +39,21 @@ Code snippet:
     return self;
 }
 
-- ([[IBAction]])updateBalanceField:(id)sender;
+- (General/IBAction)updateBalanceField:(id)sender;
 {
-    Transaction ''t;
-    [[NSMutableArray]] ''trans = [myDocument transactions];
+    Transaction *t;
+    General/NSMutableArray *trans = [myDocument transactions];
     float total = 0.0;
-    [[NSEnumerator]] ''e = [trans objectEnumerator];
+    General/NSEnumerator *e = [trans objectEnumerator];
     while(t = [e nextObject]) {
         total += [t total];
     }
-    [balanceField setStringValue:[[[[NSNumber]] numberWithFloat:total] description]];
+    [balanceField setStringValue:General/[[NSNumber numberWithFloat:total] description]];
 }
 
-- (void)textDidChange:([[NSNotification]] '')aNotification
+- (void)textDidChange:(General/NSNotification *)aNotification
 {
-    [[NSLog]](@"textDidChange");
+    General/NSLog(@"textDidChange");
     //[self updateBalanceField];
 }
 
@@ -63,8 +63,8 @@ Code snippet:
 }
 
 @end
-</code>
 
-----Try using -controlTextDidChange: instead. -textDidChange: is sent to the delegate of a [[NSTextView]] object, which for the field editor is the text field into which you are currently typing. IIRC, -controlTextDidChange: is sent at the same time to the text field's delegate (your controller object.)
 
-----This fixed the problem perfectly. For some reason I didn't bother to scroll to the end of [[NSControl]] to see the delegate methods. I'm accustomed to reading Java [[APIs]] where all of the summary and methods are described at the top of the page.
+----Try using -controlTextDidChange: instead. -textDidChange: is sent to the delegate of a General/NSTextView object, which for the field editor is the text field into which you are currently typing. IIRC, -controlTextDidChange: is sent at the same time to the text field's delegate (your controller object.)
+
+----This fixed the problem perfectly. For some reason I didn't bother to scroll to the end of General/NSControl to see the delegate methods. I'm accustomed to reading Java General/APIs where all of the summary and methods are described at the top of the page.

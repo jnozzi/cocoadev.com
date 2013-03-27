@@ -6,18 +6,18 @@ Right now, I'm a student at the junior college of Akureyri.
 My website is http://ninjakitten.us you can check out my stuff over there
 
 
-'''Here's some apps I've made or been a part of:'''
+**Here's some apps I've made or been a part of:**
 
 *Scumm X, my first ever app ( http://scummx.sf.net )
-*[[MacFreeSCI]], ( http://macfreesci.sf.net )
+*General/MacFreeSCI, ( http://macfreesci.sf.net )
 *Radion, ( http://www.aquaticsw.com/?page=radion )
-*[[DeliveryBoy]] ( http://www.aquaticsw.com/?page=deliveryboy )
-*[[PakIt]] ( http://www.aquaticsw.com/?page=pakit )
-*[[FreeSCI]] ( http://www.freesci.org )
+*General/DeliveryBoy ( http://www.aquaticsw.com/?page=deliveryboy )
+*General/PakIt ( http://www.aquaticsw.com/?page=pakit )
+*General/FreeSCI ( http://www.freesci.org )
 
-'''There's more..'''
+**There's more..**
 
-I just released a database framework called [[ActiveRecord]]
+I just released a database framework called General/ActiveRecord
 
 p.s. Aquatic software hasn't been around for over a year, (so the aquaticsw links are dead, go to the ninja kitten instead)
 

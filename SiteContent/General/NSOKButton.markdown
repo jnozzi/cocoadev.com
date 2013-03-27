@@ -1,1 +1,1 @@
-http://developer.apple.com/techpubs/macosx/Cocoa/Reference/[[ApplicationKit]]/ObjC_classic/[[TypesAndConstants]]/[[AppKitTypes]].html
+http://developer.apple.com/techpubs/macosx/Cocoa/Reference/General/ApplicationKit/ObjC_classic/General/TypesAndConstants/General/AppKitTypes.html

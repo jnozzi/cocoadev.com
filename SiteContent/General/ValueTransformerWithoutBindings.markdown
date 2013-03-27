@@ -1,6 +1,6 @@
-[[ValueTransformerWithoutBindings]]
+General/ValueTransformerWithoutBindings
 
-I've been wondering if it's possible to set a value transformer up for my table view, but I'm doing some calculations to generate the data source's info so I can't (?) use the controller layer for the content.  Basically for one of the columns I would like to have the data source return an [[NSString]] with the path to an image file and have the value transformer take the string and return the image for the image cell formatter in the table...
+I've been wondering if it's possible to set a value transformer up for my table view, but I'm doing some calculations to generate the data source's info so I can't (?) use the controller layer for the content.  Basically for one of the columns I would like to have the data source return an General/NSString with the path to an image file and have the value transformer take the string and return the image for the image cell formatter in the table...
 
 table view -> data source (path name) -> transformer (image) -> image cell
 

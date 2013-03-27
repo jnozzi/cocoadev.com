@@ -1,1 +1,1 @@
-See: [[OpenSourceSoftware]] [[CocoaOpen]]
+See: General/OpenSourceSoftware General/CocoaOpen

@@ -4,41 +4,41 @@ I can overload keyDown: to call interpretKeyEvents: and then doCommandBySelector
 
 So what to do? Must I explicitly check for escape in keyDown: (and perhaps also command-".")? explains why these keyboard commands are supported so inconsistently ;-)
 
-It seems to be related to <code>performClose:</code> which fails (and beeps). <code>close</code> works fine. I do set <code>[[NSClosableWindowMask]]</code> for the window, have tried to implement <code>windowShouldClose</code> to return <code>YES</code> in both the window subclass and my delegate � but <code>performClose:</code> still fails...
+It seems to be related to     performClose: which fails (and beeps).     close works fine. I do set     General/NSClosableWindowMask for the window, have tried to implement     windowShouldClose to return     YES in both the window subclass and my delegate � but     performClose: still fails...
 
-ahh... just saw this for <code>performClose:</code> ''If the receiver doesn�t have a close button or can�t be closed (for example, if the delegate replies NO to a windowShouldClose: message), the system beeps.''. And it seems the check is not made on the <code>styleMask</code> � but overloading this method to simply invoke <code>[self close]</code> will give both escape and command-"." functionality.
+ahh... just saw this for     performClose: *If the receiver doesn�t have a close button or can�t be closed (for example, if the delegate replies NO to a windowShouldClose: message), the system beeps.*. And it seems the check is not made on the     styleMask � but overloading this method to simply invoke     [self close] will give both escape and command-"." functionality.
 
 ----
 
-Normally, a borderless window can't accept key events. You need to create a subclass of [[NSWindow]] and declare:
+Normally, a borderless window can't accept key events. You need to create a subclass of General/NSWindow and declare:
 
-<code>
+    
  - (BOOL)canBecomeKeyWindow
 {
     return YES;
 }
-</code>
 
-I had this problem too, but in my case I was creating a borderless window to use at full screen. Instead of subclassing [[NSWindow]] I ended up creating my own run loop. In the case of a full screen window it made sense. Here's the code if you want it.
 
-<code>
+I had this problem too, but in my case I was creating a borderless window to use at full screen. Instead of subclassing General/NSWindow I ended up creating my own run loop. In the case of a full screen window it made sense. Here's the code if you want it.
+
+    
 - (void)startRunLoop
 {
     continueRunLoop = YES;
     
     while (continueRunLoop) {
-        [[NSAutoreleasePool]]   ''pool;
-        [[NSEvent]]              ''event;
+        General/NSAutoreleasePool   *pool;
+        General/NSEvent              *event;
         
         // We need to handle the autorelease pool
         // because we are in our own loop
-        pool = [[[[NSAutoreleasePool]] alloc] init];
+        pool = General/[[NSAutoreleasePool alloc] init];
          
         // Process events
-        while (event = [[[NSApp]] nextEventMatchingMask:[[NSAnyEventMask]] untilDate:[[[NSDate]] distantPast]
-                                    inMode:[[NSDefaultRunLoopMode]] dequeue:YES]) {
+        while (event = General/[NSApp nextEventMatchingMask:General/NSAnyEventMask untilDate:General/[NSDate distantPast]
+                                    inMode:General/NSDefaultRunLoopMode dequeue:YES]) {
             switch ([event type]) {
-                case [[NSKeyDown]]:
+                case General/NSKeyDown:
                     [self keyDown:event];
                     break;
                 // etc...
@@ -52,32 +52,32 @@ I had this problem too, but in my case I was creating a borderless window to use
         [pool release];
     }
 }
-</code>
 
--- [[RyanBates]]
+
+-- General/RyanBates
 
 ----
 Here is a way to get key events without a window.
 
-Create a subclass of [[NSApplication]]. Then override the -sendEvent: method in the subclass' implementation so it looks like this:
+Create a subclass of General/NSApplication. Then override the -sendEvent: method in the subclass' implementation so it looks like this:
 
-<code>
-- (void)sendEvent:([[NSEvent]] '')theEvent
+    
+- (void)sendEvent:(General/NSEvent *)theEvent
 {
-    if([[NSKeyDown]] == [theEvent type])
-       [[NSLog]](@"keyDown");
+    if(General/NSKeyDown == [theEvent type])
+       General/NSLog(@"keyDown");
 }
-</code>
+
 
 Next change the Target's 'Info.plist->Cocoa-Specific->Prinicpal class' to the name of the subclass.
 
 ----
 
-You don't need to pass on the event to <code>super</code>? 
+You don't need to pass on the event to     super? 
 
 ----
 
-If your object does not handle the event and wants another object down the [[ResponderChain]] to handle the event, then yes. You would want to pass it to <code>super</code> which would pass it to the next object in the responder chain. In the case of the full screen window, I wanted to take over all events - not passing any to the next responder. -- [[RyanBates]]
+If your object does not handle the event and wants another object down the General/ResponderChain to handle the event, then yes. You would want to pass it to     super which would pass it to the next object in the responder chain. In the case of the full screen window, I wanted to take over all events - not passing any to the next responder. -- General/RyanBates
 
 ----
-Maybe this is just "cheating" (if there is such a thing), but whenever I need to capture a single keystroke (ie, 'escape') in such a window I just create an [[NSButton]] with a key equivalent of that key (usually Escape), and move the button outside of the visible bounds of the window.  This button calls whatever method is needed to take care of business, and I'm done.  /ducks
+Maybe this is just "cheating" (if there is such a thing), but whenever I need to capture a single keystroke (ie, 'escape') in such a window I just create an General/NSButton with a key equivalent of that key (usually Escape), and move the button outside of the visible bounds of the window.  This button calls whatever method is needed to take care of business, and I'm done.  /ducks

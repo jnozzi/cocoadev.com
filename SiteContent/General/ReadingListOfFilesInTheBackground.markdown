@@ -1,13 +1,13 @@
-Hi I am trying to get a listing of a folder using [[NSFileManager]]'s subpathsAtPath command.  Then when I get a listing in a [[NSArray]] I use loops to weed out certain file paths.  After that I use copyPath to copy the files to a new location.  All this works fine but when I do it everything in the GUI freezes.  Nothing is responsive.  Even when I put in ways of updating information through [[NSProgressIndicator]] and [[NSTextFields]] as shown below, it still does not work.  Is there anyway to run these commands in the background or in a way so the GUI will still be responsive?
+Hi I am trying to get a listing of a folder using General/NSFileManager's subpathsAtPath command.  Then when I get a listing in a General/NSArray I use loops to weed out certain file paths.  After that I use copyPath to copy the files to a new location.  All this works fine but when I do it everything in the GUI freezes.  Nothing is responsive.  Even when I put in ways of updating information through General/NSProgressIndicator and General/NSTextFields as shown below, it still does not work.  Is there anyway to run these commands in the background or in a way so the GUI will still be responsive?
 
 
 Thanks
 
 Gabe
 
-[[NSFileManager]] ''manager = [[[NSFileManager]] defaultManager];
+General/NSFileManager *manager = General/[NSFileManager defaultManager];
 	
-[[NSArray]] ''homeFiles=[manager subpathsAtPath:path];
+General/NSArray *homeFiles=[manager subpathsAtPath:path];
 
 for (x=1;x<=[newFiles count];x++){
 
@@ -21,10 +21,10 @@ for (x=1;x<=[newFiles count];x++){
 
 ----
 
-You may want to look into [[ThreadWorker]] since it is an easy way to run background operations and still get notifications when they finish.
+You may want to look into General/ThreadWorker since it is an easy way to run background operations and still get notifications when they finish.
 
---[[JeffDisher]]
+--General/JeffDisher
 
 ----
 
-I've said this before, but I'll say it again.  I strongly recommend against using either [[NSFileManager]] or [[NSWorkspace]] for copying files.  For example, I never got [[NSFileManager]]'s <code>-copyPath:</code> to work in a secondary thread; it would either crash or return immediately after copying only a handful of items.  What does work well is [[FSCopyObject]]  (http://developer.apple.com/samplecode/[[FSCopyObject]]/[[FSCopyObject]].html ), a bit of sample code for doing filtered directory copies.  As a bonus, it supports '''all''' HFS+ attributes and it's blazingly fast (even more so if you turn up kDefaultCopyBufferSize in the code)  -- Bo
+I've said this before, but I'll say it again.  I strongly recommend against using either General/NSFileManager or General/NSWorkspace for copying files.  For example, I never got General/NSFileManager's     -copyPath: to work in a secondary thread; it would either crash or return immediately after copying only a handful of items.  What does work well is General/FSCopyObject  (http://developer.apple.com/samplecode/General/FSCopyObject/General/FSCopyObject.html ), a bit of sample code for doing filtered directory copies.  As a bonus, it supports **all** HFS+ attributes and it's blazingly fast (even more so if you turn up kDefaultCopyBufferSize in the code)  -- Bo

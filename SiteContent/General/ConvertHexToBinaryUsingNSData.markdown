@@ -1,19 +1,19 @@
-This Objective-C category is rewritten from Erik Doernenburg's Foundation extensions: [[NSData]](MIME). You can find his code in [[EDFrameworks]]' [[EDMessage]] Framework. You can use it to convert hex value that hold by [[NSData]] and convert it into binary value.
+This Objective-C category is rewritten from Erik Doernenburg's Foundation extensions: General/NSData(MIME). You can find his code in General/EDFrameworks' General/EDMessage Framework. You can use it to convert hex value that hold by General/NSData and convert it into binary value.
 
-[[NSData]]+Hex.h
+General/NSData+Hex.h
 
-<code>
+    
 #import <Foundation/Foundation.h>
 
-@interface [[NSData]] (NSData_Hex)
-- ([[NSData]]'') hex2raw;
+@interface General/NSData (NSData_Hex)
+- (General/NSData*) hex2raw;
 @end
-</code>
 
-[[NSData]]+Hex.m
 
-<code>
-#import "[[NSData]]+Hex.h"
+General/NSData+Hex.m
+
+    
+#import "General/NSData+Hex.h"
 
 static int asciitable[128] = {
   99,99,99,99, 99,99,99,99, 99,99,99,99, 99,99,99,99,
@@ -26,32 +26,32 @@ static int asciitable[128] = {
   99,99,99,99, 99,99,99,99, 99,99,99,99, 99,99,99,99
 };
 
-@implementation [[NSData]] (NSData_Hex)
+@implementation General/NSData (NSData_Hex)
 
-- ([[NSData]]'') hex2raw {
-  // Based on Erik Doernenburg's [[NSData]]+MIME.m
-  const char ''source, ''endOfSource;
-  [[NSMutableData]] ''decodedData;
-  char ''dest;
+- (General/NSData*) hex2raw {
+  // Based on Erik Doernenburg's General/NSData+MIME.m
+  const char *source, *endOfSource;
+  General/NSMutableData *decodedData;
+  char *dest;
   
   source = [self bytes];
   endOfSource = source + [self length];
-  decodedData = [[[NSMutableData]] dataWithLength:[self length]];
+  decodedData = General/[NSMutableData dataWithLength:[self length]];
   dest = [decodedData mutableBytes];
 
   while (source < endOfSource) {
-    if (isxdigit(''source) && isxdigit(''(source+1))) {
-      ''dest++ = asciitable[(int)''source] '' 16 + asciitable[(int)''(source+1)];
+    if (isxdigit(*source) && isxdigit(*(source+1))) {
+      *dest++ = asciitable[(int)*source] * 16 + asciitable[(int)*(source+1)];
       source += 2;   
     } else
       return Nil;
   }
   
-  [decodedData setLength:(unsigned int)((void '')dest - [decodedData mutableBytes])];
+  [decodedData setLength:(unsigned int)((void *)dest - [decodedData mutableBytes])];
   
   return decodedData;
 }
 @end
-</code>
+
 
 Reference: http://hollowout.blogspot.com/2009/01/convert-hex-value-to-binary-data.html

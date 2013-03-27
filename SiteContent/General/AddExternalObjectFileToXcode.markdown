@@ -1,41 +1,41 @@
 I need to add an externally-generated object file to an existing Xcode project. The object file was generated from a Fortran program (don't ask) using g77. The rest of the program is in C. Under Project Builder I just added the object file to the project and it was linked in correctly. Under Xcode the object files don't seem to be included!
 
-As an experiment you can try this at home. Create a project for a standard tool. Compile and run the resulting [[HelloWorld]] program. Now change main.c to look like this:
+As an experiment you can try this at home. Create a project for a standard tool. Compile and run the resulting General/HelloWorld program. Now change main.c to look like this:
 
-<code>
+    
 #include <stdio.h>
 
 extern int worldNum(void);
 
-int main (int argc, const char '' argv[]) {
+int main (int argc, const char * argv[]) {
 	int n;
    
 	n = worldNum();
     printf("Hello, World number %d!\n",n);
     return 0;
 }
-</code>
 
-In the project directory use your favorite text editor to create worldNum.c. '''Don't''' do this with Xcode or add the file to your project!!!
 
-<code>
+In the project directory use your favorite text editor to create worldNum.c. **Don't** do this with Xcode or add the file to your project!!!
+
+    
 int worldNum(void)
 {
    return 3;
 }
-</code>
+
 
 compile the program on the command line to generate worldNum.o:
 
-<code>cc -c worldNum.c</code>
+    cc -c worldNum.c
 
 Now add the object file worldNum.o to your project. Click the 'buld & run' icon and you get this message:
 
-<code>
-[[ZeroLink]]: unknown symbol '_worldNum'
+    
+General/ZeroLink: unknown symbol '_worldNum'
 
 hello_extern has exited due to signal 6 (SIGABRT).
-</code>
+
 
 If you look at the detailed buld results you can see that Xcode is not even trying to link against the worldNum.o object file.
 
@@ -45,9 +45,9 @@ jgreenb2@ford.com
 
 ----
 
-I had the same problem trying to use [[APELite]] with my project. I never found a way to get Xcode to automatically recognize a .o file in the project, but fortunately the workaround is very easy. Just add it to your project, then add 'whatever.o' to your Other Linker Flags in the build settings.
+I had the same problem trying to use General/APELite with my project. I never found a way to get Xcode to automatically recognize a .o file in the project, but fortunately the workaround is very easy. Just add it to your project, then add 'whatever.o' to your Other Linker Flags in the build settings.
 
-[[MikeAsh]]
+General/MikeAsh
 
 ----
 

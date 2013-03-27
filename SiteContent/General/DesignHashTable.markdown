@@ -1,19 +1,19 @@
-'''Object Design:''' ''Hash table''
+**Object Design:** *Hash table*
 
 ----
 
 
 * part1 - Hash table basics
-* part2 - Chaining http://goo.gl/[[OeSCu]]
+* part2 - Chaining http://goo.gl/General/OeSCu
 * part3 - Open Addressing
 * part4 - Hybrid schemes
 
 
-----'''part1 - Hash table basics'''----
+----**part1 - Hash table basics**----
 
-Hash tables are good when the number of potential keys is far too big to make an array, but a better access performance than [[DesignRedBlackTree]]'s o(log(n)) is needed, or the keys cannot realistically be ordered. 
+Hash tables are good when the number of potential keys is far too big to make an array, but a better access performance than General/DesignRedBlackTree's o(log(n)) is needed, or the keys cannot realistically be ordered. 
 
-The basis of a hash table is an array with MAX entries, and a ''hash function''. This latter takes a key and ''hashes'' it to produce a number in the range [0,MAX). Identical keys must always hash to the same number, but so may different keys - the hashed value need not be unique.
+The basis of a hash table is an array with MAX entries, and a *hash function*. This latter takes a key and *hashes* it to produce a number in the range [0,MAX). Identical keys must always hash to the same number, but so may different keys - the hashed value need not be unique.
 
 When inserting a key, or looking for one, one must start at the element of the array indexed by the key's hashed value. If two keys in the hash table never shared the same hashed value, we could stop there. What to do if a hash value is shared (a collision) is described below.
 
@@ -31,7 +31,7 @@ First, an example. Suppose our keys are all possible animal names shorter than 1
 
 Were we to look for "giraffe" in the hash table, we would look at table entry [7], and find it empty. On the other hand, if we looked for "pig", we would find the key "cat" in slot [3] and have to check the two for equality before concluding there were no pigs at the table.
 
-----'''part2 - Chaining'''----
+----**part2 - Chaining**----
 
 The simplest way of handling a collision is to keep a linked list hanging off each entry of the table. Assuming we have a good hashing function that keep collisions to a minimum, this is acceptable because few lists will have more than even one entry.
 
@@ -47,11 +47,11 @@ For example, on adding "pig" to the table above, we would get:
 * [9] - 
 
 
-This is called a ''chaining'' hash table, for obvious reasons, and it is by far the most common kind of hash table actually used.
+This is called a *chaining* hash table, for obvious reasons, and it is by far the most common kind of hash table actually used.
 
-----'''part3 - Open Addressing'''----
+----**part3 - Open Addressing**----
 
-An alternative to chaining is to try another entry in the array when a collision occurs. This is called an ''open addressing'' hash table ("open addressing" just means slots other than ''hash(x)'' can be used to hold  ''x''). To search such a table, one must use a predefined string of entries when searching for or inserting a given key, called a ''probing sequence''. The simplest probing sequence is of course just to proceed linearly through the array, called ''linear probing''.
+An alternative to chaining is to try another entry in the array when a collision occurs. This is called an *open addressing* hash table ("open addressing" just means slots other than *hash(x)* can be used to hold  *x*). To search such a table, one must use a predefined string of entries when searching for or inserting a given key, called a *probing sequence*. The simplest probing sequence is of course just to proceed linearly through the array, called *linear probing*.
 
 On adding "pig" to our first table under linear probing, we first try slot [3], but finding it full proceed to the empty slot [4] and insert it there: 
 * [1] - 
@@ -75,6 +75,6 @@ Even the best open addressing schemes have to cope with a mathematical lower bou
 
 On the whole, therefore, open addressing is rarely seen.
 
-----'''part4 - Hybrid schemes'''----
+----**part4 - Hybrid schemes**----
 
-An alternative to a linked list of entries a la chaining is to use a more sophisticated search structure to store collided objects. Hybrid schemes welding [[DesignHashTable]] with [[DesignRedBlackTree]] work well at bounding operation times in pathological cases (like a crummy hash function or a stupidly small array).
+An alternative to a linked list of entries a la chaining is to use a more sophisticated search structure to store collided objects. Hybrid schemes welding General/DesignHashTable with General/DesignRedBlackTree work well at bounding operation times in pathological cases (like a crummy hash function or a stupidly small array).

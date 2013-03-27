@@ -16,4 +16,4 @@ Further, it may prove sensible to regularly purge the history of older pages, to
 
 Comments?
 
--- [[KritTer]]
+-- General/KritTer

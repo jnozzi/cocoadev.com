@@ -1,4 +1,4 @@
-A collection of symmetric ciphers and digests wrapped into a convenient [[ObjectiveCee]] interface.
+A collection of symmetric ciphers and digests wrapped into a convenient General/ObjectiveCee interface.
 
 Contents:
 	SHA-1 a popular Internet digest format. Generates a 99.9% guaranteed unique fingerprint of data
@@ -7,11 +7,11 @@ Contents:
 
 	CrC32 a better quality alternative to checksumming, albeit a little slower
 
-	[[BlowFish]] Cipher a popular encryption algorithm
+	General/BlowFish Cipher a popular encryption algorithm
 
-	[[TwoFish]] Cipher another popular encryption algorithm
+	General/TwoFish Cipher another popular encryption algorithm
 
 Bonus:
-	[[MersenneTwister]] a very fast random number generator
+	General/MersenneTwister a very fast random number generator
 
-- added by Nat! ([[MulleKybernetik]])
+- added by Nat! (General/MulleKybernetik)

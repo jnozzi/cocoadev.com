@@ -1,14 +1,14 @@
-'''Instructions for employers posting offers here:''' Place date information on your [[JobOffer]]. Provide as much information as you can, so that users can see what kind of expertise is desired. If you later want to withdraw the offer, edit your offer, but leave the job description so that others can see what kind of expertise has been sought. This page is linked from the [[CocoaDev]] start page. Also, '''DO NOT CREATE SEPARATE PAGES''' for job offers. Place them '''here''' please. Also, check out this Mac website for Mac related jobs: http://www.macdeveloper.net/
+**Instructions for employers posting offers here:** Place date information on your General/JobOffer. Provide as much information as you can, so that users can see what kind of expertise is desired. If you later want to withdraw the offer, edit your offer, but leave the job description so that others can see what kind of expertise has been sought. This page is linked from the General/CocoaDev start page. Also, **DO NOT CREATE SEPARATE PAGES** for job offers. Place them **here** please. Also, check out this Mac website for Mac related jobs: http://www.macdeveloper.net/
 
 ----
 
-'''
+**
 23rd of October, 2006. The Little App Factory.
-'''
+**
 
 We are currently looking for a Cocoa developer to assist developing our next iterations of Connoisseur, iPodRip and something a little new.
 
-This is a part time position currently. '''Living in Sydney, Australia is a must.'''
+This is a part time position currently. **Living in Sydney, Australia is a must.**
 
 Qualifications:
 
@@ -23,23 +23,23 @@ If you are interested e-mail: mat at thelittleappfactory.com
 
 ----
 
-'''
+**
 September 20, 2006 Boxwork has several Mac Software engineer positions available
-'''
+**
 
 We are currently interviewing for the following job openings.
 Please send resume�s to: tenzin@boxstudios.com
 
-'''
+**
 Computer Graphics Software Engineer (full time position)
-'''
+**
 
-We are looking for a Software Engineer with [[OpenGL]] experience that can implement creative ideas.
+We are looking for a Software Engineer with General/OpenGL experience that can implement creative ideas.
 
-Join a team of Software engineers that design commercial software in the field of digital photography, designing the human interface of the software with [[OpenGL]] on Mac OSX.
+Join a team of Software engineers that design commercial software in the field of digital photography, designing the human interface of the software with General/OpenGL on Mac OSX.
 
 Job Qualifications include:
-*  [[OpenGL]]
+*  General/OpenGL
 *  Human Interface design
 *  C/C++
 *  Object-Oriented design
@@ -49,22 +49,22 @@ Good but not required:
 *  Mac OSX API�s
 *  Cocoa
 
-'''
+**
 Client Server Software Engineer (full time position)
-'''
+**
 
 This job opening is more specific to develop the next generation of our database client for our Image Assessment Management software solution.
 
 Job Qualifications include:
 *  Cocoa/Objective-C
 *  Multi-threading in Cocoa
-*  [[MySQL]]
+*  General/MySQL
 *  Java (to understand the older version of the software)
 *  Good communication skills (reporting/documentation)
 
-'''
+**
 Software Engineer (full time position)
-'''
+**
 
 This job opening is more specific to assist in the different software�s that are being developed at Boxwork.
 
@@ -80,13 +80,13 @@ Please visit: http://www.boxwork.com
 ----
 
 
-'''
+**
 September 10, 2006 Apple Computer searches for Audio/Music Software Engineer in Cupertino, CA
-'''
+**
 
 Job Requisition Number 2739327 <http://jobs.apple.com>
 
-Our team is responsible for Logic and [[GarageBand]].
+Our team is responsible for Logic and General/GarageBand.
 
 We are looking for a proactive, highly motivated software engineer to work on these or similar products. The ideal candidate needs to have experience with the Cocoa framework. Familiarity with audio and music creation, and User Interface Design are all pluses.
 
@@ -94,7 +94,7 @@ A successful candidate must be a strong team player who knows how to collaborate
 
 
 * Bachelor's degree (CS preferred).
-* knows [[MacOS]] X and its frameworks.
+* knows General/MacOS X and its frameworks.
 * Good problem solving skills.
 * Good communication skills.
 * Strong programming and debugging skills.
@@ -103,11 +103,11 @@ A successful candidate must be a strong team player who knows how to collaborate
 
 
 ----
-'''
+**
 Mac Developer wanted for 6 - 12 month contract - Portland, OR
-'''
+**
 
-Our client is looking for a Mac Developer with strong skills in Cocoa, C++ and [[XCode]].  If interested please email your resume to Allen Faulkner at afaulkner@mainzbradygroup.com and give him a call at 503-430-1706.  Below is a brief job description.
+Our client is looking for a Mac Developer with strong skills in Cocoa, C++ and General/XCode.  If interested please email your resume to Allen Faulkner at afaulkner@mainzbradygroup.com and give him a call at 503-430-1706.  Below is a brief job description.
 
 Responsibilities  
 As a member of a small, responsive development team, you will be responsible for the design and implementation of new features and enhancements for core technology internal to best-of-class font and digital asset applications, owning each task from investigation through release. 
@@ -121,7 +121,7 @@ Champion product improvements
  
 Essential Qualifications  
 Requires a BSCS, or equivalent and 5+ years of C++ object oriented development experience 
-Solid Cocoa / [[XCode]] skills 
+Solid Cocoa / General/XCode skills 
 Cross platform (windows) and internationalization experience a plus 
 Demonstrated strength in project planning and task management with the goals of working on the right thing to deliver the specified functionality on time 
 Good technical documentation skills: Document what you deliver 
@@ -139,7 +139,7 @@ Champion product improvements
  
 Essential Qualifications  
 Requires a BSCS, or equivalent and 5+ years of C++ object oriented development experience 
-Solid Cocoa / [[XCode]] skills 
+Solid Cocoa / General/XCode skills 
 Cross platform (windows) and internationalization experience a plus 
 Demonstrated strength in project planning and task management with the goals of working on the right thing to deliver the specified functionality on time 
 Good technical documentation skills: Document what you deliver 
@@ -153,10 +153,10 @@ NOTE: For a complete listing of Mainz Brady Group openings please visit our webs
 ----
 
 
-'''
+**
 July 25, 2006
 Mac OS X Cocoa/Objective-C GUI Application Developer - Central NJ
-'''
+**
 
 Phanfare (http://www.phanfare.com), a NJ-based startup company is seeking a talented software engineer to join the team. We offer online photo and video sharing for consumers based on innovative client-side tools that hide network latency and improve workflow, providing consumers with a universal network-based management system.
 
@@ -196,18 +196,18 @@ The key is strong OSX, ideally 10.4 (Tiger)
 
 Please send your confidential resume and inquires to jspencer@optimaleng.com
 
-''Please keep the formatting on this page consistent. :-)''
+*Please keep the formatting on this page consistent. :-)*
 
 ----
 
 June 19, 2006
-[[FileMaker]], Inc. (a wholly owned subsidiary of Apple Computer) is the 
-leading standalone desktop database company. [[FileMaker]] has an 
+General/FileMaker, Inc. (a wholly owned subsidiary of Apple Computer) is the 
+leading standalone desktop database company. General/FileMaker has an 
 established product line and large customer base. We are developing 
 new and exciting technologies and products that will dramatically 
 enhance our position in the marketplace. This position is located in Santa Clara, CA.
 
-[[FileMaker]] is seeking an exceptional software engineer capable of 
+General/FileMaker is seeking an exceptional software engineer capable of 
 helping us to create a new Cocoa product for Mac OS X.
 
 The ideal candidate will be a Mac OS X generalist with thorough 
@@ -237,7 +237,7 @@ build scripts
 
 Additional success factors:
 - Deep Unix skills
-- Strong knowledge of [[AppleScript]] or other scripting languages
+- Strong knowledge of General/AppleScript or other scripting languages
 - Strong Objective-C, C++ or Java skills
 - Collaborative software products development
 
@@ -311,13 +311,13 @@ Quark is hiring!!! I supposed it would be a challenging (very challenging) job.
 
 Since Tim Gill left they have really gone downhill. I interviewed with them once back in the '90s for a Mac programming job and they were only interested in Windows development - not the job I wanted. 
 
-Still, I would recommend it. It is a nice, downtown Denver location and a Mac job to boot. There are very few of those in Denver. It looks like you'll get some good travel time to India as well (after [[XPress]] for Windows flopped they fired all the US developers and offshored everything). Even if they go belly up it will have been fun while it lasted. 
+Still, I would recommend it. It is a nice, downtown Denver location and a Mac job to boot. There are very few of those in Denver. It looks like you'll get some good travel time to India as well (after General/XPress for Windows flopped they fired all the US developers and offshored everything). Even if they go belly up it will have been fun while it lasted. 
 
-Go forth and save Quark. Defeat the evil [[InDesign]]!
+Go forth and save Quark. Defeat the evil General/InDesign!
 ----
 
 ----
-''I really don't think it's appropriate to editorialize about someone else's job posting. We should be encouraging the posting of offers here, and making negative comments about individual offers does not further that goal. -CS''
+*I really don't think it's appropriate to editorialize about someone else's job posting. We should be encouraging the posting of offers here, and making negative comments about individual offers does not further that goal. -CS*
 ----
 
 ----
@@ -325,7 +325,7 @@ Negative comments? "I would recommend it", "It is a nice, downtown Denver locati
 
 It would be a very tough, but fun job to do. Downtown Denver is a great place to work. Quark would look great on a resume. It would be very good experience. I would classify this as positive editorializing.
 
-'''However''', you bring up an excellent point. Should there be editorializing in the [[JobOffer]] page? Should this page be locked down to protect job postings or should we continue with the typical [[CocoaDev]] "community smackdown" above. Should there (is there?) another page where people can provide editorializing, advice, and hiring rumors specific to local areas? I supposed I could create such a page on [[CocoaDev]]. Is there a website dedicated to such feedback from the job seeker's perspective? The closest thing I know of is Craigslist. I see no reason why people have to wait patiently for job offers to come along instead of comparing notes and taking the initiative to find something.
+**However**, you bring up an excellent point. Should there be editorializing in the General/JobOffer page? Should this page be locked down to protect job postings or should we continue with the typical General/CocoaDev "community smackdown" above. Should there (is there?) another page where people can provide editorializing, advice, and hiring rumors specific to local areas? I supposed I could create such a page on General/CocoaDev. Is there a website dedicated to such feedback from the job seeker's perspective? The closest thing I know of is Craigslist. I see no reason why people have to wait patiently for job offers to come along instead of comparing notes and taking the initiative to find something.
 ----
 
 ----
@@ -336,17 +336,17 @@ Another poster here - I think "CS" is having a bad day today. Editorializing on 
 
 May 29, 2006
 
-''' Bad-Ass Cocoa Programmer Needed!! ''' 
+** Bad-Ass Cocoa Programmer Needed!! ** 
 
 Enemy Tree, LLC is a new company that is dedicated to creating super fun and useful consumer applications specifically for the Mac. To make this happen I need an awesome, dedicated, passionate programmer to work with. Here is the low-down on what I am looking for:
 
 
-''' Job Title: ''' 		 *Bad-Ass Cocoa Programmer and eventually Company Co-Owner
+** Job Title: ** 		 *Bad-Ass Cocoa Programmer and eventually Company Co-Owner
 
-''' Job Description: ''' 	
+** Job Description: ** 	
  *You will be part of a two-person team. We will be developing one and only one product from now until its release. You will be the sole Cocoa programmer on the project. We will work together to create a team of people who will help with the project but it will strictly be on a volunteer basis. You will be responsible for coding the application, finding solutions to the numerous challenges that will definitely crop up on such a progressive application, and will be responsible for educating yourself in entirely new areas, as necessary, to fill gaps in knowledge to make the application work. This project will probably take as much time to code as it will to learn what is needed to make it work. Your ability to code as well as your ability and determination to learn are key to this projects success. You will also be helping with the programs design, interface, and usability as well as be needed to help with the website on occasion. 
 
-''' Job Responsibilities: '''  You would be the sole programmer on this project and will be responsible for:
+** Job Responsibilities: **  You would be the sole programmer on this project and will be responsible for:
 
 *Coding the application,
 *Bug fixes,
@@ -358,12 +358,12 @@ Enemy Tree, LLC is a new company that is dedicated to creating super fun and use
 *Development of future releases�   (There is more but this is a good start)
 
 
-''' Job Qualifications: ''' 	This is a brief list of what I think it would take for you to be successful in this position:
+** Job Qualifications: ** 	This is a brief list of what I think it would take for you to be successful in this position:
 
 *3-5 years of Cocoa programming experience (less experience OK commensurate with proof of skills),
 *Up-to-date knowledge of Cocoa and Mac programming advancements.  This is a position that will leverage very modern Cocoa skills as well as provide a potential to advance Mac programming itself,
 *Objective-C proficiency,
-*[[XCode]] and Mac IDE�s experties,
+*General/XCode and Mac IDE�s experties,
 *Intimate knowledge of OS X,
 *Passionate about the Mac,
 *Cooperative and collaborative personality. Open, honest, and constant communication is vital for this position,
@@ -373,19 +373,19 @@ Enemy Tree, LLC is a new company that is dedicated to creating super fun and use
 *Proof of skills will be required (a portfolio of work, a completed application�)
 
 
-''' Additional Qualifications (but NOT required): ''' 
+** Additional Qualifications (but NOT required): ** 
 
 *College graduate (Master's Degree even better)
 *Java programming skills
 
 
-''' Project Description: '''  
- *Unfortunately, I can�t give away much of a description here, but what I can say is that the application is a consumer program that is meant to be fun, functional, & gorgeous. Think Delicious Library, iSale, Growl, Transmit, [[MemoryMiner]], & [[AppZapper]] in terms of super-cool consumer programs that are beautiful, well-designed, fun to use, and solidly programmed to get an idea of what I am looking to create. Sorry, but that is as close to an explanation of what the application is as I am willing to give out right now. Also, there is a very solid timeline for this project (8 months for development, ship in less than one year). For now, this application is meant for online, direct download, distribution.
+** Project Description: **  
+ *Unfortunately, I can�t give away much of a description here, but what I can say is that the application is a consumer program that is meant to be fun, functional, & gorgeous. Think Delicious Library, iSale, Growl, Transmit, General/MemoryMiner, & General/AppZapper in terms of super-cool consumer programs that are beautiful, well-designed, fun to use, and solidly programmed to get an idea of what I am looking to create. Sorry, but that is as close to an explanation of what the application is as I am willing to give out right now. Also, there is a very solid timeline for this project (8 months for development, ship in less than one year). For now, this application is meant for online, direct download, distribution.
 
-''' Location: ''' 		
+** Location: ** 		
  *Wherever you are! Although it would be really nice to work with someone in person I would rather find an awesome person with incredible skills than someone who is just close to where I am. Definitely plan on meeting up a few times over the year, and talking just about every day. Meeting in person is very important.
 
-''' Contact: ''' 	
+** Contact: ** 	
  *If this sounds like something you are interested in and if you feel you are truly up to the challenge then please send a resume and a cover-letter to rokosj+cocoa[at]gmail.com. Only serious inquires will be responded to. A Design Document for the application (only partially completed) will be available to the final candidates so you can decide if this is really a project you are interested in.
 
 ----
@@ -394,7 +394,7 @@ Where are you located? What salary/benefits do you expect to be able to pay? How
 
 
 ----
-A recommendation, if I may? If you're expecting a Cocoa developer to be the 'sole' programmer, doing all the hard work of developing an app, perhaps that developer should be offered co-ownership immediately, not "eventually". You won't find many "bad-ass" programmers of ''any'' language willing to do all the hard work of the app for another person without co-ownership. Your offer quite simply is unappealing to anyone worth working with because of those terms alone.
+A recommendation, if I may? If you're expecting a Cocoa developer to be the 'sole' programmer, doing all the hard work of developing an app, perhaps that developer should be offered co-ownership immediately, not "eventually". You won't find many "bad-ass" programmers of *any* language willing to do all the hard work of the app for another person without co-ownership. Your offer quite simply is unappealing to anyone worth working with because of those terms alone.
 ----
 
 
@@ -420,7 +420,7 @@ I'm looking for software engineers (C/C++) who have exposure to Carbon, Quartz, 
 Full time roles, extensive relocation provided, stock grants, annual performance based bonus up to 15%, and the best benefits in the industry. Salary DOE, up to 6-figures.
 
 Please contact me or send your resume for more info:
-Jennifer [[McEvers]], Greythorn Inc. ( http://www.greythorn.com )
+Jennifer General/McEvers, Greythorn Inc. ( http://www.greythorn.com )
 877.635.0350/425.635.0300
 jennifer@greythorninc.com
 
@@ -447,23 +447,23 @@ I am  looking for Mac OS X programmers / developers / software engineers to writ
 
 If you have experience with core audio or pro sound apps please drop me a note at chrisbarnett [at] mac.com
 
-Experience programming in Obj-C or with [[XCode]] or equivalent, you can work remotely, I am in the San Francisco Bay area.
+Experience programming in Obj-C or with General/XCode or equivalent, you can work remotely, I am in the San Francisco Bay area.
 
 thanks
 
 ----
 "Join Team Banzai"   -------   [March 30, 2006]   --------    [Job Offer]
 
-Team Banzai, the creators of "Dora, the self-driving Touareg" [ http://team.gobanzai.com/ ],  is looking for Jr. and Intermediate Mac OS X programmers / developers / software engineers to help out with some of our other projects. If you have 1-5 years experience programming in Obj-C or Java with [[XCode]] or equivalent, and you are able to work on location in the San Diego / Carlsbad area, then drop us a line at <jobs [at] gobanzai.com>. 
+Team Banzai, the creators of "Dora, the self-driving Touareg" [ http://team.gobanzai.com/ ],  is looking for Jr. and Intermediate Mac OS X programmers / developers / software engineers to help out with some of our other projects. If you have 1-5 years experience programming in Obj-C or Java with General/XCode or equivalent, and you are able to work on location in the San Diego / Carlsbad area, then drop us a line at <jobs [at] gobanzai.com>. 
 
 ----
 
 
 Regarding the posting of offers: I am a select member of the ADC and this is THEIR recommended method for contacting developers with job offers. It seems like they would have something better...
 
--- [[EliotSimcoe]]
+-- General/EliotSimcoe
 
-''I don't think anyone is going to complain about job offers..  keep 'em coming! :-)''
+*I don't think anyone is going to complain about job offers..  keep 'em coming! :-)*
 
 ----
 
@@ -471,30 +471,30 @@ Recommend mactalent.com or perhaps this article on Macslash: http://macslash.org
 
 ----
 
-'''Instructions for employers posting offers here:'''
+**Instructions for employers posting offers here:**
 
-It would help if you place date information on your [[JobOffer]] so that users can determine how timely it is.
+It would help if you place date information on your General/JobOffer so that users can determine how timely it is.
 
-Provide as much information as you can, so that users can see what kind of expertise is desired. If you later want to withdraw the offer, you can always edit your offer, or add that you want no further contacts, but leave the job description so that others can see what kind of expertise has been sought. Other resources for the job search could be posted here as well (ideas are not as welcome as offers, but are still welcome!) This page is linked from the [[CocoaDev]] start page.
+Provide as much information as you can, so that users can see what kind of expertise is desired. If you later want to withdraw the offer, you can always edit your offer, or add that you want no further contacts, but leave the job description so that others can see what kind of expertise has been sought. Other resources for the job search could be posted here as well (ideas are not as welcome as offers, but are still welcome!) This page is linked from the General/CocoaDev start page.
 
-'''The posting just below is an example of how you might word your offer:'''
+**The posting just below is an example of how you might word your offer:**
 
-[[BestEye]], LLC. is looking for experienced Objective-C programmers interested in developing the next generation of image-editing and retouching applications for Mac OS X. Interested parties should be intimately familiar with Xcode and the Cocoa frameworks. Experience with [[CoreImage]], [[QuickTime]], and/or 2D graphics programming in general would be favorable.
+General/BestEye, LLC. is looking for experienced Objective-C programmers interested in developing the next generation of image-editing and retouching applications for Mac OS X. Interested parties should be intimately familiar with Xcode and the Cocoa frameworks. Experience with General/CoreImage, General/QuickTime, and/or 2D graphics programming in general would be favorable.
 
 There are currently [2005-08-03] two positions available. One for contract-based work, and a second for an in-house developer. Rates and hours are negotiable. For more information please contact David Will. <david at besteye dot com>
 
 ----
 
-'''Can we PLEASE not have a 'hub page' for job offers, encouraging people to create new pages for each offer? Why can't we just put all job offers''' ''here'' '''rather than creating a whole bunch of pointless, time-sensitive pages?'''
+**Can we PLEASE not have a 'hub page' for job offers, encouraging people to create new pages for each offer? Why can't we just put all job offers** *here* **rather than creating a whole bunch of pointless, time-sensitive pages?**
 
 ----
 
-I'm the one who wants to try this idea out. I guess I agree with you as to putting everything here. Then this page will be like an extension of [[CocoaDevBulletinBoard]]. If this is the only page of job offers on the site, it will still have information useful to job seekers. I guess what is most important is to direct those who actually have job offers to use this page, should they post an eventually "pointless, time-sensitive" page elsewhere. Originally, this page had become that sort of fossil... retaining utility only as an insight into what one employer wanted at one time. If you find my reply and reorganization acceptable, feel free to delete this exchange.
+I'm the one who wants to try this idea out. I guess I agree with you as to putting everything here. Then this page will be like an extension of General/CocoaDevBulletinBoard. If this is the only page of job offers on the site, it will still have information useful to job seekers. I guess what is most important is to direct those who actually have job offers to use this page, should they post an eventually "pointless, time-sensitive" page elsewhere. Originally, this page had become that sort of fossil... retaining utility only as an insight into what one employer wanted at one time. If you find my reply and reorganization acceptable, feel free to delete this exchange.
 
 ----
 
 "Help Wanted: Partner in Cocoa Crime" [2006-01-24]
 
-I'm looking for a strong Objective-C developer who's willing to take a risk on helping to develop a new content creation application, akin to [[GarageBand]] or iMovie in concept. If you have experience with the [[QuickTime]] [[APIs]], that's doubleplusgood.
+I'm looking for a strong Objective-C developer who's willing to take a risk on helping to develop a new content creation application, akin to General/GarageBand or iMovie in concept. If you have experience with the General/QuickTime General/APIs, that's doubleplusgood.
 
-If you're willing to take a chance on it, contact me at j0n4th4n swirly-symbol gh0sttiger full-stop c0m, where 0's are o's and 4's are a's. Design document available on (serious) inquiry. -[[JonathanGrynspan]]
+If you're willing to take a chance on it, contact me at j0n4th4n swirly-symbol gh0sttiger full-stop c0m, where 0's are o's and 4's are a's. Design document available on (serious) inquiry. -General/JonathanGrynspan

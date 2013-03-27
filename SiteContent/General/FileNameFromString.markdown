@@ -4,10 +4,10 @@ Does Cocoa provide something for this? Or is there at least a way to check if a 
 
 ----
 
-This is largely a problem in string manipulation. Check out the [[FoundationKit]] documentation on [[NSString]]. There are plenty of routines there to deal with path operations.
+This is largely a problem in string manipulation. Check out the General/FoundationKit documentation on General/NSString. There are plenty of routines there to deal with path operations.
 
 ----
-Start with [[NSString]] �fileSystemRepresentation
+Start with General/NSString �fileSystemRepresentation
 
 Then see
 Working with paths 
@@ -51,15 +51,15 @@ Thanks, I've been using all these other ones, just missed fileSystemRepresentati
 
 ----
 
-So will <code>fileSystemRepresentation</code> return a string that is a valid filename?
+So will     fileSystemRepresentation return a string that is a valid filename?
 
 ----
 
-Technically "My happy :) invalid filename" is a valid file name, but the Finder displays the colon as as slash. So if you want to validate a filename the user entered you should switch all the "/" with ":". I'm not sure if fileSystemRepresentation takes this into consideration, but my guess is no, since it would probably interpret a path with slashes as being directories and not part of the name for the file. -[[PabloGomez]]
+Technically "My happy :) invalid filename" is a valid file name, but the Finder displays the colon as as slash. So if you want to validate a filename the user entered you should switch all the "/" with ":". I'm not sure if fileSystemRepresentation takes this into consideration, but my guess is no, since it would probably interpret a path with slashes as being directories and not part of the name for the file. -General/PabloGomez
 
 ----
 
-It gets worse: what's valid depends on what filesystem you're saving to. On HFS+, ''#!%($@#%G&''#@$ is a valid filename. This is not going to work for FAT32. I don't think there is a good way to test if a filename is valid without simply trying to save the file, but I could be wrong. In any case, <code>fileSystemRepresentation</code> won't and can't guarantee a valid name.
+It gets worse: what's valid depends on what filesystem you're saving to. On HFS+, *#!%($@#%G&*#@$ is a valid filename. This is not going to work for FAT32. I don't think there is a good way to test if a filename is valid without simply trying to save the file, but I could be wrong. In any case,     fileSystemRepresentation won't and can't guarantee a valid name.
 
 ----
 
@@ -67,20 +67,20 @@ It gets even more horrible still: on an SMB share, it's possible to write a file
 
 ----
 
-Anyone know how to do the inverse operation of fileSystemRepresentation?  So let's say I use standard clib routines to get hold of a filename.  Now I want to create a proper [[NSString]] with the filename.  If the name is in japanese, maybe I use [stringWithCString: s encoding:[[NSJapaneseEUCStringEncoding]]].  Maybe not.  Maybe the name is in Chinese.  Any ideas?
+Anyone know how to do the inverse operation of fileSystemRepresentation?  So let's say I use standard clib routines to get hold of a filename.  Now I want to create a proper General/NSString with the filename.  If the name is in japanese, maybe I use [stringWithCString: s encoding:General/NSJapaneseEUCStringEncoding].  Maybe not.  Maybe the name is in Chinese.  Any ideas?
 
-[[NSFileManager]] has: <code>- ([[NSString]] '')stringWithFileSystemRepresentation:(const char '')string length:(unsigned)len</code>
-
-----
-
-For a discussion about sorting batches of file names using [[NSString]], see [[FilenamesArentStrings]]
+General/NSFileManager has:     - (General/NSString *)stringWithFileSystemRepresentation:(const char *)string length:(unsigned)len
 
 ----
 
-If you want an HFS-style string with colons instead of slashes (for use with [[NSAppleScript]] for example) you can do this:
+For a discussion about sorting batches of file names using General/NSString, see General/FilenamesArentStrings
 
-<code>
-[[NSString]]'' path = [([[NSString]]'')[[CFURLCopyFileSystemPath]](([[CFURLRef]])url, kCFURLHFSPathStyle) autorelease];
-</code>
+----
 
--[[JoshMinor]]
+If you want an HFS-style string with colons instead of slashes (for use with General/NSAppleScript for example) you can do this:
+
+    
+General/NSString* path = [(General/NSString*)General/CFURLCopyFileSystemPath((General/CFURLRef)url, kCFURLHFSPathStyle) autorelease];
+
+
+-General/JoshMinor

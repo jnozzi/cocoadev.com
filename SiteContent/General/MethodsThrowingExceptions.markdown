@@ -10,21 +10,21 @@ Usually there's a note by the method, but this isn't as useful as it could be. A
 An incomplete example of what I propose:
 
 
-'''[[NSString]]:'''
+**General/NSString:**
 
-*characterAtIndex:(unsigned)index - Raises an [[NSRangeException]] if index lies beyond the end of the receiver.
-*compare:options:range:([[NSRange]])range locale: - Raises an [[NSRangeException]] if index lies beyond the end of the receiver.
-*getCharacters:(unichar '')buffer range:([[NSRange]])aRange - Raises an [[NSRangeException]] if any part of aRange lies beyond the end of the receiver.
-*cString - Raises an [[NSCharacterConversionException]] if the receiver can't be represented in the default C string encoding without loss of information. 
-*fileSystemRepresentation - Raises an [[NSCharacterConversionException]] if the receiver can't be represented in the file system's encoding.
-*propertyList - Raises an [[NSParseErrorException]] if the receiver can not be parsed as a property list.
-
-
-'''[[NSArray]]:'''
-
-*objectAtIndex:(unsigned)index - Raises an [[NSRangeException]] if index lies beyond the end of the receiver.
+*characterAtIndex:(unsigned)index - Raises an General/NSRangeException if index lies beyond the end of the receiver.
+*compare:options:range:(General/NSRange)range locale: - Raises an General/NSRangeException if index lies beyond the end of the receiver.
+*getCharacters:(unichar *)buffer range:(General/NSRange)aRange - Raises an General/NSRangeException if any part of aRange lies beyond the end of the receiver.
+*cString - Raises an General/NSCharacterConversionException if the receiver can't be represented in the default C string encoding without loss of information. 
+*fileSystemRepresentation - Raises an General/NSCharacterConversionException if the receiver can't be represented in the file system's encoding.
+*propertyList - Raises an General/NSParseErrorException if the receiver can not be parsed as a property list.
 
 
-'''[[NSDictionary]]:'''
+**General/NSArray:**
 
-* setObject:(id)value forKey:(id)key - Raises an [[NSInvalidArgumentException]] if key sent is nil
+*objectAtIndex:(unsigned)index - Raises an General/NSRangeException if index lies beyond the end of the receiver.
+
+
+**General/NSDictionary:**
+
+* setObject:(id)value forKey:(id)key - Raises an General/NSInvalidArgumentException if key sent is nil

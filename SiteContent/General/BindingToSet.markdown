@@ -1,29 +1,29 @@
-Recently I needed to bind an [[NSTextCell]] [[NSTableView]] column to a to-many property of a [[CoreData]] entity.  After banging my head against the wall for a bit when Cocoa refused to bind to the relationship as it can't possibly be KVC-compliant, I came up with the idea of using an [[NSValueTransformer]] to transform the set to a string.  Here's my value transformer:
+Recently I needed to bind an General/NSTextCell General/NSTableView column to a to-many property of a General/CoreData entity.  After banging my head against the wall for a bit when Cocoa refused to bind to the relationship as it can't possibly be KVC-compliant, I came up with the idea of using an General/NSValueTransformer to transform the set to a string.  Here's my value transformer:
 
-<code>%
-// [[CDSetToStringTransformer]].h
+    %
+// General/CDSetToStringTransformer.h
 #import <Cocoa/Cocoa.h>
 
-@interface [[CDSetToStringTransformer]] : [[NSValueTransformer]]
+@interface General/CDSetToStringTransformer : General/NSValueTransformer
 {
-	[[NSString]] ''_keyPath;
+	General/NSString *_keyPath;
 }
 
-- (id)initWithKeyPath:([[NSString]] '')keyPath;
+- (id)initWithKeyPath:(General/NSString *)keyPath;
 
-- ([[NSString]] '')keyPath;
-- (void)setKeyPath:([[NSString]] '')keyPath;
+- (General/NSString *)keyPath;
+- (void)setKeyPath:(General/NSString *)keyPath;
 
 @end
 
-// [[CDSetToStringTransformer]].m
-#import "[[CDSetToStringTransformer]].h"
+// General/CDSetToStringTransformer.m
+#import "General/CDSetToStringTransformer.h"
 
-@implementation [[CDSetToStringTransformer]]
+@implementation General/CDSetToStringTransformer
 
 + (Class)transformedValueClass
 {
-	return [[[NSString]] class];
+	return General/[NSString class];
 }
 
 + (BOOL)allowsReverseTransformation
@@ -31,7 +31,7 @@ Recently I needed to bind an [[NSTextCell]] [[NSTableView]] column to a to-many 
 	return NO;
 }
 
-- (id)initWithKeyPath:([[NSString]] '')keyPath
+- (id)initWithKeyPath:(General/NSString *)keyPath
 {
 	if(self = [super init])
 		[self setKeyPath:keyPath];
@@ -46,12 +46,12 @@ Recently I needed to bind an [[NSTextCell]] [[NSTableView]] column to a to-many 
 	[super dealloc];
 }
 
-- ([[NSString]] '')keyPath
+- (General/NSString *)keyPath
 {
 	return _keyPath;
 }
 
-- (void)setKeyPath:([[NSString]] '')newKeyPath
+- (void)setKeyPath:(General/NSString *)newKeyPath
 {
 	newKeyPath = [newKeyPath copy];
 	[_keyPath release];
@@ -60,13 +60,13 @@ Recently I needed to bind an [[NSTextCell]] [[NSTableView]] column to a to-many 
 
 - (id)transformedValue:(id)value
 {
-	[[NSSet]] ''sourceSet = ([[NSSet]] '')value;
+	General/NSSet *sourceSet = (General/NSSet *)value;
 	if([sourceSet count] == 0)
-		return [[[NSNull]] null];
+		return General/[NSNull null];
 	
-	[[NSString]] ''result;
-	[[NSEnumerator]] ''objectEnum = [sourceSet objectEnumerator];
-	result = [[objectEnum nextObject] valueForKeyPath:[self keyPath]];
+	General/NSString *result;
+	General/NSEnumerator *objectEnum = [sourceSet objectEnumerator];
+	result = General/objectEnum nextObject] valueForKeyPath:[self keyPath;
 	
 	id currentObject;
 	while(currentObject = [objectEnum nextObject])
@@ -76,8 +76,8 @@ Recently I needed to bind an [[NSTextCell]] [[NSTableView]] column to a to-many 
 }
 
 @end
-</code>
 
-Put the instantiation in the proper place (I'm using <code>+ [[[AppDelegate]] initialize]</code>).  Initialize the transformer using <code>- [[[CDSetToStringTransformer]] initWithKeyPath:]</code>, where keyPath is the key path ''relative to each object in the set'' that you want to coalesce into one string.
+
+Put the instantiation in the proper place (I'm using     + General/[AppDelegate initialize]).  Initialize the transformer using     - General/[CDSetToStringTransformer initWithKeyPath:], where keyPath is the key path *relative to each object in the set* that you want to coalesce into one string.
 
 Beware that this class is not localized, but localization should be trivial.

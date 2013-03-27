@@ -1,8 +1,8 @@
-I have been struggling for some time to find how to get a keypress in [[NSOutlineView]] into my Controller.
+I have been struggling for some time to find how to get a keypress in General/NSOutlineView into my Controller.
 
 There seem to be many others asking similar questions so I decided document my solution which may help.
 
-I created a class M<nowiki/>yOutlineView  subclassing [[NSOutlineView]]
+I created a class M<nowiki/>yOutlineView  subclassing General/NSOutlineView
 and implemented @protocol M<nowiki/>yOutlineViewDelegate
 
 
@@ -10,32 +10,32 @@ M<nowiki/>yOutlineView overrides keyDown: and sends any key to the delegate.
 
 If the delegate handles the key it should return YES, otherwise NO.
 
-<code>
-//  [[MyOutlineView]].h
+    
+//  General/MyOutlineView.h
 #import <Cocoa/Cocoa.h>
 
-@protocol [[MyOutlineViewDelegate]]
+@protocol General/MyOutlineViewDelegate
 @optional
 -(BOOL) keyPressedInOutlineView:(unichar) character;
 @end
 
-@interface [[MyOutlineView]] : [[NSOutlineView]] {
-	[[NSObject]] <[[MyOutlineViewDelegate]]> ''keyDelegate;
+@interface General/MyOutlineView : General/NSOutlineView {
+	General/NSObject <General/MyOutlineViewDelegate> *keyDelegate;
 }
-@property (assign) [[IBOutlet]] [[NSObject]] <[[MyOutlineViewDelegate]]> ''keyDelegate;
+@property (assign) General/IBOutlet General/NSObject <General/MyOutlineViewDelegate> *keyDelegate;
 
 @end
-</code>
-<code>
-//  [[MyOutlineView]].m
-#import "[[MyOutlineView]].h"
 
-@implementation [[MyOutlineView]]
+    
+//  General/MyOutlineView.m
+#import "General/MyOutlineView.h"
+
+@implementation General/MyOutlineView
 @synthesize keyDelegate;
 
--(void)keyDown:([[NSEvent]] '')theEvent
+-(void)keyDown:(General/NSEvent *)theEvent
 {
-	unichar character = [[theEvent characters] characterAtIndex:0];
+	unichar character = General/theEvent characters] characterAtIndex:0];
 	if([self.keyDelegate respondsToSelector:@selector(keyPressedInOutlineView:)])
 		if([self.keyDelegate keyPressedInOutlineView:character])
 		return;
@@ -43,17 +43,16 @@ If the delegate handles the key it should return YES, otherwise NO.
 }
 
 @end
-</code>
+
 In Interface Builder change the class of the O<nowiki/>utlineView to M<nowiki/>yOutlineView and connect the keyDelegate output to the Controller. 
 Implement the following in your Controller and process the keys as required.
 
-<code>
+    
 -(BOOL)keyPressedInOutlineView:(unichar) character {
-	[[NSLog]] (@"Key in Controller! %C", character);
+	[[NSLog (@"Key in Controller! %C", character);
 	if (character == 0x0d) {
-        [[NSLog]] (@"Return in [[OutlineView]]!");
+        General/NSLog (@"Return in General/OutlineView!");
 		return YES;
 	}
 	return NO;
 }
-</code>

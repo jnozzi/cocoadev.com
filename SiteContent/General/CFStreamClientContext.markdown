@@ -1,29 +1,28 @@
 Defined as:
 
-<code>
-struct [[CFStreamClientContext]] {
-   [[CFIndex]] version;
-   void ''info;
-   void ''(''retain)(void ''info);
-   void (''release)(void ''info);
-   [[CFStringRef]] (''copyDescription)(void ''info);
-} [[CFStreamClientContext]];
-</code> 
+    
+struct General/CFStreamClientContext {
+   General/CFIndex version;
+   void *info;
+   void *(*retain)(void *info);
+   void (*release)(void *info);
+   General/CFStringRef (*copyDescription)(void *info);
+} General/CFStreamClientContext;
+ 
 
-In the "Working with Streams" section of the [[CFNetwork]] guide, the example uses custom function pointers as listed below:
+In the "Working with Streams" section of the General/CFNetwork guide, the example uses custom function pointers as listed below:
 
-<code>
-[[CFStreamClientContext]] myContext = {0, myPtr, myRetain, myRelease, myCopyDesc};
-</code> 
+    
+General/CFStreamClientContext myContext = {0, myPtr, myRetain, myRelease, myCopyDesc};
+ 
 
-It's much easier, and just as valid to use the built in [[CoreFoundation]] functions:
+It's much easier, and just as valid to use the built in General/CoreFoundation functions:
 
-<code>
-[[CFStreamClientContext]] myContext = {
+    
+General/CFStreamClientContext myContext = {
     0,
     self,
-    (void ''('')(void ''info))[[CFRetain]],
-    (void ('')(void ''info))[[CFRelease]],
-    ([[CFStringRef]] ('')(void ''info))[[CFCopyDescription]]
+    (void *(*)(void *info))General/CFRetain,
+    (void (*)(void *info))General/CFRelease,
+    (General/CFStringRef (*)(void *info))General/CFCopyDescription
 };
-</code>

@@ -8,7 +8,7 @@ Thanks.
 
 See the man page for signal. You get the stop signal when another process tells your process to stop.
 
-<code>
+    
      16    SIGURG       discard signal       urgent condition present on
                                              socket
      17    SIGSTOP      stop process         stop (cannot be caught or
@@ -17,7 +17,7 @@ See the man page for signal. You get the stop signal when another process tells 
                                              keyboard
      19    SIGCONT      discard signal       continue after stop
 
-</code>
+
 
 ----
 It should be noted that SIGSTOP should never crash your program, only pause it. Are you sure your app is actually crashing because of the SIGSTOP?

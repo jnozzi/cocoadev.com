@@ -1,3 +1,3 @@
-A [[WebServer]] is a server which serves a [[WebPage]].
+A General/WebServer is a server which serves a General/WebPage.
 
- -- [[MartinWeil]]
+ -- General/MartinWeil

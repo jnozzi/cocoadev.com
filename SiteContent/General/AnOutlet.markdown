@@ -1,1 +1,1 @@
-See [[OutletVariable]]
+See General/OutletVariable

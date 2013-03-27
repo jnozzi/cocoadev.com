@@ -7,9 +7,9 @@ http://boinc.berkeley.edu/trac/browser/trunk/boinc/lib/mac
 
 It seems to work nicely as far as I can see so far (and it works on 10.4 and possibly 10.3 as well as 10.5)
 
-You need to grab all of the files in the /mac directory and then include mac_backtrace.h in your code. http://goo.gl/[[OeSCu]]
+You need to grab all of the files in the /mac directory and then include mac_backtrace.h in your code. http://goo.gl/General/OeSCu
 
-The function to call is [[PrintBacktrace]]
+The function to call is General/PrintBacktrace
 
 
 ----
@@ -18,11 +18,11 @@ I'm placing this at the top because it's so overwhelmingly superior to previous 
 
 It looks like 10.5 has trivialized this problem.  It provides three functions specifically designed for this: backtrace, backtrace_symbols, and backtrace_symbols_fd.
 
-The following example demonstrates the new functions, printing out the current call stack.  Fancier, [[NSObject]] category additions should be obvious.
+The following example demonstrates the new functions, printing out the current call stack.  Fancier, General/NSObject category additions should be obvious.
 
 Compile with nothing more than gcc EXAMPLE.c  -- John Engelhart
 
-<code>
+    
 #include <stdio.h>
 #include <execinfo.h>
 
@@ -30,7 +30,7 @@ void func_one(void);
 void func_two(void);
 void dump_frames(void);
 
-int main(int argc, char ''argv[]) {
+int main(int argc, char *argv[]) {
   func_one();
 }
 
@@ -43,9 +43,9 @@ void func_two(void) {
 }
 
 void dump_frames(void) {
-  void ''backtraceFrames[128];
+  void *backtraceFrames[128];
   int frameCount = backtrace(&backtraceFrames[0], 128);
-  char '''frameStrings = backtrace_symbols(&backtraceFrames[0], frameCount);
+  char **frameStrings = backtrace_symbols(&backtraceFrames[0], frameCount);
 
   if(frameStrings != NULL) {
     int x = 0;
@@ -56,7 +56,7 @@ void dump_frames(void) {
     free(frameStrings);
   }
 }
-</code>
+
 
 ----
 -- This does not produce a stack trace containing Obj-C method names. It's rather useless for Obj-C apps.
@@ -85,21 +85,21 @@ developer tools? (/usr/bin/atos is found in the BSD package, which is part of th
 
 You can print a stack trace in your program by:
 
-1. Importing the [[ExceptionHandling]].framework and enabling logging of 
+1. Importing the General/ExceptionHandling.framework and enabling logging of 
 exceptions.
-<code>
-#import <[[ExceptionHandling]]/[[NSExceptionHandler]].h>
-  [[[[NSExceptionHandler]] defaultExceptionHandler] 
-setExceptionHandlingMask:[[NSLogAndHandleEveryExceptionMask]]];
-</code>
+    
+#import <General/ExceptionHandling/General/NSExceptionHandler.h>
+  General/[[NSExceptionHandler defaultExceptionHandler] 
+setExceptionHandlingMask:General/NSLogAndHandleEveryExceptionMask];
 
-2.  Adding a category to [[NSException]] with the method printStackTrace.
-<code>
+
+2.  Adding a category to General/NSException with the method printStackTrace.
+    
 - (void)printStackTrace {
-     [[NSString]] ''stack = [[self userInfo] objectForKey:[[NSStackTraceKey]]];
-     [[NSTask]] ''ls=[[[[NSTask]] alloc] init];
-     [[NSString]] ''pid = [[[[NSNumber]] numberWithInt:getpid()] stringValue];
-     [[NSMutableArray]] ''args = [[[NSMutableArray]] arrayWithCapacity:20];
+     General/NSString *stack = General/self userInfo] objectForKey:[[NSStackTraceKey];
+     General/NSTask *ls=General/[[NSTask alloc] init];
+     General/NSString *pid = General/[[NSNumber numberWithInt:getpid()] stringValue];
+     General/NSMutableArray *args = General/[NSMutableArray arrayWithCapacity:20];
 
      [args addObject:@"-p"];
      [args addObject:pid];
@@ -112,15 +112,15 @@ setExceptionHandlingMask:[[NSLogAndHandleEveryExceptionMask]]];
 
      [ls release];
 }
-</code>
+
 3. To print a stack trace from your program you can do this.
-<code>
+    
 NS_DURING
 	// throw exception
 NS_HANDLER
 	[localException printStackTrace];
 NS_ENDHANDLER
-</code>
+
 
 ----
 
@@ -128,99 +128,99 @@ This code doesn't work for me. I get "unable to locate process". This may be bec
 
 This probably doesn't happen if you use it in a real program, that will continue executing, but I made it work by appending the following line after [ls launch]:
 
-<code>
+    
 [ls waitUntilExit];
-</code>
 
-(I also changed getpid() to [[[[NSProcessInfo]] processInfo] processIdentifier].)
 
---[[PeterLindberg]]
+(I also changed getpid() to General/[[NSProcessInfo processInfo] processIdentifier].)
 
-----
-
-On OS 10.4 and later you might try [[[NSThread]] callStackSymbols]. According to Apple Docs: "This method returns an array of strings describing the call stack backtrace of the current thread at the moment this method was called. The format of each string is non-negotiable and is determined by the backtrace_symbols() API"
-
---[[BarryTolnas]]
+--General/PeterLindberg
 
 ----
 
-I use popen() instead, this allows me to pipe the output of atos through tail (to remove the first few lines, which are identical for all my exceptions), c++filt (which will de-mangle C++ names) and 'cat -n' (which will enumerate the lines, making it a little easier to read). Here is the code (which is in [[ObjC]]++):
+On OS 10.4 and later you might try General/[NSThread callStackSymbols]. According to Apple Docs: "This method returns an array of strings describing the call stack backtrace of the current thread at the moment this method was called. The format of each string is non-negotiable and is determined by the backtrace_symbols() API"
 
-<code>
-	[[NSString]] ''str = [[[NSString]] stringWithFormat:
+--General/BarryTolnas
+
+----
+
+I use popen() instead, this allows me to pipe the output of atos through tail (to remove the first few lines, which are identical for all my exceptions), c++filt (which will de-mangle C++ names) and 'cat -n' (which will enumerate the lines, making it a little easier to read). Here is the code (which is in General/ObjC++):
+
+    
+	General/NSString *str = General/[NSString stringWithFormat:
 		@"/usr/bin/atos -p %d %@ | tail -n +3 | c++filt | cat -n",
-		getpid(), [[localException userInfo] objectForKey:[[NSStackTraceKey]]]];
+		getpid(), General/localException userInfo] objectForKey:[[NSStackTraceKey]];
 
-	if(FILE ''fp = popen([str UTF8String], "r"))
+	if(FILE *fp = popen([str UTF8String], "r"))
 	{
 		char resBuf[512];
 		while(size_t len = fread(resBuf, 1, sizeof(resBuf), fp))
 			fwrite(resBuf, 1, len, stderr);
 		pclose(fp);
 	}
-</code>
 
---[[AllanOdgaard]]
+
+--General/AllanOdgaard
 
 ----
 
-Let's take this one step farther. We can replace the default exception handler by supplying a couple more categories. Create [[NSApplication]]([[ESExceptionHandling]]) and override the following method of [[NSApplication]]:
+Let's take this one step farther. We can replace the default exception handler by supplying a couple more categories. Create General/NSApplication(General/ESExceptionHandling) and override the following method of General/NSApplication:
 
-<code>
-- (void)reportException:([[NSException]] '')anException
+    
+- (void)reportException:(General/NSException *)anException
 {
 	// handle the exception properly
-	(''[[NSGetUncaughtExceptionHandler]]())(anException);
+	(*General/NSGetUncaughtExceptionHandler())(anException);
 }
-</code>
+
 
 Add this category to the PCH:
 
-<code>
+    
 //
-//  Prefix header for all source files in the '[[MyApplication]]' project
+//  Prefix header for all source files in the 'General/MyApplication' project
 //
 
 	
 #ifdef __OBJC__
    	#import <Cocoa/Cocoa.h>
-    	#import "[[NSApplication]]+[[ESExceptionHandling]].h"
+    	#import "General/NSApplication+General/ESExceptionHandling.h"
 #endif
-</code>
+
 
 Define this function in your application delegate class to handle all uncaught exceptions:
 
-<code>
-void CB_exceptionHandler( [[NSException]] ''exception )
+    
+void CB_exceptionHandler( General/NSException *exception )
 {
 	[exception printStackTrace];
     
 	// exit with an error code... everything is not okay
-	exit( [[ESUnhandledExceptionError]] );
+	exit( General/ESUnhandledExceptionError );
 }
-</code>
+
 
 Add the following to your application delegate's -applicationDidFinishLaunching: method:
 
-<code>
+    
 	// use our exception hander for stack trace printout
-	[[NSSetUncaughtExceptionHandler]]( ''CB_exceptionHandler );
+	General/NSSetUncaughtExceptionHandler( *CB_exceptionHandler );
     
 	// this will give us some better exception handling capabilities
-	[[[[NSExceptionHandler]] defaultExceptionHandler] setExceptionHandlingMask:( [[NSHandleUncaughtExceptionMask]] | [[NSHandleUncaughtSystemExceptionMask]] | [[NSHandleUncaughtRuntimeErrorMask]] | [[NSHandleTopLevelExceptionMask]] | [[NSHandleOtherExceptionMask]] )];
-</code>
+	General/[[NSExceptionHandler defaultExceptionHandler] setExceptionHandlingMask:( General/NSHandleUncaughtExceptionMask | General/NSHandleUncaughtSystemExceptionMask | General/NSHandleUncaughtRuntimeErrorMask | General/NSHandleTopLevelExceptionMask | General/NSHandleOtherExceptionMask )];
 
-BTW, my [[NSException]]+[[ESStackTrace]] category was modified a little from the previous posted versions. Here it is for reference. It displays all the generic information one could ask for.
 
-<code>
+BTW, my General/NSException+General/ESStackTrace category was modified a little from the previous posted versions. Here it is for reference. It displays all the generic information one could ask for.
+
+    
 - (void)printStackTrace
 {
-    [[NSString]] ''stackTrace = [[self userInfo] objectForKey:[[NSStackTraceKey]]];
-    [[NSString]] ''str = [[[NSString]] stringWithFormat:@"/usr/bin/atos -p %d %@ | tail -n +3 | head -n +%d | c++filt | cat -n",
-        [[[[NSProcessInfo]] processInfo] processIdentifier],
+    General/NSString *stackTrace = General/self userInfo] objectForKey:[[NSStackTraceKey];
+    General/NSString *str = General/[NSString stringWithFormat:@"/usr/bin/atos -p %d %@ | tail -n +3 | head -n +%d | c++filt | cat -n",
+        General/[[NSProcessInfo processInfo] processIdentifier],
         stackTrace,
-        ([[stackTrace componentsSeparatedByString:@"  "] count] - 4)];
-    FILE ''file = popen( [str UTF8String], "r" );
+        (General/stackTrace componentsSeparatedByString:@"  "] count] - 4)];
+    FILE *file = popen( [str UTF8String], "r" );
 
     if( file )
     {
@@ -238,7 +238,7 @@ BTW, my [[NSException]]+[[ESStackTrace]] category was modified a little from the
         pclose( file );
     }
 }
-</code>
+
 
 - Eliot Simcoe
 
@@ -246,7 +246,7 @@ BTW, my [[NSException]]+[[ESStackTrace]] category was modified a little from the
 
 Much thanks for all the above suggestions, particularly Eliot's.
 
-One improvement i might suggest for Eliot's idea is to put the fourth block of code (the one that sets the uncaught exception handler and the exception handling mask) in you application delegate's '''-applicationWillFinishLaunching''' rather than -applicationDidFinishLaunching.
+One improvement i might suggest for Eliot's idea is to put the fourth block of code (the one that sets the uncaught exception handler and the exception handling mask) in you application delegate's **-applicationWillFinishLaunching** rather than -applicationDidFinishLaunching.
 
 Since the stack trace key is apparently not generated until after the exception handling mask has been set, the above code will fail for any exceptions thrown during application launch (for me this was causing an infinite recursion since the unknown stack trace key would cause an exception to be thrown inside the handler).
 
@@ -254,31 +254,31 @@ Since the stack trace key is apparently not generated until after the exception 
 
 ----
 
-Is it possible to adapt this so that one can get a picture of the stack in real time? One reason might be that you have a method that mostly is called by "self" or "super" but might get a message from elsewhere. If elsewhere, you might like to [[NSLog]] this fact. Right now, I can see no other way to find out WHO sent you a message other than walking the stack to see who is waiting for the reply...
+Is it possible to adapt this so that one can get a picture of the stack in real time? One reason might be that you have a method that mostly is called by "self" or "super" but might get a message from elsewhere. If elsewhere, you might like to [[NSLog this fact. Right now, I can see no other way to find out WHO sent you a message other than walking the stack to see who is waiting for the reply...
 
 David
 
 ----
 
-Normally [[NSApplication]] will catch unhandled exceptions that occur in the main thread, print them and continue.  The code above will cause your program to exit after printing the stack trace.  If you do the following instead, then it will print the trace and keep running as normal.
+Normally General/NSApplication will catch unhandled exceptions that occur in the main thread, print them and continue.  The code above will cause your program to exit after printing the stack trace.  If you do the following instead, then it will print the trace and keep running as normal.
 
-<code>
-- (void)reportException:([[NSException]] '')anException
+    
+- (void)reportException:(General/NSException *)anException
 {
 	[anException printStackTrace];
 }
-</code>
 
--[[JoshMinor]]
+
+-General/JoshMinor
 
 ----
 Any chance of getting full listings on these stack trace solutions? I'm not exactly sure where each of these blocks of code belongs. If I get this to work independently I will post the code myself.
 
--[[AlainODea]]
+-General/AlainODea
 
 ----
 FYI, don't put the -setExceptionHandlingMask: call in the -awakeFromNib method. You wont get any stack traces (although your custom exception handler will work fine).
--[[MichaelBianco]] 
+-General/MichaelBianco 
 ----
 
 
@@ -293,7 +293,7 @@ I'm putting this way down here because it's not a particularly wise idea, but he
 
 If you link to the private Symbolication.framework you can do....
 
-<code>
+    
 struct _VMURange {
     unsigned long long location;
     unsigned long long length;
@@ -301,7 +301,7 @@ struct _VMURange {
 
 
 
-@interface [[VMUAddressRange]] : [[NSObject]] {
+@interface General/VMUAddressRange : General/NSObject {
     struct _VMURange _addressRange;
 }
 
@@ -309,10 +309,10 @@ struct _VMURange {
 
 
 
-@interface [[VMUSymbol]] : [[VMUAddressRange]] {
-    [[NSString]] ''_name;
-    [[NSString]] ''_mangledName;
-    void ''_owner;
+@interface General/VMUSymbol : General/VMUAddressRange {
+    General/NSString *_name;
+    General/NSString *_mangledName;
+    void *_owner;
     unsigned int _flags;
 }
 
@@ -322,11 +322,11 @@ struct _VMURange {
 
 
 
-@interface [[VMUSymbolicator]] : [[NSObject]] {
-    [[NSMutableArray]] ''_symbolOwners;
-    [[NSArray]] ''_symbolOwnerAddressRanges;
-    [[NSString]] ''_path;
-    void ''_machTaskContainer;
+@interface General/VMUSymbolicator : General/NSObject {
+    General/NSMutableArray *_symbolOwners;
+    General/NSArray *_symbolOwnerAddressRanges;
+    General/NSString *_path;
+    void *_machTaskContainer;
     BOOL _isProtected;
 }
 
@@ -341,40 +341,40 @@ struct _VMURange {
 
 void callAFunction()
 {
-	[[VMUSymbolicator]] '' symbolicator = [[[VMUSymbolicator]] symbolicatorForPid:getpid()];
-	[[NSArray]] '' addresses = [[[NSThread]] callStackReturnAddresses];
+	General/VMUSymbolicator * symbolicator = General/[VMUSymbolicator symbolicatorForPid:getpid()];
+	General/NSArray * addresses = General/[NSThread callStackReturnAddresses];
 	
-	for ([[NSNumber]] '' address in addresses) {
-		[[VMUSymbol]] '' symbol = [symbolicator symbolForAddress:[address unsignedLongLongValue]];
-		[[NSLog]](@"%@", [symbol name]);
+	for (General/NSNumber * address in addresses) {
+		General/VMUSymbol * symbol = [symbolicator symbolForAddress:[address unsignedLongLongValue]];
+		General/NSLog(@"%@", [symbol name]);
 	}
 	
 }
 
-- ([[IBAction]])test:(id)sender;
+- (General/IBAction)test:(id)sender;
 {
 	callAFunction();
 }
 
 @end
 
-</code>
 
 
-This will actually print a real stack trace just like [[CrashReporter]]... Actual result:
 
-<code>
+This will actually print a real stack trace just like General/CrashReporter... Actual result:
+
+    
 callAFunction
 -[Controller test:]
--[[[NSApplication]] sendAction:to:from:]
--[[[NSControl]] sendAction:to:]
--[[[NSCell]] _sendActionFrom:]
--[[[NSCell]] trackMouse:inRect:ofView:untilMouseUp:]
--[[[NSButtonCell]] trackMouse:inRect:ofView:untilMouseUp:]
--[[[NSControl]] mouseDown:]
--[[[NSWindow]] sendEvent:]
--[[[NSApplication]] sendEvent:]
-</code>
+-General/[NSApplication sendAction:to:from:]
+-General/[NSControl sendAction:to:]
+-General/[NSCell _sendActionFrom:]
+-General/[NSCell trackMouse:inRect:ofView:untilMouseUp:]
+-General/[NSButtonCell trackMouse:inRect:ofView:untilMouseUp:]
+-General/[NSControl mouseDown:]
+-General/[NSWindow sendEvent:]
+-General/[NSApplication sendEvent:]
+
 
 ----
 
@@ -382,26 +382,26 @@ After working with the examples above, I made two changes for Mac OS X 10.6
 
 (1) The printStackTrace method shown requires the UNIX atos tool which most users won't have unless they install the Mac OS X developer tools package.  In 10.6, you can work around this by using callStackSymbols as shown below.
 
-<code>
+    
 - (void)printStackTrace
 {
 	if( [self respondsToSelector: @selector(callStackSymbols)] ) {
-		[[NSArray]] ''callStackSymbols = [self callStackSymbols];
-		[[NSString]] ''symbol;
+		General/NSArray *callStackSymbols = [self callStackSymbols];
+		General/NSString *symbol;
 		int count, i;
 		count = [callStackSymbols count];
 		for (i=0; i<count; i++) {
 			symbol = [callStackSymbols objectAtIndex:i];
-			[[NSLog]](@"%@",symbol);
+			General/NSLog(@"%@",symbol);
 		}
 	}
 	else {
-		[[NSString]] ''stackTrace = [[self userInfo] objectForKey:[[NSStackTraceKey]]];
-		[[NSString]] ''str = [[[NSString]] stringWithFormat:@"/usr/bin/atos -p %d %@ | tail -n +3 | head -n +%d | c++filt | cat -n",
-			[[[[NSProcessInfo]] processInfo] processIdentifier],
+		General/NSString *stackTrace = General/self userInfo] objectForKey:[[NSStackTraceKey];
+		General/NSString *str = General/[NSString stringWithFormat:@"/usr/bin/atos -p %d %@ | tail -n +3 | head -n +%d | c++filt | cat -n",
+			General/[[NSProcessInfo processInfo] processIdentifier],
 			stackTrace,
-			([[stackTrace componentsSeparatedByString:@"  "] count] - 4)];
-		FILE ''file = popen( [str UTF8String], "r" );
+			(General/stackTrace componentsSeparatedByString:@"  "] count] - 4)];
+		FILE *file = popen( [str UTF8String], "r" );
 
 		if( file )
 		{
@@ -422,25 +422,25 @@ After working with the examples above, I made two changes for Mac OS X 10.6
 		}
 	}
 }
-</code>
+
 
 (2) Eliot Simcoe's exception handler exits the program.  Once a program is in distribution, you may prefer to continue normal execution after logging an uncaught exception.
 
-<code>
-void CB_exceptionHandler( [[NSException]] ''exception )
+    
+void CB_exceptionHandler( [[NSException *exception )
 {
 	@try{
 		[exception printStackTrace];
 	}
-	@catch( [[NSException]] ''theException ) {
-		[[NSLog]](@"Exception during printStackTrace");
+	@catch( General/NSException *theException ) {
+		General/NSLog(@"Exception during printStackTrace");
 	} 	
 
 	// restart runloop
-	[[[NSApp]] run];
+	General/[NSApp run];
 
 }
-</code>
+
 
 - Peter Sichel - Sustainable Softworks
 

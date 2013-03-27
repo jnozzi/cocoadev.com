@@ -7,7 +7,7 @@ What I want to do is to interpret keypresses in the keyboard and then based on t
 1) write a kernel extension that a particular application (daemon) will take a hold of
 2) write a daemon that talks to that kernel extension and then based on keypress X, will simulate the appropriate keypress.
 
-Also, besides [[USBProber]] and [[IORegistryExplorer]], what are some good (software only - free preferably) utilities for USB debugging, etc.
+Also, besides General/USBProber and General/IORegistryExplorer, what are some good (software only - free preferably) utilities for USB debugging, etc.
 
 Any pointers and ideas would help greatly.
 
@@ -15,13 +15,13 @@ Any pointers and ideas would help greatly.
 
 Hello! Apparently, no one answered your question! But maybe you�re able now to tell us how you did it? I�m very interested in this subject.
 
-'''Here�s my question:''' Is it possible to intercept the text input from one and only one keyboard and modify it before passing it to the text system? And if so, can/should it be made in a driver?
+**Here�s my question:** Is it possible to intercept the text input from one and only one keyboard and modify it before passing it to the text system? And if so, can/should it be made in a driver?
 
-I�m trying to make a [[CueCat]] driver for OS X. Of course, a modified [[CueCat]] outputs regular digits and letters but
+I�m trying to make a General/CueCat driver for OS X. Of course, a modified General/CueCat outputs regular digits and letters but
 
-1) It swaps upper- and lowercase (in code128, for example, ''David'' would become ''dAVID'')
+1) It swaps upper- and lowercase (in code128, for example, *David* would become *dAVID*)
 
-and 2) if you regularly use a non-qwerty physical keyboard or keyboard layout, the output will be ''dQVID'', and ''12345'' would become ''&�"'('' with a French keyboard layout.
+and 2) if you regularly use a non-qwerty physical keyboard or keyboard layout, the output will be *dQVID*, and *12345* would become *&�"'(* with a French keyboard layout.
 
 You�ll say I just have to switch to the American keyboard layout, but:
 

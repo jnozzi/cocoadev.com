@@ -4,9 +4,9 @@ http://www.ithinksw.com/logo.gif
 
 http://www.ithinksw.com/
 
-[[IThinkSoftware]] Employees that make use of [[CocoaDev]]
+General/IThinkSoftware Employees that make use of General/CocoaDev
 
 
-* [[AlexanderStrange]]
-* [[JosephSpiros]] - President and CEO
-* [[KentSutherland]] - Programmer Extraordinaire
+* General/AlexanderStrange
+* General/JosephSpiros - President and CEO
+* General/KentSutherland - Programmer Extraordinaire

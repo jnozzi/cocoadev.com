@@ -13,16 +13,16 @@ I'd love to hear a fix, but I'd like it even better if someone could point out a
 
 ----
 
-I am not able to try your example at the momemt, but it sounds like your issue is more with [[CocoaBindings]] rather than [[CoreData]]:
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[CocoaFundamentals]]/[[CommunicatingWithObjects]]/chapter_6_section_5.html
+I am not able to try your example at the momemt, but it sounds like your issue is more with General/CocoaBindings rather than General/CoreData:
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/CocoaFundamentals/General/CommunicatingWithObjects/chapter_6_section_5.html
 
 Try applying these principles without resorting to the drag and drop.
 
 ----
 
-Just because you've generated a single-instance interface doesn't mean that there's an instance of your entity created for the interface to be connected to.  You'll need to create an instance of your entity in code, bind the content of the generated [[NSObjectController]] to that instance in order to work with it.
+Just because you've generated a single-instance interface doesn't mean that there's an instance of your entity created for the interface to be connected to.  You'll need to create an instance of your entity in code, bind the content of the generated General/NSObjectController to that instance in order to work with it.
 ----
 
 As the documentation makes abundantly clear, Core Data is a model-layer technology, not a view-layer technology.
 
-The not-exactly-difficult-to-find [[NSPersistentDocument]] Core Data Tutorial (http://developer.apple.com/documentation/Cocoa/Conceptual/[[NSPersistentDocumentTutorial]]/index.html) makes it clear how you can initialize a data store and set up an [[NSObjectController]] to do almost exactly what you appear to want to do.  See also "How do I initialize a store with default data?" in the Core Data FAQ at http://developer.apple.com/documentation/Cocoa/Conceptual/[[CoreData]]/Articles/cdFAQ.html.
+The not-exactly-difficult-to-find General/NSPersistentDocument Core Data Tutorial (http://developer.apple.com/documentation/Cocoa/Conceptual/General/NSPersistentDocumentTutorial/index.html) makes it clear how you can initialize a data store and set up an General/NSObjectController to do almost exactly what you appear to want to do.  See also "How do I initialize a store with default data?" in the Core Data FAQ at http://developer.apple.com/documentation/Cocoa/Conceptual/General/CoreData/Articles/cdFAQ.html.

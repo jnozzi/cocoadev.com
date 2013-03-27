@@ -9,7 +9,7 @@ Also change your Info.plist entries to the new name
 
 ----
 
-Do you mean [[InfoPlist]].strings? When I change that I get an error because Xcode is looking for the wrong prefix header.
+Do you mean General/InfoPlist.strings? When I change that I get an error because Xcode is looking for the wrong prefix header.
 
 ----
 
@@ -21,7 +21,7 @@ You could also use perl to munge through all the files and replace the project n
 
 ----
 
-I've had success with "Rename [[XCode]] Project" at http://www.blackbirdblog.it/programmazione/progetti/27 . Just make sure you run it on a back-up. It's a free utility.
+I've had success with "Rename General/XCode Project" at http://www.blackbirdblog.it/programmazione/progetti/27 . Just make sure you run it on a back-up. It's a free utility.
 
 ----
 
@@ -41,24 +41,24 @@ These names are pretty much independent of one another.
 
 ----
 
-Hi, my name is Michele and I am the developer of "Rename [[XCode]] Project". I'm working on the 1.5 version with Xcode 2.x compatibility.
+Hi, my name is Michele and I am the developer of "Rename General/XCode Project". I'm working on the 1.5 version with Xcode 2.x compatibility.
 
-''No offense, but is an app really necessary? It's not ''that'' difficult to rename an [[XCode]] project. The first time I did it, I had a few hiccups, granted, but once I found everything, I had no trouble in the future.''
+*No offense, but is an app really necessary? It's not *that* difficult to rename an General/XCode project. The first time I did it, I had a few hiccups, granted, but once I found everything, I had no trouble in the future.*
 
-'''No offense, but is bottled water really necessary? ;-)'''
+**No offense, but is bottled water really necessary? ;-)**
 
 Why not ? :-)
 
 ----
 
-Michele, is Rename [[XCode]] Project finished for 2.x yet? I'm looking forward to it.
+Michele, is Rename General/XCode Project finished for 2.x yet? I'm looking forward to it.
 
 ----
 
 Yes! i will publish it next week.
 Available at now: http://www.blackbirdblog.it/programmazione/progetti/27
 
-Michele, is an [[XCode]] plug-in possible, instead of a separate app? -[[WPostma]]
+Michele, is an General/XCode plug-in possible, instead of a separate app? -General/WPostma
 
 
 ----

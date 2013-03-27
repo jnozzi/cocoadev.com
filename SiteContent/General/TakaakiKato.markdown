@@ -10,9 +10,9 @@ I will work on it for free!
 
 Interestes:
 
-*[[ObjC]] (Cocoa)
+*General/ObjC (Cocoa)
 *PHP
-*[[JavaScript]]
-*[[AppleScript]]
+*General/JavaScript
+*General/AppleScript
 *Perl
 *Ruby

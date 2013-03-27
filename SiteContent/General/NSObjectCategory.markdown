@@ -1,9 +1,9 @@
 
 
-''' [[NSObject]] category [[CocoaDevUsersAdditions]]:'''
+** General/NSObject category General/CocoaDevUsersAdditions:**
 
-''' [[NSObject]] +[[CocoaDevUsersAdditions]].h'''
-<code>
+** General/NSObject +General/CocoaDevUsersAdditions.h**
+    
  #import <Foundation/Foundation.h>
  
  @interface NSObject (CocoaDevUsersAdditions)
@@ -18,9 +18,9 @@
  - (id)arrayByAddingObject:(id)anObject; // a convenience for those of us who like to avoid special cases for collections
  
  @end
-</code>
-'''[[NSObject]]+[[CocoaDevUsersAdditions]].m'''
-<code>
+
+**General/NSObject+General/CocoaDevUsersAdditions.m**
+    
  #import "NSObject+CocoaDevUsersAdditions.h"
  
  @implementation NSObject (CocoaDevUsersAdditions)
@@ -62,7 +62,7 @@
      return [NSArray arrayWithObjects:self, anObject, nil]; // NSArray will still behave normally, too
  }
  @end
-</code>
 
 
-[[Category:CocoaDevUsersAdditions]]
+
+General/Category:CocoaDevUsersAdditions

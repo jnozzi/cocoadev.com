@@ -25,4 +25,4 @@ mail@pete-jones.com
 
 ----
 
-Do you know about [[AMSerial]]?
+Do you know about General/AMSerial?

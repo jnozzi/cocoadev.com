@@ -2,4 +2,4 @@ Hey all, is there an Obj C method that would get the loginname of the current us
 
 ----
 
-<code>[[NSUserName]]()</code> or <code>[[NSFullUserName]]()</code>, both defined in Foundation/[[PathUtilities]].h  -- Bo
+    General/NSUserName() or     General/NSFullUserName(), both defined in Foundation/General/PathUtilities.h  -- Bo

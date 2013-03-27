@@ -1,8 +1,8 @@
-[[RandomDiskAccessSingleFile]]
+General/RandomDiskAccessSingleFile
 
 Dual 1.8 G5 / 512MB / 160GB - SATA (Seagate ST3160023AS - 7200RPM/8MB Cache/8.5 ms Avg Seek) 
 
-<code>
+    
 blockSize	average seek time	bytesRead	
 2	0.0083451336249709129	256	
 4	0.0071992865996435285	512	
@@ -24,10 +24,10 @@ blockSize	average seek time	bytesRead
 262144	0.012845954741351306	33554432	
 524288	0.018279993906617165	67108864	
 1048576	0.029830954736098647	134217728	
-</code>
+
 
 G4 Cube (450MHz) / 768MB / 80GB (Seagate ST380013A - 7200RPM/8MB Cache/8.5 ms Avg Seek) 
-<code>
+    
 blockSize	average seek time	bytesRead	
 2	0.0079930309439077973	256	
 4	0.0074793160893023014	512	
@@ -49,4 +49,3 @@ blockSize	average seek time	bytesRead
 262144	0.013963758712634444	33554432	
 524288	0.021190191619098186	67108864	
 1048576	0.030973172164522111	134217728
-</code>

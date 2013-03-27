@@ -8,22 +8,22 @@ Thanks
 
 ----
 
-shared_ptr is a C++ thing. Are you using [[ObjC]]++? or C arrays? or [[NSArrays]]?
+shared_ptr is a C++ thing. Are you using General/ObjC++? or C arrays? or General/NSArrays?
 ----
-I am using [[NSArray]].
+I am using General/NSArray.
 ----
-It isn't clear what you're trying to do yet.  In objective-c, we always refer to our objects through pointers.  If you declare <code>[[NSNumber]] ''aNumber</code> or <code>id aNumber</code>, then aNumber is a pointer.  It's rare in Cocoa to need to take a pointer to the object pointer.
+It isn't clear what you're trying to do yet.  In objective-c, we always refer to our objects through pointers.  If you declare     General/NSNumber *aNumber or     id aNumber, then aNumber is a pointer.  It's rare in Cocoa to need to take a pointer to the object pointer.
 
 Right now, I'd guess that you just want to add your object (pointers) to two different arrays.  
-<code>
+    
 id anObject, anotherObject; // assume these exist
-[[NSMutableArray]] ''anArray = [[[NSMutableArray]] array];
-[[NSMutableArray]] ''anotherArray = [[[NSMutableArray]] array];
+General/NSMutableArray *anArray = General/[NSMutableArray array];
+General/NSMutableArray *anotherArray = General/[NSMutableArray array];
 
 [anArray addObject:anObject];
 [anArray addObject:anotherObject];
 
 [anotherArray addObject:anotherObject];
-</code>
+
 
 Now the 0th element of anArray is the same object as the 1st element of anotherArray.

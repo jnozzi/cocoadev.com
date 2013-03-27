@@ -1,8 +1,8 @@
-Book by [[MartinFowler]] &al. about refactoring.
+Book by General/MartinFowler &al. about refactoring.
 
-[[WhatIsRefactoring]] ?
+General/WhatIsRefactoring ?
 
-One of the important books whose concepts should be known to all [[ObjectOrientedProgrammers]].
+One of the important books whose concepts should be known to all General/ObjectOrientedProgrammers.
 
 http://www.amazon.com/exec/obidos/tg/detail/-/0201485672
 

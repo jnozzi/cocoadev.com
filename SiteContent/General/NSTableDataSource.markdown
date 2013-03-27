@@ -1,1 +1,1 @@
-see [[NSTableViewDataSource]]
+see General/NSTableViewDataSource

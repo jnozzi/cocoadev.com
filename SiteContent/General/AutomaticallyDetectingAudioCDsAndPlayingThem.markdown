@@ -1,1 +1,1 @@
-see [[DiscMountedOrUnmountedNotification]]
+see General/DiscMountedOrUnmountedNotification

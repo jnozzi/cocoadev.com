@@ -1,3 +1,3 @@
 
 
-[[NavigationServices]] is for Carbon file dialogs.
+General/NavigationServices is for Carbon file dialogs.

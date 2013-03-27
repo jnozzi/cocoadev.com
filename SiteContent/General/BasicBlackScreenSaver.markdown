@@ -1,22 +1,22 @@
 Here's the implementation for a screen saver that blanks the screen and does no animation. It's kind of goofy now that we have energy saver, but some people insist on minimalism ... 
 
-In [[BlackView]].h:
-<code>
-#import <[[ScreenSaver]]/[[ScreenSaver]].h>
+In General/BlackView.h:
+    
+#import <General/ScreenSaver/General/ScreenSaver.h>
 
-@interface [[BlackView]] : [[ScreenSaverView]]
+@interface General/BlackView : General/ScreenSaverView
 {
 }
 @end
-</code>
 
-In [[BlackView]].m:
-<code>
-#import "[[BlackView]].h"
 
-@implementation [[BlackView]]
+In General/BlackView.m:
+    
+#import "General/BlackView.h"
 
-- (id)initWithFrame:([[NSRect]])frame isPreview:(BOOL)isPreview
+@implementation General/BlackView
+
+- (id)initWithFrame:(General/NSRect)frame isPreview:(BOOL)isPreview
 {
     self = [super initWithFrame:frame isPreview:isPreview];
     if (self) {
@@ -26,6 +26,6 @@ In [[BlackView]].m:
 }
 
 @end
-</code>
 
-Note that we aren't doing any graphics ourselves. The [[ScreenSaverView]] base class will draw black. The only thing we're doing is disabling the animation timers by setting the animation time to -1.
+
+Note that we aren't doing any graphics ourselves. The General/ScreenSaverView base class will draw black. The only thing we're doing is disabling the animation timers by setting the animation time to -1.

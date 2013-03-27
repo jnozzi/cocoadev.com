@@ -5,4 +5,4 @@ Does anybody know how to change a look of integrated eSeller? I want to use it i
 
 
 
-'''''Library uses a custom store.'''''
+***Library uses a custom store.***

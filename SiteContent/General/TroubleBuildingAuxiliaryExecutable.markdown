@@ -2,11 +2,11 @@ Please bear with be here, because I'm sort of a noob...
 
 I'm trying to add an auxiliary executable to my project. So I added a new Target, selecting Tool. But when I try to build it, I get two errors:
 
-''
+*
 Command /Developer/Private/jam failed with exit code 1
 
 Undefined symbols:
-''
+*
 
 Can anyone tell me what these errors mean and how I can fix them? Thanks.
 
@@ -15,9 +15,9 @@ Can anyone tell me what these errors mean and how I can fix them? Thanks.
 
 ----
 
-Most likely it's because you didn't add a Framework that is being referenced in your code. (e.g. you are using Foundation classes like [[NSString]] in your main function without adding this framework to the tool's target). If this is the case you need to learn how to add a Framework to a target.
+Most likely it's because you didn't add a Framework that is being referenced in your code. (e.g. you are using Foundation classes like General/NSString in your main function without adding this framework to the tool's target). If this is the case you need to learn how to add a Framework to a target.
 
-http://developer.apple.com/documentation/[[DeveloperTools]]/Conceptual/XcodeUserGuide20/Contents/Resources/en.lproj/index.html
+http://developer.apple.com/documentation/General/DeveloperTools/Conceptual/XcodeUserGuide20/Contents/Resources/en.lproj/index.html
 
 --zootbobbalu
 

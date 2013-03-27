@@ -5,7 +5,7 @@ Hey guys.  I'm writing a screenwriting program right now that exports RTF files.
 The code below works great, except the numbering in \sect starts on page 2.
 
 Thanks much.  Hopefully, someone is better at this than I seem to be. =D
-<code>
+    
 {\rtf1\mac\deff1
 {\fonttbl
 {\f0\fnil\fcharset77 Gill Sans;}
@@ -44,7 +44,7 @@ $CONTRIBUTORS\
 {\pard\f0\li1800 Dialogue.\par}
 }
 }
-</code>
+
 
 
 ----

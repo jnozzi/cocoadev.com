@@ -1,20 +1,20 @@
-I'm writing a faceless application (using [[LSUIElement]]) and everything about the facelessness is just peachy, except that when I open a window (a preferences window, for instance), it remains hidden behind the windows of the frontmost "faced" application, even when I use makeKeyAndOrderFront. Does anyone know a way to get around this problem?
+I'm writing a faceless application (using General/LSUIElement) and everything about the facelessness is just peachy, except that when I open a window (a preferences window, for instance), it remains hidden behind the windows of the frontmost "faced" application, even when I use makeKeyAndOrderFront. Does anyone know a way to get around this problem?
 
---[[SteveCook]]
+--General/SteveCook
 
-You also need to invoke <code>[[[NSApp]] activateIgnoringOtherApps:YES];</code> ''(Ah, perfect. Thanks a lot!)''
+You also need to invoke     General/[NSApp activateIgnoringOtherApps:YES]; *(Ah, perfect. Thanks a lot!)*
 ----
 Another problem is how to deactivate your application after closing the preferences window.
 
-If you invoke <code>[[[NSApp]] deactivate]</code> then focus is stll on your application, but if a new application is launched, it will become active (perhaps a bug?) � as an alternative there is <code>[[[NSApp]] hide:sender]</code>, but it does more than deactive.
+If you invoke     General/[NSApp deactivate] then focus is stll on your application, but if a new application is launched, it will become active (perhaps a bug?) � as an alternative there is     General/[NSApp hide:sender], but it does more than deactive.
 
-Last there is the possibility to query [[NSWorkspace]] for the active application before opening the preferences window and issue a launchApplication:appName after closing it, but it will be as clicking the dock, so it may bring up an 'untitled' window for document based applications.
+Last there is the possibility to query General/NSWorkspace for the active application before opening the preferences window and issue a launchApplication:appName after closing it, but it will be as clicking the dock, so it may bring up an 'untitled' window for document based applications.
 
 
 ----
 
 see also:
 
-[[ForceFrontmostApplication]]
+General/ForceFrontmostApplication
 
-[[ResignFrontmostApplication]]
+General/ResignFrontmostApplication

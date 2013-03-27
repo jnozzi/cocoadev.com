@@ -1,8 +1,8 @@
 
 
-I have finished my Cocoa app (not [[NSDocument]] based), and now wish to set up the document icons etc. and have my app launch when its documents are clicked etc. 
+I have finished my Cocoa app (not General/NSDocument based), and now wish to set up the document icons etc. and have my app launch when its documents are clicked etc. 
 
-I have been trying to get this to work in [[XCode]] by clicking the output target and going to Project>Get Info
+I have been trying to get this to work in General/XCode by clicking the output target and going to Project>Get Info
 
 The Icon File for the Application itself works fine, I have the 'Executable' and 'Identifier' down as the same thing, the name of my App.
 
@@ -10,7 +10,7 @@ Type is APPL (this is Application right?)
 
 Creator... well I don't know what this is. At first it was ???? and things didn;t work so I changed it to 4 letters to see if this was any better... but no.
 
-I have 1 document type, I have given it a name "[[MyApp]] Document"
+I have 1 document type, I have given it a name "General/MyApp Document"
 
 Class I have left blank
 
@@ -36,7 +36,7 @@ Getting Info on the documents in the Finder shows up nothing much... it is of Ki
 
 The creator code is important, this is four letters which uniquely identify your application -- it should be allocated from Apple (they have a webform somewhere).
 
-That said, typing in random letters will do for your testing -- but your documents ''must'' have an extension, otherwise it will not work. And the extension should be the one entered in the document type settings, i.e. 'myap' as you've quoted above (which is a weird extension IMHO).
+That said, typing in random letters will do for your testing -- but your documents *must* have an extension, otherwise it will not work. And the extension should be the one entered in the document type settings, i.e. 'myap' as you've quoted above (which is a weird extension IMHO).
 
 There is one alternative, that is to set the creator code for the file (each time you save it), but this is really an obsolete Carbon-thingie of the past (since it relies on metadata not available on all filesystems nor when the document is sent over the internet).
 
@@ -52,4 +52,4 @@ Similarly for OS Type, just that you don't register those anymore (though be car
 
 ----
 
-If you're still having problems, see [[MakingIconsAppearInFinder]].
+If you're still having problems, see General/MakingIconsAppearInFinder.

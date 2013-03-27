@@ -1,15 +1,15 @@
 Cocoa reads and write RTF - but ignores the writing direction. 
 
-For example, you can set writing direction in a [[NSMutableParagraphStyle]]:
+For example, you can set writing direction in a General/NSMutableParagraphStyle:
 
-<code>
-[paraStyle setBaseWritingDirection:[[NSWritingDirectionRightToLeft]]];
-</code>
+    
+[paraStyle setBaseWritingDirection:General/NSWritingDirectionRightToLeft];
 
-Then you can add this paragraph style to a [[NSTextStorage]]. But it will not save this attribute when you write RTF from it. 
 
-Anybody knows of open source/gnu '''good''' RTF code?
+Then you can add this paragraph style to a General/NSTextStorage. But it will not save this attribute when you write RTF from it. 
+
+Anybody knows of open source/gnu **good** RTF code?
 
 ----
 
-You might check [[GnuStep]]. -- [[RobRix]]
+You might check General/GnuStep. -- General/RobRix

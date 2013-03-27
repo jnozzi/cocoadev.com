@@ -1,19 +1,19 @@
 
 
-I created a subclass of [[NSImageView]] - [[ImageViewObject]], then set my onscreen's Image View's Custom Class to that class after reading it into [[ImageBuilder]].
+I created a subclass of General/NSImageView - General/ImageViewObject, then set my onscreen's Image View's Custom Class to that class after reading it into General/ImageBuilder.
 
-I am doing this because when cycling thru' a data set in [[CoreData]], if I come across a record without an image, I want to load a default image from the Bundle.
+I am doing this because when cycling thru' a data set in General/CoreData, if I come across a record without an image, I want to load a default image from the Bundle.
 
 I did something like this:
 
-<code>
+    
 
 .h file:
  
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[ImageViewObject]] : [[NSImageView]] {
+@interface General/ImageViewObject : General/NSImageView {
 
 }
 
@@ -24,27 +24,27 @@ I did something like this:
 .m file:
 
 
-#import "[[ImageViewObject]].h"
+#import "General/ImageViewObject.h"
 
 
-@implementation [[ImageViewObject]]
+@implementation General/ImageViewObject
 
--(void) setImage:( [[NSImage]] '' ) newImage {
+-(void) setImage:( General/NSImage * ) newImage {
 	[super setImage:newImage];
 }
 
--([[NSImage]] '') image {
-	[[NSImage]] ''img = [super image];
+-(General/NSImage *) image {
+	General/NSImage *img = [super image];
 	if( nil == img ){
-		img = [[[NSImage]] imageNamed:@"no_image"];
+		img = General/[NSImage imageNamed:@"no_image"];
 	}
 	return img;
 }
 @end
 
-</code>
 
-I read the .h file into [[InterfaceBuilder]], set the [[NSImageView]]'s custom class to [[ImageViewObject]], then recompiled everything.
+
+I read the .h file into General/InterfaceBuilder, set the General/NSImageView's custom class to General/ImageViewObject, then recompiled everything.
 
 Not only does this appear to not work, but further, if I stick logging messages in the two methods, I never see the log messages.
 
@@ -60,25 +60,24 @@ Have you set the class of your image view using the Custom Class panel in the In
 
 Yep, did so, using the same mechanisms I've done for setting other custom classes (apple-5 in the inspector, I believe?). I guess I should clarify, when I say "not working", it appears as tho' the subclass is never factored in at all - no logging messages, no break-points in debugging, etc. Very frustrating. --thx. (and thanks for the format help above)
 
-I should also point out I did a work-around by doing in the data layer. When the data object returned from my [[NSManagedObject]] subclass is 0 bytes or nil, I then create up a new [[NSImage]] from my default image, then stuff that into an [[NSData]] object, and pass that back. It works, and an argument could be made that handling that in the data layer is the better way to go. 6 of one, 1/2 dozen of the other, I guess :-)
+I should also point out I did a work-around by doing in the data layer. When the data object returned from my General/NSManagedObject subclass is 0 bytes or nil, I then create up a new General/NSImage from my default image, then stuff that into an General/NSData object, and pass that back. It works, and an argument could be made that handling that in the data layer is the better way to go. 6 of one, 1/2 dozen of the other, I guess :-)
 
 Thusly:
 
-<code>
+    
 
--([[NSData]] '') pictureData {
-//	[[NSLog]]( @"retriving picture data" );
-	[[NSData]] ''data = [self valueForKey:@"picture"];
+-(General/NSData *) pictureData {
+//	General/NSLog( @"retriving picture data" );
+	General/NSData *data = [self valueForKey:@"picture"];
 	if( data == nil || [data length] < 1 ){
-//		[[NSLog]]( @"creating new image from disk" );
+//		General/NSLog( @"creating new image from disk" );
 		[data release];
-		[[NSBundle]] ''main = [[[NSBundle]] mainBundle];
-		[[NSString]] ''no_image_path = [main pathForImageResource:@"no_image"];
+		General/NSBundle *main = General/[NSBundle mainBundle];
+		General/NSString *no_image_path = [main pathForImageResource:@"no_image"];
 		[main release];
-		[[NSLog]]( no_image_path );
-		data = [[[[NSData]] alloc] initWithContentsOfFile:no_image_path ];
+		General/NSLog( no_image_path );
+		data = General/[[NSData alloc] initWithContentsOfFile:no_image_path ];
 	}
 	return data;
 }
 
-</code>

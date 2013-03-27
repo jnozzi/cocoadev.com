@@ -1,7 +1,7 @@
-The Java implementation of [[RendezVous]].
+The Java implementation of General/RendezVous.
 
 Related Links:
 
 
-*[[RendezVous]]
-*[[ZeroConf]]
+*General/RendezVous
+*General/ZeroConf

@@ -1,19 +1,19 @@
-I have a need to capture the RETURN/ENTER key in a [[NSTextView]] control.  I have subclassed the [[NSTextView]] and overridden the keyDown: method.  
-<code>
--(void)keyDown:([[NSEvent]] '')theEvent 
+I have a need to capture the RETURN/ENTER key in a General/NSTextView control.  I have subclassed the General/NSTextView and overridden the keyDown: method.  
+    
+-(void)keyDown:(General/NSEvent *)theEvent 
 {
     // test to see if the user hit the enter key. If they do then process the text edit.
-    if( [[theEvent characters] characterAtIndex:0] == 13 )
+    if( General/theEvent characters] characterAtIndex:0] == 13 )
     {
         // let the controller know about the return key was hit.
-        [[[[NSNotificationCenter]] defaultCenter] postNotificationName:@"[[ReturnKeyHit]]" object:self];
+        [[[[NSNotificationCenter defaultCenter] postNotificationName:@"General/ReturnKeyHit" object:self];
     }
     else
     {
         [super keyDown:theEvent];
     }
 }
-</code>
+
 
 I am using a Notification to message back to the controller (or any other listening object).  Is this correct way of handling this.  I can't figure out how to use the Target/Action pattern to do the same thing.
 

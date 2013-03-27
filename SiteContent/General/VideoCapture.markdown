@@ -2,5 +2,5 @@ I am interested in making a free (possibly open source) video capturing applicat
 
 ----
 
-http://developer.apple.com/documentation/[[GraphicsImaging]]/Conceptual/[[CoreVideo]]/CVProg_Tasks/chapter_3_section_2.html
-and search Apple's sample codes with the key word <code>[[CVDisplayLinkRef]]</code>. --zootbobbalu
+http://developer.apple.com/documentation/General/GraphicsImaging/Conceptual/General/CoreVideo/CVProg_Tasks/chapter_3_section_2.html
+and search Apple's sample codes with the key word     General/CVDisplayLinkRef. --zootbobbalu

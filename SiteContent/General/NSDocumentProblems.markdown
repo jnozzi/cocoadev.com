@@ -1,5 +1,5 @@
-I am unclear as to when <code>makeWindowControllers</code> is useful.  In the nib file that goes with Document.m, any number of windows 
-can be opened from the [[MainMenu]] by default. Is it the point to use 'makeWindowControllers:'
+I am unclear as to when     makeWindowControllers is useful.  In the nib file that goes with Document.m, any number of windows 
+can be opened from the General/MainMenu by default. Is it the point to use 'makeWindowControllers:'
  if one wishes to have more than one kind of window in this nib and/or more control of the windows?  
 Other nibs can have their own window controllers.  Or is the 'makeWindowControllers:' command to be used for 
 all windows in all nibs?
@@ -8,9 +8,9 @@ all windows in all nibs?
 
 ----
 
-First of all, <code>makeWindowControllers:</code> is only intended for the document's windows (not for windows in [[MainMenu]].nib). Basically, this method allows you to use your own [[NSWindowController]] subclass to manage each of the document's windows. With simple document based applications you do not need to worry about subclassing [[NSWindowController]], but if the window becomes complicated, or if there are multiple windows per document, you probably do not want the [[MyDocument]] class to manage all of it's windows and contents single handedly (it becomes messy). Here you can make an [[NSWindowController]] subclass for each of the document's windows and tell the document to use those window controllers instead of itself - you do this through the <code>makeWindowControllers:</code> method. It might help to read this: http://developer.apple.com/releasenotes/Cocoa/[[NSDocumentFAQ]].html#Should%20I%20subclass%20NSWindowController
+First of all,     makeWindowControllers: is only intended for the document's windows (not for windows in General/MainMenu.nib). Basically, this method allows you to use your own General/NSWindowController subclass to manage each of the document's windows. With simple document based applications you do not need to worry about subclassing General/NSWindowController, but if the window becomes complicated, or if there are multiple windows per document, you probably do not want the General/MyDocument class to manage all of it's windows and contents single handedly (it becomes messy). Here you can make an General/NSWindowController subclass for each of the document's windows and tell the document to use those window controllers instead of itself - you do this through the     makeWindowControllers: method. It might help to read this: http://developer.apple.com/releasenotes/Cocoa/General/NSDocumentFAQ.html#Should%20I%20subclass%20NSWindowController
 
-Hopefully I didn't confuse you more. :) -- [[RyanBates]]
+Hopefully I didn't confuse you more. :) -- General/RyanBates
 
 ----
 
@@ -19,36 +19,36 @@ Ryan, many thanks---again!  Your comments plus the FAQ were very useful.  I also
 -Paul
 ----
 
-I'm having issues with [[NSDocument]], this is my first time using it so I'm probably messing something up.
+I'm having issues with General/NSDocument, this is my first time using it so I'm probably messing something up.
 I put some breakpoints in to see what happens to objects & such when it starts up. It starts up and a new empty document is created, and looks fine.
 
 I go to open a recent file, so far nothing really happens besides debug stuff that prints out what file it's supposed to be opening.
 
-Weird thing, but this could be my inexperience, all of the [[IBOutlets]] in my [[NSDocument]] sub-class or whatever (called it [[DBView]]) are now 0x0 in the debugger...
-what happened? Did I do something wrong and I'm totally doing [[NSDocument]] stuff wrong?
+Weird thing, but this could be my inexperience, all of the General/IBOutlets in my General/NSDocument sub-class or whatever (called it General/DBView) are now 0x0 in the debugger...
+what happened? Did I do something wrong and I'm totally doing General/NSDocument stuff wrong?
  any help would be appreciated, thanks :)
- ---[[JeremyK]]
+ ---General/JeremyK
  ----
- ''Did you connect those [[IBOutlets]] to something in [[InterfaceBuilder]]? Did you re-check those connections?''
+ *Did you connect those General/IBOutlets to something in General/InterfaceBuilder? Did you re-check those connections?*
 ----
 At what point in the creation of your document are all the outlets nil?
 ----
 They're all connected, re-connected too before checking the debugger
-the point I checked in the debugger was the - (BOOL)readFromFile:([[NSString]] '')fileName ofType:([[NSString]] '')docType method
-there was also a breakpoint before in the - (void)windowControllerDidLoadNib:([[NSWindowController]] '') aController
+the point I checked in the debugger was the - (BOOL)readFromFile:(General/NSString *)fileName ofType:(General/NSString *)docType method
+there was also a breakpoint before in the - (void)windowControllerDidLoadNib:(General/NSWindowController *) aController
 so that finished, and should then have connections right?
 
 Noticed that the file loading function is called before the nib is done loading... so I'll re-work this and get back on any issues or if it works, I'll set a variable with the file it has to open and have it udpate the interface when it's done loading nib and that might work!
---[[JeremyK]]
-YAY! it works, I just wasn't paying attention to the order of what was being called I guess, silly me, thanks all, now back to figuring out [[FMSqlite]] someone made to use so I don't have to require /usr/local/lib/libsqlite.a or whatever --[[JeremyK]]
+--General/JeremyK
+YAY! it works, I just wasn't paying attention to the order of what was being called I guess, silly me, thanks all, now back to figuring out General/FMSqlite someone made to use so I don't have to require /usr/local/lib/libsqlite.a or whatever --General/JeremyK
 
-''I shoulda mentioned the order. Yeah, it'll bite you if you're not careful. But congrats on its current workingness!''
+*I shoulda mentioned the order. Yeah, it'll bite you if you're not careful. But congrats on its current workingness!*
 
 ----
 
-This seems like a good time to plug [[NSWindowController]]. While you can use [[NSDocument]] as its own window controller for simple situations, I strongly recommend using [[NSWindowControllers]] instead. [[NSWindowController]] gives you a better understanding how/when your nib file gets loaded, properly separates your UI handling (read: View) code from your document (read: Model) code, and is scalable.
+This seems like a good time to plug General/NSWindowController. While you can use General/NSDocument as its own window controller for simple situations, I strongly recommend using General/NSWindowControllers instead. General/NSWindowController gives you a better understanding how/when your nib file gets loaded, properly separates your UI handling (read: View) code from your document (read: Model) code, and is scalable.
 
--- [[MikeTrent]]
+-- General/MikeTrent
 
 ----
 
@@ -56,64 +56,64 @@ OK. I'll take off from there...
 
 My document-based app creates its own window controller using:
 
-<code>- ( void ) makeWindowControllers</code>
+    - ( void ) makeWindowControllers
 
-in the [[NSDocument]] subclass. Now most of the work is done in the window controller subclass.
+in the General/NSDocument subclass. Now most of the work is done in the window controller subclass.
 
 What I am curious about is how the document controller initializes the relevant ivars that properly belong to the document (cf "Model") subclass.
 
 Maybe I've got that backwards, though. I could look at it as the document subclass copying over the controller ivars before archiving them...Hmmm?
 
-So far I have found that allocating and initializing instances of these in the window-controller-subclass <code>init</code> method fails, but if I use its <code>awakeFromNib</code>
+So far I have found that allocating and initializing instances of these in the window-controller-subclass     init method fails, but if I use its     awakeFromNib
 method to do this, then I have valid pointers to them in the controller. Is this the way it's s'posed ta be?
 
-Does this result from what Jeremy was referring to above as: ''the file loading function is called before the nib is done loading''? Or is it something else?
+Does this result from what Jeremy was referring to above as: *the file loading function is called before the nib is done loading*? Or is it something else?
 
 
 Yes, no, that's it:
 
 *
-The [[NSDocument]] is unarchived, and its ivars are initialized
+The General/NSDocument is unarchived, and its ivars are initialized
 *
-The runtime calls the <code>- ( void ) makeWindowControllers</code> method on the document. The [[NSWindowControllers]] get created.
+The runtime calls the     - ( void ) makeWindowControllers method on the document. The General/NSWindowControllers get created.
 
 
-So yes, you got it backwards, I think. The [[NSDocument]] is the model and is loaded first. [[NSDocument]] probably saves a few additional ivars (in addition to yours), but it probably does not save anything of the [[NSWindowControllers]]. It is only at runtime that [[NSDocument]] decides which [[NSWindowController]] to use, and you make some new instances of those every time in the  <code>- ( void ) makeWindowControllers</code>. Things like window position etc... are saved elsewhere, I believe.
+So yes, you got it backwards, I think. The General/NSDocument is the model and is loaded first. General/NSDocument probably saves a few additional ivars (in addition to yours), but it probably does not save anything of the General/NSWindowControllers. It is only at runtime that General/NSDocument decides which General/NSWindowController to use, and you make some new instances of those every time in the      - ( void ) makeWindowControllers. Things like window position etc... are saved elsewhere, I believe.
 
 ----
 
 For getting things started in various ways, my document class has:
 
-<code> - ( void ) init </code>
+     - ( void ) init 
 
-<code> - ( void ) windowControllerDidLoadNib: ( [[NSWindowController]] ) aController </code>
+     - ( void ) windowControllerDidLoadNib: ( General/NSWindowController ) aController 
 
-<code> - ( BOOL ) loadDataRepresentation: ( [[NSData]] '' ) newDocData ofType: ( [[NSString]] '' ) aType </code>
+     - ( BOOL ) loadDataRepresentation: ( General/NSData * ) newDocData ofType: ( General/NSString * ) aType 
 
-<code>dataRepresentationOfType</code> does a
+    dataRepresentationOfType does a
 
-<code>[ [ self windowControllers ]
-			makeObjectsPerformSelector: @selector( grabData ) ];</code>
+    [ [ self windowControllers ]
+			makeObjectsPerformSelector: @selector( grabData ) ];
 
 when saving a file. My window controller has
 
-<code> - ( void ) awakeFromNib </code>
+     - ( void ) awakeFromNib 
 
-<code> - ( void ) windowDidLoad </code>
+     - ( void ) windowDidLoad 
 
-I'm wondering if <code>awakeFromNib</code> is appropriate or even necessary in the window controller. For awhile, I forgot where to look when some of my
-interface controls were not being updated from an archived file - but <code>windowDidLoad</code> turned out to be the right place to put the code. Yeesh.
+I'm wondering if     awakeFromNib is appropriate or even necessary in the window controller. For awhile, I forgot where to look when some of my
+interface controls were not being updated from an archived file - but     windowDidLoad turned out to be the right place to put the code. Yeesh.
 
- <code>awakeFromNib</code> makes some sense in that the window controller
+     awakeFromNib makes some sense in that the window controller
 is the class that is doing most or all updating of the control objects in the view (Documentclass.nib), but didn't work in the above example.
 
-I handle restoring the frame and copying over the necessary document (model ) ivars in <code>windowDidLoad</code> which calls a utility method to update controls
-in the interface. The <code>awakeFromNib</code> handles things like toolbar initializing
+I handle restoring the frame and copying over the necessary document (model ) ivars in     windowDidLoad which calls a utility method to update controls
+in the interface. The     awakeFromNib handles things like toolbar initializing
 
 ----
 
-With [[CoreData]], how do I know when the document has completed loading? It's not clear from the docs where to put code that manipulates the view according to the model, once the model has been completely loaded. 
+With General/CoreData, how do I know when the document has completed loading? It's not clear from the docs where to put code that manipulates the view according to the model, once the model has been completely loaded. 
 
-What I have is a model object that stores arbitrary data, and I'm using it to store the expanded state of a [[NSOutlineView]]. I've got two functions 'saveOutlineViewState' and 'restoreOutlineViewState' which do just that. I've got some notifications '[[DocumentDidLoad]]' and '[[DocumentWillSave]]'. Firstly, why aren't these notifications supplied by default with the [[NSDocument]] class - this seems like a severe lack on the classes part. How should we actually tell when those two operations are performed? There are many different functions for loading and saving, not to mention all the [[IBActions]] available for performing those same operations.
+What I have is a model object that stores arbitrary data, and I'm using it to store the expanded state of a General/NSOutlineView. I've got two functions 'saveOutlineViewState' and 'restoreOutlineViewState' which do just that. I've got some notifications 'General/DocumentDidLoad' and 'General/DocumentWillSave'. Firstly, why aren't these notifications supplied by default with the General/NSDocument class - this seems like a severe lack on the classes part. How should we actually tell when those two operations are performed? There are many different functions for loading and saving, not to mention all the General/IBActions available for performing those same operations.
 
-My main problem at this point is where to hack in [[DocumentDidLoad]]. But also, if you have a good idea for the placement of [[DocumentWillSave]], this would be useful to know too. Thanks for your replies.
+My main problem at this point is where to hack in General/DocumentDidLoad. But also, if you have a good idea for the placement of General/DocumentWillSave, this would be useful to know too. Thanks for your replies.

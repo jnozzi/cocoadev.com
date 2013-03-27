@@ -1,23 +1,23 @@
 
 
-With java, I am attempting to load an image from a URL (.jpg) and display it in a [[NSImageView]].  Everything appears to load properly, but my application crashes after a few seconds.  I am positive that the URL is correct.  I can even get the size of the image and it does return the correct size.  Here is some code:
+With java, I am attempting to load an image from a URL (.jpg) and display it in a General/NSImageView.  Everything appears to load properly, but my application crashes after a few seconds.  I am positive that the URL is correct.  I can even get the size of the image and it does return the correct size.  Here is some code:
 
-<code>
+    
 URL nextURL = new URL("/not/the/real/url.jpg");
-[[NSImage]] image = new [[NSImage]](nextURL, true);
-imageView.setImage(image);  // imageView=[[NSImageView]]
-</code>
+General/NSImage image = new General/NSImage(nextURL, true);
+imageView.setImage(image);  // imageView=General/NSImageView
+
 
 I also tried it this way...
 
-<code>
+    
 URL nextURL = new URL("/not/the/real/url.jpg");
-[[NSData]] nextData = new [[NSData]](nextURL);
-[[NSBitmapImageRep]] imageRep = new [[NSBitmapImageRep]](nextData);
-[[NSImage]] image = new [[NSImage]](imageRep.size());
+General/NSData nextData = new General/NSData(nextURL);
+General/NSBitmapImageRep imageRep = new General/NSBitmapImageRep(nextData);
+General/NSImage image = new General/NSImage(imageRep.size());
 image.addRepresentation(imageRep);
-imageView.setImage(image);  // imageView=[[NSImageView]]
-</code>
+imageView.setImage(image);  // imageView=General/NSImageView
+
 
 Both have the same result: application loads and then crashes.  Its almost as if the image is not being saved and is garbaged collected- the next time the view tries to display, the data is not there (just a guess).
 
@@ -29,9 +29,9 @@ Seems you've got some garbage collected objects somewhere in your code and as fa
 
 ----
 Ok, this gets weirder.  If I add the following line:
-<code>
+    
 image.isValid()
-</code>
+
 
 it always returns 'true'.  
 
@@ -42,15 +42,15 @@ Does anyone else have a method for getting a jpg from the web?
 -Ryan
 ----
 I tried to first add the image to an array list and then add the image (from the arraylist) to the webview:
-<code>
+    
 URL nextURL = new URL("/not/the/real/url.jpg");
-[[NSImage]] newImage = new [[NSImage]](nextURL, true);
+General/NSImage newImage = new General/NSImage(nextURL, true);
 albumImage.isValid();
 listOfImages.add(newImage);  // arraylist
-imageView.setImage(([[NSImage]])listOfImages.get(0));
-</code>
+imageView.setImage((General/NSImage)listOfImages.get(0));
 
-The result that I get now is that isValid() returns true, but trying to add the image to the arraylist throws a [[NullPointerException]].  What the heck is going on here?  I am 100% positive that the URL is correct- all I have to do is cut and paste it into my browser and I get an image returned.  
+
+The result that I get now is that isValid() returns true, but trying to add the image to the arraylist throws a General/NullPointerException.  What the heck is going on here?  I am 100% positive that the URL is correct- all I have to do is cut and paste it into my browser and I get an image returned.  
 
 This is very frustrating.  If anyone has a technique for doing this another way, I am all ears...
 
@@ -62,46 +62,46 @@ There are a couple of problems with the above code:
 * there's no need for the setImage function to retrieve the newly put image from the list
 
 
-At the end of this code block, nextURL and newImage will be tagged for garbage collection. At some arbitrary point in the future they will be garbage collected, and thus the reference to newImage that you passed in [[NSImage]].setImage is on an object that will disappear in the future, thus causing the crash. You will need to maintain a permanent reference to your image somewhere. It appears that your solution is to put the images into an array that is a class-level field. This will work, but your implementation has a few problems. This is one way to do it:
+At the end of this code block, nextURL and newImage will be tagged for garbage collection. At some arbitrary point in the future they will be garbage collected, and thus the reference to newImage that you passed in General/NSImage.setImage is on an object that will disappear in the future, thus causing the crash. You will need to maintain a permanent reference to your image somewhere. It appears that your solution is to put the images into an array that is a class-level field. This will work, but your implementation has a few problems. This is one way to do it:
 
-<code>
-public class [[SomeClass]] {
-[[NSMutableArray]] listOfImages = new [[NSMutableArray]]();
+    
+public class General/SomeClass {
+General/NSMutableArray listOfImages = new General/NSMutableArray();
 
-public void addSomeImage() { // this is probably an [[IBOutlet]], but doesn't have to be
+public void addSomeImage() { // this is probably an General/IBOutlet, but doesn't have to be
 URL nextURL = new URL("/not/the/real/url.jpg");
-[[NSImage]] newImage = new [[NSImage]](nextURL, true);
-listOfImages.addObject(newImage);  // I switched this to an [[NSMutableArray]] just for fun, an [[ArrayList]] would work just as well
+General/NSImage newImage = new General/NSImage(nextURL, true);
+listOfImages.addObject(newImage);  // I switched this to an General/NSMutableArray just for fun, an General/ArrayList would work just as well
 imageView.setImage(newImage); // newImage now has a reference in the permanent lisOfImages and will not be garbage collected
 }
-</code>
 
-The above code is probably not the optimal solution, as you now have an array of images in memory that will grow over time. If your image is part of a data model, then the reference should be kept in your model, and you retrieve your image from your data model to put in the [[NSImageView]]. If it's a transient object just for viewing, then your controller class that contains the [[NSImageView]] should probably have an [[NSImage]] variable (possibly your albumImage from above), that will hold the current reference to the image being displayed in the [[NSImageView]].
 
--- [[LoganAllred]]
+The above code is probably not the optimal solution, as you now have an array of images in memory that will grow over time. If your image is part of a data model, then the reference should be kept in your model, and you retrieve your image from your data model to put in the General/NSImageView. If it's a transient object just for viewing, then your controller class that contains the General/NSImageView should probably have an General/NSImage variable (possibly your albumImage from above), that will hold the current reference to the image being displayed in the General/NSImageView.
+
+-- General/LoganAllred
 
 ----
 I tried this:
-<code>
-/'' Controller ''/
+    
+/* Controller */
 
-import com.apple.cocoa.foundation.'';
-import com.apple.cocoa.application.'';
+import com.apple.cocoa.foundation.*;
+import com.apple.cocoa.application.*;
 import java.net.URL;
 
 public class Controller {
 
-    public [[NSImageView]] imageView1; /'' [[IBOutlet]] ''/
-    public [[NSImageView]] imageView2; /'' [[IBOutlet]] ''/
+    public General/NSImageView imageView1; /* General/IBOutlet */
+    public General/NSImageView imageView2; /* General/IBOutlet */
 	
 	public void awakeFromNib()
 		{
 		try
 		{
-		[[NSImage]] image=new [[NSImage]](new URL("http://perso.wanadoo.fr/mpergand/applis/editeur_tx7/english/tx7_editor_t.[jpg]"),true);
+		General/NSImage image=new General/NSImage(new URL("http://perso.wanadoo.fr/mpergand/applis/editeur_tx7/english/tx7_editor_t.[jpg]"),true);
 		imageView1.setImage(image);
 		
-		image=new [[NSImage]](new URL("http://perso.wanadoo.fr/mpergand/applis/midi_dump/midi_dump_t.[jpg]"));
+		image=new General/NSImage(new URL("http://perso.wanadoo.fr/mpergand/applis/midi_dump/midi_dump_t.[jpg]"));
 		imageView2.setImage(image);
 		
 		}
@@ -112,21 +112,21 @@ public class Controller {
 		}
 
 }
-</code>
+
 
 It doesn't crash ...
 
 Marc Pergand
 ----
-I've run into the same problem.  I have a [[NSTableView]] with a list of DVD titles from a search of Amazon.  When the user clicks one of the titles, I go and get the cover image and display it in an [[NSImageView]].  This works fine for the first search.  However, when the user goes to search again, I get a SIGBUS.  I've read about holding references in your java code to objects you pass into the UI and I'm doing that, but it still SIGBUS's.  Here's the pertinent code in my Controller.java class:
+I've run into the same problem.  I have a General/NSTableView with a list of DVD titles from a search of Amazon.  When the user clicks one of the titles, I go and get the cover image and display it in an General/NSImageView.  This works fine for the first search.  However, when the user goes to search again, I get a SIGBUS.  I've read about holding references in your java code to objects you pass into the UI and I'm doing that, but it still SIGBUS's.  Here's the pertinent code in my Controller.java class:
 
-<code>
-public [[NSImageView]] coverField; /'' [[IBOutlet]] ''/
-public [[NSTableView]] titlesField; /'' [[IBOutlet]] ''/
-private [[NSImage]] image =  null;
-private [[NSMutableArray]] cocoaObjects = new [[NSMutableArray]]();
+    
+public General/NSImageView coverField; /* General/IBOutlet */
+public General/NSTableView titlesField; /* General/IBOutlet */
+private General/NSImage image =  null;
+private General/NSMutableArray cocoaObjects = new General/NSMutableArray();
 
-    public void tableViewClicked(Object sender) { /'' [[IBAction]] ''/
+    public void tableViewClicked(Object sender) { /* General/IBAction */
 		int i = titlesField.clickedRow();
 		if (i == -1) 
 			return;
@@ -137,7 +137,7 @@ private [[NSMutableArray]] cocoaObjects = new [[NSMutableArray]]();
 				setStatus("Retrieving cover image...");
 				setProgress(true);
 				try {
-					image = new [[NSImage]](new java.net.URL(item.getLargeImage().getURL()));
+					image = new General/NSImage(new java.net.URL(item.getLargeImage().getURL()));
 					cocoaObjects.addObject(image);
 					coverField.setImage(image);
 				} catch (Exception e) {
@@ -154,11 +154,11 @@ private [[NSMutableArray]] cocoaObjects = new [[NSMutableArray]]();
 		cocoaObjects.removeAllObjects();
 		coverField.displayIfNeeded();
 	}
-</code>
 
-Any ideas why this is [[SIGBUSing]]?  I've looked at the stacktrace, but I can't figure out what it is doing.  Here's a bit from the crashlog.
 
-<code>
+Any ideas why this is General/SIGBUSing?  I've looked at the stacktrace, but I can't figure out what it is doing.  Here's a bit from the crashlog.
+
+    
 Exception:  EXC_BAD_ACCESS (0x0001)
 Codes:      KERN_PROTECTION_FAILURE (0x0002) at 0x00000008
 
@@ -171,47 +171,47 @@ Thread 0 Crashed:
 5   libjvm.dylib                   	0x93748bc4 __floatdisf + 0xef4
 6   libjvm.dylib                   	0x93776710 JVM_InvokeMethod + 0x1f0
 7   <<00000000>> 	0x06870b54 0 + 0x6870b54
-</code>
+
 
 Lines 8 - 45 are just like line 7--just addresses.  Then there's:
 
-<code>
+    
 46  libjvm.dylib                   	0x93687ff8 JVM_GetCPMethodClassNameUTF + 0xb38
 47  libjvm.dylib                   	0x936a9448 JVM_GetCPClassNameUTF + 0x998
 48  libjvm.dylib                   	0x937a0f00 JVM_UnloadLibrary + 0x125e0
 49  libjvm.dylib                   	0x9386f2c4 jio_vsnprintf + 0x10fc4
 50  libObjCJava.A.dylib            	0x89927b0c __JAVAMethodInvoke + 0xa4
-51  libObjCJava.A.dylib            	0x89927d64 [[JAVAMethodInvokeVoid]] + 0x34
+51  libObjCJava.A.dylib            	0x89927d64 General/JAVAMethodInvokeVoid + 0x34
 52  libObjCJava.A.dylib            	0x8992df30 _NSInvokeJavaMethod + 0x42c
 53  libObjCJava.A.dylib            	0x8992a328 _BRIDGEMethodImp + 0x98
-54  com.apple.[[AppKit]]               	0x92f276fc -[[[NSApplication]] sendAction:to:from:] + 0x6c
-55  com.apple.[[AppKit]]               	0x92f2e418 -[[[NSControl]] sendAction:to:] + 0x60
-56  com.apple.[[AppKit]]               	0x92f686f8 -[[[NSCell]] _sendActionFrom:] + 0x9c
-57  com.apple.[[AppKit]]               	0x9301ef08 -[[[NSButtonCell]] performClick:] + 0x178
-58  com.apple.[[AppKit]]               	0x92f73468 -[[[NSButton]] performKeyEquivalent:] + 0x1b8
-59  com.apple.[[AppKit]]               	0x92f04e40 -[[[NSView]] performKeyEquivalent:] + 0x8c
-60  com.apple.[[AppKit]]               	0x92ff8964 -[[[NSWindow]] performKeyEquivalent:] + 0x24
-61  com.apple.[[AppKit]]               	0x92f517f0 -[[[NSTextField]] textDidEndEditing:] + 0x2ac
+54  com.apple.General/AppKit               	0x92f276fc -General/[NSApplication sendAction:to:from:] + 0x6c
+55  com.apple.General/AppKit               	0x92f2e418 -General/[NSControl sendAction:to:] + 0x60
+56  com.apple.General/AppKit               	0x92f686f8 -General/[NSCell _sendActionFrom:] + 0x9c
+57  com.apple.General/AppKit               	0x9301ef08 -General/[NSButtonCell performClick:] + 0x178
+58  com.apple.General/AppKit               	0x92f73468 -General/[NSButton performKeyEquivalent:] + 0x1b8
+59  com.apple.General/AppKit               	0x92f04e40 -General/[NSView performKeyEquivalent:] + 0x8c
+60  com.apple.General/AppKit               	0x92ff8964 -General/[NSWindow performKeyEquivalent:] + 0x24
+61  com.apple.General/AppKit               	0x92f517f0 -General/[NSTextField textDidEndEditing:] + 0x2ac
 62  com.apple.Foundation           	0x90a27aec _nsnote_callback + 0xb0
-63  com.apple.[[CoreFoundation]]       	0x901da4a8 __CFXNotificationPost + 0x1b4
-64  com.apple.[[CoreFoundation]]       	0x901deeb8 _CFXNotificationPostNotification + 0x340
-65  com.apple.Foundation           	0x90a25938 -[[[NSNotificationCenter]] postNotificationName:object:userInfo:] + 0x74
-66  com.apple.[[AppKit]]               	0x92fe01fc -[[[NSTextView]]([[NSPrivate]]) _giveUpFirstResponder:] + 0x1f0
-67  com.apple.[[AppKit]]               	0x92fdfdd4 -[[[NSTextView]] doCommandBySelector:] + 0xcc
-68  com.apple.[[AppKit]]               	0x92ed5268 -[[[NSKeyBindingManager]](NSKeyBindingManager_MultiClients) interpretEventAsCommand:forClient:] + 0x668
-69  com.apple.[[AppKit]]               	0x92eede9c -[[[NSTSMInputContext]] interpretKeyEvents:] + 0x448
-70  com.apple.[[AppKit]]               	0x92f50e88 -[[[NSView]] interpretKeyEvents:] + 0x40
-71  com.apple.[[AppKit]]               	0x92eea0e8 -[[[NSTextView]] keyDown:] + 0x2dc
-72  com.apple.[[AppKit]]               	0x92eb2c90 -[[[NSWindow]] sendEvent:] + 0x1780
-73  com.apple.[[AppKit]]               	0x92ea4ca0 -[[[NSApplication]] sendEvent:] + 0xebc
-74  com.apple.[[AppKit]]               	0x92ead0d0 -[[[NSApplication]] run] + 0x240
-75  com.apple.[[AppKit]]               	0x92f697bc [[NSApplicationMain]] + 0x1d0
+63  com.apple.General/CoreFoundation       	0x901da4a8 __CFXNotificationPost + 0x1b4
+64  com.apple.General/CoreFoundation       	0x901deeb8 _CFXNotificationPostNotification + 0x340
+65  com.apple.Foundation           	0x90a25938 -General/[NSNotificationCenter postNotificationName:object:userInfo:] + 0x74
+66  com.apple.General/AppKit               	0x92fe01fc -General/[NSTextView(General/NSPrivate) _giveUpFirstResponder:] + 0x1f0
+67  com.apple.General/AppKit               	0x92fdfdd4 -General/[NSTextView doCommandBySelector:] + 0xcc
+68  com.apple.General/AppKit               	0x92ed5268 -General/[NSKeyBindingManager(NSKeyBindingManager_MultiClients) interpretEventAsCommand:forClient:] + 0x668
+69  com.apple.General/AppKit               	0x92eede9c -General/[NSTSMInputContext interpretKeyEvents:] + 0x448
+70  com.apple.General/AppKit               	0x92f50e88 -General/[NSView interpretKeyEvents:] + 0x40
+71  com.apple.General/AppKit               	0x92eea0e8 -General/[NSTextView keyDown:] + 0x2dc
+72  com.apple.General/AppKit               	0x92eb2c90 -General/[NSWindow sendEvent:] + 0x1780
+73  com.apple.General/AppKit               	0x92ea4ca0 -General/[NSApplication sendEvent:] + 0xebc
+74  com.apple.General/AppKit               	0x92ead0d0 -General/[NSApplication run] + 0x240
+75  com.apple.General/AppKit               	0x92f697bc General/NSApplicationMain + 0x1d0
 76  ???                            	0x0000877c main + 0x28 (main.m:13)
 77  ???                            	0x00008244 _start + 0x188 (crt.c:267)
 78  dyld                           	0x8fe1a278 _dyld_start + 0x64
-</code>
 
-The really interesting thing is that if I comment out the line "image = new [[NSImage]](new java.net.URL(item.getLargeImage().getURL()));", the program doesn't SIGBUS, but obviously doesn't display any images)!!!
+
+The really interesting thing is that if I comment out the line "image = new General/NSImage(new java.net.URL(item.getLargeImage().getURL()));", the program doesn't SIGBUS, but obviously doesn't display any images)!!!
 
 Any help is greatly appreciated!!!!!
 Mark
@@ -219,8 +219,8 @@ Mark
 ----
 Hi Mark,
 
-Not very easy to figured out where the problem is with your code, but i can say for sure that you don't need to retain your image in an array, the [[NSImageView]] retain it already.
-I think the issue is somewhere else, maybe with the dataSource of your [[NSTableView]]. Do you subclass any [[NSControl]] object ?
+Not very easy to figured out where the problem is with your code, but i can say for sure that you don't need to retain your image in an array, the General/NSImageView retain it already.
+I think the issue is somewhere else, maybe with the dataSource of your General/NSTableView. Do you subclass any General/NSControl object ?
 
 You can look at this page:
 http://perso.wanadoo.fr/mpergand/articles/en/journey_to_the_center.html
@@ -228,27 +228,27 @@ http://perso.wanadoo.fr/mpergand/articles/en/journey_to_the_center.html
 
 Marc
 ----
-Thanks for that tip Marc.  I actually have three datasources for three objects in my NIB: [[NSTableView]] and two [[NSComboBoxes]].  I connected the datasources to three separate Java classses in Interface Builder.  I'll switch that around to use the suggestion on your web page to instantiate the classes and set the datasources in the awakefromnib method in my controller class.  I'll let you know the results! PS.  I do not subclass any [[NSControl]] objects.  I only have java.lang.Object classes.
+Thanks for that tip Marc.  I actually have three datasources for three objects in my NIB: General/NSTableView and two General/NSComboBoxes.  I connected the datasources to three separate Java classses in Interface Builder.  I'll switch that around to use the suggestion on your web page to instantiate the classes and set the datasources in the awakefromnib method in my controller class.  I'll let you know the results! PS.  I do not subclass any General/NSControl objects.  I only have java.lang.Object classes.
 
 Mark
 ----
-I changed the [[NSImage]] creation to (holding no references in Java):
-<code>
-coverField.setImage(new [[NSImage]](new java.net.URL(item.getLargeImage().getURL())));
-</code>
+I changed the General/NSImage creation to (holding no references in Java):
+    
+coverField.setImage(new General/NSImage(new java.net.URL(item.getLargeImage().getURL())));
+
 Disconnected my datasources in IB and created them in awakeFromNib.  And still the same SIGBUS error on the second search.  Here's my code snipits now:
 
-<code>
-public [[DirectorsDataSource]] directorsDataSource = new [[DirectorsDataSource]]();
-public [[TitlesDataSource]] titlesDataSource = new [[TitlesDataSource]]();
-public [[ActorsDataSource]] actorsDataSource = new [[ActorsDataSource]]();
+    
+public General/DirectorsDataSource directorsDataSource = new General/DirectorsDataSource();
+public General/TitlesDataSource titlesDataSource = new General/TitlesDataSource();
+public General/ActorsDataSource actorsDataSource = new General/ActorsDataSource();
 
 public void awakeFromNib() {
     titlesField.setDataSource(titlesDataSource);
     directorsField.setDataSource(directorsDataSource);
     actorsField.setDataSource(actorsDataSource);
 }
-</code>
+
 
 The crash log looks exactly the same.  And if I comment out the coverField.setImage... line, everything works fine.
 
@@ -260,11 +260,11 @@ Mark
 Maybe a problem with the URL, the cocoa NSURL and the java URL are toll-free bridged, but there's some problems sometimes...
 
 try:
-<code>
+    
 java.net.URL imageURL=new java.net.URL(item.getLargeImage().getURL());  // does it crash here ?
 System.out.println(imageURL);   // is the URL valid ?
 coverField.setImage(imageURL);  // or does it crash here ?
-</code>
+
 
 Marc
 ----
@@ -272,58 +272,58 @@ Marc
 I'm not familiar with the term "toll-free bridged".  Could you explain?
 
 The code:
-<code>
-image = new [[NSImage]](new java.net.URL(item.getLargeImage().getURL()));
+    
+image = new General/NSImage(new java.net.URL(item.getLargeImage().getURL()));
 cocoaObjects.addObject(image);  // I've removed this since our last discussion
 coverField.setImage(image);
-</code>
-Doesn't crash at all.  I can click on any item in my [[NSTableView]] and the image is properly displayed in the coverField ([[NSImageView]]).
 
-It crashes when the user performs a second search.  I clear all the fields ([[NSTableView]] & [[NSImageView]]) and then perform a second Amazon search.  I've stepped through the debugger to try and determine which line of code is causing the problem, but it's deep in the Apache Axis classes (for which I'm not using source, just JAR files).  It appears to crash when Axis perform the SOAP Web Services call to Amazon.  My belief (more of a feeling that any direct knowledge) is that when the search thread is searching, some other thread is doing something (like garbage collection?) which causes the SIBGUS.
+Doesn't crash at all.  I can click on any item in my General/NSTableView and the image is properly displayed in the coverField (General/NSImageView).
 
-The reason I'm pointing the finger at the [[NSImage]] and/or [[NSImageView]] objects is that if I comment out the coverField.setImage(image) line, the program doesn't crash!
+It crashes when the user performs a second search.  I clear all the fields (General/NSTableView & General/NSImageView) and then perform a second Amazon search.  I've stepped through the debugger to try and determine which line of code is causing the problem, but it's deep in the Apache Axis classes (for which I'm not using source, just JAR files).  It appears to crash when Axis perform the SOAP Web Services call to Amazon.  My belief (more of a feeling that any direct knowledge) is that when the search thread is searching, some other thread is doing something (like garbage collection?) which causes the SIBGUS.
+
+The reason I'm pointing the finger at the General/NSImage and/or General/NSImageView objects is that if I comment out the coverField.setImage(image) line, the program doesn't crash!
 
 I changed the code to:
-<code>
+    
 java.net.URL url = new java.net.URL(item.getLargeImage().getURL());
 System.out.println(url);
-image = new [[NSImage]](url);
+image = new General/NSImage(url);
 coverField.setImage(image);
-</code>
 
-The url prints out ok <quote>http://images.amazon.com/images/P/B000062XFM.01._SCLZZZZZZZ_.jpg</quote> for example.  Note: coverField.setImage needs an [[NSImage]], not a url per your example.
+
+The url prints out ok <quote>http://images.amazon.com/images/P/B000062XFM.01._SCLZZZZZZZ_.jpg</quote> for example.  Note: coverField.setImage needs an General/NSImage, not a url per your example.
 
 Mark
 
 ----
-''Note: coverField.setImage needs an [[NSImage]], not a url per your example.''
+*Note: coverField.setImage needs an General/NSImage, not a url per your example.*
 
 Of course, you're right :)
 
 My comments from some advices you receive from vera on the apple list:
 
-''1) try to make the [[NSMutableArray]] static''
+*1) try to make the General/NSMutableArray static*
 
 Don't understand why
 
-''2) add all classes which extend [[NSObject]] to the array (don't forget the outlet
-of the [[NSImageView]])''
+*2) add all classes which extend General/NSObject to the array (don't forget the outlet
+of the General/NSImageView)*
 
 Unnecessary
 
-''3) I think you are not right with your comment, that [[ArrayList]] would work just
-as well, if you use [[ArrayList]] instead the [[CocoaBridge]] will destroy the
+*3) I think you are not right with your comment, that General/ArrayList would work just
+as well, if you use General/ArrayList instead the General/CocoaBridge will destroy the
 reference and the application crashes again. I don't know what the bridge is
-doing with our java references but if we substitute [[NSMutableArray]] with a
-[[ArrayList]] in our project the application crashes all the time.''
+doing with our java references but if we substitute General/NSMutableArray with a
+General/ArrayList in our project the application crashes all the time.*
 
-Well, i don't know, maybe it's safier to use [[NSArray]] and [[NSDictionary]] to store cocoa objects ...
+Well, i don't know, maybe it's safier to use General/NSArray and General/NSDictionary to store cocoa objects ...
 
-''My belief (more of a feeling that any direct knowledge) is that when the search thread is searching, some other thread is doing something (like garbage collection?) which causes the SIBGUS.''
+*My belief (more of a feeling that any direct knowledge) is that when the search thread is searching, some other thread is doing something (like garbage collection?) which causes the SIBGUS.*
 
 Maybe Axis is the issue, if you try to load the image many times with the same static url, does it crash as well ?
 ----
-Thank you for your help.  I've gone to the extreme and put EVERYTHING into an [[NSMutableArray]] and the program still crashes!!
+Thank you for your help.  I've gone to the extreme and put EVERYTHING into an General/NSMutableArray and the program still crashes!!
 
 As an experiment, I wrote the front-end in Java Swing to see if it was a back-end (Java) or front-end (Cocoa problem).  
 The Java Swing application works without a problem!

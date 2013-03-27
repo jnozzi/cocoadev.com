@@ -5,4 +5,4 @@ I have attempted to set a selector to the menu's parent item, but apparently is 
 Anybody ever tried this before?
 
 ----
-Open [[NSMenu]].h, search for the word "delegate", and you'll be on your way.
+Open General/NSMenu.h, search for the word "delegate", and you'll be on your way.

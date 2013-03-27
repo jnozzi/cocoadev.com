@@ -4,15 +4,15 @@ I've written a Chess game in Obj-C. Now I'm writing the UI to it. I've been foll
 
 To cut to the chase:
 
-I want to send some text, @"Hello", to an [[NSTextView]], which is declared in my [[AppController]] class to handle UI stuff, ''devTextView, from my other source files. 
+I want to send some text, @"Hello", to an General/NSTextView, which is declared in my General/AppController class to handle UI stuff, *devTextView, from my other source files. 
 
-I will be calling this method from the [[AppController]]:
+I will be calling this method from the General/AppController:
 
-- (void)appendToDevLog:([[NSString]] '')someString;
+- (void)appendToDevLog:(General/NSString *)someString;
 
-This handles appending text to the [[NSTextView]]. 
+This handles appending text to the General/NSTextView. 
 
-How do I call this method, without making another instance of my [[AppController]] class, in my other source files in the project?
+How do I call this method, without making another instance of my General/AppController class, in my other source files in the project?
 
 ----
-See [[MailingListMode]], [[HowToUseThisSite]], [[TextFormattingRules]], and ''don't post the same question on two different pages''.
+See General/MailingListMode, General/HowToUseThisSite, General/TextFormattingRules, and *don't post the same question on two different pages*.

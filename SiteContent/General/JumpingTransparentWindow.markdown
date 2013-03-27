@@ -1,1 +1,1 @@
-This brief Q and A which was '''solved''' by proper use of the [[NSWindow]] method <code>setMovableByWindowBackground</code> has been moved to a page entitled [[SetMovableByWindowBackground]]. Solved, hence, no more [[JumpingTransparentWindow]].
+This brief Q and A which was **solved** by proper use of the General/NSWindow method     setMovableByWindowBackground has been moved to a page entitled General/SetMovableByWindowBackground. Solved, hence, no more General/JumpingTransparentWindow.

@@ -1,6 +1,6 @@
-This is just a placeholder for [[ExtractPanelToNib]]'s implementation:
+This is just a placeholder for General/ExtractPanelToNib's implementation:
 
-1. Create a new nib file with file's owner "[[PanelController]]", a class designed to manage the panel's view.
+1. Create a new nib file with file's owner "General/PanelController", a class designed to manage the panel's view.
 
 2. Move the panel nib elements from the parent nib to the child nib file.
 
@@ -14,4 +14,4 @@ This is just a placeholder for [[ExtractPanelToNib]]'s implementation:
 
 7. Delete parent nib elements.
 
-8. Implement [[CreateViewFromNib]].
+8. Implement General/CreateViewFromNib.

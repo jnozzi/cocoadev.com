@@ -4,13 +4,13 @@ I know how to call between Obj-C classes fine, but how do I call methods in C++ 
 
 ----
 
-''Note that, strictly speaking, C does not have the concept of methods. C uses functions to separate program flow control into groups.''
+*Note that, strictly speaking, C does not have the concept of methods. C uses functions to separate program flow control into groups.*
 
 The same way you would in C++ or C. For example, calling printf is as simple as writing:
 
-<code>
+    
 printf("%d bottles of your favourite beverage on the wall\n", number);
-</code>
+
 
 ----
 
@@ -19,25 +19,25 @@ C functions can be called directly as mentioned above.  For C++, you will need t
 
 Static object example:
 
-<code>
-[[SomeObjectClass]]  obj;
+    
+General/SomeObjectClass  obj;
 
 obj.foo();
-</code>
+
 
 Dynamic object example:
 
-<code>
-[[SomeObjectClass]]  obj = new [[SomeObjectClass]];
+    
+General/SomeObjectClass  obj = new General/SomeObjectClass;
 
 obj->foo();
-</code>
+
 
 or class access (note the use of ::, the scope resolution operator):
 
-<code>
-[[SomeObjectClass]]::foo();
-</code>
+    
+General/SomeObjectClass::foo();
+
 
 All are well documented in almost any introductory C++ programming text.
 
@@ -49,7 +49,7 @@ Note that if you want to call c++ from objective-c, you can, but you have to ren
 Also, there are limitations -- some c++ libraries will have functions or vars named id, which conflicts with the objective-c keyword. In those cases you'll have to write some sort of "quarantine" interface (which I've been doing in my own work, bridging the ODE physics SDK to cocoa via such quarantining). 
 
 Further, I've had trouble with prototyping namespaced c++ classes in objective-c headers; but it could just have been my own idiocy.
-[[ShamylZakariya]]
+General/ShamylZakariya
 
 ---
 
@@ -57,5 +57,5 @@ Generally, the term "wrap/wrapping" is used for the usage of  "quarantine/quaran
 
 ---
 
-Normally I would say "wrap/wrapping" but in this case it's not a matter of logical abstraction, but instead a matter of completely hiding the internals of another system whose ''headers'' alone will confuse/anger the objective-c/objective-c++ compiler. I guess it's a matter of personal preference, but in this case the word quarantine seemed more appropriate, even if it's not official terminology ;)
-[[ShamylZakariya]]
+Normally I would say "wrap/wrapping" but in this case it's not a matter of logical abstraction, but instead a matter of completely hiding the internals of another system whose *headers* alone will confuse/anger the objective-c/objective-c++ compiler. I guess it's a matter of personal preference, but in this case the word quarantine seemed more appropriate, even if it's not official terminology ;)
+General/ShamylZakariya

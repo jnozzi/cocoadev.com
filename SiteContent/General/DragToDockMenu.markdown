@@ -5,7 +5,7 @@ You can drag to a menu; you can drag to the dock - but can you drag to a Dock Me
 
 I don't believe so, no.
 
-''Since when can you drag to a menu?''
+*Since when can you drag to a menu?*
 
 ----
 
@@ -17,11 +17,11 @@ It uses Accessibility API to locate the position of its icon on the Dock, and th
 
 ----
 
-Use [[AXMakeProcessTrusted]] or
-<code>
+Use General/AXMakeProcessTrusted or
+    
 sudo chown :accessibility myApp
 sudo chmod g+s myApp
-</code>
+
 in Tiger.
 
 ----

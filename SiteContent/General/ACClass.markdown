@@ -1,7 +1,7 @@
 
 
 
-<code>
+    
  /* 
      Initializes this ACClass object with some Class
  
@@ -12,8 +12,8 @@
      So, an ACClass object created from [NSObject class] won't include class methods, such as alloc
      such methods are accessible only via [NSObject class]->isa
      
-     [[ACClass alloc] initWithClass: [NSObject class]];
-     [[ACClass alloc] initWithClass: [NSObject class]->isa];
+     General/ACClass alloc] initWithClass: [NSObject class;
+     General/ACClass alloc] initWithClass: [NSObject class]->isa];
  
  */
  -(id)initWithClass:(Class)aClass;
@@ -54,8 +54,8 @@
      Add an ACMethod object to the list of methods provided to the aspect for advising.
  */
  -(void)addMethod:(ACMethod*)method;
-</code>
 
 
 
-[[Category:PointlessInformation]]
+
+[[Category:PointlessInformation

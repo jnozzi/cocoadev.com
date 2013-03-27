@@ -1,6 +1,6 @@
-Apple80211.framework is private [[APIs]] relating to the wireless link. The header is available at http://www.macstumbler.com/Apple80211.h and copied here for posterity:
+Apple80211.framework is private General/APIs relating to the wireless link. The header is available at http://www.macstumbler.com/Apple80211.h and copied here for posterity:
 
-<code>
+    
  /*
   *  Apple80211.h
   *
@@ -13,7 +13,7 @@ Apple80211.framework is private [[APIs]] relating to the wireless link. The head
   *
   *  Contributors:
   *  korben - korben@cox.net
-  *  jason - catalyst@mac.com  -- [[JasonToffaletti]]
+  *  jason - catalyst@mac.com  -- General/JasonToffaletti
   *  ragge - ragge@nada.kth.se
   *
   *  Last updated by korben on 5/15/2002
@@ -438,7 +438,7 @@ Apple80211.framework is private [[APIs]] relating to the wireless link. The head
  */
  
  #endif // __APPLE_80211__
-</code>
+
 
 ----
 I've got some code to let the driver call arbitrary ioctls on the card. I'll dig it up and upload it. -- themacuser

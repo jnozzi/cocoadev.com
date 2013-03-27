@@ -1,6 +1,6 @@
 
 
-I am interested in copying files to an iPod when it's NOT in disk mode. Any way to go about doing this? Using Apple's sample [[USBNotificationTool]], I can get my app to recognize when an iPod is plugged in or disconnected, but that's about it. How do I copy something to a USB device?
+I am interested in copying files to an iPod when it's NOT in disk mode. Any way to go about doing this? Using Apple's sample General/USBNotificationTool, I can get my app to recognize when an iPod is plugged in or disconnected, but that's about it. How do I copy something to a USB device?
 
 ----
 I don't have an answer for you, I'm afraid, but I'm intrigued. What is it, specifically, about disk mode that you want to avoid? I ask because it strikes me that you could easily end up re-implementing an awful lot of functionality that is already provided by disk-mode just to make this work.

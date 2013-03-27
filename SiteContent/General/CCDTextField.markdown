@@ -1,23 +1,23 @@
-[[CCDTextField]] is similar to [[NSSearchField]].
+General/CCDTextField is similar to General/NSSearchField.
 
 Want to do something similar to iChat's input field? This is a good jumping off point. I'll put up a screenshot when I get a chance unless someone else beats me to it.
 
-Requires: [[CCDTextFieldCell]] and [[CCDPTextView]]
+Requires: General/CCDTextFieldCell and General/CCDPTextView
 
-<code>
-// [[CCDTextField]].h
-#import <[[AppKit]]/[[AppKit]].h>
-#import "[[CCDTextFieldCell]].h"
-#import "[[CCDPTextView]].h"
+    
+// General/CCDTextField.h
+#import <General/AppKit/General/AppKit.h>
+#import "General/CCDTextFieldCell.h"
+#import "General/CCDPTextView.h"
 
-@interface [[CCDTextField]] : [[NSTextField]]
+@interface General/CCDTextField : General/NSTextField
 {
-    [[NSProgressIndicator]] ''progressIndicator;
-    [[NSTimer]] ''progressTimer;
+    General/NSProgressIndicator *progressIndicator;
+    General/NSTimer *progressTimer;
 }
 
-- (void)setProgressIndicator:([[NSProgressIndicator]] '')indicator;
-- ([[NSProgressIndicator]] '')progressIndicator;
+- (void)setProgressIndicator:(General/NSProgressIndicator *)indicator;
+- (General/NSProgressIndicator *)progressIndicator;
 
 // Use these to start/stop the progress animation, thanks.
 - (void)startAnimation:(id)sender;
@@ -26,23 +26,23 @@ Requires: [[CCDTextFieldCell]] and [[CCDPTextView]]
 @end
 
 // Feel free to expand this or link to related categories.
-@interface [[CCDTextField]]([[CCDTextFieldAdditions]])
-- (void)insertText:([[NSString]] '')text;
-- ([[NSRange]])selectedRange;
-- (void)replaceTextInRange:([[NSRange]])aRange withString:([[NSString]] '')string;
+@interface General/CCDTextField(General/CCDTextFieldAdditions)
+- (void)insertText:(General/NSString *)text;
+- (General/NSRange)selectedRange;
+- (void)replaceTextInRange:(General/NSRange)aRange withString:(General/NSString *)string;
 @end
-</code>
 
-<code>
-// [[CCDTextField]].m
-#import "[[CCDTextField]].h"
 
-@implementation [[CCDTextField]]
+    
+// General/CCDTextField.m
+#import "General/CCDTextField.h"
 
-- (id)initWithCoder:([[NSCoder]]'')coder {
+@implementation General/CCDTextField
+
+- (id)initWithCoder:(General/NSCoder*)coder {
     if (self = [super initWithCoder:coder]) {
-        [[NSTextFieldCell]] ''oldCell = [self cell];
-        [[CCDTextFieldCell]] ''myCell = [[[[CCDTextFieldCell]] alloc] initTextCell:[oldCell stringValue]];
+        General/NSTextFieldCell *oldCell = [self cell];
+        General/CCDTextFieldCell *myCell = General/[[CCDTextFieldCell alloc] initTextCell:[oldCell stringValue]];
 
         // Did I forget anything?...
         [myCell setAlignment:[oldCell alignment]];
@@ -66,11 +66,11 @@ Requires: [[CCDTextFieldCell]] and [[CCDPTextView]]
         [myCell release];
     }
     {
-        [[NSProgressIndicator]] ''defaultIndicator = [[[[NSProgressIndicator]] alloc] initWithFrame:[self frame]];
-        [defaultIndicator setStyle:[[NSProgressIndicatorBarStyle]]];
+        General/NSProgressIndicator *defaultIndicator = General/[[NSProgressIndicator alloc] initWithFrame:[self frame]];
+        [defaultIndicator setStyle:General/NSProgressIndicatorBarStyle];
         [defaultIndicator setIndeterminate:YES];
         [defaultIndicator setBezeled:NO];
-        [defaultIndicator setFrameOrigin:[[NSMakePoint]](-600,-600)];
+        [defaultIndicator setFrameOrigin:General/NSMakePoint(-600,-600)];
         [self setProgressIndicator:defaultIndicator];
         [defaultIndicator release];
     }
@@ -84,22 +84,22 @@ Requires: [[CCDTextFieldCell]] and [[CCDPTextView]]
     [super dealloc];
 }
  
-- (void)setProgressIndicator:([[NSProgressIndicator]] '')indicator
+- (void)setProgressIndicator:(General/NSProgressIndicator *)indicator
 {
     [progressIndicator removeFromSuperview];
     progressIndicator = indicator;
     [self addSubview:progressIndicator];
 }
-- ([[NSProgressIndicator]] '')progressIndicator
+- (General/NSProgressIndicator *)progressIndicator
 {
     return progressIndicator;
 }
 
 - (void)startAnimation:(id)sender
 { // Game on
-    progressTimer = [[[[NSTimer]] scheduledTimerWithTimeInterval:[progressIndicator animationDelay] target:self selector:@selector(animate:) userInfo:nil repeats:YES] retain];
+    progressTimer = General/[[NSTimer scheduledTimerWithTimeInterval:[progressIndicator animationDelay] target:self selector:@selector(animate:) userInfo:nil repeats:YES] retain];
     [progressIndicator startAnimation:sender];
-    [[self cell] setAnimating:YES];
+    General/self cell] setAnimating:YES];
 }
 - (void)animate:(id)sender
 {
@@ -118,23 +118,23 @@ Requires: [[CCDTextFieldCell]] and [[CCDPTextView]]
     [self removeFromSuperview];
 }
 
-- (void)mouseDown:([[NSEvent]] '')event
+- (void)mouseDown:([[NSEvent *)event
 {
-    [[NSPoint]] mouseLoc = [event locationInWindow];
-    [[NSRect]] bounds = [self bounds];
+    General/NSPoint mouseLoc = [event locationInWindow];
+    General/NSRect bounds = [self bounds];
         id cell = [self cell];
 
-        if (![[NSPointInRect]](mouseLoc, [cell textRectForBounds:bounds])) {
+        if (!General/NSPointInRect(mouseLoc, [cell textRectForBounds:bounds])) {
             
-            [[NSRect]] leftRect = [self convertRect:[cell leftButtonRectForBounds:bounds] toView:nil];
-            [[NSRect]] rightRect = [self convertRect:[cell rightButtonRectForBounds:bounds] toView:nil];
+            General/NSRect leftRect = [self convertRect:[cell leftButtonRectForBounds:bounds] toView:nil];
+            General/NSRect rightRect = [self convertRect:[cell rightButtonRectForBounds:bounds] toView:nil];
                 
-                if ([[NSPointInRect]](mouseLoc, leftRect)) {
+                if (General/NSPointInRect(mouseLoc, leftRect)) {
                     id leftCell = [cell leftButtonCell];
                         [leftCell setHighlighted:YES];
                 }
                 else
-                if ([[NSPointInRect]](mouseLoc, rightRect)) {
+                if (General/NSPointInRect(mouseLoc, rightRect)) {
                     id rightCell = [cell rightButtonCell];
                     [rightCell setHighlighted:YES];
                 }
@@ -144,10 +144,10 @@ Requires: [[CCDTextFieldCell]] and [[CCDPTextView]]
      [super mouseDown:event];
 }
 
-- (void)mouseUp:([[NSEvent]] '')event
+- (void)mouseUp:(General/NSEvent *)event
 {
-    [[NSPoint]] mouseLoc = [event locationInWindow];
-    [[NSRect]] bounds = [self bounds];
+    General/NSPoint mouseLoc = [event locationInWindow];
+    General/NSRect bounds = [self bounds];
     id cell = [self cell];
     id leftCell = [cell leftButtonCell];
     id rightCell = [cell rightButtonCell];
@@ -155,17 +155,17 @@ Requires: [[CCDTextFieldCell]] and [[CCDPTextView]]
         [leftCell setHighlighted:NO];
         [rightCell setHighlighted:NO];
     
-    if (![[NSPointInRect]](mouseLoc, [cell textRectForBounds:bounds])) {
-        [[NSRect]] leftRect = [self convertRect:[cell leftButtonRectForBounds:bounds] toView:nil];
-        [[NSRect]] rightRect = [self convertRect:[cell rightButtonRectForBounds:bounds] toView:nil];
+    if (!General/NSPointInRect(mouseLoc, [cell textRectForBounds:bounds])) {
+        General/NSRect leftRect = [self convertRect:[cell leftButtonRectForBounds:bounds] toView:nil];
+        General/NSRect rightRect = [self convertRect:[cell rightButtonRectForBounds:bounds] toView:nil];
         
-        if ([[NSPointInRect]](mouseLoc, leftRect)) {
-            if ([leftCell isKindOfClass:[[[NSActionCell]] class]])
+        if (General/NSPointInRect(mouseLoc, leftRect)) {
+            if ([leftCell isKindOfClass:General/[NSActionCell class]])
                     [self sendAction:[leftCell action] to:[leftCell target]];
         }
         else
-            if ([[NSPointInRect]](mouseLoc, rightRect)) {
-                if ([rightCell isKindOfClass:[[[NSActionCell]] class]])
+            if (General/NSPointInRect(mouseLoc, rightRect)) {
+                if ([rightCell isKindOfClass:General/[NSActionCell class]])
                     [self sendAction:[rightCell action] to:[rightCell target]];
             }
     }
@@ -175,50 +175,50 @@ Requires: [[CCDTextFieldCell]] and [[CCDPTextView]]
 
 @end
 
-#pragma mark ([[CCDTextFieldAdditions]])
-@implementation [[CCDTextField]] ([[CCDTextFieldAdditions]])
-- (void)insertText:([[NSString]] '')text
+#pragma mark (General/CCDTextFieldAdditions)
+@implementation General/CCDTextField (General/CCDTextFieldAdditions)
+- (void)insertText:(General/NSString *)text
 {
     [self replaceTextInRange:[self selectedRange] withString:text];
 }
-- ([[NSRange]])selectedRange
+- (General/NSRange)selectedRange
 {
-    id textObj = [[self window] fieldEditor:YES forObject:self];
-    return [([[CCDPTextView]]'')textObj prvtSelectedRange];
+    id textObj = General/self window] fieldEditor:YES forObject:self];
+    return [([[CCDPTextView*)textObj prvtSelectedRange];
 }
 
-- (void)replaceTextInRange:([[NSRange]])aRange withString:([[NSString]] '')string
+- (void)replaceTextInRange:(General/NSRange)aRange withString:(General/NSString *)string
 {
-    [[NSMutableString]] ''ourString = [[self stringValue] mutableCopy];
+    General/NSMutableString *ourString = General/self stringValue] mutableCopy];
     [ourString replaceCharactersInRange:aRange withString:string];
-    [self setStringValue:[[ourString copy] autorelease]];
+    [self setStringValue:[[ourString copy] autorelease;
     [ourString release];
 }
 @end
-</code>
+
 
 ----
-11/21; The cell is highlighted and the action is sent in <code>mouseUp</code> instead of <code>mouseDown:</code>.
-''This should be fixed to deal with different kinds of [[NSButtonCells]] - it's no good for [[NSPopUpButtonCells]], for instance. Suggestions or fixes?''
+11/21; The cell is highlighted and the action is sent in     mouseUp instead of     mouseDown:.
+*This should be fixed to deal with different kinds of General/NSButtonCells - it's no good for General/NSPopUpButtonCells, for instance. Suggestions or fixes?*
 
-11/25; Added the category to make inserting text easier. Getting the selectedRange requires posing as the field editor for some reason so [[CCDPTextView]] is required (unless you can find another way or want to rip it out).
+11/25; Added the category to make inserting text easier. Getting the selectedRange requires posing as the field editor for some reason so General/CCDPTextView is required (unless you can find another way or want to rip it out).
 
-11/29; Removed the conversation with myself and added the optional progress bar. Use <code>[textfield startAnimation:nil];</code> to start the progress bar and <code>[textfield stopAnimation:nil];</code> to stop it. Only tested with an indeterminate progress bar, you can fix the others, right?
+11/29; Removed the conversation with myself and added the optional progress bar. Use     [textfield startAnimation:nil]; to start the progress bar and     [textfield stopAnimation:nil]; to stop it. Only tested with an indeterminate progress bar, you can fix the others, right?
 
-Forgot <code>[myCell setAlignment:[oldCell alignment]];</code>, seriously, are there more? Removed the placeholder stuff since it was being drawn over anyway.
+Forgot     [myCell setAlignment:[oldCell alignment]];, seriously, are there more? Removed the placeholder stuff since it was being drawn over anyway.
 
-4/8; [[CCDImageCategory]] wasn't needed, as described on its page.
+4/8; General/CCDImageCategory wasn't needed, as described on its page.
 
 ----
 
-Sorry to be a drag but ... what is [[CCDTextField]] for? What does it do? The explanation "Want to do something similar to iChat's input field?" doesn't tell me what this is, does. -- [[MikeTrent]]
+Sorry to be a drag but ... what is General/CCDTextField for? What does it do? The explanation "Want to do something similar to iChat's input field?" doesn't tell me what this is, does. -- General/MikeTrent
 
 It's a text field that allows for the additions of buttons in the right and left portions of the field, such as a search field or the iChat text field with the smiley face button on the right of the field.
 
 ----
 
-The explanation can be misleading for some, especially those looking for a [[DynamicallyResizingTextViewOrField]], another behavior of iChat's input field. 
+The explanation can be misleading for some, especially those looking for a General/DynamicallyResizingTextViewOrField, another behavior of iChat's input field. 
 
 ----
 
-Does this also work with a subclass of [[NSSecureTextField]]. I tried this with other examples, but the icon never appeared :(
+Does this also work with a subclass of General/NSSecureTextField. I tried this with other examples, but the icon never appeared :(

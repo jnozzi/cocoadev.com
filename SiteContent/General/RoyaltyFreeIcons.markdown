@@ -7,11 +7,11 @@ I've finally put up a portfolio site, so the icons are now available there. The 
 
 Enjoy!
 
--- [[MattBall]]
+-- General/MattBall
 
 ----
 
-Not to detract from [[MattBall]]'s work, but a lot of these icons are now accessible using <code>+[NSImage imageNamed:]</code>, and will properly draw at high DPI as they are composed of vector art whenever possible.
+Not to detract from General/MattBall's work, but a lot of these icons are now accessible using     +[NSImage imageNamed:], and will properly draw at high DPI as they are composed of vector art whenever possible.
 
 ----
 
@@ -27,7 +27,7 @@ If by hundreds, you mean 16 (toolbar-type icons), then yeah, some are provided f
 
 ----
 
-Does anyone have a copy of [[MattBall]]'s icons which they could host somewhere else please? He's redesigned his website and the file can no longer be found.  Also, he's not responding to comments on his blog and there is no other contact information for him.
+Does anyone have a copy of General/MattBall's icons which they could host somewhere else please? He's redesigned his website and the file can no longer be found.  Also, he's not responding to comments on his blog and there is no other contact information for him.
 
 ----
 

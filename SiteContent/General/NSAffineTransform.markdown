@@ -1,3 +1,3 @@
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[DrawBasic]]/index.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/DrawBasic/index.html
 
 [Topic]

@@ -1,3 +1,3 @@
 iSync API
 
-[[NSSyncConduit]]
+General/NSSyncConduit

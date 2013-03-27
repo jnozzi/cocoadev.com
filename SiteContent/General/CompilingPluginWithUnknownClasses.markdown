@@ -12,7 +12,7 @@ It doesn't sound like you're missing a trick, it sounds like you have a bug caus
 
 ----
 
-Do the plugin and the app have classes in common? Are you sure you are not loading some classes that are already loaded? This caused me much pain when I was writing an [[AudioUnit]], extremely random crashes, I ended up just moving the shared classes into a framework.
+Do the plugin and the app have classes in common? Are you sure you are not loading some classes that are already loaded? This caused me much pain when I was writing an General/AudioUnit, extremely random crashes, I ended up just moving the shared classes into a framework.
 
 ----
 
@@ -20,15 +20,15 @@ Are you in control of the class you are subclassing?
 
 ----
 
-Don't suppress undefined symbols; those are ''errors'' in this situation, and suppressing them won't make them go away.
+Don't suppress undefined symbols; those are *errors* in this situation, and suppressing them won't make them go away.
 
-''They aren't errors.  If you're subclassing a class from the app, the linker will complain unless you suppress the warning.  See [[GPGMail]], or any other plugin that does this.''
+*They aren't errors.  If you're subclassing a class from the app, the linker will complain unless you suppress the warning.  See General/GPGMail, or any other plugin that does this.*
 
-The linker will not complain if you pass a proper <code>-bundle_loader</code> flag, which is the right way to do this.
+The linker will not complain if you pass a proper     -bundle_loader flag, which is the right way to do this.
 
-Using the app as the bundle loader should work. Are you sure that the copy of the app that you're linking against is unstripped and not using [[ZeroLink]]?
+Using the app as the bundle loader should work. Are you sure that the copy of the app that you're linking against is unstripped and not using General/ZeroLink?
 
 ----
 
-Thanks to [[GPGMail]], i found the answer to my question.
+Thanks to General/GPGMail, i found the answer to my question.
 What was needed to do is to specify the path to the "Bundle Loader" and also the flag "-undefined dynamic_lookup" (in the Othe Linker Flags).

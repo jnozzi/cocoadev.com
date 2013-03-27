@@ -1,8 +1,8 @@
-[[CallToArms]] - Metaphorically speaking of course.
+General/CallToArms - Metaphorically speaking of course.
 
 Apple has created for itself the best situation possible. 
 
-It has Mac OS X, by far the world's best operating system. It has the [[GeeFive]]'s and cheaper machines holding prominent positions in the market as high quality and fairly high bang for buck computers. Finally it has the most powerful programming environment on any major platform based around the new interface, [[XCode]]. 
+It has Mac OS X, by far the world's best operating system. It has the General/GeeFive's and cheaper machines holding prominent positions in the market as high quality and fairly high bang for buck computers. Finally it has the most powerful programming environment on any major platform based around the new interface, General/XCode. 
 
 Apple will use this new found position in the market to push their market share, create more revenue and therefore profits and move the platform forward into the future as the prominent non-niche brand.
 
@@ -18,9 +18,9 @@ Its time for a change.
 
 ----
 
-Political thoughts aside: I'm trying, I'm trying. I don't think anybody's been sitting on their hands; releasing software is as good for you as it is for the community, generally speaking. -- [[RobRix]]
+Political thoughts aside: I'm trying, I'm trying. I don't think anybody's been sitting on their hands; releasing software is as good for you as it is for the community, generally speaking. -- General/RobRix
 
-Yeah, I think stepping up the amount of code that I write here would probably be a good idea. Then again, I also want to see Micro$oft go down. Lets roll! -- [[MatPeterson]]
+Yeah, I think stepping up the amount of code that I write here would probably be a good idea. Then again, I also want to see Micro$oft go down. Lets roll! -- General/MatPeterson
 
 ----
 
@@ -28,21 +28,21 @@ I'm trying to tell myself: Apple is a good company, Apple does better than avera
 
 But somehow I always end up rather frustrated to say the least about their developer support -- mainly their bug reporter, where 75% of my reported bugs are still "Open / Analyse", and I literally have correspondences going like this:
 
-<code>
+    
 Me: Here's a bug, here's how to reproduce.
 Apple: This is not a bug, it is by design.
 Me: Then you documentation is wrong.
 Apple: We think that it actually works, but you have tested it wrong.
 Me: No, please see the original code I sent you, and here it is again, just for the records.
 [ awaiting reply from Apple ]
-</code>
+
 
 I hope to soon earn some money from my software production and become a paying ADC member, perhaps anyone here could tell me if the support for paying memebers is better?
 
 ----
 
-Sad to say, but paying ADC members don't get much more attention than non-paying ones. The way I found best for thnings like your case is to read the mailing-lists and go to WWDC - that's where some of the people who'll listen hang out. You could, of course, throw away one of your "paid incidents" for such a thing, but I doubt it'll be worth it. -- [[JonasLuster]]
+Sad to say, but paying ADC members don't get much more attention than non-paying ones. The way I found best for thnings like your case is to read the mailing-lists and go to WWDC - that's where some of the people who'll listen hang out. You could, of course, throw away one of your "paid incidents" for such a thing, but I doubt it'll be worth it. -- General/JonasLuster
 
 ----
 
-I agree. If Apple wants more apps, it should at least ''try'' to help us develop them. I've been trying for two weeks to get a pretty simple question answered anywhere and am still waiting. Too bad ;(
+I agree. If Apple wants more apps, it should at least *try* to help us develop them. I've been trying for two weeks to get a pretty simple question answered anywhere and am still waiting. Too bad ;(

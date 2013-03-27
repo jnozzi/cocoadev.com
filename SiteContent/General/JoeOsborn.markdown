@@ -1,12 +1,12 @@
 
 
-Cocoa developer, wiki denizen([[PortlandPatternRepository]]/c2.com's [[WikiWikiWeb]]).
+Cocoa developer, wiki denizen(General/PortlandPatternRepository/c2.com's General/WikiWikiWeb).
 
-I practice almost-[[ExtremeProgramming]](can't go all-out, it's too hard to find a pair). 
+I practice almost-General/ExtremeProgramming(can't go all-out, it's too hard to find a pair). 
 
 My goals are to graduate high school, go to the Rochester Institute of Technology, and then teach at my current high school.
 
--[[JoeOsborn]], of the fledgling Open Sword Group
+-General/JoeOsborn, of the fledgling Open Sword Group
 
 email address: being@mac.com
 

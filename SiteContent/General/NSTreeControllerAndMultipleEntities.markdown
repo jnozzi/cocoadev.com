@@ -1,7 +1,7 @@
 
 
 I have a set of entities:
-<code>
+    
  Range
      name   - String
  Area
@@ -9,9 +9,9 @@ I have a set of entities:
  Language
      name   - String
      descriptiveText  - String
-</code>
-I would like to display these on the same level of an [[NSOutlineView]]. So, it would display something like
-<code>
+
+I would like to display these on the same level of an General/NSOutlineView. So, it would display something like
+    
   Ranges
      name
      name
@@ -24,7 +24,7 @@ I would like to display these on the same level of an [[NSOutlineView]]. So, it 
   Other
      Thing1
      Thing2
-</code>
-The Other list is a non Core Data list. Taking a look around it seems like the best way to do this is with an [[NSTreeController]] but I'm not sure how to setup the controller to use multiple entities, and non-entity items, at one time.
+
+The Other list is a non Core Data list. Taking a look around it seems like the best way to do this is with an General/NSTreeController but I'm not sure how to setup the controller to use multiple entities, and non-entity items, at one time.
 
 Are there any documents or blogs that discuss how to tackle this?

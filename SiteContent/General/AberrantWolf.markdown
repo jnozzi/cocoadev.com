@@ -4,6 +4,6 @@ Hallo.  Kinda' new to Cocoa programming.  Used the site a lot in learning, and n
 
 Anyway, leave comments of my posts here, I guess, and I'll be by to read them...  Or something.
 ----
-BTW, I made my question here if anyone's curious: [[AppleScriptExampleFromBookFails]]
+BTW, I made my question here if anyone's curious: General/AppleScriptExampleFromBookFails
 
---[[AberrantWolf]]
+--General/AberrantWolf

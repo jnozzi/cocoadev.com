@@ -10,9 +10,9 @@ Thanks
 ----
 
 Typing "Oxford" into Spotlight quickly found the Oxford dictionary package located at /Library/Dictionaries/.  The relevant files are inside the Contents folder of this package.   I dunno what the format is.  Good luck.
-''Those files seem to be encrypted. I have checked them out before, but could not make any sense of it.''
+*Those files seem to be encrypted. I have checked them out before, but could not make any sense of it.*
 
-Well, ''.dict/Contents/dict_body are XML files with a well-defined DTD, while dictionary_'' are binary indexes into it, in some proprietary Apple format. You might get away by parsing the XML file if you want, but it's many [[MBs]] long (16 MB for the thesaurus, 79 MB for the Oxford dictionary).
+Well, *.dict/Contents/dict_body are XML files with a well-defined DTD, while dictionary_* are binary indexes into it, in some proprietary Apple format. You might get away by parsing the XML file if you want, but it's many General/MBs long (16 MB for the thesaurus, 79 MB for the Oxford dictionary).
 
 ----
 

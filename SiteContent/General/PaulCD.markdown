@@ -1,1 +1,1 @@
-Paul Diegenbach, diegen at [[PCDCom]].nl, a retired and occasional  cocoa programmer
+Paul Diegenbach, diegen at General/PCDCom.nl, a retired and occasional  cocoa programmer

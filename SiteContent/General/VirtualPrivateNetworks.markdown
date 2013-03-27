@@ -1,1 +1,1 @@
-See [[VirtualPrivateNetwork]].
+See General/VirtualPrivateNetwork.

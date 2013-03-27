@@ -1,1 +1,1 @@
-see [[ValidatingNSButtons]]
+see General/ValidatingNSButtons

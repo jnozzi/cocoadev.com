@@ -1,54 +1,54 @@
-I had a problem where I was using performSelectorOnMainThread:... to update UI but was getting exceptions when an update occurred whilst the mouse was down for a user. Using the modes parameter of performSelectorOnMainThread:... doesn't work since even though [[NSTextView]]'s mouseDown function runs the event loop in [[NSEventTrackingRunLoopMode]], the queuePeriodicEvent framework function gets called which runs the loop in [[NSDefaultRunLoopMode]].
+I had a problem where I was using performSelectorOnMainThread:... to update UI but was getting exceptions when an update occurred whilst the mouse was down for a user. Using the modes parameter of performSelectorOnMainThread:... doesn't work since even though General/NSTextView's mouseDown function runs the event loop in General/NSEventTrackingRunLoopMode, the queuePeriodicEvent framework function gets called which runs the loop in General/NSDefaultRunLoopMode.
 
-To workaround the problem, I've used the following code, i.e. basically sub-classed [[NSApplication]] and overridden sendEvent.
+To workaround the problem, I've used the following code, i.e. basically sub-classed General/NSApplication and overridden sendEvent.
 
-<code>
-@interface [[NSObject]] ([[CSSafePerform]])
+    
+@interface General/NSObject (General/CSSafePerform)
 - (void)safelyPerformSelectorOnMainThread:(SEL)selector
 			       withObject:(id)arg;
 @end
 
-@interface [[NSApplication]] ([[CSSafePerform]])
+@interface General/NSApplication (General/CSSafePerform)
 - (void)safelyPerformSelectorOnMainThread:(SEL)selector 
 				   target:(id)self
 			       withObject:(id)arg;
 @end
 
-@interface [[CSApplication]] : [[NSApplication]] {
+@interface General/CSApplication : General/NSApplication {
   BOOL processingEvent;
-  [[NSMutableArray]] ''performQueue;
+  General/NSMutableArray *performQueue;
 }
 @end
 
-@implementation [[NSObject]] ([[CSSafePerform]])
+@implementation General/NSObject (General/CSSafePerform)
 - (void)safelyPerformSelectorOnMainThread:(SEL)selector
 			       withObject:(id)arg
 {
-  [[NSAssert]] ([[[NSApp]] isKindOfClass:[[[CSApplication]] class]],
+  General/NSAssert (General/[NSApp isKindOfClass:General/[CSApplication class]],
 	    @"safelyPerformSelectorOnMainThread not supported");
   
-  [[[NSApp]] safelyPerformSelectorOnMainThread:selector 
+  General/[NSApp safelyPerformSelectorOnMainThread:selector 
  				    target:self
 				withObject:arg];
 }
 @end
 
-@implementation [[CSApplication]]
+@implementation General/CSApplication
 
 typedef struct {
   SEL selector;
   id  target;
   id  arg;
-} [[PerformInfo]];
+} General/PerformInfo;
 
-- (void)performOnMainThread:([[NSValue]] '')info
+- (void)performOnMainThread:(General/NSValue *)info
 {
   if (processingEvent) {
     if (!performQueue)
-      performQueue = [[[[NSMutableArray]] alloc] init];
+      performQueue = General/[[NSMutableArray alloc] init];
     [performQueue addObject:info];
   } else {
-    [[PerformInfo]] pi;
+    General/PerformInfo pi;
     
     [info getValue:&pi];
     
@@ -63,19 +63,19 @@ typedef struct {
 				   target:(id)target
 			       withObject:(id)arg
 {
-  [[PerformInfo]] pi = ([[PerformInfo]]) { selector, 
+  General/PerformInfo pi = (General/PerformInfo) { selector, 
 				   [target retain], 
 				   [arg retain] };
   
-  [[NSValue]] ''v = [[[NSValue]] valueWithBytes:&pi 
-			      objCType:@encode ([[PerformInfo]])];
+  General/NSValue *v = General/[NSValue valueWithBytes:&pi 
+			      objCType:@encode (General/PerformInfo)];
   
   [self performSelectorOnMainThread:@selector (performOnMainThread:)
 			 withObject:v
 		      waitUntilDone:NO];
 }
 
-- (void)sendEvent:([[NSEvent]] '')anEvent
+- (void)sendEvent:(General/NSEvent *)anEvent
 {
   BOOL oldProcessingEvent = processingEvent;
   
@@ -86,8 +86,8 @@ typedef struct {
     if (!oldProcessingEvent) {
       processingEvent = NO;
       if (performQueue) {
-	[[NSEnumerator]] ''e = [performQueue objectEnumerator];
-	[[NSValue]] ''v;
+	General/NSEnumerator *e = [performQueue objectEnumerator];
+	General/NSValue *v;
 	
 	[performQueue release];
 	performQueue = nil;
@@ -100,6 +100,6 @@ typedef struct {
 }
 
 @end
-</code>
+
 
 Chris Suter, Coriolis Systems

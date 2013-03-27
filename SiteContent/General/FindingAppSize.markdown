@@ -6,11 +6,11 @@ jhazelgrove
 
 I think I know what you are asking. If this is a project builder build folder (e.g. /project name/build) then simply call this function to get the application build size.
 
-[[NSFileManager]] ''manager = [[[[NSFileManager]] alloc] init];
+General/NSFileManager *manager = General/[[NSFileManager alloc] init];
 
-[[NSDictionary]] ''fileSize = [manager fileAttributesAtPath:@"/project name/Build/appname.app" traverseLink:YES];
+General/NSDictionary *fileSize = [manager fileAttributesAtPath:@"/project name/Build/appname.app" traverseLink:YES];
 
-[[NSLog]]([[[NSNumber]] numberWithInt:[fileSize objectForKey:[[NSFileSize]]]]);
+General/NSLog(General/[NSNumber numberWithInt:[fileSize objectForKey:General/NSFileSize]]);
 
 If that is not what you are looking for, then I can't really help.
 
@@ -24,15 +24,15 @@ I am unsure if this works on the bundle...if not, then you will have to look int
 The code should work. I got it to compile without errors, by mixing it with some from Apple's documention:
 
 
-[[NSNumber]] ''[[FileSize]];
+General/NSNumber *General/FileSize;
 
-[[NSFileManager]] ''manager = [[[[NSFileManager]] alloc] init];
+General/NSFileManager *manager = General/[[NSFileManager alloc] init];
 
-[[NSDictionary]] ''fileSize = [manager fileAttributesAtPath:@"Users/jacobhaz/dev/PB Build Test1/Build/PB Build Test1.app" traverseLink:YES];
+General/NSDictionary *fileSize = [manager fileAttributesAtPath:@"Users/jacobhaz/dev/PB Build Test1/Build/PB Build Test1.app" traverseLink:YES];
 
-[[FileSize]] = [fileSize objectForKey:[[NSFileSize]]];
+General/FileSize = [fileSize objectForKey:General/NSFileSize];
 
-[[NSLog]](@"File size: %d\n", [fileSize intValue]);
+General/NSLog(@"File size: %d\n", [fileSize intValue]);
 
 
 

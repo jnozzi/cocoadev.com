@@ -1,4 +1,4 @@
-Hello, I'm Pierre-Yves Rivaille, I'm a [[GNUstep]] developper. You can reach me at
+Hello, I'm Pierre-Yves Rivaille, I'm a General/GNUstep developper. You can reach me at
 <pyrivail at ens-lyon dot fr>.
 
 Note: Unknown e-mail address (with the correct format @ and .)

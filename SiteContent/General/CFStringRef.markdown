@@ -1,20 +1,20 @@
 Apple's documentation:
-http://developer.apple.com/documentation/[[CoreFoundation]]/Reference/[[CFStringRef]]/Reference/reference.html
+http://developer.apple.com/documentation/General/CoreFoundation/Reference/General/CFStringRef/Reference/reference.html
 ----
 
-Thanks to [[TollFreeBridging]] a [[CFStringRef]] is equivalent to an [[NSString]]''
+Thanks to General/TollFreeBridging a General/CFStringRef is equivalent to an General/NSString*
 
-<code>
-// Casting a [[CFStringRef]] to an [[NSString]] object:
-[[CFStringRef]] cfString;
-[[NSString]] ''nsString = ([[NSString]]'')cfString;
-</code>
+    
+// Casting a General/CFStringRef to an General/NSString object:
+General/CFStringRef cfString;
+General/NSString *nsString = (General/NSString*)cfString;
 
-<code>
-// Casting an [[NSString]] object pointer to a [[CFStringRef]]:
-[[NSString]] ''nsString;
-[[CFStringRef]] cfString = ([[CFStringRef]])nsString;
-</code>
 
-But don't forget to call [[CFRelease]] on [[CFStringRef]]'''s created using [[CoreFoundation]] methods when you're done with it! eg. [[CFStringCreate]](...)
-An example is when converting [[PascalString]]'s to [[NSString]]'s, as only [[CoreFoundation]] methods exist to do so.
+    
+// Casting an General/NSString object pointer to a General/CFStringRef:
+General/NSString *nsString;
+General/CFStringRef cfString = (General/CFStringRef)nsString;
+
+
+But don't forget to call General/CFRelease on General/CFStringRef**s created using General/CoreFoundation methods when you're done with it! eg. General/CFStringCreate(...)
+An example is when converting General/PascalString's to General/NSString's, as only General/CoreFoundation methods exist to do so.

@@ -1,42 +1,42 @@
-I got annoyed that [[NSAlert]] doesn't have any SIMPLE way to add a checkbox to it, so I wrote this custom subclass to add it in, enjoy:
+I got annoyed that General/NSAlert doesn't have any SIMPLE way to add a checkbox to it, so I wrote this custom subclass to add it in, enjoy:
 
-[[NSAlertCheckbox]].h:
-<code>
+General/NSAlertCheckbox.h:
+    
 #import <Cocoa/Cocoa.h>
 
 // private methods
-@interface [[NSAlert]] ([[CheckboxAdditions]])
+@interface General/NSAlert (General/CheckboxAdditions)
 - (void)prepare;
 - (id)buildAlertStyle:(int)fp8 title:(id)fp12 formattedMsg:(id)fp16 first:(id)fp20 second:(id)fp24 third:(id)fp28 oldStyle:(BOOL)fp32;
-- (id)buildAlertStyle:(int)fp8 title:(id)fp12 message:(id)fp16 first:(id)fp20 second:(id)fp24 third:(id)fp28 oldStyle:(BOOL)fp32 args:(char '')fp36;
+- (id)buildAlertStyle:(int)fp8 title:(id)fp12 message:(id)fp16 first:(id)fp20 second:(id)fp24 third:(id)fp28 oldStyle:(BOOL)fp32 args:(char *)fp36;
 @end
 
-@interface [[NSAlertCheckbox]] : [[NSAlert]] {
-	[[NSButton]] ''_checkbox;
+@interface General/NSAlertCheckbox : General/NSAlert {
+	General/NSButton *_checkbox;
 }
 
-+ ([[NSAlertCheckbox]] '')alertWithMessageText:([[NSString]] '')message defaultButton:([[NSString]] '')defaultButton alternateButton:([[NSString]] '')alternateButton otherButton:([[NSString]] '')otherButton informativeText:([[NSString]] '')format;
++ (General/NSAlertCheckbox *)alertWithMessageText:(General/NSString *)message defaultButton:(General/NSString *)defaultButton alternateButton:(General/NSString *)alternateButton otherButton:(General/NSString *)otherButton informativeText:(General/NSString *)format;
 
 - (BOOL)showsCheckbox;
 - (void)setShowsCheckbox:(BOOL)showsCheckbox;
 
-- ([[NSString]] '')checkboxText;
-- (void)setCheckboxText:([[NSString]] '')text;
+- (General/NSString *)checkboxText;
+- (void)setCheckboxText:(General/NSString *)text;
 
 - (int)checkboxState;
 - (void)setCheckboxState:(int)state;
 @end
-</code>
 
-[[NSAlertCheckbox]].m:
-<code>
-#import "[[NSAlertCheckbox]].h"
 
-@interface [[NSAlertCheckbox]] (Private)
+General/NSAlertCheckbox.m:
+    
+#import "General/NSAlertCheckbox.h"
+
+@interface General/NSAlertCheckbox (Private)
 - (void)_addCheckboxToWindow;
 @end
 
-@implementation [[NSAlertCheckbox]]
+@implementation General/NSAlertCheckbox
 - (id)init {
 	if (self = [super init]) {
 		_checkbox = nil;
@@ -51,14 +51,14 @@ I got annoyed that [[NSAlert]] doesn't have any SIMPLE way to add a checkbox to 
 	[super dealloc];
 }
 
-+ ([[NSAlertCheckbox]] '')alertWithMessageText:([[NSString]] '')message defaultButton:([[NSString]] '')defaultButton alternateButton:([[NSString]] '')alternateButton otherButton:([[NSString]] '')otherButton informativeText:([[NSString]] '')format {
-	[[NSAlert]] ''alert = [super alertWithMessageText:message
++ (General/NSAlertCheckbox *)alertWithMessageText:(General/NSString *)message defaultButton:(General/NSString *)defaultButton alternateButton:(General/NSString *)alternateButton otherButton:(General/NSString *)otherButton informativeText:(General/NSString *)format {
+	General/NSAlert *alert = [super alertWithMessageText:message
 								   defaultButton:defaultButton
 								 alternateButton:alternateButton
 									 otherButton:otherButton
 					   informativeTextWithFormat:format];
 	
-	return ([[NSAlertCheckbox]] '')alert;
+	return (General/NSAlertCheckbox *)alert;
 }
 
 #pragma mark -
@@ -69,8 +69,8 @@ I got annoyed that [[NSAlert]] doesn't have any SIMPLE way to add a checkbox to 
 
 - (void)setShowsCheckbox:(BOOL)showsCheckbox {
 	if (showsCheckbox && !_checkbox) {
-		_checkbox = [[[[NSButton]] alloc] initWithFrame:[[NSZeroRect]]];
-		[_checkbox setButtonType:[[NSSwitchButton]]];
+		_checkbox = General/[[NSButton alloc] initWithFrame:General/NSZeroRect];
+		[_checkbox setButtonType:General/NSSwitchButton];
 	} else if (!showsCheckbox && _checkbox) {
 		if ([_checkbox superview]) {
 			[_checkbox removeFromSuperview];
@@ -80,8 +80,8 @@ I got annoyed that [[NSAlert]] doesn't have any SIMPLE way to add a checkbox to 
 	}
 }
 
-- ([[NSString]] '')checkboxText {
-	[[NSString]] ''text = nil;
+- (General/NSString *)checkboxText {
+	General/NSString *text = nil;
 	
 	if ([self showsCheckbox]) {
 		text = [_checkbox title];
@@ -90,7 +90,7 @@ I got annoyed that [[NSAlert]] doesn't have any SIMPLE way to add a checkbox to 
 	return text;
 }
 
-- (void)setCheckboxText:([[NSString]] '')text {
+- (void)setCheckboxText:(General/NSString *)text {
 	if ([self showsCheckbox]) {
 		[_checkbox setTitle:text];
 	}
@@ -121,7 +121,7 @@ I got annoyed that [[NSAlert]] doesn't have any SIMPLE way to add a checkbox to 
 	return retVal;
 }
 
-- (id)buildAlertStyle:(int)fp8 title:(id)fp12 message:(id)fp16 first:(id)fp20 second:(id)fp24 third:(id)fp28 oldStyle:(BOOL)fp32 args:(char '')fp36 {
+- (id)buildAlertStyle:(int)fp8 title:(id)fp12 message:(id)fp16 first:(id)fp20 second:(id)fp24 third:(id)fp28 oldStyle:(BOOL)fp32 args:(char *)fp36 {
 	id retVal = [super buildAlertStyle:fp8 title:fp12 message:fp16 first:fp20 second:fp24 third:fp28 oldStyle:fp32 args:fp36];
 	[self _addCheckboxToWindow];
 	
@@ -129,27 +129,27 @@ I got annoyed that [[NSAlert]] doesn't have any SIMPLE way to add a checkbox to 
 }
 @end
 
-@implementation [[NSAlertCheckbox]] (Private)
+@implementation General/NSAlertCheckbox (Private)
 - (void)_addCheckboxToWindow {
 	float checkboxPadding = 14.0f; // according to the apple HIG
 	
 	if ([self showsCheckbox]) {
-		[[NSWindow]] ''window = [self window];
-		[[NSView]] ''content = [window contentView];
+		General/NSWindow *window = [self window];
+		General/NSView *content = [window contentView];
 		
 		// find the position of the main text field
-		[[NSArray]] ''subviews = [content subviews];
-		[[NSEnumerator]] ''en = [subviews objectEnumerator];
-		[[NSView]] ''subview = nil;
-		[[NSTextField]] ''messageText = nil;
+		General/NSArray *subviews = [content subviews];
+		General/NSEnumerator *en = [subviews objectEnumerator];
+		General/NSView *subview = nil;
+		General/NSTextField *messageText = nil;
 		int count = 0;
 		
 		while (subview = [en nextObject]) {
-			if ([subview isKindOfClass:[[[NSTextField]] class]]) {
+			if ([subview isKindOfClass:General/[NSTextField class]]) {
 				count++;
 				
 				if (count == 2) {
-					messageText = ([[NSTextField]] '')subview;
+					messageText = (General/NSTextField *)subview;
 				}
 			}
 		}
@@ -162,8 +162,8 @@ I got annoyed that [[NSAlert]] doesn't have any SIMPLE way to add a checkbox to 
 			[_checkbox sizeToFit];
 			
 			// expand the window
-			[[NSRect]] windowFrame = [window frame];
-			[[NSRect]] checkboxFrame = [_checkbox frame];
+			General/NSRect windowFrame = [window frame];
+			General/NSRect checkboxFrame = [_checkbox frame];
 			windowFrame.size.height += checkboxFrame.size.height + checkboxPadding;
 			[window setFrame:windowFrame display:YES];
 			
@@ -171,17 +171,17 @@ I got annoyed that [[NSAlert]] doesn't have any SIMPLE way to add a checkbox to 
 			checkboxFrame.origin.x = [messageText frame].origin.x;
 			
 			[_checkbox setFrame:checkboxFrame];
-			[window makeFirstResponder:[[self buttons] objectAtIndex:0]];
+			[window makeFirstResponder:General/self buttons] objectAtIndex:0;
 		}
 	}
 }
 @end
-</code>
+
 
 Here's some example code using it:
-<code>
+    
 // prompt the user
-[[NSAlertCheckbox]] ''alert = [[[NSAlertCheckbox]] alertWithMessageText:@"Install Flash"
+General/NSAlertCheckbox *alert = General/[NSAlertCheckbox alertWithMessageText:@"Install Flash"
 								 defaultButton:@"Download"
 							   alternateButton:@"No Thanks"
 								   otherButton:nil
@@ -189,25 +189,25 @@ Here's some example code using it:
 		
 [alert setShowsCheckbox:YES];
 [alert setCheckboxText:@"Don't ask me again."];
-[alert setCheckboxState:[[NSOnState]]];
+[alert setCheckboxState:General/NSOnState];
 
-if ([alert runModal] == [[NSAlertDefaultReturn]]) {
+if ([alert runModal] == General/NSAlertDefaultReturn) {
 	// go download flash
 }
 
-if ([alert checkboxState] == [[NSOnState]]) {
+if ([alert checkboxState] == General/NSOnState) {
 	// go set a pref somewhere
 }
-</code>
 
--- [[TristanOTierney]]
 
-----
-
-I've got some similar code that will use the private checkbox methods built into [[NSAlert]], if they're available, or fallback to a regular checkbox if the code appears to be missing. The advantage to this code is that there is less direct manipulation of the alert's window and controls--i.e. it's a higher-level implementation. If people would like, I can clean it up and post it as a download. - [[JonathanGrynspan]]
+-- General/TristanOTierney
 
 ----
-[[TristanOTierney]] thanks and [[JonathanGrynspan]], please do. 
+
+I've got some similar code that will use the private checkbox methods built into General/NSAlert, if they're available, or fallback to a regular checkbox if the code appears to be missing. The advantage to this code is that there is less direct manipulation of the alert's window and controls--i.e. it's a higher-level implementation. If people would like, I can clean it up and post it as a download. - General/JonathanGrynspan
 
 ----
-Looks like Leopard allows you not only to set an accessory view to the [[NSAlert]] but to set a "suppression checkbox". - [[DanGrover]]
+General/TristanOTierney thanks and General/JonathanGrynspan, please do. 
+
+----
+Looks like Leopard allows you not only to set an accessory view to the General/NSAlert but to set a "suppression checkbox". - General/DanGrover

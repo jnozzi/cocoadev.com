@@ -1,1 +1,1 @@
-I'm new to [[CocoaDev]] and loving it so far. I'm coming from the Windows side of things. Objective-C is bringing back the joy of Smalltalk for me.
+I'm new to General/CocoaDev and loving it so far. I'm coming from the Windows side of things. Objective-C is bringing back the joy of Smalltalk for me.

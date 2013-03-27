@@ -1,1 +1,1 @@
-#REDIRECT [[User:Jnozzi]]
+#REDIRECT General/User:Jnozzi

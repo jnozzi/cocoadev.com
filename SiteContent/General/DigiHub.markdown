@@ -3,7 +3,7 @@ Private framework that seems to handle disk/dvd/ipod insertion. It's preferences
 It's preferences have a numeric value. When I change the default action from Opening iTunes to ignore, the value of [com.apple.digihub.cd.music.appeared key:action] changes to 1 (is 101 when you set it to open iTunes)
 
 When I set the prefs to open a custom app it becomes:
-<code>
+    
     "com.apple.digihub.cd.music.appeared" = {
         action = 5; 
         otherapp = {
@@ -11,31 +11,31 @@ When I set the prefs to open a custom app it becomes:
             "_CFURLStringType" = 0; 
         }; 
     }; 
-</code>
+
 So, conclusion: to customize what happens when you insert a cd, open the defaults domain "com.apple.digihub". and set the preferences like above 
 
-when class dumping [[SystemUIServer]] you'll find 2 classes related to [[DigiHub]], here's the dump:
+when class dumping General/SystemUIServer you'll find 2 classes related to General/DigiHub, here's the dump:
 
-<code>
-@interface [[DigiHub]] : [[NSObject]]
+    
+@interface General/DigiHub : General/NSObject
 {
-    struct __CFRunLoopSource ''_diskArbSource;
-    [[NSDictionary]] ''_defaultActions;
-    [[NSDictionary]] ''_bundleIDMapper;
-    [[NSMutableDictionary]] ''_digiHubPrefs;
-    [[NSMutableDictionary]] ''_specificMedia;
-    [[NSMutableArray]] ''_specificMediaList;
-    [[NSMutableDictionary]] ''_specificiPods;
-    [[NSMutableArray]] ''_specificiPodList;
-    [[NSMutableDictionary]] ''_specificDVCameras;
-    [[NSMutableArray]] ''_specificDVCameraList;
-    [[NSMutableDictionary]] ''_askDialogList;
-    [[NSMutableDictionary]] ''_ejectList;
-    [[NSString]] ''_uiscriptrunnerPath;
-    [[NSMutableDictionary]] ''_ipods;
-    [[NSDictionary]] ''_mountControls;
-    [[NSDictionary]] ''_unmountControls;
-    [[NSDictionary]] ''_ejectControls;
+    struct __CFRunLoopSource *_diskArbSource;
+    General/NSDictionary *_defaultActions;
+    General/NSDictionary *_bundleIDMapper;
+    General/NSMutableDictionary *_digiHubPrefs;
+    General/NSMutableDictionary *_specificMedia;
+    General/NSMutableArray *_specificMediaList;
+    General/NSMutableDictionary *_specificiPods;
+    General/NSMutableArray *_specificiPodList;
+    General/NSMutableDictionary *_specificDVCameras;
+    General/NSMutableArray *_specificDVCameraList;
+    General/NSMutableDictionary *_askDialogList;
+    General/NSMutableDictionary *_ejectList;
+    General/NSString *_uiscriptrunnerPath;
+    General/NSMutableDictionary *_ipods;
+    General/NSDictionary *_mountControls;
+    General/NSDictionary *_unmountControls;
+    General/NSDictionary *_ejectControls;
     BOOL _isConsoleSession;
 }
 
@@ -46,7 +46,7 @@ when class dumping [[SystemUIServer]] you'll find 2 classes related to [[DigiHub
 
 @end
 
-@interface [[DigiHub]] (private)
+@interface General/DigiHub (private)
 - (void)_getDigiHubPrefs;
 - (void)_m5PrefsChanged:(id)fp8;
 - (void)_m5PrefsChanged:(id)fp8 sync:(BOOL)fp12;
@@ -56,7 +56,7 @@ when class dumping [[SystemUIServer]] you'll find 2 classes related to [[DigiHub
 - (void)_delayedFireWireDeviceFirstMatch:(id)fp8;
 - (void)_registerWithDiskArb;
 - (void)_ipodAppeared:(id)fp8 afterLogin:(BOOL)fp12 oldPref:(struct
-iPodTunesPref '')fp16 newPref:(struct iPodTunesPrefNew '')fp20;
+iPodTunesPref *)fp16 newPref:(struct iPodTunesPrefNew *)fp20;
 - (BOOL)_diskAppeared:(char [1024])fp8 flags:(unsigned int)fp12
 mountpoint:(char [1024])fp16 ioContent:(char [1024])fp20 afterLogin:
 (BOOL)fp24;
@@ -75,7 +75,7 @@ mountpoint:(char [1024])fp16 ioContent:(char [1024])fp20 afterLogin:
 - (BOOL)_doAction:(int)fp8 event:(id)fp12 key:(id)fp16;
 - (BOOL)_handleEventInScript:(id)fp8 eventInfo:(id)fp12;
 - (long)_createAppleEvent:(unsigned long)fp8 psn:(struct
-[[CPSProcessSerNum]] '')fp12 info:(id)fp16 outAE:(struct [[AEDesc]] '')fp20;
+General/CPSProcessSerNum *)fp12 info:(id)fp16 outAE:(struct General/AEDesc *)fp20;
 - (BOOL)_handleEventInApp:(id)fp8 path:(id)fp12 bundleID:(id)fp16
 eventInfo:(id)fp20;
 - (void)_savePreference:(id)fp8;
@@ -89,18 +89,18 @@ newiPod:(BOOL)fp12;
 - (BOOL)_canSupportVideoConference;
 - (void)_iidcCameraAppeared:(BOOL)fp8;
 - (void)_applicationWillTerminate:(id)fp8;
-- (void)_launchICAppFromPref:(id)fp8 device:(struct _ICNDeviceRec '')
+- (void)_launchICAppFromPref:(id)fp8 device:(struct _ICNDeviceRec *)
 fp12 defaultID:(id)fp16;
 - (void)_launchICAppForDigiCamera;
 @end
 
-@interface [[DigiHubEvent]] : [[NSObject]]
+@interface General/DigiHubEvent : General/NSObject
 {
-    [[NSString]] ''_event;
+    General/NSString *_event;
     int _action;
     int _defaultAction;
-    NSURL ''_app;
-    NSURL ''_script;
+    NSURL *_app;
+    NSURL *_script;
     unsigned int _aeEventID;
     BOOL _performAtLogin;
 }
@@ -131,4 +131,3 @@ performAtLogin:(BOOL)fp32;
 - (id)createDictionary;
 
 @end
-</code>

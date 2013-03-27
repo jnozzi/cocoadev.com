@@ -1,12 +1,12 @@
-[[CFHost]] allows you to asynchronously resolve a name or address without the main thread blocking. [[CFNetwork]] will spawn the thread for you in the background and fire a notification back to the main thread once it acquires the information.
+General/CFHost allows you to asynchronously resolve a name or address without the main thread blocking. General/CFNetwork will spawn the thread for you in the background and fire a notification back to the main thread once it acquires the information.
 
 
-<code>
+    
 
--(void)connectTo: ([[NSString]] '')address {
+-(void)connectTo: (General/NSString *)address {
     BOOL success = NO;
     
-    [[CFHostClientContext]] hostContext;
+    General/CFHostClientContext hostContext;
     
     hostContext.version = 0;
     hostContext.info = self;
@@ -14,13 +14,12 @@
     hostContext.release = nil;
     hostContext.copyDescription = nil;
     
-    [[CFStreamError]] error;
+    General/CFStreamError error;
     
-    [[CFHostRef]] host = [[CFHostCreateWithName]](kCFAllocatorDefault, ([[CFStringRef]])address);
-    success = [[CFHostSetClient]](host, _network_host_callback, hostContext);
-    [[CFHostScheduleWithRunLoop]](host, [[CFRunLoopGetCurrent]](), kCFRunLoopDefaultMode);
+    General/CFHostRef host = General/CFHostCreateWithName(kCFAllocatorDefault, (General/CFStringRef)address);
+    success = General/CFHostSetClient(host, _network_host_callback, hostContext);
+    General/CFHostScheduleWithRunLoop(host, General/CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     
-    success = [[CFHostStartInfoResolution]](host, kCFHostAddresses, &error);
+    success = General/CFHostStartInfoResolution(host, kCFHostAddresses, &error);
 }
 
-</code>

@@ -1,6 +1,6 @@
-[ Off Topic, my apologies -- [[MikeTrent]] ]
+[ Off Topic, my apologies -- General/MikeTrent ]
 
-[[ActiveSpamKiller]] is an [[OpenSource]] project on [[SourceForge]] that helps you filter spam at the server. It's basically a collection of python scripts that sorts through your incoming mail and intercepts messages that come from an unknown, or known to be evil, source. No more procmail hacking!
+General/ActiveSpamKiller is an General/OpenSource project on General/SourceForge that helps you filter spam at the server. It's basically a collection of python scripts that sorts through your incoming mail and intercepts messages that come from an unknown, or known to be evil, source. No more procmail hacking!
 
     http://www.paganini.net/ask
 
@@ -13,4 +13,4 @@ delete mails without downloading them. I will release version 1.0 under the GPL.
 Perhaps I can integrate ASK somehow, e.g. by integrating the Python interpreter :)
 http://popwatch.highteq.net
 
--- [[LarsHoss]]
+-- General/LarsHoss

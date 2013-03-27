@@ -1,4 +1,4 @@
-I have a column of check boxes in my [[NSTableView]]. when you click on one of these check boxes its tablerow gets selected and the check box is toggled.
+I have a column of check boxes in my General/NSTableView. when you click on one of these check boxes its tablerow gets selected and the check box is toggled.
 
 but this is not the behavior i am after ... i need them to work like the check boxes in iTunes:
 you click on the check box to toggle it, and its row is not selected at the same time. and when you click its title the tablerow is selected but the check box stays in its current state.
@@ -12,32 +12,32 @@ Not really an answer to your question, but I will point out that iTunes is a Car
 
 ----
 
-I have thought with this myself, seen others fight it, and the Cocoa applications from Apple (Xcode, Mail (not checkmarks, but fold/unfold buttons for threads), etc.) do ''not'' work like iTunes -- so it is not likely that there is an easy solution.
+I have thought with this myself, seen others fight it, and the Cocoa applications from Apple (Xcode, Mail (not checkmarks, but fold/unfold buttons for threads), etc.) do *not* work like iTunes -- so it is not likely that there is an easy solution.
 
 I would suggest everyone who wants this behavior to file an enhancement report with apple.
 
---[[AllanOdgaard]]
+--General/AllanOdgaard
 
 ----
 
 Not very robust but I only spent a minute, and only that much to get you started...
-<code>
-@implementation [[CustomTableView]]
+    
+@implementation General/CustomTableView
 
-- (void)mouseDown:([[NSEvent]] '')event
+- (void)mouseDown:(General/NSEvent *)event
 {
-    [[NSPoint]] loc = [event locationInWindow];
+    General/NSPoint loc = [event locationInWindow];
     
     loc = [self convertPoint:loc fromView:nil];
     
     int row = [self rowAtPoint:loc];
     int col = [self columnAtPoint:loc];
     
-    [[NSArray]] ''cols = [self tableColumns];
+    General/NSArray *cols = [self tableColumns];
     id column = [cols objectAtIndex:col];
     id cell = [column dataCellForRow:row];
     
-    if ([cell isKindOfClass:[[[NSButtonCell]] class]]) {
+    if ([cell isKindOfClass:General/[NSButtonCell class]]) {
         if (loc.x < 18) { // clicked in the checkbox..
            id dSource = [self dataSource];
             id curState = [dSource tableView:self objectValueForTableColumn:column row:row];
@@ -54,7 +54,7 @@ Not very robust but I only spent a minute, and only that much to get you started
     [super mouseDown:event];
 }
 @end
-</code>
+
 
 ----
 
@@ -62,4 +62,4 @@ There has to be a better solution, because iSync does this. Under the iPod setup
 
 ----
 
-The [[EDTableView]] class here ( http://www.mulle-kybernetik.com/software/[[EDFrameworks]]/Documentation/[[EDCommon]]/Classes/[[EDTableView]].html ) seems to be specialized on this behaviour.
+The General/EDTableView class here ( http://www.mulle-kybernetik.com/software/General/EDFrameworks/Documentation/General/EDCommon/Classes/General/EDTableView.html ) seems to be specialized on this behaviour.

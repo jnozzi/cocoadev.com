@@ -2,22 +2,22 @@
 
 Defining a proper, logical structure to a new project is an important early step. It will save time later, when you realise you really need to enforce a bit of order, and will make development easier over the life span of the project.
 
-One useful structure that can be fairly well managed in [[XCode]] makes use of frameworks to contain the bulk of your project's code. A framework can be created as a 'sub-project', and a build step added to your main target that builds the framework before continuing. This can aid in enhancing the readability and maintainability of your code, and helps to encourage and enforce the use of the model-view-controller paradigm.
+One useful structure that can be fairly well managed in General/XCode makes use of frameworks to contain the bulk of your project's code. A framework can be created as a 'sub-project', and a build step added to your main target that builds the framework before continuing. This can aid in enhancing the readability and maintainability of your code, and helps to encourage and enforce the use of the model-view-controller paradigm.
 
 Another benefit of using this technique is that at a later point, others can make use of the framework.
 
 An example of where this will come in handy is VLC. A Google Summer of Code project has been started this year to move the bulk of VLC's code into a framework, where it can be used by other applications. I'm looking forward to the result of this project, as it will enable integration of VLC's excellent playback engine into other software, such as media center applications like iTheater. 
 The same goes for many other types of applications - a news reader can be integrated into a screensaver, or an IRC client into a video game. Frameworks are a very nice way to share functionality.
 
-Firstly, this is fairly well documented - the magic words are 'embedded framework'. Google them for more info, or read the Apple documentation at http://developer.apple.com/documentation/[[MacOSX]]/Conceptual/[[BPFrameworks]]/Tasks/[[CreatingFrameworks]].html.
+Firstly, this is fairly well documented - the magic words are 'embedded framework'. Google them for more info, or read the Apple documentation at http://developer.apple.com/documentation/General/MacOSX/Conceptual/General/BPFrameworks/Tasks/General/CreatingFrameworks.html.
 
-There are two ways to use embedded frameworks in [[XCode]]. You can either have the framework in the same project as the main application, or use a separate project embedded in the main project. Using a sub-project can be convenient, as it can clean up the main project. If yours is an open source application, you can also then distribute the framework's project separately. Having the framework in the same project as the main application can also be convenient, as the same project window allows access to both the framework and the main app. It's a matter of preference.
+There are two ways to use embedded frameworks in General/XCode. You can either have the framework in the same project as the main application, or use a separate project embedded in the main project. Using a sub-project can be convenient, as it can clean up the main project. If yours is an open source application, you can also then distribute the framework's project separately. Having the framework in the same project as the main application can also be convenient, as the same project window allows access to both the framework and the main app. It's a matter of preference.
 
-'''
+**
 Separate-project frameworks
-'''
+**
 
-To use sub-frameworks in an [[XCode]] project, there are a few steps that need to be taken.
+To use sub-frameworks in an General/XCode project, there are a few steps that need to be taken.
 
 
 * Create/load your main project
@@ -39,13 +39,13 @@ If you've set it up correctly, your Groups & Files panes for the main project an
 http://michael.tyson.id.au/uploads/200705151446-2.jpg
 http://michael.tyson.id.au/uploads/200705151446-1.jpg
  
-Now the bulk of your application's code should be written within the framework, and compiled in to the main project, which should contain the interface-specific code to put it all together. Import headers from the framework using <code>#import <M<nowiki/>yApplication/M<nowiki/>yApplicationHeader.h></code>
+Now the bulk of your application's code should be written within the framework, and compiled in to the main project, which should contain the interface-specific code to put it all together. Import headers from the framework using     #import <M<nowiki/>yApplication/M<nowiki/>yApplicationHeader.h>
 
 An important step when creating header files within the framework is to declare their roles as 'public' if you wish them to be accessible outside the framework (in your main project, for example). This can be done by selecting the 'Copy Headers' build phase of the main target for the framework. In the corresponding file list, each header is displayed. Under the 'Role' column, each header's role is displayed - the default role is 'Project', which indicates to the build process that the headers are not to be copied into the resulting framework. Change the role to 'Public' to include the headers within the framework bundle.
 
 (Thanks to the iTheater team, whose excellent project structure I examined to learn how to do this)
 
-'''Single project frameworks'''
+**Single project frameworks**
 
 If you wish to use just one project for both the framework and the application, perform the following steps (these are derived from the apple documentation page linked at the top of this entry):
 
@@ -63,6 +63,6 @@ If all went well, your 'Groups & Files' pane should look like this:
 
 http://michael.tyson.id.au/uploads/200705151627.jpg
 
-Import header files from the framework with <code>#import <M<nowiki/>yApplicationCore/M<nowiki/>yApplicationHeader.h></code>
+Import header files from the framework with     #import <M<nowiki/>yApplicationCore/M<nowiki/>yApplicationHeader.h>
 
-(This tutorial originally posted at http://michael.tyson.id.au/archives/415-Creating-applications-in-[[XCode]]-using-frameworks.html.  Thanks to the iTheater team, whose excellent project structure I examined to learn how to do this)
+(This tutorial originally posted at http://michael.tyson.id.au/archives/415-Creating-applications-in-General/XCode-using-frameworks.html.  Thanks to the iTheater team, whose excellent project structure I examined to learn how to do this)

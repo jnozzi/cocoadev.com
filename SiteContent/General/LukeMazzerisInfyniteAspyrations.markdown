@@ -1,4 +1,4 @@
-'''</ Luke Mazzeri's Infynite Aspyrations  \>'''
+**</ Luke Mazzeri's Infynite Aspyrations  \>**
 
 Luke Aspyres to write every damn feature that his favorite software titles are badly missing...
 
@@ -19,6 +19,6 @@ http://etyrnal.no-ip.com/images/beat%20phones.gif
 
 ----
 
-And thys hys to do with Cocoa progrymming '''how?'''
+And thys hys to do with Cocoa progrymming **how?**
 
 It's a user page yo, perfectly acceptable (and I'm not Luke).

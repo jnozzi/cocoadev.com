@@ -10,8 +10,7 @@ Thanks
 
 ----
 
-Look at [[NSSplitView]]'s delegate methods, particularly these two:
-<code>
-- (float)splitView:([[NSSplitView]] '')sender constrainMinCoordinate:(float)proposedCoord ofSubviewAt:(int)offset;
-- (float)splitView:([[NSSplitView]] '')sender constrainMaxCoordinate:(float)proposedCoord ofSubviewAt:(int)offset;
-</code>
+Look at General/NSSplitView's delegate methods, particularly these two:
+    
+- (float)splitView:(General/NSSplitView *)sender constrainMinCoordinate:(float)proposedCoord ofSubviewAt:(int)offset;
+- (float)splitView:(General/NSSplitView *)sender constrainMaxCoordinate:(float)proposedCoord ofSubviewAt:(int)offset;

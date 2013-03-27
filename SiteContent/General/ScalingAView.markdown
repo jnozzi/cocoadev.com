@@ -2,13 +2,13 @@
 
 Can anyone tell me (or point me towards a tutorial on) how best to scale a view?
 
-I've tried using <code>-scaleUnitSquareToSize:</code> but it doesn't give the desired effect.  For one, it takes an integer that represents a percentage, so I can't really control the effect with a slider.  Also the scroll bars don't alter with the effect.
+I've tried using     -scaleUnitSquareToSize: but it doesn't give the desired effect.  For one, it takes an integer that represents a percentage, so I can't really control the effect with a slider.  Also the scroll bars don't alter with the effect.
 
 Any help will be appreciated.  Thanks!
 
 ----
 
-You just need to change its bounds. See [http://www.mulle-kybernetik.com/artikel/[[MulleFaBVisualizer]]/]
+You just need to change its bounds. See [http://www.mulle-kybernetik.com/artikel/General/MulleFaBVisualizer/]
 
 ----
 
@@ -20,46 +20,46 @@ You could put the entire view heirarchy(view->clipView->scollView) in another vi
 
 ----
 
-Tell the view you're scaling <code>[view setPostsBoundsChangedNotifications:YES]</code>
+Tell the view you're scaling     [view setPostsBoundsChangedNotifications:YES]
 
 ----
 
-Tried that - doesn't seem to work.  Should I put it in [[MyView]]'s awakeFromNib or every time I change the bounds?  Tried both.  Are the scroll bars automatically registered to receive those notifications?
+Tried that - doesn't seem to work.  Should I put it in General/MyView's awakeFromNib or every time I change the bounds?  Tried both.  Are the scroll bars automatically registered to receive those notifications?
 
 ----
 
-You don't usually deal with scroll bars directly in Cocoa. Your view is embedded in a [[NSScrollView]]. The source for [[MulleFaBVisualizer]] is available from the link above, so you could just look at that and see what it does.
+You don't usually deal with scroll bars directly in Cocoa. Your view is embedded in a General/NSScrollView. The source for General/MulleFaBVisualizer is available from the link above, so you could just look at that and see what it does.
 ----
-I'll have another try at [[MulleFaBVisualizer]], but I couldn't unstuff it on first go round.
+I'll have another try at General/MulleFaBVisualizer, but I couldn't unstuff it on first go round.
 
-''It's a .tgz file. Try [[GUITar]] on it if [[StuffIt]] is giving you problems -'' [http://www.edenwaith.com/products/guitar/]
-
-----
-
-<code>-scaleUnitSquareToSize:</code> will scale your view but it will not ''enlarge'' it. You need to change the view's frame for that.
+*It's a .tgz file. Try General/GUITar on it if General/StuffIt is giving you problems -* [http://www.edenwaith.com/products/guitar/]
 
 ----
 
-Hey, does anyone know a workaround for scaling a view containing an [[NSImageView]]? The image view bounds seem to change, but the rendered image always looks the same size, and does not expand to fit the new bounds.
+    -scaleUnitSquareToSize: will scale your view but it will not *enlarge* it. You need to change the view's frame for that.
 
-''I assume you're using something like <code>[imageView setImageScaling:[[NSImageScaleProportionally]]]</code> and it isn't working?''
+----
 
-Yup. The image view itself is scaled alright, and I have tried [[NSImageScaleProportionally]] and [[NSImageScaleToFit]]. So when I "zoom in" real deep I have a giant image view, with a little teeny image at the bottom right corner. I think that it may be that scaling the image has to do with the frame, and not the bounds.
+Hey, does anyone know a workaround for scaling a view containing an General/NSImageView? The image view bounds seem to change, but the rendered image always looks the same size, and does not expand to fit the new bounds.
 
-''Have you tried setting the [[NSImageView]]'s autosizing?'' 
+*I assume you're using something like     [imageView setImageScaling:General/NSImageScaleProportionally] and it isn't working?*
 
-<code>
-[myImageView setAutoresizingMask:[[NSViewWidthSizable]] | [[NSViewHeightSizable]]]; /'' Bitwise OR, not bitwise AND -- [[JonathanGrynspan]] ''/
-</code>
+Yup. The image view itself is scaled alright, and I have tried General/NSImageScaleProportionally and General/NSImageScaleToFit. So when I "zoom in" real deep I have a giant image view, with a little teeny image at the bottom right corner. I think that it may be that scaling the image has to do with the frame, and not the bounds.
+
+*Have you tried setting the General/NSImageView's autosizing?* 
+
+    
+[myImageView setAutoresizingMask:General/NSViewWidthSizable | General/NSViewHeightSizable]; /* Bitwise OR, not bitwise AND -- General/JonathanGrynspan */
+
 
 Yes, but it's not the image view that is having sizing problems, it works fine. It is the image within the image view that does not scale right.
 
-''Something definitely seems wrong with that picture''. ;-) I'm out of ideas. ('' Pun wasn't intended but if I say it was, would you believe me?)''
+*Something definitely seems wrong with that picture*. ;-) I'm out of ideas. (* Pun wasn't intended but if I say it was, would you believe me?)*
 
 How is the image getting into the image view?
 
 ----
-I just want to add, that I noticed this a long time ago, and just ended up abandoning [[ImageView]]. I thought it was a problem with my old OSX 10.2.something and it would be fixed soon. What version of OSX are you using? -[[JeremyJurksztowicz]]
+I just want to add, that I noticed this a long time ago, and just ended up abandoning General/ImageView. I thought it was a problem with my old OSX 10.2.something and it would be fixed soon. What version of OSX are you using? -General/JeremyJurksztowicz
 
 ----
-Of course, if nobody reports these bugs, they probably won't get fixed. Use the [[BugReporter]]!
+Of course, if nobody reports these bugs, they probably won't get fixed. Use the General/BugReporter!

@@ -3,13 +3,13 @@ This page is for insightful comments, mistakes and other goodies that can assist
 
 *Shareware Authoring Part I (misc.) � http://www.peter.com.au/programming/sharewareauthor.html
 *Shareware Authoring Part II (shipping) � http://www.peter.com.au/programming/sharewareauthor2.html
-*Describe � http://www.semicolon.com/[[ShareSuccess]]/Shareware1.html
+*Describe � http://www.semicolon.com/General/ShareSuccess/Shareware1.html
 *Pricing � http://software.ericsink.com/bos/Business_of_Software.html
 *Marketing � http://software.ericsink.com/Marketing_for_Geeks.html
 *Serial numbers � http://macromates.com/sigpipe/archives/2004/09/05/using-openssl-for-license-keys/
 *The Do's and Don'ts of Shareware � http://www.macdevcenter.com/pub/a/mac/2002/09/30/dev_osx.html
 *Articles for Independent Game Developers � http://www.dexterity.com/articles/
-*Does crippling work? (apparently) � http://www.scrawlsoft.com/products/common/hardnose.html -- ''Broken link''
+*Does crippling work? (apparently) � http://www.scrawlsoft.com/products/common/hardnose.html -- *Broken link*
 
 
 ----
@@ -40,7 +40,7 @@ Also, avoid whineware; instead treat your users with dignity (A corollary to "th
 
 I also believe it's better to charge a little less than charge a little more. You'd rather have people coasting on your free trial / free featureset than using your competitor's app. Insert your favorite Guy Kawasaki quote here. Commercial software has also demonstrated you can go back to your customers for more money (i.e., upgrades) as long as the featureset is there and the price is right. 
 
--- [[MikeTrent]]
+-- General/MikeTrent
 
 ----
 
@@ -59,27 +59,27 @@ Tip 4: Charge a fair price for your software. If you are a programmer you probab
 ----
 Regarding the second tip - this is more a matter of opinion. I'm making roughly twice what you are for one of my apps and it is restricted for non-registered users (that is, they can use it but they can't get 'finish' until they register). My sales are doing just fine.
 
-Regarding the third tip, specifically "if it becomes clear that you have a user who simply isn't smart enought to use your software" ... this is just plain bad advice. The user, smart or not, will quickly become insulted (computer illiterate is not the same as generally stupid) and spread the word that you aren't supportive, you insult your users' intelligence, and you have poor customer relation skills. Take it from a successful small shareware developer: '''Do not do this to a customer.''' You made your bed (by writing and distributing your software), now lay in it. You have two choices: Improve your product and its associated manual or close your doors, take your ball, and go home.
+Regarding the third tip, specifically "if it becomes clear that you have a user who simply isn't smart enought to use your software" ... this is just plain bad advice. The user, smart or not, will quickly become insulted (computer illiterate is not the same as generally stupid) and spread the word that you aren't supportive, you insult your users' intelligence, and you have poor customer relation skills. Take it from a successful small shareware developer: **Do not do this to a customer.** You made your bed (by writing and distributing your software), now lay in it. You have two choices: Improve your product and its associated manual or close your doors, take your ball, and go home.
 
 ----
 Actually, tip 3 is "be generous with refunds," and it is good advice. I have to keep my customers happy. If they aren't, they will get refunds from their credit cards and that will put me out of business in a hurry. Chargebacks are a net loss. 
 
 In fact, my customers would completely disagree with you regarding my quality of support. I am guessing we have a different customers:) If someone has paid the shareware fee but still hasn't managed to figure out how to download the software after three days and six e-mails, they are going to get a refund.
 
-What I am saying is this. If you are a '''part time''' shareware developer, you can't afford chargebacks and you can't afford to teach people basic computer operation.
+What I am saying is this. If you are a **part time** shareware developer, you can't afford chargebacks and you can't afford to teach people basic computer operation.
 
 ----
-Well, I'm simply quoting what was said in #3. The portion I quoted is what I disagree with (which I believe I clearly indicated). If you simply refund someone's money rather than bothering to help them solve their problems, you ''will'' have insulted customers. I made the mistake of suggesting a refund ''after'' spending time trying to troubleshoot a problem with my app. Though I was attempting to placate the person by offering them a refund for a problem that ''was'' my app's fault, it was met with immediate anger; the gentleman was insulted because he perceived the offer as a complete dismissal, as if he was too stupid to use my application. It happens. It's real. If they're ''asking'' for a refund, that's an entirely different situation. Just don't go offering a refund to people because you can't get their purchase to work right. Some take offense and write nasty reviews ...
+Well, I'm simply quoting what was said in #3. The portion I quoted is what I disagree with (which I believe I clearly indicated). If you simply refund someone's money rather than bothering to help them solve their problems, you *will* have insulted customers. I made the mistake of suggesting a refund *after* spending time trying to troubleshoot a problem with my app. Though I was attempting to placate the person by offering them a refund for a problem that *was* my app's fault, it was met with immediate anger; the gentleman was insulted because he perceived the offer as a complete dismissal, as if he was too stupid to use my application. It happens. It's real. If they're *asking* for a refund, that's an entirely different situation. Just don't go offering a refund to people because you can't get their purchase to work right. Some take offense and write nasty reviews ...
 
 ----
 Tip 4 is misleading.  While all my current shareware is $20 or more, I would be more than willing to make an app for under $20.  A program I am working on now is only going to cost $12.95 -- but I have no doubt that it will at least be moderately succesful.  The app is, by nature, smaller than the others.  Small one trick ponies that are made well can sell as well as a large powerful program that does a lot.  Remember, you're targetting MAC USERS -- they'll appreciate style and attention to detail...regardless of the size of the app.
 
 ----
-Agreed - I have a US $9.99 application that is '''very''' focused for a very specific but usually repetitive task (and is utterly useless for anything else). It's free for 'small jobs' but larger ones will require you to part with a small pittance for my time (since I'm still obligated to support the app). Despite its narrow focus and very open 'free' state, it still sells several copies a month (I never thought it would sell more than one a month - who knew) ... probably ''because'' it's so cheap (and works so well). Fortunately, this is only a very minor product in my product line (:-D) but for a "quick buck" it performs quite well sales-wise. Hell, it pays for my hosting fees! As any shareware developer knows, every little bit helps ...
+Agreed - I have a US $9.99 application that is **very** focused for a very specific but usually repetitive task (and is utterly useless for anything else). It's free for 'small jobs' but larger ones will require you to part with a small pittance for my time (since I'm still obligated to support the app). Despite its narrow focus and very open 'free' state, it still sells several copies a month (I never thought it would sell more than one a month - who knew) ... probably *because* it's so cheap (and works so well). Fortunately, this is only a very minor product in my product line (:-D) but for a "quick buck" it performs quite well sales-wise. Hell, it pays for my hosting fees! As any shareware developer knows, every little bit helps ...
 
 ----
 
-''' ''Here we go with delete-happy people again. If you don't like a conversation you don't have to read it. There is nothing wrong with this one (ie, it's not a flamewar but a discussion and is quite relevant to the page's topic). Please stop arbitrarily deleting people's conversations. It's quite rude. Just because people disagree doesn't mean they're arguing. Thanks.'' '''
+** *Here we go with delete-happy people again. If you don't like a conversation you don't have to read it. There is nothing wrong with this one (ie, it's not a flamewar but a discussion and is quite relevant to the page's topic). Please stop arbitrarily deleting people's conversations. It's quite rude. Just because people disagree doesn't mean they're arguing. Thanks.* **
 
 ----
 I just released my app and am currently in the "Announcement" phase (after putting it on my website). 
@@ -99,7 +99,7 @@ As to step three there, I have a few questions which maybe some personal experie
 
 Of course, I'm kind of opposed to #4 (not for cost but because I'd like to think word-of-mouth works if you can just get it into enough mouths) but if sales are dim... 
 
-Anyway, I'll end with an observation:  On the DL sites, hits are directly proportioned to your distance from the top of the list, which is sorted by time.  Therefore, "update often" becomes a valid strategy.  ''ugh''
+Anyway, I'll end with an observation:  On the DL sites, hits are directly proportioned to your distance from the top of the list, which is sorted by time.  Therefore, "update often" becomes a valid strategy.  *ugh*
 
 Stephen
 
@@ -109,4 +109,4 @@ Staggering when you announce your app to the different sites (news site 1 on Tue
 
 ----
 
-Just thought I'd recommend using Potion Store (in place of esellerate or rolling your own). It's a rails application that has pretty much everything you might need (and it's free). You can find it here: http://www.potionfactory.com/potionstore/ -- [[JohnDevor]]
+Just thought I'd recommend using Potion Store (in place of esellerate or rolling your own). It's a rails application that has pretty much everything you might need (and it's free). You can find it here: http://www.potionfactory.com/potionstore/ -- General/JohnDevor

@@ -9,7 +9,7 @@ What are the things that can be done with this SDK? Can we develop application u
 
 And the survey says:
 
-http://developer.apple.com/documentation/[[AppleApplications]]/Conceptual/AppleApp_Aperture_001/Overview/chapter_1_section_1.html
+http://developer.apple.com/documentation/General/AppleApplications/Conceptual/AppleApp_Aperture_001/Overview/chapter_1_section_1.html
 
 ----
 Yes..i had read the the documentation. but i wanted to know wether we can develop applications using this SDK or it is just a export plugin for Aperture?
@@ -25,7 +25,7 @@ Finally i got image to display in view. Image was in a property dictionry. But i
 ----
 That's because you are not editing the image that is in Aperture.  Aperture does not alter the images files.  It stores the data about the alterations and applies them to the master image on demand.  You are not meant to be editing images using the SDK.  It's for export only.
 ----
-How to debug the plugins? i am not finding any other way than [[NSLog]] to debug it. buil and run is desabled in xcode..
+How to debug the plugins? i am not finding any other way than General/NSLog to debug it. buil and run is desabled in xcode..
 is it possible to do so? i want to use this sdk to write my own printing options, but i could not get the image refference. 
 ----
 I have created a plugin for http://www.digiproofs.com/ and found debugging a pain at time (the plugin is not release to public yet still testing).   

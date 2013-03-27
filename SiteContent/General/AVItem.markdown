@@ -1,12 +1,12 @@
-'''[[AVItem]]'''
+**General/AVItem**
 
-<code>- (id)initWithPath:(NSString*)path error:(NSError**)outError;</code>
+    - (id)initWithPath:(NSString*)path error:(NSError**)outError;
 
 WAV, Mp3 files work. What else?
 
-<code>- (float)volume;</code>
+    - (float)volume;
 
-<code>- (void)setVolume:(float)volume</code>
+    - (void)setVolume:(float)volume
 
 
-[[Category:PointlessInformation‏‎]]
+General/Category:PointlessInformation‏‎

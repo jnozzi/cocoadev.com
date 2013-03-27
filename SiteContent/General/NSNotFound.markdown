@@ -1,3 +1,3 @@
-See [[NSRange]]
+See General/NSRange
 
-See also [[NSRangeException]]
+See also General/NSRangeException

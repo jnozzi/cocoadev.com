@@ -8,6 +8,6 @@ I'd like some opinions on the best approach to this problem. Any takers?
 
 ----
 
-'''Discussions'''
+**Discussions**
 
-I decided to take an approach more like that found in the oft-referenced Sketch example. I'm not sure if this is the '''best''' approach, but it's certainly the closest to what I want to accomplish. Using its approach toward only drawing the "graphics" that intersect with the rect the view is drawing is certainly more efficient, anyway. I also noticed that the Sketch example shows how to "swap in" an editor for their "text graphics" when it's being edited. So it seems the Sketch example is a near-perfect fit for everything I'm trying to do.
+I decided to take an approach more like that found in the oft-referenced Sketch example. I'm not sure if this is the **best** approach, but it's certainly the closest to what I want to accomplish. Using its approach toward only drawing the "graphics" that intersect with the rect the view is drawing is certainly more efficient, anyway. I also noticed that the Sketch example shows how to "swap in" an editor for their "text graphics" when it's being edited. So it seems the Sketch example is a near-perfect fit for everything I'm trying to do.

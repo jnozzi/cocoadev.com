@@ -1,19 +1,19 @@
-I am trying to enable Applescripting in an Application I'm working on.  But I can't seem to get it to work.  When I access a variable with [[AppleScript]] in my application, I get the following error:
+I am trying to enable Applescripting in an Application I'm working on.  But I can't seem to get it to work.  When I access a variable with General/AppleScript in my application, I get the following error:
 
-[[AppleScript]] Error:
+General/AppleScript Error:
 <class> got an error: Can't make <key> into type reference.
 
-I'm at a loss as to why I can't access this variable.  Any help would be greatly appreciated.  Thank you to Dustin Voss for your [[HowToSupportAppleScript]], I found it very useful.
+I'm at a loss as to why I can't access this variable.  Any help would be greatly appreciated.  Thank you to Dustin Voss for your General/HowToSupportAppleScript, I found it very useful.
 
-Here is my ''.sdef file:
-<code>
+Here is my *.sdef file:
+    
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/[[DTDs]]/sdef.dtd">
-<dictionary title="[[SomeClass]]">
-	<suite name="[[SomeClass]] AS" code="NBAS" description="Apple Srcipting for [[SomeClass]]">
-		<cocoa name="[[SomeClass]]"/>
-		<class name="[[SomeClass]]" code="btdv" description="the Class of a given [[SomeClass]] device" plural="[[SomeClasses]]">
-			<cocoa class="[[SomeClass]]"/>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/General/DTDs/sdef.dtd">
+<dictionary title="General/SomeClass">
+	<suite name="General/SomeClass AS" code="NBAS" description="Apple Srcipting for General/SomeClass">
+		<cocoa name="General/SomeClass"/>
+		<class name="General/SomeClass" code="btdv" description="the Class of a given General/SomeClass device" plural="General/SomeClasses">
+			<cocoa class="General/SomeClass"/>
 			<property name="tempX" code="tmpx" description="dummy variable" type="integer" access="r">
 				<cocoa key="_tempX"/>
 			</property>
@@ -23,11 +23,11 @@ Here is my ''.sdef file:
 		</class>
 	</suite>
 </dictionary>
-</code>
+
 
 Here is the KVC of the cocoa key for vernum:
 
-<code>
+    
 UInt32   vernum;
 
 - (UInt32)vernum {
@@ -40,13 +40,13 @@ UInt32   vernum;
         vernum = [value copy];
     }
 }
-</code>
+
 
 ----
 
 UInt32 is a primitive, not a class.
 
-<code>
+    
 - (UInt32)vernum {
     return vernum;
 }
@@ -54,4 +54,3 @@ UInt32 is a primitive, not a class.
 - (void)setVernum:(UInt32)value {
         vernum = value;
 }
-</code>

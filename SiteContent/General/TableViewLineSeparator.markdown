@@ -1,4 +1,4 @@
-How would I go about implementing the [[TableView]] Line Separator now used in many apps including the finder, as shown below between 'External Storage' and 'Applications'?
+How would I go about implementing the General/TableView Line Separator now used in many apps including the finder, as shown below between 'External Storage' and 'Applications'?
 
 http://wwwusers.brookes.ac.uk/04099001/example.gif
 
@@ -6,10 +6,10 @@ And does anyone know how to leave a space at the top, 3 pixel gap between the to
 
 ----
 
-Are you sure that isn't an [[NSMenuView]]? --zootbobbalu
+Are you sure that isn't an General/NSMenuView? --zootbobbalu
 
 ----
 
-See [[NSTableViewInFinderWindows]]
+See General/NSTableViewInFinderWindows
 
-''oh yeah, I forgot about that post.'' --zootbobbalu
+*oh yeah, I forgot about that post.* --zootbobbalu

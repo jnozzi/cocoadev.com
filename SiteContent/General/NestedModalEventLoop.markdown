@@ -4,45 +4,45 @@ I'm trying to implement menu-like behaviour using a pop-up window. It 99% works,
 
 My problem is that when I go from the "outer" mouseDown event handler to my tracking loop, the mouse location values I receive are for the parent window, not for the new popped-up window. My second level tracking loop operates in two ways, to mimic usual menu behaviour - if I click once to pop it up, then click-drag-click to work on its contents, all is well. If I hold the mouse down and drag through the new window, I get the parent window coordinates. I've tried everything I can think of to let the window server know I've switched into a new window (makeMainWindow, flushing events, etc), but unless the mouse is released, it never seems to notice. This has to be doable, as real pop-up menus must do the same.
 
-Any help on this would be gratefully received. --[[GrahamCox]].
+Any help on this would be gratefully received. --General/GrahamCox.
 
 Essence of the code posted below. Note that the test view I add is unimportant - any view will do but the test view makes it easy to see where I think my
 mouse location is.
 
-<code>
+    
 
-@interface [[GCWindowMenu]] : [[NSWindow]]
+@interface General/GCWindowMenu : General/NSWindow
 {
-	[[IBOutlet]]	[[NSView]]''		_mainView;
+	General/IBOutlet	General/NSView*		_mainView;
 }
 
-+ (void)			popUpWindowMenu:([[GCWindowMenu]]'') menu withEvent:([[NSEvent]]'') event forView:([[NSView]]'') view;
-+ ([[GCWindowMenu]]'')	windowMenu;
-+ ([[GCWindowMenu]]'')   windowMenuWithContentView:([[NSView]]'') view;
++ (void)			popUpWindowMenu:(General/GCWindowMenu*) menu withEvent:(General/NSEvent*) event forView:(General/NSView*) view;
++ (General/GCWindowMenu*)	windowMenu;
++ (General/GCWindowMenu*)   windowMenuWithContentView:(General/NSView*) view;
 
 
-- (void)			trackWithEvent:([[NSEvent]]'') event;
+- (void)			trackWithEvent:(General/NSEvent*) event;
 
-- (void)			setMainView:([[NSView]]'') aView sizeToFit:(BOOL) stf;
-- ([[NSView]]'')			mainView;
+- (void)			setMainView:(General/NSView*) aView sizeToFit:(BOOL) stf;
+- (General/NSView*)			mainView;
 
 @end
 
 
 
-#define kGCDefaultWindowMenuSize  ([[NSMakeRect]](0, 0, 100, 28 ))
+#define kGCDefaultWindowMenuSize  (General/NSMakeRect(0, 0, 100, 28 ))
 
 
 //=====================================================================================
 
 
 
-#import "[[GCWindowMenu]].h"
+#import "General/GCWindowMenu.h"
 
 #define __MAKE_TEST_VIEW__   0
 
 
-+ (void)	popUpWindowMenu:([[GCWindowMenu]]'') menu withEvent:([[NSEvent]]'') event forView:([[NSView]]'') view
++ (void)	popUpWindowMenu:(General/GCWindowMenu*) menu withEvent:(General/NSEvent*) event forView:(General/NSView*) view
 {
 	// pop up a window menu, and track it until the mouse goes up. Implements standard menu behaviour
 	// but uses a completely custom view. If <menu> is nil creates a default window. <event> is usually a
@@ -50,14 +50,14 @@ mouse location is.
 
 		
 	if ( menu == nil )
-		menu = [[[GCWindowMenu]] windowMenu];
+		menu = General/[GCWindowMenu windowMenu];
 	
 	[menu retain];
 	
 	// figure out where to show it
 	
-	[[NSPoint]] loc = [event locationInWindow];
-	loc = [[event window] convertBaseToScreen:loc];
+	General/NSPoint loc = [event locationInWindow];
+	loc = General/event window] convertBaseToScreen:loc];
 	
 	loc.x -= 10;
 	loc.y -= 5;
@@ -66,8 +66,8 @@ mouse location is.
 	
 	// show the "menu"
 	
-	[menu setParentWindow:[view window]];
-	[[view window] addChildWindow:menu ordered:[[NSWindowAbove]]];
+	[menu setParentWindow:[view window;
+	General/view window] addChildWindow:menu ordered:[[NSWindowAbove];
 	[menu orderFront:self];
 	//[menu makeFirstResponder:menu];
 	//[menu makeMainWindow];
@@ -78,33 +78,33 @@ mouse location is.
 	
 	// all done, tear down
 	
-	[[view window] removeChildWindow:menu];
+	General/view window] removeChildWindow:menu];
 	[menu orderOut:self];
 	
 	[menu release];
 	
-	[[NSLog]](@"pop-up complete");
+	[[NSLog(@"pop-up complete");
 }
 
 
 
-+ ([[GCWindowMenu]]'')	windowMenu
++ (General/GCWindowMenu*)	windowMenu
 {
-	[[GCWindowMenu]]'' fi =  [[[[GCWindowMenu]] alloc]  initWithContentRect:[[NSZeroRect]]
-												styleMask:[[NSBorderlessWindowMask]]
-												backing:[[NSBackingStoreBuffered]]
+	General/GCWindowMenu* fi =  General/[[GCWindowMenu alloc]  initWithContentRect:General/NSZeroRect
+												styleMask:General/NSBorderlessWindowMask
+												backing:General/NSBackingStoreBuffered
 												defer:YES];
 	
 	// note - because windows are all sent a -close message at quit time, set it
 	// not to be released at that time, otherwise the release from the autorelease pool
 	// will cause a crash due to the stale reference
 
-	[fi setReleasedWhenClosed:NO];	// ''''''' important!! '''''''
+	[fi setReleasedWhenClosed:NO];	// ****' important!! ****'
 	
 	#if __MAKE_TEST_VIEW__
 	
-	[[NSRect]] sr = [[NSMakeRect]]( 0, 0, 230, 230 );
-	[[NSView]]'' test = [[[[GCColourPickerView]] alloc] initWithFrame:sr];
+	General/NSRect sr = General/NSMakeRect( 0, 0, 230, 230 );
+	General/NSView* test = General/[[GCColourPickerView alloc] initWithFrame:sr];
 	
 	[fi setMainView:test sizeToFit:YES];
 	[test release];
@@ -116,18 +116,18 @@ mouse location is.
 
 
 
-+ ([[GCWindowMenu]]'')   windowMenuWithContentView:([[NSView]]'') view
++ (General/GCWindowMenu*)   windowMenuWithContentView:(General/NSView*) view
 {
-	[[GCWindowMenu]]'' menu = [self windowMenu];
+	General/GCWindowMenu* menu = [self windowMenu];
 	
 	[menu setMainView:view sizeToFit:YES];
 	return menu;
 }
 
 
-- (id)	initWithContentRect:([[NSRect]]) contentRect
+- (id)	initWithContentRect:(General/NSRect) contentRect
 		styleMask:(unsigned int) styleMask
-		backing:([[NSBackingStoreType]]) bufferingType
+		backing:(General/NSBackingStoreType) bufferingType
 		defer:(BOOL) deferCreation
 {
 	if ((self = [super initWithContentRect:contentRect
@@ -135,7 +135,7 @@ mouse location is.
 						backing:bufferingType
 						defer:deferCreation]) != nil )
 	{
-		[self setLevel:[[NSNormalWindowLevel]]];
+		[self setLevel:General/NSNormalWindowLevel];
 		[self setHasShadow:YES];
 		[self setOpaque:YES];
 		[self setReleasedWhenClosed:YES];
@@ -149,22 +149,22 @@ mouse location is.
 
 
 
-- (void)			trackWithEvent:([[NSEvent]]'') event
+- (void)			trackWithEvent:(General/NSEvent*) event
 {
 	// tracks the "menu" by keeping control until a mouse up (or down, if menu 'clicked' into being)
 	
-	[[NSLog]](@"starting tracking..., event = %@", event);
+	General/NSLog(@"starting tracking..., event = %@", event);
 		
-	//[[[NSEvent]] startPeriodicEventsAfterDelay:1.0 withPeriod:0.1];
+	//General/[NSEvent startPeriodicEventsAfterDelay:1.0 withPeriod:0.1];
 	
-	[[self mainView] mouseDown:event];
+	General/self mainView] mouseDown:event];
 	
-	[[NSEvent]]'' theEvent;
+	[[NSEvent* theEvent;
 	BOOL keepOn = YES;
 	unsigned int mask;
 	BOOL invertedTracking = NO;
 	
-	mask = [[NSLeftMouseUpMask]] | [[NSLeftMouseDraggedMask]] | [[NSRightMouseUpMask]] | [[NSRightMouseDraggedMask]] | [[NSPeriodicMask]];
+	mask = General/NSLeftMouseUpMask | General/NSLeftMouseDraggedMask | General/NSRightMouseUpMask | General/NSRightMouseDraggedMask | General/NSPeriodicMask;
  
 	while (keepOn)
 	{
@@ -172,51 +172,51 @@ mouse location is.
 
 		switch ([theEvent type])
 		{
-			case [[NSMouseMovedMask]]:
-			case [[NSRightMouseDragged]]:
-			case [[NSLeftMouseDragged]]:
-				[[self mainView] mouseDragged:theEvent];
+			case General/NSMouseMovedMask:
+			case General/NSRightMouseDragged:
+			case General/NSLeftMouseDragged:
+				General/self mainView] mouseDragged:theEvent];
 				break;
 			
-			case [[NSRightMouseUp]]:
-			case [[NSLeftMouseUp]]:
+			case [[NSRightMouseUp:
+			case General/NSLeftMouseUp:
 				// if this is within a very short time of the mousedown, leave the menu up but track it
 				// using mouse moved and mouse down to end.
 				
 				if ([theEvent timestamp] - [event timestamp] < 0.25 )
 				{
 					invertedTracking = YES;
-					mask = [[NSLeftMouseDownMask]] | [[NSLeftMouseDraggedMask]] | [[NSRightMouseDownMask]] | [[NSRightMouseDraggedMask]] | [[NSMouseMovedMask]] | [[NSPeriodicMask]];
+					mask = General/NSLeftMouseDownMask | General/NSLeftMouseDraggedMask | General/NSRightMouseDownMask | General/NSRightMouseDraggedMask | General/NSMouseMovedMask | General/NSPeriodicMask;
 				}
 				else
 				{
-					[[self mainView] mouseUp:theEvent];
+					General/self mainView] mouseUp:theEvent];
 					keepOn = NO;
 				}
 				break;
 				
-			case [[NSRightMouseDown]]:
-			case [[NSLeftMouseDown]]:
-				if ( ! [[NSPointInRect]]([theEvent locationInWindow], [[self mainView] frame]))
+			case [[NSRightMouseDown:
+			case General/NSLeftMouseDown:
+				if ( ! General/NSPointInRect([theEvent locationInWindow], General/self mainView] frame]))
 					keepOn = NO;
 				else
 					[[self mainView] mouseDown:theEvent];
 				break;
 
-			case [[NSPeriodic]]:
+			case [[NSPeriodic:
 				break;
 
 			default:
-				/'' Ignore any other kind of event. ''/
+				/* Ignore any other kind of event. */
 				break;
 		}
 	}
 	
-	[self discardEventsMatchingMask:[[NSAnyEventMask]] beforeEvent:theEvent];
+	[self discardEventsMatchingMask:General/NSAnyEventMask beforeEvent:theEvent];
 
 		
-	//[[[NSEvent]] stopPeriodicEvents];
-	[[NSLog]](@"ending tracking...");
+	//General/[NSEvent stopPeriodicEvents];
+	General/NSLog(@"ending tracking...");
 }
 
 
@@ -226,7 +226,7 @@ mouse location is.
 }
 
 
-- (void)			setMainView:([[NSView]]'') aView sizeToFit:(BOOL) stf
+- (void)			setMainView:(General/NSView*) aView sizeToFit:(BOOL) stf
 {
 	[aView retain];
 	[_mainView release];
@@ -234,17 +234,17 @@ mouse location is.
 	
 	// add as a subview
 	
-	[[self contentView] addSubview:aView];
+	General/self contentView] addSubview:aView];
 	
 	// if stf, position the view at top, left corner of the window and
 	// make the window the size of the view
 	
 	if ( stf )
 	{
-		[[NSRect]] fr = [aView frame];
+		[[NSRect fr = [aView frame];
 	
-		fr.origin = [[NSZeroPoint]];
-		[aView setFrameOrigin:[[NSZeroPoint]]];
+		fr.origin = General/NSZeroPoint;
+		[aView setFrameOrigin:General/NSZeroPoint];
 		[self setFrame:fr display:YES];
 	}
 	
@@ -252,7 +252,7 @@ mouse location is.
 }
 
 
-- ([[NSView]]'')			mainView
+- (General/NSView*)			mainView
 {
 	return _mainView;
 }
@@ -262,7 +262,7 @@ mouse location is.
 @end
 
 
-</code>
+
 
 ----
 
@@ -270,4 +270,4 @@ I have found one solution, but it strikes me as very hackish. I can detect the b
 
 ----
 
-Random guesses - try sending an [[NSEvent]] enterExitEventWithType, or look at [[NSView]] removeTrackingRect.
+Random guesses - try sending an General/NSEvent enterExitEventWithType, or look at General/NSView removeTrackingRect.

@@ -18,4 +18,4 @@ http://macromates.com/sigpipe/archives/2005/07/20/metadata-workarounds-on-tiger/
 
 What's the benefit of xattr? is it faster than using nsfilemanager?
 
-''There seems to be a new [[NSFileManager]] attribute key, [[NSFileExtendedAttributes]],  that allows you to get some of the extended file attributes - though it seems to omit the [[FinderInfo]] and [[ResourceFork]] values.''
+*There seems to be a new General/NSFileManager attribute key, General/NSFileExtendedAttributes,  that allows you to get some of the extended file attributes - though it seems to omit the General/FinderInfo and General/ResourceFork values.*

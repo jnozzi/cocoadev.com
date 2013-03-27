@@ -4,22 +4,22 @@ Hey all,
 
 Trying to find out the last opened attribute of a file (the same one displayed in the Finder inspector).  I've got this code here:
 
-<code>[[NSDate]] ''openDate = [[[NSDate]] date];
-[[OSStatus]] err;
-[[FSRef]] fileRef;
-err = [[FSPathMakeRef]]([path fileSystemRepresentation], &fileRef, NULL);
+    General/NSDate *openDate = General/[NSDate date];
+General/OSStatus err;
+General/FSRef fileRef;
+err = General/FSPathMakeRef([path fileSystemRepresentation], &fileRef, NULL);
 if (err == noErr) {
-	[[FSCatalogInfo]] catalogInfo;
-	err = [[FSGetCatalogInfo]](&fileRef, kFSCatInfoAccessDate, &catalogInfo, NULL, NULL, NULL);
+	General/FSCatalogInfo catalogInfo;
+	err = General/FSGetCatalogInfo(&fileRef, kFSCatInfoAccessDate, &catalogInfo, NULL, NULL, NULL);
 	if (err == noErr) {
-		openDate = [[UTCDateTimeToNSDate]](&catalogInfo.accessDate);
+		openDate = General/UTCDateTimeToNSDate(&catalogInfo.accessDate);
 	}
-}</code>
+}
 
 Now, when I use that similar method to obtain the modification or creation date -- it works fine.  With the accessDate, however, I am given something inaccurate.  it simply returns todays date.  Does anyone have any idea how to make this work and get the real access/last opened date of a file?  Thanks
 
 ----
-Well, your default value for openDate is the current date. Perhaps you should check if [[FSPathMakeRef]] and [[FSGetCatalogInfo]] are, in fact, returning noErr? If one of them isn't, then the value of openDate remains the current date (minus the time it took to execute your code, that is.) Also, is it possible that either [[FSGetCatalogInfo]] or [[FSPathMakeRef]] update the access date of the files they represent when one uses them? -[[JonathanGrynspan]]
+Well, your default value for openDate is the current date. Perhaps you should check if General/FSPathMakeRef and General/FSGetCatalogInfo are, in fact, returning noErr? If one of them isn't, then the value of openDate remains the current date (minus the time it took to execute your code, that is.) Also, is it possible that either General/FSGetCatalogInfo or General/FSPathMakeRef update the access date of the files they represent when one uses them? -General/JonathanGrynspan
 
 ---- 
 

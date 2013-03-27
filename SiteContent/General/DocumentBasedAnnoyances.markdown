@@ -6,7 +6,7 @@ Second, my document-based app has been experiencing occasional unexpected quits 
 
 Any help is appreciated, and I apologize if these are n00b-ish questions. Thanks!
 
-''Please [[PostYourCode]] for the second question, at least any that's specific to your document. For the first, one way to disable the dirty state is to override [[NSDocument]]'s <code>isDocumentEdited:</code> to always return <code>NO</code> (warning: untested). --[[JediKnil]]''
+*Please General/PostYourCode for the second question, at least any that's specific to your document. For the first, one way to disable the dirty state is to override General/NSDocument's     isDocumentEdited: to always return     NO (warning: untested). --General/JediKnil*
 
 ----
 
@@ -18,6 +18,6 @@ I don't have any code for the document part, as the program is a web browser. I 
 
 Programs shouldn't "quit for no reason", document or not. Check the exit return code in console, and check it in the debugger (now is a great time to learn it if you haven't yet.) Most of the time this behavior is caused by an error in memory management, so make sure you're retaining objects when you should be.
 
-Also, if you're not using an [[NSDocument]] subclass, you probably shouldn't be using a Document based project-- you can still use [[NSWindowController]] and multiple windows in a standard cocoa project.
+Also, if you're not using an General/NSDocument subclass, you probably shouldn't be using a Document based project-- you can still use General/NSWindowController and multiple windows in a standard cocoa project.
 
-''That's not exactly true -- Safari, among other programs, uses [[NSDocument]] to implement multiple windows, etc. The key word above is "subclass" -- you should have '''some''' code in a subclass of [[NSDocument]]. --[[JediKnil]]''
+*That's not exactly true -- Safari, among other programs, uses General/NSDocument to implement multiple windows, etc. The key word above is "subclass" -- you should have **some** code in a subclass of General/NSDocument. --General/JediKnil*

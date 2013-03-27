@@ -7,32 +7,32 @@ Terminology: do you mean class variables, or do you mean instance variables? "cl
 
 A class variable is one that is set per class, and exists even if there are no instances. The easiest way to implement these is using a static variable, e.g:
 
-<code>
+    
 
-static [[NSString]]'' s_myString = @"Hello, World!";
+static General/NSString* s_myString = @"Hello, World!";
 
-</code>
+
 
 As you can see this gets initialised at startup automatically - you don't need to do anything. That works for all simple static variables, but wouldn't for an object (except literal strings, which as shown, are an exception). There, the solution I usually use is lazy instantiation, so if you had a singleton class you could do something like this:
 
-<code>
+    
 
-+ (id)  [[MySingleton]]
++ (id)  General/MySingleton
 {
     static s_single = nil;
 
     if ( s_single == nil )
-        s_single = [[[[MyClass]] alloc] init];
+        s_single = General/[[MyClass alloc] init];
 
     return s_single;
 }
 
-</code>
 
-Thus first time it's called, s_single is nil, so the object gets intantiated. Subsequent calls return the same object, because it's a static var. This is equivalent to initialising at startup time, in a way, because the object is made only when it's first used. If it never gets used, why make it at all? --[[GrahamCox]]
+
+Thus first time it's called, s_single is nil, so the object gets intantiated. Subsequent calls return the same object, because it's a static var. This is equivalent to initialising at startup time, in a way, because the object is made only when it's first used. If it never gets used, why make it at all? --General/GrahamCox
 
 ----
 
-I would recommend reading Apple's Objective-C primer. This ''is'' a very basic question. To answer, however, you're looking for the -init method. You don't set '''instance''' variables at startup, you initialize them for each instance when the instance is initialized. If it sounds obvious, that's because it is. Again, you need to read the basics (Apple's primer and a good Objective-C book are the best places to learn).
+I would recommend reading Apple's Objective-C primer. This *is* a very basic question. To answer, however, you're looking for the -init method. You don't set **instance** variables at startup, you initialize them for each instance when the instance is initialized. If it sounds obvious, that's because it is. Again, you need to read the basics (Apple's primer and a good Objective-C book are the best places to learn).
 
-If you need to set '''class''' variables, the +initialize class method is the place to go. You need to know the difference between the two, however, or you will have no end of confusion and frustration. By "the two" I mean class versus instance variables.
+If you need to set **class** variables, the +initialize class method is the place to go. You need to know the difference between the two, however, or you will have no end of confusion and frustration. By "the two" I mean class versus instance variables.

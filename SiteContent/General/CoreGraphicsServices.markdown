@@ -1,111 +1,111 @@
-<code>
-/''
+    
+/*
     Call 			no# args	arg 			type
 	
-    [[CGSEndContext]]		1 argument	?			int				-- possibly unneeded by [[CGContextFlush]]
-    [[CGSFlushContext]]		1 argument 	?			int				-- use [[CGContextFlush]] instead
-    [[CGSImage]]			2 arguments	?, ?			int , int
-    [[CGContextSetAlpha]]		1 argument 	?			int
-    [[CGSScaleCTM]]			2 arguments	?, ?			float, float
-    [[CGSTranslateCTM]]		2 arguments 	?, ?			float, float
-    [[CGSSetGStateAttribute]]	3 arguments	?, ?, ?			int,int,int
-    [[CGSUniqueCString]]		1 argument	?			int 		(constant 0x1fa8)
-    [[CGSReadObjectFromCString]]	1 argument	?			int		(constant 0x2140)
-    [[CGSClearContext]]		1 argument	?			int
-    [[CGSGetWindowAlpha]]		3 argument	?,?,?			int,int,int
-    [[CGSPutBooleanForCStringKey]]	3 arguments	?,?,?			int,int,int
-    [[CGSPutIntegerForCStringKey]]	3 arguments	?,?,?			int,int,int
-    [[CGSCreateDictionary]]		1 argument	?			int
-    [[CGSReleaseWindow]]		2 arguments	?,?			int,int    -- deprecated? use [[CGContextRelease]]?
-    [[CGSSetWindowWarp]]		5 arguments	?,?,?,?,?		int,int,int,int,int
-    [[CGSSetBackgroundEventMaskAndShape]] 3 args	?,?,?			int,int,int
-    [[CGSInputModifierKeyState]]	2 arguments	?,?			int,int 	(const arg1=0,arg2=variable)
-    [[CGSGetScreenRectForWindow]]	1(2?) arguments ?,(?)			int,(int)
-    [[CGSSetFillPattern]]		2 args		?,?			int,int
-    [[CGSCurrentInputPointerPosition]] 1 args	?			int
-    [[CGSSetWindowClipShape]]	3 arguments	?,?,?			int,int,int
-    [[CGSGetScreenRectForWindow]]	2 arguments	?,?			int,int
-    [[CGSGetWindowFlushSeed]]	3 arguments	?,?,?			int,int,int
-    [[CGSGetCurrentCursorLocation]] 1 argument	?			int
-''/
+    General/CGSEndContext		1 argument	?			int				-- possibly unneeded by General/CGContextFlush
+    General/CGSFlushContext		1 argument 	?			int				-- use General/CGContextFlush instead
+    General/CGSImage			2 arguments	?, ?			int , int
+    General/CGContextSetAlpha		1 argument 	?			int
+    General/CGSScaleCTM			2 arguments	?, ?			float, float
+    General/CGSTranslateCTM		2 arguments 	?, ?			float, float
+    General/CGSSetGStateAttribute	3 arguments	?, ?, ?			int,int,int
+    General/CGSUniqueCString		1 argument	?			int 		(constant 0x1fa8)
+    General/CGSReadObjectFromCString	1 argument	?			int		(constant 0x2140)
+    General/CGSClearContext		1 argument	?			int
+    General/CGSGetWindowAlpha		3 argument	?,?,?			int,int,int
+    General/CGSPutBooleanForCStringKey	3 arguments	?,?,?			int,int,int
+    General/CGSPutIntegerForCStringKey	3 arguments	?,?,?			int,int,int
+    General/CGSCreateDictionary		1 argument	?			int
+    General/CGSReleaseWindow		2 arguments	?,?			int,int    -- deprecated? use General/CGContextRelease?
+    General/CGSSetWindowWarp		5 arguments	?,?,?,?,?		int,int,int,int,int
+    General/CGSSetBackgroundEventMaskAndShape 3 args	?,?,?			int,int,int
+    General/CGSInputModifierKeyState	2 arguments	?,?			int,int 	(const arg1=0,arg2=variable)
+    General/CGSGetScreenRectForWindow	1(2?) arguments ?,(?)			int,(int)
+    General/CGSSetFillPattern		2 args		?,?			int,int
+    General/CGSCurrentInputPointerPosition 1 args	?			int
+    General/CGSSetWindowClipShape	3 arguments	?,?,?			int,int,int
+    General/CGSGetScreenRectForWindow	2 arguments	?,?			int,int
+    General/CGSGetWindowFlushSeed	3 arguments	?,?,?			int,int,int
+    General/CGSGetCurrentCursorLocation 1 argument	?			int
+*/
 
 #ifndef _CGS_HACK_H
 #define _CGS_HACK_H
 
-#include <Carbon/Carbon.h> /'' for [[ProcessSerialNumber]] ''/
+#include <Carbon/Carbon.h> /* for General/ProcessSerialNumber */
 
-typedef void ''[[CGSConnectionID]];
-typedef void ''[[CGSValueObj]];
-typedef void ''[[CGSRegionObj]];
-typedef void ''[[CGSBoundingShapeObj]];
+typedef void *General/CGSConnectionID;
+typedef void *General/CGSValueObj;
+typedef void *General/CGSRegionObj;
+typedef void *General/CGSBoundingShapeObj;
 
 typedef enum _CGSWindowOrderingMode {
     kCGSOrderAbove                =  1,
     kCGSOrderBelow                = -1,
     kCGSOrderOut                  =  0
-} [[CGSWindowOrderingMode]];
+} General/CGSWindowOrderingMode;
 
-#define kCGSNullConnectionID (([[CGSConnectionID]])0)
+#define kCGSNullConnectionID ((General/CGSConnectionID)0)
 
-extern [[CGSConnectionID]] _CGSDefaultConnection(void);
+extern General/CGSConnectionID _CGSDefaultConnection(void);
 
-extern void [[CGSReenableUpdate]]([[CGSConnectionID]] cid);
-extern void [[CGSDisableUpdate]]([[CGSConnectionID]] cid);
+extern void General/CGSReenableUpdate(General/CGSConnectionID cid);
+extern void General/CGSDisableUpdate(General/CGSConnectionID cid);
 
-extern [[OSStatus]] [[CGSSetWindowTransforms]](const [[CGSConnectionID]] cid, [[CGWindowID]] ''wid, [[CGAffineTransform]] ''transform, int n);
-extern [[OSStatus]] [[CGSSetWindowTransform]](const [[CGSConnectionID]] cid, [[CGWindowID]] wid, [[CGAffineTransform]] transform);
+extern General/OSStatus General/CGSSetWindowTransforms(const General/CGSConnectionID cid, General/CGWindowID *wid, General/CGAffineTransform *transform, int n);
+extern General/OSStatus General/CGSSetWindowTransform(const General/CGSConnectionID cid, General/CGWindowID wid, General/CGAffineTransform transform);
 
-extern [[OSStatus]] [[CGSGetWindowTransform]](const [[CGSConnectionID]], [[CGWindowID]] wid, [[CGAffineTransform]] ''outTransform);
+extern General/OSStatus General/CGSGetWindowTransform(const General/CGSConnectionID, General/CGWindowID wid, General/CGAffineTransform *outTransform);
     
 // questionable, partly guessed IIRC.
-extern [[OSStatus]] [[CGSSetSharedWindowState]](const [[CGSConnectionID]] cid, [[CGWindowID]] wid, [[CGSValueObj]] boolean);
-extern [[OSStatus]] [[CGSSetWindowAlpha]](const [[CGSConnectionID]] cid, [[CGWindowID]] wid, float alpha);
+extern General/OSStatus General/CGSSetSharedWindowState(const General/CGSConnectionID cid, General/CGWindowID wid, General/CGSValueObj boolean);
+extern General/OSStatus General/CGSSetWindowAlpha(const General/CGSConnectionID cid, General/CGWindowID wid, float alpha);
     
-extern [[OSStatus]] [[CGSSetWindowProperty]](const [[CGSConnectionID]] cid, [[CGWindowID]] wid, [[CGSValueObj]] key, [[CGSValueObj]] value);
+extern General/OSStatus General/CGSSetWindowProperty(const General/CGSConnectionID cid, General/CGWindowID wid, General/CGSValueObj key, General/CGSValueObj value);
 
-extern [[CGSValueObj]] [[CGSCreateCString]](char ''string);
-extern [[CGSValueObj]] [[CGSCreateBoolean]](Boolean bool);
-extern void [[CGSReleaseGenericObj]]([[CGSValueObj]] obj);
+extern General/CGSValueObj General/CGSCreateCString(char *string);
+extern General/CGSValueObj General/CGSCreateBoolean(Boolean bool);
+extern void General/CGSReleaseGenericObj(General/CGSValueObj obj);
 
-extern [[OSStatus]] [[CGSOrderWindow]]([[CGSConnectionID]] cid, [[CGWindowID]] wid, [[CGSWindowOrderingMode]] place, [[CGWindowID]] relativeToWindowID /'' can be NULL ''/);
+extern General/OSStatus General/CGSOrderWindow(General/CGSConnectionID cid, General/CGWindowID wid, General/CGSWindowOrderingMode place, General/CGWindowID relativeToWindowID /* can be NULL */);
 
-extern void [[CGSNewRegionWithRect]](const [[CGRect]] ''aRectangle, [[CGSRegionObj]] ''outRegionObj);
-extern [[OSStatus]] [[CGSReleaseRegion]]([[CGSRegionObj]]);
-extern void [[CGSGetRegionBounds]](const [[CGSRegionObj]] aRegion, [[CGRect]] ''outRect);
+extern void General/CGSNewRegionWithRect(const General/CGRect *aRectangle, General/CGSRegionObj *outRegionObj);
+extern General/OSStatus General/CGSReleaseRegion(General/CGSRegionObj);
+extern void General/CGSGetRegionBounds(const General/CGSRegionObj aRegion, General/CGRect *outRect);
 
-extern void [[CGSSetWindowOpacity]]([[CGSConnectionID]] cid, [[CGWindowID]] wid, void'' opacity /'' kCGSFalse, is that a [[CGSValueObj]] or standard char? ''/);
+extern void General/CGSSetWindowOpacity(General/CGSConnectionID cid, General/CGWindowID wid, void* opacity /* kCGSFalse, is that a General/CGSValueObj or standard char? */);
 
-extern [[OSStatus]] [[CGSNewConnection]](void ''something /'' can be NULL, parent connection? ''/, [[CGSConnectionID]] ''outID);
-extern [[OSStatus]] [[CGSReleaseConnection]]([[CGSConnectionID]] cid);
-extern void [[CGSInitialize]]();
+extern General/OSStatus General/CGSNewConnection(void *something /* can be NULL, parent connection? */, General/CGSConnectionID *outID);
+extern General/OSStatus General/CGSReleaseConnection(General/CGSConnectionID cid);
+extern void General/CGSInitialize();
 
-extern [[OSStatus]] [[CGSGetConnectionIDForPSN]](const [[CGSConnectionID]] cid, [[ProcessSerialNumber]] ''psn, [[CGSConnectionID]] ''out);
+extern General/OSStatus General/CGSGetConnectionIDForPSN(const General/CGSConnectionID cid, General/ProcessSerialNumber *psn, General/CGSConnectionID *out);
 
-// random hack constants for [[CGSSetDebugOptions]]
+// random hack constants for General/CGSSetDebugOptions
 #define kCGSDebugOptionNormal 0
 #define kCGSDebugOptionNoShadows 16384
 #define kCGSHDumpWindowInfoToFile (0x8000<<16)|1
 
-extern [[OSStatus]] [[CGSSetDebugOptions]](unsigned long);
+extern General/OSStatus General/CGSSetDebugOptions(unsigned long);
 
 // only works if you kill the dock, then stops dock from relaunching
-extern [[OSStatus]] [[CGSSetUniversalOwner]](const [[CGSConnectionID]] cid, int);
+extern General/OSStatus General/CGSSetUniversalOwner(const General/CGSConnectionID cid, int);
 // apparently a nop
-extern [[OSStatus]] [[CGSSetOtherUniversalConnection]](const [[CGSConnectionID]] cid);
+extern General/OSStatus General/CGSSetOtherUniversalConnection(const General/CGSConnectionID cid);
 
-extern [[OSStatus]] [[CGSGetScreenRectForWindow]]([[CGSConnectionID]] cid, [[CGWindowID]] wid, [[CGRect]] ''outRect);
-extern [[OSStatus]] [[CGSMoveWindow]]([[CGSConnectionID]] cid, [[CGWindowID]] wid, [[CGPoint]] ''aPoint);
+extern General/OSStatus General/CGSGetScreenRectForWindow(General/CGSConnectionID cid, General/CGWindowID wid, General/CGRect *outRect);
+extern General/OSStatus General/CGSMoveWindow(General/CGSConnectionID cid, General/CGWindowID wid, General/CGPoint *aPoint);
 
-extern [[OSStatus]] [[CGSGetWindowLevel]]([[CGSConnectionID]] cid, [[CGWindowID]] wid, [[CGWindowLevel]] ''level);
-extern [[OSStatus]] [[CGSGetWindowBounds]]([[CGSConnectionID]] cid, [[CGWindowID]] wid, [[CGRect]] ''bounds);
+extern General/OSStatus General/CGSGetWindowLevel(General/CGSConnectionID cid, General/CGWindowID wid, General/CGWindowLevel *level);
+extern General/OSStatus General/CGSGetWindowBounds(General/CGSConnectionID cid, General/CGWindowID wid, General/CGRect *bounds);
 
-extern [[CGWindowID]] [[CGSDesktopWindow]](void);
+extern General/CGWindowID General/CGSDesktopWindow(void);
 
-extern [[OSStatus]] [[CGSSetWindowLevel]]([[CGSConnectionID]] cid, [[CGWindowID]] wid, [[CGWindowLevel]] level);
+extern General/OSStatus General/CGSSetWindowLevel(General/CGSConnectionID cid, General/CGWindowID wid, General/CGWindowLevel level);
 
-#endif /'' _CGS_HACK_H ''/
-</code>
+#endif /* _CGS_HACK_H */
+
 
 ----
 
-I removed the [[CGSWindowID]] type, as it's actually the same as the [[CGWindowID]] type that's publicly defined. -[[JonathanGrynspan]]
+I removed the General/CGSWindowID type, as it's actually the same as the General/CGWindowID type that's publicly defined. -General/JonathanGrynspan

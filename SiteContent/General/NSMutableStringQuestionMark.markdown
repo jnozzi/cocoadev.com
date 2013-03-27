@@ -1,11 +1,11 @@
-Describe [[NSMutableStringQuestionMark]] here.
+Describe General/NSMutableStringQuestionMark here.
 
 
 Greetings.
 
 This is my first post to this forum, and I admit that to me, this seems like a strange way to run a railroad. But I have high hopes.
 
-I'm slugging my way through a new book, "Learn Cocoa on the Mac", by Jack Nutting, David Mark and Jeff [[LaMarche]].
+I'm slugging my way through a new book, "Learn Cocoa on the Mac", by Jack Nutting, David Mark and Jeff General/LaMarche.
 
 The book teaches by giving complete examples, and then sparse explanations of the code used. The book is extremely dense, and packs a lot of information into a minimum of words, and one must parse paragraphs and track down sentences carefully to learn the information.
 
@@ -13,19 +13,19 @@ Therefore, I copy the examples, and dissect the code piece by piece until I unde
 
 If any of you have this book, or if any of you are reading it as I am, I will include references so you can see what I'm seeing, but I'll try to keep the book out of it, and focus on the issues that are confusing me.
 
-Starting in chapter 6, on pager 105, one starts building an app called "[[DungeonThing]]", which is a tool that would help a dungeon master in a game of Dungeons & Dragons. The intent of the chapter is to teach Cocoa Bindings.
+Starting in chapter 6, on pager 105, one starts building an app called "General/DungeonThing", which is a tool that would help a dungeon master in a game of Dungeons & Dragons. The intent of the chapter is to teach Cocoa Bindings.
 
 The code that's confusing me looks like this:
 
-/''''''''''''''''''/
+/************/
 
 #define kMonsterTypeAllowedOrc @"monsterTypeAllowedOrc"
 
-/''''''''''''''''''/
-- ([[IBAction]])createMonster:(id)sender
+/************/
+- (General/IBAction)createMonster:(id)sender
 {
-	[[NSUserDefaults]] ''ud = [[[NSUserDefaults]] standardUserDefaults];
-	[[NSMutableString]] ''result = [[[NSMutableString]] stringWithCapacity:1024];
+	General/NSUserDefaults *ud = General/[NSUserDefaults standardUserDefaults];
+	General/NSMutableString *result = General/[NSMutableString stringWithCapacity:1024];
 	[result appendString:@"Generating a monster within these parameters:\n-------------------------\n"];
 	
 	[result appendFormat: @"Booty Frequency: %d\n",
@@ -34,7 +34,7 @@ The code that's confusing me looks like this:
 	[result appendFormat:@"Allows Orc: %@\n",
 	 [ud boolForKey:kMonsterTypeAllowedOrc] ? @"YES" : @"NO"];
 
-/''''''''''''''''''/
+/************/
 
 It's that last section that gets me. I understand how a copy of the User Defaults is created, how a string is created and shoved into result, and how the rest of the display is then appended to the end of it, building what is displayed section by section.
 
@@ -44,9 +44,9 @@ Searching through the documentation, the message
 	[result appendFormat:@"Allows Orc: %@\n",
 	 [ud boolForKey:kMonsterTypeAllowedOrc] ? @"YES" : @"NO"];
 
-is a call to appendFormat, which is an instance method of [[NSMutableString]]. I found that in the Apple documentation. 
+is a call to appendFormat, which is an instance method of General/NSMutableString. I found that in the Apple documentation. 
 
-The brackets of the message include the entire statement, the results are going into result, then the call to appendFormat:, then the first parameter, an [[NSString]] that consists of "Allows Orc:", and a format that specifies that the following parameter is an object.
+The brackets of the message include the entire statement, the results are going into result, then the call to appendFormat:, then the first parameter, an General/NSString that consists of "Allows Orc:", and a format that specifies that the following parameter is an object.
 
 Now we come to my problem.
 
@@ -54,9 +54,9 @@ The next parameter, which follows the comma after the format, is a set of bracke
 
 The way I read that, that should complete the call. The boolean in the array stored at the key kMonsterTypeAllowedOrc should be jerked out, appended to the string, and game over.
 
-But no. There is then the mysterious question mark, which I can't find in any documentation, not the documentation for Objective C, not the documentation for [[NSMutableString]] or the call to appendFormat, or in any of the documentation for how to format strings.
+But no. There is then the mysterious question mark, which I can't find in any documentation, not the documentation for Objective C, not the documentation for General/NSMutableString or the call to appendFormat, or in any of the documentation for how to format strings.
 
-What follows the question mark is a "YES" and a "NO", both declared as [[NSStrings]] by the shorthand method, that I found in the documentation to [[NSSTring]], separated by a colon which would normally indicate another section of a selector.
+What follows the question mark is a "YES" and a "NO", both declared as General/NSStrings by the shorthand method, that I found in the documentation to General/NSSTring, separated by a colon which would normally indicate another section of a selector.
 
 Except that the call is already complete, the question mark doesn't indicate anything that I can find, and there isn't any selector calling anything beyond the closing bracket!
 
@@ -66,9 +66,9 @@ So what I'd like is this: I'd like to find the documentation that I'm obviously 
 
 There is documentation that says there can be lots of parameters at the end of a call to appendFormat, they are comma delimited.  
 
-But I can't find any documentation about the question mark, not in [[NSString]], not in appendFormat, not in the documentation about how to format strings, not in Objective C. Don't get me started on printf.
+But I can't find any documentation about the question mark, not in General/NSString, not in appendFormat, not in the documentation about how to format strings, not in Objective C. Don't get me started on printf.
 
-Why does it require the two [[NSStrings]] "YES" and "NO" at the end, when the dictionary entry at kMonsterTypeAllowedOrc contains a perfectly acceptable boolean value that will fit very nicely onto the end of the statement we're trying to build?
+Why does it require the two General/NSStrings "YES" and "NO" at the end, when the dictionary entry at kMonsterTypeAllowedOrc contains a perfectly acceptable boolean value that will fit very nicely onto the end of the statement we're trying to build?
 
 The reason I'd like this documentation is because I'd like to know under what circumstances such strings are necessary, so I can build them in the future if I need to.
 

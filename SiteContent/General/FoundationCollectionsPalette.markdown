@@ -1,4 +1,4 @@
-The [[FoundationCollectionsPalette]] extends Apple's [[InterfaceBuilder]] with support for Foundation's collection classes; it enhances [[NSDictionary]] and [[NSArray]], adding an attributes inspector, a connections inspector and a size inspector to both.
+The General/FoundationCollectionsPalette extends Apple's General/InterfaceBuilder with support for Foundation's collection classes; it enhances General/NSDictionary and General/NSArray, adding an attributes inspector, a connections inspector and a size inspector to both.
 
 Using all this is as easy as building this project and loading the resulting palette in IB; the inspectors themselves are as obvious as I could make them. The code itself is intended to be a rough template for creating useful palettes in IB. Feel free to use this project as you wish.
 
@@ -6,11 +6,11 @@ Go to http://www.geocities.com/kritter_cocoadev for the code. This is page shoul
 
 Please add any comments, suggestions, bug-reports, etc. under this header::
 
-----'''Comments, suggestions, bug-reports, etc.'''----
+----**Comments, suggestions, bug-reports, etc.**----
 
-Excellent demonstration of IB "internals". One thing I miss is how I can dynamically implement target/action, that is, how can one extend the connection inspector of [[NSView]]'s, eg [[NSButton]]. If I connect the target of a button view a custom object it shows it's Objective-C methods, but how can I (dynamically) add methods to this list, more specifically, for a proxy which forwards actions using -forwardInvocation: ? Eg this proxy has reflection methods like -([[NSArray]] '')forwardedSelectorNames; which I would like to show up as actions. -- ?
+Excellent demonstration of IB "internals". One thing I miss is how I can dynamically implement target/action, that is, how can one extend the connection inspector of General/NSView's, eg General/NSButton. If I connect the target of a button view a custom object it shows it's Objective-C methods, but how can I (dynamically) add methods to this list, more specifically, for a proxy which forwards actions using -forwardInvocation: ? Eg this proxy has reflection methods like -(General/NSArray *)forwardedSelectorNames; which I would like to show up as actions. -- ?
 
-Can you not just add actions to the proxy class in IB? -- [[KritTer]]
+Can you not just add actions to the proxy class in IB? -- General/KritTer
 
 There are (at least) two issues with this:
 a) the actions would appear on any proxy instance, which is wrong because each proxy wraps a different source object and therefore has different actions

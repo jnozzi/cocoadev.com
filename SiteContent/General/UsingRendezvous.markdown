@@ -5,11 +5,11 @@ Rendezvous is just resource location.  You'll still need to design / adopt some 
 
 ----
 
-Check out the [[RendezVous]] page. It contains a lot of articles on working with Rendezvous. I found this one to be particularly useful:
+Check out the General/RendezVous page. It contains a lot of articles on working with Rendezvous. I found this one to be particularly useful:
 
 http://www.macdevcenter.com/pub/a/mac/2002/11/08/cocoa.html
 
--- [[RyanBates]]
+-- General/RyanBates
 
 ----
 
@@ -17,4 +17,4 @@ Thanks for the link.  I'm not worried about the TCP/IP communication issues as I
 
 ----
 
-For a LAN, Rendezvous would be perfect.  If you're wanting to have it work for two arbitrary machines on the Big Bad Internet, then you'll probably need the 24/7 dedicated server.   For Rendezvous to work beyond [[LANs]] requires some special routing stuff I don't understand to be set up.
+For a LAN, Rendezvous would be perfect.  If you're wanting to have it work for two arbitrary machines on the Big Bad Internet, then you'll probably need the 24/7 dedicated server.   For Rendezvous to work beyond General/LANs requires some special routing stuff I don't understand to be set up.

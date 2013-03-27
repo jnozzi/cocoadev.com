@@ -3,48 +3,48 @@
 Hello.
 
 I like to grab a single frame from the iSight-cameras video stream.
-It was easy to realize that in an "Cocoa Application". I found Tim's [[CocoaSequenceGrabber]] here:
+It was easy to realize that in an "Cocoa Application". I found Tim's General/CocoaSequenceGrabber here:
 http://www.skyfell.org/cocoasequencegrabber.html
 
 In my Cocoa-Programme the Code looks like this:
-<code>
+    
 - (void)awakeFromNib;
 {
 	// Start recording
 	counter = 1;
-	camera = [[[[CSGCamera]] alloc] init];
+	camera = General/[[CSGCamera alloc] init];
 	[camera setDelegate:self];
-	[camera startWithSize:[[NSMakeSize]](640, 480)];	
+	[camera startWithSize:General/NSMakeSize(640, 480)];	
 }
 
-// [[CSGCamera]] delegate
+// General/CSGCamera delegate
 
-- (void)camera:([[CSGCamera]] '')aCamera didReceiveFrame:([[CSGImage]] '')aFrame;
+- (void)camera:(General/CSGCamera *)aCamera didReceiveFrame:(General/CSGImage *)aFrame;
 {
 	counter ++;
 	if (counter == 10)
 	{
-		[[aFrame [[TIFFRepresentation]]] writeToFile:@"/tmp/foo.tif" atomically:YES];
+		General/aFrame [[TIFFRepresentation] writeToFile:@"/tmp/foo.tif" atomically:YES];
 	       [camera stop];
 	       exit(0);
 	}
 }
 
-</code>
 
-Important to know is, that there is a Function "[[CSGCameraSGDataProc]]" that takes all the Data from the Component.
 
-<code>
+Important to know is, that there is a Function "General/CSGCameraSGDataProc" that takes all the Data from the Component.
+
+    
 // Set data proc
-    theErr = [[SGSetDataProc]](component, [[NewSGDataUPP]](&[[CSGCameraSGDataProc]]), (long)self);
+    theErr = General/SGSetDataProc(component, General/NewSGDataUPP(&General/CSGCameraSGDataProc), (long)self);
     if (theErr != noErr) {
-        [[NSLog]](@"[[SGSetDataProc]]() returned %ld", theErr);
+        General/NSLog(@"General/SGSetDataProc() returned %ld", theErr);
         return NO;
     }
-</code>
+
 
 In a Cocoa-Application this works great. The Data is passed from function to function and each frame is processed by 
-"- (void)camera:([[CSGCamera]] '')aCamera didReceiveFrame:([[CSGImage]] '')aFrame;", where i can pick it and write it into a file.
+"- (void)camera:(General/CSGCamera *)aCamera didReceiveFrame:(General/CSGImage *)aFrame;", where i can pick it and write it into a file.
 
 Now i want to have this in a "Foundation Tool", a command line utility. But there no data is processed. I believe this is because a "Foundation Tool" is not multithreaded by default. I did some experiments with threads, but this does not work. My (maybe stupid) idea now is, it should be possible to create some threaded environment like in a Cocoa-App. Maybe to run the whole class inside a thread.
 
@@ -54,7 +54,7 @@ Benjamin from Wiesbaden, Germany
 
 ----
 
-It's not because a foundation tool is unable to detach threads ([[NSThread]] is a foundation class). It could be because some part of the sequence grabbing code is dependent on the window server. Also, the sequence grabbing code could require the [[QuickTime]] toolkit to be initialized (see <code>[[EnterMovies]]()</code>). If your code works as a Cocoa application and you only want to avoid the user interface part then check out [[CocoaAppsWithoutMenuBarOrDock]]. 
+It's not because a foundation tool is unable to detach threads (General/NSThread is a foundation class). It could be because some part of the sequence grabbing code is dependent on the window server. Also, the sequence grabbing code could require the General/QuickTime toolkit to be initialized (see     General/EnterMovies()). If your code works as a Cocoa application and you only want to avoid the user interface part then check out General/CocoaAppsWithoutMenuBarOrDock. 
 
 --zootbobbalu
 
@@ -65,20 +65,20 @@ I analysed my problem some more hours.
 
  I thinks its because in a Foundation Tool, i do not have an "Event Cycle", as its shown here:
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[CocoaFundamentals]]/Art/main_event_loop.gif
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/CocoaFundamentals/Art/main_event_loop.gif
 
-on http://developer.apple.com/documentation/Cocoa/Conceptual/[[CocoaFundamentals]]/[[CoreAppArchitecture]]/chapter_7_section_2.html#//apple_ref/doc/uid/TP40002974-CH8-DontLinkElementID_117
+on http://developer.apple.com/documentation/Cocoa/Conceptual/General/CocoaFundamentals/General/CoreAppArchitecture/chapter_7_section_2.html#//apple_ref/doc/uid/TP40002974-CH8-DontLinkElementID_117
 
 So, my Question is now: How do i enable an Event Cycle in a Foundation Tool.
 
 This
-<code>
-void [[NSApplicationMain]](int argc, char ''argv[]) {
-    [[[NSApplication]] sharedApplication];
-    [[[NSBundle]] loadNibNamed:@"myMain" owner:[[NSApp]]];
-    [[[NSApp]] run];
+    
+void General/NSApplicationMain(int argc, char *argv[]) {
+    General/[NSApplication sharedApplication];
+    General/[NSBundle loadNibNamed:@"myMain" owner:General/NSApp];
+    General/[NSApp run];
 }
-</code> 
+ 
 would start a program with windows and stuff as defined in a nib-File. But this needs a connection to a Window-Server. 
 But my application needs to be independent from the Window Server, but it needs the ability to delegate to functions in an event cycle.
 
@@ -92,18 +92,18 @@ You can't grab video without a connection to the window server. Like many things
 
 ----
 
-Can you explain why grabbing video without UI elements ([[CocoaAppsWithoutMenuBarOrDock]] ) is not an option? Are you trying to do this as a background process and don't know how to launch this type of application? Can you explain in more detail why the tool must be independent from the Window Server? --zootbobbalu
+Can you explain why grabbing video without UI elements (General/CocoaAppsWithoutMenuBarOrDock ) is not an option? Are you trying to do this as a background process and don't know how to launch this type of application? Can you explain in more detail why the tool must be independent from the Window Server? --zootbobbalu
 
 ----
 
 Hey zootbobbalu.
 
-[[CocoaAppsWithoutMenuBarOrDock]] ist great - but I want to grab pictures as a procedure of a daemon-based project I write at the moment. This daemon is started at with [[MacOS]] X when there is no Window Server and I do not want it to rely on the window server. But I have the feeling i can't avoidance it. Thanks for your help!
+General/CocoaAppsWithoutMenuBarOrDock ist great - but I want to grab pictures as a procedure of a daemon-based project I write at the moment. This daemon is started at with General/MacOS X when there is no Window Server and I do not want it to rely on the window server. But I have the feeling i can't avoidance it. Thanks for your help!
 
 ----
 
 I did some more experiments. I created an cocoa application which had an extra thread that listens to a socket (some kind of server). As long as this thread runs, no videoframe is captured. I first thought I somehow killed the delegations, but i found out, that the event cycle seems stopped while the thread (which included an endless while loop) was running. As soon as the thread ended, capturing worked.
-Assumed that this is only a question of the event cycle (I do not believe that its necessary to have the window server for frame grabbing from the iSight) I think about playing with the [[RunLoop]] feature. ... I will tell you later if I was successful. -Ben
+Assumed that this is only a question of the event cycle (I do not believe that its necessary to have the window server for frame grabbing from the iSight) I think about playing with the General/RunLoop feature. ... I will tell you later if I was successful. -Ben
 
 ----
 
@@ -113,30 +113,30 @@ http://osx.hyperjeff.net/Apps/apps.php?f=iSight
 
 ----
 
-OK, I found a solution to build it as a Foundation Tool. It was really just a question of the [[NSRunLoop]]. There is no dependency to the window server. 
+OK, I found a solution to build it as a Foundation Tool. It was really just a question of the General/NSRunLoop. There is no dependency to the window server. 
 
-<code>
+    
 #import <Foundation/Foundation.h>
 #import "mainApplication.h"
 
-int main (int argc, const char '' argv[]) {
-	[[NSAutoreleasePool]] '' pool = [[[[NSAutoreleasePool]] alloc] init];
+int main (int argc, const char * argv[]) {
+	General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
 	
 	NS_DURING
 	{
-		mainApplication ''thisApplication = [[[mainApplication alloc] init] autorelease];
+		mainApplication *thisApplication = General/[mainApplication alloc] init] autorelease];
 		[thisApplication startUp];
 		
 		// Run runloop
-		[[[[NSRunLoop]] currentRunLoop] run];
+		[[[[NSRunLoop currentRunLoop] run];
 	}
 	NS_HANDLER
-		[[NSLog]](@"...");
+		General/NSLog(@"...");
 	NS_ENDHANDLER
 	[pool release];
 	return 0;
 }
-</code>
+
 
 You can download a universal binary here: http://benjamindahlhoff.wordpress.com/2006/10/02/isight-image-grabber-for-the-mac-os-x-command-line/
 - Ben

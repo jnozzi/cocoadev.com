@@ -4,4 +4,4 @@ Beginner Cocoa Developer - more to come...
 
 ----
 
-I've added your page to [[CocoaDevUsers]] :) Welcome aboard. -- [[KritTer]]
+I've added your page to General/CocoaDevUsers :) Welcome aboard. -- General/KritTer

@@ -1,1 +1,1 @@
-See [[InformalProtocols]].
+See General/InformalProtocols.

@@ -4,7 +4,7 @@ Jacob
 
 ----
 
-You could always create an invisible window with <code>[[NSTexturedBackgroundWindowMask]]</code> and get the color from that.
+You could always create an invisible window with     General/NSTexturedBackgroundWindowMask and get the color from that.
 
 ----
 
@@ -12,7 +12,7 @@ I was wondering, if I could somehow get the color as data, and save it in a plis
 
 Jacob
 
-<code>[window backgroundColor]</code> returns a [[NSColor]] object, you can archive that with [[NSArchiver]] and save it.
+    [window backgroundColor] returns a General/NSColor object, you can archive that with General/NSArchiver and save it.
 
 ----
 
@@ -20,10 +20,10 @@ Keep in mind that the texture is copyrighted artwork, so you don't have the righ
 
 ----
 
-So [[PerversionTracker]] is in deep trouble! :)
+So General/PerversionTracker is in deep trouble! :)
 
 ----
 
-When I posted this way back when, the purpose was to use the color to draw it in an [[NSView]] subclass that was messing up the texture background below it.
+When I posted this way back when, the purpose was to use the color to draw it in an General/NSView subclass that was messing up the texture background below it.
 
 Jacob

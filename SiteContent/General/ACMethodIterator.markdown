@@ -1,9 +1,9 @@
-Just a class for convenience, see [[PoseAsAspects]] and [[LookupAspects]] for more info
+Just a class for convenience, see General/PoseAsAspects and General/LookupAspects for more info
 
 
-'''[[ACMethodIterator]].h'''
+**General/ACMethodIterator.h**
 
-<code>
+    
  #import <Foundation/Foundation.h>
  
  @interface ACMethodIterator : NSObject {
@@ -22,12 +22,12 @@ Just a class for convenience, see [[PoseAsAspects]] and [[LookupAspects]] for mo
  -(BOOL)thereIsAnotherMethod;
  
  @end
-</code>
 
 
-'''[[ACMethodIterator]].m'''
 
-<code>
+**General/ACMethodIterator.m**
+
+    
  #import "ACMethodIterator.h"
  #import </usr/include/objc/objc-class.h>
  
@@ -86,4 +86,3 @@ Just a class for convenience, see [[PoseAsAspects]] and [[LookupAspects]] for mo
  }
  
  @end
-</code>

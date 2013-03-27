@@ -3,14 +3,14 @@ Xcode is Apple's IDE for making OS X and iOS software.
 
 Xcode is primarily built around using Objective-C, although it also includes first-class support for C, C++, and Objective-C++. You can also use it to edit source files in numerous other languages, including Java, Python, and Ruby, and non-source files such as plists and xibs.
 
-Many older books were written for Xcode 3 and the accompanying but separate [[InterfaceBuilder]] application. You should not attempt to use these with Xcode 4, no matter how good anyone tells you such a book was. The differences are too great.
+Many older books were written for Xcode 3 and the accompanying but separate General/InterfaceBuilder application. You should not attempt to use these with Xcode 4, no matter how good anyone tells you such a book was. The differences are too great.
 
 == Key features ==
 
 * Toolchain for turning source code into OS X or iOS apps
-* [[InterfaceBuilder]] for graphically designing graphical user interfaces
+* General/InterfaceBuilder for graphically designing graphical user interfaces
 * Integrated debugging environment
-* [[Instruments]] for profiling of usage of memory, processor(s), long-term storage, and more
+* General/Instruments for profiling of usage of memory, processor(s), long-term storage, and more
 
 == Workflow optimization ==
 
@@ -42,7 +42,7 @@ First, we must take a moment to understand what “navigation” means—it has 
 
 It may not be immediately obvious, but Xcode 4 supports multiple tabs within each workspace/project window.
 
-You absolutely should familiarize yourself with tabs. They take Xcode 4's [[UserExperience|UX]] from painful to workable.
+You absolutely should familiarize yourself with tabs. They take Xcode 4's General/UserExperience|UX from painful to workable.
 
 ⌘T creates a new tab that is a clone of your current tab, but as we'll see, there are better ways to create tabs most of the time.
 
@@ -80,29 +80,29 @@ In this popover, you choose exactly where the navigation should go to:
 *A new tab
 *A new window
 
-As with optional navigation, '''all''' of the navigation actions listed above can be augmented with shift-option. Try them yourself!
+As with optional navigation, **all** of the navigation actions listed above can be augmented with shift-option. Try them yourself!
 
 === Tying it all together: The two workflows ===
 
 There are basically two ways to use Xcode 4.
 
-#'''Open one tab for each file.''' When you want to work on a file you don't currently have open, Option-navigate to it. When you're done working on a file, close its tab.
-#'''Open one tab for each task.''' Have one tab for project management, one for source editing, one for interface editing, one for build logs, and one for debugging. Use Behaviors to automatically switch tabs when needed (e.g., when a build fails or the program crashes).
+#**Open one tab for each file.** When you want to work on a file you don't currently have open, Option-navigate to it. When you're done working on a file, close its tab.
+#**Open one tab for each task.** Have one tab for project management, one for source editing, one for interface editing, one for build logs, and one for debugging. Use Behaviors to automatically switch tabs when needed (e.g., when a build fails or the program crashes).
 
 == History ==
 
-Xcode replaced an older IDE called [[ProjectBuilder]], which dated back into the NeXT days. (Xcode 3.x was clearly descended from it.)
+Xcode replaced an older IDE called General/ProjectBuilder, which dated back into the NeXT days. (Xcode 3.x was clearly descended from it.)
 
 Xcode 3 and older used the GNU Compiler Collection (GCC) for the build toolchain, and the GNU Debugger (GDB) for the debugger. As noted above, these have since been replaced.
 
 Some Xcode features have come and gone. For example:
 
-* [[FixAndContinue]], which let you make a change to one file, recompile it, and load it into the running executable, WITHOUT quitting, relinking, and relaunching the whole thing… when it worked.
-* [[ZeroLink]], used only during development to speed up compiling by skipping the linking step and instead having the executable load the .o files as needed. Many developers accidentally left this on in Release builds and shipped non-functioning executables to testers and/or end users. In the end, the time savings was negative.
+* General/FixAndContinue, which let you make a change to one file, recompile it, and load it into the running executable, WITHOUT quitting, relinking, and relaunching the whole thing… when it worked.
+* General/ZeroLink, used only during development to speed up compiling by skipping the linking step and instead having the executable load the .o files as needed. Many developers accidentally left this on in Release builds and shipped non-functioning executables to testers and/or end users. In the end, the time savings was negative.
 
 === Xcode 4 ===
 
-As of 4.x, [[InterfaceBuilder]] is part of Xcode; it's the nib/xib and storyboard editors.
+As of 4.x, General/InterfaceBuilder is part of Xcode; it's the nib/xib and storyboard editors.
 
 Xcode 4 uses Apple's own Clang compiler, and introduced a related Low-Level Debugger (LLDB).
 

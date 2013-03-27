@@ -21,7 +21,7 @@ I'm just really upset that, by their own admission, Leopard was supposed to be r
 
 ----
 
-I have been in the "business buying cycles require advance notice of features" boat myself.  My recommendation is to simply not do business with Apple.  Seriously, I have three Macs at home.  I love Macs, but Apple's policies are antithetical to the planning needs of business and academia.  Even if you limit yourself to buying only equipment that has been announced and shipping since before the budget cycle started, Apple will still find a way to screw you.  For example, Apple will cancel a product without notice or any viable replacement.  What can you do if you need 300 identical systems and Apple cancels the system and your order after 200 have been delivered ?  Don't even get me started on the [[YellowBox]] fiasco!
+I have been in the "business buying cycles require advance notice of features" boat myself.  My recommendation is to simply not do business with Apple.  Seriously, I have three Macs at home.  I love Macs, but Apple's policies are antithetical to the planning needs of business and academia.  Even if you limit yourself to buying only equipment that has been announced and shipping since before the budget cycle started, Apple will still find a way to screw you.  For example, Apple will cancel a product without notice or any viable replacement.  What can you do if you need 300 identical systems and Apple cancels the system and your order after 200 have been delivered ?  Don't even get me started on the General/YellowBox fiasco!
 
 Reputable business vendors will give companies five years notice before a system is discontinued, and they will provide optional product life extension for a fee.
 

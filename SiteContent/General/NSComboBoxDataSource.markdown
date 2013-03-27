@@ -1,18 +1,18 @@
-[[NSComboBox]] Data Source - Populate [[NSComboBox]] from text file.
+General/NSComboBox Data Source - Populate General/NSComboBox from text file.
 
-Basically, I want to populate an [[NSComboBox]] with the data from a text file.  The code I have is:
+Basically, I want to populate an General/NSComboBox with the data from a text file.  The code I have is:
 
-<code>
-- ([[IBAction]])populate:(id)sender
+    
+- (General/IBAction)populate:(id)sender
 {
-	[[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
+	General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
 	
-	[[NSString]] ''string;
-	[[NSString]] ''filename = @"dataSource.txt";
+	General/NSString *string;
+	General/NSString *filename = @"dataSource.txt";
 	
-	string = [[[NSString]] stringWithContentsOfFile: filename];
+	string = General/[NSString stringWithContentsOfFile: filename];
 	
-	[[NSArray]] ''array = [string componentsSeparatedByString:@"\n"];
+	General/NSArray *array = [string componentsSeparatedByString:@"\n"];
 	
 	int visibleItems = [array count] - 1;
 	
@@ -22,17 +22,17 @@ Basically, I want to populate an [[NSComboBox]] with the data from a text file. 
 	
 	[pool release];
 }
-</code>
+
 
 The text file looks something like this:
 
-<code>
+    
 dataItem1
 dataItem2
 dataItem3
 ....
 etc
-</code>
+
 
 I have a button set to run the method "populate" when it is pressed, but ... it literally does nothing.  Any help pointing me in the right direction would be greatly appreciated.
 

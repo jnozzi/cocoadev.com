@@ -1,7 +1,7 @@
 Does any one know where I can get a list of all the different builds of Panther that are out there?
 
 http://www.thinksecret.com seems to be keeping up with the builds seeded to developers.  Here are the following seeds (as far as I know)
-<code>
+    
 7a179 (seeded to developers at WWDC on June 23, 2003)
 7a202 (seeded to developers through software update July 11, 2003)
 7b21 (seeded to developers July 26, 2003)
@@ -17,7 +17,7 @@ http://www.thinksecret.com seems to be keeping up with the builds seeded to deve
 7b68 (seeded to developers September 12, 2003)
 7b74 (seeded to developers September 20, 2003)
 7B85 Final release October 24, 2003
-</code>
+
 
 7b80:  No "pre-release"? http://forums.macrumors.com/showthread.php?s=&threadid=39781
 

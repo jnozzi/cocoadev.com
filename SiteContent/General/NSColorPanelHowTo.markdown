@@ -1,11 +1,11 @@
-I have an object that uses the shared [[NSColorPanel]].  <code>-orderFrontColorPanel</code> opens it alright and it seems to function properly.
-My object implements <code>-(void)changeColor:(id)sender</code> and accepts first responder status.
+I have an object that uses the shared General/NSColorPanel.      -orderFrontColorPanel opens it alright and it seems to function properly.
+My object implements     -(void)changeColor:(id)sender and accepts first responder status.
 
-However when I make a color selection in the panel my <code>changeColor:</code> method isn't getting called.
+However when I make a color selection in the panel my     changeColor: method isn't getting called.
 
 On a related note, when I use the code
-<code>[[[[NSColorPanel]] sharedColorPanel] setPickerMask: ([[NSColorPanelRGBModeMask]] || [[NSColorPanelWheelModeMask]])];</code>
-I get an error stating that "[[NSColorPanel]] might not respond to -setPickerMask" or something to that effect.
+    General/[[NSColorPanel sharedColorPanel] setPickerMask: (General/NSColorPanelRGBModeMask || General/NSColorPanelWheelModeMask)];
+I get an error stating that "General/NSColorPanel might not respond to -setPickerMask" or something to that effect.
 
 Thanks.
 
@@ -13,39 +13,39 @@ Thanks.
 
 Try this:
 
-<code>
+    
 
-- ([[IBAction]])colorPanelAction:(id)sender {
-	[[NSLog]](@"<%p>%s:", self, __PRETTY_FUNCTION__);
+- (General/IBAction)colorPanelAction:(id)sender {
+	General/NSLog(@"<%p>%s:", self, __PRETTY_FUNCTION__);
 }
 
 - (void)awakeFromNib {
-	[[NSColorPanel]] ''colorPanel = [[[NSColorPanel]] sharedColorPanel];
+	General/NSColorPanel *colorPanel = General/[NSColorPanel sharedColorPanel];
 	[colorPanel setTarget:self];
 	[colorPanel setAction:@selector(colorPanelAction:)];
-	[[[NSApp]] orderFrontColorPanel:self];
+	General/[NSApp orderFrontColorPanel:self];
 }
-</code>
 
-Also, you are getting a compile warning because you are asking an instance of <code>[[NSColorPanel]]</code> to perform a class method. Your code should be:
 
-<code>
-[[[NSColorPanel]] setPickerMask:[[NSColorPanelRGBModeMask]] | [[NSColorPanelWheelModeMask]]];
-</code>
+Also, you are getting a compile warning because you are asking an instance of     General/NSColorPanel to perform a class method. Your code should be:
 
-You also are using the logical OR operator <code>||</code> when you should be using the bitwise inclusive OR operator <code>|</code>
+    
+General/[NSColorPanel setPickerMask:General/NSColorPanelRGBModeMask | General/NSColorPanelWheelModeMask];
+
+
+You also are using the logical OR operator     || when you should be using the bitwise inclusive OR operator     |
 
 --zootbobbalu
 
 ----
 
-Is there any way to get access to the color "chips" at the bottom of the [[NSColorPanel]]?
+Is there any way to get access to the color "chips" at the bottom of the General/NSColorPanel?
 
 I'd like to be able to save off the colors found there and replace them with a new set of colors.
 
 ----
 
-They're the user's favorite colors; why do you want to mess with them? If you need a special list of colors look at [[NSColorPanel]]'s <code>- (void)attachColorList:([[NSColorList]] '')colorList</code> method
+They're the user's favorite colors; why do you want to mess with them? If you need a special list of colors look at General/NSColorPanel's     - (void)attachColorList:(General/NSColorList *)colorList method
 
 ----
 
@@ -53,9 +53,9 @@ I'm working on a color design application. Essentially, I want to use the colorP
 
 ----
 
-If you're writing a color design app, you should consider making it a [[NSColorPanel]] plugin.
+If you're writing a color design app, you should consider making it a General/NSColorPanel plugin.
 
-Of course... all the design programs I've used on the Mac are Carbon and ignore the [[NSColorPanel]]... so what I would do would have a standalone app and have an optional color panel plugin that's automatically installed, and shares the same interface and functionality. 
+Of course... all the design programs I've used on the Mac are Carbon and ignore the General/NSColorPanel... so what I would do would have a standalone app and have an optional color panel plugin that's automatically installed, and shares the same interface and functionality. 
 
 Just a suggestion.
 
@@ -63,8 +63,8 @@ Also, I spent about 20 minutes in "detective" mode and I couldn't figure out whe
 
 ----
 
-Colors are a standard pasteboard type ([[NSColorPboardType]]). The color panel is the wrong place to put user's work, IMO. (Assuming your UI requirements go beyond a [[NSColorPicker]] plugin) I'd make a separate window in my app to hold the colors and just allow dragging/copying the colors.
+Colors are a standard pasteboard type (General/NSColorPboardType). The color panel is the wrong place to put user's work, IMO. (Assuming your UI requirements go beyond a General/NSColorPicker plugin) I'd make a separate window in my app to hold the colors and just allow dragging/copying the colors.
 
 ----
 
-The [[ColorPanel]] provides the "continuous" mode, which provides a for some applications a good user feedback. But, how can I couple this nicely with the undo-manager? If I register every continuous movement in the color wheel as an undo item, the list of undo's might get enormous. So, how an I get notified on the mouse-up event in the color wheel? Any ideas?
+The General/ColorPanel provides the "continuous" mode, which provides a for some applications a good user feedback. But, how can I couple this nicely with the undo-manager? If I register every continuous movement in the color wheel as an undo item, the list of undo's might get enormous. So, how an I get notified on the mouse-up event in the color wheel? Any ideas?

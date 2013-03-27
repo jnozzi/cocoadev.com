@@ -9,25 +9,25 @@ Hmm...
 HELLO WORLD
 Hello from norway
 
-<code>[ console print: [ message initWithText: @"Hello World!" ] ]; </code>
+    [ console print: [ message initWithText: @"Hello World!" ] ]; 
 
 
 == Header ==
 
 <strike>strikethrough text</strike>
 
-'''''bold & italic text'''''
+***bold & italic text***
 
-'''bold text''' ''italic text''
+**bold text** *italic text*
 
 == Larger Header ==
 
-<code>inline code block, fixed width font.
+    inline code block, fixed width font.
 Test
 
-ABCD</code>
+ABCD
 
- code box (indent lines by one space) '''Warning:''' does not wrap lines.
+ code box (indent lines by one space) **Warning:** does not wrap lines.
  Aenean lacinia bibendum nulla sed consectetur. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
  Donec id elit non mi porta gravida at eget metus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.

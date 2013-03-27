@@ -1,69 +1,69 @@
 
 
-Part of the iPhone [[UIKit]] framework. Subclass of [[UIResponder]]. So very much like [[NSView]].
+Part of the iPhone General/UIKit framework. Subclass of General/UIResponder. So very much like General/NSView.
 
-%%BEGINCODESTYLE%%- (id)initWithFrame:([[CGRect]])rect;%%ENDCODESTYLE%%
+<code>- (id)initWithFrame:(General/CGRect)rect;</code>
 
 Designated initializer.
 
-%%BEGINCODESTYLE%%- (void)addSubview:([[UIView]]'')view;%%ENDCODESTYLE%%
+<code>- (void)addSubview:(General/UIView*)view;</code>
 
-%%BEGINCODESTYLE%%- (void)drawRect:([[CGRect]])rect;%%ENDCODESTYLE%%
+<code>- (void)drawRect:(General/CGRect)rect;</code>
 
-Since we don't have a [[UIGraphicsContext]] class, [[CoreGraphics]] is our friend now. All those CG calls need a [[CGContextRef]], and here's how you get it:
+Since we don't have a General/UIGraphicsContext class, General/CoreGraphics is our friend now. All those CG calls need a General/CGContextRef, and here's how you get it:
 
-  <code>[[CGContextRef]] [[UICurrentContext]]();</code>
+      General/CGContextRef General/UICurrentContext();
 
-%%BEGINCODESTYLE%%- (void)setNeedsDisplay;%%ENDCODESTYLE%%
+<code>- (void)setNeedsDisplay;</code>
 
-%%BEGINCODESTYLE%%- (void)setNeedsDisplayInRect:([[CGRect]])rect;%%ENDCODESTYLE%%
+<code>- (void)setNeedsDisplayInRect:(General/CGRect)rect;</code>
 
-%%BEGINCODESTYLE%%- ([[CGRect]])frame;%%ENDCODESTYLE%%
+<code>- (General/CGRect)frame;</code>
 
-%%BEGINCODESTYLE%%- ([[CGRect]])bounds;%%ENDCODESTYLE%%
+<code>- (General/CGRect)bounds;</code>
 
-%%BEGINCODESTYLE%%- (void)setTapDelegate:(id)delegate;%%ENDCODESTYLE%%
+<code>- (void)setTapDelegate:(id)delegate;</code>
 
 Sets the tap delegate. See below.
 
-'''
+**
 Swiping!
-'''
+**
 
-<code>
+    
 typedef enum
 {
 	kUIViewSwipeUp = 1,
 	kUIViewSwipeDown = 2,
 	kUIViewSwipeLeft = 4,
 	kUIViewSwipeRight = 8
-} [[UIViewSwipeDirection]];
-</code>
+} General/UIViewSwipeDirection;
 
-%%BEGINCODESTYLE%%- (BOOL)canHandleSwipes;%%ENDCODESTYLE%%
 
-%%BEGINCODESTYLE%%- (int)swipe:([[UIViewSwipeDirection]])num withEvent:([[GSEvent]]'')event;%%ENDCODESTYLE%%
+<code>- (BOOL)canHandleSwipes;</code>
 
-This one is listed in the [[UIView]]-[[LKLayerDelegate]].h header, and the iTetris demo uses it to good effect, but it does nothing for me. Can't tell why, but I don't really get layers yet..
+<code>- (int)swipe:(General/UIViewSwipeDirection)num withEvent:(General/GSEvent*)event;</code>
 
-%%BEGINCODESTYLE%%- (void)drawLayer:(id)inLayer inContext:([[CGContextRef]])inContext;%%ENDCODESTYLE%%
+This one is listed in the General/UIView-General/LKLayerDelegate.h header, and the iTetris demo uses it to good effect, but it does nothing for me. Can't tell why, but I don't really get layers yet..
+
+<code>- (void)drawLayer:(id)inLayer inContext:(General/CGContextRef)inContext;</code>
 
 ----
-'''iTetris follows some bad practices when it comes to drawing.  A [[UIView]] is transparently backed by an [[LKLayer]], and the view uses this method to draw itself internally, so don't override it! Just use -drawRect: and everything will work as expected.''' -- Lucas Newman
+**iTetris follows some bad practices when it comes to drawing.  A General/UIView is transparently backed by an General/LKLayer, and the view uses this method to draw itself internally, so don't override it! Just use -drawRect: and everything will work as expected.** -- Lucas Newman
 ----
 
-'''
+**
 Tap delegate methods
-'''
+**
 
-%%BEGINCODESTYLE%%view:handleTapWithCount:event:%%BEGINCODESTYLE%%
+<code>view:handleTapWithCount:event:<code>
 
-%%BEGINCODESTYLE%%view:handleTapWithCount:event:fingerCount:%%ENDCODESTYLE%%
+<code>view:handleTapWithCount:event:fingerCount:</code>
 
-%%BEGINCODESTYLE%%viewHandleTouchPause:isDown:%%ENDCODESTYLE%%
+<code>viewHandleTouchPause:isDown:</code>
 
-%%BEGINCODESTYLE%%viewDoubleTapDelay:%%ENDCODESTYLE%%
+<code>viewDoubleTapDelay:</code>
 
-%%BEGINCODESTYLE%%viewRejectAsTapThrehold:%%ENDCODESTYLE%%
+<code>viewRejectAsTapThrehold:</code>
 
-%%BEGINCODESTYLE%%viewTouchPauseThreshold:%%ENDCODESTYLE%%
+<code>viewTouchPauseThreshold:</code>

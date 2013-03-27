@@ -2,4 +2,4 @@ For those of you who need to create UUID's, sometimes you need both the ASCII an
 
 http://home.earthlink.net/~zobkiw/
 
-Click on [[UUIDCreator]] when you get there.
+Click on General/UUIDCreator when you get there.

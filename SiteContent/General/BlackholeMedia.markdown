@@ -10,19 +10,19 @@ http://www.blackholemedia.com/code/
 
 Blackhole Media People:
 
-* [[AaronSittig]] - no longer scared of cocoa
-* [[DustinMierau]] - masta of disasta, and cocoa
-* [[JasonToffaletti]] - not scared of cocoa
+* General/AaronSittig - no longer scared of cocoa
+* General/DustinMierau - masta of disasta, and cocoa
+* General/JasonToffaletti - not scared of cocoa
 
 
 Here's what our worst enemies think about Blackhole:
 
 
-* Clearly have a lot of time on their hands -- [[MikeTrent]]
-* I, for one, am scared of Carbon. Update: still scared of Carbon, I'm now also scared of people like me. -- [[RobRix]]
-* Getting paid for Mac programming? Why am I sitting here writing [[JSPs]]?? -- [[JensBaumeister]]
-* These guys are, if I may use a bit of industry jargon, the "bom-diddy". -- [[StevenFrank]]
-* Methinks they don't mention their coolest project on the page... -- [[DavidRemahl]]
+* Clearly have a lot of time on their hands -- General/MikeTrent
+* I, for one, am scared of Carbon. Update: still scared of Carbon, I'm now also scared of people like me. -- General/RobRix
+* Getting paid for Mac programming? Why am I sitting here writing General/JSPs?? -- General/JensBaumeister
+* These guys are, if I may use a bit of industry jargon, the "bom-diddy". -- General/StevenFrank
+* Methinks they don't mention their coolest project on the page... -- General/DavidRemahl
 
 
 

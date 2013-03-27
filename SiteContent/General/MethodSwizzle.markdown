@@ -1,3 +1,3 @@
-<code>void [[MethodSwizzle]](Class aClass, SEL orig_sel, SEL alt_sel);</code>
+    void General/MethodSwizzle(Class aClass, SEL orig_sel, SEL alt_sel);
 
-Takes <code>aClass</code>'s implementations of the methods <code>orig_sel</code> and <code>alt_sel</code> and swaps them.  See [[MethodSwizzling]] for implementation and discussion.
+Takes     aClass's implementations of the methods     orig_sel and     alt_sel and swaps them.  See General/MethodSwizzling for implementation and discussion.

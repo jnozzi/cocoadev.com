@@ -1,1 +1,1 @@
-Joshua Marker is a Yellow/[[AppKit]]/whatever and [[WebObjects]] developer. He's written a couple books on the topic of [[WebObjects]]. All the details are at http://www.nowhereville.org/ .
+Joshua Marker is a Yellow/General/AppKit/whatever and General/WebObjects developer. He's written a couple books on the topic of General/WebObjects. All the details are at http://www.nowhereville.org/ .

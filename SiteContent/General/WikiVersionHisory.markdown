@@ -1,6 +1,6 @@
 Server's down now.
 
-On the plus side, this site is now using the modifications. Cheers Steven! -- [[KritTer]]
+On the plus side, this site is now using the modifications. Cheers Steven! -- General/KritTer
 
 ----
 
@@ -10,20 +10,20 @@ I should make clear that the new code can happily use an old database, so no con
 
 And, yes, I know I misspelled the name of this page :)
 
--- [[KritTer]]
+-- General/KritTer
 
-Checking it out now. And amusing typo, [[KritTer]] my boy.
+Checking it out now. And amusing typo, General/KritTer my boy.
 
-"The page you have requested is currently unavailable" - damn Internet Explorer on [[WinXP]]. This is a horrible mess of a system. Anyhow.
+"The page you have requested is currently unavailable" - damn Internet Explorer on General/WinXP. This is a horrible mess of a system. Anyhow.
 
-Experiments in Wikiland are encouraged by me, they lead to really interesting stuff. I obviously am currently unable to properly review it, but hey, it sure ''sounds'' neat.
+Experiments in Wikiland are encouraged by me, they lead to really interesting stuff. I obviously am currently unable to properly review it, but hey, it sure *sounds* neat.
 
 Add a journalling file system (didn't the BFS guy just join Apple or something?!), and we've got ourselves a winner for sure! Imma be just fine, I promise.
 
--- [[RobRix]] (note to self: must destroy. Uhh. Unspecified)
+-- General/RobRix (note to self: must destroy. Uhh. Unspecified)
 
-Alrighty, turns out [[BrickHouse]] was only half opening port 80, so people in my college could see the page but nobody else. Great. Fancy trying again?
+Alrighty, turns out General/BrickHouse was only half opening port 80, so people in my college could see the page but nobody else. Great. Fancy trying again?
 
--- [[KritTer]]
+-- General/KritTer
 
-Ah, okay, working fine. Looks pretty excellent to me! Nice job there! -- [[RobRix]]
+Ah, okay, working fine. Looks pretty excellent to me! Nice job there! -- General/RobRix

@@ -1,1 +1,1 @@
-Describe [[CGRectMake]] here.
+Describe General/CGRectMake here.

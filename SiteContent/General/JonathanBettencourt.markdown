@@ -1,1 +1,1 @@
-#REDIRECT [[[[RebeccaBettencourt]]]]
+#REDIRECT General/[[RebeccaBettencourt]]

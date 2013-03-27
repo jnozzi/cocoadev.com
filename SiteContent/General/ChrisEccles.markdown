@@ -5,7 +5,7 @@ I am a Mac developer. [Some might say a LATE developer]
 
 Having spent decades groping about in the Dark Forest of C, I am emerging slowly onto the Broad Sunlit Plain of Cocoa, where things are more visible.
 
-I have been tarred and feathered by the ignominy of [[FileMaker]] Pro.
+I have been tarred and feathered by the ignominy of General/FileMaker Pro.
 
 I still smart from the pain of Real Basic.
 

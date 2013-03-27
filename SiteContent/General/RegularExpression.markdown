@@ -1,1 +1,1 @@
-See [[RegularExpressions]].
+See General/RegularExpressions.

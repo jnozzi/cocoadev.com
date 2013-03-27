@@ -3,7 +3,7 @@ I have a string containing a URL address which itself has a URL component as sho
 
 http://www.google.com/search?q=COMPONENT
 
-This component is simply an [[NSString]] which i need to percent escape before posting. An example of the components contents is as follows:
+This component is simply an General/NSString which i need to percent escape before posting. An example of the components contents is as follows:
 
 'cocoadev rocks!'
 
@@ -11,27 +11,27 @@ I have attempted to replace the space and exclamation mark with their respective
 
 Here is my code so far, which has not been working:
 
-<code>
-- ([[NSString]] '')urlEncodeValue:([[NSString]] '')string {
-	[[CFStringRef]] originalURLString = ([[CFStringRef]])string;
-	[[CFStringRef]] preprocessedString = [[CFURLCreateStringByReplacingPercentEscapesUsingEncoding]](kCFAllocatorDefault, originalURLString, CFSTR(""), kCFStringEncodingUTF8);
-	[[CFStringRef]] urlString = [[CFURLCreateStringByAddingPercentEscapes]](kCFAllocatorDefault, preprocessedString, NULL, NULL, kCFStringEncodingUTF8);
-	return ([[NSString]] '')urlString;
+    
+- (General/NSString *)urlEncodeValue:(General/NSString *)string {
+	General/CFStringRef originalURLString = (General/CFStringRef)string;
+	General/CFStringRef preprocessedString = General/CFURLCreateStringByReplacingPercentEscapesUsingEncoding(kCFAllocatorDefault, originalURLString, CFSTR(""), kCFStringEncodingUTF8);
+	General/CFStringRef urlString = General/CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, preprocessedString, NULL, NULL, kCFStringEncodingUTF8);
+	return (General/NSString *)urlString;
 }
-</code>
+
 
 I have also tried the following
 
-<code>
--�([[NSString]] '')stringByAddingPercentEscapesUsingEncoding:([[NSStringEncoding]])encoding
-</code>
+    
+-�(General/NSString *)stringByAddingPercentEscapesUsingEncoding:(General/NSStringEncoding)encoding
+
 
 but that method doesn't seem to encode all values, such as ! and + etc.
 
 any ideas as to why this isn't working
 
 ----
-I m not an expert, but I would guess as characters like "/", "+", "!" and so on are legal characters of an URI, they would not be escaped just so. This would make sense as you might (most will) pass [[CFURLCreateStringByAddingPercentEscapes]] a whole URL, including slashes etc. . Example:
+I m not an expert, but I would guess as characters like "/", "+", "!" and so on are legal characters of an URI, they would not be escaped just so. This would make sense as you might (most will) pass General/CFURLCreateStringByAddingPercentEscapes a whole URL, including slashes etc. . Example:
 
 ftp://super.ftp.server.com/folder/that one particular file.doc
 

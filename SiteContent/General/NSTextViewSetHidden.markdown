@@ -2,19 +2,19 @@
 
 Hi there,
 
-I'm trying to set a [[NSTextView]]'s setHidden status. The only sure-fire way I can get it to hide is to set it from Interface Builder (but then I can't seem to set it to display when I want to so setHidden: NO doesn't make it appear). I've tried setHidden: YES in the awakeFromNib area but that doesn't do it either. I've added setNeedsDisplay:YES and that doesn't seem to change it either. Suggestions?
+I'm trying to set a General/NSTextView's setHidden status. The only sure-fire way I can get it to hide is to set it from Interface Builder (but then I can't seem to set it to display when I want to so setHidden: NO doesn't make it appear). I've tried setHidden: YES in the awakeFromNib area but that doesn't do it either. I've added setNeedsDisplay:YES and that doesn't seem to change it either. Suggestions?
 
 ----
 send -setNeedsDisplay:YES to the hidden view's superview when the view his hidden or unhidden.  
 
 [someView setHidden:YES];
-[[someView superview] setNeedsDisplay:YES];
+General/someView superview] setNeedsDisplay:YES];
 
 And please don't abuse this view hiding feature.  As a general rule, user interface elements should not appear and disappear without using an established GUI convention like tab views...
 
 ----
 
-And who are you, the interface police? There are perfectly legitimate reasons for hiding a text view, for example [[HandlingAccentedCharacters]]. But even if, stop with the sanctimonious whining about what people should or shouldn't do. It's not the law, and it's their project! If the result sucks, the market will decide.
+And who are you, the interface police? There are perfectly legitimate reasons for hiding a text view, for example [[HandlingAccentedCharacters. But even if, stop with the sanctimonious whining about what people should or shouldn't do. It's not the law, and it's their project! If the result sucks, the market will decide.
 
 ----
 With that attitude, why give people advice at all?
@@ -22,10 +22,10 @@ With that attitude, why give people advice at all?
 If I see somebody doing something potentially stupid, I will inform them of it. This goes for an obvious memory leak, a bit of code that won't work with non-English scripts, or a dumb bit of GUI design.
 
 ----
-I can't see where [[HandlingAccentedCharacters]] has anything to do with a hidden text view.
+I can't see where General/HandlingAccentedCharacters has anything to do with a hidden text view.
 
 ----
-See the discussion at the end about using the [[FieldEditor]] to capture the incoming text but hiding it so it doesn't interfere with your control. The [[FieldEditor]] is an [[NSTextView]].
+See the discussion at the end about using the General/FieldEditor to capture the incoming text but hiding it so it doesn't interfere with your control. The General/FieldEditor is an General/NSTextView.
 
 ----
 
@@ -34,11 +34,11 @@ There's a big difference between stopping someone doing something "potentially s
 Where code is posted containing an obvious mistake, then yes, I think that gently pointing it out is likely to be a good idea. But read what you wrote - you just sound like an arse.
 
 ----
-But this ''is'' an obvious mistake.
+But this *is* an obvious mistake.
 
-People often think that because they spent sixteen hours a day using their computer and experiencing all the various [[GUIs]] on it, they are qualified to make great [[GUIs]]. It's not true. Designing a good interface is ''hard'', and there are a lot of rules and guidelines on how to do it that are not obvious.
+People often think that because they spent sixteen hours a day using their computer and experiencing all the various General/GUIs on it, they are qualified to make great General/GUIs. It's not true. Designing a good interface is *hard*, and there are a lot of rules and guidelines on how to do it that are not obvious.
 
-There are a lot of people out there who aren't aware of some basic rules, like "view should not hide and show without very good reason". This is not a fault, it's just ignorance, like somebody using <code>+stringWithCString:</code> because they don't realize how badly it will fail with non-English text. Now, why should I point out the latter but not the former?
+There are a lot of people out there who aren't aware of some basic rules, like "view should not hide and show without very good reason". This is not a fault, it's just ignorance, like somebody using     +stringWithCString: because they don't realize how badly it will fail with non-English text. Now, why should I point out the latter but not the former?
 
 Yes, there are legitimate reasons to do this. It's also likely that the poster was simply creating bad design. If he wasn't, then he can pass over the advice and move on. If he was, then hopefully he will take it to heart and understand why it's bad design.
 
@@ -49,32 +49,32 @@ Thanks for the advice - though... I went to the superview to change the setNeeds
 
 ----
 
-You probably need to do the <code>setHidden:</code> thing on your text view's <code>enclosingScrollView</code>.
+You probably need to do the     setHidden: thing on your text view's     enclosingScrollView.
 
 ----
-I had the same problem and <code>setHidden:</code> on the text view's <code>enclosingScrollView</code> does indeed fix it - thank you previous poster!
+I had the same problem and     setHidden: on the text view's     enclosingScrollView does indeed fix it - thank you previous poster!
 
 ----
 I've the following code
 
-<code>
-[[NSView]]'' pane = ...;
+    
+General/NSView* pane = ...;
 [pane setHidden:YES];
-[[pane superview] setNeedsDisplay:YES];
-</code>
-<code>pane</code> is the outlet connected to [[NSTableView]] descendant in NIB file. With that code I supposed to hide the view. But unfortunately it didn't work. I'm quite new to Cocoa. As far as I understand, this approach, i.e. hiding/showing views is considered to be a "bad practice". Nevertheless, what am I doing wrong???
+General/pane superview] setNeedsDisplay:YES];
+
+    pane is the outlet connected to [[NSTableView descendant in NIB file. With that code I supposed to hide the view. But unfortunately it didn't work. I'm quite new to Cocoa. As far as I understand, this approach, i.e. hiding/showing views is considered to be a "bad practice". Nevertheless, what am I doing wrong???
 
 ----
 Will answer myself :)
-<code>[[NSTableView]]</code> is contained in <code>[[NSClipView]]</code> which is in it's turn contained in <code>[[NSScrollView]]</code>. So, the code should look like this
-<code>
-[[NSView]]'' pane = ...;
-[[[pane superview] superview] setHidden:YES];
-</code>
+    General/NSTableView is contained in     General/NSClipView which is in it's turn contained in     General/NSScrollView. So, the code should look like this
+    
+General/NSView* pane = ...;
+General/[pane superview] superview] setHidden:YES];
+
 
 ----
-Or much simpler: <code>[[pane enclosingScrollView] setHidden:YES]</code>
+Or much simpler:     [[pane enclosingScrollView] setHidden:YES]
 
 ----
 Perfect! Thanks a lot. 
-I came to [[XCode]]/Cocoa from .NET, so, for me this framework seems VERY different from what I used before. Completely different approach. Feels myself like in kindergarden :)
+I came to [[XCode/Cocoa from .NET, so, for me this framework seems VERY different from what I used before. Completely different approach. Feels myself like in kindergarden :)

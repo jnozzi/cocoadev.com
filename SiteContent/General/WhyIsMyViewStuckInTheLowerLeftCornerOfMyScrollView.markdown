@@ -1,5 +1,5 @@
-'''Question: I want to programatically add a custom view (created  and populated with controls in IB) to an [[NSScrollView]], 
-but when I add my  custom view to the scroll view (using -setDocumentView: ), it remains  stuck in the bottom-left corner !'''
+**Question: I want to programatically add a custom view (created  and populated with controls in IB) to an General/NSScrollView, 
+but when I add my  custom view to the scroll view (using -setDocumentView: ), it remains  stuck in the bottom-left corner !**
 
 So, I thought that overriding -isFlipped: in my custom view so that  it returns YES would solve the problem. In a way, it did: 
 now my  custom view is at the right place...but all my controls are drawn inverted (controls at the top in IB are at the bottom) !!!
@@ -7,7 +7,7 @@ now my  custom view is at the right place...but all my controls are drawn invert
 I can understand why (the coordinate system is flipped in my custom view), what I don't get is  how can I have a custom view 
 created in IB positioned correctly in a scroll view while keeping the controls  at the place where they are in IB ?
 
-'''Answer:'''
+**Answer:**
 The Quartz coordinate system used in Mac OS X has the origin in the  
 lower left corner just like Postscript, PDF, and every math textbook  
 that contains a graph.
@@ -21,7 +21,7 @@ the top left cornet of a clip view (content view of a scroll view)
 that contains it is similar to the problem of centering an arbitrary  
 view in a clip view.
 
-I usually set the document view to be a flipped [[NSView]] instance and  
+I usually set the document view to be a flipped General/NSView instance and  
 then add my custom (not flipped) view as a sub-view of the document  
 view.  The document view can also be used to center the custom view,  
 provide margins, etc.

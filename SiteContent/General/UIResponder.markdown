@@ -1,16 +1,16 @@
 
 
-Part of the iPhone [[UIKit]] framework.
+Part of the iPhone General/UIKit framework.
 
-%%BEGINCODESTYLE%%- (void)mouseDown:([[GSEvent]]'')event;%%ENDCODESTYLE%%
+<code>- (void)mouseDown:(General/GSEvent*)event;</code>
 
-%%BEGINCODESTYLE%%- (void)mouseUp:([[GSEvent]]'')event;%%ENDCODESTYLE%%
+<code>- (void)mouseUp:(General/GSEvent*)event;</code>
 
-%%BEGINCODESTYLE%%- (void)mouseDragged:([[GSEvent]]'')event;%%ENDCODESTYLE%%
+<code>- (void)mouseDragged:(General/GSEvent*)event;</code>
 
 
-(Are these sent by [[UIKeyboard]] to first responder?)
+(Are these sent by General/UIKeyboard to first responder?)
 
-%%BEGINCODESTYLE%%- (void)keyDown:([[GSEvent]]'')event;%%ENDCODESTYLE%%
+<code>- (void)keyDown:(General/GSEvent*)event;</code>
 
-%%BEGINCODESTYLE%%- (void)keyUp:([[GSEvent]]'')event;%%ENDCODESTYLE%%
+<code>- (void)keyUp:(General/GSEvent*)event;</code>

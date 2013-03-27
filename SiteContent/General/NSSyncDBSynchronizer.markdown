@@ -1,3 +1,3 @@
 
 
-Part of [[SyncServices]].
+Part of General/SyncServices.

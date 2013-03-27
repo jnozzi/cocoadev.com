@@ -1,3 +1,3 @@
 
 
-I've been coding Cocoa since 2003 and I'm now pretty good at it. I released and then sold off my first application, iWriter, in 2005. Since then I've released Minim in 2006, to help musicians keep track of their music, and Code Collector Pro in 2007, to help programmers keep track of snippets of code. My favourite Cocoa class is probably [[NSPredicate]] and I have an odd attraction to the word "Possums".
+I've been coding Cocoa since 2003 and I'm now pretty good at it. I released and then sold off my first application, iWriter, in 2005. Since then I've released Minim in 2006, to help musicians keep track of their music, and Code Collector Pro in 2007, to help programmers keep track of snippets of code. My favourite Cocoa class is probably General/NSPredicate and I have an odd attraction to the word "Possums".

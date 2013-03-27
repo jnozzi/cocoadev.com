@@ -1,10 +1,10 @@
-I got tired of having to build [[NSInvocation]] wrappers using the handleInvocation trick as seen in [[ThreadCommunication]]. What follows is an implementation for a trivial [[TrampolineObject]] that will automatically bounce any message it gets to the main thread.
+I got tired of having to build General/NSInvocation wrappers using the handleInvocation trick as seen in General/ThreadCommunication. What follows is an implementation for a trivial General/TrampolineObject that will automatically bounce any message it gets to the main thread.
 
-<code>
-#import "[[NSObject]]+Invocations.h"
+    
+#import "General/NSObject+Invocations.h"
 
 //////////
-@interface [[EGPerformOnMainThreadTrampoline]] : [[NSProxy]] {
+@interface General/EGPerformOnMainThreadTrampoline : General/NSProxy {
 	id object;
 	BOOL waitUntilDone;
 }
@@ -12,7 +12,7 @@ I got tired of having to build [[NSInvocation]] wrappers using the handleInvocat
 -(id)initWithObject:(id)inobject waitUntilDone:(BOOL)wait;
 @end
 
-@implementation [[EGPerformOnMainThreadTrampoline]]
+@implementation General/EGPerformOnMainThreadTrampoline
 
 -(id)initWithObject:(id)inobject waitUntilDone:(BOOL)wait
 {
@@ -28,7 +28,7 @@ I got tired of having to build [[NSInvocation]] wrappers using the handleInvocat
 	[super dealloc];
 }
 
-- (void)forwardInvocation:([[NSInvocation]] '')anInvocation 
+- (void)forwardInvocation:(General/NSInvocation *)anInvocation 
 {
 	[anInvocation retainArguments];
 	[anInvocation performSelectorOnMainThread:@selector(invokeWithTarget:)
@@ -36,39 +36,39 @@ I got tired of having to build [[NSInvocation]] wrappers using the handleInvocat
 						  waitUntilDone:waitUntilDone];
 }
 
--([[NSMethodSignature]]'')methodSignatureForSelector:(SEL)aSelector
+-(General/NSMethodSignature*)methodSignatureForSelector:(SEL)aSelector
 {
     return [object methodSignatureForSelector:aSelector];
 }
 
 @end
 
-@implementation [[NSObject]] ([[PerformOnMainThreadTrampoline]])
+@implementation General/NSObject (General/PerformOnMainThreadTrampoline)
 
--([[NSProxy]]'')performOnMainThreadWaitUntilDone:(BOOL)wait
+-(General/NSProxy*)performOnMainThreadWaitUntilDone:(BOOL)wait
 {
-	return [[[[[EGPerformOnMainThreadTrampoline]] alloc] initWithObject:self waitUntilDone:wait] autorelease];
+	return General/[[[EGPerformOnMainThreadTrampoline alloc] initWithObject:self waitUntilDone:wait] autorelease];
 }
 
 @end
-</code>
 
-<code>
-@interface [[NSObject]] ([[PerformOnMainThreadTrampoline]])
--([[NSProxy]]'')performOnMainThreadWaitUntilDone:(BOOL)wait;
+
+    
+@interface General/NSObject (General/PerformOnMainThreadTrampoline)
+-(General/NSProxy*)performOnMainThreadWaitUntilDone:(BOOL)wait;
 @end
-</code>
+
 
 You can then send messages like this:
 
-<code>
-[[object performOnMainThreadWaitUntilDone:NO] this:is a:complex message:0.5f];
-</code>
+    
+General/object performOnMainThreadWaitUntilDone:NO] this:is a:complex message:0.5f];
 
-Any comments or improvements would be welcome. You can use this code for anything without restriction, but it'd be nice if you'd credit the original author ([[ElliotGlaysher]]).
+
+Any comments or improvements would be welcome. You can use this code for anything without restriction, but it'd be nice if you'd credit the original author ([[ElliotGlaysher).
 
 ----
 
-Also see the implementation of [[UKKMainThreadProxy]] from his [[UKKQueueWatcher]] distribution.  It's basically the same idea, a transparent category on [[NSObject]] that allows you to send any message you want to a given object on the main thread.
+Also see the implementation of General/UKKMainThreadProxy from his General/UKKQueueWatcher distribution.  It's basically the same idea, a transparent category on General/NSObject that allows you to send any message you want to a given object on the main thread.
 
 JKP

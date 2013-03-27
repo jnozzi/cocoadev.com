@@ -3,36 +3,36 @@ How can I get this address?
 
 ----
 
-You would have to create it. Get the IP address using <code>[[[[NSHost]] currentHost] address]</code> and then use [[NSString]]'s <code>stringByAppendingPathComponent</code> method to append to that the current OS X user name and then the file name. That make sense?
+You would have to create it. Get the IP address using     General/[[NSHost currentHost] address] and then use General/NSString's     stringByAppendingPathComponent method to append to that the current OS X user name and then the file name. That make sense?
 
 ----
 
-I'm not sure what the best way to get the username is, but since the path "~" applies to the /User/<username>/ folder, you could maybe do... <code>[[@"~" stringByExpandingTildeInPath] lastPathComponent]</code> (untested!)
+I'm not sure what the best way to get the username is, but since the path "~" applies to the /User/<username>/ folder, you could maybe do...     General/@"~" stringByExpandingTildeInPath] lastPathComponent] (untested!)
 
 ----
 
-There's also a [[NSHomeDirectory]]() function
+There's also a [[NSHomeDirectory() function
 
 ----
 
-Or if you are just looking for the user's name, [[NSUserName]]()
+Or if you are just looking for the user's name, General/NSUserName()
 
 ----
 
 Something weird (to me) is happening when I delete the last component of a URL's absoluteString :
 
-<code>
-[[NSMutableArray]] ''filesArray = [[[NSMutableArray]] arrayWithArray:[openPanel [[URLs]]]];
-[[NSLog]](@"absoluteString : %@", [[filesArray objectAtIndex:0] absoluteString]);
-[[NSLog]](@"cuttedString : %@", [[filesArray objectAtIndex:0] absoluteString] stringByDeletingLastPathComponent]);
-</code>
+    
+General/NSMutableArray *filesArray = General/[NSMutableArray arrayWithArray:[openPanel General/URLs]];
+General/NSLog(@"absoluteString : %@", General/filesArray objectAtIndex:0] absoluteString]);
+[[NSLog(@"cuttedString : %@", [[filesArray objectAtIndex:0] absoluteString] stringByDeletingLastPathComponent]);
+
 
 It returns :
 
-<code>
+    
 2006-03-03 12:55:46.062 SAM[1383] absoluteString : file://localhost/Users/stephane/Desktop/caution.gif
 2006-03-03 12:55:46.063 SAM[1383] cuttedString : file:/localhost/Users/stephane/Desktop/
-</code>
+
 
 As you can see, there is a "/" missing after "file:" on the second log.
 What is happening?
@@ -41,4 +41,4 @@ What is happening?
 These functions are intended to work on a path, not a UR. It's seeing the //, which is redundant in a path, and eliminating the redundancy. You should work only on the path part of your URL if you want to use path utilities to manipulate it.
 
 ----
-You're right, I used <code>[[filesArray objectAtIndex:0] path]);</code> instead of <code>absoluteString</code>, worked on the path, and then built the NSURL object with the <code>fileURLWithPath:</code> method and it's working now.
+You're right, I used     [[filesArray objectAtIndex:0] path]); instead of     absoluteString, worked on the path, and then built the NSURL object with the     fileURLWithPath: method and it's working now.

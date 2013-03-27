@@ -1,29 +1,29 @@
-[[CFString]] is the [[CoreFoundation]] version of [[NSString]], and is used in much the same way. Like many other basic [[CoreFoundation]] types, [[CFString]] is toll-free bridged with [[NSString]], which means that you can safely cast a <code>[[CFStringRef]]</code> to an <code>[[NSString]] ''</code> and vice versa.
+General/CFString is the General/CoreFoundation version of General/NSString, and is used in much the same way. Like many other basic General/CoreFoundation types, General/CFString is toll-free bridged with General/NSString, which means that you can safely cast a     General/CFStringRef to an     General/NSString * and vice versa.
 
-Simple examples of calling various [[CFString]] functions can be found at
-http://www.carbondev.com/site/?page=[[CFString]]
+Simple examples of calling various General/CFString functions can be found at
+http://www.carbondev.com/site/?page=General/CFString
 ----
 Panther provides two functions for escaping and unescaping XML and HTML entities:
 
 
-*[[CFStringRef]] [[CFXMLCreateStringByEscapingEntities]]([[CFAllocatorRef]] allocator, [[CFStringRef]] string, [[CFDictionaryRef]] entitiesDictionary)
-*[[CFStringRef]] [[CFXMLCreateStringByUnescapingEntities]]([[CFAllocatorRef]] allocator, [[CFStringRef]] string, [[CFDictionaryRef]] entitiesDictionary)
+*General/CFStringRef General/CFXMLCreateStringByEscapingEntities(General/CFAllocatorRef allocator, General/CFStringRef string, General/CFDictionaryRef entitiesDictionary)
+*General/CFStringRef General/CFXMLCreateStringByUnescapingEntities(General/CFAllocatorRef allocator, General/CFStringRef string, General/CFDictionaryRef entitiesDictionary)
 
 
-Unfortunately, [[CFXMLCreateStringByEscapingEntities]] is buggy, as described at http://www.cocoabuilder.com/archive/message/cocoa/2004/11/2/120728 .
+Unfortunately, General/CFXMLCreateStringByEscapingEntities is buggy, as described at http://www.cocoabuilder.com/archive/message/cocoa/2004/11/2/120728 .
 
 To verify one of the bugs, run this code:
 
-<code>
-[[NSString]]'' a = @"one < two";
-[[NSString]]'' b = ([[NSString]]'')[[CFXMLCreateStringByEscapingEntities]](kCFAllocatorDefault, ([[CFStringRef]])a, NULL );
-[[NSLog]]( @"String \"%@\" became \"%@\"", a, b );
-</code>
+    
+General/NSString* a = @"one < two";
+General/NSString* b = (General/NSString*)General/CFXMLCreateStringByEscapingEntities(kCFAllocatorDefault, (General/CFStringRef)a, NULL );
+General/NSLog( @"String \"%@\" became \"%@\"", a, b );
+
 
 In Panther this yields 
-<code>
+    
 2005-04-12 16:39:35.313 testFoundation[561] String "one < two" became "one &lt;"
-</code>
+
 
 Note that the final "two" is chopped off.
 

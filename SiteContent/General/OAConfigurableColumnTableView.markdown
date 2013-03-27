@@ -1,6 +1,6 @@
 
 
-[[OAConfigurableColumnTableView]] is a subclass of [[NSTableView]] that supports adding and removing table columns via a contextual menu and programmatically. 
+General/OAConfigurableColumnTableView is a subclass of General/NSTableView that supports adding and removing table columns via a contextual menu and programmatically. 
 
 PROS: Very nice API. 
 

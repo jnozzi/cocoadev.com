@@ -1,30 +1,30 @@
-This is strange (to me) .. I'm extending the [[NSMutableArray]] class, which in a simple example only overrides the count method.  But I'm getting the following runtime exception:
+This is strange (to me) .. I'm extending the General/NSMutableArray class, which in a simple example only overrides the count method.  But I'm getting the following runtime exception:
 
-<[[NSInvalidArgumentException]]> ''''' -count only defined for abstract class.  Define -[[[IndexableMutableArray]] count]!
+<General/NSInvalidArgumentException> *** -count only defined for abstract class.  Define -General/[IndexableMutableArray count]!
 
-<code>
-[[IndexableMutableArray]].h:
-@interface [[IndexableMutableArray]] : [[NSMutableArray]]
+    
+General/IndexableMutableArray.h:
+@interface General/IndexableMutableArray : General/NSMutableArray
 {
 }
 
 @end
 
-[[IndexableMutableArray]].m:
+General/IndexableMutableArray.m:
 
-@implementation [[IndexableMutableArray]]
+@implementation General/IndexableMutableArray
 
 - (unsigned)count {
-    [[NSLog]](@"[[IndexableMutableArray]]:count");
+    General/NSLog(@"General/IndexableMutableArray:count");
     return [super count];
 }
 @end
-</code>
+
 
 What's wrong here??  Anyone?  :)
 
 ----
-See [[ClassClusters]] for the question and [[TextFormattingRules]] for how to make your code not look terrible.
+See General/ClassClusters for the question and General/TextFormattingRules for how to make your code not look terrible.
 
 ----
 Excellent. Sorry for noobing out. Thanks for the tips.

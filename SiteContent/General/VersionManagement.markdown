@@ -12,6 +12,6 @@ You'll be much better off doing it the other way around: hosting the CVS reposit
 
 Other versioning systems for Mac OS 9 used to exist, but a quick search didn't turn anything up. Maybe they're all gone now.
 
--- [[MikeTrent]]
+-- General/MikeTrent
 
-Using [[PowerMachTen]] and porting CVS might work...
+Using General/PowerMachTen and porting CVS might work...

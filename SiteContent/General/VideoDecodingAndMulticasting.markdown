@@ -2,8 +2,8 @@ I am the author of a program called Tryst ( http://www.trystx.com ) that allows 
 
 Thank you,
 
-- [[FranciscoTolmasky]]
+- General/FranciscoTolmasky
 
 Please don't program Video-Decoding yourself! Simply because video formats can contain so many errors, it's not even funny. So as a plea from your users: please don't do it!
 
-Broadcasting on the other hand is something different. I'd look at the VLC-Sources and mailinglists for guidance... <g> -- [[MartinHaecker]]
+Broadcasting on the other hand is something different. I'd look at the VLC-Sources and mailinglists for guidance... <g> -- General/MartinHaecker

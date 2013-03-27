@@ -1,1 +1,1 @@
-see [[ValidatingToolbarItems]]
+see General/ValidatingToolbarItems

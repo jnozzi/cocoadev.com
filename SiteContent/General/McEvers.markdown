@@ -4,4 +4,4 @@ Fluent Spanish speaker and newly interested in Macs per the work I've done for t
 
 ----
 
-While I'm not sure this is the best place to post an advertisement your firm, welcome to [[CocoaDev]]!
+While I'm not sure this is the best place to post an advertisement your firm, welcome to General/CocoaDev!

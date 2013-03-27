@@ -1,4 +1,4 @@
-Roguelike games are [[RPGs]] (usually text-only but not necessarily) where the dungeon or world is randomly generated for each game, rather than being a static 'adventure'. Obviously, the randomness enhances replayability, and there are people who have been playing the same game for ''decades''
+Roguelike games are General/RPGs (usually text-only but not necessarily) where the dungeon or world is randomly generated for each game, rather than being a static 'adventure'. Obviously, the randomness enhances replayability, and there are people who have been playing the same game for *decades*
 
 Some links:
 

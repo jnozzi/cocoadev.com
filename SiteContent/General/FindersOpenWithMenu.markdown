@@ -3,32 +3,32 @@ For some reason I cannot make my applications appear in Finder's Open With menu.
 I have moved my application to /Applications and restarted the machine, but this have not helped (and it would seem that Finder does cache open applications, as I get e.g. World Text as an option for text files, which is in a /Developer sub directory).
 
 Does anyone know if there is a cache that I need to delete or if I need to provide other information in my Info.plist than what can be edited in Xcode's Document Types? For the records, I currently have this in my Info.plist:
-<code>
-    [[CFBundleDocumentTypes]] = (
+    
+    General/CFBundleDocumentTypes = (
         {
-            [[CFBundleTypeExtensions]] = ("''");
-            [[CFBundleTypeMIMETypes]] = ("text/''");
-            [[CFBundleTypeName]] = [[NSFilenamesPboardType]];
-            [[CFBundleTypeOSTypes]] = ("'''''''");
-            [[CFBundleTypeRole]] = Editor;
+            General/CFBundleTypeExtensions = ("*");
+            General/CFBundleTypeMIMETypes = ("text/*");
+            General/CFBundleTypeName = General/NSFilenamesPboardType;
+            General/CFBundleTypeOSTypes = ("****'");
+            General/CFBundleTypeRole = Editor;
         },
         {
-            [[CFBundleTypeExtensions]] = (html, htm);
-            [[CFBundleTypeMIMETypes]] = ("text/html");
-            [[CFBundleTypeName]] = "HTML document";
-            [[CFBundleTypeOSTypes]] = (HTML);
-            [[CFBundleTypeRole]] = Editor;
+            General/CFBundleTypeExtensions = (html, htm);
+            General/CFBundleTypeMIMETypes = ("text/html");
+            General/CFBundleTypeName = "HTML document";
+            General/CFBundleTypeOSTypes = (HTML);
+            General/CFBundleTypeRole = Editor;
         },
         {
-            [[CFBundleTypeExtensions]] = (txt, text);
-            [[CFBundleTypeMIMETypes]] = ("text/plain");
-            [[CFBundleTypeName]] = "Plain text document";
-            [[CFBundleTypeOSTypes]] = (TEXT);
-            [[CFBundleTypeRole]] = Editor;
+            General/CFBundleTypeExtensions = (txt, text);
+            General/CFBundleTypeMIMETypes = ("text/plain");
+            General/CFBundleTypeName = "Plain text document";
+            General/CFBundleTypeOSTypes = (TEXT);
+            General/CFBundleTypeRole = Editor;
         }
     );
-</code>
-I have also provided my Info.plist with a (unique) <code>[[CFBundleIdentifier]]</code> and a <code>[[CFBundleSignature]]</code> (and provided the various version strings).
+
+I have also provided my Info.plist with a (unique)     General/CFBundleIdentifier and a     General/CFBundleSignature (and provided the various version strings).
 
 ----
 
@@ -40,7 +40,7 @@ Thanks a lot!!! That did the trick -- I actually did consider it once, but thoug
 
 One problem though, but that is with the OS design: it then only is an option for the html and text files -- this is a text editor, so it really needs to be there for a lot of different file extensions, and I would then have to enter them all in the Info.plist. Likewise I have written a hex editor which works on all files w/o exception, and I really would like to have it in the Other... menu, but that then seems to be impossible?
 
-�I think it is impossible. There is no other application I've seen that appears in every ''Open With'' menu. But if you want it to be available from the ''Other�'' app chooser dialog, look at how [[TextEdit]] declares its file types; it is always available.
+�I think it is impossible. There is no other application I've seen that appears in every *Open With* menu. But if you want it to be available from the *Other�* app chooser dialog, look at how General/TextEdit declares its file types; it is always available.
 
 ----
 

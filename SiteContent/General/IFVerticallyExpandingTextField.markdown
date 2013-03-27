@@ -4,23 +4,23 @@
    Superviews of the textfield and the window containing the textfield autosize
    accordingly.
 
--- [[AndrewBowman]]
+-- General/AndrewBowman
 
-[[IFVerticallyExpandingTextField]].h
+General/IFVerticallyExpandingTextField.h
 ----
-<code>
-/''
+    
+/*
  Copyright (c) 2006, Andrew Bowman.  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without 
  modification, are permitted provided that the following conditions are met:
  
- '' Redistributions of source code must retain the above copyright notice, this 
+ * Redistributions of source code must retain the above copyright notice, this 
    list of conditions and the following disclaimer.
- '' Redistributions in binary form must reproduce the above copyright notice, 
+ * Redistributions in binary form must reproduce the above copyright notice, 
    this list of conditions and the following disclaimer in the documentation 
    and/or other materials provided with the distribution.
- '' Neither the name of Inverse Falcon nor the names of its contributors may be 
+ * Neither the name of Inverse Falcon nor the names of its contributors may be 
    used to endorse or promote products derived from this software without 
    specific prior written permission.
  
@@ -34,9 +34,9 @@
  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ''/
+ */
 
-/'' [[IFVerticallyExpandingTextField]] 
+/* General/IFVerticallyExpandingTextField 
 
    This textfield expands and contracts as it is edited and resized, and behaves
    in a similar manner to the input field in Apple's iChat message windows.
@@ -44,19 +44,19 @@
    Superviews of the textfield and the window containing the textfield autosize 
    accordingly.
 
-''/
+*/
 
 
 #import <Cocoa/Cocoa.h>
 
-enum { [[IFVerticalPadding]] = 5 };
+enum { General/IFVerticalPadding = 5 };
 
 
-@interface [[IFVerticallyExpandingTextField]] : [[NSTextField]]
+@interface General/IFVerticallyExpandingTextField : General/NSTextField
 {
    BOOL superviewsExpandOnGrowth;
    BOOL isCollapsed;
-   [[NSMutableArray]] ''viewMaskPairs; 
+   General/NSMutableArray *viewMaskPairs; 
 }
 
 - (void) awakeFromNib;
@@ -67,24 +67,24 @@ enum { [[IFVerticalPadding]] = 5 };
 @end
 
 
-</code>
 
-[[IFVerticallyExpandingTextField]].m
+
+General/IFVerticallyExpandingTextField.m
 ----
-<code>
+    
 
-/''
+/*
  Copyright (c) 2006, Andrew Bowman.  All rights reserved.
  
  Redistribution and use in source and binary forms, with or without 
  modification, are permitted provided that the following conditions are met:
  
- '' Redistributions of source code must retain the above copyright notice, this 
+ * Redistributions of source code must retain the above copyright notice, this 
  list of conditions and the following disclaimer.
- '' Redistributions in binary form must reproduce the above copyright notice, 
+ * Redistributions in binary form must reproduce the above copyright notice, 
  this list of conditions and the following disclaimer in the documentation 
  and/or other materials provided with the distribution.
- '' Neither the name of Inverse Falcon nor the names of its contributors may be 
+ * Neither the name of Inverse Falcon nor the names of its contributors may be 
  used to endorse or promote products derived from this software without 
  specific prior written permission.
  
@@ -98,26 +98,26 @@ enum { [[IFVerticalPadding]] = 5 };
  ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ''/
+ */
 
-#import "[[IFVerticallyExpandingTextField]].h"
+#import "General/IFVerticallyExpandingTextField.h"
 
-// Private helper class for associating [[NSViews]] with autoresizingMasks
-@interface [[IFViewMaskPair]] : [[NSObject]] 
+// Private helper class for associating General/NSViews with autoresizingMasks
+@interface General/IFViewMaskPair : General/NSObject 
 {   
-   [[NSView]] ''view;
+   General/NSView *view;
    unsigned int savedAutoresizingMask;
 }
 
-- (id) initWithView: ([[NSView]] '')aView;
+- (id) initWithView: (General/NSView *)aView;
 - (void) restoreAutoresizingMask;
 
 @end
 
 
-@implementation [[IFViewMaskPair]] 
+@implementation General/IFViewMaskPair 
 
-- (id) initWithView: ([[NSView]] '')aView {
+- (id) initWithView: (General/NSView *)aView {
    self = [super init];
    view = aView;
    savedAutoresizingMask = [view autoresizingMask];
@@ -133,32 +133,32 @@ enum { [[IFVerticalPadding]] = 5 };
 
 
 
-@interface [[IFVerticallyExpandingTextField]] (PRIVATE)
+@interface General/IFVerticallyExpandingTextField (PRIVATE)
 
-- (void) autosizeHeight: ([[NSTextView]] '')fieldEditor;
-- (void) autosizeSuperviewOfView: ([[NSView]] '')originView withGrowth: (float)growth;
+- (void) autosizeHeight: (General/NSTextView *)fieldEditor;
+- (void) autosizeSuperviewOfView: (General/NSView *)originView withGrowth: (float)growth;
 
-- (void) alterAutoresizeMasksForViews: ([[NSArray]] '')sibViews 
-                      surroundingView: ([[NSView]] '')originView;
+- (void) alterAutoresizeMasksForViews: (General/NSArray *)sibViews 
+                      surroundingView: (General/NSView *)originView;
 - (void) restoreAutoresizeMasks;
 
 @end
 
 
-@implementation [[IFVerticallyExpandingTextField]]
+@implementation General/IFVerticallyExpandingTextField
 
 - (void) awakeFromNib {
    superviewsExpandOnGrowth = YES;
    isCollapsed = NO;
-   viewMaskPairs = [[[[NSMutableArray]] alloc] init];
+   viewMaskPairs = General/[[NSMutableArray alloc] init];
    
-   if ([self autoresizingMask] & [[NSViewHeightSizable]]) {
-      [self setAutoresizingMask: [self autoresizingMask] & ~[[NSViewHeightSizable]]];
+   if ([self autoresizingMask] & General/NSViewHeightSizable) {
+      [self setAutoresizingMask: [self autoresizingMask] & ~General/NSViewHeightSizable];
       
-      [[NSLog]](@"Warning: [[IFVerticallyExpandingTextField]]: Vertical autosizing option "
+      General/NSLog(@"Warning: General/IFVerticallyExpandingTextField: Vertical autosizing option "
             "in Interface Builder interferes with this class's functionality and has "
             "been temporarily disabled.  Turn off this option for all "
-            "[[IFVerticallyExpandingTextFields]] in Interface Builder to prevent this warning.");
+            "General/IFVerticallyExpandingTextFields in Interface Builder to prevent this warning.");
    }
 }
 
@@ -182,8 +182,8 @@ enum { [[IFVerticalPadding]] = 5 };
    // first responder.
    
    BOOL stolenEditor = NO;
-   [[NSWindow]] ''myWindow = [self window];
-   [[NSTextView]] ''fieldEditor = [myWindow fieldEditor: YES forObject: self];
+   General/NSWindow *myWindow = [self window];
+   General/NSTextView *fieldEditor = [myWindow fieldEditor: YES forObject: self];
    
    if ([fieldEditor delegate] != self) {
       stolenEditor = YES;
@@ -192,24 +192,24 @@ enum { [[IFVerticalPadding]] = 5 };
       [myWindow makeFirstResponder: self];
       
       // Set cursor to end, breaking the selection
-      [fieldEditor setSelectedRange: [[NSMakeRange]]([[self stringValue] length], 0)];
+      [fieldEditor setSelectedRange: General/NSMakeRange(General/self stringValue] length], 0)];
    }
    
    [self autosizeHeight: fieldEditor];
    
    if (stolenEditor) {   
       // Odd things can occur when messing with the first responder when using 
-      // several [[IFVerticallyExpandingTextFields]].  Best not to mess with it, for now.
+      // several [[IFVerticallyExpandingTextFields.  Best not to mess with it, for now.
       
       [myWindow makeFirstResponder: nil];
    }
 }
 
 
-/'' Private methods ''/
+/* Private methods */
 
-- (void) autosizeHeight: ([[NSTextView]] '')fieldEditor {
-   [[NSRect]] newFrame = [self frame];
+- (void) autosizeHeight: (General/NSTextView *)fieldEditor {
+   General/NSRect newFrame = [self frame];
    float oldHeight = newFrame.size.height;
    float newHeight;
    float fieldGrowth;
@@ -217,8 +217,8 @@ enum { [[IFVerticalPadding]] = 5 };
    if (isCollapsed)
       newHeight = 0;
    else
-      newHeight = [[fieldEditor layoutManager] usedRectForTextContainer:
-         [fieldEditor textContainer]].size.height + [[IFVerticalPadding]];
+      newHeight = General/fieldEditor layoutManager] usedRectForTextContainer:
+         [fieldEditor textContainer.size.height + General/IFVerticalPadding;
    
    fieldGrowth = newHeight - oldHeight;   
    
@@ -227,9 +227,9 @@ enum { [[IFVerticalPadding]] = 5 };
       // We're expanding or contracting. First adjust our frame, 
       // then see about superviews.
       
-      newFrame.size = [[NSMakeSize]](newFrame.size.width, newHeight);
+      newFrame.size = General/NSMakeSize(newFrame.size.width, newHeight);
       
-      if ([self autoresizingMask] & [[NSViewMinYMargin]])
+      if ([self autoresizingMask] & General/NSViewMinYMargin)
          newFrame.origin.y -= fieldGrowth;
       
       [self setFrame: newFrame];
@@ -240,29 +240,29 @@ enum { [[IFVerticalPadding]] = 5 };
 
       // If superviews are set not to expand on growth, it's best to call display
       // on the window in reponse to this notification to prevent artifacts.
-      [[[[NSNotificationCenter]] defaultCenter] postNotificationName: @"[[IFTextFieldDidExpandNotification]]"
+      General/[[NSNotificationCenter defaultCenter] postNotificationName: @"General/IFTextFieldDidExpandNotification"
                                                           object: self
                                                         userInfo: 
-         [[[NSDictionary]] dictionaryWithObject: [[[NSNumber]] numberWithFloat: fieldGrowth]
-                                     forKey: @"[[IFTextFieldNotificationFieldGrowthItem]]"]];
+         General/[NSDictionary dictionaryWithObject: General/[NSNumber numberWithFloat: fieldGrowth]
+                                     forKey: @"General/IFTextFieldNotificationFieldGrowthItem"]];
    }
 }
 
 
 
-- (void) autosizeSuperviewOfView: ([[NSView]] '')originView withGrowth: (float)growth {
+- (void) autosizeSuperviewOfView: (General/NSView *)originView withGrowth: (float)growth {
    
    // Recursively autosize superviews until we get to a window or scroll view
    
-   [[NSView]] ''currentView = [originView superview];  // current view we are working in
+   General/NSView *currentView = [originView superview];  // current view we are working in
    
    [self alterAutoresizeMasksForViews: [currentView subviews] surroundingView: originView];
    
-   if (currentView == [[originView window] contentView]) {
+   if (currentView == General/originView window] contentView]) {
       // First base case, stop recursion when we've reached window's content view
       
-      [[NSWindow]] ''myWindow = [originView window];
-      [[NSRect]] windowFrame = [myWindow frame];
+      [[NSWindow *myWindow = [originView window];
+      General/NSRect windowFrame = [myWindow frame];
       
       windowFrame.size.height += growth;
       windowFrame.origin.y -= growth;
@@ -273,14 +273,14 @@ enum { [[IFVerticalPadding]] = 5 };
       
       [self restoreAutoresizeMasks];
    }
-   else if ([currentView isKindOfClass: [[[NSScrollView]] class]]) {
+   else if ([currentView isKindOfClass: General/[NSScrollView class]]) {
       // Second base case, stop at scrollviews.
       // Trying to get scrollviews' content to expand.
       // Scrollview blocks do appear, but with no arrows or scrolling controls
       // Some help here would be appreciated
       
-      [[NSScrollView]] ''scrollView = ([[NSScrollView]] '') currentView;
-      [[NSRect]] contentFrame = [[scrollView contentView] frame];
+      General/NSScrollView *scrollView = (General/NSScrollView *) currentView;
+      General/NSRect contentFrame = General/scrollView contentView] frame];
       
       contentFrame.size.height += growth;
       contentFrame.origin.y -= growth;
@@ -294,7 +294,7 @@ enum { [[IFVerticalPadding]] = 5 };
    else {
       // Recursive case, modify our current frame then step up to its superview
       
-      [[NSRect]] currentFrame = [currentView frame];
+      [[NSRect currentFrame = [currentView frame];
       currentFrame.size.height += growth;
       currentFrame.origin.y -= growth;
       
@@ -306,8 +306,8 @@ enum { [[IFVerticalPadding]] = 5 };
 }
 
 
-- (void) alterAutoresizeMasksForViews: ([[NSArray]] '')siblingViews 
-                         surroundingView: ([[NSView]] '')originView {
+- (void) alterAutoresizeMasksForViews: (General/NSArray *)siblingViews 
+                         surroundingView: (General/NSView *)originView {
    
    // We need to alter the autoresizing masks of surrounding views so they don't 
    // mess up the originView's vertical expansion or contraction.
@@ -315,8 +315,8 @@ enum { [[IFVerticalPadding]] = 5 };
    // This method uses BSD-licensed code from the Disclosable View application 
    // copyright (c) 2002, Kurt Revis of Snoize (www.snoize.com) 
    
-   [[NSEnumerator]] ''enumerator = [siblingViews objectEnumerator];
-   [[NSView]] ''sibView;
+   General/NSEnumerator *enumerator = [siblingViews objectEnumerator];
+   General/NSView *sibView;
    unsigned int mask;
    
    while (sibView = [enumerator nextObject]) {
@@ -324,23 +324,23 @@ enum { [[IFVerticalPadding]] = 5 };
          
          // save autoresizingMask for restoration later
          [viewMaskPairs addObject: 
-            [[[[[IFViewMaskPair]] alloc] initWithView: sibView] autorelease]];
+            General/[[[IFViewMaskPair alloc] initWithView: sibView] autorelease]];
          
          mask = [sibView autoresizingMask];
          
-         if ([[NSMaxY]]([sibView frame]) <= [[NSMaxY]]([originView frame])) {
+         if (General/NSMaxY([sibView frame]) <= General/NSMaxY([originView frame])) {
             // This subview is below us. Make it stick to the bottom of the window.
             // It should not change height.
-            mask &= ~[[NSViewHeightSizable]];
-            mask |= [[NSViewMaxYMargin]];
-            mask &= ~[[NSViewMinYMargin]];
+            mask &= ~General/NSViewHeightSizable;
+            mask |= General/NSViewMaxYMargin;
+            mask &= ~General/NSViewMinYMargin;
          } 
          else {
             // This subview is above us. Make it stick to the top of the window.
             // It should not change height.
-            mask &= ~[[NSViewHeightSizable]];
-            mask &= ~[[NSViewMaxYMargin]];
-            mask |= [[NSViewMinYMargin]];
+            mask &= ~General/NSViewHeightSizable;
+            mask &= ~General/NSViewMaxYMargin;
+            mask |= General/NSViewMinYMargin;
          }
          
          [sibView setAutoresizingMask: mask];
@@ -349,7 +349,7 @@ enum { [[IFVerticalPadding]] = 5 };
 }
 
 - (void) restoreAutoresizeMasks {
-   [[IFViewMaskPair]] ''pair;
+   General/IFViewMaskPair *pair;
    
    while ([viewMaskPairs count]) {
       pair = [viewMaskPairs lastObject];
@@ -359,9 +359,9 @@ enum { [[IFVerticalPadding]] = 5 };
 }
 
 
-/'' Overridden methods ''/
+/* Overridden methods */
 
-- (void) textDidChange: ([[NSNotification]] '')note {
+- (void) textDidChange: (General/NSNotification *)note {
    [self forceAutosize];
 }
 
@@ -369,8 +369,8 @@ enum { [[IFVerticalPadding]] = 5 };
    [self forceAutosize];
 }
 
-- (void) setStringValue: ([[NSString]] '')aString {
-   [[NSTextView]] ''myEditor = [self currentEditor];
+- (void) setStringValue: (General/NSString *)aString {
+   General/NSTextView *myEditor = [self currentEditor];
    
    if (myEditor)
       [myEditor setString: aString];
@@ -378,7 +378,7 @@ enum { [[IFVerticalPadding]] = 5 };
       [super setStringValue: aString];
    
    // If we don't delay, autosizing won't display correctly
-   [[[NSThread]] sleepUntilDate: [[[NSDate]] dateWithTimeIntervalSinceNow: .05]];
+   General/[NSThread sleepUntilDate: General/[NSDate dateWithTimeIntervalSinceNow: .05]];
    [self forceAutosize];
 }
 
@@ -401,11 +401,11 @@ enum { [[IFVerticalPadding]] = 5 };
 
 @end
 
-</code>
-----
-Give it a try!  You should be able to throw this into a project, read the files in Interface Builder, and use the custom class pane to make an [[NSTextField]] into an [[IFVerticallyExpandingTextField]].  You'll need to set the layout and linebreaking attributes for word wrapping for this to work.  
 
-Although expansion should work properly when the textfield is embedded in a subview, I'm having some trouble dealing with [[NSScrollView]]<nowiki/>s.  The field expands into the scrollview's content view, but none of the controls on the scrollbar appear.  Some help here would be appreciated.
+----
+Give it a try!  You should be able to throw this into a project, read the files in Interface Builder, and use the custom class pane to make an General/NSTextField into an General/IFVerticallyExpandingTextField.  You'll need to set the layout and linebreaking attributes for word wrapping for this to work.  
+
+Although expansion should work properly when the textfield is embedded in a subview, I'm having some trouble dealing with General/NSScrollView<nowiki/>s.  The field expands into the scrollview's content view, but none of the controls on the scrollbar appear.  Some help here would be appreciated.
 ----
 Added the setStringValue method, can't believe I forgot that.  In my test application I thought I saw a noticeable difference in speed when calling setString on the field editor rather than setStringValue on super, but maybe it was just my imagination.  Can anyone confirm this?
 
@@ -416,13 +416,13 @@ Added the setHidden method.  I haven't tested this one out, so I don't know what
 You're not using setHidden: correctly. setHidden: visually hides the field, but -- by design -- does not hide it for layout purposes. You want to add a new method, setCollapsed: or setMinimized:. You shouldn't need to override setHidden.
 ----
 Thanks for the correction.  I've changed the code to use setCollapsed.  Have you had the chance to play around with this?  Any feedback's welcome.
--- [[AndrewBowman]]
+-- General/AndrewBowman
 ----
-I know this post is a bit old, but it was a good starting point for me.  Here's a suggestion for improving the code: use a separate [[NSTextView]] as a utility object to determine the required height rather than the field editor.  This avoids the issue with moving first responder around unnecessarily.  You'd also probably want to cache the text view rather than create it each time.  Here's a sample of what I'm talking about:
-<code>
-    [[NSTextView]] ''utilityTextView = [[[[NSTextView]] alloc] initWithFrame:[self frame]];
+I know this post is a bit old, but it was a good starting point for me.  Here's a suggestion for improving the code: use a separate General/NSTextView as a utility object to determine the required height rather than the field editor.  This avoids the issue with moving first responder around unnecessarily.  You'd also probably want to cache the text view rather than create it each time.  Here's a sample of what I'm talking about:
+    
+    General/NSTextView *utilityTextView = General/[[NSTextView alloc] initWithFrame:[self frame]];
     [utilityTextView setString:[self stringValue]];
-    [[utilityTextView layoutManager] glyphRangeForTextContainer:[utilityTextView textContainer]]; // force layout
-    [[CGFloat]] newHeight = [[NSHeight]]([[utilityTextView layoutManager] usedRectForTextContainer:[utilityTextView textContainer]]);
-</code>
+    General/utilityTextView layoutManager] glyphRangeForTextContainer:[utilityTextView textContainer; // force layout
+    General/CGFloat newHeight = General/NSHeight(General/utilityTextView layoutManager] usedRectForTextContainer:[utilityTextView textContainer);
+
 -- Sean Rich

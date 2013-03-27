@@ -1,4 +1,4 @@
-''' Enable debugging '''
+** Enable debugging **
 
 There are several things you can do to make your project more debugable.
 
@@ -8,6 +8,6 @@ There are several things you can do to make your project more debugable.
 
 
 ----
-Once you know how to debug your code you may appreciate some [[DebuggingTechniques]].
+Once you know how to debug your code you may appreciate some General/DebuggingTechniques.
 
-Here are some [[ErrorsAndWarnings]] you might run into.
+Here are some General/ErrorsAndWarnings you might run into.

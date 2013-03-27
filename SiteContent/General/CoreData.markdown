@@ -2,29 +2,29 @@ The technically correct way to describe Core Data is as an object-graph manageme
 
 (1) Actually my understanding of things was you'd need to write your own spotlight importer for your core data files. Perhaps if you use XML as your deployment file type Spotlight would index those (being plain text XML and all), but if you use Binary or SQL (which I think the majority will) you'd have to write an importer for those. If I'm wrong please link to the docs I'm missing.
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[NSPersistentDocumentTutorial]]/07_Metadata/chapter_8_section_1.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/NSPersistentDocumentTutorial/07_Metadata/chapter_8_section_1.html
 and
-http://developer.apple.com/documentation/Cocoa/Reference/CoreData_ObjC/Classes/[[NSPersistentStoreCoord]].html
+http://developer.apple.com/documentation/Cocoa/Reference/CoreData_ObjC/Classes/General/NSPersistentStoreCoord.html
 
 ----
-Pages related to [[CoreData]]:
+Pages related to General/CoreData:
 
 [Topic]
 
 http://developer.apple.com/macosx/tiger/coredata.html
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[CoreData]]/Articles/cdTroubleshooting.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/CoreData/Articles/cdTroubleshooting.html
  
 ----
 
-'''Overview & Tutorial'''
+**Overview & Tutorial**
 ----
 
 Core Data Class Overview: http://www.cocoadevcentral.com/articles/000086.php
 Build a Core Data App: http://www.cocoadevcentral.com/articles/000085.php
 
-''Both with thanks to Scott Stevenson for a job well done.''
+*Both with thanks to Scott Stevenson for a job well done.*
 
-Core Data, command line utility: http://developer.apple.com/documentation/Cocoa/Conceptual/[[CoreDataUtilityTutorial]]/index.html
+Core Data, command line utility: http://developer.apple.com/documentation/Cocoa/Conceptual/General/CoreDataUtilityTutorial/index.html
 
 At WWDC, Aaron Hillegass made a special presentation to students about Core Data, including slides and hands-on projects.  I don't think this is posted anywhere else.  http://www.bignerdranch.com/wwdc/ (doesn't work 21/11/2008)
 
@@ -32,15 +32,15 @@ Core Data as a Cheap Database: http://www.macgeekery.com/gspot/2005-40/core_data
 
 ----
 A philosphical set of questions and answers about Core Data
-[[CoreDataQuestionsAndAnswers]]
+General/CoreDataQuestionsAndAnswers
 
 ----
-FYI boys and girls: [[CoreData]] will not scale.  It does not allow you to set the cursor.  That means when you do a giant fetch, if it's really giant in theory you'd want to process the first N objects, then flush them from memory and then process the next batch.  [[CoreData]] makes you load the entire query result... which pretty much makes [[CoreData]] unusable for any heavy lifting.  Too bad, [[CoreData]] could have been fun even for the big boys.
+FYI boys and girls: General/CoreData will not scale.  It does not allow you to set the cursor.  That means when you do a giant fetch, if it's really giant in theory you'd want to process the first N objects, then flush them from memory and then process the next batch.  General/CoreData makes you load the entire query result... which pretty much makes General/CoreData unusable for any heavy lifting.  Too bad, General/CoreData could have been fun even for the big boys.
 ----
-This is totally false, as [[CoreData]] will allow you to set the limit and offset of the returned data set. The API docs themselves state that a dataset of hundreds of thousands of rows is considered 'small' as far as [[CoreData]] programming goes
+This is totally false, as General/CoreData will allow you to set the limit and offset of the returned data set. The API docs themselves state that a dataset of hundreds of thousands of rows is considered 'small' as far as General/CoreData programming goes
 
 ----
-Core Data will scale, and it does not require loading of "the entire query result."  Core Data can create faults to the result of a query or a relationship traversal, and will fire those faults as objects are accessed to populate them.  This technique was also used to good effect in the [[EnterpriseObjectsFramework]].
+Core Data will scale, and it does not require loading of "the entire query result."  Core Data can create faults to the result of a query or a relationship traversal, and will fire those faults as objects are accessed to populate them.  This technique was also used to good effect in the General/EnterpriseObjectsFramework.
 
 ----
 

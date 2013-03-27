@@ -1,10 +1,10 @@
 
 
 Hello All-
-I am creating a custom [[NSView]] (which I will call main_view) and replacing the document view of a scrollview.  Within the custom [[NSView]], I have placed some other [[NSViews]] (which I will call small_views).  I added tracking rects to the small_views so that I can get mouse entered and mouse exited events.  However, the scrollview does not seem to understand when a small_view is not within its clipped view so I get events for tracking rects where the small_view would be when I scroll to it even though it is currently out of view.  (I hope that makes sense)
+I am creating a custom General/NSView (which I will call main_view) and replacing the document view of a scrollview.  Within the custom General/NSView, I have placed some other General/NSViews (which I will call small_views).  I added tracking rects to the small_views so that I can get mouse entered and mouse exited events.  However, the scrollview does not seem to understand when a small_view is not within its clipped view so I get events for tracking rects where the small_view would be when I scroll to it even though it is currently out of view.  (I hope that makes sense)
 
 Here is the code for adding tracking rects to small_view.
-<code>
+    
 - (void)viewDidMoveToWindow {
 	[self removeTrackingTags];
 	if([self superview]!=nil) {
@@ -12,7 +12,7 @@ Here is the code for adding tracking rects to small_view.
 	}
 	[super viewDidMoveToWindow];
 }
-- (void)frameDidChange:([[NSNotification]] '')notification {
+- (void)frameDidChange:(General/NSNotification *)notification {
 	[self removeTrackingTags];
 	if([self superview]!=nil) {
 		trackingTag=[self addTrackingRect:[self frame] owner:self userData:nil assumeInside:NO];
@@ -21,7 +21,7 @@ Here is the code for adding tracking rects to small_view.
 - (void)removeTrackingTags {
     [self removeTrackingRect:trackingTag];
 }
-</code>
+
 
 What is the proper way to add views to a scrollview and to add tracking rects to those views that become 'active' when the view becomes visible?
 
@@ -37,43 +37,43 @@ Well,  I don't need the entire clip view to be a tracking rect.  What I need is 
 - Ryan 
 
 ----
-Just clip the rectangle to your view's visibleRect by using [[NSIntersectionRect]] before you actually add the rect as a tracking rect. This will ensure that hidden pieces don't get tracked.
+Just clip the rectangle to your view's visibleRect by using General/NSIntersectionRect before you actually add the rect as a tracking rect. This will ensure that hidden pieces don't get tracked.
 
 ----
 Well, not sure if this is the best way to do this, but it works...
 1) subclassed scroll view and added code to send out notifications everytime the cliprect changes
 
-<code>
-- (void)reflectScrolledClipView:([[NSClipView]] '')aClipView {
-	[[[[NSNotificationCenter]] defaultCenter] postNotificationName:@"clip view change" object:self userInfo:nil];
+    
+- (void)reflectScrolledClipView:(General/NSClipView *)aClipView {
+	General/[[NSNotificationCenter defaultCenter] postNotificationName:@"clip view change" object:self userInfo:nil];
 	[super reflectScrolledClipView:aClipView];
 }
-</code>
+
 
 2) add tracking rects in the main view class eveytime changes in the clip view are 'detected'.  Check to see if the view is visible.  Be sure to remember to remove the tracking rects when they are no longer visible.
 
-<code>
+    
 - (void)viewDidMoveToWindow {
 	[self removeTrackingTags];
 	if([self superview]!=nil) {
-		if(![[NSEqualRects]]([self visibleRect],[[NSZeroRect]])) {
+		if(!General/NSEqualRects([self visibleRect],General/NSZeroRect)) {
 			personTrackingTag=[self addTrackingRect:[self bounds] owner:self userData:nil assumeInside:NO];
 		}
 	}
 	[super viewDidMoveToWindow];
 }
-- (void)frameDidChange:([[NSNotification]] '')notification {
+- (void)frameDidChange:(General/NSNotification *)notification {
 	[self removeTrackingTags];
 	if([self superview]!=nil) {
-		if(![[NSEqualRects]]([self visibleRect],[[NSZeroRect]])) {
+		if(!General/NSEqualRects([self visibleRect],General/NSZeroRect)) {
 			overallTrackingTag=[self addTrackingRect:[self bounds] owner:self userData:nil assumeInside:NO];
               }
 	}
 }
-- (void)clipViewChange:([[NSNotification]] '')notification {
+- (void)clipViewChange:(General/NSNotification *)notification {
 	[self removeTrackingTags];
 	if([self superview]!=nil) {
-		if(![[NSEqualRects]]([self visibleRect],[[NSZeroRect]])) {
+		if(!General/NSEqualRects([self visibleRect],General/NSZeroRect)) {
 			overallTrackingTag=[self addTrackingRect:[self bounds] owner:self userData:nil assumeInside:NO];
               }
        }
@@ -81,7 +81,7 @@ Well, not sure if this is the best way to do this, but it works...
 - (void)removeTrackingTags {
 	[self removeTrackingRect:overallTrackingTag];
 }
-</code>
+
 
 Like I said, that seems to work.  If anyone has a better method...
 -Ryan

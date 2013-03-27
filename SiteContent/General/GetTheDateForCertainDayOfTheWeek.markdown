@@ -5,19 +5,19 @@ Thanks,
 
 ----
 
-<code>
-- ([[NSDate]] '')nextMonday {
-	[[NSCalendarDate]] ''today = [[[NSCalendarDate]] date];
+    
+- (General/NSDate *)nextMonday {
+	General/NSCalendarDate *today = General/[NSCalendarDate date];
 	int todayDayOfWeek = [today dayOfWeek];
        int daysToAdd = todayDayOfWeek == 0 ? 1 : 7-todayDayOfWeek+1;
-	[[NSCalendarDate]] ''nextMonday = [today dateByAddingYears:0 months:0 days:daysToAdd hours:0 minutes:0 seconds:0];
+	General/NSCalendarDate *nextMonday = [today dateByAddingYears:0 months:0 days:daysToAdd hours:0 minutes:0 seconds:0];
 	return nextMonday;
 }
-</code>
+
 
 Notice that dayOfWeek==0 means Sunday.
 
--- [[DenisGryzlov]]
+-- General/DenisGryzlov
 
 ----
 Aha, thanks. I feel really stupid. :p

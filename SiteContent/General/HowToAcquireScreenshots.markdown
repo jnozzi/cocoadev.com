@@ -1,23 +1,23 @@
 To get a screenshot of your screen try this :
-<code>
+    
 Please port to Cocoa
-</code>
 
-Or in [[PyObjC]]:
 
-<code>
+Or in General/PyObjC:
+
+    
 format = "png"
 
-class [[CocoaScreenshot]]([[NSObject]]):
+class General/CocoaScreenshot(General/NSObject):
 	# Extension => Cocoa constant dictionary
 	        self.fileRepresentationMapping = {
-		       '.png': [[NSPNGFileType]],
-		       '.gif': [[NSGIFFileType]],
-		       '.jpg': [[NSJPEGFileType]],
-	   	       '.jpeg': [[NSJPEGFileType]],
-		       '.bmp': [[NSBMPFileType]],
-		       '.tif': [[NSTIFFFileType]],
-		       '.tiff': [[NSTIFFFileType]],
+		       '.png': General/NSPNGFileType,
+		       '.gif': General/NSGIFFileType,
+		       '.jpg': General/NSJPEGFileType,
+	   	       '.jpeg': General/NSJPEGFileType,
+		       '.bmp': General/NSBMPFileType,
+		       '.tif': General/NSTIFFFileType,
+		       '.tiff': General/NSTIFFFileType,
 		       }
 
 		def _getFileRepresentationType(self):
@@ -28,25 +28,25 @@ class [[CocoaScreenshot]]([[NSObject]]):
 		def screenshot(self):
 			""" Cocoa screenshot implementation """
 			# Initialize screen frame and allocate image in memory
-			rect = [[NSScreen]].mainScreen().frame()
-			image = [[NSImage]].alloc().initWithSize_((rect.size.width, rect.size.height))
+			rect = General/NSScreen.mainScreen().frame()
+			image = General/NSImage.alloc().initWithSize_((rect.size.width, rect.size.height))
 			# Create a transparent fullsize window
-			window = [[NSWindow]].alloc().initWithContentRect_styleMask_backing_defer_(
+			window = General/NSWindow.alloc().initWithContentRect_styleMask_backing_defer_(
 							rect, 
-							[[NSBorderlessWindowMask]], 
-							[[NSBackingStoreNonretained]], 
+							General/NSBorderlessWindowMask, 
+							General/NSBackingStoreNonretained, 
 							False)
 
-			view = [[NSView]].alloc().initWithFrame_(rect)
-			window.setLevel_([[NSScreenSaverWindowLevel]] + 100)
+			view = General/NSView.alloc().initWithFrame_(rect)
+			window.setLevel_(General/NSScreenSaverWindowLevel + 100)
 			window.setHasShadow_(False)
 			window.setAlphaValue_(0.0)
 			window.setContentView_(view)
-			# Send the window to the front, focus [[NSView]] to execute an action action with 
+			# Send the window to the front, focus General/NSView to execute an action action with 
 			window.orderFront_(self)
 			view.lockFocus()
 			# Create a Bitmap representation of the focused screen frame and make it an image
-			screenRep = [[NSBitmapImageRep]].alloc().initWithFocusedViewRect_(rect)
+			screenRep = General/NSBitmapImageRep.alloc().initWithFocusedViewRect_(rect)
 			image.addRepresentation_(screenRep)
 			view.unlockFocus()
 			window.orderOut_(self)
@@ -57,21 +57,21 @@ class [[CocoaScreenshot]]([[NSObject]]):
 
 			# JPEG quality support (0-1)
 			if format in ('jpeg', 'png', 'JPEG', 'JPG'):
-				data = screenRep.representationUsingType_properties_(representation {[[NSImageCompressionFactor]]: 0.7})
+				data = screenRep.representationUsingType_properties_(representation {General/NSImageCompressionFactor: 0.7})
 			else:
 				data = screenRep.representationUsingType_properties_(representation, None)
 
 			# Write it
 			data.writeToFile_atomically_("screenshot." + format, False)
-</code>
+
 
 ----
 
-Wow.. Python + Cocoa = ugly! Just learn Objective-C... and why is this here when [[ScreenShotCode]] exists with less hacky solutions?
+Wow.. Python + Cocoa = ugly! Just learn Objective-C... and why is this here when General/ScreenShotCode exists with less hacky solutions?
 
 ----
 
-It is the same method as the version you posted. Just a [[PyObjC]] implementation.
+It is the same method as the version you posted. Just a General/PyObjC implementation.
 
 ----
 

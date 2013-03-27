@@ -1,30 +1,30 @@
 I'm writing an app that makes digests of Slashdot posts. To download a story from Slashdot, I'm using the following code:
 
-<code>
-- ([[IBAction]])gather:(id)sender
+    
+- (General/IBAction)gather:(id)sender
 {
-	[[NSString]] ''storyText;
-	[[NSString]] ''storyAddr;
-	NSURL ''storyUrl;
+	General/NSString *storyText;
+	General/NSString *storyAddr;
+	NSURL *storyUrl;
 
 	storyAddr = [storyUrlField stringValue];
 	
-	[[NSLog]](@"String: {%@}", storyAddr);
+	General/NSLog(@"String: {%@}", storyAddr);
 	
-	storyUrl  = [NSURL [[URLWithString]]:storyAddr];
+	storyUrl  = [NSURL General/URLWithString:storyAddr];
 	
-	[[NSLog]](@"Story URL: {%@}", storyUrl);
+	General/NSLog(@"Story URL: {%@}", storyUrl);
 	
-	storyText = [[[NSString]] stringWithContentsOfURL:storyUrl];
+	storyText = General/[NSString stringWithContentsOfURL:storyUrl];
 	
-	[[NSLog]](@"Story data: {%@}", storyText);
+	General/NSLog(@"Story data: {%@}", storyText);
 }
-</code>
+
 
 Addresses like http://www.slashdot.org work fine, but for a full story address, such as...
 http://slashdot.org/comments.pl?sid=121818&threshold=-1&mode=nested&commentsort=0&op=Change
 
-...dont work. The [[NSLog]]'ings of '''storyAddr''' and '''storyUrl''' look fine, but the [[NSLog]]'ing of '''storyText''' simply produces:
+...dont work. The General/NSLog'ings of **storyAddr** and **storyUrl** look fine, but the General/NSLog'ing of **storyText** simply produces:
 
 Story data: {���
 
@@ -38,60 +38,60 @@ Most likely the slashdot server is returning a compressed (gzipped) page. You'd 
 
 ----
 
-in which case, of course, you should be using dataWithContentsOfURL: - or, better yet, some lower-level way of accessing the page which tells you the Content-Type and Content-Transfer-Encoding. ''--boredzo''
+in which case, of course, you should be using dataWithContentsOfURL: - or, better yet, some lower-level way of accessing the page which tells you the Content-Type and Content-Transfer-Encoding. *--boredzo*
 
 
 ----
 
-A buddy of mine and I (mostly him) took just took on this problem and I think we got a pretty good solution.  Here's the [[NSString]] category; just make an empty .h file for it and add it to your project and you don't even have to change your existing code:
+A buddy of mine and I (mostly him) took just took on this problem and I think we got a pretty good solution.  Here's the General/NSString category; just make an empty .h file for it and add it to your project and you don't even have to change your existing code:
 
-<code>
-
-@implementation [[NSString]] ([[GzipAwareString]])
-
-+ ([[NSString]] '')stringWithContentsOfURL:(NSURL '')url
-{
-    [[NSString]]    ''string;
     
-    string = [[[[NSString]] alloc] initWithData:[[self class] gunzipedDataFromData:[[[NSData]] dataWithContentsOfURL:url]] encoding:[[NSASCIIStringEncoding]]];
+
+@implementation General/NSString (General/GzipAwareString)
+
++ (General/NSString *)stringWithContentsOfURL:(NSURL *)url
+{
+    General/NSString    *string;
+    
+    string = General/[[NSString alloc] initWithData:General/self class] gunzipedDataFromData:[[[NSData dataWithContentsOfURL:url]] encoding:General/NSASCIIStringEncoding];
     
     return [string autorelease];        
 }
 
-+ ([[NSData]] '')gunzipedDataFromData:([[NSData]] '')compressedData
++ (General/NSData *)gunzipedDataFromData:(General/NSData *)compressedData
 {
-    [[NSTask]]  ''gunzip;
-    [[NSPipe]]  ''compressedDataPipe, ''uncompressedDataPipe;
+    General/NSTask  *gunzip;
+    General/NSPipe  *compressedDataPipe, *uncompressedDataPipe;
     
     // you probably want to verify that the data is indeed compressed here (otherwise return compressedData)
     
-    [[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
+    General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
        
-    gunzip = [[[[NSTask]] alloc] init];
+    gunzip = General/[[NSTask alloc] init];
     
-    compressedDataPipe = [[[NSPipe]] pipe];
-    uncompressedDataPipe = [[[NSPipe]] pipe];
+    compressedDataPipe = General/[NSPipe pipe];
+    uncompressedDataPipe = General/[NSPipe pipe];
     
     [gunzip setLaunchPath:@"/usr/bin/gunzip"];
-    [gunzip setArguments:[[[NSArray]] arrayWithObject:@"-f"]];
+    [gunzip setArguments:General/[NSArray arrayWithObject:@"-f"]];
     
     [gunzip setStandardInput:compressedDataPipe];
     [gunzip setStandardOutput:uncompressedDataPipe];
     
     [gunzip launch];
     
-    [[NSFileHandle]] ''writerHandle = [compressedDataPipe fileHandleForWriting];
+    General/NSFileHandle *writerHandle = [compressedDataPipe fileHandleForWriting];
     [writerHandle writeData:compressedData];
     
     [writerHandle closeFile];
     
-    int maxToRead = (1024 '' 1024);
+    int maxToRead = (1024 * 1024);
     
-    [[NSFileHandle]]    ''readerFileHandle = [uncompressedDataPipe fileHandleForReading];
-    [[NSMutableData]]   ''uncompressedData = [[[NSMutableData]] data];
+    General/NSFileHandle    *readerFileHandle = [uncompressedDataPipe fileHandleForReading];
+    General/NSMutableData   *uncompressedData = General/[NSMutableData data];
     
     do {
-        [[NSData]]  ''dataToRead;
+        General/NSData  *dataToRead;
         
         dataToRead = [readerFileHandle availableData];
         
@@ -106,7 +106,7 @@ A buddy of mine and I (mostly him) took just took on this problem and I think we
     [gunzip terminate];
     [gunzip release];
     
-    [[NSData]] ''newData = [[[[NSData]] alloc] initWithData:uncompressedData];
+    General/NSData *newData = General/[[NSData alloc] initWithData:uncompressedData];
     [pool release];
     [newData autorelease];
     if (!newData || ![newData length]) newData = compressedData;
@@ -116,6 +116,6 @@ A buddy of mine and I (mostly him) took just took on this problem and I think we
 
 @end
 
-</code>
+
 
 -nsorscher

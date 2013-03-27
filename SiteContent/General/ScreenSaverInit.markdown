@@ -2,12 +2,12 @@
 
 I'm wondering why I can't initialize everything I want in the method initWithFrame: of my screen saver. Here is my code :
 
-<code>
-#import "[[BalleView]].h"
+    
+#import "General/BalleView.h"
 
-@implementation [[BalleView]]
+@implementation General/BalleView
 
-- (id)initWithFrame:([[NSRect]])frame isPreview:(BOOL)isPreview
+- (id)initWithFrame:(General/NSRect)frame isPreview:(BOOL)isPreview
 {
     self = [super initWithFrame:frame isPreview:isPreview];
     
@@ -18,8 +18,8 @@ I'm wondering why I can't initialize everything I want in the method initWithFra
     rouge = 1.0;
     dx = 10; dy = 10;
     
-    balle = [[[NSBezierPath]] bezierPathWithOvalInRect:[[NSMakeRect]](30,30,50,50)];
-    couleur = [[[NSColor]] redColor];
+    balle = General/[NSBezierPath bezierPathWithOvalInRect:General/NSMakeRect(30,30,50,50)];
+    couleur = General/[NSColor redColor];
     return self;
 }
 
@@ -27,9 +27,9 @@ I'm wondering why I can't initialize everything I want in the method initWithFra
 {
 
     rouge = rouge - (1/255);
-    couleur = [[[NSColor]] colorWithCalibratedRed:rouge green:0 blue:0 alpha:1.0];
+    couleur = General/[NSColor colorWithCalibratedRed:rouge green:0 blue:0 alpha:1.0];
 
-    [[NSAffineTransform]] ''trans = [[[NSAffineTransform]] transform];
+    General/NSAffineTransform *trans = General/[NSAffineTransform transform];
 
     [trans translateXBy: dx yBy: dy];
     [balle transformUsingAffineTransform: trans];
@@ -39,22 +39,22 @@ I'm wondering why I can't initialize everything I want in the method initWithFra
 }
 
 @end
-</code>
 
-[[NSColor]] seems to be fine, but [[NSBezierPath]], no.
+
+General/NSColor seems to be fine, but General/NSBezierPath, no.
 
 ----
 
-I mentioned the answer briefly in [[ScreenSaverVariables]], but I'll mention it again here. Both balle and couleur claim to be "autoreleased" objects, temporary objects that will be automatically deallocated (if appropriate) at the end of the current event loop cycle. Therefore, when you access balle later on in animateOneFrame, your program will crash. 
+I mentioned the answer briefly in General/ScreenSaverVariables, but I'll mention it again here. Both balle and couleur claim to be "autoreleased" objects, temporary objects that will be automatically deallocated (if appropriate) at the end of the current event loop cycle. Therefore, when you access balle later on in animateOneFrame, your program will crash. 
 
-Interestingly, couleur won't cause your program to cache. The [[AppKit]] is probably creating a single instance of "redColor" that never gets freed. You probably shouldn't rely on that fact, since it is an implementation detail.
+Interestingly, couleur won't cause your program to cache. The General/AppKit is probably creating a single instance of "redColor" that never gets freed. You probably shouldn't rely on that fact, since it is an implementation detail.
 
-See [[MemoryManagement]] for more information, especially [[RetainingAndReleasing]].
+See General/MemoryManagement for more information, especially General/RetainingAndReleasing.
 
 Here's how to properly retain/release objects in your initWithFrame:isPreview: method:
 
-<code>
-- (id)initWithFrame:([[NSRect]])frame isPreview:(BOOL)isPreview
+    
+- (id)initWithFrame:(General/NSRect)frame isPreview:(BOOL)isPreview
 {
     self = [super initWithFrame:frame isPreview:isPreview];
     
@@ -64,8 +64,8 @@ Here's how to properly retain/release objects in your initWithFrame:isPreview: m
         rouge = 1.0;
         dx = 10; dy = 10;
     
-        balle = [[[[NSBezierPath]] bezierPathWithOvalInRect:[[NSMakeRect]](30,30,50,50)] retain];
-        couleur = [[[[NSColor]] redColor] retain];
+        balle = General/[[NSBezierPath bezierPathWithOvalInRect:General/NSMakeRect(30,30,50,50)] retain];
+        couleur = General/[[NSColor redColor] retain];
 
         [self setAnimationTimeInterval:1/30.0];
     }
@@ -79,6 +79,6 @@ Here's how to properly retain/release objects in your initWithFrame:isPreview: m
     [couleur release];
     [super dealloc];
 }
-</code>
 
--- [[MikeTrent]]
+
+-- General/MikeTrent

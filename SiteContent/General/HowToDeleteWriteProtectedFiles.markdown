@@ -1,8 +1,8 @@
-Describe [[HowToDeleteWriteProtectedFiles]] here.
+Describe General/HowToDeleteWriteProtectedFiles here.
 
 Newbie here.  I have a simply little app which (ideally) deletes files specified files in /System/Library.  This directory, of course, belongs to System, and the users cannot delete these files by default.  isDeletableFileAtPath verifies this.  
 
-My question is, how do I go about deleting these files?  My first hunch would be to use the [[SFAuthorization]] [[APIs]].  However, to my untrained monkey eyes, it appears that the [[SFAuthorization]] [[APIs]] are geared towards Unix commands, not the [[NSFileManager]] methods I am using.  For example, it appears both a path and argument must be supplied when creating the Authorization Rights.  Is this the case?  Or do these [[SFAuthorization]] [[APIs]] work with [[NSFileManager]]?  
+My question is, how do I go about deleting these files?  My first hunch would be to use the General/SFAuthorization General/APIs.  However, to my untrained monkey eyes, it appears that the General/SFAuthorization General/APIs are geared towards Unix commands, not the General/NSFileManager methods I am using.  For example, it appears both a path and argument must be supplied when creating the Authorization Rights.  Is this the case?  Or do these General/SFAuthorization General/APIs work with General/NSFileManager?  
 
 Thanks in advance.
 
@@ -16,19 +16,19 @@ http://developer.apple.com/documentation/Security/Conceptual/authorization_conce
 
 http://developer.apple.com/documentation/Security/Reference/authorization_ref/index.html
 
-http://developer.apple.com/samplecode/[[AuthForAll]]/[[AuthForAll]].html
+http://developer.apple.com/samplecode/General/AuthForAll/General/AuthForAll.html
 
-Good luck! -- [[RyanBates]]
+Good luck! -- General/RyanBates
 
 ----
 
-Permissions are applied on the process level. That is, it's impossible to call a method or function with elevated privileges. The way to accomplish something with root permission is to spawn a subprocess that has the required permission, and let it do the operation. In this case, you would have a small helper program that would delete the files for you. The idea of "working with [[NSFileManager]]" is nonsensical.
+Permissions are applied on the process level. That is, it's impossible to call a method or function with elevated privileges. The way to accomplish something with root permission is to spawn a subprocess that has the required permission, and let it do the operation. In this case, you would have a small helper program that would delete the files for you. The idea of "working with General/NSFileManager" is nonsensical.
 
 ----
 
 Obligatory question (since no one's asked yet) - why do you need to delete stuff under /System ? It doesn't sound like a very good idea to me.
 
-''It would be a pretty shitty virus if it didn't!'' -- [[NotTheOriginalPoster]]
+*It would be a pretty shitty virus if it didn't!* -- General/NotTheOriginalPoster
 
 
 ----

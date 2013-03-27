@@ -4,18 +4,18 @@
 It is possible to customize the behavior of table views so that return/enter doesn't start editing the next row etc. Unfortunately it is not very obvious how to do this. 
 
 
-* Override keyDown: from [[NSResponder]] and take care of the keys you want to handle (forward the rest to super).
+* Override keyDown: from General/NSResponder and take care of the keys you want to handle (forward the rest to super).
 * Implement cancelOperation: which is called when you hit escape so that the editing is escaped (this should be the default behavior)
-* Implement textDidEndEditing: from [[NSTextView]], see if the editing ended because of return and take action accordingly
+* Implement textDidEndEditing: from General/NSTextView, see if the editing ended because of return and take action accordingly
 
 
-<code>
-#pragma mark [[NSResponder]]
+    
+#pragma mark General/NSResponder
 
-- (void)keyDown:([[NSEvent]] '')theEvent
+- (void)keyDown:(General/NSEvent *)theEvent
 {
 	if([theEvent keyCode] == 0x31)//Space
-		[[[NSApp]] sendAction:@selector(doSomethingWithSpace:) to:[self delegate] from:self];
+		General/[NSApp sendAction:@selector(doSomethingWithSpace:) to:[self delegate] from:self];
 	else if([theEvent keyCode] == 0x24 && [self numberOfSelectedRows] == 1)//return
 		[self editColumn:0 row:[self selectedRow] withEvent:theEvent select:YES];
 	else
@@ -25,23 +25,23 @@ It is possible to customize the behavior of table views so that return/enter doe
 - (void)cancelOperation:(id)sender
 {
 	[self abortEditing];
-	[[self window] makeFirstResponder:self];
+	General/self window] makeFirstResponder:self];
 }
 
 
-#pragma mark [[NSTableView]]
+#pragma mark [[NSTableView
 
-- (void)textDidEndEditing:([[NSNotification]] '')aNotification
+- (void)textDidEndEditing:(General/NSNotification *)aNotification
 {
 	// what made editing stop?
-	int movement = [[[aNotification userInfo] objectForKey:@"[[NSTextMovement]]"] intValue];
+	int movement = General/[aNotification userInfo] objectForKey:@"[[NSTextMovement"] intValue];
 	int selectedRow = [self selectedRow];
 	
 	// pass on info to superclass, which will advance the field editor
 	[super textDidEndEditing:aNotification];
 	
 	// was the movement a return?
-	if(movement == [[NSReturnTextMovement]])
+	if(movement == General/NSReturnTextMovement)
 	{
 		// abort editing (you have to do it after calling [super textDidEndEditing:] or the changes will be ignored)
 		[self abortEditing];
@@ -51,7 +51,7 @@ It is possible to customize the behavior of table views so that return/enter doe
 		[[self window] makeFirstResponder:self];
 	}
 }
-</code>
+
 
 You should be able to use this code as a basis for further customizations of other keys. Good luck!
 

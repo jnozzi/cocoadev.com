@@ -1,3 +1,3 @@
-See [[AppleHelp]]
+See General/AppleHelp
 
-This content has been appended to the [[AppleHelp]] page, to consolidate.
+This content has been appended to the General/AppleHelp page, to consolidate.

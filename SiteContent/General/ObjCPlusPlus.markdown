@@ -1,1 +1,1 @@
-Please refer to [[ObjectiveCPlusPlus]], the main [[CocoaStub]] for this topic.
+Please refer to General/ObjectiveCPlusPlus, the main General/CocoaStub for this topic.

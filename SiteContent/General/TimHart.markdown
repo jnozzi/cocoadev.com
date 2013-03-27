@@ -1,8 +1,8 @@
 
 
     *Father
-    *Author of [[TestKit]]
-    *T''''houghtWorker (aka a [[ThoughtWorks]] employee)
+    *Author of General/TestKit
+    *T**'houghtWorker (aka a General/ThoughtWorks employee)
 
 
 tjhart at thoughtworks dot com

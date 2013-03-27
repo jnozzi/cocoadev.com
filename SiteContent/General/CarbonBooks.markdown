@@ -24,4 +24,4 @@ New Riders, �2002
 http://www.amazon.com/exec/obidos/ASIN/0735711682
 
 
-more at  http://www.carbondev.com/site/?page=[[CarbonBooks]]
+more at  http://www.carbondev.com/site/?page=General/CarbonBooks

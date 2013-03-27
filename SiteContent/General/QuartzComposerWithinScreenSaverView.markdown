@@ -2,20 +2,20 @@
 
 Hi There... 
 
-I'm trying to create a [[ScreenSaver]] with the screensaver template in [[XCode]]. This is my first attempt at an app, so any help would be greatly appreciated.
+I'm trying to create a General/ScreenSaver with the screensaver template in General/XCode. This is my first attempt at an app, so any help would be greatly appreciated.
 
 I keep getting the error "invalid drawable" on the console when I run the saver. Any ideas?
 
 Here's the code I've got so far:
 
-<code>
+    
 #import "ScreenTest2View.h"
-#define kRendererEventMask ([[NSLeftMouseDownMask]] | [[NSLeftMouseDraggedMask]] | [[NSLeftMouseUpMask]] | [[NSRightMouseDownMask]] | [[NSRightMouseDraggedMask]] | [[NSRightMouseUpMask]] | [[NSOtherMouseDownMask]] | [[NSOtherMouseUpMask]] | [[NSOtherMouseDraggedMask]] | [[NSKeyDownMask]] | [[NSKeyUpMask]] | [[NSFlagsChangedMask]] | [[NSScrollWheelMask]] | [[NSTabletPointMask]] | [[NSTabletProximityMask]])
+#define kRendererEventMask (General/NSLeftMouseDownMask | General/NSLeftMouseDraggedMask | General/NSLeftMouseUpMask | General/NSRightMouseDownMask | General/NSRightMouseDraggedMask | General/NSRightMouseUpMask | General/NSOtherMouseDownMask | General/NSOtherMouseUpMask | General/NSOtherMouseDraggedMask | General/NSKeyDownMask | General/NSKeyUpMask | General/NSFlagsChangedMask | General/NSScrollWheelMask | General/NSTabletPointMask | General/NSTabletProximityMask)
 #define kRendererFPS 100.0
 
 @implementation ScreenTest2View
 
-- (id)initWithFrame:([[NSRect]])frame isPreview:(BOOL)isPreview
+- (id)initWithFrame:(General/NSRect)frame isPreview:(BOOL)isPreview
 {
     self = [super initWithFrame:frame isPreview:isPreview];
     if (self) {
@@ -23,37 +23,37 @@ Here's the code I've got so far:
 		 [self setAnimationTimeInterval:1/30.0];
 		
 		
-	[[NSOpenGLPixelFormatAttribute]]	attributes[] = {
+	General/NSOpenGLPixelFormatAttribute	attributes[] = {
 													
-										[[NSOpenGLPFADoubleBuffer]],
-										[[NSOpenGLPFAAccelerated]],
-										[[NSOpenGLPFADepthSize]], 24,
-										([[NSOpenGLPixelFormatAttribute]]) 0
+										General/NSOpenGLPFADoubleBuffer,
+										General/NSOpenGLPFAAccelerated,
+										General/NSOpenGLPFADepthSize, 24,
+										(General/NSOpenGLPixelFormatAttribute) 0
 										};
 												
-	[[NSOpenGLPixelFormat]]''			format = [[[[[NSOpenGLPixelFormat]] alloc] initWithAttributes:attributes] autorelease];
-	_openGLContext = [[[[NSOpenGLContext]] alloc] initWithFormat:format shareContext:nil];
+	General/NSOpenGLPixelFormat*			format = General/[[[NSOpenGLPixelFormat alloc] initWithAttributes:attributes] autorelease];
+	_openGLContext = General/[[NSOpenGLContext alloc] initWithFormat:format shareContext:nil];
 	
 	if(_openGLContext == nil) {
-		[[NSLog]](@"Cannot create [[OpenGL]] context");
-		[[[NSApp]] terminate:nil];
+		General/NSLog(@"Cannot create General/OpenGL context");
+		General/[NSApp terminate:nil];
 	}
 	
-	[[self openGLContext] makeCurrentContext];
+	General/self openGLContext] makeCurrentContext];
     [_openGLContext setView: self];
 	
-	_filePath = [[[[NSBundle]] mainBundle] pathForResource:@"particles" ofType:@"qtz"];
-	_renderer = [[[[QCRenderer]] alloc] initWithOpenGLContext:_openGLContext pixelFormat:format file:_filePath];
+	_filePath = [[[[NSBundle mainBundle] pathForResource:@"particles" ofType:@"qtz"];
+	_renderer = General/[[QCRenderer alloc] initWithOpenGLContext:_openGLContext pixelFormat:format file:_filePath];
 	if(_renderer == nil) {
-		[[NSLog]](@"Cannot create [[QCRenderer]]");
-		[[[NSApp]] terminate:nil];
+		General/NSLog(@"Cannot create General/QCRenderer");
+		General/[NSApp terminate:nil];
 	}
 		
 	//Create a timer which will regularly call our rendering method
-	_renderTimer = [[[[NSTimer]] scheduledTimerWithTimeInterval:(1.0 / ([[NSTimeInterval]])kRendererFPS) target:self selector:@selector(_render:) userInfo:nil repeats:YES] retain];
+	_renderTimer = General/[[NSTimer scheduledTimerWithTimeInterval:(1.0 / (General/NSTimeInterval)kRendererFPS) target:self selector:@selector(_render:) userInfo:nil repeats:YES] retain];
 	if(_renderTimer == nil) {
-		[[NSLog]](@"Cannot create [[NSTimer]]");
-		[[[NSApp]] terminate:nil];
+		General/NSLog(@"Cannot create General/NSTimer");
+		General/[NSApp terminate:nil];
 	}
 		
 	}
@@ -64,11 +64,11 @@ Here's the code I've got so far:
 }
 
 
-- (void) renderWithEvent:([[NSEvent]]'')event
+- (void) renderWithEvent:(General/NSEvent*)event
 {
-	[[NSTimeInterval]]			time = [[[NSDate]] timeIntervalSinceReferenceDate];
-	[[NSPoint]]					mouseLocation;
-	[[NSMutableDictionary]]''	arguments;
+	General/NSTimeInterval			time = General/[NSDate timeIntervalSinceReferenceDate];
+	General/NSPoint					mouseLocation;
+	General/NSMutableDictionary*	arguments;
 	
 	//Let's compute our local time
 	if(_startTime == 0) {
@@ -79,42 +79,42 @@ Here's the code I've got so far:
 	time -= _startTime;
 	
 	
-	_screenSize.width = [[CGDisplayPixelsWide]](kCGDirectMainDisplay);
-	_screenSize.height = [[CGDisplayPixelsHigh]](kCGDirectMainDisplay);
+	_screenSize.width = General/CGDisplayPixelsWide(kCGDirectMainDisplay);
+	_screenSize.height = General/CGDisplayPixelsHigh(kCGDirectMainDisplay);
 	
 	//We setup the arguments to pass to the composition (normalized mouse coordinates and an optional event)
-	mouseLocation = [[[NSEvent]] mouseLocation];
+	mouseLocation = General/[NSEvent mouseLocation];
 	mouseLocation.x /= _screenSize.width;
 	mouseLocation.y /= _screenSize.height;
-	arguments = [[[NSMutableDictionary]] dictionaryWithObject:[[[NSValue]] valueWithPoint:mouseLocation] forKey:[[QCRendererMouseLocationKey]]];
+	arguments = General/[NSMutableDictionary dictionaryWithObject:General/[NSValue valueWithPoint:mouseLocation] forKey:General/QCRendererMouseLocationKey];
 	if(event)
-	[arguments setObject:event forKey:[[QCRendererEventKey]]];
+	[arguments setObject:event forKey:General/QCRendererEventKey];
 	
 	//Render a frame
 	if(![_renderer renderAtTime:time arguments:arguments])
-	[[NSLog]](@"Rendering failed at time %.3fs", time);
+	General/NSLog(@"Rendering failed at time %.3fs", time);
 	
-	//Flush the [[OpenGL]] context to display the frame on screen
+	//Flush the General/OpenGL context to display the frame on screen
 	[_openGLContext flushBuffer];
 }
 
-- (void) _render:([[NSTimer]]'')timer
+- (void) _render:(General/NSTimer*)timer
 {
 	//Simply call our rendering method, passing no event to the composition
 	[self renderWithEvent:nil];
 }
 
-- (void) sendEvent:([[NSEvent]]'')event
+- (void) sendEvent:(General/NSEvent*)event
 {
 	[super sendEvent:event];
 	
 	//If the renderer is active and we have a meaningful event, render immediately passing that event to the composition
-	if(_renderer && ([[NSEventMaskFromType]]([event type]) & kRendererEventMask))
+	if(_renderer && (General/NSEventMaskFromType([event type]) & kRendererEventMask))
 	[self renderWithEvent:event];
 	
 	
 }
-</code>
+
 
 Again, any help would be greatly appreciated. I know I'm missing something simple here, but I can't seem to figure it out.
 
@@ -122,37 +122,37 @@ Thanks,
 Alexandre
 
 ----
-Why not just add a [[QCView]] as a subview? [[ScreenSaverView]]<nowiki/>s are [[NSView]]<nowiki/>s and as such you have the full set of view machinery available to you.
+Why not just add a General/QCView as a subview? General/ScreenSaverView<nowiki/>s are General/NSView<nowiki/>s and as such you have the full set of view machinery available to you.
 
 ----
 
 Ok, I did what you suggested... however it can't seem to load my composition. It's in the resources folder and everything, so I don't understand why it's having a problem. Here's the code... again, help is greatly appreciated.
 
-<code>
+    
 
 #import "ScreenTest4View.h"
 
 
 @implementation ScreenTest4View
 
-- (id)initWithFrame:([[NSRect]])frame isPreview:(BOOL)isPreview
+- (id)initWithFrame:(General/NSRect)frame isPreview:(BOOL)isPreview
 {
     self = [super initWithFrame:frame isPreview:isPreview];
     if (self) {
 		
-		qcView = [[[[QCView]] alloc] init];
+		qcView = General/[[QCView alloc] init];
       
 		if (!qcView) {
-			[[NSLog]](@"could not make qc view");
+			General/NSLog(@"could not make qc view");
 			}
 			
 		  [qcView setAutostartsRendering:YES]; 
 		
 		// am i missing something here??
-		if ([qcView loadCompositionFromFile:[[[[NSBundle]] mainBundle] pathForResource:@"particles" ofType:@"qtz"]] == NO) {
+		if ([qcView loadCompositionFromFile:General/[[NSBundle mainBundle] pathForResource:@"particles" ofType:@"qtz"]] == NO) {
 			
 			
-				[[NSLog]](@"could not load");
+				General/NSLog(@"could not load");
 				}
 		
 		// set values for all input keys
@@ -165,7 +165,7 @@ Ok, I did what you suggested... however it can't seem to load my composition. It
         [self setAnimationTimeInterval:1/30.0];
 		
 		if ([qcView isRendering] == YES) {
-		[[NSLog]](@"no rendering");
+		General/NSLog(@"no rendering");
 		}
 		
     }
@@ -182,7 +182,7 @@ Ok, I did what you suggested... however it can't seem to load my composition. It
     [super stopAnimation];
 }
 
-- (void)drawRect:([[NSRect]])rect
+- (void)drawRect:(General/NSRect)rect
 {
     [super drawRect:rect];
 }
@@ -198,19 +198,19 @@ Ok, I did what you suggested... however it can't seem to load my composition. It
     return NO;
 }
 
-- ([[NSWindow]]'')configureSheet
+- (General/NSWindow*)configureSheet
 {
     return nil;
 }
 
 @end
 
-</code>
+
 
 ----
-When you're a screensaver, you're a plugin. As such, <code>[[[NSBundle]] mainBundle]</code> is not you, it is whatever app loaded you.
+When you're a screensaver, you're a plugin. As such,     General/[NSBundle mainBundle] is not you, it is whatever app loaded you.
 
-A bit of quality time spent with the debugger and [[NSLog]] would answer your question.
+A bit of quality time spent with the debugger and General/NSLog would answer your question.
 
 ----
 

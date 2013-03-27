@@ -4,9 +4,9 @@ I have not found any documentation on the subject, so take this page with a grai
 
 ----
 
-If you double click a document, [[LaunchServices]] will consult <code>~/Library/Preferences/com.apple.[[LaunchServices]].plist</code> for document bindings. This file contains both the bundle identifier and bundle signature for the application to be used -- I do not know how it then proceeds or which of the two it uses to lookup the application, but if you have some bad document bindings, delete this file.
+If you double click a document, General/LaunchServices will consult     ~/Library/Preferences/com.apple.General/LaunchServices.plist for document bindings. This file contains both the bundle identifier and bundle signature for the application to be used -- I do not know how it then proceeds or which of the two it uses to lookup the application, but if you have some bad document bindings, delete this file.
 
-From the Terminal, type <code>open -a �yourApp�</code> I do not know how it locates the application, but I have on several occasions had <code>open -a</code> not working, but double clicking documents in Finder working -- I solve this problem by deleting <code>/Library/Caches/''</code>, but it looks like the actual file is <code>/Library/Caches/com.apple.[[LaunchServices]].6B.csstore</code> (the number may vary?).
+From the Terminal, type     open -a �yourApp� I do not know how it locates the application, but I have on several occasions had     open -a not working, but double clicking documents in Finder working -- I solve this problem by deleting     /Library/Caches/*, but it looks like the actual file is     /Library/Caches/com.apple.General/LaunchServices.6B.csstore (the number may vary?).
 
 ----
 
@@ -17,10 +17,10 @@ Alternatively, you could read this: http://developer.apple.com/technotes/tn/pdf/
 That document doesn't give any info about how LS caches things etc. -- and I'm also certain that it has changed since the tech note was written (four years go).
 
 I often find this helpful, when LS is starting the wrong application:
-<code>
-cd /System/Library/Frameworks/[[ApplicationServices]].framework/Frameworks/[[LaunchServices]].framework/Support
-lsregister -kill -r /System/Library/[[CoreServices]] /Applications /Developer/Applications
-</code>
+    
+cd /System/Library/Frameworks/General/ApplicationServices.framework/Frameworks/General/LaunchServices.framework/Support
+lsregister -kill -r /System/Library/General/CoreServices /Applications /Developer/Applications
+
 
 Unfortunately it doesn't seem to fix a problem I have where a service starts the wrong application.
 
@@ -28,7 +28,7 @@ It seems that internally OS X uses _many_ different ways to locate applications,
 
 Ways to (indirectly) start an application:
 
-* [[AppleScript]] � tell app �application� to�
+* General/AppleScript � tell app �application� to�
 * /usr/bin/open � open -a �application�
 * Finder � double click document with an app binding
 * Services � select a service offered by a program

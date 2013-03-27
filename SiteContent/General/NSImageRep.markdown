@@ -1,50 +1,50 @@
-[[NSImageRep]] is a concrete image representation for use by [[NSImage]] or directly.
+General/NSImageRep is a concrete image representation for use by General/NSImage or directly.
 
-Among other things, it can be subclassed to easily make [[NSImage]] support custom image types.
-The online documentation is a bit inaccurate. Here's an example of how you can implement your own [[NSImageRep]]:
+Among other things, it can be subclassed to easily make General/NSImage support custom image types.
+The online documentation is a bit inaccurate. Here's an example of how you can implement your own General/NSImageRep:
 
-<code>
-@interface [[CustomImageRep]] : [[NSImageRep]] {
-	[[CGImageRef]] image;
+    
+@interface General/CustomImageRep : General/NSImageRep {
+	General/CGImageRef image;
 }
 @end
 
-@implementation [[CustomImageRep]]
-+ ([[NSArray]] '')imageUnfilteredTypes {
+@implementation General/CustomImageRep
++ (General/NSArray *)imageUnfilteredTypes {
 	// This is a UTI
-	return [[[NSArray]] arrayWithObjects:
+	return General/[NSArray arrayWithObjects:
 		@"my.custom.imagetype",
 		nil
 	];
 }
-+ ([[NSArray]] '')imageUnfilteredFileTypes {
++ (General/NSArray *)imageUnfilteredFileTypes {
 	// This is a filename suffix
-	return [[[NSArray]] arrayWithObjects:
+	return General/[NSArray arrayWithObjects:
 		@"cimg",
 		nil
 	];
 }
-+ (BOOL)canInitWithData:([[NSData]] '')data {
-	if ([data length] >= sizeof([[CustomImageHeader]])) {
-		const char ''magic = [data bytes];
++ (BOOL)canInitWithData:(General/NSData *)data {
+	if ([data length] >= sizeof(General/CustomImageHeader)) {
+		const char *magic = [data bytes];
 		if (memcmp(kCustomImageMagic, magic, sizeof(kCustomImageMagic)) == 0) {
 			return YES;
 		}
 	}
 	return NO;
 }
-+ (id)imageRepWithData:([[NSData]] '')data {
-	return [[[self alloc] initWithData:data] autorelease];
++ (id)imageRepWithData:(General/NSData *)data {
+	return General/[self alloc] initWithData:data] autorelease];
 }
-+ (id)imageRepWithContentsOfFile:([[NSString]] '')filename {
-	[[NSData]] ''data = [[[NSData]] dataWithContentsOfFile:filename];
-	return [[[self alloc] initWithData:data] autorelease];
++ (id)imageRepWithContentsOfFile:([[NSString *)filename {
+	General/NSData *data = General/[NSData dataWithContentsOfFile:filename];
+	return General/[self alloc] initWithData:data] autorelease];
 }
-+ (id)imageRepWithContentsOfURL:(NSURL '')aURL {
-	[[NSData]] ''data = [[[NSData]] dataWithContentsOfURL:aURL];
-	return [[[self alloc] initWithData:data] autorelease];
++ (id)imageRepWithContentsOfURL:(NSURL *)aURL {
+	[[NSData *data = General/[NSData dataWithContentsOfURL:aURL];
+	return General/[self alloc] initWithData:data] autorelease];
 }
-- (id)initWithData:([[NSData]] '')data {
+- (id)initWithData:([[NSData *)data {
 	self = [super init];
 	if (!self) {
 		return nil;
@@ -52,17 +52,17 @@ The online documentation is a bit inaccurate. Here's an example of how you can i
 	
 	// Load your image here
 	
-	int width = [[CGImageGetWidth]](image);
-	int height = [[CGImageGetHeight]](image);
+	int width = General/CGImageGetWidth(image);
+	int height = General/CGImageGetHeight(image);
 	if (width <= 0 || height <= 0) {
-		[[NSLog]](@"Invalid image size: Both width and height must be > 0");
+		General/NSLog(@"Invalid image size: Both width and height must be > 0");
 		[self autorelease];
 		return nil;
 	}
 	[self setPixelsWide:width];
 	[self setPixelsHigh:height];
-	[self setSize:[[NSMakeSize]](width, height)];
-	[self setColorSpaceName:[[NSDeviceRGBColorSpace]]];
+	[self setSize:General/NSMakeSize(width, height)];
+	[self setColorSpaceName:General/NSDeviceRGBColorSpace];
 	[self setBitsPerSample:8];
 	[self setAlpha:YES];
 	[self setOpaque:NO];
@@ -70,27 +70,27 @@ The online documentation is a bit inaccurate. Here's an example of how you can i
 	return self;
 }
 - (void)dealloc {
-	[[CGImageRelease]](image);
+	General/CGImageRelease(image);
 	[super dealloc];
 }
 - (BOOL)draw {
-	[[CGContextRef]] context = [[[[NSGraphicsContext]] currentContext] graphicsPort];
+	General/CGContextRef context = General/[[NSGraphicsContext currentContext] graphicsPort];
 	if (!context || !image) {
 		return NO;
 	}
-	[[NSSize]] size = [self size];
-	[[CGContextDrawImage]](context, [[CGRectMake]](0, 0, size.width, size.height), image);
+	General/NSSize size = [self size];
+	General/CGContextDrawImage(context, General/CGRectMake(0, 0, size.width, size.height), image);
 	return YES;
 }
 @end
-</code>
 
-To make it work automatically when calling <code>[[[[NSImage]] alloc] initWith'']</code>, you have to register it.
+
+To make it work automatically when calling     General/[[NSImage alloc] initWith*], you have to register it.
 Add this to some class that gets loaded early:
-<code>
+    
 + (void)initialize {
-	[[[NSImageRep]] registerImageRepClass:[[[CustomImageRep]] class]];
+	General/[NSImageRep registerImageRepClass:General/[CustomImageRep class]];
 }
-</code>
 
-[[NSBitmapImageRep]] might work too. But I had some trouble with it. [[NSImageRep]] is easy enough to implement and works like a charm.
+
+General/NSBitmapImageRep might work too. But I had some trouble with it. General/NSImageRep is easy enough to implement and works like a charm.

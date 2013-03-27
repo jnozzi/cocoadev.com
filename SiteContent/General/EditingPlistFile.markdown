@@ -1,7 +1,7 @@
 I have a plist file (any suffix, any location) and want to edit its properties.
 
-<code><key>Name</key>
-<string>Steve</string></code>
+    <key>Name</key>
+<string>Steve</string>
 
 How to do that?
 
@@ -9,7 +9,7 @@ How to do that?
 
 Open it in a text editor, make the changes you want to make, and put it back.
 
-If you want to edit it in code, you can do something similar. Use [[NSPropertyListSerialization]] to get the plist in object form, make the changes you want, then use [[NSPropertyListSerialization]] to get it back into plist form.
+If you want to edit it in code, you can do something similar. Use General/NSPropertyListSerialization to get the plist in object form, make the changes you want, then use General/NSPropertyListSerialization to get it back into plist form.
 
 ----
-In addition, [[NSArray]] and [[NSDictionary]]'s file IO methods (-initWithContentsOfFile/URL:, -writeToFile/URL:atomically:, etc.) will write a valid property list if all of the content objects are property list objects (and for dictionaries, if all of the keys are strings).
+In addition, General/NSArray and General/NSDictionary's file IO methods (-initWithContentsOfFile/URL:, -writeToFile/URL:atomically:, etc.) will write a valid property list if all of the content objects are property list objects (and for dictionaries, if all of the keys are strings).

@@ -1,13 +1,13 @@
 
 
-Subclass of [[UIImageAndTextTableCell]].
+Subclass of General/UIImageAndTextTableCell.
 
-%%BEGINCODESTYLE%%- (void)setAction:(SEL)fp8%%ENDCODESTYLE%%
+<code>- (void)setAction:(SEL)fp8</code>
 
-%%BEGINCODESTYLE%%- (void)setTarget:(id)fp8%%ENDCODESTYLE%%
+<code>- (void)setTarget:(id)fp8</code>
 
-%%BEGINCODESTYLE%%- (void)setIcon:(id)fp8%%ENDCODESTYLE%%
+<code>- (void)setIcon:(id)fp8</code>
 
-%%BEGINCODESTYLE%%- (void)setValue:(id)fp8%%ENDCODESTYLE%%
+<code>- (void)setValue:(id)fp8</code>
 
-%%BEGINCODESTYLE%%- (void)setUsesBlueDisclosureCircle:(BOOL)fp8%%ENDCODESTYLE%%
+<code>- (void)setUsesBlueDisclosureCircle:(BOOL)fp8</code>

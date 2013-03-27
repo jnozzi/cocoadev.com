@@ -1,34 +1,34 @@
-I just created a very simple timer. It is just a wraper around the gettimeofday() funtion, but it make the code using it so much simpler and nice. I enjoyed writing this, and you are invited to improve this if you have any nice idea. --[[NirSoffer]]
+I just created a very simple timer. It is just a wraper around the gettimeofday() funtion, but it make the code using it so much simpler and nice. I enjoyed writing this, and you are invited to improve this if you have any nice idea. --General/NirSoffer
 
-'''Typical Usage:'''
-<code>
-#import "[[NIRTimer]].h"
+**Typical Usage:**
+    
+#import "General/NIRTimer.h"
 
-[[NIRTimer]] ''timer = [[[[NIRTimer]] alloc] init];
+General/NIRTimer *timer = General/[[NIRTimer alloc] init];
 
 [timer start];
 [someObject doLongOperation];
 [timer stop];
 
-[[NSLog]](@"doLongOperation: %6.3f seconds", [timer seconds]);
+General/NSLog(@"doLongOperation: %6.3f seconds", [timer seconds]);
 
 [timer start];
 [someObject doMore];
 [timer stop];
 
-[[NSLog]](@"doMore: %6.3f seconds", [timer secondsSinceStart]);
-[[NSLog]](@"Total: %6.3f seconds", [timer seconds]);
-</code>
+General/NSLog(@"doMore: %6.3f seconds", [timer secondsSinceStart]);
+General/NSLog(@"Total: %6.3f seconds", [timer seconds]);
+
 
 
 
 ----
 
 Here is the code:
-<code>
+    
 //
-//  [[NIRTimer]].h
-//  [[DirectionService]]
+//  General/NIRTimer.h
+//  General/DirectionService
 //
 //  Created by Nir Soffer on Wed Jun 04 2003.
 //  Copyright (c) 2003 Nir Soffer. All rights reserved.
@@ -38,7 +38,7 @@ Here is the code:
 #import <Foundation/Foundation.h>
 
 
-@interface [[NIRTimer]] : [[NSObject]]
+@interface General/NIRTimer : General/NSObject
 {
     long started;
     long time;
@@ -66,21 +66,21 @@ Here is the code:
 
 
 //
-//  [[NIRTimer]].m
-//  [[DirectionService]]
+//  General/NIRTimer.m
+//  General/DirectionService
 //
 //  Created by Nir Soffer on Wed Jun 04 2003.
 //  Copyright (c) 2003 Nir Soffer. All rights reserved.
 //
 
-#import "[[NIRTimer]].h"
+#import "General/NIRTimer.h"
 #import <sys/time.h>
 
-@interface [[NIRTimer]] ([[NIRTimerPrivate]])
+@interface General/NIRTimer (General/NIRTimerPrivate)
 - (long)_currentTime;
 @end
 
-@implementation [[NIRTimer]]
+@implementation General/NIRTimer
 
 // reset
 - (void)reset
@@ -92,7 +92,7 @@ Here is the code:
 - (void)resetWithSeconds:(double)newSeconds
 {
     // Convert to microseconds and reset with microseconds
-    long newMicroseconds = lround(newSeconds '' 1000000);
+    long newMicroseconds = lround(newSeconds * 1000000);
     [self resetWithMicroseconds:newMicroseconds];
 }
 
@@ -156,15 +156,14 @@ Here is the code:
 
 @end
 
-@implementation [[NIRTimer]] ([[NIRTimerPrivate]])
+@implementation General/NIRTimer (General/NIRTimerPrivate)
 
 - (long)_currentTime
 {
     struct timeval tp;
     gettimeofday(&tp, NULL);
-    return (tp.tv_sec '' 1000000 + tp.tv_usec);
+    return (tp.tv_sec * 1000000 + tp.tv_usec);
 }
 
 @end
 
-</code>

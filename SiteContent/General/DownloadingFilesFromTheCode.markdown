@@ -8,18 +8,18 @@ Thanks in advance
 
 
 Either you do this:
-<code>
-[[[[NSWorkspace]] sharedWorkspace] openURL:[NSURL [[URLWithString]]:@"http://www.example.com/exampleplugin.tgz"]];
-</code>
+    
+General/[[NSWorkspace sharedWorkspace] openURL:[NSURL General/URLWithString:@"http://www.example.com/exampleplugin.tgz"]];
+
 Which will open Safari (or the default browser) and start downloading that file. You will probably have no idea of where the file is downloaded (if it is to the Desktop or to some download folder, that depends on the users settings, and if they didn't use "download to...").
 
-Or you do the download yourself, as described in [[DownloadingFiles]], I would recommend that. Then you can install the plugin from within the program while your're at it.
+Or you do the download yourself, as described in General/DownloadingFiles, I would recommend that. Then you can install the plugin from within the program while your're at it.
 
---[[TheoHultberg]]/Iconara
+--General/TheoHultberg/Iconara
 
 ----
 
-Well, i made it like in [[DownloadingFiles]], but i found a problem: my plugins are folders and what I get is a file that cannot be loaded from the program.
+Well, i made it like in General/DownloadingFiles, but i found a problem: my plugins are folders and what I get is a file that cannot be loaded from the program.
 Now i've two ideas:
      1) Find a way to download the entire folder. I don't know how, so any help will be welcome.
      2) Store the folder compressed like .zip or .sit. In such a case, i want the folder to be uncompressed automatically, and i don't know how.
@@ -32,24 +32,24 @@ Thanks in advance.   -Angel Puerto
 
 ----
 
-I believe that if you use [[WebKit]], the files will be uncompressed automatically. -- Jacob
+I believe that if you use General/WebKit, the files will be uncompressed automatically. -- Jacob
 
 ----
 
-You can download the archive to a temp directory, then use a call to gz, tar or whatever via an [[NSTask]] from your app.  You just pass it the path to the archive and where you want it to uncompress to.  
+You can download the archive to a temp directory, then use a call to gz, tar or whatever via an General/NSTask from your app.  You just pass it the path to the archive and where you want it to uncompress to.  
 
-you can get a temp directory with: [[[[NSWorkspace]] sharedWorkspace] temporaryDirectory];
+you can get a temp directory with: General/[[NSWorkspace sharedWorkspace] temporaryDirectory];
 
-[[EcumeDesJours]]
-
-----
-
-I believe <code>[[[[NSWorkspace]] sharedWorkspace] temporaryDirectory];</code> is a category method from the code at karelia.com... You can just use the [[NSTemporaryDirectory]]() function instead.
-
-
+General/EcumeDesJours
 
 ----
 
-my bad.  i always forget that certain things are not just there.  For instance I can't live without [[[NSString]] containsString:] but sometimes I forget when recommending it to others that it is not part of Appkit...
+I believe     General/[[NSWorkspace sharedWorkspace] temporaryDirectory]; is a category method from the code at karelia.com... You can just use the General/NSTemporaryDirectory() function instead.
 
-[[EcumeDesJours]]
+
+
+----
+
+my bad.  i always forget that certain things are not just there.  For instance I can't live without General/[NSString containsString:] but sometimes I forget when recommending it to others that it is not part of Appkit...
+
+General/EcumeDesJours

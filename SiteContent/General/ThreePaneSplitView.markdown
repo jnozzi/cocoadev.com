@@ -2,7 +2,7 @@
 
 
 
-I'm creating an interface where there are two custom views and an [[NSTextView]] in a horizontal split view (they are stacked from top to bottom). The views are topView, middleView, bottomView (descriptive, huh?). The top and bottom views are added and removed to the split view by user choice ([[BOOLs]]: showTopView, showBottomView). The middle view, a text editor, is always there.
+I'm creating an interface where there are two custom views and an General/NSTextView in a horizontal split view (they are stacked from top to bottom). The views are topView, middleView, bottomView (descriptive, huh?). The top and bottom views are added and removed to the split view by user choice (General/BOOLs: showTopView, showBottomView). The middle view, a text editor, is always there.
 
 I'm having trouble with the resizing ... For instance, if I resize topView, I want bottomView to stay put and vice versa. I want middleView (the text editor) to resize vertically while the top and bottom views stay the same size, even through window resize. I also need everything to work whether or not the top or bottom views are present (in other words, showTopView is set to NO and the view is removed from the split view).
 

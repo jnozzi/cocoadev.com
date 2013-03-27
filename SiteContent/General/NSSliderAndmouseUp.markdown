@@ -1,10 +1,10 @@
-Describe [[NSSliderAndmouseUp]] here.
-%%BEGINENTRY%%[[CocoaDiscussions]] - 
-%%ENDENTRY%%
-I'm trying to have an [[NSSlider]] where a [[QTMovie]] stops playing on mouseDown (but the slider's Action is still being sent while the float values are changing), and on mouseUp, the movie starts playing again. I've tried subclassing [[NSSlider]], but mouseUp doesn't seem to be working. Any help?
+Describe General/NSSliderAndmouseUp here.
+General/CocoaDiscussions - 
+
+I'm trying to have an General/NSSlider where a General/QTMovie stops playing on mouseDown (but the slider's Action is still being sent while the float values are changing), and on mouseUp, the movie starts playing again. I've tried subclassing General/NSSlider, but mouseUp doesn't seem to be working. Any help?
 ----
 See <http://www.cocoabuilder.com/archive/message/cocoa/2006/3/4/157961>
-<http://developer.apple.com/documentation/Cocoa/Conceptual/[[EventOverview]]/index.html> Listing 4-3
+<http://developer.apple.com/documentation/Cocoa/Conceptual/General/EventOverview/index.html> Listing 4-3
 <http://www.cocoabuilder.com/archive/message/cocoa/2004/5/20/107566>
 <http://www.cocoabuilder.com/archive/message/cocoa/2004/8/29/115981>
 <http://www.cocoabuilder.com/archive/message/cocoa/2006/6/5/165039>
@@ -15,12 +15,12 @@ I'm a Cocoa noob, and I had one more question. So now I want to send an action o
 
 Right now I have:
 
-<code>
-- (void)mouseDown:([[NSEvent]] '')theEvent {
+    
+- (void)mouseDown:(General/NSEvent *)theEvent {
 	mouseIsDown = YES;
 	[super mouseDown:theEvent];
         mouseIsDown = NO;
-	[self sendAction:@selector(mouseEvent:) to:[[SliderController]]]; //This is giving me a parse error obviously.
+	[self sendAction:@selector(mouseEvent:) to:General/SliderController]; //This is giving me a parse error obviously.
 }
-</code>
-I know I'm not using sendAction properly... but what I'm trying to do is send the (mouseEvent:) action to my [[SliderController]]. What would the correct syntax for this (I've only sent actions through IB before... never programmatically).
+
+I know I'm not using sendAction properly... but what I'm trying to do is send the (mouseEvent:) action to my General/SliderController. What would the correct syntax for this (I've only sent actions through IB before... never programmatically).

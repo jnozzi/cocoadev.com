@@ -8,6 +8,6 @@ Since September, 2002, I've been working on a novel and writing little programs 
 
 I have a blog: http://homepage.mac.com/jharrell
 
-I like to pretend I'm kind of embarrassed by the whole thing, but in point of fact I'm always telling people about it, making something of a nuisance of myself. I lure people to my blog with the promise of '''FREE STUFF'''. In particular, you can download a small collection of short stories that I've written, as well as the first N chapters of my nearly-complete novel, where N is a small integer that at the moment happens to equal three.
+I like to pretend I'm kind of embarrassed by the whole thing, but in point of fact I'm always telling people about it, making something of a nuisance of myself. I lure people to my blog with the promise of **FREE STUFF**. In particular, you can download a small collection of short stories that I've written, as well as the first N chapters of my nearly-complete novel, where N is a small integer that at the moment happens to equal three.
 
 You can also read stuff about me that's far too intimately personal to discuss in polite company. But, like a cat, I am obstinately unashamed.

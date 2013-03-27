@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<title>Untitled</title>
-	<meta name="generator" content="[[BBEdit]] 7.0.3" />
+	<meta name="generator" content="General/BBEdit 7.0.3" />
 </head>
 <body>
 Hello, world!

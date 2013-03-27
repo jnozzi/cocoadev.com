@@ -1,17 +1,17 @@
 
 
-Does anyone have information about using Cocoa Bindings with an [[NSOutlineView]]?
+Does anyone have information about using Cocoa Bindings with an General/NSOutlineView?
 
 ----
 As far as I know, it's not supported yet.
 
 ----
 
-Where ''yet'' should not indicate that it will be. One Apple employee said we should send a feature-request if we want it. Personally though, I have a hard time imagining how it should actually be done.
+Where *yet* should not indicate that it will be. One Apple employee said we should send a feature-request if we want it. Personally though, I have a hard time imagining how it should actually be done.
 
-Maybe if [[CFTree]] was given a Cocoa front-end we could get an [[NSTreeController]], but (going into rant-mode), this MVC starts to resemble a story about the [[WiseMenOfGotham]]: We need to split model and view because we oh-so-often need to re-use the model in another context or the view, so we write glue-code that far surpasses the length of what the all-in-one application would have occupied, and that starts to suck, so we start to look into re-usable controller-code, and we get one that ties an [[NSTableView]] to an [[NSArray]] (although not handling drag'n'drop (nor drag-sort) and stuff), and we may get a similar one which ties an [[NSOutlineView]] to an [[NSTree]] -- so we need to instantiate 3 objects and connect these every time we actually just need one, all in the name of modularity, re-usability or whatever.
+Maybe if General/CFTree was given a Cocoa front-end we could get an General/NSTreeController, but (going into rant-mode), this MVC starts to resemble a story about the General/WiseMenOfGotham: We need to split model and view because we oh-so-often need to re-use the model in another context or the view, so we write glue-code that far surpasses the length of what the all-in-one application would have occupied, and that starts to suck, so we start to look into re-usable controller-code, and we get one that ties an General/NSTableView to an General/NSArray (although not handling drag'n'drop (nor drag-sort) and stuff), and we may get a similar one which ties an General/NSOutlineView to an General/NSTree -- so we need to instantiate 3 objects and connect these every time we actually just need one, all in the name of modularity, re-usability or whatever.
 
-That said, I do see some advantages in MVC and I am also in favor of modular code, but seriously, when the rule rather than the exception is to use an [[NSTableView]] with an [[NSArray]] or [[NSOutlineView]] with a [[CFTree]], would it not make more sense to only require extra code if we want something other than this?
+That said, I do see some advantages in MVC and I am also in favor of modular code, but seriously, when the rule rather than the exception is to use an General/NSTableView with an General/NSArray or General/NSOutlineView with a General/CFTree, would it not make more sense to only require extra code if we want something other than this?
 
 ----
 
@@ -25,23 +25,23 @@ You say that when you have hundreds of objects, an extra controller doesn't matt
 
 Not that this is really my reasoning, but it's interesting nonetheless, from http://weblogs.asp.net/chris_pratley/archive/2004/04/27/120944.aspx
 
-''[...] Just Systems decided they needed to redo their whole application as "component software" (a fad at the time) [...] the rewrite took too long, and in desperation [[JustSystems]] put out a buggy, slow (over 30sec to boot [...]) Ichitaro that actually had less [sic] features than the product it replaced. It also required more memory [...]''.
+*[...] Just Systems decided they needed to redo their whole application as "component software" (a fad at the time) [...] the rewrite took too long, and in desperation General/JustSystems put out a buggy, slow (over 30sec to boot [...]) Ichitaro that actually had less [sic] features than the product it replaced. It also required more memory [...]*.
 
 i.e. "component based" or "modular software" is a trend, and no-one would argue against it, because it is common sense that we want stuff isolated in modules, which can then be replaced. The problem is that on paper, the overhead of module-communication is not visible, and complexity of code is often underestimated, i.e. an application at 4,000 lines is rather easy to maintain and large parts can be re-written in little time, whereas something around the 30,000 lines of code is much harder to maintain (this of course depends a lot on those who did the 4,000 lines version, if it's spaghetti code, the point doesn't hold).
 
-Unfortunately the tools to keep down the size of programs are not always available, but in the recent years a lot of focus has IMHO been given to it in form of Array Programming and Aspect Oriented Programming, which can all be used to keep down the size of the program enormously.  Also, recent mainstream adoption of languages like Ruby, which combine a lot of neat ideas from [[FunctionalProgramming]], also help.
+Unfortunately the tools to keep down the size of programs are not always available, but in the recent years a lot of focus has IMHO been given to it in form of Array Programming and Aspect Oriented Programming, which can all be used to keep down the size of the program enormously.  Also, recent mainstream adoption of languages like Ruby, which combine a lot of neat ideas from General/FunctionalProgramming, also help.
 
-Another problem is that the re-usability in object oriented modular software is IMO highly overrated, when using flat hierarchies it helps, but then we are really not doing OOP but more just [[DataAbstraction]], and we would often be better off using [[GenericProgramming]] and/or a language which support [[DynamicTyping]].
+Another problem is that the re-usability in object oriented modular software is IMO highly overrated, when using flat hierarchies it helps, but then we are really not doing OOP but more just General/DataAbstraction, and we would often be better off using General/GenericProgramming and/or a language which support General/DynamicTyping.
 
 ----
 
-To me, this discussion boils down to the basics of encapsulation. There are both wrong ways and right ways to do it. See [[EncapsulationBasics]]. --[[RyanBates]]
+To me, this discussion boils down to the basics of encapsulation. There are both wrong ways and right ways to do it. See General/EncapsulationBasics. --General/RyanBates
 
 ----
 
 Doesn't it suck when people hijack a conversation?
 
-FYI, [[NSOutlineView]] bindings are coming in Tiger, but no idea what they'll look like yet. Wish I did know so I could fake it for the time being. I like the tree approach, maybe a hiearchy of arrays of arrays...
+FYI, General/NSOutlineView bindings are coming in Tiger, but no idea what they'll look like yet. Wish I did know so I could fake it for the time being. I like the tree approach, maybe a hiearchy of arrays of arrays...
 
 ----
 
@@ -65,7 +65,7 @@ I'm the author.
 two factoids:
 1. it saved work "downstream".  made my browser compatible with All of the interface elements I had bound to it.
 
-2. [[XCode]] NOW has a Hierarchical Object Controller.  making all of my work obsolete, and supporting both browsers, and outlineViews.
+2. General/XCode NOW has a Hierarchical Object Controller.  making all of my work obsolete, and supporting both browsers, and outlineViews.
 this exists in Tiger, and was quietly added to IB.  I haven't explored it yet, but I intend to.  in the IB pane with little green Boxes, it looks like little green Boxes with complex Plumbing added to them.
 
 somebody give it a whirl. let us know how it works!
@@ -79,15 +79,15 @@ JKP
 ----
 JKP, I wound up making insane changes to my browser to get it to work with drag n drop Plus bindings, I'm trying to find the relevant bits, and familiarize myself with them as i do... I'll try to sketch you a plan now.
 
-I needed to organize a particular kind of object in the browser, so I made [[OBJClass]] and [[OBJClassController]].
-[[OBJClass]] is the object we wanted to see in the browser, and the controller is essentially a data source on steroids, with an array of [[OBJClass]] objects (what populates the browser), and an array that is populated by the Path of the selection (each entry is a child of the previous entry). I do this to support dynamic movement through the hierarchy, and to make my selection available to my app as well as bindings.
+I needed to organize a particular kind of object in the browser, so I made General/OBJClass and General/OBJClassController.
+General/OBJClass is the object we wanted to see in the browser, and the controller is essentially a data source on steroids, with an array of General/OBJClass objects (what populates the browser), and an array that is populated by the Path of the selection (each entry is a child of the previous entry). I do this to support dynamic movement through the hierarchy, and to make my selection available to my app as well as bindings.
 
-I subclassed the [[OBJClassController]], and made a [[BrowserController]].  Now my browser controller IS the data source as well as the Browser delegate.  The code is Neat and Tidy.
-this makes responding to "numberOfRowsInColumn:" and the other delegate methods easy.   BUT... it also allows me to ignore the fact that the browser itself is not bindings compliant (because I keep track of the selection and tell the browser what to do.  my [[BrowserController]] can be completely bindings compliant, and since IT keeps track of the current selection instead of allowing the browser to do it, then we can do things like bind to its current selection.
+I subclassed the General/OBJClassController, and made a General/BrowserController.  Now my browser controller IS the data source as well as the Browser delegate.  The code is Neat and Tidy.
+this makes responding to "numberOfRowsInColumn:" and the other delegate methods easy.   BUT... it also allows me to ignore the fact that the browser itself is not bindings compliant (because I keep track of the selection and tell the browser what to do.  my General/BrowserController can be completely bindings compliant, and since IT keeps track of the current selection instead of allowing the browser to do it, then we can do things like bind to its current selection.
 
-But you have to make an instance of it in IB...   which you can!  subClass [[NSObject]] in IB, give it a name, control click on the class and IB will let you Instantiate a controller class! don't forget to add it as the browser's delegate!
+But you have to make an instance of it in IB...   which you can!  subClass General/NSObject in IB, give it a name, control click on the class and IB will let you Instantiate a controller class! don't forget to add it as the browser's delegate!
 
-now you make an [[NSObjectController]] object (green box with circular arrows on it in IB) and connect its "content" outlet to the [[BrowserController]].
+now you make an General/NSObjectController object (green box with circular arrows on it in IB) and connect its "content" outlet to the General/BrowserController.
 
 you have to setup your Key paths, but thats it! Your controller is Now bindings compliant, with it you can load settings from the object selected in the browser auto-magically in multiple UI elements. and they update auto-magically too!
 
@@ -95,8 +95,8 @@ I will follow up later with some code examples, but its not terribly complex.  O
 
 ----
 
-to the author of the above....im still very much interested in what you have described above.  I have no familarised myself with writing IB palettes and also with exposing bindings on the objects i palettise, so i was thinking that maybe it would now be possible to subclass [[NSOutlineView]] / [[NSBrowserView]] and make bindings compliant versions....
+to the author of the above....im still very much interested in what you have described above.  I have no familarised myself with writing IB palettes and also with exposing bindings on the objects i palettise, so i was thinking that maybe it would now be possible to subclass General/NSOutlineView / General/NSBrowserView and make bindings compliant versions....
 
-I currently have a tree class that is a bit like [[CFTree]] - I was hoping to use this as the base currency in my attempt....id love to be able to offer a BSD licenced alternative to [[NSTreeController]] for 10.3 users...
+I currently have a tree class that is a bit like General/CFTree - I was hoping to use this as the base currency in my attempt....id love to be able to offer a BSD licenced alternative to General/NSTreeController for 10.3 users...
 
 JKP

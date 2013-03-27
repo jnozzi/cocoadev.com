@@ -1,1 +1,1 @@
-See [[NSPersistentDocument]]
+See General/NSPersistentDocument

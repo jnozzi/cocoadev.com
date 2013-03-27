@@ -1,3 +1,3 @@
-[[NSMaxRange]] is a foundation function which returns the end of the range passed to it. <code>[[NSMaxRange]](range)</code> is equivalent to <code>range.location + range.length</code>. For example, <code>[[NSMaxRange]]([[NSMakeRange]](7, 2))</code> will return <code>9</code>. It is located in [[NSRange]].h.
+General/NSMaxRange is a foundation function which returns the end of the range passed to it.     General/NSMaxRange(range) is equivalent to     range.location + range.length. For example,     General/NSMaxRange(General/NSMakeRange(7, 2)) will return     9. It is located in General/NSRange.h.
 
-See [[NSRange]].
+See General/NSRange.

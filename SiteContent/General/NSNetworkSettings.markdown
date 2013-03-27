@@ -1,9 +1,9 @@
 Undocumented Foundation class that looks pretty useful for HTTP proxy configuration, including but not limited to the evaluation of PAC files.
 
-<code>
-@interface [[NSNetworkSettings]] : [[NSObject]]
+    
+@interface General/NSNetworkSettings : General/NSObject
 {
-    [[NSNetworkSettingsInternal]] ''_internal;
+    General/NSNetworkSettingsInternal *_internal;
 }
 
 + (id)sharedNetworkSettings;
@@ -11,11 +11,11 @@ Undocumented Foundation class that looks pretty useful for HTTP proxy configurat
 - (void)dealloc;
 - (id)proxyPropertiesForURL:(id)fp8;
 - (BOOL)isProxyNeededForURL:(id)fp8;
-- (void)setProxyPropertiesForURL:(id)fp8 onStream:(struct __CFReadStream '')fp12;
+- (void)setProxyPropertiesForURL:(id)fp8 onStream:(struct __CFReadStream *)fp12;
 - (BOOL)connectedToInternet:(BOOL)fp8;
 
 @end
-</code>
+
 
 Does anyone have any experience using this class?
 ----

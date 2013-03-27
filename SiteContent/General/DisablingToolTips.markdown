@@ -1,70 +1,70 @@
 
 
-It is possible and often desirable to allow the user to globally disable display of all [[ToolTips]] in an application.� It requires swizzling a method of a private [[AppKit]] class, but this is implemented as a "safe hack" which won't break your app if Apple changes it someday.� It currently works on all Mac OS X versions thru 10.5 Leopard:
+It is possible and often desirable to allow the user to globally disable display of all General/ToolTips in an application.� It requires swizzling a method of a private General/AppKit class, but this is implemented as a "safe hack" which won't break your app if Apple changes it someday.� It currently works on all Mac OS X versions thru 10.5 Leopard:
 
-1.� Place an item in the app's Help menu named "View Tool Tips", and set its [[FirstResponder]] action to toggleToolTips:
+1.� Place an item in the app's Help menu named "View Tool Tips", and set its General/FirstResponder action to toggleToolTips:
 
 2.� In your app/delegate (or default responder), add these code snippets:
 
-<code>
+    
 
-- ([[IBAction]])toggleToolTips:(id)sender;
+- (General/IBAction)toggleToolTips:(id)sender;
 
-#import "[[SKWToolTipManager]].h"
+#import "General/SKWToolTipManager.h"
 
 - (void)toggleToolTips:(id)sender
 {
-� � [[[NSApp]] setToolTipsEnabled:![[[NSApp]] toolTipsEnabled]];
+� � General/[NSApp setToolTipsEnabled:!General/[NSApp toolTipsEnabled]];
 }
 
-- (BOOL)validateMenuItem:(id <[[NSMenuItem]]>)item
+- (BOOL)validateMenuItem:(id <General/NSMenuItem>)item
 {
 � � SEL action = [item action];
 �
 � � if (action == @selector(toggleToolTips:)) {
-� � � � [item setState:([[[NSApp]] toolTipsEnabled] ? [[NSOnState]] : [[NSOffState]])];
-� � � � return [[[NSApp]] canDisableToolTips];
+� � � � [item setState:(General/[NSApp toolTipsEnabled] ? General/NSOnState : General/NSOffState)];
+� � � � return General/[NSApp canDisableToolTips];
 � � }
 
 � � // etc...
 }
-</code>
+
 
 3.� Create and add these two files to your project:
 
-<code>
-//� [[SKWToolTipManager]].h
+    
+//� General/SKWToolTipManager.h
 //
 //� Created by Shaun Wexler on 6/21/04.
 //� Copyright (c) 2004 SKW Development. All rights reserved.
 
 #import <Cocoa/Cocoa.h>
 
-@interface [[NSApplication]] ([[SKWToolTipManager]])
+@interface General/NSApplication (General/SKWToolTipManager)
 
 - (void)setToolTipsEnabled:(BOOL)enabled;
 - (BOOL)toolTipsEnabled;
 - (BOOL)canDisableToolTips;
 
 @end
-</code>
 
-<code>
-//� [[SKWToolTipManager]].m
+
+    
+//� General/SKWToolTipManager.m
 //
 //� Created by Shaun Wexler on 6/21/04.
 //� Copyright (c) 2004 SKW Development. All rights reserved.
 
-#import "[[SKWToolTipManager]].h"
+#import "General/SKWToolTipManager.h"
 #import <objc/objc-runtime.h>
 
-@implementation [[NSApplication]] ([[SKWToolTipManager]])
+@implementation General/NSApplication (General/SKWToolTipManager)
 
 static IMP displayToolTip = NULL;
 static BOOL toolTipsDisabled = NO;
 static BOOL canDisableToolTips = NO;
 
-static IMP [[SKWRetargetInstanceMethod]](Class originalClass, SEL originalSelector, Class targetClass, SEL targetSelector)
+static IMP General/SKWRetargetInstanceMethod(Class originalClass, SEL originalSelector, Class targetClass, SEL targetSelector)
 {
 � � Method methodA = class_getInstanceMethod(originalClass, originalSelector);
 � � Method methodB = class_getInstanceMethod(targetClass, targetSelector);
@@ -88,24 +88,24 @@ static IMP [[SKWRetargetInstanceMethod]](Class originalClass, SEL originalSelect
 + (void)load
 {
 � � Class privateClass;
-� � if (displayToolTip == NULL &&�(privateClass = [[NSClassFromString]](@"[[NSToolTipManager]]"))) {
-� � � ��displayToolTip = [[SKWRetargetInstanceMethod]](privateClass, @selector(displayToolTip:), self, @selector(displayToolTipIfGloballyEnabled:));
+� � if (displayToolTip == NULL &&�(privateClass = General/NSClassFromString(@"General/NSToolTipManager"))) {
+� � � ��displayToolTip = General/SKWRetargetInstanceMethod(privateClass, @selector(displayToolTip:), self, @selector(displayToolTipIfGloballyEnabled:));
 � � }	
 � � canDisableToolTips = displayToolTip != NULL;
-� � toolTipsDisabled = canDisableToolTips && [[[[NSUserDefaults]] standardUserDefaults] boolForKey:@"[[SKWToolTipsDisabled]]"];
+� � toolTipsDisabled = canDisableToolTips && General/[[NSUserDefaults standardUserDefaults] boolForKey:@"General/SKWToolTipsDisabled"];
 }
 
 - (void)displayToolTipIfGloballyEnabled:(id)toolTip
 {
 � � if (!toolTipsDisabled && displayToolTip) {
-� � � � (''displayToolTip)(self, _cmd, toolTip);
+� � � � (*displayToolTip)(self, _cmd, toolTip);
 � � }
 }
 
 - (void)setToolTipsEnabled:(BOOL)enabled
 {
 � � toolTipsDisabled = !enabled && canDisableToolTips;
-� � [[[[NSUserDefaults]] standardUserDefaults] setBool:toolTipsDisabled forKey:@"[[SKWToolTipsDisabled]]"];
+� � General/[[NSUserDefaults standardUserDefaults] setBool:toolTipsDisabled forKey:@"General/SKWToolTipsDisabled"];
 }
 
 - (BOOL)toolTipsEnabled
@@ -119,10 +119,10 @@ static IMP [[SKWRetargetInstanceMethod]](Class originalClass, SEL originalSelect
 }
 
 @end
-</code>
+
 
 4. Enjoy!� -~ SKW
 
-[[ShaunWexler]]
+General/ShaunWexler
 
 ----

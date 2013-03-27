@@ -6,9 +6,9 @@ Say, for instance, I was to have a preference to start a task automatically when
 
 ----
 
-[[NSApplication]] does have the following (among others) delegate method <code>- (void)applicationDidFinishLaunching:([[NSNotification]] '')aNotification</code>
+General/NSApplication does have the following (among others) delegate method     - (void)applicationDidFinishLaunching:(General/NSNotification *)aNotification
 
-You can also register for this notification ([[NSApplicationDidFinishLaunchingNotification]]) explicitly in other classes, if you want it.
+You can also register for this notification (General/NSApplicationDidFinishLaunchingNotification) explicitly in other classes, if you want it.
 
 ----
  
@@ -22,22 +22,22 @@ But I try to put it into the - (void)applicationDidFinishLaunching, and I don't 
 
 Was the applicationDidFinishLaunching method in your application's delegate object? Or did you register for the notification?
 
-''Sounds to me like outPut wasn't set at the time of -applicationDidFinishLaunching. Check to see if it's nil with a simple <code> if(outPut) [[NSLog]](@"bah"); </code> statement, and let us know.'''
+*Sounds to me like outPut wasn't set at the time of -applicationDidFinishLaunching. Check to see if it's nil with a simple      if(outPut) General/NSLog(@"bah");  statement, and let us know.**
 
 ----
 
-If those approaches don't work, you could always use a one-shot [[NSTimer]]. It just has to run once and then remove itself.
+If those approaches don't work, you could always use a one-shot General/NSTimer. It just has to run once and then remove itself.
 
-E.g. I have one app that displays a splash screen at startup. The screen fades in using an [[NSTimer]], then the timer sets its next fire time to "in three seconds" so the user sees the splash, then fades out again. The overall running time isn't even three seconds, but on slower Macs, documents the user opens or loading of plugins at startup happens while the splash is up, which makes for a much more responsive app. -- [[UliKusterer]]
-
-----
-
-Just a style note - %%BEGINCODESTYLE%%outputView%%ENDCODESTYLE%% or something would be a better name for the outlet. 'outPut' just looks really odd. See [http://developer.apple.com/documentation/Cocoa/Conceptual/[[CodingGuidelines]]/Articles/[[NamingBasics]].html]
+E.g. I have one app that displays a splash screen at startup. The screen fades in using an General/NSTimer, then the timer sets its next fire time to "in three seconds" so the user sees the splash, then fades out again. The overall running time isn't even three seconds, but on slower Macs, documents the user opens or loading of plugins at startup happens while the splash is up, which makes for a much more responsive app. -- General/UliKusterer
 
 ----
 
-<code>+load</code> and <code>+initialize</code> are called automagically by the runtime before loading a class (<code>+load</code>) and before a class is instanitated the first time (<code>+initialize</code>). See http://gcc.gnu.org/onlinedocs/gcc-3.2.3/gcc/What-you-can-and-what-you-cannot-do-in--load.html for more info.
+Just a style note - <code>outputView</code> or something would be a better name for the outlet. 'outPut' just looks really odd. See [http://developer.apple.com/documentation/Cocoa/Conceptual/General/CodingGuidelines/Articles/General/NamingBasics.html]
 
 ----
 
-If you want to do something whenever something happens in the run loop, you can use <code>[[CFRunLoopAddObserver]]()</code> to add a callback as an observer of the run loop.
+    +load and     +initialize are called automagically by the runtime before loading a class (    +load) and before a class is instanitated the first time (    +initialize). See http://gcc.gnu.org/onlinedocs/gcc-3.2.3/gcc/What-you-can-and-what-you-cannot-do-in--load.html for more info.
+
+----
+
+If you want to do something whenever something happens in the run loop, you can use     General/CFRunLoopAddObserver() to add a callback as an observer of the run loop.

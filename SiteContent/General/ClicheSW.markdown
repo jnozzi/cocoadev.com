@@ -1,3 +1,3 @@
 
 
-We make [[PodNews]] and [[ThemeChanger]]. [[FinlayDobbie]] makes up half.
+We make General/PodNews and General/ThemeChanger. General/FinlayDobbie makes up half.

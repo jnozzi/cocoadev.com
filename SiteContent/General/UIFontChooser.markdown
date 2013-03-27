@@ -1,19 +1,19 @@
 
 
-Part of the iPhone [[UIKit]] framework. Subclass of [[UIView]].
+Part of the iPhone General/UIKit framework. Subclass of General/UIView.
 
-%%BEGINCODESTYLE%%+ (id)sharedFontChooser;%%ENDCODESTYLE%%
+<code>+ (id)sharedFontChooser;</code>
 
-%%BEGINCODESTYLE%%- (id)initWithFrame:([[CGRect]])frame;%%ENDCODESTYLE%%
+<code>- (id)initWithFrame:(General/CGRect)frame;</code>
 
-%%BEGINCODESTYLE%%- (void)setDelegate:(id)delegate;%%ENDCODESTYLE%%
+<code>- (void)setDelegate:(id)delegate;</code>
 
 // delegate methods?
 
-%%BEGINCODESTYLE%%- (void)selectFont:([[GSFont]]'')font;%%ENDCODESTYLE%%
+<code>- (void)selectFont:(General/GSFont*)font;</code>
 
-%%BEGINCODESTYLE%%- (void)selectSize:(float)size;%%ENDCODESTYLE%%
+<code>- (void)selectSize:(float)size;</code>
 
-%%BEGINCODESTYLE%%- (void)selectFamilyName:(id)fp8;%%ENDCODESTYLE%%
+<code>- (void)selectFamilyName:(id)fp8;</code>
 
 http://img214.imageshack.us/img214/4821/fontlq1.jpg

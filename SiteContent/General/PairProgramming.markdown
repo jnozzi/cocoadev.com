@@ -1,1 +1,1 @@
-See: http://www.c2.com/cgi/wiki?[[PairProgramming]]
+See: http://www.c2.com/cgi/wiki?General/PairProgramming

@@ -1,25 +1,25 @@
 
 
-In [[CPlusPlus]] you can write a generic function or structure using templates. [[PartialSpecialisation]] refers to providing code for the generic function or structure (class) when one or more of the template parameters are more specialised.
+In General/CPlusPlus you can write a generic function or structure using templates. General/PartialSpecialisation refers to providing code for the generic function or structure (class) when one or more of the template parameters are more specialised.
 
 For example, you might write some code that copies anything passed in.
 
-<code>template <typename T> T replicate(T val)
-    { return T(val); }</code>
+    template <typename T> T replicate(T val)
+    { return T(val); }
 
 However, you want to copy the destination of a pointer if it's non-NULL, not the address it holds, so you can partially specialize your function to pointers:
 
-<code>template <typename T> T'' replicate(T'' p)
+    template <typename T> T* replicate(T* p)
     {
     if (p)
-        return new T(''p);
+        return new T(*p);
     return NULL;
-    }</code>
+    }
 
-Now <code>replicate</code> will work more as intended. We could also partially specialize to replicate other containers, like vectors of pointers, in the same way:
+Now     replicate will work more as intended. We could also partially specialize to replicate other containers, like vectors of pointers, in the same way:
 
-<code>template <typename T> std::vector<T''> replicate(std::vector<T''> v)
-    { ... }</code>
+    template <typename T> std::vector<T*> replicate(std::vector<T*> v)
+    { ... }
 
 This latter may not work on older compilers.
 
@@ -27,80 +27,80 @@ This latter may not work on older compilers.
 
 For example, you may write a generic memory copy function like this:
 
-<code>
+    
 template <typename _InputIter, typename _OutputIter>
 _OutputIter copy (_InputIter first, _InputIter last, _OutputIter out)
 {
    for(; first != last; ++first)
-      ''out++ = ''first;
+      *out++ = *first;
 }
-</code>
+
 
 This however is not the best way to copy byte sequences, so in addition we could provide this (full) specialisation:
 
-<code>
+    
 template <>
-_OutputIter copy<char'', char''> (char'' first, char'' last, char'' out)
+_OutputIter copy<char*, char*> (char* first, char* last, char* out)
 {
    memcpy(out, first, last-first);
 }
-</code>
+
 
 This is mainly to write a more effective algorithm, but it can be used for something else. Let us say we write a function which will uppercase the first letter in each word. Our function should be generic in that we do not know the type of characters (could be unichar, char or wchar_t). We start by defining something called traits:
 
-<code>
+    
 template <typename _CharT>
-struct [[CharacterTraits]]
+struct General/CharacterTraits
 {
    static bool isLetter (const _CharT ch)       { return false; }
    static bool isUppercase (const _CharT ch)    { return false; }
 }
-</code>
+
 
 And then we can specialise it for char and unichar:
 
-<code>
+    
 
 template <>
-struct [[CharacterTraits]]<char>
+struct General/CharacterTraits<char>
 {
    static bool isLetter (const char ch)         { return isalpha(ch); }
    static bool isUppercase (const char ch)      { return isupper(ch); }
 };
 
 template <>
-struct [[CharacterTraits]]<unichar>
+struct General/CharacterTraits<unichar>
 {
    static bool isLetter (const unichar ch)
    {
-      static [[NSCharacterSet]] ''letter = [[[NSCharacterSet]] letterCharacterSet];
+      static General/NSCharacterSet *letter = General/[NSCharacterSet letterCharacterSet];
       return [letter characterIsMember:ch] == YES;
    }
 
    static bool isUppercase (const unichar ch)
    {
-      static [[NSCharacterSet]] ''uppercase = [[[NSCharacterSet]] uppercaseLetterCharacterSet];
+      static General/NSCharacterSet *uppercase = General/[NSCharacterSet uppercaseLetterCharacterSet];
       return [uppercase characterIsMember:ch] == YES;
    }
 }
-</code>
+
 
 Well, we would also need one member function to actually convert the character to uppercase, but I think the idea is clear, we can now write code like this:
 
-<code>
+    
 template <typename _CharT>
 bool is_letter (_CharT ch)
 {
-   return [[CharacterTraits]]<_CharT>::isLetter(ch);
+   return General/CharacterTraits<_CharT>::isLetter(ch);
 }
 
-void [[MyFunction]] ()
+void General/MyFunction ()
 {
    unichar ch1 = 'a';
    char ch2 = 'a';
    cout << is_letter(ch1) << ", " << is_letter(ch2) << endl;
 }
-</code>
+
 
 This will use Cocoa to decide wether ch1 is a letter, but ANSI-C's isalpha() to decide if ch2 is a letter.
 

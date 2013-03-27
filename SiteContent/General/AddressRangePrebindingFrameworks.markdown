@@ -4,7 +4,7 @@ Does anyone know how to find out what the build address range is for a framework
 
 ----
 Maybe this is what you're looking for: http://developer.apple.com/documentation/Performance/Conceptual/LaunchTime/Tasks/Prebinding.html#//apple_ref/doc/uid/20001858/102177
---[[HuaYingLing]]
+--General/HuaYingLing
 
 ----
 I was under the impression that otool can give you some info. I would have to check again...

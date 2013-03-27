@@ -1,4 +1,4 @@
-Describe [[SubmarineCableIndustry]] here.
+Describe General/SubmarineCableIndustry here.
 
 bfhsf
 bfsd
@@ -7,4 +7,4 @@ gs
 gs
 g
 
-This is an industry rocked with [[AccountingScandals]]
+This is an industry rocked with General/AccountingScandals

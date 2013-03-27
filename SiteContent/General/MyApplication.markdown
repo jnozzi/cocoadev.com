@@ -1,1 +1,1 @@
-Long for [[MyApp]].
+Long for General/MyApp.

@@ -1,7 +1,7 @@
-New Release: '''[[UnfiledBaby]]''' a plugin for Panther's Address Book, providing a new meta-group "unfiled", showing all users that have not been placed into any groups. See http://dirtoy.sourceforge.net/[[UnfiledBaby]].html
+New Release: **General/UnfiledBaby** a plugin for Panther's Address Book, providing a new meta-group "unfiled", showing all users that have not been placed into any groups. See http://dirtoy.sourceforge.net/General/UnfiledBaby.html
 
 
-I'm presently writing a [[MailBundle]] to extend Mail.app to do the following:
+I'm presently writing a General/MailBundle to extend Mail.app to do the following:
   
   * avoid redundant entries when doing 'add sender to address book'
   * adds 'add sender to group...' on command-shift-y

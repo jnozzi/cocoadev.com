@@ -1,30 +1,30 @@
 Structures are very useful.  They allow you to organize your data in one place, and retrieve it in a way that makes sense.
 
-'''How to define a structure'''
+**How to define a structure**
 
 Put this code in your implementation file between your import lines and your @implementation line.  -- I think this is right.  Is it?  What if it is declared in between the braces in the header file, then where do you define it?
-<code>
+    
 struct myStruct
 {
     short     myInteger;
     long      myLongInteger;
     float     myFloatingPointValue;
 };
-</code>
 
-'''How to declare structure'''
+
+**How to declare structure**
 
 Put this code wherever you would normally declare a variable.  In other words, put it in a method in your implementation file, or between the braces in your header file.
-<code>
+    
 struct myStruct    s;
-</code>
 
-'''How to add values to a structure'''
-<code>
+
+**How to add values to a structure**
+    
 s.myInteger = 7;
 s.myLongInteger = 437090;
 s.myFloatingPointValue = 53.467;
-</code>
+
 
 Note : Adding something about how to initialize structures seems appropriate here.
 
@@ -32,7 +32,7 @@ Note : Adding something about how to initialize structures seems appropriate her
 
 If you want to avoid putting "struct" in front of all your struct variables (i.e., "struct myStruct s") you can typedef your struct as something else:
 
-<code>
+    
 struct myStruct
 {
     short     myInteger;
@@ -43,24 +43,24 @@ typedef struct myStruct myStruct;
 
 struct myStruct gStruct1; // this global variable reference is ok
 myStruct gStruct2; // this global variable reference is also ok
-</code>
+
 
 This typedef is commonly done on one line:
 
-<code>
+    
 typedef struct {
     short     myInteger;
     long      myLongInteger;
     float     myFloatingPointValue;
 } myStruct;
-</code>
+
 
 Also, this topic is all covered in Kernighan & Richie's "The C Programming Language", a book every C-based programming-language programmer should memorize.
 
-Also, for the love of Pete, can we [[StopUsingMyInVariableNames]]? This probably goes without saying, but it's a very bad habit.
+Also, for the love of Pete, can we General/StopUsingMyInVariableNames? This probably goes without saying, but it's a very bad habit.
 
--- [[MikeTrent]]
+-- General/MikeTrent
 
 ----
 
-Back to [[HowToProgramInOSX]]
+Back to General/HowToProgramInOSX

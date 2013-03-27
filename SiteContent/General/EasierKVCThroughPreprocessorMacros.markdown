@@ -1,34 +1,34 @@
 The macros below make it faster to write KVC accessors. They are used as follows:
 
-<code>
-// in [[SomeClass]].h
-@interface [[SomeClass]] : [[NSObject]] {
-    [[NSString]]'' val_title;
+    
+// in General/SomeClass.h
+@interface General/SomeClass : General/NSObject {
+    General/NSString* val_title;
 }
 
-L0_KEY([[NSString]]'', title, setTitle)
+L0_KEY(General/NSString*, title, setTitle)
 
 // ...
 
 @end
 
-/'''''''''''''''''''''''''''''''''/
+/**********************/
 
-// in [[SomeClass]].m
-@implementation [[SomeClass]]
+// in General/SomeClass.m
+@implementation General/SomeClass
 
-L0_KEY_IMPL(val_title, [[NSString]]'', title, setTitle)
+L0_KEY_IMPL(val_title, General/NSString*, title, setTitle)
 
 // ...
 
 @end
 
-</code>
+
 
 ----
 
 L0Macros.h:
-<code>
+    
 
 #ifndef L0_MACROS_H
 #define L0_MACROS_H
@@ -79,4 +79,3 @@ L0Macros.h:
 
 #endif
 
-</code>

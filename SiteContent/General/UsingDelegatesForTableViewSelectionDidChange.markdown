@@ -1,4 +1,4 @@
-I have a window with two tables on it.  I need to do different things when the user clicks on a line in either table which my [[NSArrayControllers]] can't handle.  This was easy enough when I only had one table:  in the controller object for that window (in this case it is actually my document acting as the controller--simple app in this case) I overrode the tableViewSelectionDidChange method to do what I needed to happen when a table row was selected.
+I have a window with two tables on it.  I need to do different things when the user clicks on a line in either table which my General/NSArrayControllers can't handle.  This was easy enough when I only had one table:  in the controller object for that window (in this case it is actually my document acting as the controller--simple app in this case) I overrode the tableViewSelectionDidChange method to do what I needed to happen when a table row was selected.
 
 With two tables, though, this won't work.
 
@@ -12,32 +12,32 @@ I hope my question is clear enough.
 
 Thanks,
 
-[[KentSignorini]]
+General/KentSignorini
 
 ----
 
 tableViewSelectionDidChange receives a Notification parameter.
-[notification object] is your [[NSTableView]].   
+[notification object] is your General/NSTableView.   
 - Bjoern Kriews
 
 ----
 
-So if my [[NSTableViews]] were created as:     tableViewOne and tableViewTwo, could I do this inside tableViewSelectionDidChange?:
+So if my General/NSTableViews were created as:     tableViewOne and tableViewTwo, could I do this inside tableViewSelectionDidChange?:
 
-<code>
+    
 if ([theNotification object] == tableViewOne) {
     do the first set of stuff
 } else if ([theNotification object] == tableViewTwo) {
     do the second set of stuff
 }
-</code>
 
-I just need to determine which one caused the notification.  Will this work?  ''Well, what happened when you tried it?''
+
+I just need to determine which one caused the notification.  Will this work?  *Well, what happened when you tried it?*
 
 Thanks,
 
-[[KentSignorini]]
+General/KentSignorini
 
 ----
 
-<code>tableView:shouldSelectRow:</code> not sure if this will work for you, but it might be worth a try...
+    tableView:shouldSelectRow: not sure if this will work for you, but it might be worth a try...

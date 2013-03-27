@@ -1,1 +1,1 @@
-Plural of [[WiBook]].
+Plural of General/WiBook.

@@ -1,1 +1,1 @@
-see [[DOMDocument]]
+see General/DOMDocument

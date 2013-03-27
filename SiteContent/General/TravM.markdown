@@ -1,3 +1,3 @@
 
 
-Author of screensaver [[TimeBallz]]: http://xscreensavers.com/timeballz
+Author of screensaver General/TimeBallz: http://xscreensavers.com/timeballz

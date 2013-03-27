@@ -6,4 +6,4 @@ http://homepage.mac.com/mnishikata/page4/page1/files/page1_2.jpg
 
 ----
 
-If you'd like colored buttons (not just checkboxes) outside an [[NSTableView]] please see [[CCDColoredButtonCell]].
+If you'd like colored buttons (not just checkboxes) outside an General/NSTableView please see General/CCDColoredButtonCell.

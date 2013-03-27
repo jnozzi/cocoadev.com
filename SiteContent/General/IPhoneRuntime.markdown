@@ -1,10 +1,10 @@
-As announced at M<nowiki/>acWorld 2007, the iPhone runs a stripped-down version of OS X, including [[CoreFoundation]] and many other familiar frameworks.
+As announced at M<nowiki/>acWorld 2007, the iPhone runs a stripped-down version of OS X, including General/CoreFoundation and many other familiar frameworks.
 
-While there is currently no publicly-available SDK for the iPhone, [[SteveJobs]] has announced that Apple plans to have one available in February 2008.  Until then, '''use the information in this section at your own risk, as it is liable to change at any time.'''
+While there is currently no publicly-available SDK for the iPhone, General/SteveJobs has announced that Apple plans to have one available in February 2008.  Until then, **use the information in this section at your own risk, as it is liable to change at any time.**
 
 NEEDS UPDATING
 
-'''Warning!''' Installing third-party applications on your iPhone may violate the terms of your contract, void your warranty, or may even render your shiny and expensive new toy into a shiny but useless brick.
+**Warning!** Installing third-party applications on your iPhone may violate the terms of your contract, void your warranty, or may even render your shiny and expensive new toy into a shiny but useless brick.
 
 For more information about iPhone development:
 
@@ -18,25 +18,25 @@ For more information about iPhone development:
 
 ----
 
-'''
+**
 Frameworks
-'''
+**
 
 
-*[[AudioToolkit]]: audio utilities that are not part of [[CoreAudio]], for making e.g. the tap sound
-*[[CelestialFramework]]: high-level audio interface
-*[[LayerKit]]: animation support
-*[[MusicLibraryFramework]]: interface to iPod database
-*[[PhotoLibrary]]: interface to iPod database
-*[[UIKit]]: top-level UI framework, similar to [[AppKit]]
+*General/AudioToolkit: audio utilities that are not part of General/CoreAudio, for making e.g. the tap sound
+*General/CelestialFramework: high-level audio interface
+*General/LayerKit: animation support
+*General/MusicLibraryFramework: interface to iPod database
+*General/PhotoLibrary: interface to iPod database
+*General/UIKit: top-level UI framework, similar to General/AppKit
 
 
 ----
 
-'''[[UsingiPhoneToolchainOnLeopard]]'''
+**General/UsingiPhoneToolchainOnLeopard**
 ----
 
-'''[[HandyIPhoneCodeSnippets]]'''
+**General/HandyIPhoneCodeSnippets**
 
 ----
 

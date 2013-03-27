@@ -1,54 +1,54 @@
 
 
-A [[ClassMethod]] is a method performed by a [[ClassObject]].
+A General/ClassMethod is a method performed by a General/ClassObject.
 
-Typically, a [[ClassMethod]] is used to create a new instance (new [[InstanceObject]]) of the receiving class, and to perform management upon any [[InstanceObject]] of that class.
+Typically, a General/ClassMethod is used to create a new instance (new General/InstanceObject) of the receiving class, and to perform management upon any General/InstanceObject of that class.
 
-A [[ClassMethod]] can always be invoked.  You do not create an instance of the class to which to send the [[ClassMethod]].
+A General/ClassMethod can always be invoked.  You do not create an instance of the class to which to send the General/ClassMethod.
 
-You invoke a [[ClassMethod]] by sending a message to the class, like this:
+You invoke a General/ClassMethod by sending a message to the class, like this:
 
-<code>
-[[[SomeClass]] someMethod];
-</code>
+    
+General/[SomeClass someMethod];
+
 
 ----
 
-You can have a [[ClassMethod]] and an [[InstanceMethod]] with the same signature (except, of course, for the + and -):
+You can have a General/ClassMethod and an General/InstanceMethod with the same signature (except, of course, for the + and -):
 
-<code>
-+ ([[NSString]] '')name {
+    
++ (General/NSString *)name {
      return @"Test";
 }
 
-- ([[NSString]] '')name {
-     return [[self class] name];
+- (General/NSString *)name {
+     return General/self class] name];
 }
-</code>
+
 
 ----
 
 You could also do this:
 
-<code>
+    
 
-#define [[BothMethods]](Name,[[ReturnType]],[[SingeLine]]) -([[ReturnType]])Name { singleLine; } +([[ReturnType]])Name{ singleLine; }
+#define [[BothMethods(Name,General/ReturnType,General/SingeLine) -(General/ReturnType)Name { singleLine; } +(General/ReturnType)Name{ singleLine; }
 
 ...
 
-[[BothMethods]](Name,[[NSString]],return @"Test")
+General/BothMethods(Name,General/NSString,return @"Test")
 
-</code>
+
 
 or
 
-<code>
+    
 
-#define [[MatchToClass]]([[ReturnType]],[[MethodName]]) -([[ReturnType]])[[MethodName]] { return [[self class] [[MethodName]]]; }
+#define General/MatchToClass(General/ReturnType,General/MethodName) -(General/ReturnType)General/MethodName { return General/self class] [[MethodName]; }
 
 + (int)stuff { return 5+5; }
-[[MatchToClass]](int,stuff);
+General/MatchToClass(int,stuff);
 
-</code>
 
--[[FranciscoTolmasky]]
+
+-General/FranciscoTolmasky

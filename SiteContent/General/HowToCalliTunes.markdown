@@ -2,12 +2,12 @@ I am writing an application that needs to call other applications. What I am try
 
 ----
 
-You can use either [[AppleScript]] or [[AppleEvents]]. [[AppleScript]] is the easiest way to go in 10.2, but not 10.1. You can do something like
+You can use either General/AppleScript or General/AppleEvents. General/AppleScript is the easiest way to go in 10.2, but not 10.1. You can do something like
 
-<code>
+    
  NSDictionary		*errorDict;
  NSAppleEventDescriptor 	*returnDescriptor;
- NSAppleScript 		*scriptObject = [[NSAppleScript alloc] initWithSource:
+ NSAppleScript 		*scriptObject = General/NSAppleScript alloc] initWithSource:
                                           @"tell application \"itunes\" \n playpause \n end tell"];
  
  NSLog(@"executing script");   returnDescriptor=[scriptObject executeAndReturnError: &errorDict];
@@ -25,7 +25,7 @@ You can use either [[AppleScript]] or [[AppleEvents]]. [[AppleScript]] is the ea
  		...
          } else {
            ...
-           co-erce the result to the appropriate [[ObjC]] type
+           co-erce the result to the appropriate [[ObjC type
            ...
          }
    } else {
@@ -35,4 +35,3 @@ You can use either [[AppleScript]] or [[AppleEvents]]. [[AppleScript]] is the ea
    NSLog(@"Script execution has gone a bit PeteTong: %@", [errorDict objectForKey: @"NSAppleScriptErrorMessage"]);
  }
 
-</code>

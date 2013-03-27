@@ -32,7 +32,7 @@ PPC Thread State:
 can anybody help?  best thing for me is email timbuk3 @lycos.com (remove the space), but i'll check here too.  thx!
 -Jesse
 
-Not sure if this is a reasonable strategy for the situation, but have you tried removing the preferences file? Either delete it or move it elsewhere and, um, be hopeful. -- [[RobRix]]
+Not sure if this is a reasonable strategy for the situation, but have you tried removing the preferences file? Either delete it or move it elsewhere and, um, be hopeful. -- General/RobRix
 
 ----
 Maybe you have the wrong version of Developer Tools installed for the version of OS X you have installed.

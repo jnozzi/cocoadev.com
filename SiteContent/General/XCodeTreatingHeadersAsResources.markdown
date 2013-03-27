@@ -31,6 +31,6 @@ Well, I ran the issue across the Xcode-users list and it appears to be a bug. It
 
 I think this has been fixed in Xcode 2.1. Anyone else want to confirm this? Err maybe it was 2.0...
 
-''nope, it still happened in 2.0, so if it is fixed, the fix came in 2.1''
+*nope, it still happened in 2.0, so if it is fixed, the fix came in 2.1*
 
 It was a bug in the project templates, so my bet is that they fixed them when they redid them as .xcodeprojs in 2.1.

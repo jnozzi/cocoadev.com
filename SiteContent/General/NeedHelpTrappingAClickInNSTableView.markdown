@@ -13,4 +13,4 @@ Kent!
 
 ----
 
-If you only need to be informed when the selected row changes (by far the most common case in my experience),  then you just need to implement the table view delegate method <code>-tableViewSelectionDidChange:</code>.  There is also the method <code>tableView:shouldSelectRow:</code> if you need to know before the row selection changes.  -- Bo
+If you only need to be informed when the selected row changes (by far the most common case in my experience),  then you just need to implement the table view delegate method     -tableViewSelectionDidChange:.  There is also the method     tableView:shouldSelectRow: if you need to know before the row selection changes.  -- Bo

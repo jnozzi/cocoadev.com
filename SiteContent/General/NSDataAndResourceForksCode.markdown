@@ -1,55 +1,55 @@
-For Discussion see: [[NSDataAndResourceForks]]
+For Discussion see: General/NSDataAndResourceForks
 
 Here you go all...
 
-'''[[MacBinaryIII]].c'''
-<code>
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-    [[MacBinaryIII]].c
+**General/MacBinaryIII.c**
+    
+/***********************************************************************
+    General/MacBinaryIII.c
 
     Copyright  1997 Christopher Evans (cevans@poppybank.com)
 
     Basic encoding and decoding of Macintosh files to the
-    [[MacBinary]] III spec.
+    General/MacBinary III spec.
 
  This file is part of the MacBinaryIII_src_C.sit package
  see macbin3.h for more information
 
-'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+***********************************************************************/
 
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
-/''  Includes                                                                 ''/
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/*************************************************************************************/
+/*  Includes                                                                 */
+/*************************************************************************************/
 
 #include <string.h>
 #include <stdio.h>
 #include "macbin3.h"
 
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
-/''  Macros, typedefs                                                         ''/
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/*************************************************************************************/
+/*  Macros, typedefs                                                         */
+/*************************************************************************************/
 
-/'' source (the macbinary file) will be deleted ''/
+/* source (the macbinary file) will be deleted */
 #define DELETE_MACBINARY_SOURCE
 
-/'' enable encoding
-#define INCLUDE_ENCODE_MACBINARY         ''/
+/* enable encoding
+#define INCLUDE_ENCODE_MACBINARY         */
 
-/'' enable decoding ''/
+/* enable decoding */
 #define INCLUDE_DECODE_MACBINARY
 
-/'' include own CRC 32 Bit Calculation
-#define INCLUDE_CRC32CALC               ''/
+/* include own CRC 32 Bit Calculation
+#define INCLUDE_CRC32CALC               */
 
-/'' produce some helpful printouts for tracing
-#define TRACE_MACBINARY   ''/
+/* produce some helpful printouts for tracing
+#define TRACE_MACBINARY   */
 
 
 
-#define LONG_AT_OFFSET(data, offset) ''((long '')((unsigned char '')&data[offset]))
-#define WORD_AT_OFFSET(data, offset) ''((Word '')((unsigned char '')&data[offset]))
-#define BYTE_AT_OFFSET(data, offset) ''((Byte '')((unsigned char '')&data[offset]))
-#define PTR_AT_OFFSET(data, offset)  ((Ptr)((unsigned char '')&data[offset]))
+#define LONG_AT_OFFSET(data, offset) *((long *)((unsigned char *)&data[offset]))
+#define WORD_AT_OFFSET(data, offset) *((Word *)((unsigned char *)&data[offset]))
+#define BYTE_AT_OFFSET(data, offset) *((Byte *)((unsigned char *)&data[offset]))
+#define PTR_AT_OFFSET(data, offset)  ((Ptr)((unsigned char *)&data[offset]))
 
 typedef     unsigned short      Word;
 
@@ -80,11 +80,11 @@ typedef     unsigned short      Word;
 #define kMinimumVersionOffset           123
 #define kCRCOffset                      124
 
-#define kResourceForkMaxLen             (1024 '' 1024 '' 16)
+#define kResourceForkMaxLen             (1024 * 1024 * 16)
 
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
-/''  Module level Vars                                                        ''/
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/*************************************************************************************/
+/*  Module level Vars                                                        */
+/*************************************************************************************/
 
 #ifdef INCLUDE_CRC32CALC
 static unsigned long crc_table[256] = {
@@ -144,58 +144,58 @@ static unsigned long crc_table[256] = {
 #endif
 
 
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
-/''  Prototypes                                                               ''/
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/*************************************************************************************/
+/*  Prototypes                                                               */
+/*************************************************************************************/
 
-static Boolean  [[HeaderIsMacBinary]](char ''header,
-                                  Word ''version,
+static Boolean  General/HeaderIsMacBinary(char *header,
+                                  Word *version,
                                   long maxDataLen);
-static Boolean [[FSpExists]]([[FSSpec]] ''file);
+static Boolean General/FSpExists(General/FSSpec *file);
 #ifdef INCLUDE_CRC32CALC
-static unsigned long crc32(unsigned long seed, unsigned char ''p, size_t len);
+static unsigned long crc32(unsigned long seed, unsigned char *p, size_t len);
 #else
-extern unsigned long crc32(unsigned long seed, unsigned char ''p, size_t len);
+extern unsigned long crc32(unsigned long seed, unsigned char *p, size_t len);
 #endif
-static [[OSErr]] [[GetDesktopComment]]([[FSSpec]] ''file, char''comment, long ''length);
-static [[OSErr]] [[SetDesktopComment]]([[FSSpec]] ''file, char''comment, long length);
-static Handle  [[EncodeMacbinary]]([[FSSpec]] ''file);
-static [[OSErr]]   [[DecodeMacBinary]](Handle data, [[FSSpec]] ''destination);
+static General/OSErr General/GetDesktopComment(General/FSSpec *file, char*comment, long *length);
+static General/OSErr General/SetDesktopComment(General/FSSpec *file, char*comment, long length);
+static Handle  General/EncodeMacbinary(General/FSSpec *file);
+static General/OSErr   General/DecodeMacBinary(Handle data, General/FSSpec *destination);
 
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
-/''  Functions                                                                ''/
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/*************************************************************************************/
+/*  Functions                                                                */
+/*************************************************************************************/
 
 
 #ifdef INCLUDE_CRC32CALC
-/'' taken from the mcvert source code ''/
-static unsigned long crc32(unsigned long seed, unsigned char ''p, size_t len)
+/* taken from the mcvert source code */
+static unsigned long crc32(unsigned long seed, unsigned char *p, size_t len)
 {
-    unsigned long hold;     /'' crc computed so far ''/
-    size_t i;               /'' index into data ''/
+    unsigned long hold;     /* crc computed so far */
+    size_t i;               /* index into data */
 
-    hold = seed;                   /'' start with seed ''/
+    hold = seed;                   /* start with seed */
     for (i = 0; i < len; i++, p++)
         {
-        hold ^= (''p << 8);
+        hold ^= (*p << 8);
         hold  = (hold << 8) ^ crc_table[(unsigned char) (hold >> 8)];
         }
 
     return (hold);
-}               /'' crc32() ''/
+}               /* crc32() */
 #endif
 
 
 
-static Boolean [[FSpExists]]([[FSSpec]] ''file)
+static Boolean General/FSpExists(General/FSSpec *file)
 {
-    [[FInfo]]   fndrInfo;
+    General/FInfo   fndrInfo;
 
-    return [[FSpGetFInfo]](file, &fndrInfo) == noErr;
+    return General/FSpGetFInfo(file, &fndrInfo) == noErr;
 }
 
-static Boolean  [[HeaderIsMacBinary]](char ''header,
-                                  Word ''version,
+static Boolean  General/HeaderIsMacBinary(char *header,
+                                  Word *version,
                                   long maxDataLen)
 {
     Boolean isIt = false;
@@ -204,7 +204,7 @@ static Boolean  [[HeaderIsMacBinary]](char ''header,
     Byte    mbVersion;
 
 #ifdef TRACE_MACBINARY
-printf("\n\n Function [[HeaderIsMacBinary]](): ");
+printf("\n\n Function General/HeaderIsMacBinary(): ");
 #endif
 
     if(LONG_AT_OFFSET(header, kMacbinarySigOffset) == 'mBIN')
@@ -217,7 +217,7 @@ printf("\n\n Function [[HeaderIsMacBinary]](): ");
             BYTE_AT_OFFSET(header, kOldVersionOffset) == 0)
             {
             if(WORD_AT_OFFSET(header, kCRCOffset) ==
-               crc32(0, (unsigned char'') &header, 124))
+               crc32(0, (unsigned char*) &header, 124))
                 {
                 isIt = true;
                 mbVersion = 129;
@@ -278,7 +278,7 @@ printf("\n df_rf_length       <= %8u                           bool: %d",
         isIt = true;
         }
     else
-        isIt = false;   /'' something is wrong with the header ''/
+        isIt = false;   /* something is wrong with the header */
 
 #ifdef TRACE_MACBINARY
 printf("\n                                                 2. isIt: bool: %d",
@@ -286,45 +286,45 @@ printf("\n                                                 2. isIt: bool: %d",
 #endif
 
     if(version)
-        ''version = mbVersion;
+        *version = mbVersion;
     return isIt;
 }
 
-Boolean [[FSpIsMacBinary]]([[FSSpec]] ''file)
+Boolean General/FSpIsMacBinary(General/FSSpec *file)
 {
     char header[128];
     short dfRefNum = 0;
-    [[OSErr]]   err;
+    General/OSErr   err;
     long    size;
     Boolean isIt = false;
-    [[CInfoPBRec]]  pb;
+    General/CInfoPBRec  pb;
     long maxDataLen;
 
-    memset(&pb, 0, sizeof([[CInfoPBRec]]));
+    memset(&pb, 0, sizeof(General/CInfoPBRec));
     pb.hFileInfo.ioNamePtr   = file->name;
     pb.hFileInfo.ioVRefNum   = file->vRefNum;
-    pb.hFileInfo.ioFDirIndex = 0;           /''  query a file ''/
+    pb.hFileInfo.ioFDirIndex = 0;           /*  query a file */
     pb.hFileInfo.ioDirID     = file->parID;
-    err = [[PBGetCatInfo]](&pb,false);
+    err = General/PBGetCatInfo(&pb,false);
     maxDataLen = pb.hFileInfo.ioFlLgLen;
 
     memset(header, 0, 128);
 
-    err = [[FSpOpenDF]](file, fsRdPerm, &dfRefNum);
+    err = General/FSpOpenDF(file, fsRdPerm, &dfRefNum);
     if(!err)
         {
-        err = [[GetEOF]](dfRefNum, &size);
+        err = General/GetEOF(dfRefNum, &size);
         if(size > 128)
             {
             size = 128;
-            err = [[FSRead]](dfRefNum, &size, &header);
+            err = General/FSRead(dfRefNum, &size, &header);
 
             if(err == noErr)
                 {
-                isIt = [[HeaderIsMacBinary]](header, nil, maxDataLen);
+                isIt = General/HeaderIsMacBinary(header, nil, maxDataLen);
                 }
             }
-        [[FSClose]](dfRefNum);
+        General/FSClose(dfRefNum);
         }
     return isIt;
 }
@@ -333,35 +333,35 @@ Boolean [[FSpIsMacBinary]]([[FSSpec]] ''file)
 
 #ifdef INCLUDE_ENCODE_MACBINARY
 
-static [[OSErr]]    [[GetDesktopComment]]([[FSSpec]] ''file, char''comment, long ''length)
+static General/OSErr    General/GetDesktopComment(General/FSSpec *file, char*comment, long *length)
 {
-    [[DTPBRec]]     pb;
-    [[OSErr]]       err;
+    General/DTPBRec     pb;
+    General/OSErr       err;
 
     pb.ioCompletion = nil;
     pb.ioNamePtr = NULL;
     pb.ioVRefNum = file->vRefNum;
 
-    err = [[PBDTGetPath]](&pb);
+    err = General/PBDTGetPath(&pb);
 
     if(err == noErr)
         {
         pb.ioNamePtr = file->name;
         pb.ioDTBuffer = comment;
         pb.ioDirID = file->parID;
-        err = [[PBDTGetComment]](&pb, false);
-        ''length = pb.ioDTActCount;
+        err = General/PBDTGetComment(&pb, false);
+        *length = pb.ioDTActCount;
         }
     return err;
 }
 
-[[OSErr]]   [[EncodeMacbinaryFile]]([[FSSpec]] ''file)
+General/OSErr   General/EncodeMacbinaryFile(General/FSSpec *file)
 {
     Handle data;
-    [[OSErr]]   err = paramErr;
+    General/OSErr   err = paramErr;
     short   dfRefNum;
 
-    data = [[EncodeMacbinary]](file);
+    data = General/EncodeMacbinary(file);
 
     if(data)
         {
@@ -377,31 +377,31 @@ static [[OSErr]]    [[GetDesktopComment]]([[FSSpec]] ''file, char''comment, long
         c2pstrcpy(pascalString, cString);
 		memcpy(file->name, pascalString, 64);
 
-        [[FSpDelete]](file);
-        if([[FSpCreate]](file, 'dMB3', 'mBIN', smSystemScript) == noErr)
+        General/FSpDelete(file);
+        if(General/FSpCreate(file, 'dMB3', 'mBIN', smSystemScript) == noErr)
             {
-            err = [[FSpOpenDF]](file, fsWrPerm, &dfRefNum);
+            err = General/FSpOpenDF(file, fsWrPerm, &dfRefNum);
             if(err == noErr)
                 {
-                long    inOutCount = [[GetHandleSize]](data);
+                long    inOutCount = General/GetHandleSize(data);
 
-                [[HLock]](data);
-                err = [[FSWrite]](dfRefNum,&inOutCount,''data);
-                [[HUnlock]](data);
-                [[FSClose]](dfRefNum);
+                General/HLock(data);
+                err = General/FSWrite(dfRefNum,&inOutCount,*data);
+                General/HUnlock(data);
+                General/FSClose(dfRefNum);
                 }
             }
-        [[DisposeHandle]](data);
+        General/DisposeHandle(data);
         }
     return err;
 }
-static Handle [[EncodeMacbinary]]([[FSSpec]] ''file)
+static Handle General/EncodeMacbinary(General/FSSpec *file)
 {
     Handle result = nil;
-    [[FInfo]]   fndrInfo;
-    [[FXInfo]]  fndrXInfo;
-    [[OSErr]]   err;
-    [[CInfoPBRec]]  pb;
+    General/FInfo   fndrInfo;
+    General/FXInfo  fndrXInfo;
+    General/OSErr   err;
+    General/CInfoPBRec  pb;
     short   dfRefNum, rfRefNum;
     long    ioCount;
     char    buffer[128];
@@ -410,19 +410,19 @@ static Handle [[EncodeMacbinary]]([[FSSpec]] ''file)
     long    resourceForkLength, dataForkLength, commentLength;
 
     memset(&header, 0, sizeof(header));
-    err = [[FSpGetFInfo]](file, &fndrInfo);
+    err = General/FSpGetFInfo(file, &fndrInfo);
 
-    memset(&pb, 0, sizeof([[CInfoPBRec]]));
+    memset(&pb, 0, sizeof(General/CInfoPBRec));
     pb.hFileInfo.ioNamePtr = file->name;
     pb.hFileInfo.ioVRefNum = file->vRefNum;
     pb.hFileInfo.ioFDirIndex = 0;           //query a file
     pb.hFileInfo.ioDirID = file->parID;
-    err = [[PBGetCatInfo]](&pb,false);
+    err = General/PBGetCatInfo(&pb,false);
 
     fndrXInfo = pb.hFileInfo.ioFlXFndrInfo;
 
     BYTE_AT_OFFSET(header, kFileNameLengthOffset) = file->name[0];
-    [[BlockMoveData]]( &(file->name[1]),
+    General/BlockMoveData( &(file->name[1]),
                    PTR_AT_OFFSET(header,
                    kFileNameOffset),
                    file->name[0]);
@@ -452,10 +452,10 @@ static Handle [[EncodeMacbinary]]([[FSSpec]] ''file)
     WORD_AT_OFFSET(header, kCurrentVersionOffset) = 130;
     WORD_AT_OFFSET(header, kMinimumVersionOffset) = 129;
 
-    err = [[FSpOpenDF]](file,fsRdPerm,&dfRefNum);
+    err = General/FSpOpenDF(file,fsRdPerm,&dfRefNum);
     if(err == noErr)
         {
-        err = [[GetEOF]](dfRefNum,&dataForkLength);
+        err = General/GetEOF(dfRefNum,&dataForkLength);
         LONG_AT_OFFSET(header, kDataForkLengthOffset) = dataForkLength;
         }
     else
@@ -463,10 +463,10 @@ static Handle [[EncodeMacbinary]]([[FSSpec]] ''file)
         dfRefNum = 0;
         }
 
-    err = [[FSpOpenRF]](file,fsRdPerm,&rfRefNum);
+    err = General/FSpOpenRF(file,fsRdPerm,&rfRefNum);
     if(err == noErr)
         {
-        err = [[GetEOF]](rfRefNum,&resourceForkLength);
+        err = General/GetEOF(rfRefNum,&resourceForkLength);
         LONG_AT_OFFSET(header, kResourceForkLengthOffset) = resourceForkLength;
         }
     else
@@ -475,17 +475,17 @@ static Handle [[EncodeMacbinary]]([[FSSpec]] ''file)
         }
 
     memset(comment, 0, 256);
-    if([[GetDesktopComment]](file, comment, &commentLength) != noErr)
+    if(General/GetDesktopComment(file, comment, &commentLength) != noErr)
         commentLength = 0;
 
     WORD_AT_OFFSET(header, kGetInfoCommentLengthOffset) = commentLength;
     WORD_AT_OFFSET(header, kCRCOffset) =
-                                     crc32( 0, (unsigned char'') &header, 124);
+                                     crc32( 0, (unsigned char*) &header, 124);
 
-    result = [[TempNewHandle]](0, &err);
+    result = General/TempNewHandle(0, &err);
     if(result)
         {
-        err = [[PtrAndHand]](&header,result,128);
+        err = General/PtrAndHand(&header,result,128);
 
         if(dfRefNum && dataForkLength)
             {
@@ -493,10 +493,10 @@ static Handle [[EncodeMacbinary]]([[FSSpec]] ''file)
             while(dataForkLength > 0 && err == noErr)
                 {
                 ioCount = 128;
-                err = [[FSRead]](dfRefNum,&ioCount,&buffer);
+                err = General/FSRead(dfRefNum,&ioCount,&buffer);
 
                 if(err == noErr || err == eofErr)
-                    err = [[PtrAndHand]](&buffer,result,128);
+                    err = General/PtrAndHand(&buffer,result,128);
 
                 dataForkLength -= ioCount;
                 }
@@ -508,10 +508,10 @@ static Handle [[EncodeMacbinary]]([[FSSpec]] ''file)
             while(resourceForkLength > 0 && err == noErr)
                 {
                 ioCount = 128;
-                err = [[FSRead]](rfRefNum,&ioCount,&buffer);
+                err = General/FSRead(rfRefNum,&ioCount,&buffer);
 
                 if(err == noErr || err == eofErr)
-                    err = [[PtrAndHand]](&buffer,result,128);
+                    err = General/PtrAndHand(&buffer,result,128);
 
                 resourceForkLength -= ioCount;
                 }
@@ -519,32 +519,32 @@ static Handle [[EncodeMacbinary]]([[FSSpec]] ''file)
 
         if(commentLength)
             {
-            [[PtrAndHand]](&comment,result,commentLength);
+            General/PtrAndHand(&comment,result,commentLength);
             }
         }
 
     if(rfRefNum)
-        [[FSClose]](rfRefNum);
+        General/FSClose(rfRefNum);
 
     if(dfRefNum)
-        [[FSClose]](dfRefNum);
+        General/FSClose(dfRefNum);
 
     return result;
 }
 
-#endif /'' INCLUDE_ENCODE_MACBINARY ''/
+#endif /* INCLUDE_ENCODE_MACBINARY */
 #ifdef INCLUDE_DECODE_MACBINARY
 
-static [[OSErr]]    [[SetDesktopComment]]([[FSSpec]] ''file, char''comment, long length)
+static General/OSErr    General/SetDesktopComment(General/FSSpec *file, char*comment, long length)
 {
-    [[DTPBRec]]     pb;
-    [[OSErr]]       err;
+    General/DTPBRec     pb;
+    General/OSErr       err;
 
     pb.ioCompletion = nil;
     pb.ioNamePtr = NULL;
     pb.ioVRefNum = file->vRefNum;
 
-    err = [[PBDTGetPath]](&pb);
+    err = General/PBDTGetPath(&pb);
 
     if(err == noErr)
         {
@@ -552,59 +552,59 @@ static [[OSErr]]    [[SetDesktopComment]]([[FSSpec]] ''file, char''comment, long
         pb.ioDTBuffer   = comment;
         pb.ioDirID      = file->parID;
         pb.ioDTReqCount = length;
-        err = [[PBDTSetComment]](&pb, false);
+        err = General/PBDTSetComment(&pb, false);
         }
     return err;
 }
 
-[[OSErr]]   [[DecodeMacBinaryFile]]([[FSSpec]] ''source)
+General/OSErr   General/DecodeMacBinaryFile(General/FSSpec *source)
 {
     Handle  data = nil;
-    [[OSErr]]   err;
+    General/OSErr   err;
     short   dfRefNum = 0;
     long    size;
-    [[FSSpec]]  McBin_source;
+    General/FSSpec  McBin_source;
 
     memcpy(McBin_source.name,source->name,source->name[0]+1);
     McBin_source.vRefNum = source->vRefNum;
     McBin_source.parID   = source->parID;
 
-    err = [[FSpOpenDF]](source, fsRdPerm, &dfRefNum);
+    err = General/FSpOpenDF(source, fsRdPerm, &dfRefNum);
     if(!err)
         {
-        err = [[GetEOF]](dfRefNum, &size);
+        err = General/GetEOF(dfRefNum, &size);
 
-        data = [[TempNewHandle]](size, &err);
+        data = General/TempNewHandle(size, &err);
 
         if(data)
             {
-            [[HLock]](data);
-            err = [[FSRead]](dfRefNum,&size,''data);
-            [[HUnlock]](data);
+            General/HLock(data);
+            err = General/FSRead(dfRefNum,&size,*data);
+            General/HUnlock(data);
             }
-        [[FSClose]](dfRefNum);
+        General/FSClose(dfRefNum);
         }
 
     if(data && err == noErr)
         {
-        err =  [[DecodeMacBinary]](data, source);
-        [[DisposeHandle]](data);
+        err =  General/DecodeMacBinary(data, source);
+        General/DisposeHandle(data);
         }
 
 #ifdef DELETE_MACBINARY_SOURCE
     if (err == noErr)
-        err = [[FSpDelete]](&McBin_source);
+        err = General/FSpDelete(&McBin_source);
 #endif
 
     return err;
 }
 
-static [[OSErr]]   [[DecodeMacBinary]](Handle data, [[FSSpec]] ''destination)
+static General/OSErr   General/DecodeMacBinary(Handle data, General/FSSpec *destination)
 {
     Handle result = nil;
-    [[FInfo]]   fndrInfo;
-    [[OSErr]]   err;
-    [[CInfoPBRec]]  pb;
+    General/FInfo   fndrInfo;
+    General/OSErr   err;
+    General/CInfoPBRec  pb;
     short   dfRefNum, rfRefNum;
     long    ioCount;
     char    header[128];
@@ -615,19 +615,19 @@ static [[OSErr]]   [[DecodeMacBinary]](Handle data, [[FSSpec]] ''destination)
     long    rfOffset;
     long maxDataLen;
 
-    memset(&pb, 0, sizeof([[CInfoPBRec]]));
+    memset(&pb, 0, sizeof(General/CInfoPBRec));
     pb.hFileInfo.ioNamePtr   = destination->name;
     pb.hFileInfo.ioVRefNum   = destination->vRefNum;
-    pb.hFileInfo.ioFDirIndex = 0;           /''  query a file ''/
+    pb.hFileInfo.ioFDirIndex = 0;           /*  query a file */
     pb.hFileInfo.ioDirID     = destination->parID;
-    err = [[PBGetCatInfo]](&pb,false);
+    err = General/PBGetCatInfo(&pb,false);
     maxDataLen = pb.hFileInfo.ioFlLgLen;
 
-    [[HLock]](data);
-    memcpy(header, ''data, 128);
+    General/HLock(data);
+    memcpy(header, *data, 128);
 
-     /'' already checked with [[FSpIsMacBinary]]()    ''/
-    isMacBinaryFile = [[HeaderIsMacBinary]](header, nil, maxDataLen);;
+     /* already checked with General/FSpIsMacBinary()    */
+    isMacBinaryFile = General/HeaderIsMacBinary(header, nil, maxDataLen);;
 
     if(!isMacBinaryFile)
         return paramErr;
@@ -658,12 +658,12 @@ static [[OSErr]]   [[DecodeMacBinary]](Handle data, [[FSSpec]] ''destination)
     fndrInfo.fdLocation.v = WORD_AT_OFFSET(header, kFileVPositionOffset);
     fndrInfo.fdLocation.h = WORD_AT_OFFSET(header, kFileHPositionOffset);
     fndrInfo.fdFldr       = WORD_AT_OFFSET(header, kFileFolderIDOffset);
-/''
+/*
     index = 1;
-    checkFile = ''destination;
-    while([[FSpExists]](&checkFile))
+    checkFile = *destination;
+    while(General/FSpExists(&checkFile))
         {
-        checkFile = ''destination;
+        checkFile = *destination;
 
         if(index < 10)
             checkFile.name[++checkFile.name[0]] = '0' + index;
@@ -671,9 +671,9 @@ static [[OSErr]]   [[DecodeMacBinary]](Handle data, [[FSSpec]] ''destination)
             checkFile.name[++checkFile.name[0]] = ('a' - 10) + index;
         index++;
         }
-    ''destination = checkFile;
-''/
-    err = [[FSpCreate]](destination,
+    *destination = checkFile;
+*/
+    err = General/FSpCreate(destination,
                     fndrInfo.fdCreator,
                     fndrInfo.fdType,
                     smSystemScript);
@@ -681,20 +681,20 @@ static [[OSErr]]   [[DecodeMacBinary]](Handle data, [[FSSpec]] ''destination)
     dfRefNum = 0;
     if(err == noErr)
         {
-        err = [[FSpOpenDF]](destination, fsRdWrPerm, &dfRefNum);
+        err = General/FSpOpenDF(destination, fsRdWrPerm, &dfRefNum);
         }
 
     if(err == noErr && dfRefNum)
         {
         ioCount = dataForkLength;
-        err = [[FSWrite]](dfRefNum,&ioCount,''data + headerEnd);
-        [[FSClose]](dfRefNum);
+        err = General/FSWrite(dfRefNum,&ioCount,*data + headerEnd);
+        General/FSClose(dfRefNum);
         }
 
     rfRefNum = 0;
     if(err == noErr)
         {
-        err = [[FSpOpenRF]](destination, fsRdWrPerm, &rfRefNum);
+        err = General/FSpOpenRF(destination, fsRdWrPerm, &rfRefNum);
         }
 
     rfOffset = headerEnd + dataForkLength;
@@ -703,8 +703,8 @@ static [[OSErr]]   [[DecodeMacBinary]](Handle data, [[FSSpec]] ''destination)
     if(err == noErr && rfRefNum)
         {
         ioCount = resourceForkLength;
-        err = [[FSWrite]](rfRefNum,&ioCount,''data + rfOffset);
-        [[FSClose]](rfRefNum);
+        err = General/FSWrite(rfRefNum,&ioCount,*data + rfOffset);
+        General/FSClose(rfRefNum);
         }
 
     rfOffset += resourceForkLength;
@@ -712,14 +712,14 @@ static [[OSErr]]   [[DecodeMacBinary]](Handle data, [[FSSpec]] ''destination)
 
     if(err == noErr)
        {
-        [[FSpSetFInfo]](destination,&fndrInfo);
+        General/FSpSetFInfo(destination,&fndrInfo);
 
-        memset(&pb, 0, sizeof([[CInfoPBRec]]));
+        memset(&pb, 0, sizeof(General/CInfoPBRec));
         pb.hFileInfo.ioNamePtr   = destination->name;
         pb.hFileInfo.ioVRefNum   = destination->vRefNum;
-        pb.hFileInfo.ioFDirIndex = 0;           /''  query a file ''/
+        pb.hFileInfo.ioFDirIndex = 0;           /*  query a file */
         pb.hFileInfo.ioDirID     = destination->parID;
-        err = [[PBGetCatInfo]](&pb,false);
+        err = General/PBGetCatInfo(&pb,false);
 
         if(err == noErr)
             {
@@ -732,64 +732,64 @@ static [[OSErr]]   [[DecodeMacBinary]](Handle data, [[FSSpec]] ''destination)
                           BYTE_AT_OFFSET(header, kExtendedFinderFlagsOffset);
             pb.hFileInfo.ioFlXFndrInfo.fdScript =
                           BYTE_AT_OFFSET(header, kFilenameScriptOffset);
-            err = [[PBSetCatInfo]](&pb, false);
+            err = General/PBSetCatInfo(&pb, false);
             }
 
         if(commentLength)
             {
-            memcpy(comment,''data + rfOffset, commentLength);
-            [[SetDesktopComment]](destination, comment, commentLength);
+            memcpy(comment,*data + rfOffset, commentLength);
+            General/SetDesktopComment(destination, comment, commentLength);
             }
 
         }
-    [[HUnlock]](data);
+    General/HUnlock(data);
     return err;
 }
-#endif /''  INCLUDE_DECODE_MACBINARY  ''/
-</code>
+#endif /*  INCLUDE_DECODE_MACBINARY  */
 
-'''macbin3.h'''
-<code>
+
+**macbin3.h**
+    
 #include <Carbon/Carbon.h>
 #ifndef __MCBINIII_H__
 #define __MCBINIII_H__
 
-/''
+/*
 Public functions
-''/
+*/
 
-[[OSErr]]   [[EncodeMacbinaryFile]]([[FSSpec]] ''file);
-[[OSErr]]   [[DecodeMacBinaryFile]]([[FSSpec]] ''source);
-Boolean [[FSpIsMacBinary]]([[FSSpec]] ''file);
+General/OSErr   General/EncodeMacbinaryFile(General/FSSpec *file);
+General/OSErr   General/DecodeMacBinaryFile(General/FSSpec *source);
+Boolean General/FSpIsMacBinary(General/FSSpec *file);
 
 
 #endif
-</code>
-'''To make the [[FSSpec]]:'''
-<code>
-- (BOOL)makeFSSpec:([[FSSpec]] '')specPtr fromPath:([[NSString]] '')inPath
+
+**To make the General/FSSpec:**
+    
+- (BOOL)makeFSSpec:(General/FSSpec *)specPtr fromPath:(General/NSString *)inPath
 {
-	[[FSRef]] fsref;
-	[[OSStatus]] status = [[FSPathMakeRef]]([inPath fileSystemRepresentation],
+	General/FSRef fsref;
+	General/OSStatus status = General/FSPathMakeRef([inPath fileSystemRepresentation],
 									&fsref, NULL);
 	if (status == noErr)
-		status = [[FSGetCatalogInfo]](&fsref, kFSCatInfoNone,
+		status = General/FSGetCatalogInfo(&fsref, kFSCatInfoNone,
 								  NULL, NULL, specPtr, NULL);
 	return status == noErr;
 }
-</code>
-'''How to actually use it:'''
-<code>
-- (BOOL)addFile:([[NSString]] '')aPath 
-replaceFileAtPathFromBase:([[NSString]] '')replacementPath 
-		   name:([[NSString]] '')name
+
+**How to actually use it:**
+    
+- (BOOL)addFile:(General/NSString *)aPath 
+replaceFileAtPathFromBase:(General/NSString *)replacementPath 
+		   name:(General/NSString *)name
 {
 	// Define the method variables.
-	[[NSFileManager]] '' manager = [[[NSFileManager]] defaultManager];
-	[[FSSpec]] spec;
+	General/NSFileManager * manager = General/[NSFileManager defaultManager];
+	General/FSSpec spec;
 	
 	// Get the file name and create the tmp file name.
-	[[NSString]] '' pathName = [@"/tmp" stringByAppendingPathComponent:[aPath lastPathComponent]];
+	General/NSString * pathName = [@"/tmp" stringByAppendingPathComponent:[aPath lastPathComponent]];
 	
 	// Delete the file in /tmp so this will work
 	if ([manager fileExistsAtPath:pathName]) {
@@ -799,20 +799,20 @@ replaceFileAtPathFromBase:([[NSString]] '')replacementPath
 	// Copy the file to the temp file.
 	if([manager copyPath:aPath toPath:pathName handler:nil])
 	{
-		// Create a [[FSSpec]] of the tmp file. 
+		// Create a General/FSSpec of the tmp file. 
 		if ([self makeFSSpec:&spec fromPath:pathName])
 		{
-			// Encode the file into [[MacBinary]].
-			[[OSErr]] err = [[EncodeMacbinaryFile]](&spec);
+			// Encode the file into General/MacBinary.
+			General/OSErr err = General/EncodeMacbinaryFile(&spec);
 			if (err == noErr)
 			{
 				// Remove the tmp file.
 				[manager removeFileAtPath:pathName handler:nil];
 				
-				[[NSString]] '' binName = [pathName stringByAppendingPathExtension:@"bin"];
-				[[NSData]] '' app = [[[NSData]] dataWithContentsOfFile:binName];
+				General/NSString * binName = [pathName stringByAppendingPathExtension:@"bin"];
+				General/NSData * app = General/[NSData dataWithContentsOfFile:binName];
 				
-				[[NSDictionary]] '' dictionary = [[[NSDictionary]] dictionaryWithObjectsAndKeys:
+				General/NSDictionary * dictionary = General/[NSDictionary dictionaryWithObjectsAndKeys:
 					app, @"data",
 					binName, @"origPath",
 					replacementPath, @"destPath",
@@ -822,10 +822,10 @@ replaceFileAtPathFromBase:([[NSString]] '')replacementPath
 				// Insert the dictionary & file into the array.
 				[files insertObject:dictionary atIndex:[files count]];
 				[manager removeFileAtPath:binName handler:nil];
-				[[NSLog]](@"[[MacBinary]] file created and inserted into the array.");
+				General/NSLog(@"General/MacBinary file created and inserted into the array.");
 				return YES;
 			} else {
-				[[NSLog]](@"[[MacBinary]] not created!");
+				General/NSLog(@"General/MacBinary not created!");
 				[manager removeFileAtPath:pathName handler:nil];
 				return NO;
 			}
@@ -835,21 +835,21 @@ replaceFileAtPathFromBase:([[NSString]] '')replacementPath
 	}
 }
 
-- (BOOL)writeFileAtIndex:(unsigned)index toDirectory:([[NSString]] '')aPath {
+- (BOOL)writeFileAtIndex:(unsigned)index toDirectory:(General/NSString *)aPath {
 	if ([files count] > 0) {
 		// Define the method variables.
-		[[NSFileManager]] '' manager = [[[NSFileManager]] defaultManager];
-		[[FSSpec]] spec;
+		General/NSFileManager * manager = General/[NSFileManager defaultManager];
+		General/FSSpec spec;
 		
 		// Take the file data from the requested index.
-		[[NSData]] '' data = [[files objectAtIndex:index] objectForKey:@"data"];
-		[[NSString]] '' writePath = [@"/tmp" stringByAppendingPathComponent:[[[files objectAtIndex:index] objectForKey:@"origPath"] lastPathComponent]];
+		General/NSData * data = General/files objectAtIndex:index] objectForKey:@"data"];
+		[[NSString * writePath = [@"/tmp" stringByAppendingPathComponent:General/[files objectAtIndex:index] objectForKey:@"origPath"] lastPathComponent;
 		
 		// Write the requested data to the temp path.
 		if ([data writeToFile:writePath atomically:YES] && [self makeFSSpec:&spec fromPath:writePath]) {
 			// Decode the file
-			[[OSErr]] err = [[DecodeMacBinaryFile]](&spec);
-			[[NSString]] '' newPath = [writePath stringByDeletingPathExtension];
+			General/OSErr err = General/DecodeMacBinaryFile(&spec);
+			General/NSString * newPath = [writePath stringByDeletingPathExtension];
 			
 			// Move the file to the requested destination.
 			if (err == noErr && [manager movePath:newPath toPath:[aPath stringByAppendingPathComponent:[newPath lastPathComponent]] handler:nil]) {
@@ -865,4 +865,3 @@ replaceFileAtPathFromBase:([[NSString]] '')replacementPath
 	}
 	return NO;
 }
-</code>

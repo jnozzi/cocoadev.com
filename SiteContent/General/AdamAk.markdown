@@ -6,5 +6,5 @@ Italian Sites
 * http://www.italia.ms/ Portale
 
 Useful Pages
-* [[TextFormattingRules]]
-* [[FAQs]]
+* General/TextFormattingRules
+* General/FAQs

@@ -1,11 +1,11 @@
 
 
-Here is some sample code to load a movie (anything that [[QuickTime]] supports) and start playing it (only audio though).
+Here is some sample code to load a movie (anything that General/QuickTime supports) and start playing it (only audio though).
 
-Please note, [[NSMovie]] and [[NSMovieView]] are obsolete in favor of [[QTMovie]].
+Please note, General/NSMovie and General/NSMovieView are obsolete in favor of General/QTMovie.
 
-<code>
-- (void)setMovie:([[NSMovie]] '')movie
+    
+- (void)setMovie:(General/NSMovie *)movie
 {
 	if (_movie != movie)
 	{
@@ -14,7 +14,7 @@ Please note, [[NSMovie]] and [[NSMovieView]] are obsolete in favor of [[QTMovie]
 	}
 }
 
-- (void)setTimer:([[NSTimer]] '')timer
+- (void)setTimer:(General/NSTimer *)timer
 {
 	if (_timer != timer)
 	{
@@ -26,26 +26,26 @@ Please note, [[NSMovie]] and [[NSMovieView]] are obsolete in favor of [[QTMovie]
 
 - (void)resetTimer
 {
-	[[NSTimer]] ''timer = [[[NSTimer]] scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(checkForEndOfMovie:) userInfo:nil repeats:YES];
-	[[[[NSRunLoop]] currentRunLoop] addTimer:timer forMode:[[NSEventTrackingRunLoopMode]]];
+	General/NSTimer *timer = General/[NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(checkForEndOfMovie:) userInfo:nil repeats:YES];
+	General/[[NSRunLoop currentRunLoop] addTimer:timer forMode:General/NSEventTrackingRunLoopMode];
 	[self setTimer:timer];
 }	
 
 - (void)play
 {
-	[self setMovie:[[[[[NSMovie]] alloc] initWithURL:[NSURL fileURLWithPath:[[self track] location]] byReference:YES] autorelease]];
+	[self setMovie:General/[[[NSMovie alloc] initWithURL:[NSURL fileURLWithPath:General/self track] location byReference:YES] autorelease]];
 	if (_movie != nil)
 	{
-		[[StartMovie]]([_movie [[QTMovie]]]);
+		General/StartMovie([_movie General/QTMovie]);
 		[self resetTimer];
 	}
 }
 
-- (void)checkForEndOfMovie:([[NSTimer]] '')timer
+- (void)checkForEndOfMovie:(General/NSTimer *)timer
 {
-	[[MoviesTask]]([_movie [[QTMovie]]], 500);
+	General/MoviesTask([_movie General/QTMovie], 500);
 	
-	if ([[IsMovieDone]]([_movie [[QTMovie]]]))
+	if (General/IsMovieDone([_movie General/QTMovie]))
 	{
 		[timer invalidate];
 		
@@ -55,6 +55,6 @@ Please note, [[NSMovie]] and [[NSMovieView]] are obsolete in favor of [[QTMovie]
 			[_delegate performSelector:sel withObject:self];
 	}
 }
-</code>
 
-The timer (which checks for the end of the movie) is added to the current run loop, so that when the window is resizing, and other GUI stuff is happening, the movie keeps playing. This is important if you want to have smooth playback. The [[QuickTime]] functions used are [[StartMovie]](), [[StopMovie]](), [[IsMovieDone]]() and [[MoviesTask]](). [[MoviesTask]] is used to keep playing the movie.
+
+The timer (which checks for the end of the movie) is added to the current run loop, so that when the window is resizing, and other GUI stuff is happening, the movie keeps playing. This is important if you want to have smooth playback. The General/QuickTime functions used are General/StartMovie(), General/StopMovie(), General/IsMovieDone() and General/MoviesTask(). General/MoviesTask is used to keep playing the movie.

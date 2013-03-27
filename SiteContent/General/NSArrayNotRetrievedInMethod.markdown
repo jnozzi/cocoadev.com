@@ -1,19 +1,19 @@
-In a controller class, I have an instance variable [[NSMutableArray]]'' [[TagVektorH]].
+In a controller class, I have an instance variable General/NSMutableArray* General/TagVektorH.
 It is set with 
-[[TagVektorH]]=[[[NSMutableArray]] arrayWithCapacity:0]
+General/TagVektorH=General/[NSMutableArray arrayWithCapacity:0]
 later it is filled with
-<code>
+    
 (for (z=0;z<max;z++)
 {
-[[NSNumber]]'' tempTag =[[[NSNumber]] numberWithInt:(10''z)];
-[[[TagVektorH]] addObject:tempTag];
+General/NSNumber* tempTag =General/[NSNumber numberWithInt:(10*z)];
+General/[TagVektorH addObject:tempTag];
 }
-</code>
+
 
 Everything works fine, and I can see the array in the debugger with the right number of objects.
 Accesing the array just now works fine and it returns his objects correctly.
 But going to the array later within an action method of th controller class ends up in  a BAD_ACCESS after a call like
-[[[TagVektorH]] count];
+General/[TagVektorH count];
 Looking at the array in this moment shows in the summary column:
  {int)[$VAR count]} objects
 instead of the number of objects as before. 
@@ -23,4 +23,4 @@ Ruedi Heimlicher
 
 ----
 
-Are you sure you're [[RetainingAndReleasing]] correctly? <code>+arrayWithCapacity:</code> returns an [[AutoRelease]]''''d object, so you'll have to retain it.
+Are you sure you're General/RetainingAndReleasing correctly?     +arrayWithCapacity: returns an General/AutoRelease**'d object, so you'll have to retain it.

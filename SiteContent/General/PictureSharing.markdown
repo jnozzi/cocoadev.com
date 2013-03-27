@@ -1,1 +1,1 @@
-Describe [[PictureSharing]] here.
+Describe General/PictureSharing here.

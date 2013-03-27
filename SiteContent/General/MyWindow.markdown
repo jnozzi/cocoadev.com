@@ -1,1 +1,1 @@
-Describe [[MyWindow]] here.
+Describe General/MyWindow here.

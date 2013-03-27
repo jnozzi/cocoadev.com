@@ -25,17 +25,17 @@ http://developer.apple.com/technotes/tn2005/tn2083.html#SECAGENTS
 
 ----
 
-Hey to my knowledge, the only difference between an agent and a daemon is that the agent allows some basic GUI stuff. In that case it would be better to go with a Daemon I think as I don't need a GUI. My application is trying to grab information on the light sensor and the SMS. I want to send out a message to everyone who registers every minute. So in this case I want it to run before someone logs in so any background apps can access this data. I can head the daemon route, but I am then stuck as to how to best register and relay the information to apps that want it. I was thinking they could register for a [[NSDistributedNotification]], but this is expensive I think.... 
+Hey to my knowledge, the only difference between an agent and a daemon is that the agent allows some basic GUI stuff. In that case it would be better to go with a Daemon I think as I don't need a GUI. My application is trying to grab information on the light sensor and the SMS. I want to send out a message to everyone who registers every minute. So in this case I want it to run before someone logs in so any background apps can access this data. I can head the daemon route, but I am then stuck as to how to best register and relay the information to apps that want it. I was thinking they could register for a General/NSDistributedNotification, but this is expensive I think.... 
 Based upon this utility I plan to develop some apps for personal use and some other things and would like a nice little .. daemon or background app that handles the dirty work for me.
 
 Any ideas? I think I have the communication problem whether I go cocoa, daemon, or anything. Is there no better way to transmit data?
 Thanks
 
-EDIT: I guess in hindsight...  a second question is.. what is a fast efficient way for applications to communicate with another application periodically (say every second) for updates. Should I use the [[NSDistrubutedNotifcationCenter]], or should I implement my own observer like mechanism?
+EDIT: I guess in hindsight...  a second question is.. what is a fast efficient way for applications to communicate with another application periodically (say every second) for updates. Should I use the General/NSDistrubutedNotifcationCenter, or should I implement my own observer like mechanism?
 
 ----
 
-You may find [[NSDistributedNotification]] fails to work properly since it uses mach ports and if you writing a daemon that'll be a problem. The tech note above covers the communications issues you'll face if you writing a daemon (in contrast to an agent). If you do write a deamon just use a UNIX domain socket to talk to your user land apps. Again, read the technote above for all the ugly details.
+You may find General/NSDistributedNotification fails to work properly since it uses mach ports and if you writing a daemon that'll be a problem. The tech note above covers the communications issues you'll face if you writing a daemon (in contrast to an agent). If you do write a deamon just use a UNIX domain socket to talk to your user land apps. Again, read the technote above for all the ugly details.
 
 
 

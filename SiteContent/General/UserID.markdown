@@ -1,5 +1,5 @@
-also see [[NSFileOwnerAccountID]]
+also see General/NSFileOwnerAccountID
 
-<code>int userid = getuid();</code>
+    int userid = getuid();
 
 man 2 getuid

@@ -1,17 +1,17 @@
 
 
 
-[[DustinBachrach]] is the founder of [[OpenSoft]] Development: http://www.dbachrach.com/opensoft
+General/DustinBachrach is the founder of General/OpenSoft Development: http://www.dbachrach.com/opensoft
 
 He has designed:
 
 Todos: http://www.dbachrach.com/opensoft/index.php?page=Todos
 
-[[DiggUpdate]]: http://www.dbachrach.com/opensoft/index.php?page=[[DiggUpdate]]
+General/DiggUpdate: http://www.dbachrach.com/opensoft/index.php?page=General/DiggUpdate
 
-[[QuickTunes]]: http://www.dbachrach.com/opensoft/index.php?page=[[QuickTunes]]
+General/QuickTunes: http://www.dbachrach.com/opensoft/index.php?page=General/QuickTunes
 
-10 Seconds With Tyler Durden: http://www.dbachrach.com/opensoft/index.php?page=[[TylerDurden]]
+10 Seconds With Tyler Durden: http://www.dbachrach.com/opensoft/index.php?page=General/TylerDurden
 
 
 

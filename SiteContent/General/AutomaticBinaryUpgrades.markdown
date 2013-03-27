@@ -12,7 +12,7 @@ You could design your app with a central, small, core that never gets updated, a
 
 ----
 
-Q2:  Thanks for your suggestions.  In fact, I do expect my app to be small ''and'' have very few updates, so downloading the whole new version I don't think will be a problem.  But I still don't see how to do this.  How can a Cocoa program replace itself?  I specifically don't want the user to have to, say, drag the new version to the Applications folder and click yes to "Do you want to replace?"
+Q2:  Thanks for your suggestions.  In fact, I do expect my app to be small *and* have very few updates, so downloading the whole new version I don't think will be a problem.  But I still don't see how to do this.  How can a Cocoa program replace itself?  I specifically don't want the user to have to, say, drag the new version to the Applications folder and click yes to "Do you want to replace?"
 
 This plug-in/bundle idea intrigues me.  If it turns out that my app is getting pretty big, I may want to look into this.  Are there standard ways to write Cocoa app plug-ins/bundles?
 
@@ -33,11 +33,11 @@ If you handle the download in the background  and its small, the downtime for th
 
 ----
 
-Okay, so what mechanism do you use to "change all the files"?  Do you just do a shell call using [[NSTask]] with maybe a "sudo" and an "rm" in there?
+Okay, so what mechanism do you use to "change all the files"?  Do you just do a shell call using General/NSTask with maybe a "sudo" and an "rm" in there?
 
 ----
 
-Nope. [[NSFileManager]] calls.
+Nope. General/NSFileManager calls.
 
 ----
 
@@ -46,15 +46,15 @@ Hmmm... it probably wouldn't be too difficult to also archive the old files and 
 ----
 It would be pretty nifty if someone out there wrote a framework and helper app that did all of this so the Cocoa community could have a semi-standard way of self-updating their applications without the user needing to really do much work. We all know how lazy users can be. ;-)
 
-- [[MarcWeil]]
+- General/MarcWeil
 
 ----
 
-Although implementing this would NOT be a guarantee that all users of the app will be running the current version, as the OP wanted. Users without internet access, users behind restrictive firewalls, paranoid users who keep a tcp stack sniffing utility open at all times and when an app connects to do something post 'THIS IS SPYWARE! IT CONNECTED WITHOUT ASKING ME!' on [[VersionTracker]], and so on.
+Although implementing this would NOT be a guarantee that all users of the app will be running the current version, as the OP wanted. Users without internet access, users behind restrictive firewalls, paranoid users who keep a tcp stack sniffing utility open at all times and when an app connects to do something post 'THIS IS SPYWARE! IT CONNECTED WITHOUT ASKING ME!' on General/VersionTracker, and so on.
 
 ----
 
-I'm the OP, and let me explain a bit.  You are right it's not a guarantee in that sense...but I think it will satisfy my needs: The reason I am so concerned about my users always having the newest version is because the client interacts with my sever.  And so, if I make a change, I don't want to have to worry about sending misunderstood messages between client and server.  So, true I can't assume that the user always has a working internet connection, but I can make it so that ''when they do connect'', I will not let them truly communicate with the server until they've upgraded.
+I'm the OP, and let me explain a bit.  You are right it's not a guarantee in that sense...but I think it will satisfy my needs: The reason I am so concerned about my users always having the newest version is because the client interacts with my sever.  And so, if I make a change, I don't want to have to worry about sending misunderstood messages between client and server.  So, true I can't assume that the user always has a working internet connection, but I can make it so that *when they do connect*, I will not let them truly communicate with the server until they've upgraded.
 
 ----
 
@@ -62,7 +62,7 @@ The Sparkle Framework at http://www.andymatuschak.org/pages/sparkle can perform 
 
 ----
 
-But it requires 10.4 and adds almost 2MB of bloat... '''If it does the job, and well, you can't call it bloat!!'''
+But it requires 10.4 and adds almost 2MB of bloat... **If it does the job, and well, you can't call it bloat!!**
 
 ----
 

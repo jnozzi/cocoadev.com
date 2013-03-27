@@ -1,1 +1,1 @@
-Describe [[NSTableViews]] here.
+Describe General/NSTableViews here.

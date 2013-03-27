@@ -1,13 +1,13 @@
 How do I work out why a selector is not being recognized?
 
-from the [[OmniGroup]] mailing list:
+from the General/OmniGroup mailing list:
 
 > Can anyone tell me on what object I'm not implementing setStringValue?
 >
-> 2001-12-17 21:10:38.000 [[ISBattleTerminal]][1473] ''''' -[[[NSCFType]] 
+> 2001-12-17 21:10:38.000 General/ISBattleTerminal[1473] *** -General/[NSCFType 
 > setStringValue:]: selector not recognized
 
-Put a breakpoint on -[[[NSObject]] doesNotRecognizeSelector:] and you'll 
+Put a breakpoint on -General/[NSObject doesNotRecognizeSelector:] and you'll 
 find out.
 
 Larry Campbell           

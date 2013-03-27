@@ -1,1 +1,1 @@
-See [[GeneralCertificateOfSecondaryEducation]].
+See General/GeneralCertificateOfSecondaryEducation.

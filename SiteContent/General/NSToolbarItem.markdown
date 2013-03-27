@@ -17,7 +17,7 @@ Initialize the toolbar item with an identifier which is a development language s
 
 ----
 ----
-'''Setters and Getters'''
+**Setters and Getters**
 
 
 Use this to set the item's label that appears in the toolbar.  The implication here is that the toolbar will draw the label for the item, and a redraw is triggered by this method.  The toolbar is in charge of the label area.  It is fine for an item to have no toolbar label.  Also, developers should make sure the length of the label is appropriate and not too long.
@@ -33,33 +33,33 @@ The menu form of a toolbar item's purpose is twofold.  First, when the window is
 ----
 
 ----
-'''Validation of the items'''
+**Validation of the items**
 
 
 Typically you should not invoke this method.  This method is called by its toolbar during validation.  Standard items validate themselves by sending the validateToolbarItem: validate message to the current validator.  Since items with custom views don't always have meaningful target/actions, they do nothing.  So for your custom items it may be useful to override this method and invent your own validation.
 ----
 ----
-'''Controlling Duplicates In The Toolbar'''
+**Controlling Duplicates In The Toolbar**
 
-<code>- (BOOL)allowsDuplicatesInToolbar;</code>
+    - (BOOL)allowsDuplicatesInToolbar;
 Return YES to allow dragging duplicate items into the toolbar.  By default, if an item with the same identifier is already in the toolbar, dragging in will act as a move of this item.  However, for instance, the separator item drags in as a duplicate always.
 ----
 ----
-'''interface [[NSObject]] ([[NSToolbarItemValidation]])'''
+**interface General/NSObject (General/NSToolbarItemValidation)**
 
 
 NSToolbarItemValidation extends the standard validation idea by introducing this new method which is sent to validators for each visible standard NSToolbarItem with a valid target/action pair. 
-Note: This message is sent from [[NSToolbarItem]]'s validate method, howevever validate will not send this message for items that have custom views. Moreover, it is sent to the item's target, NOT to the toolbar delegate.
+Note: This message is sent from General/NSToolbarItem's validate method, howevever validate will not send this message for items that have custom views. Moreover, it is sent to the item's target, NOT to the toolbar delegate.
 ----
 ----
-'''Standard Toolbar Item Identifiers:'''
+**Standard Toolbar Item Identifiers:**
 
 
 ----
 
-''Please do not remove the contents of an entire page to post a new question''
+*Please do not remove the contents of an entire page to post a new question*
 
-How do I disable the items in [[NSToolbar]] during runtime? 
+How do I disable the items in General/NSToolbar during runtime? 
 
 ----
 Implement this method:

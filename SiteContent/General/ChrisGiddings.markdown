@@ -4,7 +4,7 @@ I am the President of Ripple Software, LLC.  I WAS also an Apple Computer retail
 
 
 
-[[ChrisGiddings]]
+General/ChrisGiddings
 
 
 President, Ripple
@@ -17,10 +17,10 @@ http://www.ripplesw.net/
 [To explain this situation I will do so here and now, and it's a sad story, both for my own foresight and for the way things sometimes work.]
 
 
-[Our old web address (ripplesw dot com) was registered by our host with them as every contact.  Consequently the registrar they used refused to recognize any of our staff as the rightful holders of the domain name when our host went bankrupt and folded.  We made every attempt, even contacting [[InterNIC]] to have the issues resolved, but nothing came of it, it all fell on deaf ears.  We have registered ripplesw.net now and are living happily there.  The domain name expired, but I had a lapse of judgment in assuming I didn't need to put a hold on it for when it went back on the market, and lo, it's now a porn website.  Sad really, but I only have myself to blame.]
+[Our old web address (ripplesw dot com) was registered by our host with them as every contact.  Consequently the registrar they used refused to recognize any of our staff as the rightful holders of the domain name when our host went bankrupt and folded.  We made every attempt, even contacting General/InterNIC to have the issues resolved, but nothing came of it, it all fell on deaf ears.  We have registered ripplesw.net now and are living happily there.  The domain name expired, but I had a lapse of judgment in assuming I didn't need to put a hold on it for when it went back on the market, and lo, it's now a porn website.  Sad really, but I only have myself to blame.]
 
 
-''''' Update '''''
+*** Update ***
 www.ripplesw.com is now back under my ownership and forwards to the .net web address. :) I seem to continue to get a little traffic form this site. Awesome! Drop me a line or something! :)
 
 

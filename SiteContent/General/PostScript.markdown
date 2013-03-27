@@ -3,20 +3,20 @@ printing and imaging technology from Adobe.
 
 http://www.adobe.com/products/postscript/main.html
 
-The original [[NeXT]] system used [[DisplayPostScript]] (DPS), providing all of the power of [[PostScript]], but for interactive display.  In the [[OldDays]], you could upload [[PostScript]] code into the DPS system.
+The original General/NeXT system used General/DisplayPostScript (DPS), providing all of the power of General/PostScript, but for interactive display.  In the General/OldDays, you could upload General/PostScript code into the DPS system.
 
 ----
 
-[[PostScript]] Applications
+General/PostScript Applications
 
-[[HyperJeff]]'s OS X Links, search for [[PostScript]]
+General/HyperJeff's OS X Links, search for General/PostScript
 http://osx.hyperjeff.net/Apps/
 
-[[GhostScript]]
+General/GhostScript
 http://www.cs.wisc.edu/~ghost/
 
-[[MacGhostView]]
+General/MacGhostView
 http://www.kiffe.com/macghostview.html
 
-[[TeXShop]] (uses [[GhostScript]])
+General/TeXShop (uses General/GhostScript)
 http://www.uoregon.edu/~koch/texshop/texshop.html

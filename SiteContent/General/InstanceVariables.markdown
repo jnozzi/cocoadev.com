@@ -1,1 +1,1 @@
-See [[InstanceVariable]].
+See General/InstanceVariable.

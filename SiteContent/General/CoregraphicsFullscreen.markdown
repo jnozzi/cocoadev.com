@@ -1,10 +1,10 @@
 
 
 I need help on howto make an cocoa application go into fullscreen with coregraphics like the iphoto slideshow or dvd player fullscreen
-Because i tried [[CocoaDev]] Central's tutorial but it did not work for me
+Because i tried General/CocoaDev Central's tutorial but it did not work for me
 
 I can help you, but one question.... Panther or Tiger?
--- [[JasonTerhorst]]
+-- General/JasonTerhorst
 
 
 Tiger 
@@ -13,23 +13,23 @@ How do I implement it into an application. And how can i make a app go into full
 
 ----
 
-I haven't done anything at all with Core Graphics, but if you are displaying what you need in an [[NSView]] or any other object within a window, then you can turn off the menu bar and dock and make your window the size of the screen and set it at screen saver level.
+I haven't done anything at all with Core Graphics, but if you are displaying what you need in an General/NSView or any other object within a window, then you can turn off the menu bar and dock and make your window the size of the screen and set it at screen saver level.
 
 This is a snippet of code from Apple's example for custom windows. Place this in your window subclass.
 
-<code>
-//In Interface Builder we set [[CustomWindow]] to be the class for our window, so our own initializer is called here.
-- (id)initWithContentRect:([[NSRect]])contentRect styleMask:(unsigned int)aStyle backing:([[NSBackingStoreType]])bufferingType defer:(BOOL)flag {
+    
+//In Interface Builder we set General/CustomWindow to be the class for our window, so our own initializer is called here.
+- (id)initWithContentRect:(General/NSRect)contentRect styleMask:(unsigned int)aStyle backing:(General/NSBackingStoreType)bufferingType defer:(BOOL)flag {
 
-    //Call [[NSWindow]]'s version of this function, but pass in the all-important value of [[NSBorderlessWindowMask]]
+    //Call General/NSWindow's version of this function, but pass in the all-important value of General/NSBorderlessWindowMask
     //for the styleMask so that the window doesn't have a title bar
-    [[NSWindow]]'' result = [super initWithContentRect:contentRect styleMask:[[NSBorderlessWindowMask]] backing:[[NSBackingStoreBuffered]] defer:NO];
+    General/NSWindow* result = [super initWithContentRect:contentRect styleMask:General/NSBorderlessWindowMask backing:General/NSBackingStoreBuffered defer:NO];
     //Set the background color to clear so that (along with the setOpaque call below) we can see through the parts
     //of the window that we're not drawing into
-    [result setBackgroundColor: [[[NSColor]] clearColor]];
+    [result setBackgroundColor: General/[NSColor clearColor]];
     //This next line pulls the window up to the front on top of other system windows.  This is how the Clock app behaves;
     //generally you wouldn't do this for windows unless you really wanted them to float above everything.
-    [result setLevel: [[NSScreenSaverWindowLevel]]];
+    [result setLevel: General/NSScreenSaverWindowLevel];
     //Let's start with no transparency for all drawing into the window
     [result setAlphaValue:1.0];
     //but let's turn off opaqueness so that we can see through the parts of the window that we're not drawing into
@@ -37,38 +37,38 @@ This is a snippet of code from Apple's example for custom windows. Place this in
     //and while we're at it, make sure the window has no shadow
     [result setHasShadow:NO];
     
-    //This is my portion ''''''''''''    
-    [[NSRect]]  screenFrame = [[[[NSScreen]] mainScreen] frame];
+    //This is my portion ********    
+    General/NSRect  screenFrame = General/[[NSScreen mainScreen] frame];
     [self setFrame:screenFrame display:YES];
-    //End of my portion ''''''''''''
+    //End of my portion ********
     
     return result;
 }
 
-// Custom windows that use the [[NSBorderlessWindowMask]] can't become key by default.  Therefore, controls in such windows
+// Custom windows that use the General/NSBorderlessWindowMask can't become key by default.  Therefore, controls in such windows
 // won't ever be enabled by default.  Thus, we override this method to change that.
 - (BOOL) canBecomeKeyWindow
 {
     return YES;
 }
-</code>
+
 
 That should give you a large window of which has no background, title bar or border. Covers your whole screen and cannot be moved. All objects that are placed within this window by IB will be visible. Turning off the menu bar is not entirely necessary at this point, because the window when drawn will be over the menu bar. But it might be a good idea to anyway to clean things up a bit and avoid conflictions.
 
-<code>
-[[[NSMenu]] setMenuBarVisible:NO];
-</code>
+    
+General/[NSMenu setMenuBarVisible:NO];
+
 
 If you would like to set the window to be a black sheet, rather than a totally transparent sheet then change
-<code>
-[result setBackgroundColor: [[[NSColor]] clearColor]];
+    
+[result setBackgroundColor: General/[NSColor clearColor]];
 [result setOpaque:NO];
-</code>
+
 to
-<code>
-[result setBackgroundColor: [[[NSColor]] blackColor]];
+    
+[result setBackgroundColor: General/[NSColor blackColor]];
 [result setOpaque:YES];
-</code>
+
 
 Of course, the object that you will be using for your core graphics, should be covering the whole window - so borders and background colours will hopefully handled by that object instead. Unfortunately I don't know how the core graphics works.
 
@@ -76,72 +76,72 @@ Hope this helps!
 Cheers, Louis
 ----
 
-As an alternative to setting the window level very high, I ''highly'' recommend keeping the window at a normal level, and calling this:
-<code>
-[[SetSystemUIMode]](kUIModeAllHidden, 0); // to enter fullscreen
-[[SetSystemUIMode]](kUIModeNormal, 0); // to exit fullscreen
-</code>
+As an alternative to setting the window level very high, I *highly* recommend keeping the window at a normal level, and calling this:
+    
+General/SetSystemUIMode(kUIModeAllHidden, 0); // to enter fullscreen
+General/SetSystemUIMode(kUIModeNormal, 0); // to exit fullscreen
+
 This will get rid of the Dock and the menu bar so that nothing is covering your window, but it has advantages. Namely, the user can still cmd-tab out of your application, and your app doesn't become terminally un-killable if it freezes. Bumping the window up to the screensaver window is high enough to cover the Force Quit window, as well as the debugger window, so when you write a bug it can be quite the royal pain.
 ----
 Where exactly is this apple custom view demo? And how do you set up everything else? are there any tutorials for this... Because im new to Obj-c
 ----
 Good point about the screen saver level window. But that call doesn't hide status window level apps, it virtually does the same as the cocoa call:
-<code>
-[[[NSMenu]] setMenuBarVisible:NO];
-</code>
+    
+General/[NSMenu setMenuBarVisible:NO];
+
 Which kills the menu bar, and dock. So you could use either call, but you will have to set your window to something higher than the status level window, but not as high as the screen saver level window. Which is only one thing; pop up menu window level, which I don't know if writing a bug becomes another royal pain. But the force quit window does cover it! There should be another way rather than having hierarchal battles with window levels. None the less to use the alternate call you have to add the carbon framework into your header.
 The alternate call is a carbon call, so in the header you will have to add
-<code>
+    
 #import <Carbon/Carbon.h>
-</code>
+
 where you see
-<code>
+    
 #import <Cocoa/Cocoa.h>
-</code>
+
 To be able to use it without Xcode going Beep Beep rudely in your face :P
 
 So the header file of say appController would be like this:
-<code>
-/'' appController ''/
+    
+/* appController */
 
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
 
-@interface appController : [[NSObject]]
+@interface appController : General/NSObject
 {
 }
 @end
-</code>
+
 
 Then you can stick it anywhere in your method file. I would suggest in the action where you switch from windowed view to full screen. Or if its full screen from the start, then in
-<code>
+    
 - (void)awakeFromNib
-</code>
 
-BTW, the Apple Custom Window demo is here : http://developer.apple.com/samplecode/[[RoundTransparentWindow]]/[[RoundTransparentWindow]].zip
+
+BTW, the Apple Custom Window demo is here : http://developer.apple.com/samplecode/General/RoundTransparentWindow/General/RoundTransparentWindow.zip
 
 Isn't there anything in Core Graphics that could help you? There are plenty of full screen sample code thingo's at apple, here are some of them;
 http://developer.apple.com/samplecode/NSOpenGL_Fullscreen/NSOpenGL_Fullscreen.html
-http://developer.apple.com/samplecode/[[FullScreen]]/[[FullScreen]].html
+http://developer.apple.com/samplecode/General/FullScreen/General/FullScreen.html
 
 Good Luck!
 Louis
 ----
 
-Apple added some fancy stuff for window fade ins/fade outs/resizing/animation in Tiger, that was my reason for asking the OS version above. Try [[NSAnimation]] for that, but the other major thing I was going to suggest has already been answered. I'm a bit slow. -- [[JasonTerhorst]]
+Apple added some fancy stuff for window fade ins/fade outs/resizing/animation in Tiger, that was my reason for asking the OS version above. Try General/NSAnimation for that, but the other major thing I was going to suggest has already been answered. I'm a bit slow. -- General/JasonTerhorst
 
 ----
 
 Beware, as it seems Apple added the 
 
-- ([[NSRect]])constrainFrameRect:([[NSRect]])frameRect toScreen:([[NSScreen]] '')aScreen
+- (General/NSRect)constrainFrameRect:(General/NSRect)frameRect toScreen:(General/NSScreen *)aScreen
 
-method to the [[NSWindow]] class. I think it wasn't there before (can anybody verify this?). It automatically constraints the size and position of your [[NSWindow]] to the screen, so you can't move your window outside of it. You have to subclass [[NSWindow]] to overload the method.
--- [[ThomasSempf]]
+method to the General/NSWindow class. I think it wasn't there before (can anybody verify this?). It automatically constraints the size and position of your General/NSWindow to the screen, so you can't move your window outside of it. You have to subclass General/NSWindow to overload the method.
+-- General/ThomasSempf
 
-I've seen something like that for a while now. I remember trying to use it before, and then I ended up not using it, but can't remember why. But I don't know of anyone that uses it, and it's not set to do anything unless you send it something, so it shouldn't pose a problem for this exercise. Key word: "shouldn't", because it's possible that something funky and unpredictable could still happen. -- [[JasonTerhorst]]
+I've seen something like that for a while now. I remember trying to use it before, and then I ended up not using it, but can't remember why. But I don't know of anyone that uses it, and it's not set to do anything unless you send it something, so it shouldn't pose a problem for this exercise. Key word: "shouldn't", because it's possible that something funky and unpredictable could still happen. -- General/JasonTerhorst
 
-Well, under the standard implementation of [[NSWindow]] in Tiger the method is called automatically! So all windows are constrained to screen parameters, at least the top border is always inside the screen. -- [[ThomasSempf]]
+Well, under the standard implementation of General/NSWindow in Tiger the method is called automatically! So all windows are constrained to screen parameters, at least the top border is always inside the screen. -- General/ThomasSempf
 
 ----
-It is also possible to capture one or all of the displays - meaning only your app gets to draw to the screen (actually the other apps draw too but their drawing is hidden by a window that looks like the desktop). See the [[CGDisplay]] documentation for more info.
+It is also possible to capture one or all of the displays - meaning only your app gets to draw to the screen (actually the other apps draw too but their drawing is hidden by a window that looks like the desktop). See the General/CGDisplay documentation for more info.

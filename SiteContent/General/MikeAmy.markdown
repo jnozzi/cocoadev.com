@@ -5,10 +5,10 @@ michaelamy at ekit dot com
 
 
 
-'''Links:'''
+**Links:**
 
 Projects
-*[[CCDMessageDistributer]] - extensible higher order messaging.
+*General/CCDMessageDistributer - extensible higher order messaging.
 
 Places
 http://www.thisisjersey.com

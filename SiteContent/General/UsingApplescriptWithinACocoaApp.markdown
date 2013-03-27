@@ -4,6 +4,6 @@ Thanks
 
 ----
 
-Hmm, I don't think I understand.  However, it sounds possibly useful to convert your master applescript to an applescript studio app and use the '''call method''' command to trigger these dialogs.
+Hmm, I don't think I understand.  However, it sounds possibly useful to convert your master applescript to an applescript studio app and use the **call method** command to trigger these dialogs.
 
--[[KenFerry]]
+-General/KenFerry

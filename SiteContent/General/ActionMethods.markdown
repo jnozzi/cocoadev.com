@@ -1,1 +1,1 @@
-See [[ActionMethod]].
+See General/ActionMethod.

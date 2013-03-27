@@ -1,13 +1,13 @@
-'''[[OriginalClass]]''' -part of [[AspectCocoa]]
+**General/OriginalClass** -part of General/AspectCocoa
 
-Here we define an example Class as a reference.. as an example of a Class that we might want to apply some Aspects too.  Other pages related to [[AspectCocoa]] will make reference to this Class.
+Here we define an example Class as a reference.. as an example of a Class that we might want to apply some Aspects too.  Other pages related to General/AspectCocoa will make reference to this Class.
 ----
 
-<code>
+    
 #import <Foundation/Foundation.h>
 
 
-@interface [[OriginalClass]] : [[NSObject]] {
+@interface General/OriginalClass : General/NSObject {
 
 }
 
@@ -17,67 +17,67 @@ Here we define an example Class as a reference.. as an example of a Class that w
 
 - (void)c;
 
-- (void)d:([[NSString]] '')string;
+- (void)d:(General/NSString *)string;
 
-- (id)e:([[NSString]] '')string;
+- (id)e:(General/NSString *)string;
 
-- (id)f:([[NSString]] '')a f:([[NSString]] '')b;
+- (id)f:(General/NSString *)a f:(General/NSString *)b;
 
-- (id)g:(id '')thing;
+- (id)g:(id *)thing;
 
 
 @end
-</code>
+
 
 ----
 
-<code>
-#import "[[OriginalClass]].h"
+    
+#import "General/OriginalClass.h"
 
-@implementation [[OriginalClass]]
+@implementation General/OriginalClass
 
 
 - (id)a
 {
-    [[NSLog]](@"a");
+    General/NSLog(@"a");
     return self;
 }
 
 - (void)b
 {
-    [[NSLog]](@"b");
+    General/NSLog(@"b");
 }
 
 - (void)c
 {
-    [[NSLog]](@"c");
+    General/NSLog(@"c");
 }
 
-- (void)d:([[NSString]] '')string
+- (void)d:(General/NSString *)string
 {
-    [[NSLog]](@"%@ d:", string);
+    General/NSLog(@"%@ d:", string);
 }
 
-- (id)e:([[NSString]] '')string
+- (id)e:(General/NSString *)string
 {
-    [[NSLog]](@"%@ e:", string);
+    General/NSLog(@"%@ e:", string);
     return self;
 }
 
-- (id)f:([[NSString]] '')a f:([[NSString]] '')b
+- (id)f:(General/NSString *)a f:(General/NSString *)b
 {
-    [[NSLog]](@"%@ %@ f:f:", a, b);
+    General/NSLog(@"%@ %@ f:f:", a, b);
     return self;
 }
 
-- (id)g:(id '')thing
+- (id)g:(id *)thing
 {
-    [[NSLog]](@"%@ g:", thing);
+    General/NSLog(@"%@ g:", thing);
     return self;
 }
 
 @end
 
-</code>
 
-'''Shouldn't -g:'s parameter be (id) rather than (id '')? Otherwise it's a C-array of objects... and you're using it like it's a single object. So either change (id '') to (id) or change thing in the [[NSLog]] statement to ''thing.'''
+
+**Shouldn't -g:'s parameter be (id) rather than (id *)? Otherwise it's a C-array of objects... and you're using it like it's a single object. So either change (id *) to (id) or change thing in the General/NSLog statement to *thing.**

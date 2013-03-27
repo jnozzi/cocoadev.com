@@ -1,17 +1,17 @@
 
 
-''Additional discussion in [[WindowsWithoutDecoration]] and [[SetMovableByWindowBackground]]''
+*Additional discussion in General/WindowsWithoutDecoration and General/SetMovableByWindowBackground*
 
-You can create windows that don't contain a title bar or other adornment by overriding <code>[[[NSWindow]] initWithContentRect:styleMask:backing:defer:]</code> as follows:
+You can create windows that don't contain a title bar or other adornment by overriding     General/[NSWindow initWithContentRect:styleMask:backing:defer:] as follows:
 
 <source lang="objc">
-- (id) initWithContentRect: ([[NSRect]]) contentRect
+- (id) initWithContentRect: (General/NSRect) contentRect
                  styleMask: (unsigned int) aStyle
-                   backing: ([[NSBackingStoreType]]) bufferingType
+                   backing: (General/NSBackingStoreType) bufferingType
                      defer: (BOOL) flag
 {
     if (self = [super initWithContentRect: contentRect
-                                styleMask: [[NSBorderlessWindowMask]]
+                                styleMask: General/NSBorderlessWindowMask
                                   backing: bufferingType
                                     defer: flag])
 
@@ -23,11 +23,11 @@ You can create windows that don't contain a title bar or other adornment by over
 }
 </source>
 
-If you are creating the window programmatically (i.e., not through [[InterfaceBuilder]]), just pass 
+If you are creating the window programmatically (i.e., not through General/InterfaceBuilder), just pass 
 
-<code>[[NSBorderlessWindowMask]]</code> in the <code>styleMask</code> argument to the normal <code>[[NSWindow]]</code> init function. Note that <code>[[NSBorderlessWindowMask]]</code> has a value of zero, so it cannot be combined with other style mask values.
+    General/NSBorderlessWindowMask in the     styleMask argument to the normal     General/NSWindow init function. Note that     General/NSBorderlessWindowMask has a value of zero, so it cannot be combined with other style mask values.
 
-Note that [[TrackingRectangles]] and [[CursorRects]] do not work in borderless windows unless you also override <code>-canBecomeKeyWindow</code> as follows:
+Note that General/TrackingRectangles and General/CursorRects do not work in borderless windows unless you also override     -canBecomeKeyWindow as follows:
 
 <source lang="objc">
 - (BOOL) canBecomeKeyWindow
@@ -38,45 +38,45 @@ Note that [[TrackingRectangles]] and [[CursorRects]] do not work in borderless w
 
 There is some sample code for a borderless window at:
 
-http://developer.apple.com/samplecode/[[RoundTransparentWindow]]/index.html
+http://developer.apple.com/samplecode/General/RoundTransparentWindow/index.html
 
-Use an [[NSBox]] as your or other custom view that you lay out yourself (don't have the background image, or use a fake background image of your choosing) you can create a fake window. Then set the window's content view to it. Drag and drop might be a problem, but you can work that part out.
+Use an General/NSBox as your or other custom view that you lay out yourself (don't have the background image, or use a fake background image of your choosing) you can create a fake window. Then set the window's content view to it. Drag and drop might be a problem, but you can work that part out.
 
 ----
 
-It seems that if I use [[NSBorderlessWindowMask]] to make a window, then my window behaves strangely with respect to becoming and resigning as key window.   
+It seems that if I use General/NSBorderlessWindowMask to make a window, then my window behaves strangely with respect to becoming and resigning as key window.   
 
-I know that it's documented that if you use this window mask, then your window will never become key by default, so Apple's sample code ([[RoundTransparentWindow]]) recommends overriding -canBecomeKeyWindow to always return YES.  This allows the window to become key, and it does receive windowDidBecomeKey messages, but when I click the window to make it key, other normal windows don't change their appearance to the non-key look.  Also, my custom window does not automatically darken its shadow like normal windows do when they become key.  
+I know that it's documented that if you use this window mask, then your window will never become key by default, so Apple's sample code (General/RoundTransparentWindow) recommends overriding -canBecomeKeyWindow to always return YES.  This allows the window to become key, and it does receive windowDidBecomeKey messages, but when I click the window to make it key, other normal windows don't change their appearance to the non-key look.  Also, my custom window does not automatically darken its shadow like normal windows do when they become key.  
 
 If I remove that window flag, then everything works as expected.
 
 Is anyone else seeing this?  Does anyone know if there's a way around these issues?
 
--[[KenAspeslagh]]
+-General/KenAspeslagh
 
 ----
 
 I can verify this behavior. The only workaround I can think of is to draw your own drop shadow. Or, alternatively, file a bug in radar.
 
--[[RobertChin]]
+-General/RobertChin
 
 ----
 
-'''A Simple Example'''
+**A Simple Example**
 
-[[DXFloatingWindow]].m (Subclass of [[NSWindow]])
+General/DXFloatingWindow.m (Subclass of General/NSWindow)
 
 <source lang="objc">
-#import "[[DXFloatingWindow]].h"
+#import "General/DXFloatingWindow.h"
 
-@implementation [[DXFloatingWindow]]
+@implementation General/DXFloatingWindow
 
-- (id)initWithContentRect:([[NSRect]])contentRect styleMask:(unsigned int)aStyle backing:([[NSBackingStoreType]])bufferingType defer:(BOOL)flag
+- (id)initWithContentRect:(General/NSRect)contentRect styleMask:(unsigned int)aStyle backing:(General/NSBackingStoreType)bufferingType defer:(BOOL)flag
 {
-	self = [super initWithContentRect:contentRect styleMask:[[NSBorderlessWindowMask]] backing:[[NSBackingStoreBuffered]] defer:YES];
+	self = [super initWithContentRect:contentRect styleMask:General/NSBorderlessWindowMask backing:General/NSBackingStoreBuffered defer:YES];
 	[self setMovableByWindowBackground:YES];
-	[self setBackgroundColor:[[[NSColor]] clearColor]];
-	[self setLevel:[[NSNormalWindowLevel]]];
+	[self setBackgroundColor:General/[NSColor clearColor]];
+	[self setLevel:General/NSNormalWindowLevel];
 	[self setOpaque:NO];
 	[self setHasShadow:YES];
 	
@@ -85,26 +85,26 @@ I can verify this behavior. The only workaround I can think of is to draw your o
 
 </source>
 
-[[DXQuadroJanela]] (Subclass of [[NSView]])
+General/DXQuadroJanela (Subclass of General/NSView)
 
 <source lang="objc">
-#import "[[DXQuadroJanela]].h"
+#import "General/DXQuadroJanela.h"
 
-[[NSImage]] ''fundoDX;
+General/NSImage *fundoDX;
 
-@implementation [[DXQuadroJanela]]
+@implementation General/DXQuadroJanela
 
 - (void)awakeFromNib
 {	
-	fundoDX = [[[[NSImage]] alloc] initWithContentsOfFile:[[[[NSBundle]] mainBundle] pathForImageResource:@"fundoJanela.tif"]];
-	[fundoDX setSize:[[NSMakeSize]](325.0,81.0)];
+	fundoDX = General/[[NSImage alloc] initWithContentsOfFile:General/[[NSBundle mainBundle] pathForImageResource:@"fundoJanela.tif"]];
+	[fundoDX setSize:General/NSMakeSize(325.0,81.0)];
 	
 	[self setNeedsDisplay:YES];
 }
 
-- (void)drawRect:([[NSRect]])aRect
+- (void)drawRect:(General/NSRect)aRect
 {
-	[fundoDX compositeToPoint:[[NSZeroPoint]] fromRect:[self frame] operation:[[NSCompositeCopy]]];
+	[fundoDX compositeToPoint:General/NSZeroPoint fromRect:[self frame] operation:General/NSCompositeCopy];
 }
 
 - (BOOL)movableByWindowBackground
@@ -119,17 +119,17 @@ I can verify this behavior. The only workaround I can think of is to draw your o
 
 </source>
 
-[[DXCampoTexto]] (Subclass of [[NSTextField]])
+General/DXCampoTexto (Subclass of General/NSTextField)
 <source lang="objc">
-#import "[[DXCampoTexto]].h"
+#import "General/DXCampoTexto.h"
 
-@implementation [[DXCampoTexto]]
+@implementation General/DXCampoTexto
 
 - (void)awakeFromNib
 {
-	[self setBackgroundColor:[[[NSColor]] whiteColor]];
+	[self setBackgroundColor:General/[NSColor whiteColor]];
 	[self setBordered:YES];
-	[[self window] performSelector:@selector(makeFirstResponder:) withObject:self afterDelay:0.0];
+	General/self window] performSelector:@selector(makeFirstResponder:) withObject:self afterDelay:0.0];
 }
 
 - (BOOL)isEditable
@@ -146,82 +146,82 @@ I can verify this behavior. The only workaround I can think of is to draw your o
 
 </source>
 
-Basically, [[DXFloatingWindow]] is the main application window (borderlerss, floating window), and [[DXQuadroJanela]] is a view inside it that takes all of the space. It loads an image that is used as the window background (Tiff Image with Alpha Channel @ 32bits). [[DXCampoTexto]] is a custom [[NSTextField]] that is placed on top of [[DXQuadroJanela]] in the window nib.
-What happens is that I can see the window, drag it around, and the background image is perfect. But any controls i add to the window (custom or not) refuse to let me select their content (in this case the text/string of [[NSTextField]]).
+Basically, [[DXFloatingWindow is the main application window (borderlerss, floating window), and General/DXQuadroJanela is a view inside it that takes all of the space. It loads an image that is used as the window background (Tiff Image with Alpha Channel @ 32bits). General/DXCampoTexto is a custom General/NSTextField that is placed on top of General/DXQuadroJanela in the window nib.
+What happens is that I can see the window, drag it around, and the background image is perfect. But any controls i add to the window (custom or not) refuse to let me select their content (in this case the text/string of General/NSTextField).
 
-[[FernandoLucasSantos]]
+General/FernandoLucasSantos
 
 ----
 
-''' 
+** 
 
-Note that borderless windows don't become key by default. Override - (BOOL)canBecomeKeyWindow method in [[DXFloatingWindow]].m 
+Note that borderless windows don't become key by default. Override - (BOOL)canBecomeKeyWindow method in General/DXFloatingWindow.m 
 to make it work correctly.
 
-'''
+**
 
 ----
 
 Ok i'm tearing my hair out over this one:
 
-I have a borderless window that I created by subclassing [[NSWindow]] and specifying [[NSBorderlessWindowMask]] - all works fine. I overrode the (BOOL)canBecomeKeyWindow method and have checked that my window can indeed become key by checking with the canBecomeKey method. I then created a delegate method for - (BOOL)windowDidResignKey:(id)sender which effectivly fades the window out of existence with a timer and setting the opacity when the user clicks out of the window. The problem that I have is that no matter what I try when I try to fade the window back in and set it to be the key window I cannot get the window to become key. It becomes the key window fine when I click on it. I check this by creating a - (BOOL)windowDidBecomeKey:(id)sender delegate. I've tried makeKeyAndOrderFront: and makeKeyWindow and every combination I can think of.
+I have a borderless window that I created by subclassing General/NSWindow and specifying General/NSBorderlessWindowMask - all works fine. I overrode the (BOOL)canBecomeKeyWindow method and have checked that my window can indeed become key by checking with the canBecomeKey method. I then created a delegate method for - (BOOL)windowDidResignKey:(id)sender which effectivly fades the window out of existence with a timer and setting the opacity when the user clicks out of the window. The problem that I have is that no matter what I try when I try to fade the window back in and set it to be the key window I cannot get the window to become key. It becomes the key window fine when I click on it. I check this by creating a - (BOOL)windowDidBecomeKey:(id)sender delegate. I've tried makeKeyAndOrderFront: and makeKeyWindow and every combination I can think of.
 
 I know that there are Key Window issuse with borderless windows and I may be missing something here but it must be possible - has anyone got any pointers for me?
 
-''I had serious problems with status-level windows being loaded from a bundle for a long time. It was nothing like your situation, except that the windows would not become key until I clicked on them. Just recently, however, I changed them all to use an [[NSWindowController]] for each one, and the problem went away. Immediately. So if I were you, the first thing I would try is to use an [[NSWindowController]] (or subclass) to both load the nibs and serve as the File's Owner. Also, only put one window in each nib, and make sure it's connected to the window controller's <code>window</code> outlet. Finally, you'll have to use <code>showWindow:</code> instead of <code>makeKeyAndOrderFront:</code> from now on. Good luck! --[[JediKnil]]''
+*I had serious problems with status-level windows being loaded from a bundle for a long time. It was nothing like your situation, except that the windows would not become key until I clicked on them. Just recently, however, I changed them all to use an General/NSWindowController for each one, and the problem went away. Immediately. So if I were you, the first thing I would try is to use an General/NSWindowController (or subclass) to both load the nibs and serve as the File's Owner. Also, only put one window in each nib, and make sure it's connected to the window controller's     window outlet. Finally, you'll have to use     showWindow: instead of     makeKeyAndOrderFront: from now on. Good luck! --General/JediKnil*
 
 Thanks for that, i'll give it a try - I actually started to think about doing it that way myself this morning.
 
 ----
 
-''' 
+** 
 
-Also note, borderless windows may not contain standard toolbars ([[NSToolbar]]).
+Also note, borderless windows may not contain standard toolbars (General/NSToolbar).
 
-'''
+**
 
 ----
 
 When calling the setToolbar: method, you'll get an error similar to:
 
-''
-ERROR: Can't have a toolbar in a window with <[[NSNextStepFrame]]: 0x341020> as it's borderview
-''
+*
+ERROR: Can't have a toolbar in a window with <General/NSNextStepFrame: 0x341020> as it's borderview
+*
 
 ----
 
-'''You can do it IB by making it a custom class...'''
+**You can do it IB by making it a custom class...**
 
-[[TransparentWindow]].h
+General/TransparentWindow.h
 <source lang="objc">
 
-@interface [[TransparentWindow]] : [[NSWindow]]
+@interface General/TransparentWindow : General/NSWindow
 {}
 
--(id) initWithContentRect: ([[NSRect]]) contentRect 
+-(id) initWithContentRect: (General/NSRect) contentRect 
 			styleMask: (unsigned int) styleMask 
-			   backing: ([[NSBackingStoreType]]) backingType 
+			   backing: (General/NSBackingStoreType) backingType 
 				defer: (BOOL) flag;
 
 
 @end
 </source>
-[[TransparentWindow]].m
+General/TransparentWindow.m
 <source lang="objc">
 
-@implementation [[TransparentWindow]]
+@implementation General/TransparentWindow
 
--(id) initWithContentRect: ([[NSRect]]) contentRect 
+-(id) initWithContentRect: (General/NSRect) contentRect 
 				styleMask: (unsigned int) styleMask 
-				  backing: ([[NSBackingStoreType]]) backingType 
+				  backing: (General/NSBackingStoreType) backingType 
 					defer: (BOOL) flag {
 
 if ((self = [super initWithContentRect:contentRect
-		                           styleMask: [[NSBorderlessWindowMask]] 
+		                           styleMask: General/NSBorderlessWindowMask 
                                               backing:backingType
 		                                   defer: flag])) {
-		/'' May want to setup some other options, 
-                    like transparent background or something ''/
+		/* May want to setup some other options, 
+                    like transparent background or something */
 	}
 
 	return self;
@@ -235,25 +235,25 @@ Is the window set to be 'visible at launch time' in the nib?
 
 ----
 
-Is it possible to disable the title bar (the bar with the minimize/restore and zoom buttons) on an [[NSWindow]]?  I dont mean just to disable the buttons, but  to remove the whole bar from the window.
+Is it possible to disable the title bar (the bar with the minimize/restore and zoom buttons) on an General/NSWindow?  I dont mean just to disable the buttons, but  to remove the whole bar from the window.
 
 ----
 
-[[NSBorderlessWindowMask]] is definitely the way to go. You can't specify that in Interface Builder, though, so you have to create the window programmatically. In most cases, you still want to use IB to arrange the contents of the window, so create an empty view in your nib and put everything in there. Create the window in your code using 
-<code>[[[NSWindow]] initWithContentRect:styleMask:backing:defer:]</code>
-and specifying NSB''''orderlessWindowMask in the styleMask parameter. Load the nib (if you haven't already) and send the window setContentView to set the view in the nib as the content view of the window.
+General/NSBorderlessWindowMask is definitely the way to go. You can't specify that in Interface Builder, though, so you have to create the window programmatically. In most cases, you still want to use IB to arrange the contents of the window, so create an empty view in your nib and put everything in there. Create the window in your code using 
+    General/[NSWindow initWithContentRect:styleMask:backing:defer:]
+and specifying NSB**'orderlessWindowMask in the styleMask parameter. Load the nib (if you haven't already) and send the window setContentView to set the view in the nib as the content view of the window.
 
 Or you could just make a subclass. Just don't get carried away with putting stuff in the subclass. Much of what you'd put in there probably belongs in the window's delegate or controller.
 
 ----
 
-How can I add resizing to a window set to NSB''''orderlessWindowMask?
+How can I add resizing to a window set to NSB**'orderlessWindowMask?
 
 ----
 
 One thing you may need to do is learn how to do online research. I saw this tantalizing fragment in a google search, but the mamasam page would not load (Google does give you a lot of useless crap, and then saves information about you into the bargain!):
 
-''In an [[NSWindow]] subclass you can listen for the mouse ... bottom right corner then listen for dragging - resize the window ... in my app I have a borderless window, as ...''
+*In an General/NSWindow subclass you can listen for the mouse ... bottom right corner then listen for dragging - resize the window ... in my app I have a borderless window, as ...*
 
 long gone, i guess
 
@@ -265,7 +265,7 @@ I have seen that, and other similar references, unfortunately I need a bit more 
 
 ----
 
-I have absolutely no idea what level of expertise you are starting with, so I am afraid I cannot recommend much in the way of practice projects to ease your way into this. What have you scrounged up in the way of information on "subclassing [[NSWindow]]"? Quite frankly, I don't think anyone is going to jot down the code for you here. They might try to sell you some code, but you wouldn't know if it was ''their'' code or code that somebody gave them for free, if you catch my drift.
+I have absolutely no idea what level of expertise you are starting with, so I am afraid I cannot recommend much in the way of practice projects to ease your way into this. What have you scrounged up in the way of information on "subclassing General/NSWindow"? Quite frankly, I don't think anyone is going to jot down the code for you here. They might try to sell you some code, but you wouldn't know if it was *their* code or code that somebody gave them for free, if you catch my drift.
 
 ----
 
@@ -277,23 +277,23 @@ One of the problems I was having was that I wanted to implement this in my custo
 
 ----
 
-I had a little trouble getting a resizeable and moveable borderless view to work recently... i botched up my screen/window coordinates when trying to pin the top left hand corner. For posterity, here's my code in my [[NSWindow]] subclass to achieve this:
+I had a little trouble getting a resizeable and moveable borderless view to work recently... i botched up my screen/window coordinates when trying to pin the top left hand corner. For posterity, here's my code in my General/NSWindow subclass to achieve this:
 
 <source lang="objc">
 
 //Once the user starts dragging the mouse, we move the window with it. We do this because the window has no title
 //bar for the user to drag (so we have to implement dragging ourselves)
-- (void)mouseDragged:([[NSEvent]] '')theEvent
+- (void)mouseDragged:(General/NSEvent *)theEvent
 {
-	[[NSPoint]] currentLocation;
-	[[NSPoint]] newOrigin;
-	[[NSRect]]  screenFrame = [[[[NSScreen]] mainScreen] frame];
-	[[NSRect]]  windowFrame = [self frame];
+	General/NSPoint currentLocation;
+	General/NSPoint newOrigin;
+	General/NSRect  screenFrame = General/[[NSScreen mainScreen] frame];
+	General/NSRect  windowFrame = [self frame];
 	
 	// 1. Is the Event a resize drag (test for bottom right-hand corner)?
 	if (mouseDownType == PALMOUSEDRAGSHOULDRESIZE) {
 		// i. Remember the current downpoint
-		[[NSPoint]] currentLocationOnScreen = [self convertBaseToScreen:[self mouseLocationOutsideOfEventStream]];
+		General/NSPoint currentLocationOnScreen = [self convertBaseToScreen:[self mouseLocationOutsideOfEventStream]];
 		currentLocation = [theEvent locationInWindow];
 		
 		// ii. Adjust the frame size accordingly
@@ -326,7 +326,7 @@ I had a little trouble getting a resizeable and moveable borderless view to work
 
 //We start tracking the a drag operation here when the user first clicks the mouse,
 //to establish the initial location.
-- (void)mouseDown:([[NSEvent]] '')theEvent
+- (void)mouseDown:(General/NSEvent *)theEvent
 {    
     //grab the mouse location in global coordinates
 	initialLocation = [theEvent locationInWindow];
@@ -350,20 +350,20 @@ I had a little trouble getting a resizeable and moveable borderless view to work
 There's a flaw in the code directly above.  I've been unable to locate it.  Perhaps someone better acquainted with it could give it a try.
 
 I found the problem, or at least possible problem.  Instead of using...
-<code>
+    
 mouseDownType = PALMOUSEDRAGSHOULDRESIZE;
-</code>
+
 
 just use a BOOL 
 
-<code>
+    
 mouseDragShouldResize = YES
-</code>
+
 
 You can just set that and the feature works much better.
 
 ----
-Does anyone know of any sample code that resizes a window with the same behavior as a standard [[NSWindow]]? (IE. the resizing isn't jumpy, and the left origin actually stays anchored to the left)?
+Does anyone know of any sample code that resizes a window with the same behavior as a standard General/NSWindow? (IE. the resizing isn't jumpy, and the left origin actually stays anchored to the left)?
 
 ++ Falco
 
@@ -375,7 +375,7 @@ Ok, in my sleep deprivation i didn't realize that my window was set to be moveab
 Here's a revised edition of above's code. I found it not to react to mouseDown, but to mouseUp, so I edited it accordingly. Also, you can't resize the image smaller than (323,288). You can change that to your liking.
 
 <source lang="objc">
-- (void)mouseDragged:([[NSEvent]] '')theEvent
+- (void)mouseDragged:(General/NSEvent *)theEvent
 {
 	if (shouldRedoInitials)
 	{
@@ -393,7 +393,7 @@ Here's a revised edition of above's code. I found it not to react to mouseDown, 
 			shouldDrag = YES;
 		}
 		
-		screenFrame = [[[[NSScreen]] mainScreen] frame];
+		screenFrame = General/[[NSScreen mainScreen] frame];
 		windowFrame = [self frame];
 		
 		minY = windowFrame.origin.y+(windowFrame.size.height-288);
@@ -404,7 +404,7 @@ Here's a revised edition of above's code. I found it not to react to mouseDown, 
 	if (shouldDrag == FALSE)
 	{
 		// i. Remember the current downpoint
-		[[NSPoint]] currentLocationOnScreen = [self convertBaseToScreen:[self mouseLocationOutsideOfEventStream]];
+		General/NSPoint currentLocationOnScreen = [self convertBaseToScreen:[self mouseLocationOutsideOfEventStream]];
 		currentLocation = [theEvent locationInWindow];
 		
 		// ii. Adjust the frame size accordingly
@@ -450,7 +450,7 @@ Here's a revised edition of above's code. I found it not to react to mouseDown, 
 	}
 }
 
-- (void)mouseUp:([[NSEvent]] '')theEvent
+- (void)mouseUp:(General/NSEvent *)theEvent
 {
 	shouldRedoInitials = YES;
 }
@@ -460,13 +460,13 @@ What you'll need to declare in your .h file:
 <source lang="objc">
 BOOL shouldDrag;
 BOOL shouldRedoInitials;
-[[NSPoint]] initialLocation;
-[[NSPoint]] initialLocationOnScreen;
-[[NSRect]] initialFrame;
-[[NSPoint]] currentLocation;
-[[NSPoint]] newOrigin;
-[[NSRect]] screenFrame;
-[[NSRect]] windowFrame;
+General/NSPoint initialLocation;
+General/NSPoint initialLocationOnScreen;
+General/NSRect initialFrame;
+General/NSPoint currentLocation;
+General/NSPoint newOrigin;
+General/NSRect screenFrame;
+General/NSRect windowFrame;
 float minY;
 </source>
 kind regards,
@@ -478,9 +478,9 @@ Is there any way to close a borderless window? I suppose that would be good for 
 The answer to that question seems kind of obvious. "Close" just means to remove from the screen. If you couldn't close them then they would stay visible forever.
 
 ----
-Of course there is.  Just wire up an [[NSButton]] to the window's orderOut: action.
+Of course there is.  Just wire up an General/NSButton to the window's orderOut: action.
 ----
-I feel really stupid. I didn't remeber that that action existed.  And you can't use the close or performClose: actions because there is no title bar in an [[NSBorderlessWindowMask]].  I mean I was referring to making the window disappear while running the application.
+I feel really stupid. I didn't remeber that that action existed.  And you can't use the close or performClose: actions because there is no title bar in an General/NSBorderlessWindowMask.  I mean I was referring to making the window disappear while running the application.
 
 I have changed the above code a little to cater only move (if somebody want to implement the move only).  
 http://the-useful.blogspot.com/2011/08/draggable-transparent-nswindow.html

@@ -1,1 +1,1 @@
-See [[ReFactoring]].
+See General/ReFactoring.

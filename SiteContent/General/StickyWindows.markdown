@@ -1,1 +1,1 @@
-See [[MagneticWindows]].
+See General/MagneticWindows.

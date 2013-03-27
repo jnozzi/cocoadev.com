@@ -1,1 +1,1 @@
-See [[CocoaWrapperAroundConsoleApplication]] and the main [[NSTask]] page.
+See General/CocoaWrapperAroundConsoleApplication and the main General/NSTask page.

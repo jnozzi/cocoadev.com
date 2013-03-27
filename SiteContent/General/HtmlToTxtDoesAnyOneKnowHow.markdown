@@ -5,15 +5,15 @@ Thanks..
 
 ----
 
-how about <code>- ([[NSString]] '')stringByReplacingPercentEscapesUsingEncoding:([[NSStringEncoding]])encoding</code>
+how about     - (General/NSString *)stringByReplacingPercentEscapesUsingEncoding:(General/NSStringEncoding)encoding
 
-''Replaces all percent escapes with the matching characters as determined by the given encoding encoding.''
+*Replaces all percent escapes with the matching characters as determined by the given encoding encoding.*
 
-[http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSString]].html#//apple_ref/doc/uid/20000154/BCIECHFE]
+[http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSString.html#//apple_ref/doc/uid/20000154/BCIECHFE]
 
 That should get you at least half the way there.
 
-Also see [http://cocoa.karelia.com/Foundation_Categories/[[NSString]]/_Flatten__a_string_.m]
+Also see [http://cocoa.karelia.com/Foundation_Categories/General/NSString/_Flatten__a_string_.m]
 
 ----
 

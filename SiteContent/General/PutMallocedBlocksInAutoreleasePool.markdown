@@ -1,21 +1,21 @@
 In the process of wrapping a Cocoa gui around a C++ library, I've come across a case where it would be
-convenient (or so I think) to stash some dynamically allocated memory (from malloc) on to the [[AutoreleasePool]].
-I've written the following code which I hoped would make this happen, but it seems to leak anyways. (i.e. the [[MemoryHolder]]
+convenient (or so I think) to stash some dynamically allocated memory (from malloc) on to the General/AutoreleasePool.
+I've written the following code which I hoped would make this happen, but it seems to leak anyways. (i.e. the General/MemoryHolder
 is never deallocated, and hence the ptr is never free'd either).
 
 Does anyone know why?  Is there a better way to do what I'm trying to do?
 
-<code>
-@interface [[MemoryHolder]] : [[NSObject]]
+    
+@interface General/MemoryHolder : General/NSObject
 {
-    void ''ptr;
+    void *ptr;
 }
 
-- (id)initWithPointer:(void '')ptr;
+- (id)initWithPointer:(void *)ptr;
 @end
 
-@implementation [[MemoryHolder]]
-- (id)initWithPointer:(void '')_ptr
+@implementation General/MemoryHolder
+- (id)initWithPointer:(void *)_ptr
 {
     if (self = [super init]) {
         ptr = _ptr;
@@ -28,33 +28,33 @@ Does anyone know why?  Is there a better way to do what I'm trying to do?
     free(ptr);
 }
 @end
-</code>
+
 
 The usage is something like this:
 
-<code>
-char ''contrivedExample() {
-    char ''buf = (char '') malloc(10);
-    [[[[[MemoryHolder]] alloc] initWithPointer:buf] autorelease];
+    
+char *contrivedExample() {
+    char *buf = (char *) malloc(10);
+    General/[[[MemoryHolder alloc] initWithPointer:buf] autorelease];
     return buf;
 }
-</code>
 
 
--- [[WendellHicken]]
+
+-- General/WendellHicken
 
 ----
 
 try this
 
-<code>
+    
 - (void)dealloc
 {
     free(ptr);
     [super dealloc];
 }
 @end
-</code>
+
 
 ----
 
@@ -62,7 +62,7 @@ D'oh!  Yep, that fixed it.  Thanks!
 
 ----
 
-There's no need to write a custom class for this. [[NSData]] can do it, by using <code>-initWithBytesNoCopy:length:freeWhenDone:</code>.
+There's no need to write a custom class for this. General/NSData can do it, by using     -initWithBytesNoCopy:length:freeWhenDone:.
 
 ----
 
@@ -73,9 +73,9 @@ Becuase operator new() and operator delete() use malloc/free.
 
 ----
 You certainly do not want to do:
-<code>
-char'' buf = new char[32];
+    
+char* buf = new char[32];
 ...
 free(buf);
-</code>
+
 This is wrong on so many levels...

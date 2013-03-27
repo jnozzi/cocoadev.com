@@ -1,27 +1,27 @@
-see also [[DetermineSizeOfDrawnString]]
+see also General/DetermineSizeOfDrawnString
 
-I came up with some code I thought was neat and thought I'd share...  I have a custom [[NSView]] subclass that I want to display a string (myText) that as I resize the view (say by anchoring it to the window and changing window size) tries to make sure the text stays vertically/horizontally centered and all visible by scaling the font down if the view gets too small... I'll just show the over-ridden drawRect: method (to change default/minimum font sizes adjust fontMax/fontMin)... This code has been reformatted for your viewing pleasure ;P (update August 2, 2004.. adjustment for a single word that is longer than the width of the view to help it scale without wrapping.
+I came up with some code I thought was neat and thought I'd share...  I have a custom General/NSView subclass that I want to display a string (myText) that as I resize the view (say by anchoring it to the window and changing window size) tries to make sure the text stays vertically/horizontally centered and all visible by scaling the font down if the view gets too small... I'll just show the over-ridden drawRect: method (to change default/minimum font sizes adjust fontMax/fontMin)... This code has been reformatted for your viewing pleasure ;P (update August 2, 2004.. adjustment for a single word that is longer than the width of the view to help it scale without wrapping.
 
-<code>
--(void)drawRect:([[NSRect]])rect
+    
+-(void)drawRect:(General/NSRect)rect
 {
 	[self lockFocus];
 	
-	[[NSMutableDictionary]]'' textAttributes =  
-		[[[NSMutableDictionary]] dictionary];
-	[[NSMutableParagraphStyle]]'' paraStyle = 
-		[[[[NSMutableParagraphStyle]] alloc] init];
-	[paraStyle setAlignment:[[NSCenterTextAlignment]]];
-	[textAttributes setObject:paraStyle forKey:[[NSParagraphStyleAttributeName]]];
+	General/NSMutableDictionary* textAttributes =  
+		General/[NSMutableDictionary dictionary];
+	General/NSMutableParagraphStyle* paraStyle = 
+		General/[[NSMutableParagraphStyle alloc] init];
+	[paraStyle setAlignment:General/NSCenterTextAlignment];
+	[textAttributes setObject:paraStyle forKey:General/NSParagraphStyleAttributeName];
 
 	float fontMax = 16.0, fontMin = 8.0;
 	
 	// calculate font size
-	[[NSFont]]'' theFont = [[[NSFont]] userFontOfSize:fontMax];
+	General/NSFont* theFont = General/[NSFont userFontOfSize:fontMax];
 	while( 
 		// the font size won't fit in the view 
 		// and font size is more than the minimum
-			  ([[text componentsSeperatedByString:@" "] count] == 1) 
+			  (General/text componentsSeperatedByString:@" "] count] == 1) 
 			  ? (
 			   [font widthOfString:text]
 			   > rect.size.width
@@ -31,33 +31,33 @@ I came up with some code I thought was neat and thought I'd share...  I have a c
 				  / rect.size.width
 			      + 1.0
 				 ) 
-			     '' [font defaultLineHeightForFont] 
+			     * [font defaultLineHeightForFont] 
 			     > rect.size.height
 			   )
 			   && [font pointSize] > fontMin
 		) {
 		// step the font size down
-		theFont = [[[NSFont]] userFontOfSize:([theFont pointSize]-1)];
+		theFont = [[[NSFont userFontOfSize:([theFont pointSize]-1)];
 	}
 	
 	// set text rectangle
-	[textAttributes setObject:theFont forKey:[[NSFontAttributeName]]];
-	[[NSSize]] textSize = [myText sizeWithAttributes:textAttributes];
-	[[NSPoint]] textOffset;
-	[[NSRect]] textRect;
+	[textAttributes setObject:theFont forKey:General/NSFontAttributeName];
+	General/NSSize textSize = [myText sizeWithAttributes:textAttributes];
+	General/NSPoint textOffset;
+	General/NSRect textRect;
 
 	if(textSize.width > rect.size.width) {
 		// it's too wide to fit on one line
 		
 		textSize.width = rect.size.width;
 		
-		textSize.height = // chars/(chars/line) '' line height + one line
+		textSize.height = // chars/(chars/line) * line height + one line
 			(float)[myText length] 
 			/ (
 				rect.size.width 
 				/ [theFont boundingRectForFont].size.width
 			)
-			'' [theFont defaultLineHeightForFont] 
+			* [theFont defaultLineHeightForFont] 
 			+ [theFont pointSize];		
 	}		
 
@@ -78,4 +78,3 @@ I came up with some code I thought was neat and thought I'd share...  I have a c
 }
 
 
-</code>

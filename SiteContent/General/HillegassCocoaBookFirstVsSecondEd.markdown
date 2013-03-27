@@ -1,6 +1,6 @@
 
 
-I have gone thru the first edition of Aaron Hillegass' "Cocoa Programming for Mac OS X."  It has been a help - but I think I slightly prefer some of the more recent O'Reilly books.  The new Second Edition is out and it's [[XCode]]-centric.  Does it have compelling content changes to prompt a purchase of it, as I've got the first?  
+I have gone thru the first edition of Aaron Hillegass' "Cocoa Programming for Mac OS X."  It has been a help - but I think I slightly prefer some of the more recent O'Reilly books.  The new Second Edition is out and it's General/XCode-centric.  Does it have compelling content changes to prompt a purchase of it, as I've got the first?  
 
 Thanks.
 
@@ -36,11 +36,11 @@ The second edition is much cleaner. It is, as you note, Xcode-centric, and conta
 the material in the first edition, you'll get its level of "Xcode-centric" detail on your own.
 
 What I can't understand is why most of these authors, who obviously possess deep knowledge of the frameworks and the object-oriented
-paradigms that they incorporate, end up failing to summarize clearly their dozen or so organizing principles. Hillegass, given his additional years of [[NextStep]] experience is doubly guilty of this. If he succeeds relative to his colleagues, it is because the rest are so bad.
+paradigms that they incorporate, end up failing to summarize clearly their dozen or so organizing principles. Hillegass, given his additional years of General/NextStep experience is doubly guilty of this. If he succeeds relative to his colleagues, it is because the rest are so bad.
 
-I think [[BookCocoaRecipes]] is an example that wasn't "rushed". But it goes for everything-and-the-kitchen-sink in the API, and totally obfuscates the organizing details. Somewhat obsessive-compulsive in its approach.
+I think General/BookCocoaRecipes is an example that wasn't "rushed". But it goes for everything-and-the-kitchen-sink in the API, and totally obfuscates the organizing details. Somewhat obsessive-compulsive in its approach.
 
-If you're looking for a follow-up reference, check out the reviews of [[BookCocoaProgramming]]
+If you're looking for a follow-up reference, check out the reviews of General/BookCocoaProgramming
 _____________________________________________________________________________________
 
 I had some previous programming experience but no knowledge of Cocoa or Objective-C. I thought the first edition of Hillegass was absolutely outstanding.  If you really understood (almost) everything in the first edition, you don't need the second edition.  Otherwise, I think you would find it very worthwhile.
@@ -53,16 +53,16 @@ You also have to understand the pedigree of the book.  It's a set of course note
 
 Here's an example of what I mean:
 
-On page 134 of the first edition, Hillegass spends a page discussing <code>- (void) encodeConditionalObject: (id) object</code>, a topic
+On page 134 of the first edition, Hillegass spends a page discussing     - (void) encodeConditionalObject: (id) object, a topic
 essentially useless to the beginner, who could much better benefit from an overview of how Cocoa's object-oriented idioms
 all tend to reflect the same underlying approach.
 
-Given that pp.61 - 64 contain a mainly-pointless introduction to [[NSCalendarDate]], Hillegass has already wasted five or six pages
+Given that pp.61 - 64 contain a mainly-pointless introduction to General/NSCalendarDate, Hillegass has already wasted five or six pages
 that ultimately deprive the student of some key expertise.
 This isn't mere catering to the LCD:  The book contains other examples of this kind of wool-gathering.
 Did the book's reviewers suggest he try harder? No one will ever know. Did anyone even review it?
 
-The second edition eliminates the essentially useless repetition of interface design at the beginning of the [[RaiseMan]] example in
+The second edition eliminates the essentially useless repetition of interface design at the beginning of the General/RaiseMan example in
 Chapter 4 (some 20 pages) in order to make room for the Xcode-centric material like Bindings. But you get the idea.
 
 My comments about old boots and marlins stand. Why give the reader something he can REALLY use?
@@ -109,18 +109,18 @@ blakespot,
 
 ----
  
-What I like to see about those books ( all of them ), is a part two approach. The second edition ( read 'part two' ) should be a book with new, updated and deeper things . The first didn't have bindings and [[CoreData]]? The second should. The first did have basic about memory principles, the second deeper. People will buy both of them and people who did buy the first will have more satifaction when they buy the second.
+What I like to see about those books ( all of them ), is a part two approach. The second edition ( read 'part two' ) should be a book with new, updated and deeper things . The first didn't have bindings and General/CoreData? The second should. The first did have basic about memory principles, the second deeper. People will buy both of them and people who did buy the first will have more satifaction when they buy the second.
 
 ----
 
-The problem with that approach is availability of the first edition.  When the second edition of a book comes out, the first has either sold out or gone out of print.  It's not possible for someone to buy the first to go along with the second.  At least in the case of the Hillegass book, it covers some of the same territory as the first, but that territory is radically changed due to changes in Xcode and due to bindings (for fun, compare the two versions of Raise Man).  the second edition also has other goodies like applescript and an intro to [[OpenGL]].  That's what makes it worthwhile to get the second edition.
+The problem with that approach is availability of the first edition.  When the second edition of a book comes out, the first has either sold out or gone out of print.  It's not possible for someone to buy the first to go along with the second.  At least in the case of the Hillegass book, it covers some of the same territory as the first, but that territory is radically changed due to changes in Xcode and due to bindings (for fun, compare the two versions of Raise Man).  the second edition also has other goodies like applescript and an intro to General/OpenGL.  That's what makes it worthwhile to get the second edition.
 
 ----
 
 The economics of publishing (and of development frameworks) mean that books about the frameworks become not-quite-current quite rapidly.
 That the first edition of Hillegass (or Building Cocoa Applications or Vermont Recipes for that matter) are still very useful references for the
 beginner is a testament to how solidly the frameworks are designed. The economics of publishing dictate that there will not BE a useful
-little pamphlet on [[CoreData]] (or on Bindings before it) sold at newstands for 4.95. There will never BE a book on socket programming for
+little pamphlet on General/CoreData (or on Bindings before it) sold at newstands for 4.95. There will never BE a book on socket programming for
 dummmies, because it is not a beginners' topic. And the non-beginners do not need a book enough to pay off the publisher.
 
 Not just programmers, but prospective authors too would benefit, if only the platform constituted a little more than low single-digit percentages 

@@ -1,15 +1,15 @@
-'''See [[CustomFieldEditor]] for working example code for setting a custom [[FieldEditor]].'''
+**See General/CustomFieldEditor for working example code for setting a custom General/FieldEditor.**
 
 ----
 
-I have a situation in my application where I want to modify a certain text field's drag-and-drop behavior. It works as a search field, so I want drags onto the field to replace the text, rather than appending to it. There is a custom [[NSTextField]] subclass which handles this when the text field is not selected, but when it is, I have to deal with the [[FieldEditor]]. I created a custom [[NSTextView]] subclass which implements the desired drag-and-drop behavior, but I'm having a hard time making it work. I tried code like this in my window's delegate:
-<code>
-- (id)windowWillReturnFieldEditor:([[NSWindow]] '')sender toObject:(id)anObject
+I have a situation in my application where I want to modify a certain text field's drag-and-drop behavior. It works as a search field, so I want drags onto the field to replace the text, rather than appending to it. There is a custom General/NSTextField subclass which handles this when the text field is not selected, but when it is, I have to deal with the General/FieldEditor. I created a custom General/NSTextView subclass which implements the desired drag-and-drop behavior, but I'm having a hard time making it work. I tried code like this in my window's delegate:
+    
+- (id)windowWillReturnFieldEditor:(General/NSWindow *)sender toObject:(id)anObject
 {
 	if(anObject == searchTextField)
 	{
-		[[DropReplacingTextView]] ''textView =
-			[[[[DropReplacingTextView]] alloc] init];
+		General/DropReplacingTextView *textView =
+			General/[[DropReplacingTextView alloc] init];
 		[textView setFieldEditor:YES];
 		[textView setDelegate:anObject];
 		return [textView autorelease];
@@ -17,37 +17,37 @@ I have a situation in my application where I want to modify a certain text field
 	else
 		return nil;
 }
-</code>
+
 It works, in that my custom text view is used as the field editor, but it doesn't work very well. Namely, there is no focus ring drawn, and my text view doesn't receive text changed notifications, which is important. In the meantime, I am using this really nasty hack:
-<code>
-- (id)windowWillReturnFieldEditor:([[NSWindow]] '')sender toObject:(id)anObject
+    
+- (id)windowWillReturnFieldEditor:(General/NSWindow *)sender toObject:(id)anObject
 {
-	[[NSTextView]] ''textView = [sender fieldEditor:YES forObject:self];
+	General/NSTextView *textView = [sender fieldEditor:YES forObject:self];
 	if(textView)
 	{
 		if(anObject == searchTextField)
-			textView->isa = [[[DropReplacingTextView]] class];
-		else if(textView->isa == [[[DropReplacingTextView]] class])
-			textView->isa = [[[NSTextView]] class];
+			textView->isa = General/[DropReplacingTextView class];
+		else if(textView->isa == General/[DropReplacingTextView class])
+			textView->isa = General/[NSTextView class];
 	}
 	return textView;
 }
-</code>
-It works perfectly, but for obvious reasons I'd prefer to use the first approach, if it can be made to work. Does anybody know exactly what steps must be taken to turn an [[NSTextView]] into a proper [[FieldEditor]]?
 
--- [[MikeAsh]]
+It works perfectly, but for obvious reasons I'd prefer to use the first approach, if it can be made to work. Does anybody know exactly what steps must be taken to turn an General/NSTextView into a proper General/FieldEditor?
 
-----
-
-I think your problem is you're creating a new autoreleased [[DropReplacingTextView]] each time the window asks for the field editor. Try doing it in <code>awakeFromNib</code> and keeping the instance around. This is how I'm doing it and I get a focus ring and notifications.
+-- General/MikeAsh
 
 ----
 
-Whoever you are, I owe you a beer. That was it, works perfectly now. It seems very strange, though. I guess the error was because the text view wasn't retained by anything, but wouldn't inserting it into the view hierarchy retain it? Oh well, that's all theoretical; hanging on to it instead of re-creating it fixed it. Thanks a lot! -- [[MikeAsh]]
+I think your problem is you're creating a new autoreleased General/DropReplacingTextView each time the window asks for the field editor. Try doing it in     awakeFromNib and keeping the instance around. This is how I'm doing it and I get a focus ring and notifications.
 
-''Another thank you, this post saved me hours of hair wrenching. - Charlie''
+----
 
-''Just thirding this as probably one of the least intuitive but most critical fixes in a while - thanks.  I only which I'd found this about 3 hours ago...
+Whoever you are, I owe you a beer. That was it, works perfectly now. It seems very strange, though. I guess the error was because the text view wasn't retained by anything, but wouldn't inserting it into the view hierarchy retain it? Oh well, that's all theoretical; hanging on to it instead of re-creating it fixed it. Thanks a lot! -- General/MikeAsh
+
+*Another thank you, this post saved me hours of hair wrenching. - Charlie*
+
+*Just thirding this as probably one of the least intuitive but most critical fixes in a while - thanks.  I only which I'd found this about 3 hours ago...
 
 ----
 
@@ -57,42 +57,42 @@ It makes sense, I guess - you're not really inserting something into the view hi
 
 Apple gives this example as to how to swap in a new field editor:
 
-<code>
+    
 
-- (id)windowWillReturnFieldEditor:([[NSWindow]] '')sender toObject:(id)anObject
+- (id)windowWillReturnFieldEditor:(General/NSWindow *)sender toObject:(id)anObject
 {
-    if ([object isKindOfClass:[[[NSTextField]] class]])
+    if ([object isKindOfClass:General/[NSTextField class]])
     {
-        return [[[[MYCustomFieldEditor]] alloc] init];
+        return General/[[MYCustomFieldEditor alloc] init];
     }
     return nil;
 }
 
-</code>
 
-But this in fact '''DOES NOT WORK'''!  Sure, it swaps in the new field editor, but its useless since changes don't register when using bindings in an [[NSTableView]].  Basically, you click on the cell, your custom field editor pops up, very nice, you hit return and... the original value of the cell come back!  Clicking away doesn't work either.  Now, I checked the default field editor and it is in fact an [[NSTextView]], so I tried simply this:
 
-<code>
+But this in fact **DOES NOT WORK**!  Sure, it swaps in the new field editor, but its useless since changes don't register when using bindings in an General/NSTableView.  Basically, you click on the cell, your custom field editor pops up, very nice, you hit return and... the original value of the cell come back!  Clicking away doesn't work either.  Now, I checked the default field editor and it is in fact an General/NSTextView, so I tried simply this:
 
-- (id)windowWillReturnFieldEditor:([[NSWindow]] '')sender toObject:(id)anObject
+    
+
+- (id)windowWillReturnFieldEditor:(General/NSWindow *)sender toObject:(id)anObject
 {
-    if ([object isKindOfClass:[[[NSTextField]] class]])
+    if ([object isKindOfClass:General/[NSTextField class]])
     {
-        return [[[[NSTextView]] alloc] initWithFrame: [[NSMakeRect]](...)];
+        return General/[[NSTextView alloc] initWithFrame: General/NSMakeRect(...)];
     }
     return nil;
 }
 
-</code>
+
 
 STILL doesn't work.  Now, I'm certain that the "missing link" takes place in [window fieldEditor: forObject:] since all I've touched is the windowWilLReturnFieldEditor toObject method, returnign the same class as the normla implementation would, and the system breaks.
 
 Does anyone know how to solve this?
 
--[[FranciscoTolmasky]]
+-General/FranciscoTolmasky
 
 ----
 
-see above discussion initiated by [[MikeAsh]]
+see above discussion initiated by General/MikeAsh
 
 I think one major problem in the code above is that you didn't call setFieldEditor:YES.  That probably explains your difficulties when users press return.

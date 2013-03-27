@@ -38,7 +38,7 @@ You're right - we only build stupid dumb applications here.
 ----
 While you're at it, why don't you try asking some Cocoa questions on the printing mailing list. No doubt you'll find out that's not the right forum to build a clever application either.
 
-Surprise! There are different places to talk about different things. This is [[CocoaDev]], not [[AnyRandomMacAPIDev]]. When you wander outside the bounds of Cocoa, you need to find a better place to talk about it.
+Surprise! There are different places to talk about different things. This is General/CocoaDev, not General/AnyRandomMacAPIDev. When you wander outside the bounds of Cocoa, you need to find a better place to talk about it.
 
 ----
 this problem is old :

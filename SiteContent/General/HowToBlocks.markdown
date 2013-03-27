@@ -1,1 +1,1 @@
-See [[ObjectiveCBlocks]].
+See General/ObjectiveCBlocks.

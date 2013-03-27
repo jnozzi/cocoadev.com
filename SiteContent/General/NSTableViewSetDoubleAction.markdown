@@ -4,7 +4,7 @@ Hopefully, I can get some help.  Basically, I'm having some trouble getting an a
 
 -Gumpan
 
-@interface is what you use to declare new classes. What you want is something like [myTable setDoubleAction:@selector(play:)] -- [[RobRix]]
+@interface is what you use to declare new classes. What you want is something like [myTable setDoubleAction:@selector(play:)] -- General/RobRix
 
 ----
 
@@ -18,8 +18,8 @@ Ted
 
 ----
 I'd just like to mention here (it seemed the most appropriate place) that this behavior has changed in Leopard.  Now, the doubleAction get's fired for editable cells too.  To get back the old behavoir, do something like:
-<code>
-- ([[IBAction]])doDoubleClick:(id)sender {
+    
+- (General/IBAction)doDoubleClick:(id)sender {
 	if([sender clickedRow] == -1){
               //your action for clicks on the column headers and empty space
 	}
@@ -27,5 +27,5 @@ I'd just like to mention here (it seemed the most appropriate place) that this b
 		[myTable editColumn:[sender clickedColumn] row:[sender clickedRow] withEvent:nil select:YES];
 	}
 }
-</code>
+
 .wch

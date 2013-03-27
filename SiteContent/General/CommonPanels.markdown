@@ -1,3 +1,3 @@
 
 
-[[CommonPanels]] contains [[ColorSync]] UI, Color Picker, Font Panel and NSL UI [[APIs]] for Carbon applications.
+General/CommonPanels contains General/ColorSync UI, Color Picker, Font Panel and NSL UI General/APIs for Carbon applications.

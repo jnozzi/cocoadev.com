@@ -5,8 +5,8 @@ Any sugestions ?
 
 ----
 
-Have you looked at [[QuickTime]] Streaming Server? (http://www.apple.com/quicktime/products/qtss/) It does things like MP3 and MP4 streaming over the Internet. It's bundled with Mac OS X Server. The open source version, Darwin Streaming Server (http://developer.apple.com/darwin/projects/streaming/) is available, and I'm not completely sure, but I think it's free. I can't seem to find any information about buying it, anyway.
+Have you looked at General/QuickTime Streaming Server? (http://www.apple.com/quicktime/products/qtss/) It does things like MP3 and MP4 streaming over the Internet. It's bundled with Mac OS X Server. The open source version, Darwin Streaming Server (http://developer.apple.com/darwin/projects/streaming/) is available, and I'm not completely sure, but I think it's free. I can't seem to find any information about buying it, anyway.
 
-There's also [[QuickTime]] Broadcaster for live encoding and streaming.
+There's also General/QuickTime Broadcaster for live encoding and streaming.
 
-([[JeffHarrell]])
+(General/JeffHarrell)

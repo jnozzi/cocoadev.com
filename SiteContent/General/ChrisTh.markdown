@@ -8,6 +8,6 @@ Former system software developer.
 
 Former technical documentation writer.
 
-Wrote May 2002 [[RubyCocoa]] article in DDJ.
+Wrote May 2002 General/RubyCocoa article in DDJ.
 
 chris@cjack.com

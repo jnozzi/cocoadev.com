@@ -3,4 +3,4 @@ malkia@mac.com
 http://homepage.mac.com/malkia
 
 newbie Objective C programmer.
-Learning [[AppKit]] through [[WebObjects]] 4.5 (on Windows), and through Mac OS X 10.3.9
+Learning General/AppKit through General/WebObjects 4.5 (on Windows), and through Mac OS X 10.3.9

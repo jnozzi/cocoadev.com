@@ -1,45 +1,45 @@
-This is a simple category on [[NSString]] to allow comparisons using the Soundex algorithm. This compares a string by the way it sounds, i.e. phonetically. It can be quite handy for suggesting alternative words for example, or doing fuzzy matches, book indexing, etc. [[GrahamCox]].
+This is a simple category on General/NSString to allow comparisons using the Soundex algorithm. This compares a string by the way it sounds, i.e. phonetically. It can be quite handy for suggesting alternative words for example, or doing fuzzy matches, book indexing, etc. General/GrahamCox.
 
-<code>
+    
 
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[NSString]] (Soundex)
+@interface General/NSString (Soundex)
 
-- ([[NSString]]'')	soundexString;
-- (BOOL)	soundsLikeString:([[NSString]]'') aString;
+- (General/NSString*)	soundexString;
+- (BOOL)	soundsLikeString:(General/NSString*) aString;
 
 
 @end
 
-#import "[[NSString]]+Soundex.h"
+#import "General/NSString+Soundex.h"
 
-@implementation [[NSString]] (Soundex)
+@implementation General/NSString (Soundex)
 
 
-static [[NSArray]]'' soundexCharSets = nil;
+static General/NSArray* soundexCharSets = nil;
 
 - (void)		initSoundex
 {
 	if( soundexCharSets == nil )
 	{
-		[[NSMutableArray]]'' cs = [[[NSMutableArray]] array];
-		[[NSCharacterSet]]'' charSet;
+		General/NSMutableArray* cs = General/[NSMutableArray array];
+		General/NSCharacterSet* charSet;
 		
-		charSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"aeiouhw"];
+		charSet = General/[NSCharacterSet characterSetWithCharactersInString:@"aeiouhw"];
 		[cs addObject:charSet];
-		charSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"bfpv"];
+		charSet = General/[NSCharacterSet characterSetWithCharactersInString:@"bfpv"];
 		[cs addObject:charSet];
-		charSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"cgjkqsxz"];
+		charSet = General/[NSCharacterSet characterSetWithCharactersInString:@"cgjkqsxz"];
 		[cs addObject:charSet];
-		charSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"dt"];
+		charSet = General/[NSCharacterSet characterSetWithCharactersInString:@"dt"];
 		[cs addObject:charSet];
-		charSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"l"];
+		charSet = General/[NSCharacterSet characterSetWithCharactersInString:@"l"];
 		[cs addObject:charSet];
-		charSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"mn"];
+		charSet = General/[NSCharacterSet characterSetWithCharactersInString:@"mn"];
 		[cs addObject:charSet];
-		charSet = [[[NSCharacterSet]] characterSetWithCharactersInString:@"r"];
+		charSet = General/[NSCharacterSet characterSetWithCharactersInString:@"r"];
 		[cs addObject:charSet];
 		
 		soundexCharSets = [cs retain];
@@ -47,24 +47,24 @@ static [[NSArray]]'' soundexCharSets = nil;
 }
 
 
-- ([[NSString]] '')	stringByRemovingCharactersInSet:([[NSCharacterSet]]'') charSet options:(unsigned) mask
+- (General/NSString *)	stringByRemovingCharactersInSet:(General/NSCharacterSet*) charSet options:(unsigned) mask
 {
-	[[NSRange]]				range;
-	[[NSMutableString]]''	newString = [[[NSMutableString]] string];
+	General/NSRange				range;
+	General/NSMutableString*	newString = General/[NSMutableString string];
 	unsigned			len = [self length];
 	
-	mask &= ~[[NSBackwardsSearch]];
-	range = [[NSMakeRange]] (0, len);
+	mask &= ~General/NSBackwardsSearch;
+	range = General/NSMakeRange (0, len);
 	while (range.length)
 	{
-		[[NSRange]] substringRange;
+		General/NSRange substringRange;
 		unsigned pos = range.location;
 		
 		range = [self rangeOfCharacterFromSet:charSet options:mask range:range];
-		if (range.location == [[NSNotFound]])
-			range = [[NSMakeRange]] (len, 0);
+		if (range.location == General/NSNotFound)
+			range = General/NSMakeRange (len, 0);
 		
-		substringRange = [[NSMakeRange]] (pos, range.location - pos);
+		substringRange = General/NSMakeRange (pos, range.location - pos);
 		[newString appendString:[self substringWithRange:substringRange]];
 		
 		range.location += range.length;
@@ -75,7 +75,7 @@ static [[NSArray]]'' soundexCharSets = nil;
 }
 
 
-- ([[NSString]] '')	stringByRemovingCharactersInSet:([[NSCharacterSet]]'') charSet
+- (General/NSString *)	stringByRemovingCharactersInSet:(General/NSCharacterSet*) charSet
 {
 	return [self stringByRemovingCharactersInSet:charSet options:0];
 }
@@ -86,7 +86,7 @@ static [[NSArray]]'' soundexCharSets = nil;
 	// returns the soundex mapping for the first character in the string. If the value returned is 0, the character should be discarded.
 	
 	unsigned		indx;
-	[[NSCharacterSet]]'' cs;
+	General/NSCharacterSet* cs;
 	
 	for( indx = 0; indx < [soundexCharSets count]; ++indx )
 	{
@@ -100,10 +100,10 @@ static [[NSArray]]'' soundexCharSets = nil;
 }
 
 
-- ([[NSString]]'')	soundexString
+- (General/NSString*)	soundexString
 {
 	// returns the Soundex representation of the string. 
-	/''
+	/*
 	 
 	 Replace consonants with digits as follows (but do not change the first letter):
 	 b, f, p, v => 1
@@ -116,17 +116,17 @@ static [[NSArray]]'' soundexCharSets = nil;
 	 Remove all non-digits after the first letter.
 	 Return the starting letter and the first three remaining digits. If needed, append zeroes to make it a letter and three digits.
 	 
-	 ''/
+	 */
 	
 	[self initSoundex];
 	
 	if([self length] > 0)
 	{
-		[[NSMutableString]]'' soundexStr = [[[NSMutableString]] string];
+		General/NSMutableString* soundexStr = General/[NSMutableString string];
 		
 		// strip whitespace and convert to lower case
 		
-		[[NSString]]''	workingString = [[self lowercaseString] stringByRemovingCharactersInSet:[[[NSCharacterSet]] whitespaceAndNewlineCharacterSet]];
+		General/NSString*	workingString = General/self lowercaseString] stringByRemovingCharactersInSet:[[[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 		unsigned	indx, soundValue, previousSoundValue = 0;
 		
 		// include first character
@@ -140,7 +140,7 @@ static [[NSArray]]'' soundexCharSets = nil;
 			soundValue = [self soundexValueForCharacter:[workingString characterAtIndex:indx]];
 			
 			if( soundValue > 0 && soundValue != previousSoundValue )
-				[soundexStr appendString:[[[NSString]] stringWithFormat:@"%d", soundValue]];
+				[soundexStr appendString:General/[NSString stringWithFormat:@"%d", soundValue]];
 				
 			previousSoundValue = soundValue;	
 			
@@ -155,7 +155,7 @@ static [[NSArray]]'' soundexCharSets = nil;
 		while([soundexStr length] < 4)
 			[soundexStr appendString:@"0"];
 		
-		//[[NSLog]](@"soundex for '%@' = %@", self, soundexStr );
+		//General/NSLog(@"soundex for '%@' = %@", self, soundexStr );
 		
 		return soundexStr;
 	}
@@ -164,11 +164,10 @@ static [[NSArray]]'' soundexCharSets = nil;
 }
 
 
-- (BOOL)		soundsLikeString:([[NSString]]'') aString
+- (BOOL)		soundsLikeString:(General/NSString*) aString
 {
-	return [[self soundexString] isEqualToString:[aString soundexString]];
+	return General/self soundexString] isEqualToString:[aString soundexString;
 }
 
 @end
 
-</code>

@@ -1,4 +1,4 @@
-Currently i have a semitransparent [[NSView]] subclass which contains other custom [[NSView]]'s. The interior views draw properly the first time, but then when they are redrawn they have weird fully transparent sections around the curved corners. This also happens with a normal [[NSTextField]].
+Currently i have a semitransparent General/NSView subclass which contains other custom General/NSView's. The interior views draw properly the first time, but then when they are redrawn they have weird fully transparent sections around the curved corners. This also happens with a normal General/NSTextField.
 
 Images of what the window looks like before and after the redraw:
 BEFORE: 
@@ -8,72 +8,72 @@ http://img143.imageshack.us/img143/113/afterredrawog6.jpg
 
 The redraw of the views is caused by either the user dragging files on the rounded views or clicking on the clear text field.
 
-Here is the code for how i add the rounded views and text field, called during my [[AppController]]
-<code>
+Here is the code for how i add the rounded views and text field, called during my General/AppController
+    
 -(void)insertViews {
 	int i = 0;
 	for (i=0;i<[allItems count];i++) {
-		myView ''newView = [[myView alloc]
-initWithFrame:[[NSMakeRect]](20,i''70,[mainWindow
+		myView *newView = General/myView alloc]
+initWithFrame:[[NSMakeRect(20,i*70,[mainWindow
 frame].size.width-40,70)];
-		[myView setAutoresizingMask:[[NSViewWidthSizable]]];
-		[[mainWindow contentView] addSubview:myView];
+		[myView setAutoresizingMask:General/NSViewWidthSizable];
+		General/mainWindow contentView] addSubview:myView];
 		[myView release];
 	}
 	
-	myClearTextField ''textField = [[myClearTextField alloc]
-initWithFrame:[[NSMakeRect]](50,[mainWindow frame].size.height -
-(i''71),[mainWindow frame].size.width-40,20)];
-	[[mainWindow contentView] addSubview:textField];
+	myClearTextField *textField = [[myClearTextField alloc]
+initWithFrame:[[NSMakeRect(50,[mainWindow frame].size.height -
+(i*71),[mainWindow frame].size.width-40,20)];
+	General/mainWindow contentView] addSubview:textField];
 }
-</code>
+
 
 Here is how the rounded view redraws itself:
-<code>
-- (void)drawRect:([[NSRect]])rect
+    
+- (void)drawRect:([[NSRect)rect
 {
    //erase whatever graphics were there before with clear (i have
 tried using different combinations of these 3 lines, but all have the
 same result)
-   [[NSEraseRect]]([self frame]);
-   [[[[NSColor]] blackColor] set];
-   [[NSRectFill]]([self frame]);
+   General/NSEraseRect([self frame]);
+   General/[[NSColor blackColor] set];
+   General/NSRectFill([self frame]);
 	
-   rect = [[NSInsetRect]]( rect, 5, 5 );
-   [[NSColor]] ''bgColor = [[[NSColor]] colorWithCalibratedWhite:1.0 alpha:0.1];
-   [[NSRect]] bgRect = rect;
-   int minX = [[NSMinX]](bgRect);
-   int midX = [[NSMidX]](bgRect);
-   int maxX = [[NSMaxX]](bgRect);
-   int minY = [[NSMinY]](bgRect);
-   int midY = [[NSMidY]](bgRect);
-   int maxY = [[NSMaxY]](bgRect);
+   rect = General/NSInsetRect( rect, 5, 5 );
+   General/NSColor *bgColor = General/[NSColor colorWithCalibratedWhite:1.0 alpha:0.1];
+   General/NSRect bgRect = rect;
+   int minX = General/NSMinX(bgRect);
+   int midX = General/NSMidX(bgRect);
+   int maxX = General/NSMaxX(bgRect);
+   int minY = General/NSMinY(bgRect);
+   int midY = General/NSMidY(bgRect);
+   int maxY = General/NSMaxY(bgRect);
    float radius = 10.0; // correct value to duplicate Panther's App Switcher
-   [[NSBezierPath]] ''bgPath = [[[NSBezierPath]] bezierPath];
+   General/NSBezierPath *bgPath = General/[NSBezierPath bezierPath];
 
 
    // Bottom edge and bottom-right curve
-   [bgPath moveToPoint:[[NSMakePoint]](midX, minY)];
-   [bgPath appendBezierPathWithArcFromPoint:[[NSMakePoint]](maxX, minY)
-                                    toPoint:[[NSMakePoint]](maxX, midY)
+   [bgPath moveToPoint:General/NSMakePoint(midX, minY)];
+   [bgPath appendBezierPathWithArcFromPoint:General/NSMakePoint(maxX, minY)
+                                    toPoint:General/NSMakePoint(maxX, midY)
                                      radius:radius];
 
 
    // Right edge and top-right curve
-   [bgPath appendBezierPathWithArcFromPoint:[[NSMakePoint]](maxX, maxY)
-                                    toPoint:[[NSMakePoint]](midX, maxY)
+   [bgPath appendBezierPathWithArcFromPoint:General/NSMakePoint(maxX, maxY)
+                                    toPoint:General/NSMakePoint(midX, maxY)
                                      radius:radius];
 
 
    // Top edge and top-left curve
-   [bgPath appendBezierPathWithArcFromPoint:[[NSMakePoint]](minX, maxY)
-                                    toPoint:[[NSMakePoint]](minX, midY)
+   [bgPath appendBezierPathWithArcFromPoint:General/NSMakePoint(minX, maxY)
+                                    toPoint:General/NSMakePoint(minX, midY)
                                      radius:radius];
 
 
    // Left edge and bottom-left curve
    [bgPath appendBezierPathWithArcFromPoint:bgRect.origin
-                                    toPoint:[[NSMakePoint]](midX, minY)
+                                    toPoint:General/NSMakePoint(midX, minY)
                                      radius:radius];
    [bgPath closePath];
 
@@ -83,17 +83,17 @@ same result)
 
 
     [bgPath setLineWidth:2.0];
-    [[[[NSColor]] colorWithCalibratedWhite:0.75 alpha:0.4] set];	
+    General/[[NSColor colorWithCalibratedWhite:0.75 alpha:0.4] set];	
     [bgPath stroke];
 }
-</code>
+
 
 If anybody has any idea how/why this is happening, please help.
-Thanks [[JohnCassington]]
+Thanks General/JohnCassington
 
 ----
 
-Eliminate the initial call to [[NSEraseRect]]. It's pointless and probably the cause of the problem.
+Eliminate the initial call to General/NSEraseRect. It's pointless and probably the cause of the problem.
 
 ----
 
@@ -103,13 +103,13 @@ Definitely the cause of the problem.  Every view is drawing to the same destinat
 
 Thank, i think i understand what you are saying. However, i'm not quite sure what method i should use. I took out all three lines...
 
-<code>
-   [[NSEraseRect]]([self frame]);
-   [[[[NSColor]] blackColor] set];
-   [[NSRectFill]]([self frame]);
-</code>
+    
+   General/NSEraseRect([self frame]);
+   General/[[NSColor blackColor] set];
+   General/NSRectFill([self frame]);
 
-... but it still draws in the same way as before (see second image above). I think it may have something to do with a [[NSView]] being placed over the contentView of the [[NSWindow]]. I do this to create the rounded effect.
+
+... but it still draws in the same way as before (see second image above). I think it may have something to do with a General/NSView being placed over the contentView of the General/NSWindow. I do this to create the rounded effect.
 
 ----
 
@@ -120,5 +120,5 @@ A hint here:
 add:
     printf("%f, %f, %f, %f\n", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
 in 
-    - (void)drawRect:([[NSRect]])rect{}
+    - (void)drawRect:(General/NSRect)rect{}
 Then look at the output. I think you will understand ;). I will put more info when I have time.

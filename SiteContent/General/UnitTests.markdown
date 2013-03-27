@@ -1,1 +1,1 @@
-Plural form of [[UnitTest]]
+Plural form of General/UnitTest

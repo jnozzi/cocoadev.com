@@ -4,11 +4,11 @@ A variable is a word that refers to something such as a number or a word.
 
  C includes the following fundamental data types: 
 ----
-<code>
+    
    type                      use            size            range
-</code>
+
 ----
-<code>
+    
    char                    character       8 bits       -128 to 127
    unsigned char           character       8 bits       0 to 255
    short                   integer         16 bits      -32,768 to 32,767
@@ -20,8 +20,8 @@ A variable is a word that refers to something such as a number or a word.
    float                   real            32 bits      1.2E-38 to 3.4E+38
    double                  real            64 bits      2.2E-308 to 1.8E+308
    long double             real            128 bits     3.4E-4932 to 1.2E+4932
-</code>
-(Be aware that these may change in the future, for example on the 64-bit [[PowerPC]] in the [[GeeFive]]. Rest assured, they'll only get bigger.)
+
+(Be aware that these may change in the future, for example on the 64-bit General/PowerPC in the General/GeeFive. Rest assured, they'll only get bigger.)
 ----
 
 When referring to variables in certain functions you can use the following codes (Objective-C adds the last one):
@@ -30,9 +30,9 @@ When referring to variables in certain functions you can use the following codes
 * %c for a single character         
 * %F for a double number          
 * %s for a string this reads in a single word
-* %@ for an object (including [[NSStrings]])
+* %@ for an object (including General/NSStrings)
 
 
-See also [[HowToUsePointers]]
+See also General/HowToUsePointers
 
-Go back to [[HowToProgramInOSX]]
+Go back to General/HowToProgramInOSX

@@ -1,12 +1,12 @@
-<code>- (void)activate:(id)sender;</code>
+    - (void)activate:(id)sender;
 
-<code>- (void)setFilePath:(CFURLRef)url;</code>
+    - (void)setFilePath:(CFURLRef)url;
 
-<code>- (void)start;</code>
+    - (void)start;
 
-<code>- (void)stop;</code>
+    - (void)stop;
 
-<code>- (void)deactivate;</code>
+    - (void)deactivate;
 
 
-[[Category:PointlessInformation]]
+General/Category:PointlessInformation

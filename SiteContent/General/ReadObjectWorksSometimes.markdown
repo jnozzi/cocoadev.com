@@ -1,4 +1,4 @@
-I have created a file using Java Bridge in objective C and am reading the file using pure Java.  Problem is that readObject() produces an [[IOException]](), but only when the file is on a remote machine (applet reads file ok when file is on local machine, running in project builder works fine too).
+I have created a file using Java Bridge in objective C and am reading the file using pure Java.  Problem is that readObject() produces an General/IOException(), but only when the file is on a remote machine (applet reads file ok when file is on local machine, running in project builder works fine too).
 
 Any pointers would be appreciated.
 
@@ -6,35 +6,35 @@ Any pointers would be appreciated.
 
 Here is a snippet.
 
-<code>
+    
 
 // write to file using java bridge in objective C
 
-javaFileOutputStream = [[ [[NSClassFromString]](@"java.io.[[FileOutputStream]]") newWithSignature:@"(Ljava/lang/String;)",@"myfile"] autorelease];
+javaFileOutputStream = General/ [[NSClassFromString(@"java.io.General/FileOutputStream") newWithSignature:@"(Ljava/lang/String;)",@"myfile"] autorelease];
 
-javaObjectOutputStream = [[ [[NSClassFromString]](@"java.io.[[ObjectOutputStream]]") newWithSignature:@"(Ljava/io/[[OutputStream]];)", javaFileOutputStream] autorelease];
+javaObjectOutputStream = General/ [[NSClassFromString(@"java.io.General/ObjectOutputStream") newWithSignature:@"(Ljava/io/General/OutputStream;)", javaFileOutputStream] autorelease];
     
-[javaObjectOutputStream  writeObject: jMap];  //jMap is a [[TreeMap]] object
+[javaObjectOutputStream  writeObject: jMap];  //jMap is a General/TreeMap object
 [javaObjectOutputStream flush];
 [javaFileOutputStream close];
-</code>
+
 
 // read from file using pure java
 
-<code>
+    
 aURL = new URL(getDocumentBase(), "myfile");  // this works
-is = new [[FileInputStream]] (aURL.openStream());  // this works
-obInputStream = new [[ObjectInputStream]](   is ); // this works
+is = new General/FileInputStream (aURL.openStream());  // this works
+obInputStream = new General/ObjectInputStream(   is ); // this works
 
-/''
+/*
 following line works when run on project builder, web browser with local files but not when file is on  remove machine
-''/
+*/
 
-aTreeMap = ([[TreeMap]]) obInputStream.readObject();
-
-</code>
+aTreeMap = (General/TreeMap) obInputStream.readObject();
 
 
 
 
-thanks & regards, [[PeterFerrett]]
+
+
+thanks & regards, General/PeterFerrett

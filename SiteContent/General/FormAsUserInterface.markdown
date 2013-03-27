@@ -1,4 +1,4 @@
-Describe [[FormAsUserInterface]] here.
+Describe General/FormAsUserInterface here.
 
 Goal
 
@@ -30,7 +30,7 @@ bocephus_h@yahoo.com
 ----
 The question is very general and indicates a failure on the part of the original poster to perform even the tiniest amount of research into the subject.  There are an infinite number of solutions the the problem, and most don't require any programming at all.  Microsoft Word can be used to create such forms.  Adobe Acrobat Pro can create such forms.  Bento by Filemaker can probably make such forms and includes a database solution as well.  The whole interface could be built with web standards.  Web Objects is a possibility but is likely overkill.
 
-Dealing with just the interface requested, one approach would be to start from the Sketch example program, enhance it to support multiple pages, and set the background image of each page to the appropriate scanned image.  There are separate examples to use as a guide for multi-page applications (such as [[TextEdit]].app) and Sketch already supports image graphics.  Then place text fields and check boxes on the pages either programatically or via Interface Builder.
+Dealing with just the interface requested, one approach would be to start from the Sketch example program, enhance it to support multiple pages, and set the background image of each page to the appropriate scanned image.  There are separate examples to use as a guide for multi-page applications (such as General/TextEdit.app) and Sketch already supports image graphics.  Then place text fields and check boxes on the pages either programatically or via Interface Builder.
 
 Another approach would be to use Applescript or F-Script or TCL/Tk or Python. 
 
@@ -39,8 +39,8 @@ The real question that hasn't been asked is how will all of the information ente
 I keep coming back to Bento.  I have never used it, but is sounds like an ideal solution.
 
 Finally, this poster seems dangerously close to being a Help Vampire http://www.slash7.com/pages/vampires.
-[[HowToAskQuestions]]
-[[AdvisingCocoaNewbies]]
-[[CocoaPrerequisites]]
+General/HowToAskQuestions
+General/AdvisingCocoaNewbies
+General/CocoaPrerequisites
 ----
-[[DeleteMe]] Original poster seems to have gone and/or given up.
+General/DeleteMe Original poster seems to have gone and/or given up.

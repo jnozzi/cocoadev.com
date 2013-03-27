@@ -1,22 +1,22 @@
 I have a class method to get and set a string which returns the string called "Long". eg:
 
-<code>
--([[NSString]] '')type
+    
+-(General/NSString *)type
 {
      return type:
 }
 
--(void)setType:([[NSString]] '')aType
+-(void)setType:(General/NSString *)aType
 {
    [ aType retain];
    [type release];
    type =aType;
 }
-</code>
+
 
 The above is straight forward. I want to know how you call the string value in another method
 
-<code>
+    
 -(double) myValue
 {
    if (type = [whatever the type is "Long" ]{
@@ -26,19 +26,19 @@ The above is straight forward. I want to know how you call the string value in a
       return 1;
     }
 }
-</code>
 
-If type is set to a string called "Long". What is the  objective -C code to give back the string value "long" in the [[MyValue]] method. 
+
+If type is set to a string called "Long". What is the  objective -C code to give back the string value "long" in the General/MyValue method. 
 
 Thanks DSG
 
 ----
 
-It is not clear what you're asking, or what you'd like the code to do.  My guess is that you want <code>myValue</code> to return 0 if <code>type</code> is <code>@"Long"</code>, and 1 otherwise?
+It is not clear what you're asking, or what you'd like the code to do.  My guess is that you want     myValue to return 0 if     type is     @"Long", and 1 otherwise?
 
-If so, the <code>myValue</code> method should look like this:
+If so, the     myValue method should look like this:
 
-<code>
+    
 -(double) myValue
 {
    if ([type isEqualToString:@"Long"]) {     
@@ -48,6 +48,6 @@ If so, the <code>myValue</code> method should look like this:
     }
 }
 
-</code>
+
 
 Thanks! works like a charm!

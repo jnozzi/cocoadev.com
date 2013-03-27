@@ -1,30 +1,30 @@
 
 
-A [[DataMember]], also [[InstanceVariable]] or ivar, is a data variable which is a part of [[AnObject]]. 
+A General/DataMember, also General/InstanceVariable or ivar, is a data variable which is a part of General/AnObject. 
 
 It can be many things, from something as simple as an integer:
 
-<code>
+    
 int oneDataMember;
-</code>
+
 
 Through more complex things like strings:
 
-<code>
-char'' anotherDataMember;
-</code>
+    
+char* anotherDataMember;
+
 
 Up to complex things like selectors:
 
-<code>
-SEL'' aSelector;
-</code>
+    
+SEL* aSelector;
+
 
 And advanced things like objects:
 
-<code>
+    
 id someObject;
-[[NSString]] '' stringObject;
-</code>
+General/NSString * stringObject;
 
-A [[DataMember]] is sometimes also referred to as an [[InstanceVariable]] (or "ivar" for short) because it is a variable that only exists within an instance of a class.
+
+A General/DataMember is sometimes also referred to as an General/InstanceVariable (or "ivar" for short) because it is a variable that only exists within an instance of a class.

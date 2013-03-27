@@ -1,1 +1,1 @@
-See [[FScript]]
+See General/FScript

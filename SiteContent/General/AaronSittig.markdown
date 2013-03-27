@@ -1,6 +1,6 @@
 
 
-Aaron Sittig is, by day, a mac dev for Napster, by night, a hacker for [[BlackholeMedia]]. Aaron has been developing Mac software since 1998. He is in the midst of internal turmoil, trying to decide if he should commit to Cocoa or [[CarbonEvents]] (Update: He takes the road less traveled and settles for polygamy)
+Aaron Sittig is, by day, a mac dev for Napster, by night, a hacker for General/BlackholeMedia. Aaron has been developing Mac software since 1998. He is in the midst of internal turmoil, trying to decide if he should commit to Cocoa or General/CarbonEvents (Update: He takes the road less traveled and settles for polygamy)
 
 (Update: He sleeps instead of working for Napster now.  The rest remains true.  Especially the eternal internal turmoil. !!  And the bald head.)
 

@@ -1,1 +1,1 @@
-Plural of [[TrampolineObject]].
+Plural of General/TrampolineObject.

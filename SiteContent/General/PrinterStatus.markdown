@@ -2,11 +2,11 @@ Hi,
 
 I want to know if it's possible to get the default printer status. Perhaps with CUPS ? Is there a class that implements this?
 
--- JMM [[CodePark]] ( http://jm.marino.free.fr )
+-- JMM General/CodePark ( http://jm.marino.free.fr )
 
 ----
 
-Depending on what you mean by 'status' [[NSPrinter]] might have what you want.
+Depending on what you mean by 'status' General/NSPrinter might have what you want.
 
 ----
 
@@ -35,25 +35,25 @@ BAD BAD BAD ...
 
 ----
 
-Try the [[PrintCore]] framework, part of the [[ApplicationServices]] [[UmbrellaFramework]]
+Try the General/PrintCore framework, part of the General/ApplicationServices General/UmbrellaFramework
 
 ----
 
-nothing for me in this framework... I think it's IMPOSSIBLE to know the status of printer, I back to LINUX !!!  '''This statement is ridiculous.'''
+nothing for me in this framework... I think it's IMPOSSIBLE to know the status of printer, I back to LINUX !!!  **This statement is ridiculous.**
 
-''why do you care? the printer driver knows whether the printer is out of paper, and will notify the user if it is. enjoy linux.''
+*why do you care? the printer driver knows whether the printer is out of paper, and will notify the user if it is. enjoy linux.*
 
 ----
 
 In my app I need to know if printer is out of paper because I should disable print item menu.
 
-''
+*
 That's unwise. 
 * I may be well aware I'm out of paper and want to make a pdf before they go out to the store to buy more.
 * I may want to fax instead of print
 * What if I have 2 or 3 printers, but only one is out of paper, and it's the default printer?
 
-''
+*
 
 ----
 There are plenty of reasons that an app might want or need to restrict printing to a particular printer, and why it might disable printing if that printer isn't ready to print. The "don't do that" advice makes sense if the OP is writing, say, a word processor or other general purpose app. But if he or she is writing an application that prints checks, postage, concert tickets, stock certificates, or anything other sort of official document, there may well be a legitimate need to ensure that a document prints exactly once, on a certain kind of paper, at a certain time, etc. -CS
@@ -62,7 +62,7 @@ There are plenty of reasons that an app might want or need to restrict printing 
 
 Why it's not possible on Macintosh ?
 
-''it shouldn't be possible. you shouldn't have to ever care about this at an application level.''
+*it shouldn't be possible. you shouldn't have to ever care about this at an application level.*
 
 
 ----
@@ -71,7 +71,7 @@ How to do so ?
 
 ---- 
 
-The point is that the print menu should ''not'' be disabled in this case.  Allow the OS to handle it.
+The point is that the print menu should *not* be disabled in this case.  Allow the OS to handle it.
 
 ---- 
 

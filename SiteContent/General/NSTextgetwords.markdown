@@ -2,4 +2,4 @@ I am trying to get the individual words of a string to do a find operation on, i
 
 ----
 
-Searching the documentation for "words" took about two seconds to show that not only does [[NSSpellChecker]] have a nice, easy-to-use function that does exactly what you want (in any language available to the OS), but so does [[NSTextStorage]].
+Searching the documentation for "words" took about two seconds to show that not only does General/NSSpellChecker have a nice, easy-to-use function that does exactly what you want (in any language available to the OS), but so does General/NSTextStorage.

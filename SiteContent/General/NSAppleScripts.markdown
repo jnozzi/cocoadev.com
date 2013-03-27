@@ -1,1 +1,1 @@
-See [[NSAppleScript]].
+See General/NSAppleScript.

@@ -8,20 +8,20 @@ I've been trying to read about selectors & such but I still haven't found anythi
 
 ----
 
-First, you need to get the IMP-- implementation-- of the method via [[NSObject]]'s messages to do this. Second, it probably won't work as a callback since all [[ObjC]] methods take an id and a SEL as their first two arguments. Perhaps better to just write a function, use that as your callback, and have it call your message.
+First, you need to get the IMP-- implementation-- of the method via General/NSObject's messages to do this. Second, it probably won't work as a callback since all General/ObjC methods take an id and a SEL as their first two arguments. Perhaps better to just write a function, use that as your callback, and have it call your message.
 
 ----
 
-In [[ObjC]], you need an object and a selector. Generally, your object can change and your selector stays constant. Carbon lets you pass in a void '' to use for sending context info to yourself, which you can use to pass self. Put it all together, and you get something like this:
+In General/ObjC, you need an object and a selector. Generally, your object can change and your selector stays constant. Carbon lets you pass in a void * to use for sending context info to yourself, which you can use to pass self. Put it all together, and you get something like this:
 
-<code>void [[MyCarbonCallback]](..., void ''userData, ...)
+    void General/MyCarbonCallback(..., void *userData, ...)
 {
    id object = (id)userData;
    [object carbonCallbackWithThing:...];
 }
-</code>
 
-Then you can pass [[MyCarbonCallback]] to your carbon functions.
+
+Then you can pass General/MyCarbonCallback to your carbon functions.
 
 ----
 
@@ -39,27 +39,27 @@ Good point, I hadn't thought about that because my experience of mixing cocoa an
 
 one other thing: you don't need & to take a function pointer. you simply use the name of the function.
 
-'''LANGUAGE LAWYER MOMENT'''
+**LANGUAGE LAWYER MOMENT**
 
 the function call operator is a pair of parentheses containing zero or more expressions separated by ',', following a function pointer. so you can do any of these:
 
-<code>main(argc, argv); //pointer to main is taken, then called
-int (''mainptr)(int, const char ''') = main; //store a pointer to a
-//  function that takes an int and a const char '''(like main) as
+    main(argc, argv); //pointer to main is taken, then called
+int (*mainptr)(int, const char **) = main; //store a pointer to a
+//  function that takes an int and a const char **(like main) as
 //  arguments and returns int
 mainptr(argc, argv); //call the stored pointer to main
 (&main)(argc, argv); //WRONG! this calls a pointer to a pointer to main!
-</code>
 
-'''END OF LANGUAGE LAWYER MOMENT'''
+
+**END OF LANGUAGE LAWYER MOMENT**
 
 worth noting: when I compile test code of an '&foo' construction in gcc, I get link errors. the code:
 
-<code>#include <stdio.h>
+    #include <stdio.h>
 
 void foo(void);
 
-int main(int argc, const char '''argv) {
+int main(int argc, const char **argv) {
         fputs("calling foo\n", stdout);
         foo();
         fputs("calling &foo\n", stdout);
@@ -71,32 +71,32 @@ int main(int argc, const char '''argv) {
 void foo(void) {
         fputs("foo called\n", stdout);
 }
-</code>
+
 
 and the errors:
 
-<code>gcc fptr.c -std=c99 -Wall -pedantic fptr.c -o fptr        %/Volumes/RAM Disk(1)
+    gcc fptr.c -std=c99 -Wall -pedantic fptr.c -o fptr        %/Volumes/RAM Disk(1)
 ld: multiple definitions of symbol _foo
 /var/tmp//ccKSoC9E.o definition of _foo in section (__TEXT,__text)
 /var/tmp//ccgAf3Y8.o definition of _foo in section (__TEXT,__text)
 ld: multiple definitions of symbol _main
 /var/tmp//ccKSoC9E.o definition of _main in section (__TEXT,__text)
 /var/tmp//ccgAf3Y8.o definition of _main in section (__TEXT,__text)
-</code>
 
-''--boredzo''
+
+*--boredzo*
 
 ----
-You're getting errors because you included <code>fptr.c</code> twice in your command line.
+You're getting errors because you included     fptr.c twice in your command line.
 
-Also, <code>function</code> and <code>&function</code> return identical results in C. They have the same type and the same value.
+Also,     function and     &function return identical results in C. They have the same type and the same value.
 
 ----
 Hmm.  I didn't have any problem with your code using cc (gcc) without options (see below).  I did get
-the error with the <code>pedantic</code> option.  Why are you using it?  Also, why not use <code>printf( "Message" );</code>
-instead of <code>fputs()</code>
+the error with the     pedantic option.  Why are you using it?  Also, why not use     printf( "Message" );
+instead of     fputs()
 
-<code>
+    
 b$ cc testPtrFunc.c
 b$ ./a.out
 calling foo
@@ -107,4 +107,3 @@ b$ cc -v
 Reading specs from /usr/libexec/gcc/darwin/ppc/3.3/specs
 Thread model: posix
 gcc version 3.3 20030304 (Apple Computer, Inc. build 1666)
-</code>

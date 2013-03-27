@@ -1,94 +1,94 @@
-Here's a category for getting the index path to an object stored in nested [[NSArray]]<nowiki/>s:
+Here's a category for getting the index path to an object stored in nested General/NSArray<nowiki/>s:
 
-<code>
-@interface [[NSArray]] ([[MBIndexPath]])
+    
+@interface General/NSArray (General/MBIndexPath)
 
-- (id)objectAtIndexPath:([[NSIndexPath]] '')indexPath;	//  Raises an [[NSRangeException]] if the indexPath goes beyond the bounds of the receiver.
-- ([[NSIndexPath]] '')indexPathOfObject:(id)object;		//  Returns nil if the object does not exist within the receiver.
+- (id)objectAtIndexPath:(General/NSIndexPath *)indexPath;	//  Raises an General/NSRangeException if the indexPath goes beyond the bounds of the receiver.
+- (General/NSIndexPath *)indexPathOfObject:(id)object;		//  Returns nil if the object does not exist within the receiver.
 @end
 
 
-@interface [[NSArray]] ([[MBIndexPathPrivate]])
+@interface General/NSArray (General/MBIndexPathPrivate)
 
-- ([[NSUInteger]] '')createIndexesOfPathToObject:(id)object count:([[NSUInteger]] '')count;	//  Returns a dynamically allocated array which must be freed by the caller. ''count must be 0 when passed in.
+- (General/NSUInteger *)createIndexesOfPathToObject:(id)object count:(General/NSUInteger *)count;	//  Returns a dynamically allocated array which must be freed by the caller. *count must be 0 when passed in.
 @end
 
 
-@implementation [[NSArray]] ([[MBIndexPath]])
+@implementation General/NSArray (General/MBIndexPath)
 
-- (id)objectAtIndexPath:([[NSIndexPath]] '')indexPath;
+- (id)objectAtIndexPath:(General/NSIndexPath *)indexPath;
 {
 	if (indexPath == nil)
-		[[[NSException]] raise:[[NSInvalidArgumentException]] format:nil];
+		General/[NSException raise:General/NSInvalidArgumentException format:nil];
 	
 	id object = self;
-	[[NSUInteger]] i;
+	General/NSUInteger i;
 	for (i = 0; i < [indexPath length]; i++)
 	{
-		if ([object isKindOfClass:[[[NSArray]] class]] == NO || [object count] <= [indexPath indexAtPosition:i])
-			[[[NSException]] raise:[[NSRangeException]] format:nil];
+		if ([object isKindOfClass:General/[NSArray class]] == NO || [object count] <= [indexPath indexAtPosition:i])
+			General/[NSException raise:General/NSRangeException format:nil];
 		object = [object objectAtIndex:[indexPath indexAtPosition:i]];
 	}
 	
 	return object;
 }
 
-- ([[NSIndexPath]] '')indexPathOfObject:(id)object;
+- (General/NSIndexPath *)indexPathOfObject:(id)object;
 {
 	if (object == nil)
-		[[[NSException]] raise:[[NSInvalidArgumentException]] format:nil];
+		General/[NSException raise:General/NSInvalidArgumentException format:nil];
 
-	[[NSUInteger]] count = 0;
-	[[NSUInteger]] ''indexes = [self createIndexesOfPathToObject:object count:&count];
+	General/NSUInteger count = 0;
+	General/NSUInteger *indexes = [self createIndexesOfPathToObject:object count:&count];
 	
 	if (indexes == NULL)
 		return nil;
 		
-	[[NSIndexPath]] ''indexPath = [[[NSIndexPath]] indexPathWithIndexes:indexes length:count];
+	General/NSIndexPath *indexPath = General/[NSIndexPath indexPathWithIndexes:indexes length:count];
 	free(indexes);
 	return indexPath;
 }
 
-//  [[NSArray]] ([[MBIndexPathPrivate]])
-- ([[NSUInteger]] '')createIndexesOfPathToObject:(id)object count:([[NSUInteger]] '')count;
+//  General/NSArray (General/MBIndexPathPrivate)
+- (General/NSUInteger *)createIndexesOfPathToObject:(id)object count:(General/NSUInteger *)count;
 {
-	if (''count == [[NSUIntegerMax]])
+	if (*count == General/NSUIntegerMax)
 		return NULL;
-	(''count)++;
+	(*count)++;
 	
-	[[NSUInteger]] i;
+	General/NSUInteger i;
 	for (i = 0; i < [self count]; i++)
 	{
-		if ([[self objectAtIndex:i] isEqual:object])
+		if (General/self objectAtIndex:i] isEqual:object])
 		{
-			[[NSUInteger]] ''indexes = malloc(''count '' sizeof([[NSUInteger]]));
+			[[NSUInteger *indexes = malloc(*count * sizeof(General/NSUInteger));
 			if (indexes == NULL)
 			{
-				''count = [[NSUIntegerMax]];
+				*count = General/NSUIntegerMax;
 				return NULL;
 			}
-			indexes[''count - 1] = i;
-			return (indexes + ''count - 1);
+			indexes[*count - 1] = i;
+			return (indexes + *count - 1);
 		}
-		else if ([[self objectAtIndex:i] isKindOfClass:[[[NSArray]] class]])
+		else if (General/self objectAtIndex:i] isKindOfClass:[[[NSArray class]])
 		{
-			[[NSUInteger]] ''indexes = [[self objectAtIndex:i] createIndexesOfPathToObject:object count:count];
-			if (''count == [[NSUIntegerMax]])
+			General/NSUInteger *indexes = General/self objectAtIndex:i] createIndexesOfPathToObject:object count:count];
+			if (*count == [[NSUIntegerMax)
 				return NULL;
 			if (indexes != NULL)
 			{
-				''(indexes - 1) = i;
+				*(indexes - 1) = i;
 				return (indexes - 1);
 			}
 		}
 	}
 	
-	(''count)--;
+	(*count)--;
 	return NULL;
 }
 
 @end
 
-</code>
 
---  [[MiloBird]]
+
+--  General/MiloBird

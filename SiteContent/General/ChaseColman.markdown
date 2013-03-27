@@ -1,10 +1,10 @@
 
 
 
-*'''Name:''' Chase Colman
+***Name:** Chase Colman
 
 ----
 
-'''Comments'''
+**Comments**
 
 No longer actively developing software.

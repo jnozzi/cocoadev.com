@@ -1,28 +1,27 @@
-http://www.diggory.net/grazing/[[SystemPrefsIcon]].jpg
+http://www.diggory.net/grazing/General/SystemPrefsIcon.jpg
 
-http://developer.apple.com/documentation/[[UserExperience]]/Conceptual/[[PreferencePanes]]/index.html
+http://developer.apple.com/documentation/General/UserExperience/Conceptual/General/PreferencePanes/index.html
 ----
 
-[[SystemPreferences]] is an Application built-in to Mac OS X which allows the user to alter system-wide preferences - i.e. preferences that will affect the whole OS and not just one application.
+General/SystemPreferences is an Application built-in to Mac OS X which allows the user to alter system-wide preferences - i.e. preferences that will affect the whole OS and not just one application.
 
 The application basically allows selection of different preferencePanes (commonly called prefpanes)
 
 It is a Cocoa application and these panes are bundles that are loaded dynamically.
 
-This means you can write your own prefpanes by subclassing [[NSPreferencePane]]
+This means you can write your own prefpanes by subclassing General/NSPreferencePane
 
-See also [[NSUserDefaults]] and [[CFPreferences]].
+See also General/NSUserDefaults and General/CFPreferences.
 
 ----
 
-[[NSUserDefaults]] seems to allow only storing data under the com.apple.systempreferences domain, not under your own domain. For that, you must use [[CFPreferences]], either directly or by subclassing [[NSUserDefaults]].
+General/NSUserDefaults seems to allow only storing data under the com.apple.systempreferences domain, not under your own domain. For that, you must use General/CFPreferences, either directly or by subclassing General/NSUserDefaults.
 
-You may also use apple private methods of [[NSUserDefaults]]�:
+You may also use apple private methods of General/NSUserDefaults�:
 
-<code>
-@interface [[NSUserDefaults]] ([[ApplePrivate]])
-- (id) objectForKey:([[NSString]]'')key inDomain:([[NSString]]'')domain;
-- (void) removeObjectForKey:([[NSString]]'')key inDomain:([[NSString]]'')domain;
-- (void) setObject:(id)object forKey:([[NSString]]'')key inDomain:([[NSString]]'')domain;
+    
+@interface General/NSUserDefaults (General/ApplePrivate)
+- (id) objectForKey:(General/NSString*)key inDomain:(General/NSString*)domain;
+- (void) removeObjectForKey:(General/NSString*)key inDomain:(General/NSString*)domain;
+- (void) setObject:(id)object forKey:(General/NSString*)key inDomain:(General/NSString*)domain;
 @end
-</code>

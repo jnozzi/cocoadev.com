@@ -4,28 +4,28 @@ Hi folks,
 I've successfully created a Preferences Pane for my Mac Address Book Plugin (files available at the bottom of this post).
 Now I want to define the Icon show on the AB Preferences for my plugin, but I don't know how to do it (currently the AB icon is displayed). Can anyone point out how to do it?
 
-The following code was based on http://www.cocoadev.com/index.pl?[[NSPreferences]]
+The following code was based on http://www.cocoadev.com/index.pl?General/NSPreferences
 
-[[NSPreferences]].h
+General/NSPreferences.h
 
-<code>
+    
 #import <Cocoa/Cocoa.h>
 
-// Taken from /System/Library/Frameworks/[[AppKit]].framework/[[AppKit]]
+// Taken from /System/Library/Frameworks/General/AppKit.framework/General/AppKit
 
-/''
- '' Preferences are read from mainBundle's [[PreferencePanels]].plist file:
- '' Keys are
- ''  [[ContentSize]] (string representation of a [[NSSize]]),
- ''  [[UsesButtons]] (string with 0 or 1)
- ''  [[PreferencePanels]] (array of dictionaries):
- ''   Class (string)
- ''   Identifier (string)
- ''/
+/*
+ * Preferences are read from mainBundle's General/PreferencePanels.plist file:
+ * Keys are
+ *  General/ContentSize (string representation of a General/NSSize),
+ *  General/UsesButtons (string with 0 or 1)
+ *  General/PreferencePanels (array of dictionaries):
+ *   Class (string)
+ *   Identifier (string)
+ */
 
 #ifdef TIGER
 
-@protocol [[NSPreferencesModule]]
+@protocol General/NSPreferencesModule
 - (id)viewForPreferenceNamed:(id)fp8;
 - (id)imageForPreferenceNamed:(id)fp8;
 - (BOOL)hasChangesPending;
@@ -39,23 +39,23 @@ The following code was based on http://www.cocoadev.com/index.pl?[[NSPreferences
 - (BOOL)preferencesWindowShouldClose;
 @end
 
-@interface [[NSPreferences]] : [[NSObject]]
+@interface General/NSPreferences : General/NSObject
 {
-    [[NSWindow]] ''_preferencesPanel;
-    [[NSBox]] ''_preferenceBox;
-    [[NSMatrix]] ''_moduleMatrix;
-    [[NSButtonCell]] ''_okButton;
-    [[NSButtonCell]] ''_cancelButton;
-    [[NSButtonCell]] ''_applyButton;
-    [[NSMutableArray]] ''_preferenceTitles;
-    [[NSMutableArray]] ''_preferenceModules;
-    [[NSMutableDictionary]] ''_masterPreferenceViews;
-    [[NSMutableDictionary]] ''_currentSessionPreferenceViews;
-    [[NSBox]] ''_originalContentView;
+    General/NSWindow *_preferencesPanel;
+    General/NSBox *_preferenceBox;
+    General/NSMatrix *_moduleMatrix;
+    General/NSButtonCell *_okButton;
+    General/NSButtonCell *_cancelButton;
+    General/NSButtonCell *_applyButton;
+    General/NSMutableArray *_preferenceTitles;
+    General/NSMutableArray *_preferenceModules;
+    General/NSMutableDictionary *_masterPreferenceViews;
+    General/NSMutableDictionary *_currentSessionPreferenceViews;
+    General/NSBox *_originalContentView;
     BOOL _isModal;
     float _constrainedWidth;
     id _currentModule;
-    void ''_reserved;
+    void *_reserved;
 }
 
 + (id)sharedPreferences;
@@ -76,7 +76,7 @@ The following code was based on http://www.cocoadev.com/index.pl?[[NSPreferences
 - (void)apply:(id)fp8;
 - (void)_selectModuleOwner:(id)fp8;
 - (id)windowTitle;
-- (void)confirmCloseSheetIsDone:(id)fp8 returnCode:(int)fp12 contextInfo:(void '')fp16;
+- (void)confirmCloseSheetIsDone:(id)fp8 returnCode:(int)fp12 contextInfo:(void *)fp16;
 - (BOOL)windowShouldClose:(id)fp8;
 - (void)windowDidResize:(id)fp8;
 - (struct _NSSize)windowWillResize:(id)fp8 toSize:(struct _NSSize)fp12;
@@ -90,12 +90,12 @@ The following code was based on http://www.cocoadev.com/index.pl?[[NSPreferences
 
 @end
 
-@interface [[NSPreferencesModule]] : [[NSObject]] <[[NSPreferencesModule]]>
+@interface General/NSPreferencesModule : General/NSObject <General/NSPreferencesModule>
 {
-    [[NSBox]] ''_preferencesView;
+    General/NSBox *_preferencesView;
     struct _NSSize _minSize;
     BOOL _hasChanges;
-    void ''_reserved;
+    void *_reserved;
 }
 
 + (id)sharedInstance;
@@ -124,7 +124,7 @@ The following code was based on http://www.cocoadev.com/index.pl?[[NSPreferences
 
 #else
 
-@protocol [[NSPreferencesModule]]
+@protocol General/NSPreferencesModule
 - (char)preferencesWindowShouldClose;
 - (char)moduleCanBeRemoved;
 - (void)moduleWasInstalled;
@@ -138,23 +138,23 @@ The following code was based on http://www.cocoadev.com/index.pl?[[NSPreferences
 - viewForPreferenceNamed:fp8;
 @end
 
-@interface [[NSPreferences]]:[[NSObject]]
+@interface General/NSPreferences:General/NSObject
 {
-    [[NSWindow]] ''_preferencesPanel;	// 4 = 0x4
-    [[NSBox]] ''_preferenceBox;	// 8 = 0x8
-    [[NSMatrix]] ''_moduleMatrix;	// 12 = 0xc
-    [[NSButtonCell]] ''_okButton;	// 16 = 0x10
-    [[NSButtonCell]] ''_cancelButton;	// 20 = 0x14
-    [[NSButtonCell]] ''_applyButton;	// 24 = 0x18
-    [[NSMutableArray]] ''_preferenceTitles;	// 28 = 0x1c
-    [[NSMutableArray]] ''_preferenceModules;	// 32 = 0x20
-    [[NSMutableDictionary]] ''_masterPreferenceViews;	// 36 = 0x24
-    [[NSMutableDictionary]] ''_currentSessionPreferenceViews;	// 40 = 0x28
-    [[NSBox]] ''_originalContentView;	// 44 = 0x2c
+    General/NSWindow *_preferencesPanel;	// 4 = 0x4
+    General/NSBox *_preferenceBox;	// 8 = 0x8
+    General/NSMatrix *_moduleMatrix;	// 12 = 0xc
+    General/NSButtonCell *_okButton;	// 16 = 0x10
+    General/NSButtonCell *_cancelButton;	// 20 = 0x14
+    General/NSButtonCell *_applyButton;	// 24 = 0x18
+    General/NSMutableArray *_preferenceTitles;	// 28 = 0x1c
+    General/NSMutableArray *_preferenceModules;	// 32 = 0x20
+    General/NSMutableDictionary *_masterPreferenceViews;	// 36 = 0x24
+    General/NSMutableDictionary *_currentSessionPreferenceViews;	// 40 = 0x28
+    General/NSBox *_originalContentView;	// 44 = 0x2c
     char _isModal;	// 48 = 0x30
     float _constrainedWidth;	// 52 = 0x34
     id _currentModule;	// 56 = 0x38
-    void ''_reserved;	// 60 = 0x3c
+    void *_reserved;	// 60 = 0x3c
 }
 
 + sharedPreferences;
@@ -175,7 +175,7 @@ The following code was based on http://www.cocoadev.com/index.pl?[[NSPreferences
 - (void)apply:fp8;
 - (void)_selectModuleOwner:fp8;
 - windowTitle;
-- (void)confirmCloseSheetIsDone:fp8 returnCode:(int)fp12 contextInfo:(void '')fp16;
+- (void)confirmCloseSheetIsDone:fp8 returnCode:(int)fp12 contextInfo:(void *)fp16;
 - (char)windowShouldClose:fp8;
 - (void)windowDidResize:fp8;
 - (struct _NSSize)windowWillResize:fp8 toSize:(struct _NSSize)fp12;
@@ -189,12 +189,12 @@ The following code was based on http://www.cocoadev.com/index.pl?[[NSPreferences
 
 @end
 
-@interface [[NSPreferencesModule]]:[[NSObject]] <[[NSPreferencesModule]]>
+@interface General/NSPreferencesModule:General/NSObject <General/NSPreferencesModule>
 {
-    [[NSBox]] ''_preferencesView;	// 4 = 0x4
+    General/NSBox *_preferencesView;	// 4 = 0x4
     struct _NSSize _minSize;	// 8 = 0x8
     char _hasChanges;	// 16 = 0x10
-    void ''_reserved;	// 20 = 0x14
+    void *_reserved;	// 20 = 0x14
 }
 
 + sharedInstance;
@@ -221,32 +221,32 @@ The following code was based on http://www.cocoadev.com/index.pl?[[NSPreferences
 @end
 
 #endif
-</code>
+
 
 NSPreferences_AKAConnect.h
 
-<code>
-#import <[[NSPreferences]].h>
+    
+#import <General/NSPreferences.h>
 
 
-@interface NSPreferences_AKAConnect : [[NSPreferences]] {
+@interface NSPreferences_AKAConnect : General/NSPreferences {
 
 }
 
 @end
-</code>
+
 
 NSPreferences_AKAConnect.m
 
-<code>
+    
 #import "NSPreferences_AKAConnect.h"
-#import "[[AKAConnectPreferences]].h"
+#import "General/AKAConnectPreferences.h"
 
 @implementation NSPreferences_AKAConnect
 
 + (void) load
 {
-    [NSPreferences_AKAConnect poseAsClass:[[[NSPreferences]] class]];
+    [NSPreferences_AKAConnect poseAsClass:General/[NSPreferences class]];
 }
 
 + sharedPreferences
@@ -255,65 +255,65 @@ NSPreferences_AKAConnect.m
     id			preferences = [super sharedPreferences];
 
     if(preferences != nil && !added){
-		[[NSLog]](@"... adding AKA Connect Prefs now...");
+		General/NSLog(@"... adding AKA Connect Prefs now...");
         added = YES;
-        [preferences addPreferenceNamed:@"AKA Connect" owner:[[[AKAConnectPreferences]] sharedInstance]];
+        [preferences addPreferenceNamed:@"AKA Connect" owner:General/[AKAConnectPreferences sharedInstance]];
     }
     
     return preferences;
 }
 
 @end
-</code>
 
-[[AKAConnectPreferences]].h
 
-<code>
-/'' [[AKAConnectPreferences]] ''/
-#import <[[NSPreferences]].h>
+General/AKAConnectPreferences.h
 
-#import <[[AppKit]]/[[AppKit]].h>
+    
+/* General/AKAConnectPreferences */
+#import <General/NSPreferences.h>
+
+#import <General/AppKit/General/AppKit.h>
 
 #import <Cocoa/Cocoa.h>
 
-@interface [[AKAConnectPreferences]] : [[NSPreferencesModule]]
+@interface General/AKAConnectPreferences : General/NSPreferencesModule
 {
-    [[IBOutlet]] [[NSTextField]] ''akaUserName;
-    [[IBOutlet]] [[NSSecureTextField]] ''akaUserPass;
-	[[IBOutlet]] [[NSButton]] ''akaUserForce;
-	[[IBOutlet]] [[NSComboBox]] ''akaUserConnMode;
+    General/IBOutlet General/NSTextField *akaUserName;
+    General/IBOutlet General/NSSecureTextField *akaUserPass;
+	General/IBOutlet General/NSButton *akaUserForce;
+	General/IBOutlet General/NSComboBox *akaUserConnMode;
 }
-//- ([[IBAction]])savePreferences:(id)sender;
+//- (General/IBAction)savePreferences:(id)sender;
 @end
-</code>
 
-[[AKAConnectPreferences]].m
 
-<code>
-#import "[[AKAConnectPreferences]].h"
+General/AKAConnectPreferences.m
 
-@implementation [[AKAConnectPreferences]]
+    
+#import "General/AKAConnectPreferences.h"
+
+@implementation General/AKAConnectPreferences
 
 - (id)preferencesNibName {
-	return @"[[AKAPreferences]]";
+	return @"General/AKAPreferences";
 }
 
 - (void)loadUserSettings {
-	[[NSUserDefaults]] ''us = [[[NSUserDefaults]] standardUserDefaults];
+	General/NSUserDefaults *us = General/[NSUserDefaults standardUserDefaults];
 	
-	[[NSLog]](@"loadUserSettings was called...");
+	General/NSLog(@"loadUserSettings was called...");
 	
-	if ([us valueForKey:@"[[AKAUserName]]"] != nil ) {
-		[akaUserName setStringValue:[us valueForKey:@"[[AKAUserName]]"]];
+	if ([us valueForKey:@"General/AKAUserName"] != nil ) {
+		[akaUserName setStringValue:[us valueForKey:@"General/AKAUserName"]];
 	}
-	if ([us valueForKey:@"[[AKAUserPass]]"] != nil) {
-		[akaUserPass setStringValue:[us valueForKey:@"[[AKAUserPass]]"]];
+	if ([us valueForKey:@"General/AKAUserPass"] != nil) {
+		[akaUserPass setStringValue:[us valueForKey:@"General/AKAUserPass"]];
 	}
-	if ([us valueForKey:@"[[AKAUserForce]]"] != nil) {
-		[akaUserForce setStringValue:[us valueForKey:@"[[AKAUserForce]]"]];
+	if ([us valueForKey:@"General/AKAUserForce"] != nil) {
+		[akaUserForce setStringValue:[us valueForKey:@"General/AKAUserForce"]];
 	}
-	if ([us valueForKey:@"[[AKAConnMode]]"] != nil) {
-		[akaUserConnMode setStringValue:[us valueForKey:@"[[AKAConnMode]]"]];
+	if ([us valueForKey:@"General/AKAConnMode"] != nil) {
+		[akaUserConnMode setStringValue:[us valueForKey:@"General/AKAConnMode"]];
 	}
 }
 
@@ -330,18 +330,18 @@ NSPreferences_AKAConnect.m
 }
 
 -(void) saveChanges {
-	[[NSLog]](@"Save changes was called...");
+	General/NSLog(@"Save changes was called...");
 	
-	[[NSUserDefaults]] ''us = [[[NSUserDefaults]] standardUserDefaults];
+	General/NSUserDefaults *us = General/[NSUserDefaults standardUserDefaults];
 	
-	[us setValue:[akaUserName stringValue] forKey:@"[[AKAUserName]]"];
-	[us setValue:[akaUserPass stringValue] forKey:@"[[AKAUserPass]]"];
-	[us setValue:[akaUserConnMode stringValue] forKey:@"[[AKAConnMode]]"];
-	[us setValue:[akaUserForce stringValue] forKey:@"[[AKAUserForce]]"];
+	[us setValue:[akaUserName stringValue] forKey:@"General/AKAUserName"];
+	[us setValue:[akaUserPass stringValue] forKey:@"General/AKAUserPass"];
+	[us setValue:[akaUserConnMode stringValue] forKey:@"General/AKAConnMode"];
+	[us setValue:[akaUserForce stringValue] forKey:@"General/AKAUserForce"];
 }
 
 @end
-</code>
+
 
 ----
-I've never written one of these, but it looks to me like [[NSPreferencesModule]]'s -imageForPreferenceNamed: would be a good place to start. Did you try that? -CS
+I've never written one of these, but it looks to me like General/NSPreferencesModule's -imageForPreferenceNamed: would be a good place to start. Did you try that? -CS

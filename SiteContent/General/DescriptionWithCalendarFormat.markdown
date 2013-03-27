@@ -1,4 +1,4 @@
-The following is a list of standard formatters for use with [[NSCalendarDate]]'s <code>-descriptionWithCalendarFormat:</code> method.
+The following is a list of standard formatters for use with General/NSCalendarDate's     -descriptionWithCalendarFormat: method.
 
 
 * %%    - A '%' character
@@ -28,19 +28,19 @@ The following is a list of standard formatters for use with [[NSCalendarDate]]'s
 
 ----
 
-'''Example'''
+**Example**
 
-(From [[NSCalendarDate]] documentation)
+(From General/NSCalendarDate documentation)
 
-''This code:''
-<code>
-[[NSCalendarDate]] ''now = [[[NSCalendarDate]] calendarDate];
-[[NSLog]](@"Date: %@", [now descriptionWithCalendarFormat:@"%a %m/%d/%y %I:%M %p"]);
-</code>
+*This code:*
+    
+General/NSCalendarDate *now = General/[NSCalendarDate calendarDate];
+General/NSLog(@"Date: %@", [now descriptionWithCalendarFormat:@"%a %m/%d/%y %I:%M %p"]);
 
-''Produces this result:''
 
-<code>
+*Produces this result:*
+
+    
 Date: Tues 02/21/06 9:46 AM
-</code>
+
  Pour participer   garder le  numéro, vous aurez   Bill opérateur d'identification  ( code de programme ) [http://obtenir-rio.info numéro rio]. Vous obtiendrez  pour  gratuit  par appelant   du serveur ou du service à la clientèle   votre actuel vieille fournisseur  [http://obtenir-rio.info/rio-bouygues code rio bouygues] . Vous ne  mai   obtenir  un SMS avec votre . Avec votre  [http://obtenir-rio.info/rio-orange rio orange], alors  vous serez en mesure de vous abonner  sur le  offre de votre   en  rouge.

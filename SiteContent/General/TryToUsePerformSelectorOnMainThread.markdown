@@ -9,24 +9,24 @@ What I have noticed is that:
  
 
 
-My question is whether there is a way to use an instance method because I would like the graphics to be updated once the computations are complete (but I cannot use [[OpenGL]] in the detached thread).  I will note the code segment I think are really germane by using the codesegment text.
+My question is whether there is a way to use an instance method because I would like the graphics to be updated once the computations are complete (but I cannot use General/OpenGL in the detached thread).  I will note the code segment I think are really germane by using the codesegment text.
 
-As is the compiler compains that instance variablesis "accessed in a class method".  Since I am trying to send messages to an N<nowiki/>[[SOpenGLView]] object and some cells of an N<nowiki/>[[SForm]] object I need the instance of myself not the class (I think).
+As is the compiler compains that instance variablesis "accessed in a class method".  Since I am trying to send messages to an N<nowiki/>General/SOpenGLView object and some cells of an N<nowiki/>General/SForm object I need the instance of myself not the class (I think).
 
 
 The program draws fractals.  So I want the computing to be performed independently of the GUI.
-'''
-<<common.h>> '''
+**
+<<common.h>> **
 
-<code>
-/''
- ''  common.h
- ''  iFract
- ''
- ''  Created by Wayne Contello on 2/16/06.
- ''  Copyright 2006 Wayne L. Contello. All rights reserved.
- ''
- ''/
+    
+/*
+ *  common.h
+ *  iFract
+ *
+ *  Created by Wayne Contello on 2/16/06.
+ *  Copyright 2006 Wayne L. Contello. All rights reserved.
+ *
+ */
 #import <time.h>
 
 #import <Cocoa/Cocoa.h>
@@ -52,22 +52,22 @@ typedef struct {
 	float			step;
 	unsigned int	escape;
 	unsigned int	numColors;
-//	unsigned int	'''colorIndex;
+//	unsigned int	**colorIndex;
 	coord			pixels;
 	clock_t			timeStart;
 	clock_t			timeStop;
 	unsigned int	pixelMap[SIZE_X][SIZE_Y];
 	
-} fracInit, ''pfracInit;
+} fracInit, *pfracInit;
 
 
 
-</code> 
+ 
 
-'''
-<<iFract.h>> '''
-<code>
-/'' iFract ''/
+**
+<<iFract.h>> **
+    
+/* iFract */
 
 #import <Cocoa/Cocoa.h>
 
@@ -78,35 +78,35 @@ typedef struct {
 #define TAG_COLORS	(4)
 
 
-@interface iFract : [[NSObject]]
+@interface iFract : General/NSObject
 {
-    [[IBOutlet]] id [[TopRightLoc]];
-    [[IBOutlet]] id [[BottomLeftLoc]];
-    [[IBOutlet]] id Status;
-    [[IBOutlet]] id [[DrawButton]];
-    [[IBOutlet]] id [[TimeToCompute]];
-    [[IBOutlet]] id drawPort;
-	[[IBOutlet]] id location;
-	[[IBOutlet]] id progress;
+    General/IBOutlet id General/TopRightLoc;
+    General/IBOutlet id General/BottomLeftLoc;
+    General/IBOutlet id Status;
+    General/IBOutlet id General/DrawButton;
+    General/IBOutlet id General/TimeToCompute;
+    General/IBOutlet id drawPort;
+	General/IBOutlet id location;
+	General/IBOutlet id progress;
 	
-	[[NSMutableData]]	''initData;
+	General/NSMutableData	*initData;
 	
 }
-- ([[IBAction]])	drawFractal:(id)sender;
+- (General/IBAction)	drawFractal:(id)sender;
 
 #define DRAW
 #define THREADS
 
-'''
-%%BEGINCODESTYLE%%
+**
+<code>
 
 #ifdef THREADS
 + (void)		performFractalDrawing: (id)anObject;
 #else
 - (void)		performFractalDrawing: (id)anObject;
 #endif
-%%ENDCODESTYLE%%
-'''
+</code>
+**
 
 
 - (void)		updateLocation;
@@ -114,35 +114,35 @@ typedef struct {
 + (void)		postDrawCleanup: (id)anObject;
 
 @end
-</code> 
+ 
 
-''' <<iFract.m>> '''
-<code>
+** <<iFract.m>> **
+    
 
 #import "iFract.h"
-#import <[[OpenGL]]/gl.h>
+#import <General/OpenGL/gl.h>
 #import <vecLib/vectorOps.h>
 
 #import "common.h"
 
 
-float complexMagnitudeSquared(imaginary ''val);
-unsigned int iterate(imaginary ''initVal, imaginary ''constant, float escapeMagSquared, unsigned int escapeIterations);
+float complexMagnitudeSquared(imaginary *val);
+unsigned int iterate(imaginary *initVal, imaginary *constant, float escapeMagSquared, unsigned int escapeIterations);
 
 
 @implementation iFract
 
-/''####################################''/
+/*####################################*/
 -(void)dealloc
-/''####################################''/
+/*####################################*/
 {
 [super dealloc];
 }
 
 
-/''####################################''/
+/*####################################*/
 - (void)awakeFromNib
-/''####################################''/
+/*####################################*/
 {
 imaginary initialLocation;
 float step;
@@ -152,44 +152,44 @@ initialLocation.imag = 0;
 step = 0.005;
 
 [Status setStringValue: @"Ready"]; 
-[[[TimeToCompute]] setStringValue: @"--"];
-[[location cellAtIndex: [location indexOfCellWithTag: TAG_X]] setFloatValue: initialLocation.real];
-[[location cellAtIndex: [location indexOfCellWithTag: TAG_Y]] setFloatValue: initialLocation.imag];
-[[location cellAtIndex: [location indexOfCellWithTag: TAG_STEP]] setFloatValue: step];
-[[location cellAtIndex: [location indexOfCellWithTag: TAG_ESCAPE]] setFloatValue: 8.0];
-[[location cellAtIndex: [location indexOfCellWithTag: TAG_COLORS]] setIntValue: 64];
+General/[TimeToCompute setStringValue: @"--"];
+General/location cellAtIndex: [location indexOfCellWithTag: TAG_X setFloatValue: initialLocation.real];
+General/location cellAtIndex: [location indexOfCellWithTag: TAG_Y setFloatValue: initialLocation.imag];
+General/location cellAtIndex: [location indexOfCellWithTag: TAG_STEP setFloatValue: step];
+General/location cellAtIndex: [location indexOfCellWithTag: TAG_ESCAPE setFloatValue: 8.0];
+General/location cellAtIndex: [location indexOfCellWithTag: TAG_COLORS setIntValue: 64];
 
 [self updateLocation];
 }
 
 
-'''
-%%BEGINCODESTYLE%%
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+**
+<code>
+/******************************************/
 +(void)postDrawCleanup: (id)anObject;
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/******************************************/
 {
 #if 1
 pfracInit		init;
 
-init = (fracInit '')[initData mutableBytes];
+init = (fracInit *)[initData mutableBytes];
 
 
-[[[DrawButton]] setEnabled: TRUE];
+General/[DrawButton setEnabled: TRUE];
 [Status setStringValue: @"Done"];
 
-[[[TimeToCompute]] setFloatValue: ((float)init->timeStop - init->timeStart )/CLOCKS_PER_SEC ];
+General/[TimeToCompute setFloatValue: ((float)init->timeStop - init->timeStart )/CLOCKS_PER_SEC ];
 [self draw];
 [initData release];
 #endif
 
 }
-%%ENDCODESTYLE%%
-'''
+</code>
+**
 
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/******************************************/
 -(void)draw
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/******************************************/
 {
 //imaginary		initialVal, screenPos, screenStep, physicalPos, physicalStep, initialPhysicalPos;
 //unsigned int	iterations, escape, numColors;
@@ -198,7 +198,7 @@ unsigned int	iterations, numColors;
 coord			index;
 pfracInit		init;
 
-init = (fracInit '')[initData mutableBytes];
+init = (fracInit *)[initData mutableBytes];
 
 index.x = index.y = 0;
 screenPos.real = screenPos.imag = -1;
@@ -235,44 +235,44 @@ glFlush() ;
 
 }
 
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/******************************************/
 - (void)updateLocation
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/******************************************/
 {
 imaginary initialLocation;
 float step;
 
-initialLocation.real	= [[location cellAtIndex: [location indexOfCellWithTag: TAG_X]] floatValue];
-initialLocation.imag	= [[location cellAtIndex: [location indexOfCellWithTag: TAG_Y]] floatValue];
-step					= [[location cellAtIndex: [location indexOfCellWithTag: TAG_STEP]] floatValue];
+initialLocation.real	= General/location cellAtIndex: [location indexOfCellWithTag: TAG_X floatValue];
+initialLocation.imag	= General/location cellAtIndex: [location indexOfCellWithTag: TAG_Y floatValue];
+step					= General/location cellAtIndex: [location indexOfCellWithTag: TAG_STEP floatValue];
 
-initialLocation.real += step''SIZE_X/2 ; // top right coordinates
-initialLocation.imag += step''SIZE_Y/2 ; // top right coordinates
+initialLocation.real += step*SIZE_X/2 ; // top right coordinates
+initialLocation.imag += step*SIZE_Y/2 ; // top right coordinates
 
-[[[TopRightLoc]] setStringValue: [[[NSString]] stringWithFormat: @"(%f, %f)", initialLocation.real, initialLocation.imag] ];
+General/[TopRightLoc setStringValue: General/[NSString stringWithFormat: @"(%f, %f)", initialLocation.real, initialLocation.imag] ];
 
-initialLocation.real -= step''SIZE_X ; // top right coordinates
-initialLocation.imag -= step''SIZE_Y ; // top right coordinates
+initialLocation.real -= step*SIZE_X ; // top right coordinates
+initialLocation.imag -= step*SIZE_Y ; // top right coordinates
 
-[[[BottomLeftLoc]] setStringValue: [[[NSString]] stringWithFormat: @"(%f, %f)", initialLocation.real, initialLocation.imag] ];
+General/[BottomLeftLoc setStringValue: General/[NSString stringWithFormat: @"(%f, %f)", initialLocation.real, initialLocation.imag] ];
 }
 
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
-- ([[IBAction]])drawFractal:(id)sender
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/******************************************/
+- (General/IBAction)drawFractal:(id)sender
+/******************************************/
 {
 fracInit		initParams;
 
-//[[[DrawButton]] setEnabled: FALSE];
+//General/[DrawButton setEnabled: FALSE];
 [Status setStringValue: @"Processing..."]; 
-[[[TimeToCompute]] setStringValue: @"--"];
+General/[TimeToCompute setStringValue: @"--"];
 
 // Set up structure
-initParams.step = [[location cellAtIndex: [location indexOfCellWithTag: TAG_STEP]] floatValue];
-initParams.initialPhysicalLocation.real = [[location cellAtIndex: [location indexOfCellWithTag: TAG_X]] floatValue] - initParams.step''SIZE_X/2;
-initParams.initialPhysicalLocation.imag = [[location cellAtIndex: [location indexOfCellWithTag: TAG_Y]] floatValue] - initParams.step''SIZE_Y/2;
-initParams.escape						= [[location cellAtIndex: [location indexOfCellWithTag: TAG_ESCAPE]] floatValue];
-initParams.numColors					= [[location cellAtIndex: [location indexOfCellWithTag: TAG_COLORS]] intValue];
+initParams.step = General/location cellAtIndex: [location indexOfCellWithTag: TAG_STEP floatValue];
+initParams.initialPhysicalLocation.real = General/location cellAtIndex: [location indexOfCellWithTag: TAG_X floatValue] - initParams.step*SIZE_X/2;
+initParams.initialPhysicalLocation.imag = General/location cellAtIndex: [location indexOfCellWithTag: TAG_Y floatValue] - initParams.step*SIZE_Y/2;
+initParams.escape						= General/location cellAtIndex: [location indexOfCellWithTag: TAG_ESCAPE floatValue];
+initParams.numColors					= General/location cellAtIndex: [location indexOfCellWithTag: TAG_COLORS intValue];
 initParams.pixels.x = SIZE_X;
 initParams.pixels.y = SIZE_Y;
 
@@ -281,31 +281,31 @@ initParams.timeStart = clock();
 [self updateLocation];
 
 
-initData = [[[NSMutableData]] dataWithData: [[[NSData]] dataWithBytes: &initParams length: sizeof(fracInit)]];
+initData = General/[NSMutableData dataWithData: General/[NSData dataWithBytes: &initParams length: sizeof(fracInit)]];
 [initData retain];
 
-'''
-%%BEGINCODESTYLE%%
+**
+<code>
 #ifdef THREADS
 // wait for imaging of fractial to complete
-[[[NSThread]] detachNewThreadSelector: @selector(performFractalDrawing:) toTarget:[self class] withObject: initData];
+General/[NSThread detachNewThreadSelector: @selector(performFractalDrawing:) toTarget:[self class] withObject: initData];
 #else
 [self performFractalDrawing: initData];
 [self postDrawCleanup];
 #endif
-%%ENDCODESTYLE%%
-'''
+</code>
+**
 }
 
-'''
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+**
+/********************************************************'/
 #ifdef THREADS
 + (void)		performFractalDrawing: (id)anObject
 #else
 - (void)		performFractalDrawing: (id)anObject
 #endif
-/'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
-'''
+/********************************************************'/
+**
 {
 //imaginary		initialVal, screenPos, screenStep, physicalPos, physicalStep, initialPhysicalPos;
 //unsigned int	iterations, escape, numColors;
@@ -315,10 +315,10 @@ unsigned int	escape, numColors;
 coord			index;
 
 pfracInit		init;
-[[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
+General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
 
-[[NSLog]](@"In the thread");
-init = (fracInit '')[anObject mutableBytes];
+General/NSLog(@"In the thread");
+init = (fracInit *)[anObject mutableBytes];
 
 // Get initial parameters from structure
 physicalStep.real = physicalStep.imag = init->step;
@@ -342,12 +342,12 @@ index.x = index.y = 0;
 	}
 
 init->timeStop = clock();
-'''
-%%BEGINCODESTYLE%%
+**
+<code>
 [self performSelectorOnMainThread: @selector(postDrawCleanup:) withObject: nil waitUntilDone: FALSE];
-%%ENDCODESTYLE%%
-'''
-[[NSLog]](@"Exiting the thread");
+</code>
+**
+General/NSLog(@"Exiting the thread");
 
 [pool release];
 }
@@ -355,18 +355,18 @@ init->timeStop = clock();
 @end
 
 
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
-float complexMagnitudeSquared(imaginary ''val)
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/**********************************************'/
+float complexMagnitudeSquared(imaginary *val)
+/**********************************************'/
 {
-return(val->real''val->real + val->imag''val->imag);
+return(val->real*val->real + val->imag*val->imag);
 }
 
 
 
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
-unsigned int iterate(imaginary ''initVal, imaginary ''constant, float escapeMagSquared, unsigned int escapeIterations)
-/''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''/
+/**********************************************'/
+unsigned int iterate(imaginary *initVal, imaginary *constant, float escapeMagSquared, unsigned int escapeIterations)
+/**********************************************'/
 {
 unsigned int	iterations;
 imaginary		val;
@@ -379,8 +379,8 @@ val.imag = initVal->imag;
 
 while(escapeIterations) {
 	tempReal = val.real;
-	val.real = val.real''val.real - val.imag''val.imag + constant->real;
-	val.imag = 2''tempReal''val.imag + constant->imag ; 
+	val.real = val.real*val.real - val.imag*val.imag + constant->real;
+	val.imag = 2*tempReal*val.imag + constant->imag ; 
 	
 	if(escapeMagSquared < complexMagnitudeSquared(&val) ) {
 		escapeIterations = iterations - escapeIterations;
@@ -393,38 +393,38 @@ while(escapeIterations) {
 return(escapeIterations);
 }
 
-</code> 
+ 
 
 
 
 ----
 
 The reason why the detached thread is calling a class method is because you told it to:
-<code>
-[[[NSThread]] detachNewThreadSelector: @selector(performFractalDrawing:) toTarget:[self class] withObject: initData];
-</code>
-(you are targeting ''[self class]'' instead of ''self'' so you are targeting the class, not the instance)
+    
+General/[NSThread detachNewThreadSelector: @selector(performFractalDrawing:) toTarget:[self class] withObject: initData];
 
-Similarly with the ''performSelectorOnMainThread:'' call.  You are sending it to self from within a class method so you are calling it on the class.
+(you are targeting *[self class]* instead of *self* so you are targeting the class, not the instance)
+
+Similarly with the *performSelectorOnMainThread:* call.  You are sending it to self from within a class method so you are calling it on the class.
 
 Does that help?
 
---[[JeffDisher]]
+--General/JeffDisher
 
 ----
 
 That does help.  While the answer was simple and I do understand the distinction (now) I did not really understand how sending "[self class]" was causing the problem.  I think the root of my problem was not understanding this.
 
---[[WayneContello]]
+--General/WayneContello
 
 ----
 
 Okay, I will try to explain this.
 
-Objective-C uses the OO concepts of [[SmallTalk]] (one of the purer OO languages - it is pretty sweet).  In [[SmallTalk]], everything is an object (even blocks of code are objects).  Most importantly, is that classes are objects (they are instances of Metaclass, as I recall).
+Objective-C uses the OO concepts of General/SmallTalk (one of the purer OO languages - it is pretty sweet).  In General/SmallTalk, everything is an object (even blocks of code are objects).  Most importantly, is that classes are objects (they are instances of Metaclass, as I recall).
 
-Classes have methods, just as instances have methods.  ''self'' refers to the object which received the message you are currently in (unless you assign self, but that is a corner case which doesn't usually apply outside of initializers).  ''[self class]'' is the object which is the class which ''self'' is an instance of.  Thus, messages sent to ''self'' will be received by the ''self'' instance.  Methods sent to ''[self class]'' will be received by the class itself (hence why it wanted to see a class method).  As to why the second method had to be a class method, ''self'' is going to refer to a class when inside a class method.
+Classes have methods, just as instances have methods.  *self* refers to the object which received the message you are currently in (unless you assign self, but that is a corner case which doesn't usually apply outside of initializers).  *[self class]* is the object which is the class which *self* is an instance of.  Thus, messages sent to *self* will be received by the *self* instance.  Methods sent to *[self class]* will be received by the class itself (hence why it wanted to see a class method).  As to why the second method had to be a class method, *self* is going to refer to a class when inside a class method.
 
 Does that explain it or is something still missing?
 
---[[JeffDisher]]
+--General/JeffDisher

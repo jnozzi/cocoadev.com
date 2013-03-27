@@ -5,55 +5,55 @@ Hello,
 
 All of the authentication examples I have found relate to running a UNIX command, or something.  I need to remove a file, then copy a file inside a directory not owned by the user:
 
-<code>
-[[NSFileManager]] '' manager = [[[NSFileManager]] defaultManager];
+    
+General/NSFileManager * manager = General/[NSFileManager defaultManager];
 
 [manager removeFileAtPath:@"some/directory/thats/write/protected/file.bla" handler:nil];
 [manager copyPath:@"some/path/i/can/access/file.bla" toPath:@"some/directory/thats/write/protected/file.bla" handler:nil];
-</code>
 
-Is there any simple way to just prompt the user for authentication and let the above work on protected directories.  Using some of the advanced wrappers around the [[SecurityFramework]] seem like overkill...I really hope there is a simple solution to this.  I have looked around the various other pages, but they do not pertain to the file manager.  Any suggestions?  Thanks for any assistance.
+
+Is there any simple way to just prompt the user for authentication and let the above work on protected directories.  Using some of the advanced wrappers around the General/SecurityFramework seem like overkill...I really hope there is a simple solution to this.  I have looked around the various other pages, but they do not pertain to the file manager.  Any suggestions?  Thanks for any assistance.
 
 ----
 
-<code>//
-//  [[NSFileManagerAdditions]].h
-//  [[TRKit]]
+    //
+//  General/NSFileManagerAdditions.h
+//  General/TRKit
 //
 
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[NSFileManager]] ([[TRAdditions]])
-- ([[NSString]] '')newTmpFilePath;
-- (BOOL)authorizedMovePath:([[NSString]] '')source toPath:([[NSString]] '')destination;
-- (BOOL)authorizedCopyPath:([[NSString]] '')source toPath:([[NSString]] '')destination;
-@end</code>
-<code>//
-//  [[NSFileManagerAdditions]].m
-//  [[TRKit]]
+@interface General/NSFileManager (General/TRAdditions)
+- (General/NSString *)newTmpFilePath;
+- (BOOL)authorizedMovePath:(General/NSString *)source toPath:(General/NSString *)destination;
+- (BOOL)authorizedCopyPath:(General/NSString *)source toPath:(General/NSString *)destination;
+@end
+    //
+//  General/NSFileManagerAdditions.m
+//  General/TRKit
 //
 
-#import "[[NSFileManagerAdditions]].h"
-#import "[[NSApplicationAdditions]].h"
+#import "General/NSFileManagerAdditions.h"
+#import "General/NSApplicationAdditions.h"
 #import <Carbon/Carbon.h>
 #import <Security/Security.h>
 
-static [[AuthorizationRef]] authorizationRef = NULL;
+static General/AuthorizationRef authorizationRef = NULL;
 
-@implementation [[NSFileManager]] ([[TRAdditions]])
+@implementation General/NSFileManager (General/TRAdditions)
 
-- ([[NSString]] '')newTmpFilePath
+- (General/NSString *)newTmpFilePath
 {
-	[[NSString]] '' tmpDirectory = [[NSTemporaryDirectory]]();
-	[[NSString]] '' identifier = [[[NSApp]] applicationIdentifier];
+	General/NSString * tmpDirectory = General/NSTemporaryDirectory();
+	General/NSString * identifier = General/[NSApp applicationIdentifier];
 	
 	if (tmpDirectory == nil || identifier == nil) return nil;
 	
 	for (;;)
 	{
-		[[NSString]] '' tmpFileName = [[[NSString]] stringWithFormat:@"%@_%i",identifier,[[RandomIntBetween]](0,100000)];
-		[[NSString]] '' path = [tmpDirectory stringByAppendingPathComponent:tmpFileName];
+		General/NSString * tmpFileName = General/[NSString stringWithFormat:@"%@_%i",identifier,General/RandomIntBetween(0,100000)];
+		General/NSString * path = [tmpDirectory stringByAppendingPathComponent:tmpFileName];
 		path = [path stringByStandardizingPath];
 		
 		if ([self fileExistsAtPath:path])
@@ -69,25 +69,25 @@ static [[AuthorizationRef]] authorizationRef = NULL;
 	}
 }
 
-- (BOOL)authorizedMovePath:([[NSString]] '')source toPath:([[NSString]] '')destination
+- (BOOL)authorizedMovePath:(General/NSString *)source toPath:(General/NSString *)destination
 {
-	[[NSBundle]] '' trkitBundle = [[[NSBundle]] bundleForClass:[[NSClassFromString]](@"[[TRIntegration]]")];
-	[[NSString]] '' trkitResourcePath = [trkitBundle resourcePath];
-	[[NSString]] '' trkitMoveUtilityPath = [trkitResourcePath stringByAppendingPathComponent:@"move"];
+	General/NSBundle * trkitBundle = General/[NSBundle bundleForClass:General/NSClassFromString(@"General/TRIntegration")];
+	General/NSString * trkitResourcePath = [trkitBundle resourcePath];
+	General/NSString * trkitMoveUtilityPath = [trkitResourcePath stringByAppendingPathComponent:@"move"];
 	
 	if (![self fileExistsAtPath:trkitMoveUtilityPath])
 	{
-		[[NSLog]](@"Cannot find move utility.");
+		General/NSLog(@"Cannot find move utility.");
 		return NO;
 	}
 	
-	/'' The move utlity exists, we can now procede. ''/
-	[[OSStatus]] status;
+	/* The move utlity exists, we can now procede. */
+	General/OSStatus status;
 	
 	if (authorizationRef == NULL)
 	{
 		// Get Authorization.
-		status = [[AuthorizationCreate]](NULL,
+		status = General/AuthorizationCreate(NULL,
 									 kAuthorizationEmptyEnvironment,
 									 kAuthorizationFlagDefaults,
 									 &authorizationRef);
@@ -100,23 +100,23 @@ static [[AuthorizationRef]] authorizationRef = NULL;
 	// Make sure we have authorization.
 	if (status != noErr)
 	{
-		[[NSLog]](@"Could not get authorization, failing.");
+		General/NSLog(@"Could not get authorization, failing.");
 		return NO;
 	}
 	
 	// Set up the arguments.
-	char '' args[2];
-	args[0] = (char '')[[source stringByStandardizingPath] UTF8String];
-	args[1] = (char '')[[destination stringByStandardizingPath] UTF8String];
+	char * args[2];
+	args[0] = (char *)General/source stringByStandardizingPath] UTF8String];
+	args[1] = (char *)[[destination stringByStandardizingPath] UTF8String];
 	args[2] = NULL;
 	
-	status = [[AuthorizationExecuteWithPrivileges]](authorizationRef,
-												[[trkitMoveUtilityPath stringByStandardizingPath] UTF8String],
+	status = [[AuthorizationExecuteWithPrivileges(authorizationRef,
+												General/trkitMoveUtilityPath stringByStandardizingPath] UTF8String],
 												0, args, NULL);
 	
 	if (status != noErr)
 	{
-		[[NSLog]](@"Could not move file.");
+		[[NSLog(@"Could not move file.");
 		return NO;
 	}
 	else
@@ -127,36 +127,36 @@ static [[AuthorizationRef]] authorizationRef = NULL;
 	return NO;
 }
 
-- (BOOL)authorizedCopyPath:([[NSString]] '')source toPath:([[NSString]] '')destination
+- (BOOL)authorizedCopyPath:(General/NSString *)source toPath:(General/NSString *)destination
 {
-	[[NSString]] '' tempFile = [self newTmpFilePath];
+	General/NSString * tempFile = [self newTmpFilePath];
 	[self copyPath:source toPath:tempFile handler:nil];
 	[self authorizedMovePath:tempFile toPath:destination];
 }
 
-@end</code>
+@end
 
 Small command line tool in resources (use this instead of the CLI utilities as it will work without the BSD subsystem):
-<code>// move.m
+    // move.m
 #import <Foundation/Foundation.h>
 
-int main (int argc, const char '' argv[]) {
-    [[NSAutoreleasePool]] '' pool = [[[[NSAutoreleasePool]] alloc] init];
+int main (int argc, const char * argv[]) {
+    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
 	{
 		// Make sure we have 3 args (1: path 2: source 3: destination).
 		if (argc != 3) return -1;
-		[[NSString]] '' source = [[[NSString]] stringWithUTF8String:argv[1]];
-		[[NSString]] '' destination = [[[NSString]] stringWithUTF8String:argv[2]];
+		General/NSString * source = General/[NSString stringWithUTF8String:argv[1]];
+		General/NSString * destination = General/[NSString stringWithUTF8String:argv[2]];
 		
 		source = [source stringByStandardizingPath];
 		destination = [destination stringByStandardizingPath];
 		
 		printf("Moving \"%s\" to \"%s\"...",[source UTF8String],[destination UTF8String]);
 		
-		[[NSFileManager]] '' manager = [[[NSFileManager]] defaultManager];
+		General/NSFileManager * manager = General/[NSFileManager defaultManager];
 		if (![manager fileExistsAtPath:source])
 		{
-			printf("failed\n'''''No source file at \"%s\".\n",[source UTF8String]);
+			printf("failed\n***No source file at \"%s\".\n",[source UTF8String]);
 			return -1;
 		}
 		
@@ -166,97 +166,97 @@ int main (int argc, const char '' argv[]) {
 	}
     [pool release];
     return 0;
-}</code>
+}
 
-The category is in my framework so you must change <code>[[[NSBundle]] bundleForClass:[[NSClassFromString]](@"[[TRIntegration]]")];</code> to something that will work in your situation (I must use this since it is a category and not a new class).
+The category is in my framework so you must change     General/[NSBundle bundleForClass:General/NSClassFromString(@"General/TRIntegration")]; to something that will work in your situation (I must use this since it is a category and not a new class).
 
-''For an application, <code>[[[NSBundle]] mainBundle]</code> will probably work fine.''
+*For an application,     General/[NSBundle mainBundle] will probably work fine.*
 
 ----
 
-Thank you for your help.  Where is the [[RandomIntBetween]]() method defined?  Does it rely on the [[NSApplicatAdditions]].h file? Thanks again.
+Thank you for your help.  Where is the General/RandomIntBetween() method defined?  Does it rely on the General/NSApplicatAdditions.h file? Thanks again.
 
 ----
 
 Oh I forgot about those here they are:
 
-<code>//
-//  [[NSApplicationAdditions]].h
-//  [[TRKit]]
+    //
+//  General/NSApplicationAdditions.h
+//  General/TRKit
 //
 
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[NSApplication]] ([[TRAdditions]])
-+ ([[NSString]] '')applicationVersion;
-- ([[NSString]] '')applicationVersion;
-+ ([[NSString]] '')applicationIdentifier;
-- ([[NSString]] '')applicationIdentifier;
-+ ([[NSString]] '')applicationName;
-- ([[NSString]] '')applicationName;
-@end</code><code>//
-//  [[NSApplicationAdditions]].m
-//  [[TRKit]]
+@interface General/NSApplication (General/TRAdditions)
++ (General/NSString *)applicationVersion;
+- (General/NSString *)applicationVersion;
++ (General/NSString *)applicationIdentifier;
+- (General/NSString *)applicationIdentifier;
++ (General/NSString *)applicationName;
+- (General/NSString *)applicationName;
+@end    //
+//  General/NSApplicationAdditions.m
+//  General/TRKit
 //
 
-#import "[[NSApplicationAdditions]].h"
+#import "General/NSApplicationAdditions.h"
 
 
-@implementation [[NSApplication]] ([[TRAdditions]])
+@implementation General/NSApplication (General/TRAdditions)
 
-+ ([[NSString]] '')applicationVersion
++ (General/NSString *)applicationVersion
 {
-	return [[[[[NSBundle]] mainBundle] infoDictionary] objectForKey:@"[[CFBundleVersion]]"];
+	return General/[[[NSBundle mainBundle] infoDictionary] objectForKey:@"General/CFBundleVersion"];
 }
 
-- ([[NSString]] '')applicationVersion
+- (General/NSString *)applicationVersion
 {
-	return [[self class] applicationVersion];
+	return General/self class] applicationVersion];
 }
 
-+ ([[NSString]] '')applicationIdentifier
++ ([[NSString *)applicationIdentifier
 {
-	return [[[[[NSBundle]] mainBundle] infoDictionary] objectForKey:@"[[CFBundleIdentifier]]"];
+	return General/[[[NSBundle mainBundle] infoDictionary] objectForKey:@"General/CFBundleIdentifier"];
 }
 
-- ([[NSString]] '')applicationIdentifier
+- (General/NSString *)applicationIdentifier
 {
-	return [[self class] applicationIdentifier];
+	return General/self class] applicationIdentifier];
 }
 
-+ ([[NSString]] '')applicationName
++ ([[NSString *)applicationName
 {
-	return [[[[[NSBundle]] mainBundle] infoDictionary] objectForKey:@"[[CFBundleExecutable]]"];
+	return General/[[[NSBundle mainBundle] infoDictionary] objectForKey:@"General/CFBundleExecutable"];
 }
 
-- ([[NSString]] '')applicationName
+- (General/NSString *)applicationName
 {
-	return [[self class] applicationName];
+	return General/self class] applicationName];
 }
 
-@end</code><code>static __inline__ int [[RandomIntBetween]](int a, int b)
+@end    static __inline__ int [[RandomIntBetween(int a, int b)
 {
     int range = b - a < 0 ? b - a - 1 : b - a + 1; 
-    int value = (int)(range '' ((float)random() / (float) LONG_MAX));
+    int value = (int)(range * ((float)random() / (float) LONG_MAX));
     return value == range ? a : a + value;
 }
 
-static __inline__ float [[RandomFloatBetween]](float a, float b)
+static __inline__ float General/RandomFloatBetween(float a, float b)
 {
-    return a + (b - a) '' ((float)random() / (float) LONG_MAX);
-}</code>
+    return a + (b - a) * ((float)random() / (float) LONG_MAX);
+}
 
 ----
 
 ATTENTION: This code seems to make some problems when compiling for 64-bit.
 I think it is saver to use mktemp (as suggested below).
-There is a nice [[NSFileManager]] category on Github, which can be used for temp path generation.
-http://github.com/[[AlanQuatermain]]/aqtoolkit/tree/master/[[TempFiles]]/
+There is a nice General/NSFileManager category on Github, which can be used for temp path generation.
+http://github.com/General/AlanQuatermain/aqtoolkit/tree/master/General/TempFiles/
 
 Perfect :)  The code works excellently, but I am trying to replace a file with something else�&#65533; would the easiest solution be to just move the file to the trash, or something, and then copy it?  Thanks.
 
-''You could move it to /tmp (with some random numbers after it's name) just incase something happens to the file, /tmp is cleaned out every once in a while so unless it is a huge file it won't matter :) ''
+*You could move it to /tmp (with some random numbers after it's name) just incase something happens to the file, /tmp is cleaned out every once in a while so unless it is a huge file it won't matter :) *
 
 ----
 
@@ -269,20 +269,20 @@ I don't see why people keep inventing new ways to create "unique" temporary file
 ----
 
 Shouldn't the line
-<code>
-char '' args[2];
-</code>
+    
+char * args[2];
+
 be
 
-<code>
-char '' args[3];
-</code>
+    
+char * args[3];
+
 ??
 
 
 [Question?]
 Undefined symbols for architecture x86_64:
 "_AuthorizationCreate", referenced from:
-      -[[[NSFileManager]]([[TRAdditions]]) authorizedMovePath:toPath:] in [[NSFileManagerAdditions]].o
+      -General/[NSFileManager(General/TRAdditions) authorizedMovePath:toPath:] in General/NSFileManagerAdditions.o
 
 how to solve this?

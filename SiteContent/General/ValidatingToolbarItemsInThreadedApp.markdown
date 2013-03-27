@@ -6,10 +6,10 @@ I just finished developing a not-too-complicated (single window, not document-ba
 
  (this method is in the view class). A separate model class generates the data.
 
-In between these threads is a third process that buffers the communication between the two aforementioned threads, using [[NSFileHandle]] buffers.
-The third process merely receives data from the second thread and passes it on to the main thread for display through a couple of [[NSPipe]] objects.
+In between these threads is a third process that buffers the communication between the two aforementioned threads, using General/NSFileHandle buffers.
+The third process merely receives data from the second thread and passes it on to the main thread for display through a couple of General/NSPipe objects.
 
-The buffering process runs in the background using [[NSTask]].
+The buffering process runs in the background using General/NSTask.
 
 The view is as clean as it can be. The content view of the app window is filled with the data display. Controls for supplying parameters to the model
 are presented in a sheet. I've been using menu bar items to control the starting and stopping of the second thread, using a
@@ -20,9 +20,9 @@ I use the same thread communication signals to validate the toolbar items in a t
 the controller class whose actions start and stop the threaded class operation. By accessing the proper signal variable, I am
 able to do the following:
 
-<code>
+    
 
-- ( BOOL ) validateToolbarItem: ( [[NSToolbarItem]] '' ) item
+- ( BOOL ) validateToolbarItem: ( General/NSToolbarItem * ) item
 {
       if ( [ item action ] == @selector( startAction: ) )
             if ( [ threadedClass receiving ) == YES )
@@ -39,23 +39,23 @@ able to do the following:
       else
             return YES;
 }
-</code>
+
 
 There is also a method in the controller class
 
-- ( void ) handleGeneratorThreadTermination: ( [[NSNotification]] '' ) n
+- ( void ) handleGeneratorThreadTermination: ( General/NSNotification * ) n
 
 The notification is posted by the data generator thread as the last thing it does before it exits (terminating normally or by an action
-in the controller that sets a signal to NO that causes its <code>while</code> loop to terminate, as in <code> while (signal) ...</code>
+in the controller that sets a signal to NO that causes its     while loop to terminate, as in      while (signal) ...
 
 I also use the above handler to restore the text of menu items appropriately, so I know it is working OK.
 
-<code>
-- ( void ) handleGeneratorThreadTermination: ( [[NSNotification]] '' ) n
+    
+- ( void ) handleGeneratorThreadTermination: ( General/NSNotification * ) n
 {
-           [[NSEnumerator]] ''e1 = [ [ [ window toolbar ] items ] objectEnumerator ];
-           [[NSEnumerator]] ''e2 = [ [ [ window toolbar ] items ] objectEnumerator ];
-           [[NSToolbarItem]] ''item;
+           General/NSEnumerator *e1 = [ [ [ window toolbar ] items ] objectEnumerator ];
+           General/NSEnumerator *e2 = [ [ [ window toolbar ] items ] objectEnumerator ];
+           General/NSToolbarItem *item;
           
          [ startStopMenuItem setTitle: @"Start" ];       // et seq., for key equivalent and appropriate selector for action
           
@@ -74,13 +74,13 @@ I also use the above handler to restore the text of menu items appropriately, so
                          [ item setEnabled: NO ];
          }
 }
-</code>
 
-The ''start'' button gets dimmed after launching the data generator thread, and the ''stop'' button becomes enabled.
-When the data generator terminates normally, or is interrupted by the ''stop'' button, the data generation is halted and a second or two
-elapses while the data currently in the pipeline finds its way back to the main thread. Once that is completed the ''start'' button is
+
+The *start* button gets dimmed after launching the data generator thread, and the *stop* button becomes enabled.
+When the data generator terminates normally, or is interrupted by the *stop* button, the data generation is halted and a second or two
+elapses while the data currently in the pipeline finds its way back to the main thread. Once that is completed the *start* button is
 re-enabled. While the receiving thread is finishing up, both toolbar buttons are dimmed.
 
-This grew out of problems resulting from the [[ThreadSleepIntervalResolutionTooLarge]] issue
+This grew out of problems resulting from the General/ThreadSleepIntervalResolutionTooLarge issue
 
-To see how to add a progress indicator in the toolbar of this app see [[ProgressIndicatorInToolbar]]
+To see how to add a progress indicator in the toolbar of this app see General/ProgressIndicatorInToolbar

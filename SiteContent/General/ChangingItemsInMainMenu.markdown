@@ -1,15 +1,15 @@
 
 
  
-* Following the suggestion in one of the previous threads, I have created a document-based application with a fairly simple Main Menu.  The end user, however, thinks that the Main Menu bar is too cluttered and would like some of the menu items to "disappear" until needed at some other time.  To accomplish this goal, I have added a single pull-down menu that, in theory, should allow the user to toggle the existence of a different item in the Main Menu.  It is fairly simple matter to have the toggle menu item send an "action" to an [[NSObject]] subclass instance wherein the necessary operations take place to modify the Main Menu.  After having studied how to proceed for a couple of days, I am stuck.  How do I remove, and then replace, menu item in the Main Menu bar upon an action being sent from another pull-down menu?  This might seem like a really dumb question but the answer will help to tidy up the application.  Thank you for your assistance.
+* Following the suggestion in one of the previous threads, I have created a document-based application with a fairly simple Main Menu.  The end user, however, thinks that the Main Menu bar is too cluttered and would like some of the menu items to "disappear" until needed at some other time.  To accomplish this goal, I have added a single pull-down menu that, in theory, should allow the user to toggle the existence of a different item in the Main Menu.  It is fairly simple matter to have the toggle menu item send an "action" to an General/NSObject subclass instance wherein the necessary operations take place to modify the Main Menu.  After having studied how to proceed for a couple of days, I am stuck.  How do I remove, and then replace, menu item in the Main Menu bar upon an action being sent from another pull-down menu?  This might seem like a really dumb question but the answer will help to tidy up the application.  Thank you for your assistance.
 
 
 ----
 
 Google is your friend.
-To add, [[[[NSApp]] mainMenu] addItem: theItemOwningTheSubmenu];
-To remove, [[[[NSApp]] mainMenu] removeItem: theItemOwningTheSubmenu];
-That said, dynamically changing the top-level menus in the menubar is considered bad form according to the [[HumanInterfaceGuidelines]].
+To add, General/[[NSApp mainMenu] addItem: theItemOwningTheSubmenu];
+To remove, General/[[NSApp mainMenu] removeItem: theItemOwningTheSubmenu];
+That said, dynamically changing the top-level menus in the menubar is considered bad form according to the General/HumanInterfaceGuidelines.
 
 ----
 

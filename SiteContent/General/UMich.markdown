@@ -1,12 +1,12 @@
 The University of Michigan - http://www.umich.edu/
 
-Also see the [[UMich]] College of Engineering - http://www.engin.umich.edu/
+Also see the General/UMich College of Engineering - http://www.engin.umich.edu/
 
-[[UMich]] used to be one of the great bastions of Macs in higher education, and offered one of the first major archives of Mac shareware and freeware on the net. In the late 90's, the proportion of Macs-to-other-computers dropped dramatically as Apple declined and PC manufacturers and Microsoft started aggressively making deals with (or outright donating hardware and software to) colleges across the country. With the release of Mac OS X and the resurgence of Apple, Macs have been on the rise again at the university.
+General/UMich used to be one of the great bastions of Macs in higher education, and offered one of the first major archives of Mac shareware and freeware on the net. In the late 90's, the proportion of Macs-to-other-computers dropped dramatically as Apple declined and PC manufacturers and Microsoft started aggressively making deals with (or outright donating hardware and software to) colleges across the country. With the release of Mac OS X and the resurgence of Apple, Macs have been on the rise again at the university.
 
-Relations between the company and the university remain strong. A surprising number of Apple employees are [[UMich]] alumni. Greg Joswiak (Joz), who gave the keynote at Macworld Creative Pro 2003, is probably the most visible, but he's one of many. Name a major technology at Apple, and you'll probably find at least one [[UMich]] grad working on it. 
+Relations between the company and the university remain strong. A surprising number of Apple employees are General/UMich alumni. Greg Joswiak (Joz), who gave the keynote at Macworld Creative Pro 2003, is probably the most visible, but he's one of many. Name a major technology at Apple, and you'll probably find at least one General/UMich grad working on it. 
 
-The old archives that made [[UMich]] famous to early Mac developers still exist, but haven't been updated in years. http://www.umich.edu/~archive/
+The old archives that made General/UMich famous to early Mac developers still exist, but haven't been updated in years. http://www.umich.edu/~archive/
 
 ----
 

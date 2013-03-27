@@ -15,6 +15,6 @@ Enjoy!
 
 ----
 
-I was able to easily reproduce this bug in [[TextEdit]] (Cocoa) but unable to in [[GraphicConverter]] and [[BBEdit]] (both Carbon) so it must be Cocoa only bug. And the window can be a few pixels below the menu bar, it doesn't have to be flush up against it.
+I was able to easily reproduce this bug in General/TextEdit (Cocoa) but unable to in General/GraphicConverter and General/BBEdit (both Carbon) so it must be Cocoa only bug. And the window can be a few pixels below the menu bar, it doesn't have to be flush up against it.
 
 That is FUBAR.  Looks like some inefficient code, too, b/c the minute you let the mouse button go it repositions... so checking happening where it shouldn't be, and not happening where it should be :)

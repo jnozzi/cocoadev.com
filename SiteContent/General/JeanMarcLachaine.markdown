@@ -20,6 +20,6 @@ I meant "In The Wind". It most cetainly is an idiom. Moreover, it is an idiom in
 
 ----
 
-Welcome to [[CocoaDev]], Jean-Marc. -- [[KritTer]]
+Welcome to General/CocoaDev, Jean-Marc. -- General/KritTer
 
 Wilderness?

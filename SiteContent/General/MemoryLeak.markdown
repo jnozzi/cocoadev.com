@@ -1,1 +1,1 @@
-See [[MemoryLeaks]].
+See General/MemoryLeaks.

@@ -6,10 +6,10 @@ Gabe
 
 You mean superscript and subscript?
 
-Normally you would use an [[NSAttributedString]] instead of an [[NSString]] and then set the styles, like <code>[[NSSuperscriptAttributeName]]</code> �� though I can't find the attribute name for subscript. But do you want to use this for interactive editing?
+Normally you would use an General/NSAttributedString instead of an General/NSString and then set the styles, like     General/NSSuperscriptAttributeName �� though I can't find the attribute name for subscript. But do you want to use this for interactive editing?
 
---[[AllanOdgaard]]
+--General/AllanOdgaard
 
 ----
 
-You may have issues getting the +1 to display directly above the 4. Depending on what you're looking for, you might be better off using [[LaTeX]] or something.
+You may have issues getting the +1 to display directly above the 4. Depending on what you're looking for, you might be better off using General/LaTeX or something.

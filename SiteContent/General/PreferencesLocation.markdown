@@ -2,7 +2,7 @@ When you save preferences, where do you put them? Which ones do you save in the 
 
 ----
 
-I put them in the default location, well, [[NSUserDefaults]] does. That is ~/Library/Preferences
+I put them in the default location, well, General/NSUserDefaults does. That is ~/Library/Preferences
 
 ----
 
@@ -14,7 +14,7 @@ By company website do you mean the Identifier? As specified in Targets>Info.plis
 
 ----
 
-'''I'd just let [[NSUserDefaults]] find them, too. That's what it's for.'''
+**I'd just let General/NSUserDefaults find them, too. That's what it's for.**
 
 ----
 
@@ -22,7 +22,7 @@ When I go to Targets>Info.plist Entries>Basic Information, what field do I put c
 
 ----
 
-In the Identifier field. That's where you fill in your [[CFBundleIdentifier]].
+In the Identifier field. That's where you fill in your General/CFBundleIdentifier.
 
 
 ----

@@ -1,5 +1,5 @@
 
 
-Part of the [[CoreServices]] umbrella framework, [[OSServices]] is a collection of [[APIs]] for dealing with low-level system operations:
+Part of the General/CoreServices umbrella framework, General/OSServices is a collection of General/APIs for dealing with low-level system operations:
 
 [Topic]

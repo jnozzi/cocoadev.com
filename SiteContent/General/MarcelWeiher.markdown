@@ -1,3 +1,3 @@
 
 
-See [[MetaObject]].  Invented [[HigherOrderMessaging]], or HOM, as part of [[MPWFoundation]], though the first steps actually precede [[MPWFoundation]] by a bit.
+See General/MetaObject.  Invented General/HigherOrderMessaging, or HOM, as part of General/MPWFoundation, though the first steps actually precede General/MPWFoundation by a bit.

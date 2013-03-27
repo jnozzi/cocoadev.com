@@ -1,24 +1,24 @@
-I've been experimenting with Apple's [[CocoaDVDPlayer]] example:
-http://developer.apple.com/samplecode/[[CocoaDVDPlayer]]/index.html
+I've been experimenting with Apple's General/CocoaDVDPlayer example:
+http://developer.apple.com/samplecode/General/CocoaDVDPlayer/index.html
 
 My experiment is an attempt to try to get the current frame image from the dvd window and then send it to an image view, just to see if it works. But it doesn't.
-I've placed the following code in the [[VideoWindow]] class, which is called by a timer several times a second.
-<code>
-[[NSLog]](@"timer firing");
-[[self contentView] lockFocus];
-currentFrame = [[[[NSImage]] alloc] initWithData:[[self contentView] dataWithPDFInsideRect:[[self contentView] bounds]]];
-[[self contentView] unlockFocus];
-</code>
+I've placed the following code in the General/VideoWindow class, which is called by a timer several times a second.
+    
+General/NSLog(@"timer firing");
+General/self contentView] lockFocus];
+currentFrame = [[[[NSImage alloc] initWithData:General/self contentView] dataWithPDFInsideRect:[[self contentView] bounds];
+General/self contentView] unlockFocus];
+
 
 Of course, it's not getting any pixel data when I ask for that image.
 
-It looks like the DVD framework draws to the video card directly somehow. Is there any efficient means by which we can get that data into something that can be converted to an [[NSImage]]?
+It looks like the DVD framework draws to the video card directly somehow. Is there any efficient means by which we can get that data into something that can be converted to an [[NSImage?
 
-... Alternatively, is there any way that I can composite that video into a [[QCRenderer]] or some other technique for use with [[QuartzComposer]] compositions (rendering layers of images above and below the DVD video)?
+... Alternatively, is there any way that I can composite that video into a General/QCRenderer or some other technique for use with General/QuartzComposer compositions (rendering layers of images above and below the DVD video)?
 
 ----
 
-Well, it'd be a violation of the Digital Millenium Copyright Act, which applies to anybody in the United States, so most of [[CocoaDev]] can't help you. See, DVD Player is written so that you can't grab frames. If you could, you'd be able to make a perfect copy of the DVD, which would be essentially rendering the DVD's copy protection useless (efficacy of the CSS algorithm aside.) As such, Apple has to make it difficult for you to make these copies so that they avoid being charged under the DMCA.
+Well, it'd be a violation of the Digital Millenium Copyright Act, which applies to anybody in the United States, so most of General/CocoaDev can't help you. See, DVD Player is written so that you can't grab frames. If you could, you'd be able to make a perfect copy of the DVD, which would be essentially rendering the DVD's copy protection useless (efficacy of the CSS algorithm aside.) As such, Apple has to make it difficult for you to make these copies so that they avoid being charged under the DMCA.
 
 ----
 

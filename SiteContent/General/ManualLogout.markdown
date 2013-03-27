@@ -2,7 +2,7 @@ Anybody know how to tell OS X to logout a user logged in the GUI?
 instead of say the auto-logout feature, i want to have my own program/script that logs them out  based on a duration fetched from a reservation system.
 
 any ideas? haven't been able to find anything so far, maybe looking for the wrong things.
- --[[JeremyK]]
+ --General/JeremyK
 
 ----
 
@@ -25,22 +25,22 @@ Yeah, i want the user to be 1st regular logged out when time is up, but if they 
 Fast user switching will not be enabled in this situation. 
 
 Just got some applescripts that will do both types of logout, yay
--- [[JeremyK]]
+-- General/JeremyK
 
 ----
 
 Mind sharing with us? :)
 ----
-<code>
+    
 try
 	-- graceful logout
 	tell application "loginwindow" to �event aevtlogo�
 on error mes
 	display dialog "Error: " & mes giving up after 10
 end try
-</code>
+
 Supposed to be hard logout, apparently doesn't and i might be resorting to kill -15 loginwindow of the particular user
-<code>
+    
 try
 	ignoring application responses
 		tell application "loginwindow" to �event aevtrlgo�
@@ -48,4 +48,3 @@ try
 on error mes
 	display dialog "Error: " & mes giving up after 10
 end try
-</code>

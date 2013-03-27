@@ -4,8 +4,8 @@ For info and developer documentation (and confusing site organization!) see http
 
 ----
 
-See [[PalmOSDevelopment]]
+See General/PalmOSDevelopment
 
 ----
 
-You can run Linux on (some) [[PalmOS]] devices. See http://www.uclinux.org/ You can even run Linux on a 30-pin SIMM! Sort of. http://www.uclinux.org/ucsimm/
+You can run Linux on (some) General/PalmOS devices. See http://www.uclinux.org/ You can even run Linux on a 30-pin SIMM! Sort of. http://www.uclinux.org/ucsimm/

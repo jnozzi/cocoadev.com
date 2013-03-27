@@ -1,14 +1,14 @@
-How do you find the [[NSImage]] for a specific user? (i.e. like that shown on the login window)
+How do you find the General/NSImage for a specific user? (i.e. like that shown on the login window)
 
 ----
 
 How about this?  
-<code>
-[[NSData]]'' imgData = [[[[[ABAddressBook]] sharedAddressBook] me] imageData];
-[[NSImage]] ''userImage = [[[[NSImage]] alloc] initWithData:imageData];
-</code>
+    
+General/NSData* imgData = General/[[[ABAddressBook sharedAddressBook] me] imageData];
+General/NSImage *userImage = General/[[NSImage alloc] initWithData:imageData];
 
-- [[JustinWilliams]]
+
+- General/JustinWilliams
 
 ----
 
@@ -28,7 +28,7 @@ Is there a way to get a user's associated image that doesn't involve the address
 
 ----
 
-Yep you could use [[DirectoryServices]], specifically dsAttrTypeStandard:Picture
+Yep you could use General/DirectoryServices, specifically dsAttrTypeStandard:Picture
 I believe theres some sample code online demonstrating this, although I couldn't find it with a quick google search.
 
 ----
@@ -41,19 +41,19 @@ No, I'm just writing a framework, and for simplicity's sake I would like to not 
 
 ----
 
-With all due respect, that's a kind of funny reason, considering you only have to link against the framework, and all you need to do is something like <code>[[NSData]] ''imageData = [[[[[ABAddressBook]] sharedAddressBook] me] imageData]; [[NSImage]] ''userImage = [[[[NSImage]] alloc] initWithData:imageData];</code>. If you used any other method, you would have much more code (it would certainly be much less simple). Don't be afraid to link!
+With all due respect, that's a kind of funny reason, considering you only have to link against the framework, and all you need to do is something like     General/NSData *imageData = General/[[[ABAddressBook sharedAddressBook] me] imageData]; General/NSImage *userImage = General/[[NSImage alloc] initWithData:imageData];. If you used any other method, you would have much more code (it would certainly be much less simple). Don't be afraid to link!
 
 ----
 
-He or she wants to grab the user icon for any user on the machine; not just the user currently logged in, or those who happen to be in the address book. Also, keep in mind that if you do use the address book, the ''me'' method may return nil in some special cases. So, although it seems like a good solution for some projects, it's not what the original poster needs in this case.
+He or she wants to grab the user icon for any user on the machine; not just the user currently logged in, or those who happen to be in the address book. Also, keep in mind that if you do use the address book, the *me* method may return nil in some special cases. So, although it seems like a good solution for some projects, it's not what the original poster needs in this case.
 
 ----
 
 Yes, and I still have no good solution, the best I came up with was by using the users uid, e.g. for uid=503 then
 "/Library/Caches/com.apple.user503pictureCache.userImage" - this file is actually a tiff.
 (and older versions of OSX used to name it .tiff rather than .userImage)
- - Not sure if this would work if I wasn't admin...  [[RbrtPntn]]
+ - Not sure if this would work if I wasn't admin...  General/RbrtPntn
 
 ----
 
-This is very bad to rely on. As the name implies, anything in <code>Caches</code> is, well, a cache, and can disappear at any moment. The contents of <code>Caches</code> exist only to make things faster, and anything stored there should be able to be recreated if deleted. The [[DirectoryServices]] approach is the correct one here.
+This is very bad to rely on. As the name implies, anything in     Caches is, well, a cache, and can disappear at any moment. The contents of     Caches exist only to make things faster, and anything stored there should be able to be recreated if deleted. The General/DirectoryServices approach is the correct one here.

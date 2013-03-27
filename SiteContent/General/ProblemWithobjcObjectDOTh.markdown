@@ -2,18 +2,18 @@ I've recently upgraded my mac to Tiger ( Upgrade for Jag ) and am haveing a few 
 
  I Don't know if Xcode2.0 has broken something but whenever i go to comile i get the error 
 
-<code>
+    
 /usr/bin/ld: Undefined symbols:
 .objc_class_name_Object
 _objc_msgSend
 collect2" ld returned 1 exit status
-</code>
+
 
 here is the code i'm trying to compile ( yes i'm just starting out with Ojective C )
 
 Thanks In Advance.
 
-<code>
+    
 #import <objc/Object.h>
 #import <stdio.h>
 
@@ -52,11 +52,11 @@ Thanks In Advance.
 }
 @end
 
-int main (int argc, char ''argv[])
+int main (int argc, char *argv[])
 {
-        Point ''pt1, ''pt2;
+        Point *pt1, *pt2;
 
-        pt1 = [[Point alloc] init];
+        pt1 = General/Point alloc] init];
         pt2 = [[Point alloc] init];
 
         // set first point to (100, 200)
@@ -80,15 +80,15 @@ int main (int argc, char ''argv[])
 
         return 0;
 }
-</code>
 
-''Note to original poster; bracket your code in \\%\\%BEGINCODE\\%\\% ... \\%\\%ENDCODE\\%\\%, otherwise it's impossible to read. See [[TextFormattingRules]].''
 
-You probably need to link against libobjc by adding <code>-lobjc</code> to your compiler flags. How are you compiling this code?
+*Note to original poster; bracket your code in \\%\\%BEGINCODE\\%\\% ... \\%\\%ENDCODE\\%\\%, otherwise it's impossible to read. See [[TextFormattingRules.*
+
+You probably need to link against libobjc by adding     -lobjc to your compiler flags. How are you compiling this code?
 
 ----
 
-If you're just starting out with [[ObjC]], you'd probably find it easier using the Cocoa NS'' classes.
+If you're just starting out with General/ObjC, you'd probably find it easier using the Cocoa NS* classes.
 
 
 Thanks alot for your help, linking with -lobjc did the trick, compiles with no dramas now, now i can stop pulling my hair out.

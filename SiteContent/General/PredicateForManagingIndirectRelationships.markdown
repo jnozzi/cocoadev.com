@@ -1,7 +1,7 @@
 
 
 
-I am building an iTunes-like browser for my [[CoreData]] bibliographic database.
+I am building an iTunes-like browser for my General/CoreData bibliographic database.
 This is the entities scheme
 
 http://www.cnomania.it/garage/entities-relationships.jpg
@@ -15,13 +15,13 @@ Now I have the first big issue.
 I cannot really form a predicate that chooses the  author that is linked to a topic. I tried something like
 
 
-[[NSPredicate]] ''result= [[[NSPredicate]] predicateWithFormat:@"entries.passages.topics.name = '%@'", selectedTopicName];
+General/NSPredicate *result= General/[NSPredicate predicateWithFormat:@"entries.passages.topics.name = '%@'", selectedTopicName];
 
 
 Yet I got no result whatsoever. The predicates gives me an empty set.
 Any suggestion?
 Cheers,
-[[DavideBenini]]
+General/DavideBenini
 
 
 ----

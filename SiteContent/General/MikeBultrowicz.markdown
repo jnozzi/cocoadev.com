@@ -4,7 +4,7 @@ Currently working on some cool Objective-C/Cocoa applications for a couple of co
 
 http://mikebultrowicz.com
 
-'''Utilities:'''
+**Utilities:**
 
 *Tereska - http://mikebultrowicz.com/software/tereska/
 *Tubby - http://mikebultrowicz.com/software/tubby/

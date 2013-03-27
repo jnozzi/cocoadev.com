@@ -1,6 +1,6 @@
 Okay, so Panther brings a new sheet animation style (where the sheet seems to curl out), but I can't see how to get my current sheets to do this.
 
-Anyone have any idea? -- [[GarrettMurray]]
+Anyone have any idea? -- General/GarrettMurray
 
 ----
 
@@ -8,7 +8,7 @@ You get the old animation for your program??? there is only one animation on my 
 
 ----
 
-Yeah, I think it's because I have small sheets (only like 300x50). They slide out normally. It's not a big deal--I can live with it. --[[GarrettMurray]]
+Yeah, I think it's because I have small sheets (only like 300x50). They slide out normally. It's not a big deal--I can live with it. --General/GarrettMurray
 
 ----
 
@@ -27,4 +27,4 @@ Panther: Two animations:
 * in metal windows (where there is no titlebar, so the straight down effect looked odd) ... in this case a "slot" is also drawn, and the sheet looks like it is coming out of the slot. (Thus answering the old question of "where do sheets come from in metal windows?")
 
 
---[[TimBuchheim]]
+--General/TimBuchheim

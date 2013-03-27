@@ -1,8 +1,8 @@
 
 
-Here's a [[CheesyXOREncryption]] scheme, which I call a "scrambling" scheme, since I don't like suggesting this is some kind of secure encryption. This snippet originally appeared in the [[ProtectingResources]] page
+Here's a General/CheesyXOREncryption scheme, which I call a "scrambling" scheme, since I don't like suggesting this is some kind of secure encryption. This snippet originally appeared in the General/ProtectingResources page
 
-<code>
+    
 // scramble
 // written by Michael Trent for www.cocoadev.com
 // 
@@ -19,7 +19,7 @@ Here's a [[CheesyXOREncryption]] scheme, which I call a "scrambling" scheme, sin
 #include <stdio.h>
 #include <stdlib.h>
 
-void scramble(unsigned long key, const unsigned char ''src, unsigned char ''dst, size_t size)
+void scramble(unsigned long key, const unsigned char *src, unsigned char *dst, size_t size)
 {
     // seed our generator function
     srandom(key);
@@ -31,12 +31,12 @@ void scramble(unsigned long key, const unsigned char ''src, unsigned char ''dst,
 	
 	// scramble!
 	if (size > 4) {
-	    ''(unsigned long'')dst = ''(unsigned long'')src ^ scrambler;
+	    *(unsigned long*)dst = *(unsigned long*)src ^ scrambler;
 	    src += 4; dst += 4; size -= 4;
 	} else {
-	    unsigned char ''scr = (unsigned char'')&scrambler;
+	    unsigned char *scr = (unsigned char*)&scrambler;
 	    while (size) {
-		''dst++ = (''src++) ^ (''scr++);
+		*dst++ = (*src++) ^ (*scr++);
 		size -= 1;
 	    }
 	}
@@ -45,12 +45,12 @@ void scramble(unsigned long key, const unsigned char ''src, unsigned char ''dst,
     // clear our generator function
     srandom(0);
 }
-</code>
+
 
 Note this function is fully symmetrical; if you call the function twice on the same buffer, that buffer will appear unchanged. Here's a cheesy test driver:
 
-<code>
-int main (int argc, const char '' argv[])
+    
+int main (int argc, const char * argv[])
 {
     char input[30] = "Here is some data to scramble!";
 
@@ -67,10 +67,10 @@ int main (int argc, const char '' argv[])
     
     return 0;
 }
-</code>
+
 
 This is regarded as unsafe as someone versed in exclusive-or encryption algorithms could make short work of this algorithm via brute-force, especially if they knew what the encrypted contents actually were. Really, the only twist here is that we're XOR-ing with a generating function, instead of just using the same scrambler (such as just using 'key') across the whole buffer. Unfortunately, we've picked a fairly obvious generating function: random().
 
 You could probably shore this up by using a better generating function than random(), preferably one that can be seeded with more than 4-billion seeds.
 
--- [[MikeTrent]]
+-- General/MikeTrent

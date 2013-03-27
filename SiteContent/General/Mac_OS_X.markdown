@@ -1,1 +1,1 @@
-#REDIRECT [[OS X]]
+#REDIRECT General/OS X

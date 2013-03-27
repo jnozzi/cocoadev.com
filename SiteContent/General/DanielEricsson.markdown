@@ -1,3 +1,3 @@
 
 
-Daniel is a guy in [[TheCountrySweden]].
+Daniel is a guy in General/TheCountrySweden.

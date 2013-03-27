@@ -1,24 +1,24 @@
 
 
-Part of the iPhone [[UIKit]] framework. Subclass of [[UIView]].
+Part of the iPhone General/UIKit framework. Subclass of General/UIView.
 
-%%BEGINCODESTYLE%%+ (void)initImplementationNow;%%ENDCODESTYLE%%
+<code>+ (void)initImplementationNow;</code>
 
 Must be called before initWithFrame?
 
-%%BEGINCODESTYLE%%- (id)initWithFrame:([[CGRect]])frame;%%ENDCODESTYLE%%
+<code>- (id)initWithFrame:(General/CGRect)frame;</code>
 
-<code>    [[[UIKeyboard]] initImplementationNow];
-  [[UIKeyboard]] ''keyboard = [[[[UIKeyboard]] alloc] initWithFrame: [[CGRectMake]](0.0f, 245.0f,
+        General/[UIKeyboard initImplementationNow];
+  General/UIKeyboard *keyboard = General/[[UIKeyboard alloc] initWithFrame: General/CGRectMake(0.0f, 245.0f,
                                                               320.0f, 480.0f - 245.f)];
-//Call up your keyboard into your mainView created as a [[UIWindow]]
-mainView = [[[[UIView]] alloc] initWithFrame: rect];
+//Call up your keyboard into your mainView created as a General/UIWindow
+mainView = General/[[UIView alloc] initWithFrame: rect];
 
-</code>
+
 
 enum values for setDefaultReturnKeyType:
 
-<code>
+    
 
 0 = Return (gray background)
 1 = Go (blue background)
@@ -30,11 +30,11 @@ enum values for setDefaultReturnKeyType:
 7 = Send (blue background)
 8 = Yahoo! (blue background)
 
-</code>
+
 
 To change the keyboard layout, use one of the below enums for setPreferredKeyboardType, followed with a call to showPreferredLayout: 
 
-<code>
+    
 
 0 = default QWERTY layout
 1 = numeric/punctuation layout
@@ -47,14 +47,13 @@ To change the keyboard layout, use one of the below enums for setPreferredKeyboa
 8 = email keypad w/ space key
 9 = email keypad w/ @ instead of space
 
-</code>
 
-As an aside, if you're using [[UIAlert]], be sure to set popupAlertAnimated:NO otherwise your showPreferredLayout will be overridden with the default layout. For example:
 
-<code>
+As an aside, if you're using General/UIAlert, be sure to set popupAlertAnimated:NO otherwise your showPreferredLayout will be overridden with the default layout. For example:
+
+    
 
       [myAlert popupAlertAnimated:NO];
       [[myAlert keyboard] setPreferredKeyboardType: 1];
       [[myAlert keyboard] showPreferredLayout];
 
-</code>

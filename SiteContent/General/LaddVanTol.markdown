@@ -2,9 +2,9 @@
 
 Projects grubbily pawed by Ladd:
 
-[[PerversionTracker]] - http://perversiontracker.com/
+General/PerversionTracker - http://perversiontracker.com/
 
-[[VersionTracker]] Pro - http://www.versiontracker.com/dyn/moreinfo/macosx/10230
+General/VersionTracker Pro - http://www.versiontracker.com/dyn/moreinfo/macosx/10230
 
 Xbench - http://xbench.com/
 
@@ -16,8 +16,8 @@ Docktastic Pro - http://spiny.com/software/
 
 People:
 
-[[DustinMierau]]
+General/DustinMierau
 
-[[AaronSittig]]
+General/AaronSittig
 
-[[StevenFrank]]
+General/StevenFrank

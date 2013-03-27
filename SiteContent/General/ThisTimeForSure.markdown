@@ -4,4 +4,4 @@ Crazy? I prefer "mentally challenged", thank-you-very-much.
 
 ----
 
-Where are you going? ''Crazy! Want to come?''
+Where are you going? *Crazy! Want to come?*

@@ -1,7 +1,7 @@
 Started doing QBASIC on DOS.
 Moved to Visual Basic on Windows 3.1.
 Moved to Visual C++ on Windows 95.
-Moved to C++ on [[BeOS]].
+Moved to C++ on General/BeOS.
 Moved to Java on Mac OS X.
 Moved to C# on Windows.  Sorry, guys.
 

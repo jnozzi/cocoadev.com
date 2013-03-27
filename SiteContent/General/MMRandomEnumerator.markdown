@@ -1,51 +1,51 @@
 
 
-Credit where credit is due: This is [[MichaelMeer]]'s original [[MMRandomEnumerator]] class
+Credit where credit is due: This is General/MichaelMeer's original General/MMRandomEnumerator class
 
-[[MMRandomEnumerator]].h
+General/MMRandomEnumerator.h
 
-<code>
-//  [[MMRandomEnumerator]].h
-//  [[XQuizIt]]
+    
+//  General/MMRandomEnumerator.h
+//  General/XQuizIt
 
 //  Created by Michael Meer on Thu Oct 31 2002.
 //  Copyright (c) 2002 Michael Meer. All rights reserved.
 
 #import <Cocoa/Cocoa.h>
 
-@interface [[MMRandomEnumerator]]: [[NSObject]]
+@interface General/MMRandomEnumerator: General/NSObject
 {
-	[[NSMutableArray]] ''array;
+	General/NSMutableArray *array;
 	int currentIndex;
 }
 
 #pragma mark ��� INITIALIZATION ���
 
-+ ( id ) initWithArray: ( [[NSArray]] '' ) newArray;
++ ( id ) initWithArray: ( General/NSArray * ) newArray;
 - ( id ) nextObject;
 - ( int ) count;
 
 #pragma mark ��� ACCESSORS ���
 
-- ( void ) setArray: ( [[NSMutableArray]] '' ) newArray;
-- ( [[NSArray]] '' ) array;
+- ( void ) setArray: ( General/NSMutableArray * ) newArray;
+- ( General/NSArray * ) array;
 - ( int ) currentIndex;
 
 @end
-</code>
 
-[[MMRandomEnumerator]].m:
 
-<code>
-//  [[MMRandomEnumerator]].m
+General/MMRandomEnumerator.m:
+
+    
+//  General/MMRandomEnumerator.m
 //  Shuffle the order of table entries or other array
 
 //  Created by Michael Meer on Thu Oct 31 2002.
 //  Copyright (c) 2002 Michael Meer. All rights reserved.
 
-#import "[[MMRandomEnumerator]].h"
+#import "General/MMRandomEnumerator.h"
 
-@implementation [[MMRandomEnumerator]]
+@implementation General/MMRandomEnumerator
 
 #pragma mark ��� INITIALIZATION ���
 
@@ -53,24 +53,24 @@ Credit where credit is due: This is [[MichaelMeer]]'s original [[MMRandomEnumera
 {
 	if ( self = [ super init ] )
 	{
-		array =  [ [ [[NSMutableArray]] alloc ] init ];
+		array =  [ [ General/NSMutableArray alloc ] init ];
 		currentIndex = 0;
 	}
 	return self;
 }
 
-+ ( id ) initWithArray: ( [[NSArray]] '' ) newArray
++ ( id ) initWithArray: ( General/NSArray * ) newArray
 {
-	[[MMRandomEnumerator]] ''enumerator;
-	[[NSMutableArray]] ''newArrayCopy;
-	[[NSMutableArray]] ''resultArray;
+	General/MMRandomEnumerator *enumerator;
+	General/NSMutableArray *newArrayCopy;
+	General/NSMutableArray *resultArray;
 	int arrayCount;
 	int index;
 	
 	arrayCount = [ newArray count ];
-	enumerator = [ [ [[MMRandomEnumerator]] alloc ] init ];
-	newArrayCopy = [ [[NSMutableArray]] arrayWithArray: newArray ];
-	resultArray = [ [[NSMutableArray]] arrayWithCapacity: arrayCount ];
+	enumerator = [ [ General/MMRandomEnumerator alloc ] init ];
+	newArrayCopy = [ General/NSMutableArray arrayWithArray: newArray ];
+	resultArray = [ General/NSMutableArray arrayWithCapacity: arrayCount ];
 	
 	while ( [ resultArray count ] < arrayCount )
 	{
@@ -109,13 +109,13 @@ Credit where credit is due: This is [[MichaelMeer]]'s original [[MMRandomEnumera
 
 #pragma mark ��� ACCESSORS ���
 
-- ( void ) setArray: ( [[NSMutableArray]] '' ) newArray
+- ( void ) setArray: ( General/NSMutableArray * ) newArray
 {
 	[ array autorelease ];
 	array = [ newArray retain ];
 }
 
-- ( [[NSArray]] '' ) array
+- ( General/NSArray * ) array
 {
 	return array;
 }
@@ -126,4 +126,3 @@ Credit where credit is due: This is [[MichaelMeer]]'s original [[MMRandomEnumera
 }
 
 @end
-</code>

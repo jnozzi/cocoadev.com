@@ -1,21 +1,21 @@
 
 
 
-Apple neglected a very simple method in [[QTMovie]], that it actually supported in [[NSMovie]]: isPlaying.  It just returns whether or not the movie is currently playing.
+Apple neglected a very simple method in General/QTMovie, that it actually supported in General/NSMovie: isPlaying.  It just returns whether or not the movie is currently playing.
 
 Header File
-<code>
-@interface [[QTMovie]] ([[SimpleAccessorsAdditions]])
+    
+@interface General/QTMovie (General/SimpleAccessorsAdditions)
 
 - (BOOL)isPlaying;
 
 @end
 
-</code> 
+ 
 
 implementation file
-<code>
-@implementation [[QTMovie]] ([[SimpleAccessorsAdditions]])
+    
+@implementation General/QTMovie (General/SimpleAccessorsAdditions)
 
 - (BOOL)isPlaying
 {
@@ -23,4 +23,3 @@ implementation file
 }
 
 @end
-</code>

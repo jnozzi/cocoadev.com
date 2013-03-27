@@ -1,4 +1,4 @@
-Create a [[NSTableView]] with some columns in [[InterfaceBuilder]].  Now enclose the [[NSTableView]] in a [[NSTabView]] and you get these wierd little blocks where the columns don't draw!  This screenshot is actually from interface builder, but the same glitch shows up in my program.  How do I fix this?  Is there a good work-around?
+Create a General/NSTableView with some columns in General/InterfaceBuilder.  Now enclose the General/NSTableView in a General/NSTabView and you get these wierd little blocks where the columns don't draw!  This screenshot is actually from interface builder, but the same glitch shows up in my program.  How do I fix this?  Is there a good work-around?
 
 http://www.timestretch.com/ib-bug.gif
 

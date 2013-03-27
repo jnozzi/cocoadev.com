@@ -1,3 +1,3 @@
 
 
-Jay Prince started writing Mac software back in the days of MPW and [[TMon]].
+Jay Prince started writing Mac software back in the days of MPW and General/TMon.

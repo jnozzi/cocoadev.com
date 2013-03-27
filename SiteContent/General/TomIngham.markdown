@@ -6,5 +6,5 @@ http://www.coalmarch.com
 
 ----
 
-[[NSTreeController]]
-[[DocumentBasedCoreDataWithDatabase]]
+General/NSTreeController
+General/DocumentBasedCoreDataWithDatabase

@@ -1,1 +1,1 @@
-See [[NotificationsAcrossThreads]]
+See General/NotificationsAcrossThreads

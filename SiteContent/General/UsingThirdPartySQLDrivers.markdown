@@ -11,7 +11,7 @@ Generally the basic SQL functionality.
 Is there a good place to start looking for this information?
 
 Thanks for any info you might be able to share
-[[CliffPruitt]]
+General/CliffPruitt
 
 ----
 

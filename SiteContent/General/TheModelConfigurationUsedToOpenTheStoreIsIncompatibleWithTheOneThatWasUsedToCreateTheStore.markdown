@@ -1,4 +1,4 @@
-This error appears on the [[CoreDataErrorsIveCaused]] page, but I wanted to pose another case and see if anybody might have an idea for how to fix it.
+This error appears on the General/CoreDataErrorsIveCaused page, but I wanted to pose another case and see if anybody might have an idea for how to fix it.
 
 I had a core data application using a single sqlite datastore from a single model in 10.4.  To my dismay, when upgrading to 10.5 - no changes to the app - the user receives the error for which the page is named, and can never again retrieve that data.
 

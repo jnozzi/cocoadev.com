@@ -1,14 +1,14 @@
 
 
-I have a subclass of [[NSView]], and I'd like to have it receive the scrollWheel: event, however it does nothing... it receives other events such as mouseDown:, mouseUp: just fine... but scrollWheel:, nada, zip. Even overriding it on [[NSWindow]] doesn't work!
+I have a subclass of General/NSView, and I'd like to have it receive the scrollWheel: event, however it does nothing... it receives other events such as mouseDown:, mouseUp: just fine... but scrollWheel:, nada, zip. Even overriding it on General/NSWindow doesn't work!
 
 My override method looks like:
 
-<code>
-- (void)scrollWheel:([[NSEvent]]'')theEvent {
-	[[NSLog]](@"test");
+    
+- (void)scrollWheel:(General/NSEvent*)theEvent {
+	General/NSLog(@"test");
 }
-</code>
+
 
 What's wrong?
 
@@ -18,7 +18,7 @@ Is your view contained in another view which could be eating the event?
 
 ----
 
-Its directly ontop of [[NSWindow]].
+Its directly ontop of General/NSWindow.
 
 ----
 
@@ -34,12 +34,12 @@ What other code would be relevant? :-/
 
 Do you have
 
-<code>
+    
 -(BOOL)acceptsFirstResponder
 {
     return YES;
 }
-</code>
+
 
 in your view?
 
@@ -53,11 +53,11 @@ You also need to override -becomeFirstResponder and have that return YES.
 
 ----
 
-Even with that it still isn't working ''sigh'' :-(
+Even with that it still isn't working *sigh* :-(
 
 ----
 
-I just tried to subclass a [[NSView]] in Xcode and I set it in Interface Builder as custom class of a [[NSView]] I dropped onto the window.
+I just tried to subclass a General/NSView in Xcode and I set it in Interface Builder as custom class of a General/NSView I dropped onto the window.
 My subclass receives scroll wheel events very well. And this view is not first responder and have no "becomeFirstResponder" nor "acceptsFirstResponder" methods in it.
 
 I think you have problems with Xcode or IB. Can you try to "clean all targets" then rebuild your entire project in Xcode ?
@@ -71,18 +71,18 @@ I think so too, its a bug it seems... the code above didn't work either. :-/
 
 ----
 
-I got it! Since I was using [[NSBorderlessWindowMask]], I had to add this to my [[NSWindow]]:
+I got it! Since I was using General/NSBorderlessWindowMask, I had to add this to my General/NSWindow:
 
-<code>
+    
   - (BOOL)canBecomeKeyWindow
     {
         return YES;
     }
-</code>
+
 
 ----
 ----
 
-Hello, I have a new question about scrollWheel: actions and views, this time an [[NSOpenGLView]]:
-I'm doing an [[OpenGL]] tutorial, and has managed to get my objects to scale when I use the scroll Wheel. All this works fine in windowed mode, but when I let the [[NSOpenGLView]] go fullscreen, I can't capture the scrollWheel: action anymore.
-Is there a solution, or should I just resize my window to fit the screen, rather than going in true fullscreen mode? (expose etc disabled, without extra work) Thanks, -- [[EnglaBenny]]
+Hello, I have a new question about scrollWheel: actions and views, this time an General/NSOpenGLView:
+I'm doing an General/OpenGL tutorial, and has managed to get my objects to scale when I use the scroll Wheel. All this works fine in windowed mode, but when I let the General/NSOpenGLView go fullscreen, I can't capture the scrollWheel: action anymore.
+Is there a solution, or should I just resize my window to fit the screen, rather than going in true fullscreen mode? (expose etc disabled, without extra work) Thanks, -- General/EnglaBenny

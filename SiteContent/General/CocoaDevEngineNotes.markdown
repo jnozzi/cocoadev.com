@@ -1,18 +1,18 @@
-In an attempt to get [[CocoaDev]] working again, I rewrote the engine somewhat. While I was in there anyway, I got the multiple reverse indexes on eg [[AppleScript]] working. Just so people know. I think the rest of the changes were all behind-the-scenes - we can now easily wipe version histories to save space, etc.
+In an attempt to get General/CocoaDev working again, I rewrote the engine somewhat. While I was in there anyway, I got the multiple reverse indexes on eg General/AppleScript working. Just so people know. I think the rest of the changes were all behind-the-scenes - we can now easily wipe version histories to save space, etc.
 
 All together now. "We hate Perl DBM." Good.
 
--- [[KritTer]]
+-- General/KritTer
 
-Does this mean out-of-date pages can be deleted? -- [[DustinVoss]]
+Does this mean out-of-date pages can be deleted? -- General/DustinVoss
 
-On the server, yes. You'd have to get [[StevenFrank]] to do it. -- [[KritTer]]
+On the server, yes. You'd have to get General/StevenFrank to do it. -- General/KritTer
 
-Good job, clean-cut boy... oh never mind. Thanks :) -- [[RobRix]]
+Good job, clean-cut boy... oh never mind. Thanks :) -- General/RobRix
 
-A little OT here, but still related to the engine:  Does anyone but me get annoyed by needing to repeatedly type things like \\%\\%BEGINCODESTYLE\\%\\%?  I propose that the engine should also include parsing for shorter pseudo-[[HTMLish]] tags like for instance [b] and [/b] to demarkate bold areas, [hr] to make a line, etc.  Another option would be to include some buttons on the edit page that would insert snippets.  Something like this code (lifted and modified from a BBS system for inserting smilies) ought to do it:
+A little OT here, but still related to the engine:  Does anyone but me get annoyed by needing to repeatedly type things like \\%\\%BEGINCODESTYLE\\%\\%?  I propose that the engine should also include parsing for shorter pseudo-General/HTMLish tags like for instance [b] and [/b] to demarkate bold areas, [hr] to make a line, etc.  Another option would be to include some buttons on the edit page that would insert snippets.  Something like this code (lifted and modified from a BBS system for inserting smilies) ought to do it:
 
-<code>
+    
 <script language="javascript">
 <!--
 function popitin(snippet) {
@@ -24,18 +24,18 @@ function popitin(snippet) {
 <a href="javascript:popitin('\\%\\%BEGINBOLD\\%\\%')">insert \\%\\%BEGINBOLD\\%\\%</a><br>
 <a href="javascript:popitin('\\%\\%ENDBOLD\\%\\%')">insert \\%\\%ENDBOLD\\%\\%</a><br>
 <!-- etc -->
-</code>
 
-You'd also need to add a %%BEGINCODESTYLE%% name="editform" %%ENDCODESTYLE%% to the form tag.
+
+You'd also need to add a <code> name="editform" </code> to the form tag.
 
 This code isn't perfect, it puts the text at the end of the end of the textarea instead of at the insertion point; maybe a DOM expert could help here.
 
-// [[JackNutting]]
+// General/JackNutting
 
 
 Yes, please. The %% things are difficult to use and difficult to read in edit mode.
 
-''I happen rather to agree with this - except when one's writing code, when they stick out much more than HTML or BB. But how often does one markup code, really. Post a complete list of replacements for everything we currently have and I'll suggest it to [[StevenFrank]]. -- [[KritTer]]''
+*I happen rather to agree with this - except when one's writing code, when they stick out much more than HTML or BB. But how often does one markup code, really. Post a complete list of replacements for everything we currently have and I'll suggest it to General/StevenFrank. -- General/KritTer*
 
 ----
 
@@ -72,16 +72,16 @@ Sorry about the late response.  Here's a complete list of alternates:
 
 There are lots of other ways to do this (as seen on various wikis), but I like these because they mirror standard HTML tags that are already familiar to lots of people.
 
-// [[JackNutting]]
+// General/JackNutting
 
-I agree, these are much better --[[NirSoffer]]
+I agree, these are much better --General/NirSoffer
 
-Can we not use square brackets? I'd hate to see this interfere w/ our [[ObjC]] code. -- [[MikeTrent]]
-
-----
-
-Since I wrote the mods before this list was up, I just used standard Wiki. '''Bold''', ''italic'' and <code>code style</code>. -- [[KritTer]]
+Can we not use square brackets? I'd hate to see this interfere w/ our General/ObjC code. -- General/MikeTrent
 
 ----
 
-See also [[ShouldWeSwitchToTwiki]]
+Since I wrote the mods before this list was up, I just used standard Wiki. **Bold**, *italic* and     code style. -- General/KritTer
+
+----
+
+See also General/ShouldWeSwitchToTwiki

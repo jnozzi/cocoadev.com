@@ -9,17 +9,17 @@ PPC apps cannot obtain the rootProxy from Intel apps.
 Intel apps cannot obtain the rootProxy from other Intel apps.
 
 Here's the basic flow of my code (simplified for here).  I have an object that attempts to resolve services found by the service browser.
-<code>
+    
 ...
     [_netService setDelegate:self];
     [_netService resolveWithTimeout: 5];
 ...
-</code>
+
 netServiceDidResolveAddress: is called successfully and the service is resolved.
-<code>
-- (void)netServiceDidResolveAddress:([[NSNetService]] '') sender {
-	[[NSArray]] ''addresses = [sender addresses];
-	struct sockaddr '' socketAddress;
+    
+- (void)netServiceDidResolveAddress:(General/NSNetService *) sender {
+	General/NSArray *addresses = [sender addresses];
+	struct sockaddr * socketAddress;
 	char buffer[256];
 	uint16_t port;
 	int count;
@@ -27,33 +27,33 @@ netServiceDidResolveAddress: is called successfully and the service is resolved.
 	// Search for the IPv4 addresses in the array.
 	for (count = 0; count < [addresses count]; count++) {
 		
-		socketAddress = (struct sockaddr '')[[addresses objectAtIndex:count] bytes];
+		socketAddress = (struct sockaddr *)General/addresses objectAtIndex:count] bytes];
 		
 		// Only continue if this is an IPv4 address.
 		if (socketAddress && socketAddress->sa_family == AF_INET) {
 			
-			if (inet_ntop(AF_INET, &((struct sockaddr_in '')socketAddress)->sin_addr, buffer, sizeof(buffer))) {
+			if (inet_ntop(AF_INET, &((struct sockaddr_in *)socketAddress)->sin_addr, buffer, sizeof(buffer))) {
 				
-				port = ntohs(((struct sockaddr_in '')socketAddress)->sin_port);
+				port = ntohs(((struct sockaddr_in *)socketAddress)->sin_port);
 				
-				[[DLog]](@"Resolved service: %@", [[[NSString]] stringWithFormat: @"%s:%d", buffer, port, nil]);
+				[[DLog(@"Resolved service: %@", General/[NSString stringWithFormat: @"%s:%d", buffer, port, nil]);
 
 				// this works fine... there is never an error creating the connection
 				NS_DURING
-					[[NSSocketPort]] ''socketPort = [[[[NSSocketPort]] alloc] initRemoteWithTCPPort:port host: [[[NSString]] stringWithCString: buffer]];
-					_connection = [[[[NSConnection]] alloc] initWithReceivePort:nil sendPort:socketPort];
+					General/NSSocketPort *socketPort = General/[[NSSocketPort alloc] initRemoteWithTCPPort:port host: General/[NSString stringWithCString: buffer]];
+					_connection = General/[[NSConnection alloc] initWithReceivePort:nil sendPort:socketPort];
 					[socketPort release];
 				NS_HANDLER
-					[[DLog]](@"Error creating the connection. Bailing.");
+					General/DLog(@"Error creating the connection. Bailing.");
 					[self release];
 					return;
 				NS_ENDHANDLER
 				
-				// this throws an exception EVERY time when the [[NSConnection]] refers to an Intel machine
+				// this throws an exception EVERY time when the General/NSConnection refers to an Intel machine
 				NS_DURING
-					_remoteObject = [[_connection rootProxy] retain];
+					_remoteObject = General/_connection rootProxy] retain];
 				NS_HANDLER
-					[[DLog]](@"Error getting the root proxy");
+					[[DLog(@"Error getting the root proxy");
 					// no matter how long i wait or how many times i try, rootProxy never works
 				NS_ENDHANDLER
 				
@@ -63,19 +63,19 @@ netServiceDidResolveAddress: is called successfully and the service is resolved.
 	}
 	[self release];
 }
-</code>
+
 The call to [_connection rootProxy] fails every time with the following exception:
-%%BEGINCODESTYLE%%
-[[[NSPortCoder]] sendBeforeTime:sendReplyPort:] timed out
-%%ENDCODESTYLE%%
+<code>
+General/[NSPortCoder sendBeforeTime:sendReplyPort:] timed out
+</code>
 And this only happens with Intel machines, and it happens every time.  It doesn't appear to matter if the machine calling rootProxy is PPC or Intel, it fails whenever the remote machine is an Intel machine.  I should add that rootObject returns nil, even though it is simply not the case.
 
-From the output you can see that it's getting a valid IP address and a valid port number.  I can confirm that they are the correct numbers for the remote machine.  Also, I'm not sure if this is of any consequence, but no matter the timeout settings on the [[NSConnection]], I always receive the "timed out" error a fraction of a second after sending the rootProxy call.
+From the output you can see that it's getting a valid IP address and a valid port number.  I can confirm that they are the correct numbers for the remote machine.  Also, I'm not sure if this is of any consequence, but no matter the timeout settings on the General/NSConnection, I always receive the "timed out" error a fraction of a second after sending the rootProxy call.
 
-<code>
-2006-10-18 20:07:58.666 Reflection[26866] [[NetworkController]].m:88 Resolved service: 192.168.1.106:2496
-2006-10-18 20:07:58.840 Reflection[26866] [[[NSPortCoder]] sendBeforeTime:sendReplyPort:] timed out
-</code>
+    
+2006-10-18 20:07:58.666 Reflection[26866] General/NetworkController.m:88 Resolved service: 192.168.1.106:2496
+2006-10-18 20:07:58.840 Reflection[26866] General/[NSPortCoder sendBeforeTime:sendReplyPort:] timed out
+
 
 If anybody has some insight into this please let me know.  This is absolutely crippling to the use of these newer Intel machines on the existing network, and I cannot figure out for the life of me what is going on.  Thanks in advance,
 
@@ -84,43 +84,43 @@ Jon
 ----
 Here's more output from an Intel machine.  The test network contains one Intel machine and one PPC machine.
 
-<code>
-2006-10-18 20:57:14.663 Reflection[269] [[NetworkController]].m:170 Set root object to: <[[NetworkController]]: 0x39d310>
-2006-10-18 20:57:14.667 Reflection[269] [[NetworkController]].m:199 Service published on port 5568 as "intel-imac.local:269"
-2006-10-18 20:57:14.853 Reflection[269] [[NetworkController]].m:90 Resolved service: 192.168.1.100:64048
-2006-10-18 20:57:14.913 Reflection[269] [[NetworkController]].m:118 Got remote object <[[NetworkController]]: 0x390a90>
-2006-10-18 20:57:16.767 Reflection[269] [[NetworkController]].m:90 Resolved service: 192.168.1.106:5568
-2006-10-18 20:57:16.768 Reflection[269] [[NetworkController]].m:116 Error getting the root proxy
-2006-10-18 20:57:16.768 Reflection[269] [[NetworkController]].m:118 Got remote object (null)
-</code>
+    
+2006-10-18 20:57:14.663 Reflection[269] General/NetworkController.m:170 Set root object to: <General/NetworkController: 0x39d310>
+2006-10-18 20:57:14.667 Reflection[269] General/NetworkController.m:199 Service published on port 5568 as "intel-imac.local:269"
+2006-10-18 20:57:14.853 Reflection[269] General/NetworkController.m:90 Resolved service: 192.168.1.100:64048
+2006-10-18 20:57:14.913 Reflection[269] General/NetworkController.m:118 Got remote object <General/NetworkController: 0x390a90>
+2006-10-18 20:57:16.767 Reflection[269] General/NetworkController.m:90 Resolved service: 192.168.1.106:5568
+2006-10-18 20:57:16.768 Reflection[269] General/NetworkController.m:116 Error getting the root proxy
+2006-10-18 20:57:16.768 Reflection[269] General/NetworkController.m:118 Got remote object (null)
+
 
 You can see the Intel machine (intel-imac.local) set its own root object and publish itself on lines one-two.  You can see it discover the G5 and get its rootProxy on lines three-four.  It then "discovers" itself but can't even get its own rootProxy (this case is skipped normally, but I've been testing various situations).  The same output from the G5:
 
-<code>
-2006-10-18 20:56:30.279 Reflection[27023] [[NetworkController]].m:170 Set root object to: <[[NetworkController]]: 0x390a90>
-2006-10-18 20:56:30.294 Reflection[27023] [[NetworkController]].m:199 Service published on port 64048 as "power-mac-g5.local:27023"
-2006-10-18 20:56:31.322 Reflection[27023] [[NetworkController]].m:90 Resolved service: 192.168.1.100:64048
-2006-10-18 20:56:31.332 Reflection[27023] [[NetworkController]].m:118 Got remote object <[[NetworkController]]: 0x390a90>
-2006-10-18 20:56:52.899 Reflection[27023] [[NetworkController]].m:90 Resolved service: 192.168.1.106:5568
-2006-10-18 20:56:53.060 Reflection[27023] [[NetworkController]].m:116 Error getting the root proxy
-2006-10-18 20:56:53.060 Reflection[27023] [[NetworkController]].m:118 Got remote object (null)
-</code>
+    
+2006-10-18 20:56:30.279 Reflection[27023] General/NetworkController.m:170 Set root object to: <General/NetworkController: 0x390a90>
+2006-10-18 20:56:30.294 Reflection[27023] General/NetworkController.m:199 Service published on port 64048 as "power-mac-g5.local:27023"
+2006-10-18 20:56:31.322 Reflection[27023] General/NetworkController.m:90 Resolved service: 192.168.1.100:64048
+2006-10-18 20:56:31.332 Reflection[27023] General/NetworkController.m:118 Got remote object <General/NetworkController: 0x390a90>
+2006-10-18 20:56:52.899 Reflection[27023] General/NetworkController.m:90 Resolved service: 192.168.1.106:5568
+2006-10-18 20:56:53.060 Reflection[27023] General/NetworkController.m:116 Error getting the root proxy
+2006-10-18 20:56:53.060 Reflection[27023] General/NetworkController.m:118 Got remote object (null)
+
 
 The G5 can get its own rootProxy, but not that of the Intel machine.  This is driving me insane :(
 
 ----
-Have you tried this with another Intel Mac? Have you tried disabling Mac OS X's firewall on the Intel Mac? It's possible that the firewall is interfering with the [[DOs]]. Just a thought--I don't work with [[DOs]] often. :)
+Have you tried this with another Intel Mac? Have you tried disabling Mac OS X's firewall on the Intel Mac? It's possible that the firewall is interfering with the General/DOs. Just a thought--I don't work with General/DOs often. :)
 ----
 Yup, I have 2 Intel Macs, and 2 PPC Macs here setup in my office now (it's a mess).  No firewalls enabled on any of them, all connected by a boring router with nothing other than themselves connected. The behavior is entirely reproducible and only effects the Intel machines.
 
 ----
 Please excuse if you have already looked into this or if I am not very helpful.  But the fact that it seems only requesting information form the Intel machines is giving a problem implies that this has something to do with the very few architectural differences noted by apple which they haven't automatically handled for programmers.  Specifically in this case it looks like it might be a byte-ordering issue.
 
-%%BEGINCODESTYLE%%
+<code>
 Network-Related Data
-Network-related data typically uses big-endian format (also known as network byte order), so you may need to swap bytes when communicating between the network and an Intel-based Macintosh computer. You probably never had to adjust your [[PowerPC]] code when you transmitted data to, or received data from, the network. On an Intel-based Macintosh computer you must look closely at your networking code and ensure that you always send network-related data in the appropriate byte order. You must also handle data received from the network appropriately, swapping the bytes of values to the endian format appropriate to the host microprocessor.
+Network-related data typically uses big-endian format (also known as network byte order), so you may need to swap bytes when communicating between the network and an Intel-based Macintosh computer. You probably never had to adjust your General/PowerPC code when you transmitted data to, or received data from, the network. On an Intel-based Macintosh computer you must look closely at your networking code and ensure that you always send network-related data in the appropriate byte order. You must also handle data received from the network appropriately, swapping the bytes of values to the endian format appropriate to the host microprocessor.
 
-You can use the following POSIX functions to convert between network byte order and host byte order. (Other byte-swapping functions, such as those defined in the [[OSByteOrder]].h and [[CFByteOrder]].h header files, can also be useful for handling network data.)
+You can use the following POSIX functions to convert between network byte order and host byte order. (Other byte-swapping functions, such as those defined in the General/OSByteOrder.h and General/CFByteOrder.h header files, can also be useful for handling network data.)
 
 network to host:
 uint32_t ntohl (uint32_t netlong);
@@ -132,9 +132,9 @@ uint32_t htonl (uint32_t hostlong);
 
 uint16_t htons (uint16_t hostshort);
 
-%%ENDCODESTYLE%%
+</code>
 
-more of the same can be seen in the Universal binary programming guide http://developer.apple.com/documentation/[[MacOSX]]/Conceptual/universal_binary/index.html#//apple_ref/doc/uid/TP40002217
+more of the same can be seen in the Universal binary programming guide http://developer.apple.com/documentation/General/MacOSX/Conceptual/universal_binary/index.html#//apple_ref/doc/uid/TP40002217
 
 Anyway, many of us have DO in parallel situations and I for one am very interested to see how you resolve this.  Good luck!
 
@@ -142,20 +142,20 @@ Anyway, many of us have DO in parallel situations and I for one am very interest
 ----
 Thanks for the input.  The thing is, the behavior I am experiencing happens before I can even attempt to send any data over the connection.
 
-Essentially, it boils down to the server doing: %%BEGINCODESTYLE%%
-[theNSConnection setRootObject: theObjectToVend];%%ENDCODESTYLE%%
+Essentially, it boils down to the server doing: <code>
+[theNSConnection setRootObject: theObjectToVend];</code>
 
-and the Client unable to call:%%BEGINCODESTYLE%%
-theDO = [[theNSConnection rootProxy] retain];%%ENDCODESTYLE%%
+and the Client unable to call:<code>
+theDO = General/theNSConnection rootProxy] retain];</code>
 
-As far as I can discern, the only places where I need 'ntox' I have them in place.  For instance,<code>
-if (inet_ntop(AF_INET, &((struct sockaddr_in '')socketAddress)->sin_addr, buffer, sizeof(buffer))) {
-port = ntohs(((struct sockaddr_in '')socketAddress)->sin_port);
-</code>
+As far as I can discern, the only places where I need 'ntox' I have them in place.  For instance,    
+if (inet_ntop(AF_INET, &((struct sockaddr_in *)socketAddress)->sin_addr, buffer, sizeof(buffer))) {
+port = ntohs(((struct sockaddr_in *)socketAddress)->sin_port);
 
-Other than those two lines, all my connections and ports are created using [[NSSocketPort]] and [[NSConnection]] initializers.  I'll dig more into those initializers; maybe one isn't doing something I am assuming it is doing on the Intel boxes.
+
+Other than those two lines, all my connections and ports are created using [[NSSocketPort and General/NSConnection initializers.  I'll dig more into those initializers; maybe one isn't doing something I am assuming it is doing on the Intel boxes.
 ----
-I got it. Both [[[[NSNetService]] alloc] initWithDomain:type:name:port:] and [[[[NSSocketPort]] alloc] initRemoteWithTCPPort:host:] require ports in host order.  When I was publishing, I would get a port from [[[[[NSSocketPort]] alloc] initWithTCPPort: 0] address], from which the extracted port was in network byte order.  Sending [[[[NSNetService]] alloc] initWithDomain:type:name:port:] a port in network byte order leads to something other than what I was expecting on Intel; a problem that never appeared in PPC.
+I got it. Both General/[[NSNetService alloc] initWithDomain:type:name:port:] and General/[[NSSocketPort alloc] initRemoteWithTCPPort:host:] require ports in host order.  When I was publishing, I would get a port from General/[[[NSSocketPort alloc] initWithTCPPort: 0] address], from which the extracted port was in network byte order.  Sending General/[[NSNetService alloc] initWithDomain:type:name:port:] a port in network byte order leads to something other than what I was expecting on Intel; a problem that never appeared in PPC.
 
 I feel like an idiot now, but the problem is solved.  Thanks for the pushes in the right direction.
 
@@ -166,16 +166,16 @@ So did you have to reverse the byte-order of the port or what?  Could you just w
 ----
 Sure. The whole problem stemmed from the way I obtained my original port for the connection.
 
-Firstly, I use a category on [[NSData]] to get information out of a sockaddr_in structure.  The important methods (and the key to the problem) are:
-<code>
-#import "[[NSData]]+[[SockAddr]].h"
+Firstly, I use a category on General/NSData to get information out of a sockaddr_in structure.  The important methods (and the key to the problem) are:
+    
+#import "General/NSData+General/SockAddr.h"
 #import "sys/socket.h"
 #import "netinet/in.h"
 
-@implementation [[NSData]] ([[SockAddr]])
+@implementation General/NSData (General/SockAddr)
 - (struct sockaddr_in)sockAddrStruct
 {
-        return ''(struct sockaddr_in'')[self bytes];
+        return *(struct sockaddr_in*)[self bytes];
 }
 - (unsigned short)dataPort
 {
@@ -183,71 +183,71 @@ Firstly, I use a category on [[NSData]] to get information out of a sockaddr_in 
         return ntohs([self sockAddrStruct].sin_port);  
 }
 @end
-</code>
+
 So my category was returning a network byte ordered port number.  Network and Host order are the same on PPC... not so on Intel.
 Then the code that sets up the connection.
-<code>
-	[[NSNetService]] ''_netService;	// both of these are in my header file
-	[[NSConnection]] ''_connection;
+    
+	General/NSNetService *_netService;	// both of these are in my header file
+	General/NSConnection *_connection;
 	...	
-	[[NSSocketPort]] ''receivePort;
+	General/NSSocketPort *receivePort;
 	NS_DURING
-		receivePort = [[[[[NSSocketPort]] alloc] initWithTCPPort: 0] autorelease];
+		receivePort = General/[[[NSSocketPort alloc] initWithTCPPort: 0] autorelease];
 	NS_HANDLER
-		[[NSLog]](@"Server: Unable to obtain a port from the kernel.");
+		General/NSLog(@"Server: Unable to obtain a port from the kernel.");
 	NS_ENDHANDLER
     
-	uint16_t chosenPort = [[receivePort address] dataPort];
+	uint16_t chosenPort = General/receivePort address] dataPort];
     
 	// Create the Connection
 	NS_DURING
-		_connection = [[[[NSConnection]] connectionWithReceivePort: receivePort 
+		_connection = [[[[NSConnection connectionWithReceivePort: receivePort 
 												 sendPort: nil] retain];
 	NS_HANDLER
-		[[NSLog]](@"Server: Error creating the Connection.");
+		General/NSLog(@"Server: Error creating the Connection.");
 	NS_ENDHANDLER
 
 	// Set the root object
 	[_connection setRootObject: self];
 
-	// Create the [[NetService]]
-	_netService = [[[[NSNetService]] alloc] initWithDomain: @"" 
+	// Create the General/NetService
+	_netService = General/[[NSNetService alloc] initWithDomain: @"" 
 								 type: @"_yourservice._tcp." 
-								 name: [[[NSString]] stringWithFormat:@"%@:%d", [[[[NSProcessInfo]] processInfo] hostName],
-									[[[[NSProcessInfo]] processInfo] processIdentifier], nil]
+								 name: General/[NSString stringWithFormat:@"%@:%d", General/[[NSProcessInfo processInfo] hostName],
+									General/[[NSProcessInfo processInfo] processIdentifier], nil]
 								 port: chosenPort];
 	// Publish
 	[_netService setDelegate: self];
 	[_netService publish];
-</code>
+
 I think that's the gist of it.
 ----
-If it may help, I think your code is too complex. The [[NSNetService]] object already provide the hostname and port information that you need to initialize the [[NSSocketPort]]. This version uses much less code and it's equivalent (tested):
-<code>
-- (void)netServiceDidResolveAddress:([[NSNetService]] '')netService
+If it may help, I think your code is too complex. The General/NSNetService object already provide the hostname and port information that you need to initialize the General/NSSocketPort. This version uses much less code and it's equivalent (tested):
+    
+- (void)netServiceDidResolveAddress:(General/NSNetService *)netService
 {
-	[[NSLog]](@"Resolved service: %@:%d", [netService hostName], [netService port]);
+	General/NSLog(@"Resolved service: %@:%d", [netService hostName], [netService port]);
 		
 	@try
 	{
-		[[NSSocketPort]] ''socketPort = [[[[[NSSocketPort]] alloc] initRemoteWithTCPPort:[netService port] host: [netService hostName]] autorelease];
-		_connection = [[[[[NSConnection]] alloc] initWithReceivePort:nil sendPort:socketPort] autorelease];
+		General/NSSocketPort *socketPort = General/[[[NSSocketPort alloc] initRemoteWithTCPPort:[netService port] host: [netService hostName]] autorelease];
+		_connection = General/[[[NSConnection alloc] initWithReceivePort:nil sendPort:socketPort] autorelease];
 		
 		_remoteObject = _connection.rootProxy;
 				
 		return; // Everything ok
-	}@catch([[NSException]] ''e)
+	}@catch(General/NSException *e)
 	{
-		[[NSLog]](@"Received an exception: %@", e);
+		General/NSLog(@"Received an exception: %@", e);
 	}
 }
-</code>
+
 
 Very simple, uh? This way nobody has to deal with byte ordering.. 
 
 - Nicola
 ----
 
-@Nicola, the [[NSNetService]]' port is available only on Mac OSX 10.5 or later, so for previous version we have to deal with byte ordering...
+@Nicola, the General/NSNetService' port is available only on Mac OSX 10.5 or later, so for previous version we have to deal with byte ordering...
 
 - Sanniv

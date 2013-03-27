@@ -8,7 +8,7 @@ But it is not there anymore.  I've been searching for it but every page I have c
 
 I recently emailed the ADC about this, and from what they tell me, the icon kit has been pulled for revisions.
 
-[[JacobHazelgrove]]
+General/JacobHazelgrove
 
 ----
 
@@ -23,8 +23,8 @@ I'll leave that up probably forever, because it's pretty likely that I'll forget
 Available at my site as well, in case the above links go down:
 
 http://www.tensaimac.com/AquaIconKit1.1.dmg
---[[JustinAnderson]]
+--General/JustinAnderson
 
 ----
 
-I'm just waiting for the resolution-independent version... ''drool'' :)
+I'm just waiting for the resolution-independent version... *drool* :)

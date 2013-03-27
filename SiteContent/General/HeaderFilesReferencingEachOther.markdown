@@ -8,9 +8,9 @@ In short, two header files cannot #import each other. Is this true? Thanks.
 
 If you have a class A that needs references to class B, but you don't want to #import B's header into A's header, use a forward declaration:
 
-<code>@class B;</code>
+    @class B;
 
-Then just #import B's header into A's .m file. --[[GrahamCox]]
+Then just #import B's header into A's .m file. --General/GrahamCox
 
 ----
 
@@ -20,34 +20,34 @@ Two header files cannot both #import each other meaningfully. #import basically 
 
 This has been a defining characteristic of C since it was created.  The way around it is to use forward declarations.  For example,
 
-<code>
+    
 // Bar.h
 
 @class Foo;
 
 @interface Bar
 {
-        Foo ''_foo;
+        Foo *_foo;
 }
 
 @end
-</code>
 
-<code>
+
+    
 // Foo.h
 
 #import "Bar.h"
 
 @interface Foo
 {
-        Bar ''_bar;
+        Bar *_bar;
 }
-</code>
+
 
 But please note that if you ever find yourself doing this you're probably doing something wrong.
 
 ----
-I must disagree strongly with the "doing something wrong" comment. Two-way references in class hierarchies are quite common, especially when you consider that you need forward declarations even for parameter and return values. Consider [[NSView]] and [[NSWindow]], for example, which both refer to each other and which both have methods taking or returning the other.
+I must disagree strongly with the "doing something wrong" comment. Two-way references in class hierarchies are quite common, especially when you consider that you need forward declarations even for parameter and return values. Consider General/NSView and General/NSWindow, for example, which both refer to each other and which both have methods taking or returning the other.
 
 A minor nit in the example code, I would strongly recommend using @class in both, and only #import when you really need to, like when there's a struct or enum definition you use in the header, or when it's your superclass.
 

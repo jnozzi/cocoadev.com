@@ -10,26 +10,26 @@ Podcasts:
 *Core Intuition - http://coreint.org/
 
 
-[[CocoaDevUsers]] Blogs: [Topic]
+General/CocoaDevUsers Blogs: [Topic]
 
-Homeless [[CocoaDevUsers]] Blogs:
+Homeless General/CocoaDevUsers Blogs:
 
 
 *Armin Briegel - http://rsvp-xnews.blogspot.com/
-*[[AleMoreno]] - http://cocoaconleche.com
+*General/AleMoreno - http://cocoaconleche.com
 *Blake C. - http://yamacdev.blogspot.com
 *Bob Schumaker - http://cobblers.net/blog
 *Brent Simmons - http://inessential.com
 *Brian Ray - http://kazavoo.com/blog/
 *briksoftware.com - http://blog.briksoftware.com
-*Carl [[JohanKihlbom]] - http://kihlbom.com/blog
+*Carl General/JohanKihlbom - http://kihlbom.com/blog
 *Chris Adamson - http://www.subfurther.com/blog/
 *Damien Trog - http://www.damientrog.be
 *Daniel Counsell - http://realmacsoftware.com/blog
 *Daniel Parnell - http://blog.danielparnell.com
 *DC Studios - http://www.dc-studios.net/blog/
-*[[DenisGryzlov]] - http://meeu.me/blog/
-*[[EduApp]]'s Cocoa blog http://eduapp.blogspot.com
+*General/DenisGryzlov - http://meeu.me/blog/
+*General/EduApp's Cocoa blog http://eduapp.blogspot.com
 *Eimantas Vaiciunas - http://blog.walkingsmarts.com/
 *Eric Albert - http://rescomp.stanford.edu/~ejalbert
 *Evan Haveman - http://compsigh.com/
@@ -44,7 +44,7 @@ Homeless [[CocoaDevUsers]] Blogs:
 *James Duncan Davidson - http://x180.net
 *Jackson( Tuccelli Hot Cocoa Mix ) - http://www.marshmallowtemptations.com
 *Jared Pochtar - http://jpobjc.wordpress.com
-*[[JayEs]] Cocoa Blog - http://jayes-dev.blogspot.com
+*General/JayEs Cocoa Blog - http://jayes-dev.blogspot.com
 *Keith Duncan - http://33software.com/blog
 *Kimbro Staken - http://www.xmldatabases.org/movabletype
 *Luke Tupper - http://ltconsult.com.au/blog
@@ -52,24 +52,24 @@ Homeless [[CocoaDevUsers]] Blogs:
 *Marcus Zarra - http://www.cimgf.com
 *Martin Pilkington - http://www.mcubedsw.com/blog
 *Matej Bukovinski - http://www.bukovinski.com
-*[[MatthiasGansrigler]] - http://web.mac.com/oddysseey
+*General/MatthiasGansrigler - http://web.mac.com/oddysseey
 *Matt Gallagher - http://cocoawithlove.com
 *Matt Long - http://www.cimgf.com/
 *Matt Ronge - http://www.theronge.com
 *Matt Tavares - http://aquaticfire.com/blog/
-*Michael Dupuis - http://www.michaeldupuis.com/[[TheSoftwareUnderground]]
+*Michael Dupuis - http://www.michaeldupuis.com/General/TheSoftwareUnderground
 *Michael Tsai - http://mjtsai.com/blog
 *Olivier Gutknecht - http://people.no-distance.net/ol/olog
 *Peter Hosey (boredzo) - http://boredzo.org/ and http://boredzo.org/blog
 *Philippe Mougin - http://pmougin.wordpress.com
-*Planet [[MacDev]] - http://brianray.chipy.org/planetmacdev
+*Planet General/MacDev - http://brianray.chipy.org/planetmacdev
 *Rainer Brockerhoff - http://www.brockerhoff.net/bb/viewtopic.php
 *Richard Laing - http://alittledrop.com/
 *Rob Mayoff - http://qwan.org/
 *Robbie Duncan - http://web.mac.com/robbieduncan/iWeb
 *Samuel Kvarnbrink - http://blog.humlab.umu.se/samuel
 *Sengan Baring-Gould - http://www.ansemond.com/blog
-*Spencer [[MacDonald]] - http://objcolumnist.com/
+*Spencer General/MacDonald - http://objcolumnist.com/
 *Steve Dekorte - http://www.dekorte.com
 *Steven Degutis - http://www.degutis.org
 *Terry Blanchard - http://www.terryblanchard.com

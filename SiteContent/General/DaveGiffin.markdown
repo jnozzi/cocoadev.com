@@ -6,6 +6,6 @@ A long time developer of both applications and web apps. He moved to Mac when OS
 
 A broad background in development, starting with Perl and C, then moving on to TCL and Visual Basic. Then moved on to Java and hung there for a long time. Finally, not content with a lot of issues he didn't care for with Java, he took the time to learn Python, then Objective-C/Cocoa. Now he is happily hooked. Especial love is Interface Builder. All in all, it's the best GUI tool ever. As a sub-note, he has also used all major web programming languages from Perl CGI to ASP, Cold Fusion, Java, PHP and now Python (which is where I'm staying when I have any choice about it). 
 
-[[DaveGiffin]] releases Shareware and Freeware for the Mac, as well as reusable code object and modules (so far, all in Python here, but may end up doing the same with Obj-C in the future). 
+General/DaveGiffin releases Shareware and Freeware for the Mac, as well as reusable code object and modules (so far, all in Python here, but may end up doing the same with Obj-C in the future). 
 
 You can contact David Giffin from the http://www.davtri.com contact page.

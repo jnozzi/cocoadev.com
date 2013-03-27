@@ -1,6 +1,6 @@
-I've always found cocoa text-rendering slow, especially when using [[NSLayoutManager]], so I started an open source (MIT) wrapper for the carbon ATSUI.
+I've always found cocoa text-rendering slow, especially when using General/NSLayoutManager, so I started an open source (MIT) wrapper for the carbon ATSUI.
 
-Its in C++.  I have made an objective-c wrapper, but its alot slower (comparitivly, it still flies past [[NSLayoutManager]]).
+Its in C++.  I have made an objective-c wrapper, but its alot slower (comparitivly, it still flies past General/NSLayoutManager).
 
 You can find a copy of the initial release here:
 
@@ -15,4 +15,4 @@ As I have only been in ATSUI for the past 3 days, the wrapper is nowhere near co
 
 The links on this page are dead....
 
-[[Category:ObsoleteInformation]]
+General/Category:ObsoleteInformation

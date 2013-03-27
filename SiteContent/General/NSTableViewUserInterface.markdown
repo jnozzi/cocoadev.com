@@ -1,4 +1,4 @@
-Describe [[NSTableViewUserInterface]]
+Describe General/NSTableViewUserInterface
 
 
 
@@ -6,6 +6,6 @@ I have made a UI with a tableview inside on OS10.2 using Project builder.  The t
 
 ----
 
-See [[NSTableViewAlternatingColorProblems]] or [[TableViewRedrawIssues]]
+See General/NSTableViewAlternatingColorProblems or General/TableViewRedrawIssues
 
-- [[NeilVanNote]]
+- General/NeilVanNote

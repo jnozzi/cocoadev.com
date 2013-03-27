@@ -1,58 +1,58 @@
 
 
-<code>
+    
 // Alert sheet attached to bootom of Screen.
-[[UIAlertSheet]] ''alertSheet = [[[[UIAlertSheet]] alloc] initWithFrame:[[CGRectMake]](0, 240, 320, 240)];
+General/UIAlertSheet *alertSheet = General/[[UIAlertSheet alloc] initWithFrame:General/CGRectMake(0, 240, 320, 240)];
 [alertSheet setTitle:@"Alert Title"];
 [alertSheet setBodyText:@"This is an alert."];
 [alertSheet addButtonWithTitle:@"Yes"];
 [alertSheet addButtonWithTitle:@"No"];
 [alertSheet setDelegate:self];
 [alertSheet presentSheetFromAboveView:self];
-</code>
 
-<code>
+
+    
 // Allert sheet displayed at centre of screen.
-[[NSArray]] ''buttons = [[[NSArray]] arrayWithObjects:@"OK", @"Cancel", nil];
-[[UIAlertSheet]] ''alertSheet = [[[[UIAlertSheet]] alloc] initWithTitle:@"An Alert" buttons:buttons defaultButtonIndex:1 delegate:self context:self];
+General/NSArray *buttons = General/[NSArray arrayWithObjects:@"OK", @"Cancel", nil];
+General/UIAlertSheet *alertSheet = General/[[UIAlertSheet alloc] initWithTitle:@"An Alert" buttons:buttons defaultButtonIndex:1 delegate:self context:self];
 [alertSheet setBodyText:@"Do something?"];
 [alertSheet popupAlertAnimated:YES];
-</code>
 
 
-%%BEGINCODESTYLE%%- (void)setTitle:([[NSString]]'')title;%%ENDCODESTYLE%%
 
-%%BEGINCODESTYLE%%- (void)setBodyText:([[NSString]]'')text;%%ENDCODESTYLE%%
+<code>- (void)setTitle:(General/NSString*)title;</code>
 
-%%BEGINCODESTYLE%%- (void)addButtonWithTitle:([[NSString]]'')title;%%ENDCODESTYLE%%
+<code>- (void)setBodyText:(General/NSString*)text;</code>
+
+<code>- (void)addButtonWithTitle:(General/NSString*)title;</code>
 
 Numbered, starting with one. Number is returned in delegate callback.
 
-%%BEGINCODESTYLE%%- (void)setDelegate:(id)delegate;%%ENDCODESTYLE%%
+<code>- (void)setDelegate:(id)delegate;</code>
 
-%%BEGINCODESTYLE%%- (void)presentSheetFromAboveView:([[UIView]]'')view;%%ENDCODESTYLE%%
+<code>- (void)presentSheetFromAboveView:(General/UIView*)view;</code>
 
-%%BEGINCODESTYLE%%- (void)popupAlertAnimated:(BOOL)animated;%%ENDCODESTYLE%%
+<code>- (void)popupAlertAnimated:(BOOL)animated;</code>
 
-%%BEGINCODESTYLE%%- (void)popupAlertAnimated:(BOOL)animated: atOffsett:(float)offset;%%ENDCODESTYLE%%
+<code>- (void)popupAlertAnimated:(BOOL)animated: atOffsett:(float)offset;</code>
 
-%%BEGINCODESTYLE%%- (void)dismiss;%%ENDCODESTYLE%%
+<code>- (void)dismiss;</code>
 
 Same as dismissAnimated:YES, I think.
 
-%%BEGINCODESTYLE%%- (void)dismissAnimated:(BOOL)animated;%%ENDCODESTYLE%%
+<code>- (void)dismissAnimated:(BOOL)animated;</code>
 
-'''[[UIAlertSheet]] delegate methods'''
+**General/UIAlertSheet delegate methods**
 
-%%BEGINCODESTYLE%%- (void)alertSheet:([[UIAlertSheet]]'')sheet buttonClicked:(int)button;%%ENDCODESTYLE%%
+<code>- (void)alertSheet:(General/UIAlertSheet*)sheet buttonClicked:(int)button;</code>
 
-<code>
-- (void)alertSheet:([[UIAlertSheet]]'')sheet buttonClicked:(int)button
+    
+- (void)alertSheet:(General/UIAlertSheet*)sheet buttonClicked:(int)button
 {
   if ( button == 1 )
-    [[NSLog]](@"Yes");
+    General/NSLog(@"Yes");
   else if ( button == 2 )
-    [[NSLog]](@"No");
+    General/NSLog(@"No");
 
   [sheet dismiss];
 }

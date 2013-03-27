@@ -4,4 +4,4 @@ thanks.
 
 ----
 
-Look at [[QuickTime]] Streaming Server on Apple's Quicktime site.
+Look at General/QuickTime Streaming Server on Apple's Quicktime site.

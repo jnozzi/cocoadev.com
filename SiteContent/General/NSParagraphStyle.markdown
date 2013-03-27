@@ -1,21 +1,20 @@
-[http://developer.apple.com/documentation/Cocoa/Reference/[[ApplicationKit]]/Classes/NSParagraphStyle_Class/index.html]
+[http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/Classes/NSParagraphStyle_Class/index.html]
 
-[[NSParagraphStyle]] and its subclass [[NSMutableParagraphStyle]] encapsulate the paragraph or ruler attributes used by the [[NSAttributedString]] classes.
+General/NSParagraphStyle and its subclass General/NSMutableParagraphStyle encapsulate the paragraph or ruler attributes used by the General/NSAttributedString classes.
 
 ----
 
-To get a usable mutable paragraph style, you have to create a mutable copy of the [[NSParagraphStyle]] object returned by <code>[[[NSParagraphStyle]] defaultParagraphStyle]</code>. Then make your changes to that object and put it in your string's attributes.
+To get a usable mutable paragraph style, you have to create a mutable copy of the General/NSParagraphStyle object returned by     General/[NSParagraphStyle defaultParagraphStyle]. Then make your changes to that object and put it in your string's attributes.
 
 e.g. to get centered text:
 
-<code>
-[[NSMutableParagraphStyle]] ''centeredStyle = [[[[NSParagraphStyle]] defaultParagraphStyle] mutableCopy];
-[centeredStyle setAlignment:[[NSCenterTextAlignment]]];
+    
+General/NSMutableParagraphStyle *centeredStyle = General/[[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+[centeredStyle setAlignment:General/NSCenterTextAlignment];
 
-[[NSDictionary]] ''attrs = [[[NSDictionary]] dictionaryWithObjectsAndKeys:[[centeredStyle copy] autorelease], [[NSParagraphStyleAttributeName]], nil];
+General/NSDictionary *attrs = General/[NSDictionary dictionaryWithObjectsAndKeys:General/centeredStyle copy] autorelease], [[NSParagraphStyleAttributeName, nil];
 
 [centeredStyle release];
 
-[[NSAttributedString]] ''centeredString = [[[[NSAttributedString]] alloc] initWithString:@"This is\ncentered" attributes:attrs];
+General/NSAttributedString *centeredString = General/[[NSAttributedString alloc] initWithString:@"This is\ncentered" attributes:attrs];
 
-</code>

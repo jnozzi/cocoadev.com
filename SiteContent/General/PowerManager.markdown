@@ -1,3 +1,3 @@
 
 
-[[PowerManager]] provides [[APIs]] related to energy saving behaviour, such as sleeping.
+General/PowerManager provides General/APIs related to energy saving behaviour, such as sleeping.

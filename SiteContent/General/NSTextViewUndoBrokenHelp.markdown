@@ -10,7 +10,7 @@ thanks in advance.
 
 ----
 
-I started a brand new project from scratch with nothing but a text view and a dataRepresentationOfType: method and I still see the same behavior. This seemingly rules out corrupted [[NIBs]], anything to do with text view delegates, etc. I can also copy the app to a friend's system and see the same result, ruling out a local configuration issue. I am baffled. How do you debug the automatic undo in a text view?
+I started a brand new project from scratch with nothing but a text view and a dataRepresentationOfType: method and I still see the same behavior. This seemingly rules out corrupted General/NIBs, anything to do with text view delegates, etc. I can also copy the app to a friend's system and see the same result, ruling out a local configuration issue. I am baffled. How do you debug the automatic undo in a text view?
 
 ----
 

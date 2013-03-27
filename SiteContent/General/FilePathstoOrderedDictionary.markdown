@@ -1,33 +1,33 @@
-I've been trying to find a way to access either a directory, or a text file with a list of file paths and be able to order them in to a hierarchical list in an [[NSDictionary]].
+I've been trying to find a way to access either a directory, or a text file with a list of file paths and be able to order them in to a hierarchical list in an General/NSDictionary.
 
 For instance, if I open a folder that contains one file, my dictionary would look something like this:
 
-<code>
+    
 "Path" = "/Path/To/Root/Folder",
 "Is Directory" = YES,
 "Contents" = { "Path" = "/Path/To/Root/Folder/File",
                "Is Directory" = NO }
-</code>
+
 
 I haven't even begun to tackle the ordering of a text file of paths, but I did get a start on traversing through a folder.  I ran into a problem, though...
 
-My code (shown below) runs fine for a folder that contains no more than around 240 subfiles/subfolders, but once it gets close to 240, it errors out and says that [[NSMutableDictionary]] object:forKey: cannot insert nil object.  I'm thinking that the problem might be that my method calls itself for each new file/folder it finds and maybe I can only do that so many times?  I'm guessing I'm going about it in sort of a loopy way, but I couldn't think of another way to do it.  I tried using [[NSFileManager]]'s subpathsAtPath: method as well, but I still had to work my way through the list and so when I got to around 240 it errored out again.
+My code (shown below) runs fine for a folder that contains no more than around 240 subfiles/subfolders, but once it gets close to 240, it errors out and says that General/NSMutableDictionary object:forKey: cannot insert nil object.  I'm thinking that the problem might be that my method calls itself for each new file/folder it finds and maybe I can only do that so many times?  I'm guessing I'm going about it in sort of a loopy way, but I couldn't think of another way to do it.  I tried using General/NSFileManager's subpathsAtPath: method as well, but I still had to work my way through the list and so when I got to around 240 it errored out again.
 
 Any help would be appreciated.
 
 - Corporate Newt
 
 
-<code>
-- ([[NSDictionary]] '')travelPath:([[NSString]] '')path {
+    
+- (General/NSDictionary *)travelPath:(General/NSString *)path {
 	if (!path) { return nil; }
 	
 	path = [path stringByExpandingTildeInPath];
 		
-	[[NSMutableDictionary]] ''orderedFiles = [[[[NSMutableDictionary]] alloc] init];
-	[[NSFileManager]] ''f = [[[NSFileManager]] defaultManager];
-	[[NSWorkspace]] ''w = [[[NSWorkspace]] sharedWorkspace];
-	[[NSString]] ''dName = [f displayNameAtPath:path];
+	General/NSMutableDictionary *orderedFiles = General/[[NSMutableDictionary alloc] init];
+	General/NSFileManager *f = General/[NSFileManager defaultManager];
+	General/NSWorkspace *w = General/[NSWorkspace sharedWorkspace];
+	General/NSString *dName = [f displayNameAtPath:path];
 	
 	if (path) { [orderedFiles setObject:path forKey:@"Path"]; }
 	
@@ -38,17 +38,17 @@ Any help would be appreciated.
 	
 	[f fileExistsAtPath:path isDirectory:&dir];
 	
-	[orderedFiles setObject:[[[NSNumber]] numberWithBool:dir] forKey:@"Directory"];
+	[orderedFiles setObject:General/[NSNumber numberWithBool:dir] forKey:@"Directory"];
 	
 	if (dir) {
-		[[NSArray]] ''folderContents = [f directoryContentsAtPath:path];
+		General/NSArray *folderContents = [f directoryContentsAtPath:path];
 		
-		[[NSMutableArray]] ''rootContents = [[[[NSMutableArray]] alloc] init];
+		General/NSMutableArray *rootContents = General/[[NSMutableArray alloc] init];
 		
 		int i;
 		for (i=0; i<[folderContents count]; ++i) {
-			[[NSString]] ''fullPath = [path stringByAppendingPathComponent:[folderContents objectAtIndex:i]];
-			[[NSDictionary]] ''current = [self travelPath:fullPath];
+			General/NSString *fullPath = [path stringByAppendingPathComponent:[folderContents objectAtIndex:i]];
+			General/NSDictionary *current = [self travelPath:fullPath];
 			[rootContents addObject:current];
 		}
 		[orderedFiles setObject: rootContents forKey:@"Contents"];
@@ -57,39 +57,39 @@ Any help would be appreciated.
 	return orderedFiles;
 	
 }
-</code>
+
 ----
 The term you are looking for is "Recursion".  It means that a function or method directly or indirectly calls itself.  Indeeed, if recursion becomes too deep, the system stack is corrupted and the usual result is a segmantation fault.  The error you describe is probably not due to recursion.
 
-Why didn't you just use - ([[NSDirectoryEnumerator]] '')enumeratorAtPath:([[NSString]] '')path  "Because the enumeration is deep�that is, it lists the contents of all subdirectories�this enumerator object is useful for performing actions that involve large file-system subtrees. "
+Why didn't you just use - (General/NSDirectoryEnumerator *)enumeratorAtPath:(General/NSString *)path  "Because the enumeration is deep�that is, it lists the contents of all subdirectories�this enumerator object is useful for performing actions that involve large file-system subtrees. "
 
 Apple even provides a sample right in the documentation:
 
-<code>
-[[NSString]] ''file; 
-[[NSString]] ''docsDir = [[[NSHomeDirectory]]() stringByAppendingPathComponent:  @"Documents"]; 
-[[NSDirectoryEnumerator]] ''dirEnum = 
-    [[[[NSFileManager]] defaultManager] enumeratorAtPath:docsDir]; 
+    
+General/NSString *file; 
+General/NSString *docsDir = General/[NSHomeDirectory() stringByAppendingPathComponent:  @"Documents"]; 
+General/NSDirectoryEnumerator *dirEnum = 
+    General/[[NSFileManager defaultManager] enumeratorAtPath:docsDir]; 
   
 while (nil != (file = [dirEnum nextObject])) { 
-    if ([[file pathExtension] isEqualToString: @"doc"]) { 
-        [self scanDocument: [docsDir stringByAppendingPathComponent:file]]; 
+    if (General/file pathExtension] isEqualToString: @"doc"]) { 
+        [self scanDocument: [docsDir stringByAppendingPathComponent:file; 
     } 
 } 
-</code>
+
 
 http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSFileManager_Class/Reference/Reference.html
 
 ----
 
-That is what I tried doing in the first place, and it lists all the files correctly, but I'm not sure how to break up the paths and organize them in a similar fashion as my above code.  Using [[NSFileManager]]'s enumeratorAtPath (or even the subpathsAtPath) method gives all the right information, but I'm not sure how to tackle the next step.
+That is what I tried doing in the first place, and it lists all the files correctly, but I'm not sure how to break up the paths and organize them in a similar fashion as my above code.  Using General/NSFileManager's enumeratorAtPath (or even the subpathsAtPath) method gives all the right information, but I'm not sure how to tackle the next step.
 
 - Corporate Newt
 ----
-See [[NSString]] -lastPathComponent and friends like -pathComponents which are linked directly from the [[NSFileManager]] documentation:
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/[[NSString]].html#//apple_ref/occ/instm/[[NSString]]/lastPathComponent
+See General/NSString -lastPathComponent and friends like -pathComponents which are linked directly from the General/NSFileManager documentation:
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/General/NSString.html#//apple_ref/occ/instm/General/NSString/lastPathComponent
 
-See also: http://developer.apple.com/documentation/Cocoa/Conceptual/[[LowLevelFileMgmt]]/Tasks/[[LocatingDirectories]].html
+See also: http://developer.apple.com/documentation/Cocoa/Conceptual/General/LowLevelFileMgmt/Tasks/General/LocatingDirectories.html
 
 ----
 

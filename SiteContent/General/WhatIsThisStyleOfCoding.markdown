@@ -1,23 +1,23 @@
-I am looking at the QTCoreImage101 example and tried to cut and paste some code from that project into a test Cocoa project created in Xcode 2.2 set to SDKROOT=/Developer/[[SDKs]]/MacOSX10.4u.sdk
+I am looking at the QTCoreImage101 example and tried to cut and paste some code from that project into a test Cocoa project created in Xcode 2.2 set to SDKROOT=/Developer/General/SDKs/MacOSX10.4u.sdk
 
-When I try to compile the class [[MyOpenGLView]] I get warnings that I have never run across before. The problem seems to be in the coding style for casting types.
+When I try to compile the class General/MyOpenGLView I get warnings that I have never run across before. The problem seems to be in the coding style for casting types.
 
-<code>
+    
 // Apple's QTCoreImage101 coding style
-[[CGLContextObj]]([[self openGLContext] [[CGLContextObj]]])
+General/CGLContextObj(General/self openGLContext] [[CGLContextObj])
 
 // Common C coding style
-([[CGLContextObj]])[[self openGLContext] [[CGLContextObj]]]
+(General/CGLContextObj)General/self openGLContext] [[CGLContextObj]
 
-</code> 
+ 
 
-In the QTCoreImage101 project <code>[[CGLContextObj]]([[self openGLContext] [[CGLContextObj]]])</code> compiles OK, but this type cast doesn't work in a generic default Cocoa Application project.
+In the QTCoreImage101 project     General/CGLContextObj(General/self openGLContext] [[CGLContextObj]) compiles OK, but this type cast doesn't work in a generic default Cocoa Application project.
 
-''Looks like C++-style casting to me.''
+*Looks like C++-style casting to me.*
 
 ----
 
-Never programmed much in C++, and I even read Schaum's C++ outline a long time ago. I guess I'm a true Objective-C/C programmer then. Funny how I never ran into this before since I've played with a bunch of Apple's sample code over the years. The file extensions are <code>.m</code> and not <code>.mm</code> so how does the QTCoreImage101 project know about the C++ coding style? What build settings will let this fly?
+Never programmed much in C++, and I even read Schaum's C++ outline a long time ago. I guess I'm a true Objective-C/C programmer then. Funny how I never ran into this before since I've played with a bunch of Apple's sample code over the years. The file extensions are     .m and not     .mm so how does the QTCoreImage101 project know about the C++ coding style? What build settings will let this fly?
 
 ----
 
@@ -27,12 +27,12 @@ Warnings are only warnings. Then again, nobody here can tell you because you hav
 
 I try to keep my code void of warnings so when ones do pop up they are easy to detect. The warning I get is:
 
-<code>
-error: parse error before '[[CGLContextObj]]'
-</code>
+    
+error: parse error before 'General/CGLContextObj'
+
 
 ----
-What the first snippet is doing is calling the [[CGLContextObj]] constructor with the result of [[self openGLContext] [[CGLContextObj]]] as the argument. If this is not C++ code, this should not compile at all, barring some macro magic, which I have seen used in C code before. You should be able to safely switch the code to a standard C cast, just make sure that [[CGLContextObj]] is a type. Like I already said, I have seen instances where [[CGLContextObj]] would be a Macro for creating [[CGLContext]] objects. -JJJ
+What the first snippet is doing is calling the General/CGLContextObj constructor with the result of General/self openGLContext] [[CGLContextObj] as the argument. If this is not C++ code, this should not compile at all, barring some macro magic, which I have seen used in C code before. You should be able to safely switch the code to a standard C cast, just make sure that General/CGLContextObj is a type. Like I already said, I have seen instances where General/CGLContextObj would be a Macro for creating General/CGLContext objects. -JJJ
 
 ----
 

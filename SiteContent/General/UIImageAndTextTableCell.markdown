@@ -1,7 +1,7 @@
 
 
-Part of the iPhone [[UIKit]] framework. Subclass of [[UITableCell]].
+Part of the iPhone General/UIKit framework. Subclass of General/UITableCell.
 
-%%BEGINCODESTYLE%%- (id)init;%%ENDCODESTYLE%%
+<code>- (id)init;</code>
 
-%%BEGINCODESTYLE%%- (void)setTitle:([[NSString]]'')title;%%ENDCODESTYLE%%
+<code>- (void)setTitle:(General/NSString*)title;</code>

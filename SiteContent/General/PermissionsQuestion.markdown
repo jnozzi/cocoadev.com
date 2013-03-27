@@ -4,9 +4,9 @@ I'm creating a new app which has to  be able to have full permissions to make ch
 
 ----
 
-Also, no matter what I do, I can't get the damn "Describe [[PermissionsQuestion]] here." out of this page...grr!
+Also, no matter what I do, I can't get the damn "Describe General/PermissionsQuestion here." out of this page...grr!
 
-''Odd, it goes away fine when I edit it. What browser are you using?''
+*Odd, it goes away fine when I edit it. What browser are you using?*
 
 ----
 
@@ -16,7 +16,7 @@ Safari (of course <g>)
 
 BTW, I have a bit more information and may be able to pose my question in a more defined way. I think what I'm trying to do is discover the IP addresses of other machines on the network...w/o using Rendezvous...from 1 local machine, logged in as an admin. I've been told there are several ways to do this...I only need one :)
 
-''Are you the one asking this question on darwin-dev? That seems like the best place.''
+*Are you the one asking this question on darwin-dev? That seems like the best place.*
 
 ----
 

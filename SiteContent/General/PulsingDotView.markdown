@@ -1,15 +1,15 @@
 
 
-Here is some code i wrote to play around with and experiment with animation using [[NSTimer]].  I don't know much about efficient animation, so what you see here is probably nothing ideal.  But what the hell...
+Here is some code i wrote to play around with and experiment with animation using General/NSTimer.  I don't know much about efficient animation, so what you see here is probably nothing ideal.  But what the hell...
 
 The Interface File:
-<code>
-@interface [[PulsingDotView]] : [[NSView]] {
-    [[NSTimer]] ''timer;
-    [[NSColor]] ''color;
-    [[NSBezierPath]] ''path;
+    
+@interface General/PulsingDotView : General/NSView {
+    General/NSTimer *timer;
+    General/NSColor *color;
+    General/NSBezierPath *path;
 
-    [[NSPoint]] center;
+    General/NSPoint center;
     double vy0, vx0, vx, vy, ax, ay, dt, tx, ty, x0, y0, radius;
 }
 
@@ -17,18 +17,18 @@ The Interface File:
 - (BOOL)isOpaque;
 
 @end
-</code>
+
 
 I orignally wrote this code to make a circle pulse in the view, but then after a substantial bit  of playing around it got changed into something else...
 
 And the Implementation File
-<code>
-#import "[[PulsingDotView]].h"
+    
+#import "General/PulsingDotView.h"
 #import "math.h"
 
-@implementation [[PulsingDotView]]
+@implementation General/PulsingDotView
 
-- (id)initWithFrame:([[NSRect]])frame {
+- (id)initWithFrame:(General/NSRect)frame {
     self = [super initWithFrame:frame];
     
     y0 = 200;
@@ -44,11 +44,11 @@ And the Implementation File
     dt = .1;
     
     radius = 2;
-    color = [[[[NSColor]] blueColor] retain];
-    path = [[[[NSBezierPath]] bezierPath] retain];
+    color = General/[[NSColor blueColor] retain];
+    path = General/[[NSBezierPath bezierPath] retain];
     [path moveToPoint:center];
     
-    timer = [[[NSTimer]] scheduledTimerWithTimeInterval:.001
+    timer = General/[NSTimer scheduledTimerWithTimeInterval:.001
                      target:self
                      selector:@selector(changeDot)
                      userInfo:nil
@@ -56,24 +56,24 @@ And the Implementation File
     return self;
 }
 
-- (void)drawRect:([[NSRect]])rect {    
-    [[NSRect]] dotRect;
+- (void)drawRect:(General/NSRect)rect {    
+    General/NSRect dotRect;
 
-    [[[[NSColor]] whiteColor] set];
-    [[NSRectFill]]([self bounds]);
-        // Equiv to [[[[NSBezierPath]] bezierPathWithRect:[self
+    General/[[NSColor whiteColor] set];
+    General/NSRectFill([self bounds]);
+        // Equiv to General/[[NSBezierPath bezierPathWithRect:[self
         //                                    bounds]] fill]
 
     dotRect.origin.x = center.x - radius;
     dotRect.origin.y = center.y - radius;
-    dotRect.size.width  = 2 '' radius;
-    dotRect.size.height = 2 '' radius;
+    dotRect.size.width  = 2 * radius;
+    dotRect.size.height = 2 * radius;
     
     [color set];
     // if you uncomment this following line (and another similar one
     // further down) the ball will be trailed by a line
     //[path stroke];
-    [[[[NSBezierPath]] bezierPathWithOvalInRect:dotRect] fill];
+    General/[[NSBezierPath bezierPathWithOvalInRect:dotRect] fill];
 }
 
 - (BOOL)isOpaque {
@@ -81,14 +81,14 @@ And the Implementation File
 }
 
 - (void)changeDot {    
-    [[NSRect]] bounds;
+    General/NSRect bounds;
     
     //These next four lines are an attempt to simulate some gravity in 
     // the view.  Standard kinematics...
-    center.y = (y0) + (vy0 '' ty) + (0.5 '' ay '' ty '' ty);
-    center.x = (x0) + (vx0 '' tx) + (0.5 '' ax '' tx '' tx);
-    vy = (vy0) + (ay '' ty);
-    vx = (vx0) + (ax '' tx);
+    center.y = (y0) + (vy0 * ty) + (0.5 * ay * ty * ty);
+    center.x = (x0) + (vx0 * tx) + (0.5 * ax * tx * tx);
+    vy = (vy0) + (ay * ty);
+    vx = (vx0) + (ax * tx);
     
     bounds = [self bounds];
     
@@ -128,7 +128,7 @@ And the Implementation File
 }
 
 @end
-</code>
+
 
 This view is just hooked up to a view in interface builder.  Have fun!
 
@@ -139,7 +139,7 @@ Would be better to only update the dirty area instead of the whole view. :/
 Here's what I've tossed together...
 
 The Interface Files:
-<code>
+    
 
 @protocol Animation
 
@@ -149,20 +149,20 @@ The Interface Files:
 @end
 
 
-@interface [[AnimatingView]] : [[NSView]]
+@interface General/AnimatingView : General/NSView
 {
-    [[NSTimer]] ''animTimer;
+    General/NSTimer *animTimer;
 }
 
 - (void)animateOneFrame;
 
 @end
-</code>
+
 
 
 Implementation File:
-<code>
-@implementation [[AnimatingView]]
+    
+@implementation General/AnimatingView
 
 - (void)dealloc
 {
@@ -170,18 +170,18 @@ Implementation File:
 [super dealloc];
 }
 
-- (id)initWithFrame:([[NSRect]])rect
+- (id)initWithFrame:(General/NSRect)rect
 {
     self = [super initWithFrame:rect];
         
-         animTimer = [[[NSTimer]] scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(animateOneFrame) userInfo:nil repeats:YES];
+         animTimer = General/[NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(animateOneFrame) userInfo:nil repeats:YES];
 
     return self;
 }
 
 - (void)animateOneFrame
 {
-    [[NSArray]] ''subs = [self subviews];
+    General/NSArray *subs = [self subviews];
         id view;
         int i=0;
 
@@ -194,17 +194,17 @@ Implementation File:
             }
 }
 @end
-</code>
 
-I set my window's contentView to be an instance of [[AnimatingView]] and load on some custom views/controls that conform to the Animation protocol.
+
+I set my window's contentView to be an instance of General/AnimatingView and load on some custom views/controls that conform to the Animation protocol.
 
 
 Here's an example of a view that conforms to the Animation protocol (Compiled here);
-<code>
+    
 
 #import "Animation.h"
 
-@interface [[BouncingView]] : [[NSView]] <Animation>
+@interface General/BouncingView : General/NSView <Animation>
 {
      float verticalSpeed;
 }
@@ -213,9 +213,9 @@ Here's an example of a view that conforms to the Animation protocol (Compiled he
 @end
 
 
-// [[BouncingView]].m...
+// General/BouncingView.m...
 
-@implementation [[BouncingView]]
+@implementation General/BouncingView
 
 - (void)awakeFromNib
 {
@@ -231,12 +231,12 @@ Here's an example of a view that conforms to the Animation protocol (Compiled he
 
 - (void)animateOneFrame
 {
-	[[NSRect]] frame = [self frame];
-        [[NSRect]] oldFrame = frame;
+	General/NSRect frame = [self frame];
+        General/NSRect oldFrame = frame;
 	id superview = [self superview];
 
-	if (frame.origin.y <= 0) { verticalSpeed = verticalSpeed''-1; }
-	if (frame.origin.y+frame.size.height >= [[NSMaxY]]([superview frame])) { verticalSpeed = verticalSpeed''-1; }
+	if (frame.origin.y <= 0) { verticalSpeed = verticalSpeed*-1; }
+	if (frame.origin.y+frame.size.height >= General/NSMaxY([superview frame])) { verticalSpeed = verticalSpeed*-1; }
 
  	frame.origin.y += verticalSpeed;
  	[self setFrameOrigin:frame.origin];
@@ -247,4 +247,3 @@ Here's an example of a view that conforms to the Animation protocol (Compiled he
         [superview setNeedsDisplayInRect:frame];
 }
 @end
-</code>

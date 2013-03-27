@@ -1,6 +1,6 @@
-The Custom [[NSView]] created by Apple for Safari's Tab implementation.
+The Custom General/NSView created by Apple for Safari's Tab implementation.
 
-''Is it possible to find the source for this class?''
+*Is it possible to find the source for this class?*
 
 ----
 
@@ -12,4 +12,4 @@ You can try code-dump. http://code-dump.sourceforge.net/ it won't give you usabl
 
 ----
 
-You'll have to make your own, or see http://www.cocoadev.com/index.pl?[[SafarisTabBarView]]
+You'll have to make your own, or see http://www.cocoadev.com/index.pl?General/SafarisTabBarView

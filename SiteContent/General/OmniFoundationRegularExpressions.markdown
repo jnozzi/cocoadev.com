@@ -1,1 +1,1 @@
-See [[OFRegularExpression]].
+See General/OFRegularExpression.

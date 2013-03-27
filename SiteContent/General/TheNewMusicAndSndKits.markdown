@@ -1,8 +1,8 @@
-'''The new [[MusicKit]] and [[SndKit]], are they good?'''
+**The new General/MusicKit and General/SndKit, are they good?**
 
 Yes, that�s the question. How are this both kits in usage and performance?
 
--- [[ThomasSempf]]
+-- General/ThomasSempf
 
 Ok, sorry for that, how to delete a page?
 
@@ -12,4 +12,4 @@ Well, I'm trying to use those under OS X on my new flat panel iMac. I got sound 
 
 ----
 
-No deleting information on this site. It's there forever. We can make it generic "Describe [[TheNew]] here", though...
+No deleting information on this site. It's there forever. We can make it generic "Describe General/TheNew here", though...

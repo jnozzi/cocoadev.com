@@ -15,20 +15,20 @@ Phil
 *Add an outlet to your controller object in IB and name it something like auxWindow.
 *connect the outlet to the second window
 *save the nib file (very important)
-*add the [[IBOutlet]] to your controller class in PB
+*add the General/IBOutlet to your controller class in PB
 
 
 to display auxWindow send the following message:
 
-<code>
+    
 [auxWindow makeKeyAndOrderFront:self];
-</code>
+
 
 to close the auxWindow sent the following message:
 
-<code>
+    
 [auxWindow close];
-</code>
+
 
 the close method call doesn't release the window, so to open the window again in code just send the makeKeyAndOrderFront: message again.
 
@@ -40,9 +40,9 @@ Thanks, man.
 ----
 Is there a way to expand loading a single window from a nib so that the window can be opened multiple times? 
 
-<code>
+    
 [auxWindow makeKeyAndOrderFront:self];
-</code>
+
 
 That line only creates one instance of the window ever, and assigns it to auxWindow.
 
@@ -50,18 +50,18 @@ I'd like to be able to have many instances of the auxWindowClass all having a se
 
 Thanks for any help.
 
-[[GregWilson]] 
+General/GregWilson 
 
 ----
 
 hey Greg,
 
-there isn't an auxWindowClass, auxWindow is just a window that was added to a nib ([[NextInterfaceBuilder]]) file in Interface Builder. Phil just wanted to know how to open and close a window that is added to a nib file. 
+there isn't an auxWindowClass, auxWindow is just a window that was added to a nib (General/NextInterfaceBuilder) file in Interface Builder. Phil just wanted to know how to open and close a window that is added to a nib file. 
 
 the line
-<code>
+    
 [auxWindow makeKeyAndOrderFront:self];
-</code>
+
 doesn't create anything. This line only sends a message to a window that is part of a nib file. 
 
 If you want to add more windows to a non-document based application then all you have to do is add the windows in IB. If all of this still sounds foreign, you might want to check out the difference between a document based app and a non-document based app.
@@ -76,11 +76,11 @@ I've figured out that if the window is in a separate nib file I can instantiate 
 
 I'm sure someone, somewhere has encountered this.
 
-[[GregWilson]]
+General/GregWilson
 
 ----
 
-See [[NSWindowController]] (particularly Apple's reference docs for it, and maybe someone who's actually used it more than once) for exactly this purpose; basically, you make your window in a new .nib and have [[NSWindowController]] (or custom subclasses thereof) load that .nib. After that it's as simple as making new window controllers also with that .nib, and you get all your new windows "for free." -- [[RobRix]]
+See General/NSWindowController (particularly Apple's reference docs for it, and maybe someone who's actually used it more than once) for exactly this purpose; basically, you make your window in a new .nib and have General/NSWindowController (or custom subclasses thereof) load that .nib. After that it's as simple as making new window controllers also with that .nib, and you get all your new windows "for free." -- General/RobRix
 
 ----
 
@@ -90,24 +90,24 @@ I feel stupid 8-)
 
 ----
 
-For what it's worth, I think Apple should allow prototyping based on a top-level object in a .nib file, and I think controls should be allowed as top-level objects... anyhow, no worries. At least you know now. -- [[RobRix]]
+For what it's worth, I think Apple should allow prototyping based on a top-level object in a .nib file, and I think controls should be allowed as top-level objects... anyhow, no worries. At least you know now. -- General/RobRix
 
 ----
 
-Thanks for all your help. After I got it working using a separate nib file, I was still having a problem where the window objects weren't mapping to class variables. Finally found out that I needed to change the File Owner's class to the subclassed [[NSWindowController]], rather than an instance of my subclassed [[NSWindowController]].
+Thanks for all your help. After I got it working using a separate nib file, I was still having a problem where the window objects weren't mapping to class variables. Finally found out that I needed to change the File Owner's class to the subclassed General/NSWindowController, rather than an instance of my subclassed General/NSWindowController.
 
 Now it works great!
 
-[[GregWilson]]
+General/GregWilson
 
 ----
 
-Whoops, shoulda mentioned that, sorry. Glad you got it worked out, though; should this page now be refactored as an article-type page? -- [[RobRix]]
+Whoops, shoulda mentioned that, sorry. Glad you got it worked out, though; should this page now be refactored as an article-type page? -- General/RobRix
 
-Yes. Have fun. -- [[KritTer]]
+Yes. Have fun. -- General/KritTer
 
 ----
 
-Heh, thanks for this!  I was tearing my hair out trying to work out where to send the method makeKeyAndOrderFront to.  Tried [[[NSApp]] makeKeyAndOrderFront: myWindow] and it was spewing out errors.  Didn't think to try [myWindow makeKeyAndOrderFront: self] did I?  For some reason I have a mental block that stops me getting the idea of telling an object to do something itself!  Hope someone else who has this problem finds this too!  
+Heh, thanks for this!  I was tearing my hair out trying to work out where to send the method makeKeyAndOrderFront to.  Tried General/[NSApp makeKeyAndOrderFront: myWindow] and it was spewing out errors.  Didn't think to try [myWindow makeKeyAndOrderFront: self] did I?  For some reason I have a mental block that stops me getting the idea of telling an object to do something itself!  Hope someone else who has this problem finds this too!  
 
 Cheers!

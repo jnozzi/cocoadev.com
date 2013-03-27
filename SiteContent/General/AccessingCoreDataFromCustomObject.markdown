@@ -9,30 +9,30 @@ I have created a custom view that I can successfully draw in as well.  What I wo
 
 ----
 
-Have a look at the docs for [[NSArrayController]]. You can access all your objects from it.
+Have a look at the docs for General/NSArrayController. You can access all your objects from it.
 
 ----
 
-I have looked into it, but it looks like there are two possibilities for getting the information from core data through the [[NSArrayController]]:
+I have looked into it, but it looks like there are two possibilities for getting the information from core data through the General/NSArrayController:
 
-(1) Adding custom bindings to my custom view.  The [[NSTableView]] allows you to bind the values of the columns to an [[NSArrayController]] through the "value" bindings.  A custom view only has "hidden" and "toolTip" as possible bindings.  I wish I could get IB to show a Points binding for my custom view that would allow me to get the array of points from my [[PointController]] (which is an [[NSArrayController]]).  I think this is possible, but I have not been successfull at figuring out how to do it.
+(1) Adding custom bindings to my custom view.  The General/NSTableView allows you to bind the values of the columns to an General/NSArrayController through the "value" bindings.  A custom view only has "hidden" and "toolTip" as possible bindings.  I wish I could get IB to show a Points binding for my custom view that would allow me to get the array of points from my General/PointController (which is an General/NSArrayController).  I think this is possible, but I have not been successfull at figuring out how to do it.
 
-(2) Programmatically getting the data from the [[NSArrayController]] from within my custom view.  If only there was a way to say something like "[[NSArray]] ''array = [[[PointController]] getArrayOfPoints];".  Then I could use an enumerator to go through and plot all of the points with their respective x and y values.  I could even draw the name under each point.
+(2) Programmatically getting the data from the General/NSArrayController from within my custom view.  If only there was a way to say something like "General/NSArray *array = General/[PointController getArrayOfPoints];".  Then I could use an enumerator to go through and plot all of the points with their respective x and y values.  I could even draw the name under each point.
 
 Anyone have any idea of how to do either of the top two things?
 
 ----
 
-Another option, and probably the best for your situation, is to have your controller-- be it an [[NSDocument]] subclass, [[NSWindowController]] subclass, or some other sort of controller class-- bind the arrangedObjects of the [[NSArrayController]] to some 'values' array on your view, and then have your view get the objects it needs to work with from there.
+Another option, and probably the best for your situation, is to have your controller-- be it an General/NSDocument subclass, General/NSWindowController subclass, or some other sort of controller class-- bind the arrangedObjects of the General/NSArrayController to some 'values' array on your view, and then have your view get the objects it needs to work with from there.
 
 ----
 
-''Anyone have any idea of how to do either of the top two things?''
+*Anyone have any idea of how to do either of the top two things?*
 
 Yes: 
 
-http://www.devworld.apple.com/documentation/Cocoa/Conceptual/[[CoreData]]/index.html
+http://www.devworld.apple.com/documentation/Cocoa/Conceptual/General/CoreData/index.html
 
 and
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[CocoaBindings]]/index.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/General/CocoaBindings/index.html

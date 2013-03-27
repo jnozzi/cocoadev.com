@@ -1,4 +1,4 @@
-The [[NObjective]] bridge provides the necessary tools to develop and run .NET applications (written in C#, VB.NET, etc.) that interact with Objective-C frameworks and libraries under Mac OS X. 
+The General/NObjective bridge provides the necessary tools to develop and run .NET applications (written in C#, VB.NET, etc.) that interact with Objective-C frameworks and libraries under Mac OS X. 
 
 
 * High-performance solution with smallest cpu/memory overheads compared to similar bridges
@@ -26,9 +26,9 @@ The [[NObjective]] bridge provides the necessary tools to develop and run .NET a
 * Client applications can be written in any .NET language ( C#, VB.NET, etc ) 
 * Works on most popular versions of OS X: 
 
-* [[MacOS]] Snow Leopard 10.6 ( x86 ) + Mono 2.6 
-* [[MacOS]] Leopard 10.5 ( x86/ppc ) + Mono 2.6 
-* [[MacOS]] Tiger 10.4 ( ppc ) + Mono 2.6 
+* General/MacOS Snow Leopard 10.6 ( x86 ) + Mono 2.6 
+* General/MacOS Leopard 10.5 ( x86/ppc ) + Mono 2.6 
+* General/MacOS Tiger 10.4 ( ppc ) + Mono 2.6 
 
 * Open Source, Free Software
 

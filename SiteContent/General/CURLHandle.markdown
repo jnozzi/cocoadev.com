@@ -1,4 +1,4 @@
-[[CURLHandle]] [http://curlhandle.sourceforge.net/] is a wrapper around a CURL.
+General/CURLHandle [http://curlhandle.sourceforge.net/] is a wrapper around a CURL.
 
 Curl [http://curl.haxx.se/] is a command line tool for transferring files with URL syntax, supporting FTP, FTPS, HTTP, HTTPS, GOPHER, TELNET, DICT, FILE and LDAP.  Curl supports HTTPS certificates, HTTP POST, HTTP PUT, FTP uploading,  kerberos, HTTP form based upload, proxies, cookies, user+password  authentication, file transfer resume, http proxy tunneling and a busload of other useful tricks.
 
@@ -9,107 +9,107 @@ Some example code would be really beneficial to some new Cocoa developers.  I kn
 ----
 
 Here is my class.  I'm not sure if I am always retaining/releasing correctly, but it seems to work.
-<code>
+    
 
-@class [[CURLHandle]];
+@class General/CURLHandle;
 
-@interface [[MEWebFetcher]] : [[NSObject]] <[[NSURLHandleClient]]>
+@interface General/MEWebFetcher : General/NSObject <General/NSURLHandleClient>
 {
-	[[CURLHandle]] ''mURLHandle;
+	General/CURLHandle *mURLHandle;
 }
 
-+ ([[MEWebFetcher]] '')sharedInstance;
++ (General/MEWebFetcher *)sharedInstance;
 
-- ([[NSString]] '')fetchURLtoString:(NSURL '')url;
-- ([[NSString]] '')fetchURLtoString:(NSURL '')url withTimeout:(int)secs;
-- ([[NSData]] '')fetchURLtoData:(NSURL '')url;
-- ([[NSData]] '')fetchURLtoData:(NSURL '')url withTimeout:(int)secs;
+- (General/NSString *)fetchURLtoString:(NSURL *)url;
+- (General/NSString *)fetchURLtoString:(NSURL *)url withTimeout:(int)secs;
+- (General/NSData *)fetchURLtoData:(NSURL *)url;
+- (General/NSData *)fetchURLtoData:(NSURL *)url withTimeout:(int)secs;
 
 @end
 
 #define DEFAULT_TIMEOUT 60
 
-@implementation [[MEWebFetcher]]
+@implementation General/MEWebFetcher
 
 #pragma mark Housekeeping Methods
 
 - (id)init
 {
     self = [super init];
-	[[[CURLHandle]] curlHelloSignature:@"[[XxXx]]" acceptAll:YES];	// to get [[CURLHandle]] registered for handling [[URLs]]
+	General/[CURLHandle curlHelloSignature:@"General/XxXx" acceptAll:YES];	// to get General/CURLHandle registered for handling General/URLs
 	return self;
 }
 
 - (void)dealloc
 {
-	[[[CURLHandle]] curlGoodbye];	// to clean up
+	General/[CURLHandle curlGoodbye];	// to clean up
 }
 
-+ ([[MEWebFetcher]] '')sharedInstance
++ (General/MEWebFetcher *)sharedInstance
 {
-	static [[MEWebFetcher]] ''sharedInstance = nil;
+	static General/MEWebFetcher *sharedInstance = nil;
 	if (!sharedInstance)
-		sharedInstance = [[self alloc] init];
+		sharedInstance = General/self alloc] init];
 	return sharedInstance;
 }
 
 #pragma mark -
-/'' @parameters:
+/* @parameters:
 				url  is a valid NSURL
    @result:
 				returns the result of calling fetchURLtoString:withTimeout: passing DEFAULT_TIMEOUT				
-''/
-- ([[NSString]] '')fetchURLtoString:(NSURL '')url 
+*/
+- ([[NSString *)fetchURLtoString:(NSURL *)url 
 {
 	return [self fetchURLtoString:url withTimeout:DEFAULT_TIMEOUT];
 }
 
-/'' @parameters:
+/* @parameters:
 				url   is a valid NSURL
 				secs  is the number of seconds before the request for url will be given up.
    @result:
 				returns the data associated with the url.  Returns nil if there was an error.				
-''/
-- ([[NSString]] '')fetchURLtoString:(NSURL '')url withTimeout:(int)secs
+*/
+- (General/NSString *)fetchURLtoString:(NSURL *)url withTimeout:(int)secs
 {
-	[[NSData]] ''urlData     = [[self fetchURLtoData:url withTimeout:secs] retain];
-	[[NSString]] ''urlString = [[[[NSString]] alloc] initWithData:urlData encoding:[[NSASCIIStringEncoding]]];
+	General/NSData *urlData     = General/self fetchURLtoData:url withTimeout:secs] retain];
+	[[NSString *urlString = General/[[NSString alloc] initWithData:urlData encoding:General/NSASCIIStringEncoding];
 	
 	//[urlData release]; // JRC - I still don't understand release I guess...
-	//[[NSLog]](@"urlData count: %i",[urlData retainCount]);
+	//General/NSLog(@"urlData count: %i",[urlData retainCount]);
 	return [urlString autorelease];
 }
 
 #pragma mark -
-/'' @parameters:
+/* @parameters:
 				url  is a valid NSURL
    @result:
 				returns the result of calling fetchURLtoData:withTimeout: passing DEFAULT_TIMEOUT				
-''/
-- ([[NSData]] '')fetchURLtoData:(NSURL '')url
+*/
+- (General/NSData *)fetchURLtoData:(NSURL *)url
 {
 	return [self fetchURLtoData:url withTimeout:DEFAULT_TIMEOUT];
 }
 
-/'' @parameters:
+/* @parameters:
 				url   is a valid NSURL
 				secs  is the number of seconds before the request for url will be given up.
    @result:
 				returns the data associated with the url.  Returns nil if there was an error.				
-''/
-- ([[NSData]] '')fetchURLtoData:(NSURL '')url withTimeout:(int)secs 
+*/
+- (General/NSData *)fetchURLtoData:(NSURL *)url withTimeout:(int)secs 
 {
-	[[NSData]] ''data; // data from the website
-	mURLHandle = [([[CURLHandle]] '')[url [[URLHandleUsingCache]]:NO] retain];
+	General/NSData *data; // data from the website
+	mURLHandle = [(General/CURLHandle *)[url General/URLHandleUsingCache:NO] retain];
 	
 	[mURLHandle setFailsOnError:NO];		// don't fail on >= 300 code; I want to see real results.
-	[mURLHandle setUserAgent: @"Mozilla/4.5 (compatible; [[OmniWeb]]/4.0.5; Mac_PowerPC)"];
+	[mURLHandle setUserAgent: @"Mozilla/4.5 (compatible; General/OmniWeb/4.0.5; Mac_PowerPC)"];
 	[mURLHandle setConnectionTimeout:secs];
 	
-	data = [[mURLHandle resourceData] retain];
-	if ([[NSURLHandleLoadFailed]] == [mURLHandle status])
+	data = General/mURLHandle resourceData] retain];
+	if ([[NSURLHandleLoadFailed == [mURLHandle status])
 	{
-		[[NSLog]]([mURLHandle failureReason]);
+		General/NSLog([mURLHandle failureReason]);
 		return nil;
 	}
 	
@@ -117,59 +117,59 @@ Here is my class.  I'm not sure if I am always retaining/releasing correctly, bu
 	return [data autorelease];
 }
 
-- (void)[[URLHandle]]:([[NSURLHandle]] '')sender resourceDataDidBecomeAvailable:([[NSData]] '')newBytes
+- (void)General/URLHandle:(General/NSURLHandle *)sender resourceDataDidBecomeAvailable:(General/NSData *)newBytes
 {
 
 }
 
-- (void)[[URLHandleResourceDidBeginLoading]]:([[NSURLHandle]] '')sender
+- (void)General/URLHandleResourceDidBeginLoading:(General/NSURLHandle *)sender
 {
 
 }
 
-- (void)[[URLHandleResourceDidFinishLoading]]:([[NSURLHandle]] '')sender
+- (void)General/URLHandleResourceDidFinishLoading:(General/NSURLHandle *)sender
 {
 
 }
 
-- (void)[[URLHandleResourceDidCancelLoading]]:([[NSURLHandle]] '')sender
+- (void)General/URLHandleResourceDidCancelLoading:(General/NSURLHandle *)sender
 {
 
 }
 
-- (void)[[URLHandle]]:([[NSURLHandle]] '')sender resourceDidFailLoadingWithReason:([[NSString]] '')reason
+- (void)General/URLHandle:(General/NSURLHandle *)sender resourceDidFailLoadingWithReason:(General/NSString *)reason
 {
 
 }
 @end
 
-</code>
 
-These [[URLHandle]]... methods are necessary as far as I can tell.  I hope this helps... does anyone know of a more minimalistic implementation?
+
+These General/URLHandle... methods are necessary as far as I can tell.  I hope this helps... does anyone know of a more minimalistic implementation?
 
 -Joe
 
 ----
 
 Since I've posted this example code, I have found some bugs. Namely: 
-<code>
-[[[CURLHandle]] curlHelloSignature:@"[[XxXx]]" acceptAll:YES];	// to get [[CURLHandle]] registered for handling [[URLs]]
-</code>
+    
+General/[CURLHandle curlHelloSignature:@"General/XxXx" acceptAll:YES];	// to get General/CURLHandle registered for handling General/URLs
 
-should be in awakeFromNib: or init: or a similiar method of the [[NSApplication]] delegate. Likewise:
 
-<code>
-	[[[CURLHandle]] curlGoodbye];	// to clean up
-</code>
+should be in awakeFromNib: or init: or a similiar method of the General/NSApplication delegate. Likewise:
 
-should be placed inside applicationWillTerminate: of the [[NSApplication]] delegate.
+    
+	General/[CURLHandle curlGoodbye];	// to clean up
+
+
+should be placed inside applicationWillTerminate: of the General/NSApplication delegate.
 
 -Joe
 
 ----
 
-There's a bundle of helpful compilation information on the [[POSTMethodANDNSURLRequest]] page. Someone might consider moving it here. :-)
+There's a bundle of helpful compilation information on the General/POSTMethodANDNSURLRequest page. Someone might consider moving it here. :-)
 
 ----
 
-Has anyone successfully built a universal [[CURLHandle]] with support for 10.2.8?  Thanks -- Joe
+Has anyone successfully built a universal General/CURLHandle with support for 10.2.8?  Thanks -- Joe

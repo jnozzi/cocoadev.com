@@ -1,1 +1,1 @@
-see: [[DesignPattern]]
+see: General/DesignPattern

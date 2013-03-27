@@ -4,13 +4,13 @@ UK Student, trying to learn Cocoa as Ia realised how useless BASIC was! Run a Li
 
 Trying to sift through old projects to pu on my new portfolio site http://www.qlehosting.com/giles/
 
-'''Languages I Speak:'''
+**Languages I Speak:**
 
 *PHP
 *HTML
-*[[JavaScript]]
+*General/JavaScript
 *CSS
-*[[REALbasic]]
+*General/REALbasic
 *Ruby (only just!)
 *Cocoa (only just started learning)
 

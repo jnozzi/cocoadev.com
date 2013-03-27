@@ -6,4 +6,4 @@ http://apptree.net/images/conrec.jpg
 
 (Disclaimer: the demo code (ab)uses a view class to act partially as a controller since I was too lazy to strictly implement MVC. The plotter part is meant to be the more useful/interesting/correctly written class).
 
---[[GrahamCox]]
+--General/GrahamCox

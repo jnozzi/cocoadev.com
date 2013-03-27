@@ -1,1 +1,1 @@
-#REDIRECT [[:Category:CocoaDevUsersAdditions]]
+#REDIRECT General/:Category:CocoaDevUsersAdditions

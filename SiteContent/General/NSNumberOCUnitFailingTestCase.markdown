@@ -1,28 +1,28 @@
 I'm trying to get into Objective-C coming from Ruby and figured the best way to make sure I had head screwed on straight was to start writing simple unit tests to check my assumptions against reality.
 
 I got two tests into the process and ran into problems with the following test:
-<code>
+    
 - (void) testNumberWithFloat
 {
-	[[NSNumber]] ''number = [[[NSNumber]] numberWithFloat:10.5];
+	General/NSNumber *number = General/[NSNumber numberWithFloat:10.5];
 
-	[[STAssertEqualsWithAccuracy]](10.5, [number floatValue], 0.1,
+	General/STAssertEqualsWithAccuracy(10.5, [number floatValue], 0.1,
 							 @"Number should equal 10.5 but instead equals %g.",
 							 [number floatValue]);
 	
 	[number release];
 }
-</code>
+
 
 It fails with the following error:
-<code>
-[[TestNSNumber]].m:32: error: -[[[TestNSNumber]] testNumberWithFloat] : Type mismatch -- Number should equal 10.5 but instead equals 10.5.
-[[RunUnitTests]]:153: error: Test rig '/Developer/Tools/otest' exited abnormally with code 139 (it may have crashed).
-</code>
+    
+General/TestNSNumber.m:32: error: -General/[TestNSNumber testNumberWithFloat] : Type mismatch -- Number should equal 10.5 but instead equals 10.5.
+General/RunUnitTests:153: error: Test rig '/Developer/Tools/otest' exited abnormally with code 139 (it may have crashed).
+
 
 I'm utterly stumped and am surely missing something so blindingly obvious I simply can't see it. I'd be very grateful for a pointer in the right direction. Thanks!
 
---[[DaneJensen]]
+--General/DaneJensen
 
 ----
 
@@ -36,7 +36,7 @@ Unfortunately, otest is still crashing.
 
 ----
 
-You should not release <code>number</code>, as you have not alloced, copied, or retained it. See [[MemoryManagement]].
+You should not release     number, as you have not alloced, copied, or retained it. See General/MemoryManagement.
 
 ----
 

@@ -1,6 +1,6 @@
 
 
-http://www.staronesw.com/[[CardMachine]].zip
+http://www.staronesw.com/General/CardMachine.zip
 
 Run the program and then do the following:
 
@@ -16,14 +16,14 @@ Run the program and then do the following:
 
 The program will mess up, and usually quit.
 
-I get this:<code>''''' -[[[NSCFString]] replaceOccurrencesOfString:withString:options:range:]: nil argument</code>
+I get this:    *** -General/[NSCFString replaceOccurrencesOfString:withString:options:range:]: nil argument
 
 The app won't quit if the two occurances of:
 
-[tstrin drawAtPoint:[[NSMakePoint]](xv[temp],yv[temp]) withAttributes:attrs]; 
+[tstrin drawAtPoint:General/NSMakePoint(xv[temp],yv[temp]) withAttributes:attrs]; 
 
 in Itemcontroller.m
 
 Any idea why?
 
-''nil argument means you're passing nil to a function that won't accept it-- use the debugger to find out which variable is nil, and either fix what's causing it, or put in some error checking to handle it if it is.''
+*nil argument means you're passing nil to a function that won't accept it-- use the debugger to find out which variable is nil, and either fix what's causing it, or put in some error checking to handle it if it is.*

@@ -1,1 +1,1 @@
-See [[MacOSX]].
+See General/MacOSX.

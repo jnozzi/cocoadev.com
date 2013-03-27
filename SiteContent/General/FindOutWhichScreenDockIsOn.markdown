@@ -1,12 +1,12 @@
 I'd love to find out which screen the Dock is on. How would I go about that?
 
 ----
-The Dock is always on the main screen, which can be found using <code>[[[[NSScreen]] screens] objectAtIndex:0]</code>. Why do you need this?
+The Dock is always on the main screen, which can be found using     General/[[NSScreen screens] objectAtIndex:0]. Why do you need this?
 
 ----
 
-Hm, I'm the developer of [[HierarchicalDock]] (www.eternalstorms.at/utilities/hierdock) and a user said the hierarchical menu would open on one screen, although the Dock was on the other, and my menu always opens on the mainScreen...
-And I guess one could also use <code>[[[NSScreen]] mainScreen]</code>, right? It's the same as ...objectAtIndex:0, isn't it?
+Hm, I'm the developer of General/HierarchicalDock (www.eternalstorms.at/utilities/hierdock) and a user said the hierarchical menu would open on one screen, although the Dock was on the other, and my menu always opens on the mainScreen...
+And I guess one could also use     General/[NSScreen mainScreen], right? It's the same as ...objectAtIndex:0, isn't it?
 
 ----
 No it is not. RTFM.
@@ -19,7 +19,7 @@ objectAtIndex:0 : screen with menu bar.
 Thanky.
 
 ----
-I don't think that's correct - if I move the Dock between the left and the right then it draws on different screens but <code>[[[[NSScreen]] screens] objectAtIndex:0]</code> doesn't change.
+I don't think that's correct - if I move the Dock between the left and the right then it draws on different screens but     General/[[NSScreen screens] objectAtIndex:0] doesn't change.
 
 ----
 Good point there. I don't use the side dock and didn't realize it would hop onto a different screen if you did so.
@@ -34,16 +34,16 @@ Any other suggestions?
 
 Yet another update: The documentation says even if the dock is hidden, the visible frame will be a little smaller than the screen size, because mac os x has a tracking area to find out when to show the dock. So, based on this, my previous poster was right. And here's how to do it:
 
-<code>
+    
 BOOL dockIsHorizontal = YES; //Dock is on top or bottom, if no, it's left or right - you can find that out with the dock's preferences file
-for ([[NSScreen]] ''curScr in [[[NSScreen]] screens])
+for (General/NSScreen *curScr in General/[NSScreen screens])
 {
 	if (dockIsHorizontal)
 	{
 		float toSubtr = 0;
-		if ([[[NSMenu]] menuBarVisible])
+		if (General/[NSMenu menuBarVisible])
 		{
-			toSubtr = [[[[NSApp]] mainMenu] menuBarHeight];
+			toSubtr = General/[[NSApp mainMenu] menuBarHeight];
 		}
 		float heightWithoutMenBar = [curScr frame].size.height - toSubtr;
 		if ([curScr visibleFrame].size.height < heightWithoutMenBar)
@@ -58,4 +58,3 @@ for ([[NSScreen]] ''curScr in [[[NSScreen]] screens])
 		}
 	}
 }
-</code>

@@ -7,19 +7,19 @@ Like this?
 
 In some common header...
 
-<code>
+    
 extern const char charArray[3][8];
-</code>
+
 
 In some source file...
 
-<code>
+    
 const char charArray[3][8] = {
 {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'},
 {'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p'},
 {'q', 'r', 's', 't', 'u', 'v', 'w', 'x'}
 };
-</code>
+
 
 ----
 Excellent, it's working now...

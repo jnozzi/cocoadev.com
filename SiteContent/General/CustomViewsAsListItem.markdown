@@ -8,10 +8,10 @@ Could anyone point me in the right direction?
 
 ----
 
-It would help if you'd use proper terminology in relation to this particular API. What do you mean by "List Items"? Are you referring to [[NSTableView]], [[NSOutlineView]], or what? If you're targeting Leopard and all your "list items" are homogeneously-sized, check out [[NSCollectionView]] / [[NSCollectionViewItem]].
+It would help if you'd use proper terminology in relation to this particular API. What do you mean by "List Items"? Are you referring to General/NSTableView, General/NSOutlineView, or what? If you're targeting Leopard and all your "list items" are homogeneously-sized, check out General/NSCollectionView / General/NSCollectionViewItem.
 
 ----
 
-Sorry, my bad, it's the [[NSTableView]], like the Download window for Safari, in there you see each item along with buttons for canceling or reloading. There is even a progress bar in the same column as the text.
+Sorry, my bad, it's the General/NSTableView, like the Download window for Safari, in there you see each item along with buttons for canceling or reloading. There is even a progress bar in the same column as the text.
 
 ----

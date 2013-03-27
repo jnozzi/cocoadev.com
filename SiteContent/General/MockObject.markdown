@@ -1,1 +1,1 @@
-Describe [[MockObject]] here.
+Describe General/MockObject here.

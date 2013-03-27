@@ -5,7 +5,7 @@ i'm a 23 years old spanish boy and i'm learning to develop apps using Xcode, Coc
 i wanna you to excuse me if my english is a bit awful, i'm learning english too.
 
 ----
-Your correct use of "too" would indicate that your English is far better than most native speakers. :-) Welcome to [[CocoaDev]].
+Your correct use of "too" would indicate that your English is far better than most native speakers. :-) Welcome to General/CocoaDev.
 
 ----
 :o Thanks! That makes me feel better, because i really think my english is awful...

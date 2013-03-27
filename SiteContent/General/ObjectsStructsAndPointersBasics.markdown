@@ -1,29 +1,29 @@
-Why does [[NSString]] have a pointer when things like [[NSRect]] and [[NSRange]] don't? http://goo.gl/[[OeSCu]]
+Why does General/NSString have a pointer when things like General/NSRect and General/NSRange don't? http://goo.gl/General/OeSCu
 
 ----
 
-[[NSString]] is a class, while [[NSRect]], [[NSSize]], [[NSPoint]], and [[NSRange]] are structs.
-The difference is where they're stored: '''variables you declare in your methods are allocated on the stack''', including actual pointers...
-but '''the things that pointers point to are stored on the heap'''.
+General/NSString is a class, while General/NSRect, General/NSSize, General/NSPoint, and General/NSRange are structs.
+The difference is where they're stored: **variables you declare in your methods are allocated on the stack**, including actual pointers...
+but **the things that pointers point to are stored on the heap**.
 
 The stack is pretty automatic. If you allocate a variable just after the opening {, then it'll be done with by the matching }, always. The heap, on the other hand, lets you keep objects around basically as long as you want--which is why it's a good place to keep objects. But it makes you manage the memory yourself with things like retain/release and autorelease.
 
-I should also note that it's good practice to use more descriptive titles for your [[WikiWiki]] pages. Something like [[WhyIsntNSRectUsedWithPointers]].
+I should also note that it's good practice to use more descriptive titles for your General/WikiWiki pages. Something like General/WhyIsntNSRectUsedWithPointers.
 
--- [[RobRix]]
+-- General/RobRix
 
 
 ----
 
-[[NSString]] is much more complex than [[NSRect]] or [[NSRange]]. While the latter are merely a convenient name for a few numbers, the former manages its own memory and hides what character encoding it uses for the text you store.
+General/NSString is much more complex than General/NSRect or General/NSRange. While the latter are merely a convenient name for a few numbers, the former manages its own memory and hides what character encoding it uses for the text you store.
 
-Thus, [[NSRect]] and [[NSRange]] are simple C structs, while [[NSString]] is a fully-fledged [[ObjC]] object. For reasons that may become clear as you learn more programming, it is useful to hide [[NSString]]'s complexity behind a pointer.
+Thus, General/NSRect and General/NSRange are simple C structs, while General/NSString is a fully-fledged General/ObjC object. For reasons that may become clear as you learn more programming, it is useful to hide General/NSString's complexity behind a pointer.
 
 Hope that helps some.
 
 ----
 
-So how do I know what's a "full-fledged" [[ObjC]] object (requiring a pointer), and what's a simple C struct?  I was beginning to think that "[[NSAnything]]" was a full-fledged object.  -- a different curious reader
+So how do I know what's a "full-fledged" General/ObjC object (requiring a pointer), and what's a simple C struct?  I was beginning to think that "General/NSAnything" was a full-fledged object.  -- a different curious reader
 
 ----
 
@@ -31,51 +31,51 @@ You can either read the documentation, or look up the headers (you can hold comm
 
 ----
 
-If you look in the class references; then if it's got a page of its own, it's a class. All structs and things are on the types pages for [[AppKit]] and Foundation en masse. -- [[RobRix]]
+If you look in the class references; then if it's got a page of its own, it's a class. All structs and things are on the types pages for General/AppKit and Foundation en masse. -- General/RobRix
 
 ----
 
-'''further discussion of the meaning of pointer operator and objects (was P''''ointerOperatorDiscussion)'''
+**further discussion of the meaning of pointer operator and objects (was P**'ointerOperatorDiscussion)**
 
-What is the meaning of '') as often used in:
+What is the meaning of *) as often used in:
 
-+ ([[NSString]] '')description
++ (General/NSString *)description
 
 and
 
-- (void)forwardInvocation:([[NSInvocation]] '')anInvocation
+- (void)forwardInvocation:(General/NSInvocation *)anInvocation
 
-In the case of the [[NSString]], how would you read that in English?
+In the case of the General/NSString, how would you read that in English?
 
 Thanks in advance -- jh
 
 ----
 
-The '' is a normal C pointer.  So ''+ ([[NSString]] '')description'' literally means:  ''a class method that returns a pointer to an [[NSString]] object''
+The * is a normal C pointer.  So *+ (General/NSString *)description* literally means:  *a class method that returns a pointer to an General/NSString object*
 
 Is that what you meant?
 
---[[JeffDisher]]
+--General/JeffDisher
 
 ----
 
-Yes, thank you! So I assume that by that same logic, in the second example, anInvocation is a pointer to an [[NSInvocation]] object being used as an argument to forwardInvocation?
+Yes, thank you! So I assume that by that same logic, in the second example, anInvocation is a pointer to an General/NSInvocation object being used as an argument to forwardInvocation?
 
 jh
 
 ----
 
-Yes:  anInvocation is a pointer to an [[NSInvocation]] object, and the <code>+[[[NSObject]] description]</code> method returns a pointer to an [[NSString]] object (and happens to be a class method, but this is unimportant).
+Yes:  anInvocation is a pointer to an General/NSInvocation object, and the     +General/[NSObject description] method returns a pointer to an General/NSString object (and happens to be a class method, but this is unimportant).
 
-You'll see the pointer whenever the variable is.. a pointer. :-)  Almost every time you deal with an object in objective-c you'll be holding onto it via a pointer to the object.  In rarer circumstances you may see pointers to other data types.  For example, in the method on [[NSMutableArray]] declared as
+You'll see the pointer whenever the variable is.. a pointer. :-)  Almost every time you deal with an object in objective-c you'll be holding onto it via a pointer to the object.  In rarer circumstances you may see pointers to other data types.  For example, in the method on General/NSMutableArray declared as
 
-<code>- (void)removeObjectsFromIndices:(unsigned '')indices numIndices:(unsigned)count</code>
+    - (void)removeObjectsFromIndices:(unsigned *)indices numIndices:(unsigned)count
 
 the first argument is a pointer to unsigned integer (this is the plain C way to pass an array).
 
 Your basic options regarding the eternal mystery of pointers are these:
 
-1) Ignore it for now, and realize that every time you have something you're thinking of as an object, you actually have a pointer to the object and you need to declare the variable with a '', or
+1) Ignore it for now, and realize that every time you have something you're thinking of as an object, you actually have a pointer to the object and you need to declare the variable with a *, or
 
 2) Read the chapter on pointers from any standard C book.
 
@@ -84,7 +84,7 @@ I guess I'd recommend 1) for now, with the caveat that you'll want to do 2) no l
 ----
 Lots of stuff in C still keeps surprising me: for example, I had NO idea that the comma operator even existed until recently -- even now I can't really think of when to use it.  There is lots of less esoteric and arcane stuff in C that lots of people don't know about or use: eg bitwise operatorsr, or the question mark (ternary) operator -- a funky, but useful shorthand. 
 
-''Dunno.  But there aren't that many surprises in C because it's so small.  If you go back and reread your C book now, you'll probably come out of it knowing everything there is to know about C.  Another interesting thing that one can miss the first time through is the utility of pointers to functions.''
+*Dunno.  But there aren't that many surprises in C because it's so small.  If you go back and reread your C book now, you'll probably come out of it knowing everything there is to know about C.  Another interesting thing that one can miss the first time through is the utility of pointers to functions.*
 
 ----
 Cocoa is written in C and the particular construct in question is found in virtually every Cocao program I have found. -- jh
@@ -98,85 +98,85 @@ I understand your point, but as originally stated, I did consult 3 books includi
 
 ----
 
-There is an entry point to any skill.  C is the entry point to Objective-C and Cocoa.  The pointers to cocoa objects (e.g. [[NSString]] ''string) are no different than straight C pointers to structs -- in fact, that's just what they are.  If you aren't at a point where you feel comfortable with pointers, you will not be doing yourself a favor by jumping in head long into objective-c or cocoa.  Moreover, Cocoa is essentially nothing more than an API, and while we do have some more abstract discussions here about design patterns, the site's primary purpose is to help each other with the API, which is very very rich and takes years to really master.  As one of the posters mentioned above, ANSI C is something you want a book for -- you want an organized and systematized approach to learning something as small and fundamental as C.
+There is an entry point to any skill.  C is the entry point to Objective-C and Cocoa.  The pointers to cocoa objects (e.g. General/NSString *string) are no different than straight C pointers to structs -- in fact, that's just what they are.  If you aren't at a point where you feel comfortable with pointers, you will not be doing yourself a favor by jumping in head long into objective-c or cocoa.  Moreover, Cocoa is essentially nothing more than an API, and while we do have some more abstract discussions here about design patterns, the site's primary purpose is to help each other with the API, which is very very rich and takes years to really master.  As one of the posters mentioned above, ANSI C is something you want a book for -- you want an organized and systematized approach to learning something as small and fundamental as C.
 
 ----
 
-''Actually, I disagree with a little bit of this, as I think you can start learning cocoa/Obj-C before you learn C.  For example:  We do use pointers, but we rarely dereference them explicitly.  It isn't really crucial to know what's going on there, at least at first.  That's why I kind of suggested taking the "ignore it for now" approach.''
+*Actually, I disagree with a little bit of this, as I think you can start learning cocoa/Obj-C before you learn C.  For example:  We do use pointers, but we rarely dereference them explicitly.  It isn't really crucial to know what's going on there, at least at first.  That's why I kind of suggested taking the "ignore it for now" approach.*
 
 ----
 I will also mention, that there is no imaginary line, jh -- C is one language, Objective-C is a superset of C, and Cocoa is an API -- all very realy and tangible distinctions.
 
 ----
-I'm amazed nobody has pointed it out yet, but talking about '') is extremely inappropriate grouping. Parentheses are simply ways to create precedence, and are always grouped. In this case, you have (''thing''), where ''thing'' is [[NSString]] ''.
+I'm amazed nobody has pointed it out yet, but talking about *) is extremely inappropriate grouping. Parentheses are simply ways to create precedence, and are always grouped. In this case, you have (*thing*), where *thing* is General/NSString *.
 
-'' ... which, in this case, "[[NSString]] ''" is read, "[[NSString]] Pointer". When encountering the "''" in C or Objective-C, always read it as the word, "pointer" in your mind. That helps tremendously in identifying what you're reading if you get in that habit. At least for me, anyway. ''
+* ... which, in this case, "General/NSString *" is read, "General/NSString Pointer". When encountering the "*" in C or Objective-C, always read it as the word, "pointer" in your mind. That helps tremendously in identifying what you're reading if you get in that habit. At least for me, anyway. *
 
 Pointers are also used as such:
 
-<code>
+    
 
 // You can do it this way
-[[NSString]] '' blah = @"Blah";
+General/NSString * blah = @"Blah";
 
 // or this way
-[[NSString]] ''blah = @"Blah";
+General/NSString *blah = @"Blah";
 
 // or even this way
-[[NSString]] '' blah = [[[[NSString]] alloc] initWithString:@"Blah"];
+General/NSString * blah = General/[[NSString alloc] initWithString:@"Blah"];
 
-</code>
+
 
   It all means more or less the same thing.
 
-''As with all operators in C, whitespace has no meaning. [[NSString]]''blah is the same as [[NSString]]    ''    blah.''
+*As with all operators in C, whitespace has no meaning. General/NSString*blah is the same as General/NSString    *    blah.*
 
-The nitipicker in me points out that because of C's greedy parsing rule there's a difference between <code>foo = 37 / ''bar;</code> and <code>foo = 37/''bar;</code> -- the latter will be interpreted as a comment by the preprocessor.  But in most cases, whitespace has no meaning.
-
-----
-
-Finally, to answer the original question a bit more completely, <code>+ ([[NSString]] '')description</code> is a [[ClassMethod]], called <code>description</code>, that returns a Cocoa object, specifically an [[NSString]] (or something derived from an [[NSString]]).
+The nitipicker in me points out that because of C's greedy parsing rule there's a difference between     foo = 37 / *bar; and     foo = 37/*bar; -- the latter will be interpreted as a comment by the preprocessor.  But in most cases, whitespace has no meaning.
 
 ----
 
-'''Is it possible to check if a pointer is valid'''
+Finally, to answer the original question a bit more completely,     + (General/NSString *)description is a General/ClassMethod, called     description, that returns a Cocoa object, specifically an General/NSString (or something derived from an General/NSString).
+
+----
+
+**Is it possible to check if a pointer is valid**
 
 I want to be absolutely sure that an object I am passing to a particular method is initialised and everything is ok with it.
 
 My tests for the object so far are as follows:
 
-<code>
+    
 
-- (void)myImportantMethodWithNetService:([[NSNetService]]'')netServiceToConnect
+- (void)myImportantMethodWithNetService:(General/NSNetService*)netServiceToConnect
 {
 if (!netServiceToConnect) return nil;
-if ([[netServiceToConnect addresses] count] < 1) return nil;
+if (General/netServiceToConnect addresses] count] < 1) return nil;
 
 ...
 
 Do something with valid 'netServiceToConnect'
 
-</code>
+
 
 However I can still get past the above by sending a variable created in the following way:
 
-<code>
+    
 
-[[NSNetService]]'' fakeService; //(No init - just pass this on)
+[[NSNetService* fakeService; //(No init - just pass this on)
 
-</code>
+
 
 How do I check that a variable I have been passed is properly initialised for use? Checking for nil won't rule out all errors.
 
 ----
 
 Checking for nil is inappropriate, since [Class alloc] by default returns a legitimate pointer.  You could potentially have a magic number 
-<code>
+    
 #define  MY_MAGIC_NUMBER 23842 // or any other number you want provided it's larger than 8
-</code>
+
 and then you can quiz the object to see if the magic number ivar has the appropriate magic number set (which gets set inside any and all of your init methods.
 
-If you're doing this for debug (i.e. you forgot to stick an init somewhere), then just do a find for [[[MyClass]] alloc].
+If you're doing this for debug (i.e. you forgot to stick an init somewhere), then just do a find for General/[MyClass alloc].
 
 ----
 
@@ -186,10 +186,10 @@ Note that all data in an object is initialized to 0 by the Obj-C runtime and all
 
 ----
 
-I'm just worried that an [[NSNetService]] object that is returned by a notification automatically from my Rendezvous implementation is sometimes 'rogue' and not a proper [[NSNetService]], and could cause my app to crash. Seeing as I am not creating the [[NSNetService]], I can't check that it has been initialised properly.
+I'm just worried that an General/NSNetService object that is returned by a notification automatically from my Rendezvous implementation is sometimes 'rogue' and not a proper General/NSNetService, and could cause my app to crash. Seeing as I am not creating the General/NSNetService, I can't check that it has been initialised properly.
 
 ----
 
-If the framework is passing you an object, it will either be nil or a valid object (whatever that is in the given context).  Apple is good enough not to pass uninitialized pointers to user code.  In the specific case of [[NSNetService]], it can be thought of as the sender (basically) so it will definitely be valid. If it isn't valid, it's a bug: go to radar.apple.com and report it.
+If the framework is passing you an object, it will either be nil or a valid object (whatever that is in the given context).  Apple is good enough not to pass uninitialized pointers to user code.  In the specific case of General/NSNetService, it can be thought of as the sender (basically) so it will definitely be valid. If it isn't valid, it's a bug: go to radar.apple.com and report it.
 
-see also [[MemoryManagement]]
+see also General/MemoryManagement

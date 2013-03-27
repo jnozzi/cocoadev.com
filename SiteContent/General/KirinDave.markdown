@@ -1,1 +1,1 @@
-Another name for [[DaveFayram]].
+Another name for General/DaveFayram.

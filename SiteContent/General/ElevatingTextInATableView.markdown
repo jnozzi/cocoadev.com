@@ -8,7 +8,7 @@ Thanks.
 
 ----
 
-It looks like you're returning an [[NSAttributedString]] for your objectValue method. There is a [[NSBaselineOffsetAttributeName]] which you can use to adjust the vertical positioning of your text.
+It looks like you're returning an General/NSAttributedString for your objectValue method. There is a General/NSBaselineOffsetAttributeName which you can use to adjust the vertical positioning of your text.
 
 ----
 

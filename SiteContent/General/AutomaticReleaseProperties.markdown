@@ -5,39 +5,39 @@ However, when an object is dealloc'ed you still need to do the work of setting a
 
 I was thinking of automating this process by iterating over all my properties and just releasing them using the obj runtime. Like so:
 
-<code>
+    
 
-// [[ReleaseProperties]].c
+// General/ReleaseProperties.c
 
 #import <objc/runtime.h>
-#import "[[ReleaseProperties]].h"
+#import "General/ReleaseProperties.h"
 
 #define	LOG_DEBUG	0
 
-void	[[ReleaseInstancePropertiesForNSObject]]( [[NSObject]]'' obj, Class objClass )
+void	General/ReleaseInstancePropertiesForNSObject( General/NSObject* obj, Class objClass )
 {
 	unsigned int propCount = 0;
 	
-	objc_property_t ''props = class_copyPropertyList( objClass, &propCount );
+	objc_property_t *props = class_copyPropertyList( objClass, &propCount );
 	if ( props )
 	{
 		unsigned int	index = 0;
 			
 		while( index < propCount )
 		{
-			const char''	propName = property_getName( props[index] );
+			const char*	propName = property_getName( props[index] );
 			if ( propName )
 			{
-				void''	ivarValue = nil;
+				void*	ivarValue = nil;
 				Ivar ivar = object_getInstanceVariable( obj, propName, &ivarValue );
 				if ( ivar )
 				{
 					id	iobj = object_getIvar( obj, ivar );
 					if ( iobj ) {
 						#if LOG_DEBUG
-							[[NSLog]](@"Release property: %s %p from %@", propName, iobj, objClass );
+							General/NSLog(@"Release property: %s %p from %@", propName, iobj, objClass );
 						#endif
-						[obj setValue:nil forKey:[[[NSString]] stringWithUTF8String:propName]];
+						[obj setValue:nil forKey:General/[NSString stringWithUTF8String:propName]];
 					}
 				}
 			}
@@ -49,24 +49,24 @@ void	[[ReleaseInstancePropertiesForNSObject]]( [[NSObject]]'' obj, Class objClas
 	}
 }
 
-</code>
+
 
 Combined with a macro like below we can make it really easy to implement a dealloc which simply releases all the properties:
 
-<code>
+    
 
-// [[ReleaseProperties]].h
+// General/ReleaseProperties.h
 
-/''' Note: Properties in your object must be retained!!! Non-retained (assigned) objects will result in over-released objects. '''/
+/** Note: Properties in your object must be retained!!! Non-retained (assigned) objects will result in over-released objects. **/
 
-void	[[ReleaseInstancePropertiesForNSObject]]( [[NSObject]]'' obj, Class objClass );
+void	General/ReleaseInstancePropertiesForNSObject( General/NSObject* obj, Class objClass );
 
-#define	DEALLOC_RELEASE_PROPERTIES(a)	-(void)dealloc { [[ReleaseInstancePropertiesForNSObject]]( self, [a class] );  [super dealloc];  }
-// Usage: DEALLOC_RELEASE_PROPERTIES([[YourClassName]])
+#define	DEALLOC_RELEASE_PROPERTIES(a)	-(void)dealloc { General/ReleaseInstancePropertiesForNSObject( self, [a class] );  [super dealloc];  }
+// Usage: DEALLOC_RELEASE_PROPERTIES(General/YourClassName)
 
-</code>
 
-Include [[ReleaseProperties]].h in your source and put DEALLOC_RELEASE_PROPERTIES([[YourClassName]]) in your implementation and your done! 
+
+Include General/ReleaseProperties.h in your source and put DEALLOC_RELEASE_PROPERTIES(General/YourClassName) in your implementation and your done! 
 
 Now, the big question: Is this a bad idea? Can anybody think of any reasons why this could screw up badly? -- rjt
 
@@ -78,7 +78,7 @@ If you've got a circular reference (like drawers and windows, or other closely-r
 Good point. Using this with non-retained properties would be a very bad idea. Thanks for the feedback. 
 
 ----
-Once you have the property name you can go straight to KVC and use <code>setValue:forKey:</code> to clear the property. This will save you from the above and may be better for other situations as well. It will also have the effect of zeroing out your dynamic properties, which could be good or bad depending on the situation.
+Once you have the property name you can go straight to KVC and use     setValue:forKey: to clear the property. This will save you from the above and may be better for other situations as well. It will also have the effect of zeroing out your dynamic properties, which could be good or bad depending on the situation.
 
 ----
 
@@ -87,60 +87,60 @@ Ok, I've updated the code to use [setValue:forKey:]. However, I'm still using ob
 
 ----
 
-I still don't like this idea, because it makes subclassing a dangerous operation.  <code>[[ReleaseInstancePropertiesForNSObject]]()</code> causes the superclass to access any properties of its derived classes.  Now, I understand that in a dynamic language like [[ObjC]] it's common for the superclass to access behavior that is overridden by a subclass, but here you're manipulating the actual data structure of the subclass.  What if the subclass performs some super-special processing in <code>-dealloc</code>?  As a completely contrived example, this will break:
+I still don't like this idea, because it makes subclassing a dangerous operation.      General/ReleaseInstancePropertiesForNSObject() causes the superclass to access any properties of its derived classes.  Now, I understand that in a dynamic language like General/ObjC it's common for the superclass to access behavior that is overridden by a subclass, but here you're manipulating the actual data structure of the subclass.  What if the subclass performs some super-special processing in     -dealloc?  As a completely contrived example, this will break:
 
-<code>
-extern [[NSMutableSet]] ''freeLater; // A set of objects that we will free later
+    
+extern General/NSMutableSet *freeLater; // A set of objects that we will free later
 
-@interface [[ClassA]] : [[NSObject]]
+@interface General/ClassA : General/NSObject
 {
-    @property [[NSString]] ''label;
+    @property General/NSString *label;
 }
 
 @end
 
-@implementation [[ClassA]]
+@implementation General/ClassA
 
 - (void)dealloc
 {
-    [[ReleaseInstancePropertiesForNSObject]](self);
+    General/ReleaseInstancePropertiesForNSObject(self);
     [super dealloc];
 
-    // As far as the author of [[ClassA]] is concerned, this should only
+    // As far as the author of General/ClassA is concerned, this should only
     // wind up freeing self.label.
 }
 
 @end
 
-// Someone else has come along and created [[ClassB]], which derives
-// from [[ClassA]].  It might be another person on the team, maintaining
+// Someone else has come along and created General/ClassB, which derives
+// from General/ClassA.  It might be another person on the team, maintaining
 // the program three years from now.  Who knows?
 
-@interface [[ClassB]] : [[ClassA]]
+@interface General/ClassB : General/ClassA
 {
-    @property [[LongTermObject]] ''lto;
+    @property General/LongTermObject *lto;
 }
 
 @end
 
-@implementation [[ClassB]]
+@implementation General/ClassB
 
 - (void)dealloc
 {
-    // For some reason, [[LongTermObjects]] need to persist for a while
-    // after their "containing" [[ClassB]] objects are destroyed.  They're put on
+    // For some reason, General/LongTermObjects need to persist for a while
+    // after their "containing" General/ClassB objects are destroyed.  They're put on
     // the freeLater list and dealt with at another time.
 
-    // The author of [[ClassB]] doesn't know about the shortcut that the author
-    // of [[ClassA]] took when writing -dealloc, so the following code will fail,
+    // The author of General/ClassB doesn't know about the shortcut that the author
+    // of General/ClassA took when writing -dealloc, so the following code will fail,
     // despite the intentional lack of a call to [self setLto:nil].
 
-    [[LongTermObject]] ''myLto = self.lto;
+    General/LongTermObject *myLto = self.lto;
     [super dealloc];
     [freeLater addObject:myLto];  // crashes with message to garbage object
 }
 
-</code>
+
 
 In short, you're introducing behavior which is not expected by anyone who subclasses your class.  This is a maintenance nightmare.  --K
 
@@ -154,7 +154,7 @@ Thanks again for the feedback. Please keep it coming.
 
 ----
 
-Again, as I said, it's a purely contrived example.  I think the fact that the superclass is mutating properties of any and all subclasses is a far more problematic violation than my trickery within <code>-dealloc</code>.  Maybe it would have been more poignant if I had done my trickery in a KVO mutator?  What if <code>-setFoo:</code> relies on the property <code>bar</code> to be non-nil?  What about read only properties?  --K
+Again, as I said, it's a purely contrived example.  I think the fact that the superclass is mutating properties of any and all subclasses is a far more problematic violation than my trickery within     -dealloc.  Maybe it would have been more poignant if I had done my trickery in a KVO mutator?  What if     -setFoo: relies on the property     bar to be non-nil?  What about read only properties?  --K
 
 (OK, I've seen that you've gotten around the inheritance violation.  But that still doesn't address read-only properties, or in fact any situation in which the property mutator is not synthesized.)
 
@@ -169,13 +169,13 @@ Maybe it is worth going back to directly releasing the ivar (without using setVa
 Keep that feedback coming!  I want to keep exploring this idea and looking for its limits. 
 
 ----
-I'm all for exploring a concept, but at the end of the day I have to wonder why you don't just turn on garbage collection and be done with it? In a language like Objective-C where so much is done by convention rather than being enforced by the compiler, it's really helpful to stick with the convention unless there's a compelling reason for doing otherwise. It seems like you're adding significant complexity here to avoid a fairly small bit of work (setting properties to nil), or to avoid using the system that's designed to solve the very problem you're addressing, and more. The complexity comes from the fact that you have to understand what this [[ReleaseProperties]] thing does, you have to remember when you can and when you can't use it, and you have to explain it to anyone else that might ever look at your code. -CS
+I'm all for exploring a concept, but at the end of the day I have to wonder why you don't just turn on garbage collection and be done with it? In a language like Objective-C where so much is done by convention rather than being enforced by the compiler, it's really helpful to stick with the convention unless there's a compelling reason for doing otherwise. It seems like you're adding significant complexity here to avoid a fairly small bit of work (setting properties to nil), or to avoid using the system that's designed to solve the very problem you're addressing, and more. The complexity comes from the fact that you have to understand what this General/ReleaseProperties thing does, you have to remember when you can and when you can't use it, and you have to explain it to anyone else that might ever look at your code. -CS
 
 ----
 
-I didn't mean that it would break simply because you didn't synthesize the mutator -- though that is, in fact, what I wrote.  What I meant was that there are plenty of legitimate instances where the mutator does something more than simply change an ivar.  You can't go back to simply releasing the ivar, because the existence of an ivar means absolutely nothing as to the retain/release relationship between <code>self</code> and the object at the other end of the ivar.
+I didn't mean that it would break simply because you didn't synthesize the mutator -- though that is, in fact, what I wrote.  What I meant was that there are plenty of legitimate instances where the mutator does something more than simply change an ivar.  You can't go back to simply releasing the ivar, because the existence of an ivar means absolutely nothing as to the retain/release relationship between     self and the object at the other end of the ivar.
 
-Quite frankly from a software engineering standpoint, your comfort with "support for common/standard patterns" is nowhere near sufficient to justify the danger ''your'' new pattern poses.  Because somebody ''will'' subclass a class that uses your pattern, in a way that will break.  It might even be you. --K
+Quite frankly from a software engineering standpoint, your comfort with "support for common/standard patterns" is nowhere near sufficient to justify the danger *your* new pattern poses.  Because somebody *will* subclass a class that uses your pattern, in a way that will break.  It might even be you. --K
 
 ----
 
@@ -184,24 +184,24 @@ CS, K - I couldn't agree more. I started this idea and I'm far from convinced it
 I'm just not ready to go that extra step and turn on Apple's garbage collector (mostly for reasons I won't go into here) and wanted a way to avoid writing that extra dealloc code (especially since my dealloc will not even be called when I DO enable GC). -- rjt
 
 ----
-In that case, consider writing an [[AppleScript]], Xcode plugin, service, or just a command line tool that parses a class interface and emits a <code>-dealloc</code> with the relevant <code>[self setFoo:nil]</code> calls. You can then simply paste that into your implementation and modify it as necessary. Perfectly conventional code will be right there where everyone expects it, doing just what any Obj-C programmer would expect, and yet you avoid the tedium of writing it. -CS
+In that case, consider writing an General/AppleScript, Xcode plugin, service, or just a command line tool that parses a class interface and emits a     -dealloc with the relevant     [self setFoo:nil] calls. You can then simply paste that into your implementation and modify it as necessary. Perfectly conventional code will be right there where everyone expects it, doing just what any Obj-C programmer would expect, and yet you avoid the tedium of writing it. -CS
 
 ----
 
-<code>
+    
 
 #define	DEALLOC_RELEASE_IVARS(b)	-(void)dealloc 
 { 
-	[[NSString]]	''ivarsStringNoSpaces = [@b stringByReplacingOccurrencesOfString:@" " withString:@""]; 
-	[[NSArray]]		''ivarsArray = [ivarsStringNoSpaces componentsSeparatedByString:@","]; 
-	for ([[NSString]] ''ivarName in ivarsArray) { 
+	General/NSString	*ivarsStringNoSpaces = [@b stringByReplacingOccurrencesOfString:@" " withString:@""]; 
+	General/NSArray		*ivarsArray = [ivarsStringNoSpaces componentsSeparatedByString:@","]; 
+	for (General/NSString *ivarName in ivarsArray) { 
 		[self setValue:nil forKey:ivarName]; 
 	} 
 
 	[super dealloc]; 
 }
 
-</code>
+
 
 You'll need to put '\' on the end of each line to make the macro compile.
 

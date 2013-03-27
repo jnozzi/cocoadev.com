@@ -1,4 +1,4 @@
-If somebody has the first edition of Hillegass's [[BookCocoaProgMacOSX]] handy, could he or she glance briefly
+If somebody has the first edition of Hillegass's General/BookCocoaProgMacOSX handy, could he or she glance briefly
 at the short example on p. 58 and confirm or deny that the example contains code that
 should not GENERALLY be used:
 
@@ -23,9 +23,9 @@ His point here is that retaining/releasing these temporary objects' pointers ins
 This code is just to illustrate autorelease, and obviously not meant to be scaled up.
 
 ----
-I agree: in most cases, autoreleasing objects is fine and is the best and more efficient way to go. You will not really slow down your app, unless you really have huge loops, at which point pure Cocoa will not be efficient, and you just go to C. Also, when speed is OK, but memory builds up fast, you can add more [[NSAutoreleasePools]] and still use autoreleased objects. I found this to be very useful when developing, when you keep adding/removing intermediate objects in your methods; if you alloc them all, you have to release them all, so every time you use another object, you should add a line at the end to release it; and vice-versa when removing an intermediate object. Look at [[RulesOfThumb]] for a discussion of the benefits that I see in using autorelease. [[CharlesParnot]]
+I agree: in most cases, autoreleasing objects is fine and is the best and more efficient way to go. You will not really slow down your app, unless you really have huge loops, at which point pure Cocoa will not be efficient, and you just go to C. Also, when speed is OK, but memory builds up fast, you can add more General/NSAutoreleasePools and still use autoreleased objects. I found this to be very useful when developing, when you keep adding/removing intermediate objects in your methods; if you alloc them all, you have to release them all, so every time you use another object, you should add a line at the end to release it; and vice-versa when removing an intermediate object. Look at General/RulesOfThumb for a discussion of the benefits that I see in using autorelease. General/CharlesParnot
 
-Only alloc/init and copy create a non-released object. (and variants like allocWithZone, mutableCopy, copyWithZone). Everything else returns an autoreleased object. And any method that returns an object and that you create should follow the same rules (as recommended by Apple). [[CharlesParnot]]
+Only alloc/init and copy create a non-released object. (and variants like allocWithZone, mutableCopy, copyWithZone). Everything else returns an autoreleased object. And any method that returns an object and that you create should follow the same rules (as recommended by Apple). General/CharlesParnot
 
 ----
 
@@ -48,41 +48,41 @@ Well, never mind.
 
 Let me cite my own example to see if I REALLY understand this now:
 
-I have a mutable instance variable, say an <code>[[NSMutableArray]]</code> that I allocate in the <code>init</code> method of <code>[[HorsesAssClass]]</code>
-(and of course <code>release</code> in my <code>dealloc</code> method)
+I have a mutable instance variable, say an     General/NSMutableArray that I allocate in the     init method of     General/HorsesAssClass
+(and of course     release in my     dealloc method)
 but I want to supply my class with a getter accessor method to return that array,
 then I need to do something like
 
-<code>return [ [ horsesAssArrayInstance copy ] autorelease ];</code>
+    return [ [ horsesAssArrayInstance copy ] autorelease ];
 
 because I specifically DON'T want the senders of the getter message to be able to modify my array once they get hold of it from the getter method
 -- which ability they would have (I believe) if I simply used:
 
-<code>return horsesAssArrayInstance;</code>
+    return horsesAssArrayInstance;
 
 ----
 
 Yes!
 
-Even better is probably to return an [[NSArray]], so it is clear that it is non-mutable and should not be:
+Even better is probably to return an General/NSArray, so it is clear that it is non-mutable and should not be:
 
-<code>return [[[NSArray]] arrayWithArray:horsesAssArrayInstance];</code>
+    return General/[NSArray arrayWithArray:horsesAssArrayInstance];
 
-'''Using -copy is plenty clear; the documentation explicitly states that -copy gives you a non-mutable instance if you're using a class that distinguishes between mutable and non-mutable.''' ''OK, oups... I did not realize this is why you have mutableCopy''
+**Using -copy is plenty clear; the documentation explicitly states that -copy gives you a non-mutable instance if you're using a class that distinguishes between mutable and non-mutable.** *OK, oups... I did not realize this is why you have mutableCopy*
 
-but of course, this does not illustrate very well <code>autorelease</code> as it is not explicitely using it!
+but of course, this does not illustrate very well     autorelease as it is not explicitely using it!
 
-So maybe one could use <code>autorelease</code> and also prevent modification of the members of the array (no recursivity, though):
+So maybe one could use     autorelease and also prevent modification of the members of the array (no recursivity, though):
 
-<code>return [[[[[NSArray]] alloc] initWithArray:horsesAssArrayInstance copyItems:YES] autorelease];</code>
+    return General/[[[NSArray alloc] initWithArray:horsesAssArrayInstance copyItems:YES] autorelease];
 
-I think <code>return [ [ horsesAssArrayInstance copy ] autorelease ];</code> is just fine in the vast majority of cases. If the members of the array are mutable, they should probably remain so in an accessor.
+I think     return [ [ horsesAssArrayInstance copy ] autorelease ]; is just fine in the vast majority of cases. If the members of the array are mutable, they should probably remain so in an accessor.
 
-''The Trend over the last 20 years or so has been to design computer 
+*The Trend over the last 20 years or so has been to design computer 
 languages that enforce a state of paranoia. You're expected to program 
 every module as if it were in a state of siege � In Perl culture, by 
 contrast, you're expected to stay out of someone's home because you 
-weren't invited in, not because there are bars on the windows.''
+weren't invited in, not because there are bars on the windows.*
 �� � � �from Programming Perl
 
 I completely agree with this, and I am sorry to have proposed such a useless example (though it could be used outside an accessor in some rare cases). I love Perl for what you say too, so...

@@ -2,7 +2,7 @@ Are there any good open source Cocoa programs being developed? Any under conside
 
 ----
 
-Go to http://sourceforge.net/ and search for "Cocoa". There is around 200 projects that make use of Cocoa. Some are just wrappers, but others are real Cocoa softwares. -- [[EricForget]]
+Go to http://sourceforge.net/ and search for "Cocoa". There is around 200 projects that make use of Cocoa. Some are just wrappers, but others are real Cocoa softwares. -- General/EricForget
 
 ----
 

@@ -2,18 +2,18 @@
 
 http://swannman.wordpress.com
 
-Software test engineer, Windows [[SharePoint]] Services, Microsoft.
+Software test engineer, Windows General/SharePoint Services, Microsoft.
 
 ----
 
 Author of:
 
- '' [[ScriptSaver]]
+ * General/ScriptSaver
 
- '' [[DoppleViewer]] widget
+ * General/DoppleViewer widget
 
- '' [[SeattleTraffic]] widget
+ * General/SeattleTraffic widget
 
 ----
 
-Welcome to [[CocoaDev]], Matthew. Hope you settle in here :) -- [[KritTer]]
+Welcome to General/CocoaDev, Matthew. Hope you settle in here :) -- General/KritTer

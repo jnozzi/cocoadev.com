@@ -1,10 +1,10 @@
-http://homepage.mac.com/mkino2/cocoaProg/[[AppKit]]/[[NSTableView]]/image/stripe.jpg
-An [[AppKit]] class used for managing [[NSArray]] data.
+http://homepage.mac.com/mkino2/cocoaProg/General/AppKit/General/NSTableView/image/stripe.jpg
+An General/AppKit class used for managing General/NSArray data.
 
-''Although it is most certainly almost always best to use [[NSArray]] to supply a [[NSTableView]] with data, there's nothing in the API that dictates this. Just wanted to make that clear.'' http://goo.gl/[[OeSCu]]
+*Although it is most certainly almost always best to use General/NSArray to supply a General/NSTableView with data, there's nothing in the API that dictates this. Just wanted to make that clear.* http://goo.gl/General/OeSCu
 
 ----
-http://developer.apple.com/documentation/Cocoa/Reference/[[ApplicationKit]]/Classes/NSTableView_Class/index.html#//apple_ref/doc/uid/TP40004125
+http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/Classes/NSTableView_Class/index.html#//apple_ref/doc/uid/TP40004125
 
 [Topic]
 
@@ -16,21 +16,21 @@ Note that -reloadData has an unexpected side-effect: it forces the current editi
 
 Just to save others the effort...
 
--- [[KritTer]]
+-- General/KritTer
 
 ----
 
-Also, if anyone is trying to get row rearranging by dragging to work, you could to worse than scour the source for [[FoundationCollectionsPalette]]; I have a working example (I hope!) -- [[KritTer]]
+Also, if anyone is trying to get row rearranging by dragging to work, you could to worse than scour the source for General/FoundationCollectionsPalette; I have a working example (I hope!) -- General/KritTer
 
-There's also Andrew Stone's excellent [[SDTableView]], at http://www.stone.com/dev/[[SDTableView]]/[[ReordingTableView]].html
+There's also Andrew Stone's excellent General/SDTableView, at http://www.stone.com/dev/General/SDTableView/General/ReordingTableView.html
 
---[[JackNutting]]
+--General/JackNutting
 
-Easy way out -- use a data source: http://homepage.mac.com/mmalc/[[CocoaExamples]]/Bookmarks.zip Use the [[DNDArrayController]] class for the content binding and the data source (and the delegate, if you want to...but I don't think this is required) -- [[JediKnil]]
+Easy way out -- use a data source: http://homepage.mac.com/mmalc/General/CocoaExamples/Bookmarks.zip Use the General/DNDArrayController class for the content binding and the data source (and the delegate, if you want to...but I don't think this is required) -- General/JediKnil
 
 ----
 
-More information that may prove useful: as someone on the [[CocoaDev]] mailing list has found, no matter how many times you click on the header of a table, it won't become [[FirstResponder]]. This may surprise you, but you can always add code to make it so.
+More information that may prove useful: as someone on the General/CocoaDev mailing list has found, no matter how many times you click on the header of a table, it won't become General/FirstResponder. This may surprise you, but you can always add code to make it so.
 
 -- Kritter
 
@@ -38,80 +38,80 @@ More information that may prove useful: as someone on the [[CocoaDev]] mailing l
 
 I was also surprised to learn that clicking & double-clicking a table column header sends the action & doubleAction respectively to the table's delegate.  So, in your action methods be sure to send clickedRow to your table, check if it's -1, and behave appropriately.
 
--- [[StevenFrank]]
+-- General/StevenFrank
 
 ----
 
-I've started [[NSTableViewTutorial]] to start a single article for collecting basic table view information, since this page seems to be a collection of random musings.
+I've started General/NSTableViewTutorial to start a single article for collecting basic table view information, since this page seems to be a collection of random musings.
 
--- [[MikeTrent]]
+-- General/MikeTrent
 
 ----
 
-I was experiencing problems with an [[NSTableView]] updating and turned to the web for answers. Others had found that -noteNumberOfRowsChanged did not cause the table to fully update and display new data. Suggested remedies to this included calling -reloadData, -display, -setNeedsDisplay:YES and -displayIfNeeded (to both the view and the window) or combinations of these. Some apparently had success with this. None of these worked for me. A previous project created under pre-Jaguar dev tools worked well. When recompiled under post-Jaguar tools it still worked. So, the only difference I could find was that in the old project I had created a simple [[NSObject]] derived class that handled the table. In my newer effort I was creating a multi-document application so the class handling the table was derived from [[NSDocument]]. Tonight I tested the theory that this was the crucial difference by creating a very simple project that displays a window with a single column table, an add button and a remove button. The column is intended to display a row number and the buttons add and remove rows from the table. Simple. It works perfectly for the [[NSObject]] derived class using only a call to -noteNumberOfRowsChanged. It doesn't work at all for the [[NSDocument]] derived class.
+I was experiencing problems with an General/NSTableView updating and turned to the web for answers. Others had found that -noteNumberOfRowsChanged did not cause the table to fully update and display new data. Suggested remedies to this included calling -reloadData, -display, -setNeedsDisplay:YES and -displayIfNeeded (to both the view and the window) or combinations of these. Some apparently had success with this. None of these worked for me. A previous project created under pre-Jaguar dev tools worked well. When recompiled under post-Jaguar tools it still worked. So, the only difference I could find was that in the old project I had created a simple General/NSObject derived class that handled the table. In my newer effort I was creating a multi-document application so the class handling the table was derived from General/NSDocument. Tonight I tested the theory that this was the crucial difference by creating a very simple project that displays a window with a single column table, an add button and a remove button. The column is intended to display a row number and the buttons add and remove rows from the table. Simple. It works perfectly for the General/NSObject derived class using only a call to -noteNumberOfRowsChanged. It doesn't work at all for the General/NSDocument derived class.
 
 Why?
 
 Clicking on a row that has not been redrawn and appears not to be there does force a UI update and reveals the row. Clicking on a removed row leaves the image of the row intact but nothing happens (since it isn't really there).
 
--- [[LeeCalloway]]
+-- General/LeeCalloway
 
 ----
 
-Several things I have noticed with [[NSTableView]]
+Several things I have noticed with General/NSTableView
 
-If you archive a [[NSTableView]] and copy it to the dragging clipboard and then read it off the clipboard, then when you scroll the clipView blurs up and becomes an illegible mess of a scribble. I was told by respectable sources this was an [[AppKit]] bug.
+If you archive a General/NSTableView and copy it to the dragging clipboard and then read it off the clipboard, then when you scroll the clipView blurs up and becomes an illegible mess of a scribble. I was told by respectable sources this was an General/AppKit bug.
 
 The other issue is if you update your project to Jaguar's project builder, you can no longer archive tableViews with a non-keyed archiver for some reason.
 
---[[GormanChristian]]
+--General/GormanChristian
 
 ----
 
-Apple has acknowledged a bug with [[NSTableView]] on [[MacOSX]] 10.2, as well as a temporary workaround. See http://developer.apple.com/qa/qa2001/qa1220.html
+Apple has acknowledged a bug with General/NSTableView on General/MacOSX 10.2, as well as a temporary workaround. See http://developer.apple.com/qa/qa2001/qa1220.html
 
 ----
 
-Problems with [[NSTableView]], and solutions:
+Problems with General/NSTableView, and solutions:
 
-*It does not show a focus rectangle when it has keyboard focus. If there are no rows in the table, there's no indication that it has focus. ''Solution:'' See [[FocusRingAroundTableView]]. ''Solution:'' Use Panther.
+*It does not show a focus rectangle when it has keyboard focus. If there are no rows in the table, there's no indication that it has focus. *Solution:* See General/FocusRingAroundTableView. *Solution:* Use Panther.
 
-*It does not implement full keyboard control (Home, Cmd-Up, Esc, Delete, etc.). ''Solution:'' Subclass [[NSTableView]], interpret key-down events as selectors, and override the corresponding methods to do what you want. See http://cocoa.mamasam.com/COCOADEV/2002/07/2/40890.php.
+*It does not implement full keyboard control (Home, Cmd-Up, Esc, Delete, etc.). *Solution:* Subclass General/NSTableView, interpret key-down events as selectors, and override the corresponding methods to do what you want. See http://cocoa.mamasam.com/COCOADEV/2002/07/2/40890.php.
 
-*Ending editing via Return does not leave the just-edited item selected, but changes the selection. ''Solution:'' Convert the return event into an illegal text motion event. See http://cocoa.mamasam.com/COCOADEV/2002/01/2/22208.php.
+*Ending editing via Return does not leave the just-edited item selected, but changes the selection. *Solution:* Convert the return event into an illegal text motion event. See http://cocoa.mamasam.com/COCOADEV/2002/01/2/22208.php.
 
-Another solution to the same problem is given here: [[OneTimeEditInTableView]].
+Another solution to the same problem is given here: General/OneTimeEditInTableView.
 
-*Can not contain [[NSProgressBar]] or [[NSColorWell]]. ''Solution:'' There is a framework called "[[TDBCTableCells]]" by Tenoch De La Cruz Baltazar. $15 http://www.xoono.net/bricks.html
+*Can not contain General/NSProgressBar or General/NSColorWell. *Solution:* There is a framework called "General/TDBCTableCells" by Tenoch De La Cruz Baltazar. $15 http://www.xoono.net/bricks.html
 
-*Can not vary cell-type on a row-by-row basis. Example, if a cell should be an image cell or text cell based on the record's data, this thing cannot be done. ''Solution:'' A custom cell type that will evaluate the data itself. ''Solution:'' Override the [[NSTableColumn]]'s dataCellForRow: method.
+*Can not vary cell-type on a row-by-row basis. Example, if a cell should be an image cell or text cell based on the record's data, this thing cannot be done. *Solution:* A custom cell type that will evaluate the data itself. *Solution:* Override the General/NSTableColumn's dataCellForRow: method.
 
 
--- [[DustinVoss]]
+-- General/DustinVoss
 
 ----
 
 http://flangy.com/dev/osx/tableviewdemo/
 
-Just some sample [[NSTableView]] code I whipped up, though there's probably better stuff out there. Sets custom cells and has an editable data source.
+Just some sample General/NSTableView code I whipped up, though there's probably better stuff out there. Sets custom cells and has an editable data source.
 
--- [[AdamVandenberg]]
-
-----
-
-Subviews in [[TableView]] Rows  [http://www.stepwise.com/Articles/Technical/2003-12-20.01.html]
-
-An article with code that illustrates some additional features of Table Views.  Describes how to place [[NSProgressIndicator]] and [[NSImageWell]] objects in a table.
+-- General/AdamVandenberg
 
 ----
 
-Copying from a [[TableView]] in Panther+:
+Subviews in General/TableView Rows  [http://www.stepwise.com/Articles/Technical/2003-12-20.01.html]
 
-<code>
+An article with code that illustrates some additional features of Table Views.  Describes how to place General/NSProgressIndicator and General/NSImageWell objects in a table.
+
+----
+
+Copying from a General/TableView in Panther+:
+
+    
 - (void)copy:(id)sender
 {
-    [[NSPasteboard]] ''pb = [[[NSPasteboard]] generalPasteboard];
-    [[NSString]] ''string = @"";
+    General/NSPasteboard *pb = General/[NSPasteboard generalPasteboard];
+    General/NSString *string = @"";
      
     switch ([self numberOfSelectedRows])
     {
@@ -127,31 +127,31 @@ Copying from a [[TableView]] in Panther+:
             do
             {
                 string = [string stringByAppendingFormat: @"%@\n", 
-                    [[self dataSource] 
+                    General/self dataSource] 
                         tableView: self
                         objectValueForTableColumn: 
                             [[self tableColumns] objectAtIndex: 1]
                             // 1 being the column of data I want to copy
-                        row: index]];
+                        row: index;
                         
             } while ((index = [selection indexGreaterThanIndex: index])
-                     != [[NSNotFound]]);
+                     != General/NSNotFound);
         }
     }
        
     [pb 
-        declareTypes: [[[NSArray]] arrayWithObject:[[NSStringPboardType]]] 
+        declareTypes: General/[NSArray arrayWithObject:General/NSStringPboardType] 
         owner:nil];
         
     [pb setString:string
-         forType: [[NSStringPboardType]]];
+         forType: General/NSStringPboardType];
 }
-</code>
+
 -- Jeffrey Drake (wackysteak at your local mac.com)
 
 ----
 
-How would one create iTunes-like behavior, where a fast double click opens, but a slow double-click begins edition? Would you have to override pretty much all [[NSTableView]]'s click/drag handling guts?
+How would one create iTunes-like behavior, where a fast double click opens, but a slow double-click begins edition? Would you have to override pretty much all General/NSTableView's click/drag handling guts?
 
 ----
 
@@ -169,28 +169,28 @@ I'm somewhat amused that in the screenshot above, the indices are not, uh, the i
 
 Basically I'm just musing on this because I think it's an interesting example of "user-friendly" varying with context.
 
--[[KenFerry]]
+-General/KenFerry
 
 ----
-Newbie [[NSTableView]] question:  I want to create a version of [[NSTableView]] whereby I can individually select cells - by this I mean not select whole rows, so that if my [[NSTableView]] consisted of 4 rows and 4 columns the user could select/highlight the center 4 of 16 cells (the intersection of the 2 middle columns and the 2 middle rows).  Is it possible to do this?  How would one go about getting this behavior?  The reason I want to do this is I want some spreadsheet like capability for my users, like being able to fill right.  But I don't want to go to a [[NSMatrix]] necessarily as I want all the other features of [[NSTableView]], like the scrolling, user drag-reorderable columns, etc.
+Newbie General/NSTableView question:  I want to create a version of General/NSTableView whereby I can individually select cells - by this I mean not select whole rows, so that if my General/NSTableView consisted of 4 rows and 4 columns the user could select/highlight the center 4 of 16 cells (the intersection of the 2 middle columns and the 2 middle rows).  Is it possible to do this?  How would one go about getting this behavior?  The reason I want to do this is I want some spreadsheet like capability for my users, like being able to fill right.  But I don't want to go to a General/NSMatrix necessarily as I want all the other features of General/NSTableView, like the scrolling, user drag-reorderable columns, etc.
 
-''Sounds like you might be better off putting an [[NSMatrix]] in an [[NSScrollView]] and adding the drag-reorderable columns yourself... that may well be less work.''
+*Sounds like you might be better off putting an General/NSMatrix in an General/NSScrollView and adding the drag-reorderable columns yourself... that may well be less work.*
 
 ----
 
-'''Question (Aug 5, 2005):''' I'm having a hell of a time with a table view that allows "Any" as a first-row selection or multiple selections of any other row. In other words, I have a table of "Categories" where the first row is "Any Category" (like iTunes' artist/album tables). I'm using the data source approach, versus bindings (to insert the "Any" row). I'm using [[NSTableView]]'s delegate method <code>-tableView:shouldSelectRow:</code>. Because I read somewhere that it's "better" to use index sets, below is the code I'm using:
+**Question (Aug 5, 2005):** I'm having a hell of a time with a table view that allows "Any" as a first-row selection or multiple selections of any other row. In other words, I have a table of "Categories" where the first row is "Any Category" (like iTunes' artist/album tables). I'm using the data source approach, versus bindings (to insert the "Any" row). I'm using General/NSTableView's delegate method     -tableView:shouldSelectRow:. Because I read somewhere that it's "better" to use index sets, below is the code I'm using:
 
-<code>
-- (BOOL)tableView:([[NSTableView]] '')aTableView shouldSelectRow:(int)rowIndex
+    
+- (BOOL)tableView:(General/NSTableView *)aTableView shouldSelectRow:(int)rowIndex
 {
 	if (rowIndex == 0) // Row 0 is the "Any" row
 	{
 		// Selecting 'any', so deselect the rest
-		[[NSIndexSet]] '' selSet = [[[NSIndexSet]] indexSetWithIndex:0];
+		General/NSIndexSet * selSet = General/[NSIndexSet indexSetWithIndex:0];
 		[aTableView selectRowIndexes:selSet byExtendingSelection:NO];
 	} else {
 		// Selecting specific item, so deselect 'any'
-		[[NSMutableIndexSet]] '' selSet = [[aTableView selectedRowIndexes] mutableCopy];
+		General/NSMutableIndexSet * selSet = General/aTableView selectedRowIndexes] mutableCopy];
 		[selSet removeIndex:0];
 		[aTableView selectRowIndexes:selSet byExtendingSelection:NO];
 		[selSet release];
@@ -198,42 +198,42 @@ Newbie [[NSTableView]] question:  I want to create a version of [[NSTableView]] 
 	
 	return YES;
 }
-</code>
 
-With this code, selecting the first row (even using Cmd to try to extend the selection to "any") always deselects the first row correctly. This is fine. The problem is when you have "Any" selected (as the only selected row) and you use Cmd to extend the selection to any other row. It ''should'' deselect the first row. Instead, it keeps the first row selected and extends the selection to the new row. BUT, extending the selection to a THIRD selected row does remove the first row. I'm puzzled by this. Truly. :-) I suspect that because the first non-0 row isn't selected yet, it's not tripping the correct code. But that's why I have it checking which rowIndex is being requested. If it's anything other than the first row, (whether that new row is selected yet or not) it should trigger row 0's removal. Shouldn't it??
+
+With this code, selecting the first row (even using Cmd to try to extend the selection to "any") always deselects the first row correctly. This is fine. The problem is when you have "Any" selected (as the only selected row) and you use Cmd to extend the selection to any other row. It *should* deselect the first row. Instead, it keeps the first row selected and extends the selection to the new row. BUT, extending the selection to a THIRD selected row does remove the first row. I'm puzzled by this. Truly. :-) I suspect that because the first non-0 row isn't selected yet, it's not tripping the correct code. But that's why I have it checking which rowIndex is being requested. If it's anything other than the first row, (whether that new row is selected yet or not) it should trigger row 0's removal. Shouldn't it??
 
 ----
 
 Hi,
 
-Drag-reordering of an [[NSTableView]] is giving me a major headache at the moment. The only code I've found that comes close to helping is the Bookmarks example (http://homepage.mac.com/mmalc/[[CocoaExamples]]/Bookmarks.zip), but when I implement the [[DNDArrayController]] subclass, although drag and drop works, the dropped record is immediately deleted. 
+Drag-reordering of an [[NSTableView is giving me a major headache at the moment. The only code I've found that comes close to helping is the Bookmarks example (http://homepage.mac.com/mmalc/General/CocoaExamples/Bookmarks.zip), but when I implement the General/DNDArrayController subclass, although drag and drop works, the dropped record is immediately deleted. 
 
 I'm trying to maintain a simple list of clients, with the user able to drag-reorder them. Not after copying or dragging from finder, or anything fancy like that; just reordering existing contents. Surely this shouldn't be so difficult....? Could anyone point me in the right direction?
 
 Thanks in advance,
 Chris
 
-''More info, please. You tell us basically nothing. What do you mean the 'record is deleted'? You mean the object is removed from the array controller? This seems ... odd. Also, how are you 'implementing' it? What have you changed from the example (it works as advertised for me).''
+*More info, please. You tell us basically nothing. What do you mean the 'record is deleted'? You mean the object is removed from the array controller? This seems ... odd. Also, how are you 'implementing' it? What have you changed from the example (it works as advertised for me).*
 
-Hi, I'm using an [[NSTableView]] with Bindings to an [[NSArrayController]] subclass. This subsclass is also the delegate/datasource of the [[NSTableView]]. I've used the code from the Bookmarks example (and tried several other code fragments) Bookmarks is the only one to come close to working. I've used the code from the [[DNDArrayController]] subclass as is, except for changing the type of stored data. The actual drag/drop works fine; if I remove the<code> [self removeObjectAtArrangedObjectIndex:removeIndex];</code> line from the <code>-(void) moveObjectsInArrangedObjectsFromIndexes:([[NSIndexSet]]'')indexSet toIndex:(unsigned int)insertIndex</code> method, the dragged item is copied and placed above the 'drop' row, but (correctly) the old (drag-row) is not deleted. If I leave the removeObject code in, both the drag-row and the drop-row are deleted. The Bookmarks example works fine for me, so I'm not sure why it doesn't work correctly in my app.
+Hi, I'm using an General/NSTableView with Bindings to an General/NSArrayController subclass. This subsclass is also the delegate/datasource of the General/NSTableView. I've used the code from the Bookmarks example (and tried several other code fragments) Bookmarks is the only one to come close to working. I've used the code from the General/DNDArrayController subclass as is, except for changing the type of stored data. The actual drag/drop works fine; if I remove the     [self removeObjectAtArrangedObjectIndex:removeIndex]; line from the     -(void) moveObjectsInArrangedObjectsFromIndexes:(General/NSIndexSet*)indexSet toIndex:(unsigned int)insertIndex method, the dragged item is copied and placed above the 'drop' row, but (correctly) the old (drag-row) is not deleted. If I leave the removeObject code in, both the drag-row and the drop-row are deleted. The Bookmarks example works fine for me, so I'm not sure why it doesn't work correctly in my app.
 
-As I'm writing this I'm beginning to wonder if it's because I'm using a binding, and whats actually being deleted is the reference to the record in the [[NSArrayController]]. That is, the tableview is showing two references to the same object, and the removeObject line deletes the referenced object, not the reference. Would (does!?) this make sense? If so, how would I go about preventing it? I can post all the code if it would make it easier.
+As I'm writing this I'm beginning to wonder if it's because I'm using a binding, and whats actually being deleted is the reference to the record in the General/NSArrayController. That is, the tableview is showing two references to the same object, and the removeObject line deletes the referenced object, not the reference. Would (does!?) this make sense? If so, how would I go about preventing it? I can post all the code if it would make it easier.
 
 Thanks,
 Chris
 ----
-I've been playing with that code a bit, and probably your item is getting released before you add it back in or something. Here's a version that seems to work better (for me). --[[JediKnil]]
-<code>
-- (void)moveObjectsInArrangedObjectsFromIndexes:([[NSIndexSet]] '')indexSet toIndex:(unsigned int)insertIndex
+I've been playing with that code a bit, and probably your item is getting released before you add it back in or something. Here's a version that seems to work better (for me). --General/JediKnil
+    
+- (void)moveObjectsInArrangedObjectsFromIndexes:(General/NSIndexSet *)indexSet toIndex:(unsigned int)insertIndex
 {
-    [[NSArray]]		''objects = [[self arrangedObjects] copy];
+    General/NSArray		*objects = General/self arrangedObjects] copy];
 	int			index = [indexSet lastIndex];
 	
     int			aboveInsertIndexCount = 0;
     id			object;
     int			removeIndex;
 	
-    while ([[NSNotFound]] != index)
+    while ([[NSNotFound != index)
 	{
 		if (index >= insertIndex) {
 			removeIndex = index + aboveInsertIndexCount;
@@ -254,31 +254,31 @@ I've been playing with that code a bit, and probably your item is getting releas
 	
 	[objects release];
 }
-</code>
 
 
-Thanks [[JediKnil]], unfortunately the problem still exists. It's virtually guaranteed to be something trivial I'm doing wrong, I've looked elsewhere through the code for instances where the record might be released, but can't see anything. All my code, by the way, is in a [[ClientsArrayController]].m subclass of [[NSArrayController]], which is set as the datasource and delegate of my [[NSTableView]].
 
-Followup: I've just written a test application from scratch that allows rearranging objects in an [[NSTableView]] fine. However, when I plug exactly the same code into my main app, the record still disappears after it has been dragged. The only difference between the two is that my main app uses [[CoreData]] whilst the test app just used Bindings and my own model class file. Would using [[CoreData]] be the problem? I'm guessing it's still somethiing to do with deleting the object itself, not the reference to it, in which case does anyone know how to copy an [[NSManagedObject]], reinsert it in the array controller so that i could then delete the old object?
+Thanks General/JediKnil, unfortunately the problem still exists. It's virtually guaranteed to be something trivial I'm doing wrong, I've looked elsewhere through the code for instances where the record might be released, but can't see anything. All my code, by the way, is in a General/ClientsArrayController.m subclass of General/NSArrayController, which is set as the datasource and delegate of my General/NSTableView.
+
+Followup: I've just written a test application from scratch that allows rearranging objects in an General/NSTableView fine. However, when I plug exactly the same code into my main app, the record still disappears after it has been dragged. The only difference between the two is that my main app uses General/CoreData whilst the test app just used Bindings and my own model class file. Would using General/CoreData be the problem? I'm guessing it's still somethiing to do with deleting the object itself, not the reference to it, in which case does anyone know how to copy an General/NSManagedObject, reinsert it in the array controller so that i could then delete the old object?
 
 ----
 
-If you are trying to reorder a Managed Object in the table, do something like this in your [[NSArrayController]] subclass:
+If you are trying to reorder a Managed Object in the table, do something like this in your General/NSArrayController subclass:
 
-<code>
+    
 
--(void) moveObjectsInArrangedObjectsFromIndexes:([[NSIndexSet]]'')indexSet
+-(void) moveObjectsInArrangedObjectsFromIndexes:(General/NSIndexSet*)indexSet
 										toIndex:(unsigned int)insertIndex
 {
 	
-    [[NSArray]]		''objects = [self arrangedObjects];
+    General/NSArray		*objects = [self arrangedObjects];
 	int			index = [indexSet lastIndex];
 	
     int			aboveInsertIndexCount = 0;
     id			object;
     int			removeIndex;
 	
-    while ([[NSNotFound]] != index)
+    while (General/NSNotFound != index)
 	{
 		if (index >= insertIndex) {
 			removeIndex = index + aboveInsertIndexCount;
@@ -289,7 +289,7 @@ If you are trying to reorder a Managed Object in the table, do something like th
 			removeIndex = index;
 			insertIndex -= 1;
 		}
-		object = [[objects objectAtIndex:removeIndex] retain];
+		object = General/objects objectAtIndex:removeIndex] retain];
 		[self removeObjectAtArrangedObjectIndex:removeIndex];
 		
 		[[self managedObjectContext] processPendingChanges];
@@ -300,7 +300,7 @@ If you are trying to reorder a Managed Object in the table, do something like th
     }
 }
 
-</code>
+
 
 Note the "processPendingChanges" line.  That's likely what's messin' ya up.  Core Data delays all actions until the next event loop for speed.  If you depend on the "answer" then you need to force the change. --codepoet
 
@@ -308,61 +308,61 @@ Thanks codepoet! That's got it working - always the smallest of changes causing 
 
 ----
 
-Although it's for an outline view & tree controller, you might look at my sample code for [[DragAndDropOutlineEdit]] which shows dragging managed objects along with their relationships. See http://homepage.mac.com/matthol2/cocoa/page2/page2.html for the project files; the same site has a short blog entry on this subject. Generally I also have to delete/insert -- the trick is to package up on the clipboard MO [[URIs]] so that drops within the same view/context can take care of the deletion/insertion and reset the relationships (e.g., parent to child). And when the relationship is recursive there's a bit more work. -- Matt
+Although it's for an outline view & tree controller, you might look at my sample code for [[DragAndDropOutlineEdit which shows dragging managed objects along with their relationships. See http://homepage.mac.com/matthol2/cocoa/page2/page2.html for the project files; the same site has a short blog entry on this subject. Generally I also have to delete/insert -- the trick is to package up on the clipboard MO General/URIs so that drops within the same view/context can take care of the deletion/insertion and reset the relationships (e.g., parent to child). And when the relationship is recursive there's a bit more work. -- Matt
 
 ----
 
 Does anyone know how to make it so that a mouse down on a table header does not deselect the selection, i'm trying to implement different orderings and this is totally messing it up. 
 
 ----
-Maybe your delegate could implement <code>tableView:shouldSelectTableColumn:</code>, grab the selectedRow (or indexes), figure out what's really selected (since itmay get re-ordered) and reset the selection in <code>tableView:didClickTableColumn:</code> and/or <code>tableView:didDragTableColumn:</code>...or something of that nature?
+Maybe your delegate could implement     tableView:shouldSelectTableColumn:, grab the selectedRow (or indexes), figure out what's really selected (since itmay get re-ordered) and reset the selection in     tableView:didClickTableColumn: and/or     tableView:didDragTableColumn:...or something of that nature?
 
 ----
 
-I'm trying to use [[NSCell]]-setAttributedString: in -tableView:willDisplayCell:forTableColumn:row: and it's not working.  What is the proper way to set a [[NSTableView]] sell to an [[NSAttributedString]] in this method?  I'd rather not return the string in -tableView:objectValueForTableColumn:row: because I'm using the actual object value for something else, I'd just like to have it drawn as an attributed string.
+I'm trying to use General/NSCell-setAttributedString: in -tableView:willDisplayCell:forTableColumn:row: and it's not working.  What is the proper way to set a General/NSTableView sell to an General/NSAttributedString in this method?  I'd rather not return the string in -tableView:objectValueForTableColumn:row: because I'm using the actual object value for something else, I'd just like to have it drawn as an attributed string.
 
 ----
-Nevermind, I have it fixed.  I guess I was getting it confused because the [[NSOutlineView]] data source works a little differently.
+Nevermind, I have it fixed.  I guess I was getting it confused because the General/NSOutlineView data source works a little differently.
 
 ----
 When using a gradient background for the selected row, you want your text to become white and have a bit of shadow (like mail.app). This little snippet shows how.
 
-<code>
-- (void)tableView:([[NSTableView]] '')tableView willDisplayCell:(id)cell forTableColumn:([[NSTableColumn]] '')tableColumn row:(int)row
+    
+- (void)tableView:(General/NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(General/NSTableColumn *)tableColumn row:(int)row
 {
-	[[NSColor]] ''fontColor;
-	[[NSColor]] ''shadowColor;
-	if ([[tableView selectedRowIndexes] containsIndex:row] && ([tableView editedRow] != row))
+	General/NSColor *fontColor;
+	General/NSColor *shadowColor;
+	if (General/tableView selectedRowIndexes] containsIndex:row] && ([tableView editedRow] != row))
 	{
 		
-		fontColor = [[[NSColor]] whiteColor];
-		shadowColor = [[[NSColor]] colorWithDeviceRed:(127.0/255.0) green:(140.0/255.0) blue:(160.0/255.0) alpha:1.0];
+		fontColor = [[[NSColor whiteColor];
+		shadowColor = General/[NSColor colorWithDeviceRed:(127.0/255.0) green:(140.0/255.0) blue:(160.0/255.0) alpha:1.0];
 	}
 	else
 	{
-		fontColor = [[[NSColor]] blackColor];
+		fontColor = General/[NSColor blackColor];
 		shadowColor = nil;
 	}
 	[cell setTextColor:fontColor];
-	[[NSShadow]] ''shadow = [[[[NSShadow]] alloc] init];
-	[[NSSize]] shadowOffset = { width: 1.0, height: -1.5};
+	General/NSShadow *shadow = General/[[NSShadow alloc] init];
+	General/NSSize shadowOffset = { width: 1.0, height: -1.5};
 	[shadow setShadowOffset:shadowOffset];
 	[shadow setShadowColor:shadowColor];
 	[shadow set];	
 }
-</code>
+
 
 ----
-Is there any way to set things up so that double-clicking on a cell sends the message to a different object (i.e. not the cell)?  I thought setting the [[NSTableView]]<nowiki/>'s delegate would make the message be sent to the delegate, but that seems not to have worked.
+Is there any way to set things up so that double-clicking on a cell sends the message to a different object (i.e. not the cell)?  I thought setting the General/NSTableView<nowiki/>'s delegate would make the message be sent to the delegate, but that seems not to have worked.
 
-''Set the target and doubleAction.''
-
-----
-I want to have an image in a column of each row of a table. I have looked around on [[NSImageCell]] and read something about subclassing [[NSCell]] to draw the image, but I just want an image in it's own column. I want a different image for each row. Any idea on how I might go about this?
--[[ACoolie]].
+*Set the target and doubleAction.*
 
 ----
-In IB drag an [[NSImageCell]] from the Data palette (its the one that has a picture of a mountain on it), onto the row(s) of your table view. Then in your delegate method: - (id)tableView:([[NSTableView]] '')aTableView objectValueForTableColumn:([[NSTableColumn]] '')aTableColumn row:(int)rowIndex, return the proper image for the column.
+I want to have an image in a column of each row of a table. I have looked around on General/NSImageCell and read something about subclassing General/NSCell to draw the image, but I just want an image in it's own column. I want a different image for each row. Any idea on how I might go about this?
+-General/ACoolie.
+
+----
+In IB drag an General/NSImageCell from the Data palette (its the one that has a picture of a mountain on it), onto the row(s) of your table view. Then in your delegate method: - (id)tableView:(General/NSTableView *)aTableView objectValueForTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex, return the proper image for the column.
 
 -- Jacob
 
@@ -371,20 +371,20 @@ Is there a way to place several side-by-side buttons in a single cell? The close
 
 ----
 
-[[NSSegmentedCell]] is the way to do this. However, the rating widget in iTunes is implemented by [[NSLevelIndicatorCell]].
+General/NSSegmentedCell is the way to do this. However, the rating widget in iTunes is implemented by General/NSLevelIndicatorCell.
 
 ----
-I'm building a simple [[CoreData]] non-document application.  So far everything is working perfectly. I have a [[NSTableView]] bound to a [[NSArrayController]], and as I add new rows, everything is displayed correctly. Also, I have an add button that is bound/link to the [[NSArrayController]]'s add target.  The only thing I can't figure out is when the add button is hit, a new row is inserted into the [[NSTableView]], and the new row is selected.  However, I would like to start editing the first column in the new row.  I thought I could use the delegate method tableViewSelectionDidChange: to see when a new row is added to the [[NSTableView]].  Well that doesn't get fired if there are already rows in the [[NSTableView]].  However, if the tableview is empty, the tableViewSelectionDidChange: fires.  So my question is how can I set the new row into editing mode.  I'm sure I missing a delegate method that notifies of newly inserted rows into a [[NSTableView]], but I can't find it.  Suggestions?  John
-
-----
-
-OK, after more hair pulling with the [[CoreData]] and [[NSTableView]], I finally figured something out.  First, in a [[CoreData]] app that uses a [[NSArrayController]], the <code>tableViewSelectionDidChange</code> notification will not fire on inserting a new row if there is a selected row.  Why I don't know.  Doing the same thing with only a [[NSArrayController]] and [[NSTableView]] (without the [[CoreData]] stuff), the notification fires on insert.
-
-What I finally did is register an Observer to the [[NSArrayController]]'s selection property. So now I get a notification everytime the selection changes in the [[NSArrayController]]. When I insert a new row, I get notified.  Then I check the row to see if a property of the [[CoreData]] entity object is null.  If it is, then I set the tableView to <code>editColumn:row:withEvent:select:</code> to edit the first column. John
+I'm building a simple General/CoreData non-document application.  So far everything is working perfectly. I have a General/NSTableView bound to a General/NSArrayController, and as I add new rows, everything is displayed correctly. Also, I have an add button that is bound/link to the General/NSArrayController's add target.  The only thing I can't figure out is when the add button is hit, a new row is inserted into the General/NSTableView, and the new row is selected.  However, I would like to start editing the first column in the new row.  I thought I could use the delegate method tableViewSelectionDidChange: to see when a new row is added to the General/NSTableView.  Well that doesn't get fired if there are already rows in the General/NSTableView.  However, if the tableview is empty, the tableViewSelectionDidChange: fires.  So my question is how can I set the new row into editing mode.  I'm sure I missing a delegate method that notifies of newly inserted rows into a General/NSTableView, but I can't find it.  Suggestions?  John
 
 ----
 
-Is it possible to prevent [[NSTableView]] from autoselecting newly added rows?
+OK, after more hair pulling with the General/CoreData and General/NSTableView, I finally figured something out.  First, in a General/CoreData app that uses a General/NSArrayController, the     tableViewSelectionDidChange notification will not fire on inserting a new row if there is a selected row.  Why I don't know.  Doing the same thing with only a General/NSArrayController and General/NSTableView (without the General/CoreData stuff), the notification fires on insert.
+
+What I finally did is register an Observer to the General/NSArrayController's selection property. So now I get a notification everytime the selection changes in the General/NSArrayController. When I insert a new row, I get notified.  Then I check the row to see if a property of the General/CoreData entity object is null.  If it is, then I set the tableView to     editColumn:row:withEvent:select: to edit the first column. John
+
+----
+
+Is it possible to prevent General/NSTableView from autoselecting newly added rows?
 
 ----
 To the two previous questions, it is probably better practice to just roll your own add: method to handle your desired behaviour rather than register for notifications. This way you know that your code is only being called when you are adding objects.
@@ -408,35 +408,35 @@ Alec
 
 ----
 Alec, try something like this:
-<code>
-- ([[IBAction]]) add: (id)sender
-{
-    /'' whatever else you need to do ''/
     
-    [myTable selectRowIndexes: [[[NSIndexSet]] indexSetWithIndex: [tableContents count] - 1]
+- (General/IBAction) add: (id)sender
+{
+    /* whatever else you need to do */
+    
+    [myTable selectRowIndexes: General/[NSIndexSet indexSetWithIndex: [tableContents count] - 1]
                byExtendingSelection: NO];
     [myTable editColumn: 0 
                                 row: [tableContents count]-1 
                        withEvent: Nil 
                              select: YES]; // of course you can change which column you start with
 }
-</code>
+
 
 Update:
 
 Actually, I had the same question as Alec, which is what led me to this page. What I wrote above is what I did for a single ("older-style") controller which handles all the different tables, but working with bindings and having Array Controllers for each table, this is what I have now come up with:
 
-(I'm working with [[PyObjC]], so I translated this; forgive me if my Obj-C syntax is a bit off)
+(I'm working with General/PyObjC, so I translated this; forgive me if my Obj-C syntax is a bit off)
 
-<code>
+    
 
-// Make your own subclass of [[NSArrayController]] with the
+// Make your own subclass of General/NSArrayController with the
 // following overridden methods.
 
 - (void)awakeFromNib
 {
     // register this instance to get notifications from itself
-    [[[[NSNotificationCenter]] defaultCenter] addObserver: self 
+    General/[[NSNotificationCenter defaultCenter] addObserver: self 
                                              selector: @selector(objectAdded:) 
                                                  name: @"Object Added" 
                                                object: self]
@@ -445,17 +445,17 @@ Actually, I had the same question as Alec, which is what led me to this page. Wh
 - (void)add: (id)sender
 {
     [super add: sender]
-    [[NSNotification]] '' note = [[[NSNotification]] 
+    General/NSNotification * note = General/[NSNotification 
                                 notificationWithName: @"Object Added" 
                                               object: self]
     // The add method doesn't really take effect until this run loop ends,
-    // (see [[NSArrayController]] docs) so the notification needs 
-    // to wait to post. Thus, enqueue with [[NSPostWhenIdle]]
-    [[[[NSNotificationQueue]] defaultQueue] enqueueNotification: note
-                                               postingStyle: [[NSPostWhenIdle]]]
+    // (see General/NSArrayController docs) so the notification needs 
+    // to wait to post. Thus, enqueue with General/NSPostWhenIdle
+    General/[[NSNotificationQueue defaultQueue] enqueueNotification: note
+                                               postingStyle: General/NSPostWhenIdle]
 }
 
-- (void)objectAdded: ([[NSNotification]] '')note
+- (void)objectAdded: (General/NSNotification *)note
 {
 	// when the notification finally arrives, tell the table to edit
 	[[self contentTable] editColumn:0 
@@ -463,6 +463,6 @@ Actually, I had the same question as Alec, which is what led me to this page. Wh
                               withEvent:nil 
                                  select:YES]
 }
-</code>
+
 
 That seems to work. Hopefully it's helpful, but I'd love to know if I'm doing something stupid or unnecessary.

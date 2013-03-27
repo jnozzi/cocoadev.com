@@ -2,11 +2,11 @@ hi, fellow cocoa programmers.
 
 I'm currently working on an application that deals with very large files (meaning a gigabyte and above). Now, it very often throws me this:
 
-<code>
+    
 vm_allocate(size=1468612608) failed (error code=3)
 error: can't allocate region
 set a breakpoint in szone_error to debug
-</code>
+
 
 Now I guess the only way to avoid this is reading in the file piece by piece. But that's the question. How can I achieve this?
 
@@ -17,7 +17,7 @@ Build a 64-bit application and the vm_allocate issue will go away.  Memory mappi
 ----
 It's the best approach unless you want to, say, support hardware older than a year or so. Which most of us probably want to do.
 
-With Cocoa, you can read a file in pieces by using [[NSFileHandle]]. For non-Cocoa solutions, you can use C stdio or POSIX.
+With Cocoa, you can read a file in pieces by using General/NSFileHandle. For non-Cocoa solutions, you can use C stdio or POSIX.
 
 And just for the record, copy on write and demand paging are unrelated concepts, and unless you actually write to the data that you've read, copy on write never comes into play here.
 
@@ -36,45 +36,45 @@ As far as "the optimal way", I must violently disagree. It depends entirely on c
 
 ----
 
-Actually, that is NOT what copy on write is.  [[CoW]] is when you get a read-only copy of a page which is read/write in the shadow page table so, when you fault on write access, the VM sub-system clones the page and maps the new copy for your process with read/write.  This is used by fork, for example, so you get a copy of the address space without actually copying anything.  If you had a copy on write file mapping, it specifically wouldn't be written back to the file since your write would actually go into the new copy which was not mapped back to the device.  This kind of thing is sometimes use for mmap /dev/zero in case you want to allocate a huge chunk of zeroed memory and have it lazily faulted.
+Actually, that is NOT what copy on write is.  General/CoW is when you get a read-only copy of a page which is read/write in the shadow page table so, when you fault on write access, the VM sub-system clones the page and maps the new copy for your process with read/write.  This is used by fork, for example, so you get a copy of the address space without actually copying anything.  If you had a copy on write file mapping, it specifically wouldn't be written back to the file since your write would actually go into the new copy which was not mapped back to the device.  This kind of thing is sometimes use for mmap /dev/zero in case you want to allocate a huge chunk of zeroed memory and have it lazily faulted.
 
-That said (let me try to get back on topic since this page has nothing to do with [[CoW]]), a page fault is generally very cheap so mmap is generally the best way to do file I/O (in fact, some operating systems - AIX I seem to recall - implement all file I/O as memory mapped files since it is easy to do and then the VM sub-system will optimize the memory utilization properly for all types of memory.  The problem with mmap for files like this is that you require a contiguous chunk of vmem which isn't always available.  In the case of 32-bit processes, this will generally become a problem between 1.5 and 3 [[GiB]] (depending on which OS - and less if you have already loaded lots of libraries or done other kinds of allocations).
+That said (let me try to get back on topic since this page has nothing to do with General/CoW), a page fault is generally very cheap so mmap is generally the best way to do file I/O (in fact, some operating systems - AIX I seem to recall - implement all file I/O as memory mapped files since it is easy to do and then the VM sub-system will optimize the memory utilization properly for all types of memory.  The problem with mmap for files like this is that you require a contiguous chunk of vmem which isn't always available.  In the case of 32-bit processes, this will generally become a problem between 1.5 and 3 General/GiB (depending on which OS - and less if you have already loaded lots of libraries or done other kinds of allocations).
 
 ----
 So how would I go about this in a while-loop? The scenario is this:
 I want to read in a large file piece by piece, and with each piece, i want to update the md5 process 
-(MD5_Update(&context,(unsigned char '')[myData bytes],[myData length]))
+(MD5_Update(&context,(unsigned char *)[myData bytes],[myData length]))
 So here's what I came up with:
-<code>
-[[NSData]] ''myData = nil;
-[[NSFileHandle]] ''myHandle = [[[NSFileHandle]] fileHandleForReadingAtPath:@"path/to/very/large/file.dmg"];
+    
+General/NSData *myData = nil;
+General/NSFileHandle *myHandle = General/[NSFileHandle fileHandleForReadingAtPath:@"path/to/very/large/file.dmg"];
 while (myData = [myHandle readDataOfLength:50000])
 {
-	MD5_Update(&context,(unsigned char '')[myData bytes],[myData length]);
+	MD5_Update(&context,(unsigned char *)[myData bytes],[myData length]);
 	[myHandle seekToFileOffset:[myHandle offsetInFile] + 50000];
 }
-</code>
+
 Is this the right way to do it? It still takes a lot of RAM, which indicates that it's not the right way ;)
 Thanks for the help!!!
 
 ----
-No, you're right, but the [[NSData]] objects you're creating never get released until your loop is done.  You wind up reading the whole file into disparate chunks of RAM anyway.  Consider flushing the autorelease pool every iteration through the loop.
+No, you're right, but the General/NSData objects you're creating never get released until your loop is done.  You wind up reading the whole file into disparate chunks of RAM anyway.  Consider flushing the autorelease pool every iteration through the loop.
 
 ----
 To illustrate:
 
-<code>
-[[NSAutoreleasePool]] ''pool = [[[[NSAutoreleasePool]] alloc] init];
-[[NSData]] ''myData = nil;
-[[NSFileHandle]] ''myHandle = [[[NSFileHandle]] fileHandleForReadingAtPath:@"path/to/very/large/file.dmg"];
+    
+General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+General/NSData *myData = nil;
+General/NSFileHandle *myHandle = General/[NSFileHandle fileHandleForReadingAtPath:@"path/to/very/large/file.dmg"];
 while (myData = [myHandle readDataOfLength:50000])
 {
-	MD5_Update(&context,(unsigned char '')[myData bytes],[myData length]);
+	MD5_Update(&context,(unsigned char *)[myData bytes],[myData length]);
 	[pool release];
-	pool = [[[[NSAutoreleasePool]] alloc] init];
+	pool = General/[[NSAutoreleasePool alloc] init];
 }
 [pool release];
-</code>
+
 
 Note that the seek is unnecessary as each read automatically positions the file handle at the end of the read, in position for the next one.
 
@@ -105,8 +105,8 @@ Remember that you're also going to be dealing with the disk's internal buffer, t
 ----
 So I played around a little bit. The best performance for md5 is when loading 1 MB at a time. So here's the final code how to read in a file piece by piece and use it with the MD5_Update method.
 
-<code>
-[[NSFileHandle]] ''myHandle = [[[NSFileHandle]] fileHandleForReadingAtPath:@"/path/to/some/extraordinarilyhuge/file"];
+    
+General/NSFileHandle *myHandle = General/[NSFileHandle fileHandleForReadingAtPath:@"/path/to/some/extraordinarilyhuge/file"];
 unsigned long long endOfFile = [myHandle seekToEndOfFile];
 [myHandle seekToFileOffset:0];
 MD5_CTX context;
@@ -122,72 +122,72 @@ if (overfl > 0.0)
 }
 for (i=0;i<count + 1;i++)
 {
-	[[NSAutoreleasePool]] ''pl = [[[NSAutoreleasePool]] new];
-	[[NSData]] ''myData = [[[[NSData]] alloc] initWithData:[myHandle readDataOfLength:1048576]];
-	MD5_Update(&context,(unsigned char '')[myData bytes],[myData length]);
+	General/NSAutoreleasePool *pl = General/[NSAutoreleasePool new];
+	General/NSData *myData = General/[[NSData alloc] initWithData:[myHandle readDataOfLength:1048576]];
+	MD5_Update(&context,(unsigned char *)[myData bytes],[myData length]);
 	[myData release];
 	[pl release];
 }
 MD5_Final(digest,&context);
-[[NSData]] ''md5Data = [[[[NSData]] alloc] initWithBytes:digest length:sizeof(digest)];
-[[NSMutableString]] ''aString = [[[[NSMutableString]] alloc] initWithCapacity:32];
+General/NSData *md5Data = General/[[NSData alloc] initWithBytes:digest length:sizeof(digest)];
+General/NSMutableString *aString = General/[[NSMutableString alloc] initWithCapacity:32];
 unsigned int a,cnt = [md5Data length];
-unsigned char ''bytes = (unsigned char '')[md5Data bytes];
+unsigned char *bytes = (unsigned char *)[md5Data bytes];
 for (a=0;a<cnt;a++)
 {
 	[aString appendFormat:@"%02x",bytes[a]];
 }
 [md5Data release];
-[[NSLog]](aString);
+General/NSLog(aString);
 [aString release];
-</code>
+
 It works very well and is faster than the terminal's md5 command. That's what I found, at least. Thanks for everybody who contributed to this solution. A 7 GB file took 3:13 with this code. The Terminal's md5 command calculated for 3:50.
 Take care,
 
---[[MatthiasGansrigler]]
+--General/MatthiasGansrigler
 ----
-Youre being wasteful here.  You're seeking to the end of the file only to seek all the way back to the beginning.  While I'm sure there are low-level optimizations involved that make this trivial, it's still a bad idea.  The worst thing that could happen is that the filesystem might need to visit every sector the file occupies to determine its length!  Why bother calculating the length of the file so early if you know that the <code>[[NSData]]</code> object returned from <code>-[[[NSFileHandle]] readDataOfLength:]</code> is only going to be actual data from the file, regardless of whether or not <code>current file pointer + max length > size of file</code>?  Bonus is you can forget about your whole messy division thing.
+Youre being wasteful here.  You're seeking to the end of the file only to seek all the way back to the beginning.  While I'm sure there are low-level optimizations involved that make this trivial, it's still a bad idea.  The worst thing that could happen is that the filesystem might need to visit every sector the file occupies to determine its length!  Why bother calculating the length of the file so early if you know that the     General/NSData object returned from     -General/[NSFileHandle readDataOfLength:] is only going to be actual data from the file, regardless of whether or not     current file pointer + max length > size of file?  Bonus is you can forget about your whole messy division thing.
 
 Secondly, you seem to have missed the mark with the autorelease pool.  You're almost there, but not quite.
 
-<code>
+    
 for (i=0;i<count + 1;i++)
 {
-	[[NSAutoreleasePool]] ''pl = [[[NSAutoreleasePool]] new];
+	General/NSAutoreleasePool *pl = General/[NSAutoreleasePool new];
 
 	// Why do this?  It makes no sense.  All you're doing here is copying an autoreleased object over to a manually-retained object.
 	// This means you still have to worry about the autorelease pool (or else the autoreleased objects will accumulate just like before)
-	// but you ''also'' have to manually release your myData object!  Needless.
+	// but you *also* have to manually release your myData object!  Needless.
 	//
-	// [[NSData]] ''myData = [[[[NSData]] alloc] initWithData:[myHandle readDataOfLength:1048576]];
+	// General/NSData *myData = General/[[NSData alloc] initWithData:[myHandle readDataOfLength:1048576]];
 	//
 	// Do this instead.
-	[[NSData]] ''myData = [myHandle readDataOfLength:1048576];
+	General/NSData *myData = [myHandle readDataOfLength:1048576];
 
-	MD5_Update(&context,(unsigned char '')[myData bytes],[myData length]);
+	MD5_Update(&context,(unsigned char *)[myData bytes],[myData length]);
 
 	// Not necessary anymore.
 	// [myData release];
 
 	[pl release];
 }
-</code>
+
 ----
 Well, ok, I get the autoreleasepool thing. But what about the for-loop? I need to know the length of the file to determine how often I have to "go through" the file to get all the data piece by piece? What would you suggest?
 
 ----
 
-Read the documentation for <code>-[[[NSFileHandle]] readDataOfLength:]</code>.  It returns an empty [[NSData]] object on end-of-file.  You can replace the entire division, counter, for-loop type construct with this:
+Read the documentation for     -General/[NSFileHandle readDataOfLength:].  It returns an empty General/NSData object on end-of-file.  You can replace the entire division, counter, for-loop type construct with this:
 
-<code>
-[[NSAutoReleasePool]] ''arp = [[[[NSAutoReleasePool]] alloc] init];
-[[NSData]] ''chunk = [myFileHandle readDataOfLength:DATA_READ_SIZE]; // Please, NEVER hardcode constants like this!
+    
+General/NSAutoReleasePool *arp = General/[[NSAutoReleasePool alloc] init];
+General/NSData *chunk = [myFileHandle readDataOfLength:DATA_READ_SIZE]; // Please, NEVER hardcode constants like this!
 while([chunk length] > 0)
 {
     // Do MD5 stuff here...
 
     [arp release];
-    arp = [[[[NSAutoReleasePool]] alloc] init];
+    arp = General/[[NSAutoReleasePool alloc] init];
     chunk = [myFileHandle readDataOfLength:DATA_READ_SIZE];
 }
 [arp release];
@@ -195,6 +195,6 @@ while([chunk length] > 0)
 // Just to make things perfectly clear...
 arp = nil;
 chunk = nil;  // This has been autoreleased by releasing the autorelease pool.
-</code>
+
 
 If you've ever taken a computer science class, or worked with any modern programming environment, you should already know that by definition any for loop can be converted into a while loop, and vice versa.  This is easily proven by induction.

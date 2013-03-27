@@ -1,26 +1,26 @@
-An action method can be declared either by using the Interface Builder (see [[HowToCreateAnActionMethod]]), or by using Project Builder.
+An action method can be declared either by using the Interface Builder (see General/HowToCreateAnActionMethod), or by using Project Builder.
 
 To declare an action method using Project Builder, go to the header file (.h) for the class in question.  Place the action method declaration between the close bracket (}) and the @end line.
 
-<code>
+    
 #import <Cocoa/Cocoa.h>
 
-@interface [[MyClass]] : [[MyClassSuperclass]]
+@interface General/MyClass : General/MyClassSuperclass
 {
 
     put variables here;
     
 }
 
-'''- ([[IBAction]]) myActionMethod:(id)sender;'''
+**- (General/IBAction) myActionMethod:(id)sender;**
 
 @end
 
-</code>
 
-Go back to [[HowToProgramInOSX]]
+
+Go back to General/HowToProgramInOSX
 
 ----
-'''Edit 24 November 2003''' changed method declaration from %%BEGINCODESTYLE%%-(void)myActionMethod;%%ENDCODESTYLE%% to %%BEGINCODESTYLE%%-([[IBAction]]) myActionMethod:(id)sender;%%ENDCODESTYLE%%
+**Edit 24 November 2003** changed method declaration from <code>-(void)myActionMethod;</code> to <code>-(General/IBAction) myActionMethod:(id)sender;</code>
 
-[[IBAction]] is #define'd as void (and [[IBOutlet]] is #define'd as nothing) in [[AppKit]]/[[NSNibDeclarations]].h but IB will look for [[IBAction]] (or a (id)sender parameter) in header files dragged into it and add actions for those methods.
+General/IBAction is #define'd as void (and General/IBOutlet is #define'd as nothing) in General/AppKit/General/NSNibDeclarations.h but IB will look for General/IBAction (or a (id)sender parameter) in header files dragged into it and add actions for those methods.

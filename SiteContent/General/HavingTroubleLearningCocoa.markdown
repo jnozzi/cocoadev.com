@@ -1,10 +1,10 @@
-''Editor's Note:'' The prior content of this page has been refactored and added as discussion to the [[GoodBeginnerTutorial]] page
+*Editor's Note:* The prior content of this page has been refactored and added as discussion to the General/GoodBeginnerTutorial page
 
 ----
 
 I've been working through Kochan's Objective-C book which is only concerned with console applications (at least at the point I'm at in it, which is not very far).  I've also got a 1st edition (! wish I had waited a month) of Hillegass's Cocoa book, and I'm wondering something that may be very simple, or may not be:
 
-How does one import a class into [[InterfaceBuilder]] and/or how does one most easily get a new interface widget to talk to an old console class?
+How does one import a class into General/InterfaceBuilder and/or how does one most easily get a new interface widget to talk to an old console class?
 
 I'm getting a bit ahead of myself here, but I've programmed before in C (also console) and now that I've figured out just enough GUI goo to make a button (generated in IB) interact with an action (method for class created and instantiated in IB) I want to expand on that.  Unfortunately, with what I know in the GUI goo, I am unable to talk to any old text console classes.  I suspect that it will require somehow piping the values of the class variables and method returns out an outlet, and typing the method execution to "actions"... but...
 
@@ -16,16 +16,16 @@ chrism at lumin us
 
 Add the ivars for your UI elements in your class' header file like
 
-<code>
-[[IBOutlet]] [[NSButton]] ''myButton
-</code>
- and add the actions like <code>-([[IBAction]])myAction:(id)sender</code>
+    
+General/IBOutlet General/NSButton *myButton
+
+ and add the actions like     -(General/IBAction)myAction:(id)sender
 
 Then just drag the header file onto IB's main window. 
 
-The [[IBOutlet]] and [[IBAction]] let IB know what things in the file are meant for it.
+The General/IBOutlet and General/IBAction let IB know what things in the file are meant for it.
 
-In the action method, you would typically grab the values for your other UI elements, and pass those on to another method. The <code>sender</code> parameter to the action will be a pointer to the button (or whatever) which called the method.
+In the action method, you would typically grab the values for your other UI elements, and pass those on to another method. The     sender parameter to the action will be a pointer to the button (or whatever) which called the method.
 
 ----
 
@@ -33,23 +33,23 @@ I have all three sections (interface, implementation, main) in just one file in 
 
 ----
 
-''Actually it's the :(id)sender that tells IB that the action could be used in IB, thus I usually use - (void)foo:(id)sender instead as it is less to type, not to mention [[IBAction]] is #defined as void.''
+*Actually it's the :(id)sender that tells IB that the action could be used in IB, thus I usually use - (void)foo:(id)sender instead as it is less to type, not to mention General/IBAction is #defined as void.*
 
-'''Double actually:'''
+**Double actually:**
 
-Interface Builder recognizes methods as actions if they have a <code>void</code> return type and a single parameter named <code>sender</code>. The type of the <code>sender</code> parameter can be <code>id</code>, or another class such as <code>[[NSButton]]</code>. Interface Builder looks for the <code>sender</code> parameter name as a keyword when parsing methods for actions. If you want more meaningful argument names you can explicitly state that a method is an action using the <code>[[IBAction]]</code> return type. Interface Builder would recognize the following lines as action methods:
-<code>
+Interface Builder recognizes methods as actions if they have a     void return type and a single parameter named     sender. The type of the     sender parameter can be     id, or another class such as     General/NSButton. Interface Builder looks for the     sender parameter name as a keyword when parsing methods for actions. If you want more meaningful argument names you can explicitly state that a method is an action using the     General/IBAction return type. Interface Builder would recognize the following lines as action methods:
+    
 - (void)anAction:(id)sender;
-- (void)aButtonAction:([[NSButton]] '')sender;
-- ([[IBAction]])aButtonAction:([[NSButton]] '')aButton;
-</code>
--- [[BookCocoaInANutshell]]
+- (void)aButtonAction:(General/NSButton *)sender;
+- (General/IBAction)aButtonAction:(General/NSButton *)aButton;
+
+-- General/BookCocoaInANutshell
 
 ----
 
-OK - just finished [[BookLearningCocoaObjCSecond]], and feel ''fairly'' comfortable with what I have read but I still feel I'm missing a huge chunk of knowledge about the whole Cocoa game.
+OK - just finished General/BookLearningCocoaObjCSecond, and feel *fairly* comfortable with what I have read but I still feel I'm missing a huge chunk of knowledge about the whole Cocoa game.
 
-So  - where do I go / what do I do next? Should I read more books? I'm very tempted by [[BookCocoaProgMacOSX]] but with the news of a 2nd edition coming out in April I'm going to hold fire. Does the "huge chunk of knowledge" only come with practise?
+So  - where do I go / what do I do next? Should I read more books? I'm very tempted by General/BookCocoaProgMacOSX but with the news of a 2nd edition coming out in April I'm going to hold fire. Does the "huge chunk of knowledge" only come with practise?
 
 ----
 
@@ -57,11 +57,11 @@ Well do all the example and start programming! Reading will only get you so far.
 
 ----
 
-The first thing I would do is head over to [http://developer.apple.com/documentation/Cocoa/Cocoa.html] and spend some time reading Apple's documentation. I think learning Cocoa 'from memory' is a waste of time when everything is right there. Just familiarize yourself with the classes and what they're for. You can look up specific methods as you need them. Then pick a project and get to work! Try to make it something that's actually going to be useful for you, rather than a typical garbage newbie project you'll never open again. Write an app to clean off your desktop, for example, sorting and archiving files by type, date, whatever. You might get some ideas from [[NewbieProjectIdeas]]
+The first thing I would do is head over to [http://developer.apple.com/documentation/Cocoa/Cocoa.html] and spend some time reading Apple's documentation. I think learning Cocoa 'from memory' is a waste of time when everything is right there. Just familiarize yourself with the classes and what they're for. You can look up specific methods as you need them. Then pick a project and get to work! Try to make it something that's actually going to be useful for you, rather than a typical garbage newbie project you'll never open again. Write an app to clean off your desktop, for example, sorting and archiving files by type, date, whatever. You might get some ideas from General/NewbieProjectIdeas
 
 ----
 
-A few months ago I had finished most of "Learning Cocoa with Objective-C" 2nd Edition and felt pretty lost. I mean I understood everything they covered and I could modify the code examples a bit but I couldn't really understand errors that I would generate when trying to write my own applications. So I bought and worked through "Programming in Objective-C" by Kochan and it dove-tailed perfectly for me. It starts with Objective-C and then covers the Foundation framework while "Learning Cocoa with Objective-C" focuses on the Application framework. It's helped me move forward a lot by giving me an understanding of the more basic parts of Objective-C. Now I'm using "Cocoa Recipes for [[MacOS]] X" and reading and understanding the developer documentation which I couldn't do after reading "Learning Cocoa with Objective-C" but before reading "Programming in Objective-C".
+A few months ago I had finished most of "Learning Cocoa with Objective-C" 2nd Edition and felt pretty lost. I mean I understood everything they covered and I could modify the code examples a bit but I couldn't really understand errors that I would generate when trying to write my own applications. So I bought and worked through "Programming in Objective-C" by Kochan and it dove-tailed perfectly for me. It starts with Objective-C and then covers the Foundation framework while "Learning Cocoa with Objective-C" focuses on the Application framework. It's helped me move forward a lot by giving me an understanding of the more basic parts of Objective-C. Now I'm using "Cocoa Recipes for General/MacOS X" and reading and understanding the developer documentation which I couldn't do after reading "Learning Cocoa with Objective-C" but before reading "Programming in Objective-C".
 
 ----
 

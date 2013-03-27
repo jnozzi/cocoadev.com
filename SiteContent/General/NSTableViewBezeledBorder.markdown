@@ -1,44 +1,44 @@
 
 
-How can I create table with a border like the one in iTunes. Although iTunes is carbon application, however, there must be some way to do it with cocoa as (off the top of my head) [[NewsFire]] and some other apps achieve the same effect. 
+How can I create table with a border like the one in iTunes. Although iTunes is carbon application, however, there must be some way to do it with cocoa as (off the top of my head) General/NewsFire and some other apps achieve the same effect. 
 
 Anybody done this before? 
 
-- [[JohnDevor]]
+- General/JohnDevor
 
 ----
 
-There are various [[AppKit]] drawing functions like <code>[[NSDrawWhiteBezel]]()</code> that might work.
+There are various General/AppKit drawing functions like     General/NSDrawWhiteBezel() that might work.
 
 ----
 
-<code>[[NSDrawWhiteBezel]]()</code> does not produce the same effect as in iTunes. However, I managed to produce the correct border by simply drawing the border myself.
+    General/NSDrawWhiteBezel() does not produce the same effect as in iTunes. However, I managed to produce the correct border by simply drawing the border myself.
 
-- [[JohnDevor]]
+- General/JohnDevor
 ----
 
-I created an [[NSView]] subclass that does this...
-<code>
+I created an General/NSView subclass that does this...
+    
 
-#import "[[XBorderedView]].h"
+#import "General/XBorderedView.h"
 
-static [[NSColor]] '' _topColor = nil;
-static [[NSColor]] '' _bottomColor = nil;
-static [[NSColor]] '' _sideColor = nil;
-static [[NSColor]] '' _interiorColor = nil;
+static General/NSColor * _topColor = nil;
+static General/NSColor * _bottomColor = nil;
+static General/NSColor * _sideColor = nil;
+static General/NSColor * _interiorColor = nil;
 
-@implementation [[XBorderedView]]
+@implementation General/XBorderedView
 
 + (void)initialize {
-	if(self == [[[XBorderedView]] class]) {
-		_bottomColor = [[[[NSColor]] colorWithCalibratedWhite:0.55 alpha:1.0] retain];
-		_topColor = [[[[NSColor]] colorWithCalibratedWhite:0.94 alpha:1.0] retain];
-		_sideColor = [[[[NSColor]] colorWithCalibratedWhite:0.87 alpha:1.0] retain];
-		_interiorColor = [[[[NSColor]] colorWithCalibratedWhite:0.38 alpha:1.0] retain];
+	if(self == General/[XBorderedView class]) {
+		_bottomColor = General/[[NSColor colorWithCalibratedWhite:0.55 alpha:1.0] retain];
+		_topColor = General/[[NSColor colorWithCalibratedWhite:0.94 alpha:1.0] retain];
+		_sideColor = General/[[NSColor colorWithCalibratedWhite:0.87 alpha:1.0] retain];
+		_interiorColor = General/[[NSColor colorWithCalibratedWhite:0.38 alpha:1.0] retain];
 	}
 }
 
-- (id)initWithFrame:([[NSRect]])frame {
+- (id)initWithFrame:(General/NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
 
@@ -50,16 +50,16 @@ static [[NSColor]] '' _interiorColor = nil;
 	[self packSubviews];
 }
 
-- (void)addSubview:([[NSView]]'')subview {
+- (void)addSubview:(General/NSView*)subview {
 	[super addSubview:subview];
 	[self packSubviews];
 }
 
 - (void)packSubviews {
-	[[NSArray]] '' subViews = [self subviews];
-	[[NSView]] '' subView = [subViews lastObject];
+	General/NSArray * subViews = [self subviews];
+	General/NSView * subView = [subViews lastObject];
 	
-	[[NSRect]] fullFrame = [self bounds];
+	General/NSRect fullFrame = [self bounds];
 	
 	fullFrame.origin.x += 2.0;
 	fullFrame.origin.y += 2.0;
@@ -69,20 +69,20 @@ static [[NSColor]] '' _interiorColor = nil;
 	[subView setFrame:fullFrame];
 }
 
-- (void)drawRect:([[NSRect]])rect {
-	[[NSRect]] lineRect = rect;
+- (void)drawRect:(General/NSRect)rect {
+	General/NSRect lineRect = rect;
 	
 	lineRect.origin.x += 1.0;
 	lineRect.size.width -= 2.0;
 	lineRect.size.height = 1.0;
 	
 	[_topColor set];
-	[[NSRectFill]](lineRect);
+	General/NSRectFill(lineRect);
 	
 	lineRect.origin.y += (rect.size.height - 1.0);
 	
 	[_bottomColor set];
-	[[NSRectFill]](lineRect);
+	General/NSRectFill(lineRect);
 	
 	lineRect = rect;
 	lineRect.origin.y += 1.0;
@@ -90,14 +90,14 @@ static [[NSColor]] '' _interiorColor = nil;
 	lineRect.size.width = 1.0;
 	
 	[_sideColor set];
-	[[NSRectFill]](lineRect);
+	General/NSRectFill(lineRect);
 	
 	lineRect.origin.x += (rect.size.width - 1.0);
-	[[NSRectFill]](lineRect);
+	General/NSRectFill(lineRect);
 	
-	[[NSRect]] insetRect = [[NSInsetRect]](rect, 1.0, 1.0);
+	General/NSRect insetRect = General/NSInsetRect(rect, 1.0, 1.0);
 	[_interiorColor set];
-	[[NSFrameRect]](insetRect);
+	General/NSFrameRect(insetRect);
 	
 	[self packSubviews];
 }
@@ -109,7 +109,7 @@ static [[NSColor]] '' _interiorColor = nil;
 
 @end
 
-</code>
+
 
 -Julian
 
@@ -117,19 +117,19 @@ static [[NSColor]] '' _interiorColor = nil;
 
 It's not kosher to delete other people's posts because you think them unnecessary.
 
-''Agreed. Pruning digressions and non-sequiturs, however, is acceptable practice. The rest should stay. I feel the discussion regarding the GPL issue is valid and relevant because some do question what rights they have to write their ''own'' code that does exactly the same common thing, such as the metal bezel effect on this page. I vote we keep it here for others.''
+*Agreed. Pruning digressions and non-sequiturs, however, is acceptable practice. The rest should stay. I feel the discussion regarding the GPL issue is valid and relevant because some do question what rights they have to write their *own* code that does exactly the same common thing, such as the metal bezel effect on this page. I vote we keep it here for others.*
 
 ----
 
-The colors seemed off (to my untrained eye, YMMV) so I used the set below but this and [[CCDGradientSelectionTableView]] gets you pretty darn close to a "table with a border like the one in iTunes".
+The colors seemed off (to my untrained eye, YMMV) so I used the set below but this and General/CCDGradientSelectionTableView gets you pretty darn close to a "table with a border like the one in iTunes".
 
-<code>
-                _bottomColor = [[[[[NSColor]] whiteColor] shadowWithLevel:0.3] retain];
-		_topColor = [[[[[NSColor]] whiteColor] shadowWithLevel:0.1] retain];
-                _sideColor = [[[[[NSColor]] whiteColor] shadowWithLevel:0.1] retain];
-                _interiorColor = [[[[NSColor]] grayColor] retain];
-</code>
+    
+                _bottomColor = General/[[[NSColor whiteColor] shadowWithLevel:0.3] retain];
+		_topColor = General/[[[NSColor whiteColor] shadowWithLevel:0.1] retain];
+                _sideColor = General/[[[NSColor whiteColor] shadowWithLevel:0.1] retain];
+                _interiorColor = General/[[NSColor grayColor] retain];
+
 
 ----
 
-One has already been done by another project out there: http://cvs.sourceforge.net/viewcvs.py/cocoalicious/cocoalicious/UI/[[SFHFBezelView]].m?view=markup
+One has already been done by another project out there: http://cvs.sourceforge.net/viewcvs.py/cocoalicious/cocoalicious/UI/General/SFHFBezelView.m?view=markup

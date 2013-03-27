@@ -1,17 +1,17 @@
 A basic non blocking download snippet:
 
-<code>
+    
 // Starts download
 - (void)download
 {
-        NSURL ''myURL = [NSURL [[URLWithString]]:@"http://www.apple.com/"];
+        NSURL *myURL = [NSURL General/URLWithString:@"http://www.apple.com/"];
         [myURL loadResourceDataNotifyingClient:self usingCache:YES];
 }
 
 // This method will be called when the download has finished
-- (void)[[URLResourceDidFinishLoading]]:(NSURL '')sender
+- (void)General/URLResourceDidFinishLoading:(NSURL *)sender
 {
-        [[NSData]] ''urlContents = [sender resourceDataUsingCache:YES];
+        General/NSData *urlContents = [sender resourceDataUsingCache:YES];
 
         if ([urlContents writeToFile:[@"~/Documents/applewebsite.html"
                          stringByExpandingTildeInPath]
@@ -22,6 +22,6 @@ A basic non blocking download snippet:
                 // There was a problem writing the file
         }
 }
- </code>
+ 
 
-[[EcumeDesJours]]
+General/EcumeDesJours

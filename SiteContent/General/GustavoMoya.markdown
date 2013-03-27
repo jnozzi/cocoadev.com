@@ -10,7 +10,7 @@ He is also:
 CEO of Ixaya http://www.ixaya.com/
 Co-founder of Ixaya Foundation http://www.ixayafoundation.org/
 Developer of Tototl http://tototl.googlecode.com/
-Owner of [[BloodyCrow]] Games http://www.bloodycrow.com/
+Owner of General/BloodyCrow Games http://www.bloodycrow.com/
 
 Main Goals:
 Develop Stunning Solutions

@@ -1,34 +1,34 @@
-See also [[BorderlessWindow]]
+See also General/BorderlessWindow
 
-I've got a strange problem with a [[NSWindow]] subclass.  I'm creating an odd-shaped window with a [[NSButton]] in it.  You can click and drag successfully almost anywhere in the window.  But, whenever I click and drag close to the edge of a button in the window, the window jumps.
+I've got a strange problem with a General/NSWindow subclass.  I'm creating an odd-shaped window with a General/NSButton in it.  You can click and drag successfully almost anywhere in the window.  But, whenever I click and drag close to the edge of a button in the window, the window jumps.
 
-Here's the relevant portion of my code.  Based on the transparent window code from the R'''oundedFloatingPanel example on http://www.scotlandsoftware.com/products/source/
+Here's the relevant portion of my code.  Based on the transparent window code from the R**oundedFloatingPanel example on http://www.scotlandsoftware.com/products/source/
 
 ----
 
-<code>
+    
 
 //------------------------------------------------------------------------------------
-- (void)mouseDown:([[NSEvent]] '')theEvent
+- (void)mouseDown:(General/NSEvent *)theEvent
 {    
-    [[NSRect]]  windowFrame = [self frame];
+    General/NSRect  windowFrame = [self frame];
 
-   initialLocation = [[[NSEvent]] mouseLocation];
+   initialLocation = General/[NSEvent mouseLocation];
    
    initialLocation.x -= windowFrame.origin.x;
    initialLocation.y -= windowFrame.origin.y;
 }
 
 //------------------------------------------------------------------------------------
-- (void)mouseDragged:([[NSEvent]] '')theEvent
+- (void)mouseDragged:(General/NSEvent *)theEvent
 {
-   [[NSPoint]] currentLocation;
-   [[NSPoint]] newOrigin;
+   General/NSPoint currentLocation;
+   General/NSPoint newOrigin;
 
-   [[NSRect]]  screenFrame = [[[[NSScreen]] mainScreen] frame];
-   [[NSRect]]  windowFrame = [self frame];
+   General/NSRect  screenFrame = General/[[NSScreen mainScreen] frame];
+   General/NSRect  windowFrame = [self frame];
 
-    currentLocation = [[[NSEvent]] mouseLocation];
+    currentLocation = General/[NSEvent mouseLocation];
     newOrigin.x = currentLocation.x - initialLocation.x;
     newOrigin.y = currentLocation.y - initialLocation.y;
     
@@ -41,7 +41,7 @@ Here's the relevant portion of my code.  Based on the transparent window code fr
     [self setFrameOrigin:newOrigin];
 }
 
-</code>
+
 
 ----
 
@@ -51,4 +51,4 @@ The solution is remove the code above, and use this instead:
 
 ----
 
-see also related discussion in [[NSTabViewWindowDraggingProblem]]
+see also related discussion in General/NSTabViewWindowDraggingProblem

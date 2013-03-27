@@ -1,7 +1,7 @@
-One of the many [[RSSNewsReaders]] for OS X...
+One of the many General/RSSNewsReaders for OS X...
 
-Created in the UK by T''''hinkMac software.
+Created in the UK by T**'hinkMac software.
 
 http://www.thinkmac.co.uk/newsmac/
 
-Like [[NetNewsWire]] and [[PulpFiction]], it offers a free and pro versions.
+Like General/NetNewsWire and General/PulpFiction, it offers a free and pro versions.

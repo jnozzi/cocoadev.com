@@ -7,7 +7,7 @@ Anybody know how to send a fake mouseUp event to a window or view?
 
 ----
 
-I would check out this [[NSEvent]] class method. 
+I would check out this General/NSEvent class method. 
 
  
      int type=NSLeftMouseUp;              // for a left mouse up event type
@@ -35,7 +35,7 @@ I would check out this [[NSEvent]] class method.
          pressure:(float)pressure 
  
 ----
-If you want to watch all the events in your program,  use [[NSTraceEvents]].
+If you want to watch all the events in your program,  use General/NSTraceEvents.
 
 See http://developer.apple.com/technotes/tn2004/tn2124.html for lots of cool tricks.
 
@@ -43,30 +43,30 @@ Watching events go by can be very informative.
 
 ----
 
-To bypass event-handling and forward it to the [[NSApp]]'s delegate (I find this very useful in fullscreen games), make a custom subclass of [[NSApplication]] (ensuring that the Principal Class is your new subclass), and implement this method:
+To bypass event-handling and forward it to the General/NSApp's delegate (I find this very useful in fullscreen games), make a custom subclass of General/NSApplication (ensuring that the Principal Class is your new subclass), and implement this method:
 
  - (void)sendEvent:(NSEvent *)event
  {
-     if ([[self delegate] shouldHandleEvents])
+     if (General/self delegate] shouldHandleEvents])
          [[self delegate] handleEvent:event];
      else
          [super sendEvent:event];
  }
 
-Of course, this assumes your delegate responds to shouldHandleEvents and handleEvent:.  Going back to the fullscreen game example, this allows for one to have a Cocoa main menu and have the delegate (controller) handle the events appropriately, thus allowing true MVC.  This can also allow for the same controller handle a windowed game, too. -[[RossDude]]
+Of course, this assumes your delegate responds to shouldHandleEvents and handleEvent:.  Going back to the fullscreen game example, this allows for one to have a Cocoa main menu and have the delegate (controller) handle the events appropriately, thus allowing true MVC.  This can also allow for the same controller handle a windowed game, too. -[[RossDude
 
-''To be strict about whether the delegate responds, you should check first with <code>respondsToSelector:</code> or <code>conformsToProtocol:</code>''
+*To be strict about whether the delegate responds, you should check first with     respondsToSelector: or     conformsToProtocol:*
 ----
-How to watch all the mouse events of the system? ([[NSTraceEvent]] is about one perticualr application).
+How to watch all the mouse events of the system? (General/NSTraceEvent is about one perticualr application).
 ----
-Google for [[CGEventTapCreate]].
+Google for General/CGEventTapCreate.
 
 ----
-Link to the replies on working with the modifierFlags from a [[NSEvent]]
+Link to the replies on working with the modifierFlags from a General/NSEvent
 
-[[DetectIfShiftKeyIsBeingPressed]]
+General/DetectIfShiftKeyIsBeingPressed
 ----
-[[NSEvent]] timestamp is in time since system startup. [[NSDate]] doesn't give a convenient utility to get that, and it's not easy to find.
+General/NSEvent timestamp is in time since system startup. General/NSDate doesn't give a convenient utility to get that, and it's not easy to find.
 After much digging I found this in an old cocoa-dev mailing list post:
 
  #import <mach/mach_time.h>

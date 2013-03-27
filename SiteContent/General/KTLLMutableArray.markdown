@@ -1,25 +1,25 @@
-'''[[KTLLMutableArray]]'''
+**General/KTLLMutableArray**
 ----
 
-This code creates a subclass of [[NSMutableArray]] implementing [[DesignDoublyXORLinkedList]] for constant-time head/tail operations, at the cost of two pointers per array element (cf one for simple C-array implementations) and O(n) times for general operations.
+This code creates a subclass of General/NSMutableArray implementing General/DesignDoublyXORLinkedList for constant-time head/tail operations, at the cost of two pointers per array element (cf one for simple C-array implementations) and O(n) times for general operations.
 
-Aside from reverseObjects, which reverses the order of the array, this subclass has no methods not found in [[NSMutableArray]], so no documentation is provided. http://goo.gl/[[OeSCu]]
+Aside from reverseObjects, which reverses the order of the array, this subclass has no methods not found in General/NSMutableArray, so no documentation is provided. http://goo.gl/General/OeSCu
 
-Note that using an enumerator is the fastest way of traversing all the objects in this class, unlike the standard [[NSArray]] implementations.
+Note that using an enumerator is the fastest way of traversing all the objects in this class, unlike the standard General/NSArray implementations.
 
-Feel free to correct errors in this code, add comments, etc. (Any changes you make to the code on this page, however, will be placed under the license described below.) This code ''has'' been tested, but not exhaustively, so bugs may still lurk.
+Feel free to correct errors in this code, add comments, etc. (Any changes you make to the code on this page, however, will be placed under the license described below.) This code *has* been tested, but not exhaustively, so bugs may still lurk.
 
--- [[KritTer]]
-
-----
-
-''Are you sure this is even necessary?  The standard [[NSMutableArray]] implementation is analogous to the STL deque (''d''ouble-''e''nded ''que''ue), where head and tail operations are constant-time due to the beginning of the array being somewhere in the middle of an allocated chunk of memory''
-
-Think of this as an intellectual exercise. Specifically, exercise 11.2-8 of Cormen, Leiserson and Rivest's "Introduction to algorithms". The interesting feature is the O(1) <code>reverseObjects</code> method.
+-- General/KritTer
 
 ----
 
-<code>
+*Are you sure this is even necessary?  The standard General/NSMutableArray implementation is analogous to the STL deque (*d*ouble-*e*nded *que*ue), where head and tail operations are constant-time due to the beginning of the array being somewhere in the middle of an allocated chunk of memory*
+
+Think of this as an intellectual exercise. Specifically, exercise 11.2-8 of Cormen, Leiserson and Rivest's "Introduction to algorithms". The interesting feature is the O(1)     reverseObjects method.
+
+----
+
+    
  //
  // KTLLMutableArray
  // Doubly-XOR-Linked List NSArray subclass
@@ -720,10 +720,10 @@ Think of this as an intellectual exercise. Specifically, exercise 11.2-8 of Corm
    
  }
  @end
-</code>
+
 
 ----
 
-Just started playing with this today. I know that this has been around for a couple of years, but I never had the need for a made from scratch mutable array. I haven't done any performance tests on this yet, but from what I can see, this should be a nice starting point. I did find a memory bug though. The "memory" for the array was released in the <code>dealloc</code> instance method, but the instance wasn't. I subclassed this and couldn't figure out why my subclass wasn't being deallocated when the subclass's <code>dealloc</code> method was being called. I guess the moral of the story is, when you can't find a memory leak, check to make sure the parent class is doing the right thing. 
+Just started playing with this today. I know that this has been around for a couple of years, but I never had the need for a made from scratch mutable array. I haven't done any performance tests on this yet, but from what I can see, this should be a nice starting point. I did find a memory bug though. The "memory" for the array was released in the     dealloc instance method, but the instance wasn't. I subclassed this and couldn't figure out why my subclass wasn't being deallocated when the subclass's     dealloc method was being called. I guess the moral of the story is, when you can't find a memory leak, check to make sure the parent class is doing the right thing. 
 
 -- zootbobbalu

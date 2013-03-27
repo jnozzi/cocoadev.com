@@ -5,16 +5,16 @@ From my understanding of bindings it will require "Handles Content As Compound V
 
 You are free to do as you wish with this code, and if your house burns down it's not my fault etc etc..
 
-<code>
+    
 
-@interface [[DictionaryToArrayTransformer]] : [[NSValueTransformer]] {
+@interface General/DictionaryToArrayTransformer : General/NSValueTransformer {
 }
 
 @end
-@implementation [[DictionaryToArrayTransformer]]
+@implementation General/DictionaryToArrayTransformer
 
 + (Class)transformedValueClass {
-    return [[[NSArray]] class];
+    return General/[NSArray class];
 }
 
 + (BOOL)allowsReverseTransformation {
@@ -22,12 +22,12 @@ You are free to do as you wish with this code, and if your house burns down it's
 }
 
 - (id)transformedValue:(id)value {
-    [[NSMutableArray]] ''array = [[[NSMutableArray]] array];
+    General/NSMutableArray *array = General/[NSMutableArray array];
     
-    [[NSEnumerator]] ''keyEnumerator = [value keyEnumerator];
-    [[NSString]] ''key = nil;
+    General/NSEnumerator *keyEnumerator = [value keyEnumerator];
+    General/NSString *key = nil;
     while (key = [keyEnumerator nextObject]) {
-        [array addObject:[[[NSDictionary]] dictionaryWithObjectsAndKeys:
+        [array addObject:General/[NSDictionary dictionaryWithObjectsAndKeys:
             key, @"key",
             [value valueForKey:key], @"value", nil]];
     }
@@ -36,10 +36,10 @@ You are free to do as you wish with this code, and if your house burns down it's
 }
 
 - (id)reverseTransformedValue:(id)value {
-    [[NSMutableDictionary]] ''dictionary = [[[NSMutableDictionary]] dictionary];
+    General/NSMutableDictionary *dictionary = General/[NSMutableDictionary dictionary];
     
-    [[NSEnumerator]] ''keyValuePairEnumerator = [value objectEnumerator];
-    [[NSDictionary]] ''keyValuePair = nil;
+    General/NSEnumerator *keyValuePairEnumerator = [value objectEnumerator];
+    General/NSDictionary *keyValuePair = nil;
     while (keyValuePair = [keyValuePairEnumerator nextObject]) {
         [dictionary setValue:[keyValuePair valueForKey:@"value"]
                             forKey:[keyValuePair valueForKey:@"key"]];
@@ -50,7 +50,7 @@ You are free to do as you wish with this code, and if your house burns down it's
 
 @end
 
-</code>
+
 
 Mr. Fisk
 

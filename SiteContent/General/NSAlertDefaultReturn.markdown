@@ -1,1 +1,1 @@
-Describe [[NSAlertDefaultReturn]] here.
+Describe General/NSAlertDefaultReturn here.

@@ -1,4 +1,4 @@
 
 
 
-A guy who's been programming in [[NeXTSTEP]]/[[OpenStep]]/[[WebObjects]]/[[YellowBox]]/Cocoa since 1994.
+A guy who's been programming in General/NeXTSTEP/General/OpenStep/General/WebObjects/General/YellowBox/Cocoa since 1994.

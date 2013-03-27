@@ -1,68 +1,68 @@
 
 
-[[OCUnit]], one of the first testing unit frameworks for any language is available at http://www.sente.ch/software/ocunit
+General/OCUnit, one of the first testing unit frameworks for any language is available at http://www.sente.ch/software/ocunit
 
-A tutorial, "Unit Testing for Objective-C using [[ProjectBuilder]] and [[OCUnit]]" is available on Stepwise at http://www.stepwise.com/Articles/Technical/2002-06-17.01.html
+A tutorial, "Unit Testing for Objective-C using General/ProjectBuilder and General/OCUnit" is available on Stepwise at http://www.stepwise.com/Articles/Technical/2002-06-17.01.html
 
-see also [[SenTestingKit]]
+see also General/SenTestingKit
 
-'''Note:'''
+**Note:**
 
-The tutorial at Stepwise is '''very old and uses deprecated macros'''. Instead, you should use these macros
+The tutorial at Stepwise is **very old and uses deprecated macros**. Instead, you should use these macros
 
-<code>[[STAssertNil]](a1, description, ...)
-[[STAssertNotNil]](a1, description, ...)
-[[STAssertTrue]](expression, description, ...)
-[[STAssertFalse]](expression, description, ...)
-[[STAssertEqualObjects]](a1, a2, description, ...)
-[[STAssertEquals]](a1, a2, description, ...)
-[[STAssertEqualsWithAccuracy]](left, right, accuracy, description, ...)
-[[STAssertThrows]](expression, description, ...)
-[[STAssertThrowsSpecific]](expression, specificException, description, ...)
-[[STAssertThrowsSpecificNamed]](expr, specificException, aName, description, ...)
-[[STAssertNoThrow]](expression, description, ...)
-[[STAssertNoThrowSpecific]](expression, specificException, description, ...)
-[[STAssertNoThrowSpecificNamed]](expr, specificException, aName, description, ...)
-[[STFail]](description, ...)
-[[STAssertTrueNoThrow]](expression, description, ...)
-[[STAssertFalseNoThrow]](expression, description, ...)
-</code>
+    General/STAssertNil(a1, description, ...)
+General/STAssertNotNil(a1, description, ...)
+General/STAssertTrue(expression, description, ...)
+General/STAssertFalse(expression, description, ...)
+General/STAssertEqualObjects(a1, a2, description, ...)
+General/STAssertEquals(a1, a2, description, ...)
+General/STAssertEqualsWithAccuracy(left, right, accuracy, description, ...)
+General/STAssertThrows(expression, description, ...)
+General/STAssertThrowsSpecific(expression, specificException, description, ...)
+General/STAssertThrowsSpecificNamed(expr, specificException, aName, description, ...)
+General/STAssertNoThrow(expression, description, ...)
+General/STAssertNoThrowSpecific(expression, specificException, description, ...)
+General/STAssertNoThrowSpecificNamed(expr, specificException, aName, description, ...)
+General/STFail(description, ...)
+General/STAssertTrueNoThrow(expression, description, ...)
+General/STAssertFalseNoThrow(expression, description, ...)
 
-These are all listed with comments in /System/Library/Frameworks/[[SenTestingKit]].framework/Versions/A/Headers/SenTestCase_Macros.h
+
+These are all listed with comments in /System/Library/Frameworks/General/SenTestingKit.framework/Versions/A/Headers/SenTestCase_Macros.h
 
 The code from the tutorial should look like this with the new macros:
 
-<code>#import "[[TestPerson]].h"
+    #import "General/TestPerson.h"
 #import "Person.h"
 
-@implementation [[TestPerson]]
+@implementation General/TestPerson
 - (void) testFullName
 {
-    Person ''person = [[Person alloc] init];     
+    Person *person = General/Person alloc] init];     
     [person setFirstName:@"Pablo"];
     [person setLastName:@"Picasso"];
-    [[STAssertEqualObjects]]([person fullName], @"Pablo Picasso", nil);
+    [[STAssertEqualObjects([person fullName], @"Pablo Picasso", nil);
     [person release];
 }
 
 - (void) testEmptyFirstName
 {
-    Person ''person = [[Person alloc] init];    
+    Person *person = General/Person alloc] init];    
     [person setFirstName:@""];
     [person setLastName:@"Picasso"];
-    [[STAssertEqualObjects]]([person fullName], [person lastName], nil);
+    [[STAssertEqualObjects([person fullName], [person lastName], nil);
     [person release];
 }
 
 - (void) testNilFirstName
 {
-    Person ''person = [[Person alloc] init];    
+    Person *person = General/Person alloc] init];    
     [person setFirstName:nil];
     [person setLastName:@"Picasso"];
-    [[STAssertEqualObjects]]([person fullName], [person lastName], nil);
+    [[STAssertEqualObjects([person fullName], [person lastName], nil);
     [person release];
 }
 @end
-</code>
 
-More info on unit testing can be found via google. You might want to read this http://java.sys-con.com/read/37795.htm since: ''Test-Driven Development Is Not About Testing.''
+
+More info on unit testing can be found via google. You might want to read this http://java.sys-con.com/read/37795.htm since: *Test-Driven Development Is Not About Testing.*

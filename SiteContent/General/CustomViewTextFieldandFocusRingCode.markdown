@@ -1,10 +1,10 @@
 
- <code>
-#import "[[KeyView]].h"
+     
+#import "General/KeyView.h"
 
-@implementation [[KeyView]]
+@implementation General/KeyView
 
-- (id)initWithFrame:([[NSRect]])frameRect
+- (id)initWithFrame:(General/NSRect)frameRect
 {
         [super initWithFrame:frameRect];
 	return self;
@@ -18,15 +18,15 @@
 
 -(void)awakeFromNib {
 
-	[[NSArray]] ''keys=[[[NSArray]] arrayWithObjects:@"76",@"36",@"122",@"120",@"99",@"118",
+	General/NSArray *keys=General/[NSArray arrayWithObjects:@"76",@"36",@"122",@"120",@"99",@"118",
 @"96",@"97",@"98",@"100",@"101",@"109",@"103",@"111",
 @"124",@"123",@"125",@"126",@"51",@"53",@"49",@"48",nil];
-        [[NSArray]] ''objects=[[[NSArray]] arrayWithObjects:@"Enter",@"Return",@"F1",@"F2",@"F3"
+        General/NSArray *objects=General/[NSArray arrayWithObjects:@"Enter",@"Return",@"F1",@"F2",@"F3"
 ,@"F4",@"F5",@"F6",@"F7",@"F8",
 @"F9",@"F10",@"F11",@"F12",@"Right Arrow",@"Left Arrow",@"Down Arrow",
 @"Up Arrow",@"Delete",@"Escape",@"Space",@"Tab",nil];
         
-        nonVisibleDict=[[[[[NSDictionary]] alloc] initWithObjects:objects forKeys:keys] retain];
+        nonVisibleDict=General/[[[NSDictionary alloc] initWithObjects:objects forKeys:keys] retain];
 }
 
 - (BOOL) becomeFirstResponder
@@ -44,25 +44,25 @@
 }
 
 
-- (void)drawRect:([[NSRect]])rect
+- (void)drawRect:(General/NSRect)rect
 {
 
-        [[NSBezierPath]] ''myPath=[[[NSBezierPath]] bezierPathWithRect:rect];
-        [[[[NSColor]] whiteColor] set];
+        General/NSBezierPath *myPath=General/[NSBezierPath bezierPathWithRect:rect];
+        General/[[NSColor whiteColor] set];
         [myPath fill];
     
        if ([viewString isEqualToString:@""] !=YES) {
-            [[[[NSColor]] blackColor] set];
-            [viewString drawAtPoint:[[NSMakePoint]](7,[[NSMidY]](rect)-8) withAttributes:nil];
+            General/[[NSColor blackColor] set];
+            [viewString drawAtPoint:General/NSMakePoint(7,General/NSMidY(rect)-8) withAttributes:nil];
         }	
 
         if (isSelected==YES && [myWindow isKeyWindow]) {
-            [[NSSetFocusRingStyle]]([[NSFocusRingOnly]]); 
-            [[NSRectFill]](rect);
+            General/NSSetFocusRingStyle(General/NSFocusRingOnly); 
+            General/NSRectFill(rect);
             [self setKeyboardFocusRingNeedsDisplayInRect: rect];
         } else {
-            myPath=[[[NSBezierPath]] bezierPathWithRect:rect];
-            [[[[NSColor]] grayColor] set];
+            myPath=General/[NSBezierPath bezierPathWithRect:rect];
+            General/[[NSColor grayColor] set];
             [myPath stroke]; 
         }
     
@@ -72,27 +72,27 @@
     return YES;
 } 
 
-- (void)mouseDown:([[NSEvent]] '')theEvent {
+- (void)mouseDown:(General/NSEvent *)theEvent {
     isSelected=YES;
     [self setNeedsDisplay:YES];
 }
 
 
 
-- (void)keyDown:([[NSEvent]] '')theEvent {
+- (void)keyDown:(General/NSEvent *)theEvent {
   if (isSelected=YES) {
-        unichar myKeystroke = [[[[[NSApp]] currentEvent] charactersIgnoringModifiers]
+        unichar myKeystroke = General/[[[NSApp currentEvent] charactersIgnoringModifiers]
 characterAtIndex:0]; 
-        myKeyCode = [[[[NSApp]] currentEvent] keyCode];
+        myKeyCode = General/[[NSApp currentEvent] keyCode];
     
         [viewString release];
         
-        if ([nonVisibleDict objectForKey:[[[[NSNumber]] numberWithInt:myKeyCode]
+        if ([nonVisibleDict objectForKey:General/[[NSNumber numberWithInt:myKeyCode]
 stringValue]] != nil) {
-            viewString=[[[[NSString]] stringWithString:
-[nonVisibleDict objectForKey:[[[[NSNumber]] numberWithInt:myKeyCode] stringValue]]] retain];
+            viewString=General/[[NSString stringWithString:
+[nonVisibleDict objectForKey:General/[[NSNumber numberWithInt:myKeyCode] stringValue]]] retain];
         } else {
-            viewString=[[[[NSString]] stringWithFormat:@"%C",myKeystroke] retain];
+            viewString=General/[[NSString stringWithFormat:@"%C",myKeystroke] retain];
         }
       
         
@@ -102,4 +102,4 @@ stringValue]] != nil) {
 }
 
 @end
- </code>
+ 

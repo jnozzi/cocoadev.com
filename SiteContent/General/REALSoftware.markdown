@@ -1,1 +1,1 @@
-The company that produces the [[REALBasic]] programming system.
+The company that produces the General/REALBasic programming system.

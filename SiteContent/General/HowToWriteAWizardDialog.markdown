@@ -10,7 +10,7 @@ There are better ways to do EVERYTHING. Consult the Aqua Human Interface Guideli
 
 ----
 
-I'm working on a framework that will assist developers in creating these wizards, aka assistants. It will most likely end up being a standalone application that will load and run wizard modules created by developers. Until then, you can make a window with an [[NSTabView]] that you set to display without tabs. You then make each "page", and add Back, Next, and Finish buttons which connect their actions to an object you make to handle that stuff.
+I'm working on a framework that will assist developers in creating these wizards, aka assistants. It will most likely end up being a standalone application that will load and run wizard modules created by developers. Until then, you can make a window with an General/NSTabView that you set to display without tabs. You then make each "page", and add Back, Next, and Finish buttons which connect their actions to an object you make to handle that stuff.
 
 ----
 
@@ -24,4 +24,4 @@ I'm working on a wizard right now for licensing an application that has 3 paths.
 
 Maybe you can have a look at the Assistant Kit, it is providing some code and methodology to build Setup Assistant similar to the Colorsync Calibration assistant.
 
-The link to this Assistant is available in the [[ObjectLibrary]] section of this site.
+The link to this Assistant is available in the General/ObjectLibrary section of this site.

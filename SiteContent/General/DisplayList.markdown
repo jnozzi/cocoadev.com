@@ -1,8 +1,8 @@
 
 
-A [[DisplayList]] is an [[OpenGL]] entity which caches drawing instructions for later use. It is perhaps the most basic optimization available in [[OpenGL]], and it's also very effective; Apple's put a lot of work into making sure that display lists are speedy on [[MacOSX]].
+A General/DisplayList is an General/OpenGL entity which caches drawing instructions for later use. It is perhaps the most basic optimization available in General/OpenGL, and it's also very effective; Apple's put a lot of work into making sure that display lists are speedy on General/MacOSX.
 
-'''Discussion'''
+**Discussion**
 
 I am making a fairly simple screensaver where a few images are stretched, but I find the speed of the animation slows down a lot when the stretching gets big... what is the best approach to keep the animation speed consistent?
 
@@ -12,7 +12,7 @@ This has nothing to do with screensavers. They use the same animation techniques
 
 ----
 
-Well, I've done animation before, but here its just not working out. I am using [[OpenGL]] now and still am getting this slowdown, its faster then slower, faster and slower.... repeatedly. I've tried using a timer to do the calculations outside of the animateOneFrame but it hardly makes a difference. Any pointers, anything?
+Well, I've done animation before, but here its just not working out. I am using General/OpenGL now and still am getting this slowdown, its faster then slower, faster and slower.... repeatedly. I've tried using a timer to do the calculations outside of the animateOneFrame but it hardly makes a difference. Any pointers, anything?
 
 ----
 
@@ -20,7 +20,7 @@ Actually, I don't thing basic math calculations can be the cause of the slow dow
 
 ----
 
-I am loading the textures onto the card, then I am using a [[DisplayList]] to render. I just can't seem to find a way to get a consistent, smooth flowing frame rate :-/ Its always a high one, but its just not consistent and the change is noticeable. 
+I am loading the textures onto the card, then I am using a General/DisplayList to render. I just can't seem to find a way to get a consistent, smooth flowing frame rate :-/ Its always a high one, but its just not consistent and the change is noticeable. 
 
 ----
 
@@ -32,4 +32,4 @@ In general to get a constant animation speed you will need to decouple your anim
 
 ----
 
-''Yes, that's what I meant. Scale and move things based on time, not on the frame count.''
+*Yes, that's what I meant. Scale and move things based on time, not on the frame count.*

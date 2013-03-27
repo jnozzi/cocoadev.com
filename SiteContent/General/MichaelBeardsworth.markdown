@@ -1,8 +1,8 @@
 
 
-A [[PixikonNation]] group programmer.
+A General/PixikonNation group programmer.
 ----
-'''Contact'''
+**Contact**
 
 *Home Page - http://pixikon.com/michael/
 *Mail - mailto:michael@pixikon.com

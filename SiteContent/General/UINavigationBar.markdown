@@ -1,33 +1,33 @@
 
 
-Part of the iPhone [[UIKit]] framework. Subclass of [[UIView]].
+Part of the iPhone General/UIKit framework. Subclass of General/UIView.
 
 This is that handy navigation header that goes on the top of views that can be.. navigated.
 
 Button Styles: 0 = Normal, 1 = Red, 2 = Back Arrow, 3 = Blue
 
-<code>
-- (void)navigationBar:([[UINavigationBar]]'')navbar buttonClicked:(int)button 
+    
+- (void)navigationBar:(General/UINavigationBar*)navbar buttonClicked:(int)button 
 {
 	switch (button) 
 	{
-		case 0: [[NSLog]](@"left"); break;
-		case 1:	[[NSLog]](@"right"); break;
+		case 0: General/NSLog(@"left"); break;
+		case 1:	General/NSLog(@"right"); break;
 	}
 }
 
 - (void)applicationDidFinishLaunching:(id)unused
 {
-	window = [[[[UIWindow]] alloc] initWithContentRect:[[[UIHardware]] fullScreenApplicationContentRect]];
+	window = General/[[UIWindow alloc] initWithContentRect:General/[UIHardware fullScreenApplicationContentRect]];
 
 	//Setup main view
-	struct [[CGRect]] rect = [[[UIHardware]] fullScreenApplicationContentRect];
+	struct General/CGRect rect = General/[UIHardware fullScreenApplicationContentRect];
 	rect.origin.x = rect.origin.y = 0.0f;
-	mainView = [[[[UIView]] alloc] initWithFrame:rect];
+	mainView = General/[[UIView alloc] initWithFrame:rect];
 	[window setContentView:mainView];
 
 	//Setup navigation var
-	navBar = [[[[UINavigationBar]] alloc] initWithFrame:[[CGRectMake]](0.0f, 0.0f, 320.0f, 40.0f)];
+	navBar = General/[[UINavigationBar alloc] initWithFrame:General/CGRectMake(0.0f, 0.0f, 320.0f, 40.0f)];
 	[navBar showButtonsWithLeftTitle:@"Left" rightTitle:@"Right" leftBack:NO];
 	//you can also do something like [navBar showLeftButton:@"Left" withStyle:1 rightButton:@"right" withStyle:0]; <-- this will let you change the button color!
 	[navBar setBarStyle:5]; // This sets the color and look of the navigation bar.
@@ -39,25 +39,25 @@ Button Styles: 0 = Normal, 1 = Red, 2 = Back Arrow, 3 = Blue
 	[window makeKey:self];
 	[window _setHidden:NO];
 }
-</code>
+
 
 ----
 
-'''Methods'''
+**Methods**
 
-%%BEGINCODESTYLE%%- (id)initWithFrame:([[CGRect]])frame;%%ENDCODESTYLE%%
+<code>- (id)initWithFrame:(General/CGRect)frame;</code>
 
 Designated initializer!
 
-%%BEGINCODESTYLE%%- (void)showButtonsWithLeftTitle:([[NSString]]'')left rightTitle:([[NSString]]'')right leftBack:(BOOL)flag;%%ENDCODESTYLE%%
+<code>- (void)showButtonsWithLeftTitle:(General/NSString*)left rightTitle:(General/NSString*)right leftBack:(BOOL)flag;</code>
 
 Sets the title of the left and right buttons, and specifies whether the left button has the "back" styling. If a title is nil, its corresponding button is not shown.
 
-%%BEGINCODESTYLE%%- (void)setDelegate:(id)delegate;%%ENDCODESTYLE%%
+<code>- (void)setDelegate:(id)delegate;</code>
 
 Delegate receives clicks.
 
-%%BEGINCODESTYLE%%- (void)setBarStyle:(int)style;%%ENDCODESTYLE%%
+<code>- (void)setBarStyle:(int)style;</code>
 
 0 - Normal Style 
 
@@ -70,11 +70,11 @@ Delegate receives clicks.
 
 ----
 
-'''
-[[UINavigationBar]] delegate methods
-'''
+**
+General/UINavigationBar delegate methods
+**
 
-%%BEGINCODESTYLE%%- (void)navigationBar:([[UINavigationBar]]'')bar buttonClicked:(int)which;%%ENDCODESTYLE%%
+<code>- (void)navigationBar:(General/UINavigationBar*)bar buttonClicked:(int)which;</code>
 
 0 for left, 1 for right.
 

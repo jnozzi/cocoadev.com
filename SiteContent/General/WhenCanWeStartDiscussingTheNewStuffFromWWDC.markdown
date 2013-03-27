@@ -14,19 +14,19 @@ Let me start the ball: anyone seen any improvements to the spell checker on how 
 
 What about the inability to unload a shared lib opened via dlopen() ? I used to be able to do this under linux, and while it's not critical for my work, it would make my life a hell of a lot easier -- since I could simply have my program reload a freshly tweaked and recompiled library, instead of shutting down and restarting every time. -- Anonymous
 
-Mac OS X's dyld currently can't unload dynamic libraries. -- [[AdamAtlas]]
+Mac OS X's dyld currently can't unload dynamic libraries. -- General/AdamAtlas
 
 I thought dyld could unload dynamic libraries, and it's the Obj-C run-time that causes the bundles to be un-unloadable.
 
-The objective-c runtime doesn't seem to have anything to do with it. I wrote a C test program a while back and, not only does it ''not'' unload, but dlerror() doesn't tell you anything. It's annoying. -- Same Anonymous
+The objective-c runtime doesn't seem to have anything to do with it. I wrote a C test program a while back and, not only does it *not* unload, but dlerror() doesn't tell you anything. It's annoying. -- Same Anonymous
 
 ----
 
-what about this new [[NSController]] class??
+what about this new General/NSController class??
 
 ----
 
-[[MacSlash]] reports (http://macslash.org/article.pl?sid=03/07/15/1054245) that [[NSAttributedString]] can handle Word's ''.doc'' format. Just the basics, mind�font, size, tabs, etc. But there are new text and paragraph attributes, including, apparently, the outline font style. -- [[DustinVoss]]
+General/MacSlash reports (http://macslash.org/article.pl?sid=03/07/15/1054245) that General/NSAttributedString can handle Word's *.doc* format. Just the basics, mind�font, size, tabs, etc. But there are new text and paragraph attributes, including, apparently, the outline font style. -- General/DustinVoss
 
 ----
 
@@ -34,4 +34,4 @@ Really? But that doesn't make any sense to me...
 
 ----
 
-Any chance apple will fix dyld to let it unload libraries? It seems to me like basic functionality for ''any'' OS. Windows does it, [[BeOS]] did it, linux does it. -- [[ShamylZakariya]]
+Any chance apple will fix dyld to let it unload libraries? It seems to me like basic functionality for *any* OS. Windows does it, General/BeOS did it, linux does it. -- General/ShamylZakariya

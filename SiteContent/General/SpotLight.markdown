@@ -1,8 +1,8 @@
 http://images.apple.com/macosx/images/spotlightsmall20050412.gif
 
-Spotlight � Apple's new metadata search framework introduced in [[OSXTiger]].
+Spotlight � Apple's new metadata search framework introduced in General/OSXTiger.
 
-[[MetaDataWithSpotLight]] allows applications to define arbitrary metadata for their documents and search through them. It basically makes really advanced searching feasible on all file types, and will allow developers easily to implement fast searching into their apps.
+General/MetaDataWithSpotLight allows applications to define arbitrary metadata for their documents and search through them. It basically makes really advanced searching feasible on all file types, and will allow developers easily to implement fast searching into their apps.
 
 Public documentation is located at: [http://developer.apple.com/macosx/spotlight.html]
 
@@ -17,7 +17,7 @@ http://images.apple.com/macosx/features/spotlight/images/indexresultssmall200504
 
 To force Spotlight to index a folder, just use this command:
 
-<code>mdimport -f /path/to/folder/you/would/like/to/index</code> 
+    mdimport -f /path/to/folder/you/would/like/to/index 
 
 --zootbobbalu
 

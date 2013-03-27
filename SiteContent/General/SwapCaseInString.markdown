@@ -2,23 +2,23 @@ I wish to change uppercase letters to lowercase and vice versa.
 
 Currently I have this code in use:
 
-<code>
+    
 
 template <typename _InputIter, typename _OutputIter>
 void swapCase (_InputIter first, _InputIter last, _OutputIter res)
 {
-   [[NSCharacterSet]] ''lowercase = [[[NSCharacterSet]] lowercaseLetterCharacterSet];
-   [[NSCharacterSet]] ''uppercase = [[[NSCharacterSet]] uppercaseLetterCharacterSet];
+   General/NSCharacterSet *lowercase = General/[NSCharacterSet lowercaseLetterCharacterSet];
+   General/NSCharacterSet *uppercase = General/[NSCharacterSet uppercaseLetterCharacterSet];
 
    for(; first != last; ++first)
    {
-      unichar ch = ''first;
+      unichar ch = *first;
 
-      [[NSString]] ''str = nil;
+      General/NSString *str = nil;
       if([lowercase characterIsMember:ch] == YES)
-         str = [[[[NSString]] stringWithCharacters:&ch length:1] uppercaseString];
+         str = General/[[NSString stringWithCharacters:&ch length:1] uppercaseString];
       else if([uppercase characterIsMember:ch] == YES)
-         str = [[[[NSString]] stringWithCharacters:&ch length:1] lowercaseString];
+         str = General/[[NSString stringWithCharacters:&ch length:1] lowercaseString];
 
       if(str != nil)
       {
@@ -28,14 +28,14 @@ void swapCase (_InputIter first, _InputIter last, _OutputIter res)
       }
       else
       {
-         ''res++ = ''first;
+         *res++ = *first;
       }
    }
 }
 
-</code>
 
-I realise that it can be made faster by either reusing the [[NSString]] object or do explicit alloc/release (rather than rely on the implicit autorelease -- though autorelease would still be the case for lowercaseString or uppercaseString, so at best it would only be twice as fast).
+
+I realise that it can be made faster by either reusing the General/NSString object or do explicit alloc/release (rather than rely on the implicit autorelease -- though autorelease would still be the case for lowercaseString or uppercaseString, so at best it would only be twice as fast).
 
 Is there another way to change the case of a unichar?
 

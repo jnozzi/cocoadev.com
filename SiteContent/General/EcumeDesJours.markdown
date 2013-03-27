@@ -8,4 +8,4 @@ if you play the lute, you should check out http://medievallute.info which has a 
 eric<art>10base-t.com
 
 ----
-'''L' Ecume des jours''' is a novel from the French Novelist, tompetist, singer Boris Vian, published in 1947: http://fr.wikipedia.org/wiki/Boris_vian
+**L' Ecume des jours** is a novel from the French Novelist, tompetist, singer Boris Vian, published in 1947: http://fr.wikipedia.org/wiki/Boris_vian

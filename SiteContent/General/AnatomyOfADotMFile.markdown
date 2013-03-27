@@ -1,6 +1,6 @@
 Here is the layout for the implementation file.  In this case, it is an implemenation file for the class Foo.
 
-<code>
+    
 //First, import the header file for your class
 
 #import "Foo.h"
@@ -26,7 +26,7 @@ Here is the layout for the implementation file.  In this case, it is an implemen
 
 - (void) createFoo
 {
-   foo = [[[[NSMutableArray]] alloc] init];
+   foo = General/[[NSMutableArray alloc] init];
 }
 
 - (void)dealloc
@@ -37,6 +37,6 @@ Here is the layout for the implementation file.  In this case, it is an implemen
 // Last, end your implementation file with the following line
 
 @end
-</code>
 
-Back to [[HowToProgramInOSX]]
+
+Back to General/HowToProgramInOSX

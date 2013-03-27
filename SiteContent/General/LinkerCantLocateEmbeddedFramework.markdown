@@ -1,10 +1,10 @@
 
 
-I am just entering the wide, wonderful world of Cocoa and am trying to figure out how to make an embedded framework. The application is an off-the-shelf Cocoa document-based application with very few changes (pretty much just <code>Info.plist</code> and <code>[[InfoPlist]].strings</code> changed), with a framework target (with no files to its name besides <code>Info.plist</code> and <code>[[InfoPlist]].strings</code>) added to the project. The framework gets installed into the application bundle (using <code>@executable_path/../Frameworks</code> as the install path; the framework shows up in <code>''application''.app/Contents/Frameworks</code>), but I get an error from <code>ld</code> when building:
+I am just entering the wide, wonderful world of Cocoa and am trying to figure out how to make an embedded framework. The application is an off-the-shelf Cocoa document-based application with very few changes (pretty much just     Info.plist and     General/InfoPlist.strings changed), with a framework target (with no files to its name besides     Info.plist and     General/InfoPlist.strings) added to the project. The framework gets installed into the application bundle (using     @executable_path/../Frameworks as the install path; the framework shows up in     *application*.app/Contents/Frameworks), but I get an error from     ld when building:
 
-<code>/usr/bin/ld: can't locate framework for: -framework Cognizance</code>
+    /usr/bin/ld: can't locate framework for: -framework Cognizance
 
-As far as I can tell, the correct framework search path is being used (<code>-F/Users/john/Documents/Xcode/Cognizance/Debug</code> shows up in the <code>ld</code> command-line options), so I'm baffled. This happens on both the Debug and Release build configurations. This is a brand-new project, and I've followed the instructions in all of the embedded-framework tutorials I've found (save prebinding), including Apple's own and [[EmbeddingFrameworksInApplications]]. Does anyone have any inkling why this is happening?
+As far as I can tell, the correct framework search path is being used (    -F/Users/john/Documents/Xcode/Cognizance/Debug shows up in the     ld command-line options), so I'm baffled. This happens on both the Debug and Release build configurations. This is a brand-new project, and I've followed the instructions in all of the embedded-framework tutorials I've found (save prebinding), including Apple's own and General/EmbeddingFrameworksInApplications. Does anyone have any inkling why this is happening?
 
 ----
 
@@ -16,7 +16,7 @@ The framework target is in the Direct Dependancies section of the application ta
 
 ----
 
-I figured it out; if there are no source files that are in the framework target, there is no dynamic library created for the framework. And if no dynamic library is created for the framework, <code>ld</code> can't link against it. Somewhat obvious.
+I figured it out; if there are no source files that are in the framework target, there is no dynamic library created for the framework. And if no dynamic library is created for the framework,     ld can't link against it. Somewhat obvious.
 
 ----
 

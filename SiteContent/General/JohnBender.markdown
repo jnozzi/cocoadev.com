@@ -1,6 +1,6 @@
 
 
-Windows slave turned Linux user turned [[FreeBSD]] fan turned Mac lover.
+Windows slave turned Linux user turned General/FreeBSD fan turned Mac lover.
 
 web developer turning cocoa software developer
 

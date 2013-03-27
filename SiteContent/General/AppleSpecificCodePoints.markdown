@@ -1,4 +1,4 @@
-<code>
+    
  static const struct { char const* const name; unichar const code; } KeyGlyphs[] =
  {
     { "pb_enter",     0x2324 },
@@ -31,13 +31,13 @@
     { "numlock",      0x2327 },
     { "help",         0x225F }
  };
-</code>
+
 
 The reason for the pb_enter is that Project Builder depicts the enter key with another glyph than the rest of the system, and the same for the ib_left/right/up/down.
 
 Please add code points as you see fit!
 
---[[AllanOdgaard]]
+--General/AllanOdgaard
 
 ----
 
@@ -48,7 +48,7 @@ The F-keys don't appear to be associated with a Unicode code point, but they are
 ----
 
 Which for Cocoa programmers would be something like:
-<code>
+    
  NSGlyphInfo* glyphInfo = [NSGlyphInfo glyphInfoWithGlyphName:
     @"F1" forFont:lucidaFont baseString:@"F1"];
  
@@ -58,6 +58,6 @@ Which for Cocoa programmers would be something like:
     nil];
  
  [attributedStr addAttributes:attr range:rangeOfF1Substring];
-</code>
 
---[[AllanOdgaard]]
+
+--General/AllanOdgaard

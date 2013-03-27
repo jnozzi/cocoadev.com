@@ -1,13 +1,13 @@
 
 
-Part of the iPhone [[MusicLibraryFramework]]. An [[MLTrack]] represents a track in the phone's iPod library.
+Part of the iPhone General/MusicLibraryFramework. An General/MLTrack represents a track in the phone's iPod library.
 
-%%BEGINCODESTYLE%%- ([[NSString]]'')artist;%%ENDCODESTYLE%%
+<code>- (General/NSString*)artist;</code>
 
-%%BEGINCODESTYLE%%- ([[NSString]]'')title;%%ENDCODESTYLE%%
+<code>- (General/NSString*)title;</code>
 
-%%BEGINCODESTYLE%%- ([[NSString]]'')path;%%ENDCODESTYLE%%
+<code>- (General/NSString*)path;</code>
 
-%%BEGINCODESTYLE%%- (int'')duration;%%ENDCODESTYLE%%
+<code>- (int*)duration;</code>
 
-%%BEGINCODESTYLE%%- (int'')durationInMS;%%ENDCODESTYLE%%
+<code>- (int*)durationInMS;</code>

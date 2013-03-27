@@ -1,1 +1,1 @@
-See [[ScreenSaver]]
+See General/ScreenSaver

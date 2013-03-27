@@ -6,28 +6,28 @@ The left icon has a small white glitch in the bottom left corner. The right icon
 
 I'm creating these icons by loading an image file. And then drawing 25% black over the icon. My code looks like this:
 
-<code>
-	[[NSImage]] ''fileIcon = [[[NSImage]] imageNamed:@"file"];
-	[[NSImage]] ''darkenedFileIcon = nil;
-	[[NSSize]] size = [baseImage size];
-	[[NSRect]] imageRect = {[[NSZeroPoint]], size};
+    
+	General/NSImage *fileIcon = General/[NSImage imageNamed:@"file"];
+	General/NSImage *darkenedFileIcon = nil;
+	General/NSSize size = [baseImage size];
+	General/NSRect imageRect = {General/NSZeroPoint, size};
 	
-	darkenedFileIcon = [[fileIcon copy] autorelease];
+	darkenedFileIcon = General/fileIcon copy] autorelease];
 
 	[darkenedFileIcon lockFocus];
-	[[[[[NSColor]] blackColor] colorWithAlphaComponent:0.25] set];
-	[[NSRectFillUsingOperation]](imageRect, [[NSCompositeSourceAtop]]);
+	[[[[[NSColor blackColor] colorWithAlphaComponent:0.25] set];
+	General/NSRectFillUsingOperation(imageRect, General/NSCompositeSourceAtop);
 	[darkenedFileIcon unlockFocus];
 
 	return darkenedFileIcon;
-</code>
+
 
 Behind the scenes I'm also caching these icons in a dictionary so I only need to create a darkened version of each icon once. The catching code looks like this. I'm not showing all the code, but I'm pretty sure that retain counts are proper, I'm not experiencing any crashes in any of these cases.
 
-<code>
-	[[NSValue]] ''lookupKey = [[[NSValue]] valueWithPointer:originalImage];
+    
+	General/NSValue *lookupKey = General/[NSValue valueWithPointer:originalImage];
 	[darkenedImageCache setObject:lookupKey forKey:darkenedImage];
-</code>
+
 
 Has anyone seen this sort of problem before. Does anyone see problems with this code or have suggestions on where I should look to fix the problem?
 
@@ -35,4 +35,4 @@ Thanks,
 Jesse
 
 ----
-''Does the problem only show up on the darkened image (i.e., what happens if you skip the "darkening" code)? Does the white area go away if you resize the window? If you minimize and maximize the window?''
+*Does the problem only show up on the darkened image (i.e., what happens if you skip the "darkening" code)? Does the white area go away if you resize the window? If you minimize and maximize the window?*

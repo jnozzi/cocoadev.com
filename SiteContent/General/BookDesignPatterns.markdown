@@ -21,11 +21,11 @@ Design Pattern Tutorials [http://www.cs.wustl.edu/~schmidt/tutorials-patterns.ht
 
 Is this book up to date enough that it would help the reader write different types of object oriented programs specifically using Objective-C and Cocoa?
 
-Absolutely. This book is well-written and a good foundation. Most recent books on the topic just add to it, and refer to it constantly. Specifically, if you're writing object-oriented programs, you need to read this book. -- [[MichaelMcCracken]]
+Absolutely. This book is well-written and a good foundation. Most recent books on the topic just add to it, and refer to it constantly. Specifically, if you're writing object-oriented programs, you need to read this book. -- General/MichaelMcCracken
 
-''Additionally I am quite sure the authors looked toward [[ObjectiveC]] and [[NeXTStep]] when they wrote the book. Remember that in 2009, Cocoa is 20+ years old.  Cocoa is the evolution of [[NeXTstep]] which shipped commercially in 1988.''
+*Additionally I am quite sure the authors looked toward General/ObjectiveC and General/NeXTStep when they wrote the book. Remember that in 2009, Cocoa is 20+ years old.  Cocoa is the evolution of General/NeXTstep which shipped commercially in 1988.*
 
-Moreover the book uses examples written in [[SmallTalk]] (as well as C++), which is very close to [[ObjC]].
+Moreover the book uses examples written in General/SmallTalk (as well as C++), which is very close to General/ObjC.
 
 ----
 

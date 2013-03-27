@@ -1,4 +1,4 @@
-From a [[MacOsxDev]] post by Torrey T. Lyons:
+From a General/MacOsxDev post by Torrey T. Lyons:
 
 If a Cocoa application does not have a Window menu it will 
 give the "Application not responding" message in its pop up menu in 

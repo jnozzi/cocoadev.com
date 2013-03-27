@@ -1,27 +1,27 @@
 
 
 
-*'''Title:'''
+***Title:**
 Hacking Mac OS X Tiger
-*'''Author:'''
+***Author:**
 Scott Knaster
-*'''Publisher:'''
+***Publisher:**
 Addison-Wesley
-*'''Release Date:'''
+***Release Date:**
 Jul6 2005
-*'''List Price:'''
+***List Price:**
 $19.99
-*'''ISBN:'''
+***ISBN:**
 076458345X
 
 
 ----
 
-*'''Amazon Link:'''
+***Amazon Link:**
 http://www.amazon.com/exec/obidos/tg/detail/-/076458345X/
-*'''Publisher Link'''
+***Publisher Link**
 Addison-Wesley
-*'''Authors' Link'''
+***Authors' Link**
 Source code:  http://foodisworse.typepad.com/this/2005/07/sources_for_the.html
 
 
@@ -36,11 +36,11 @@ Book Description (from Amazon page)
 * Speed it up, lock it down, or pull back the curtains-readers get the scoop on disabling unneeded devices and creating options to make their computers run faster, tweaking services and hiding user accounts to make their computer more secure, and using the Unix command to unlock hidden settings.
 
 
-''Using '''the''' Unix command, eh? Wow. Are the Unices becoming monolithic like Windows?'' ;-)
+*Using **the** Unix command, eh? Wow. Are the Unices becoming monolithic like Windows?* ;-)
 
 I'm sure it means the Unix command line. But that would be cool. "The Unix command does everything, if you give it the right flags"
 
-<code>
+    
 % Unix
 -bash: Unix: command not found
 % Unix -help
@@ -49,4 +49,3 @@ I'm sure it means the Unix command line. But that would be cool. "The Unix comma
 -bash: Unix: command not found
 % exit
 [process terminated]
-</code>

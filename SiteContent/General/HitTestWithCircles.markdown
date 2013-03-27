@@ -24,13 +24,13 @@ Two circles intersect if the distance between their centers is less than the sum
 
 The above is absolutely correct.
 
-That said, if you're interested in seeing an implementation, see [[NeHE]] lesson 30 for a fairly straightforward implementation which also supports arbitrary rectangular solids and planes. 
+That said, if you're interested in seeing an implementation, see General/NeHE lesson 30 for a fairly straightforward implementation which also supports arbitrary rectangular solids and planes. 
 
 http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=30
 
 If you're concerned about physics, check out the Open Dynamics Engine. It does spheres, as well as cylinders, and boxes with inertia tensors and realistic physical response. For vanilla collision detection but no physics, it also supports rays, infinite planes, and arbitrary polygon soups. http://www.ode.org
 
---[[ShamylZakariya]]
+--General/ShamylZakariya
 
 ----
 
@@ -38,18 +38,18 @@ I think you all gave me some useful tips. I still have some doubts however. I re
 http://www.gamedev.net/reference/articles/article1026.asp
 
 At the beginning, it reads :
-<code>
+    
 // Inputs: plane origin, plane normal, ray origin ray vector.
 // NOTE: both vectors are assumed to be normalized
 
 double intersect(Point pOrigin, Vector pNormal, Point rOrigin, Vector rVector)
 {
-   double d = -(planeNormal '' planeOrigin);
-   double numer = planeNormal '' rayOrigin + d;
-   double denom = planeNormal '' rayVector;
+   double d = -(planeNormal * planeOrigin);
+   double numer = planeNormal * rayOrigin + d;
+   double denom = planeNormal * rayVector;
    return -(numer / denom);
 }
-</code>
+
 I'm not sure what exactly is a normalized vector. And I'm wondering how is a vector represented in programming terms. A struct, I guess ?
 
 -- Trax
@@ -60,7 +60,7 @@ A normalized vector is one which has been scaled so that it's length one.  If v 
 
 Plus, that code seems to be for a plane and a ray, not a plane and a sphere.
 
-Lastly, that looks like C++, so a Vector and a Point are objects.  And dang if that isn't a good argument against abusive operator overloading.  Vector''Vector?  Dot product, cross product or other?  Vector''Point?  I don't even know.  
+Lastly, that looks like C++, so a Vector and a Point are objects.  And dang if that isn't a good argument against abusive operator overloading.  Vector*Vector?  Dot product, cross product or other?  Vector*Point?  I don't even know.  
 
 Someone else can come and say why I'm being silly.
 
@@ -68,4 +68,4 @@ Someone else can come and say why I'm being silly.
 
 A point and a vector can be looked at as the same thing. (Think of a point as just the vector from the origin to the point.) So doing point cross vector or point dot vector makes perfect sense. Since the results are being saved into scalars, it's clearly a dot product.
 
-Still, I had to actually ''look'' and see what the result type was, so I agree that it's a bad use of overloading.
+Still, I had to actually *look* and see what the result type was, so I agree that it's a bad use of overloading.

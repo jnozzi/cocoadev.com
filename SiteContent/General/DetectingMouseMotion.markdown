@@ -1,13 +1,13 @@
 
 I was working on a program like Pixen, but just to find the mouse's X and Y. I wrote this code to detect mouse motion:
-<code>
+    
 
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[MouseMovement]] : [[NSObject]] {
-	[[NSPoint]] oldPos;
-	[[NSThread]] ''sensorThread;
+@interface General/MouseMovement : General/NSObject {
+	General/NSPoint oldPos;
+	General/NSThread *sensorThread;
 	SEL targetCallSelector;
 	id target;
 }
@@ -19,16 +19,16 @@ I was working on a program like Pixen, but just to find the mouse's X and Y. I w
 - (void)stopScanning;
 @end
 
-@interface [[MouseMovement]]()
+@interface General/MouseMovement()
 - (void)mouseSensing: (id)param;
 @end
 
 
-@implementation [[MouseMovement]]
+@implementation General/MouseMovement
 
 - (id)init
 {
-	[self initWithTarget: nil selector: [[NSSelectorFromString]](@"")];
+	[self initWithTarget: nil selector: General/NSSelectorFromString(@"")];
 	return self;
 }
 
@@ -37,7 +37,7 @@ I was working on a program like Pixen, but just to find the mouse's X and Y. I w
 	[super init];
 	target = tgtObj;
 	targetCallSelector = tgtSel;
-	sensorThread = [[[[NSThread]] alloc] initWithTarget: self selector: @selector(mouseSensing:) object: nil];
+	sensorThread = General/[[NSThread alloc] initWithTarget: self selector: @selector(mouseSensing:) object: nil];
 	return self;
 }
 
@@ -69,15 +69,15 @@ I was working on a program like Pixen, but just to find the mouse's X and Y. I w
 {
 	[sensorThread cancel];
 	[sensorThread release];
-	sensorThread = [[[[NSThread]] alloc] initWithTarget: self selector: @selector(mouseSensing:) object: nil];
+	sensorThread = General/[[NSThread alloc] initWithTarget: self selector: @selector(mouseSensing:) object: nil];
 }
 
 - (void)mouseSensing: (id)param
 {
-	[[NSAutoreleasePool]] ''threadPool = [[[[NSAutoreleasePool]] alloc] init];
-	oldPos = [[[NSEvent]] mouseLocation];
+	General/NSAutoreleasePool *threadPool = General/[[NSAutoreleasePool alloc] init];
+	oldPos = General/[NSEvent mouseLocation];
 	while(![sensorThread isCancelled]) {
-		[[NSPoint]] mousePos = [[[NSEvent]] mouseLocation];
+		General/NSPoint mousePos = General/[NSEvent mouseLocation];
 		if((mousePos.x != oldPos.x) || (mousePos.y != oldPos.y)) { // If mouse moved
 			// Post selector
 			[target performSelector: targetCallSelector];
@@ -90,4 +90,3 @@ I was working on a program like Pixen, but just to find the mouse's X and Y. I w
 }
 
 @end
-</code>

@@ -6,52 +6,52 @@ I just discovered an interesting site at [http://ambrai.com] where they've broug
 The Currency Tutorial (45 lines) from their tutorials page [http://ambrai.com/smalltalk/tutorials/tutorial1/index.html] looks and
 behaves just like a native application.  Unfortunately this is the only tutorial on their site :(
 
-<code>
+    
 exchangeRate := 1.33.
 
-(window := [[MacWindowFrame]] new)
+(window := General/MacWindowFrame new)
   text: 'Currency Converter';
   position: 20@60;
   extent: 300@160.
 
-(amountLabel := [[MacTextLabel]] new)
+(amountLabel := General/MacTextLabel new)
   text: 'Amount to convert:';
   extent: 100@15.
 
-(amountField := [[MacTextField]] new)
+(amountField := General/MacTextField new)
   extent: 100@15.
 
-(resultLabel := [[MacTextLabel]] new)
+(resultLabel := General/MacTextLabel new)
   text: 'Result:';
   extent: 100@15.
 
-(resultField := [[MacTextField]] new)
+(resultField := General/MacTextField new)
   disable;
   extent: 100@15.
 
-(convertButton := [[MacPushButton]] new)
+(convertButton := General/MacPushButton new)
   text: 'Convert';
   beDefault;
   extent: 100@20;
   when: #clicked evaluate: [
     resultField text: (
-      amountField text asNumber '' exchangeRate
+      amountField text asNumber * exchangeRate
     ) asString].
 
 window
-  layout: [[LinearLayout]] new beVertical;
+  layout: General/LinearLayout new beVertical;
   addControl: amountLabel;
   addControl: amountField;
   addControl: resultLabel;
   addControl: resultField;
   addControl: convertButton layoutConstraints: (
-    [[LinearLayoutConstraints]] new
+    General/LinearLayoutConstraints new
       anchorRight;
       stretchHorizontally: false;
       yourself).
 
 window open
-</code>
+
 
 ----
 
@@ -63,9 +63,9 @@ I found the IDE lacking in many areas. Most of all, where are the preferences? T
 
 Over all, the IDE seems like a good first beta. There appears to be a lot under the hood and they may just need to beef up the UI with some more features. I look forward to playing around with Smalltalk in the future and seeing how this tool grows.
 
--- [[RyanBates]]
+-- General/RyanBates
 
-''BTW, it is possible to change the font by copying and pasting rich text from [[TextEdit]], however, it doesn't appear to keep the attributes when saving so it's not all that useful.''
+*BTW, it is possible to change the font by copying and pasting rich text from General/TextEdit, however, it doesn't appear to keep the attributes when saving so it's not all that useful.*
 
 ----
 

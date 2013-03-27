@@ -1,1 +1,1 @@
-Plural of [[OCBlock]].
+Plural of General/OCBlock.

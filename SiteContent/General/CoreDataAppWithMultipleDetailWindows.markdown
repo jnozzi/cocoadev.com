@@ -1,4 +1,4 @@
-I have an app created with [[CoreData]] that presents two entities (classroom and student), one-to-many and one-to-one, respectively.
+I have an app created with General/CoreData that presents two entities (classroom and student), one-to-many and one-to-one, respectively.
 
 A single window presents a list with classrooms and, instead of using the traditional model of showing all the editing controls on the same window, I want to use separate windows - ONE FOR EACH ITEM I DOUBLE-CLICK.
 
@@ -6,7 +6,7 @@ That would be like the Mail.app interface, where you have individual mail messag
 
 I didn't want to start with a document-based app template because I don't want each document to be individual, I want the information to be centralized in the way Mail and iTunes work.
 
-One of my approaches was to create a subclass of [[NSWindowController]] and create a method at the application delegate to load a window from an external NIB when the user double-clicks the item on the list. But I'm having some trouble with this approach (haven't been able to use bindings for that, and the window loads but does not become key no matter what method I've been using).
+One of my approaches was to create a subclass of General/NSWindowController and create a method at the application delegate to load a window from an external NIB when the user double-clicks the item on the list. But I'm having some trouble with this approach (haven't been able to use bindings for that, and the window loads but does not become key no matter what method I've been using).
 
 Any idea of what would be the best approach here?
 
@@ -28,22 +28,22 @@ Finally, in future, consider posting such question in the Forums (linked above).
 
 Hey, thanks for the reply, and sorry for the delay in answering. Definitively will use the forums in the future.
 
-That's exactly what I did. I have the [[WindowController]] class defined in Xcode and in IB, the [[WindowController]] set as File's Owner, and the following code from the app's delegate (using a delegate for now to try to keep it simple):
+That's exactly what I did. I have the General/WindowController class defined in Xcode and in IB, the General/WindowController set as File's Owner, and the following code from the app's delegate (using a delegate for now to try to keep it simple):
 
-<code>
-- ([[IBAction]])loadDetailWindow:sender {
-	theWindowController = [[[[DetailWindowController]] alloc] initWithWindowNibName:@"[[DetailWindow]]"];
-	[[NSWindow]] ''theWindow = [theWindowController window];
+    
+- (General/IBAction)loadDetailWindow:sender {
+	theWindowController = General/[[DetailWindowController alloc] initWithWindowNibName:@"General/DetailWindow"];
+	General/NSWindow *theWindow = [theWindowController window];
 	[theWindow makeKeyAndOrderFront:self];
 	if ([theWindow isKeyWindow]) {
-		[[NSLog]](@"Yep");
+		General/NSLog(@"Yep");
 	} else {
-		[[NSLog]](@"Nope");
+		General/NSLog(@"Nope");
 	}
 }
-</code>
 
-No matter how I rewrite the code (ex: , tried using [[NSApp]] activateIgnoringOtherApps:YES , or loading the nib at the [[WindowController]]'s constructor), the window does not become key (the code above will log "Nope").
+
+No matter how I rewrite the code (ex: , tried using General/NSApp activateIgnoringOtherApps:YES , or loading the nib at the General/WindowController's constructor), the window does not become key (the code above will log "Nope").
 
 Any clue?
 

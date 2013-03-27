@@ -5,11 +5,11 @@ A few related questions:
 
 - Would it be possible to make a framework that could be added to a screensaver source base to make it compile as a visualizer?
 
-- Has anyone made a framework which could be added to a screensaver project (similar to [[SaverLab]] I'd imagine) that would make it compile as an app that would simply run the saver code, for debugging purposes (or "incremental source modification"), and then just removed when you want to compile the final saver bundle?
+- Has anyone made a framework which could be added to a screensaver project (similar to General/SaverLab I'd imagine) that would make it compile as an app that would simply run the saver code, for debugging purposes (or "incremental source modification"), and then just removed when you want to compile the final saver bundle?
 
 ----
 
-I would imagine you'd create a plug-in for iTunes just like any other visualizer plugin that 'gets' the data. Using a bit of interprocess communication, the screen saver can pull the data if it's available. Hell, using Rendezvous, you could conceivably pull visualizer data from somebody ''else's'' iTunes on the network (provided they've got the plugin and iTunes is running and the service is shared, etc ...).
+I would imagine you'd create a plug-in for iTunes just like any other visualizer plugin that 'gets' the data. Using a bit of interprocess communication, the screen saver can pull the data if it's available. Hell, using Rendezvous, you could conceivably pull visualizer data from somebody *else's* iTunes on the network (provided they've got the plugin and iTunes is running and the service is shared, etc ...).
 
 ----
 

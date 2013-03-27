@@ -1,14 +1,14 @@
-Having a (working) [[NSArrayController]] that feeds an [[NSTableView]], I'd like to have a menu item, that is enabled only when something is selected in that [[NSTableView]] / [[NSArrayController]].
+Having a (working) General/NSArrayController that feeds an General/NSTableView, I'd like to have a menu item, that is enabled only when something is selected in that General/NSTableView / General/NSArrayController.
 
-I fire up IB and chose the [[NSMenuItem]]. Under bindings I choose 'enabled':
+I fire up IB and chose the General/NSMenuItem. Under bindings I choose 'enabled':
 
-* Bind to: my [[NSArrayController]]
+* Bind to: my General/NSArrayController
 * Controller Key: selectedObjects
 * Model Key Path: I have no idea, what model key I should use for this one
-* Value Transformer ([[NSValueTransformer]]): Has to be [[NSIsNotNill]]
+* Value Transformer (General/NSValueTransformer): Has to be General/NSIsNotNill
 
 
-Doesn't work. Mainly because I have no idea, what the '''Model Key Path''' should be.
+Doesn't work. Mainly because I have no idea, what the **Model Key Path** should be.
 
 /Daniel
 
@@ -17,25 +17,25 @@ Doesn't work. Mainly because I have no idea, what the '''Model Key Path''' shoul
 Try This:
 
 
-* Bind to: my [[NSArrayController]]
+* Bind to: my General/NSArrayController
 * Controller Key: selectionIndexes
 * Model Key Path: count
-* Value Transformer ([[NSValueTransformer]]): Nothing (blank)
+* Value Transformer (General/NSValueTransformer): Nothing (blank)
 
 
-This works because the selectionIndexes is an array and <code>count</code> returns the number of selected items in that array; selectedObjects should work also because it is an array, but this might be a little faster (?). If the count is zero then "enabled" will be set to false (zero). That is why you don't need a value transformer. Still, unless it is a simple application, you may want to handle all the menu activations through the code using the <code>validateMenuItem:</code> method. Hope that helps.
+This works because the selectionIndexes is an array and     count returns the number of selected items in that array; selectedObjects should work also because it is an array, but this might be a little faster (?). If the count is zero then "enabled" will be set to false (zero). That is why you don't need a value transformer. Still, unless it is a simple application, you may want to handle all the menu activations through the code using the     validateMenuItem: method. Hope that helps.
 
--- [[RyanBates]]
+-- General/RyanBates
 
 ----
 
-Yes, I think I�ll use  <code>validateMenuItem:</code> mostly because I can�t have this binding to work:
+Yes, I think I�ll use      validateMenuItem: mostly because I can�t have this binding to work:
 
 
 * Bind to: myNSArrayController
 * Controller Key: canSelectPrevious
 * Model Key Path: Nothing (blank)
-* Value Transformer ([[NSValueTransformer]]): Nothing (blank)
+* Value Transformer (General/NSValueTransformer): Nothing (blank)
 
 
 This works perfectly for the enabled binding of my Go Back button, but not for the Go Back menu!!

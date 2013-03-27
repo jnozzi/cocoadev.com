@@ -7,7 +7,7 @@
 //To disable default expansion tooltip in Leopard.
 
 
-- (BOOL)tableView:([[NSTableView]] '')tableView shouldShowCellExpansionForTableColumn:([[NSTableColumn]] '')tableColumn row:(int)row
+- (BOOL)tableView:(General/NSTableView *)tableView shouldShowCellExpansionForTableColumn:(General/NSTableColumn *)tableColumn row:(int)row
 
 {
         return FALSE;

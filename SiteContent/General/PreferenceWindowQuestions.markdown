@@ -1,8 +1,8 @@
 
 
-Ok so I have it "working" somewhat. I have 3 items in the toolbar. They have actions associated with them. I have an [[NSWindow]] being controlled by an [[NSWindowController]] (where the actions are and toolbar creation). I have 3 views. Clicking on the appropriate item results in displaying the proper view no problem. However. I wanted to auto-resize the window to fit the contents like iTunes and all those other great apps.
+Ok so I have it "working" somewhat. I have 3 items in the toolbar. They have actions associated with them. I have an General/NSWindow being controlled by an General/NSWindowController (where the actions are and toolbar creation). I have 3 views. Clicking on the appropriate item results in displaying the proper view no problem. However. I wanted to auto-resize the window to fit the contents like iTunes and all those other great apps.
 
-The problem comes if I just provide the frame for the view on the setFrame:display:animate message it moves the window to the bottom left corner of the screen. I want the window to remain in the same location. So I looked at the [[NSWindow]] page on here and there's a nice "resizeWindowOnSpotWithRect" message... no problem, however it seems to make my window smaller and smaller until it disappears ;) not cool.
+The problem comes if I just provide the frame for the view on the setFrame:display:animate message it moves the window to the bottom left corner of the screen. I want the window to remain in the same location. So I looked at the General/NSWindow page on here and there's a nice "resizeWindowOnSpotWithRect" message... no problem, however it seems to make my window smaller and smaller until it disappears ;) not cool.
 
 I supply the view i want to display as the aRect in that function. 
 
@@ -16,13 +16,13 @@ Ok figured out the selected items part. Now just gotta figure out what's so scre
 
 Here is the code I made for my new unreleased yet application:
 
-<code>
-- (void) slidePanelToSize:([[NSSize]])newSize {
-	[[NSPanel]] ''panel = [self window];
-	[[NSRect]] panelFrame = [panel frame];
-	float additionalHeight = panelFrame.size.height-[[panel contentView] frame].size.height;
+    
+- (void) slidePanelToSize:(General/NSSize)newSize {
+	General/NSPanel *panel = [self window];
+	General/NSRect panelFrame = [panel frame];
+	float additionalHeight = panelFrame.size.height-General/panel contentView] frame].size.height;
 	
-	[[NSRect]] newFrame = [[NSZeroRect]];
+	[[NSRect newFrame = General/NSZeroRect;
 	
 	float heightDiff = newSize.height + additionalHeight - panelFrame.size.height;
 	float widthDiff = newSize.width - panelFrame.size.width;	
@@ -33,52 +33,52 @@ Here is the code I made for my new unreleased yet application:
 	
 	[panel setFrame:newFrame display:YES animate:YES];
 }
-</code>
+
 
 It will resize your panel with top side fixed in place. Good luck.
 
--- [[DenisGryzlov]]
+-- General/DenisGryzlov
 
 ----
 
-Here's my take on it. This code will resize the window based on the [[NSView]] object passed in, which is then placed inside an [[NSBox]] (you can use anything really) on the window. Using the [[NSBox]] lets you put additional objects (like a "Save" button) on the window along with the view objects you're switching around; if you don't need to do this, you might as well just use the window's contentView instead. Finally, this snippet also moves the window's origin if the resized portion lies outside of the screen.
+Here's my take on it. This code will resize the window based on the General/NSView object passed in, which is then placed inside an General/NSBox (you can use anything really) on the window. Using the General/NSBox lets you put additional objects (like a "Save" button) on the window along with the view objects you're switching around; if you don't need to do this, you might as well just use the window's contentView instead. Finally, this snippet also moves the window's origin if the resized portion lies outside of the screen.
 
-<code>
-- (void)_setMainView:([[NSView]] '')aView;
+    
+- (void)_setMainView:(General/NSView *)aView;
 {
 	if ( aView == [viewContainer contentView] )
 		return;
 	
-	[[NSWindow]] ''window = [self window];
-	[[NSRect]] windowFrame = [window frame];
-	float extras = [[NSHeight]]( windowFrame ) - [[NSHeight]]( [[viewContainer contentView] frame] );
-	float height = [[NSHeight]]( [aView frame] ) + extras;
+	General/NSWindow *window = [self window];
+	General/NSRect windowFrame = [window frame];
+	float extras = General/NSHeight( windowFrame ) - General/NSHeight( General/viewContainer contentView] frame] );
+	float height = [[NSHeight( [aView frame] ) + extras;
 	
 	// Offset the yPos and set the height to fit the new view.
 	
-	windowFrame.origin.y += [[NSHeight]]( windowFrame ) - height;
+	windowFrame.origin.y += General/NSHeight( windowFrame ) - height;
 	windowFrame.size.height = height;
 	
 	// Insert a temporary view during the frame change, or the old one will be
 	// resized by the view container.
 	
-	[viewContainer setContentView:[[[[[NSView]] alloc] initWithFrame:[[NSZeroRect]]] autorelease]];
+	[viewContainer setContentView:General/[[[NSView alloc] initWithFrame:General/NSZeroRect] autorelease]];
 	[window setFrame:windowFrame display:YES animate:YES];
 	[viewContainer setContentView:aView];
 	
 	// Move the window if it is outside the screen's frame.
 	
-	if ( [[NSMinY]]( windowFrame ) < 0.0f )
+	if ( General/NSMinY( windowFrame ) < 0.0f )
 	{
 		windowFrame.origin.y = 0.0f;
 		[window setFrame:windowFrame display:YES animate:NO];
 	}
 }
-</code>
+
 
 I find it useful to hook my toolbar items to a single method, which looks at the selected toolbar item and sets the window's view and title accordingly.
 
--- [[MarcCharbonneau]]
+-- General/MarcCharbonneau
 
 
 ----

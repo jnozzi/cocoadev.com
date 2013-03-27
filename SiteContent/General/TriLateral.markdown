@@ -1,16 +1,16 @@
 
 
-[[TriLateral]] Systems develops ecclectic software.  With the impending release of Montever� (theft retrieval) and Sinon� (malware detection), we've moved into the consumer security space.
+General/TriLateral Systems develops ecclectic software.  With the impending release of Montever� (theft retrieval) and Sinon� (malware detection), we've moved into the consumer security space.
 
 For more information visit.  
 http://www.trilateralsystems.com
 http://www.montever.com
 
-'''Other [[TriLateral]] Systems Projects'''
+**Other General/TriLateral Systems Projects**
 
-*[[MacBetaGroup]] - news site - http://www.macbetagroup.com
+*General/MacBetaGroup - news site - http://www.macbetagroup.com
 
 
 ----
 
-[[VirtuFrame]] 2.3 was released on November 1, 2004.  The application is now free.
+General/VirtuFrame 2.3 was released on November 1, 2004.  The application is now free.

@@ -1,1 +1,1 @@
-Plural of [[CFTypeRef]].
+Plural of General/CFTypeRef.

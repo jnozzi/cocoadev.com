@@ -6,9 +6,9 @@ ld: multiple definitions of symbol .objc_class_name_ClassName
 
 ----
 
-It means the same [[ObjC]] class is being defined in two .m files. You can't do that. Perhaps you put @implementation in a header file? -- [[MikeTrent]]
+It means the same General/ObjC class is being defined in two .m files. You can't do that. Perhaps you put @implementation in a header file? -- General/MikeTrent
 
-Or loaded the .m file from a header file; use @class in headers wherever possible! -- [[RobRix]]
+Or loaded the .m file from a header file; use @class in headers wherever possible! -- General/RobRix
 
 ----
 

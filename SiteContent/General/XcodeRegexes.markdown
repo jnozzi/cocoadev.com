@@ -25,9 +25,9 @@ Thanks for the link. I searched Google, but most pages talk about the Smart Grou
 
 ----
 
-Also wanted to say thanks for the link. I never heard of ICU before. How does it compare to the other commonly mentioned regular expression libraries (e.g. PCRE, [[MOKit]], [[OgreKit]], Omni Frameworks)?
+Also wanted to say thanks for the link. I never heard of ICU before. How does it compare to the other commonly mentioned regular expression libraries (e.g. PCRE, General/MOKit, General/OgreKit, Omni Frameworks)?
 
--[[EricWang]]
+-General/EricWang
 
 ----
 

@@ -4,43 +4,43 @@ OK I'm stumped.  I really try to go through the documentation before I post dumb
 
 I'm just going to an example in the Coca Programming for OS X (1st ed.) book. I'm attempting to have an A<nowiki/>ppController object present an open panel as a sheet and let me choose an image.  So I have the following code:
 
-<code>
-- ([[IBAction]])open:(id)sender
+    
+- (General/IBAction)open:(id)sender
 {
-    [[NSOpenPanel]] ''openPanel = [[[NSOpenPanel]] openPanel];
+    General/NSOpenPanel *openPanel = General/[NSOpenPanel openPanel];
     [openPanel beginSheetForDirectory:nil
 				 file:nil
-				types:[[[NSImage]] imageFileTypes]
+				types:General/[NSImage imageFileTypes]
 		       modalForWindow:[stretchView window]
 			modalDelegate:self
 		       didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
 			  contextInfo:nil];
 }
 
-- (void) openPanelDidEnd:([[NSOpenPanel]] '')openPanel
+- (void) openPanelDidEnd:(General/NSOpenPanel *)openPanel
 	      returnCode:(int)returnCode
-	     cintextInfo:(void '')x
+	     cintextInfo:(void *)x
 {
-    [[NSString]] ''path;
-    [[NSImage]] ''image;
-    if(returnCode == [[NSOKButton]])
+    General/NSString *path;
+    General/NSImage *image;
+    if(returnCode == General/NSOKButton)
     {
 	path = [openPanel filename];
-	image = [[[[NSImage]] alloc] initWithContentsOfFile:path];
+	image = General/[[NSImage alloc] initWithContentsOfFile:path];
 	[stretchView setImage:image];
 	[image release];
     }
 }
-</code>
+
 
 Now the panel is presented and allows me to select am image just fine, but nothing happens after that.  I've placed break points on almost every line in those two methods, and in the [s<nowiki/>tretchView s<nowiki/>etImage:image] method.  The breakpoints in the open method show me that it is being called (obviously if the sheet is displayed) but no other break points are hit.
 
-Is something wrong with my %%BEGINCODESTYLE%%didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)%%ENDCODESTYLE%% line?
+Is something wrong with my <code>didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)</code> line?
 
 Like I said, I've checked the documentation & it just doesn't point me to what the problem is.  Can any of you guys maybe help clear it up?
 
 Thanks a lot
-[[CliffPruitt]]
+General/CliffPruitt
 
 ----
 
@@ -54,7 +54,7 @@ Ugh...  yes it was misspelled in the source.  I thought there might be a misspel
 
 Thanks for helping me catch it.  Sorry for wasting screen space on something so dumb. :-)
 
-''I only have 1228800 pixels and you wasted 1179140 of them! I can never use those pixels again! Thanks alot man! :p''
+*I only have 1228800 pixels and you wasted 1179140 of them! I can never use those pixels again! Thanks alot man! :p*
 
 ----
 

@@ -4,4 +4,4 @@ DSG
 
 ----
 
-Not directly, no. Try not to think of [[CocoaBindings]] as a 'replacement for code'. There are still a lot of things you have to write your own code for.
+Not directly, no. Try not to think of General/CocoaBindings as a 'replacement for code'. There are still a lot of things you have to write your own code for.

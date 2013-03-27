@@ -1,6 +1,6 @@
 
 
-I like baking [[OpenGL]], Carbon, and Quicktime into Cocoa pies. They taste great.
+I like baking General/OpenGL, Carbon, and Quicktime into Cocoa pies. They taste great.
 
 
 *home: http://www.variableaspect.com
@@ -11,4 +11,4 @@ I like baking [[OpenGL]], Carbon, and Quicktime into Cocoa pies. They taste grea
 
 Dump
 
-*[[IPhotoExporter]]
+*General/IPhotoExporter

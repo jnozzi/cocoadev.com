@@ -1,22 +1,22 @@
 
 
 Hi,
-I'm trying to get a screensaver view loaded from a bundle to display in the window of my [[NSPreferencePane]]. With this code I get a black box:
-<code>
+I'm trying to get a screensaver view loaded from a bundle to display in the window of my General/NSPreferencePane. With this code I get a black box:
+    
 -(void) didSelect
 {
-	[[SSBundle]] = [[[NSBundle]] bundleWithPath:@"/Users/josephduchesne/Library/Screen Savers/uDG Screensaver.saver"];
-       [[NSLog]](@"Bundle Info\n%@",[ [ [[SSBundle]] infoDictionary ] description ] );
-	Class [[SSBundleClass]]=[ [[SSBundle]] principalClass ];
-	newView = [[[[SSBundleClass]] alloc] initWithFrame:[[NSMakeRect]](251,111,320,240) isPreview:YES];
-	[[self mainView] addSubview:newView];
+	General/SSBundle = General/[NSBundle bundleWithPath:@"/Users/josephduchesne/Library/Screen Savers/uDG Screensaver.saver"];
+       General/NSLog(@"Bundle Info\n%@",[ [ General/SSBundle infoDictionary ] description ] );
+	Class General/SSBundleClass=[ General/SSBundle principalClass ];
+	newView = General/[[SSBundleClass alloc] initWithFrame:General/NSMakeRect(251,111,320,240) isPreview:YES];
+	General/self mainView] addSubview:newView];
 	[newView startAnimation];
 }
-</code>
+
 
 but as soon as I call [newView animateOneFrame]; I get the following errors:
 
-''''' Assertion failure in -[uDGScreenSaver lockFocus], [[AppKit]].subproj/[[NSView]].m:3248
+*** Assertion failure in -[uDGScreenSaver lockFocus], [[AppKit.subproj/General/NSView.m:3248
 
 lockFocus sent to a view whose window is deferred and does not yet have a corresponding platform window
 

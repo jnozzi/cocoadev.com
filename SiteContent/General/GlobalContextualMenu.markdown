@@ -4,10 +4,10 @@ I want to write a global contextual menu (well, one that works in the finder at 
 contextual menus are used much to seldom in the finder, I think.
 
 
-[[TheoHultberg]]/Iconara
+General/TheoHultberg/Iconara
 
 ----
 
-See Menus.h for the API (it's [[CFPlugin]]-based). Then see http://developer.apple.com/samplecode/Sample_Code/Human_Interface_Toolbox/[[SampleCMPlugIn]].htm for some sample code :)
+See Menus.h for the API (it's General/CFPlugin-based). Then see http://developer.apple.com/samplecode/Sample_Code/Human_Interface_Toolbox/General/SampleCMPlugIn.htm for some sample code :)
 
--- [[FinlayDobbie]]
+-- General/FinlayDobbie

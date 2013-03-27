@@ -1,9 +1,9 @@
-Is it possible to check and see if the user actively selecting text in an [[NSTextView]], as in they are in the process of dragging?
+Is it possible to check and see if the user actively selecting text in an General/NSTextView, as in they are in the process of dragging?
 
 ----
 
-implement <code>textViewDidChangeSelection:([[NSNotification]] '')aNotification</code> in your textView's delegate or register for <code>[[NSTextViewDidChangeSelectionNotification]]</code>
+implement     textViewDidChangeSelection:(General/NSNotification *)aNotification in your textView's delegate or register for     General/NSTextViewDidChangeSelectionNotification
 
 ----
 
-Those methods only call your method after the mouse button has been released, not while the mouse is being dragged.  I believe your only option if you want 'live' selection tracking in a text view is to subclass [[NSTextView]] and override the <code>-selectionRangeForProposedRange:granularity:</code> method.  -- Bo
+Those methods only call your method after the mouse button has been released, not while the mouse is being dragged.  I believe your only option if you want 'live' selection tracking in a text view is to subclass General/NSTextView and override the     -selectionRangeForProposedRange:granularity: method.  -- Bo

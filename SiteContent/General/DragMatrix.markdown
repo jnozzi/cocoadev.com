@@ -1,10 +1,10 @@
 I needed a matrix of image views that would let the user change the order of the image in it using drag and drop.  Thus I wrote the following class.  When the user drags an image a little insertion bar is draw to give them an indication of where the insertion will occur.
 
--- [[SaileshAgrawal]]
+-- General/SaileshAgrawal
 
 ----
-'''[[DragMatrix]].h'''
-<code>
+**General/DragMatrix.h**
+    
  /****************************************************************
   * DragMatrix
   *
@@ -36,10 +36,10 @@ I needed a matrix of image views that would let the user change the order of the
  - (void) setDownEvent:(NSEvent *)event;
  - (void) clearDragDestinationMembers;
  @end
-</code>
+
 ----
-'''[[DragMatrix]].m'''
-<code>
+**General/DragMatrix.m**
+    
  #import "DragMatrix.h"
  
  float INS_WIDTH = 2;
@@ -94,7 +94,7 @@ I needed a matrix of image views that would let the user change the order of the
  /****************************************************************
  * Function - clearDragDestinationMembers
  *
- * Resets all member variables used by [[DragDestination]] functions.
+ * Resets all member variables used by General/DragDestination functions.
  ****************************************************************/
  - (void) clearDragDestinationMembers {
    shouldDraw = FALSE;
@@ -103,7 +103,7 @@ I needed a matrix of image views that would let the user change the order of the
  }
  
  /****************************************************************
- * Function - draggingEntered (implements [[NSDraggingDestination]])
+ * Function - draggingEntered (implements General/NSDraggingDestination)
  *
  * Called when the user drags an object on top of us. The return value tells
  * the caller if we'll accept the object.
@@ -118,7 +118,7 @@ I needed a matrix of image views that would let the user change the order of the
  }
  
  /****************************************************************
- * Function - performDragOperation (implements [[NSDraggingDestination]])
+ * Function - performDragOperation (implements General/NSDraggingDestination)
  *
  * Called after the user releases the drag object.  Here we perform the
  * result of the dragging.
@@ -140,7 +140,7 @@ I needed a matrix of image views that would let the user change the order of the
      objects[2] = [NSNumber numberWithInt:dstRow];
      objects[3] = [NSNumber numberWithInt:dstCol];
      dict = [NSDictionary dictionaryWithObjects:objects forKeys:keys count:4];
-     [nc postNotificationName:@"[[DragMatrixImageMoved]]" object:self userInfo:dict];
+     [nc postNotificationName:@"General/DragMatrixImageMoved" object:self userInfo:dict];
    }
    
    [self clearDragDestinationMembers];
@@ -150,7 +150,7 @@ I needed a matrix of image views that would let the user change the order of the
  }
  
  /****************************************************************
- * Function - draggingExited (implements [[NSDraggingDestination]])
+ * Function - draggingExited (implements General/NSDraggingDestination)
  *
  * Invoked when the dragged image exits the destination's bounds rectangle.
  * We use this to erase the insertion pointer from the view.
@@ -161,7 +161,7 @@ I needed a matrix of image views that would let the user change the order of the
  }
  
  /****************************************************************
- * Function - draggingUpdated (implements [[NSDraggingDestination]])
+ * Function - draggingUpdated (implements General/NSDraggingDestination)
  *
  * Invoked periodically as the image is held within the destination.
  * The messages continue until the image is either released or dragged out of
@@ -247,7 +247,7 @@ I needed a matrix of image views that would let the user change the order of the
      NSRect rect;
      
      shouldDraw = TRUE;
-     [[NSColor blackColor] set];
+     General/NSColor blackColor] set];
      [NSBezierPath fillRect:newDrawRect];
      
      rect.size.width = CIRCLE_SIZE;
@@ -289,7 +289,7 @@ I needed a matrix of image views that would let the user change the order of the
    
    // we want to make the image a little bit transparent so the user can see where
    // they're dragging to
-   dragImage = [[[NSImage alloc] initWithSize: [scaledImage size]] autorelease];
+   dragImage = [[[NSImage alloc] initWithSize: [scaledImage size autorelease];
    [dragImage lockFocus];
    [scaledImage dissolveToPoint: NSMakePoint(0,0) fraction: .5];
    [dragImage unlockFocus];
@@ -406,13 +406,13 @@ I needed a matrix of image views that would let the user change the order of the
  }
  
  @end
-</code>
+
 
 ----
-Thank you for this class. You have made my week. ''tips hat''
+Thank you for this class. You have made my week. *tips hat*
 
 ----
 Amen to that! This is almost exactly what I was looking for, and certainly more than I had hoped for in an example. Thanks! -- Seth. 2005-03-28
 
 ----
-'''2005-02-18''' Changed <code>dstCol = column++;</code> to <code>dstCol = column + 1;</code> in the above. Someone forgot how post-increment works :)
+**2005-02-18** Changed     dstCol = column++; to     dstCol = column + 1; in the above. Someone forgot how post-increment works :)

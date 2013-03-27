@@ -1,14 +1,14 @@
 How do I create a window titlebar popup (with associated icon) when the popup isn't a represented filename?
 
-[[OmniWeb]] and Safari do this.
+General/OmniWeb and Safari do this.
 
 ----
 You're going to have to be a bit more specific than this. What exactly are you talking about? I know of no popups in Safari's title bar.
 
 ----
-Command-click on the name in the titlebar in either Safari or [[OmniWeb]]. This is similar to the "path popup" you get when the title is a represented filename, but there is no represented filename here.
+Command-click on the name in the titlebar in either Safari or General/OmniWeb. This is similar to the "path popup" you get when the title is a represented filename, but there is no represented filename here.
 
-I don't see public API to do this. How does [[OmniWeb]] put the proxy icon there? How do both intercept and do the path popup?
+I don't see public API to do this. How does General/OmniWeb put the proxy icon there? How do both intercept and do the path popup?
 
 ----
 
@@ -18,7 +18,7 @@ I imagine it's as simple as adding a tracking rectangle to the window at the rig
 
 ----
 
-Building the menu is easy. It is intercepting the click (and or providing the icon next to the title as [[OmniWeb]] does.) A tracking rect doesn't allow me to intercept clicks. Some other hackery is going to be necessary.
+Building the menu is easy. It is intercepting the click (and or providing the icon next to the title as General/OmniWeb does.) A tracking rect doesn't allow me to intercept clicks. Some other hackery is going to be necessary.
 
 ----
 

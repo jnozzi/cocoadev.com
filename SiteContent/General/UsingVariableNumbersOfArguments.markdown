@@ -6,13 +6,13 @@ I seem to recall somebody saying on one of the lists that it was just the same a
 
 Thanks,
 
--- [[RobRix]]
+-- General/RobRix
 
 ----
 
 You might want to start your journey at 'man stdarg'. Then check the archives for both Apple's cocoa-dev list and Omni's macosx-dev list.
 
--- [[DaveHenderson]]
+-- General/DaveHenderson
 
 ----
 
@@ -20,7 +20,7 @@ Thanks very much, Dave. As it happens, I had saved an e-mail containing exactly 
 
 Daniel Staudigel wrote:
 >
-> How do you declare and implement a method in obj-c (like [[NSArray]]'s
+> How do you declare and implement a method in obj-c (like General/NSArray's
 > arrayWithObjects:(id)firstObj, ...)?
 
 Declare a varargs list, e.g:
@@ -37,15 +37,15 @@ and then call va_arg(args, typeOfWhatYouWantToRead) to get each argument in the 
 
 Here's the way I did it a few weeks back:
 
-<code>
-- ([[NSString]] '') stringByAppendingStrings:([[NSString]] '') aString, ...
-/''"This instance method returns an autoreleased string which
+    
+- (General/NSString *) stringByAppendingStrings:(General/NSString *) aString, ...
+/*"This instance method returns an autoreleased string which
  is the result of contatenating the reciever and all of the
- arguments given in a nil-terminated list."''/
+ arguments given in a nil-terminated list."*/
 	{
 	va_list strings;
 		
-	[[NSString]] ''thisString, ''result = [self stringByAppendingString:aString];
+	General/NSString *thisString, *result = [self stringByAppendingString:aString];
 		
 	va_start(strings, aString);
 	
@@ -55,7 +55,7 @@ Here's the way I did it a few weeks back:
 	va_end(strings);
 	return result;
 	}
-</code>
+
 
 I didn't deal with the pathological case of someone handing me just a nil.
 
@@ -65,28 +65,28 @@ You might also want to have a look at the man page for varargs.
 
 Thanks also to John C. Randolph who wrote the above e-mail. Anyhow, that's it.
 
--- [[RobRix]]
+-- General/RobRix
 
 The following version is able to handle an "empty" list (i.e. one with just a nil):
-<code>
-- ([[NSString]] '') stringByAppendingStrings:([[NSString]] '') aString, ...
-/''"This instance method returns an autoreleased string which
+    
+- (General/NSString *) stringByAppendingStrings:(General/NSString *) aString, ...
+/*"This instance method returns an autoreleased string which
  is the result of contatenating the reciever and all of the
- arguments given in a nil-terminated list."''/
+ arguments given in a nil-terminated list."*/
 {
 	va_list strings;
 	
-	[[NSMutableString]] ''result = [[[NSMutableString]] stringWithString:self];
+	General/NSMutableString *result = General/[NSMutableString stringWithString:self];
 	
 	va_start(strings, aString);
 	
-	[[NSString]] ''thisString;
+	General/NSString *thisString;
 	for (thisString = aString; thisString; thisString = va_arg(strings, id))
 		[result appendString:thisString];
 	
 	va_end(strings);
 	return result;
 }
-</code>
 
-See also: [[VariableLengthArgumentLists]]
+
+See also: General/VariableLengthArgumentLists

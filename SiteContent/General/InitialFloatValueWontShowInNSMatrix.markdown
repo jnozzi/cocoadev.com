@@ -1,18 +1,18 @@
 
 
-When I start my application, the text boxes in my [[NSMatrix]] don't show their values. 
+When I start my application, the text boxes in my General/NSMatrix don't show their values. 
 
 Here's the relevant code from my view: 
 
-<code>
-@interface [[FOVview]] : [[NSView]] {
+    
+@interface General/FOVview : General/NSView {
 
-[[IBOutlet]] [[NSSlider]] ''graySlider;
-[[IBOutlet]] [[NSSlider]] ''transparencySlider;
-[[IBOutlet]] [[NSTextField]] ''grayText;
-[[IBOutlet]] [[NSTextField]] ''transparencyText;
-[[IBOutlet]] [[NSMatrix]] ''sensorAngles;
-[[IBOutlet]] [[NSMatrix]] ''sensorY;
+General/IBOutlet General/NSSlider *graySlider;
+General/IBOutlet General/NSSlider *transparencySlider;
+General/IBOutlet General/NSTextField *grayText;
+General/IBOutlet General/NSTextField *transparencyText;
+General/IBOutlet General/NSMatrix *sensorAngles;
+General/IBOutlet General/NSMatrix *sensorY;
 float grayness;
 float transparency;
 float angles[N_SENSORS];
@@ -21,19 +21,19 @@ float scale;
 
 }
 
-- ([[IBAction]])changeSensor:(id)sender;
-- ([[IBAction]])changeColor:(id)sender;
-- ([[IBAction]])changeTransparency:(id)sender;
-- (void)drawFanAt:([[NSPoint]])sensorLocation range:(float)r beamwidth:(float)bw angle:(float)a;
-- ([[IBAction]])copy:(id)sender;
-- ([[IBAction]])print:(id)sender;
+- (General/IBAction)changeSensor:(id)sender;
+- (General/IBAction)changeColor:(id)sender;
+- (General/IBAction)changeTransparency:(id)sender;
+- (void)drawFanAt:(General/NSPoint)sensorLocation range:(float)r beamwidth:(float)bw angle:(float)a;
+- (General/IBAction)copy:(id)sender;
+- (General/IBAction)print:(id)sender;
 
 @end
 
-- (id)initWithFrame:([[NSRect]])frameRect
+- (id)initWithFrame:(General/NSRect)frameRect
 {
 	if ((self = [super initWithFrame:frameRect]) != nil) {
-		[[NSLog]](@"[[FOVview]]: initWithFrame\n");
+		General/NSLog(@"General/FOVview: initWithFrame\n");
 		grayness = 0.25;
 		[graySlider setFloatValue:grayness];
 		[grayText setFloatValue:grayness];
@@ -51,19 +51,19 @@ float scale;
 		y[7] = 6.75; angles[7] =-25.0;
 		int i;
 		for (i=0; i<N_SENSORS; i++) {
-			[[sensorAngles cellWithTag:i] setFloatValue:angles[i]];
-			[[sensorY cellWithTag:i] setFloatValue:y[i]];
+			General/sensorAngles cellWithTag:i] setFloatValue:angles[i;
+			General/sensorY cellWithTag:i] setFloatValue:y[i;
 		}
 	}
 	return self;
 }
-</code>
 
-The <code>grayText</code> and <code>transparencyText</code> {{[[NSTextView]]}}s show their values when the window opens, but the <code>[[NSMatrix]]</code>es don't.  From the documentation, it seems like this should work, and I can't find any other likely methods. 
+
+The     grayText and     transparencyText {{General/NSTextView}}s show their values when the window opens, but the     General/NSMatrixes don't.  From the documentation, it seems like this should work, and I can't find any other likely methods. 
 
 Thanks!
 
 ----
-You need to use [[AwakeFromNib]].
+You need to use General/AwakeFromNib.
 ----
 Worked like a charm! Thanks.

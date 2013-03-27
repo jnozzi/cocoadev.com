@@ -1,4 +1,4 @@
-I have a custom [[NSView]] subclass and want to control keyboard input from that custom view.  keyDown: won't work until the view becomes the firstResponder -- looking at books I have I don't see one sure-fire way to do this.  Once [[FirstResponder]] is set, keyDown: should work, yes?
+I have a custom General/NSView subclass and want to control keyboard input from that custom view.  keyDown: won't work until the view becomes the firstResponder -- looking at books I have I don't see one sure-fire way to do this.  Once General/FirstResponder is set, keyDown: should work, yes?
 
 Tnx.
 
@@ -7,50 +7,50 @@ blakespot
 
 ----
 
-Make sure you put this method in the [[NSView]] subclass:
+Make sure you put this method in the General/NSView subclass:
 
-<code>
+    
 - (BOOL)acceptsFirstResponder
 {
 	return YES;
 }
-</code>
 
-This method returns NO by default (in the [[NSResponder]] class) which is why you need to override it and return YES in your subclass.
 
-If you need to retrieve key down events without the view being first responder, you will need to subclass [[NSWindow]] and override the keyDown: event there. If you need to grab it before it gets all the way down to the [[NSWindow]], you can subclass [[NSApplication]] and override the sendEvent: method which is the first point your application knows of the event. -- [[RyanBates]]
+This method returns NO by default (in the General/NSResponder class) which is why you need to override it and return YES in your subclass.
 
-----
-
-Could you provide some tips/docs/example-code for overriding sendEvent: on [[NSApplication]]? I'm abstractly curious, since I've implemented this on [[NSView]] before and couldn't trap the command key. Which happened to be the correct behavior there -- since it was a normal app and I didn't want to lose keyboard shortcuts -- nonetheless I'm curious should I ever write a twitch-game. --[[ShamylZakariya]]
+If you need to retrieve key down events without the view being first responder, you will need to subclass General/NSWindow and override the keyDown: event there. If you need to grab it before it gets all the way down to the General/NSWindow, you can subclass General/NSApplication and override the sendEvent: method which is the first point your application knows of the event. -- General/RyanBates
 
 ----
 
-Here's an example of the sendEvent: method you can put in an [[NSApplication]] subclass.
+Could you provide some tips/docs/example-code for overriding sendEvent: on General/NSApplication? I'm abstractly curious, since I've implemented this on General/NSView before and couldn't trap the command key. Which happened to be the correct behavior there -- since it was a normal app and I didn't want to lose keyboard shortcuts -- nonetheless I'm curious should I ever write a twitch-game. --General/ShamylZakariya
 
-<code>
-- (void)sendEvent:([[NSEvent]] '')event
+----
+
+Here's an example of the sendEvent: method you can put in an General/NSApplication subclass.
+
+    
+- (void)sendEvent:(General/NSEvent *)event
 {
 	// Only report when modifier keys change so we don't get a ton of logs
-	if ([event type] == [[NSFlagsChanged]]) {
+	if ([event type] == General/NSFlagsChanged) {
 		// Check if the command key is held down
-		if ([event modifierFlags] & [[NSCommandKeyMask]]) {
-			[[NSLog]](@"Command key is pressed");
+		if ([event modifierFlags] & General/NSCommandKeyMask) {
+			General/NSLog(@"Command key is pressed");
 		} else {
-			[[NSLog]](@"Command key is not pressed");
+			General/NSLog(@"Command key is not pressed");
 		}
 	}
 	
 	// Forward the events to superclass for normal processing
 	[super sendEvent:event];
 }
-</code>
 
-You will also need to tell the target to use your [[NSApplication]] subclass as the principle class. You can change this in the "Cocoa Specific" section in the target settings.
+
+You will also need to tell the target to use your General/NSApplication subclass as the principle class. You can change this in the "Cocoa Specific" section in the target settings.
 
 If you are creating a game, you may also consider making your own run loop and handling all the events manually.
 
--- [[RyanBates]]
+-- General/RyanBates
 
 ----
 
@@ -61,9 +61,9 @@ blakespot
 
 ----
 
-I haven't had any problems with this method in the past. If it's for a prolonged event, just set a BOOL variable to YES on the keyDown: and then NO on the corrosponding keyUp: event for that specific key. -- [[RyanBates]]
+I haven't had any problems with this method in the past. If it's for a prolonged event, just set a BOOL variable to YES on the keyDown: and then NO on the corrosponding keyUp: event for that specific key. -- General/RyanBates
 
-Also, see: [[GameKeyboardHandlingAlmost]], [[GameInputHandling]] and [[HandlingMultipleKeyDown]]
+Also, see: General/GameKeyboardHandlingAlmost, General/GameInputHandling and General/HandlingMultipleKeyDown
 
 ----
 
@@ -71,4 +71,4 @@ Ok it's working for me - as for the BOOL var tho.  I can set in the keyDown, but
 
 blakespot
 
-''On keyUp:''
+*On keyUp:*

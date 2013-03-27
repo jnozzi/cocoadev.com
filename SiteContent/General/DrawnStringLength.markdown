@@ -1,1 +1,1 @@
-appended to [[DetermineSizeOfDrawnString]], which see
+appended to General/DetermineSizeOfDrawnString, which see

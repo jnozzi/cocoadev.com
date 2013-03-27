@@ -1,12 +1,12 @@
 All right here is my predicament this time, originally I was using -setRepresentedFilename: to set the proxy icon for my program, however it leaks and naturally this isn't acceptable! Thus I have tried to go into carbon to get what I need done, but I have failed, here is what I have attempted:
 
-<code>		NSURL '' [[URLPath]] = [NSURL [[URLWithString]]:@"/Applications"];
-		[[FSRef]] fsref;
-		[[FSSpec]] fsspec;
+    		NSURL * General/URLPath = [NSURL General/URLWithString:@"/Applications"];
+		General/FSRef fsref;
+		General/FSSpec fsspec;
 		
-		[[CFURLGetFSRef]](([[CFURLRef]])[[URLPath]],&fsref);
+		General/CFURLGetFSRef((General/CFURLRef)General/URLPath,&fsref);
 		
-		[[FSGetCatalogInfo]](&fsref, 
+		General/FSGetCatalogInfo(&fsref, 
 						 kFSCatInfoNone, 
 						 NULL,
 						 NULL,
@@ -15,27 +15,27 @@ All right here is my predicament this time, originally I was using -setRepresent
 		
 		
 		
-		void '' ref = [[self window] windowRef];
-		[[OSErr]] err;
-		[[IconRef]] proxyIcon;
+		void * ref = General/self window] windowRef];
+		[[OSErr err;
+		General/IconRef proxyIcon;
 		SInt16 label;
 		
-		err = [[GetIconRefFromFile]](&fsspec,
+		err = General/GetIconRefFromFile(&fsspec,
 						   &proxyIcon,
 						   &label);
 		
 		if (err != noErr)
 		{
-			[[NSLog]](@"error!");
+			General/NSLog(@"error!");
 		}
 		
-		err = [[SetWindowProxyIcon]](ref,proxyIcon);
+		err = General/SetWindowProxyIcon(ref,proxyIcon);
 		
 		if (err != noErr)
 		{
-			[[NSLog]](@"error!");
+			General/NSLog(@"error!");
 		}
-</code>
+
 
 If anyone can spot the error you'd make my day.
 
@@ -48,7 +48,7 @@ Doesn't this only work for Carbon windows?
 Cocoa has a compatibility method -windowRef... but never-mind folks, this leaks also (unless you know the fix for that also heh...).
 
 ----
-You'll need to call [[ReleaseIconRef]] on proxyIcon
+You'll need to call General/ReleaseIconRef on proxyIcon
 
 ----
-AFAIK you have to call [[GetIconRefFromFileInfo]] instead of [[GetIconRefFromFile]] in OS X.
+AFAIK you have to call General/GetIconRefFromFileInfo instead of General/GetIconRefFromFile in OS X.

@@ -10,13 +10,13 @@ I want to make a launch sequence like this:
 
 4) normal multi-document app behavior opens an empty document. 
 
-I've read the [[BookLearningCocoa]] already; now I need a little help with the above launch sequence
+I've read the General/BookLearningCocoa already; now I need a little help with the above launch sequence
 
 ----
 
-First, find yourself a better book. [[BookCocoaProgramming]] by Aaron Hillegass would be a good one. But here's some quick notes:
+First, find yourself a better book. General/BookCocoaProgramming by Aaron Hillegass would be a good one. But here's some quick notes:
 
-Implement applicationDidFinishLaunching in the application delegate.  Do your registration check there.  To run a modal dialog, look at runModalForWindow in [[NSApplication]].  For the menu stuff, dig into the [[NSMenu]] and [[NSMenuItem]] docs, particularly validateMenuItem.
+Implement applicationDidFinishLaunching in the application delegate.  Do your registration check there.  To run a modal dialog, look at runModalForWindow in General/NSApplication.  For the menu stuff, dig into the General/NSMenu and General/NSMenuItem docs, particularly validateMenuItem.
 
 Hope this gets you started. But the Hillegass book will give you a much better understanding than any tips I could give here.
 
@@ -38,9 +38,9 @@ How can I stop the app from loading documents dropped on the app icon until the 
 
 Add this to application delagate.
 
-<code>-(BOOL)applicationShouldOpenUntitledFile:([[NSApplication]] '')sender
+    -(BOOL)applicationShouldOpenUntitledFile:(General/NSApplication *)sender
 {
 return NO;
-}</code>
+}
 
 Call the new/open action when the registration window is closed.

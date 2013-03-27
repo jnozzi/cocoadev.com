@@ -1,2 +1,2 @@
-Describe [[PyGTK]] here.
+Describe General/PyGTK here.
 Tesssssssssssst

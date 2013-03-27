@@ -10,11 +10,11 @@ Here are some links to other web sites with Cocoa programming tutorials:
 
 *http://dbachrach.com/blog/2005/11/28/program-global-hotkeys-in-cocoa-easily/ A full tutorial on how to make Global Hotkeys for your Cocoa Applications.
 
-*http://www.stepwise.com/Articles/HTMLEditorX/ (obsolete link) [[HTMLEditorX]] - A new beginning. 
+*http://www.stepwise.com/Articles/HTMLEditorX/ (obsolete link) General/HTMLEditorX - A new beginning. 
 
-*http://www.stone.com/The_Cocoa_Files/  The Cocoa Files, by [[AndrewStone]]
+*http://www.stone.com/The_Cocoa_Files/  The Cocoa Files, by General/AndrewStone
 
-*http://www.stepwise.com/Articles/VermontRecipes/ (obsolete link) Vermont Recipes, a Cocoa cookbook, hosted by [[StepWise]].
+*http://www.stepwise.com/Articles/VermontRecipes/ (obsolete link) Vermont Recipes, a Cocoa cookbook, hosted by General/StepWise.
 
 *http://www.cocoadevcentral.com/  Various practical Cocoa tutorials.
 
@@ -32,7 +32,7 @@ Here are some links to other web sites with Cocoa programming tutorials:
 
 *http://homepage.mac.com/mmalc/CocoaExamples/controllers.html Cocoa Bindings Examples and Hints.
 
-*http://www.nancesoftware.com/development/sample_code/ Some intro drawing samples, Game Of Life, [[NSSegmentedControl]], and [[LineBreakByTruncating]]. 
+*http://www.nancesoftware.com/development/sample_code/ Some intro drawing samples, Game Of Life, General/NSSegmentedControl, and General/LineBreakByTruncating. 
 
 *http://www.cocoalab.com/?q=labnotes A simple bindings tutorial
 
@@ -40,7 +40,7 @@ Here are some links to other web sites with Cocoa programming tutorials:
 
 *http://www.scottydelicious.com/blog/cocoa_xmlrpc.html An in depth tutorial creating a Cocoa application to connect to a XML-RPC server.
 
-*http://www.mere-mortal-software.com/blog/details.php?d=2007-01-08 [[NSWindow]] and [[NSView]] Backgrounds Tutorial
+*http://www.mere-mortal-software.com/blog/details.php?d=2007-01-08 General/NSWindow and General/NSView Backgrounds Tutorial
 
 *http://www.cocoalab.com/?q=becomeanxcoder An introductory book on Objective-C and Cocoa
 

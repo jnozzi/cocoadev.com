@@ -1,54 +1,54 @@
-I want to remove all is not Decimal on my [[NSString]] @"v2.4.2"
+I want to remove all is not Decimal on my General/NSString @"v2.4.2"
 
-I try with [[NScanner]] some thing like this :
+I try with General/NScanner some thing like this :
 
-<code>
+    
 UInt16	currentVersionInt = -1;
-[[NSScanner]] ''scanVersion = [[[NSScanner]] scannerWithString:[[[[[NSBundle]] mainBundle] infoDictionary] objectForKey:@"[[CFBundleVersion]]"]];	
-[scanVersion setCharactersToBeSkipped:[[[[NSCharacterSet]] decimalDigitCharacterSet] invertedSet]];	
+General/NSScanner *scanVersion = General/[NSScanner scannerWithString:General/[[[NSBundle mainBundle] infoDictionary] objectForKey:@"General/CFBundleVersion"]];	
+[scanVersion setCharactersToBeSkipped:General/[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];	
 [scanVersion scanInt:&currentVersionInt];
-</code>
+
 but it's not work ... why ?
 
 thanks for your help.
 
 ----
-I make a category of [[NSString]] like this...
+I make a category of General/NSString like this...
 
-[[NSString]]+Filter.h:
-<code>
+General/NSString+Filter.h:
+    
 #import <Cocoa/Cocoa.h>
 
-/'' Filter category for [[NSString]]: make a [[NSString]] with only set of characters you want.
+/* Filter category for General/NSString: make a General/NSString with only set of characters you want.
 
 	sample to extract '204' of current app version 'v2.0.4'  :
-	[[NSString]] ''currentVersionString = [[[NSString]] stringWithString:[[[[[NSBundle]] mainBundle] infoDictionary] objectForKey:@"[[CFBundleVersion]]"]
-													  andFilter:[[[NSCharacterSet]] decimalDigitCharacterSet]];
+	General/NSString *currentVersionString = General/[NSString stringWithString:General/[[[NSBundle mainBundle] infoDictionary] objectForKey:@"General/CFBundleVersion"]
+													  andFilter:General/[NSCharacterSet decimalDigitCharacterSet]];
 
- ''/
+ */
 
-@interface [[NSString]] (Filter)
-+ ([[NSString]] '') stringWithString:([[NSString]] '')string andFilter:([[NSCharacterSet]] '')set;
+@interface General/NSString (Filter)
++ (General/NSString *) stringWithString:(General/NSString *)string andFilter:(General/NSCharacterSet *)set;
 @end
 
 
-</code>
 
-[[NSString]]+Filter.m:
-<code>
+
+General/NSString+Filter.m:
+    
 #import <Cocoa/Cocoa.h>
-#import "[[NSString]]+Filter.h"
+#import "General/NSString+Filter.h"
 
-@implementation [[NSString]] (Filter)
-+ ([[NSString]] '') stringWithString:([[NSString]] '')string andFilter:([[NSCharacterSet]] '')set
+@implementation General/NSString (Filter)
++ (General/NSString *) stringWithString:(General/NSString *)string andFilter:(General/NSCharacterSet *)set
 {
 	//---- result in autorelease...
-	[[NSMutableString]] ''result = [[[NSMutableString]] stringWithString:@""];
+	General/NSMutableString *result = General/[NSMutableString stringWithString:@""];
 
-	[[NSScanner]] ''scanner = [[[NSScanner]] scannerWithString:string];
+	General/NSScanner *scanner = General/[NSScanner scannerWithString:string];
 	while(NO == [scanner isAtEnd]) {
 		unsigned position;
-		[[NSString]] ''goodString;
+		General/NSString *goodString;
 		
 		//---- search for good string
 		if([scanner scanCharactersFromSet:set
@@ -63,11 +63,11 @@ I make a category of [[NSString]] like this...
 		}
 	}
 	
-	return ([[NSString]] '')result;
+	return (General/NSString *)result;
 }
 
 @end
-</code>
+
 
 The above code is placed in the public domain if anyone cares to use it.
 
@@ -80,6 +80,6 @@ http://jm.marino.free.fr
 
 This is something that I've seen asserted repeatedly, but never saw any proof. Wikipedia disagrees with you:
 
-''It is commonly believed by non-lawyers that it is impossible to put a work into the public domain. Although copyright law generally does not provide any statutory means to "abandon" copyright so that a work can enter the public domain, this does not mean that it is impossible or even difficult, only that the law is somewhat unclear. Congress may not have felt it necessary to codify this part of the law, because abandoning property (like a tract of land) to the public domain has traditionally been a matter of judge-made law, rather than statute.''
+*It is commonly believed by non-lawyers that it is impossible to put a work into the public domain. Although copyright law generally does not provide any statutory means to "abandon" copyright so that a work can enter the public domain, this does not mean that it is impossible or even difficult, only that the law is somewhat unclear. Congress may not have felt it necessary to codify this part of the law, because abandoning property (like a tract of land) to the public domain has traditionally been a matter of judge-made law, rather than statute.*
 
-If you have some actual evidence to the contrary, then I'd like to see it. But I find the idea that you have to use an ''explicit'' license, and that saying "you can use this for whatever you want" (which is what "this is in the public domain" means) doesn't actually work to be extremely silly. -- [[PrimeOperator]]
+If you have some actual evidence to the contrary, then I'd like to see it. But I find the idea that you have to use an *explicit* license, and that saying "you can use this for whatever you want" (which is what "this is in the public domain" means) doesn't actually work to be extremely silly. -- General/PrimeOperator

@@ -1,1 +1,1 @@
-Developer-type guy at [[OmniGroup]].
+Developer-type guy at General/OmniGroup.

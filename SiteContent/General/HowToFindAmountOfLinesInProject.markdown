@@ -1,60 +1,60 @@
 One day I wanted to find out how many lines i wrote in a project, so I wrote this small thing, its not recursive, but it works none the less (my source files are all in the same folder).
 
-<code>
+    
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[LineCountController]] : [[NSObject]] {
+@interface General/LineCountController : General/NSObject {
 	id resultField;
 }
-- ([[IBAction]])chooseDirectoryAndCountLines:(id)sender;
+- (General/IBAction)chooseDirectoryAndCountLines:(id)sender;
 @end
 
-#import "[[LineCountController]].h"
+#import "General/LineCountController.h"
 
 
-@implementation [[LineCountController]]
+@implementation General/LineCountController
 
-- ([[IBAction]])chooseDirectoryAndCountLines:(id)sender
+- (General/IBAction)chooseDirectoryAndCountLines:(id)sender
 {
-	[[NSOpenPanel]] '' panel = [[[NSOpenPanel]] openPanel];
+	General/NSOpenPanel * panel = General/[NSOpenPanel openPanel];
 	[panel setCanChooseFiles:NO];
 	[panel setCanChooseDirectories:YES];
 	[panel runModalForTypes:nil];
 	
-	[[NSArray]] '' selectedFiles = [panel filenames];
+	General/NSArray * selectedFiles = [panel filenames];
 	
 	int linecount = 0;
 	
 	int i;
 	for (i=0; i<[selectedFiles count]; i++)
 	{
-		[[NSFileManager]] '' manager = [[[NSFileManager]] defaultManager];
-		[[NSDirectoryEnumerator]] '' directoryFiles = [manager enumeratorAtPath:[selectedFiles objectAtIndex:i]];
+		General/NSFileManager * manager = General/[NSFileManager defaultManager];
+		General/NSDirectoryEnumerator * directoryFiles = [manager enumeratorAtPath:[selectedFiles objectAtIndex:i]];
 		
-		[[NSString]] '' file;
+		General/NSString * file;
 		while (file = [directoryFiles nextObject]) {
-			if ([[file pathExtension] isEqualToString:@"m"] ||
+			if (General/file pathExtension] isEqualToString:@"m"] ||
 				[[file pathExtension] isEqualToString:@"h"] ||
 				[[file pathExtension] isEqualToString:@"c"]) {
-				[[NSLog]]([[selectedFiles objectAtIndex:i] stringByAppendingPathComponent:file]);
-				[[NSString]] '' contents = [[[NSString]] stringWithContentsOfFile:[[selectedFiles objectAtIndex:i] stringByAppendingPathComponent:file]];
-				[[NSArray]] '' separated = [contents componentsSeparatedByString:@"\n"];
+				[[NSLog(General/selectedFiles objectAtIndex:i] stringByAppendingPathComponent:file]);
+				[[NSString * contents = General/[NSString stringWithContentsOfFile:General/selectedFiles objectAtIndex:i] stringByAppendingPathComponent:file;
+				General/NSArray * separated = [contents componentsSeparatedByString:@"\n"];
 				
-				[[NSLog]](@"Count: %i",[separated count]);
+				General/NSLog(@"Count: %i",[separated count]);
 				linecount += [separated count];
 			}
 			
 		}
 	}
 	
-	[[NSLog]](@"Count: %i",linecount);
+	General/NSLog(@"Count: %i",linecount);
 	
-	[resultField setStringValue:[[[NSString]] stringWithFormat:@"%i",linecount]];
+	[resultField setStringValue:General/[NSString stringWithFormat:@"%i",linecount]];
 }
 
 @end
-</code>
+
 
 If someone would want to make this recursive that would be neat, but it doesn't matter to me. Have fun :^).
 
@@ -62,29 +62,29 @@ If someone would want to make this recursive that would be neat, but it doesn't 
 
 Wouldn't it be easier to open a terminal window and type this? Or save it as a script file?
 
-%%BEGINCODESTYLE%%
-wc -l `find <myProjectDir> -type f -name "''.m" -or -name "''.h" -or -name "''.c"`
-%%ENDCODESTYLE%%
+<code>
+wc -l `find <myProjectDir> -type f -name "*.m" -or -name "*.h" -or -name "*.c"`
+</code>
 
---[[TimHart]]
+--General/TimHart
 
 ----
 
 Well that is all fine and dandy if you know about that, I didn't so I wrote my own :^) .
 
-If every source file is at the top-level, a "wc -l ''.[hm]" will do the job.
+If every source file is at the top-level, a "wc -l *.[hm]" will do the job.
 
 ----
 
 some constructive criticisms:
 
 
-* [[NSDirectoryEnumerator]] is recursive, so your app is recursive.
+* General/NSDirectoryEnumerator is recursive, so your app is recursive.
 * objectAtIndex: takes an unsigned (int), not an (signed) int.
-* I usually use [[NSEnumerator]] rather than [[NSArray]]'s obj<nowiki/>ectAtIndex:. even though I don't normally use this feature, polymorphism is my friend.
+* I usually use General/NSEnumerator rather than General/NSArray's obj<nowiki/>ectAtIndex:. even though I don't normally use this feature, polymorphism is my friend.
 * even if you do decide to stay with objectAtIndex:, you don't need to call it more than once (and shouldn't anyway, especially in the case of mutable arrays). assign it to a variable and use that.
-* [[NSArray]]'s count method returns an unsigned (int), not an (signed) int. thus, the correct printf/initWithFormat/[[NSLog]] format is %u.
-* I would use an [[NSSet]] containing the three pathname extensions. this has three advantages:
+* General/NSArray's count method returns an unsigned (int), not an (signed) int. thus, the correct printf/initWithFormat/General/NSLog format is %u.
+* I would use an General/NSSet containing the three pathname extensions. this has three advantages:
 
 * only one call to test membership
 * only one call to extract the pathname extension (not a cheap operation - it creates a string, and you're doing that three times)
@@ -92,38 +92,38 @@ some constructive criticisms:
 
 
 
-''--boredzo''
+*--boredzo*
 
-Of course, the extracting the pathname extensions (and the other performance nits listed above) are totally drawfed by having an [[NSString]] object being created for every line in the file.  It'd be hugely faster to just spin through the string, use characterAtIndex: and count the newlines.
+Of course, the extracting the pathname extensions (and the other performance nits listed above) are totally drawfed by having an General/NSString object being created for every line in the file.  It'd be hugely faster to just spin through the string, use characterAtIndex: and count the newlines.
 
 ----
 
 Very interesting. A while ago I had written my own function to do this exact same thing. Our code is quite similar:
-<code>
-int totalLines([[NSString]] ''path)
+    
+int totalLines(General/NSString *path)
 {
-	[[NSFileManager]] ''fileManager = [[[NSFileManager]] defaultManager];
-	[[NSString]] ''newPath = [path stringByStandardizingPath];
-	[[NSArray]] ''files = [fileManager subpathsAtPath:newPath];
-	[[NSEnumerator]] ''e = [files objectEnumerator];
-	[[NSString]] ''file;
+	General/NSFileManager *fileManager = General/[NSFileManager defaultManager];
+	General/NSString *newPath = [path stringByStandardizingPath];
+	General/NSArray *files = [fileManager subpathsAtPath:newPath];
+	General/NSEnumerator *e = [files objectEnumerator];
+	General/NSString *file;
 	int c = 0;
 	
 	while (file = [e nextObject])
 	{
-		[[NSString]] ''filePath = [newPath stringByAppendingPathComponent:file];
+		General/NSString *filePath = [newPath stringByAppendingPathComponent:file];
 		BOOL isDir;
 
 		if ([fileManager fileExistsAtPath:filePath isDirectory:&isDir] && !isDir)
 		{
 			if (
-				[[file pathExtension] isEqualToString:@"h"] ||
+				General/file pathExtension] isEqualToString:@"h"] ||
 				[[file pathExtension] isEqualToString:@"m"] ||
 				[[file pathExtension] isEqualToString:@"pl"]
 				)
 			{
-				[[NSString]] ''str = [[[NSString]] stringWithContentsOfFile:filePath];
-				[[NSArray]] ''lines = [str componentsSeparatedByString:@"\n"];
+				[[NSString *str = General/[NSString stringWithContentsOfFile:filePath];
+				General/NSArray *lines = [str componentsSeparatedByString:@"\n"];
 				c += [lines count];
 			}
 		}
@@ -131,15 +131,15 @@ int totalLines([[NSString]] ''path)
 	
 	return c;
 }
-</code>
+
 
 ----
 
 Often what is interesting is the number of statements rather than the number of lines.  You usually don't want to count blank lines or boiler plate comments etc.
 
-%%BEGINCODESTYLE%%
-find <projectdir> -type f -name "''.[cmh]''" -exec grep "[;\{]." {} \; | wc -l
-%%ENDCODESTYLE%%
+<code>
+find <projectdir> -type f -name "*.[cmh]*" -exec grep "[;\{]." {} \; | wc -l
+</code>
 
 This command does the following:
 Recursively find all files within projectdir that are likely to be source files.
@@ -150,13 +150,13 @@ Counting semicolons and open curly braces is a good approximation of counting st
 
 Note: Perhaps the utility the Unix shell(s) is now more apparent.
 
-''Um, in a project with over 10,000 lines of 'text', it says there are only 206 statements. I'm going to take the safe bet and say that's not quite right. ;-)'' '''In my 38,000+ lines of code project, it said there were only 1394 statements. hehe'''
+*Um, in a project with over 10,000 lines of 'text', it says there are only 206 statements. I'm going to take the safe bet and say that's not quite right. ;-)* **In my 38,000+ lines of code project, it said there were only 1394 statements. hehe**
 
 There is an extraneous period in the regex which is causing it to only accept semicolons or open curly braces which are followed by another character, which is usually not the case (they're normally found right at the end of a line). Also, I believe the command should be egrep rather than grep in order to properly use regular expressions. This command seems to work better:
-<code>
-find . -type f -name "''.[cmh]''" -exec egrep '[;{]' {} \; | wc -l
-</code>
+    
+find . -type f -name "*.[cmh]*" -exec egrep '[;{]' {} \; | wc -l
+
  
 ----
 
-Maybe [[SLOCCount]] may be the tool for you. http://www.dwheeler.com/sloccount/
+Maybe General/SLOCCount may be the tool for you. http://www.dwheeler.com/sloccount/
