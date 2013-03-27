@@ -1,0 +1,1 @@
+Pocket PC is a similar to General/PalmOS devices only running Microsoft General/PocketPC OS. They are manufactured by lots of companies including HP and Dell. See http://www.microsoft.com/windowsmobile/ for more info.

@@ -1,0 +1,1 @@
+The 68K version of General/PowerMachTen. UNIX on your old Mac!

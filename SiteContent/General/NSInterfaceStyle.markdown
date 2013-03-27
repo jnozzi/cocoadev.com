@@ -1,0 +1,1 @@
+http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/General/TypesAndConstants/General/AppKitTypes.html#//apple_ref/doc/c_ref/General/NSInterfaceStyle

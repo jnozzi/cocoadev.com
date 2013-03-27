@@ -1,0 +1,3 @@
+Cocoa Scripting refers to Apple's built-in open scripting support for Cocoa-based applications. While the General/OpenScriptingArchitecture is available to any application that conforms to the General/AppleEvent based implementation, the General/CocoaScripting support from Apple makes it much easier to expose the scriptable elements of object oriented applications.
+
+http://developer.apple.com/documentation/Cocoa/Conceptual/Scriptability/Concepts/General/ScriptingClasses.html

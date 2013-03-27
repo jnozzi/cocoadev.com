@@ -1,0 +1,1 @@
+Part of the General/EnterpriseObjectsFramework, which links the low level database access stuff to General/AppKit (using General/EOPalette you can build relatively complex database applications directly in General/InterfaceBuilder without writing a single line of code)

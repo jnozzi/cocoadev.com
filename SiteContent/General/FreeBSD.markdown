@@ -1,0 +1,5 @@
+
+
+Quasi-parent to General/DarwinOS. It's General/OpenSourceSoftware, and fairly easy to get up and running if you're not afraid of text interfaces.
+
+General/FreeBSD is the most direct descendant of the original BSD operating system.  It originally began as a port of BSD 4.4 to the x86 architecture.  However, it got caught up in lawsuits over the UNIX source code it contained.  In the end, all of the UNIX source was removed from it and rewritten from scratch.  However, because it was originally made to use UNIX code, its interfaces remain the closest to the original UNIX of almost any free system.  General/FreeBSD is a solid system, suitable for use in server systems and ever for desktops for the really adventurous.  It has better hardware support that any of the other General/BSDs, though not generally as good as Linux.  In all, General/FreeBSD is a good alternative to Linux, and great for a true UNIX afficianado. --General/OwenAnderson

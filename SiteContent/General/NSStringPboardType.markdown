@@ -1,0 +1,1 @@
+Describe General/NSStringPboardType General/NSString

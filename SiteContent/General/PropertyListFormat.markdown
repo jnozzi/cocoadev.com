@@ -1,0 +1,1 @@
+Mac OS X supports two property list formats: General/AsciiPropertyLists and General/XmlPropertyLists. See also General/PropertyList.

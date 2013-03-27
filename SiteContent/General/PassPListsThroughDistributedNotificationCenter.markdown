@@ -1,0 +1,1 @@
+Anyone know how much stress it would put on system resources if I used the General/NSDistributedNotificationCenter to pass General/PLists from one app to another. I know I can use General/NSConnection/General/NSProxy combos but using strings to pass General/PLists is easier and more simple.

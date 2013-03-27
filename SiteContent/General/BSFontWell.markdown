@@ -1,0 +1,1 @@
+http://sourceforge.jp/projects/bathyscaphe/svn/view/bathyscaphe/trunk/ibplugin/General/BSFontWell/

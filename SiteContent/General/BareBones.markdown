@@ -1,0 +1,1 @@
+Bare Bones Software, Inc. [http://www.barebones.com/] Makers of General/BBEdit, a popular text editor for the Mac.

@@ -1,0 +1,1 @@
+General/NSStringFromRect is a function that converts the value of an General/NSRect into an General/NSString. Useful for debugging. See General/NSRect for more information, including function definition.

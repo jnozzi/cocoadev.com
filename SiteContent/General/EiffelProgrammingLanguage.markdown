@@ -1,0 +1,1 @@
+See General/LanguageEiffel

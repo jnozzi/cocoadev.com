@@ -1,0 +1,3 @@
+General/BetterAuthorizationSample shows the recommended way to access privileged functionality from a non-privileged application on Mac OS X.
+
+http://developer.apple.com/samplecode/General/BetterAuthorizationSample/index.html

@@ -1,0 +1,1 @@
+General/NSHelpFile is a obsolete General/InfoPlist key. It is a left over from the General/OpenStep/General/NeXTSTEP Help system. Setting it may cause erroneous behavior in your application's help system.

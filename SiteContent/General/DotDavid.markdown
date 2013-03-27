@@ -1,0 +1,1 @@
+Experienced programmer with a General/NeXT Slab in the attic, and a General/MacMini on the desk.  Who clearly doesn't know how to use this Website... LOL

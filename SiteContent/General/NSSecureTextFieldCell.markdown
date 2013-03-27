@@ -1,0 +1,1 @@
+The notionally proper class for password entry in an General/NSForm, if one could be put there.

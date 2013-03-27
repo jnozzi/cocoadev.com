@@ -1,0 +1,7 @@
+
+
+I have done a bit of development work here and there.
+
+----
+
+Bill is a significant person. I love General/CoreData. -- General/RobRix

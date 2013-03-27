@@ -1,0 +1,1 @@
+Ok, my General/MainMenu.nib file has the General/FontManager class instantiated already (like it does by default). I have another nib file, which contains a panel with a button that I want to activate the orderFrontFontPanel action in the General/FontManager. How do I do this? Thanks.

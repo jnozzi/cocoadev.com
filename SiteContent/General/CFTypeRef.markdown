@@ -1,0 +1,1 @@
+General/CFTypeRefs are General/CoreFoundation types, such as a General/CFDictionaryRef or General/CFStringRef. They are usually (always?) pointers to opaque structures, meaning you cannot dereference General/CFTypeRefs directly. Many General/CFTypeRefs can be exchanged for General/NSObject subclasses via General/TollFreeBridging.

@@ -1,0 +1,1 @@
+See documentation at Apple http://developer.apple.com/techpubs/macosx/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSMutableAttributedString.html

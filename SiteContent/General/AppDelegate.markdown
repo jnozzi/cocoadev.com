@@ -1,0 +1,1 @@
+General/AppDelegate is a subclass of General/NSObject used in the creation of the General/AutoloadingAPageWithWebkit program.

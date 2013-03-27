@@ -1,0 +1,3 @@
+I'm a geek who lives in the Albany, New York area.  I write Java code for the State court system during the day.  By night / weekends, I return to my true love -- Mac OS X!!!  Spending my days in a Windows world sucks, but it pays the bills...
+
+You can contact me at zac -at- adirondack _dot_ net.  Shameless I know, but I've got a few assorted share/freeware projects for Mac OS X at my website: http://www.thebedells.org/

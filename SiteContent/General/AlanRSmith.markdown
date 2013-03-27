@@ -1,0 +1,1 @@
+Perhaps I should be considered a "n00b" but I've had my share of unique problems with Cocoa. I'm going to try and prevent other people from having the same problems by posting my solutions on http://cocoalatte.info

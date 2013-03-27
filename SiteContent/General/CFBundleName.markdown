@@ -1,0 +1,1 @@
+See http://developer.apple.com/library/mac/#documentation/General/Reference/General/InfoPlistKeyReference/Articles/General/CoreFoundationKeys.html#//apple_ref/doc/uid/TP40009249-109585

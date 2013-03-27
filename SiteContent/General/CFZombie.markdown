@@ -1,0 +1,18 @@
+Much like General/NSZombieEnabled, General/CFZombie allows you to debug over- and premature-release situations by trapping accesses to released objects. General/NSZombieEnabled fails to catch Cocoa classes which are really General/CoreFoundation classes, and General/CFZombie picks up the slack.
+
+To enable General/CFZombie, set the General/CFZombieLevel environment variable to a number indicating what options you want. A good number is 3. Each bit in the number indicates an option, and the available bits are:
+
+
+*0 - scribble deallocated CF memory                             
+*1 - when scribbling deallocated CF memory, don't scribble object header (General/CFRuntimeBase)
+*4 - never free memory used to hold CF objects                  
+*7 - if set, scribble deallocations using bits 8..15, otherwise use 0xFC
+*8..15 - if bit 7 is set, scribble deallocations using this value
+*16 - scribble allocated CF memory                               
+*23 - if set, scribble allocations using bits 24..31, otherwise use 0xCF
+*24..31 - if bit 16 is set, scribble allocations using this value
+
+
+General/CFZombie is (barely) documented on this page:
+
+http://developer.apple.com/technotes/tn2004/tn2124.html

@@ -1,0 +1,1 @@
+A category of General/NSBezierPath that draws the General/NSBezierPath using General/QuickDraw calls. This can be used in conjunction with General/JBPICTCreator to make a PICT representation of General/NSBezierPaths without having to go down to Carbon.

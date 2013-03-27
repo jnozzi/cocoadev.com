@@ -1,0 +1,3 @@
+http://developer.apple.com/documentation/General/GraphicsImaging/Conceptual/General/ImageKitProgrammingGuide/index.html
+
+Let's get this page started, Image Kit looks really convenient...

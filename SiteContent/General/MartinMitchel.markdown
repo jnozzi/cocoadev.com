@@ -1,0 +1,3 @@
+Cocoa, C++, SQL, PHP programming...
+
+I do some light Cocoa playing in my spare time, along with various other things, but am forced to use Windows for work :(

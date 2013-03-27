@@ -1,0 +1,5 @@
+Hi--
+
+Anyone know of a code sample out there which shows how to do a spinning coin in General/OpenGL?
+
+Thanks!

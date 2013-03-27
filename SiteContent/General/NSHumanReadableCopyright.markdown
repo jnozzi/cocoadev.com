@@ -1,0 +1,1 @@
+In your General/InfoPlist file's strings section (info.plist Strings), General/NSHumanReadableCopyright contains the copyright string shown in Cocoa's default About box, made by Xcode.

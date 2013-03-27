@@ -1,0 +1,2 @@
+Danny Cohen is of Two Foot Tall Lighthouse (http://homepage.mac.com/nebagakid/software/)
+A student developer with lots of ideas, but not enough outlets for them, if you need App ideas, come and ask DCo1!!!!

@@ -1,0 +1,1 @@
+An example class, used like "foo" or "bar".

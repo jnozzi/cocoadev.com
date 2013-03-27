@@ -1,0 +1,1 @@
+Choplifter-type game. Installed with the General/DeveloperTools, inexplicably at /Developer/Applications/Utilites/General/BuildExamples/ (Utilities??) The code is at /Developer/Examples/Java/General/AppKit/General/BlastApp/. A not altogether completely boring waste of time. My high score is 5!

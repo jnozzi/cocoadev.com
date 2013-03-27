@@ -1,0 +1,1 @@
+General/DrawerMadness is an Apple sample project, located at /Developer/Examples/General/AppKit/General/DrawerMadness/, showing several different ways to use and configure drawers. See General/DrawerAbuse before you do, though.

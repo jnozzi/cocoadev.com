@@ -1,0 +1,7 @@
+General/MacZoop ( http://www.maczoop.com ) is an application framework for classic General/MacOS and Carbon, based on C++, which was designed to be simpler than Metrowerks' General/PowerPlant but still full-featured. It is now in "maintenance mode", i.e. no new features, but it'll be kept running, and the author suggests using Cocoa if General/MacZoop doesn't suffice. 
+
+General/RobRix cut his teeth on it... and then he got General/ObjC.pdf.
+
+General/UliKusterer wrote a number of applications with it (e.g. the Talking Moose control panel, and the Resurrection resource editor) and provided a whole set of "views" classes for it (Uli's Panes), part of the General/GamePak that added transitions and other game-relevant stuff to General/MacZoop. And when Cocoa came along, he got Hillegass' book and switched to Cocoa in one weekend, never looking back.
+
+Footnote: General/GrahamCox (who wrote most of General/MacZoop, i.e. me) is also now an active Cocoa developer. Also switched over after a few days reading Hillegass. Interestingly many concepts in Cocoa will be familiar to General/MacZoop developers, but also a few things in Cocoa are much simpler and once you see them, sort of obvious - like having a central notification centre instead of distributing messages all over the framework. Duh.

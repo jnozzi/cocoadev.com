@@ -1,0 +1,1 @@
+Describe General/NSSocket here.

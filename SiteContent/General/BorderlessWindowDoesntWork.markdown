@@ -1,0 +1,1 @@
+Moved to General/BorderlessWindow under the topic General/TipsAndTricks. If you are having difficulties with a General/BorderlessWindow not covered on that page, add a description here. For some additional interesting discussion, see General/NSWindowDoesntShow, which deals with a transparent, shadowless, borderless window with no content, which will make it, well, invisible.

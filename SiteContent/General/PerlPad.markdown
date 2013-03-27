@@ -1,0 +1,10 @@
+General/PerlPad is a Cocoa app (based on General/CamelBones) that lets you execute Perl statements as a System Service.
+
+It allows you (among other things) to use all the power of Perl to manipulate text in input fields of any Cocoa application (such as Mail, General/TextEdit, General/SubEthaEdit) or the system pasteboard.
+
+You can download it from Sourceforge ( http://perl-pad.sourceforge.net ).
+Be sure to install General/CamelBones first.
+
+----
+
+Damn... this was exactly my idea for a project I had in a dream last night. Now I wake up and read this :( Oh well, guess I'll go play Xbox instead.

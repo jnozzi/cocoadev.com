@@ -1,0 +1,1 @@
+Apple Mac-mini computer w/Intel Core Duo

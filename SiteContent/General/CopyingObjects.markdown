@@ -1,0 +1,1 @@
+see General/ImplementingNSCopying

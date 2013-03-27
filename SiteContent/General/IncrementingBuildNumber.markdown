@@ -1,0 +1,5 @@
+How do I automatically increment the active project's build number, every time the project is built?
+
+----
+
+try General/AGVTool - (/Developer/Tools/agvtool help)

@@ -1,0 +1,1 @@
+Itinerant Photographer, Migrant Coder. Works at imeem: http://www.imeem.com

@@ -1,0 +1,5 @@
+The General/CoreFoundation version of General/NSNumber, for use in vanilla-C code.  Also, General/NSNumbers usually show up as this in General/ObjectAlloc, as the two can be freely interchanged with General/TollFreeBridging.
+
+*Not exactly true...General/NSNumber is a General/ClassCluster, so they are not really identical...General/CFNumber cannot be bridged with an General/NSNumber allocated with a BOOL value. Even numeric bridging is not guaranteed by Apple. For example, if they changed the storage method for one of the classes (or added another subclass of General/NSNumber), they would not necessarily update the other side of the bridge. However, for now General/NSCFNumber (the "real" type here) is easily bridged.*
+
+Simple examples of calling General/CFNumber functions can be found at  http://www.carbondev.com/site/?page=General/CFNumber

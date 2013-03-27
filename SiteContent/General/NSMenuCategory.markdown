@@ -1,0 +1,66 @@
+
+
+See also General/NSMenuItemCategory. -- General/DustinVoss
+----
+Header file for General/NSMenuCategory+General/CocoaDevUsersAdditions:
+    
+ #import <AppKit/NSMenu.h>
+ 
+ @interface NSMenu (CocoaDevUsersAdditions)
+ - (NSMenuItem *)nestedItemWithTag:(int)aTag;
+ - (void)setSelectedItem:(NSMenuItem *)aMenuItem;
+ @end
+
+
+Implementation file for General/NSMenuCategory+General/CocoaDevUsersAdditions:
+    
+ #import "NSMenuCategory+CocoaDevUsersAdditions.h"
+ 
+ @implementation NSMenu (CocoaDevUsersAdditions)
+ 
+ - (NSMenuItem *)nestedItemWithTag:(int)aTag
+ {
+   int i;
+   NSMenuItem* found = nil;
+   NSMenuItem* item = nil;
+   
+   for (i = 0; i < [self numberOfItems]; i++)
+   {
+     item = [self itemAtIndex:i];
+     if ([item hasSubmenu])
+     {
+       found = General/item submenu] nestedItemWithTag:aTag];
+       if (found != nil)	break;
+     }
+     else if ([item tag] == aTag)
+     {
+       found = item;
+       break;
+     }
+   }
+   
+   return found;
+ }
+ 
+ // Added 20 August 04. Sets aMenuItem to NSOnState (checked),
+ // and turns the rest of the items off.
+ -(void)setSelectedItem:(NSMenuItem *)aMenuItem
+ {
+   NSArray *myItems = [self itemArray];
+   NSEnumerator *itemEnumerator = [myItems objectEnumerator];
+   NSMenuItem *eachItem = nil;
+   
+   while (eachItem = [itemEnumerator nextObject])
+   {
+     [eachItem setState:([eachItem isEqual:aMenuItem] ? NSOnState : NSOffState)];
+     // isEqual: is not guaranteed to return [[NSOnState if it's true
+   }
+ }
+ 
+ @end
+
+
+The General/NSMenuItem protocol is now deprecated, edited all id <General/NSMenuItem> to General/NSMenuItem*.
+
+
+General/Category:CocoaDevUsersAdditions
