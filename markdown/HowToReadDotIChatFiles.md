@@ -1,1 +1,0 @@
-How can I read .ichat documents? I ultimately want to display them as rich text.

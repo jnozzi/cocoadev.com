@@ -1,1 +1,0 @@
-http://www.cocoadev.com/index.pl?General/CocoaAnnounce

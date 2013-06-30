@@ -1,1 +1,0 @@
-Everybody knows about this game. Still the best Capture The Flag action anywhere. Fast Fast Fast.

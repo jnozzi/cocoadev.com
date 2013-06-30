@@ -1,1 +1,0 @@
-Spencer Phippen is a college student studying CS, with an interest in system development in Cocoa and Win32.

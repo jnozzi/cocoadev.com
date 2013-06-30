@@ -1,1 +1,0 @@
-some hints and links are at General/InsertingGutterIntoNSScrollView

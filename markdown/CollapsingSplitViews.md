@@ -1,3 +1,0 @@
-{{#Del:}}
-
-See General/NSSplitView

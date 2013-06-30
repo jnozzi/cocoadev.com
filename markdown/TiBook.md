@@ -1,1 +1,0 @@
-Apple Titanium General/PowerBook

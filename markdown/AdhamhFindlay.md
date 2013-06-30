@@ -1,1 +1,0 @@
-He's a wannabe Cocoa Programmer.  adhamh at nospam mac (dot) com email address.

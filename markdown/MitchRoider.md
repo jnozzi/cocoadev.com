@@ -1,1 +1,0 @@
-General/NeXTSTEP 0.8 - iPhone and everything in the middle

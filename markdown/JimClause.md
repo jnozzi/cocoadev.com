@@ -1,1 +1,0 @@
-http://www.cc.gatech.edu/~clause

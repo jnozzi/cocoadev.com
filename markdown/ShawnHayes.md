@@ -1,3 +1,0 @@
-
-
-Mmmmmmm, furries. General/CaseyBishopChalmers

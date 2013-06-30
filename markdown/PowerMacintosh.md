@@ -1,1 +1,0 @@
-General/PowerMacintosh - Long for General/PowerMac !

@@ -1,1 +1,0 @@
-Software developer from Stockholm. Perhaps I'll write something else later.

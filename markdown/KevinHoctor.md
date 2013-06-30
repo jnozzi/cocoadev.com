@@ -1,1 +1,0 @@
-I've been writing software since the early 80's and jumped on the Mac bandwagon the minute it hit the streets. In 2006 I decided to focus completely on designing software for the Mac. Hence the birth of No Thirst Software LLC ( http://nothirst.com ).

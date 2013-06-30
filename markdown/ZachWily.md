@@ -1,3 +1,0 @@
-
-
-Author of iPhotoToGallery: http://zwily.com/iphoto/ and some other cool stuff that hasn't been released yet...

@@ -1,1 +1,0 @@
-My name is Fernando Valente, I'm a Mac OS X, iOS and web developer. At the time I'm writing this, I program in HTML, CSS, Javascript, PHP, XML, C, Objective-C and a little Java and General/ActionScript. I started my own software house called Chiaro Software - http://www.chiarosoftware.com.

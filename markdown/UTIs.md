@@ -1,1 +1,0 @@
-Short for General/UniformTypeIdentifier.

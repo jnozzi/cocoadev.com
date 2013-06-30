@@ -1,1 +1,0 @@
-General/FreeCiv is a free clone of Civilization I, see http://www.freeciv.org

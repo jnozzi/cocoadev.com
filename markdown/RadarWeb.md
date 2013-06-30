@@ -1,1 +1,0 @@
-See General/BugReporter.

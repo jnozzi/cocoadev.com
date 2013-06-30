@@ -1,1 +1,0 @@
-http://lists.apple.com/archives/Webobjects-dev/2005/Feb/msg00354.html

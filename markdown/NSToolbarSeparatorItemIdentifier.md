@@ -1,1 +1,0 @@
-A dotted line that seperates General/NSToolbarItem's.

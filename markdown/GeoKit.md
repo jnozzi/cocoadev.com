@@ -1,1 +1,0 @@
-New Apple Private Framework in General/SnowLeopard.

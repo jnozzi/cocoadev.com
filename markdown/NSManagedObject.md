@@ -1,1 +1,0 @@
-A generic base class used in General/CoreData.

@@ -1,1 +1,0 @@
-General/XMines is a Minesweeper clone for Cocoa - http://www.kuwan.net/xmines/

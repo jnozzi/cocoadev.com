@@ -1,1 +1,0 @@
-Video game industry refugee and recently converted Mac programmer.  Author of http://cocoaconvert.net.

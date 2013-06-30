@@ -1,3 +1,0 @@
-
-
-contact: andreas@flipsterapp.com

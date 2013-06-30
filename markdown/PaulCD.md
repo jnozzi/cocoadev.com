@@ -1,1 +1,0 @@
-Paul Diegenbach, diegen at General/PCDCom.nl, a retired and occasional  cocoa programmer

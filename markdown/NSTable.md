@@ -1,1 +1,0 @@
-No such class.  Perhaps you wanted General/NSTableView?

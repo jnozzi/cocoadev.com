@@ -1,6 +1,0 @@
-
-
-
-marcocoa (forced to spell it General/MarCocoa on General/CocoaDev) is the wannabe cocoa developer part of Marco Binder's personality. The remaining parts of this guy, who is actually me, which is why I switch to the first person now, cripes- anyhow: the other parts of my personality are a passionate life scientist (the only part actually earning a bit of money) and a full-time daddy of two kids (the most enjoyable part- most of the times that is) as well as the man of my girl (the most enjoyable part in the other times). This is also why I wish a day had 31 hours and why I, given the day length won't change, have settled for simply accepting that a night-sleep of more than six hours is plain luxury (which I haven't had for ... can't remember).
-
-You wanna know more about me? No? Good, because I won't tell more, but on http://web.mac.com/mabi99/iWeb/marcocoa/ I have set up a (sometimes more, sometimes less active) blog on Cocoa and Mac related stuff that I hope to fill with some short but decent entries over time. Come visit and leave a comment!

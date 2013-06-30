@@ -1,1 +1,0 @@
-I am a first years masters student in the Sociable Media Group at the MIT Media Lab.  I get to play with a nice mac and create visualizations using Quartz.  My first computer was a macintosh plus in 1985, when I was 5.

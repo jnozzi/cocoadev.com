@@ -1,3 +1,0 @@
-
-
-http://www.jeffschuler.net/

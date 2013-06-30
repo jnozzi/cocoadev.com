@@ -1,3 +1,0 @@
-General/LuckyBatSoftware is just the name I, General/WayneAndrewLee, release software under, currently just a single program, but more coming soon (yeah, "Real Soon Now")...
-
-Now I gotta learn how to make a link... to http://luckybat.tripod.com/

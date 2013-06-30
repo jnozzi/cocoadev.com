@@ -1,1 +1,0 @@
-Prefix of classes developed by Jop van Heesch (General/GameTogether Softwareontwikkeling).

@@ -1,1 +1,0 @@
-Cocoa developer, keeper of http://a2apps.com.au/category/ios-snippets - feel free to contribute.

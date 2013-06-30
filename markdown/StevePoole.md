@@ -1,3 +1,0 @@
-I'm a software engineer and engineering manager at WRQ, Inc. I've been doing Mac since about 1987 or 1988, Java since 1997, and am now poking at Cocoa, currently in Java but I'm also reading about Objective-C and will use that too.  I'm a little concerned that Cocoa in Java is never going to be quite right. Regarding Cocoa, the dev docs suck but the concepts rock. 
-
-I'm pingable at mailto://stevep@wrq.com.

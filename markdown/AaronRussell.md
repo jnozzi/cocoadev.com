@@ -1,3 +1,0 @@
-
-
-mailto:arussell@rocketdogcreative.com

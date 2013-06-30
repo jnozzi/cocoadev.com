@@ -1,2 +1,0 @@
-Describe General/NSViewWidthSizable here.
-General/NSViewWidthSizable|General/NSViewHeightSizable

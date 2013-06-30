@@ -1,1 +1,0 @@
-I'm a student of computer science and computational linguistics in Saarbrucken, Germany. Currently I'm working for the German Research Center for Artificial Intelligence and on my diploma thesis about Statistical Image Reconstruction.

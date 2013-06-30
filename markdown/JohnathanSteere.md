@@ -1,1 +1,0 @@
-I am an experienced Visual C++ developer. I have been teaching myself Cocoa in my spare time.

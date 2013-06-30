@@ -1,1 +1,0 @@
-Sam Soffes is Mac and iPhone developer. His website it http://samsoff.es. To find out more about him, take a look at his about page: http://samsoff.es/about

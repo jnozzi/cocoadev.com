@@ -1,1 +1,0 @@
-General/ArnanTrsyd == General/TonyArnold;

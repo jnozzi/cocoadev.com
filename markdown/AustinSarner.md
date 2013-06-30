@@ -1,3 +1,0 @@
-
-
-Curly dude.

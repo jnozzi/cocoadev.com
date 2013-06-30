@@ -1,1 +1,0 @@
-Filipp Lepalaan is a Cocoa newbie. His homepage is at http://unflyingobject.com

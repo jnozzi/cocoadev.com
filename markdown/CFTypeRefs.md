@@ -1,1 +1,0 @@
-Plural of General/CFTypeRef.

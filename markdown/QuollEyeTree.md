@@ -1,1 +1,0 @@
-An Xtree like file manager for Mac OS X v10.6 or v10.7

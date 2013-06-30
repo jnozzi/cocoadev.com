@@ -1,1 +1,0 @@
-Steven Degutis is the lead (read: only) developer at http://www.thoughtfultree.com and writes in his blag over at http://www.degutis.org

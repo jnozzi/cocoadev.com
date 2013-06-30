@@ -1,3 +1,0 @@
-- iphone app developer
-- bay area
-- invrnrv at the g-mail.

@@ -1,1 +1,0 @@
-General/TimBuchheim is a UNIX geek who is having a lot of fun with Cocoa right now.

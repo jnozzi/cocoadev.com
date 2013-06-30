@@ -1,1 +1,0 @@
-http://www.alanwood.net/demos/macroman.html

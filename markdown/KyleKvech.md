@@ -1,1 +1,0 @@
-An experienced Microsoft programmer (VB / C# / SQL / etc.) for 14 years, learning Cocoa for fun and profit!

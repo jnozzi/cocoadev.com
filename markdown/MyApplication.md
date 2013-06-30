@@ -1,1 +1,0 @@
-Long for General/MyApp.

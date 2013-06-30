@@ -1,5 +1,0 @@
-
-
-Andrey Babak
-
-Kiev, Ukraine

@@ -1,1 +1,0 @@
-Used to be a fulltime software developer, now my work world has transitioned to management.  However, I still develop code on the side.  My current project is learning objective C so I can do development on my mac.

@@ -1,3 +1,0 @@
-iSync API
-
-General/NSSyncConduit

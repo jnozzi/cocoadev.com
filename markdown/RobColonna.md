@@ -1,1 +1,0 @@
-hi.  i'm a mechanical engineer at a product development firm, but i'm also the author of spendthrift (http://blackllamafaction.org/spendthrift/), a simple personal-finance tool that has a decent handful of happy users worldwide.

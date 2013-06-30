@@ -1,1 +1,0 @@
-I'm a Mac programmer for General/MumboJumbo in Dallas.

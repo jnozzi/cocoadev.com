@@ -1,1 +1,0 @@
---- infantile crap edited out ---
