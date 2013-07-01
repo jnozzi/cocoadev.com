@@ -1,6 +1,10 @@
 The New CocoaDev
 ================
 
+**EDITING HAS BEEN TEMPORARILY DISABLED**
+
+The CocoaDev site is undergoing some big changes to take it into 2013 and beyond. See below for details.
+
 The Skinny
 ----------
 
