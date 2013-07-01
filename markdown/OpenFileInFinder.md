@@ -2,7 +2,7 @@ I know I would use Applescript for this, but does anyone know the exact script t
 
 ----
 
-Well if your feeling confident you could download the source code for General/LimeWire (http://www.limewire.org/) and see how they do it. The downside however, is that General/LimeWire is written in Java, not Cocoa.
+Well if your feeling confident you could download the source code for LimeWire (http://www.limewire.org/) and see how they do it. The downside however, is that LimeWire is written in Java, not Cocoa.
 
 ----
 
@@ -11,7 +11,7 @@ And limewire is a convoluted mess.
 ----
 
     
-    id workspace=General/[NSWorkspace sharedWorkspace];
+    id workspace=[NSWorkspace sharedWorkspace];
     [workspace openFile:*full pathname* withApplication:@"Finder"];
 
 

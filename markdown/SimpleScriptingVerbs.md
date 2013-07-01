@@ -6,4 +6,4 @@ http://developer.apple.com/library/mac/#samplecode/SimpleScriptingVerbs/Introduc
 
 -----
 
-General/HowToSupportAppleScript
+HowToSupportAppleScript

@@ -2,7 +2,7 @@
 
 
 
-* *General/ProjectBuilder should be at least a little faster*
+* *ProjectBuilder should be at least a little faster*
 
 Tired of sipping coffee waiting for it to compile ;) *I voted AYE, but since that's often the only time all day I get to sip coffee perhaps I should change my vote ;)*
 
@@ -10,7 +10,7 @@ Technically the problem is in the build system, not PB...PB is just the GUI arou
 
 Note that if you make good use of precomps, you can get some pretty acceptable turnaround speeds...  Still be nice if it could be even faster though.
 
-**Outcome:** General/ZeroLink, predictive compilation.
+**Outcome:** ZeroLink, predictive compilation.
 
 * * Code completion, on/off option of course. Popupmenu with possible completions. Interactive syntax coloring with errorchecking.*
 
@@ -39,9 +39,9 @@ Proxy icon dragging is consistent between Carbon and Cocoa in Panther.
 
 See the Project Builder or Xcode release notes. There's a mailing list you can mail suggestions to.
 
-*Add the possibility to show and hide views, meaning any subclass of General/NSView... Something like : *(BOOL)isVisible* and *(void)setVisible:(BOOL)flag*
+*Add the possibility to show and hide views, meaning any subclass of NSView... Something like : *(BOOL)isVisible* and *(void)setVisible:(BOOL)flag*
 
-Panther supports showing and hiding of General/NSView.
+Panther supports showing and hiding of NSView.
 
 �Unfortunately, hidden views still participate in resizing. They are just a big blank spot.
 
@@ -53,21 +53,21 @@ In Panther, Objective-C has C++-style unchecked exceptions along with Java's fin
 Exactly what is the difference between Java and C++ exception handling? Both have try/catch, both throw objects, but Java needs you to declare exceptions and allows finally. Is that it?
 
 The good: Java exception handling also has the "finally" block which gets executed after the try and catch clauses regardless of whether an exception was thrown or not and regardless of if the exception was caught or not. 
-The Bad: Java exceptions are General/CheckedExceptions, which means that you have to deal with them, and can't just let them bubble up (without writing throws). General/CheckedExceptions are quite controversial. Most modern languages have decided to go with unchecked exceptions.     
+The Bad: Java exceptions are CheckedExceptions, which means that you have to deal with them, and can't just let them bubble up (without writing throws). CheckedExceptions are quite controversial. Most modern languages have decided to go with unchecked exceptions.     
 
-Actually, Java has both checked and unchecked.  Any subclass of General/RuntimeException can be thrown without being declared.  Descendants of Exception must be declared.
+Actually, Java has both checked and unchecked.  Any subclass of RuntimeException can be thrown without being declared.  Descendants of Exception must be declared.
 
-* *General/ProjectBuilder should integrate easily with external text editors* (Votes: AYES: 6 NAYS: 0)
+* *ProjectBuilder should integrate easily with external text editors* (Votes: AYES: 6 NAYS: 0)
 
-The built editor is just plain missing a lot of features I use on a daily basis in General/BBEdit.
+The built editor is just plain missing a lot of features I use on a daily basis in BBEdit.
 
-I agree with the above comment. Not only does it lack features, if I move a file it loses track of it like the mindless General/TextEdit.app
+I agree with the above comment. Not only does it lack features, if I move a file it loses track of it like the mindless TextEdit.app
 
-**Outcome:** Implemented in December 2002 General/DevTools. Search the Project Builder release note (in the Help menu-- "Show Release Notes") for "External Editors."
+**Outcome:** Implemented in December 2002 DevTools. Search the Project Builder release note (in the Help menu-- "Show Release Notes") for "External Editors."
 
 * Add search capability to Apple's Cocoa-Dev mailing list. Is the lack of search capability a good indication of the POWER OF WEBOBJECTS? (Votes: AYES: 3 NAYS:  0)
 
-**Outcome:** As of today (Aug 16th, 2001), Apple's lists are searchable - not by the means of General/WebObjects, though but rather by using htdig...
+**Outcome:** As of today (Aug 16th, 2001), Apple's lists are searchable - not by the means of WebObjects, though but rather by using htdig...
 
 See http://lists.apple.com/search
 
@@ -82,8 +82,8 @@ See http://www.cocoabuilder.com (it also has Xcode-users archive).
 * Let me disable the darn dock (or at least make project builder aware of where it is!)
 
 **Outcome:** I solved this by running
-    sudo mv /System/Library/General/CoreServices/Dock.app  \ 
-        /System/Library/General/CoreServices/General/NoDock.app
+    sudo mv /System/Library/CoreServices/Dock.app  \ 
+        /System/Library/CoreServices/NoDock.app
 , then killing the dock process (or rebooting), then downloading ASM 1.3.1 and running it (being sure to launch it at startup in the preferences). See http://asm.vercruesse.de.
 
 * Come up with a coherent recommendation on creator/file types. See  http://arstechnica.com/reviews/01q3/metadata/metadata-1.html (Votes: AYES: 1 NAYS: 0)
@@ -92,25 +92,25 @@ See http://www.cocoabuilder.com (it also has Xcode-users archive).
 
 * Stop launching Software Updater for stuff I've already said I don't want!
 
-**Outcome:** Actually, this is already done, as I found when I searched the menus for Software Update. Hurrah for Apple! -- General/KritTer
+**Outcome:** Actually, this is already done, as I found when I searched the menus for Software Update. Hurrah for Apple! -- KritTer
 
 * *Publish a much better book than "Learning Cocoa".* (Votes: AYES: 17 NAYS: 0)  [note1]
 
-**Outcome:** See General/CocoaBooks. Also, Vervante can now publish Inside Cocoa.
+**Outcome:** See CocoaBooks. Also, Vervante can now publish Inside Cocoa.
 
 Also...  Apple in team with O'Reilly has in fact just released a new book titled, "Building Cocoa Applications".  It is far better than the original "Learning Cocoa" book.  (Which, by the way is being completely revised and rewritten to include chapter(s) covering the Objective-C language too!)
 
 I want some better O'Reilly books.  They've always been so good, but with Objective-C/Cocoa they haven't really been the best.  The follow one flagship app and miss a lot of key points.  They seem to fluctuate between very beginner things and very complex things.  We need a lot more intermediate material.  I found that the hardest when I started learning Objective-C/Cocoa.  I want more stuff like Cocoa Programming by Anguish/Buck/Yacthman.  That's more like the O'Reilly I remember.   Straight and to the point.  Almost reference material but with clear explanations of concept.  And jam-packed.  A variety of examples, not simply the things that have to do with the app the book is talking about.  Hillegass stuff is great too.
 
-* *Classes for parsing XML files/data into General/NSDictionary* (Votes: AYES: 6 NAYS: 0) [note4]
+* *Classes for parsing XML files/data into NSDictionary* (Votes: AYES: 6 NAYS: 0) [note4]
 
-I voted AYE, but I would much rather see a full blown XML parsing framework, something along the lines of Xerces, with full support of namespaces, General/XSchema, etc ... with a convenience category for parsing XML into General/NSArray/General/NSDictionary. --General/PeterLindberg (Votes:AYES: 4 NAYS:0)
+I voted AYE, but I would much rather see a full blown XML parsing framework, something along the lines of Xerces, with full support of namespaces, XSchema, etc ... with a convenience category for parsing XML into NSArray/NSDictionary. --PeterLindberg (Votes:AYES: 4 NAYS:0)
 
-What's wrong with the General/XPat General/ObjC parser (find it on stepwise)?
+What's wrong with the XPat ObjC parser (find it on stepwise)?
 
 Or Iconara DOM framework ( http://sourceforge.net/projects/iconaradom ) , which I've been using and it's excelent - it uses the Carbon XML classes underneath. Nonetheless, I'd like to see apple integrate some kind of XML parser in Cocoa out of the box.
 
-**Outcome:** General/NSXMLParser was introduced in Panther
+**Outcome:** NSXMLParser was introduced in Panther
 
 
 
@@ -121,14 +121,14 @@ Or Iconara DOM framework ( http://sourceforge.net/projects/iconaradom ) , which 
 
 Apple says they updated their docs in December but there is still A LOT missing - 12/21/2001
 
-The April dev tools CD that will be released soon (it was released as Beta on ADC a couple of days ago) is said to contain complete Cocoa docs. --General/PeterLindberg
+The April dev tools CD that will be released soon (it was released as Beta on ADC a couple of days ago) is said to contain complete Cocoa docs. --PeterLindberg
 
-And make it searchable with something other than cruddy Help Viewer!  [Doesn't everybody use General/CocoaBrowser? Its glorious. -- General/JayPrince]
-General/[AppKiDo http://homepage.mac.com/aglee/downloads/ is also very nice -- Bruce]
+And make it searchable with something other than cruddy Help Viewer!  [Doesn't everybody use CocoaBrowser? Its glorious. -- JayPrince]
+[AppKiDo http://homepage.mac.com/aglee/downloads/ is also very nice -- Bruce]
 
-Note: Apple claims to of completed all of the documentation up to Mac OS X 10.1.  It can be viewed at: http://developer.apple.com/techpubs/macosx/Cocoa/General/CocoaTopics.html
+Note: Apple claims to of completed all of the documentation up to Mac OS X 10.1.  It can be viewed at: http://developer.apple.com/techpubs/macosx/Cocoa/CocoaTopics.html
 
-But they're just talking about the reference docs, not the conceptual stuff. And it's not true, anyway. General/NSRulebook? General/NSTypesetter? Hello?
+But they're just talking about the reference docs, not the conceptual stuff. And it's not true, anyway. NSRulebook? NSTypesetter? Hello?
 
 What I really want to see in Apple's docs is the retain state of what is returned by class members, convenience members etc.  Especially when the creator is a class method- the docs say "Creates and returns a new X with Y." Is it retained or autoreleased?  There's a tradition that governs this behaviour, but it should be documented on each message 
 
@@ -152,13 +152,13 @@ Who?
 
 http://www.mindview.net/ - Bruce writes Object Oriented programming books, all of which are available online.  A Cocoa book written by Bruce might help bring more people into the community.
 
-The documentation is pretty amazing rocking good nowadays, especially that great redesign. Can we move this to General/CocoaMostWantedFulfilledWishes now? �Brent (2004.02.27)
+The documentation is pretty amazing rocking good nowadays, especially that great redesign. Can we move this to CocoaMostWantedFulfilledWishes now? �Brent (2004.02.27)
 
-Sounds good to me. �General/DustinVoss
+Sounds good to me. �DustinVoss
 
 
 
 ----
 ----
 
-*Back to General/CocoaMostWanted*
+*Back to CocoaMostWanted*

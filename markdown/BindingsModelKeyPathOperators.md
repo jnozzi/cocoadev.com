@@ -1,4 +1,4 @@
-You can bind a computed value from a General/NSArrayController using a few built in operators in the Model Key Path. For instance, if you have an General/NSArrayController of objects, each of which has a "pages" property. You can display the total number of pages setting:
+You can bind a computed value from a NSArrayController using a few built in operators in the Model Key Path. For instance, if you have an NSArrayController of objects, each of which has a "pages" property. You can display the total number of pages setting:
 Controller Key: arrangedObjects
 Model Key Path: @sum.pages
 
@@ -23,7 +23,7 @@ Here they are... look in KVC documentation for more info
 *@unionOfObjects  
 
 
-And here is a link to the documenation: http://developer.apple.com/documentation/Cocoa/Conceptual/General/KeyValueCoding/Concepts/General/ArrayOperators.html
+And here is a link to the documenation: http://developer.apple.com/documentation/Cocoa/Conceptual/KeyValueCoding/Concepts/ArrayOperators.html
 
 ----
 
@@ -33,7 +33,7 @@ Note that it seems like it is not possible to combine multiple array operators i
 Controller Key: arrangedObjects
 Model Key Path: @unionOfArrays.bills.@sum.cost
 
-In that case you have to either make a seperate General/ArrayController bounds to arrangedObjects (of the first General/ArrayController), @unionOfArrays.bills. And then use @sum.cost in the binding of for example a General/NSTextField (none-editable).
+In that case you have to either make a seperate ArrayController bounds to arrangedObjects (of the first ArrayController), @unionOfArrays.bills. And then use @sum.cost in the binding of for example a NSTextField (none-editable).
 
 Or you can combine the expressions in code like this:
 

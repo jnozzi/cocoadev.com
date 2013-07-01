@@ -7,7 +7,7 @@ Anybody know how to send a fake mouseUp event to a window or view?
 
 ----
 
-I would check out this General/NSEvent class method. 
+I would check out this NSEvent class method. 
 
  
      int type=NSLeftMouseUp;              // for a left mouse up event type
@@ -35,7 +35,7 @@ I would check out this General/NSEvent class method.
          pressure:(float)pressure 
  
 ----
-If you want to watch all the events in your program,  use General/NSTraceEvents.
+If you want to watch all the events in your program,  use NSTraceEvents.
 
 See http://developer.apple.com/technotes/tn2004/tn2124.html for lots of cool tricks.
 
@@ -43,11 +43,11 @@ Watching events go by can be very informative.
 
 ----
 
-To bypass event-handling and forward it to the General/NSApp's delegate (I find this very useful in fullscreen games), make a custom subclass of General/NSApplication (ensuring that the Principal Class is your new subclass), and implement this method:
+To bypass event-handling and forward it to the NSApp's delegate (I find this very useful in fullscreen games), make a custom subclass of NSApplication (ensuring that the Principal Class is your new subclass), and implement this method:
 
  - (void)sendEvent:(NSEvent *)event
  {
-     if (General/self delegate] shouldHandleEvents])
+     if (self delegate] shouldHandleEvents])
          [[self delegate] handleEvent:event];
      else
          [super sendEvent:event];
@@ -57,16 +57,16 @@ Of course, this assumes your delegate responds to shouldHandleEvents and handleE
 
 *To be strict about whether the delegate responds, you should check first with     respondsToSelector: or     conformsToProtocol:*
 ----
-How to watch all the mouse events of the system? (General/NSTraceEvent is about one perticualr application).
+How to watch all the mouse events of the system? (NSTraceEvent is about one perticualr application).
 ----
-Google for General/CGEventTapCreate.
+Google for CGEventTapCreate.
 
 ----
-Link to the replies on working with the modifierFlags from a General/NSEvent
+Link to the replies on working with the modifierFlags from a NSEvent
 
-General/DetectIfShiftKeyIsBeingPressed
+DetectIfShiftKeyIsBeingPressed
 ----
-General/NSEvent timestamp is in time since system startup. General/NSDate doesn't give a convenient utility to get that, and it's not easy to find.
+NSEvent timestamp is in time since system startup. NSDate doesn't give a convenient utility to get that, and it's not easy to find.
 After much digging I found this in an old cocoa-dev mailing list post:
 
  #import <mach/mach_time.h>

@@ -1,15 +1,15 @@
 **Glossary of Cocoa terms**
 
 Something missing?  Add it!! To add a page to this one, first create it here (type name then return): [New] 
-Then put **\\%\\%BEGINENTRY\\%\\%General/CocoaGlossary**[:section]**\\%\\%ENDENTRY\\%\\%** somewhere on the new page. (The section is optional and caps/whitespace sensitive.)
+Then put **\\%\\%BEGINENTRY\\%\\%CocoaGlossary**[:section]**\\%\\%ENDENTRY\\%\\%** somewhere on the new page. (The section is optional and caps/whitespace sensitive.)
 
 ----
 
-***General/AppKit**
-***General/FoundationKit**
+***AppKit**
+***FoundationKit**
 
 
-See also **General/OtherAPIs**
+See also **OtherAPIs**
 
 ----
 

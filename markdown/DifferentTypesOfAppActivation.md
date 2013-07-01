@@ -19,7 +19,7 @@ On Mac OS X there are two ways your application can be activated:
 
 In both situations the Application delegate will receive a applicaitonWillBecomeActive: and applicationDidBecomeActive: event.
 
-Knowing which type of activation occurred is useful when your Application has custom windows that need to behave differently. Unfortunately there's no explicit way to tell the two different activations apart. This article discusses how to differentiate between the two types of activation. --General/SaileshAgrawal
+Knowing which type of activation occurred is useful when your Application has custom windows that need to behave differently. Unfortunately there's no explicit way to tell the two different activations apart. This article discusses how to differentiate between the two types of activation. --SaileshAgrawal
 
 ----
 **Step 1: Partial Solution**
@@ -27,7 +27,7 @@ Knowing which type of activation occurred is useful when your Application has cu
 It's easy to know when events 1.b (Clicking on a dock icon) and 1.c (Double click on the App icon in Finder) occur. They both result in the following event:
 
     
-- (BOOL)applicationShouldHandleReopen:(General/NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication hasVisibleWindows:(BOOL)flag
 
 
 Unfortunately we're still left with 1.a (Command-Tab to the application).
@@ -35,12 +35,12 @@ Unfortunately we're still left with 1.a (Command-Tab to the application).
 ----
 **Step 2: Another partial solution**
 
-It's also fairly easy to know when 2.a (Clicking on a window in your App) occurs. Simple subclass General/NSWindow and override:
+It's also fairly easy to know when 2.a (Clicking on a window in your App) occurs. Simple subclass NSWindow and override:
 
     
-- (void)mouseDown: (General/NSEvent *)event
+- (void)mouseDown: (NSEvent *)event
 {
-   if (General/[NSApp isActive] == NO) {
+   if ([NSApp isActive] == NO) {
        // This is event type 2.a.
    }
 }
@@ -55,27 +55,27 @@ One implicit difference between the two types of events is the ordering of windo
 
     
 
-- (void)applicationDidBecomeActive: (General/NSNotification *)note
+- (void)applicationDidBecomeActive: (NSNotification *)note
 {
-   if (General/AllWindowsAreFrontMost()) {
+   if (AllWindowsAreFrontMost()) {
       // This is activation type 1
    } else {
       // This is activation type 2
    }
 }
 
-BOOL General/AllWindowsAreFrontMost()
+BOOL AllWindowsAreFrontMost()
 {
-   if (!General/[NSApp isActive]) {
+   if (![NSApp isActive]) {
       return NO;
    }
-   General/NSArray *appWindowsArray = General/[NSApp windows];
+   NSArray *appWindowsArray = [NSApp windows];
    int appWindowCount = 0;
-   int appWindowsGeneral/appWindowsArray count;
+   int appWindowsappWindowsArray count;
 
-   // General/NSApp returns windows back to front so we have to flip the order.
-   General/NSEnumerator *e = [appWindowsArray reverseObjectEnumerator];
-   General/NSWindow *window;
+   // NSApp returns windows back to front so we have to flip the order.
+   NSEnumerator *e = [appWindowsArray reverseObjectEnumerator];
+   NSWindow *window;
    int i = 0;
    while ((window = [e nextObject])) {
       if ([window isVisible]) {
@@ -88,9 +88,9 @@ BOOL General/AllWindowsAreFrontMost()
       return YES;
    }
    int globalWindowsCount;
-   General/NSCountWindows(&globalWindowsCount);
+   NSCountWindows(&globalWindowsCount);
    int globalWindows[globalWindowsCount];
-   General/NSWindowList(globalWindowsCount, globalWindows);
+   NSWindowList(globalWindowsCount, globalWindows);
 
    if (appWindowCount >= globalWindowsCount) {
       return YES;

@@ -3,7 +3,7 @@
     
 
 /*
-    Initializes this General/ACMethod object with a particular Method and Class
+    Initializes this ACMethod object with a particular Method and Class
 */
 -(id) initWithMethod:(struct objc_method *)aMethod andClass:(Class)c;
 
@@ -15,10 +15,10 @@
 /*
     Returns the signature of the wrapped method
 */
--(General/NSMethodSignature *)getSignature;
+-(NSMethodSignature *)getSignature;
 
 /*
-    Returns an General/NSString representation of the wrapped method's name
+    Returns an NSString representation of the wrapped method's name
 */
--(General/NSString *)methodName;
+-(NSString *)methodName;
 

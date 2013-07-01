@@ -13,26 +13,26 @@ http://developer.apple.com/documentation/Cocoa/Conceptual/Strings/Articles/Scann
 from Apple's docs:
 
 
-"An General/NSScanner object interprets and converts the characters of an General/NSString object into number and string values. You assign the scanner's string on creating it, and the scanner progresses through the characters of that string from beginning to end as you request items. This cluster has a single public class, General/NSScanner." 
+"An NSScanner object interprets and converts the characters of an NSString object into number and string values. You assign the scanner's string on creating it, and the scanner progresses through the characters of that string from beginning to end as you request items. This cluster has a single public class, NSScanner." 
 
-Limitations: General/NSScanners are Objective-C objects only. If you program in Java, use General/NSFormatter.
+Limitations: NSScanners are Objective-C objects only. If you program in Java, use NSFormatter.
 
 
 ----
 
-I've found that General/NSScanner is *much* faster using strings (e.g. -scanUpToString::) rather than character sets (e.g. scanUpToCharactersFromSet::). as an example, General/NSScannerTimeTrialSourceCode.
+I've found that NSScanner is *much* faster using strings (e.g. -scanUpToString::) rather than character sets (e.g. scanUpToCharactersFromSet::). as an example, NSScannerTimeTrialSourceCode.
 
 *--boredzo*
 
-If you need something more complex than a character scanner for converting character streams into tokens then consider using Lex (and possibly Yacc) which allow you to construct parsers. Ie, General/UsingLexAndYaccWithObjectiveC
+If you need something more complex than a character scanner for converting character streams into tokens then consider using Lex (and possibly Yacc) which allow you to construct parsers. Ie, UsingLexAndYaccWithObjectiveC
 
 ----
 
-i am trying to use General/NSScanner to scan some data comming from a serial port. the data is received in this form: "41 0C 0A BE". i am interested in everything after the second pair and converting that to an integer to be displayed in different General/NSTextFields.  the second set "0C" is a what will be used to identify which textFiled the data should go to. should i even be using General/NSScanner for this?
+i am trying to use NSScanner to scan some data comming from a serial port. the data is received in this form: "41 0C 0A BE". i am interested in everything after the second pair and converting that to an integer to be displayed in different NSTextFields.  the second set "0C" is a what will be used to identify which textFiled the data should go to. should i even be using NSScanner for this?
 so far i have:
     
- NSData *data = [dataDictionary objectForKey:@"data"]; // this data is comming from a General/NSDictionary where the data read in background by the serial port is stored.
- NSString *str = General/NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+ NSData *data = [dataDictionary objectForKey:@"data"]; // this data is comming from a NSDictionary where the data read in background by the serial port is stored.
+ NSString *str = NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
  NSScanner *scanner = [NSScanner scannerWithString:str];
  unsigned unsignedValue;
  [scanner scanString:@"41" intoString:NULL]; //every transmission from the serial port start with this hex value and then the pid hex value (i.e. "0C") followed by the data
@@ -48,7 +48,7 @@ any ideas why this does not work?
 ----
 The data object you receive, contains the *bytes* 41, 0C, 0A, and BE, not a string "41 0C 0A BE". -initWithData:encoding: will attempt to create a string using the bytes passed to it as if they were encoded with the given encoding, in this case ASCII. Your data does not, however, represent an ASCII string, so the result will not be what you expect.
 
-You can access the bytes in an General/NSData object directly via the -bytes message; you can then iterate through it as a char array, which will be much faster than turning it into a string:
+You can access the bytes in an NSData object directly via the -bytes message; you can then iterate through it as a char array, which will be much faster than turning it into a string:
 
     
  NSData *data = ...;
@@ -93,4 +93,4 @@ why would the last byte have "ffffff" added to the beging of it?
 
 ----
 
-Use "unsigned char" or "byte" rather than "char" which is by default a signed value. With "char", characters from 0-127 are positive numbers (0x00-0x7F) and 128-255 are negative (-0x80 to -0x01). You often don't notice this signedness using integers because their range is much larger. This discussion doesn't really fit on the General/NSScanner page anymore does it?
+Use "unsigned char" or "byte" rather than "char" which is by default a signed value. With "char", characters from 0-127 are positive numbers (0x00-0x7F) and 128-255 are negative (-0x80 to -0x01). You often don't notice this signedness using integers because their range is much larger. This discussion doesn't really fit on the NSScanner page anymore does it?

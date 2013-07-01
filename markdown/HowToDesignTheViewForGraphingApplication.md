@@ -13,8 +13,8 @@ I need some guidance as to how to implement this....a few issues I have been thi
 
 ----
 
-Well, you've started to General/BreakItDown a little bit, so that's a good sign, but unfortunately it seems that you've attacked the high-level UI stuff first.  Why not spend more time designing your application before worrying about how hit testing will work?
+Well, you've started to BreakItDown a little bit, so that's a good sign, but unfortunately it seems that you've attacked the high-level UI stuff first.  Why not spend more time designing your application before worrying about how hit testing will work?
 
 ----
 
-Read up on General/NSView. None of the issues you are worrying about really are issues when you understand it. Cocoa views are effectively resolution independent - you have a base co-ordinate system that doesn't change and you can set zooming using methods in a view and all the scaling is taken care of for you. Co-ordinate conversion is automatic so as far as hit-testing is concerned your mouse hits the same point you can see (though with less precision if you are zoomed far out, for example). Just draw your graph into the same co-ordinate space and the zooming is a visual effect only. Regarding graph plotting and handling this zoom, these classes may help you: http://apptree.net/gczoomview.htm and http://apptree.net/parser.htm --GC
+Read up on NSView. None of the issues you are worrying about really are issues when you understand it. Cocoa views are effectively resolution independent - you have a base co-ordinate system that doesn't change and you can set zooming using methods in a view and all the scaling is taken care of for you. Co-ordinate conversion is automatic so as far as hit-testing is concerned your mouse hits the same point you can see (though with less precision if you are zoomed far out, for example). Just draw your graph into the same co-ordinate space and the zooming is a visual effect only. Regarding graph plotting and handling this zoom, these classes may help you: http://apptree.net/gczoomview.htm and http://apptree.net/parser.htm --GC

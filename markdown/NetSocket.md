@@ -1,32 +1,32 @@
-General/NetSocket is a free piece of code from General/BlackholeMedia.
+NetSocket is a free piece of code from BlackholeMedia.
 
-An Objective-C TCP socket class that greatly simplifies asynchronous networking in Cocoa applications. General/NetSocket will do buffering of both reads and writes behind the scenes allowing you to use the data at the most convenient time and not worry if a call to send will  block or not. Through a series of optional callbacks, a delegate can be notified of socket events ( e.g. connected, disconnected, data available for reading ).
+An Objective-C TCP socket class that greatly simplifies asynchronous networking in Cocoa applications. NetSocket will do buffering of both reads and writes behind the scenes allowing you to use the data at the most convenient time and not worry if a call to send will  block or not. Through a series of optional callbacks, a delegate can be notified of socket events ( e.g. connected, disconnected, data available for reading ).
 
-General/NetSocket uses new General/MacOS X networking General/APIs to make all of this possible, mainly General/CFSocket ( part of the General/CoreFoundation General/CFNetwork General/APIs ).
+NetSocket uses new MacOS X networking APIs to make all of this possible, mainly CFSocket ( part of the CoreFoundation CFNetwork APIs ).
 
-Check out http://www.blackholemedia.com/code/ for more information. Actually, it's mostly the same information just worded a little differently...but there is a download link! The General/NetSocket archive contains fairly good documentation on the class and the source is well commented.
+Check out http://www.blackholemedia.com/code/ for more information. Actually, it's mostly the same information just worded a little differently...but there is a download link! The NetSocket archive contains fairly good documentation on the class and the source is well commented.
 
-General/CFSocket being fairly undocumented and all, we would much appreciate that you send in any changes you make to General/NetSocket. Fun!
-
-----
-
-Blackhole's site is down for some time now. You can download the original version from http://www.sebastianpape.de/archive/General/NetSocket.dmg.tar
+CFSocket being fairly undocumented and all, we would much appreciate that you send in any changes you make to NetSocket. Fun!
 
 ----
 
-Since Sebastian's download link is broken, the only way to still get the code is through General/WebArchive.org: http://web.archive.org/web/20071220205102/www.blackholemedia.com/code/
-
-Alternately, Uli Kusterer has started a Github repository containing a slightly updated and renamed version of the class, which can be found at http://github.com/uliwitness/General/ULINetSocket
+Blackhole's site is down for some time now. You can download the original version from http://www.sebastianpape.de/archive/NetSocket.dmg.tar
 
 ----
 
-I agree - General/NetSocket does indeed rock, greatly simplifying the use of cocoa sockets.  I am, however, having a problem.
+Since Sebastian's download link is broken, the only way to still get the code is through WebArchive.org: http://web.archive.org/web/20071220205102/www.blackholemedia.com/code/
+
+Alternately, Uli Kusterer has started a Github repository containing a slightly updated and renamed version of the class, which can be found at http://github.com/uliwitness/ULINetSocket
+
+----
+
+I agree - NetSocket does indeed rock, greatly simplifying the use of cocoa sockets.  I am, however, having a problem.
 
 I can instantiate a socket and connect to a remote host.  I can then writeString::  to the socket and it works.  I then readString:  and that works.  So far, the proper delegates get called (socketConnected:, socket:dataAvailable:, socketSentData:).  So far, so good.
 
 But when I now try to writeString:: to the socket it doesn't work.  When I [mySocket close] that doesn't seem to work either (the delegate socketDisconnected: doesn't get called and [mySocket opened] and [mySocket connected] both return YES.
 
-Anyone with any experience with the General/NetSocket class have any idea what I'm missing?
+Anyone with any experience with the NetSocket class have any idea what I'm missing?
 
 Thanks in advance for any advice,
 
@@ -61,7 +61,7 @@ The socket executes readString:  ok.  And I can execute a writeString:: to it ON
 
 After the first writeString::  , the delegate dataAvailable::  still fires and I can continue to readString:  incomming data.  And though there is no error if I writeString::  or [mySocket close], neither of the delegates socketSentData:  or socketDisconnected:  seems to fire.  Also, the data doesn't seem to be sent to the socket it's connected to.
 
-This test project I am using is bare-bones and I'm pretty sure there's nothing i'm doing wrong.  Perhaps I'm not understanding what the proper behavior of these General/NetSockets are.
+This test project I am using is bare-bones and I'm pretty sure there's nothing i'm doing wrong.  Perhaps I'm not understanding what the proper behavior of these NetSockets are.
 
 Has anyone seen this behavior or had the opportunity to try it yourself?
 
@@ -70,28 +70,28 @@ Phil
 
 ----
 
-I posted an update to General/NetSocket that should fix some problems people were experiencing...er, everyone was experiencing, including myself.
+I posted an update to NetSocket that should fix some problems people were experiencing...er, everyone was experiencing, including myself.
 
-Thanks to everyone who submitted a bug report and sorry it took so long to get an update. Perhaps we should move General/NetSocket to CVS.
+Thanks to everyone who submitted a bug report and sorry it took so long to get an update. Perhaps we should move NetSocket to CVS.
 
 http://www.blackholemedia.com/code
 
-- General/DustinMierau
+- DustinMierau
 
 ----
 
-New General/NetSocket works flawlessly. Awesome! I've been looking for something like this for a LONG time. I hate using General/CFSocket directly, it's so...hard. Thanks General/BlackHole Media!
+New NetSocket works flawlessly. Awesome! I've been looking for something like this for a LONG time. I hate using CFSocket directly, it's so...hard. Thanks BlackHole Media!
 
 Just wondering, is there a way to get the computer's local IP address with this? It's not absolutely, necessary, but it'd be nice for interface features.
 
 -macfiend
 
 ----
-Hello, this is but a bit offtopic; How do I know which version of General/NetSocket I have? I find no comment header or nothing. This might be fixed to next version ;) -- General/EnglaBenny
+Hello, this is but a bit offtopic; How do I know which version of NetSocket I have? I find no comment header or nothing. This might be fixed to next version ;) -- EnglaBenny
 Oops, well it was so in the newer version I downloaded.. well, good job.
 
 ----
-Here's a method you could add to get the computer's local IP addresses... General/TomWaters
+Here's a method you could add to get the computer's local IP addresses... TomWaters
 
     
 #import <netinet/in.h>
@@ -100,9 +100,9 @@ Here's a method you could add to get the computer's local IP addresses... Genera
 #define IFCONF_BUFFERSIZE	4000
 #define	max(a,b)	((a) > (b) ? (a) : (b))
 
-+ (General/NSDictionary *)getIPAddresses
++ (NSDictionary *)getIPAddresses
 {
-	General/NSMutableDictionary *ip_addrs = General/[NSMutableDictionary dictionary];
+	NSMutableDictionary *ip_addrs = [NSMutableDictionary dictionary];
 
 	char buffer[IFCONF_BUFFERSIZE];
 	char *ptr = buffer;
@@ -110,17 +110,17 @@ Here's a method you could add to get the computer's local IP addresses... Genera
 
 	int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 	if (sockfd == -1)
-		General/[NSException raise:@"General/NetSocket: Bad socket descriptor"
-			format:@"General/NetSocket: Bad socket descriptor"];
+		[NSException raise:@"NetSocket: Bad socket descriptor"
+			format:@"NetSocket: Bad socket descriptor"];
 
 	if (ioctl(sockfd, SIOCGIFCONF, &ifc) < 0)
-		General/[NSException raise:@"General/NetSocket: Ioctl failed"
-			format:@"General/NetSocket: Ioctl failed: %s", strerror(errno)];
+		[NSException raise:@"NetSocket: Ioctl failed"
+			format:@"NetSocket: Ioctl failed: %s", strerror(errno)];
 
 	while (ptr < buffer + ifc.ifc_len) {
 		struct ifreq *ifr = (struct ifreq *)ptr;
 		struct sockaddr_in *sin = (struct sockaddr_in *)&ifr->ifr_addr;
-		General/NSString *ipaddr = General/[NSString stringWithCString:inet_ntoa(sin->sin_addr)];
+		NSString *ipaddr = [NSString stringWithCString:inet_ntoa(sin->sin_addr)];
 		char *cptr;
 
 		// for next one in buffer
@@ -138,7 +138,7 @@ Here's a method you could add to get the computer's local IP addresses... Genera
 		if ((ifr->ifr_flags & IFF_UP) == 0) {
 			continue;	// ignore if interface not up
 		}
-		[ip_addrs setObject:ipaddr forKey:General/[NSString stringWithCString:ifr->ifr_name]];
+		[ip_addrs setObject:ipaddr forKey:[NSString stringWithCString:ifr->ifr_name]];
 
 	}
 	close(sockfd);
@@ -149,19 +149,19 @@ Here's a method you could add to get the computer's local IP addresses... Genera
 
 ----
 
-...or, um, <code>General/[[NSHost currentHost] address]</code>. You know, which ever's easier ;).
+...or, um, <code>[[NSHost currentHost] address]</code>. You know, which ever's easier ;).
 
 ----
 
 Actually, the above will return an arbitrary address according to the docs, which could be an IPv6 address, or the loopback address (127.0.0.1), etc. I wrote a quick hack that returns the first IPv4 address that's not a loopback.
     
--(General/NSString*)IPv4Address;
+-(NSString*)IPv4Address;
 {
-    General/NSEnumerator* e = General/[[[NSHost currentHost] addresses] objectEnumerator];
-    General/NSString* addr;
-    while (addr = (General/NSString*)[e nextObject])
+    NSEnumerator* e = [[[NSHost currentHost] addresses] objectEnumerator];
+    NSString* addr;
+    while (addr = (NSString*)[e nextObject])
     {
-        if (General/addr componentsSeparatedByString:@"."] count] == 4 && ![addr isEqual:@"127.0.0.1"])
+        if (addr componentsSeparatedByString:@"."] count] == 4 && ![addr isEqual:@"127.0.0.1"])
         {
             return addr;
         }
@@ -170,33 +170,33 @@ Actually, the above will return an arbitrary address according to the docs, whic
 }
 
 In the case that there are multiple non-loopback IPv4 addresses, this will just return one of them arbitrarily. 
---General/AndySzybalski
+--AndySzybalski
 
 ----
 
-Could anyone post some simple examples on how to use General/NetSocket. I can't get it to work. My client app shows that it sent data, but server never gets it. I can get connectionAccepted message. What could be wrong? I guess everything is fine with my network (DHCP).
+Could anyone post some simple examples on how to use NetSocket. I can't get it to work. My client app shows that it sent data, but server never gets it. I can get connectionAccepted message. What could be wrong? I guess everything is fine with my network (DHCP).
 
 ----
  
-Along those lines, I need a simple telnet client, so I can modify it for a couple things.  anyone care to give an example of how the telnet client is supposed to handshake (DO, WONT, WILL, etc) with General/NetSocket, so I can figure out if this is working or not?
+Along those lines, I need a simple telnet client, so I can modify it for a couple things.  anyone care to give an example of how the telnet client is supposed to handshake (DO, WONT, WILL, etc) with NetSocket, so I can figure out if this is working or not?
 
 ----
 
-Is there any reason to use General/NetSocket instead of General/NSFileHandle using sockets?
+Is there any reason to use NetSocket instead of NSFileHandle using sockets?
 
 ----
 
-I am having a weird time with General/NetSocket!  the descriptions of the delegate methods in the documentation eg:
+I am having a weird time with NetSocket!  the descriptions of the delegate methods in the documentation eg:
 
-- (void)socket:(General/NetSocket*)inSocket dataAvailable:(unsigned)inAmount
+- (void)socket:(NetSocket*)inSocket dataAvailable:(unsigned)inAmount
 
-is inconsistent with the actual netsocket.h, which declares this as: - (void)netsocket:(General/NetSocket*)inSocket dataAvailable:(unsigned)inAmount
+is inconsistent with the actual netsocket.h, which declares this as: - (void)netsocket:(NetSocket*)inSocket dataAvailable:(unsigned)inAmount
 
-also: I see what appears to be a fairly important element in the example General/[NetSocket scheduleOnCurrentRunLoop] that is not mentioned in the documentation either.  Not the easiest class to get started with due to all of this!
+also: I see what appears to be a fairly important element in the example [NetSocket scheduleOnCurrentRunLoop] that is not mentioned in the documentation either.  Not the easiest class to get started with due to all of this!
 
--General/EcumeDesJours
+-EcumeDesJours
 
-*Try my General/AsyncSocket. It's easy, maybe easier than General/NetSocket. -- General/DustinVoss*
+*Try my AsyncSocket. It's easy, maybe easier than NetSocket. -- DustinVoss*
 
 ----
 
@@ -204,9 +204,9 @@ The delegate netsocketDisconnected: does not get called after I call [socket clo
 
 ----
 
-General/NetSocket is working great for me, except for one thing.  When a connection from behind a NAT router has the "NAT timeout of death" happen, General/NetSocket never seems to notice.  Even when you send additional text, it continues to act as though the socket is connected; you have to manually disconnect and reconnect.  Is there a known way around this, or am I gonna just have to start hacking my copy of General/NetSocket apart to figure out where it falls apart? :) 
+NetSocket is working great for me, except for one thing.  When a connection from behind a NAT router has the "NAT timeout of death" happen, NetSocket never seems to notice.  Even when you send additional text, it continues to act as though the socket is connected; you have to manually disconnect and reconnect.  Is there a known way around this, or am I gonna just have to start hacking my copy of NetSocket apart to figure out where it falls apart? :) 
 
 ----
 
-Is there a way to add SSL support to General/NetSocket?
-(I've also tried General/AsyncSocket as alternative but the download speed is lower than General/NetSocket with large amount of data)
+Is there a way to add SSL support to NetSocket?
+(I've also tried AsyncSocket as alternative but the download speed is lower than NetSocket with large amount of data)

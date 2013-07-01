@@ -1,24 +1,24 @@
-I want to implement syntax highlighting in a text editor. Do I have to subclass General/NSTextField or something similar?
+I want to implement syntax highlighting in a text editor. Do I have to subclass NSTextField or something similar?
 
 ----
 
-I've done this with a little perl text editor I've been using for a few years. Register for the General/NSTextStorageDidProcessEditingNotification notification to learn when text was modified, get the General/NSTextStorage object from the notification, use General/NSTextStorage's editedRange to figure out where the recent edit was, and then colorize the General/NSTextView accordingly. Here's a meaningless blurb:
+I've done this with a little perl text editor I've been using for a few years. Register for the NSTextStorageDidProcessEditingNotification notification to learn when text was modified, get the NSTextStorage object from the notification, use NSTextStorage's editedRange to figure out where the recent edit was, and then colorize the NSTextView accordingly. Here's a meaningless blurb:
 
-    - (void)processEditing:(General/NSNotification *)notification
+    - (void)processEditing:(NSNotification *)notification
     {
-        General/NSTextStorage *textStorage = [notification object];
-        General/NSRange range = [textStorage editedRange];
+        NSTextStorage *textStorage = [notification object];
+        NSRange range = [textStorage editedRange];
     
-        // colorize the proper General/NSTextView ... 
+        // colorize the proper NSTextView ... 
     }
 
-I ended up subclassing General/NSTextStorage and General/NSTextView to perform other tasks, but that shouldn't be required in order to do syntax coloring.
+I ended up subclassing NSTextStorage and NSTextView to perform other tasks, but that shouldn't be required in order to do syntax coloring.
 
 ----
 
- The following code listens to changes to a General/NSTextView and colorizes all instances of the word "Mike" in blue, FWIW. The example colorizes the entire document after every key-press. This becomes quite costly; a "real" editor will try to minimize the area it attempts to colorize. Xcode, for example, only colorizes text that's currently on-screen, and defers colorizing the rest of the document until you scroll through it.
+ The following code listens to changes to a NSTextView and colorizes all instances of the word "Mike" in blue, FWIW. The example colorizes the entire document after every key-press. This becomes quite costly; a "real" editor will try to minimize the area it attempts to colorize. Xcode, for example, only colorizes text that's currently on-screen, and defers colorizing the rest of the document until you scroll through it.
 
-I added a text view to the default window. I created an General/NSObject subclass called Controller, instantiated it, added "window" and "textview" outlets, and hooked the outlets up to the window and text view. Then I saved the files. Here's the controller definition:
+I added a text view to the default window. I created an NSObject subclass called Controller, instantiated it, added "window" and "textview" outlets, and hooked the outlets up to the window and text view. Then I saved the files. Here's the controller definition:
 
 Controller.h
 
@@ -26,10 +26,10 @@ Controller.h
     
     #import <Cocoa/Cocoa.h>
     
-    @interface Controller : General/NSObject
+    @interface Controller : NSObject
     {
-        General/IBOutlet id textview;
-        General/IBOutlet id window;
+        IBOutlet id textview;
+        IBOutlet id window;
     }
     @end
 
@@ -41,54 +41,54 @@ Controller.m
     
     - (void)awakeFromNib
     {
-        General/textview textStorage] setDelegate:self];
+        textview textStorage] setDelegate:self];
     }
     
     - (void)textStorageDidProcessEditing:([[NSNotification *)notification
     {
-        General/NSTextStorage *textStorage = [notification object];
-        General/NSColor *blue = General/[NSColor blueColor];
-        General/NSRange found, area;
-        General/NSString *string = [textStorage string];
+        NSTextStorage *textStorage = [notification object];
+        NSColor *blue = [NSColor blueColor];
+        NSRange found, area;
+        NSString *string = [textStorage string];
         unsigned int length = [string length];
     
         // remove the old colors
         area.location = 0;
         area.length = length;
-        [textStorage removeAttribute:General/NSForegroundColorAttributeName range:area];
+        [textStorage removeAttribute:NSForegroundColorAttributeName range:area];
     
         // add new colors
         while (area.length) {
             found = [string rangeOfString:@"Mike" 
-                                  options:General/NSCaseInsensitiveSearch 
+                                  options:NSCaseInsensitiveSearch 
                                     range:area];
-            if (found.location == General/NSNotFound) break;
-            [textStorage addAttribute:General/NSForegroundColorAttributeName
+            if (found.location == NSNotFound) break;
+            [textStorage addAttribute:NSForegroundColorAttributeName
                                 value:blue
                                 range:found];
-            area.location = General/NSMaxRange(found);
+            area.location = NSMaxRange(found);
             area.length = length - area.location;
         }
     }
     
     @end
 
-I'm not subclassing General/NSTextView or General/NSTextStorage; I register a delegate for the General/NSTextStorage object and listen to the proper notification. The General/NSTextStorage delegate is allowed to modify the storage's text attributes, so long as the delegate doesn't change the text's characters directly (this apparently includes switching from western to Kanji fonts).
+I'm not subclassing NSTextView or NSTextStorage; I register a delegate for the NSTextStorage object and listen to the proper notification. The NSTextStorage delegate is allowed to modify the storage's text attributes, so long as the delegate doesn't change the text's characters directly (this apparently includes switching from western to Kanji fonts).
 
-I compiled the application, ran it, and watched my "mike" strings draw in blue. You should be able to get this little example up and running quickly, assuming you're familiar with using General/InterfaceBuilder.
+I compiled the application, ran it, and watched my "mike" strings draw in blue. You should be able to get this little example up and running quickly, assuming you're familiar with using InterfaceBuilder.
 
-Personally, I'd start by colorizing only the area around the actual edit, rather than colorizing the entire document w/ each pass. This means getting the edited area using General/NSTextStorage's editedRange, rolling back the range to a previous point (such as a word boundary), and rolling forward to a following point (such as a word boundary again) and colorize that edited range. My own perl editor does this and I've been fairly happy with the results.
+Personally, I'd start by colorizing only the area around the actual edit, rather than colorizing the entire document w/ each pass. This means getting the edited area using NSTextStorage's editedRange, rolling back the range to a previous point (such as a word boundary), and rolling forward to a following point (such as a word boundary again) and colorize that edited range. My own perl editor does this and I've been fairly happy with the results.
 
-If you want to try to get "just in time" syntax coloring to work, start by reading the documentation on all of the text classes, including General/NSTextView, General/NSTextStorage, General/NSTextContainer, and General/NSLayoutManager. Also read the General/TextArchitecture topics found here:
+If you want to try to get "just in time" syntax coloring to work, start by reading the documentation on all of the text classes, including NSTextView, NSTextStorage, NSTextContainer, and NSLayoutManager. Also read the TextArchitecture topics found here:
 
-file:///Developer/Documentation/Cocoa/General/TasksAndConcepts/General/ProgrammingTopics/General/TextArchitecture/index.html
+file:///Developer/Documentation/Cocoa/TasksAndConcepts/ProgrammingTopics/TextArchitecture/index.html
 
 or here:
 
-http://developer.apple.com/techpubs/macosx/Cocoa/General/TasksAndConcepts/General/ProgrammingTopics/General/TextArchitecture/index.html
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/TextArchitecture/index.html
+http://developer.apple.com/techpubs/macosx/Cocoa/TasksAndConcepts/ProgrammingTopics/TextArchitecture/index.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/TextArchitecture/index.html
 
-This will be fairly difficult, probably involving a lot of subclassing and doing things "by hand". Even General/ProjectBuilder doesn't get this right all the time.
+This will be fairly difficult, probably involving a lot of subclassing and doing things "by hand". Even ProjectBuilder doesn't get this right all the time.
 
 ----
 
@@ -104,12 +104,12 @@ Controller.h
     
     #import <Cocoa/Cocoa.h>
     
-    @interface Controller : General/NSObject
+    @interface Controller : NSObject
     {
-        General/IBOutlet id textview;
-        General/IBOutlet id window;
+        IBOutlet id textview;
+        IBOutlet id window;
     
-        General/NSMutableDictionary *words;
+        NSMutableDictionary *words;
     }
     @end
 
@@ -121,19 +121,19 @@ Controller.m
     
     - (void)awakeFromNib
     {
-        General/NSScanner *scanner;
-        General/NSString *word;
-        General/NSString *file;
-        General/NSCharacterSet *whiteSpaceSet;
+        NSScanner *scanner;
+        NSString *word;
+        NSString *file;
+        NSCharacterSet *whiteSpaceSet;
     
-        General/textview textStorage] setDelegate:self];
+        textview textStorage] setDelegate:self];
     
         // load our dictionary
         whiteSpaceSet = [[[NSCharacterSet whitespaceAndNewlineCharacterSet];
-        words = General/[[NSMutableDictionary alloc] init];
-        file = General/[NSString stringWithContentsOfFile:@"/usr/share/dict/words"];
+        words = [[NSMutableDictionary alloc] init];
+        file = [NSString stringWithContentsOfFile:@"/usr/share/dict/words"];
         if (!file) return; // error
-        scanner = General/[NSScanner scannerWithString:file];
+        scanner = [NSScanner scannerWithString:file];
         while (![scanner isAtEnd]) {
             BOOL ok;
             ok = [scanner scanUpToCharactersFromSet:whiteSpaceSet
@@ -143,39 +143,39 @@ Controller.m
         }
     }
     
-    - (void)textStorageDidProcessEditing:(General/NSNotification *)notification
+    - (void)textStorageDidProcessEditing:(NSNotification *)notification
     {
-        General/NSTextStorage *textStorage = [notification object];
-        General/NSString *string = [textStorage string];
-        General/NSRange area = [textStorage editedRange];
+        NSTextStorage *textStorage = [notification object];
+        NSString *string = [textStorage string];
+        NSRange area = [textStorage editedRange];
         unsigned int length = [string length];
-        General/NSRange start, end;
-        General/NSCharacterSet *whiteSpaceSet;
-        unsigned int areamax = General/NSMaxRange(area);
-        General/NSRange found;
-        General/NSColor *red = General/[NSColor redColor];
-        General/NSString *word;
+        NSRange start, end;
+        NSCharacterSet *whiteSpaceSet;
+        unsigned int areamax = NSMaxRange(area);
+        NSRange found;
+        NSColor *red = [NSColor redColor];
+        NSString *word;
         
         // extend our range along word boundaries.
-        whiteSpaceSet = General/[NSCharacterSet whitespaceAndNewlineCharacterSet];
+        whiteSpaceSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
         start = [string rangeOfCharacterFromSet:whiteSpaceSet
-                                        options:General/NSBackwardsSearch
-                                          range:General/NSMakeRange(0, area.location)];
-        if (start.location == General/NSNotFound) {
+                                        options:NSBackwardsSearch
+                                          range:NSMakeRange(0, area.location)];
+        if (start.location == NSNotFound) {
             start.location = 0;
         }  else {
-            start.location = General/NSMaxRange(start);
+            start.location = NSMaxRange(start);
         }
         end = [string rangeOfCharacterFromSet:whiteSpaceSet
                                       options:0
-                                        range:General/NSMakeRange(areamax, length - areamax)];
-        if (end.location == General/NSNotFound)
+                                        range:NSMakeRange(areamax, length - areamax)];
+        if (end.location == NSNotFound)
             end.location = length;
-        area = General/NSMakeRange(start.location, end.location - start.location);
+        area = NSMakeRange(start.location, end.location - start.location);
         if (area.length == 0) return; // bail early
         
         // remove the old colors
-        [textStorage removeAttribute:General/NSForegroundColorAttributeName range:area];
+        [textStorage removeAttribute:NSForegroundColorAttributeName range:area];
     
         // add new colors
         while (area.length) {
@@ -183,7 +183,7 @@ Controller.m
             end = [string rangeOfCharacterFromSet:whiteSpaceSet
                                           options:0
                                             range:area];
-            if (end.location == General/NSNotFound) {
+            if (end.location == NSNotFound) {
                 end = found = area;
             } else {
                 found.length = end.location - area.location;
@@ -193,13 +193,13 @@ Controller.m
     
             // color as necessary
             if ([words objectForKey:word] == NULL) {
-                [textStorage addAttribute:General/NSForegroundColorAttributeName
+                [textStorage addAttribute:NSForegroundColorAttributeName
                                     value:red
                                     range:found];
             }
             
             // adjust our area
-            areamax = General/NSMaxRange(end);
+            areamax = NSMaxRange(end);
             area.length -= areamax - area.location;
             area.location = areamax;
         }
@@ -207,9 +207,9 @@ Controller.m
     
     @end
 
-The interface is the same as that in the "Mike" program with the addition of an General/InstanceVariable for a dictionary of words. We create the dictionary in awakeFromNib using General/NSScanner to parse the word dictionary. We handle the edit event in textStorageDidProcessEditing: as before. We start with the editedRange; this is usually a single character, but it might represent an arbitrary amount of text if the user pasted text from the clipboard. We extend the edited range out to word boundaries, taking advantage of the fact that words are separated by whitespace. Typically the "area" range represents is a single word, but it might represent several lines of text if this was a paste event again. As a result we still loop over the range like before. 
+The interface is the same as that in the "Mike" program with the addition of an InstanceVariable for a dictionary of words. We create the dictionary in awakeFromNib using NSScanner to parse the word dictionary. We handle the edit event in textStorageDidProcessEditing: as before. We start with the editedRange; this is usually a single character, but it might represent an arbitrary amount of text if the user pasted text from the clipboard. We extend the edited range out to word boundaries, taking advantage of the fact that words are separated by whitespace. Typically the "area" range represents is a single word, but it might represent several lines of text if this was a paste event again. As a result we still loop over the range like before. 
 
-If you set up and run this program you'll find your words change colors as you type them. The word will flash between red and black as you complete the word. For example, when typing "there": 't' is black, 'th' is black (it's in the dictionary file...), 'the' is black, 'ther' is red, 'there' is black. If you paste text in from a big text file or mail message the program will stop and colorize all of the new text. This is the disadvantage I mentioned in my previous entry. But, once all of your text is in the file, you can scroll to any part of the file and start typing without feeling any negative effects of the colorizer. That is, even when you edit the middle of the file you don't have to re-colorize the entire document. That's the advantage I mention in my previous entry, and that's the specific problem General/ThomasSempf mentions in his previous post above.
+If you set up and run this program you'll find your words change colors as you type them. The word will flash between red and black as you complete the word. For example, when typing "there": 't' is black, 'th' is black (it's in the dictionary file...), 'the' is black, 'ther' is red, 'there' is black. If you paste text in from a big text file or mail message the program will stop and colorize all of the new text. This is the disadvantage I mentioned in my previous entry. But, once all of your text is in the file, you can scroll to any part of the file and start typing without feeling any negative effects of the colorizer. That is, even when you edit the middle of the file you don't have to re-colorize the entire document. That's the advantage I mention in my previous entry, and that's the specific problem ThomasSempf mentions in his previous post above.
 
 This example is fairly simple, but the concept is quite scalable. My perl editor uses a more sophisticated version of this same strategy. We start with the edited range, roll back to the previous colored area (it might be a word, a keyword, a comment, a string) and roll forward as necessary until the colorizer is finished changing colors. This way, adding a "x" to the file affects only the characters immediately surrounding the "x", adding a "#" affects the characters just prior (you may have put it in the middle of a word) and all the characters before the next newline, and adding a "'" will cause all the strings in the file to temporarily unbalance until you add a second "'". This is all powered by a simple lexical analyzer I wrote to recognize common formatting in perl, shell, and make scripts. keywords are detected using a dictionary approach similar to the one I outline above; since keywords can vary depending on script type (perl keywords are different than shell keywords) the editor keeps a number of keyword dictionaries around.
 
@@ -219,11 +219,11 @@ Well after all (before you posted) i implemented it a more c way.
 I am just searching for brackets to color the text between them.
 Here it is, if you are interested:
 
-    - (void)textStorageDidProcessEditing:(General/NSNotification *)notification {
-        General/NSTextStorage *textStorage = [notification object];
-        General/NSColor *blue = General/[NSColor blueColor];
-        General/NSRange editedArea, area, colorRange;
-        General/NSString *string = [textStorage string];
+    - (void)textStorageDidProcessEditing:(NSNotification *)notification {
+        NSTextStorage *textStorage = [notification object];
+        NSColor *blue = [NSColor blueColor];
+        NSRange editedArea, area, colorRange;
+        NSString *string = [textStorage string];
         unsigned int length = [string length];
         int i, j;
         bool strFound = NO;
@@ -235,31 +235,31 @@ Here it is, if you are interested:
     
         for(i=editedArea.location; i >= 0 && area.length != 0; --i) {
             if( [string characterAtIndex:i] == '<' ) {
-                int temp = General/NSMaxRange( editedArea );
+                int temp = NSMaxRange( editedArea );
                 editedArea.location = i;
                 editedArea.length = temp - editedArea.location;
                 break;
             }
         }
     
-        for(i=General/NSMaxRange( editedArea ); i < General/NSMaxRange( area) && area.length != 0; i++) {
+        for(i=NSMaxRange( editedArea ); i < NSMaxRange( area) && area.length != 0; i++) {
             if( [string characterAtIndex:i] == '>' ) {
                 editedArea.length = i - editedArea.location + 1;
                 break;
             }
         }
         
-        [textStorage removeAttribute:General/NSForegroundColorAttributeName
+        [textStorage removeAttribute:NSForegroundColorAttributeName
                                range:editedArea];
     
-        for(i=editedArea.location; i < (General/NSMaxRange( editedArea )); i++) {
+        for(i=editedArea.location; i < (NSMaxRange( editedArea )); i++) {
             if ( [string characterAtIndex:i] == '<' ) {
                 colorRange.location = i;
                 strFound = YES;
             }
             if ( [string characterAtIndex:i] == '>' && strFound == YES ) {
                 colorRange.length = i - colorRange.location + 1;
-                [textStorage addAttribute:General/NSForegroundColorAttributeName 
+                [textStorage addAttribute:NSForegroundColorAttributeName 
                                     value:blue
                                     range:colorRange];
                 strFound = NO;    
@@ -268,7 +268,7 @@ Here it is, if you are interested:
 
 ----
 
-You are on the right track for writing a more general parser. If you're looking for a standard delimiter, such as angle brackets or spaces, then the General/NSCharacterSet approach I mention above is quite good. But some jobs require you to look at each individual character, such as most recursive descent parsers.
+You are on the right track for writing a more general parser. If you're looking for a standard delimiter, such as angle brackets or spaces, then the NSCharacterSet approach I mention above is quite good. But some jobs require you to look at each individual character, such as most recursive descent parsers.
 
 If you find using characterAtIndex: is too slow, there are some sophisticated improving access to the unicode string underneath.
 
@@ -278,17 +278,17 @@ I'm interested how it will work in a Document Based Application.
 
 ----
 
-I think the correct way to implement syntax coloring would be to use temporary attributes (see General/NSLayoutManager.h). The following is taken from the docs: "Temporary attributes are used only for on-screen drawing and are not persistent in any way. General/NSTextView uses them to color misspelled words when continuous spellchecking is enabled."
+I think the correct way to implement syntax coloring would be to use temporary attributes (see NSLayoutManager.h). The following is taken from the docs: "Temporary attributes are used only for on-screen drawing and are not persistent in any way. NSTextView uses them to color misspelled words when continuous spellchecking is enabled."
 
 ----
 
-This approach pre-dates the temporary attributes in General/NSLayoutManager. If you already have control of your text storage it doesn't seem too inconvenient.
+This approach pre-dates the temporary attributes in NSLayoutManager. If you already have control of your text storage it doesn't seem too inconvenient.
 
-Using temporary attributes in General/NSLayoutManager should simplify some operations (you shouldn't need to remove the color attribute from the edited area, like the examples do above) and you need worry less about your text storage system. The big question is, how "temporary" are these temporary attributes? Under what circumstances are these attributes removed/ignored, exactly?
+Using temporary attributes in NSLayoutManager should simplify some operations (you shouldn't need to remove the color attribute from the edited area, like the examples do above) and you need worry less about your text storage system. The big question is, how "temporary" are these temporary attributes? Under what circumstances are these attributes removed/ignored, exactly?
 
-I'll leave the General/NSLayoutManager example as an exercise ;-)
+I'll leave the NSLayoutManager example as an exercise ;-)
 
-*See General/ImplementSyntaxHighlightingUsingTemporaryAttributes for more on this, though*
+*See ImplementSyntaxHighlightingUsingTemporaryAttributes for more on this, though*
 
 ----
 
@@ -300,7 +300,7 @@ I have a very shaky implementation which spots single line comments, but I'm at 
 
 I described using a lexical analyzer to interpret perl code. Perl is fairly easy, since you don't need to parse the code completely; you can just look for the things you're interested in (comments, strings, keywords). 
 
-For performance I decided to write this part of my editor in C operating on a char *. I didn't want to spend all my time in General/NSString's characterAtIndex:, API like regex(3) only works on char *, and so forth. I end up breaking the file into "tokens" by scanning through the text looking for interesting data: comments, strings, keywords, and none-of-the-above. Sample flow control looks like this:
+For performance I decided to write this part of my editor in C operating on a char *. I didn't want to spend all my time in NSString's characterAtIndex:, API like regex(3) only works on char *, and so forth. I end up breaking the file into "tokens" by scanning through the text looking for interesting data: comments, strings, keywords, and none-of-the-above. Sample flow control looks like this:
 
     next token()
         read character
@@ -317,18 +317,18 @@ You can imagine more sophisticated state machines that can do a better job of pa
 
 ----
 
-I've got the code above to work (General/ThomasSempf's), but it won't work when I replace the '<' and '>' with '"' (that's a double quote inside single quotes). All it does is color the quotes blue, not the text inside them.
+I've got the code above to work (ThomasSempf's), but it won't work when I replace the '<' and '>' with '"' (that's a double quote inside single quotes). All it does is color the quotes blue, not the text inside them.
 
 *Add an else to the code. The current version works because if the current character is the start tag '<', it cannot be the end tag '>'. If you make them both identical, it will assume the start tag **is** the end tag, and just colour it, nothing else, blue. Put an else in there somewhere, and you should be fine:*
 
-    for(i=editedArea.location; i < (General/NSMaxRange( editedArea )); i++) {
+    for(i=editedArea.location; i < (NSMaxRange( editedArea )); i++) {
         if ( [string characterAtIndex:i] == '"' ) {
             if (strFound == NO) {
                 colorRange.location = i;
                 strFound = YES;
             } else {
                 colorRange.length = i - colorRange.location + 1;
-                [textStorage addAttribute:General/NSForegroundColorAttributeName 
+                [textStorage addAttribute:NSForegroundColorAttributeName 
                                     value:blue
                                     range:colorRange];
                 strFound = NO;
@@ -340,11 +340,11 @@ I've got the code above to work (General/ThomasSempf's), but it won't work when 
 
 Given the current cooperation between the KDE folk & Apple, perhaps someone should look at porting the core of Quanta 3.1 across to Mac OS X?
 
-I guess for full featured-ness, we need to wait for the General/WebCore SDK - in the meantime, give Quanta a whirl under X11 - it is a fantastic web editor!
+I guess for full featured-ness, we need to wait for the WebCore SDK - in the meantime, give Quanta a whirl under X11 - it is a fantastic web editor!
 
 ----
 
-Here is the source code for an editor I wrote, General/NSDocument based, but single window, open files are handled by a drawer. It does syntax highlighting by an external highlighter object which highlights a General/NSTextContainer.
+Here is the source code for an editor I wrote, NSDocument based, but single window, open files are handled by a drawer. It does syntax highlighting by an external highlighter object which highlights a NSTextContainer.
 http://ozy.student.utwente.nl/projects/ozyedit/
 
 ----
@@ -357,29 +357,29 @@ As you can see it uses some sort of caching approach to prevent it from rehighli
 
 ----
 
-I've looked over the General/CodeEditor source and it will start running from a PB Project, but hangs. I was looking over the General/GNUstep site and they mention General/CodeEditor http://www.gnustep.org/experience/apps.html at the bottom of the page with the broken link you gave us above.  In looking over the General/ProjectCenter app though, the General/CodeEditor piece seems to be gone.
+I've looked over the CodeEditor source and it will start running from a PB Project, but hangs. I was looking over the GNUstep site and they mention CodeEditor http://www.gnustep.org/experience/apps.html at the bottom of the page with the broken link you gave us above.  In looking over the ProjectCenter app though, the CodeEditor piece seems to be gone.
 
 ----
 
 Here is yet another version. It works pretty well, but it isn't perfect. Please post any updates here so we can all benefit from the bug fixes.
 
-    - (void)textStorageDidProcessEditing:(General/NSNotification *)notification
+    - (void)textStorageDidProcessEditing:(NSNotification *)notification
     {
-        General/NSTextStorage *textStorage = [notification object];
-        General/NSRange found, area;
-        General/NSString *string = [textStorage string];
+        NSTextStorage *textStorage = [notification object];
+        NSRange found, area;
+        NSString *string = [textStorage string];
         unsigned int length = [string length];
-        General/NSArray * keys = [keyWords allKeys];
-        General/NSString * keyWord = nil;
-        General/NSScanner * scanner = General/[NSScanner scannerWithString: string];
+        NSArray * keys = [keyWords allKeys];
+        NSString * keyWord = nil;
+        NSScanner * scanner = [NSScanner scannerWithString: string];
         int last_location = 0;
-        General/NSString * searchString = nil;
-        General/NSEnumerator * wordEnumerator;
-        General/NSRange fooRange;
+        NSString * searchString = nil;
+        NSEnumerator * wordEnumerator;
+        NSRange fooRange;
     
         area.location = 0;
         area.length = length;
-        [textStorage removeAttribute: General/NSForegroundColorAttributeName range: area];
+        [textStorage removeAttribute: NSForegroundColorAttributeName range: area];
     
         // First colorize everything that is not enclosed in quotation marks
         while (![scanner isAtEnd]) {
@@ -413,10 +413,10 @@ Here is yet another version. It works pretty well, but it isn't perfect. Please 
                 while (area.length) {
     
                     // Try to find a key word
-                    found = [searchString rangeOfString: keyWord options: General/NSLiteralSearch range: area];
+                    found = [searchString rangeOfString: keyWord options: NSLiteralSearch range: area];
     
                     // If no key word found, try the next key word
-                    if (found.location == General/NSNotFound) break;
+                    if (found.location == NSNotFound) break;
     
                     // Otherwise a key word was found, lets go colorize it
     
@@ -427,7 +427,7 @@ Here is yet another version. It works pretty well, but it isn't perfect. Please 
                     fooRange.location += last_location;
     
                     // Work around for an odd bug that only occurs occasionally
-                    if (!General/string substringWithRange: fooRange] isEqual: keyWord]) {
+                    if (!string substringWithRange: fooRange] isEqual: keyWord]) {
                         fooRange.location++;
                     }
     
@@ -435,7 +435,7 @@ Here is yet another version. It works pretty well, but it isn't perfect. Please 
                     [textStorage addAttribute: [[NSForegroundColorAttributeName value: [keyWords objectForKey: keyWord] range: fooRange];
     
                     // Reduce the area to search to exclude the key word we just colorized
-                    area.location = General/NSMaxRange(found);
+                    area.location = NSMaxRange(found);
                     area.length = length - area.location;
                 }
             }
@@ -447,7 +447,7 @@ Here is yet another version. It works pretty well, but it isn't perfect. Please 
         // worse when trying to embed the logic for exclusion within the key word search.
     
         // Re-initialize a new scanner to scan the whole string
-        scanner = General/[NSScanner scannerWithString: string];
+        scanner = [NSScanner scannerWithString: string];
         while (![scanner isAtEnd]) {
     
             // Try to find on open comment string
@@ -459,7 +459,7 @@ Here is yet another version. It works pretty well, but it isn't perfect. Please 
                 [scanner setScanLocation: [string length]];
             } else {
                 // Otherwise we found the closing comment, so compute the range of text to reset
-                General/NSRange resetRange;
+                NSRange resetRange;
     
                 // Advance the scanner past the closing comment string we just found
                 if ([scanner scanLocation] < [string length]) {
@@ -467,40 +467,40 @@ Here is yet another version. It works pretty well, but it isn't perfect. Please 
                 }
     
                 // Calculate the range to be reset
-                resetRange = General/NSMakeRange(last_location, [scanner scanLocation] - last_location);
+                resetRange = NSMakeRange(last_location, [scanner scanLocation] - last_location);
     
                 // Reset the foreground color for the range
-                [textStorage removeAttribute: General/NSForegroundColorAttributeName range: resetRange];
+                [textStorage removeAttribute: NSForegroundColorAttributeName range: resetRange];
             }
         }
     
         // Now reset the single-line comments
     
-        scanner = General/[NSScanner scannerWithString: string];
+        scanner = [NSScanner scannerWithString: string];
         while (![scanner isAtEnd]) {
             [scanner scanUpToString: @"//" intoString: nil];
             last_location = [scanner scanLocation];
             if (![scanner scanUpToString: @"\n" intoString: nil]) {
                 [scanner setScanLocation: [string length]];
             } else {
-                General/NSRange resetRange;
+                NSRange resetRange;
                 if ([scanner scanLocation] < [string length]) {
                     [scanner setScanLocation: [scanner scanLocation] + 1];
                 }
-                resetRange = General/NSMakeRange(last_location, [scanner scanLocation] - last_location);
-                [textStorage removeAttribute: General/NSForegroundColorAttributeName range: resetRange];
+                resetRange = NSMakeRange(last_location, [scanner scanLocation] - last_location);
+                [textStorage removeAttribute: NSForegroundColorAttributeName range: resetRange];
             }
         }
     }
 
-You'll need to prepare an General/NSDictionary called "keyWords" that contains the color to use for each keyword. The keys are all of the key words and the values are the colors (General/NSColor objects) to set the text color. You can build an General/NSDictionary containing some key words like this:
+You'll need to prepare an NSDictionary called "keyWords" that contains the color to use for each keyword. The keys are all of the key words and the values are the colors (NSColor objects) to set the text color. You can build an NSDictionary containing some key words like this:
 
     .
     .
     .
-    General/NSMutableDictionary * keyWords = General/[[NSMutableDictionary alloc] init];
-    General/NSColor * blue = General/[NSColor blueColor];
-    General/NSColor * green = General/[NSColor colorWithCalibratedRed: 0.0 green: 0.5 blue: 0.0 alpha: 1.0];
+    NSMutableDictionary * keyWords = [[NSMutableDictionary alloc] init];
+    NSColor * blue = [NSColor blueColor];
+    NSColor * green = [NSColor colorWithCalibratedRed: 0.0 green: 0.5 blue: 0.0 alpha: 1.0];
     .
     .
     .
@@ -514,56 +514,56 @@ You'll need to prepare an General/NSDictionary called "keyWords" that contains t
 
 ----
 
-General/CodeEditor,  a fairly complete syntax coloring editor written for General/GnuStep has a new home:
+CodeEditor,  a fairly complete syntax coloring editor written for GnuStep has a new home:
 http://savannah.nongnu.org/projects/codeeditor
 
 ----
 
-General/FCBlogEditor has a neat implementation of syntax highlighting using flex.  http://members.shaw.ca/akochoi/2003/11-09/index.html#1
+FCBlogEditor has a neat implementation of syntax highlighting using flex.  http://members.shaw.ca/akochoi/2003/11-09/index.html#1
 
 Some modifications to highlight everything inside of <> brackets and inside of quotation marks. This code is working fine:
 
     // Now colorize everything inside both brackets AND quotes
     
-    scanner = General/[NSScanner scannerWithString: string];
+    scanner = [NSScanner scannerWithString: string];
     while (![scanner isAtEnd]) {
         
         // Try to find on open comment string
         [scanner scanUpToString: [keyWords objectForKey: @"quote-open"] intoString: nil];
         last_location = [scanner scanLocation];
-        [scanner setScanLocation: [scanner scanLocation] + General/keyWords objectForKey: @"quote-open"] length;
+        [scanner setScanLocation: [scanner scanLocation] + keyWords objectForKey: @"quote-open"] length;
                 
         // If we can't find the closing comment string, then set the range to include the whole string
         if (![scanner scanUpToString: [keyWords objectForKey: @"quote-close"] intoString: nil]) {
             [scanner setScanLocation: [string length]];
         } else {
             // Otherwise we found the closing comment, so compute the range of text to colorize
-            General/NSRange resetRange;
+            NSRange resetRange;
             
             // Advance the scanner past the closing comment string we just found
             if ([scanner scanLocation] < [string length]) {
-                [scanner setScanLocation: [scanner scanLocation] + General/keyWords objectForKey: @"quote-close"] length;
+                [scanner setScanLocation: [scanner scanLocation] + keyWords objectForKey: @"quote-close"] length;
             }
             
             // Calculate the range to be colorized
-            resetRange = General/NSMakeRange(last_location, [scanner scanLocation] - last_location);
+            resetRange = NSMakeRange(last_location, [scanner scanLocation] - last_location);
             
-            if([textStorage attribute: General/NSForegroundColorAttributeName atIndex: resetRange.location effectiveRange: nil] == [keyWords objectForKey: @"bracket-color"]){
+            if([textStorage attribute: NSForegroundColorAttributeName atIndex: resetRange.location effectiveRange: nil] == [keyWords objectForKey: @"bracket-color"]){
             // Set the foreground color for the range
-            [textStorage addAttribute: General/NSForegroundColorAttributeName value: [keyWords objectForKey: @"quote-color"] range: resetRange];
+            [textStorage addAttribute: NSForegroundColorAttributeName value: [keyWords objectForKey: @"quote-color"] range: resetRange];
             }
         }
     }
 
-In the above code, "quote-open", "quote-close", etc, are defined in an General/NSDictionary as the beginning and ending symbols of a quote (currently just " "). Like I said, the code works fine, but every single keystroke raises an exception in the run log which reads:
+In the above code, "quote-open", "quote-close", etc, are defined in an NSDictionary as the beginning and ending symbols of a quote (currently just " "). Like I said, the code works fine, but every single keystroke raises an exception in the run log which reads:
 
     
-Exception raised during posting of notification.  Ignored.  exception: *** -General/[NSConcreteScanner setScanLocation:]: Range or index out of bounds
+Exception raised during posting of notification.  Ignored.  exception: *** -[NSConcreteScanner setScanLocation:]: Range or index out of bounds
 
 
 I have narrowed it down to this line:
     
-[scanner setScanLocation: [scanner scanLocation] + General/keyWords objectForKey: @"quote-open"] length;
+[scanner setScanLocation: [scanner scanLocation] + keyWords objectForKey: @"quote-open"] length;
 
 but I cannot figure out any way to make the exception go away. The code is there to compensate for the scanner thinking that the beginning quote is also the end quote. Does anyone see any way that I could fix this?
 
@@ -571,16 +571,16 @@ I resolved the issue by using [scanner scanString] instead of [scanner setScanLo
 
 ----
 
-You should always bracket changes in a text storage between -[textStorage beginEditing] and [textStorage endEditing] (defined in General/NSMutableAttributedString super class). This may significantly improve your colorizer performance.
+You should always bracket changes in a text storage between -[textStorage beginEditing] and [textStorage endEditing] (defined in NSMutableAttributedString super class). This may significantly improve your colorizer performance.
 
 ----
 
-    - beginEditing and     - endEditing are actually defined in General/NSMutableAttributedString (I changed your text accordingly).  You also might want to make sure that you disable and re-enable undo registration if you do call     - (begin|end)Editing.
+    - beginEditing and     - endEditing are actually defined in NSMutableAttributedString (I changed your text accordingly).  You also might want to make sure that you disable and re-enable undo registration if you do call     - (begin|end)Editing.
 
 ----
 
-I've written a nice class called General/UKSyntaxColoredTextDocument that demonstrates a fairly efficient approach at syntax coloring, where generally only what you actually changed gets recolored. Very useful for larger documents. See http://www.zathras.de/angelweb/sourcecode.htm#General/UKSyntaxColoredTextDocument. -- General/UliKusterer
+I've written a nice class called UKSyntaxColoredTextDocument that demonstrates a fairly efficient approach at syntax coloring, where generally only what you actually changed gets recolored. Very useful for larger documents. See http://www.zathras.de/angelweb/sourcecode.htm#UKSyntaxColoredTextDocument. -- UliKusterer
 
 ----
 
-Moved discussion of using temporary attributes for coloring syntax to General/ImplementSyntaxHighlightingUsingTemporaryAttributes
+Moved discussion of using temporary attributes for coloring syntax to ImplementSyntaxHighlightingUsingTemporaryAttributes

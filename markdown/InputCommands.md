@@ -8,11 +8,11 @@ Add a text field and button to a Cocoa window. Set the button's key equivalent t
 
 Or do you mean simulating a console window?
 
--- General/AdamVandenberg
+-- AdamVandenberg
 
 ----
 
-The easier way is to set the text field to send action 'only on enter' in General/InterfaceBuilder and then set the text field's target to the action method.  No button required (though you can still use it and hook it up to the same action if you want one).  -- Bo
+The easier way is to set the text field to send action 'only on enter' in InterfaceBuilder and then set the text field's target to the action method.  No button required (though you can still use it and hook it up to the same action if you want one).  -- Bo
 
 ----
 
@@ -21,7 +21,7 @@ And it would be nice to be able to simulate the Terminal window
 
 ----
 
-General/BookBuildingCocoaApplications has a nice example of doing something similar.  They interact with a mathematical expression processing
+BookBuildingCocoaApplications has a nice example of doing something similar.  They interact with a mathematical expression processing
 engine.
 
 ----
@@ -34,32 +34,32 @@ Then wait no more -- all the documentation you need is on your Mac OS X box.
 
 Reading between the lines it sounds like you want to write a Terminal or Worksheet application. Terminal programs may be difficult for your average Cocoa programmer as you also need to understand and simulate the legacy that is the UNIX terminal. So I'm going to assume (since there are no details to contradict me) you want a Worksheet-like application. These are much easier for your average Cocoa programmer.
 
-First, you're going to need a window w/ a text view. You'll want to subclass the text view so that you can intercept enter or return keys. Read up on General/NSResponder. General/NSText, General/NSTextStorage, General/NSTextView, General/NSWindow, all of which are on your hard drive.
+First, you're going to need a window w/ a text view. You'll want to subclass the text view so that you can intercept enter or return keys. Read up on NSResponder. NSText, NSTextStorage, NSTextView, NSWindow, all of which are on your hard drive.
 
-Second, you're going to need to collect the command, pass it to a shell interpreter, and spit the results back into the window. Use General/NSTextView to get the proper range of text as an General/NSString, convert the string into a series of commands as an General/NSArray, feed that to an General/NSTask, run it, get the results back as a string and put them in the window. Read up on General/NSFileHandle, General/NSPipe, General/NSString, and General/NSTask.
+Second, you're going to need to collect the command, pass it to a shell interpreter, and spit the results back into the window. Use NSTextView to get the proper range of text as an NSString, convert the string into a series of commands as an NSArray, feed that to an NSTask, run it, get the results back as a string and put them in the window. Read up on NSFileHandle, NSPipe, NSString, and NSTask.
 
-If you need to parse the output into some kind of ordered information, perhaps for colorizing, read up on General/NSCharacterSet, General/NSColor, General/NSLayoutManager, and General/NSScanner.
+If you need to parse the output into some kind of ordered information, perhaps for colorizing, read up on NSCharacterSet, NSColor, NSLayoutManager, and NSScanner.
 
 Hope this helps. Feel free to ask detailed questions (i.e., "how do I do specifically XYZ"), and maybe you'll get detailed answers.
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
-I need all the resources I can get. I also Need a good place with Lots And Lots Ands LOTS and LOTS samples and a BIG forum For C Focused on C not on making Interfaces And Lots And Lots Ands LOTS and LOTS samples and a BIG forum for General/OpenGl too. If anybody can help.
+I need all the resources I can get. I also Need a good place with Lots And Lots Ands LOTS and LOTS samples and a BIG forum For C Focused on C not on making Interfaces And Lots And Lots Ands LOTS and LOTS samples and a BIG forum for OpenGl too. If anybody can help.
 How did Apple do there Spell checker?
 Also how do you constanly update static text? like every second? Im making a geekclock for true geeks.
 I do NOT want to make a worksheet, Lets just assume for now (I cant give details) I am making a carbon copy of the UNIX terminal.
 
 ----
 
-I REALLY NEED a good website that is a good place with Lots And Lots Ands LOTS and LOTS samples and a BIG forum For C Focused on C not on making Interfaces And Lots And Lots Ands LOTS and LOTS samples and a BIG forum for General/OpenGl
+I REALLY NEED a good website that is a good place with Lots And Lots Ands LOTS and LOTS samples and a BIG forum For C Focused on C not on making Interfaces And Lots And Lots Ands LOTS and LOTS samples and a BIG forum for OpenGl
 
 ----
 
-Understand that this is a web-site for Cocoa programming focused on Cocoa programming, and we really aren't designed to teach people how to write Apple's spell checker or Apple's Terminal. Go check out General/GNUStep. They've got exactly what you're looking for: http://www.gnustep.org/ . They also have a wiki: http://wiki.gnustep.org/
+Understand that this is a web-site for Cocoa programming focused on Cocoa programming, and we really aren't designed to teach people how to write Apple's spell checker or Apple's Terminal. Go check out GNUStep. They've got exactly what you're looking for: http://www.gnustep.org/ . They also have a wiki: http://wiki.gnustep.org/
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
@@ -87,8 +87,8 @@ Launching...
 
 then it displays it. 
 ----
-There were some good hints a bit up. Use General/NSTask and pass the path on to the /usr/bin/open command. Then print out Launching.... and after that do a General/NSWaitUntilTaskDone or similar.
+There were some good hints a bit up. Use NSTask and pass the path on to the /usr/bin/open command. Then print out Launching.... and after that do a NSWaitUntilTaskDone or similar.
 
 ----
 
-Why use /usr/bin/open? /usr/bin/open is just a thin wrapper around General/AppKit's General/NSWorkspace, just call that directly (rather than wrapping a call to the wrapper, which is a bit redundant). --General/FinlayDobbie
+Why use /usr/bin/open? /usr/bin/open is just a thin wrapper around AppKit's NSWorkspace, just call that directly (rather than wrapping a call to the wrapper, which is a bit redundant). --FinlayDobbie

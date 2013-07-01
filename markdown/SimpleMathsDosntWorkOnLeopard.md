@@ -2,24 +2,24 @@ Here's a weird one. I have code that has worked perfectly from time immemorial:
 
     
 
-General/NSPoint  p;
+NSPoint  p;
 
 p.x = r * sin([self angle]);
 p.y = r * cos([self angle]);
 
 
 
-This works fine when built against the 10.4.u sdk, but not the 10.5 sdk.     -angle is just a method that returns a float value in radians, r is another float variable. While it compiles without complaint, at runtime the result of the arithmetic is set either to a General/NaN value or to some very very small value (like 4 x 10-15). Neither are correct. I'm assuming that it's something to do with 64-bit settings but not sure where I should look to check this. The settings are the default set when creating a brand new Cocoa non-document application in Xcode 3. Any pointers? --GC
+This works fine when built against the 10.4.u sdk, but not the 10.5 sdk.     -angle is just a method that returns a float value in radians, r is another float variable. While it compiles without complaint, at runtime the result of the arithmetic is set either to a NaN value or to some very very small value (like 4 x 10-15). Neither are correct. I'm assuming that it's something to do with 64-bit settings but not sure where I should look to check this. The settings are the default set when creating a brand new Cocoa non-document application in Xcode 3. Any pointers? --GC
 
 ----
 
 You said 'float', thus maybe it's being extra fussy and you need to use cosf(), sinf()?
 
 ----
-I suggest General/PostYourCode, more than what's here, because that should work just fine. Do you get any warnings when compiling?
+I suggest PostYourCode, more than what's here, because that should work just fine. Do you get any warnings when compiling?
 
 ----
-No warnings or anything at compile time. Only wrong values to go on at run time - up to the lines given above, all values look fine in the debugger, and [self angle] returns a sensible value. At least as far as the debugger can see, it is the return values from cos and sin that are wrong. There doesn't seem to be much to be gained from posting the full code, which has worked from 10.2 through 10.4 without a problem. It's part of my public code for General/GCGradient if you really want to look at it in detail, but because of this problem that class isn't working when compiled against the 10.5 sdk. --GC
+No warnings or anything at compile time. Only wrong values to go on at run time - up to the lines given above, all values look fine in the debugger, and [self angle] returns a sensible value. At least as far as the debugger can see, it is the return values from cos and sin that are wrong. There doesn't seem to be much to be gained from posting the full code, which has worked from 10.2 through 10.4 without a problem. It's part of my public code for GCGradient if you really want to look at it in detail, but because of this problem that class isn't working when compiled against the 10.5 sdk. --GC
 
 ----
 
@@ -35,17 +35,17 @@ OK, I've been hammering on this one. I Tried cosf, sinf, no luck. However, furth
 
     
 
-- (void)				fillPath:(General/NSBezierPath*) path centreOffset:(General/NSPoint) co
+- (void)				fillPath:(NSBezierPath*) path centreOffset:(NSPoint) co
 {
-	General/NSRect pb = [path bounds];
+	NSRect pb = [path bounds];
 	
 	// calculate endpoints to take into account the set angle
 	
 	float		r1, r2, a;
-	General/NSPoint	        sp, ep;
+	NSPoint	        sp, ep;
 	
-	ep.x = General/NSMidX( pb );
-	ep.y = General/NSMidY( pb );
+	ep.x = NSMidX( pb );
+	ep.y = NSMidY( pb );
 	
 	r1 = pb.size.width * 0.5f;
 	r2 = pb.size.height * 0.5f;

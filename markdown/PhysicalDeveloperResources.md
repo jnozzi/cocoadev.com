@@ -8,7 +8,7 @@ As I said, there are no catches, they simply have excess bandwidth and excess sp
 
 Feel free to contact the owner at jbanks @ ambitiouslemon.com
 
-There are a couple things I can see in the fine print. You can't sell any products or services, and any donations (i.e. General/PayPal) must have a portion go back to General/AmbitiousLemon for the servers. Not a big deal, but worth noting.
+There are a couple things I can see in the fine print. You can't sell any products or services, and any donations (i.e. PayPal) must have a portion go back to AmbitiousLemon for the servers. Not a big deal, but worth noting.
 
 *Um, The Little App Factory sells all of their products. How does that work out?*
 

@@ -3,7 +3,7 @@ Thanks.
 
 ----
 
-Either you use the General/DotMac.framework (see the .Mac SDK at http://connect.apple.com), or (more likely the one you want) you use Sync Services, register your client and off you go: http://developer.apple.com/documentation/Cocoa/Conceptual/General/SyncServices/General/SyncServices.html#//apple_ref/doc/uid/TP40001149.
+Either you use the DotMac.framework (see the .Mac SDK at http://connect.apple.com), or (more likely the one you want) you use Sync Services, register your client and off you go: http://developer.apple.com/documentation/Cocoa/Conceptual/SyncServices/SyncServices.html#//apple_ref/doc/uid/TP40001149.
 ----
 Is there a tutorial around somewhere, maybe?
 ----

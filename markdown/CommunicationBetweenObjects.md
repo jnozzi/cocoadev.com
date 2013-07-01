@@ -11,23 +11,23 @@ I think I'm missing something conceptually.
 
 ----
 
-Ideally, IMHO, when you instantiate a controller object, it should not have to communicate with objects other than it's view and model objects. In real life(TM) you can use a couple of options: pass a pointer when creating the controller object (    id cont = General/[MyController controllerWithOwner:self];), or you can use notifications (my personal favorite).
+Ideally, IMHO, when you instantiate a controller object, it should not have to communicate with objects other than it's view and model objects. In real life(TM) you can use a couple of options: pass a pointer when creating the controller object (    id cont = [MyController controllerWithOwner:self];), or you can use notifications (my personal favorite).
 
 I assume you mean something like this extremely common case:
     
-@implementation General/MyMainController
-- (General/IBAction) someAction:(id)sender
+@implementation MyMainController
+- (IBAction) someAction:(id)sender
 {
     id data = [self getData:sender];
-    id cont = General/[MySubController subControllerWithData:data];
+    id cont = [MySubController subControllerWithData:data];
     [subControllers addObject:cont];
     [cont showWindow:self];
 }
 @end
 
-- General/JeremyJurksztowicz
+- JeremyJurksztowicz
 
 ----
 
 I agree that it would be much cleaner to have the object not have to communicate with the object that created it, and be completely "self sufficient," as it were.
-My problem, though, is that I want the created object to be able to use the same General/AsyncSocket that already has an established connection in the host object.
+My problem, though, is that I want the created object to be able to use the same AsyncSocket that already has an established connection in the host object.

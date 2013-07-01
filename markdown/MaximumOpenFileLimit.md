@@ -1,6 +1,6 @@
-One problem that often nails me is when I have to open many (hundreds, sometimes thousands of) files in succession is that of the Open File Limit. If you have, for example, a tight loop with an General/NSDirectoryEnumerator and you're opening an General/NSFileHandle for each file, then make sure you do a     closeFile! Because the problem is this: the maximum open file limit appears to be ignored when in debug mode. This means your program will act differently when being debugged than it will when it is simply run. This could be something obvious, like a     SIGBUS (usually the case for me because I ignore error detection until one of the last steps of development), or something unnoticeable. Watch out for the open file limit! Does anybody know exactly what the limit is?
+One problem that often nails me is when I have to open many (hundreds, sometimes thousands of) files in succession is that of the Open File Limit. If you have, for example, a tight loop with an NSDirectoryEnumerator and you're opening an NSFileHandle for each file, then make sure you do a     closeFile! Because the problem is this: the maximum open file limit appears to be ignored when in debug mode. This means your program will act differently when being debugged than it will when it is simply run. This could be something obvious, like a     SIGBUS (usually the case for me because I ignore error detection until one of the last steps of development), or something unnoticeable. Watch out for the open file limit! Does anybody know exactly what the limit is?
 
---General/BobInDaShadows
+--BobInDaShadows
 
 ----
 

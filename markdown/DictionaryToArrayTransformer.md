@@ -7,14 +7,14 @@ You are free to do as you wish with this code, and if your house burns down it's
 
     
 
-@interface General/DictionaryToArrayTransformer : General/NSValueTransformer {
+@interface DictionaryToArrayTransformer : NSValueTransformer {
 }
 
 @end
-@implementation General/DictionaryToArrayTransformer
+@implementation DictionaryToArrayTransformer
 
 + (Class)transformedValueClass {
-    return General/[NSArray class];
+    return [NSArray class];
 }
 
 + (BOOL)allowsReverseTransformation {
@@ -22,12 +22,12 @@ You are free to do as you wish with this code, and if your house burns down it's
 }
 
 - (id)transformedValue:(id)value {
-    General/NSMutableArray *array = General/[NSMutableArray array];
+    NSMutableArray *array = [NSMutableArray array];
     
-    General/NSEnumerator *keyEnumerator = [value keyEnumerator];
-    General/NSString *key = nil;
+    NSEnumerator *keyEnumerator = [value keyEnumerator];
+    NSString *key = nil;
     while (key = [keyEnumerator nextObject]) {
-        [array addObject:General/[NSDictionary dictionaryWithObjectsAndKeys:
+        [array addObject:[NSDictionary dictionaryWithObjectsAndKeys:
             key, @"key",
             [value valueForKey:key], @"value", nil]];
     }
@@ -36,10 +36,10 @@ You are free to do as you wish with this code, and if your house burns down it's
 }
 
 - (id)reverseTransformedValue:(id)value {
-    General/NSMutableDictionary *dictionary = General/[NSMutableDictionary dictionary];
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     
-    General/NSEnumerator *keyValuePairEnumerator = [value objectEnumerator];
-    General/NSDictionary *keyValuePair = nil;
+    NSEnumerator *keyValuePairEnumerator = [value objectEnumerator];
+    NSDictionary *keyValuePair = nil;
     while (keyValuePair = [keyValuePairEnumerator nextObject]) {
         [dictionary setValue:[keyValuePair valueForKey:@"value"]
                             forKey:[keyValuePair valueForKey:@"key"]];

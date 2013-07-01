@@ -1,8 +1,8 @@
 
 
-Category for General/NSMatrix that allows moving rows and columns. Feel free to add anything else you find useful. Also check out General/DragMatrix, a very useful subclass of General/NSMatrix that can quickly be modified to accommodate dragging other types of cells (besides images).
+Category for NSMatrix that allows moving rows and columns. Feel free to add anything else you find useful. Also check out DragMatrix, a very useful subclass of NSMatrix that can quickly be modified to accommodate dragging other types of cells (besides images).
 
-Code for **General/NSMatrix+General/CocoaDevUsersAdditions.h**
+Code for **NSMatrix+CocoaDevUsersAdditions.h**
     
  #import <Cocoa/Cocoa.h>
  
@@ -12,7 +12,7 @@ Code for **General/NSMatrix+General/CocoaDevUsersAdditions.h**
  @end
 
 
-Code for **General/NSMatrix+General/CocoaDevUsersAdditions.m**
+Code for **NSMatrix+CocoaDevUsersAdditions.m**
     
  #import "NSMatrix+CocoaDevUsersAdditions.h"
  
@@ -22,7 +22,7 @@ Code for **General/NSMatrix+General/CocoaDevUsersAdditions.m**
    if (srcCol == dstCol) return;
    
    int row = [self numberOfRows];
-   NSMutableArray *cellsInCol = General/NSMutableArray alloc] initWithCapacity:row];
+   NSMutableArray *cellsInCol = NSMutableArray alloc] initWithCapacity:row];
    
    for (row--; row >= 0; row--) {
      [cellsInCol insertObject:[self cellAtRow:row column:srcCol] atIndex:0];

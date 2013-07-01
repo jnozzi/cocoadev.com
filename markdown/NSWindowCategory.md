@@ -1,30 +1,30 @@
 
 
-General/NSWindow+General/CCDWindowTinting.h
+NSWindow+CCDWindowTinting.h
 
     
 #import <Cocoa/Cocoa.h>
 
-@interface General/NSWindow (General/CCDWindowTinting)
-- (General/NSColor *)baseWindowBackgroundColor;
+@interface NSWindow (CCDWindowTinting)
+- (NSColor *)baseWindowBackgroundColor;
 - (void)removeTint;
-- (void)tintWithColor:(General/NSColor *)color;
+- (void)tintWithColor:(NSColor *)color;
 @end
 
 
 
-General/NSWindow+General/CCDWindowTinting.m
+NSWindow+CCDWindowTinting.m
 
     
-#import "General/NSWindow+General/CCDWindowTinting.h"
+#import "NSWindow+CCDWindowTinting.h"
 
-General/NSColor *baseWindowBackgroundColor;
+NSColor *baseWindowBackgroundColor;
 
-@implementation General/NSWindow (General/CCDWindowTinting)
+@implementation NSWindow (CCDWindowTinting)
 
-- (General/NSColor *)baseWindowBackgroundColor
+- (NSColor *)baseWindowBackgroundColor
 {
-	if (!baseWindowBackgroundColor) baseWindowBackgroundColor = General/self backgroundColor] retain];
+	if (!baseWindowBackgroundColor) baseWindowBackgroundColor = self backgroundColor] retain];
 	
 	return baseWindowBackgroundColor;
 }
@@ -37,20 +37,20 @@ General/NSColor *baseWindowBackgroundColor;
 
 - (void)tintWithColor:([[NSColor *)color
 {
-	General/NSRect winRect = [self frame];
-	General/NSImage *img = General/[[NSImage alloc] initWithSize:winRect.size];
+	NSRect winRect = [self frame];
+	NSImage *img = [[NSImage alloc] initWithSize:winRect.size];
 
-              winRect.origin = General/NSZeroPoint;
+              winRect.origin = NSZeroPoint;
 
 		[img lockFocus];		
 		[color set];
-		General/NSRectFillUsingOperation(winRect, General/NSCompositeSourceOver);
+		NSRectFillUsingOperation(winRect, NSCompositeSourceOver);
 
-		General/self baseWindowBackgroundColor] set];
-		[[NSRectFillUsingOperation(winRect, General/NSCompositePlusDarker);
+		self baseWindowBackgroundColor] set];
+		[[NSRectFillUsingOperation(winRect, NSCompositePlusDarker);
 		[img unlockFocus];
 
-	[self setBackgroundColor:General/[NSColor colorWithPatternImage:img]];
+	[self setBackgroundColor:[NSColor colorWithPatternImage:img]];
 	[self performSelector:@selector(display) withObject:nil afterDelay:0];
 
 	[img release];
@@ -62,4 +62,4 @@ General/NSColor *baseWindowBackgroundColor;
 ----
 A quick addition for window tinting. The backgroundColor will tile if the window size changes but you can overcome that if you need to. Enjoy.
 
--- General/RyanStevens
+-- RyanStevens

@@ -2,7 +2,7 @@ So, just as the page title suggests, how can I programmatically control expose? 
 
 ----
 
-One must keep in mind that Expose' is strictly a user-activated function and there's no way that I know of to control it programmatically. You should simply activate the target application using General/NSWorkspace's methods in my opinion, without "hijacking" Expose' from the user. --l0ne
+One must keep in mind that Expose' is strictly a user-activated function and there's no way that I know of to control it programmatically. You should simply activate the target application using NSWorkspace's methods in my opinion, without "hijacking" Expose' from the user. --l0ne
 
 *Not knowing a direct way to control it is a fair-enough answer, but as I said above, with all user consideration aside (as a good prefs option will allow), I'm just interested in figuring out how - if it's at all possible.*
 
@@ -12,7 +12,7 @@ One must keep in mind that Expose' is strictly a user-activated function and the
 
 ----
 
-I don't believe it's possible in any supported way. Nor in any non-annoying way ;) How about putting up a General/BezelServices-type overlay window as you switch?  *Nnnoooo, I'd rather find a MORE ANNOYING way. You people are no help! :-) *
+I don't believe it's possible in any supported way. Nor in any non-annoying way ;) How about putting up a BezelServices-type overlay window as you switch?  *Nnnoooo, I'd rather find a MORE ANNOYING way. You people are no help! :-) *
 
 ----
 

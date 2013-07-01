@@ -34,15 +34,15 @@ Clutter does this - http://sprote.com/clutter/ It's open source.
 
 ----
 
-I happened across this thread and was very hopeful, since I'm looking for the same information.  I've checked out Clutter's method, and they seem to access the album data (unless I read the source incorrectly) through the use of an General/AppleScript.  I'm interested in getting the album art using just Cocoa (and whatever SDK's might be necessary).  Is anyone aware, programatically, how I can obtain this cover art that may already exist in a file?
+I happened across this thread and was very hopeful, since I'm looking for the same information.  I've checked out Clutter's method, and they seem to access the album data (unless I read the source incorrectly) through the use of an AppleScript.  I'm interested in getting the album art using just Cocoa (and whatever SDK's might be necessary).  Is anyone aware, programatically, how I can obtain this cover art that may already exist in a file?
 
 Thanks!
 
 ----
 
-You can programmatically call applescript from cocoa.  See General/NSAppleScript.
+You can programmatically call applescript from cocoa.  See NSAppleScript.
 
-*Thanks, I know that is possible, but I was wondering if there is a way to do it that doesn't involve General/AppleScript.  Is it an ID3 tag I can use an API to get to?  Maybe a separate track I can use Quicktime to get to....?*
+*Thanks, I know that is possible, but I was wondering if there is a way to do it that doesn't involve AppleScript.  Is it an ID3 tag I can use an API to get to?  Maybe a separate track I can use Quicktime to get to....?*
 
 Nope, it's in the ID3v2 tag at the start of the file (ID3v1 doesn't support near as many fields). See: http://www.id3.org/ for the specifications; there are also some ID3 libraries around you could use.
 

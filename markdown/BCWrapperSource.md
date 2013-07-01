@@ -2,7 +2,7 @@
 
 Here's a wrapper for the UNIX bc command which is "a language that supports arbitrary precision numbers with interactive execution of statements." It can support huge numbers, and is built-in to OS X, and is much easier to figure out then using all the other classes.
 
-See General/HandlingLargeNumbers, General/ConvertStringIntoExpression
+See HandlingLargeNumbers, ConvertStringIntoExpression
 
 Usage:
     
@@ -10,30 +10,30 @@ Usage:
 
 ...
 
-General/NSString *operation = @"2*4";
-General/NSString *result = [BC performMathOperation:operation];
+NSString *operation = @"2*4";
+NSString *result = [BC performMathOperation:operation];
 
-General/NSLog(@"The result is: %@", result); // returns 8
+NSLog(@"The result is: %@", result); // returns 8
 
 
     #import <Cocoa/Cocoa.h>
 
-@interface BC : General/NSObject {}
-+ (General/NSString *)performMathOperation:(General/NSString *)op;
+@interface BC : NSObject {}
++ (NSString *)performMathOperation:(NSString *)op;
 @end
 
 @implementation BC
-+ (General/NSString *)performMathOperation:(General/NSString *)op
++ (NSString *)performMathOperation:(NSString *)op
 {
 	if (op==nil || [op length]==0)
 		return nil;
 	
-	General/NSTask *task = General/[[NSTask alloc] init];
-	General/NSPipe *inPipe = General/[NSPipe pipe], *outPipe = General/[NSPipe pipe];
-	General/NSFileHandle *inHandle = [inPipe fileHandleForWriting];
-	General/NSFileHandle *outHandle = [outPipe fileHandleForReading];
-	General/NSData *inData, *outData;
-	General/NSString *outString;
+	NSTask *task = [[NSTask alloc] init];
+	NSPipe *inPipe = [NSPipe pipe], *outPipe = [NSPipe pipe];
+	NSFileHandle *inHandle = [inPipe fileHandleForWriting];
+	NSFileHandle *outHandle = [outPipe fileHandleForReading];
+	NSData *inData, *outData;
+	NSString *outString;
 	
 	// the input must end with a new line character or you'll get syntax errors
 	if ([op characterAtIndex:[op length]-1] != '\n')
@@ -55,7 +55,7 @@ General/NSLog(@"The result is: %@", result); // returns 8
 	
 	if (outData!=nil && [outData length])
 	{
-		outString = General/[[NSString alloc] initWithData:outData
+		outString = [[NSString alloc] initWithData:outData
 			encoding:NSUTF8StringEncoding];
 		if (outString)
 			return [outString autorelease];
@@ -77,7 +77,7 @@ How can using this not strike anyone as a horrible idea?
 Don't worry, it does.
 
 ----
-It's more of an example of how to use General/NSTask than being useful.
+It's more of an example of how to use NSTask than being useful.
 
 ----
 
@@ -95,7 +95,7 @@ Okay, then let's begin.  This wrapper class is an offshoot of a discussion of ho
 6) It requires familiarity with bc, which is implemented in dc, which is a stack-based RPN calculator.
 7) As pointed out above, it's potentially incorrect.
 
-Does that satisfy you?  I do agree, however, that this is potentially useful as a quick demo of General/NSTask.
+Does that satisfy you?  I do agree, however, that this is potentially useful as a quick demo of NSTask.
 
 ----
 
@@ -103,4 +103,4 @@ Yes, I'm satisfied - you've pointed out the technical reasons why this is a poor
 
 ----
 I use a C library for large number support called MAPM ( http://www.tc.umn.edu/~ringx004/mapm-main.html )
-I wrote a simple General/ObjC wrapper around the library, and I use it in a calculator that I have built for personal use.  It works pretty well.
+I wrote a simple ObjC wrapper around the library, and I use it in a calculator that I have built for personal use.  It works pretty well.

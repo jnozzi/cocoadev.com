@@ -4,7 +4,7 @@ Is there a way to allocate a class based just on its name?
 
 What I would like to do is something like:
 
-General/CustomObject *myObj = (General/CustomObject *)General/@"className" alloc] init];
+CustomObject *myObj = (CustomObject *)@"className" alloc] init];
 
 where className is the name of a sub-class of [[CustomObject;
 
@@ -16,12 +16,12 @@ Huibert Aalbers
 
 ----
 
-Yes. See General/NSClassFromString
+Yes. See NSClassFromString
 
 Also check out Apple's documentation on the Objective-C Runtime: 
-http://developer.apple.com/documentation/Cocoa/Reference/General/ObjCRuntimeRef/index.html#//apple_ref/doc/uid/TP40001418
+http://developer.apple.com/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html#//apple_ref/doc/uid/TP40001418
 also
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Functions/General/FoundationFunctions.html#//apple_ref/doc/uid/20000055-180572
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Functions/FoundationFunctions.html#//apple_ref/doc/uid/20000055-180572
 
 ----
 

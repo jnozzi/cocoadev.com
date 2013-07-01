@@ -1,8 +1,8 @@
-I've been writing a program and I have like 600 hundred lines of code in my Controller class. That is pretty much my only class in the whole program. I only have one more class for a General/TableView item and that class only has about 100 lines of code. Is it a bad thing that most of my code is in my Controller class, or do you some times need to do that? If it is a bad thing, what advice can you give me to keep myself from putting all of the code in the Controller class?
+I've been writing a program and I have like 600 hundred lines of code in my Controller class. That is pretty much my only class in the whole program. I only have one more class for a TableView item and that class only has about 100 lines of code. Is it a bad thing that most of my code is in my Controller class, or do you some times need to do that? If it is a bad thing, what advice can you give me to keep myself from putting all of the code in the Controller class?
 
 ----
 
-The Cocoa paradigm is General/ModelViewController. Since View comes with Cocoa (and hence requires no code), one need only consider which takes more code: the Model or the Controller? It is quite possible for it to be the latter.
+The Cocoa paradigm is ModelViewController. Since View comes with Cocoa (and hence requires no code), one need only consider which takes more code: the Model or the Controller? It is quite possible for it to be the latter.
 
 If your Model classes, however, are excessively simple, you might find yourself repeating the same chunks of code several times in the Controller. If this is the case, try refactoring these common sequences to the Model class - if it makes sense to do so.
 
@@ -12,11 +12,11 @@ I would second the refactoring suggestion.  However, at a grand total of 700 lin
 
 ----
 
-Thanks for your advice. I have a few more questions, though. When you create a document-based application, does the General/MyDocument class become the Controller? My other question is, when you do have programs that are 3-5 thousand lines long, do you create multiple controller classes to do specific things with the interface to keep the code readable, or when your programs become that long will you have multiple windows that require a different controller for each?
+Thanks for your advice. I have a few more questions, though. When you create a document-based application, does the MyDocument class become the Controller? My other question is, when you do have programs that are 3-5 thousand lines long, do you create multiple controller classes to do specific things with the interface to keep the code readable, or when your programs become that long will you have multiple windows that require a different controller for each?
 
 ----
 
-I've always needed multiple windows each with their own controller class. And yeah, the General/NSDocument subclass is supossed to be a controller, and your model should be a different class, but right now I'm working on an app that is close the 10 thousand lines between all of the frameworks and bundles that it loads in, and the document class doubles for the model as well. It lends itself better that way (in my particular instance). Strictly, this is wrong, but if it flows and is manageable as well as understandable and easy to read, it is acceptable. Just don't let it get out of control. I actually added a compiler warning (using the #warning directive) to remind myself that it acts as both. Anyway. Hope this babble helped. --General/EliotSimcoe
+I've always needed multiple windows each with their own controller class. And yeah, the NSDocument subclass is supossed to be a controller, and your model should be a different class, but right now I'm working on an app that is close the 10 thousand lines between all of the frameworks and bundles that it loads in, and the document class doubles for the model as well. It lends itself better that way (in my particular instance). Strictly, this is wrong, but if it flows and is manageable as well as understandable and easy to read, it is acceptable. Just don't let it get out of control. I actually added a compiler warning (using the #warning directive) to remind myself that it acts as both. Anyway. Hope this babble helped. --EliotSimcoe
 
 ----
 
@@ -37,4 +37,4 @@ When an action is invoked (e.g. a button is clicked), the sub-controller will be
 
 When a menu-item is selected which pertains to a specific window, then it will obtain the key window through the shared application, get its controller, and invoke the perform method of that window controller.  The window controller then delegates the implementation of that functionality to the appropriate sub-controller and synchronizes the other sub-controllers to the changes.
 
--- General/AndrewMiner
+-- AndrewMiner

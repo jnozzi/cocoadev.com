@@ -1,16 +1,16 @@
-A question came up about how to have a delegate of a General/NSOutlineView (this will work for General/NSTableView as well) detect when a delete key was pressed.  So here's some code that I use to perform this, along with enter or space keys.  Stick it in a subclass of General/NSOutlineView or General/NSTableView and season to taste.  Corrections or enhancements are welcome, just make sure to mark them so I know what to steal back. ( - General/GusMueller )
+A question came up about how to have a delegate of a NSOutlineView (this will work for NSTableView as well) detect when a delete key was pressed.  So here's some code that I use to perform this, along with enter or space keys.  Stick it in a subclass of NSOutlineView or NSTableView and season to taste.  Corrections or enhancements are welcome, just make sure to mark them so I know what to steal back. ( - GusMueller )
 
     
-- (BOOL)performKeyEquivalent:(General/NSEvent *)theEvent {
-    General/NSString *chars = [theEvent charactersIgnoringModifiers];
+- (BOOL)performKeyEquivalent:(NSEvent *)theEvent {
+    NSString *chars = [theEvent charactersIgnoringModifiers];
     
-    if ([theEvent type] == General/NSKeyDown && [chars length] == 1) {
+    if ([theEvent type] == NSKeyDown && [chars length] == 1) {
         
         int val = [chars characterAtIndex:0];
         
         // check for a delete
         if (val == 127 || val == 63272) {
-            if (General/self delegate] respondsToSelector:@selector(tableViewDidRecieveDeleteKey:)]) {
+            if (self delegate] respondsToSelector:@selector(tableViewDidRecieveDeleteKey:)]) {
                 [[self delegate] performSelector:@selector(tableViewDidRecieveDeleteKey:) withObject:self];
                 return YES;
             }
@@ -35,17 +35,17 @@ You may also check for a Modifier key here as well. Ask the event for the modifi
 Steve [[McFerrin 
 
     
-- (BOOL)performKeyEquivalent:(General/NSEvent *)theEvent {
-    General/NSString *chars = [theEvent charactersIgnoringModifiers];
+- (BOOL)performKeyEquivalent:(NSEvent *)theEvent {
+    NSString *chars = [theEvent charactersIgnoringModifiers];
    
-    if ([theEvent type] == General/NSKeyDown && [chars length] == 1) {
+    if ([theEvent type] == NSKeyDown && [chars length] == 1) {
         
         int val = [chars characterAtIndex:0];
 	// check for Modifier
         int mod = [theEvent modifierFlags];
         // check for a delete
         if ((val == 127 || val == 63272) && (mod == 1048840)) {
-            if (General/self delegate] respondsToSelector:@selector(tableViewDidRecieveDeleteKey:)]) {
+            if (self delegate] respondsToSelector:@selector(tableViewDidRecieveDeleteKey:)]) {
                 [[self delegate] performSelector:@selector(tableViewDidRecieveDeleteKey:) withObject:self];
                 return YES;
             }
@@ -72,16 +72,16 @@ The modifier keys have constant names, and you should not generally use integer 
 
     
 - (BOOL)performKeyEquivalent:([[NSEvent *)theEvent {
-    General/NSString *chars = [theEvent charactersIgnoringModifiers];
+    NSString *chars = [theEvent charactersIgnoringModifiers];
    
-    if ([theEvent type] == General/NSKeyDown && [chars length] >= 1) { // CHANGED HERE
+    if ([theEvent type] == NSKeyDown && [chars length] >= 1) { // CHANGED HERE
         
-        General/NSInteger val = [chars characterAtIndex:0];
+        NSInteger val = [chars characterAtIndex:0];
 	// check for Modifier
-        General/NSInteger mod = ([theEvent modifierFlags] & General/NSDeviceIndependentModifierFlagsMask); // CHANGED HERE
+        NSInteger mod = ([theEvent modifierFlags] & NSDeviceIndependentModifierFlagsMask); // CHANGED HERE
         // check for a delete
-        if ((val == General/NSDeleteCharacter || (val == General/NSDeleteFunctionKey) && (mod == General/NSFunctionKeyMask))) { // CHANGED HERE
-            if (General/self delegate] respondsToSelector:@selector(tableViewDidReceiveDeleteKey:)]) {
+        if ((val == NSDeleteCharacter || (val == NSDeleteFunctionKey) && (mod == NSFunctionKeyMask))) { // CHANGED HERE
+            if (self delegate] respondsToSelector:@selector(tableViewDidReceiveDeleteKey:)]) {
                 [[self delegate] performSelector:@selector(tableViewDidReceiveDeleteKey:) withObject:self];
                 return YES;
             }
@@ -105,19 +105,19 @@ The modifier keys have constant names, and you should not generally use integer 
 
     val == '\n' does not appear to work.     '\r' will catch return, but     '\n' is not the value that     -charactersIgnoringModifiers: returns when you hit the enter key.
 
-Fortunately, Cocoa gives us symbolic constants for return and enter, namely     [[NSCarriageReturnCharacter and     General/NSEnterCharacter. I would advise using them instead of comparing against C characters or numerical constants for readability if nothing else.
+Fortunately, Cocoa gives us symbolic constants for return and enter, namely     [[NSCarriageReturnCharacter and     NSEnterCharacter. I would advise using them instead of comparing against C characters or numerical constants for readability if nothing else.
 
-(These are documented in the General/NSText class reference. I couldn�t find any reference to a space character constant.)
+(These are documented in the NSText class reference. I couldn�t find any reference to a space character constant.)
 
--- General/RobRix
+-- RobRix
 
 ----
 Three items edited in the above code:
 
-1) parenthesis needed around "val == General/NSDeleteFunctionKey) && (mod == General/NSCommandKeyMask)" [ask me how I know this :-)]
+1) parenthesis needed around "val == NSDeleteFunctionKey) && (mod == NSCommandKeyMask)" [ask me how I know this :-)]
 2) corrected spelling of ...Receive... in the method names.
-3) use of General/NSCommandKeyMask was wrong - correct mask is General/NSFunctionKeyMask [again, ask me how I know this]
-4) My outlineview is editable, so never get the return - not sure of '\n' above or General/NSCarriageReturnCharacter is correct...
+3) use of NSCommandKeyMask was wrong - correct mask is NSFunctionKeyMask [again, ask me how I know this]
+4) My outlineview is editable, so never get the return - not sure of '\n' above or NSCarriageReturnCharacter is correct...
 
 Code above copied and working fine for me in Snow Leopard.
 

@@ -1,6 +1,6 @@
 I have been working on an application that does the following operation.
 
-The application has long running General/NSTask that communicates with the server
+The application has long running NSTask that communicates with the server
 to send/recieve the data to/from the server and correspondingly updates the User Interface elements.
 
 
@@ -13,7 +13,7 @@ The system cannot satisfy the virtual memory needs by allocating additional memo
 What is the reason for this growing virtual memory usage and how can it be avoided in code ?
 
 Most of the objects in the loop are autorelased .
-Does it relate in any way to General/AutoRelease pools?
+Does it relate in any way to AutoRelease pools?
 
 I appreciate in advance for any help.
 
@@ -29,7 +29,7 @@ This should really have been posted on the forums, but it might as well just be 
 
 Autoreleased objects are not actually released until the autoreleased pool they are in goes away. Now, the only set places for autorelease pools to go away are at the end of an event cycle or when a thread terminates, so probably everything in your pool is sticking around during the entire communication. It might be a good idea to allocate and release an autorelease pool every time (or every X times) through the loop, to make sure the memory you're not using is being properly reclaimed.
 
---General/JediKnil
+--JediKnil
 
 ----
 And just a note, there's almost never a point in the "every X times" approach to autorelease pools. Autorelease pools are *fast*. If you're allocating more than a couple of objects per loop, the cost of the extra memory pressure from keeping them alive longer will outweigh the cost of the pool. If you're just allocating a couple of objects per loop then there's probably no speed worry anyway.
@@ -38,13 +38,13 @@ And just a note, there's almost never a point in the "every X times" approach to
 Even better, if the objects are short-lived, just alloc/init them, use them, and then release them. Ex:
 
     
-General/MyObject* foo = General/[[MyObject alloc] init];
+MyObject* foo = [[MyObject alloc] init];
 [foo setSomething:@"Some value"];
 [someDictionary addObject:foo];   // The object is now retained by the dictionary itself.
 [foo release];
 
 
-As General/MacOSX's memory system has pre-allocated entries for various sized memory objects (cached for re-use), this all is super-fast.
+As MacOSX's memory system has pre-allocated entries for various sized memory objects (cached for re-use), this all is super-fast.
 
 There are so many cases no auto-released objects are needed, but due to past behavior they sneak in....
 

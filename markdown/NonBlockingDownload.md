@@ -4,14 +4,14 @@ A basic non blocking download snippet:
 // Starts download
 - (void)download
 {
-        NSURL *myURL = [NSURL General/URLWithString:@"http://www.apple.com/"];
+        NSURL *myURL = [NSURL URLWithString:@"http://www.apple.com/"];
         [myURL loadResourceDataNotifyingClient:self usingCache:YES];
 }
 
 // This method will be called when the download has finished
-- (void)General/URLResourceDidFinishLoading:(NSURL *)sender
+- (void)URLResourceDidFinishLoading:(NSURL *)sender
 {
-        General/NSData *urlContents = [sender resourceDataUsingCache:YES];
+        NSData *urlContents = [sender resourceDataUsingCache:YES];
 
         if ([urlContents writeToFile:[@"~/Documents/applewebsite.html"
                          stringByExpandingTildeInPath]
@@ -24,4 +24,4 @@ A basic non blocking download snippet:
 }
  
 
-General/EcumeDesJours
+EcumeDesJours

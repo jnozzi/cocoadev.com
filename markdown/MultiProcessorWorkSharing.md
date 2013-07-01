@@ -4,12 +4,12 @@ Here are some classes and protocols to help you achieve it. Any class implementi
 
 An example of how you can use these code units is given at the end.
 
-General/DrewMcCormack
+DrewMcCormack
 
 
 ----
 
-See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/ThreadWorker.
+See also AtomicSQ, ProducersAndConsumerModel, and ThreadWorker.
 
 ----
 
@@ -22,7 +22,7 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 #import "Scheduler.h"
 
 @protocol Schedulable 
--(void)performWorkUnits:(General/NSSet *)workUnits forScheduler:(Scheduler *)scheduler;
+-(void)performWorkUnits:(NSSet *)workUnits forScheduler:(Scheduler *)scheduler;
 @end
 
 
@@ -34,12 +34,12 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 @protocol Schedulable;
 
 
-@interface Scheduler : General/NSObject {
+@interface Scheduler : NSObject {
     @private
     id _delegate;				// Delegate
     id <Schedulable> _schedulableObject;	// Object which has work units to be scheduled
-    General/NSMutableSet *_workUnitsRemaining;		// Work units not yet performed in schedule
-    General/NSLock *_remainingUnitsLock;		// Lock to keep the remaining work units set consistent
+    NSMutableSet *_workUnitsRemaining;		// Work units not yet performed in schedule
+    NSLock *_remainingUnitsLock;		// Lock to keep the remaining work units set consistent
     BOOL _scheduleWasCancelled; 		// Flag set when schedule is cancelled
     unsigned _numberOfThreads;			// Number of simultaneous threads used to perform work
     unsigned _numberOfDetachedThreads;		// The current number of worker threads detached.
@@ -49,11 +49,11 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 -(id)initForSchedulableObject:(id <Schedulable>)schedObj;
 -(void)dealloc;
 
--(void)performScheduleForWorkUnits:(General/NSSet *)workUnits;
+-(void)performScheduleForWorkUnits:(NSSet *)workUnits;
 -(void)cancelSchedule;
 
 // Template method. Overload in subclasses
--(General/NSSet *)_workUnitsToExecuteForRemainingUnits:(General/NSSet *)remainingUnits;
+-(NSSet *)_workUnitsToExecuteForRemainingUnits:(NSSet *)remainingUnits;
 
 // Accessors
 -(unsigned)numberOfThreads;
@@ -63,19 +63,19 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 
 -(id <Schedulable>)schedulableObject;
 
--(General/NSMutableSet *)_workUnitsRemaining;
+-(NSMutableSet *)_workUnitsRemaining;
 
 @end
 
 
-@interface Scheduler (General/SchedulerDelegateMethods)
+@interface Scheduler (SchedulerDelegateMethods)
 
 // Sent in the main thread
 -(void)schedulerWillBeginSchedule:(Scheduler *)sender;
 
 // The following are sent in the worker thread
--(BOOL)scheduler:(Scheduler *)scheduler shouldBeginUnits:(General/NSSet *)units;
--(void)scheduler:(Scheduler *)scheduler didCompleteUnits:(General/NSSet *)units;
+-(BOOL)scheduler:(Scheduler *)scheduler shouldBeginUnits:(NSSet *)units;
+-(void)scheduler:(Scheduler *)scheduler didCompleteUnits:(NSSet *)units;
 
 // Sent in the main thread
 -(void)schedulerDidCancelSchedule:(Scheduler *)scheduler;
@@ -93,11 +93,11 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 #define DEFAULT_NUMBER_OF_THREADS 2
 
 
-@interface Scheduler (General/PrivateMethods)
--(General/NSSet *)_getNextUnitsToPerform;
+@interface Scheduler (PrivateMethods)
+-(NSSet *)_getNextUnitsToPerform;
 -(void)_setNumberOfThreads:(unsigned)numThreads;
 -(void)_setSchedulableObject:(id <Schedulable>)schedObj;
--(void)_setWorkUnitsRemaining:(General/NSMutableSet *)unitsRemaining;
+-(void)_setWorkUnitsRemaining:(NSMutableSet *)unitsRemaining;
 @end
 
 
@@ -108,7 +108,7 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
     if ( self = [super init] ) {
         [self _setSchedulableObject:schedObj];
         [self _setNumberOfThreads:numThreads];
-        _remainingUnitsLock = General/[[NSLock alloc] init];
+        _remainingUnitsLock = [[NSLock alloc] init];
     }
     return self;
 }
@@ -127,10 +127,10 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 }
     
 
--(void)performScheduleForWorkUnits:(General/NSSet *)workUnits {
+-(void)performScheduleForWorkUnits:(NSSet *)workUnits {
     id <Schedulable> schedObj = [self schedulableObject];
     
-    General/NSAssert( nil != schedObj, @"Schedulable object nil in performScheduleForWorkUnits:" );
+    NSAssert( nil != schedObj, @"Schedulable object nil in performScheduleForWorkUnits:" );
     
     // Keep track of which units are still left to perform
     [self _setWorkUnitsRemaining:[workUnits mutableCopy]];
@@ -147,7 +147,7 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
     unsigned threadIndex;
     for ( threadIndex = 0; threadIndex < [self numberOfThreads]; ++threadIndex ) {
         _numberOfDetachedThreads++;
-        General/[NSThread detachNewThreadSelector:@selector(_performWorkUnitsInWorkerThread)
+        [NSThread detachNewThreadSelector:@selector(_performWorkUnitsInWorkerThread)
             toTarget:self 
             withObject:nil];
     }
@@ -156,9 +156,9 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 
 
 -(void)_performWorkUnitsInWorkerThread {
-    General/NSSet *nextUnits = nil;
+    NSSet *nextUnits = nil;
     BOOL performNextUnits;
-    General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
     while ( ( nextUnits = [self _getNextUnitsToPerform] ) && !_scheduleWasCancelled ) {
         
@@ -168,7 +168,7 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
             performNextUnits = [_delegate scheduler:self shouldBeginUnits:nextUnits];
 
         if ( performNextUnits ) {
-            General/self schedulableObject] performWorkUnits:nextUnits forScheduler:self];
+            self schedulableObject] performWorkUnits:nextUnits forScheduler:self];
             
             // Inform delegate of completion
             if ( [_delegate respondsToSelector:@selector(scheduler:didCompleteUnits:)] )
@@ -190,13 +190,13 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 // Returns the next units to perform, and removes them from the work units remaining set.
 // This operation is threadsafe.
 -([[NSSet *)_getNextUnitsToPerform {
-    General/NSSet *nextUnits = nil;
+    NSSet *nextUnits = nil;
     
     // Need to lock here because a race condition could arise for the work units
     // remaining set.
     [_remainingUnitsLock lock];
     nextUnits = [self _workUnitsToExecuteForRemainingUnits:[self _workUnitsRemaining]];
-    General/self _workUnitsRemaining] minusSet:nextUnits];
+    self _workUnitsRemaining] minusSet:nextUnits];
     [_remainingUnitsLock unlock];
     
     return ( 0 == [nextUnits count] ? nil : nextUnits );
@@ -228,7 +228,7 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 
 
 // Abstract method. Returns nil if there are no more units to complete.
--([[NSSet *)_workUnitsToExecuteForRemainingUnits:(General/NSSet *)remainingUnits {
+-([[NSSet *)_workUnitsToExecuteForRemainingUnits:(NSSet *)remainingUnits {
     [self doesNotRecognizeSelector:_cmd];
     return nil;
 }
@@ -262,19 +262,19 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 }
 
 
--(General/NSObject <Schedulable> *)schedulableObject {
+-(NSObject <Schedulable> *)schedulableObject {
     return _schedulableObject;
 }
 
 
--(void)_setWorkUnitsRemaining:(General/NSMutableSet *)unitsRemaining {
+-(void)_setWorkUnitsRemaining:(NSMutableSet *)unitsRemaining {
     [unitsRemaining retain];
     [_workUnitsRemaining release];
     _workUnitsRemaining = unitsRemaining;
 }
 
 
--(General/NSMutableSet *)_workUnitsRemaining {
+-(NSMutableSet *)_workUnitsRemaining {
     return _workUnitsRemaining;
 }
 
@@ -283,45 +283,45 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 
 
 
-------------------- General/StaticScheduler.h --------------------
+------------------- StaticScheduler.h --------------------
 
 #import <Foundation/Foundation.h>
 #import "Scheduler.h"
 
 
-@interface General/StaticScheduler : Scheduler {
+@interface StaticScheduler : Scheduler {
     @private
     int _numberOfThreadsLeft; // Used to keep track of how many threads already have work
 }
 
--(void)performScheduleForWorkUnits:(General/NSSet *)workUnits;
--(General/NSSet *)_workUnitsToExecuteForRemainingUnits:(General/NSSet *)remainingUnits;
+-(void)performScheduleForWorkUnits:(NSSet *)workUnits;
+-(NSSet *)_workUnitsToExecuteForRemainingUnits:(NSSet *)remainingUnits;
 
 @end
 
 
--------------------- General/StaticScheduler.m ---------------------
+-------------------- StaticScheduler.m ---------------------
 
-#import "General/StaticScheduler.h"
-
-
-@implementation General/StaticScheduler
+#import "StaticScheduler.h"
 
 
--(void)performScheduleForWorkUnits:(General/NSSet *)workUnits {
+@implementation StaticScheduler
+
+
+-(void)performScheduleForWorkUnits:(NSSet *)workUnits {
     _numberOfThreadsLeft = [self numberOfThreads];
     [super performScheduleForWorkUnits:workUnits];
 }
 
 
 // Divide units as equally as possible between threads. 
--(General/NSSet *)_workUnitsToExecuteForRemainingUnits:(General/NSSet *)remainingUnits {
+-(NSSet *)_workUnitsToExecuteForRemainingUnits:(NSSet *)remainingUnits {
     int numUnitsLeft = [remainingUnits count];
     int numUnitsThisThread = numUnitsLeft / _numberOfThreadsLeft + 
         ( 0 != numUnitsLeft % _numberOfThreadsLeft ? 1 : 0 ); // Add 1 if doesn't divide exactly
     _numberOfThreadsLeft--;
-    return General/[NSSet setWithArray:
-        General/remainingUnits allObjects] subarrayWithRange:[[NSMakeRange(0, numUnitsThisThread)]];
+    return [NSSet setWithArray:
+        remainingUnits allObjects] subarrayWithRange:[[NSMakeRange(0, numUnitsThisThread)]];
 }
 
 
@@ -329,34 +329,34 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 
 
 
---------------------- General/DynamicScheduler.h -------------------------
+--------------------- DynamicScheduler.h -------------------------
 
 #import <Foundation/Foundation.h>
 #import "Scheduler.h"
 
 
-@interface General/DynamicScheduler : Scheduler {
+@interface DynamicScheduler : Scheduler {
 
 }
 
--(General/NSSet *)_workUnitsToExecuteForRemainingUnits:(General/NSSet *)remainingUnits;
+-(NSSet *)_workUnitsToExecuteForRemainingUnits:(NSSet *)remainingUnits;
 
 @end
 
 
 
------------------------ General/DynamicScheduler.m ------------------------
+----------------------- DynamicScheduler.m ------------------------
 
-#import "General/DynamicScheduler.h"
+#import "DynamicScheduler.h"
 
 
-@implementation General/DynamicScheduler
+@implementation DynamicScheduler
 
 
 // Divide units as equally as possible between threads. 
--(General/NSSet *)_workUnitsToExecuteForRemainingUnits:(General/NSSet *)remainingUnits {
-    return ( [remainingUnits count] == 0 ? General/[NSSet set] :
-        General/[NSSet setWithArray:General/remainingUnits allObjects] subarrayWithRange:[[NSMakeRange(0, 1)]] );
+-(NSSet *)_workUnitsToExecuteForRemainingUnits:(NSSet *)remainingUnits {
+    return ( [remainingUnits count] == 0 ? [NSSet set] :
+        [NSSet setWithArray:remainingUnits allObjects] subarrayWithRange:[[NSMakeRange(0, 1)]] );
 }
 
 
@@ -366,20 +366,20 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 ----------------------- Example of Work Sharing---------------------
 // In header
 
-@interface General/ExampleWorkClass : General/NSObject <Schedulable>
+@interface ExampleWorkClass : NSObject <Schedulable>
 
 ...
 
 // In implementation file
 
     // Create a scheduler
-    id sched = General/[DynamicScheduler initForSchedulableObject:self andNumberOfThreads:4];
+    id sched = [DynamicScheduler initForSchedulableObject:self andNumberOfThreads:4];
     
-    // Create the work units. These can be anything. We will use General/NSNumbers
+    // Create the work units. These can be anything. We will use NSNumbers
     unsigned i;
-    General/NSMutableSet *unitsSet = General/[NSMutableSet set];
+    NSMutableSet *unitsSet = [NSMutableSet set];
     for ( i = 0; i < numWorkUnits; ++i ) {
-        [unitsSet addObject:General/[NSNumber numberWithInt:i]];
+        [unitsSet addObject:[NSNumber numberWithInt:i]];
     }
     
     // Perform work schedule
@@ -390,7 +390,7 @@ See also General/AtomicSQ, General/ProducersAndConsumerModel, and General/Thread
 
 // Also in implementation file
 
--(void)performWorkUnits:(General/NSSet *)workUnits forScheduler:(Scheduler *)scheduler {
+-(void)performWorkUnits:(NSSet *)workUnits forScheduler:(Scheduler *)scheduler {
 
     // Do work here for the set of units passed. This is from the Schedulable protocol
 

@@ -4,7 +4,7 @@ Hi all,
 
 a simple question that an afternoon of Googling has not managed to finad an answer to:
 
-General/NSTableView, since Panther, has had the option to automatically provide its rows with an 'alternating background' (blue, white, blue, white, etc.).
+NSTableView, since Panther, has had the option to automatically provide its rows with an 'alternating background' (blue, white, blue, white, etc.).
 
 I can find no way to override the color for the alternating background however (I'd like to highlight the alternating rows in something other than blue and white). 
 
@@ -18,7 +18,7 @@ Cheers!
 
 ----
 
-The colors are supplied by General/NSColor's +controlAlternatingRowBackgroundColors (see the docs). If you don't mind this changing for all table views in your app (that use alt row colors), a category on General/NSColor would do.
+The colors are supplied by NSColor's +controlAlternatingRowBackgroundColors (see the docs). If you don't mind this changing for all table views in your app (that use alt row colors), a category on NSColor would do.
 
 ----
 
@@ -26,19 +26,19 @@ That's great, thanks :)
 
 ----
 
-For an alternate approach, I had to do some custom row background coloring recently and came up with a subclass of General/NSTableview.  This code simply replicates what the default General/NSTableView does.  Just change the color to whatever you'd like.
+For an alternate approach, I had to do some custom row background coloring recently and came up with a subclass of NSTableview.  This code simply replicates what the default NSTableView does.  Just change the color to whatever you'd like.
 
     
 
-- (void)drawBackgroundInClipRect:(General/NSRect)clipRect;
+- (void)drawBackgroundInClipRect:(NSRect)clipRect;
 {
 	// make sure we do nothing so the drawRow method's drawing will take effect
 }
 
-- (void)drawRow:(int)row clipRect:(General/NSRect)rect;
+- (void)drawRow:(int)row clipRect:(NSRect)rect;
 {
-	General/[[[NSColor controlAlternatingRowBackgroundColors] objectAtIndex:(row % 2)] setFill];
-	General/NSRectFill([self rectOfRow:row]);
+	[[[NSColor controlAlternatingRowBackgroundColors] objectAtIndex:(row % 2)] setFill];
+	NSRectFill([self rectOfRow:row]);
 	
 	[super drawRow:row clipRect:rect];
 }

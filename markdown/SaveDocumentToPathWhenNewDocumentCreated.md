@@ -4,11 +4,11 @@ Sorry, Ignore this page please...  I had some other code that was causing the pr
 ----
 I have a project where I want to store potentially a large portion of media assets (and others) that will take up a lot of space.  I will be using a folder based document to manage all of these assets.  However, I want to enforce creating/saving a file name when a new document is created, in the same manner than iMovie does.  I assume iMovie does it for the same reasons:  It is easier to simply know where to dump "scratch" type media files if the document already has a path, rather than trying to save them to a temporary folder and then have to copy them upon save.  It also prevents having to copy all of these assets over if the final save destination is on a different partition than the temporary folders are.
 
-I have tried to make my own subclass of General/NSDocumentController and override the makeUntitledDocumentOfType:error: method, but I get an error every time.
+I have tried to make my own subclass of NSDocumentController and override the makeUntitledDocumentOfType:error: method, but I get an error every time.
 
 Code:
     
-- (id)makeUntitledDocumentOfType:(General/NSString *)typeName error:(General/NSError **)outError
+- (id)makeUntitledDocumentOfType:(NSString *)typeName error:(NSError **)outError
 {
     // get document
     id doc = [super makeUntitledDocumentOfType:typeName error:outError];
@@ -16,10 +16,10 @@ Code:
     // got a doc?
     if (doc) {
         // got a doc, force save
-        General/NSLog(@"We got a doc: %@", doc);
+        NSLog(@"We got a doc: %@", doc);
         [doc saveDocumentAs:nil];
     } else {
-        General/NSLog(@"No doc created...");
+        NSLog(@"No doc created...");
     }
     
     // return doc

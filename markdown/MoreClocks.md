@@ -3,12 +3,12 @@ More Clocks tells the time with different types of clocks. It has a multi-alarms
 
 http://regnault.luc.free.fr/openSource.html
 
-Where might we find General/MoreClocks?
+Where might we find MoreClocks?
 Here:
 http://regnault.luc.free.fr/MoreClocks_3.7.html
 
 
 
-This Wiki is not for your use as an advertising board.  Don't spam it and then remove someone else's General/DeleteMe.
+This Wiki is not for your use as an advertising board.  Don't spam it and then remove someone else's DeleteMe.
 
 The guy posted the source for many of his clocks....

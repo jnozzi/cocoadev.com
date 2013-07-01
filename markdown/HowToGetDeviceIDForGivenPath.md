@@ -4,11 +4,11 @@ How can I get the device ID (i.e. /dev/diskX) for a given path? I think you have
 
 ----
 
-General/NSFileManager's instance method     fileSystemAttributesAtPath: might help.     General/NSFileSystemNumber is the keyed attribute that gives you the  file system number for the mounted file system that contains the path.  
+NSFileManager's instance method     fileSystemAttributesAtPath: might help.     NSFileSystemNumber is the keyed attribute that gives you the  file system number for the mounted file system that contains the path.  
 
 ----
 
-That method works, but since I'm trying to find the device ID of a volume, and the volume is mounted on /, General/NSFileSystemNumber always returns 0 (or whatever is /). But I figured out how to do it with straight C calls. You have to use getmntinfo() which gives you an array of all mounted file systems (/sbin/mount uses method I believe exactly). You're also supposed to be able to use statfs() and pass it a file path, but I kept getting -1 from that function, not sure why. So I just created a function that loops through what getmntinfo() returns, and then created another function which parses the device ID (disk ID?) number from that:
+That method works, but since I'm trying to find the device ID of a volume, and the volume is mounted on /, NSFileSystemNumber always returns 0 (or whatever is /). But I figured out how to do it with straight C calls. You have to use getmntinfo() which gives you an array of all mounted file systems (/sbin/mount uses method I believe exactly). You're also supposed to be able to use statfs() and pass it a file path, but I kept getting -1 from that function, not sure why. So I just created a function that loops through what getmntinfo() returns, and then created another function which parses the device ID (disk ID?) number from that:
     
 #include <Cocoa/Cocoa.h>
 #include <sys/param.h>
@@ -17,7 +17,7 @@ That method works, but since I'm trying to find the device ID of a volume, and t
 
 // see "man statfs" and "man getmntinfo"
 
-General/NSString *mountedFileSystemForVolumePath(General/NSString *volume)
+NSString *mountedFileSystemForVolumePath(NSString *volume)
 {
 	struct statfs *buf, *buf2;
 	int i, count;
@@ -27,17 +27,17 @@ General/NSString *mountedFileSystemForVolumePath(General/NSString *volume)
 	for (i=0; i<count; i++)
 	{
 		if (strcmp(buf[i].f_mntonname, vol) == 0)
-			return General/[NSString stringWithUTF8String:buf[i].f_mntfromname];
+			return [NSString stringWithUTF8String:buf[i].f_mntfromname];
 	}
 	return nil;
 }
 
-int deviceIDForVolumePath(General/NSString *volumePath)
+int deviceIDForVolumePath(NSString *volumePath)
 {
-	General/NSString *mfs = mountedFileSystemForVolumePath(volumePath);
+	NSString *mfs = mountedFileSystemForVolumePath(volumePath);
 	if (mfs && [mfs hasPrefix:@"/dev/disk"] && [mfs length] > 9)
 	{
-		return General/mfs substringWithRange:[[NSMakeRange(9, 1)] intValue];
+		return mfs substringWithRange:[[NSMakeRange(9, 1)] intValue];
 	}
 		
 	return -1;	
@@ -47,11 +47,11 @@ int main(int argc, char *argv[])
 {
 	if (argc == 2)
 	{
-		General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
-		General/NSString *volume = General/[NSString stringWithUTF8String:argv[1]];
+		NSString *volume = [NSString stringWithUTF8String:argv[1]];
 		int deviceID = deviceIDForVolumePath(volume);
-		General/NSLog(@"deviceID: %d", deviceID);
+		NSLog(@"deviceID: %d", deviceID);
 
 		[pool release];
 	}

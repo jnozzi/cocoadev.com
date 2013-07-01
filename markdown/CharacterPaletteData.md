@@ -2,7 +2,7 @@ I'm interested in accessing the data that the character palette displays. Does a
 
 Thanks!
 
-General/DanielPeebles
+DanielPeebles
 
 ----
-Ok. This might be off-topic now, but I thought there might be a cocoa interface to the data which is why I asked it in the first place. I found it, and it's a group of files inside the /System/Library/Components/General/CharacterPalette.component/Contents/General/SharedSupport/General/CharPaletteServer.app/Contents/Frameworks/General/CharacterPaletteFramework.framework/Versions/A/Resources folder... the main file is called kanji.db, and is a sqlite database file with a bit of data on each character in it.
+Ok. This might be off-topic now, but I thought there might be a cocoa interface to the data which is why I asked it in the first place. I found it, and it's a group of files inside the /System/Library/Components/CharacterPalette.component/Contents/SharedSupport/CharPaletteServer.app/Contents/Frameworks/CharacterPaletteFramework.framework/Versions/A/Resources folder... the main file is called kanji.db, and is a sqlite database file with a bit of data on each character in it.

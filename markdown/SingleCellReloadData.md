@@ -1,12 +1,12 @@
 
 
-Here is some code to make General/NSTableView only update one row, column, or cell at a time. These can be used instead of **-reloadData**, which updates the entire table.
+Here is some code to make NSTableView only update one row, column, or cell at a time. These can be used instead of **-reloadData**, which updates the entire table.
 
-This code is from the cocoa-dev mailing list, and was not written by me. �General/DustinVoss
+This code is from the cocoa-dev mailing list, and was not written by me. �DustinVoss
 
 ----
 
-    @interface General/NSTableView (General/SingleCellUpdateAdditions)
+    @interface NSTableView (SingleCellUpdateAdditions)
 
 - (void) reloadDataForColumn:(int) x;
 - (void) reloadDataForRow:(int) y;
@@ -14,11 +14,11 @@ This code is from the cocoa-dev mailing list, and was not written by me. �Gene
 
 @end
 
-    @implementation General/NSTableView (General/SingleCellUpdateAdditions)
+    @implementation NSTableView (SingleCellUpdateAdditions)
 
-- (void) updateInRect:(General/NSRect) invalidRect
+- (void) updateInRect:(NSRect) invalidRect
 {
-	if (!General/NSEqualRects(invalidRect, General/NSZeroRect))
+	if (!NSEqualRects(invalidRect, NSZeroRect))
 	{
 		[self setNeedsDisplayInRect: invalidRect];
 	}

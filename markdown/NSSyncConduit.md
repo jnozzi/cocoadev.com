@@ -2,34 +2,34 @@
 
 Note: This data applies to the latest gleaned info from production OS X - 10.3.5 as of this writing.
 
-iSync uses a closed API defined in /System/Library/General/PrivateFrameworks/General/SyncConduit.framework to define it's conduits (pieces of software that provide sync servicing for individual devices).  As this is a Private Framework, Headers are not available and were gleaned from General/ClassDump.  The tricky part of course is translating all the fun (id) defs in General/ClassDump -ed headers to real objects... and determining the whys and hows about these individual objects going in and out.
+iSync uses a closed API defined in /System/Library/PrivateFrameworks/SyncConduit.framework to define it's conduits (pieces of software that provide sync servicing for individual devices).  As this is a Private Framework, Headers are not available and were gleaned from ClassDump.  The tricky part of course is translating all the fun (id) defs in ClassDump -ed headers to real objects... and determining the whys and hows about these individual objects going in and out.
 
-I (General/BrendanWMcAdams) have been doing some work on puzzling out General/NSSyncConduit myself over at www.twodot.org.  My coding partner and I thought it might be nice to kick back some of the info we've puzzled to General/CocoaDev, so here goes...
+I (BrendanWMcAdams) have been doing some work on puzzling out NSSyncConduit myself over at www.twodot.org.  My coding partner and I thought it might be nice to kick back some of the info we've puzzled to CocoaDev, so here goes...
 
-This is the results of my work, off of the 10.3.5 verion of General/SyncConduit...
+This is the results of my work, off of the 10.3.5 verion of SyncConduit...
 
     
 /*
- * Decoded from /System/Library/General/PrivateFrameworks/General/SyncConduit.framework
+ * Decoded from /System/Library/PrivateFrameworks/SyncConduit.framework
  * 
  * basic structure from class-dump
  * 
  * Actual datastructures and functionality details decoded by 
- * Brendan W. General/McAdams <bmcadams@twodot.org>    
+ * Brendan W. McAdams <bmcadams@twodot.org>    
  *
  */
 
 #import <Foundation/Foundation.h>
 
-@interface General/NSSyncConduit : General/NSObject
+@interface NSSyncConduit : NSObject
 {
 }
 
 /** 
  * This is a simple name describing the conduit, 
- * e.g. "General/ExchangeConduit" 
+ * e.g. "ExchangeConduit" 
 */
-+ (General/NSString*) conduitName;
++ (NSString*) conduitName;
 
 /** 
  * Not sure what this is supposed to indicate...
@@ -40,28 +40,28 @@ This is the results of my work, off of the 10.3.5 verion of General/SyncConduit.
 + (BOOL) isApplication;
 
 /** 
- * This returns an General/NSArray, 
- * which contains General/NSString objects.
- * Each General/NSString indicates a class name 
- * which is an General/NSSyncDataClass.
+ * This returns an NSArray, 
+ * which contains NSString objects.
+ * Each NSString indicates a class name 
+ * which is an NSSyncDataClass.
  * [having trouble dumping the stuff for this].
  * 
- * The General/DataClasses returned are the forms of data
+ * The DataClasses returned are the forms of data
  * that this conduit will support syncing.
  * 
- * General/DataClasses represent types of syncing.
- * The only General/DataClasses I know about are:
- *     - General/NSSyncContactDataClass (General/AddressBook)
- *     - General/NSSyncICalendarDataClass (iCal)
+ * DataClasses represent types of syncing.
+ * The only DataClasses I know about are:
+ *     - NSSyncContactDataClass (AddressBook)
+ *     - NSSyncICalendarDataClass (iCal)
  *  
  * I haven't dug deep but there are likely bookmark ones, etc.
  * for .mac and Safari
  */
-+ (General/NSArray*) supportedDataClasses;
++ (NSArray*) supportedDataClasses;
 
 /** 
- * This returns an General/NSArray,
- * which contains General/NSConduit objects,
+ * This returns an NSArray,
+ * which contains NSConduit objects,
  * which are presumably instances of the 
  * local conduit's own subclass.
  * This is obviously most useful 
@@ -69,30 +69,30 @@ This is the results of my work, off of the 10.3.5 verion of General/SyncConduit.
  * you to configure multiple sync devices 
  * i.e. iMac account, iPod and phone.
  */
-+ (General/NSArray*) activeConduits;
++ (NSArray*) activeConduits;
 
 /**
- * This returns an General/NSString 
+ * This returns an NSString 
  * containing an ID for the particular 
  * instance of device (possibly, e.g. IMEI)
  * this instance is syncing.
  * Keep in mind an instance refers to a 
  * particular device, rather than type of device
  */
-- (General/NSString*) deviceId;
+- (NSString*) deviceId;
 
 /**
- * This returns an General/NSString 
+ * This returns an NSString 
  * containing a name or the particular 
  * instance of device (possibly, e.g. bluetooth 'short name')
  * this instance is syncing.
  * Keep in mind an instance refers to a 
  * particular device, rather than type of device
  */
-- (General/NSString*) deviceName;
+- (NSString*) deviceName;
 
 /**
- * This returns an General/NSString 
+ * This returns an NSString 
  * containing the fully qualified path to 
  * an icon representing the device (.tiff or .icns seem used)
  * This icon is used in the 'add device' search as well as
@@ -104,28 +104,28 @@ This is the results of my work, off of the 10.3.5 verion of General/SyncConduit.
  * The symbian conduit has icons for multiple devices and shows 
  * them appropriate.
  */
-- (General/NSString*) iconPath;
+- (NSString*) iconPath;
 
 
 /** 
- * This returns an General/NSArray, 
- * which contains General/NSString objects.
- * Each General/NSString indicates a class name 
- * which is an General/NSSyncDataClass.
+ * This returns an NSArray, 
+ * which contains NSString objects.
+ * Each NSString indicates a class name 
+ * which is an NSSyncDataClass.
  * [having trouble dumping the stuff for this].
  *  
- * The General/DataClasses returned are the forms of data
+ * The DataClasses returned are the forms of data
  * that this conduit will support syncing.
  * 
- * General/DataClasses represent types of syncing.
- * The only General/DataClasses I know about are:
- *     - General/NSSyncContactDataClass (General/AddressBook)
- *     - General/NSSyncICalendarDataClass (iCal)
+ * DataClasses represent types of syncing.
+ * The only DataClasses I know about are:
+ *     - NSSyncContactDataClass (AddressBook)
+ *     - NSSyncICalendarDataClass (iCal)
  *  
  * I haven't dug deep but there are likely bookmark ones, etc.
  * for .mac and Safari
  */
-- (General/NSArray*) activeDataClasses;
+- (NSArray*) activeDataClasses;
 
 - (int)openSync:(id)fp12;
 - (id)synchronizerForDataClass:(id)fp12;
@@ -137,7 +137,7 @@ This is the results of my work, off of the 10.3.5 verion of General/SyncConduit.
  * However, it's likely related to changes, 
  * differences and / or conflicts.
  */
-- (General/NSDictionary*) closeSync;
+- (NSDictionary*) closeSync;
 
 @end
 
@@ -148,28 +148,28 @@ This is the results of my work, off of the 10.3.5 verion of General/SyncConduit.
 ----
 
 -- This is the original dump from this page, I believe it's from an old version of OS .. 10.2? --
-Here some first learnings about General/NSSyncConduit (iSync):
+Here some first learnings about NSSyncConduit (iSync):
 
-iSync uses plugin bundles (suffix .conduit) stored at /System/Library/General/SyncServices. These apparently define a subclass of General/NSSyncConduit which is part of the private framework General/SyncConduit (/System/Library/General/PrivateFrameworks)
+iSync uses plugin bundles (suffix .conduit) stored at /System/Library/SyncServices. These apparently define a subclass of NSSyncConduit which is part of the private framework SyncConduit (/System/Library/PrivateFrameworks)
 
-General/ClassDump of a conduit reveals (crashes on General/SyncConduit itself):
+ClassDump of a conduit reveals (crashes on SyncConduit itself):
 
     
-@interface xxConduit : General/NSSyncConduit
+@interface xxConduit : NSSyncConduit
 
 + (id)iconPathForDeviceModel:(id)fp12;
-+ (General/NSString *)conduitName; - human readable name of the conduit bundle
-+ (General/NSArray *)supportedDataClasses; - array of data classes (e.g. General/ABPerson etc.) that are supported
-+ (General/NSArray *)activeConduits; - ???
++ (NSString *)conduitName; - human readable name of the conduit bundle
++ (NSArray *)supportedDataClasses; - array of data classes (e.g. ABPerson etc.) that are supported
++ (NSArray *)activeConduits; - ???
 + (BOOL)isApplication; - ???
 
-- (General/NSString *)deviceId; - device ID (unique)
-- (General/NSString *)deviceName; - device name (e.g. Cellphone name; conduit might support more than one Cellphone)
-- (General/NSString *)iconPath; - path to Icon to be shown in iSync view
+- (NSString *)deviceId; - device ID (unique)
+- (NSString *)deviceName; - device name (e.g. Cellphone name; conduit might support more than one Cellphone)
+- (NSString *)iconPath; - path to Icon to be shown in iSync view
 - (BOOL)canGenerateChanges; - ???
-- (General/NSArray *)activeDataClasses; - ???
+- (NSArray *)activeDataClasses; - ???
 - (int)openSync:(id)fp12; - ???
-- (id)synchronizerForDataClass:(Class)fp12; - ??? does this return a synchronizer object which is a subclass of General/NSSyncDBSynchronizer
+- (id)synchronizerForDataClass:(Class)fp12; - ??? does this return a synchronizer object which is a subclass of NSSyncDBSynchronizer
 - (void)_secretMethodToRemoveDeviceForever; - ???
 - (void)finishedSynchronizingDataClass:(id)fp12 synchronizer:(id)fp16; - ???
 - (id)closeSync; - ???
@@ -185,56 +185,56 @@ http://www.blackberry.com/developers/forum/post.jsp?forum=1&thread=516&message=9
     
 #import <Foundation/Foundation.h>
 
-@interface General/NSSyncConduitManager : General/NSObject
+@interface NSSyncConduitManager : NSObject
 {
 }
 
-+ (General/NSSyncConduitManager*)conduitManager;
-- (General/NSArray*)conduitClasses;
++ (NSSyncConduitManager*)conduitManager;
+- (NSArray*)conduitClasses;
 
 @end
 
-@interface General/TESTSyncConduit : General/NSObject
+@interface TESTSyncConduit : NSObject
 {
 }
 
-+ (General/NSString*)conduitName;
++ (NSString*)conduitName;
 + (BOOL)isApplication;
-+ (General/NSArray*)supportedDataClasses;
-+ (General/NSArray*)activeConduits;
-+ (General/NSArray*)activeDataClasses;
-- (id)synchronizerForDataClass:(General/NSString*)dataClass ;
++ (NSArray*)supportedDataClasses;
++ (NSArray*)activeConduits;
++ (NSArray*)activeDataClasses;
+- (id)synchronizerForDataClass:(NSString*)dataClass ;
 
 @end
 
-@interface General/NSSyncDBSynchronizer : General/NSObject
+@interface NSSyncDBSynchronizer : NSObject
 {
 }
 
-- (General/NSDictionary*)database;
+- (NSDictionary*)database;
 
 @end
 
 
 int main( int argc, char** argv )
 {
-General/NSAutoreleasePool* pool = General/[[NSAutoreleasePool alloc] init];
+NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-General/NSSyncConduitManager* aConduitManager = General/[NSSyncConduitManager conduitManager];
+NSSyncConduitManager* aConduitManager = [NSSyncConduitManager conduitManager];
 if( aConduitManager != nil )
 {
-General/NSArray* conduitClasses = [aConduitManager conduitClasses];
+NSArray* conduitClasses = [aConduitManager conduitClasses];
 
 int i = 0;
 for( ; i < [conduitClasses count]; i++ )
 {
-General/TESTSyncConduit* curConduitClass = [conduitClasses objectAtIndex:i];
+TESTSyncConduit* curConduitClass = [conduitClasses objectAtIndex:i];
 
-General/NSLog( @"CONDUIT NAMED %@", General/curConduitClass class] conduitName] );
+NSLog( @"CONDUIT NAMED %@", curConduitClass class] conduitName] );
 
-[[NSArray* supportedDataClasses = General/curConduitClass class] supportedDataClasses];
+[[NSArray* supportedDataClasses = curConduitClass class] supportedDataClasses];
 
-[[NSArray* activeConduits = General/curConduitClass class] activeConduits];
+[[NSArray* activeConduits = curConduitClass class] activeConduits];
 if( activeConduits != nil && [activeConduits count] > 0 )
 {
 int j = 0;
@@ -242,16 +242,16 @@ for( ; j < [activeConduits count]; j++ )
 {
 [[TESTSyncConduit* aConduit =
 [activeConduits objectAtIndex:j];
-if( aConduit != nil && General/aConduit class]isApplication] == NO )
+if( aConduit != nil && aConduit class]isApplication] == NO )
 {
 int k = 0;
 for( ; k < [supportedDataClasses count]; k++ )
 {
 [[NSString* supportedClass = [supportedDataClasses objectAtIndex:k];
-General/NSSyncDBSynchronizer* syncher = [aConduit synchronizerForDataClass:supportedClass];
+NSSyncDBSynchronizer* syncher = [aConduit synchronizerForDataClass:supportedClass];
 
-General/NSLog( @"SYNCHRONIZER FOR DATA CLASS %@", supportedClass );
-General/NSLog( @"NOW HERE'S WHERE IT GETS INTERESTING: DATABASE IS: %@", [[syncher database] description] );
+NSLog( @"SYNCHRONIZER FOR DATA CLASS %@", supportedClass );
+NSLog( @"NOW HERE'S WHERE IT GETS INTERESTING: DATABASE IS: %@", [[syncher database] description] );
 }
 }
 }

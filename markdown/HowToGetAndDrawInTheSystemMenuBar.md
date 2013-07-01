@@ -11,5 +11,5 @@ The system menu bar does not belong to you. There is no public mechanism to modi
 ----
 
 ----
-I've tidied up your wiki formatting. Theres a page about it at General/TextFormattingRules.
+I've tidied up your wiki formatting. Theres a page about it at TextFormattingRules.
 ----

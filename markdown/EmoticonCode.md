@@ -6,7 +6,7 @@ I am wondering, is there anyway we can create other emoticons by passing around 
 
 (Just something fun for everyone to think about). ;)
 
--- General/MatPeterson
+-- MatPeterson
 
 ----
 
@@ -58,6 +58,6 @@ C|=D (this one goes both ways, allowing for hats.)
 
 ----
 
-General/[NSString stringWithString: @"any emoticon code you want"];
+[NSString stringWithString: @"any emoticon code you want"];
 
-I know, I cheated. -General/FranciscoTolmasky
+I know, I cheated. -FranciscoTolmasky

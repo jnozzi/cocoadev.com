@@ -4,18 +4,18 @@ How do I programmatically link to my app's help docs, and ask it to load a speci
 
 ----
 
-It'd be better to open it in the help book. Add this General/IBAction somewhere and then hook it up:
+It'd be better to open it in the help book. Add this IBAction somewhere and then hook it up:
 
-    - (General/IBAction)displayHelp:sender
+    - (IBAction)displayHelp:sender
 {
-    General/[[NSHelpManager sharedHelpManager] openHelpAnchor:@"YOUR_HELP_ANCHOR_HERE" inBook:@"YOUR_HELP_BOOK_TITLE_HERE"];
+    [[NSHelpManager sharedHelpManager] openHelpAnchor:@"YOUR_HELP_ANCHOR_HERE" inBook:@"YOUR_HELP_BOOK_TITLE_HERE"];
 }
 
 
--- General/AndyMatuschak
+-- AndyMatuschak
 
 ----
 
 Would anyone mind posting an example of what a help anchor looks like in a help book? Is it just a standard HTML anchor or does it have special requirements?
 
-*Yeah, it's just a standard HTML anchor (though you have to run it through the help indexer for it to be able to find them). Feel free to consult Pixen's docs (http://opensword.org/downloads/pixenwithhelp.zip -- kinda in beta) for reference. -- General/AndyMatuschak*
+*Yeah, it's just a standard HTML anchor (though you have to run it through the help indexer for it to be able to find them). Feel free to consult Pixen's docs (http://opensword.org/downloads/pixenwithhelp.zip -- kinda in beta) for reference. -- AndyMatuschak*

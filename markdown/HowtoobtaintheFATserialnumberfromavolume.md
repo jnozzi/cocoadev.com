@@ -2,7 +2,7 @@ I would like to retrieve the FAT serial number from a volume mounted on Mac OS X
 
 dd if=/dev/disk4s1 skip=67 bs=1 count=4 | hexdump -v -e '1/1 "%02X" " "'
 
-I have not found how to do this with the General/CoreFoundation classes.  I also need to find this information out as a regular user not a privileged user or root.
+I have not found how to do this with the CoreFoundation classes.  I also need to find this information out as a regular user not a privileged user or root.
 
 If anybody can point me in the right direction I would appreciate it.
 

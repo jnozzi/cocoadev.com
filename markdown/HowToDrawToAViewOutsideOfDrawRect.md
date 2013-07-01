@@ -1,8 +1,8 @@
 
 
-While in an General/NSView subclass, how do you draw to a view created on-the-fly, and outside of the drawRect: method of the original subclass? Is this even possible? I'm trying to avoid subclassing at all costs. 
+While in an NSView subclass, how do you draw to a view created on-the-fly, and outside of the drawRect: method of the original subclass? Is this even possible? I'm trying to avoid subclassing at all costs. 
 
-The code below is called whenever I need to generate a background (whenever a pref is changed). The drawing is then stored as an image for the drawRect: method to draw with dissolveToPoint:fraction: .  http://goo.gl/General/OeSCu
+The code below is called whenever I need to generate a background (whenever a pref is changed). The drawing is then stored as an image for the drawRect: method to draw with dissolveToPoint:fraction: .  http://goo.gl/OeSCu
     
 - (void)createBgImage
 {
@@ -13,7 +13,7 @@ The code below is called whenever I need to generate a background (whenever a pr
 
     // I'm storing all of the previous drawing inside an image
     imageData = [self dataWithPDFInsideRect: [self bounds]];
-    mainBgImage = General/[[NSImage alloc] initWithData: imageData];
+    mainBgImage = [[NSImage alloc] initWithData: imageData];
     
     [imageData release]; 
 }
@@ -32,7 +32,7 @@ What reason do you have to avoid subclassing at all costs?
 ----
 
 No reason really, its just that I think it'd be much more neat.
-- General/JohnDevor
+- JohnDevor
 
 ----
 
@@ -48,7 +48,7 @@ My first custom view did all its drawing outside of drawRect:, because I didn't 
 
 ----
 
-To understand if drawing outside of drawRect: is right or wrong, it helps to understand what drawRect: does for you. I know what you're thinking: "That's easy! General/AppKit calls my view's "drawRect:" method when it's time for the view to draw." Uh huh. When is it time for your view to draw? 
+To understand if drawing outside of drawRect: is right or wrong, it helps to understand what drawRect: does for you. I know what you're thinking: "That's easy! AppKit calls my view's "drawRect:" method when it's time for the view to draw." Uh huh. When is it time for your view to draw? 
 
 
 * Maybe your window just appeared on screen the first time; or,
@@ -64,13 +64,13 @@ And not so fast! Your answer was only half-right. The other thing drawRect: does
 
 So here is where you say "Well if it does so much for me, how am I supposed to get my stuff to draw?" And I reply "SRTD: Simply Read The Documentation." But don't get mad -- the best way to get good at how these Cocoa objects actually work is to pour over the docs and let it all sink in. In the meantime let's see how drawRect: actually works.
 
-The idea here is that General/NSView is responsible for drawing itself. Thus, the drawRect: method, see above. But General/NSView is not responsible for knowing when to draw, since that decision is often delegated to model-level or controller-level code (what does this mean? Review General/ModelViewController.). General/NSView provides several ways to trigger a redraw (How many? SRTD!) but one of the most common  is:
+The idea here is that NSView is responsible for drawing itself. Thus, the drawRect: method, see above. But NSView is not responsible for knowing when to draw, since that decision is often delegated to model-level or controller-level code (what does this mean? Review ModelViewController.). NSView provides several ways to trigger a redraw (How many? SRTD!) but one of the most common  is:
 
     
 - (void)setNeedsDisplay:(BOOL)flag;
 
 
-This method marks a view as needing display (nor not) and schedules a redraw to happen at the end of this pass through the event loop (or not). General/AppKit will make sure the right number of subviews (and superviews) get redrawn as well to make sure your view's area looks exactly right. (How exactly? SRTD!). Since the re-draw happens at the end of this pass through the event loop, multiple redraw requests are coalesced into one. Consider the following pseudo code:
+This method marks a view as needing display (nor not) and schedules a redraw to happen at the end of this pass through the event loop (or not). AppKit will make sure the right number of subviews (and superviews) get redrawn as well to make sure your view's area looks exactly right. (How exactly? SRTD!). Since the re-draw happens at the end of this pass through the event loop, multiple redraw requests are coalesced into one. Consider the following pseudo code:
 
     
 <set the file name>
@@ -84,7 +84,7 @@ This method marks a view as needing display (nor not) and schedules a redraw to 
 Each one of these set/redraw tuples might be implemented in an accessor like so:
 
     
-- (voidsetFileName:(General/NSString*)fileName
+- (voidsetFileName:(NSString*)fileName
 {
     if (fileName != mFileName) {
         [mFileName autorelease];
@@ -97,11 +97,11 @@ Each one of these set/redraw tuples might be implemented in an accessor like so:
 
 At the end of all three accessor calls, the view is still scheduled to be redrawn at the end of this pass through the event loop. This means this view, its subviews, and its superviews will only be drawn once, instead of three times.
 
-So, it's clear drawRect: gives us a lot for free, and it's really not very difficult to use. Considering all that, there's generally no reason to do drawing outside of drawRect:. It's definitely not cleaner (the General/AppKit has to redraw the object anyway, why duplicate code?). It's definitely not easier (the General/AppKit knows all the special edge cases of when to redraw and how many objects to draw, why duplicate code I don't even understand?). It may be neat-as-in-fun, but it's definitely not neat-as-in-tidy. It doesn't make your code more manageable -- it makes the code even harder to maintain! And the benefits of avoiding subclassing at all costs (which are ... er ... not subclassing, I guess) don't really outweigh the fact that you must subclass in order to get General/AppKit drawing to work exactly right.
+So, it's clear drawRect: gives us a lot for free, and it's really not very difficult to use. Considering all that, there's generally no reason to do drawing outside of drawRect:. It's definitely not cleaner (the AppKit has to redraw the object anyway, why duplicate code?). It's definitely not easier (the AppKit knows all the special edge cases of when to redraw and how many objects to draw, why duplicate code I don't even understand?). It may be neat-as-in-fun, but it's definitely not neat-as-in-tidy. It doesn't make your code more manageable -- it makes the code even harder to maintain! And the benefits of avoiding subclassing at all costs (which are ... er ... not subclassing, I guess) don't really outweigh the fact that you must subclass in order to get AppKit drawing to work exactly right.
 
-So, I'd say drawing outside of drawRect: is wrong, and should be avoided. Now that I have a better understanding of how General/NSView works, I only use drawRect: -- even when tracking in custom controls! SRTD!
+So, I'd say drawing outside of drawRect: is wrong, and should be avoided. Now that I have a better understanding of how NSView works, I only use drawRect: -- even when tracking in custom controls! SRTD!
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
@@ -111,7 +111,7 @@ That's precisely the point I was trying to make, only much better said!
 
 There actually are times when you want to draw outside of drawRect:. Do a Google search for "drawing outside of drawRect" and the top search result will be this Apple document:
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/CocoaViewsGuide/General/AdvancedSubclassing/chapter_6_section_3.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/CocoaViewsGuide/AdvancedSubclassing/chapter_6_section_3.html
 
 Which gives a valid example of a time you might want to draw outside of drawRect:. This can come up many times when you are in a modal mouse tracking loop in a mouseDown: method and you need to draw during the loop. You either lock focus and draw there (or call a method to draw), or you force immediate display with the display method. Forcing immediate display would allow you to keep your hands clean and do no actually drawing outside of drawRect: (the system will do all the setup for you), but if you do that you are redrawing the entire view (and all its subviews) and that is not very efficient if all you need to do is repaint a tiny corner of the view. So in those cases you basically have to draw outside of drawRect:, or your drawing will be horrendously inefficicent.
 

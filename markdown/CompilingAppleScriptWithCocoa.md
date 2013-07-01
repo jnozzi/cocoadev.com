@@ -1,10 +1,10 @@
-Has anyone been able to run General/AppleScript from within a standard Cocoa app in General/XCode?  The tutorial at Cocoa Dev Central seems no longer to apply.  I found the page on General/NSAppleScript and was able to get that working, but using this technique you have to write the source in quotes directly.  I want to be able to execute a compiled applescript.  Thanks all.
+Has anyone been able to run AppleScript from within a standard Cocoa app in XCode?  The tutorial at Cocoa Dev Central seems no longer to apply.  I found the page on NSAppleScript and was able to get that working, but using this technique you have to write the source in quotes directly.  I want to be able to execute a compiled applescript.  Thanks all.
 
 ----
 
 So, answering my own question:  Here are all the things I did (I think) to get it to work:
 
-1) Make sure you "Add File..."  (I had just created my applescript with "New File" and dragged the resulting file in General/XCode to the General/AppleScript Build Phase.)  When you add file, I think you have to check the box that tells you to copy the file.  
+1) Make sure you "Add File..."  (I had just created my applescript with "New File" and dragged the resulting file in XCode to the AppleScript Build Phase.)  When you add file, I think you have to check the box that tells you to copy the file.  
 
 2) Make sure you create a new Build Phase (apple script).  Then drag your applescript into that build phase.
 
@@ -13,9 +13,9 @@ So, answering my own question:  Here are all the things I did (I think) to get i
 4) You want code something like this somewhere in your project:
 
     
-NSURL *url=[NSURL fileURLWithPath: General/[[[NSBundle mainBundle] resourcePath] 
+NSURL *url=[NSURL fileURLWithPath: [[[NSBundle mainBundle] resourcePath] 
         stringByAppendingPathComponent:@"yourscript.applescript"] ];
-General/NSAppleScript* script=General/[[NSAppleScript alloc] initWithContentsOfURL:url error:nil];
+NSAppleScript* script=[[NSAppleScript alloc] initWithContentsOfURL:url error:nil];
 [script executeAndReturnError:nil];
 
 
@@ -29,7 +29,7 @@ What worries me a bit, though, is that I suppose the Applescript needs to be com
 
 I would find it cleaner to be able to include compiled Applescripts, optionally making them run only.
 
-� General/OlivierScherler
+� OlivierScherler
 
 *
 
@@ -41,12 +41,12 @@ There is nothing to stop you from putting a precompiled applescript into your pr
 
 I doubt the original poster's method.  Quoting from the Xcode 1.1 release notes,
 
-"Currently Java and General/AppleScript files are not supported in native targets, and therefore targets containing these languages should not be upgraded to native. The target upgrading sheet has been updated to point this out."
+"Currently Java and AppleScript files are not supported in native targets, and therefore targets containing these languages should not be upgraded to native. The target upgrading sheet has been updated to point this out."
 
 That is, applescript build phase doesn't work right now in a native project.
 
 ---- 
 
-I don't really know what the previous quote from General/XCode means, but it definitely works.  It seems though that i didn't need to do the applescript build phase part.
+I don't really know what the previous quote from XCode means, but it definitely works.  It seems though that i didn't need to do the applescript build phase part.
 
 *The point of the applescript build phase is to compile your applescript.  The way you're doing it it's being compiled at runtime.*

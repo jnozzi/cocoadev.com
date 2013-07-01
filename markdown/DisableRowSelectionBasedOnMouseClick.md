@@ -2,14 +2,14 @@ I wish to have one column of my outline view dedicated to switch buttons, and wh
 
 I tried this hacky solution, but my outlineView:shouldSelectItem: selector is called twice for each mouse down, causing the item to be toggled twice. Any help?
     
-- (BOOL)outlineView:(General/NSOutlineView *)outlineView shouldSelectItem:(id)item
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id)item
 {
-   General/NSEvent *theEvent = General/[NSApp currentEvent];
-   if([theEvent type] == General/NSLeftMouseDown)
+   NSEvent *theEvent = [NSApp currentEvent];
+   if([theEvent type] == NSLeftMouseDown)
    {
-      General/NSPoint p = [outlineView convertPoint:[theEvent locationInWindow] fromView:nil];
-      General/NSRect r = [outlineView rectOfColumn:0];
-      if(General/NSPointInRect(p, r))
+      NSPoint p = [outlineView convertPoint:[theEvent locationInWindow] fromView:nil];
+      NSRect r = [outlineView rectOfColumn:0];
+      if(NSPointInRect(p, r))
       {
          [item setEnabled:([item enabled] ? NO : YES)];
          [outlineView reloadItem:item];

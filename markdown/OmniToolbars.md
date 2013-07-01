@@ -1,4 +1,4 @@
-When using General/OmniWeb, and other General/OmniApps, I noticed a few differences between General/OmniToolbars, and General/AppKit General/NSToolbar.
+When using OmniWeb, and other OmniApps, I noticed a few differences between OmniToolbars, and AppKit NSToolbar.
 
 Please Explain this.
 

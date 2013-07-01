@@ -4,7 +4,7 @@ I'm a French developer
 
 Apple Distinguished Educator since 2003
 
-I'm developing when I've nothing else to do with Cocoa/Obj-C and sometimes with General/RealBasic and Java.
+I'm developing when I've nothing else to do with Cocoa/Obj-C and sometimes with RealBasic and Java.
 
 I live in Lille (200km away from Paris)
 

@@ -1,5 +1,5 @@
 Hi all,
-      This is Syphor here again :) Can anyone explain to me how the IRC PONG system works?? I know when ther server General/PINGs the client, the client is suppose to reply with a PONG. I have made a small basic cocoa app that connects to the specified irc server using small sockets and displays it in a General/NSTextView, but I can't figure out how to PONG the server... because after 30seconds it disconnects me from a ping timeout.
+      This is Syphor here again :) Can anyone explain to me how the IRC PONG system works?? I know when ther server PINGs the client, the client is suppose to reply with a PONG. I have made a small basic cocoa app that connects to the specified irc server using small sockets and displays it in a NSTextView, but I can't figure out how to PONG the server... because after 30seconds it disconnects me from a ping timeout.
 
 I tried something like this
 

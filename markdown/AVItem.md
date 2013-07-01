@@ -1,4 +1,4 @@
-**General/AVItem**
+**AVItem**
 
     - (id)initWithPath:(NSString*)path error:(NSError**)outError;
 
@@ -9,4 +9,4 @@ WAV, Mp3 files work. What else?
     - (void)setVolume:(float)volume
 
 
-General/Category:PointlessInformation‏‎
+Category:PointlessInformation‏‎

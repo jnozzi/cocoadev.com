@@ -1,12 +1,12 @@
-More than once I've needed to read data stored in General/NSData objects, and the default output of     -General/[NSData describe] is not really very human-readable. Thus, I created a small category to make traditional hex dumps from General/NSData objects, and an override for     describe to make it the default output format. The code should be self-explanatory, and can just be dropped into any project. Enjoy! - General/WAHa
+More than once I've needed to read data stored in NSData objects, and the default output of     -[NSData describe] is not really very human-readable. Thus, I created a small category to make traditional hex dumps from NSData objects, and an override for     describe to make it the default output format. The code should be self-explanatory, and can just be dropped into any project. Enjoy! - WAHa
 
 
     
-@implementation General/NSData (General/HexDump)
+@implementation NSData (HexDump)
 
--(General/NSString *)hexDumpWithColumns:(int)cols
+-(NSString *)hexDumpWithColumns:(int)cols
 {
-	General/NSMutableString *str=General/[NSMutableString string];
+	NSMutableString *str=[NSMutableString string];
 	unsigned int len=[self length];
 	const unsigned char *bytes=[self bytes];
 	int lines=(len+cols-1)/cols;
@@ -42,7 +42,7 @@ More than once I've needed to read data stored in General/NSData objects, and th
 	return str;
 }
 
--(General/NSString *)description { return General/[NSString stringWithFormat:@"<\n%@\n>",[self hexDumpWithColumns:16]]; }
+-(NSString *)description { return [NSString stringWithFormat:@"<\n%@\n>",[self hexDumpWithColumns:16]]; }
 
 @end
 
@@ -50,10 +50,10 @@ More than once I've needed to read data stored in General/NSData objects, and th
 The output looks pretty much like this:
 
     
-00000090   416e7441 656e756d 00000000 416e6e74   General/AntAenum....Annt
-000000a0   00000000 416e536d 00000009 54657874   ....General/AnSm....Text
+00000090   416e7441 656e756d 00000000 416e6e74   AntAenum....Annt
+000000a0   00000000 416e536d 00000009 54657874   ....AnSm....Text
 000000b0   496e6465 786c6f6e 67000000 04000000   Indexlong.......
-000000c0   0a456e67 696e6544 61746174 64746100   .General/EngineDatatdta.
+000000c0   0a456e67 696e6544 61746174 64746100   .EngineDatatdta.
 000000d0   0048650a 0a3c3c0a 092f456e 67696e65   .He..<<../Engine
 000000e0   44696374 0a093c3c 0a09092f 45646974   Dict..<<.../Edit
 
@@ -64,4 +64,4 @@ see also: http://www.red-sweater.com/blog/279/hexy-little-thing
 
 ----
 
-Hah, funny how that code ends up being structured nearly the same. I guess there is just the one obvious solution to this one -- General/WAHa
+Hah, funny how that code ends up being structured nearly the same. I guess there is just the one obvious solution to this one -- WAHa

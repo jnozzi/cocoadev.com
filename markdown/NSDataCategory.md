@@ -1,8 +1,8 @@
 
 
-A few useful and semi-useful methods. -- General/DustinVoss
+A few useful and semi-useful methods. -- DustinVoss
 
-Added CRC32 method, found it on Google -- General/BobInDaShadows
+Added CRC32 method, found it on Google -- BobInDaShadows
 
 Added deflate method for zlib; works but not thoroughly tested; probably best suited for small blocks of data. Would appreciate feedback/code review/improvement/etc. -Seb
 
@@ -12,33 +12,33 @@ Added full support for gzip inflate/deflate.  Mostly a copy of the zlib methods,
 
 ----
 
-Does it need special linking options? -- General/StephaneBoisson
+Does it need special linking options? -- StephaneBoisson
 
 *Yes, you have to add zlib.dylib in /usr/lib to the project.*
 
 Or, specify -lz in the 'Other Linker Flags' section of the project  -Seb
 
-I had to add libcrypto.dylib as well -- General/SamSoffes
+I had to add libcrypto.dylib as well -- SamSoffes
 
 ----
 
-I tried sticking the .h and .m files into a fresh General/CoreData application project and I get three warnings:
+I tried sticking the .h and .m files into a fresh CoreData application project and I get three warnings:
 "pointer targets in passing argument 1 of 'stringWithCString:length differ in signedness"
 I cast the unsigned char[] pointer to a char * and the warnings went away - but I'm not sure if that will create problems in the future.
 
 Also, I'm on 10.4.2 and haven't yet included any other libraries in my project (like zlib.dylib mentioned above). Will I still need to do that? Do they need to get statically linked?
 
-Thanks - General/BlakeSeely
+Thanks - BlakeSeely
 
 ---- I've eliminated the warning. It shouldn't cause any problems; there is no code afterwards, which means no possibility of sign confusion. As for linking zlib, try it and see, but I bet you do have to, and I bet it is not statically linked.
 
 ----
 
-http://aquaticmac.com/cocoa.php - An General/NSData category for AES encryption and decryption, released under the BSD license.
+http://aquaticmac.com/cocoa.php - An NSData category for AES encryption and decryption, released under the BSD license.
 
 ----
 
-**General/NSData+General/CocoaDevUsersAdditions.h**
+**NSData+CocoaDevUsersAdditions.h**
     
  #import <Foundation/Foundation.h>
  
@@ -80,7 +80,7 @@ http://aquaticmac.com/cocoa.php - An General/NSData category for AES encryption 
 
 ---
 
-*General/NSData+General/CocoaDevUsersAdditions.m**
+*NSData+CocoaDevUsersAdditions.m**
     
  #import "NSData+CocoaDevUsersAdditions.h"
  #include <zlib.h>
@@ -521,7 +521,7 @@ http://aquaticmac.com/cocoa.php - An General/NSData category for AES encryption 
  	return crcval ^ 0xffffffff;
  }
  
- // Hash function, by General/DamienBob
+ // Hash function, by DamienBob
  
  #define HEComputeDigest(method)						\ 
  	method##_CTX ctx;								\ 
@@ -585,7 +585,7 @@ http://aquaticmac.com/cocoa.php - An General/NSData category for AES encryption 
 Tried to use this code by dragging into xcode project libz.dyllb but it does not work or...well... it returns null data. Why?
 
 ----
-Turn off General/ZeroLink, then fix the errors which result.
+Turn off ZeroLink, then fix the errors which result.
 
 ----
 Done but nothing is changed, still remain null. Can you take a look to the project please? 
@@ -622,11 +622,11 @@ stringWithCString:length: is deprecated; should it be [NSString stringWithCStrin
 
 ----
 
-Yes, it should be replaced with stringWithCString:encoding:, but don't forget to null-terminate chars in this case: char chars[charsLen] => char chars[charsLen+1]; then add chars[charsLen] = '\0'; before stringWithCString:encoding: -- General/DmitryChestnykh
+Yes, it should be replaced with stringWithCString:encoding:, but don't forget to null-terminate chars in this case: char chars[charsLen] => char chars[charsLen+1]; then add chars[charsLen] = '\0'; before stringWithCString:encoding: -- DmitryChestnykh
 
 ----
 
-Couldn't we also use General/[NSString alloc] initWithBytes:chars length:sizeof(chars) encoding:NSASCIIStringEncoding] autorelease] ?
+Couldn't we also use [NSString alloc] initWithBytes:chars length:sizeof(chars) encoding:NSASCIIStringEncoding] autorelease] ?
 
 This would avoid the need to do a copy.
 
@@ -635,4 +635,4 @@ This would avoid the need to do a copy.
 
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

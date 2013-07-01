@@ -1,4 +1,4 @@
-While trying to code a General/ClassCluster, I came across a problem when calling [super alloc] and [super allocWithZone:]
+While trying to code a ClassCluster, I came across a problem when calling [super alloc] and [super allocWithZone:]
 
 Here's a small test case:
 
@@ -7,11 +7,11 @@ Here's a small test case:
  #import <Foundation/Foundation.h> 
   
   
- @interface General/NSString (XXX) 
+ @interface NSString (XXX) 
  @end 
   
   
- @implementation General/NSString (XXX) 
+ @implementation NSString (XXX) 
   
  + (id) alloc
  { 
@@ -23,7 +23,7 @@ Here's a small test case:
 % gcc -c x.m
 x.m:12: illegal expression, found `unknown'
 cpp-precomp: warning: errors during smart preprocessing, retrying in basic mode
-x.m: In function `+General/[NSString(XXX) alloc]':
+x.m: In function `+[NSString(XXX) alloc]':
 x.m:12: dereferencing pointer to incomplete type
 
 % gcc --version
@@ -34,7 +34,7 @@ Copyright (C) 2002 Free Software Foundation, Inc.
 
 Any ideas as to what's going on there?
 
--- General/JensBaumeister
+-- JensBaumeister
 
 ----
 
@@ -46,7 +46,7 @@ You have got some funky character before the "return" statement. Try erasing eve
 
 + (id) alloc 
 { 
-    return General/[NSString alloc]; 
+    return [NSString alloc]; 
 } 
 
 
@@ -59,6 +59,6 @@ I just looked at the raw data that exists in your source and for some reason you
 
 That gremlin character got in there somewhere during posting, but it's not in the original code. I tried re-typing the whole thing and still got the error.
 
-As for why I'm calling [super alloc], look at the code snippets for General/ClassClusters - that should clear that up. :-)
+As for why I'm calling [super alloc], look at the code snippets for ClassClusters - that should clear that up. :-)
 
--- General/JensBaumeister
+-- JensBaumeister

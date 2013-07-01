@@ -7,8 +7,8 @@ cursor stays changed instead of reverting to the arrow. Here's the
 code that is called whenever the scrollview is resized:
     
 - (void)centerCanvas {
-   General/NSRect newBounds = General/self contentView] bounds];
-   [[NSRect newFrame = General/self contentView] frame];
+   NSRect newBounds = self contentView] bounds];
+   [[NSRect newFrame = self contentView] frame];
    if([self frame].size.width > newFrame.size.width || [self
 frame].size.height > newFrame.size.height) {
        if((newBounds.size.width - [[self documentView] frame].size.width)/2 > 0)
@@ -37,4 +37,4 @@ how I can fix this?
 
 Try adding     [scrollView reflectScrolledClipView:clipView] at the end of your manipulations.
 
-That didn't make any difference :/ Any ideas? -- General/MattBall
+That didn't make any difference :/ Any ideas? -- MattBall

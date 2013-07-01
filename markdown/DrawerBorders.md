@@ -6,4 +6,4 @@ There *is* no way to do this. The portion of code that draws the borders for the
 
 ----
 
-It involves General/NSThemeFrame and friends; there's an General/NSDrawerFrame or some such subclass. General/AndyMatuschak has investigated much of this with his HUD views.
+It involves NSThemeFrame and friends; there's an NSDrawerFrame or some such subclass. AndyMatuschak has investigated much of this with his HUD views.

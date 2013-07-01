@@ -3,5 +3,5 @@ The first 'personal computer'. Apple's main product line before the introduction
 History of the Apple II:
 [http://apple2history.org/]
 
-Apple II emulation on General/MacOS:
+Apple II emulation on MacOS:
 [http://www.emulation.net/apple2/]

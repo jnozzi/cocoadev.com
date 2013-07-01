@@ -4,16 +4,16 @@
 
 ----
 
-Before you post on this wiki, you should really read General/HowToAskQuestions and General/MailingListMode.  You might have better luck getting a response if you ask on irc.freenode.net#macdev, or on the cocoa-dev mailing list.
+Before you post on this wiki, you should really read HowToAskQuestions and MailingListMode.  You might have better luck getting a response if you ask on irc.freenode.net#macdev, or on the cocoa-dev mailing list.
 
 That said, sheets and drawers are entirely different UI components.  Look at     -canBecomeKey and     -canBecomeMain.
 ----
 Go read this:
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/WinPanel/Concepts/General/ChangingMainKeyWindow.html#//apple_ref/doc/uid/20000236-128794
+http://developer.apple.com/documentation/Cocoa/Conceptual/WinPanel/Concepts/ChangingMainKeyWindow.html#//apple_ref/doc/uid/20000236-128794
 and this:
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/WinPanel/Concepts/General/UsingPanels.html#//apple_ref/doc/uid/20000224
+http://developer.apple.com/documentation/Cocoa/Conceptual/WinPanel/Concepts/UsingPanels.html#//apple_ref/doc/uid/20000224
 
-Essentially, use a General/NSPanel configured as a utility window for your subwindow. Your parent window can then keep its main window status while the panel becomes the key window. Both windows will be active and will be drawn with controls enabled. -CS
+Essentially, use a NSPanel configured as a utility window for your subwindow. Your parent window can then keep its main window status while the panel becomes the key window. Both windows will be active and will be drawn with controls enabled. -CS
 
 ----
 

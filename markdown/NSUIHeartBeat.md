@@ -1,4 +1,4 @@
-Has anyone got any idea exactly what General/NSUIHeartBeat is? I see it all the time in crash reports, but I cant find anything on it anywhere.
+Has anyone got any idea exactly what NSUIHeartBeat is? I see it all the time in crash reports, but I cant find anything on it anywhere.
 
 I bet it's there for pulsating the buttons and progress indicators.
 
@@ -28,7 +28,7 @@ I haven't used gnustep in awhile, but I'm pretty sure it doesn't pulse its butto
 
 ----
 
-Doesn't gnustep have a very General/NeXT/OPENSTEP interface? The pulsing is Aqua only.
+Doesn't gnustep have a very NeXT/OPENSTEP interface? The pulsing is Aqua only.
 
 ----
 
@@ -54,45 +54,45 @@ In the case of pulsating buttons at least, it also seems to call the superview's
 
 ----
 
-I would guess that General/NSUIHeartBeat doesn't drive UI animation (e.g. pulsating buttons, progress bar animation) but is instead used to implement the spinning beach ball and "application not responding" functionality.
+I would guess that NSUIHeartBeat doesn't drive UI animation (e.g. pulsating buttons, progress bar animation) but is instead used to implement the spinning beach ball and "application not responding" functionality.
 
-I was checking out the system trace functionality of Shark (after reading the recent ADC article at http://developer.apple.com/tools/performance/optimizingwithsystemtrace.html). It looks as though General/NSUIHeartBeat is a separate thread spawned in addition to the main thread (which would handle the UI run loop) and fires at regular intervals.
+I was checking out the system trace functionality of Shark (after reading the recent ADC article at http://developer.apple.com/tools/performance/optimizingwithsystemtrace.html). It looks as though NSUIHeartBeat is a separate thread spawned in addition to the main thread (which would handle the UI run loop) and fires at regular intervals.
 
-General/NSUIHeartBeat probably polls the main thread at each of these intervals and if it doesn't get a response (e.g. after 5 seconds of no response) will then change the cursor to a beach ball, etc.
+NSUIHeartBeat probably polls the main thread at each of these intervals and if it doesn't get a response (e.g. after 5 seconds of no response) will then change the cursor to a beach ball, etc.
 
 Plus the name is a bit of a giveaway...
 
-*That's a nice theory, but the fact is that General/NSUIHeartBeat is pretty conclusively linked to pulsating buttons, and it's fairly clearly not exhibiting the behavior you described, as can be seen from the fact that a program which is stopped in the debugger (hence no threads running at all) will still display the spinning pizza.*
+*That's a nice theory, but the fact is that NSUIHeartBeat is pretty conclusively linked to pulsating buttons, and it's fairly clearly not exhibiting the behavior you described, as can be seen from the fact that a program which is stopped in the debugger (hence no threads running at all) will still display the spinning pizza.*
 
 *Also, the 'spinning pizza', as it seems to be called now :) is displayed automatically by the window server when an application doesn't respond for more than two seconds.*
 
-Surely it's ok to say this now as Tiger is long since released (if not then someone delete it). But General/NSUIHeartBeat ties into pulsing buttons even more considering that very early Tiger DP's had buttons that acted kinda like a real heartbeat. They would pulse twice real quick then sit for maybe a half a second or so then pulse twice again.
+Surely it's ok to say this now as Tiger is long since released (if not then someone delete it). But NSUIHeartBeat ties into pulsing buttons even more considering that very early Tiger DP's had buttons that acted kinda like a real heartbeat. They would pulse twice real quick then sit for maybe a half a second or so then pulse twice again.
 
 ----
 
-It likely was just some Apple employee having fun with the brand new General/NSAnimation class... nothing else ;)
+It likely was just some Apple employee having fun with the brand new NSAnimation class... nothing else ;)
 
 ----
 
-Here is some info about my re-search on General/NSUIHeartBeat with General/ClassDump:
+Here is some info about my re-search on NSUIHeartBeat with ClassDump:
 
     
-@interface General/NSUIHeartBeat : General/NSObject {
-    //returns singleton object for General/NSUIHeartBeat. It will probably initialize the drawing thread if it's not exists yet.
+@interface NSUIHeartBeat : NSObject {
+    //returns singleton object for NSUIHeartBeat. It will probably initialize the drawing thread if it's not exists yet.
     + (id)sharedHeartBeat; 
 
    //some stuff for modifying polling intervals.
    + (double)heartBeatCycle; //On my Mac (iBook G4, 10.4.6) it always returns 0.0, but polling occurs with 0.03s interval
    + (void)setHeartBeatCycle:(double)newCycle;
 
-   ////Following methods should be sent to a shared instance of General/NSUIHeartBeat
-   //Use these two methods to start and stop polling your view from the General/NSUIHeartBeat thread.
-   - (void)addHeartBeatView:(General/NSView *)myView;
-   - (void)removeHeartBeatView:(General/NSView *)myView;
+   ////Following methods should be sent to a shared instance of NSUIHeartBeat
+   //Use these two methods to start and stop polling your view from the NSUIHeartBeat thread.
+   - (void)addHeartBeatView:(NSView *)myView;
+   - (void)removeHeartBeatView:(NSView *)myView;
 
    //I guess that all drawing shouldn't be done with local lockFocus/unlockFocus. Instead, you must use these:
-   - (BOOL)lockFocusForView:(General/NSView *)myView inRect:(General/NSRect)drawRect needsTranslation:(BOOL)flag; //flag is an indicator for a flipped views?
-   - (void)unlockFocusInRect:(General/NSRect)drawRect;
+   - (BOOL)lockFocusForView:(NSView *)myView inRect:(NSRect)drawRect needsTranslation:(BOOL)flag; //flag is an indicator for a flipped views?
+   - (void)unlockFocusInRect:(NSRect)drawRect;
 }
 
 
@@ -101,27 +101,27 @@ Next, you need to implement some methods in your view. Actually, only one:
 <code>- (void)heartBeat:(void *)topSecret;</code>
 
 The parameter is pointer to a private structure which, I guess, is not useful for most cases.
-There is also a -(BOOL)_wantsHeartBeat method that General/NSUIHeartBeat calls it's client views, but return values doesn't matter in my tests.
+There is also a -(BOOL)_wantsHeartBeat method that NSUIHeartBeat calls it's client views, but return values doesn't matter in my tests.
 
-What is the main purpose of General/NSUIHeartBeat use? I guess it may help creating custom progress indicators, that draws their status even if main thread blocks. Why create the separate thread for such task, if there is already one running?
+What is the main purpose of NSUIHeartBeat use? I guess it may help creating custom progress indicators, that draws their status even if main thread blocks. Why create the separate thread for such task, if there is already one running?
 
--- General/DenisGryzlov 
-
-----
-
-A separate thread is needed for usability purposes. Suppose the main thread is stuck or so busy that it cannot process timed events on time. In that case any pulsating button or progress indicator would either become stuck too or exhibit a jerky animation. Moreover, being in another thread, the heartbeat's timer does not interfere with the timers you install on the main thread, which makes animation smoother in a multiprocessor setup. Just an educated guess. -- General/KonstantinAnoshkin
+-- DenisGryzlov 
 
 ----
 
-Er, if it isn't obvious, there is *no* good reason to use the heartbeat thread.  It's General/AppKit private.  Why would you violate encapsulation without a reason?� If you need a thread, spawn a thread.� This leaves Apple free to change their implementation, benefiting everyone.
+A separate thread is needed for usability purposes. Suppose the main thread is stuck or so busy that it cannot process timed events on time. In that case any pulsating button or progress indicator would either become stuck too or exhibit a jerky animation. Moreover, being in another thread, the heartbeat's timer does not interfere with the timers you install on the main thread, which makes animation smoother in a multiprocessor setup. Just an educated guess. -- KonstantinAnoshkin
 
 ----
 
-Hello everyone, I just performed a class-dump on iPhoto's Mach-O file, and found out that its burn-button uses General/NSUIHeartBeat too. 
+Er, if it isn't obvious, there is *no* good reason to use the heartbeat thread.  It's AppKit private.  Why would you violate encapsulation without a reason?� If you need a thread, spawn a thread.� This leaves Apple free to change their implementation, benefiting everyone.
+
+----
+
+Hello everyone, I just performed a class-dump on iPhoto's Mach-O file, and found out that its burn-button uses NSUIHeartBeat too. 
     
 - (void)heartBeat:(CDAnonymousStruct7 *)fp8;
 
-That's the method in General/BurnButtonCell.h and that struct is this, in General/CDStructures.h
+That's the method in BurnButtonCell.h and that struct is this, in CDStructures.h
     
 typedef struct {
     double _currentDate;
@@ -129,16 +129,16 @@ typedef struct {
     double _lastDate;
 } CDAnonymousStruct7;
 
-And I found a General/HeartBeat.h too! 
+And I found a HeartBeat.h too! 
     
-@interface General/HeartBeat : General/NSObject
+@interface HeartBeat : NSObject
 {
     CDAnonymousStruct7 _times;
-    General/NSMutableArray *_clients;
-    General/NSPort *_port;
-    General/NSTimer *_msgSendTimer;
-    General/NSThread *_heartbeatThread;
-    General/NSLock *_clientsLock;
+    NSMutableArray *_clients;
+    NSPort *_port;
+    NSTimer *_msgSendTimer;
+    NSThread *_heartbeatThread;
+    NSLock *_clientsLock;
     int _viewCount;
 }
 

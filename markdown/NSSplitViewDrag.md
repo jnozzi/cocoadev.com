@@ -9,7 +9,7 @@ It sounds like you just need to set autosizing in Interface Builder. Or am I mis
 
 ----
 
-Try General/RBSplitView if you haven't already.
+Try RBSplitView if you haven't already.
 
 ----
 
@@ -17,7 +17,7 @@ Try General/RBSplitView if you haven't already.
 
 Autosizing didnt work out the way i wanted.
 
-*Try General/RBSplitView* - I will try it:)
+*Try RBSplitView* - I will try it:)
 
 
 ----
@@ -28,4 +28,4 @@ splitView:resizeSubviewsWithOldSize:
 
 it gets called after the splitview is resized, and it allows you to manually resize your subVeiws at the appropriate time.
 
-this is all you should need to manually setup a subView, but splitview Is also very flexible through the delegate methods, I suggest looking up General/NSSplitView in the documentation, where all of the delegate methods and Notifications are described in detail.
+this is all you should need to manually setup a subView, but splitview Is also very flexible through the delegate methods, I suggest looking up NSSplitView in the documentation, where all of the delegate methods and Notifications are described in detail.

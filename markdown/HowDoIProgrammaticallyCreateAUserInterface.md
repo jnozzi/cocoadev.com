@@ -3,7 +3,7 @@
 **Answer:**
 Thanks to Stepwise for hosting this sample.
 
-http://graphics.stepwise.com/EMB/General/RadioSample.zip
+http://graphics.stepwise.com/EMB/RadioSample.zip
 
 I just wrote a little sample with commented source code in an 
 Xcode project.

@@ -1,8 +1,8 @@
-Editor's Note: This lengthy design-related discussion, moved from an ill-named initial page, eventually settled on using the General/GangOfFour General/FunctorPattern. It contains a lot of detail about the specifics of the problem, but is educational.
+Editor's Note: This lengthy design-related discussion, moved from an ill-named initial page, eventually settled on using the GangOfFour FunctorPattern. It contains a lot of detail about the specifics of the problem, but is educational.
 
 ----
 
-I want to design an object that does a variety of math and statistical operations on an array of numeric data. Data sets are General/NSArrays with all data arrays being the same length. Operations include:
+I want to design an object that does a variety of math and statistical operations on an array of numeric data. Data sets are NSArrays with all data arrays being the same length. Operations include:
 
 * trigonometric functions on values in a single array: sine, cosine, and tangent functions (take two arguments: the name of the data array and the type of trig function to perform), 
 
@@ -10,51 +10,51 @@ I want to design an object that does a variety of math and statistical operation
 
 * operations comparing multiple values at the same index in each array across arrays: maximum, minimum, mean (takes two or more data array arguments plus the type of comparison)
 
-I would like to be able to call these functions from any of the following: a command interface, a form window, or from General/AppleScript. But to me this shouldn�t make any difference. It is a view thing that doesn�t affect the model. However, practically it seems method 2 below is the best approach since it would allow set up the analysis objects via accessor methods for the most flexibility, even though it seems a much more complicated approach.
+I would like to be able to call these functions from any of the following: a command interface, a form window, or from AppleScript. But to me this shouldn�t make any difference. It is a view thing that doesn�t affect the model. However, practically it seems method 2 below is the best approach since it would allow set up the analysis objects via accessor methods for the most flexibility, even though it seems a much more complicated approach.
 
 So for designing the analysis object I don�t know whether to design it as an object like so in method 1:?
     
-@interface General/PRDataModel : General/NSObject {
-	General/NSDictionary* dataSets; //Data General/NSArrays are stored with their key being an General/NSString description, with all data arrays being the same length
+@interface PRDataModel : NSObject {
+	NSDictionary* dataSets; //Data NSArrays are stored with their key being an NSString description, with all data arrays being the same length
 }
 //Accessor methods
--(General/NSArray*)resultOfTrigFunction:(General/NSString*)function onDataSet:(General/NSString*)dataSetName;
--(General/NSArray*)resultOfMathFunction:(General/NSString*)function onDataSet:(General/NSString*)dataSetName secondValue:(General/NSNumber*)value;
--(General/NSArray*)resultOfMultipleFunction:(General/NSString*)function onDataSets:(General/NSArray*)dataSetNames;
+-(NSArray*)resultOfTrigFunction:(NSString*)function onDataSet:(NSString*)dataSetName;
+-(NSArray*)resultOfMathFunction:(NSString*)function onDataSet:(NSString*)dataSetName secondValue:(NSNumber*)value;
+-(NSArray*)resultOfMultipleFunction:(NSString*)function onDataSets:(NSArray*)dataSetNames;
 @end
 
 or method 2:
     
-@interface General/PRDataModel : General/NSObject {
-	General/NSDictionary* dataSets; //Data General/NSArrays are stored with their key being an General/NSString description, with all data arrays being the same length
-	id function; //Function as an object of type General/PRTrigFunction or General/PRMathFunction or General/PRMultipleFunction
+@interface PRDataModel : NSObject {
+	NSDictionary* dataSets; //Data NSArrays are stored with their key being an NSString description, with all data arrays being the same length
+	id function; //Function as an object of type PRTrigFunction or PRMathFunction or PRMultipleFunction
 }
 //Accessor methods
--(void)setFunction:(General/NSString*)functionType; 
--(General/NSArray*)performFunction;
+-(void)setFunction:(NSString*)functionType; 
+-(NSArray*)performFunction;
 @end
 
-@interface General/PRTrigFunction : General/NSObject {
-	General/NSArray* dataSet;
-	General/NSString* function;
+@interface PRTrigFunction : NSObject {
+	NSArray* dataSet;
+	NSString* function;
 }
 //Accessor methods
--(General/NSArray*)newArrayFromCalculation
+-(NSArray*)newArrayFromCalculation
 @end
 
-@interface General/PRMathFunction : General/PRTrigFunction {
-	General/NSNumber* powerValue;
-	General/NSArray* powerArray;
+@interface PRMathFunction : PRTrigFunction {
+	NSNumber* powerValue;
+	NSArray* powerArray;
 }
 //Accessor methods
--(General/NSArray*)newArrayFromCalculation
+-(NSArray*)newArrayFromCalculation
 @end
 
-@interface General/PRMultipleFunction : General/PRTrigFunction {
-	General/NSArray* otherArrays;
+@interface PRMultipleFunction : PRTrigFunction {
+	NSArray* otherArrays;
 }
 //Accessor methods
--(General/NSArray*)newArrayFromCalculation
+-(NSArray*)newArrayFromCalculation
 @end
 
 
@@ -72,7 +72,7 @@ A good starting point for getting your design started is to explain to us what f
 
 *My wife has trouble organizing her summer activities with the  children. Ordinary calendaring tools aren't specific enough, because she'd like to keep information about educational games, when she last played them with the kids, what equipment she might need, and similar information. Then she can more easily schedule activities, and get a shopping list for equipment.*
 
---General/TimHart
+--TimHart
 
 ----
 
@@ -85,18 +85,18 @@ Example syntax for command line is: NEWLAYER = Function FIRSTLAYER [and NEXTLAYE
 The user has an image that represents a map, the map is several layers each stored as an array of values (integer or double) that represents each location. The user wants to manipulate the image layers to get information from the map. Layers in the image might be something like:
 
 * Elevation = feet high
-* General/LandCover: Forest = 3, Grass = 2, Water = 1
+* LandCover: Forest = 3, Grass = 2, Water = 1
 * Roads: Interstate = 3, Highway = 2, Local Road = 1
 * Population = number of people in neighborhood
 
 
 Now the user wants to find out certain things about the map:
 
-* General/InterstateBridges: Interstate = where Roads == 3, Water = where General/LandCover == 1, General/InterstateBridges = Product Interstate and Water
-* Percent of population above 500 feet: General/HigherElevation = where Elevation >= 500, Population500 = Product Population and General/HigherElevation, General/SumPop = Sum Population, SumPopulation500 = Sum Population500, Percent500 = Ratio SumPop500 General/SumPop
+* InterstateBridges: Interstate = where Roads == 3, Water = where LandCover == 1, InterstateBridges = Product Interstate and Water
+* Percent of population above 500 feet: HigherElevation = where Elevation >= 500, Population500 = Product Population and HigherElevation, SumPop = Sum Population, SumPopulation500 = Sum Population500, Percent500 = Ratio SumPop500 SumPop
 
 
-In plain C this would just be a simple parser and a call to the correct function with variables. I have done this before. However, this doesn't seem to be the way in an object-oriented environment when I want to use a form window or use General/AppleScript. In the future I would even like to be able to develop the models in a graphical flow-chart way. But this is really different thinking than what I've done before.
+In plain C this would just be a simple parser and a call to the correct function with variables. I have done this before. However, this doesn't seem to be the way in an object-oriented environment when I want to use a form window or use AppleScript. In the future I would even like to be able to develop the models in a graphical flow-chart way. But this is really different thinking than what I've done before.
 
 After trying some test cases right now I am leaning towards method 3 because it seems to emulate best the Objective-C tutorials I've seen and practised. 
 
@@ -112,17 +112,17 @@ So if you needed the square root of all the members of an array:
 
     
 
-@implementation General/NSArray (General/PRArrayMath)
+@implementation NSArray (PRArrayMath)
 
--(General/NSArray*) sqrtOfMembers
+-(NSArray*) sqrtOfMembers
 {
-    General/NSMutableArray *result = [ General/NSMutableArray arrayWithCapacity:[ self count ] ];
+    NSMutableArray *result = [ NSMutableArray arrayWithCapacity:[ self count ] ];
 
-    General/NSEnumerator *iter = [ self objectEnumerator ];
-    General/NSNumber *number;
+    NSEnumerator *iter = [ self objectEnumerator ];
+    NSNumber *number;
     while( number = [ iter nextObject ] )
     {
-        [ result addObject:[ General/NSNumber numberWithFloat:sqrt( [ number floatValue ] ) ] ];
+        [ result addObject:[ NSNumber numberWithFloat:sqrt( [ number floatValue ] ) ] ];
     }
 
     return result;
@@ -131,15 +131,15 @@ So if you needed the square root of all the members of an array:
 
 /* and to use the code */
 
-General/NSArray *myDataSet;//assume this exists
-General/NSArray *mySqrts = [ myDataSet sqrtOfMembers ];
+NSArray *myDataSet;//assume this exists
+NSArray *mySqrts = [ myDataSet sqrtOfMembers ];
 
 
 
 
 Now wasn't that a lot shorter than my rant below? :P
 
---General/TimHart
+--TimHart
 ----
 
 Context helps a lot!
@@ -148,7 +148,7 @@ Basic user descriptions suggest that you need a Map class and a Layer class. An 
 
     
 
-@interface General/PRLayer : General/NSObject
+@interface PRLayer : NSObject
 {
     // define information common to all layers 
 }
@@ -158,7 +158,7 @@ Basic user descriptions suggest that you need a Map class and a Layer class. An 
 
 @end
 
-@interface General/PRElevationLayer : General/PRLayer
+@interface PRElevationLayer : PRLayer
 {
     // is there information unique to elevation 
     //that wouldn't exist for other layer types? 
@@ -171,18 +171,18 @@ Basic user descriptions suggest that you need a Map class and a Layer class. An 
 
 // similar definitions of other layer types
 
-@interface General/PRMap : General/NSObject
+@interface PRMap : NSObject
 {
-    General/NSDictionary *layers;//I'm suggesting a dictionary in case you want
-                                    //to do something later like General/PRLayer *layer = [ layers objectForKey:@"elevation" ];
+    NSDictionary *layers;//I'm suggesting a dictionary in case you want
+                                    //to do something later like PRLayer *layer = [ layers objectForKey:@"elevation" ];
                                     //but you may not need or want to do that.
 }
 
--( General/PRMap* ) submapMatchingQuery:( General/PRMapQuery* );
+-( PRMap* ) submapMatchingQuery:( PRMapQuery* );
 
 @end
 
-@interface General/PRMapQuery : General/NSObject
+@interface PRMapQuery : NSObject
 {
    //This class exists to describe what the
    //user is trying to find on the map
@@ -201,11 +201,11 @@ Of course this is a HUGE departure from your original question - regarding all s
 
     
 
-General/PRMap *tennessee;//assume this is initialized somewhere
+PRMap *tennessee;//assume this is initialized somewhere
 
-General/PRMapQuery *query = [ General/PRMapQuery mapQueryForPopulation:30 andElevation:800 ];
+PRMapQuery *query = [ PRMapQuery mapQueryForPopulation:30 andElevation:800 ];
 //there are much better ways to build querys - a queryBuilder class would work nicely
-General/PRMap *city = [ tennessee subMapMatchingQuery:query ];
+PRMap *city = [ tennessee subMapMatchingQuery:query ];
 
 
 
@@ -213,12 +213,12 @@ Yeah - this is a bit long-winded, and maybe it's off course already, but your in
 
     
 
--(General/PRMap*) submapMatchingQuery:(General/PRMapQuery*)
+-(PRMap*) submapMatchingQuery:(PRMapQuery*)
 {
-    General/NSEnumerator *iter = [ layers objectEnumerator ];
-    General/NSLayer *layer;
+    NSEnumerator *iter = [ layers objectEnumerator ];
+    NSLayer *layer;
 
-    General/PRMap *submap = [ General/PRMap map ];
+    PRMap *submap = [ PRMap map ];
     while(layer = [ iter nextObject ] )
     {
         if([ query isSatisfiedByLayer:layer ])
@@ -232,7 +232,7 @@ Yeah - this is a bit long-winded, and maybe it's off course already, but your in
 
     
 
--(BOOL) isSatisfiedByLayer:(General/PRLayer*)layer
+-(BOOL) isSatisfiedByLayer:(PRLayer*)layer
 {
     return [ self expectedValue ] == [ layer fancyMath ];
 }
@@ -241,13 +241,13 @@ Yeah - this is a bit long-winded, and maybe it's off course already, but your in
 
 Sometimes C algorithms translate poorly to OO design. Sometimes you can create a relatively clean OO design once you know the algorithms ( which I'm missing, of course ). I don't know why you'd need trigonometric functions to query all your 'elevation' layers to find an elevation that is 800 ft - or higher, etc... but I then again I have no education in computer aided cartography or CAD. The point is the only code that has to worry about the math is the query - because it knows what it's looking for, and the layer - because it has all the data necessary to do the calculation. The rest of the code can look pretty much the way your user might describe what they are trying to do.
 
---General/TimHart
+--TimHart
 
 ----
 
 Thank you, Tim!
 
-As I sit and ponder the above, both approaches Tim suggested are excellent. I am going with Map class and Layer class rather than the class categories. Class categories will assume data is always a raster or grid structure stored as an General/NSArray. In the future I want to experiment with quad-tree and vector based spatial layers. In this case Layer classes can be of 3 types. The class system seems more adaptable.
+As I sit and ponder the above, both approaches Tim suggested are excellent. I am going with Map class and Layer class rather than the class categories. Class categories will assume data is always a raster or grid structure stored as an NSArray. In the future I want to experiment with quad-tree and vector based spatial layers. In this case Layer classes can be of 3 types. The class system seems more adaptable.
 
 To answer Tim's question in the miniscule case anybody reads this and is interested, 
 
@@ -257,9 +257,9 @@ To answer Tim's question in the miniscule case anybody reads this and is interes
 
 You're welcome.
 
-Remember that in Object Oriented languages, polymorphism is a Very Nice Thing (tm). You can certainly use categories, as long as  your message is generic enough to work in all of them. In other words, you can implement 'sqrtOfMembers' for each of  General/NSArray, General/PRQuadTree, General/PRVector, General/PRLayer or id<sqrtAble>. As long as you have a category for each that implements 'sqrtOfMembers', the calling code can be written so that it doesn't care WHAT type the data is in - only that it knows how to perform the requested task.
+Remember that in Object Oriented languages, polymorphism is a Very Nice Thing (tm). You can certainly use categories, as long as  your message is generic enough to work in all of them. In other words, you can implement 'sqrtOfMembers' for each of  NSArray, PRQuadTree, PRVector, PRLayer or id<sqrtAble>. As long as you have a category for each that implements 'sqrtOfMembers', the calling code can be written so that it doesn't care WHAT type the data is in - only that it knows how to perform the requested task.
 
---General/TimHart
+--TimHart
 
 ----
 
@@ -267,14 +267,14 @@ And the really cool thing is, you could use that exact same method on any object
 
 ----
 
-*General/TheoHultberg*: The first thing that crossed my mind when I read this page was "functor". See General/FunctorPattern.
+*TheoHultberg*: The first thing that crossed my mind when I read this page was "functor". See FunctorPattern.
 
-It seems that your syntax allows for a couple of different algorithm types, the General/FunctorPattern would encapsulate one kind, that which applies an algorithm on all values in an array (array -> array), you could perhaps call it a filter or a transform. In your problem description above there is also the type which takes an array and returns one value (array -> number), like max, min and mean. The pattern can easily be used to create other kinds of algorithm types, but the objects of the different types would not be interchangeable since the return types of the apply-method would be different.
+It seems that your syntax allows for a couple of different algorithm types, the FunctorPattern would encapsulate one kind, that which applies an algorithm on all values in an array (array -> array), you could perhaps call it a filter or a transform. In your problem description above there is also the type which takes an array and returns one value (array -> number), like max, min and mean. The pattern can easily be used to create other kinds of algorithm types, but the objects of the different types would not be interchangeable since the return types of the apply-method would be different.
 
 ----
 
 **UPDATE: 4-2-2005**
 
-In the end I went with functors. They allowed me to daisy-chain processing elements in any way I wanted. Some algorithms use one input arrray, some multiple arrays, some using one input and creating seveal inputs. By passing an General/NSArray of my objects I can do a batch process using algorithms requiring only one input, or do a single process using multiple inputs. I can remain blissfully ignorant of which it is doing and still have the same input and output data type (General/NSArray). This came out of the idea supporting General/NSArray and General/NSEnumerator. I will most likely change this to passing General/NSDictionary so that I can keep track of the name of the input array when doing batch processing and also know which array is what when creating multiple arrays from a single input (case: a cost accumulation surface would create the actual accumulated cost surface from points on the map, plus a surface of directions to get there).
+In the end I went with functors. They allowed me to daisy-chain processing elements in any way I wanted. Some algorithms use one input arrray, some multiple arrays, some using one input and creating seveal inputs. By passing an NSArray of my objects I can do a batch process using algorithms requiring only one input, or do a single process using multiple inputs. I can remain blissfully ignorant of which it is doing and still have the same input and output data type (NSArray). This came out of the idea supporting NSArray and NSEnumerator. I will most likely change this to passing NSDictionary so that I can keep track of the name of the input array when doing batch processing and also know which array is what when creating multiple arrays from a single input (case: a cost accumulation surface would create the actual accumulated cost surface from points on the map, plus a surface of directions to get there).
 
 Thanks to everybody who helped. Your responses gave me a lot to think about and come up with a better design than I could have alone.

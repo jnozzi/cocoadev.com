@@ -13,7 +13,7 @@ Web sites containing tips and tricks for the Mac:
 
 ----
 
-Some particularly valuable tips and tricks are below. Note, please provide a link to the original page if there is one. If the tip is already covered on a site listed above, consider simply not posting it. If the tip is covered on a site that's not listed above, consider listing that site instead of posting the tip here. General/CocoaDev is not a general Mac tips site, although we are all Mac users and can benefit from them.
+Some particularly valuable tips and tricks are below. Note, please provide a link to the original page if there is one. If the tip is already covered on a site listed above, consider simply not posting it. If the tip is covered on a site that's not listed above, consider listing that site instead of posting the tip here. CocoaDev is not a general Mac tips site, although we are all Mac users and can benefit from them.
 
 
 

@@ -1,10 +1,10 @@
 
 
-I am just entering the wide, wonderful world of Cocoa and am trying to figure out how to make an embedded framework. The application is an off-the-shelf Cocoa document-based application with very few changes (pretty much just     Info.plist and     General/InfoPlist.strings changed), with a framework target (with no files to its name besides     Info.plist and     General/InfoPlist.strings) added to the project. The framework gets installed into the application bundle (using     @executable_path/../Frameworks as the install path; the framework shows up in     *application*.app/Contents/Frameworks), but I get an error from     ld when building:
+I am just entering the wide, wonderful world of Cocoa and am trying to figure out how to make an embedded framework. The application is an off-the-shelf Cocoa document-based application with very few changes (pretty much just     Info.plist and     InfoPlist.strings changed), with a framework target (with no files to its name besides     Info.plist and     InfoPlist.strings) added to the project. The framework gets installed into the application bundle (using     @executable_path/../Frameworks as the install path; the framework shows up in     *application*.app/Contents/Frameworks), but I get an error from     ld when building:
 
     /usr/bin/ld: can't locate framework for: -framework Cognizance
 
-As far as I can tell, the correct framework search path is being used (    -F/Users/john/Documents/Xcode/Cognizance/Debug shows up in the     ld command-line options), so I'm baffled. This happens on both the Debug and Release build configurations. This is a brand-new project, and I've followed the instructions in all of the embedded-framework tutorials I've found (save prebinding), including Apple's own and General/EmbeddingFrameworksInApplications. Does anyone have any inkling why this is happening?
+As far as I can tell, the correct framework search path is being used (    -F/Users/john/Documents/Xcode/Cognizance/Debug shows up in the     ld command-line options), so I'm baffled. This happens on both the Debug and Release build configurations. This is a brand-new project, and I've followed the instructions in all of the embedded-framework tutorials I've found (save prebinding), including Apple's own and EmbeddingFrameworksInApplications. Does anyone have any inkling why this is happening?
 
 ----
 

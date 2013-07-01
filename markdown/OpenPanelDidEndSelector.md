@@ -5,28 +5,28 @@ OK I'm stumped.  I really try to go through the documentation before I post dumb
 I'm just going to an example in the Coca Programming for OS X (1st ed.) book. I'm attempting to have an A<nowiki/>ppController object present an open panel as a sheet and let me choose an image.  So I have the following code:
 
     
-- (General/IBAction)open:(id)sender
+- (IBAction)open:(id)sender
 {
-    General/NSOpenPanel *openPanel = General/[NSOpenPanel openPanel];
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
     [openPanel beginSheetForDirectory:nil
 				 file:nil
-				types:General/[NSImage imageFileTypes]
+				types:[NSImage imageFileTypes]
 		       modalForWindow:[stretchView window]
 			modalDelegate:self
 		       didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)
 			  contextInfo:nil];
 }
 
-- (void) openPanelDidEnd:(General/NSOpenPanel *)openPanel
+- (void) openPanelDidEnd:(NSOpenPanel *)openPanel
 	      returnCode:(int)returnCode
 	     cintextInfo:(void *)x
 {
-    General/NSString *path;
-    General/NSImage *image;
-    if(returnCode == General/NSOKButton)
+    NSString *path;
+    NSImage *image;
+    if(returnCode == NSOKButton)
     {
 	path = [openPanel filename];
-	image = General/[[NSImage alloc] initWithContentsOfFile:path];
+	image = [[NSImage alloc] initWithContentsOfFile:path];
 	[stretchView setImage:image];
 	[image release];
     }
@@ -40,7 +40,7 @@ Is something wrong with my <code>didEndSelector:@selector(openPanelDidEnd:return
 Like I said, I've checked the documentation & it just doesn't point me to what the problem is.  Can any of you guys maybe help clear it up?
 
 Thanks a lot
-General/CliffPruitt
+CliffPruitt
 
 ----
 

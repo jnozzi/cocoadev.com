@@ -1,6 +1,6 @@
 
 
-When I change the size or order of my columns in my General/NSTableView, it gets General/AutoSaved in the plist.  However, when I programatically remove a column, it shows back up upon Application restart.  Here's my removal code:
+When I change the size or order of my columns in my NSTableView, it gets AutoSaved in the plist.  However, when I programatically remove a column, it shows back up upon Application restart.  Here's my removal code:
 
     [tableView removeTableColumn:[tableView tableColumnWithIdentifier:@"Name"]];
 
@@ -8,7 +8,7 @@ Can I fix this?
 
 ----
 
-If General/AutoSave doesn't do this for you, you might store the table columns array in a separate user defaults key (or in the document if it's a document) and reload it manually (either in the app delegate or in the document load code). -- l0ne aka General/EmanueleVulcano
+If AutoSave doesn't do this for you, you might store the table columns array in a separate user defaults key (or in the document if it's a document) and reload it manually (either in the app delegate or in the document load code). -- l0ne aka EmanueleVulcano
 
 ----
 
@@ -18,7 +18,7 @@ Have you turned     -setAutosaveTableColumns: on in your table view?
 
 Yeah, I know that it is on, because resizing of columns still saves.  Just removal or addition isnt stored.
 
-In my plist file, there is a     General/NSTableView Sort Ordering table array, but it looks like this only works for the order of the columns, not which exist and which dont.  Is there a seperate place to set this type of Autosave?
+In my plist file, there is a     NSTableView Sort Ordering table array, but it looks like this only works for the order of the columns, not which exist and which dont.  Is there a seperate place to set this type of Autosave?
 
 ----
 

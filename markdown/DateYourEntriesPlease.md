@@ -1,4 +1,4 @@
-If you've been using the C**'ocoaDev site for awhile (or not) you've most likely come across entries that may or may not be useful, depending upon how old they are (e.g., instructions for using some class that was changed in the last release of OS X). Or maybe you've opened a page from General/RecentChanges but can't locate the new entry? 
+If you've been using the C**'ocoaDev site for awhile (or not) you've most likely come across entries that may or may not be useful, depending upon how old they are (e.g., instructions for using some class that was changed in the last release of OS X). Or maybe you've opened a page from RecentChanges but can't locate the new entry? 
 
 We could all help each other out by simply adding a date to anything we add to a page, like this: **2004-10-23**.
 

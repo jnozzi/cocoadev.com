@@ -11,17 +11,17 @@ I touched a bit of everything I could put a hand on.
 In chronological order:
 
 
-* General/HyperTalk
+* HyperTalk
 * Basic
 * Pascal
 * C
 * C++
-* General/AppleScript
+* AppleScript
 * Assembler (Z80, 68000, PIC)
 * Object Pascal
 * Perl
 * Java ( http://www-optics.unine.ch/education/optics_tutorials/optics_tutorials.html )
-* General/JavaScript
+* JavaScript
 * PHP
 * Objective-C
 
@@ -29,18 +29,18 @@ In chronological order:
 In decreasing order of preference:
 
 
-* General/HyperTalk
+* HyperTalk
 * Objective-C
 * Perl
 * Java
 * C++
 * PHP
 * C
-* General/AppleScript
+* AppleScript
 * Object Pascal
 * Pascal
 * Assembler
-* General/JavaScript
+* JavaScript
 * Basic
 
 

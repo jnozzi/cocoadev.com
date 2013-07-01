@@ -1,69 +1,69 @@
 
 
 Hi,
-I'm modifying my General/WebView subclass (General/DXWebView) so I can display custom menus for links. The menu is created, displayed correctly and all, but I can't get General/NSWorkspace actions on the subclass to worl, here is the code:
+I'm modifying my WebView subclass (DXWebView) so I can display custom menus for links. The menu is created, displayed correctly and all, but I can't get NSWorkspace actions on the subclass to worl, here is the code:
 
-General/DXWebView.h
+DXWebView.h
     
-/* General/DXWebView */
+/* DXWebView */
 
 #import <Cocoa/Cocoa.h>
-#import <General/WebKit/General/WebView.h>
-#import <General/WebKit/General/WebUIDelegate.h>
+#import <WebKit/WebView.h>
+#import <WebKit/WebUIDelegate.h>
 
-@interface General/DXWebView : General/WebView
+@interface DXWebView : WebView
 {
-	General/NSString *urlLink;
+	NSString *urlLink;
 	
-	General/NSMenuItem *menuOpenSafari;
-	General/NSMenuItem *menuDownloadAttachment;
+	NSMenuItem *menuOpenSafari;
+	NSMenuItem *menuDownloadAttachment;
 }
 
 @end
 
 
-General/DXWevView.m
+DXWevView.m
     
-@implementation General/DXWebView
+@implementation DXWebView
 
 - (void)awakeFromNib
 {	
 	[self setUIDelegate:self];
 	
-	menuOpenSafari = General/[[NSMenuItem alloc] init];
+	menuOpenSafari = [[NSMenuItem alloc] init];
 	[menuOpenSafari setTitle:@"Open Link With Safari"];
 	[menuOpenSafari setEnabled:YES];
 	[menuOpenSafari setAction:@selector(openWithSafari)];
 	[menuOpenSafari setTarget:self];
 	
-	menuDownloadAttachment = General/[[NSMenuItem alloc] init];
+	menuDownloadAttachment = [[NSMenuItem alloc] init];
 	[menuDownloadAttachment setTitle:@"Download Attached File"];
 	[menuDownloadAttachment setEnabled:YES];
 	[menuDownloadAttachment setAction:@selector(downloadFile)];
 	[menuDownloadAttachment setTarget:self];
 }
 
-- (General/NSArray *)webView:(General/WebView *)sender contextMenuItemsForElement:(General/NSDictionary *)element defaultMenuItems:(General/NSArray *)defaultMenuItems
+- (NSArray *)webView:(WebView *)sender contextMenuItemsForElement:(NSDictionary *)element defaultMenuItems:(NSArray *)defaultMenuItems
 {
 	sender = self;
-	if (General/element objectForKey:[[WebElementLinkURLKey] isNotEqualTo:nil])
+	if (element objectForKey:[[WebElementLinkURLKey] isNotEqualTo:nil])
 	{
 		urlLink = nil;
-		urlLink = [element objectForKey:General/WebElementLinkURLKey];		
-		defaultMenuItems = General/[[NSArray alloc] initWithObjects:menuOpenSafari, menuDownloadAttachment,  nil];
+		urlLink = [element objectForKey:WebElementLinkURLKey];		
+		defaultMenuItems = [[NSArray alloc] initWithObjects:menuOpenSafari, menuDownloadAttachment,  nil];
 	}
 	return defaultMenuItems;
 }
 
 - (void)openWithSafari
 {
-	General/[[NSWorkspace sharedWorkspace] openURL:[NSURL General/URLWithString:urlLink]];
+	[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlLink]];
 }
 
 - (void)downloadFile
 {
-	General/[[[NSAppleScript alloc]
-        initWithSource:General/[NSString stringWithFormat:@"do shell script \"open %@\"", urlLink]]
+	[[[NSAppleScript alloc]
+        initWithSource:[NSString stringWithFormat:@"do shell script \"open %@\"", urlLink]]
         executeAndReturnError:nil];
 }
 
@@ -78,11 +78,11 @@ So, when i load an html file and control-click on the link, the menu with the tw
 
 
 I don't know why that happens, when I log urlLink, the string is fine, but somehow the URL created from it gets messed up.
-Any ideas? Thank you in advance -General/FernandoLucasSantos
+Any ideas? Thank you in advance -FernandoLucasSantos
 
 ----
 
-The object for     General/WebElementLinkURLKey is an NSURL, but you're treating it like an General/NSString. Hence,     [NSURL General/URLWithString:urlLink] will fail, because     urlLink is *already* an NSURL.
+The object for     WebElementLinkURLKey is an NSURL, but you're treating it like an NSString. Hence,     [NSURL URLWithString:urlLink] will fail, because     urlLink is *already* an NSURL.
 
 ----
 *feels dumb* - Thank you very much!

@@ -1,8 +1,8 @@
 
 
 **Question**: It's been almost a year since this page was updated. The docs now state:
-"Note that General/NSPersistentDocument does not support some standard document behavior, in particular General/NSPersistentDocument does not support file wrappers."
-(http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSPersistentDocument.html)
+"Note that NSPersistentDocument does not support some standard document behavior, in particular NSPersistentDocument does not support file wrappers."
+(http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSPersistentDocument.html)
 
 Does this mean it's impossible to use file wrappers, or just that a little extra work is needed? Has anyone done this successfully?
 
@@ -10,27 +10,27 @@ Does this mean it's impossible to use file wrappers, or just that a little extra
 
 I have a Core Data document-based application I'm working on. I'd like to have it save and retrieve its data as a package. I've already checked the "Package" checkbox in the target's settings for my file type (I have a custom extension defined, etc) saved as an XML store type. This all works just fine (even with 'package') checked as-is, right out of the box. That is, it saves and opens the data (which is still saved as a regular file - the package checkbox is apparently ignored).
 
-The goal, obviously, is to modify my project to save the applicaton's data file as a package and load the main data from an XML file within the package. Say:     /Users/me/My File.myext/General/ProjectData.xml - any extraneous supporting files get stored under the package's ./Content folder.
+The goal, obviously, is to modify my project to save the applicaton's data file as a package and load the main data from an XML file within the package. Say:     /Users/me/My File.myext/ProjectData.xml - any extraneous supporting files get stored under the package's ./Content folder.
 
 The basic steps as I see them, according to the documentation, are simple:
 
 
 *Define a file type for your main package file format in your target, check the 'Package' checkbox.
-*In the General/NSPersistentDocument subclass, override     - (BOOL)configurePersistentStoreCoordinatorForURL:(NSURL *)url ofType:(General/NSString *)fileType error:(General/NSError **)error and modify the URL file path to append "/General/ProjectData.xml" (or whatever), then pass the modified URL to super. *** See code example**
+*In the NSPersistentDocument subclass, override     - (BOOL)configurePersistentStoreCoordinatorForURL:(NSURL *)url ofType:(NSString *)fileType error:(NSError **)error and modify the URL file path to append "/ProjectData.xml" (or whatever), then pass the modified URL to super. *** See code example**
 
 
 ----
 **Relevant Documentation**
 
-From: http://developer.apple.com/releasenotes/Cocoa/General/AppKit.html
+From: http://developer.apple.com/releasenotes/Cocoa/AppKit.html
 
 'File package support (where potentially multiple persistent stores are inside a file wrapper) is left to subclasses where managing different stores can be done by hand through the coordinator.'
 
-From: http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSPersistentDocument.html#//apple_ref/doc/uid/TP30001179-CJBCBBCB
+From: http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSPersistentDocument.html#//apple_ref/doc/uid/TP30001179-CJBCBBCB
 
-- (BOOL)configurePersistentStoreCoordinatorForURL:(NSURL *)url ofType:(General/NSString *)fileType error:(General/NSError **)error
+- (BOOL)configurePersistentStoreCoordinatorForURL:(NSURL *)url ofType:(NSString *)fileType error:(NSError **)error
 
-*"You can override this method to customize creation of a persistent store for a given document or store type. In a subclass of General/NSPersistentDocument, this also allow you to access store files inside a file wrapper by appending path information to the URL and then invoking the superclass?� method."*
+*"You can override this method to customize creation of a persistent store for a given document or store type. In a subclass of NSPersistentDocument, this also allow you to access store files inside a file wrapper by appending path information to the URL and then invoking the superclass?� method."*
 
 ----
 
@@ -38,10 +38,10 @@ The     -(BOOL)configurePersistentStoreCoordinatorForURL:ofType:error: method sh
 
     
 - (BOOL)configurePersistentStoreCoordinatorForURL:(NSURL *)url 
-        ofType:(General/NSString *)fileType error:(General/NSError **)error
+        ofType:(NSString *)fileType error:(NSError **)error
 {
 	// Append persistent store path to url
-	NSURL * storePath = [NSURL fileURLWithPath:General/url path] 
+	NSURL * storePath = [NSURL fileURLWithPath:url path] 
                             stringByAppendingPathComponent:@"[[ProjectData.xml"]];
 	
 	// Pass storePath to super, return result
@@ -54,7 +54,7 @@ According to the documentation, the above should work. The problem is that when 
 
 ----
 
-**Update** - Evidently, according to this post [ http://www.cocoabuilder.com/archive/message/cocoa/2005/5/24/136816 ], there is an unspecified problem with Core Data and packages / bundles. This is apparently a 'known issue', but little is 'known' about it publicly beyond that. Peachy. According to Mmalcolm Crawford on the cocoa-dev mailing list, "... the way that General/NSDocument works and the way General/NSPersistentDocument wants to work such that you should not expect to be able to create an application based on General/NSPersistentDocument that uses file wrappers."
+**Update** - Evidently, according to this post [ http://www.cocoabuilder.com/archive/message/cocoa/2005/5/24/136816 ], there is an unspecified problem with Core Data and packages / bundles. This is apparently a 'known issue', but little is 'known' about it publicly beyond that. Peachy. According to Mmalcolm Crawford on the cocoa-dev mailing list, "... the way that NSDocument works and the way NSPersistentDocument wants to work such that you should not expect to be able to create an application based on NSPersistentDocument that uses file wrappers."
 
 Hopefully more information about this will be forthcoming soon - this is a huge deal-breaker for my using Core Data for this otherwise perfectly suited project.
 
@@ -65,13 +65,13 @@ I tried something that seems to work for me when I created a new test project to
     
 
 - (BOOL)configurePersistentStoreCoordinatorForURL:(NSURL *)url 
-        ofType:(General/NSString *)fileType error:(General/NSError **)error
+        ofType:(NSString *)fileType error:(NSError **)error
 {
 	// Append persistent store path to url
-	General/NSString * filePath = General/url path] stringByAppendingPathComponent:@"[[ProjectData.cdtpack"];
+	NSString * filePath = url path] stringByAppendingPathComponent:@"[[ProjectData.cdtpack"];
 	BOOL isDir;
-	if (!General/[[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDir] && isDir) {
-		General/[[NSFileManager defaultManager] createDirectoryAtPath:[url path] attributes:nil];
+	if (![[NSFileManager defaultManager] fileExistsAtPath:[url path] isDirectory:&isDir] && isDir) {
+		[[NSFileManager defaultManager] createDirectoryAtPath:[url path] attributes:nil];
 	}
 	
 	NSURL * storeURL = [NSURL fileURLWithPath:filePath];
@@ -87,26 +87,26 @@ I didn't override anything else, other than changing my Info.plist:
 
     
 
-<key>General/CFBundleDocumentTypes</key>
+<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>General/CFBundleTypeExtensions</key>
+			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>cdtpack</string>
 			</array>
-			<key>General/CFBundleTypeMIMETypes</key>
+			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>application/octet-stream</string>
 			</array>
-			<key>General/CFBundleTypeName</key>
+			<key>CFBundleTypeName</key>
 			<string>cdtpack</string>
-			<key>General/CFBundleTypeRole</key>
+			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>General/LSTypeIsPackage</key>
+			<key>LSTypeIsPackage</key>
 			<true/>
-			<key>General/NSDocumentClass</key>
-			<string>General/MyDocument</string>
-			<key>General/NSPersistentStoreTypeKey</key>
+			<key>NSDocumentClass</key>
+			<string>MyDocument</string>
+			<key>NSPersistentStoreTypeKey</key>
 			<string>XML</string>
 		</dict>
 	</array>
@@ -120,7 +120,7 @@ Update: I've been playing with the files that my example app generated, and it's
 1. Both the package (the directory) and the file inside (actual data) are stored with the same extension.
 2. Attempting to open the file inside the package with the app will fail. If you delete that file, then the package will fail... so you have to have both.
 
-The "General/ProjectData" file can go without an extension, or a different extension, but the first time I tried it, it wouldn't work. Now it does. Weird.
+The "ProjectData" file can go without an extension, or a different extension, but the first time I tried it, it wouldn't work. Now it does. Weird.
 
 I'm hoping that I'll be able to add saving methods for adding a folder or two and putting the files and other resources in it. Let me know if there are any other issues.
 
@@ -143,7 +143,7 @@ Found some information in a Ruby Cocoa blog.
 
 The analysis made by the author is pretty much what most of us have done.  The solution looks quite complete and well thought.  People commenting there found the solution there useful as well.
 
--- General/BillSo
+-- BillSo
 
 ----
 
@@ -151,13 +151,13 @@ Has anyone tested to see if this works as originally advertised in Leopard?
 
 
 ----
-I wrote this code: a  direct subclass of General/NSDocument, not General/NSPersistentDocument.
+I wrote this code: a  direct subclass of NSDocument, not NSPersistentDocument.
 Masa http://www.oneriver.jp
 
     
 //
-//  General/MyDocument.h
-//  General/CoreDataDocument
+//  MyDocument.h
+//  CoreDataDocument
 //
 //  Created by Masatoshi Nishikata on 07/12/22.
 //  Copyright __MyCompanyName__ 2007 . All rights reserved.
@@ -166,43 +166,43 @@ Masa http://www.oneriver.jp
 
 #import <Cocoa/Cocoa.h>
 
-@interface General/MyDocument : General/NSDocument
+@interface MyDocument : NSDocument
 {
-	General/NSPersistentStoreCoordinator *persistentStoreCoordinator;
-    General/NSManagedObjectModel *managedObjectModel;
-    General/NSManagedObjectContext *managedObjectContext;
+	NSPersistentStoreCoordinator *persistentStoreCoordinator;
+    NSManagedObjectModel *managedObjectModel;
+    NSManagedObjectContext *managedObjectContext;
 	
 	NSURL* persistentStoreURL;
 }
 - (id)init;
-- (General/NSString *)windowNibName;
-- (void)windowControllerDidLoadNib:(General/NSWindowController *) aController;
-- (General/NSData *)dataRepresentationOfType:(General/NSString *)aType;
-- (BOOL)loadDataRepresentation:(General/NSData *)data ofType:(General/NSString *)aType;
-- (General/NSManagedObjectModel *)managedObjectModel ;
-- (General/NSPersistentStoreCoordinator *) persistentStoreCoordinator ;
-- (General/NSManagedObjectContext *) managedObjectContext ;
+- (NSString *)windowNibName;
+- (void)windowControllerDidLoadNib:(NSWindowController *) aController;
+- (NSData *)dataRepresentationOfType:(NSString *)aType;
+- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType;
+- (NSManagedObjectModel *)managedObjectModel ;
+- (NSPersistentStoreCoordinator *) persistentStoreCoordinator ;
+- (NSManagedObjectContext *) managedObjectContext ;
 -(NSURL*)xmlURLInPackage:(NSURL*)packageURL;
-- (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(General/NSString *)typeName error:(General/NSError **)outError;
-- (void)saveToURL:(NSURL *)absoluteURL ofType:(General/NSString *)typeName forSaveOperation:(General/NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo;
+- (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError;
+- (void)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation delegate:(id)delegate didSaveSelector:(SEL)didSaveSelector contextInfo:(void *)contextInfo;
 -(void)clearDirtyStateForURL:(NSURL*)url;
-- (void)setMetadataValue:(id)value forKey:(General/NSString*)key ;
-- (id)metadataValueForKey:(General/NSString*)key ;
+- (void)setMetadataValue:(id)value forKey:(NSString*)key ;
+- (id)metadataValueForKey:(NSString*)key ;
 -(void)writePackageContentsForURL:(NSURL*)packageURL;
 - (void) dealloc ;
 
 @end
 
 
-#import "General/MyDocument.h"
+#import "MyDocument.h"
 
-#define CORE_DATA_XML_FILENAME @"General/CoreData.xml"
+#define CORE_DATA_XML_FILENAME @"CoreData.xml"
 
-#define PACKAGE_TYPE @"General/CoreDataPackage"
+#define PACKAGE_TYPE @"CoreDataPackage"
 #define XML_TYPE @"XML"
 
 
-@implementation General/MyDocument
+@implementation MyDocument
 
 - (id)init
 {
@@ -221,23 +221,23 @@ Masa http://www.oneriver.jp
     return self;
 }
 
-- (General/NSString *)windowNibName
+- (NSString *)windowNibName
 {
     // Override returning the nib file name of the document
-    // If you need to use a subclass of General/NSWindowController or if your document supports multiple General/NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-    return @"General/MyDocument";
+    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
+    return @"MyDocument";
 }
 
-- (void)windowControllerDidLoadNib:(General/NSWindowController *) aController
+- (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
     [super windowControllerDidLoadNib:aController];
     // Add any code here that needs to be executed once the windowController has loaded the document's window.
 	
 	
-	[self setUndoManager:General/self managedObjectContext] undoManager;
+	[self setUndoManager:self managedObjectContext] undoManager;
 }
 
-- (General/NSData *)dataRepresentationOfType:(General/NSString *)aType
+- (NSData *)dataRepresentationOfType:(NSString *)aType
 {
     // Insert code here to write your document from the given data.  You can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
     
@@ -246,7 +246,7 @@ Masa http://www.oneriver.jp
     return nil;
 }
 
-- (BOOL)loadDataRepresentation:(General/NSData *)data ofType:(General/NSString *)aType
+- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType
 {
     // Insert code here to read your document from the given data.  You can also choose to override -loadFileWrapperRepresentation:ofType: or -readFromFile:ofType: instead.
     
@@ -258,17 +258,17 @@ Masa http://www.oneriver.jp
 #pragma mark -
 
 
-- (General/NSManagedObjectModel *)managedObjectModel {
+- (NSManagedObjectModel *)managedObjectModel {
 	
     if (managedObjectModel != nil) {
         return managedObjectModel;
     }
 	
-    General/NSMutableSet *allBundles = General/[[NSMutableSet alloc] init];
-    [allBundles addObject: General/[NSBundle mainBundle]];
-    [allBundles addObjectsFromArray: General/[NSBundle allFrameworks]];
+    NSMutableSet *allBundles = [[NSMutableSet alloc] init];
+    [allBundles addObject: [NSBundle mainBundle]];
+    [allBundles addObjectsFromArray: [NSBundle allFrameworks]];
     
-    managedObjectModel = General/[[NSManagedObjectModel mergedModelFromBundles: [allBundles allObjects]] retain];
+    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles: [allBundles allObjects]] retain];
     [allBundles release];
     
     return managedObjectModel;
@@ -276,7 +276,7 @@ Masa http://www.oneriver.jp
 
 
 
-- (General/NSPersistentStoreCoordinator *) persistentStoreCoordinator {
+- (NSPersistentStoreCoordinator *) persistentStoreCoordinator {
 	
     if (persistentStoreCoordinator != nil) {
         return persistentStoreCoordinator;
@@ -286,16 +286,16 @@ Masa http://www.oneriver.jp
 	
 	if( persistentStoreURL == nil )
 	{
-		General/NSFileManager *fileManager;
-		General/NSString *tempFolder = General/NSTemporaryDirectory();
+		NSFileManager *fileManager;
+		NSString *tempFolder = NSTemporaryDirectory();
 
-		fileManager = General/[NSFileManager defaultManager];
+		fileManager = [NSFileManager defaultManager];
 		
 		if ( ![fileManager fileExistsAtPath:tempFolder isDirectory:NULL] ) {
 			[fileManager createDirectoryAtPath:tempFolder attributes:nil];
 		}
 		
-		persistentStoreURL = [NSURL fileURLWithPath: [tempFolder stringByAppendingPathComponent: General/[NSString stringWithFormat: @"com_pukeko_oneriver_coredata_document_%x_%x_%x.xml", time(NULL) ,self, General/NSApp ]]];
+		persistentStoreURL = [NSURL fileURLWithPath: [tempFolder stringByAppendingPathComponent: [NSString stringWithFormat: @"com_pukeko_oneriver_coredata_document_%x_%x_%x.xml", time(NULL) ,self, NSApp ]]];
 
 		[persistentStoreURL retain];
 		
@@ -304,11 +304,11 @@ Masa http://www.oneriver.jp
 	
 	// (B) load
 
-	General/NSError *error;
+	NSError *error;
 
-	persistentStoreCoordinator = General/[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-	if (![persistentStoreCoordinator addPersistentStoreWithType:General/NSXMLStoreType configuration:nil URL:persistentStoreURL options:nil error:&error]){
-		General/[[NSApplication sharedApplication] presentError:error];
+	persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
+	if (![persistentStoreCoordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:persistentStoreURL options:nil error:&error]){
+		[[NSApplication sharedApplication] presentError:error];
 	}    
 	return persistentStoreCoordinator;
 
@@ -323,15 +323,15 @@ Returns the managed object context for the application (which is already
 														bound to the persistent store coordinator for the application.) 
  */
 
-- (General/NSManagedObjectContext *) managedObjectContext {
+- (NSManagedObjectContext *) managedObjectContext {
 	
     if (managedObjectContext != nil) {
         return managedObjectContext;
     }
 	
-    General/NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        managedObjectContext = General/[[NSManagedObjectContext alloc] init];
+        managedObjectContext = [[NSManagedObjectContext alloc] init];
         [managedObjectContext setPersistentStoreCoordinator: coordinator];
     }
     
@@ -342,39 +342,39 @@ Returns the managed object context for the application (which is already
 
 -(NSURL*)xmlURLInPackage:(NSURL*)packageURL
 {
-	General/NSString* path = [packageURL path];
+	NSString* path = [packageURL path];
 	path = [path stringByAppendingPathComponent:CORE_DATA_XML_FILENAME];
 	return  [NSURL fileURLWithPath: path] ;
 	
 	
 }
-- (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(General/NSString *)typeName error:(General/NSError **)outError
+- (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
 	if( [typeName isEqualToString:PACKAGE_TYPE] )
 	{
-		persistentStoreURL = General/self xmlURLInPackage: absoluteURL] retain];
+		persistentStoreURL = self xmlURLInPackage: absoluteURL] retain];
 		
 		return [[[[NSFileManager defaultManager] fileExistsAtPath:[persistentStoreURL path]];
 		
 	}else if( [typeName isEqualToString:XML_TYPE] )
 	{
 		persistentStoreURL = [absoluteURL retain];
-		return General/[[NSFileManager defaultManager] fileExistsAtPath:[persistentStoreURL path]];
+		return [[NSFileManager defaultManager] fileExistsAtPath:[persistentStoreURL path]];
 	}
 	
 	return NO;
 }
-- (BOOL)saveToURL:(NSURL *)absoluteURL ofType:(General/NSString *)typeName forSaveOperation:(General/NSSaveOperationType)saveOperation error:(General/NSError **)outError
+- (BOOL)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError
 
 {
 	
 	
 	
-	General/NSDictionary* dict = [self metadataDictionary];
+	NSDictionary* dict = [self metadataDictionary];
 	if( dict )
 	{
-		General/NSEnumerator* en = [dict keyEnumerator];
-		General/NSString* key;
+		NSEnumerator* en = [dict keyEnumerator];
+		NSString* key;
 		while( key = [en nextObject] )
 		{
 			[self setMetadataValue:[dict objectForKey:key] forKey:key];
@@ -392,7 +392,7 @@ Returns the managed object context for the application (which is already
 	if( [typeName isEqualToString:PACKAGE_TYPE] )
 	{
 		
-		if( !General/self xmlURLInPackage: absoluteURL] isEqualTo: persistentStoreURL] ) //Save as, etc
+		if( !self xmlURLInPackage: absoluteURL] isEqualTo: persistentStoreURL] ) //Save as, etc
 		{
 			
 			// migrate
@@ -406,7 +406,7 @@ Returns the managed object context for the application (which is already
 			// create package
 			if( [[[[NSFileManager defaultManager] fileExistsAtPath:[absoluteURL path]] )
 			{
-				if( !General/[[NSFileManager defaultManager] removeFileAtPath:[absoluteURL path]  handler:nil] )
+				if( ![[NSFileManager defaultManager] removeFileAtPath:[absoluteURL path]  handler:nil] )
 				{
 					
 					return NO;
@@ -415,7 +415,7 @@ Returns the managed object context for the application (which is already
 			}
 			
 			
-			if( !General/[[NSFileManager defaultManager] createDirectoryAtPath:[absoluteURL path]
+			if( ![[NSFileManager defaultManager] createDirectoryAtPath:[absoluteURL path]
 															attributes:nil] )
 			{
 				
@@ -424,7 +424,7 @@ Returns the managed object context for the application (which is already
 			}
 			
 			
-			if( !General/self persistentStoreCoordinator]
+			if( !self persistentStoreCoordinator]
 				migratePersistentStore:[[self persistentStoreCoordinator] persistentStoreForURL:persistentStoreURL] 
 								 toURL:[self xmlURLInPackage:absoluteURL] options:nil withType:[[NSXMLStoreType error:outError] )
 			{
@@ -437,7 +437,7 @@ Returns the managed object context for the application (which is already
 		}else // Overwrite
 		{
 			
-			if (!General/self managedObjectContext] save:outError]) {
+			if (!self managedObjectContext] save:outError]) {
 				
 				return NO;
 			}
@@ -469,7 +469,7 @@ Returns the managed object context for the application (which is already
 			// check existing file
 			if( [[[[NSFileManager defaultManager] fileExistsAtPath:[absoluteURL path]] )
 			{
-				if( !General/[[NSFileManager defaultManager] removeFileAtPath:[absoluteURL path]  handler:nil] )
+				if( ![[NSFileManager defaultManager] removeFileAtPath:[absoluteURL path]  handler:nil] )
 				{
 					
 					return NO;
@@ -479,7 +479,7 @@ Returns the managed object context for the application (which is already
 			
 			
 			
-			if( !General/self persistentStoreCoordinator]
+			if( !self persistentStoreCoordinator]
 				migratePersistentStore:[[self persistentStoreCoordinator] persistentStoreForURL:persistentStoreURL] 
 								 toURL:absoluteURL options:nil withType:[[NSXMLStoreType error:outError] )
 			{
@@ -492,7 +492,7 @@ Returns the managed object context for the application (which is already
 		}else
 		{
 			
-			if (!General/self managedObjectContext] save:outError]) {
+			if (!self managedObjectContext] save:outError]) {
 				
 				return NO;
 			}
@@ -520,10 +520,10 @@ Returns the managed object context for the application (which is already
 
 - (void)setMetadataValue:(id)value forKey:([[NSString*)key {
 	
-    General/NSPersistentStoreCoordinator *psc = General/self managedObjectContext] persistentStoreCoordinator];
+    NSPersistentStoreCoordinator *psc = self managedObjectContext] persistentStoreCoordinator];
     id pStore = [psc persistentStoreForURL:persistentStoreURL];
 
-	[[NSMutableDictionary *metadata = General/[psc metadataForPersistentStore:pStore] mutableCopy] autorelease];
+	[[NSMutableDictionary *metadata = [psc metadataForPersistentStore:pStore] mutableCopy] autorelease];
 	
 	[metadata setObject:value forKey:key];
 	[psc setMetadata:metadata forPersistentStore:pStore];
@@ -532,7 +532,7 @@ Returns the managed object context for the application (which is already
 
 - (id)metadataValueForKey:([[NSString*)key {
 	
-    General/NSPersistentStoreCoordinator *psc = General/self managedObjectContext] persistentStoreCoordinator];
+    NSPersistentStoreCoordinator *psc = self managedObjectContext] persistentStoreCoordinator];
     id pStore = [psc persistentStoreForURL:persistentStoreURL];
 	
 	return [[psc metadataForPersistentStore:pStore] valueForKey: key];
@@ -580,20 +580,20 @@ Added revert functionality (After revert the changes to the document don't get r
 
     #import <Cocoa/Cocoa.h>
 
-    @interface Document : General/NSDocument {
-        General/NSManagedObjectModel *managedObjectModel;
+    @interface Document : NSDocument {
+        NSManagedObjectModel *managedObjectModel;
         NSURL* persistentStoreURL;
     }
 
-    @property (strong, nonatomic) General/NSManagedObjectContext *managedObjectContext;
+    @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
     @end
 
     #import "Document.h"
 
-    static General/NSString *General/SqliteFileName = @"data.General/SQLite";
-    static General/NSString *General/SqliteFileExt = @"General/SQLite";
-    static General/NSString *General/PackageType = @"mytype";
+    static NSString *SqliteFileName = @"data.SQLite";
+    static NSString *SqliteFileExt = @"SQLite";
+    static NSString *PackageType = @"mytype";
 
     @implementation Document
 
@@ -612,28 +612,28 @@ Added revert functionality (After revert the changes to the document don't get r
         return self;
     }
 
-    - (General/NSString *)windowNibName {
+    - (NSString *)windowNibName {
         // Override returning the nib file name of the document
-        // If you need to use a subclass of General/NSWindowController or if your document supports multiple General/NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
+        // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
         return @"Document";
     }
 
-    - (void)windowControllerDidLoadNib:(General/NSWindowController *) aController {
+    - (void)windowControllerDidLoadNib:(NSWindowController *) aController {
         [super windowControllerDidLoadNib:aController];
         // Add any code here that needs to be executed once the windowController has loaded the document's window.
-        [self setUndoManager:General/self managedObjectContext] undoManager;
+        [self setUndoManager:self managedObjectContext] undoManager;
     }
 
     #pragma mark -
     #pragma mark Obsolete API
-    - (General/NSData *)dataRepresentationOfType:(General/NSString *)aType {
+    - (NSData *)dataRepresentationOfType:(NSString *)aType {
         // Insert code here to write your document from the given data.  You can also choose to override -fileWrapperRepresentationOfType: or -writeToFile:ofType: instead.
     
         // For applications targeted for Tiger or later systems, you should use the new Tiger API -dataOfType:error:.  In this case you can also choose to override -writeToURL:ofType:error:, -fileWrapperOfType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
         return nil;
     }
 
-    - (BOOL)loadDataRepresentation:(General/NSData *)data ofType:(General/NSString *)aType {
+    - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType {
         // Insert code here to read your document from the given data.  You can also choose to override -loadFileWrapperRepresentation:ofType: or -readFromFile:ofType: instead.
     
         // For applications targeted for Tiger or later systems, you should use the new Tiger API readFromData:ofType:error:.  In this case you can also choose to override -readFromURL:ofType:error: or -readFromFileWrapper:ofType:error: instead.
@@ -645,42 +645,42 @@ Added revert functionality (After revert the changes to the document don't get r
     /**
      Creates if necessary and returns the managed object model for the application.
      */
-    - (General/NSManagedObjectModel *)managedObjectModel {
+    - (NSManagedObjectModel *)managedObjectModel {
         if (managedObjectModel) {
             return managedObjectModel;
         }
     
-        NSURL *modelURL = General/[[NSBundle mainBundle] General/URLForResource:@"Document" withExtension:@"momd"];
-        managedObjectModel = General/[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+        NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Document" withExtension:@"momd"];
+        managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
         return managedObjectModel;
     }
 
-    - (General/NSPersistentStoreCoordinator *) createPersistentStoreCoordinator {
-        General/NSError *error = nil;
+    - (NSPersistentStoreCoordinator *) createPersistentStoreCoordinator {
+        NSError *error = nil;
         // check if peresistent store url is set
         if (persistentStoreURL == nil) {
             // create temporary
-            General/NSLog(@"Creating temporary presistentStoreURL");
-            General/NSFileManager *fm = General/[NSFileManager defaultManager];
-            General/NSString *tempFolder = General/NSTemporaryDirectory();
+            NSLog(@"Creating temporary presistentStoreURL");
+            NSFileManager *fm = [NSFileManager defaultManager];
+            NSString *tempFolder = NSTemporaryDirectory();
             if (![fm fileExistsAtPath:tempFolder isDirectory:NULL]) {
                 if (![fm createDirectoryAtURL: [NSURL fileURLWithPath: tempFolder isDirectory: YES] withIntermediateDirectories: NO attributes: nil error: &error]) {
-                    General/[[NSApplication sharedApplication] presentError:error];
+                    [[NSApplication sharedApplication] presentError:error];
                     return nil;
                 }
             }
-            General/NSString *fileName = General/[NSString stringWithFormat: @"myd_%x_%x_%x.%@", time(NULL) ,self, General/NSApp, General/SqliteFileExt];
+            NSString *fileName = [NSString stringWithFormat: @"myd_%x_%x_%x.%@", time(NULL) ,self, NSApp, SqliteFileExt];
             persistentStoreURL = [NSURL fileURLWithPath: [tempFolder stringByAppendingPathComponent: fileName]];
         }
     
         // load
-        General/NSPersistentStoreCoordinator *persistentStoreCoordinator = General/[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-        General/NSLog(@"initializing psc with url %@", persistentStoreURL.path);
-        if (![persistentStoreCoordinator addPersistentStoreWithType:General/NSSQLiteStoreType configuration:nil URL:persistentStoreURL options:nil error:&error]){
-            General/[[NSApplication sharedApplication] presentError:error];
+        NSPersistentStoreCoordinator *persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
+        NSLog(@"initializing psc with url %@", persistentStoreURL.path);
+        if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:persistentStoreURL options:nil error:&error]){
+            [[NSApplication sharedApplication] presentError:error];
             return nil;
         }
-        General/NSLog(@"initialized psc");
+        NSLog(@"initialized psc");
         return persistentStoreCoordinator;
     }
 
@@ -689,56 +689,56 @@ Added revert functionality (After revert the changes to the document don't get r
      bound to the persistent store coordinator for the application.) 
      */
 
-    - (General/NSManagedObjectContext *) managedObjectContext {
+    - (NSManagedObjectContext *) managedObjectContext {
         if (managedObjectContext != nil) {
             return managedObjectContext;
         }
     
-        General/NSPersistentStoreCoordinator *coordinator = [self createPersistentStoreCoordinator];
+        NSPersistentStoreCoordinator *coordinator = [self createPersistentStoreCoordinator];
         if (coordinator != nil) {
-            managedObjectContext = General/[[NSManagedObjectContext alloc] init];
+            managedObjectContext = [[NSManagedObjectContext alloc] init];
             [managedObjectContext setPersistentStoreCoordinator: coordinator];
         }
         return managedObjectContext;
     }
 
     -(NSURL*)sqlStoreURL:(NSURL*)packageURL {
-        General/NSString* path = [packageURL path];
-        path = [path stringByAppendingPathComponent:General/SqliteFileName];
+        NSString* path = [packageURL path];
+        path = [path stringByAppendingPathComponent:SqliteFileName];
         return [NSURL fileURLWithPath: path] ;
     }
 
-    - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(General/NSString *)typeName error:(General/NSError **)outError {
-        General/NSLog(@"EP readFromURL %@", absoluteURL.path);
+    - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
+        NSLog(@"EP readFromURL %@", absoluteURL.path);
         bool result = NO;
-        if ([typeName isEqualToString:General/PackageType]) {
+        if ([typeName isEqualToString:PackageType]) {
             // file request is by package/bundle extension .mytype; look for sql file inside
             persistentStoreURL = [self sqlStoreURL: absoluteURL];
-            result = General/[[NSFileManager defaultManager] fileExistsAtPath:[persistentStoreURL path]];
-        } else if ([typeName isEqualToString:General/NSSQLiteStoreType]) {
+            result = [[NSFileManager defaultManager] fileExistsAtPath:[persistentStoreURL path]];
+        } else if ([typeName isEqualToString:NSSQLiteStoreType]) {
             // sqlite file has been specified directly; unlikely (?)
             persistentStoreURL = absoluteURL;
-            result = General/[[NSFileManager defaultManager] fileExistsAtPath:[persistentStoreURL path]];
+            result = [[NSFileManager defaultManager] fileExistsAtPath:[persistentStoreURL path]];
         }
-        General/NSLog(@"presistent store url is set to %@", persistentStoreURL.path);
+        NSLog(@"presistent store url is set to %@", persistentStoreURL.path);
         return result;
     }
 
     #pragma mark -
     #pragma mark Save Support
 
-    - (General/NSString*) describeSaveOperation:(General/NSSaveOperationType)op {
-        General/NSString *result;
-        if (op == General/NSSaveOperation) { // 0
-            result = @"General/NSSaveOperation";
-        } else if (op == General/NSSaveAsOperation) { // 1
-            result = @"General/NSSaveAsOperation";        
-        } else if (op == General/NSSaveToOperation) { // 2
-            result = @"General/NSSaveToOperation";        
-        } else if (op == General/NSAutosaveInPlaceOperation) { // 4
-            result = @"General/NSAutosaveInPlaceOperation";        
-        } else if (op == General/NSAutosaveElsewhereOperation) { // 3
-            result = @"General/NSAutosaveElsewhereOperation";        
+    - (NSString*) describeSaveOperation:(NSSaveOperationType)op {
+        NSString *result;
+        if (op == NSSaveOperation) { // 0
+            result = @"NSSaveOperation";
+        } else if (op == NSSaveAsOperation) { // 1
+            result = @"NSSaveAsOperation";        
+        } else if (op == NSSaveToOperation) { // 2
+            result = @"NSSaveToOperation";        
+        } else if (op == NSAutosaveInPlaceOperation) { // 4
+            result = @"NSAutosaveInPlaceOperation";        
+        } else if (op == NSAutosaveElsewhereOperation) { // 3
+            result = @"NSAutosaveElsewhereOperation";        
         } else {
             result = @"Unexpected";
         }
@@ -746,7 +746,7 @@ Added revert functionality (After revert the changes to the document don't get r
     }
 
     -(void)clearDirtyStateForURL:(NSURL*)url {
-        General/self windowForSheet] setDocumentEdited:NO];
+        self windowForSheet] setDocumentEdited:NO];
         [self updateChangeCount:[[NSChangeCleared];
         persistentStoreURL = [self sqlStoreURL:url];
         [self setFileURL: url];
@@ -758,29 +758,29 @@ Added revert functionality (After revert the changes to the document don't get r
          */
     }
 
-    - (BOOL)saveToURL:(NSURL *)absoluteURL ofType:(General/NSString *)typeName forSaveOperation:(General/NSSaveOperationType)saveOperation error:(General/NSError **)outError {
-        General/NSLog(@"EP saveToURL %@", absoluteURL.path);
-        General/NSLog(@".. ofType %@", typeName);
-        General/NSLog(@".. forSaveOperation %@", [self describeSaveOperation:saveOperation]);
+    - (BOOL)saveToURL:(NSURL *)absoluteURL ofType:(NSString *)typeName forSaveOperation:(NSSaveOperationType)saveOperation error:(NSError **)outError {
+        NSLog(@"EP saveToURL %@", absoluteURL.path);
+        NSLog(@".. ofType %@", typeName);
+        NSLog(@".. forSaveOperation %@", [self describeSaveOperation:saveOperation]);
     
-        if ([typeName isEqualToString:General/PackageType]) {
+        if ([typeName isEqualToString:PackageType]) {
             // Save as, etc
-            General/NSLog(@"processing package type");
-            if(General/self sqlStoreURL: absoluteURL] isEqualTo:persistentStoreURL]) {
+            NSLog(@"processing package type");
+            if(self sqlStoreURL: absoluteURL] isEqualTo:persistentStoreURL]) {
                 // Overwrite existing file
                 [[NSLog(@"overriding existing file with simple save");
-                if (!General/self managedObjectContext] save:outError]) {
+                if (!self managedObjectContext] save:outError]) {
                     return NO;
                 }
             } else {
                 // migrate existing file to new location
                 // save current content
                 [[NSLog(@"migrating to new file (saving current content)");
-                if (!General/self managedObjectContext] save:outError]) {
+                if (!self managedObjectContext] save:outError]) {
                     return NO;
                 }
                 // create package
-                [[NSFileManager *fm = General/[NSFileManager defaultManager];
+                [[NSFileManager *fm = [NSFileManager defaultManager];
                 if ([fm fileExistsAtPath: [absoluteURL path]]) {
                     if (![fm removeItemAtURL: absoluteURL error: outError]) {
                         return NO;
@@ -790,8 +790,8 @@ Added revert functionality (After revert the changes to the document don't get r
                     return NO;
                 }
                 // actual db migration
-                General/NSLog(@"actual migration");
-                General/NSPersistentStoreCoordinator *psc = General/self managedObjectContext] persistentStoreCoordinator];
+                NSLog(@"actual migration");
+                NSPersistentStoreCoordinator *psc = self managedObjectContext] persistentStoreCoordinator];
                 if (![psc migratePersistentStore:[psc persistentStoreForURL:persistentStoreURL] 
                                            toURL:[self sqlStoreURL:absoluteURL] options:nil withType:[[NSSQLiteStoreType error:outError] ) {
                     return NO;
@@ -805,30 +805,30 @@ Added revert functionality (After revert the changes to the document don't get r
         return NO;
     }
 
-    - (General/NSPersistentStore*) store {
-        General/NSPersistentStoreCoordinator *psc = General/self managedObjectContext] persistentStoreCoordinator];
+    - (NSPersistentStore*) store {
+        NSPersistentStoreCoordinator *psc = self managedObjectContext] persistentStoreCoordinator];
         [[NSArray *stores = [psc persistentStores];
         if (stores.count == 1) {
-            General/NSPersistentStore *s = [stores objectAtIndex:0];
-            //        General/NSLog(@"Persistent store %@", [s.URL absoluteString]);
+            NSPersistentStore *s = [stores objectAtIndex:0];
+            //        NSLog(@"Persistent store %@", [s.URL absoluteString]);
             return s;
         } else {
-            General/NSLog(@"Stores count is not one, but %ld", stores.count);
+            NSLog(@"Stores count is not one, but %ld", stores.count);
             return nil;
         }
     }
     /*
-     The revert method needs to completely tear down the object graph assembled by the document. In this case, you also want to remove the persistent store manually, because General/NSPersistentDocument will expect the store for its coordinator to be located at the document URL (instead of inside that URL as part of the file wrapper).
+     The revert method needs to completely tear down the object graph assembled by the document. In this case, you also want to remove the persistent store manually, because NSPersistentDocument will expect the store for its coordinator to be located at the document URL (instead of inside that URL as part of the file wrapper).
      */
-    - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(General/NSString *)typeName error:(General/NSError **)outError {
-        General/NSLog(@"EP revertToContentsOfURL for: %@", self.fileURL.path);
-        General/NSLog(@"revert to: %@", absoluteURL.path);
-        General/NSLog(@"removing persistent store %@", self.store.URL.path);
+    - (BOOL)revertToContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError {
+        NSLog(@"EP revertToContentsOfURL for: %@", self.fileURL.path);
+        NSLog(@"revert to: %@", absoluteURL.path);
+        NSLog(@"removing persistent store %@", self.store.URL.path);
     
         persistentStoreURL = [self sqlStoreURL: absoluteURL];
-        General/NSLog(@"managedObjectContext = nil");
+        NSLog(@"managedObjectContext = nil");
         self.managedObjectContext = nil;
-        General/NSLog(@"super revertToContentsOfURL");
+        NSLog(@"super revertToContentsOfURL");
         return [super revertToContentsOfURL:absoluteURL ofType:typeName error:outError];
     }
 

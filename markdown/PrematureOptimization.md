@@ -12,19 +12,19 @@ A few do's and don't's:
 
 * **DON'T** optimize until you can really see where your application is slow. If it's not slow, don't optimize it. (If it ain't broke...)
 * **DON'T** rewrite standard library routines -- for example, stuff in Foundation or Libc. 
-* **DON'T** write your own drawing code -- if drawing speed is important, look into General/OpenGL.
-* **DON'T** worry too much about allocation of a few hundred normal objects. An General/NSString is cheap to create.
+* **DON'T** write your own drawing code -- if drawing speed is important, look into OpenGL.
+* **DON'T** worry too much about allocation of a few hundred normal objects. An NSString is cheap to create.
 
 
 
 * **DO** improve inefficient algorithms. Learn about Big-O notation. When a better algorithm is available, use it!
-* **DO** look for system services that have already implemented efficient algorithms for you. General/NSDictionary is a hash table, General/NSArray is a smart array with fairly optimal storage, the -sort routines generally perform an efficient sort, etc. * **DO** find and eliminate places where you are doing redundant work, such as sorting an array that's already sorted, reading a file more than once, or calling [array count] in the test statement of a for loop.
-* **DO** try to cache and re-use expensive objects. A ten-megabyte General/NSData is not something you should be creating, destroying, and recreating frequently.  On the other hand, don't cache too aggressively.  If you cache big chunks of data to prevent a disk read, you may end up incurring two disk I/Os, one as it gets swapped to disk and one as it gets swapped back.
+* **DO** look for system services that have already implemented efficient algorithms for you. NSDictionary is a hash table, NSArray is a smart array with fairly optimal storage, the -sort routines generally perform an efficient sort, etc. * **DO** find and eliminate places where you are doing redundant work, such as sorting an array that's already sorted, reading a file more than once, or calling [array count] in the test statement of a for loop.
+* **DO** try to cache and re-use expensive objects. A ten-megabyte NSData is not something you should be creating, destroying, and recreating frequently.  On the other hand, don't cache too aggressively.  If you cache big chunks of data to prevent a disk read, you may end up incurring two disk I/Os, one as it gets swapped to disk and one as it gets swapped back.
 * **DO** check to make sure that your optimizations really make things faster! Keep sampling and profiling as your application grows and changes.
 * **DO** check performance against all the OS versions you intend to support -- sometimes unusual differences may crop up if Apple makes something faster or slower underneath you.
 
 
--- ***from where do you have the scoop on General/NSArray? and wouldn't this mean less than O(1) access times for arrays? *** -- From reading the General/CFArray source in Darwin, which General/NSArray uses. And yes it does, but only for very large arrays. At fewer than 64K items, it uses a deque with O(1) access times. It's interesting reading if you can get over the ugly spacing and lack of comments!
+-- ***from where do you have the scoop on NSArray? and wouldn't this mean less than O(1) access times for arrays? *** -- From reading the CFArray source in Darwin, which NSArray uses. And yes it does, but only for very large arrays. At fewer than 64K items, it uses a deque with O(1) access times. It's interesting reading if you can get over the ugly spacing and lack of comments!
 
 ----
 
@@ -49,7 +49,7 @@ The Second Rule of Program Optimization (for experts only!):
 
 I have to say that I disagree with this. It should be a standard part of the development cycle to profile a program and attempt to find sensible ways to reduce it's CPU load and memory footprint. Just because you think your program is well behaved doesn't mean that a user with limited system resources and a need to run other programs at the same time would agree with you. The exception is when you know exactly what sort of machine will be running your product, and in what environment.
 
-Since the primary form of good optimization is to find better algorithms, I think one should be optimistic that there is always a good chance of getting a big return on a small investment in complexity. But I'm not advocating premature optimization. Just profiling and identifying relatively egregious waste, as in when one small portion of code is eating a disproportionately large amount of resources. It's up to you to define "disproportionate", and therein lies the weakness in this philosophy, but if you can reduce your system resource usage by fifty percent or thereabouts, it might make your program more popular. Set hard limits on what is a worthwhile optimization, in terms of the tradeoffs. � General/BrentGulanowski
+Since the primary form of good optimization is to find better algorithms, I think one should be optimistic that there is always a good chance of getting a big return on a small investment in complexity. But I'm not advocating premature optimization. Just profiling and identifying relatively egregious waste, as in when one small portion of code is eating a disproportionately large amount of resources. It's up to you to define "disproportionate", and therein lies the weakness in this philosophy, but if you can reduce your system resource usage by fifty percent or thereabouts, it might make your program more popular. Set hard limits on what is a worthwhile optimization, in terms of the tradeoffs. � BrentGulanowski
 
 ----
 
@@ -70,7 +70,7 @@ Please add to this list.
 
 ----
 
-In some cases, a good alternative to General/PrematureOptimization is abstracting out the area which you may need to General/OptimizeLater (applying General/OnceAndOnlyOnce); therefore, the cost of optimizing will not increase further along in development - allowing you to just as easily General/OptimizeLater when/if it becomes necessary.
+In some cases, a good alternative to PrematureOptimization is abstracting out the area which you may need to OptimizeLater (applying OnceAndOnlyOnce); therefore, the cost of optimizing will not increase further along in development - allowing you to just as easily OptimizeLater when/if it becomes necessary.
 
 ----
 

@@ -1,23 +1,23 @@
 
 
-General/PopupButtoncell
+PopupButtoncell
 
 I  am developing a propertylist editor application and i need to set a popup button cell for booltype.code is something like this in subclass of nstablecolumn.Is it missing something.
  ----
     
 - (id)dataCellForRow:(int)inRow
 {
-	General/NSTableView  *outlineView;
-	General/PlNode *item;
-	General/NSPopUpButtonCell *cell;
+	NSTableView  *outlineView;
+	PlNode *item;
+	NSPopUpButtonCell *cell;
 	outlineView=[self tableView];
-	if([outlineView isMemberOfClass:General/[NSOutlineView class]])
+	if([outlineView isMemberOfClass:[NSOutlineView class]])
 	{
 		item=[outlineView itemAtRow:inRow];
-		if(General/item indexValue]intValue]==BOOL_TYPE)
+		if(item indexValue]intValue]==BOOL_TYPE)
 		{
 			cell=[[[[NSPopUpButtonCell alloc]init];
-			[cell addItemsWithTitles:General/[NSArray arrayWithObjects:@"YES",@"NO",nil]];
+			[cell addItemsWithTitles:[NSArray arrayWithObjects:@"YES",@"NO",nil]];
 			[cell setBordered:NO];
 		}
 	}
@@ -27,7 +27,7 @@ I  am developing a propertylist editor application and i need to set a popup but
 ----
 Thanks in advance
  ----
-What is the error you r getting? does it crashes? General/HowToAskQuestions
+What is the error you r getting? does it crashes? HowToAskQuestions
  ----
 Yes application used get crash.but i just fixed  that one! actually i missed these two lines inside if statement
     

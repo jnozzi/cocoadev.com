@@ -1,11 +1,11 @@
-I have some code I am using to create a new testView (which is an General/NSView subclass created through project builder):
+I have some code I am using to create a new testView (which is an NSView subclass created through project builder):
 
     
-testView *myView=General/testView alloc] retain];
+testView *myView=testView alloc] retain];
 [[NSRect mainRect = [mainView bounds];
-General/NSRect newRect=General/NSMakeRect( mainRect.origin.x+((General/mainView subviews] count])*150) ,  mainRect.origin.y,148,68);     
+NSRect newRect=NSMakeRect( mainRect.origin.x+((mainView subviews] count])*150) ,  mainRect.origin.y,148,68);     
 
-[[NSPopUpButton *locationButton=General/[[NSPopUpButton alloc] initWithFrame:General/NSMakeRect( 0, 0,108,30)  pullsDown:NO];
+[[NSPopUpButton *locationButton=[[NSPopUpButton alloc] initWithFrame:NSMakeRect( 0, 0,108,30)  pullsDown:NO];
 
 [locationButton addItemWithTitle:@"Toronto, Canada"];
 [locationButton addItemWithTitle:@"London, England"];
@@ -32,18 +32,18 @@ Tommy
 
 ----
 
-You can get your General/NSPopUpButton to execute an action on some kind of user interaction by setting its target and action. For example:
+You can get your NSPopUpButton to execute an action on some kind of user interaction by setting its target and action. For example:
 
     
 [ locationButton setTarget:self ];
 [ locationButton setAction:@selector(changeLocation:) ];
 
 
-This will cause your General/NSPopUpButton to call changeLocation in the current object when the user clicks on the pop up menu. The call will be made whether the user changes the selection, or simply re-clicks the option that is already selected.
+This will cause your NSPopUpButton to call changeLocation in the current object when the user clicks on the pop up menu. The call will be made whether the user changes the selection, or simply re-clicks the option that is already selected.
 
 Not sure I quite understand your second problem. Post some more code if you would like someone to take a look at it.
 
-~ General/TheMZA
+~ TheMZA
 
 ----
 

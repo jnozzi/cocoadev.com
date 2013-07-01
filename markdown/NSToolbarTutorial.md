@@ -1,39 +1,39 @@
 
 
-This is a set of source code that concentrates on General/NSToolbar, and General/NSToolbarItem
+This is a set of source code that concentrates on NSToolbar, and NSToolbarItem
 
-As people have been requesting it, here is some stripped source of a complete General/NSToolbar implementation from one of my apps. It works, it just may not be the best method to do it. It's my interpretation of the documentation basically, and yes, I use awakeFromNib usually (although I would recommend creating the toolbar when the window has finished loading). -- General/MatPeterson
+As people have been requesting it, here is some stripped source of a complete NSToolbar implementation from one of my apps. It works, it just may not be the best method to do it. It's my interpretation of the documentation basically, and yes, I use awakeFromNib usually (although I would recommend creating the toolbar when the window has finished loading). -- MatPeterson
     
 
-@interface General/ToolbarClass : General/NSObject
+@interface ToolbarClass : NSObject
 {
-    General/IBOutlet id window; // Window to link toolbar to
-    General/NSToolbarItem *import; // Item that we are adding
+    IBOutlet id window; // Window to link toolbar to
+    NSToolbarItem *import; // Item that we are adding
 }
 - (void)setupToolbar;
 @end
 
-@implementation General/ToolbarClass
+@implementation ToolbarClass
 
 - (void)awakeFromNib
 {
     // Item created
-    import = General/[[NSToolbarItem alloc] initWithItemIdentifier:@"Import"];
-    [import setLabel:General/NSLocalizedString(@"Import", nil)];
+    import = [[NSToolbarItem alloc] initWithItemIdentifier:@"Import"];
+    [import setLabel:NSLocalizedString(@"Import", nil)];
     [import setToolTip:@"Import just the selected songs based on the preferences that you have set"];
     [import setPaletteLabel:[import label]];
-    [import setImage:General/[NSImage imageNamed:@"import"]];
+    [import setImage:[NSImage imageNamed:@"import"]];
     [import setTarget:self];
     [import setAction:@selector(import:)];
 
     [self setupToolbar];
 }
 
-- (General/NSToolbarItem *)toolbar:(General/NSToolbar *)toolbar
-itemForItemIdentifier:(General/NSString *)itemIdentifier
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar
+itemForItemIdentifier:(NSString *)itemIdentifier
 willBeInsertedIntoToolbar:(BOOL)flag
 {
-    General/NSToolbarItem *item = General/[[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+    NSToolbarItem *item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
 
     if ([itemIdentifier isEqualToString:@"Import"])
     {
@@ -42,22 +42,22 @@ willBeInsertedIntoToolbar:(BOOL)flag
     return [item autorelease];
 }
 
-- (General/NSArray *)toolbarAllowedItemIdentifiers:(General/NSToolbar*)toolbar
+- (NSArray *)toolbarAllowedItemIdentifiers:(NSToolbar*)toolbar
 {
-    return General/[NSArray arrayWithObjects:General/NSToolbarSeparatorItemIdentifier,
-        General/NSToolbarSpaceItemIdentifier,
-        General/NSToolbarFlexibleSpaceItemIdentifier,
-        General/NSToolbarCustomizeToolbarItemIdentifier, @"Import", nil];
+    return [NSArray arrayWithObjects:NSToolbarSeparatorItemIdentifier,
+        NSToolbarSpaceItemIdentifier,
+        NSToolbarFlexibleSpaceItemIdentifier,
+        NSToolbarCustomizeToolbarItemIdentifier, @"Import", nil];
 }
 
-- (General/NSArray *)toolbarDefaultItemIdentifiers:(General/NSToolbar*)toolbar
+- (NSArray *)toolbarDefaultItemIdentifiers:(NSToolbar*)toolbar
 {
-    return General/[NSArray arrayWithObjects:General/NSToolbarSeparatorItemIdentifier, @"Import", nil];
+    return [NSArray arrayWithObjects:NSToolbarSeparatorItemIdentifier, @"Import", nil];
 }
 
 - (void)setupToolbar
 {
-    toolbar = General/[[NSToolbar alloc] initWithIdentifier:@"mainToolbar"];
+    toolbar = [[NSToolbar alloc] initWithIdentifier:@"mainToolbar"];
     [toolbar autorelease];
     [toolbar setDelegate:self];
     [toolbar setAllowsUserCustomization:YES];
@@ -65,7 +65,7 @@ willBeInsertedIntoToolbar:(BOOL)flag
     [window setToolbar:toolbar];
 }
 
-- (General/IBAction)import:(id)sender
+- (IBAction)import:(id)sender
 {
 // Do something here that needs to be done when the toolbaritem is clicked.
 }
@@ -77,53 +77,53 @@ willBeInsertedIntoToolbar:(BOOL)flag
 Or you could try the more traditional delegate category on your window controller, and implement the setupToolbar method in the latter.
 
     
-#import "General/MyToolbarDelegateCategory.h"
+#import "MyToolbarDelegateCategory.h"
 
-@implementation General/MyWindowController ( General/MyToolbarDelegateCategory )
+@implementation MyWindowController ( MyToolbarDelegateCategory )
 
-- ( General/NSArray * ) toolbarAllowedItemIdentifiers: ( General/NSToolbar * ) toolbar
+- ( NSArray * ) toolbarAllowedItemIdentifiers: ( NSToolbar * ) toolbar
 {
-	return [ General/NSArray arrayWithObjects:  General/NSToolbarSeparatorItemIdentifier,
-			General/NSToolbarSpaceItemIdentifier,
-			General/NSToolbarFlexibleSpaceItemIdentifier,
-			General/NSToolbarCustomizeToolbarItemIdentifier, 
-			@"General/FooItem", @"General/BarItem" @"General/BazItem", nil ];
+	return [ NSArray arrayWithObjects:  NSToolbarSeparatorItemIdentifier,
+			NSToolbarSpaceItemIdentifier,
+			NSToolbarFlexibleSpaceItemIdentifier,
+			NSToolbarCustomizeToolbarItemIdentifier, 
+			@"FooItem", @"BarItem" @"BazItem", nil ];
 }
 
-- ( General/NSArray * ) toolbarDefaultItemIdentifiers: ( General/NSToolbar * ) toolbar
+- ( NSArray * ) toolbarDefaultItemIdentifiers: ( NSToolbar * ) toolbar
 {
-	return [ General/NSArray arrayWithObjects:  @"General/FooItem",@"General/BarItem", @"General/BazItem",
-			General/NSToolbarFlexibleSpaceItemIdentifier,
-			General/NSToolbarCustomizeToolbarItemIdentifier, nil ];
+	return [ NSArray arrayWithObjects:  @"FooItem",@"BarItem", @"BazItem",
+			NSToolbarFlexibleSpaceItemIdentifier,
+			NSToolbarCustomizeToolbarItemIdentifier, nil ];
 }
 
-- ( General/NSToolbarItem * ) toolbar: ( General/NSToolbar * ) toolbar
-	itemForItemIdentifier: ( General/NSString * ) itemIdentifier
+- ( NSToolbarItem * ) toolbar: ( NSToolbar * ) toolbar
+	itemForItemIdentifier: ( NSString * ) itemIdentifier
        willBeInsertedIntoToolbar: ( BOOL ) flag
 {
-	General/NSToolbarItem *item = [ [ General/NSToolbarItem alloc ] initWithItemIdentifier: itemIdentifier ];
+	NSToolbarItem *item = [ [ NSToolbarItem alloc ] initWithItemIdentifier: itemIdentifier ];
 	
-	if ( [ itemIdentifier isEqualToString: @"General/FooItem" ] )
+	if ( [ itemIdentifier isEqualToString: @"FooItem" ] )
 	{
-		[ item setLabel: General/NSLocalizedString( @"Foo", nil ) ];        // Easy to localize!
+		[ item setLabel: NSLocalizedString( @"Foo", nil ) ];        // Easy to localize!
 		[ item setPaletteLabel: [ item label ] ];
-		[ item setImage: [ General/NSImage imageNamed: @"foo.png" ] ];
+		[ item setImage: [ NSImage imageNamed: @"foo.png" ] ];
 		[ item setTarget: myArrayController ];              // or setTarget: self
 		[ item setAction: @selector( fooAction: ) ];
     }
-	else if ( [ itemIdentifier isEqualToString: @"General/BarItem" ] )
+	else if ( [ itemIdentifier isEqualToString: @"BarItem" ] )
 	{
-		[ item setLabel: General/NSLocalizedString( @"Bar", nil ) ];
+		[ item setLabel: NSLocalizedString( @"Bar", nil ) ];
 		[ item setPaletteLabel: [ item label ] ];
-		[ item setImage: [ General/NSImage imageNamed: @"bar.png" ] ];
+		[ item setImage: [ NSImage imageNamed: @"bar.png" ] ];
 		[ item setTarget: myArrayController ];
 		[ item setAction: @selector( barAction: ) ];
     }
-	else if ( [ itemIdentifier isEqualToString: @"General/BazItem" ] )
+	else if ( [ itemIdentifier isEqualToString: @"BazItem" ] )
 	{
-		[ item setLabel: General/NSLocalizedString( @"Baz", nil ) ];
+		[ item setLabel: NSLocalizedString( @"Baz", nil ) ];
 		[ item setPaletteLabel: [ item label ] ];
-		[ item setImage: [ General/NSImage imageNamed: @"baz.png" ] ];
+		[ item setImage: [ NSImage imageNamed: @"baz.png" ] ];
 		[ item setTarget: self ];
 		[ item setAction: @selector( bazAction: ) ];
     }
@@ -135,4 +135,4 @@ Or you could try the more traditional delegate category on your window controlle
 
 
 
-see also General/GenericToolbar
+see also GenericToolbar

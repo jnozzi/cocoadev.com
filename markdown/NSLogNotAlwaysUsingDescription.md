@@ -1,24 +1,24 @@
-I have implemented description as described under General/DebuggingTechniques, but it seems rather arbitrary wether or not General/NSLog() uses my implementation, or the default General/NSObject implementation which just print "<class: address>".
+I have implemented description as described under DebuggingTechniques, but it seems rather arbitrary wether or not NSLog() uses my implementation, or the default NSObject implementation which just print "<class: address>".
 
-What could possibly be the reason? I have exactly the same General/NSLog() statements switch between the two implementations (so it would seem) in a running application.
+What could possibly be the reason? I have exactly the same NSLog() statements switch between the two implementations (so it would seem) in a running application.
 
-*I seem to have found the problem -- the General/NSLog() displays the wrong description when something is bound to my object, unfortunately I do not know how to solve it.*
+*I seem to have found the problem -- the NSLog() displays the wrong description when something is bound to my object, unfortunately I do not know how to solve it.*
 
-"When something is bound to my object" - can you elaborate?  I've never had any problems with General/NSLog picking up my description.
+"When something is bound to my object" - can you elaborate?  I've never had any problems with NSLog picking up my description.
 
 ----
 
 Try this:
     
-@interface Foo : General/NSObject
+@interface Foo : NSObject
 {
-   General/NSString* name;
+   NSString* name;
 }
-- (General/NSString*)description;
+- (NSString*)description;
 @end
 
 @implementation Foo
-- (General/NSString*)description
+- (NSString*)description
 {
    return name ?: @"untitled";
 }
@@ -26,9 +26,9 @@ Try this:
 
 int main (int argc, char const* argv[])
 {
-   General/NSAutoreleasePool* pool = General/[[NSAutoreleasePool alloc] init];
+   NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 
-   Foo* a = General/Foo alloc] init];
+   Foo* a = Foo alloc] init];
    Foo* b = [[Foo alloc] init];
    [a bind:@"name" toObject:b withKeyPath:@"name" options:nil];
    [[NSLog(@"%@, %@", [a description], [b description]);

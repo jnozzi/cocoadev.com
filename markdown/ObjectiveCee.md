@@ -1,5 +1,5 @@
-See General/ObjC.
+See ObjC.
 
-(why is there a separate, empty page for General/ObjectiveCee?)
+(why is there a separate, empty page for ObjectiveCee?)
 
-(Historical reasons. General/ObjC has only recently become a valid General/WordsJammedTogether.)
+(Historical reasons. ObjC has only recently become a valid WordsJammedTogether.)

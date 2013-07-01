@@ -1,13 +1,13 @@
 
 
 Here's the background...
-I have created a subclass of General/NSView inside a subclass of General/NSWindow.
-The window uses General/NSBorderlessWindowMask and is set to Opaque:YES so it is effectively invisible.
+I have created a subclass of NSView inside a subclass of NSWindow.
+The window uses NSBorderlessWindowMask and is set to Opaque:YES so it is effectively invisible.
 The view is a rounded rect, painted black with 0.5 transparency.
 
 Here's the problem...
 I have written some code in the drawRect method to produce an evenly spaced grid of line.
-The problem is that even though I have set the alpha of the General/NSBezierPath to 0.5, they exhibit really odd behaviour:
+The problem is that even though I have set the alpha of the NSBezierPath to 0.5, they exhibit really odd behaviour:
 The vertical lines draw at alpha of 1.0. 
 The horizontal lines draw at an alpha of 1.0 until the last few which progressivly get more transparent!
 
@@ -25,16 +25,16 @@ More info: The 'rect' comes IB where I have set the size of the Window and View 
 	//now we know the size of the view and how many times to draw a line in the x & y axis of the view
 	//the nextstep (see what I did there! ) is to draw the lines...
 	
-	General/NSBezierPath *gridLine = General/[NSBezierPath bezierPath]; //Create an General/NSBezierPath
-	General/NSColor *gridColor = General/[[NSColor whiteColor]colorWithAlphaComponent:0.5];//Set the color and the alpha channel for the lines
+	NSBezierPath *gridLine = [NSBezierPath bezierPath]; //Create an NSBezierPath
+	NSColor *gridColor = [[NSColor whiteColor]colorWithAlphaComponent:0.5];//Set the color and the alpha channel for the lines
 	[gridLine setLineWidth:1]; //set the line width
 	[gridColor set]; //set the line colour
 	//now the loop we run through to draw the lines going vertically
 	int i;
 	int coordX = (divider - 1);
 	for (i = 0; i <= countX; i++) {
-		[gridLine moveToPoint: General/NSMakePoint(coordX,0)];
-		[gridLine lineToPoint: General/NSMakePoint(coordX,rectHeight)];
+		[gridLine moveToPoint: NSMakePoint(coordX,0)];
+		[gridLine lineToPoint: NSMakePoint(coordX,rectHeight)];
 		[gridLine stroke];
 		coordX = coordX + (divider - 1);
 	}
@@ -42,15 +42,15 @@ More info: The 'rect' comes IB where I have set the size of the Window and View 
 	int j;
 	int coordY = divider;
 	for (j = 0; j <= countY; j++) {
-		[gridLine moveToPoint: General/NSMakePoint(0,coordY)];
-		[gridLine lineToPoint: General/NSMakePoint(rectWidth,coordY)];
+		[gridLine moveToPoint: NSMakePoint(0,coordY)];
+		[gridLine lineToPoint: NSMakePoint(rectWidth,coordY)];
 		[gridLine stroke];
 		coordY = coordY + (divider - 1);
 	}
 
 
 ----
-Don't reuse your General/NSBezierPath. Each time you do a moveToPoint:/lineToPoint: combo you are *adding* to the path. Stroking the path doesn't clear it, so by the time you get to the last iteration in your loop, you have a path which contains many line segments, and you draw them all. The first lines appear opaque because you've been drawing them over and over again. The last ones get drawn fewer, all the way down to the last one which gets drawn only once, so it appears to work.
+Don't reuse your NSBezierPath. Each time you do a moveToPoint:/lineToPoint: combo you are *adding* to the path. Stroking the path doesn't clear it, so by the time you get to the last iteration in your loop, you have a path which contains many line segments, and you draw them all. The first lines appear opaque because you've been drawing them over and over again. The last ones get drawn fewer, all the way down to the last one which gets drawn only once, so it appears to work.
 
 Either move the stroke outside of the loop, or make a separate path each time through the loop to stroke it, and your problem should go away.
 

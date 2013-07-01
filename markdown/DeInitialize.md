@@ -11,10 +11,10 @@ They are programmed this way because they're central classes, and almost every o
 + (void)initialize
 {
     // do some stuff here
-    General/IORegisterForSystemPower( refCon, &notifyPortRef, General/MySleepCallBack, &notifierObject );
+    IORegisterForSystemPower( refCon, &notifyPortRef, MySleepCallBack, &notifierObject );
 }
 
-I'm not entirely sure if I NEED to call General/IODeregisterForSystemPower before my application exists, but I thought I probably should just in case.  (And if you know the answer to this question, I'd also love to hear it.)
+I'm not entirely sure if I NEED to call IODeregisterForSystemPower before my application exists, but I thought I probably should just in case.  (And if you know the answer to this question, I'd also love to hear it.)
 Where would be a good place to do this?
 I know that init has a corresponding dealloc function.
 Does initialize have a corresponding deinitialize, or something similar?
@@ -33,10 +33,10 @@ There's also nothing "static" about the class methods.  They are fully polymorph
 Now, quite apart from whether the original poster's design pattern makes any sense at all in Objective-C, the answer is to register for the 
 applicationShouldTerminate: or applicationWillTerminate: notification or delegate message and do any clean-up there. 
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/AppArchitecture/Tasks/General/GracefulAppTermination.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/AppArchitecture/Tasks/GracefulAppTermination.html
 
 ----
 
 Yes, "class methods" is what I meant.  Thanks for reminding me.  It gets confusing when you have to switch back and forth between Java at work, and Cocoa at home.
 
-And the notification General/NSApplicationWillTerminateNotification' will work just perfectly.  Thank you.
+And the notification NSApplicationWillTerminateNotification' will work just perfectly.  Thank you.

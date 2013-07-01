@@ -2,7 +2,7 @@
 
 I'll try to describe the issue I'm having but I'd be more than happy to share my code with anyone willing to have a look and help me out.
 
-I believe that I understand how General/AsyncSockets work, however I'm getting behavior that I'm not expecting.
+I believe that I understand how AsyncSockets work, however I'm getting behavior that I'm not expecting.
 
 My project is in it's infancy but I have a server app and a client app.  The client establishes a connection to a socket in the server and that socket is put into an array of sockets.  When my client sends the string "employeedata" the server should then forward, on the requesting socket, a string containing a list of employee information.
 

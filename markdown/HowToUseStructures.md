@@ -57,10 +57,10 @@ typedef struct {
 
 Also, this topic is all covered in Kernighan & Richie's "The C Programming Language", a book every C-based programming-language programmer should memorize.
 
-Also, for the love of Pete, can we General/StopUsingMyInVariableNames? This probably goes without saying, but it's a very bad habit.
+Also, for the love of Pete, can we StopUsingMyInVariableNames? This probably goes without saying, but it's a very bad habit.
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
-Back to General/HowToProgramInOSX
+Back to HowToProgramInOSX

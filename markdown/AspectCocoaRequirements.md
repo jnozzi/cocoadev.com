@@ -1,25 +1,25 @@
-**General/AspectCocoaRequirements** - 
+**AspectCocoaRequirements** - 
 
 **Supported Pointcuts:**
-*a single or limited set of (yet to be allocated) instances of a class or multiple classes  General/ACInstanceAspect
-*all instances of a class or multiple classes  General/ACClassAspect
+*a single or limited set of (yet to be allocated) instances of a class or multiple classes  ACInstanceAspect
+*all instances of a class or multiple classes  ACClassAspect
 
-General/ACClassScope
-*choose between the Class, General/MetaClass, or both.
+ACClassScope
+*choose between the Class, MetaClass, or both.
 
-General/ACClassFilter
+ACClassFilter
 *filter classes based on class name
 *filter classes based on common inheritance
 *filter classes based on common protocol
 *filter classes based on responding to some method
 *filter classes based on if they are part of the Cocoa foundation or application layers
 
-General/ACMethodScope
+ACMethodScope
 *a single method on the chosen classes (and/or it's superclasses)
 *multiple methods on the chosen classes (and/or it's superclasses)
 *all methods on the chosen classes (and/or it's superclasses)
 
-General/ACMethodFilter
+ACMethodFilter
 *filter methods based on name
 *filter methods based on return type
 *filter methods based on argument types
@@ -34,7 +34,7 @@ General/ACMethodFilter
 
 **Supported Advice:**
 
-General/ACAdvice
+ACAdvice
 *Before
 *After
 *Around

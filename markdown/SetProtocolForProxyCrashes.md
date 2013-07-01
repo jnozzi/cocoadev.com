@@ -1,8 +1,8 @@
 Hi, I was wondering if someone could help me. My app has several classes, and calls the other classes through a protocol and a proxy that uses that protocol. The problem is, however, that my app crashes with a EXC_BAD_ACCESS message on the SIGSEGV signal, when I try to setProxyForProtocol.
 
-    - (General/IBAction)daemonStart:(id)sender
+    - (IBAction)daemonStart:(id)sender
 {
-    daemonProcess = General/[[NSTask alloc] init];
+    daemonProcess = [[NSTask alloc] init];
     [daemonProcess setLaunchPath:@"~/Library/Application Support/mlPanther/mlnet"];
     [daemonProcess launch];
     [statusLine setStringValue:@"Connecting to file-sharing networks..."];
@@ -10,40 +10,40 @@ Hi, I was wondering if someone could help me. My app has several classes, and ca
     [stopButton setEnabled:YES];
     id ipcProxy;
     [ipcProxy setProtocolForProxy:@protocol(ipcStuff)];
-    General/NSString *connectionReply = [ipcProxy startIPC];
-    General/NSRunAlertPanel(@"Reply",connectionReply,@"OK",nil,nil); //for debugging purposes
+    NSString *connectionReply = [ipcProxy startIPC];
+    NSRunAlertPanel(@"Reply",connectionReply,@"OK",nil,nil); //for debugging purposes
     id rawIOProxy;
-    [rawIOProxy setProtocolForProxy:@protocol(General/RawIO)];
+    [rawIOProxy setProtocolForProxy:@protocol(RawIO)];
     [rawIOProxy appendToConversation:connectionReply];
 }
 
 What am I doing wrong?
 
--- General/AaronRussell
+-- AaronRussell
 
 ----
 
-You declare ipcProxy (which will have a random value taken from whatever data is on the call stack), and then you send it a message.  The runtime doesn't know you've given it an unintialzied varible, so it crashes. ++General/MarkDalrymple
+You declare ipcProxy (which will have a random value taken from whatever data is on the call stack), and then you send it a message.  The runtime doesn't know you've given it an unintialzied varible, so it crashes. ++MarkDalrymple
 
 ----
 
 So if I changed     id ipcProxy; to     id ipcProxy = nil; would that fix it?
 
--- General/AaronRussell
+-- AaronRussell
 
 ----
 
-It would fix the crash, but then you'd be sending a message to a nil object, which is a no-op.  You'll need to do an alloc/init of the proper class (whatever it is that's taking the startIPC method), or use whatever method that class provides to get ahold of the IPC proxy.  It doesn't look like a standard Cocoa class, so I don't know what to suggest beyond that.  ++General/MarkDalrymple
+It would fix the crash, but then you'd be sending a message to a nil object, which is a no-op.  You'll need to do an alloc/init of the proper class (whatever it is that's taking the startIPC method), or use whatever method that class provides to get ahold of the IPC proxy.  It doesn't look like a standard Cocoa class, so I don't know what to suggest beyond that.  ++MarkDalrymple
 
 ----
 
-The IPC class is a standard Cocoa class, but I can't figure out how to call it properly (I don't want to call it as     [IPC startIPC]; because that'd invoke     +(General/NSString *)startIPC instead of     -(General/NSString *)startIPC).
+The IPC class is a standard Cocoa class, but I can't figure out how to call it properly (I don't want to call it as     [IPC startIPC]; because that'd invoke     +(NSString *)startIPC instead of     -(NSString *)startIPC).
 
--- General/AaronRussell
+-- AaronRussell
 
 ----
 
-Is it really a standard Cocoa class?  I don't see any "startIPC" in the cocoa header files (in fact, I can't find it in any *.h file in /System/Library/Frameworks).  Which makes me think it's one of  your classes, or something you're getting from another libbrary.  In any case, you need to figure out the class of this IPC object, and either create one of  your own, or get one from somewhere else. ++General/MarkDalrymple
+Is it really a standard Cocoa class?  I don't see any "startIPC" in the cocoa header files (in fact, I can't find it in any *.h file in /System/Library/Frameworks).  Which makes me think it's one of  your classes, or something you're getting from another libbrary.  In any case, you need to figure out the class of this IPC object, and either create one of  your own, or get one from somewhere else. ++MarkDalrymple
 
 ----
 
@@ -53,16 +53,16 @@ Here's my IPC.h file:
     #import <Foundation/Foundation.h>
 
 
-@interface IPC : General/NSObject
+@interface IPC : NSObject
 {
 }
 @end
 
 @protocol ipcStuff
-- (General/NSString *)startIPC;
+- (NSString *)startIPC;
 @end
 
--- General/AaronRussell
+-- AaronRussell
 
 ----
 
@@ -76,23 +76,23 @@ What exactly are you trying to accomplish. I might be able to help more if I had
 
 BTW: instances are created in the following manner:
     
-id anInstance = General/[[InstanceClass alloc] init];
+id anInstance = [[InstanceClass alloc] init];
 
 
-where -init can be replaced with any initializer for the object (for instance initWithString: for General/NSString).
+where -init can be replaced with any initializer for the object (for instance initWithString: for NSString).
 
-This is what you need to do to fix your runtime error (create an instance of your class) --General/EliotSimcoe
-
-----
-
-I've written a class that handles data transmission to/from the server process. I want to be able to call it from any other class as an instance method. But I can only figure out how to call it as a class method. In your example, what would I put in place of     General/InstanceClass to be able to call the instance method     startIPC from the class     IPC?
+This is what you need to do to fix your runtime error (create an instance of your class) --EliotSimcoe
 
 ----
 
-You haven't actually implemented the method, so there is no way for you to call it. Check out http://developer.apple.com/documentation/Cocoa/Conceptual/General/ObjectiveC/index.html it will answer all of your questions. Read it thoroughly --General/EliotSimcoe
+I've written a class that handles data transmission to/from the server process. I want to be able to call it from any other class as an instance method. But I can only figure out how to call it as a class method. In your example, what would I put in place of     InstanceClass to be able to call the instance method     startIPC from the class     IPC?
+
+----
+
+You haven't actually implemented the method, so there is no way for you to call it. Check out http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/index.html it will answer all of your questions. Read it thoroughly --EliotSimcoe
 
 ----
 
 I figured it out. I was missing     @class IPC; from my calling class's header file. D'oh. Thanks for your help Mark and Eliot!
 
---General/AaronRussell
+--AaronRussell

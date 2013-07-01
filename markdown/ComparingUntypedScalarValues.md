@@ -6,23 +6,23 @@ Basically, I'm using ISO C's qsort/bsearch implementations to keep the set order
 
 The only thing is, I have no idea if it's possible to do this properly. Can I compare the values of void **s? Will it matter if they're different sizes? It's a bit of a problem.
 
-Can anybody help me with this? I'm great with the General/ObjC stuff but pointers in C were lightly skipped over in my programming course so I still trip up there now and then.
+Can anybody help me with this? I'm great with the ObjC stuff but pointers in C were lightly skipped over in my programming course so I still trip up there now and then.
 
--- General/RobRix
+-- RobRix
 
 A pointer is just an integer referencing the first byte of the data in memory; it is thus unique unless you start storing both C structs and their first elements in the set, i.e.     
 struct { int b; } a;
-General/InsertElement(&a);
-General/InsertElement(&a.b); // Same address in memory!
+InsertElement(&a);
+InsertElement(&a.b); // Same address in memory!
 
- -- General/KritTer
+ -- KritTer
 
 Yes... this I understand. Unfortunately that doesn't really help me much, but I could be missing something there.
 
 Anyhow, to (hopefully) clarify a little...
 
     
-static int		General/SCompare(const void *a, const void *b)
+static int		SCompare(const void *a, const void *b)
 {
 	if(a < b)
 		return -1;
@@ -40,14 +40,14 @@ If this won't work, I have a couple of other cards up my sleeve (as usual), but 
 
 Addendum: Keep in mind that all I care about is what order I should place the items in; I don't need to know the values. I could use 'em as bitfields, if that would be helpful.
 
--- General/RobRix
+-- RobRix
 
 Okay, I think I've answered my own question. Compile and run the following code:
 
     
 #include <stdio.h>
 #include <stdlib.h>
-int General/SCompare(const void *a, const void *b);
+int SCompare(const void *a, const void *b);
 int main(void);
 
 typedef struct {
@@ -74,15 +74,15 @@ a[3] = &w;
 
 v = (Moi *)a[3];
 
-        printf("%d\n", General/SCompare(a[0], a[1]));
-        printf("%d\n", General/SCompare(a[1], a[2]));
-        printf("%d\n", General/SCompare(a[2], a[3]));
-        printf("%d\n", General/SCompare(a[3], a[0]));
-        printf("%d\n", General/SCompare(a[2], a[0]));
+        printf("%d\n", SCompare(a[0], a[1]));
+        printf("%d\n", SCompare(a[1], a[2]));
+        printf("%d\n", SCompare(a[2], a[3]));
+        printf("%d\n", SCompare(a[3], a[0]));
+        printf("%d\n", SCompare(a[2], a[0]));
         printf("%f\n", v->blah);
 }
 
-int             General/SCompare(const void *a, const void *b)
+int             SCompare(const void *a, const void *b)
 {
         long long *aa = (long long *)a;
         long long *bb = (long long *)b;
@@ -109,12 +109,12 @@ bonus points if you can tell me why that fifth one (the comparison between the t
 
 I think I'm going to go about fixing this by whipping up a union of a 64-bit bitfield and a void pointer and using that for the list instead of void *.
 
--- General/RobRix
+-- RobRix
 ----
-OK, I'm not totally familiar with C all that much, but couldn't you have just made the parameters of the General/SCompare function two const long long **s instead of two const void **s? It automatically will typecast the void **s to long long **s instead of having to reassign them to new variables. I get the same output with this change as you indicated up above.
+OK, I'm not totally familiar with C all that much, but couldn't you have just made the parameters of the SCompare function two const long long **s instead of two const void **s? It automatically will typecast the void **s to long long **s instead of having to reassign them to new variables. I get the same output with this change as you indicated up above.
 
 -- Anonymous
 
-This would have been possible, except for how I'm using General/SCompare in the actual class; it has to be used by the C Library's qsort and bsearch functions, both of which require the void **s. And it still wouldn't work properly, because it'd be saying that x and z aren't equal (which they are).
+This would have been possible, except for how I'm using SCompare in the actual class; it has to be used by the C Library's qsort and bsearch functions, both of which require the void **s. And it still wouldn't work properly, because it'd be saying that x and z aren't equal (which they are).
 
--- General/RobRix
+-- RobRix

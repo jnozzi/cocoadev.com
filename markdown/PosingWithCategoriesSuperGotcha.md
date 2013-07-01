@@ -1,11 +1,11 @@
 That's a gotcha with calls to super, not a really special gotcha.  To read up on class posing and categories see 
-General/ExtendingClasses.
+ExtendingClasses.
 
 Summary:  **Messages to super have the same effect as messages to self in a category on a posing subclass.**
 
 I just ran into something that surprised me.  Suppose you have a class 
-    General/MyClass and a subclass     General/MyClassPoser that poses for it.  Now suppose
-you have a category     General/MyClassPoser (Private) containing the following method:
+    MyClass and a subclass     MyClassPoser that poses for it.  Now suppose
+you have a category     MyClassPoser (Private) containing the following method:
 
     
 - (id)valueForKey:(id)aKey
@@ -18,16 +18,16 @@ What do you think would happen if you called the method after posing?
 
     
 
-id object = General/[[MyClass alloc] init];
+id object = [[MyClass alloc] init];
 	
 id dum = [object valueForKey:@"dummy"];
 
 
-I'd expect that you'd get the method defined by     -General/[MyClassPoser(Private) valueForKey:], 
+I'd expect that you'd get the method defined by     -[MyClassPoser(Private) valueForKey:], 
 which would immediately call through to the method originally named by
-    -General/[MyClass valueForKey:], which would either look up the key dummy, or throw 
+    -[MyClass valueForKey:], which would either look up the key dummy, or throw 
 an exception or something.  
-This is what happens if we move     General/MyClassPoser's     valueForKey: method
+This is what happens if we move     MyClassPoser's     valueForKey: method
 from the category to the main implementation.
 
 
@@ -46,7 +46,7 @@ ends up acting like
     
 - (id)valueForKey:(id)aKey
 {
-	General/[[MyClass class] instanceMethodForSelector:@selector(valueForKey:)](self, @selector(valueForKey:), aKey);
+	[[MyClass class] instanceMethodForSelector:@selector(valueForKey:)](self, @selector(valueForKey:), aKey);
 }
 
 
@@ -61,7 +61,7 @@ After posing, that's just the same as
 
 so we go into a tailspin.  I guess this is a bug?  Anyway, I'm submitting it to Apple.
 
--General/KenFerry
+-KenFerry
 
 
 ----
@@ -73,16 +73,16 @@ Hi Ken.  Thanks for putting a note up.  Here's a test case you can include with 
 
 #import <Foundation/Foundation.h>
 
-@interface General/MyClass : General/NSObject {}
+@interface MyClass : NSObject {}
 -(void)foo;
 @end
 
-@implementation General/MyClass
+@implementation MyClass
 -(void)foo
 {
     static unsigned int call = 1;
     if (call < 3) {
-	General/NSLog(@"-General/[MyClass foo]\n");
+	NSLog(@"-[MyClass foo]\n");
 	call++;
     } else {
 	assert(0);
@@ -90,22 +90,22 @@ Hi Ken.  Thanks for putting a note up.  Here's a test case you can include with 
 }
 @end
 
-@interface General/MyClassPoser : General/MyClass {}
+@interface MyClassPoser : MyClass {}
 @end
 
-@implementation General/MyClassPoser
+@implementation MyClassPoser
 @end
 
-@interface General/MyClassPoser (Category)
+@interface MyClassPoser (Category)
 -(void)foo;
 @end
 
-@implementation General/MyClassPoser (Category)
+@implementation MyClassPoser (Category)
 -(void)foo
 {
     static unsigned int call = 1;
     if (call < 3) {
-	General/NSLog(@"-General/[MyClassPoser foo]\n");
+	NSLog(@"-[MyClassPoser foo]\n");
 	call++;
 	[super foo];
     } else {
@@ -115,10 +115,10 @@ Hi Ken.  Thanks for putting a note up.  Here's a test case you can include with 
 @end
 
 int main (int argc, const char * argv[]) {
-    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 		
-    General/[MyClassPoser poseAsClass: General/[MyClass class]];
-    id object = General/[[MyClass alloc] init];
+    [MyClassPoser poseAsClass: [MyClass class]];
+    id object = [[MyClass alloc] init];
     [object foo];
 	
     [object release];
@@ -136,4 +136,4 @@ Thanks for the code jd.  I already included a test foundation project with my or
 
 I think your test makes this page easier to understand though.
 
--General/KenFerry
+-KenFerry

@@ -1,24 +1,24 @@
-Describe General/NSConnection here.
-For communication between threads, and in particular to General/AppKit, see: http://lachand.free.fr/cocoa/Threads.html 
+Describe NSConnection here.
+For communication between threads, and in particular to AppKit, see: http://lachand.free.fr/cocoa/Threads.html 
 
 ----
 
-Here's a simple example that shows how to use an General/NSConnection to communicate between processes.
+Here's a simple example that shows how to use an NSConnection to communicate between processes.
 
 **Server Object Methods**
 
     
 
 -(void)awakeFromNib {
-    General/NSConnection *serverConnection=General/[NSConnection defaultConnection];
+    NSConnection *serverConnection=[NSConnection defaultConnection];
     [serverConnection setRootObject:self];
-    [serverConnection registerName:@"General/SimpleServerConnection"];
+    [serverConnection registerName:@"SimpleServerConnection"];
 
 }
 
--(General/NSString *)request:(General/NSString *)request {
-    id reply=General/[NSString stringWithFormat:@"server has received request: %@", request];
-    General/NSLog(reply);
+-(NSString *)request:(NSString *)request {
+    id reply=[NSString stringWithFormat:@"server has received request: %@", request];
+    NSLog(reply);
     return reply;
 }
 
@@ -28,11 +28,11 @@ Here's a simple example that shows how to use an General/NSConnection to communi
 
     
 
-- (General/IBAction)go:(id)sender
+- (IBAction)go:(id)sender
 {
-    General/NSProxy *proxy=General/[NSConnection rootProxyForConnectionWithRegisteredName:@"General/SimpleServerConnection" host:nil];
+    NSProxy *proxy=[NSConnection rootProxyForConnectionWithRegisteredName:@"SimpleServerConnection" host:nil];
     id reply=[proxy request:@"echo this"];
-    General/NSLog(reply);
+    NSLog(reply);
 }
 
 
@@ -45,31 +45,31 @@ Using the defaultConnection is a good quick way to make temporary connections, h
 
 ----
 
-How to deregister an General/NSConnection from the General/NSPortNameServer.  Trying to find a way to use the same name twice (in serial, not overlappingly), I tried every method and class in the threading book.  Let's say you've got this class method, which presumably gets called everytime a user clicks a button.
+How to deregister an NSConnection from the NSPortNameServer.  Trying to find a way to use the same name twice (in serial, not overlappingly), I tried every method and class in the threading book.  Let's say you've got this class method, which presumably gets called everytime a user clicks a button.
 
     
 
-#import "General/MyObject.h"
+#import "MyObject.h"
 
-@implementation General/MyObject
+@implementation MyObject
 
-- (General/IBAction)newThread:(id)sender
+- (IBAction)newThread:(id)sender
 {
-	General/[NSThread detachNewThreadSelector:@selector(detachSubthread) toTarget:self withObject:nil];
+	[NSThread detachNewThreadSelector:@selector(detachSubthread) toTarget:self withObject:nil];
 }
 
 - (void)detachSubthread
 {
-    General/NSAutoreleasePool*  pool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool*  pool = [[NSAutoreleasePool alloc] init];
     
-    General/NSConnection *serverConnection = General/[NSConnection defaultConnection];
+    NSConnection *serverConnection = [NSConnection defaultConnection];
 		[serverConnection setRootObject:self];
-    if ( [serverConnection registerName:@"General/SimpleServerConnection"] ) {
-        General/NSLog( @"Thread: successfully registered connection with port %@", 
+    if ( [serverConnection registerName:@"SimpleServerConnection"] ) {
+        NSLog( @"Thread: successfully registered connection with port %@", 
 			   [serverConnection receivePort] );
     } else {
-        General/NSLog( @"Thread: name occupied by %@", 
-			   General/[[NSPortNameServer systemDefaultPortNameServer] portForName:@"General/SimpleServerConnection"] );
+        NSLog( @"Thread: name occupied by %@", 
+			   [[NSPortNameServer systemDefaultPortNameServer] portForName:@"SimpleServerConnection"] );
     }
 
     //[self deregister];	
@@ -80,13 +80,13 @@ How to deregister an General/NSConnection from the General/NSPortNameServer.  Tr
 
 
 Click the button once, and you'll see the first log.  All subsequest clicks show the second log.  Even though the thread is long since dead and gone, its default connection remains registered with that name (as evidenced by the description of the registered port in the log).  
-Remove the comment tag from the deregister method.  The correct way to invalidate the connection seems to be to go inside of the connection and individually invalidate its ports.  You can't just send the connection an -invalidate message, or tell the General/NSPortNameServer to remove the name; it refuses.  Nor will removing this from the runtime loop, having it remove itself from the runtime, or registering it under a different name or nil.
+Remove the comment tag from the deregister method.  The correct way to invalidate the connection seems to be to go inside of the connection and individually invalidate its ports.  You can't just send the connection an -invalidate message, or tell the NSPortNameServer to remove the name; it refuses.  Nor will removing this from the runtime loop, having it remove itself from the runtime, or registering it under a different name or nil.
 
     
 
 - (void)deregister
 {
-	General/[[[NSConnection defaultConnection] receivePort] invalidate];
+	[[[NSConnection defaultConnection] receivePort] invalidate];
 }
 
 @end

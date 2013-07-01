@@ -9,7 +9,7 @@ A class variable is one that is set per class, and exists even if there are no i
 
     
 
-static General/NSString* s_myString = @"Hello, World!";
+static NSString* s_myString = @"Hello, World!";
 
 
 
@@ -17,19 +17,19 @@ As you can see this gets initialised at startup automatically - you don't need t
 
     
 
-+ (id)  General/MySingleton
++ (id)  MySingleton
 {
     static s_single = nil;
 
     if ( s_single == nil )
-        s_single = General/[[MyClass alloc] init];
+        s_single = [[MyClass alloc] init];
 
     return s_single;
 }
 
 
 
-Thus first time it's called, s_single is nil, so the object gets intantiated. Subsequent calls return the same object, because it's a static var. This is equivalent to initialising at startup time, in a way, because the object is made only when it's first used. If it never gets used, why make it at all? --General/GrahamCox
+Thus first time it's called, s_single is nil, so the object gets intantiated. Subsequent calls return the same object, because it's a static var. This is equivalent to initialising at startup time, in a way, because the object is made only when it's first used. If it never gets used, why make it at all? --GrahamCox
 
 ----
 

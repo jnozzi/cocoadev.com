@@ -1,12 +1,12 @@
-In something related to General/KeyCodesAndCharCodes, I've been trying to work out how to set the system volume from within an objective-c app.  While it seems easy enough to tie into the applescript Sripting Additions volume thing, that has the disadvantage that it's only stored in the OS9 System Folder's scripting application folder.  So, no classic install - no sound volume changes.  Can anyone recommend the best way of changing the system volume from a cocoa app?  Ideally, how would one do so not to set levels but relative to current levels? http://goo.gl/General/OeSCu
+In something related to KeyCodesAndCharCodes, I've been trying to work out how to set the system volume from within an objective-c app.  While it seems easy enough to tie into the applescript Sripting Additions volume thing, that has the disadvantage that it's only stored in the OS9 System Folder's scripting application folder.  So, no classic install - no sound volume changes.  Can anyone recommend the best way of changing the system volume from a cocoa app?  Ideally, how would one do so not to set levels but relative to current levels? http://goo.gl/OeSCu
 
-The best way of achieving this would be to use the same calls as the keyboard volume buttons do, so that the user also gets the lovely visual feedback as to the volume level.  How does one call that event, or is it only possible to do this via faking the key presses themselves?  That might be possible using General/CGPostKeyboardEvent (see General/KeyCodesAndCharCodes)...
+The best way of achieving this would be to use the same calls as the keyboard volume buttons do, so that the user also gets the lovely visual feedback as to the volume level.  How does one call that event, or is it only possible to do this via faking the key presses themselves?  That might be possible using CGPostKeyboardEvent (see KeyCodesAndCharCodes)...
 
 --Fred
 
 ----
 
-No progress on hooking into the system sound calls for pretty on-screen displays, but as usual, the header files provide more information than most of the Apple developer website; to get the system volume, use the Carbon call General/GetDefaultOutputVolume(long * level), and to set it use General/SetDefaultOutputVolume(long level).  It's by no means relative, strictly absolute, but with those two it's possible to generate a relative level.
+No progress on hooking into the system sound calls for pretty on-screen displays, but as usual, the header files provide more information than most of the Apple developer website; to get the system volume, use the Carbon call GetDefaultOutputVolume(long * level), and to set it use SetDefaultOutputVolume(long level).  It's by no means relative, strictly absolute, but with those two it's possible to generate a relative level.
 
 More info as I keep glomming the headers :) --Fred
 
@@ -19,7 +19,7 @@ others only support stereo channels.
 so the code below checks both
 
 
- #import <General/CoreAudio/General/CoreAudio.h>
+ #import <CoreAudio/CoreAudio.h>
  
  // getting system volume
  
@@ -293,7 +293,7 @@ This code uses the new Leopard Audio Hardware Services API (ie won't work on Tig
 
 -Ryan 
 
-(Updated to mute the device at very low volumes, after discovering that setting 0.0 often doesnt silence the device. Also removed obselete General/SoundManager code and non-canonical pre-Leopard code).
+(Updated to mute the device at very low volumes, after discovering that setting 0.0 often doesnt silence the device. Also removed obselete SoundManager code and non-canonical pre-Leopard code).
 
 
 ----
@@ -312,15 +312,15 @@ A command line tool to set the system sound value (Mac OS X 10.4).
  setvol 1
  
  code based on:
- http://www.cocoadev.com/index.pl?General/SoundVolume  (General/CoreAudio snippet by .arri)
+ http://www.cocoadev.com/index.pl?SoundVolume  (CoreAudio snippet by .arri)
  
  compile with:
- gcc -Wall -O3 -x objective-c -framework Foundation -framework General/CoreAudio -o setvol setvol.c
+ gcc -Wall -O3 -x objective-c -framework Foundation -framework CoreAudio -o setvol setvol.c
  
  */
  
  #import <Foundation/Foundation.h>
- #import <General/CoreAudio/General/CoreAudio.h>
+ #import <CoreAudio/CoreAudio.h>
  
  int main (int argc, char *argv[]) {
  
@@ -403,19 +403,19 @@ A command line tool to set the system sound value (Mac OS X 10.6).
  ./setvol 1
  
  code based on:
- http://www.cocoadev.com/index.pl?General/SoundVolume  (General/AudioToolbox snippet by Ryan)
+ http://www.cocoadev.com/index.pl?SoundVolume  (AudioToolbox snippet by Ryan)
  
  compile with:
- gcc -Wall -O3 -x objective-c -framework General/AudioToolbox -framework Foundation -framework General/CoreAudio -o setvol setvol.c
+ gcc -Wall -O3 -x objective-c -framework AudioToolbox -framework Foundation -framework CoreAudio -o setvol setvol.c
  
  */
  
  #import <Foundation/Foundation.h>
- #import <General/CoreAudio/General/CoreAudio.h>
- #import <General/AudioToolbox/General/AudioServices.h>
+ #import <CoreAudio/CoreAudio.h>
+ #import <AudioToolbox/AudioServices.h>
  
  
- @interface KNVolumeControl : General/NSObject 
+ @interface KNVolumeControl : NSObject 
  {
  float volume;
  AudioDeviceID defaultOutputDeviceID;
@@ -611,7 +611,7 @@ A command line tool to set the system sound value (Mac OS X 10.6).
  
  int main (int argc, char *argv[]) {
  
-    NSAutoreleasePool * pool = General/NSAutoreleasePool alloc] init];
+    NSAutoreleasePool * pool = NSAutoreleasePool alloc] init];
  
     Float32 involume;
  

@@ -2,9 +2,9 @@
 
  
 *
-General/REALBasic has a lot of plugins to wrap Cocoa
+REALBasic has a lot of plugins to wrap Cocoa
 *
-General/CocoaBasic was started to directly use access/use Cocoa (and frameworks) by a BASIC Dialect
+CocoaBasic was started to directly use access/use Cocoa (and frameworks) by a BASIC Dialect
 
 e.g.
     
@@ -15,9 +15,9 @@ e.g.
 
 translates (virtually as there is no Objective-C layer in between) to
     
-   - (General/NSString *) x:(General/NSString *) a :(General/NSString *) b
+   - (NSString *) x:(NSString *) a :(NSString *) b
      {
-     return General/a stringByAppendingString:@" "] stringByAppendingString:b];
+     return a stringByAppendingString:@" "] stringByAppendingString:b];
      }
 
 

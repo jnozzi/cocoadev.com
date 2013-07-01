@@ -1,6 +1,6 @@
 Hello,
 
-How could I create Finder-like aliases? I tried to read Carbon Alias Manager ,but I can't figure out how to create aliases. I also tried to use General/NDAlias which uses same Carbon Alias Manager but still no luck. :(
+How could I create Finder-like aliases? I tried to read Carbon Alias Manager ,but I can't figure out how to create aliases. I also tried to use NDAlias which uses same Carbon Alias Manager but still no luck. :(
 
 ----
 
@@ -14,14 +14,14 @@ Of course, there's a newer Apple technote (last updated 1999) which provides sou
 
 So it seems to be a mixed message. :-)
 
-The basic summary is that the Finder alias is a resource file, with one 'alis' resource inside. The sample Apple provides makes a relative alias, but you can also create a non-relative (absolute) alias by passing NULL for the "fromFile" parameter of General/NewAlias. There are two important bits of metadata that you must set on the file:
+The basic summary is that the Finder alias is a resource file, with one 'alis' resource inside. The sample Apple provides makes a relative alias, but you can also create a non-relative (absolute) alias by passing NULL for the "fromFile" parameter of NewAlias. There are two important bits of metadata that you must set on the file:
 
-First, set the "kIsAlias" bit in the flags (General/FileInfo.finderFlags or General/FInfo.fdFlags). When you set it, you must also clear the "kHasBeenInited" bit, which tells the Finder that you've been poking around with the file, so that it can fix it up if needed.
+First, set the "kIsAlias" bit in the flags (FileInfo.finderFlags or FInfo.fdFlags). When you set it, you must also clear the "kHasBeenInited" bit, which tells the Finder that you've been poking around with the file, so that it can fix it up if needed.
 
-Second, set the file type of the alias (General/FileInfo.fileType or General/FInfo.fdType). If you look in General/CarbonCore/Finder.h, you'll see a bunch of special alias file types. These are used by the Finder to provide special icons for certain kinds of aliases. You should make an attempt to set the type correctly, but the list is rather large so it might not be simple to do so for all possible alias targets. If you're just creating one particular type of alias it's easier. (The Apple sample code above checked for the application type, 'APPL', and set the file type to kApplicationAliasType / 'adrp'.)
+Second, set the file type of the alias (FileInfo.fileType or FInfo.fdType). If you look in CarbonCore/Finder.h, you'll see a bunch of special alias file types. These are used by the Finder to provide special icons for certain kinds of aliases. You should make an attempt to set the type correctly, but the list is rather large so it might not be simple to do so for all possible alias targets. If you're just creating one particular type of alias it's easier. (The Apple sample code above checked for the application type, 'APPL', and set the file type to kApplicationAliasType / 'adrp'.)
 
- -- General/DrewThaler
+ -- DrewThaler
 
-I had great success with General/NathanDay's General/NDAlias and it's new category that allows writing real aliasses to disk.
+I had great success with NathanDay's NDAlias and it's new category that allows writing real aliasses to disk.
 
--- General/MartinHaecker
+-- MartinHaecker

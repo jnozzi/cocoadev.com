@@ -10,7 +10,7 @@ See http://developer.apple.com/releasenotes/Cocoa/Foundation.html
 
 ----
 
-aka:      -start { while (!General/[[NSThread currentThread] isCancelled]) { /* do some work ... */ } } 
+aka:      -start { while (![[NSThread currentThread] isCancelled]) { /* do some work ... */ } } 
 
 ----
 And this while loop is in the thread-method, right?

@@ -1,20 +1,20 @@
-If you have a bad smell pattern, ala: something that needs to be refactored.  Add it here, like General/ObjCDesignPatterns.
+If you have a bad smell pattern, ala: something that needs to be refactored.  Add it here, like ObjCDesignPatterns.
 
 ----
 
-General/AntiPatterns: [Topic]
+AntiPatterns: [Topic]
 
 ----
 
-General/SwitchStatementsSmell
+SwitchStatementsSmell
 
-General/WhenIsntModelViewControllerAppropriate
+WhenIsntModelViewControllerAppropriate
 
-Some General/AntiPatterns/bad smells that have yet to be described:
+Some AntiPatterns/bad smells that have yet to be described:
 
-General/NonObjectiveObjectiveCee
+NonObjectiveObjectiveCee
 
-General/SingletonPatternSmell
+SingletonPatternSmell
 
 ----
 

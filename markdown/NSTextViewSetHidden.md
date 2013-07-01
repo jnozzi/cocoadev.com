@@ -2,13 +2,13 @@
 
 Hi there,
 
-I'm trying to set a General/NSTextView's setHidden status. The only sure-fire way I can get it to hide is to set it from Interface Builder (but then I can't seem to set it to display when I want to so setHidden: NO doesn't make it appear). I've tried setHidden: YES in the awakeFromNib area but that doesn't do it either. I've added setNeedsDisplay:YES and that doesn't seem to change it either. Suggestions?
+I'm trying to set a NSTextView's setHidden status. The only sure-fire way I can get it to hide is to set it from Interface Builder (but then I can't seem to set it to display when I want to so setHidden: NO doesn't make it appear). I've tried setHidden: YES in the awakeFromNib area but that doesn't do it either. I've added setNeedsDisplay:YES and that doesn't seem to change it either. Suggestions?
 
 ----
 send -setNeedsDisplay:YES to the hidden view's superview when the view his hidden or unhidden.  
 
 [someView setHidden:YES];
-General/someView superview] setNeedsDisplay:YES];
+someView superview] setNeedsDisplay:YES];
 
 And please don't abuse this view hiding feature.  As a general rule, user interface elements should not appear and disappear without using an established GUI convention like tab views...
 
@@ -22,10 +22,10 @@ With that attitude, why give people advice at all?
 If I see somebody doing something potentially stupid, I will inform them of it. This goes for an obvious memory leak, a bit of code that won't work with non-English scripts, or a dumb bit of GUI design.
 
 ----
-I can't see where General/HandlingAccentedCharacters has anything to do with a hidden text view.
+I can't see where HandlingAccentedCharacters has anything to do with a hidden text view.
 
 ----
-See the discussion at the end about using the General/FieldEditor to capture the incoming text but hiding it so it doesn't interfere with your control. The General/FieldEditor is an General/NSTextView.
+See the discussion at the end about using the FieldEditor to capture the incoming text but hiding it so it doesn't interfere with your control. The FieldEditor is an NSTextView.
 
 ----
 
@@ -36,7 +36,7 @@ Where code is posted containing an obvious mistake, then yes, I think that gentl
 ----
 But this *is* an obvious mistake.
 
-People often think that because they spent sixteen hours a day using their computer and experiencing all the various General/GUIs on it, they are qualified to make great General/GUIs. It's not true. Designing a good interface is *hard*, and there are a lot of rules and guidelines on how to do it that are not obvious.
+People often think that because they spent sixteen hours a day using their computer and experiencing all the various GUIs on it, they are qualified to make great GUIs. It's not true. Designing a good interface is *hard*, and there are a lot of rules and guidelines on how to do it that are not obvious.
 
 There are a lot of people out there who aren't aware of some basic rules, like "view should not hide and show without very good reason". This is not a fault, it's just ignorance, like somebody using     +stringWithCString: because they don't realize how badly it will fail with non-English text. Now, why should I point out the latter but not the former?
 
@@ -58,18 +58,18 @@ I had the same problem and     setHidden: on the text view's     enclosingScroll
 I've the following code
 
     
-General/NSView* pane = ...;
+NSView* pane = ...;
 [pane setHidden:YES];
-General/pane superview] setNeedsDisplay:YES];
+pane superview] setNeedsDisplay:YES];
 
     pane is the outlet connected to [[NSTableView descendant in NIB file. With that code I supposed to hide the view. But unfortunately it didn't work. I'm quite new to Cocoa. As far as I understand, this approach, i.e. hiding/showing views is considered to be a "bad practice". Nevertheless, what am I doing wrong???
 
 ----
 Will answer myself :)
-    General/NSTableView is contained in     General/NSClipView which is in it's turn contained in     General/NSScrollView. So, the code should look like this
+    NSTableView is contained in     NSClipView which is in it's turn contained in     NSScrollView. So, the code should look like this
     
-General/NSView* pane = ...;
-General/[pane superview] superview] setHidden:YES];
+NSView* pane = ...;
+[pane superview] superview] setHidden:YES];
 
 
 ----

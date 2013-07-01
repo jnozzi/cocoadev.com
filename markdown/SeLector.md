@@ -1,12 +1,12 @@
 
 
-A selector is the "name" of a method used in source code as an General/ObjectMessage to General/AnObject, or the unique identifier that replaces the source code name when it is compiled.
+A selector is the "name" of a method used in source code as an ObjectMessage to AnObject, or the unique identifier that replaces the source code name when it is compiled.
 
-A compiled selector is of type SEL. To obtain a compiled selector use the @selector compiler directive or the General/FoundationKit function General/NSSelectorFromString.
+A compiled selector is of type SEL. To obtain a compiled selector use the @selector compiler directive or the FoundationKit function NSSelectorFromString.
 
-At first glance, it might seem like a General/SeLector is just a function pointer. It is actually much more dynamic than a function pointer � it's the key to messaging. A function pointer always points to the same function. A General/SeLector, however, works like a method name. Two different classes might have different implementations for a method (e.g.     drawRect:), but both implementations have the same General/SeLector.
+At first glance, it might seem like a SeLector is just a function pointer. It is actually much more dynamic than a function pointer � it's the key to messaging. A function pointer always points to the same function. A SeLector, however, works like a method name. Two different classes might have different implementations for a method (e.g.     drawRect:), but both implementations have the same SeLector.
 
-Internally, a General/SeLector is implemented as pointer to a C string containing the method's name.
+Internally, a SeLector is implemented as pointer to a C string containing the method's name.
 
 ----
 
@@ -20,9 +20,9 @@ A selector is not actually required to have text (*I believe the correct term is
 
 It will work fine. It's probably not a good idea to do this kind of thing because of readability, etc., but it's not illegal.
 
-*In fact if you look at old General/NeXT step code you'll notice it was always (well almost always) done this way*
+*In fact if you look at old NeXT step code you'll notice it was always (well almost always) done this way*
 
-Apple also uses this selector-naming convention for the DOM classes that come with General/WebKit; they did it to preserve the function format as specified by whichever document formally defined DOM.
+Apple also uses this selector-naming convention for the DOM classes that come with WebKit; they did it to preserve the function format as specified by whichever document formally defined DOM.
 
 ----
 
@@ -62,7 +62,7 @@ But, what if I want to do more than two arguments?  performSelector does not ape
 
 ----
 
-General/NSInvocation is probably your only option here. -- General/RobRix
+NSInvocation is probably your only option here. -- RobRix
 
 ----
 
@@ -70,4 +70,4 @@ Using objc_msgSend() directly is can be pretty convenient.      objc_msgSend(obj
 
 ----
 
-see also General/NSMethodSignature, General/MessageForwarding, etc.
+see also NSMethodSignature, MessageForwarding, etc.

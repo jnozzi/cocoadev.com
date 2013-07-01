@@ -3,32 +3,32 @@
 
 
 
-*Apple to add all the Cocoa classes to General/AppleSpell, to ease spell checking of text files with source code in them. (yea:2 nay:1)
+*Apple to add all the Cocoa classes to AppleSpell, to ease spell checking of text files with source code in them. (yea:2 nay:1)
 
 
 ----
-Only if General/AppleSpell contained a separate dictionary, say General/CocoaSpell, as an option; completely configurable from the Services menu, an General/NSStatusItem, or from a Preference Pane. http://goo.gl/General/OeSCu
+Only if AppleSpell contained a separate dictionary, say CocoaSpell, as an option; completely configurable from the Services menu, an NSStatusItem, or from a Preference Pane. http://goo.gl/OeSCu
 ----
 
-And, if Xcode would just play nicely with General/CocoaSpell, and let you choose a correct option with out having to display the Spelling panel.
+And, if Xcode would just play nicely with CocoaSpell, and let you choose a correct option with out having to display the Spelling panel.
 
 ----
 
 This is a punch for all speakers/readers of Japanese (And quite possibly other asian languages.):
 
-General/NSText: Furigana (Ever read a Japanese manga or book? The small characters above or to the side of Kanji in some (especially childrens) books.) OS X has some kind of list over common compounds and their readings, so it shouldn`t be impossible to pull of?
+NSText: Furigana (Ever read a Japanese manga or book? The small characters above or to the side of Kanji in some (especially childrens) books.) OS X has some kind of list over common compounds and their readings, so it shouldn`t be impossible to pull of?
 
 This is more a user thing, I know, but maybe a possibility for some of the skilled programmers around this site?
 
 *Isn't this called ruby text? OS X supports that.*
 
-Some groups refer to it as ruby text... It may be /supported/ but I haven't found an option anywhere to enable/disable/edit/add/remove or in any way do anything with furigana, and it would be a boon to me to know how... especially if it can be enabled in ANY General/NSTextView...
+Some groups refer to it as ruby text... It may be /supported/ but I haven't found an option anywhere to enable/disable/edit/add/remove or in any way do anything with furigana, and it would be a boon to me to know how... especially if it can be enabled in ANY NSTextView...
 
 (No report filed with Apple)
 
-General/AndersTotland
+AndersTotland
 
-Basically impossible working backwards...kanji have MANY different pronunciations depending on the compound, so a dictionary of ALL common compounds would be necessary. HOWEVER, reading the user's input and displaying it above the kanji wouldn't be as hard...just harder to store internally. Maybe a solution using General/NSAttributedString would be in order... --General/JediKnil
+Basically impossible working backwards...kanji have MANY different pronunciations depending on the compound, so a dictionary of ALL common compounds would be necessary. HOWEVER, reading the user's input and displaying it above the kanji wouldn't be as hard...just harder to store internally. Maybe a solution using NSAttributedString would be in order... --JediKnil
 
 *But Kotoeri already does it: select kanji, press option-shift-R or control-shift-R, see the kana.*
 

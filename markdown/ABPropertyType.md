@@ -1,4 +1,4 @@
-Defined in header file <General/AddressBook/General/ABTypedefs.h>
+Defined in header file <AddressBook/ABTypedefs.h>
 
 
 *kABErrorInProperty
@@ -18,4 +18,4 @@ Defined in header file <General/AddressBook/General/ABTypedefs.h>
 *kABMultiDataProperty
 
 
-General/Category:PointlessInformation
+Category:PointlessInformation

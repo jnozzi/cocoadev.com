@@ -1,8 +1,8 @@
 
 
-See also General/NSMenuItemCategory. -- General/DustinVoss
+See also NSMenuItemCategory. -- DustinVoss
 ----
-Header file for General/NSMenuCategory+General/CocoaDevUsersAdditions:
+Header file for NSMenuCategory+CocoaDevUsersAdditions:
     
  #import <AppKit/NSMenu.h>
  
@@ -12,7 +12,7 @@ Header file for General/NSMenuCategory+General/CocoaDevUsersAdditions:
  @end
 
 
-Implementation file for General/NSMenuCategory+General/CocoaDevUsersAdditions:
+Implementation file for NSMenuCategory+CocoaDevUsersAdditions:
     
  #import "NSMenuCategory+CocoaDevUsersAdditions.h"
  
@@ -29,7 +29,7 @@ Implementation file for General/NSMenuCategory+General/CocoaDevUsersAdditions:
      item = [self itemAtIndex:i];
      if ([item hasSubmenu])
      {
-       found = General/item submenu] nestedItemWithTag:aTag];
+       found = item submenu] nestedItemWithTag:aTag];
        if (found != nil)	break;
      }
      else if ([item tag] == aTag)
@@ -60,7 +60,7 @@ Implementation file for General/NSMenuCategory+General/CocoaDevUsersAdditions:
  @end
 
 
-The General/NSMenuItem protocol is now deprecated, edited all id <General/NSMenuItem> to General/NSMenuItem*.
+The NSMenuItem protocol is now deprecated, edited all id <NSMenuItem> to NSMenuItem*.
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

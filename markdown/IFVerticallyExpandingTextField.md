@@ -4,9 +4,9 @@
    Superviews of the textfield and the window containing the textfield autosize
    accordingly.
 
--- General/AndrewBowman
+-- AndrewBowman
 
-General/IFVerticallyExpandingTextField.h
+IFVerticallyExpandingTextField.h
 ----
     
 /*
@@ -36,7 +36,7 @@ General/IFVerticallyExpandingTextField.h
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* General/IFVerticallyExpandingTextField 
+/* IFVerticallyExpandingTextField 
 
    This textfield expands and contracts as it is edited and resized, and behaves
    in a similar manner to the input field in Apple's iChat message windows.
@@ -49,14 +49,14 @@ General/IFVerticallyExpandingTextField.h
 
 #import <Cocoa/Cocoa.h>
 
-enum { General/IFVerticalPadding = 5 };
+enum { IFVerticalPadding = 5 };
 
 
-@interface General/IFVerticallyExpandingTextField : General/NSTextField
+@interface IFVerticallyExpandingTextField : NSTextField
 {
    BOOL superviewsExpandOnGrowth;
    BOOL isCollapsed;
-   General/NSMutableArray *viewMaskPairs; 
+   NSMutableArray *viewMaskPairs; 
 }
 
 - (void) awakeFromNib;
@@ -69,7 +69,7 @@ enum { General/IFVerticalPadding = 5 };
 
 
 
-General/IFVerticallyExpandingTextField.m
+IFVerticallyExpandingTextField.m
 ----
     
 
@@ -100,24 +100,24 @@ General/IFVerticallyExpandingTextField.m
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#import "General/IFVerticallyExpandingTextField.h"
+#import "IFVerticallyExpandingTextField.h"
 
-// Private helper class for associating General/NSViews with autoresizingMasks
-@interface General/IFViewMaskPair : General/NSObject 
+// Private helper class for associating NSViews with autoresizingMasks
+@interface IFViewMaskPair : NSObject 
 {   
-   General/NSView *view;
+   NSView *view;
    unsigned int savedAutoresizingMask;
 }
 
-- (id) initWithView: (General/NSView *)aView;
+- (id) initWithView: (NSView *)aView;
 - (void) restoreAutoresizingMask;
 
 @end
 
 
-@implementation General/IFViewMaskPair 
+@implementation IFViewMaskPair 
 
-- (id) initWithView: (General/NSView *)aView {
+- (id) initWithView: (NSView *)aView {
    self = [super init];
    view = aView;
    savedAutoresizingMask = [view autoresizingMask];
@@ -133,32 +133,32 @@ General/IFVerticallyExpandingTextField.m
 
 
 
-@interface General/IFVerticallyExpandingTextField (PRIVATE)
+@interface IFVerticallyExpandingTextField (PRIVATE)
 
-- (void) autosizeHeight: (General/NSTextView *)fieldEditor;
-- (void) autosizeSuperviewOfView: (General/NSView *)originView withGrowth: (float)growth;
+- (void) autosizeHeight: (NSTextView *)fieldEditor;
+- (void) autosizeSuperviewOfView: (NSView *)originView withGrowth: (float)growth;
 
-- (void) alterAutoresizeMasksForViews: (General/NSArray *)sibViews 
-                      surroundingView: (General/NSView *)originView;
+- (void) alterAutoresizeMasksForViews: (NSArray *)sibViews 
+                      surroundingView: (NSView *)originView;
 - (void) restoreAutoresizeMasks;
 
 @end
 
 
-@implementation General/IFVerticallyExpandingTextField
+@implementation IFVerticallyExpandingTextField
 
 - (void) awakeFromNib {
    superviewsExpandOnGrowth = YES;
    isCollapsed = NO;
-   viewMaskPairs = General/[[NSMutableArray alloc] init];
+   viewMaskPairs = [[NSMutableArray alloc] init];
    
-   if ([self autoresizingMask] & General/NSViewHeightSizable) {
-      [self setAutoresizingMask: [self autoresizingMask] & ~General/NSViewHeightSizable];
+   if ([self autoresizingMask] & NSViewHeightSizable) {
+      [self setAutoresizingMask: [self autoresizingMask] & ~NSViewHeightSizable];
       
-      General/NSLog(@"Warning: General/IFVerticallyExpandingTextField: Vertical autosizing option "
+      NSLog(@"Warning: IFVerticallyExpandingTextField: Vertical autosizing option "
             "in Interface Builder interferes with this class's functionality and has "
             "been temporarily disabled.  Turn off this option for all "
-            "General/IFVerticallyExpandingTextFields in Interface Builder to prevent this warning.");
+            "IFVerticallyExpandingTextFields in Interface Builder to prevent this warning.");
    }
 }
 
@@ -182,8 +182,8 @@ General/IFVerticallyExpandingTextField.m
    // first responder.
    
    BOOL stolenEditor = NO;
-   General/NSWindow *myWindow = [self window];
-   General/NSTextView *fieldEditor = [myWindow fieldEditor: YES forObject: self];
+   NSWindow *myWindow = [self window];
+   NSTextView *fieldEditor = [myWindow fieldEditor: YES forObject: self];
    
    if ([fieldEditor delegate] != self) {
       stolenEditor = YES;
@@ -192,7 +192,7 @@ General/IFVerticallyExpandingTextField.m
       [myWindow makeFirstResponder: self];
       
       // Set cursor to end, breaking the selection
-      [fieldEditor setSelectedRange: General/NSMakeRange(General/self stringValue] length], 0)];
+      [fieldEditor setSelectedRange: NSMakeRange(self stringValue] length], 0)];
    }
    
    [self autosizeHeight: fieldEditor];
@@ -208,8 +208,8 @@ General/IFVerticallyExpandingTextField.m
 
 /* Private methods */
 
-- (void) autosizeHeight: (General/NSTextView *)fieldEditor {
-   General/NSRect newFrame = [self frame];
+- (void) autosizeHeight: (NSTextView *)fieldEditor {
+   NSRect newFrame = [self frame];
    float oldHeight = newFrame.size.height;
    float newHeight;
    float fieldGrowth;
@@ -217,8 +217,8 @@ General/IFVerticallyExpandingTextField.m
    if (isCollapsed)
       newHeight = 0;
    else
-      newHeight = General/fieldEditor layoutManager] usedRectForTextContainer:
-         [fieldEditor textContainer.size.height + General/IFVerticalPadding;
+      newHeight = fieldEditor layoutManager] usedRectForTextContainer:
+         [fieldEditor textContainer.size.height + IFVerticalPadding;
    
    fieldGrowth = newHeight - oldHeight;   
    
@@ -227,9 +227,9 @@ General/IFVerticallyExpandingTextField.m
       // We're expanding or contracting. First adjust our frame, 
       // then see about superviews.
       
-      newFrame.size = General/NSMakeSize(newFrame.size.width, newHeight);
+      newFrame.size = NSMakeSize(newFrame.size.width, newHeight);
       
-      if ([self autoresizingMask] & General/NSViewMinYMargin)
+      if ([self autoresizingMask] & NSViewMinYMargin)
          newFrame.origin.y -= fieldGrowth;
       
       [self setFrame: newFrame];
@@ -240,29 +240,29 @@ General/IFVerticallyExpandingTextField.m
 
       // If superviews are set not to expand on growth, it's best to call display
       // on the window in reponse to this notification to prevent artifacts.
-      General/[[NSNotificationCenter defaultCenter] postNotificationName: @"General/IFTextFieldDidExpandNotification"
+      [[NSNotificationCenter defaultCenter] postNotificationName: @"IFTextFieldDidExpandNotification"
                                                           object: self
                                                         userInfo: 
-         General/[NSDictionary dictionaryWithObject: General/[NSNumber numberWithFloat: fieldGrowth]
-                                     forKey: @"General/IFTextFieldNotificationFieldGrowthItem"]];
+         [NSDictionary dictionaryWithObject: [NSNumber numberWithFloat: fieldGrowth]
+                                     forKey: @"IFTextFieldNotificationFieldGrowthItem"]];
    }
 }
 
 
 
-- (void) autosizeSuperviewOfView: (General/NSView *)originView withGrowth: (float)growth {
+- (void) autosizeSuperviewOfView: (NSView *)originView withGrowth: (float)growth {
    
    // Recursively autosize superviews until we get to a window or scroll view
    
-   General/NSView *currentView = [originView superview];  // current view we are working in
+   NSView *currentView = [originView superview];  // current view we are working in
    
    [self alterAutoresizeMasksForViews: [currentView subviews] surroundingView: originView];
    
-   if (currentView == General/originView window] contentView]) {
+   if (currentView == originView window] contentView]) {
       // First base case, stop recursion when we've reached window's content view
       
       [[NSWindow *myWindow = [originView window];
-      General/NSRect windowFrame = [myWindow frame];
+      NSRect windowFrame = [myWindow frame];
       
       windowFrame.size.height += growth;
       windowFrame.origin.y -= growth;
@@ -273,14 +273,14 @@ General/IFVerticallyExpandingTextField.m
       
       [self restoreAutoresizeMasks];
    }
-   else if ([currentView isKindOfClass: General/[NSScrollView class]]) {
+   else if ([currentView isKindOfClass: [NSScrollView class]]) {
       // Second base case, stop at scrollviews.
       // Trying to get scrollviews' content to expand.
       // Scrollview blocks do appear, but with no arrows or scrolling controls
       // Some help here would be appreciated
       
-      General/NSScrollView *scrollView = (General/NSScrollView *) currentView;
-      General/NSRect contentFrame = General/scrollView contentView] frame];
+      NSScrollView *scrollView = (NSScrollView *) currentView;
+      NSRect contentFrame = scrollView contentView] frame];
       
       contentFrame.size.height += growth;
       contentFrame.origin.y -= growth;
@@ -306,8 +306,8 @@ General/IFVerticallyExpandingTextField.m
 }
 
 
-- (void) alterAutoresizeMasksForViews: (General/NSArray *)siblingViews 
-                         surroundingView: (General/NSView *)originView {
+- (void) alterAutoresizeMasksForViews: (NSArray *)siblingViews 
+                         surroundingView: (NSView *)originView {
    
    // We need to alter the autoresizing masks of surrounding views so they don't 
    // mess up the originView's vertical expansion or contraction.
@@ -315,8 +315,8 @@ General/IFVerticallyExpandingTextField.m
    // This method uses BSD-licensed code from the Disclosable View application 
    // copyright (c) 2002, Kurt Revis of Snoize (www.snoize.com) 
    
-   General/NSEnumerator *enumerator = [siblingViews objectEnumerator];
-   General/NSView *sibView;
+   NSEnumerator *enumerator = [siblingViews objectEnumerator];
+   NSView *sibView;
    unsigned int mask;
    
    while (sibView = [enumerator nextObject]) {
@@ -324,23 +324,23 @@ General/IFVerticallyExpandingTextField.m
          
          // save autoresizingMask for restoration later
          [viewMaskPairs addObject: 
-            General/[[[IFViewMaskPair alloc] initWithView: sibView] autorelease]];
+            [[[IFViewMaskPair alloc] initWithView: sibView] autorelease]];
          
          mask = [sibView autoresizingMask];
          
-         if (General/NSMaxY([sibView frame]) <= General/NSMaxY([originView frame])) {
+         if (NSMaxY([sibView frame]) <= NSMaxY([originView frame])) {
             // This subview is below us. Make it stick to the bottom of the window.
             // It should not change height.
-            mask &= ~General/NSViewHeightSizable;
-            mask |= General/NSViewMaxYMargin;
-            mask &= ~General/NSViewMinYMargin;
+            mask &= ~NSViewHeightSizable;
+            mask |= NSViewMaxYMargin;
+            mask &= ~NSViewMinYMargin;
          } 
          else {
             // This subview is above us. Make it stick to the top of the window.
             // It should not change height.
-            mask &= ~General/NSViewHeightSizable;
-            mask &= ~General/NSViewMaxYMargin;
-            mask |= General/NSViewMinYMargin;
+            mask &= ~NSViewHeightSizable;
+            mask &= ~NSViewMaxYMargin;
+            mask |= NSViewMinYMargin;
          }
          
          [sibView setAutoresizingMask: mask];
@@ -349,7 +349,7 @@ General/IFVerticallyExpandingTextField.m
 }
 
 - (void) restoreAutoresizeMasks {
-   General/IFViewMaskPair *pair;
+   IFViewMaskPair *pair;
    
    while ([viewMaskPairs count]) {
       pair = [viewMaskPairs lastObject];
@@ -361,7 +361,7 @@ General/IFVerticallyExpandingTextField.m
 
 /* Overridden methods */
 
-- (void) textDidChange: (General/NSNotification *)note {
+- (void) textDidChange: (NSNotification *)note {
    [self forceAutosize];
 }
 
@@ -369,8 +369,8 @@ General/IFVerticallyExpandingTextField.m
    [self forceAutosize];
 }
 
-- (void) setStringValue: (General/NSString *)aString {
-   General/NSTextView *myEditor = [self currentEditor];
+- (void) setStringValue: (NSString *)aString {
+   NSTextView *myEditor = [self currentEditor];
    
    if (myEditor)
       [myEditor setString: aString];
@@ -378,7 +378,7 @@ General/IFVerticallyExpandingTextField.m
       [super setStringValue: aString];
    
    // If we don't delay, autosizing won't display correctly
-   General/[NSThread sleepUntilDate: General/[NSDate dateWithTimeIntervalSinceNow: .05]];
+   [NSThread sleepUntilDate: [NSDate dateWithTimeIntervalSinceNow: .05]];
    [self forceAutosize];
 }
 
@@ -403,9 +403,9 @@ General/IFVerticallyExpandingTextField.m
 
 
 ----
-Give it a try!  You should be able to throw this into a project, read the files in Interface Builder, and use the custom class pane to make an General/NSTextField into an General/IFVerticallyExpandingTextField.  You'll need to set the layout and linebreaking attributes for word wrapping for this to work.  
+Give it a try!  You should be able to throw this into a project, read the files in Interface Builder, and use the custom class pane to make an NSTextField into an IFVerticallyExpandingTextField.  You'll need to set the layout and linebreaking attributes for word wrapping for this to work.  
 
-Although expansion should work properly when the textfield is embedded in a subview, I'm having some trouble dealing with General/NSScrollView<nowiki/>s.  The field expands into the scrollview's content view, but none of the controls on the scrollbar appear.  Some help here would be appreciated.
+Although expansion should work properly when the textfield is embedded in a subview, I'm having some trouble dealing with NSScrollView<nowiki/>s.  The field expands into the scrollview's content view, but none of the controls on the scrollbar appear.  Some help here would be appreciated.
 ----
 Added the setStringValue method, can't believe I forgot that.  In my test application I thought I saw a noticeable difference in speed when calling setString on the field editor rather than setStringValue on super, but maybe it was just my imagination.  Can anyone confirm this?
 
@@ -416,13 +416,13 @@ Added the setHidden method.  I haven't tested this one out, so I don't know what
 You're not using setHidden: correctly. setHidden: visually hides the field, but -- by design -- does not hide it for layout purposes. You want to add a new method, setCollapsed: or setMinimized:. You shouldn't need to override setHidden.
 ----
 Thanks for the correction.  I've changed the code to use setCollapsed.  Have you had the chance to play around with this?  Any feedback's welcome.
--- General/AndrewBowman
+-- AndrewBowman
 ----
-I know this post is a bit old, but it was a good starting point for me.  Here's a suggestion for improving the code: use a separate General/NSTextView as a utility object to determine the required height rather than the field editor.  This avoids the issue with moving first responder around unnecessarily.  You'd also probably want to cache the text view rather than create it each time.  Here's a sample of what I'm talking about:
+I know this post is a bit old, but it was a good starting point for me.  Here's a suggestion for improving the code: use a separate NSTextView as a utility object to determine the required height rather than the field editor.  This avoids the issue with moving first responder around unnecessarily.  You'd also probably want to cache the text view rather than create it each time.  Here's a sample of what I'm talking about:
     
-    General/NSTextView *utilityTextView = General/[[NSTextView alloc] initWithFrame:[self frame]];
+    NSTextView *utilityTextView = [[NSTextView alloc] initWithFrame:[self frame]];
     [utilityTextView setString:[self stringValue]];
-    General/utilityTextView layoutManager] glyphRangeForTextContainer:[utilityTextView textContainer; // force layout
-    General/CGFloat newHeight = General/NSHeight(General/utilityTextView layoutManager] usedRectForTextContainer:[utilityTextView textContainer);
+    utilityTextView layoutManager] glyphRangeForTextContainer:[utilityTextView textContainer; // force layout
+    CGFloat newHeight = NSHeight(utilityTextView layoutManager] usedRectForTextContainer:[utilityTextView textContainer);
 
 -- Sean Rich

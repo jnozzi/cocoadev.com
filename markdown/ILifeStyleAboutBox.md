@@ -5,7 +5,7 @@ Any suggestions?
 Thanks.
 
 ----
-Although I haven't looked at the iLife about boxes, if you want to do animated scrolling credits, you should probably have a look at General/NSViewAnimation. Create a view that displays your credits (or whatever), and set it inside another view that defines the boundaries of the scrolling area. Set up the General/NSViewAnimation object appropriately (read the docs -- it's easy) and start the animation running when you display the window. -CS
+Although I haven't looked at the iLife about boxes, if you want to do animated scrolling credits, you should probably have a look at NSViewAnimation. Create a view that displays your credits (or whatever), and set it inside another view that defines the boundaries of the scrolling area. Set up the NSViewAnimation object appropriately (read the docs -- it's easy) and start the animation running when you display the window. -CS
 
 ----
 

@@ -12,23 +12,23 @@ Both dealerPoints and playerPoints and int constants.
 As you might guess, I'm messing around with cocoa and trying to learn how to do things. The code snippet above is for a black jack (quite a sketchy one at that) game. 
 
 ----
-(added this to General/CocoaDiscussions)
+(added this to CocoaDiscussions)
 
 There are ofcourse multiple ways of doing this, and I don't really know which one's the best/most effective but you can sure use:
     
-General/[NSString stringWithFormat:@"%i", dealerPoints];
+[NSString stringWithFormat:@"%i", dealerPoints];
 
 where the %i part depends on what number you have. %i is an int (i think), %ld is a long, and %f and %g are floats.
 
 In you code this is:
     - (void)refreshVals
 {
-    [totalDealer setStringValue: General/[NSString stringWithFormat:@"%i", dealerPoints]];
-    [totalPlayer setStringValue: General/[NSString stringWithFormat:@"%i", playerPoints]];
+    [totalDealer setStringValue: [NSString stringWithFormat:@"%i", dealerPoints]];
+    [totalPlayer setStringValue: [NSString stringWithFormat:@"%i", playerPoints]];
 }
 
 
-But now one question: are totalDealer and totalPlayer General/NSTextField s? If they are, all this can be avoided, using one of these methods:
+But now one question: are totalDealer and totalPlayer NSTextField s? If they are, all this can be avoided, using one of these methods:
     
 [totalDealer setIntValue:dealerPoints];
 [totalDealer setFloatValue:dealerPoints];
@@ -43,15 +43,15 @@ That's because it setIntValue: but you were close.
 
 I am trying to solve question 6 of chapter 6 in Stephen Kochan's book Programming In Objective-C. The questions asks you to write a program that will translate numbers into words. For instance if you type "932", the program's output should be "nine three two". I can't figure out how to accomplish this. The book's website only gives answers to odd-numbered questions, so this one isn't listed there. ----
 
-Specifically, you need to consider that what you typed is already a string. A string is comprised of individual characters. How would YOU go about reading out the individual digits? You'd look at each character in sequence and say the word, right? Since program methods are only procedures for doing stuff, you need to express this process in code. That is, for every  'character' in the string, match that character to its word equivalent and output as needed. Things to check out would be General/NSString and for / while looping (under "flow control" in most books) in your favorite General/ObjectiveC (or even C book). 
+Specifically, you need to consider that what you typed is already a string. A string is comprised of individual characters. How would YOU go about reading out the individual digits? You'd look at each character in sequence and say the word, right? Since program methods are only procedures for doing stuff, you need to express this process in code. That is, for every  'character' in the string, match that character to its word equivalent and output as needed. Things to check out would be NSString and for / while looping (under "flow control" in most books) in your favorite ObjectiveC (or even C book). 
 
 ----
 
-I don't think I can use General/NSString because the book hasn't explored it yet so I'm assuming its possible without it. I don't think i'll even need arrays. I do have working code but the problem is it returns output in the reverse order, so for "932" it returns "two three nine". i am extracting the the right most digit by using the modulus operator (%). I just need to know how to get the left digits in order... or is there a different approach to this? I'll post code in a while, I've gotta run right now.
+I don't think I can use NSString because the book hasn't explored it yet so I'm assuming its possible without it. I don't think i'll even need arrays. I do have working code but the problem is it returns output in the reverse order, so for "932" it returns "two three nine". i am extracting the the right most digit by using the modulus operator (%). I just need to know how to get the left digits in order... or is there a different approach to this? I'll post code in a while, I've gotta run right now.
 
 ----
 
-Well I really can't give you any more details as I have none from you. But be careful with printing material from a book - it is copyrighted material. An example probably falls under 'fair use', but I'm not sure of that. While using math operations in this way is certainly interesting, it's completely unnecessary and error-prone. If it's not an General/NSString, it's likely a General/CString. But it's still a 'string of characters' - treat it as such. It's also worth mentioning that if your code encounters a non-numeric character, it will break. Iterating through each character will solve your reverse problem and the potential for bad user input (looping through each character and testing if it matches "1" "2" or "3", etc. will do nothing if it doesn't match, while your math approach assumes it's all numbers - bad move, crash city).
+Well I really can't give you any more details as I have none from you. But be careful with printing material from a book - it is copyrighted material. An example probably falls under 'fair use', but I'm not sure of that. While using math operations in this way is certainly interesting, it's completely unnecessary and error-prone. If it's not an NSString, it's likely a CString. But it's still a 'string of characters' - treat it as such. It's also worth mentioning that if your code encounters a non-numeric character, it will break. Iterating through each character will solve your reverse problem and the potential for bad user input (looping through each character and testing if it matches "1" "2" or "3", etc. will do nothing if it doesn't match, while your math approach assumes it's all numbers - bad move, crash city).
 
 ----
 
@@ -61,7 +61,7 @@ I suggest a trip to Google. Search for 'convert numbers into words algorithm'. T
 
 It is true that requests for help with homework tend to get wayward answers: it is not really a copyright problem, though, more than the fact that the people with the knowledge and experience to post correct answers identify more with the author than with you! (A small excerpt from a book, especially for personal study or for scholarly analysis, is fair use; but in some countries a 'standalone' work, such as an example, may have copyright encumbrance in its own right - but the fact is that one is not playing fair by publishing a solution when the original author purposefully did not).
 
-For a working example of something similar, could I refer you to the Elephants and Tigers, videlicet http://wdb.apple.com/downloads/macosx/math_science/romanumerator.html, now this project is Java rather than General/ObjectiveC, but you could, as a warm up, translate it into General/ObjectiveC having the the working model beside you. More interestingly, do you think that the interface of this project could be improved: Is the pop-up widget necessary? Should one be able to tab out of fields? Could one make use of a time?
+For a working example of something similar, could I refer you to the Elephants and Tigers, videlicet http://wdb.apple.com/downloads/macosx/math_science/romanumerator.html, now this project is Java rather than ObjectiveC, but you could, as a warm up, translate it into ObjectiveC having the the working model beside you. More interestingly, do you think that the interface of this project could be improved: Is the pop-up widget necessary? Should one be able to tab out of fields? Could one make use of a time?
 
 FWIW, the first Hypercard XCMD I wrote took a number as input like 007 and read it out - spoke it - as "Aught, Aught, Seven".
 

@@ -1,9 +1,9 @@
 
 
-*Discussion moved here because it did not fit on the General/CPlusPlusInCocoa page.*
+*Discussion moved here because it did not fit on the CPlusPlusInCocoa page.*
 
 Here is how you can use the excellent boost::shared_ptr class to manage scope for your objective-C objects, or just to adapt to a C++ interface. A template specialization of shared_ptr  can eliminate the redundant reference count, and improve performance, but is not necessary for basic use.
--General/JeremyJurksztowicz
+-JeremyJurksztowicz
 
     
 // Cpp Files.
@@ -14,7 +14,7 @@ Here is how you can use the excellent boost::shared_ptr class to manage scope fo
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-namespace General/ObjectiveC
+namespace ObjectiveC
 {
 	void release (id obj) { [obj release]; }
 }
@@ -23,23 +23,23 @@ int main (int argc, char * const argv[])
 {
 	using namespace std;
 	using namespace boost;
-	General/NSAutoreleasePool * arp = General/[[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool * arp = [[NSAutoreleasePool alloc] init];
 	{	
-		General/NSAutoreleasePool * subarp = General/[[NSAutoreleasePool alloc] init];
+		NSAutoreleasePool * subarp = [[NSAutoreleasePool alloc] init];
 		
-		General/NSString * aString = General/[NSString stringWithString:@"Some string data."];
-		shared_ptr<General/NSObject> aStringRef([aString retain], General/ObjectiveC::release);
-		shared_ptr<General/NSObject> anotherStringRef = aStringRef;
+		NSString * aString = [NSString stringWithString:@"Some string data."];
+		shared_ptr<NSObject> aStringRef([aString retain], ObjectiveC::release);
+		shared_ptr<NSObject> anotherStringRef = aStringRef;
 		aStringRef.reset();
 		
 		[subarp release];
 		
-		General/NSLog(@"%@", *anotherStringRef);		// Output class.
-		General/NSLog(@"%@", anotherStringRef.get());	// Output instance.
+		NSLog(@"%@", *anotherStringRef);		// Output class.
+		NSLog(@"%@", anotherStringRef.get());	// Output instance.
 		
 		anotherStringRef.reset();
 		
-		General/NSLog(@"%@", anotherStringRef.get());	// Should be nil.
+		NSLog(@"%@", anotherStringRef.get());	// Should be nil.
 	}
 	[arp release];
 	return 0;
@@ -54,7 +54,7 @@ C++ places an emphasis on the stack as opposed to the heap. The STL passes param
 For me, Objective-C (and Microsoft .NET and Borland's Delphi on Windows) is nothing more than the latest funky way to build user interfaces. Write real code in good C++ using templates, the STL, and only the minimum of pointer logic and polymorphism.
 
 ----
-You seriously need to explain this sentiment. First you say that shared_ptr will bite you in the ass, then say that Cocoa's reference counting scheme is poor. I agree with the latter, which is why I propose using shared_ptr! Please tell me your alternative! The above code is working VERY well for me and I no longer have to worry about retain counts going wild (at least in my obj-c++ code). For the record, boost's shared pointer reference counting is being used NOT cocoa's, so if you confuse the two then you could be in trouble (but not necessarily). (writing a template specialization that uses cocoa's reference count is pretty easy if this distinction confuses you, or if it becomes inconvenient {I can think of a few fringe cases [well they are fringe to me!]} <I swear, no more parenthesis!>). -General/JeremyJurksztowicz
+You seriously need to explain this sentiment. First you say that shared_ptr will bite you in the ass, then say that Cocoa's reference counting scheme is poor. I agree with the latter, which is why I propose using shared_ptr! Please tell me your alternative! The above code is working VERY well for me and I no longer have to worry about retain counts going wild (at least in my obj-c++ code). For the record, boost's shared pointer reference counting is being used NOT cocoa's, so if you confuse the two then you could be in trouble (but not necessarily). (writing a template specialization that uses cocoa's reference count is pretty easy if this distinction confuses you, or if it becomes inconvenient {I can think of a few fringe cases [well they are fringe to me!]} <I swear, no more parenthesis!>). -JeremyJurksztowicz
 
 
 ----
@@ -68,7 +68,7 @@ Pardon the sarcasm, but have you noticed that ALL OBJECTIVE-C OBJECTS ARE USED V
 Furthermore, reference counting is a bad idea compared to what... If you have to use pointers (like in Cocoa) then you have to manage pointer lifetime. I see three alternatives: Manual pointer management (BAD), reference counting (BETTER), garbage collection (BEST, [not always, but mostly]). The biggest problem with Objective-C reference counting, that of manual retain/release calls, is handled by the above shared_ptr template. Once you create a shared_ptr<id>, you can treat it like any automatic variable (int, double, structs) and it will be deallocated when the last reference leaves scope. You are aware that C++ stack unwinding is present in Objective-C++, right?
 
 Now tell me one more thing. How am I to use runtime polymorphism without using pointers in C++?
-Don't get me wrong, I am 100% against bald pointers, my current project has > 80,000 lines with over 200 calls to new and only one call to delete. Almost all of the memory is handled by shared_ptr and my program runs for days on end with no memory leaks. No offence, but it sounds like you are confused about reference counting in C++. The only major hazards are circular references (use boost::weak_ptr for that) and memory fragmentation (and only if your app runs for long). If you can substantiate your claim that reference counting is bad in general, or tell me an alternative way to use polymorphism (virtual functions), then I can try to refute some specifics, until then I am afraid you are spewing pure FUD. - General/JeremyJurksztowicz
+Don't get me wrong, I am 100% against bald pointers, my current project has > 80,000 lines with over 200 calls to new and only one call to delete. Almost all of the memory is handled by shared_ptr and my program runs for days on end with no memory leaks. No offence, but it sounds like you are confused about reference counting in C++. The only major hazards are circular references (use boost::weak_ptr for that) and memory fragmentation (and only if your app runs for long). If you can substantiate your claim that reference counting is bad in general, or tell me an alternative way to use polymorphism (virtual functions), then I can try to refute some specifics, until then I am afraid you are spewing pure FUD. - JeremyJurksztowicz
 
 ----
 I must admit, now you are beginning to amuse me.
@@ -90,18 +90,18 @@ If you want to do runtime polymorphism, use a real OO language like Objective-C.
 
 I am glad I amuse you. Now can you tell me some SPECIFIC PROBLEMS with reference counting? All you have written is conjecture and unsupported opinion. Your statement about not using polymorphism in C++ is cryptic, and betrays a bad attitude to the 'funky hybrid' language. I would like to know which multi-million line projects you worked on with C++. Did you ever consider that ALL multi-million line projects can succumb to bad design and bad management? 
 
-You suggest to use a little bit of polymorphism in C++, still without suggesting how I can do this without pointers. If you are confusing massive object heirarchy design (everything derives from a     class Object) with polymorphism, then I can understand. C++ is not well suited to such monolithic heirarchies, Objective-C is. In a way I am following your vague suggestion of using 'a little bit' of polymorphism and mostly relying on the stack already. Most competent C++ programmers do this. Your suggestion that large projects in C++ which use polymorphism are doomed to failure also betays a profound lack of knowledge. The industry I am entering (audio software development) has many multi-million line programs using C++ polymorphism. Even without using smart pointers (a shame IMHO) these applications manage to get by fine, and are maintained and enhanced for years (decade + in some cases). And in these cases C++ cannot easily be replaced because of it's amenability to real-time performance, which many modern languages lack. **cough**Java**cough**. Even more pertinant is the fact that these applications have dynamic plugins which rely in polymorphism to work (VST plugins (c++), General/AudioUnits (c++), RTAS(c++), etc...).
+You suggest to use a little bit of polymorphism in C++, still without suggesting how I can do this without pointers. If you are confusing massive object heirarchy design (everything derives from a     class Object) with polymorphism, then I can understand. C++ is not well suited to such monolithic heirarchies, Objective-C is. In a way I am following your vague suggestion of using 'a little bit' of polymorphism and mostly relying on the stack already. Most competent C++ programmers do this. Your suggestion that large projects in C++ which use polymorphism are doomed to failure also betays a profound lack of knowledge. The industry I am entering (audio software development) has many multi-million line programs using C++ polymorphism. Even without using smart pointers (a shame IMHO) these applications manage to get by fine, and are maintained and enhanced for years (decade + in some cases). And in these cases C++ cannot easily be replaced because of it's amenability to real-time performance, which many modern languages lack. **cough**Java**cough**. Even more pertinant is the fact that these applications have dynamic plugins which rely in polymorphism to work (VST plugins (c++), AudioUnits (c++), RTAS(c++), etc...).
 
 For the record: I agree that using pointer should be limited to where necessary only, but your arguments are very academic and do not help any programmers in the real-world of imperfect tools. This is a Cocoa WIKI. I share your low opinion of Objective-C reference counting, which is why I suggest a safer alternative     shared_ptr. If you want to have an academic discussion concerning the design of current languages, great, there are plenty of message boards for that. I posted the above code to solve real problems I encountered, in the hope of helping real practicing programmers solve similar problems.
 
 Finally, If I am to use 'a little bit of polymorphic behavior' in C++, should I use bald pointers, or reference counted pointers, or perhaps you have an alternative suggestion? I await a specific suggestion as to how to solve a real-world programming problem, that does not rely on 'Switch to language X'.
 
-- General/JeremyJurksztowicz
+- JeremyJurksztowicz
 
 ----
-This is one of the few forums I read on General/CocoaDev because it is specifically about using C++ with Cocoa. So I think discussions about C++ memory management are appropriate for this particular part of General/CocoaDev.
+This is one of the few forums I read on CocoaDev because it is specifically about using C++ with Cocoa. So I think discussions about C++ memory management are appropriate for this particular part of CocoaDev.
 
-I'm not quit a fan of Cocoa. It is much better than the old Toolbox, much better than General/MacApp, and much better than MFC. From my twisted point of view, Cocoa and .NET are very, very similar. I wish things were better, but they aren't, and they are much better than they used to be, so I'm not going to complain about Cocoa that much. I am very happy that Apple created Objective-C++. I seem to be one of the few people that really use Objective-C++. (I also like using .NET with C++.) As far as General/APIs go, I like the Carbon API more. It fits into C++ better. But for User Interfaces, you must go with what your vendor gives you. Apple prefers Cocoa for that, and so do I.
+I'm not quit a fan of Cocoa. It is much better than the old Toolbox, much better than MacApp, and much better than MFC. From my twisted point of view, Cocoa and .NET are very, very similar. I wish things were better, but they aren't, and they are much better than they used to be, so I'm not going to complain about Cocoa that much. I am very happy that Apple created Objective-C++. I seem to be one of the few people that really use Objective-C++. (I also like using .NET with C++.) As far as APIs go, I like the Carbon API more. It fits into C++ better. But for User Interfaces, you must go with what your vendor gives you. Apple prefers Cocoa for that, and so do I.
 
 I think the best example I can give is the iostream part of the C++ standard library. It is very efficient and very much template-based. It is very amenable to iterator-centric design. It has just enough polymorphism, IMO. When I am writing my own iostreams, internally, there are no pointers at all. But the interface I present to the external world is that of std::istream * and std::streambuf *.
 
@@ -114,11 +114,11 @@ Pointers are difficult, powerful, and dangerous. It is fine to use them, but any
 As far as Cocoa goes, I'm not quite comfortable with the Objective-C pointer management. There are lots of side-effects. Objective-C pointer are NOT like C pointers due to the reference counting. I'm just not ready to wrap them in a shared_ptr and forget about it. It seems like it adds a layer of complexity to something already too complex for my tastes.
 ----
 
-I think we are in almost complete agreement, I just jumped on the statement that reference counting is a bad idea in general, because there are few clear alternatives when a pointer to an object is NEEDED (which is sometimes the case). In these cases shared_ptr is exceptionally useful, and very difficult to 'mess up'. That is, other than circular references, there are few opportunities for novices and experts alike to abuse shared_ptr. Otherwise, I cannot pick out something specific you have said which I disagree with. Perhaps we work in very different domains, where a technique which is suitable in one, is depracted in the other. I think I mistook your forceful suggestion of alternatives (specifically using the stack *almost* exclusively, which I agree with by the way) for a denunciation of smart pointers in general. When pointers are necessary (which they are for me and my plugin-happy apps) use a wrapper (auto_ptr or shared_ptr or Loki::General/SmartPtr), I think that such a statement is fairly easy to agree on.
+I think we are in almost complete agreement, I just jumped on the statement that reference counting is a bad idea in general, because there are few clear alternatives when a pointer to an object is NEEDED (which is sometimes the case). In these cases shared_ptr is exceptionally useful, and very difficult to 'mess up'. That is, other than circular references, there are few opportunities for novices and experts alike to abuse shared_ptr. Otherwise, I cannot pick out something specific you have said which I disagree with. Perhaps we work in very different domains, where a technique which is suitable in one, is depracted in the other. I think I mistook your forceful suggestion of alternatives (specifically using the stack *almost* exclusively, which I agree with by the way) for a denunciation of smart pointers in general. When pointers are necessary (which they are for me and my plugin-happy apps) use a wrapper (auto_ptr or shared_ptr or Loki::SmartPtr), I think that such a statement is fairly easy to agree on.
 
 As for using shared_ptr with Cocoa objects, I use it succesfully, and with no problems. If something which you investigate seems too complex for your needs, then you are probably right. After all, only you know what you need to do the job. If others deem that their needs can be satisfied by the shared_ptr code above, then they should only be discouraged by specific flaws presented clearly, not a general 'bad feeling'  about reference counting. Happy programming, let your errors be compile-time and your exceptions few.
 
--General/JeremyJurksztowicz
+-JeremyJurksztowicz
 
 ----
 Thanks so much for this recipe!  I had been wondering if using the automatic reference counting of shared_ptr was possible as an alternative to Cocoa/obj-c's manual reference counting.  I'm an experienced C++ programmer getting into iPhone apps, and I love the ease of use and foolproof interface that shared_ptr provides.  Listening to Cocoa devs talking about hunting down memory leaks because they forgot to manually decrement a ref count somewhere in their program made my jaw drop: "you mean you don't have shared_ptr?" I asked. Because in C++ we figured this out a while ago and it's in the C++0x / TR1 standard now!

@@ -1,25 +1,25 @@
 
 
-General/HigherOrderMessaging (HOM) is the use of a message as the argument for another message. In General/SmallTalk-80, this is typically done with General/CodeBlocks (just called Blocks); you pass a block of code in as the argument in a message, and the method you call will execute it as appropriate.
+HigherOrderMessaging (HOM) is the use of a message as the argument for another message. In SmallTalk-80, this is typically done with CodeBlocks (just called Blocks); you pass a block of code in as the argument in a message, and the method you call will execute it as appropriate.
 
-(Note:  although the first sentence is correct, the second one isn't, see discussion below  -- General/MarcelWeiher )
+(Note:  although the first sentence is correct, the second one isn't, see discussion below  -- MarcelWeiher )
 
-Unfortunately, General/ObjC doesn't have Blocks. They're not a part of the language (although General/BradCox's General/TaskMaster paper outlines them nicely, and the General/PortableObjectCompiler implements them). It's possible to [http://www.propertykita.com/rumah.html Rumah Dijual] implement them on top (as with General/OCBlock), but they're not [http://vamostech.com/gps-tracking GPS Tracker] and [http://www.pedatimotor.com Aksesoris Sparepart motor] a language feature at this point.
+Unfortunately, ObjC doesn't have Blocks. They're not a part of the language (although BradCox's TaskMaster paper outlines them nicely, and the PortableObjectCompiler implements them). It's possible to [http://www.propertykita.com/rumah.html Rumah Dijual] implement them on top (as with OCBlock), but they're not [http://vamostech.com/gps-tracking GPS Tracker] and [http://www.pedatimotor.com Aksesoris Sparepart motor] a language feature at this point.
 
-Luckily, there's another way to do HOM in General/ObjC, and it involves trampolines.
+Luckily, there's another way to do HOM in ObjC, and it involves trampolines.
 
-Consider a category on General/NSArray which adds a single method, -do. -do is used as follows:
+Consider a category on NSArray which adds a single method, -do. -do is used as follows:
 
     
-General/array do] runSomeFancyCode];
+array do] runSomeFancyCode];
 
 
 What's going on here? Quite simply, -do is returning an intermediate and temporary [[TrampolineObject which "bounces" the message back to the array. It's simple:
 
 
-*-do returns the trampoline, which is a subclass of General/NSProxy.
+*-do returns the trampoline, which is a subclass of NSProxy.
 *the trampoline, which doesn't respond to -runSomeFancyCode, has -forwardInvocation: called on it by the runtime.
-*-forwardInvocation: passes the invocation on to a private method on General/NSArray, -do: (note the colon, indicating that it takes an argument).
+*-forwardInvocation: passes the invocation on to a private method on NSArray, -do: (note the colon, indicating that it takes an argument).
 *-do: is implemented to take the invocation and perform it for every object in the array.
 
 
@@ -30,21 +30,21 @@ It's not all wine and roses, unfortunately, because there are problems with -sel
 
 Just a note:
 
-The problem is not the runtime, that is fairly easy to overcome and solved in General/MPWFoundation.  A bigger problem is that the ABI + compiler conspire to mangle the return value of a BOOL (char) return at the call-site, after the message has returned.  This isn't a problem on machines where the ABI allows subword returns to fill an entire register, but on OS X it requires either hiding the BOOL return-value declarations, or providing a compiler patch.  I have done both.
+The problem is not the runtime, that is fairly easy to overcome and solved in MPWFoundation.  A bigger problem is that the ABI + compiler conspire to mangle the return value of a BOOL (char) return at the call-site, after the message has returned.  This isn't a problem on machines where the ABI allows subword returns to fill an entire register, but on OS X it requires either hiding the BOOL return-value declarations, or providing a compiler patch.  I have done both.
 
--- General/MarcelWeiher
+-- MarcelWeiher
 
 
-It's not wine and roses, but it is at the least beer and pizza. Some meandering through Foundation with otool and grep got me the following method on General/NSMethodSignature:
+It's not wine and roses, but it is at the least beer and pizza. Some meandering through Foundation with otool and grep got me the following method on NSMethodSignature:
 
     
 +signatureWithObjCTypes:
 
 
-A brief test of the signature for *that* selector shows that it returns an object, and takes at least one const char * (I'd assume that it's varargs--like General/NSArray's +arrayWithObjects:--but I know for a fact that it accepts strings like "@^v^c"). If it also accepts varargs, you'd do that as follows:
+A brief test of the signature for *that* selector shows that it returns an object, and takes at least one const char * (I'd assume that it's varargs--like NSArray's +arrayWithObjects:--but I know for a fact that it accepts strings like "@^v^c"). If it also accepts varargs, you'd do that as follows:
 
     
-id sig = General/[NSMethodSignature signatureWithObjCTypes:
+id sig = [NSMethodSignature signatureWithObjCTypes:
                 @encode(--return type--),
                 @encode(--argument type--),
                 ...];
@@ -52,11 +52,11 @@ id sig = General/[NSMethodSignature signatureWithObjCTypes:
 
 substituting the return type and argument type(s) as appropriate.
 
-Having this method (and -initWithMethodSignature: on General/NSInvocation) available for public use is desireable for a great variety of runtime hacking prospects. Shall we beg?
+Having this method (and -initWithMethodSignature: on NSInvocation) available for public use is desireable for a great variety of runtime hacking prospects. Shall we beg?
 
-Oops! I forgot to credit General/MarcelWeiher and General/MetaObject for the idea of trampolines for HOM; they have an implementation in General/MPWFoundation, although I don't know if it will even compile on Jaguar. Mad props to Marcel for his excellent work!
+Oops! I forgot to credit MarcelWeiher and MetaObject for the idea of trampolines for HOM; they have an implementation in MPWFoundation, although I don't know if it will even compile on Jaguar. Mad props to Marcel for his excellent work!
 
--- General/RobRix (who decided that somebody else might like trampolines too)
+-- RobRix (who decided that somebody else might like trampolines too)
 
 Actually, the credit isn't quite correct.  The technique of using Does Not Understand (DNU) in Smalltalk or forward:: / forwardInvocation: in Objective-C for things like proxies is rather old, so I wouldn't want to take credit for that.  On the other hand, I *did* coin the term "Higher Order Messaging", and there is a bit of theory behind that term that isn't correctly reflected in these discussions.
 
@@ -70,18 +70,18 @@ With Higher Order Messaging, you actually use messaging as your higher order mec
 
 So it is a much simpler and more coherent mechanism.
 
--- General/MarcelWeiher
+-- MarcelWeiher
 
-To clarify, I was crediting you with introducing me to the concept. -- General/RobRix
+To clarify, I was crediting you with introducing me to the concept. -- RobRix
 
 ----
 
-General/HigherOrderMessaging-related pages:
+HigherOrderMessaging-related pages:
 [Topic]
 
 ----
 
-Discussion refactored to General/HigherOrderMessagingDiscussion for the sake of brevity on what is already a long page.
+Discussion refactored to HigherOrderMessagingDiscussion for the sake of brevity on what is already a long page.
 
 ----
 

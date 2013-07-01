@@ -1,4 +1,4 @@
-This topic is not very Cocoa-related; it's more of a General/MacOSX power user article. However, it's nice and informative and may be of interest to Cocoa developers. As a professional software developer, I personally use my     /Network directory a lot... I frequently switch between machines for testing purposes, and having the right server setup makes it easy to keep the same environment across machines.
+This topic is not very Cocoa-related; it's more of a MacOSX power user article. However, it's nice and informative and may be of interest to Cocoa developers. As a professional software developer, I personally use my     /Network directory a lot... I frequently switch between machines for testing purposes, and having the right server setup makes it easy to keep the same environment across machines.
 
 ----
 
@@ -6,16 +6,16 @@ Ever wondered how the     /Network directory works? You may have seen references
 
 Well,     /Network is (sort of) just an ordinary directory, which you can put static mounts into. It's only sort of ordinary, because the automounter does certain special things there. For example, it automatically creates the "Servers" subdirectory and populates it with links to any mounted servers. But in general you can set up a machine to mount certain server volumes there automatically.
 
-I've only done it with NFS, so that's what I'll discuss here. The reason NFS is useful is because things in     /Network are only mounted once, at startup. So it helps that NFS obeys the Unix permissions model... you can simply mount it once and each user will have appropriate permissions based on their General/UIDs. 
+I've only done it with NFS, so that's what I'll discuss here. The reason NFS is useful is because things in     /Network are only mounted once, at startup. So it helps that NFS obeys the Unix permissions model... you can simply mount it once and each user will have appropriate permissions based on their UIDs. 
 
 These instructions are fairly straightforward for anyone who's ever done server admin work before. If that doesn't describe you, you might want to reconsider doing this ... is it really worth it to you? As usual, there is a small amount of risk if something goes wrong, or if you (or I) make a typo. I believe these instructions to work and I've tried to make them difficult to screw up, but try them at your own risk.
 
 You'll need two things:
 
 
-*An NFS server. This does not need to be a General/MacOSXServer, or even a General/MacOSX machine... you simply need anything that can serve NFS volumes. Set up a directory with applications in it, and export it via NFS.
+*An NFS server. This does not need to be a MacOSXServer, or even a MacOSX machine... you simply need anything that can serve NFS volumes. Set up a directory with applications in it, and export it via NFS.
 
-If you choose to make it a General/MacOSX machine, here's a template for what you might do on the server to set up an export. 
+If you choose to make it a MacOSX machine, here's a template for what you might do on the server to set up an export. 
 
     
 % echo "/Volumes/Share/Applications  -maproot=root -network=10.0.1.0 -mask=255.255.255.0"
@@ -31,11 +31,11 @@ To confirm that the changes were made, you can do this, and you should get back 
 /Volumes/Share/Applications  -maproot=root -network=10.0.1.0 -mask=255.255.255.0
 
 
-Your server won't start serving this export until nfsd is restarted. The simplest way to do this is to reboot the server. Or for the more technically inclined... if it's already running you can     killall -HUP nfsd, and if it's not running you can run the startup script in     /System/Library/General/StartupItems/NFS/NFS. Both need to be done as root.
+Your server won't start serving this export until nfsd is restarted. The simplest way to do this is to reboot the server. Or for the more technically inclined... if it's already running you can     killall -HUP nfsd, and if it's not running you can run the startup script in     /System/Library/StartupItems/NFS/NFS. Both need to be done as root.
 
-*Some way to modify all the client machines to mount the server. If you have a General/NetInfo domain set up, you can make the change in the root domain and every machine in the domain will pick it up automatically. If you don't have a General/NetInfo domain set up, you can just do it for each individual machine manually.
+*Some way to modify all the client machines to mount the server. If you have a NetInfo domain set up, you can make the change in the root domain and every machine in the domain will pick it up automatically. If you don't have a NetInfo domain set up, you can just do it for each individual machine manually.
 
-Since I don't want to get too deep into the gory details of setting up a General/NetInfo domain, here's how you can set up an individual machine manually. Go onto that machine, and do the following:
+Since I don't want to get too deep into the gory details of setting up a NetInfo domain, here's how you can set up an individual machine manually. Go onto that machine, and do the following:
 
     
 % echo "server.example.org:/Volumes/Share/Applications /Network/Applications nfs bg,rw,intr,ttl=0 0 0"
@@ -56,8 +56,8 @@ A few notes:
 
 (1) If you decide to serve     /Network/Users and put home directories on it, remove the "bg" flag from the options... otherwise the server will mount in the background, and it might not be mounted by the time a user logs in. Which means that their home directory won't be available either.
 
-(2) General/LaunchServices will automatically find applications in     /Network/Applications, just like it finds things in     /Applications. You might need to give it a day or so to run its housekeeping tasks before documents belonging to apps in     /Network/Applications will be double-clickable, however.
+(2) LaunchServices will automatically find applications in     /Network/Applications, just like it finds things in     /Applications. You might need to give it a day or so to run its housekeeping tasks before documents belonging to apps in     /Network/Applications will be double-clickable, however.
 
-(3) If you have General/MacOSXServer, don't use Workgroup Manager to modify the exports or the mounts. Its interface really was not designed for dealing with static mounts like this. It probably won't trash your setup, but it won't give you any useful way of modifying them either. I spent several days trying to get WM in 10.2 to provide static NFS mounts the way I wanted them, and it was like beating my head against the wall ... in slooooow moooootioooon. There might be a way to do it but I couldn't manage it. Finally I returned to the command-line way of doing things that I'd learned in 10.0, and that worked perfectly.
+(3) If you have MacOSXServer, don't use Workgroup Manager to modify the exports or the mounts. Its interface really was not designed for dealing with static mounts like this. It probably won't trash your setup, but it won't give you any useful way of modifying them either. I spent several days trying to get WM in 10.2 to provide static NFS mounts the way I wanted them, and it was like beating my head against the wall ... in slooooow moooootioooon. There might be a way to do it but I couldn't manage it. Finally I returned to the command-line way of doing things that I'd learned in 10.0, and that worked perfectly.
 
 ----

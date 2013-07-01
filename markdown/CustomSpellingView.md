@@ -1,45 +1,45 @@
 This article describes how to support spell checking and grammer checking in a custom view. This view supports checking spelling using the Spelling pane and the Edit menu.
 
-There aren't a lot of examples of how to do this. The best one I could find was General/WebKit:
-http://trac.webkit.org/browser/trunk/General/WebKit/mac/General/WebCoreSupport/General/WebEditorClient.mm
+There aren't a lot of examples of how to do this. The best one I could find was WebKit:
+http://trac.webkit.org/browser/trunk/WebKit/mac/WebCoreSupport/WebEditorClient.mm
 
- --General/SaileshAgrawal
+ --SaileshAgrawal
 
 ----
 
     
 #import <Cocoa/Cocoa.h>
 
-@interface General/MyView : General/NSView
+@interface MyView : NSView
 {
-  General/NSString *document;
-  General/NSRange selection;
-  General/NSInteger documentTag;
-  General/NSArray *cachedSpellCheckResults;
-  General/NSInteger misspellingIndex;
-  General/NSInteger misspellingCount;
+  NSString *document;
+  NSRange selection;
+  NSInteger documentTag;
+  NSArray *cachedSpellCheckResults;
+  NSInteger misspellingIndex;
+  NSInteger misspellingCount;
 }
 @end
 
 
 
     
-#import "General/MyView.h"
+#import "MyView.h"
 
 
 static BOOL sContinuousSpellCheckingEnabled = YES;
 static BOOL sGrammarCheckingEnabled = YES;
 
 
-@interface General/MyView ()
+@interface MyView ()
 
-@property (retain) General/NSString *document;
-@property (retain) General/NSArray *cachedSpellCheckResults;
+@property (retain) NSString *document;
+@property (retain) NSArray *cachedSpellCheckResults;
 
 @end
 
 
-@implementation General/MyView
+@implementation MyView
 
 @synthesize document;
 @synthesize cachedSpellCheckResults;
@@ -51,7 +51,7 @@ static BOOL sGrammarCheckingEnabled = YES;
   [super dealloc];
 }
 
-- (void)setDocument:(General/NSString *)newDocument
+- (void)setDocument:(NSString *)newDocument
 {
   [newDocument retain];
   [document release];
@@ -59,17 +59,17 @@ static BOOL sGrammarCheckingEnabled = YES;
   [self setCachedSpellCheckResults:nil];
 }
 
-- (General/NSArray *)spellCheckResults
+- (NSArray *)spellCheckResults
 {
   if (!cachedSpellCheckResults) {
-    General/NSTextCheckingType types = 0;
+    NSTextCheckingType types = 0;
     if (sContinuousSpellCheckingEnabled)
-      types |= General/NSTextCheckingTypeSpelling;
+      types |= NSTextCheckingTypeSpelling;
     if (sGrammarCheckingEnabled)
-      types |= General/NSTextCheckingTypeGrammar;
-    [self setCachedSpellCheckResults:General/[[NSSpellChecker sharedSpellChecker]
+      types |= NSTextCheckingTypeGrammar;
+    [self setCachedSpellCheckResults:[[NSSpellChecker sharedSpellChecker]
                    checkString:document
-                         range:General/NSMakeRange(0, [document length])
+                         range:NSMakeRange(0, [document length])
                          types:types
                        options:nil
         inSpellDocumentWithTag:documentTag
@@ -81,9 +81,9 @@ static BOOL sGrammarCheckingEnabled = YES;
 
 - (void)awakeFromNib
 {
-  [self setDocument:General/[NSMutableString stringWithString:
+  [self setDocument:[NSMutableString stringWithString:
       @"I is a goode reader.\nHelllo worrld this is someething else."]];
-  documentTag = General/[NSSpellChecker uniqueSpellDocumentTag];
+  documentTag = [NSSpellChecker uniqueSpellDocumentTag];
 }
 
 - (BOOL)acceptsFirstResponder
@@ -103,40 +103,40 @@ static BOOL sGrammarCheckingEnabled = YES;
   return YES;
 }
 
-- (void)drawRect: (General/NSRect)rect
+- (void)drawRect: (NSRect)rect
 {
-  General/NSRect bounds = [self bounds];
-  General/[[NSColor lightGrayColor] set];
-  General/NSRectFill(bounds);
+  NSRect bounds = [self bounds];
+  [[NSColor lightGrayColor] set];
+  NSRectFill(bounds);
 
-  if (General/[self window] firstResponder] isEqual:self]) {
+  if ([self window] firstResponder] isEqual:self]) {
     [[[[NSColor blueColor] set];
-    General/NSFrameRectWithWidth(bounds, 4);
+    NSFrameRectWithWidth(bounds, 4);
   }
 
-  General/NSDictionary *attributes = General/[NSDictionary dictionaryWithObjectsAndKeys:
-      General/[NSFont systemFontOfSize:20], General/NSFontAttributeName,
+  NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+      [NSFont systemFontOfSize:20], NSFontAttributeName,
       nil];
-  General/NSDictionary *spellingAttributes = General/[NSDictionary dictionaryWithObjectsAndKeys:
-      General/[NSNumber numberWithInt:General/NSUnderlineStyleSingle | General/NSUnderlinePatternDot], General/NSUnderlineStyleAttributeName,
-      General/[NSColor redColor], General/NSUnderlineColorAttributeName,
+  NSDictionary *spellingAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+      [NSNumber numberWithInt:NSUnderlineStyleSingle | NSUnderlinePatternDot], NSUnderlineStyleAttributeName,
+      [NSColor redColor], NSUnderlineColorAttributeName,
       nil];
-  General/NSDictionary *grammarAttributes = General/[NSDictionary dictionaryWithObjectsAndKeys:
-      General/[NSNumber numberWithInt:General/NSUnderlineStyleSingle | General/NSUnderlinePatternDot], General/NSUnderlineStyleAttributeName,
-      General/[NSColor greenColor], General/NSUnderlineColorAttributeName,
+  NSDictionary *grammarAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+      [NSNumber numberWithInt:NSUnderlineStyleSingle | NSUnderlinePatternDot], NSUnderlineStyleAttributeName,
+      [NSColor greenColor], NSUnderlineColorAttributeName,
       nil];
 
-  General/NSMutableAttributedString *text = General/[[[NSMutableAttributedString alloc]
+  NSMutableAttributedString *text = [[[NSMutableAttributedString alloc]
       initWithString:document
           attributes:attributes] autorelease];
 
-  for (General/NSTextCheckingResult *result in [self spellCheckResults]) {
-    if ([result resultType] & General/NSTextCheckingTypeSpelling) {
+  for (NSTextCheckingResult *result in [self spellCheckResults]) {
+    if ([result resultType] & NSTextCheckingTypeSpelling) {
       [text addAttributes:spellingAttributes range:[result range]];
     }
-    if ([result resultType] & General/NSTextCheckingTypeGrammar) {
-      for (General/NSDictionary *details in [result grammarDetails]) {
-        General/NSRange range = General/details objectForKey:[[NSGrammarRange] rangeValue];
+    if ([result resultType] & NSTextCheckingTypeGrammar) {
+      for (NSDictionary *details in [result grammarDetails]) {
+        NSRange range = details objectForKey:[[NSGrammarRange] rangeValue];
         range.location += [result range].location;
         [text addAttributes:grammarAttributes range:range];
       }
@@ -144,33 +144,33 @@ static BOOL sGrammarCheckingEnabled = YES;
   }
 
   if (selection.length > 0) {
-    General/NSDictionary *selAttributes = General/[NSDictionary dictionaryWithObjectsAndKeys:
-        General/[NSColor selectedTextBackgroundColor], General/NSBackgroundColorAttributeName,
+    NSDictionary *selAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
+        [NSColor selectedTextBackgroundColor], NSBackgroundColorAttributeName,
         nil];
     [text addAttributes:selAttributes
                   range:selection];
   }
 
-  General/NSRect textFrame;
+  NSRect textFrame;
   textFrame.size = [text size];
   textFrame.origin.x = roundf((bounds.size.width - textFrame.size.width) / 2.0);
   textFrame.origin.y = roundf((bounds.size.height - textFrame.size.height) / 2.0);
   [text drawInRect:textFrame];
 }
 
-- (void)setSelection: (General/NSRange)range
+- (void)setSelection: (NSRange)range
 {
   selection = range;
   [self setNeedsDisplay:YES];
 }
 
-- (BOOL)advanceToNextMisspelling: (General/NSTextCheckingResult **)outResult
-                         details: (General/NSDictionary **)outDetails
-                           range: (General/NSRange *)outRange
+- (BOOL)advanceToNextMisspelling: (NSTextCheckingResult **)outResult
+                         details: (NSDictionary **)outDetails
+                           range: (NSRange *)outRange
 {
-  General/NSUInteger findLocation = selection.location + selection.length;
-  for (General/NSTextCheckingResult *result in [self spellCheckResults]) {
-    if ([result resultType] & General/NSTextCheckingTypeSpelling) {
+  NSUInteger findLocation = selection.location + selection.length;
+  for (NSTextCheckingResult *result in [self spellCheckResults]) {
+    if ([result resultType] & NSTextCheckingTypeSpelling) {
       if ([result range].location >= findLocation) {
         *outResult = result;
         *outDetails = nil;
@@ -178,9 +178,9 @@ static BOOL sGrammarCheckingEnabled = YES;
         return YES;
       }
     }
-    if ([result resultType] & General/NSTextCheckingTypeGrammar) {
-      for (General/NSDictionary *details in [result grammarDetails]) {
-        General/NSRange range = General/details objectForKey:[[NSGrammarRange] rangeValue];
+    if ([result resultType] & NSTextCheckingTypeGrammar) {
+      for (NSDictionary *details in [result grammarDetails]) {
+        NSRange range = details objectForKey:[[NSGrammarRange] rangeValue];
         range.location += [result range].location;
         if (range.location >= findLocation) {
           *outResult = result;
@@ -195,53 +195,53 @@ static BOOL sGrammarCheckingEnabled = YES;
   return NO;
 }
 
-- (General/IBAction)checkSpelling:(id)sender
+- (IBAction)checkSpelling:(id)sender
 {
-  General/NSTextCheckingResult *result = nil;
-  General/NSDictionary *details = nil;
-  General/NSRange range;
+  NSTextCheckingResult *result = nil;
+  NSDictionary *details = nil;
+  NSRange range;
   if ([self advanceToNextMisspelling:&result
                              details:&details
                                range:&range]) {
-    if ([result resultType] & General/NSTextCheckingTypeSpelling) {
-      General/[[NSSpellChecker sharedSpellChecker]
+    if ([result resultType] & NSTextCheckingTypeSpelling) {
+      [[NSSpellChecker sharedSpellChecker]
           updateSpellingPanelWithMisspelledWord:[document substringWithRange:range]];
-    } else if ([result resultType] & General/NSTextCheckingTypeGrammar) {
-        General/[[NSSpellChecker sharedSpellChecker]
+    } else if ([result resultType] & NSTextCheckingTypeGrammar) {
+        [[NSSpellChecker sharedSpellChecker]
             updateSpellingPanelWithGrammarString:[document substringWithRange:range]
                                           detail:details];
     }
     [self setSelection:range];
   } else {
-    General/[[NSSpellChecker sharedSpellChecker]
+    [[NSSpellChecker sharedSpellChecker]
         updateSpellingPanelWithMisspelledWord:@""];
-    [self setSelection:General/NSMakeRange(0,0)];
+    [self setSelection:NSMakeRange(0,0)];
   }
 }
 
-- (General/IBAction)changeSpelling:(id)sender
+- (IBAction)changeSpelling:(id)sender
 {
-  General/NSString* newWord = General/sender selectedCell] stringValue];
+  NSString* newWord = sender selectedCell] stringValue];
   if (newWord != nil) {
     [self setDocument:
       [document stringByReplacingCharactersInRange:selection
                                         withString:newWord;
-    General/NSRange range;
+    NSRange range;
     range.location = selection.location + [newWord length];
     range.length = 0;
     [self setSelection:range];
   }
 }
 
-- (General/IBAction)ignoreSpelling:(id)sender
+- (IBAction)ignoreSpelling:(id)sender
 {
-  General/NSString* wordToIgnore = [sender stringValue];
+  NSString* wordToIgnore = [sender stringValue];
   if (wordToIgnore != nil) {
     // TODO This doesn't ignore grammar mistakes.
-    General/[[NSSpellChecker sharedSpellChecker]
+    [[NSSpellChecker sharedSpellChecker]
                     ignoreWord:wordToIgnore
         inSpellDocumentWithTag:documentTag];
-    General/NSRange range;
+    NSRange range;
     range.location = selection.location + [wordToIgnore length];
     range.length = 0;
     [self setSelection:range];
@@ -249,29 +249,29 @@ static BOOL sGrammarCheckingEnabled = YES;
   }
 }
 
-- (General/IBAction)showGuessPanel:(id)sender
+- (IBAction)showGuessPanel:(id)sender
 {
   if (YES) {
-    General/[[[NSSpellChecker sharedSpellChecker] spellingPanel]
+    [[[NSSpellChecker sharedSpellChecker] spellingPanel]
         performSelectorOnMainThread:@selector(makeKeyAndOrderFront:)
                          withObject:nil
                       waitUntilDone:YES];
     [self checkSpelling:nil];
   } else {
-    General/[[[NSSpellChecker sharedSpellChecker] spellingPanel]
+    [[[NSSpellChecker sharedSpellChecker] spellingPanel]
         performSelectorOnMainThread:@selector(close)
                          withObject:nil
                       waitUntilDone:YES];
   }
 }
 
-- (General/IBAction)toggleContinuousSpellChecking:(id)sender
+- (IBAction)toggleContinuousSpellChecking:(id)sender
 {
   sContinuousSpellCheckingEnabled = !sContinuousSpellCheckingEnabled;
   [self setNeedsDisplay:YES];
 }
 
-- (General/IBAction)toggleGrammarChecking:(id)sender
+- (IBAction)toggleGrammarChecking:(id)sender
 {
   sGrammarCheckingEnabled = !sGrammarCheckingEnabled;
   [self setNeedsDisplay:YES];

@@ -1,1 +1,1 @@
-IBM. They make everything from General/PCs to the General/PowerPC and quite a few other things as well. They're also General/LinuxPushers.
+IBM. They make everything from PCs to the PowerPC and quite a few other things as well. They're also LinuxPushers.

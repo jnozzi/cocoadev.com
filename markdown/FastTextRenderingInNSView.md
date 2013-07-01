@@ -4,19 +4,19 @@ I've recently implemented a threadsafe variable tracing API for my AI runtime; t
 
 These values are likely to change fairly often -- in some cases as much as 40 times per second (maybe more), though in practice, not all will change that often and some will almost never change.
 
-I'd use an General/NSTable but in my experience it's not very good for continuously changing information.
+I'd use an NSTable but in my experience it's not very good for continuously changing information.
 
 Anyway, what I'm wondering is if there's a more efficient way to draw an arbitrary string -- likely a short one, just a number -- than by using something like:
 
     
 
-General/NSPoint loc = General/NSMakePoint( ... );
-General/NSString *trace = General/[NSString stringWithFormat: @"%f", someValue ];
+NSPoint loc = NSMakePoint( ... );
+NSString *trace = [NSString stringWithFormat: @"%f", someValue ];
 [trace drawAtPoint: loc withAttributes: nil];
 
 
 
-Admittedly, this is short, legible, and sweet. So from a code standpoint it's perfect. But I imagine there are ways using Quartz to directly draw a string at a point in an General/NSView.
+Admittedly, this is short, legible, and sweet. So from a code standpoint it's perfect. But I imagine there are ways using Quartz to directly draw a string at a point in an NSView.
 
 Any ideas? Or is this not even worth examining?
 
@@ -24,43 +24,43 @@ Another option is to simply have a timestamp for the last time a value was writt
 
 Also, it's important that this it as efficient as possible from a CPU-time standpoint since I want to devote as many cycles as possible to the AI -- not the Gui.
 
---General/ShamylZakariya
+--ShamylZakariya
 
-If you don't need any fanciness, or even if you do possibly, maybe you could use a read only General/NSTextView?  No gaurantees this will be faster however.
+If you don't need any fanciness, or even if you do possibly, maybe you could use a read only NSTextView?  No gaurantees this will be faster however.
 
-- General/FranciscoTolmasky
-
-----
-
-I believe (from General/FastWritesToNSTextView) that he's already tried and discarded this.
-
-You could try drawing the text into an General/OpenGL view - that will happen almost entirely in your graphics card and leave the CPU alone. General/GLTerm [http://www.pollet.net/General/GLterm/] does this, but I have no idea if the performance improvement still holds with Quartz Extreme
+- FranciscoTolmasky
 
 ----
 
-Beware of General/PrematureOptimization. -- General/JosephSpiros
+I believe (from FastWritesToNSTextView) that he's already tried and discarded this.
+
+You could try drawing the text into an OpenGL view - that will happen almost entirely in your graphics card and leave the CPU alone. GLTerm [http://www.pollet.net/GLterm/] does this, but I have no idea if the performance improvement still holds with Quartz Extreme
+
+----
+
+Beware of PrematureOptimization. -- JosephSpiros
 
 ----
 
 Yes, but also beware of writing sloppy, inefficient code that you will optimize later; but which in reality you will forget about because it works "well enough" -- until 2 months later when you notice it's a huge bottleneck thanks to Shark and then you slap your forehead. 
 
-Of course you shouldn't perform low-level optimizations too early but I wouldn't consider the above question low level. I made damn certain that the actual number of redraws is as minimal as possible, and I've capped the update to 5 times per second. But I'm serious that my AI needs as many cycles as possible and between physics, visualization ( General/OpenGL ) and various Cocoa inspector systems there's not much left in my wee 1st gen 12" powerbook.
+Of course you shouldn't perform low-level optimizations too early but I wouldn't consider the above question low level. I made damn certain that the actual number of redraws is as minimal as possible, and I've capped the update to 5 times per second. But I'm serious that my AI needs as many cycles as possible and between physics, visualization ( OpenGL ) and various Cocoa inspector systems there's not much left in my wee 1st gen 12" powerbook.
 
 As it stands, with the above in consideration my display code's fast enough that I don't need to worry about a faster string drawing algorithm; but I might at some point, and I'd like to know -- and others may as well.
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
-I personally wouldn't go for General/OpenGL for textdrawing, but then again, I have no experience whatsoever with General/OpenGL either. I recently managed to get huge speed increases in my app by leaving the drawAtPoint convenience methods, and use General/NSLayoutManager directly. As the name suggests, the General/NSString convenience method is really convenient, but terribly slow. My DNA sequence viewer went from 11s to scroll to the first 200 dna bases to just over 2s... A 500% speed increase, not too bad!
-Have a look at the General/CircleView demo available from Apple. The reason why this is so much faster is that you save the General/NSLayoutManager and General/NSTextStorage objects, and their states. In contrast, the convenience methods have to create all these every time you draw an General/NSString. It's quite a big thing to get in the beginning, but the sample code available should help you get started.
+I personally wouldn't go for OpenGL for textdrawing, but then again, I have no experience whatsoever with OpenGL either. I recently managed to get huge speed increases in my app by leaving the drawAtPoint convenience methods, and use NSLayoutManager directly. As the name suggests, the NSString convenience method is really convenient, but terribly slow. My DNA sequence viewer went from 11s to scroll to the first 200 dna bases to just over 2s... A 500% speed increase, not too bad!
+Have a look at the CircleView demo available from Apple. The reason why this is so much faster is that you save the NSLayoutManager and NSTextStorage objects, and their states. In contrast, the convenience methods have to create all these every time you draw an NSString. It's quite a big thing to get in the beginning, but the sample code available should help you get started.
 Good luck!
 
 --Alex (Mekentosj)
 
 Now, this is VERY appealing. This is exactly what I was looking for, but didn't know how to ask for ;) I've read the sample code and some docs on apple's developer site and it looks quite promising. I'm going to give it a shot, presently. Just have to finish up at the day job, first...
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
@@ -72,11 +72,11 @@ So, I guess I'll probably let it sit where it is. I'm only redrawing 5 times per
 
 My benchmark test is probably going overboard, having twenty or more changing and redrawing ten times per second.
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
-Now, that's weird or not? As far as I understood, drawAtPoint creates the layoutmanager and text container from scratch everytime, and will most probably do the wrapping as well... It's only a convienience method in the end. I might be missing something but perhaps you did not implement it the way it should, did you use the General/CircleView example? There you layout the glyphs one for one, but that's only necessary when you want to position them all independently of each other. If all you do is draw the string the normal way, it should be even simpler and faster. Of course, if you are drawing so few and not very often, why bother indeed. 
+Now, that's weird or not? As far as I understood, drawAtPoint creates the layoutmanager and text container from scratch everytime, and will most probably do the wrapping as well... It's only a convienience method in the end. I might be missing something but perhaps you did not implement it the way it should, did you use the CircleView example? There you layout the glyphs one for one, but that's only necessary when you want to position them all independently of each other. If all you do is draw the string the normal way, it should be even simpler and faster. Of course, if you are drawing so few and not very often, why bother indeed. 
 Maybe somone with more experience (or insight knowledge) can comment?
 Cheers,
 Alex
@@ -92,22 +92,22 @@ The relevant code is this:
 
     
 
-- (void)drawRect:(General/NSRect)rect 
+- (void)drawRect:(NSRect)rect 
 {	
 	[_backgroundColor set];
-	General/NSRectFill( [self bounds] );
+	NSRectFill( [self bounds] );
 
 	[_nameLayout drawGlyphsForGlyphRange: _nameGlyphRange atPoint: _nameLoc];
 	[_valueLayout drawGlyphsForGlyphRange: _valueGlyphRange atPoint: _valueLoc];	
 }
 
-- (void) adopt: (General/TraceAtom *) atom
+- (void) adopt: (TraceAtom *) atom
 {
 	_atom = atom;
 	_atom->data = ( void * ) self;
 		
-	General/NSString *nameString = General/[NSString stringWithCString: _atom->name.c_str()];
-	[_nameStorage setAttributedString: General/[[NSAttributedString alloc] 
+	NSString *nameString = [NSString stringWithCString: _atom->name.c_str()];
+	[_nameStorage setAttributedString: [[NSAttributedString alloc] 
 		initWithString: nameString attributes: _nameAttribs ]];
 	_nameGlyphRange = [_nameLayout glyphRangeForTextContainer: _nameContainer];
 
@@ -125,29 +125,29 @@ The relevant code is this:
 {
 	if ( !_atom )
 	{
-		General/NSLog( @"[%@ formatDisplayString]\tNo _atom!", self );
+		NSLog( @"[%@ formatDisplayString]\tNo _atom!", self );
 		return;
 	}
 
-	General/NSString *valueString = nil;
+	NSString *valueString = nil;
 	
 	switch ( _atom->type )
 	{
-		case General/TraceAtom::Integer:
+		case TraceAtom::Integer:
 		{
-			valueString = General/[NSString stringWithFormat: @"%d", _atom->intValue ];
+			valueString = [NSString stringWithFormat: @"%d", _atom->intValue ];
 			break;
 		}
 		
-		case General/TraceAtom::Float:
+		case TraceAtom::Float:
 		{
-			valueString = General/[NSString stringWithFormat: @"%.3f", _atom->floatValue ];
+			valueString = [NSString stringWithFormat: @"%.3f", _atom->floatValue ];
 			break;
 		}
 
-		case General/TraceAtom::String:
+		case TraceAtom::String:
 		{
-			valueString = General/[NSString stringWithCString: _atom->stringValue.c_str() ];
+			valueString = [NSString stringWithCString: _atom->stringValue.c_str() ];
 			break;
 		}
 
@@ -155,7 +155,7 @@ The relevant code is this:
 	}
 	
 	if ( valueString == nil ) return;
-	[_valueStorage setAttributedString: General/[[NSAttributedString alloc] 
+	[_valueStorage setAttributedString: [[NSAttributedString alloc] 
 		initWithString: valueString attributes: _valueAttribs ]];
 
 	_valueGlyphRange = [_valueLayout glyphRangeForTextContainer: _valueContainer];
@@ -171,11 +171,11 @@ Probably I'm missing something since this would *seem* to be a much more direct 
 
 Of course, this is not really all that important. But it's nagging me. I don't like the feeling of something not working like I expect it to because it means I'm misunderstanding something. And if I'm misunderstanding things, then implicitly the quality of my code will suffer.
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
-You could use ATSUI; I'm not sure if General/CocoaDev has any pages about it. It's Apple's lower-level text API, and it's pretty fast for text that doesn't need to be rewrapped every time its drawn (hint, don't recalculate the layout when you change the text).
+You could use ATSUI; I'm not sure if CocoaDev has any pages about it. It's Apple's lower-level text API, and it's pretty fast for text that doesn't need to be rewrapped every time its drawn (hint, don't recalculate the layout when you change the text).
 
 ---- Jumping in late, as always ... 
 
@@ -189,9 +189,9 @@ Why are you guessing? If you're going to try making your code faster you **must*
 
 *You could use ATSUI *
 
-I'd stick with General/NSLayoutManager ...
+I'd stick with NSLayoutManager ...
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
@@ -199,4 +199,4 @@ I know this is an old discussion, but I thought I would share this link http://w
 
 --zootbobbalu
 
-(also see General/NSTextViewPerformanceEnhancement and http://www.cocoabuilder.com/archive/message/cocoa/2002/11/12/7278)
+(also see NSTextViewPerformanceEnhancement and http://www.cocoabuilder.com/archive/message/cocoa/2002/11/12/7278)

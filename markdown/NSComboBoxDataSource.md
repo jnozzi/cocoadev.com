@@ -1,18 +1,18 @@
-General/NSComboBox Data Source - Populate General/NSComboBox from text file.
+NSComboBox Data Source - Populate NSComboBox from text file.
 
-Basically, I want to populate an General/NSComboBox with the data from a text file.  The code I have is:
+Basically, I want to populate an NSComboBox with the data from a text file.  The code I have is:
 
     
-- (General/IBAction)populate:(id)sender
+- (IBAction)populate:(id)sender
 {
-	General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	General/NSString *string;
-	General/NSString *filename = @"dataSource.txt";
+	NSString *string;
+	NSString *filename = @"dataSource.txt";
 	
-	string = General/[NSString stringWithContentsOfFile: filename];
+	string = [NSString stringWithContentsOfFile: filename];
 	
-	General/NSArray *array = [string componentsSeparatedByString:@"\n"];
+	NSArray *array = [string componentsSeparatedByString:@"\n"];
 	
 	int visibleItems = [array count] - 1;
 	

@@ -1,4 +1,4 @@
-I want to use the General/AltiVec function for performing a scalar product (dot product) of two vectors declared:
+I want to use the AltiVec function for performing a scalar product (dot product) of two vectors declared:
 <code>
 extern float vSdot(
    SInt32 n,
@@ -58,7 +58,7 @@ return(temp2.real);
 
 Thanks for any assistance.
 
-General/WayneContello
+WayneContello
 
 
 ----
@@ -122,10 +122,10 @@ int main()
 
 --LN
 
-for more discussion see General/AltivecOptimization in which this point is mentioned peripherally
+for more discussion see AltivecOptimization in which this point is mentioned peripherally
 
 ----
 
 I assume you are planning on using Altivec for multiplying *sequences* of complex numbers, because otherwise the latency of getting stuff into + out of the Altivec unit is going to totally negate any benefit over just using <code>x.elements.real*y.elements.real + x.elements.imag*y.elements.imag</code> - not to mention the horrors of maintenance you're invoking :)
 
-A quick suggestion that may prove useful when you move from this toy code to something that really uses the power of General/AltiVec: if you're not sure whether your input arrays are aligned or not, just do the start and end elements the non-General/AltiVec way and only start General/AltiVec up at the first 16-byte-aligned position.
+A quick suggestion that may prove useful when you move from this toy code to something that really uses the power of AltiVec: if you're not sure whether your input arrays are aligned or not, just do the start and end elements the non-AltiVec way and only start AltiVec up at the first 16-byte-aligned position.

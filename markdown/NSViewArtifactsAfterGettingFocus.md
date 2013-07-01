@@ -1,7 +1,7 @@
 
 
-I've subclassed an General/NSView to draw an image across it.
-This works fine but everytime I press a button or anything else that is in the view (I have dropped a General/NSSearchField on top of the view in IB so it's in the view)
+I've subclassed an NSView to draw an image across it.
+This works fine but everytime I press a button or anything else that is in the view (I have dropped a NSSearchField on top of the view in IB so it's in the view)
 then lines and other artifacts apper around those objects...
 
 http://www.frikkinsoft.eu/screenshot2.png
@@ -10,19 +10,19 @@ I've just subclassed -drawRect...
 
     
 
-- (void)drawRect:(General/NSRect)rect
+- (void)drawRect:(NSRect)rect
 {	
-	General/NSImage *img = General/[NSImage imageNamed:@"General/BottomBar.tif"];
+	NSImage *img = [NSImage imageNamed:@"BottomBar.tif"];
 
 	[img drawInRect: rect  
-		   fromRect: General/NSZeroRect 
-		  operation: General/NSCompositeSourceOver 
+		   fromRect: NSZeroRect 
+		  operation: NSCompositeSourceOver 
 		   fraction: 1.0];
         [img release];
 	
-	General/NSBezierPath *path = General/[NSBezierPath bezierPathWithRect:rect];
+	NSBezierPath *path = [NSBezierPath bezierPathWithRect:rect];
 	[path setLineWidth:1];
-	General/[[NSColor darkGrayColor] set];
+	[[NSColor darkGrayColor] set];
 	[path stroke];
 }
 

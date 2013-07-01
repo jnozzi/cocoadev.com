@@ -2,23 +2,23 @@ I have a program that opens a file in a normal window with title, etc.; the user
 Here is he code that gets the key window to make a call to make it full Screen.
 
     
-General/ViewController *controller = General/[[NSApp keyWindow] windowController];
+ViewController *controller = [[NSApp keyWindow] windowController];
 if(controller != nil) {
-     General/NSLog(@"Full Screen");
+     NSLog(@"Full Screen");
      [controller changeOrigBySize:(0)];
 }
 
 
-General/ViewController is a subclassed General/NSWindowController that holds the original window.  The program will get the SIGTRAP the second time I run through the above code to disable the full screen.
+ViewController is a subclassed NSWindowController that holds the original window.  The program will get the SIGTRAP the second time I run through the above code to disable the full screen.
 
 And this is how I make the full screen window (if it helps).
 
     
-			General/NSRect rect = General/[[NSScreen mainScreen] frame];
+			NSRect rect = [[NSScreen mainScreen] frame];
 			frame = [window frame];
-			General/NSView *view = [window contentView];
+			NSView *view = [window contentView];
 			
-			General/MovieWindow *fullScreen = General/[[MovieWindow alloc] initWithContentRect:rect styleMask: General/NSBorderlessWindowMask backing: General/NSBackingStoreBuffered defer:NO];
+			MovieWindow *fullScreen = [[MovieWindow alloc] initWithContentRect:rect styleMask: NSBorderlessWindowMask backing: NSBackingStoreBuffered defer:NO];
 			[window close];
 			window = fullScreen;
 			
@@ -28,7 +28,7 @@ And this is how I make the full screen window (if it helps).
 			
 				//make the full screen window visible and order to front
 				[movieView setControllerVisible:NO];
-				[fullScreen setLevel: General/NSScreenSaverWindowLevel - 1];
+				[fullScreen setLevel: NSScreenSaverWindowLevel - 1];
 				[fullScreen makeKeyAndOrderFront:nil];
 						
 				//full Screen is now ON
@@ -36,12 +36,12 @@ And this is how I make the full screen window (if it helps).
                     }
 
 
-General/MovieWindow is a subclassed General/NSWindnow that overloads canBecomeKeyWindow to return YES always.
+MovieWindow is a subclassed NSWindnow that overloads canBecomeKeyWindow to return YES always.
 If anyone can figure out why I am getting this SIGTRAP it would help me a lot.
 
 ----
 
-Well one thing I can see right off the bat is that you are not retaining the original window's content view. When you close the window, depending on its properties, it may be destroyed (released), taking the view with it before it's added to the fullscreen window (and retained by the window on add). Another thing I *think* might be wrong is that, though you set the window's window controller, you don't set the window controller's window. One should trigger the other in my mind, but you might want to double-check that for fact. Also, the documentation for General/NSWindowController's     setWindow  method says, *"You should generally create a new window controller for a new window and release the old window controller instead of using this method."*. So ... yeah.
+Well one thing I can see right off the bat is that you are not retaining the original window's content view. When you close the window, depending on its properties, it may be destroyed (released), taking the view with it before it's added to the fullscreen window (and retained by the window on add). Another thing I *think* might be wrong is that, though you set the window's window controller, you don't set the window controller's window. One should trigger the other in my mind, but you might want to double-check that for fact. Also, the documentation for NSWindowController's     setWindow  method says, *"You should generally create a new window controller for a new window and release the old window controller instead of using this method."*. So ... yeah.
 
 ----
 I did put a retain on original window's content view and that did not fix the problem.  You said that when you create a new window then you should create a new controller.  But right now I have a document that holds a window controller and this has a window on it that starts with a bordered window.  What would be the best way then to make this window full screen and borderless?  There is a movie playing in the beginning window as well, and I would like it to stay at the same place in the timeline during the switch.  Sorry - I am bit confused, I am pretty inexperienced when working with windows.  If it helps... this is a document- based application as well.
@@ -51,7 +51,7 @@ I did put a retain on original window's content view and that did not fix the pr
 Try not closing the window but rather just -orderOut: ...
 
 ----
-If i use orderOut instead of close then no content is displayed on the full screen window, and i get  General/CGSGetSurfaceBounds failed and General/CGSOrderSurface failed errors.
+If i use orderOut instead of close then no content is displayed on the full screen window, and i get  CGSGetSurfaceBounds failed and CGSOrderSurface failed errors.
 
 ----
 
@@ -60,41 +60,41 @@ This all seems very wrong, if you don't mind my saying so. ;-) I'm not sure ther
 ----  
 Well this happens only after I open up a new window and change it to full screen, and then try to do something else with that window.  So here is the code that it goes though
 
-This is how I make the window controller in the General/NSDocument subclass
+This is how I make the window controller in the NSDocument subclass
     
 - (void)makeWindowControllers {
-	General/NSLog(@"I am in makeWindowControllers");
-	windowController = General/[[ViewController alloc] initWithWindowNibName:@"General/ViewController"];
+	NSLog(@"I am in makeWindowControllers");
+	windowController = [[ViewController alloc] initWithWindowNibName:@"ViewController"];
 	[self addWindowController:windowController];
 	if(movieFile != nil) {
-		General/NSLog(@"Setting movieView to movie");
+		NSLog(@"Setting movieView to movie");
 		[windowController setMovieWithFile:movieFile];
 	}
 	else if(movieURL != nil){
-		General/NSLog(@"Setting movieView for a General/URLfile");
+		NSLog(@"Setting movieView for a URLfile");
 		[windowController setMovieWithURL:movieURL];
 	}
 	else 
-		General/NSLog(@"There is no movie variable yet");
+		NSLog(@"There is no movie variable yet");
 }
 
 
 This is how I create a document
     
--(General/IBAction)openMovie:(id)sender {
-	General/NSArray *fileTypes = General/[NSArray arrayWithObjects:@"mov", @"mpg", @"mp3", @"jpg", nil];
-	General/NSOpenPanel *openPanel = General/[NSOpenPanel openPanel];
+-(IBAction)openMovie:(id)sender {
+	NSArray *fileTypes = [NSArray arrayWithObjects:@"mov", @"mpg", @"mp3", @"jpg", nil];
+	NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 	
-	int result = [openPanel runModalForDirectory:General/NSHomeDirectory() file:nil types:fileTypes];
-	if (result == General/NSOKButton) {
-		General/NSString *movieFile = [openPanel filename];
+	int result = [openPanel runModalForDirectory:NSHomeDirectory() file:nil types:fileTypes];
+	if (result == NSOKButton) {
+		NSString *movieFile = [openPanel filename];
 						
-		General/ViewerDoc *viewer = General/[ViewerDoc initWithFileMovie2:movieFile];
+		ViewerDoc *viewer = [ViewerDoc initWithFileMovie2:movieFile];
 		// set up the document
 		if (viewer)
 		{
 			// add the document
-			General/[[NSDocumentController sharedDocumentController] addDocument:viewer];
+			[[NSDocumentController sharedDocumentController] addDocument:viewer];
 			
 			[viewer setTheMovie];
 			// set up the document
@@ -107,20 +107,20 @@ This is how I create a document
 
 And this is how I set the movie in the initial window for the window controller
     
--(void) setMovieWithFile:(General/NSString *)file {
+-(void) setMovieWithFile:(NSString *)file {
 	[self window];
 	if(movieView == nil)
-		General/NSLog(@"I am nil");
-	General/NSLog(@"set movie using file");
-	movie = General/[[QTMovie alloc] initWithFile:file error:nil];
-	General/NSLog([movie attributeForKey:@"General/QTmovieFileNameAttribute"]);
+		NSLog(@"I am nil");
+	NSLog(@"set movie using file");
+	movie = [[QTMovie alloc] initWithFile:file error:nil];
+	NSLog([movie attributeForKey:@"QTmovieFileNameAttribute"]);
 	[movieView setMovie:movie];
 	
 	//set full Screen
 	fullScreenOn = NO;
 	
-	window = (General/MovieWindow*) [movieView window];
-	General/NSSize size = General/movie attributeForKey:@"[[QTMovieNaturalSizeAttribute"] sizeValue]; 
+	window = (MovieWindow*) [movieView window];
+	NSSize size = movie attributeForKey:@"[[QTMovieNaturalSizeAttribute"] sizeValue]; 
 	[window setContentSize:size];
 	frame = [window frame];
 }

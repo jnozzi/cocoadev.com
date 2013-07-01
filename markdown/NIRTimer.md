@@ -1,23 +1,23 @@
-I just created a very simple timer. It is just a wraper around the gettimeofday() funtion, but it make the code using it so much simpler and nice. I enjoyed writing this, and you are invited to improve this if you have any nice idea. --General/NirSoffer
+I just created a very simple timer. It is just a wraper around the gettimeofday() funtion, but it make the code using it so much simpler and nice. I enjoyed writing this, and you are invited to improve this if you have any nice idea. --NirSoffer
 
 **Typical Usage:**
     
-#import "General/NIRTimer.h"
+#import "NIRTimer.h"
 
-General/NIRTimer *timer = General/[[NIRTimer alloc] init];
+NIRTimer *timer = [[NIRTimer alloc] init];
 
 [timer start];
 [someObject doLongOperation];
 [timer stop];
 
-General/NSLog(@"doLongOperation: %6.3f seconds", [timer seconds]);
+NSLog(@"doLongOperation: %6.3f seconds", [timer seconds]);
 
 [timer start];
 [someObject doMore];
 [timer stop];
 
-General/NSLog(@"doMore: %6.3f seconds", [timer secondsSinceStart]);
-General/NSLog(@"Total: %6.3f seconds", [timer seconds]);
+NSLog(@"doMore: %6.3f seconds", [timer secondsSinceStart]);
+NSLog(@"Total: %6.3f seconds", [timer seconds]);
 
 
 
@@ -27,8 +27,8 @@ General/NSLog(@"Total: %6.3f seconds", [timer seconds]);
 Here is the code:
     
 //
-//  General/NIRTimer.h
-//  General/DirectionService
+//  NIRTimer.h
+//  DirectionService
 //
 //  Created by Nir Soffer on Wed Jun 04 2003.
 //  Copyright (c) 2003 Nir Soffer. All rights reserved.
@@ -38,7 +38,7 @@ Here is the code:
 #import <Foundation/Foundation.h>
 
 
-@interface General/NIRTimer : General/NSObject
+@interface NIRTimer : NSObject
 {
     long started;
     long time;
@@ -66,21 +66,21 @@ Here is the code:
 
 
 //
-//  General/NIRTimer.m
-//  General/DirectionService
+//  NIRTimer.m
+//  DirectionService
 //
 //  Created by Nir Soffer on Wed Jun 04 2003.
 //  Copyright (c) 2003 Nir Soffer. All rights reserved.
 //
 
-#import "General/NIRTimer.h"
+#import "NIRTimer.h"
 #import <sys/time.h>
 
-@interface General/NIRTimer (General/NIRTimerPrivate)
+@interface NIRTimer (NIRTimerPrivate)
 - (long)_currentTime;
 @end
 
-@implementation General/NIRTimer
+@implementation NIRTimer
 
 // reset
 - (void)reset
@@ -156,7 +156,7 @@ Here is the code:
 
 @end
 
-@implementation General/NIRTimer (General/NIRTimerPrivate)
+@implementation NIRTimer (NIRTimerPrivate)
 
 - (long)_currentTime
 {

@@ -1,4 +1,4 @@
-The Password Assistant is the window that tells you the security of a password entered into an General/NSSecureTextField. In 10.3, it features a numeric indicator (from 0-128, though it can go higher for very long passwords), and a bar (like a progress bar) that is red for insecure passwords up to green for very secure passwords. It also provides tips such as 'This is a word in the dictionary', 'This is too similar to your old password', etc. In 10.4, it can also generate random and memorably-random passwords.
+The Password Assistant is the window that tells you the security of a password entered into an NSSecureTextField. In 10.3, it features a numeric indicator (from 0-128, though it can go higher for very long passwords), and a bar (like a progress bar) that is red for insecure passwords up to green for very secure passwords. It also provides tips such as 'This is a word in the dictionary', 'This is too similar to your old password', etc. In 10.4, it can also generate random and memorably-random passwords.
 
 The Password Assistant can be accessed through two Apple applications:
 
@@ -16,20 +16,20 @@ In both cases, the Password Assistant is accessed by clicking the round 'i' butt
 Here's how to use the Password Assistant in your own app:
 
 
-* Use General/ClassDump on General/SecurityInterface.framework.
-* Delete all the classes from the dump except General/SFPasswordAssistantInspectorController.
+* Use ClassDump on SecurityInterface.framework.
+* Delete all the classes from the dump except SFPasswordAssistantInspectorController.
 * Make sure that showPasswordAssistantPanel: is an action, and that _baseWindow, _originalPassword, _newPassword, and _verifyPassword are outlets.
 * Save the dump as a file (if you have not done this already).
 * Drag the dump file into your nib window.
-* In General/InterfaceBuilder, instantiate General/SFPasswordAssistantInspectorController.
-* Instantiate at least one General/NSSecureTextField (this is the 'new password' field). If you want, create the other two as well.
-* Connect your password-assistant button (the 'i' button in the apps named above) to the General/SFPasswordAssistantInspectorController instance's showPasswordAssistantPanel: action.
-* Connect the relevant _fooPassword outlets of the instance to your General/NSSecureTextField<nowiki/>s. You need at least _newPassword.
+* In InterfaceBuilder, instantiate SFPasswordAssistantInspectorController.
+* Instantiate at least one NSSecureTextField (this is the 'new password' field). If you want, create the other two as well.
+* Connect your password-assistant button (the 'i' button in the apps named above) to the SFPasswordAssistantInspectorController instance's showPasswordAssistantPanel: action.
+* Connect the relevant _fooPassword outlets of the instance to your NSSecureTextField<nowiki/>s. You need at least _newPassword.
 * Connect the _baseWindow outlet to the window that hosts your 'i' button (or at least contains the text field(s)).
-* In General/XCode, add General/SecurityInterface.framework to your project.
+* In XCode, add SecurityInterface.framework to your project.
 
 
-Unfortunately, General/InterfaceBuilder doesn't seem able to determine what frameworks you have set up in Xcode, so you won't be able to use the Test Interface command with this (IB will log a message saying that there is no General/SFPasswordAssistantInspectorController class and that it will use General/NSObject instead, and the 'i' button won't work). You will need to build the application and test within it.
+Unfortunately, InterfaceBuilder doesn't seem able to determine what frameworks you have set up in Xcode, so you won't be able to use the Test Interface command with this (IB will log a message saying that there is no SFPasswordAssistantInspectorController class and that it will use NSObject instead, and the 'i' button won't work). You will need to build the application and test within it.
 
 *--boredzo*
 

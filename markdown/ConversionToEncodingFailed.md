@@ -1,6 +1,6 @@
 I am getting the following in the Run Log:
 
-    General/TestApp[760] Conversion to encoding 30 failed for string "Bandyta wymuszaj?cy ..."
+    TestApp[760] Conversion to encoding 30 failed for string "Bandyta wymuszaj?cy ..."
 
 
 The code in question is:
@@ -32,12 +32,12 @@ That will return the byte length of the string. [string length] will return the 
 Okay I was talking about the latter, and it looks like its not working for some reason... however I got it to work with:
 
     
-unsigned char * tempPtr = (unsigned char *) General/string dataUsingEncoding:[[NSNonLossyASCIIStringEncoding] bytes];
+unsigned char * tempPtr = (unsigned char *) string dataUsingEncoding:[[NSNonLossyASCIIStringEncoding] bytes];
 
 
 ----
 
-UTF-8 is not ASCII-compatible; a UTF-8 code-point can be greater than 127, whereas this is illegal in ASCII. for ASCII-compatibility, you want UTF-7 (which is not supported by General/FoundationKit or General/CoreFoundation, but is supported by General/TextEncodingConversionManager) or non-lossy ASCII.
+UTF-8 is not ASCII-compatible; a UTF-8 code-point can be greater than 127, whereas this is illegal in ASCII. for ASCII-compatibility, you want UTF-7 (which is not supported by FoundationKit or CoreFoundation, but is supported by TextEncodingConversionManager) or non-lossy ASCII.
 
 for most purposes, however, UTF-8 is just fine.
 
@@ -47,10 +47,10 @@ for most purposes, however, UTF-8 is just fine.
 
 It *is* ASCII-compatible for suitable values of "compatible". What I meant by "compatible" was that any ASCII string is identical to its UTF-8 representation, and that any utility designed to work with 8-bit characters will generally work with UTF-8 strings, with caveats due to the fact that there is not a one-to-one mapping from character (or glyph, or whatever) to byte. You are of course correct that it is not "compatible" in the sense that it maps to ASCII, but that is an entirely different type of "compatible".
 
-*On Tiger or later, you can use the new General/NSString method     cStringUsingEncoding and pass it the NSASCIIS<nowiki/>tringEncoding constant, which ensures full 7-bit ASCII compatibility. On Panther or earlier, however, your best bet is probably to use     UTF8String and prune out the characters past 127 - that is, if you **really** need to. --General/JediKnil*
+*On Tiger or later, you can use the new NSString method     cStringUsingEncoding and pass it the NSASCIIS<nowiki/>tringEncoding constant, which ensures full 7-bit ASCII compatibility. On Panther or earlier, however, your best bet is probably to use     UTF8String and prune out the characters past 127 - that is, if you **really** need to. --JediKnil*
 
 This is not really right in either sense. First,     cStringUsingEncoding: will throw an exception if the string can't be represented in the given encoding, so if you pass NSASCIIS<nowiki/>tringEncoding and you have any non-ASCII data, it will throw, not just prune out bad characters.
 
-The correct answer if you want pure 7-bit data, both on Tiger and pre-Tiger, is to either use the     dataUsingEncoding:allowLossyConversion: method along with NSASCIIS<nowiki/>tringEncoding, or to convert your string to a 7-bit encoding such as UTF-7, which as far as I can tell can't be done with any built-in General/NSString or General/CFString methods.
+The correct answer if you want pure 7-bit data, both on Tiger and pre-Tiger, is to either use the     dataUsingEncoding:allowLossyConversion: method along with NSASCIIS<nowiki/>tringEncoding, or to convert your string to a 7-bit encoding such as UTF-7, which as far as I can tell can't be done with any built-in NSString or CFString methods.
 
 ---- Other caveats include sorting and the fact that it is not safe to truncate / insert bytes at an arbitrary offset.

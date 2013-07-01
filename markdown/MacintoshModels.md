@@ -12,55 +12,55 @@ Save the following text as a file named "Macintosh.dict", and add it to your app
     "iMac7,1" = "iMac (Aluminum Core 2 Duo)";
     "iMac8,1" = "iMac (Aluminum Core 2 Duo)";
     "M43ADP1,1"  = "Development Mac Pro";
-    "MacBook1,1" = "General/MacBook (Core Duo)";
-    "MacBook2,1" = "General/MacBook (Core 2 Duo)";
-    "MacBook3,1" = "General/MacBook (Core 2 Duo)";
-    "MacBook4,1" = "General/MacBook (Early 2008)";
-    "MacBookAir1,1" = "General/MacBook Air";
-    "MacBookPro1,1" = "General/MacBook Pro (15-inch Core Duo)"; 
-    "MacBookPro1,2" = "General/MacBook Pro (17-inch Core Duo)";
-    "MacBookPro2,1" = "General/MacBook Pro (17-inch Core 2 Duo)";
-    "MacBookPro2,2" = "General/MacBook Pro (15-inch Core 2 Duo)";
-    "MacBookPro3,1" = "General/MacBook Pro (15-inch or 17-inch LED, Core 2 Duo)";
-    "MacBookPro4,1" = "General/MacBook Pro (15-inch or 17-inch LED, Early 2008)";
-    "MacBookPro5,1" = "General/MacBook Pro (15-inch LED Unibody, Late 2008)";
-    "MacBookPro5,4" = "General/MacBook Pro (15-inch LED Unibody, Mid 2009)";
+    "MacBook1,1" = "MacBook (Core Duo)";
+    "MacBook2,1" = "MacBook (Core 2 Duo)";
+    "MacBook3,1" = "MacBook (Core 2 Duo)";
+    "MacBook4,1" = "MacBook (Early 2008)";
+    "MacBookAir1,1" = "MacBook Air";
+    "MacBookPro1,1" = "MacBook Pro (15-inch Core Duo)"; 
+    "MacBookPro1,2" = "MacBook Pro (17-inch Core Duo)";
+    "MacBookPro2,1" = "MacBook Pro (17-inch Core 2 Duo)";
+    "MacBookPro2,2" = "MacBook Pro (15-inch Core 2 Duo)";
+    "MacBookPro3,1" = "MacBook Pro (15-inch or 17-inch LED, Core 2 Duo)";
+    "MacBookPro4,1" = "MacBook Pro (15-inch or 17-inch LED, Early 2008)";
+    "MacBookPro5,1" = "MacBook Pro (15-inch LED Unibody, Late 2008)";
+    "MacBookPro5,4" = "MacBook Pro (15-inch LED Unibody, Mid 2009)";
     "Macmini1,1" = "Mac mini (Core Duo/Solo)";
     "MacPro1,1" = "Mac Pro (Quad Xeon)";
     "MacPro2,1" = "Mac Pro (Octal Xeon)";
     "MacPro3,1" = "Mac Pro (Early 2008)";
-    "PowerBook1,1" = "General/PowerBook G3"; 
+    "PowerBook1,1" = "PowerBook G3"; 
     "PowerBook2,1" = iBook; 
-    "PowerBook2,2" = "iBook (General/FireWire)"; 
-    "PowerBook3,1" = "General/PowerBook G3 (General/FireWire)"; 
-    "PowerBook3,2" = "General/PowerBook G4"; 
-    "PowerBook3,3" = "General/PowerBook G4 (Gigabit Ethernet)"; 
-    "PowerBook3,4" = "General/PowerBook G4 (DVI)"; 
-    "PowerBook3,5" = "General/PowerBook G4 (867, 1 General/GHz)"; 
+    "PowerBook2,2" = "iBook (FireWire)"; 
+    "PowerBook3,1" = "PowerBook G3 (FireWire)"; 
+    "PowerBook3,2" = "PowerBook G4"; 
+    "PowerBook3,3" = "PowerBook G4 (Gigabit Ethernet)"; 
+    "PowerBook3,4" = "PowerBook G4 (DVI)"; 
+    "PowerBook3,5" = "PowerBook G4 (867, 1 GHz)"; 
     "PowerBook4,1" = "iBook G3"; 
     "PowerBook4,2" = "iBook G3"; 
     "PowerBook4,3" = "iBook G3"; 
-    "PowerBook5,1" = "General/PowerBook G4 (17-inch)"; 
-    "PowerBook5,2" = "General/PowerBook G4 (15-inch FW800)"; 
-    "PowerBook5,3" = "General/PowerBook G4 (17-inch 1.33 General/GHz)"; 
-    "PowerBook5,4" = "General/PowerBook G4 (15-inch 1.5/1.33 General/GHz)"; 
-    "PowerBook5,5" = "General/PowerBook G4 (17-inch 1.5 General/GHz)"; 
-    "PowerBook5,6" = "General/PowerBook G4 (15-inch 1.67/1.5 General/GHz)"; 
-    "PowerBook5,7" = "General/PowerBook G4 (17-inch 1.67 General/GHz)"; 
-    "PowerBook5,8" = "General/PowerBook G4 (Double-Layer SD, 15-inch)"; 
-    "PowerBook5,9" = "General/PowerBook G4 (Double-Layer SD, 17-inch)"; 
-    "PowerBook6,1" = "General/PowerBook G4 (12-inch)"; 
-    "PowerBook6,2" = "General/PowerBook G4 (12-inch DVI)"; 
+    "PowerBook5,1" = "PowerBook G4 (17-inch)"; 
+    "PowerBook5,2" = "PowerBook G4 (15-inch FW800)"; 
+    "PowerBook5,3" = "PowerBook G4 (17-inch 1.33 GHz)"; 
+    "PowerBook5,4" = "PowerBook G4 (15-inch 1.5/1.33 GHz)"; 
+    "PowerBook5,5" = "PowerBook G4 (17-inch 1.5 GHz)"; 
+    "PowerBook5,6" = "PowerBook G4 (15-inch 1.67/1.5 GHz)"; 
+    "PowerBook5,7" = "PowerBook G4 (17-inch 1.67 GHz)"; 
+    "PowerBook5,8" = "PowerBook G4 (Double-Layer SD, 15-inch)"; 
+    "PowerBook5,9" = "PowerBook G4 (Double-Layer SD, 17-inch)"; 
+    "PowerBook6,1" = "PowerBook G4 (12-inch)"; 
+    "PowerBook6,2" = "PowerBook G4 (12-inch DVI)"; 
     "PowerBook6,3" = "iBook G4"; 
-    "PowerBook6,4" = "General/PowerBook G4 (12-inch 1.33 General/GHz)"; 
+    "PowerBook6,4" = "PowerBook G4 (12-inch 1.33 GHz)"; 
     "PowerBook6,5" = "iBook G4"; 
     "PowerBook6,7" = "iBook G4"; 
-    "PowerBook6,8" = "General/PowerBook G4 (12-inch 1.5 General/GHz)"; 
+    "PowerBook6,8" = "PowerBook G4 (12-inch 1.5 GHz)"; 
     "PowerMac1,1" = "Power Macintosh G3 (B&W)"; 
     "PowerMac1,2" = "Power Macintosh G4 (PCI-Graphics)"; 
     "PowerMac10,1" = "Mac mini"; 
     "PowerMac10,2" = "Mac mini"; 
-    "PowerMac11,2" = "Power Macintosh G5 (General/PCIe)"; 
+    "PowerMac11,2" = "Power Macintosh G5 (PCIe)"; 
     "PowerMac12,1" = "iMac G5 (iSight)"; 
     "PowerMac2,1" = "iMac (Slot-Loading)"; 
     "PowerMac2,2" = "iMac (2000)"; 
@@ -96,14 +96,14 @@ and add these two methods to one of your classes:
     
 #import <sys/sysctl.h>
 
-+ (General/NSString *)hardwareModel
++ (NSString *)hardwareModel
 {
-    static General/NSString *hardwareModel = nil;
+    static NSString *hardwareModel = nil;
     if (!hardwareModel) {
         char buffer[128];
         size_t length = sizeof(buffer);
         if (sysctlbyname("hw.model", &buffer, &length, NULL, 0) == 0) {
-            hardwareModel = General/[[NSString allocWithZone:NULL] initWithCString:buffer encoding:General/NSASCIIStringEncoding];
+            hardwareModel = [[NSString allocWithZone:NULL] initWithCString:buffer encoding:NSASCIIStringEncoding];
         }
         if (!hardwareModel || [hardwareModel length] == 0) {
             hardwareModel = @"Unknown";
@@ -112,23 +112,23 @@ and add these two methods to one of your classes:
     return hardwareModel;    
 }
 
-+ (General/NSString *)computerModel
++ (NSString *)computerModel
 {
-    static General/NSString *computerModel = nil;
+    static NSString *computerModel = nil;
     if (!computerModel) {
-        General/NSString *path, *hardwareModel = [self hardwareModel];
-        if ((path = General/[[NSBundle mainBundle] pathForResource:@"Macintosh" ofType:@"dict"])) {
-            computerModel = General/[[[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:hardwareModel] copy];
+        NSString *path, *hardwareModel = [self hardwareModel];
+        if ((path = [[NSBundle mainBundle] pathForResource:@"Macintosh" ofType:@"dict"])) {
+            computerModel = [[[NSDictionary dictionaryWithContentsOfFile:path] objectForKey:hardwareModel] copy];
         }
         if (!computerModel) {
             char buffer[128];
             size_t length = sizeof(buffer);
             if (sysctlbyname("hw.machine", &buffer, &length, NULL, 0) == 0) {
-                computerModel = General/[[NSString allocWithZone:NULL] initWithCString:buffer encoding:General/NSASCIIStringEncoding];
+                computerModel = [[NSString allocWithZone:NULL] initWithCString:buffer encoding:NSASCIIStringEncoding];
             }
         }
         if (!computerModel || [computerModel length] == 0) {
-            computerModel = General/[[NSString allocWithZone:NULL] initWithFormat:@"%@ computer model", hardwareModel];
+            computerModel = [[NSString allocWithZone:NULL] initWithFormat:@"%@ computer model", hardwareModel];
         }
     }
     return computerModel;
@@ -139,15 +139,15 @@ and add these two methods to one of your classes:
 **Revision History**
 
 
-* 07/29/06 - created page - General/ShaunWexler, General/MacFOH
-* 08/08/06 - added MacPro1,1 - General/ShaunWexler
-* 09/07/06 - added iMac5,1/6,1 - General/ShaunWexler
-* 09/24/06 - rewritten to use sysctlbyname instead of General/IOKit - General/ShaunWexler
-* 09/25/06 - added MacBookPro1,2 - General/AngusHardie
-* 11/05/06 - added MacBookPro2,1/2,2 - General/ShaunWexler
-* 12/14/06 - added MacBook2,1 - General/ShaunWexler
-* 06/05/07 - added MacBookPro3,1/3,2 - General/ShaunWexler
-* 11/10/07 - added MacBook3,1 - General/SteveCheckoway
+* 07/29/06 - created page - ShaunWexler, MacFOH
+* 08/08/06 - added MacPro1,1 - ShaunWexler
+* 09/07/06 - added iMac5,1/6,1 - ShaunWexler
+* 09/24/06 - rewritten to use sysctlbyname instead of IOKit - ShaunWexler
+* 09/25/06 - added MacBookPro1,2 - AngusHardie
+* 11/05/06 - added MacBookPro2,1/2,2 - ShaunWexler
+* 12/14/06 - added MacBook2,1 - ShaunWexler
+* 06/05/07 - added MacBookPro3,1/3,2 - ShaunWexler
+* 11/10/07 - added MacBook3,1 - SteveCheckoway
 * 11/11/07 - MacBookPro3,1 covers both 15" and 17" - Dan Griscom
 * 11/11/07 - added iMac7,1 and iMac8,1 for Aluminum iMacs - Mike Taylor
 * 12/16/08 - added MacBookPro5,1 - Dallas Brown

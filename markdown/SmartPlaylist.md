@@ -48,10 +48,10 @@ echo... echo... echo...
 
 ----
 
-Check out the General/MailSorter.nib in Mail.
+Check out the MailSorter.nib in Mail.
 
 ----
 
-You can try this  (xcode project in progress): http://perso.netpratique.fr/escoz/General/CriteriaView.dmg
+You can try this  (xcode project in progress): http://perso.netpratique.fr/escoz/CriteriaView.dmg
 
 No readme, uses bindings, takes parameters from a plist file in the Resources folder.

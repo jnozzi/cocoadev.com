@@ -1,14 +1,14 @@
-I use General/WebView to load page, and some pages have cache-control dirrectives (pragma no-cache, etc.)
-General/WebView follows this dirrectives, so when I load them, there are no access to data via
+I use WebView to load page, and some pages have cache-control dirrectives (pragma no-cache, etc.)
+WebView follows this dirrectives, so when I load them, there are no access to data via
 
     
-- (id)webView:(General/WebView *)sender identifierForInitialRequest:(General/NSURLRequest *)request fromDataSource:(General/WebDataSource *)dataSource
+- (id)webView:(WebView *)sender identifierForInitialRequest:(NSURLRequest *)request fromDataSource:(WebDataSource *)dataSource
 {
         return (request);
 }
--(void)webView:(General/WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(General/WebDataSource *)dataSource
+-(void)webView:(WebView *)sender resource:(id)identifier didFinishLoadingFromDataSource:(WebDataSource *)dataSource
 {
-        General/NSCachedURLResponse *cResponse = [ General/[NSURLCache sharedURLCache] cachedResponseForRequest:identifier];
+        NSCachedURLResponse *cResponse = [ [NSURLCache sharedURLCache] cachedResponseForRequest:identifier];
 }
 
 

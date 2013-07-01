@@ -1,4 +1,4 @@
-I'd like to create those custom popup buttons and action buttons that Delicious Library and Address Book use. You know, in that side panel - they highlight blue, which I think looks nicer than the Address Book style. How can I create a subclass that I can easily reuse of both nsbutton and nspopupbutton? Should I involve nsbuttoncell, or am I supposed to use those cell subclasses? I want to be able to set a regular button in IB or programmatically, and still use setTitle: on it. How can I do this? Where do I start? -- General/JasonTerhorst
+I'd like to create those custom popup buttons and action buttons that Delicious Library and Address Book use. You know, in that side panel - they highlight blue, which I think looks nicer than the Address Book style. How can I create a subclass that I can easily reuse of both nsbutton and nspopupbutton? Should I involve nsbuttoncell, or am I supposed to use those cell subclasses? I want to be able to set a regular button in IB or programmatically, and still use setTitle: on it. How can I do this? Where do I start? -- JasonTerhorst
 
 BTW, here are some example screen shots to give you a rough idea:
 
@@ -14,7 +14,7 @@ I did this in my first commercial application http://www.macupdate.com/info.php/
 
 ----
 
-There's a video from WWDC 05 on ADC somewhere that show's how Apple did this. It involves using a General/NSTextView, getting the selection and drawing a shadow around it. They go through step-by-step. I don't necessarily like that method though, because you have to basically manage character ranges as text fields. It won't work at all for bindings. I always thought it might be more interesting to have a view that can draw the shadows around any cell that's key. Then implement the popup button as a cell as well. -justin
+There's a video from WWDC 05 on ADC somewhere that show's how Apple did this. It involves using a NSTextView, getting the selection and drawing a shadow around it. They go through step-by-step. I don't necessarily like that method though, because you have to basically manage character ranges as text fields. It won't work at all for bindings. I always thought it might be more interesting to have a view that can draw the shadows around any cell that's key. Then implement the popup button as a cell as well. -justin
 
 ----
 
@@ -22,19 +22,19 @@ We originally went with this method, here is some advice, it isn't worth your ti
 
 *I'm not sure I understand you.... what should I use for the text field? A custom designed bit, or a text field?*
 
-**This is a FAQ: General/CCDGrowingTextField**
+**This is a FAQ: CCDGrowingTextField**
 
 What about the general look - that hovering effect with the blue?
 
-*That you can figure out how to do with General/NSBezierPath, General/NSActionCell, some mouse event handling, and a few other very common things. You'll want to create your own custom control, basically. On mouse entered, draw the control with the blue half-round-rect and white down arrow. On mouse out, draw the regular label.*
+*That you can figure out how to do with NSBezierPath, NSActionCell, some mouse event handling, and a few other very common things. You'll want to create your own custom control, basically. On mouse entered, draw the control with the blue half-round-rect and white down arrow. On mouse out, draw the regular label.*
 
 ----
 
-What I use is one main view that manages a number of subviews, most of which are of class General/NSTextView.
+What I use is one main view that manages a number of subviews, most of which are of class NSTextView.
 
 I add those subviews and remove them as nessesary while maintaining a cache of them to reduce the number of allocs etc as the values change.
 
-These text views are not maintained in a General/NSScrollView, I manually query what their size is and adjust the origin of all the others as needed.
+These text views are not maintained in a NSScrollView, I manually query what their size is and adjust the origin of all the others as needed.
 
 I know that Wil Shipley is anti-images (and would rather do all drawing in code), but what do you guys think? Too slow? Should it all be done with source code?
 
@@ -42,7 +42,7 @@ I know that Wil Shipley is anti-images (and would rather do all drawing in code)
 
 You're right. The only reason I asked is because his reasoning, in one of his blog posts, was that when Liger, or whatever the heck it will be, comes out, it may allow scaling of objects in the visual field, which would blow up anything and everything on screen. If our controls are made with Photoshop, and look nice now, will they still look good at 500x on an Apple 20-foot Cinema display (or something like it), when the OS is scaling everything on the screen?
 
-*And without those pretty controls, we're reduce to using stock controls or drawing things that look like the Windows interface because small-time developers have little recourse. I know *I* can't spend months figuring out how to do some of the (rather nice) custom controls I've got in my apps in all vector graphics. Sure, Core Image makes it easier to do a lot of stuff, but only if you take the (high investment in) time to learn it and graphics concepts in general. Feh! I don't have the time or patience. If Liger has a much more detailed 'kit' (like General/CoreUI or something) that lets us easily apply pretty shiny gradients to any shape and many many other important custom control effects, more small-time developers would adopt the practice - I know I would try.*
+*And without those pretty controls, we're reduce to using stock controls or drawing things that look like the Windows interface because small-time developers have little recourse. I know *I* can't spend months figuring out how to do some of the (rather nice) custom controls I've got in my apps in all vector graphics. Sure, Core Image makes it easier to do a lot of stuff, but only if you take the (high investment in) time to learn it and graphics concepts in general. Feh! I don't have the time or patience. If Liger has a much more detailed 'kit' (like CoreUI or something) that lets us easily apply pretty shiny gradients to any shape and many many other important custom control effects, more small-time developers would adopt the practice - I know I would try.*
 
 The differences from the point of an end user shouldn't be underestimated - if I want my system highlight colour to be bright pink then your app should conform to that. Apple don't all the time, but I think they should. Less code is cool, but not when it detracts from functionality.
 
@@ -66,16 +66,16 @@ What's the name of the typeface that's used for the controls in the above screen
 *Isn't it the control content font?*
 
     
-General/NSFont * theFontTheGuyWasTalkingAbout = General/[NSFont controlContentFontOfSize:
-                     General/[NSFont systemFontSizeForControlSize:General/NSRegularControlSize]];
+NSFont * theFontTheGuyWasTalkingAbout = [NSFont controlContentFontOfSize:
+                     [NSFont systemFontSizeForControlSize:NSRegularControlSize]];
 
 
 It's Helvetica.
 
 ----
 
-So, to the guy that was saying that it would be easy to draw the popup in code -- how do you do it? ... in the General/NSPopUpButton subclass, or in another part of it? The textbox wouldn't be too hard, but the question about how to have it draw the actual prettyness of it, so that it can still use the usual methods, but with the style (and helvetica, noted above). In the meantime, I'll try the image method, so that maybe we can benchmark both of these, and settle the argument once and for all.
+So, to the guy that was saying that it would be easy to draw the popup in code -- how do you do it? ... in the NSPopUpButton subclass, or in another part of it? The textbox wouldn't be too hard, but the question about how to have it draw the actual prettyness of it, so that it can still use the usual methods, but with the style (and helvetica, noted above). In the meantime, I'll try the image method, so that maybe we can benchmark both of these, and settle the argument once and for all.
 
 ----
 
-I have posted a follow-up for drawing text boxes like the one above at General/BorderedShadowedGrowingTextField.
+I have posted a follow-up for drawing text boxes like the one above at BorderedShadowedGrowingTextField.

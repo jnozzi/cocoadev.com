@@ -1,9 +1,9 @@
 
 
-How do I check if General/QTKit is finished playing? I tried Apple's code from the docs, provided below, but it won't compile and gives an error (Parse error before ==).
+How do I check if QTKit is finished playing? I tried Apple's code from the docs, provided below, but it won't compile and gives an error (Parse error before ==).
 
     
--(BOOL)isPlaying:(General/QTMovie *)aMovie
+-(BOOL)isPlaying:(QTMovie *)aMovie
 {
 if ([aMovie rate == 0)
 {
@@ -23,7 +23,7 @@ That's not the problem - I fixed that and I still get the error.
 
 ----
 
-Isn't this supposed to be impemented in the subclass, or just sending/receiving the messages to the movie? This probably wouldn't work in a controller, which sounds like what you're trying to do. Correct me if I'm wrong. -- General/JasonTerhorst
+Isn't this supposed to be impemented in the subclass, or just sending/receiving the messages to the movie? This probably wouldn't work in a controller, which sounds like what you're trying to do. Correct me if I'm wrong. -- JasonTerhorst
 
 ----
 
@@ -31,11 +31,11 @@ You fixed your closing ] and you still get "parse error before =="? I don't beli
 
 ----
 
-I'd consider this code to be more correct.. the biggest problem with the code above is that if aMovie is nil then [aMovie rate] is undefined (see General/MessagingNil).
+I'd consider this code to be more correct.. the biggest problem with the code above is that if aMovie is nil then [aMovie rate] is undefined (see MessagingNil).
 
     
 
--(BOOL)isPlaying:(General/QTMovie *)aMovie
+-(BOOL)isPlaying:(QTMovie *)aMovie
 {
 return (aMovie != nil ? [aMovie rate] > 0.0 : NO);
 }
@@ -48,7 +48,7 @@ Try this --Hasani Hunter
 
     
 
-General/NSNotificationCenter *notificationCenter = [ General/NSNotificationCenter defaultCenter ];
+NSNotificationCenter *notificationCenter = [ NSNotificationCenter defaultCenter ];
 		
-[ notificationCenter addObserver:self selector:@selector(playNextMovieInList:) name:General/QTMovieDidEndNotification object:nil ];
+[ notificationCenter addObserver:self selector:@selector(playNextMovieInList:) name:QTMovieDidEndNotification object:nil ];
 

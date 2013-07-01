@@ -1,6 +1,6 @@
 
 
-The following is the actual Objective C class that implements a doubly-linked list (a variation of General/LinkedList). It can do the following:
+The following is the actual Objective C class that implements a doubly-linked list (a variation of LinkedList). It can do the following:
 
 
 *Addition of new elements to the front of the list
@@ -13,23 +13,23 @@ Here's the interface .h file:
 
     
 //
-//  General/LinkedList.h
+//  LinkedList.h
 //
 
 // Structure representing a 
 // doubly-linked list node.
-typedef struct General/ListNode General/ListNode;
-struct General/ListNode {
+typedef struct ListNode ListNode;
+struct ListNode {
 	int value;
-	General/ListNode *next;
-	General/ListNode *prev;
+	ListNode *next;
+	ListNode *prev;
 };
 
 
-@interface General/LinkedList : General/NSObject {
+@interface LinkedList : NSObject {
 @private 
-	General/ListNode *head;
-	General/ListNode *iterator;
+	ListNode *head;
+	ListNode *iterator;
 	//bool reachedHead;
 	//bool reachedTail;
 }	
@@ -53,13 +53,13 @@ Now for the implementation .m file:
 
     
 //
-//  General/LinkedList.m
+//  LinkedList.m
 //
 
-#import "General/LinkedList.h"
+#import "LinkedList.h"
 
 
-@implementation General/LinkedList
+@implementation LinkedList
 
 
 /* Instantiates new linked list with a 
@@ -67,11 +67,11 @@ Now for the implementation .m file:
  */
 - (id)initWithHead: (int)value 
 {
-	General/ListNode *n;
+	ListNode *n;
     self = [super init];
     if (self) {
 		// creating head node with given value
-		n = (General/ListNode *)malloc(sizeof(General/ListNode));
+		n = (ListNode *)malloc(sizeof(ListNode));
 		n->value = value;
 		n->next = NULL;
 		n->prev = NULL;
@@ -87,7 +87,7 @@ Now for the implementation .m file:
  * front of the list */
 - (void)addToFront: (int)value
 {
-	General/ListNode *n = (General/ListNode *)malloc(sizeof(General/ListNode));
+	ListNode *n = (ListNode *)malloc(sizeof(ListNode));
 	n->value = value;
 	n->next = head;
 	n->prev = NULL;
@@ -194,7 +194,7 @@ Now for the implementation .m file:
 - (int)removeCurrent 
 {
 	int i = iterator->value;
-	General/ListNode *l;
+	ListNode *l;
 	// if we have only 1 item in the list...
 	if ((iterator->next == NULL) && (iterator->prev == NULL)) {
 		//... then we can safely delete it and set head to null
@@ -232,54 +232,54 @@ You can test this class with a test sniplet like the following:
 
     
 #import <Foundation/Foundation.h>
-#import "General/LinkedList.h"
+#import "LinkedList.h"
 
 int main (int argc, const char * argv[]) {
-    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
     // insert code here...
-	General/LinkedList *test = General/[[LinkedList alloc] initWithHead: 0];
+	LinkedList *test = [[LinkedList alloc] initWithHead: 0];
 	
 	// testing addition
 	int i;
 	for (i = 1; i < 11; i++) {
 		[test addToFront: i];
 	}
-	General/NSLog(@"-- Added 10 values");
+	NSLog(@"-- Added 10 values");
 	
 	// testing forward traversal
-	General/NSLog(@"-- Setting iterator to first node: %d", [test getFirst]);
-	General/NSLog(@"-- Going forward until we hit the last element...");
+	NSLog(@"-- Setting iterator to first node: %d", [test getFirst]);
+	NSLog(@"-- Going forward until we hit the last element...");
 	do {
-		General/NSLog(@"---- Next element: %d", [test getNext]);
+		NSLog(@"---- Next element: %d", [test getNext]);
 	} while ([test atTail] == FALSE);
-	General/NSLog(@"-- We've hit the last element");
+	NSLog(@"-- We've hit the last element");
 	
 	// testing back traversal
-	General/NSLog(@"-- Going back until we hit the first element...");
+	NSLog(@"-- Going back until we hit the first element...");
 	do {
-		General/NSLog(@"---- Previous element: %d", [test getPrevious]);
+		NSLog(@"---- Previous element: %d", [test getPrevious]);
 	} while ([test atHead] == FALSE);
-	General/NSLog(@"-- We've hit the first element");
+	NSLog(@"-- We've hit the first element");
 
 	// testing removal
-	General/NSLog(@"-- Going forward 5 times");
+	NSLog(@"-- Going forward 5 times");
 	for (i = 0; i < 5; i++)
-		General/NSLog(@"-- Next element: %d", [test getNext]);
-	General/NSLog(@"-- Current element with value %d", [test getCurrent]);
-	General/NSLog(@"-- Removing element with value %d", [test removeCurrent]);
-	General/NSLog(@"-- Continue forward traversal");
+		NSLog(@"-- Next element: %d", [test getNext]);
+	NSLog(@"-- Current element with value %d", [test getCurrent]);
+	NSLog(@"-- Removing element with value %d", [test removeCurrent]);
+	NSLog(@"-- Continue forward traversal");
 	do {
-		General/NSLog(@"---- Next element: %d", [test getNext]);
+		NSLog(@"---- Next element: %d", [test getNext]);
 	} while ([test atTail] == FALSE);
-	General/NSLog(@"-- We've hit the last element");
+	NSLog(@"-- We've hit the last element");
 
-	General/NSLog(@"-- Returning to front, going forward until we reach end");
-	General/NSLog(@"-- First element: %d", [test getFirst]);
+	NSLog(@"-- Returning to front, going forward until we reach end");
+	NSLog(@"-- First element: %d", [test getFirst]);
 	do {
-		General/NSLog(@"---- Next element: %d", [test getNext]);
+		NSLog(@"---- Next element: %d", [test getNext]);
 	} while ([test atTail] == FALSE);
-	General/NSLog(@"-- We've hit the last element");
+	NSLog(@"-- We've hit the last element");
 	
     [pool release];
     return 0;
@@ -289,7 +289,7 @@ int main (int argc, const char * argv[]) {
 
 One thing that still bugs me is that when you traverse back in this test program, the last traversal element gets printed twice, I guess because of the way my flag works. 
 
---General/DimitriT
+--DimitriT
 
 ----
 
@@ -314,7 +314,7 @@ Shh! They aren't supposed to know about that!!!
 ----
 This is cool. I've made some code edits that correct the issue of the last traveral element being accessed twice -- fundamentally, the issue of course is that the boundary flag didn't get updated until after the next iteration/check had already taken place. Initially I modified getPrevious and getNext to make sure to update the flags before returning, but then I realized maybe everythings just simpler if we do away with maintaining flags, and simply evaluate our boundaries in place? Makes the code simpler anyway. Thoughts? (I just commented out the parts I changed for now).
 Another question -- is it better for getPrevious and getNext to keep returning the terminal value if the iterator is already at the boundary, or should it return NULL?
---General/WardR
+--WardR
 
 ----
 This is pretty cool, but if you change the way you detect the end/head to the way they do it on the STL library you could get a huge performance improvement when doing a lot of operations (i.e. particle systems). Instead of having the head and end pointing to nulls, create a NULL node and make it a circular list. That way you get rid of a lot of if statements.
@@ -322,7 +322,7 @@ This is pretty cool, but if you change the way you detect the end/head to the wa
 darionco
 
 ----
-I used this code for my game. (with changing int -> General/NSObject*, could contain all kind of classes)
+I used this code for my game. (with changing int -> NSObject*, could contain all kind of classes)
 It worked well, until remove nodes.
 I found that after remove first node, 'head' is unavailable so next 'getFirst' call causes problem.
 

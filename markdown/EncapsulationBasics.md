@@ -16,24 +16,24 @@ Object-oriented programming greatly aids in encapsulation because each object in
 
 **Example Case**
 
-If a Cocoa application needs to communicate over the network using sockets, then there are several General/SocketClasses to choose from (General/NetSocket, General/SmallSockets, General/CFSocket, etc.). Later on, one may wish to use raw BSD sockets to give the most control over performance. He decides early on to encapsulate the socket class so all interaction goes through a wrapper layer. Once this interface is established, he can use any kind of socket class as the implementation without altering any other code.
+If a Cocoa application needs to communicate over the network using sockets, then there are several SocketClasses to choose from (NetSocket, SmallSockets, CFSocket, etc.). Later on, one may wish to use raw BSD sockets to give the most control over performance. He decides early on to encapsulate the socket class so all interaction goes through a wrapper layer. Once this interface is established, he can use any kind of socket class as the implementation without altering any other code.
 
-Feel free to comment. --General/RyanBates
+Feel free to comment. --RyanBates
 
 ----
 
-General/ObjectOrientedProgramming does AFAIK consist of three things:
+ObjectOrientedProgramming does AFAIK consist of three things:
 
-*General/DataAbstraction � use datatypes instead of data, e.g. Person instead of Name+Age+...
+*DataAbstraction � use datatypes instead of data, e.g. Person instead of Name+Age+...
 *Encapsulation � place logic together with the data (i.e. methods).
 *Inheritance � this opens up for polymorphism.
 
 
-I do not think General/RyanBates consider General/DataAbstraction and Encapsulation different, but I would, since a) the former is not really tied to OO and b) no-one would argue against General/DataAbstraction (AFAIK), but there are many reasons why placing the logic together with the code (as in Encapsulation) is not always desired.
+I do not think RyanBates consider DataAbstraction and Encapsulation different, but I would, since a) the former is not really tied to OO and b) no-one would argue against DataAbstraction (AFAIK), but there are many reasons why placing the logic together with the code (as in Encapsulation) is not always desired.
 
-Inheritance is also debated heavily, as witnessed by the recent General/ExtendsIsEvil thread.
+Inheritance is also debated heavily, as witnessed by the recent ExtendsIsEvil thread.
 
-What I really think General/RyanBates is saying is, that we should write General/ModularCode.
+What I really think RyanBates is saying is, that we should write ModularCode.
 
 ----
 
@@ -41,11 +41,11 @@ A very important aspect of encapsulation is that, since it hides the implementat
 
 For example, if you had a class representing a person, you could first implement it with two instance variables called "firstname" and "surname". Then, later you decide that you want to make the design even more abstract and add a class representing a name. Now you can replace the two instance variables with one name object, but your interface stays the same (just delegate the retrieval of the names to the name object), since you never said anything about your particular implementation in the interface.
 
-That was a trivial example, but it is very common in real life. Encapsulation is also a good reason to think twice before writing getter and setter methods as described in General/GettersAndSettersAreEvil.
+That was a trivial example, but it is very common in real life. Encapsulation is also a good reason to think twice before writing getter and setter methods as described in GettersAndSettersAreEvil.
 
-Encapsulation, as well as Inheritance and General/DataAbstraction, are your friends, treat them well and understand them, and you will be rewarded.
+Encapsulation, as well as Inheritance and DataAbstraction, are your friends, treat them well and understand them, and you will be rewarded.
 
--- General/TheoHultberg/Iconara
+-- TheoHultberg/Iconara
 
 ----
 The classic paper on this, "On the Criteria To Be Used in Decomposing Systems into Modules", by David Parnas, is at http://www.acm.org/classics/may96/.

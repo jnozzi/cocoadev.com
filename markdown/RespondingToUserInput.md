@@ -6,13 +6,13 @@ Input.h
 #import <Cocoa/Cocoa.h>
 
 
-@interface Input : General/NSView {
+@interface Input : NSView {
 
 	int length;
 
 }
 
-- (void)keyDown:(General/NSEvent *)theEvent;
+- (void)keyDown:(NSEvent *)theEvent;
 @end
 
 
@@ -22,7 +22,7 @@ Input.m
 
 @implementation Input
 
-- (id)initWithFrame:(General/NSRect)frame {
+- (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
 	
 	length = 10;
@@ -33,25 +33,25 @@ Input.m
     return self;
 }
 
-- (void)drawRect:(General/NSRect)dirtyRect {
+- (void)drawRect:(NSRect)dirtyRect {
         //set variables
-	General/NSRect r1;
-	General/NSBezierPath *bp;
+	NSRect r1;
+	NSBezierPath *bp;
 	
         // set background color
-	General/[[NSColor blueColor] set];
-	General/NSRectFill(dirtyRect);
+	[[NSColor blueColor] set];
+	NSRectFill(dirtyRect);
 	
 	//set color to black & draw r1
-	General/[[NSColor blackColor] set];
-	r1 = General/NSMakeRect(1, 1, length, 10);
-	bp = General/[NSBezierPath bezierPathWithRect:r1];
+	[[NSColor blackColor] set];
+	r1 = NSMakeRect(1, 1, length, 10);
+	bp = [NSBezierPath bezierPathWithRect:r1];
 	[bp fill];
 }
 	
-- (void)keyDown:(General/NSEvent *)theEvent
+- (void)keyDown:(NSEvent *)theEvent
 {
-    General/NSString *key = [theEvent characters];
+    NSString *key = [theEvent characters];
 	
     if ( [key isEqualToString:@"c"] ) {
         length += 10;
@@ -60,4 +60,4 @@ Input.m
 @end
 
 
-I copied and pasted the keyDown method from another site, and needless to say I don't really understand it.  To my eyes, this program ought to work if pressing 'c' calls the keyDown method.  My conclusion is that it doesn't (call keyDown that is, obviously it doesn't work).  So how can I get this functioning?  I've seen General/FirstResponder referenced a few places talking about event handling, but I'm afraid I wasn't able to glean enough from those articles to apply accepting user input.  Do I have to somehow implement General/FirstResponder?  Basically, I'm clueless and new.  Please help!
+I copied and pasted the keyDown method from another site, and needless to say I don't really understand it.  To my eyes, this program ought to work if pressing 'c' calls the keyDown method.  My conclusion is that it doesn't (call keyDown that is, obviously it doesn't work).  So how can I get this functioning?  I've seen FirstResponder referenced a few places talking about event handling, but I'm afraid I wasn't able to glean enough from those articles to apply accepting user input.  Do I have to somehow implement FirstResponder?  Basically, I'm clueless and new.  Please help!

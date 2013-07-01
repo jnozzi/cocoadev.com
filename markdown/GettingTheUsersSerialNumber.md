@@ -30,7 +30,7 @@ Is there a reason the IP address of the client isn't appropriate?  Strikes me as
 
 ----
 
-See General/CFUUIDGetUUIDBytes. Create a UUID in your install and setup on a new machine.
+See CFUUIDGetUUIDBytes. Create a UUID in your install and setup on a new machine.
 
 ----
 
@@ -46,13 +46,13 @@ The MAC address should be enough for a unique ID, no? It's guaranteed unique, an
 
 ----
 There is also some code in
-General/HowToGetHardwareAndNetworkInfo
+HowToGetHardwareAndNetworkInfo
 
 ----
 
 Hey, where'd my edit go? This wiki needs contention management. Anyway...
 
-General/MACs are not guaranteed unique in the real world, since they can be reassigned in many devices. Also, a Mac can have several General/MACs (ho ho), and there are no guarantees about the order in which the system will return them.
+MACs are not guaranteed unique in the real world, since they can be reassigned in many devices. Also, a Mac can have several MACs (ho ho), and there are no guarantees about the order in which the system will return them.
 
 But from the description of the problem, I think the whole unique-ID thing seems over-engineered. Is it really a huge disaster if, once in a while, your server doesn't recognise the machine and assumes the user has a new one? If not, use the machine's name (as in Sharing) plus a user identifier.
 
@@ -71,49 +71,49 @@ See:
 - "Uniquely Identifying a Macintosh Computer",
 http://developer.apple.com/mac/library/technotes/tn/tn1103.html
 
-- "Re: Moon Travel Planner General/CFStringRef question" (how to printf a General/CFStringRef by Ali Ozer),
+- "Re: Moon Travel Planner CFStringRef question" (how to printf a CFStringRef by Ali Ozer),
 http://lists.apple.com/archives/carbon-development/2001/Aug/msg01367.html
 
-- http://developer.apple.com/mac/library/DOCUMENTATION/General/CoreFoundation/Reference/General/CFStringRef/Reference/reference.html
+- http://developer.apple.com/mac/library/DOCUMENTATION/CoreFoundation/Reference/CFStringRef/Reference/reference.html
 
-- http://developer.apple.com/mac/library/documentation/Darwin/Reference/General/IOKit/IOKitLib_h/index.html#//apple_ref/c/func/General/IORegistryEntryCreateCFProperty
+- http://developer.apple.com/mac/library/documentation/Darwin/Reference/IOKit/IOKitLib_h/index.html#//apple_ref/c/func/IORegistryEntryCreateCFProperty
 
-- http://www.cocoadev.com/index.pl?General/HowToGetHardwareAndNetworkInfo (alternative implementation, see: + (General/NSString *)computerSerialNumber)
+- http://www.cocoadev.com/index.pl?HowToGetHardwareAndNetworkInfo (alternative implementation, see: + (NSString *)computerSerialNumber)
 
 (- http://wranglingmacs.blogspot.com/2009/04/getting-byhost-string.html)
 
 
 compile with:
 
-gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework General/CoreFoundation -framework General/IOKit -o serialnum serialnum.c
+gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework CoreFoundation -framework IOKit -o serialnum serialnum.c
 
 
 */
 
 #import <stdio.h>
 #import <Foundation/Foundation.h>
-#import <General/CoreFoundation/General/CoreFoundation.h>
-#include <General/IOKit/General/IOKitLib.h>
+#import <CoreFoundation/CoreFoundation.h>
+#include <IOKit/IOKitLib.h>
 
-void General/CopySerialNumber(General/CFStringRef *serialNumber);
-void show(General/CFStringRef formatString, ...);
+void CopySerialNumber(CFStringRef *serialNumber);
+void show(CFStringRef formatString, ...);
 
 
-// Returns the serial number as a General/CFString.
-// It is the caller's responsibility to release the returned General/CFString when done with it.
+// Returns the serial number as a CFString.
+// It is the caller's responsibility to release the returned CFString when done with it.
 // taken from: http://developer.apple.com/mac/library/technotes/tn/tn1103.html
-void General/CopySerialNumber(General/CFStringRef *serialNumber)
+void CopySerialNumber(CFStringRef *serialNumber)
 {
 
     if (serialNumber != NULL) {
         *serialNumber = NULL;
 
-        io_service_t    platformExpert = General/IOServiceGetMatchingService(kIOMasterPortDefault,
-                                           General/IOServiceMatching("General/IOPlatformExpertDevice"));
+        io_service_t    platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault,
+                                           IOServiceMatching("IOPlatformExpertDevice"));
 
         if (platformExpert) {
-            General/CFTypeRef serialNumberAsCFString =
-                General/IORegistryEntryCreateCFProperty(platformExpert,
+            CFTypeRef serialNumberAsCFString =
+                IORegistryEntryCreateCFProperty(platformExpert,
                                                 CFSTR(kIOPlatformSerialNumberKey),
                                                 kCFAllocatorDefault, 0);
 
@@ -121,44 +121,44 @@ void General/CopySerialNumber(General/CFStringRef *serialNumber)
                 *serialNumber = serialNumberAsCFString;
             }
 
-            General/IOObjectRelease(platformExpert);
+            IOObjectRelease(platformExpert);
         }
     }
 }
 
 // taken from: http://lists.apple.com/archives/carbon-development/2001/Aug/msg01367.html
-// see also: /Developer/Examples/General/CoreFoundation/String/General/StringExample.c    (simple General/CFString example program by Ali Ozer)
-void show(General/CFStringRef formatString, ...) {
-   General/CFStringRef resultString;
-   General/CFDataRef data;
+// see also: /Developer/Examples/CoreFoundation/String/StringExample.c    (simple CFString example program by Ali Ozer)
+void show(CFStringRef formatString, ...) {
+   CFStringRef resultString;
+   CFDataRef data;
    va_list argList;
    va_start(argList, formatString);
-   resultString = General/CFStringCreateWithFormatAndArguments(NULL, NULL, formatString, argList);
+   resultString = CFStringCreateWithFormatAndArguments(NULL, NULL, formatString, argList);
    va_end(argList);
-   data = General/CFStringCreateExternalRepresentation(NULL, resultString, 
-   General/CFStringGetSystemEncoding(), '?');
+   data = CFStringCreateExternalRepresentation(NULL, resultString, 
+   CFStringGetSystemEncoding(), '?');
    if (data != NULL) {
-      printf ("%.*s\n", (int)General/CFDataGetLength(data), General/CFDataGetBytePtr(data));
-      General/CFRelease(data);
+      printf ("%.*s\n", (int)CFDataGetLength(data), CFDataGetBytePtr(data));
+      CFRelease(data);
    }
-   General/CFRelease(resultString);
+   CFRelease(resultString);
 }
 
 int main(void)
 {
 
-   General/CFStringRef serialNumber;   
-   General/CopySerialNumber(&serialNumber);
+   CFStringRef serialNumber;   
+   CopySerialNumber(&serialNumber);
    show(CFSTR("%@"), serialNumber);
-   General/CFRelease(serialNumber);
+   CFRelease(serialNumber);
 
 /*
    // without calling show() function
-   General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
-   General/CFStringRef serialNumber; 
-   General/CopySerialNumber(&serialNumber); 
-   printf("%s\n", General/[[NSString stringWithFormat: @"%@", serialNumber] UTF8String]);
-   General/CFRelease(serialNumber);
+   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+   CFStringRef serialNumber; 
+   CopySerialNumber(&serialNumber); 
+   printf("%s\n", [[NSString stringWithFormat: @"%@", serialNumber] UTF8String]);
+   CFRelease(serialNumber);
    [pool release];
 */
 
@@ -177,42 +177,42 @@ serialnum - get the serial number of your machine
 
 Adapted from:
 
-- http://wranglingmacs.blogspot.com/2009/04/getting-byhost-string.html (without using General/CFStringRef)
+- http://wranglingmacs.blogspot.com/2009/04/getting-byhost-string.html (without using CFStringRef)
 
 
 compile with:
 
-gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework General/CoreFoundation -framework General/IOKit -o serialnum serialnum.c
+gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework CoreFoundation -framework IOKit -o serialnum serialnum.c
 
 
 */
 
 #import <stdio.h>
 #import <Foundation/Foundation.h>
-#import <General/CoreFoundation/General/CoreFoundation.h>
-#include <General/IOKit/General/IOKitLib.h>
+#import <CoreFoundation/CoreFoundation.h>
+#include <IOKit/IOKitLib.h>
 
 
 int main(void)
 {
 
-   General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-   General/NSString *serialNumberString = nil;
+   NSString *serialNumberString = nil;
 
    io_struct_inband_t iokit_entry;
 
    uint32_t bufferSize = 4096; // this signals the longest entry we will take
 
-   io_registry_entry_t ioRegistryRoot = General/IORegistryEntryFromPath(kIOMasterPortDefault, "General/IOService:/");
+   io_registry_entry_t ioRegistryRoot = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/");
 
-   General/IORegistryEntryGetProperty(ioRegistryRoot, kIOPlatformSerialNumberKey, iokit_entry, &bufferSize);
+   IORegistryEntryGetProperty(ioRegistryRoot, kIOPlatformSerialNumberKey, iokit_entry, &bufferSize);
 
-   serialNumberString = General/[NSString stringWithCString: iokit_entry encoding: General/NSASCIIStringEncoding];
+   serialNumberString = [NSString stringWithCString: iokit_entry encoding: NSASCIIStringEncoding];
 
-   General/IOObjectRelease((unsigned int) iokit_entry);
+   IOObjectRelease((unsigned int) iokit_entry);
 
-   General/IOObjectRelease(ioRegistryRoot);
+   IOObjectRelease(ioRegistryRoot);
 
    printf("%s\n", [serialNumberString UTF8String]);
 

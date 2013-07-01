@@ -1,4 +1,4 @@
-General/InterCal is a program for converting calendar dates from one system to another. Works far in the past and future. Supported calendars are: Gregorian, Julian, Chinese, Mayan, Jewish, Islamic, and French revolutionary.
+InterCal is a program for converting calendar dates from one system to another. Works far in the past and future. Supported calendars are: Gregorian, Julian, Chinese, Mayan, Jewish, Islamic, and French revolutionary.
 
 Holidays/holydays (such as Easter and Yom Kippur) are highlighted.
 
@@ -40,10 +40,10 @@ What follows is a sample program written in INTERCAL.
 
 Determining what this program does, exactly, is left as an exercise for the reader.
 
-Heh.  This kind of stuff was the first thing I thought of when I saw General/InterCal on the General/RecentChanges list. ++General/MarkDalrymple
+Heh.  This kind of stuff was the first thing I thought of when I saw InterCal on the RecentChanges list. ++MarkDalrymple
 
 ----
 
 Don't sprain anything with this exercise. 
 By the way, we couldn't possibly leave without a discussion of the riveting <code>COME FROM</code> construct! 
-Take a look at http://c2.com/cgi/wiki?General/ComeFrom
+Take a look at http://c2.com/cgi/wiki?ComeFrom

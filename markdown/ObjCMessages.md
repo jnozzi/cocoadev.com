@@ -1,15 +1,15 @@
-General/ObjC uses messages where most OO languages use methods. 
+ObjC uses messages where most OO languages use methods. 
 
-General/ObjC still has methods. Methods are concrete blocks of code. A message is an abstract 'name of a method' which, due to General/ObjC's dynamic nature, can invoke any number of methods.
+ObjC still has methods. Methods are concrete blocks of code. A message is an abstract 'name of a method' which, due to ObjC's dynamic nature, can invoke any number of methods.
 
 They are written like this: 
 <code>[receiver message]</code>
 
-See http://developer.apple.com/documentation/Cocoa/Conceptual/General/ObjectiveC/General/LanguageSummary/chapter_5_section_2.html
+See http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/LanguageSummary/chapter_5_section_2.html
 for more info.
 
 
-*A Rationale for Dynamic Method Dispatch by John Hornkvist* - http://www.toastedmarshmallow.com/Articles/General/DORationale.pdf
+*A Rationale for Dynamic Method Dispatch by John Hornkvist* - http://www.toastedmarshmallow.com/Articles/DORationale.pdf
 
 ----
 Objective-C objects communicate with each other by sending *messages*. The message being sent is called the selector, and the destination object is called the receiver.
@@ -24,7 +24,7 @@ Objective-C messages have four components: a return value, a target, a selector,
 If the object does not implement the selector, instead of immediately issuing an error, the Objective-C runtime sends another message to the object, the     -forwardInvocation: message.
 
     
-- (void)forwardInvocation:(General/NSInvocation *)invocation {
+- (void)forwardInvocation:(NSInvocation *)invocation {
   if ([anotherObject respondsToSelector:[invocation selector]])
     return [invocation invokeWithTarget:anotherObject];
   else
@@ -44,15 +44,15 @@ int result = (int)[anObject performSelector:theSelector
                     withObject:argument2];
 
 
-For more complex messages involving passing non Cocoa-derived objects in arguments, or larger return types than the standard size of the return type,     objc_sendMsg... or     General/NSInvocation must be used.
+For more complex messages involving passing non Cocoa-derived objects in arguments, or larger return types than the standard size of the return type,     objc_sendMsg... or     NSInvocation must be used.
 ----
-The Objective-C Runtime (General/ObjCRuntime) message mechanism works well with other programming languages.
+The Objective-C Runtime (ObjCRuntime) message mechanism works well with other programming languages.
 
 Examples:
 
-Code written in C/C++ can retrieve selectors and send messages by C glue code (like General/ObjC can call C routines). However, note that General/CocoaFramework provides the utility class     General/NSInvocation for this purpose if you are using Cocoa. 
-See also: http://developer.apple.com/documentation/Cocoa/Reference/General/ObjCRuntimeRef/index.html
+Code written in C/C++ can retrieve selectors and send messages by C glue code (like ObjC can call C routines). However, note that CocoaFramework provides the utility class     NSInvocation for this purpose if you are using Cocoa. 
+See also: http://developer.apple.com/documentation/Cocoa/Reference/ObjCRuntimeRef/index.html
 
-General/PyObjC, see http://pyobjc.sourceforge.net/doc/intro.php
+PyObjC, see http://pyobjc.sourceforge.net/doc/intro.php
 
-See also: General/CocoaBridges
+See also: CocoaBridges

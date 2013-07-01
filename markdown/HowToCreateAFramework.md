@@ -1,3 +1,3 @@
-See http://developer.apple.com/documentation/General/MacOSX/Conceptual/General/BPFrameworks/Tasks/General/CreatingFrameworks.html
+See http://developer.apple.com/documentation/MacOSX/Conceptual/BPFrameworks/Tasks/CreatingFrameworks.html
 
 Also http://rentzsch.com/cocoa/embeddedFrameworks for embedded frameworks

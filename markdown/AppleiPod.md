@@ -1,4 +1,4 @@
-A small MP3/AAC player created by General/AppleComputer in 2001.
+A small MP3/AAC player created by AppleComputer in 2001.
 
 Related pages:
 

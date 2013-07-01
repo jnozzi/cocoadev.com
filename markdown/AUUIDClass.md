@@ -1,5 +1,5 @@
 This is a simple UUID class.
-General/SimonAndreasMenke
+SimonAndreasMenke
 
 ----
 
@@ -10,23 +10,23 @@ AUUID.h
 #import <Cocoa/Cocoa.h>
 
 
-@interface AUUID : General/NSObject <General/NSCoding,General/NSCopying> {
+@interface AUUID : NSObject <NSCoding,NSCopying> {
 	unsigned char uu[16];
 }
 
 + (AUUID*)uuid;
-+ (AUUID*)uuidWithStringValue:(General/NSString*)string;
++ (AUUID*)uuidWithStringValue:(NSString*)string;
 
 - (id)init;
-- (id)initWithStringValue:(General/NSString*)string;
+- (id)initWithStringValue:(NSString*)string;
 
-- (General/NSString*)stringValue;
+- (NSString*)stringValue;
 
-- (General/NSComparisonResult)compare:(AUUID*)uuid;
+- (NSComparisonResult)compare:(AUUID*)uuid;
 - (BOOL)isEqualToAUUID:(AUUID*)uuid;
 
-- (void)encodeWithCoder:(General/NSCoder *)coder;
-- (id)initWithCoder:(General/NSCoder *)coder;
+- (void)encodeWithCoder:(NSCoder *)coder;
+- (id)initWithCoder:(NSCoder *)coder;
 
 @end
 
@@ -47,9 +47,9 @@ AUUID.m
 @implementation AUUID
 
 + (AUUID*)uuid
-	{ return General/[[self class] alloc] init] autorelease]; }
+	{ return [[self class] alloc] init] autorelease]; }
 + (AUUID*)uuidWithStringValue:([[NSString*)string
-	{ return General/[[self class] alloc] initWithStringValue:string] autorelease]; }
+	{ return [[self class] alloc] initWithStringValue:string] autorelease]; }
 
 - (id)init {
 	if ((self = [super init])) {
@@ -75,20 +75,20 @@ AUUID.m
 	return self;
 }
 
-- (General/NSString*)stringValue {
+- (NSString*)stringValue {
 	char str[37];
 	uuid_unparse_upper(uu, str);
-	return General/[[[NSString alloc] initWithUTF8String:str] autorelease];
+	return [[[NSString alloc] initWithUTF8String:str] autorelease];
 }
 
-- (General/NSComparisonResult)compare:(AUUID*)uuid {
+- (NSComparisonResult)compare:(AUUID*)uuid {
 	return uuid_compare(uu, [uuid _uu]);
 }
 - (BOOL)isEqualToAUUID:(AUUID*)uuid {
-	return ([self compare:uuid] == General/NSOrderedSame);
+	return ([self compare:uuid] == NSOrderedSame);
 }
 
-- (General/NSString*)description {
+- (NSString*)description {
 	return [self stringValue];
 }
 
@@ -96,23 +96,23 @@ AUUID.m
 	return uu;
 }
 
-- (void)encodeWithCoder:(General/NSCoder *)coder {
+- (void)encodeWithCoder:(NSCoder *)coder {
     if ([coder allowsKeyedCoding]) {
-        [coder encodeObject:General/[NSData dataWithBytes:uu length:sizeof(uuid_t)] forKey:@"uuid"];
+        [coder encodeObject:[NSData dataWithBytes:uu length:sizeof(uuid_t)] forKey:@"uuid"];
     } else {
-        [coder encodeObject:General/[NSData dataWithBytes:uu length:sizeof(uuid_t)]];
+        [coder encodeObject:[NSData dataWithBytes:uu length:sizeof(uuid_t)]];
     }
     return;
 }
 
-- (id)initWithCoder:(General/NSCoder *)coder {
+- (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super init])) {
 		if ( [coder allowsKeyedCoding] ) {
-			General/NSData* data = General/coder decodeObjectForKey:@"uuid"] retain];
+			NSData* data = coder decodeObjectForKey:@"uuid"] retain];
 			[data getBytes:uu length:sizeof(uuid_t)];
 			[data release];
 		} else {
-			[[NSData* data = General/coder decodeObject] retain];
+			[[NSData* data = coder decodeObject] retain];
 			[data getBytes:uu length:sizeof(uuid_t)];
 			[data release];
 		}

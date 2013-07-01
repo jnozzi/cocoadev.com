@@ -1,24 +1,24 @@
-I've done a write-up on how to use Quick Look in your app, including source code: http://ciaranwal.sh/2007/12/07/quick-look-apis -General/CiaranWalsh
+I've done a write-up on how to use Quick Look in your app, including source code: http://ciaranwal.sh/2007/12/07/quick-look-apis -CiaranWalsh
 
 
-== How to generate General/QuickLook previews in your application ==
+== How to generate QuickLook previews in your application ==
 
-Use the function General/QLThumbnailImageCreate.
+Use the function QLThumbnailImageCreate.
 
-NB: due to it's blocking nature, it is important to call General/QLThumbnailImageCreate off the main thread however, it shouldn't be called concurrently. The concurrency libraries currently available will attempt to dispatch a second call whilst the first is blocking; this results in a backlog of blocked threads.
+NB: due to it's blocking nature, it is important to call QLThumbnailImageCreate off the main thread however, it shouldn't be called concurrently. The concurrency libraries currently available will attempt to dispatch a second call whilst the first is blocking; this results in a backlog of blocked threads.
 
 
-== How to call General/QuickLook panel from your application ==
+== How to call QuickLook panel from your application ==
 
-Apple public General/APIs allow developers to create General/QuickLook plugins, but there's no public method to call General/QuickLook panel. Here's some sample code to achieve this in a Cocoa application:
+Apple public APIs allow developers to create QuickLook plugins, but there's no public method to call QuickLook panel. Here's some sample code to achieve this in a Cocoa application:
 
 
     
  + (void)openQuickLookPanel:(NSString*)path;
  {		
- 	General/QLPreviewPanel sharedPreviewPanel] setURLs:[NSArray arrayWithObject:[NSURL fileURLWithPath:path currentIndex:0 preservingDisplayState:YES];
+ 	QLPreviewPanel sharedPreviewPanel] setURLs:[NSArray arrayWithObject:[NSURL fileURLWithPath:path currentIndex:0 preservingDisplayState:YES];
  	
- 	General/QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFrontWithEffect:1];   // 1 = fade in 
+ 	QLPreviewPanel sharedPreviewPanel] makeKeyAndOrderFrontWithEffect:1];   // 1 = fade in 
  }
 
 
@@ -140,7 +140,7 @@ To add the zoom-in animation used by Finder you need to set up a delegate:
 
     
  // set delegate like this:
- General/[QLPreviewPanel sharedPreviewPanel] delegate] setDelegate:delegate];
+ [QLPreviewPanel sharedPreviewPanel] delegate] setDelegate:delegate];
  
  // implement this in delegate
  - (NSRect)previewPanel:(NSPanel*)panel frameForURL:(NSURL*)URL 
@@ -152,7 +152,7 @@ To add the zoom-in animation used by Finder you need to set up a delegate:
 It should return the source screen rectangle for the given URL. Then you just have to change your makeKeyAndOrderFrontWithEffect: call to use 2 and [[QuickLook will take care of everything else - it will automatically request the frame for the current item when opening/closing and then zoom to/from it.  (Tip courtesy of Ciarán Walsh http://ciaranwal.sh/ ) 
 
 
-On the side note, there's also a command line tool to call General/QuickLook panel - qlmanage .  http://www.tuaw.com/2007/11/05/terminal-tip-use-quick-look-from-the-leopard-command-line/
+On the side note, there's also a command line tool to call QuickLook panel - qlmanage .  http://www.tuaw.com/2007/11/05/terminal-tip-use-quick-look-from-the-leopard-command-line/
 
 --
 Cocoatech  
@@ -160,24 +160,24 @@ http://www.cocoatech.com
 
 ----
 
-I also had to add the Framework found at     /System/Library/General/PrivateFrameworks/General/QuickLookUI.framework to make the General/QLPreviewPanel class available -General/CiaranWalsh
+I also had to add the Framework found at     /System/Library/PrivateFrameworks/QuickLookUI.framework to make the QLPreviewPanel class available -CiaranWalsh
 
 ----
 
-I'd recommend not linking directly to the framework referenced above. Use General/NSBundle to load it or utilize weak linking. If Apple decides to remove or rename the framework, your app will die at runtime from a dyld error. -rtmfd
+I'd recommend not linking directly to the framework referenced above. Use NSBundle to load it or utilize weak linking. If Apple decides to remove or rename the framework, your app will die at runtime from a dyld error. -rtmfd
 
 
-== General/QuickLook generators ==
+== QuickLook generators ==
 
-One important tidbit about implementing General/QuickLook in your app is that if your document is bundled, you may not even need to write a generator at all. According to the docs:
+One important tidbit about implementing QuickLook in your app is that if your document is bundled, you may not even need to write a generator at all. According to the docs:
 
-*If you want to specify static thumbnail and preview images for a bundled document, you can take the easiest approach—it doesn’t even require a generator. Just have your application place the images inside the document bundle in a subfolder named General/QuickLook; the image file for thumbnails should be named Thumbnail.ext and the file for previews should be named Preview.ext (where ext is an extension such as tiff, png, or jpg). If you decide on this approach, you should not create a generator.*
+*If you want to specify static thumbnail and preview images for a bundled document, you can take the easiest approach—it doesn’t even require a generator. Just have your application place the images inside the document bundle in a subfolder named QuickLook; the image file for thumbnails should be named Thumbnail.ext and the file for previews should be named Preview.ext (where ext is an extension such as tiff, png, or jpg). If you decide on this approach, you should not create a generator.*
 
 I'm adding that here because it's buried deep in the docs and is easily overlooked. Seems like a good argument for creating bundled docs! --GC
 
 ----
 
-Here is a useful General/NSImage category that adds the following method:
+Here is a useful NSImage category that adds the following method:
     
  +(NSImage *)imageWithPreviewOfFileAtPath:(NSString *)path ofSize:(NSSize)size asIcon:(BOOL)icon;
 
@@ -185,15 +185,15 @@ See http://mattgemmell.com/2007/10/29/how-to-get-a-quick-look-preview-as-an-nsim
 
 
 ----
-I'm wondering what restrictions General/QuickLook has. According to Apple's 300 Feature Page, General/QuickLook is "sandboxed". Does anybody know what can not be done with General/QuickLook? Can it access the network / internet?
+I'm wondering what restrictions QuickLook has. According to Apple's 300 Feature Page, QuickLook is "sandboxed". Does anybody know what can not be done with QuickLook? Can it access the network / internet?
 
 ----
-From my, very limited, research, it appears network access is indeed blocked from General/QuickLook generators.     -stringWithContentsOfURL:encoding:error: called from a QL-generator returns nil for internet General/NSURLs, though file:// urls work just fine. Also, when using kUTTypeHTML, <img ... /> can only be used when the images are included in a separate General/CFDictionary, but backgrounds in css are working with normal file://-urls, but that might be a bug... I wonder why they did this though, in what way are General/QuickLook generators more dangerous than normal apps?
+From my, very limited, research, it appears network access is indeed blocked from QuickLook generators.     -stringWithContentsOfURL:encoding:error: called from a QL-generator returns nil for internet NSURLs, though file:// urls work just fine. Also, when using kUTTypeHTML, <img ... /> can only be used when the images are included in a separate CFDictionary, but backgrounds in css are working with normal file://-urls, but that might be a bug... I wonder why they did this though, in what way are QuickLook generators more dangerous than normal apps?
 And I should add, that writing local files seems to work...
 
 ----
 
-I've seen the following category in the General/QuickLook framework, the location (General/NSView) seems odd though.
+I've seen the following category in the QuickLook framework, the location (NSView) seems odd though.
 
     
  @interface NSView (QLNSViewAddition)
@@ -208,7 +208,7 @@ I've seen the following category in the General/QuickLook framework, the locatio
 
 ----
 
-There are a bunch of undocumented property keys to control the features of the embedded General/WebView which is used for the preview:
+There are a bunch of undocumented property keys to control the features of the embedded WebView which is used for the preview:
 
     
  AllowNetworkAccess
@@ -233,13 +233,13 @@ Does anyone know how to solve it ?
 I would like to prevent my quicklook thumbnail from having the page curl and shadow decoration. Have not found a way to prevent this.
 
 ----
-Try putting a bool entry named General/QLDisableIconCorners in your Info.plist
+Try putting a bool entry named QLDisableIconCorners in your Info.plist
 
 ----
 
-The General/APIs are public in Snow Leopard and available in General/QuickLookUI.framework in Quartz.framework.
+The APIs are public in Snow Leopard and available in QuickLookUI.framework in Quartz.framework.
 
 ----
-Got a problem on Snow Leopard with General/QLThumbnailImageCreate method.
+Got a problem on Snow Leopard with QLThumbnailImageCreate method.
 The documentation says that it should return NULL if no thumbnail is available.. That's what it does on Leopard with a missing album artwork on an audio file. But on Snow Leopard, it returns the Apple default "no-artwork" image... which is quite pixellised!
 Any clue?

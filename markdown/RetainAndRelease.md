@@ -1,3 +1,3 @@
-This Q&A was appended to General/ParseErrorAtCertainNameNeedHelp, as it was about that rather than about memory management
+This Q&A was appended to ParseErrorAtCertainNameNeedHelp, as it was about that rather than about memory management
 
-For questions related to Cocoa General/MemoryManagement, please see General/RetainingAndReleasing
+For questions related to Cocoa MemoryManagement, please see RetainingAndReleasing

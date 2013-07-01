@@ -1,10 +1,10 @@
-is there an easy way to get a complete line count of all the code you have written on a project in General/XCode? I really like to see how much I have written as time goes by, sometimes it amazes me.
+is there an easy way to get a complete line count of all the code you have written on a project in XCode? I really like to see how much I have written as time goes by, sometimes it amazes me.
 
 Thanks,
 
 -Peter
 
-It doesn't involve General/XCode, but what the heck:
+It doesn't involve XCode, but what the heck:
 
     
 cd your/project/directory

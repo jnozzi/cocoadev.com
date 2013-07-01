@@ -1,4 +1,4 @@
-How do I set an alternate image of a button in General/InterfaceBuilder?
+How do I set an alternate image of a button in InterfaceBuilder?
 
 I've tried this      [myButton setImage:@"myImage"]; It doesn't work!
 
@@ -12,4 +12,4 @@ Your problem is that you are using a string object when setting the image. You s
 
 ----
 
-For discussion about more complicated modification of the appearance of your General/NSButton in various states, see General/CustomNSButton
+For discussion about more complicated modification of the appearance of your NSButton in various states, see CustomNSButton

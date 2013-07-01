@@ -1,6 +1,6 @@
 
 
-I'm trying to accomplish a fairly complex task using Regular Expressions and the General/OgreKit framework. http://goo.gl/General/OeSCu
+I'm trying to accomplish a fairly complex task using Regular Expressions and the OgreKit framework. http://goo.gl/OeSCu
 
 My goal is to parse out the contents of PHP functions from raw source code for later modification.  My problem is that my expression will only go up to a single } (so nested if statements will throw it off).
 
@@ -27,7 +27,7 @@ The purpose of my expression would be too loop through all matches and return ea
 
 My regular expression is: *function formatDate\\s*([(][^)]*[)])?\\s*[{](([^}]|[\\n\\r])*)[}]*
 
-If any General/RegEx masters out there could offer some assistance it would be greatly appreciated :).
+If any RegEx masters out there could offer some assistance it would be greatly appreciated :).
 
 I realize this is slightly off topic, but it is ultimately part of a Cocoa applications, so please excuse it.  Thanks!
 
@@ -37,7 +37,7 @@ It's provably impossible to match nested braces with a single regular expression
 
 ----
 
-So would the best method then be to regex out the function start points and store the range, then use General/NSScanner to go through and count the {'s and }'?  Thanks for your response!.
+So would the best method then be to regex out the function start points and store the range, then use NSScanner to go through and count the {'s and }'?  Thanks for your response!.
 
 ----
 
@@ -82,13 +82,13 @@ Thanks!
 
 Perhaps some variation on:
 
-    /General/SecHed[\d](.*?)$/m
+    /SecHed[\d](.*?)$/m
 
 would work.
 
 ----
 
-General/RegExps are inherently bad at multiline matching. I suggest looking for     General/SecHeadN and then reading the text block after it, doing a     s/\n/ /m (Perl syntax for replace newline with space) on the block. This is really no task that requires regexps at all, it would probably suffice with a simple search and replace.
+RegExps are inherently bad at multiline matching. I suggest looking for     SecHeadN and then reading the text block after it, doing a     s/\n/ /m (Perl syntax for replace newline with space) on the block. This is really no task that requires regexps at all, it would probably suffice with a simple search and replace.
 
 I would say five lines of Perl. If I knew more about the problem -- I didn't really understand it from the description above -- I could write them for you.
 
@@ -99,23 +99,23 @@ Most likely it would be something like the following:
 
 s/^(.*)$/$1/ if $section;
 
-$section = 1 if /General/SecHed\d/;
+$section = 1 if /SecHed\d/;
 $section = 0 if /^\s*$/;
 
 
 But that would probably not work out of the box...
 
--- General/TheoHultberg/Iconara 
+-- TheoHultberg/Iconara 
 
 ----
 
-*General/RegExps are inherently bad at multiline matching.*
+*RegExps are inherently bad at multiline matching.*
 
 Really?
 
 *This is really no task that requires regexps at all.*
 
-Well ... yeah ... you could write a linear parser by splitting the string, reading line by line, counting the General/SecHeads and new lines, and then filter appropriately. But why bother when you can just ask the regex library to do it for you?
+Well ... yeah ... you could write a linear parser by splitting the string, reading line by line, counting the SecHeads and new lines, and then filter appropriately. But why bother when you can just ask the regex library to do it for you?
 
 *I would say five lines of Perl.*
 
@@ -123,28 +123,28 @@ To borrow a turn of phrase from George Lucas, I see you have not mastered perl r
 
 Gentlemen, Behold!
 
-    $fileContents =~ s/(General/SecHed.*?)\n{2}/$1  /gs;
+    $fileContents =~ s/(SecHed.*?)\n{2}/$1  /gs;
 
-Treating the string $fileContents as a single line (because regex **is** good at multi-line matching), find all string segments beginning with General/SecHead and continuing by way of a non-greedy expansion until-and-not-including the next two newline characters, and replace those string segments with themselves plus two spaces. Ok ... it's much easier to write perl in one line than it is to explain perl in one line.
+Treating the string $fileContents as a single line (because regex **is** good at multi-line matching), find all string segments beginning with SecHead and continuing by way of a non-greedy expansion until-and-not-including the next two newline characters, and replace those string segments with themselves plus two spaces. Ok ... it's much easier to write perl in one line than it is to explain perl in one line.
 
-For further reading I suggest General/TheCamelBook (aka General/ProgrammingPerl) pages 58-74.
+For further reading I suggest TheCamelBook (aka ProgrammingPerl) pages 58-74.
 
-Note that tools like sed only use General/BasicRegularExpressions, which is unfortunate. The command above requires General/ExtendedRegularExpressions, like found in Perl and other more modern utlities.
+Note that tools like sed only use BasicRegularExpressions, which is unfortunate. The command above requires ExtendedRegularExpressions, like found in Perl and other more modern utlities.
 
--- General/MikeTrent
+-- MikeTrent
 
 Ah, well, I was on track, anyway.
 
-For interest's sake, General/AGRegex. I've used it and liked it.
+For interest's sake, AGRegex. I've used it and liked it.
 
--- General/RobRix
+-- RobRix
 
-For completeness' sake, General/OgreKit. I've switched from General/AGRegex to General/OgreKit in my projects - it supports a bunch of different regex flavors, seems faster than General/AGRegex in my informal tests, and provides a find panel that works as a drop-in replacement for the standard Cocoa one. It's what General/SubEthaEdit 2.0 uses for its regex support. Main drawback - the docs are in Japanese only at present.
+For completeness' sake, OgreKit. I've switched from AGRegex to OgreKit in my projects - it supports a bunch of different regex flavors, seems faster than AGRegex in my informal tests, and provides a find panel that works as a drop-in replacement for the standard Cocoa one. It's what SubEthaEdit 2.0 uses for its regex support. Main drawback - the docs are in Japanese only at present.
 
 -- John C. Warner
 
-*There's always one more way of doing it* (Larry Wall) --General/TheoHultberg
+*There's always one more way of doing it* (Larry Wall) --TheoHultberg
 
-I made a very simple wrapper for the regex functions already present in libc. It's General/CSRegex, and it's good for people who only need simple regex functionality without the bother of havig to include external libraries.
+I made a very simple wrapper for the regex functions already present in libc. It's CSRegex, and it's good for people who only need simple regex functionality without the bother of havig to include external libraries.
 
--- General/WAHa
+-- WAHa

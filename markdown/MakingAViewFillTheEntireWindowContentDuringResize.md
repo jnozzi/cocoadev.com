@@ -4,7 +4,7 @@ Hello,
 
 Everyone here has been very helpful the last month as I learn Cocoa. Thank you.
 
-I have one question which seems relatively simple. My program basically has the normal title bar and one big custom General/NSView taking up the entire window's content view. I would like the user to be able to resize only in the x-direction (currently resizing is disabled). When this happens, my custom General/NSView should still take up the entire window's content view.
+I have one question which seems relatively simple. My program basically has the normal title bar and one big custom NSView taking up the entire window's content view. I would like the user to be able to resize only in the x-direction (currently resizing is disabled). When this happens, my custom NSView should still take up the entire window's content view.
 
 To be honest I'm not sure how to do it. I know that the window's contentView must come in somewhere.
 

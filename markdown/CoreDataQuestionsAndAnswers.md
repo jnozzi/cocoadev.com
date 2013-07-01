@@ -5,17 +5,17 @@ Whose idea  was it try to eliminate the controller layer?
 **Answer:** 
 This goes back to early Smalltalk work.
 
-**Question: Is there a history to trying to do this outside of Apple/General/NeXT?** 
+**Question: Is there a history to trying to do this outside of Apple/NeXT?** 
 
 **Answer:** 
 Microsoft tried with DDE which I think stands for "Dynamic Data 
-Exchange" and the General/DoExchnage() features of MFC classes.  There is some 
+Exchange" and the DoExchnage() features of MFC classes.  There is some 
 support for automating these controller tasks in MS Visual Studio's 
 various editors.  Visual Basic from Version 3 at least had bindings capable
 controls using the COM and DAO (later ADO) subsystems to hook database
 data directly to onscreen controls.
 
- Borland's Delphi, General/IBMs Smalltalk, Java, and C++ 
+ Borland's Delphi, IBMs Smalltalk, Java, and C++ 
 environments provide some automation. 
 
 Ref: Microsoft's "Managed 
@@ -41,7 +41,7 @@ Yes, yes, and yes.
 **Answer:** 
 I seems similar to "Enterprise Objects Framework" (EOF) which Apple 
 still sells.  EOF has more of a database centric view of the world than 
-General/CoreData.
+CoreData.
 
 **Question: Is it "normal" to apply database technology to application design?** 
 
@@ -55,7 +55,7 @@ used in desktop applications? **
 
 **Answer:** 
 Yes.  I think Apple engineers would be the first to tell you that 
-General/CoreData is not the best solution to every model layer problem just 
+CoreData is not the best solution to every model layer problem just 
 like the MVC pattern is not best applied to all application designs.  
 However, in both cases, the techniques are applicable to a surprisingly 
 broad range of applications.
@@ -76,14 +76,14 @@ this new format? **
 
 **Answer:** 
 Yes.  If the application is primarily computational instead of data 
-management oriented, I would probably not choose General/CoreData.  I doubt 
+management oriented, I would probably not choose CoreData.  I doubt 
 Core Data can substantially automate or improve a ray tracer, a fractal 
 generator, a PDF viewer, an industrial equipment controller, a low 
 level DVD burner, many games, etc.  In fact, I am starting to think 
 that "real time" and Core Data are mutually exclusive.
 
 I can't wait to see Apple's Sketch example re-implemented with 
-General/CoreData.  It could be Cool!
+CoreData.  It could be Cool!
 
 **Question: Is good database design equivalent to good application model design?** 
 

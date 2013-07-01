@@ -5,7 +5,7 @@ This topic discusses how a scroll view automatically scrolls its document view w
 You can selectively autoscroll in user defined directions by subclassing the enclosing scroll view and overriding     scrollClipView:toPoint:. For example, if a table view is enclosed in a scroll view, and you would like the scroll view to "only" automatically scroll up and down when an item is being dragged over it. You can control the autoscrolling behavior by overriding     scrollClipView:toPoint:. 
 
     
-- (void)scrollClipView:(General/NSClipView *)aClipView toPoint:(General/NSPoint)newOrigin {
+- (void)scrollClipView:(NSClipView *)aClipView toPoint:(NSPoint)newOrigin {
 	if (gIsPerformingDragOperation) 
 		newOrigin.x = [aClipView bounds].origin.x;
 	[super scrollClipView:aClipView toPoint:newOrigin];
@@ -17,16 +17,16 @@ To bypass autoscrolling left when items are dragged over the visible left edge o
     gIsPerformingDragOperation is a global BOOL variable that is turned on during a drag operation. I simply asked the document view of the custom scroll view to register for most of the common dragged types and then implemented the appropriate drag and drop methods to switch gIsPerformingDragOperation on and off. The better solution would be to find a function or method that can tell me if a drag operation is in progress (I'm still searching for one). 
 
     
-- (General/NSDragOperation)draggingEntered:(id <General/NSDraggingInfo>)sender {
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
     gIsPerformingDragOperation = YES;
 }
-- (General/NSDragOperation)draggingUpdated:(id <General/NSDraggingInfo>)sender {
+- (NSDragOperation)draggingUpdated:(id <NSDraggingInfo>)sender {
     gIsPerformingDragOperation = YES;
 }
-- (General/NSDragOperation)draggingExited:(id <General/NSDraggingInfo>)sender {
+- (NSDragOperation)draggingExited:(id <NSDraggingInfo>)sender {
     gIsPerformingDragOperation = NO;
 }
-- (General/NSDragOperation)concludeDragOperation:(id <General/NSDraggingInfo>)sender {
+- (NSDragOperation)concludeDragOperation:(id <NSDraggingInfo>)sender {
     gIsPerformingDragOperation = NO;
 }
 

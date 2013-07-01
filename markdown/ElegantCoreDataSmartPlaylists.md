@@ -6,7 +6,7 @@ But then again, I only started cocoa a few days ago so I'm probably trying to fi
 
 Thanks,
 
-General/DanielPeebles
+DanielPeebles
 
 ----
 

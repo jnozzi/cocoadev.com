@@ -1,4 +1,4 @@
-One of many General/RSSNewsReaders for OS X....
+One of many RSSNewsReaders for OS X....
 
 Created by Dave Watanabe: http://www.newsfirerss.com
 
@@ -6,14 +6,14 @@ Is shareware, limited to a certain number of feeds until registered. Not anymore
 
 ----
 
-Those interested in how user interface elements specific to General/NewsFire were accomplished may want to see the following pages:
+Those interested in how user interface elements specific to NewsFire were accomplished may want to see the following pages:
 
 
-*General/VisualEffectsInCocoaApps - *For a discussion of some of the latest trends in visual effects.*
-*General/NSTableViewRollover - *How to make a table view highlight a row during mouse over.* **[ Note - General/NewsFire uses a General/WebView with CSS for this effect. ]**
-*General/ITunesStyleGradient - *How to make a 'source list' type table view whose selected rows use a gradient effect.*
-*General/NSTableViewBezeledBorder - *How to make the metal bezel view found in General/NewsFire, iTunes, and other apps.*
-*General/NewsFireClone - *A proposal for a free alternative to General/NewsFire, incorporating all its effects.*
+*VisualEffectsInCocoaApps - *For a discussion of some of the latest trends in visual effects.*
+*NSTableViewRollover - *How to make a table view highlight a row during mouse over.* **[ Note - NewsFire uses a WebView with CSS for this effect. ]**
+*ITunesStyleGradient - *How to make a 'source list' type table view whose selected rows use a gradient effect.*
+*NSTableViewBezeledBorder - *How to make the metal bezel view found in NewsFire, iTunes, and other apps.*
+*NewsFireClone - *A proposal for a free alternative to NewsFire, incorporating all its effects.*
 
 
 ----

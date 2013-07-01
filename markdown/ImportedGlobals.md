@@ -4,8 +4,8 @@ Now back in the day, you could stuff a whole bunch of **const VAR_TYPE $VARNAME*
 
 The same way. You could, for instance, put it in your prefix header...
 
-    const int General/SomeValue = ...;
+    const int SomeValue = ...;
 
 Me, I'd rather use macros.
 
--- General/RobRix
+-- RobRix

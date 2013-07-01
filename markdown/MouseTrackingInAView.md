@@ -1,15 +1,15 @@
-There are two general techniques for     General/NSView subclasses to handle clicks and drags. General/MouseTrackingInACell is separate and more complex (although some techniques transfer).
+There are two general techniques for     NSView subclasses to handle clicks and drags. MouseTrackingInACell is separate and more complex (although some techniques transfer).
 
 **Modal style**: your function does not return until the mouse goes up.
     
-- (void)mouseDown:(General/NSEvent *)firstEvent
+- (void)mouseDown:(NSEvent *)firstEvent
 {
 	// Handle the initial mouse down.
-	General/NSEvent *latestEvent;
-	while((latestEvent = General/self window] nextEventMatchingMask:[[NSLeftMouseDraggedMask | General/NSLeftMouseUpMask untilDate:General/[NSDate distantFuture] inMode:General/NSEventTrackingRunLoopMode dequeue:YES]) && [latestEvent type] != General/NSLeftMouseUp) {
+	NSEvent *latestEvent;
+	while((latestEvent = self window] nextEventMatchingMask:[[NSLeftMouseDraggedMask | NSLeftMouseUpMask untilDate:[NSDate distantFuture] inMode:NSEventTrackingRunLoopMode dequeue:YES]) && [latestEvent type] != NSLeftMouseUp) {
 		// Handle the mouse drag.
 	}
-	General/self window] discardEventsMatchingMask:[[NSAnyEventMask beforeEvent:latestEvent];
+	self window] discardEventsMatchingMask:[[NSAnyEventMask beforeEvent:latestEvent];
 	// Handle the mouse up.
 }
 
@@ -22,24 +22,24 @@ There are two general techniques for     General/NSView subclasses to handle cli
 
 *Notes
 
-*You have to specify the General/RunLoop mode to use. You probably want     General/NSEventTrackingRunLoopMode.
+*You have to specify the RunLoop mode to use. You probably want     NSEventTrackingRunLoopMode.
 *Send     -discardEventsMatchingMask:beforeEvent: afterward to make sure other events that happen during the drag are ignored.
-*Remember that there's a difference between, for example,     General/NSLeftMouseUp and     General/NSLeftMouseUpMask. If necessary, you can use     General/NSEventMaskFromType().
+*Remember that there's a difference between, for example,     NSLeftMouseUp and     NSLeftMouseUpMask. If necessary, you can use     NSEventMaskFromType().
 
 
 
 **Non-modal style**: you let the system tell you when a drag event occurs.
     
-- (void)mouseDown:(General/NSEvent *)anEvent
+- (void)mouseDown:(NSEvent *)anEvent
 {
-	General/self window] disableCursorRects];
+	self window] disableCursorRects];
 	// Handle the mouse down.
 }
 - (void)mouseDragged:([[NSEvent *)anEvent
 {
 	// Handle the mouse drag. If the mouse is not dragged, this method is not invoked.
 }
-- (void)mouseUp:(General/NSEvent *)anEvent
+- (void)mouseUp:(NSEvent *)anEvent
 {
 	// Handle the mouse up.
 	[[self window] enableCursorRects];

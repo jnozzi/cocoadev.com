@@ -8,31 +8,31 @@ A lot of the example Cocoa code using Objective C assumes that one is writing a 
 
     
 int main( int argc, char *argv[] ) {
-    return General/NSApplicationMain( argc, argv );
+    return NSApplicationMain( argc, argv );
 }
 
 
-But I don't think that will work for me (not to mention that it's not at all clear how General/NSApplicationMain() calls the rest of one's program to run it).
+But I don't think that will work for me (not to mention that it's not at all clear how NSApplicationMain() calls the rest of one's program to run it).
 
 Instead, my program basically is like:
 
     
 int main( int argc, char *argv[] ) {
-    General/[NSApplication sharedApplication];
+    [NSApplication sharedApplication];
     readInfoPlist();
     // create a new POSIX thread for the JVM
     // spawn JVM thread
-    General/[NSApp run];
+    [NSApp run];
 }
 
 
-I have no idea whether calling General/[NSApplication sharedApplication] is the right thing to do, but the code works better having it.
+I have no idea whether calling [NSApplication sharedApplication] is the right thing to do, but the code works better having it.
 
 The readInfoPlist() method is in Objective C.  It's basically:
 
     
 void readInfoPlist() {
-    General/NSAutoreleasePool *pool = General/[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool *pool = [NSAutoreleasePool alloc] init];
     // read Info.plist
     [pool release];
 }
@@ -44,10 +44,10 @@ I also have my own myAlert() method that's:
 
     
 void myAlert( char const *msg ) {
-    General/NSAlert *const alert = General/[[NSAlert alloc] init];
-    [alert setMessageText:General/[NSString stringWithUTF8String:msg]];
+    NSAlert *const alert = [[NSAlert alloc] init];
+    [alert setMessageText:[NSString stringWithUTF8String:msg]];
     [alert addButtonWithTitle:@"Quit"];
-    [alert setAlertStyle:General/NSCriticalAlertStyle];
+    [alert setAlertStyle:NSCriticalAlertStyle];
     [alert runModal];
     [alert release];
     ::exit( 1 );
@@ -56,17 +56,17 @@ void myAlert( char const *msg ) {
 
 In my case, all alerts are fatal, so, ideally, I'd like myAlert() simply to exit.  Also note that myAlert() can be called either from the original thread or the JVM thread.
 
-In the case where the JVM is successfully launched, the application runs; then, if the user quits, the program is "stuck" presumebly because it's still sitting in General/[NSApp run].
+In the case where the JVM is successfully launched, the application runs; then, if the user quits, the program is "stuck" presumebly because it's still sitting in [NSApp run].
 
 So, assuming you've read all this, my questions are:
 
 
 *What's the correct way to initialize a Cocoa application such as mine?
-*How do I get the General/NSAutoreleasePool thing to work?
+*How do I get the NSAutoreleasePool thing to work?
 *Is the code for myAlert() correct?
 *Is it OK for myAlert() to call exit()?
 *It is OK for myAlert() to be called by any thread?
-*How to I break out of General/[NSApp run] (assuming I should have called it in the first place)?
+*How to I break out of [NSApp run] (assuming I should have called it in the first place)?
 
 
 Thanks much in advance!
@@ -75,10 +75,10 @@ Thanks much in advance!
 
 ----
 
-For the General/NSAutoreleasePool, put that inside your main() function, not inside others. Then you won't have to worry about that. myAlert() is leaking because it's not inside an General/NSAutoreleasePool (unless you call it from readInfoPlist.
+For the NSAutoreleasePool, put that inside your main() function, not inside others. Then you won't have to worry about that. myAlert() is leaking because it's not inside an NSAutoreleasePool (unless you call it from readInfoPlist.
 
-To exit a Cocoa app, use     General/[NSApp terminate:nil] - General/NSApp is short for     General/[NSApplication sharedApplication]
+To exit a Cocoa app, use     [NSApp terminate:nil] - NSApp is short for     [NSApplication sharedApplication]
 
 ----
 
-But why doesn't use of an General/NSAutoreleasePool work anywhere?  Ideally, main() shoudn't have to know or care about how readInfoPlist is implemented.
+But why doesn't use of an NSAutoreleasePool work anywhere?  Ideally, main() shoudn't have to know or care about how readInfoPlist is implemented.

@@ -4,7 +4,7 @@ Trying to get one to render in a table view.  But it doesn't really show up.   A
 
 I have never heard of that class. Is it a Panther thing? Am I out of the loop? What is it supposed to be?
 
--- General/RobRix
+-- RobRix
 
 It's Pantster. And it doesn't work.  At least not for me.
 
@@ -14,7 +14,7 @@ It might me something like a "matrix cell".  It's basically a cell... and, um...
 
 ----
 
-Any examples using General/NSSegmentedCell you've got handy could go here. *hint hint* ;-)
+Any examples using NSSegmentedCell you've got handy could go here. *hint hint* ;-)
 
 Its use looks pretty straight-forward but I haven't used it yet.
 
@@ -23,11 +23,11 @@ Its use looks pretty straight-forward but I haven't used it yet.
 It is the control used for "view switching" in Finder (outline, browser, icon) iCal (day, month, year) and similar. It looks exactly like the header of the new (Panther style) tab views.
 
 ----
-Here is some sample code showing General/NSSegmentedControl.
+Here is some sample code showing NSSegmentedControl.
 
 http://www.nancesoftware.com/development/sample_code/segmentedcontrols/
 
-General/JacobHazelgrove
+JacobHazelgrove
 
 ----
 

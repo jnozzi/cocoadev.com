@@ -6,33 +6,33 @@ Some sample code for displaying a simple sheet with OK/Cancel buttons on it:
 {
     int modalVal;
 
-    General/[NSApp beginSheet:theSheet 
+    [NSApp beginSheet:theSheet 
             modalForWindow:self
             modalDelegate:self 
             didEndSelector:NULL 
             contextInfo:NULL];
 
-    modalVal = General/[NSApp runModalForWindow:theSheet];
+    modalVal = [NSApp runModalForWindow:theSheet];
 
-    General/[NSApp endSheet:theSheet];
+    [NSApp endSheet:theSheet];
     [theSheet orderOut:nil];	
 }
 
-- (General/IBAction)acceptSheet:(id)sender
+- (IBAction)acceptSheet:(id)sender
 {
-    General/[NSApp stopModalWithCode:1];
+    [NSApp stopModalWithCode:1];
 }
 
-- (General/IBAction)cancelSheet:(id)sender
+- (IBAction)cancelSheet:(id)sender
 {
-    General/[NSApp stopModalWithCode:0];
+    [NSApp stopModalWithCode:0];
 }
 
 
 
-**theSheet** is an outlet connected to the sheet, which is an General/NSPanel in General/InterfaceBuilder. 
+**theSheet** is an outlet connected to the sheet, which is an NSPanel in InterfaceBuilder. 
 
-**-acceptSheet** and **-cancelSheet** are actions that can be connected, for example, to OK/Cancel buttons on the sheet using General/InterfaceBuilder.
+**-acceptSheet** and **-cancelSheet** are actions that can be connected, for example, to OK/Cancel buttons on the sheet using InterfaceBuilder.
 
 Upon return from **runModalForWindow**, the variable **modalVal** will contain either 0 or 1, depending on whether the sheet was canceled or accepted, respectively.
 
@@ -43,31 +43,31 @@ From: Seth Willits
 Since sheets that are modal for the entire application are big no-no's, use this method which presents the sheet modal only to the window it is attached to.
 
     
-- (General/IBAction)openSheet:(id)sender
+- (IBAction)openSheet:(id)sender
 {
-	General/[NSApp beginSheet: theSheet
+	[NSApp beginSheet: theSheet
 			modalForWindow: theParent
 			modalDelegate: self
 			didEndSelector: @selector(sheetDidEnd: returnCode: contextInfo:)
 			contextInfo:NULL];
 }
 
-- (General/IBAction)theSheetOK:(id)sender
+- (IBAction)theSheetOK:(id)sender
 {
-	General/[NSApp endSheet:theSheet returnCode: General/NSOKButton];
+	[NSApp endSheet:theSheet returnCode: NSOKButton];
 	[theSheet orderOut:nil];
 }
 
-- (General/IBAction)theSheetCancel:(id)sender
+- (IBAction)theSheetCancel:(id)sender
 {
-	General/[NSApp endSheet:theSheet returnCode: General/NSCancelButton];
+	[NSApp endSheet:theSheet returnCode: NSCancelButton];
 	[theSheet orderOut:nil];
 }
 
-- (void)sheetDidEnd:(General/NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)sheetDidEnd:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-	if (returnCode == General/NSOKButton)
-		General/NSBeep();
+	if (returnCode == NSOKButton)
+		NSBeep();
 }
 
 
@@ -75,15 +75,15 @@ Since sheets that are modal for the entire application are big no-no's, use this
 
 From: Alex Karahalios <Alex at Karahalios dot org>
 
-Subject: Re: Use of General/NSSavePanel (or Open)    
-@interface General/ModalSavePanel : General/NSSavePanel
-- (int)runModalForDirectory:(General/NSString *)path file:(General/NSString *)name
-		   relativeToWindow:(General/NSWindow*)window;
+Subject: Re: Use of NSSavePanel (or Open)    
+@interface ModalSavePanel : NSSavePanel
+- (int)runModalForDirectory:(NSString *)path file:(NSString *)name
+		   relativeToWindow:(NSWindow*)window;
 @end
 
-@implementation General/ModalSavePanel
-- (int)runModalForDirectory:(General/NSString *)path file:(General/NSString *)name
-		   relativeToWindow:(General/NSWindow*)window;
+@implementation ModalSavePanel
+- (int)runModalForDirectory:(NSString *)path file:(NSString *)name
+		   relativeToWindow:(NSWindow*)window;
 {
      int result;
      [super beginSheetForDirectory: path
@@ -92,8 +92,8 @@ Subject: Re: Use of General/NSSavePanel (or Open)
                      modalDelegate: self
                     didEndSelector: NULL
                        contextInfo:NULL];
-     result = General/[NSApp runModalForWindow:self];
-     General/[NSApp endSheet:self];
+     result = [NSApp runModalForWindow:self];
+     [NSApp endSheet:self];
      return result;
 }@end
 
@@ -105,20 +105,20 @@ From: The DJ <hartman at mac dot com>
 Subject: Use of a sheet (Java solution)
 
 Just for the record of the mailinglist, in Cocoa/Java the use of a sheet is as followed:
-        public void openMenu(General/NSMenuItem sender) {
-        op = new General/NSOpenPanel();
+        public void openMenu(NSMenuItem sender) {
+        op = new NSOpenPanel();
         op.setAllowsMultipleSelection(false);
         op.setCanChooseDirectories(false);
         op.setCanChooseFiles(true);
         op.beginSheetForDirectory(directory,
             filename,null,window,this,
-            new General/NSSelector("done",new Class[] {
-                General/NSOpenPanel.class, int.class}),
+            new NSSelector("done",new Class[] {
+                NSOpenPanel.class, int.class}),
             null);
     }
     
-    public void done(General/NSOpenPanel sheet, int returnCode){
-            if (returnCode == General/NSAlertPanel.General/DefaultReturn) {
+    public void done(NSOpenPanel sheet, int returnCode){
+            if (returnCode == NSAlertPanel.DefaultReturn) {
                 open_file = sheet.filename();
                 System.out.println(open_file);
             }
@@ -127,30 +127,30 @@ Just for the record of the mailinglist, in Cocoa/Java the use of a sheet is as f
 
 ----
 
-From: General/MattRidley
+From: MattRidley
 
 Subject: simpler way to get an OK/Cancel sheet, without using Interface Builder
 
-You can just use the General/NSBeginAlertSheet() function, documented in the Functions section of the General/AppKit documentation.
+You can just use the NSBeginAlertSheet() function, documented in the Functions section of the AppKit documentation.
 
     
 
 - (void)runAlertSheet
 {
-	General/NSBeginAlertSheet(@"You must be insane!", @"OK", @"Cancel",
+	NSBeginAlertSheet(@"You must be insane!", @"OK", @"Cancel",
 		nil, myWindow, self, NULL,
 		@selector(endAlertSheet:returnCode:contextInfo:),
 		NULL,
 		@"Are you sure you want to do such a reckless thing?");
 }
 
-- (void)endAlertSheet:(General/NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+- (void)endAlertSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-	if (returnCode == General/NSAlertDefaultReturn) {
-		General/NSLog(@"Clicked OK");
+	if (returnCode == NSAlertDefaultReturn) {
+		NSLog(@"Clicked OK");
 	}
-	else if (returnCode == General/NSAlertAlternateReturn) {
-		General/NSLog(@"Clicked Cancel");
+	else if (returnCode == NSAlertAlternateReturn) {
+		NSLog(@"Clicked Cancel");
 	}
 }
 
@@ -175,7 +175,7 @@ When should I display my sheet so that it runs after startup of the app?  Right?
 
 *how about applicationDidFinishLaunching or windowControllerDidLoadNib*
 
--- General/SamGoldman
+-- SamGoldman
 ----
 For complete example code that displays a sheet once when a document is open and also supports nice application quit behavior:
 See http://www.stepwise.com/Articles/2006/eb1/index.html
@@ -192,25 +192,25 @@ awakeFromNib is ok for most situations but if you're not careful/cluefull you co
 ----
 
 From: Steve Christensen <punster=at=mac=dot=com>
-Subject: Re: Use of General/NSSavePanel (or Open)
+Subject: Re: Use of NSSavePanel (or Open)
 
-I tried Alex Karahalios' code above and found that it didn't didn't clean up correctly. Here's my version, done as a category on General/NSSavePanel:
+I tried Alex Karahalios' code above and found that it didn't didn't clean up correctly. Here's my version, done as a category on NSSavePanel:
 
     
-@interface General/NSSavePanel(General/ModalSheets)
+@interface NSSavePanel(ModalSheets)
 
-- (int)runModalForDirectory:(General/NSString*)path file:(General/NSString*)name
-            types:(General/NSArray*)fileTypes relativeToWindow:(General/NSWindow*)window;
+- (int)runModalForDirectory:(NSString*)path file:(NSString*)name
+            types:(NSArray*)fileTypes relativeToWindow:(NSWindow*)window;
 
-- (void)modalSavePanelDidEnd:(General/NSOpenPanel*)panel returnCode:(int)returnCode
+- (void)modalSavePanelDidEnd:(NSOpenPanel*)panel returnCode:(int)returnCode
             contextInfo:(void*)contextInfo;
 
 @end
 
-@implementation General/NSSavePanel(General/ModalSheets)
+@implementation NSSavePanel(ModalSheets)
 
-- (int)runModalForDirectory:(General/NSString*)path file:(General/NSString*)name
-            types:(General/NSArray*)fileTypes relativeToWindow:(General/NSWindow*)window
+- (int)runModalForDirectory:(NSString*)path file:(NSString*)name
+            types:(NSArray*)fileTypes relativeToWindow:(NSWindow*)window
 {
     int result;
 
@@ -219,17 +219,17 @@ I tried Alex Karahalios' code above and found that it didn't didn't clean up cor
             didEndSelector:@selector(modalSavePanelDidEnd:returnCode:contextInfo:)
             contextInfo:nil];
 
-    result = General/[NSApp runModalForWindow:self];
+    result = [NSApp runModalForWindow:self];
 
-    General/[NSApp endSheet:self];
+    [NSApp endSheet:self];
 
     return result;
 }
 
-- (void)modalSavePanelDidEnd:(General/NSOpenPanel*)panel returnCode:(int)returnCode
+- (void)modalSavePanelDidEnd:(NSOpenPanel*)panel returnCode:(int)returnCode
             contextInfo:(void*)contextInfo
 {
-    General/[NSApp stopModalWithCode:returnCode];
+    [NSApp stopModalWithCode:returnCode];
 }
 
 @end

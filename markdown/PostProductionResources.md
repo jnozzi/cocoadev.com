@@ -1,4 +1,4 @@
-I though it might be a good idea to have a centralized place for some wrap up information for our programs.  I've started some sections to give you guys an idea what I mean.  - General/FranciscoTolmasky
+I though it might be a good idea to have a centralized place for some wrap up information for our programs.  I've started some sections to give you guys an idea what I mean.  - FranciscoTolmasky
 
 
 **Last Minute Coding**
@@ -23,7 +23,7 @@ I though it might be a good idea to have a centralized place for some wrap up in
 ----
 
 
-*General/BuildDistroScript - an approach to building a full working distribution using a simple Perl script.
+*BuildDistroScript - an approach to building a full working distribution using a simple Perl script.
 
 - Post links to software or articles about making dmgs and so forth -
 

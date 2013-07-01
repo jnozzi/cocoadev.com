@@ -1,13 +1,13 @@
-I have tried for some time now get the "isFlipped" behaviour of General/NSView into General/CALayer.
+I have tried for some time now get the "isFlipped" behaviour of NSView into CALayer.
 The recent try doesn't work at all:
 
     
-- (void) setFrame: (General/NSRect)frameRect;
+- (void) setFrame: (NSRect)frameRect;
 {
 	[super setFrame: frameRect];
 	if ( [self isFlipped] && isNotEmpty([self layer]))
-		General/self layer] setAffineTransform: 
-			[[CGAffineTransformMake (1, 0, 0, -1, 0, General/NSHeight(frameRect) )];
+		self layer] setAffineTransform: 
+			[[CGAffineTransformMake (1, 0, 0, -1, 0, NSHeight(frameRect) )];
 } 
 
  

@@ -1,2 +1,2 @@
-http://developer.apple.com/techpubs/macosx/Carbon/multimedia/discrecording/General/CocoaDoc/General/DRBurn/Classes/General/DRBurn/index.html
+http://developer.apple.com/techpubs/macosx/Carbon/multimedia/discrecording/CocoaDoc/DRBurn/Classes/DRBurn/index.html
 ----

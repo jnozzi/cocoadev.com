@@ -20,17 +20,17 @@ I don't want this to get too long (of course, there's a lot more to this than I'
 
 Thanks for taking the time to read and respond. :-)
 
-General/CliffPruitt
+CliffPruitt
 
 ----
 
-Try to have your classes only do what they do should. For example, don't have your main controller class do everything. If you have some iTunes code or General/AppleScript, put that into some type of "iTunesManager" class or whatever. Just try to stay clean and organized with your code. If this is your first app, you'll most likely do it the way you know, and then later as you learn you'll find ways to do things better and fast and more efficient. This is normal in programming, you have to create programs to learn how to program. Add as many features as you can to the app, as this will help you learn how to program better. You will end up researching how to do things many times in the process. Oh, and remember to make the UI nice - get some nice icons for your toolbars and buttons. And last, but not least, enjoy it!
+Try to have your classes only do what they do should. For example, don't have your main controller class do everything. If you have some iTunes code or AppleScript, put that into some type of "iTunesManager" class or whatever. Just try to stay clean and organized with your code. If this is your first app, you'll most likely do it the way you know, and then later as you learn you'll find ways to do things better and fast and more efficient. This is normal in programming, you have to create programs to learn how to program. Add as many features as you can to the app, as this will help you learn how to program better. You will end up researching how to do things many times in the process. Oh, and remember to make the UI nice - get some nice icons for your toolbars and buttons. And last, but not least, enjoy it!
 
-*Sticking to the MVC (Model-View-Controller) paradigm should help keep your code neat. It also makes it much easier to add or change stuff later on. Sorry I can't really help you more, but I've got my own peculiar style of programming and I don't want to inflict it on other people. Good luck!* --General/OwenYamauchi
+*Sticking to the MVC (Model-View-Controller) paradigm should help keep your code neat. It also makes it much easier to add or change stuff later on. Sorry I can't really help you more, but I've got my own peculiar style of programming and I don't want to inflict it on other people. Good luck!* --OwenYamauchi
 
 ----
 
-What is the best way to keep track of a set of files?  Archived Obj, XML General/FIle, Read From File System Directories?
+What is the best way to keep track of a set of files?  Archived Obj, XML FIle, Read From File System Directories?
 
 Basically I need to keep track of files in a way quite similar to iTunes. I'm very new to Cocoa, so I need to balance the best way with finding the easiest development path.
 
@@ -64,7 +64,7 @@ Thanks for for your insight.
 
 ----
 
-From your description, it sounds like most of the work won't be handled by the Cocoa API, but rather by third party libraries or Obj-C code you write yourself. Cocoa doesn't really have FTP support, but there are external libraries you can use in your application-- Check out General/OneButton FTP ( http://onebutton.org/ ) for an open source FTP application that does just that. Creating playlists should be the one thing that Cocoa makes easy; all the methods needed to read filenames, parse them into the correct format and writing it to disk should work well. You could probably use some of the QT classes to give your application a way to preview movies, as well.
+From your description, it sounds like most of the work won't be handled by the Cocoa API, but rather by third party libraries or Obj-C code you write yourself. Cocoa doesn't really have FTP support, but there are external libraries you can use in your application-- Check out OneButton FTP ( http://onebutton.org/ ) for an open source FTP application that does just that. Creating playlists should be the one thing that Cocoa makes easy; all the methods needed to read filenames, parse them into the correct format and writing it to disk should work well. You could probably use some of the QT classes to give your application a way to preview movies, as well.
 
 For controlling the units-- well, that depends how your hotel software operates. Using sockets, telnet, or whatever is certainly possible, but if you've never dealt with stuff like this in a c based language, it has the potential to be very difficult. Even with 6 months, you might find yourself tight on time if you're learning this while you go.
 
@@ -86,7 +86,7 @@ Thanks,
 
 ----
 
-The two are not the same-- terminal.app is OSX's interface to the Unix command line interface on the local machine, similar to running cmd.exe on General/WindowsXP. Hyper Terminal is a bit different, it's purpose is to connect to modems and hardware, as well as other computers over a network through telnet. It sounds like you'll need to have a good understanding of these subjects, so start researching the way operating systems like Unix work, as well as the network protocols they use. These are not easy subjects to learn-- you should be able to decide pretty quickly if the scope of this is going to go beyond what you want to do in 6 months.
+The two are not the same-- terminal.app is OSX's interface to the Unix command line interface on the local machine, similar to running cmd.exe on WindowsXP. Hyper Terminal is a bit different, it's purpose is to connect to modems and hardware, as well as other computers over a network through telnet. It sounds like you'll need to have a good understanding of these subjects, so start researching the way operating systems like Unix work, as well as the network protocols they use. These are not easy subjects to learn-- you should be able to decide pretty quickly if the scope of this is going to go beyond what you want to do in 6 months.
 
 As far as creating an interface in code, that's probably something you'll need to research yourself, once you know the basics of what you're dealing with. It may be possible to find an open source terminal library you can use, or you may have to do much of it yourself using sockets. Remember, data communication is one of the most complex subjects in programming, and learning enough to make it work will be a difficult task for anyone.
 

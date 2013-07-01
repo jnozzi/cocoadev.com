@@ -2,10 +2,10 @@ I'd like to simply open a URL (in the user's default web browser) from my Cocoa 
 
 ----
 
-See General/NSWorkspace.
+See NSWorkspace.
 
 ----
 
 Specifically, you can do:
 
-General/[[NSWorkspace sharedWorkspace] openURL: [NSURL General/URLWithString: @"http://www.General/MyURL.com"]];
+[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString: @"http://www.MyURL.com"]];

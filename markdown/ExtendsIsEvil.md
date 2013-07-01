@@ -6,7 +6,7 @@ See: http://www.javaworld.com/javaworld/jw-08-2003/jw-0801-toolbox.html
 
 Synopsis:
 
-This is a Java article which may or may not apply to General/ObjC. Allen Holub goes over why designers should design models in terms of common interfaces (protocols in General/ObjC) rather than extension relationships, that is, rather than extend a class, which ties you to the class you are extending, have a common interface and delegate to the class you would have extended. The two classes are then more loosely coupled. But there are some caveats, so I suggest you read the article. It may change your views a bit. But keep in mind that maybe General/ExtendsIsGood.
+This is a Java article which may or may not apply to ObjC. Allen Holub goes over why designers should design models in terms of common interfaces (protocols in ObjC) rather than extension relationships, that is, rather than extend a class, which ties you to the class you are extending, have a common interface and delegate to the class you would have extended. The two classes are then more loosely coupled. But there are some caveats, so I suggest you read the article. It may change your views a bit. But keep in mind that maybe ExtendsIsGood.
 
 Objective-C gets around a lot of the 'extends is evil' by categories and informal protocols.  We don't have to use inheritance to add features to class or to come up with flexible, decoupled architectures.
 
@@ -24,7 +24,7 @@ Objective-C gets around a lot of the 'extends is evil' by categories and informa
 
 **Argument:** You are just as likely to break a subclass as you are any other class which uses that method. A class that delegates the work over to another class is just as fragile as the subclass. This is assuming the subclass supports all functionality provided by the superclass.
 
-What about @protected methods and instance variables? The subclass could have coupled to them but a delegating class cannot. (NB protection only applies to Ivars in General/ObjC)
+What about @protected methods and instance variables? The subclass could have coupled to them but a delegating class cannot. (NB protection only applies to Ivars in ObjC)
 
 *You're right, this argument doesn't apply for protected methods and instance variables - only to private and public.*
 
@@ -40,11 +40,11 @@ What about @protected methods and instance variables? The subclass could have co
 
 ----
 
-Basically, every subclass should support **ALL** the functionality of its superclass. This was the key problem of the fragile classes in the article's examples. Inheriting only the interface is not a direct solution for this problem - it is simply a way to make the problem more clear. The price of abstraction is a more complicated design - which is why I prefer to only add abstraction when I know it will be necessary. Please feel free to add your comments to the above arguments. -- General/RyanBates
+Basically, every subclass should support **ALL** the functionality of its superclass. This was the key problem of the fragile classes in the article's examples. Inheriting only the interface is not a direct solution for this problem - it is simply a way to make the problem more clear. The price of abstraction is a more complicated design - which is why I prefer to only add abstraction when I know it will be necessary. Please feel free to add your comments to the above arguments. -- RyanBates
 
 ----
 
-It's probably very difficult to make general statements about how to make OO design. Take something like General/AppKit, should not all controls inherit from General/NSControl? Should not all views inherit from General/NSView? Or should that have been protocols only? That would make it quite a lot of work to introduce new custom views.
+It's probably very difficult to make general statements about how to make OO design. Take something like AppKit, should not all controls inherit from NSControl? Should not all views inherit from NSView? Or should that have been protocols only? That would make it quite a lot of work to introduce new custom views.
 
 Different rules apply in different problem domains -- personally I use close to no inheritance in my work, but that is because I work with more scientific programming, i.e. algorithm implementations and such -- I still use the data abstraction (i.e. encapsulation) that OO gives me, and rarely I do inherit from some base class, though mostly I use base classes to define protocols.  I program in C++ mostly, where an abstract base class works just like a protocol because of multiple inheritance -- it even has the added benefit that one can actually inherit part of an implementation. E.g. we may make an protocol like this:
     
@@ -65,13 +65,13 @@ Where only one method needs to be abstract, since the rest can be implemented fr
 
 ----
 
-I'd like to point out again that the article was written for Java, and I think Java interfaces don't correspond to General/ObjC interfaces but protocols, so that may confuse some and it may be helpful to clarify exactly what is being talked about in the arguments above. There is also the Liskov substitution principle - "The behaviour of a program should be unchanged when a subclass is substituted for its superclass." 
+I'd like to point out again that the article was written for Java, and I think Java interfaces don't correspond to ObjC interfaces but protocols, so that may confuse some and it may be helpful to clarify exactly what is being talked about in the arguments above. There is also the Liskov substitution principle - "The behaviour of a program should be unchanged when a subclass is substituted for its superclass." 
 Oh and it's very good to be argumentative and pick articles apart. Critics are your friends.
--- General/MikeAmy
+-- MikeAmy
 
 ----
 
-I think (after reading this and the link) that the implications are meant for any Objective Language including General/ObjC, simply because the concepts are Abstract enough to apply.  I do not agree that inheritence is evil in Obj C.  
+I think (after reading this and the link) that the implications are meant for any Objective Language including ObjC, simply because the concepts are Abstract enough to apply.  I do not agree that inheritence is evil in Obj C.  
 the concept of inheritence brings developers more time to devote to the code that is Specific to our apps, in other words, we get more time to spend on the things that are important to us.  
 But there are cases where, inheritance can be trouble, such as the instance where the class we are subclassing doesn't support the methods of its superclass properly, and even then I would'nt call inheritence evil, but this particular application of the concept.
 Inheritence is a tool, like fire.  And like fire, it can help you, or it can hurt you.
@@ -79,10 +79,10 @@ Inheritence is a tool, like fire.  And like fire, it can help you, or it can hur
 
 ----
 
-Ted speaks wise words. Extends is evil, but not in the way that is should be banished. It could be conidered a bad smell (like General/BadSmellsInObjC), when classes are too tightly coupled (which they often become when they form a extends-hierarchy). Extends can (and should) be used properly, but is often overused. A good example of this is an anecdote in the foreword of General/AaronHillegass' General/BookCocoaProgMacOSX where Aaron explains why he thinks that Cocoa is superior to other frameworks, which is largely because of the use of delegation before inheritance.
+Ted speaks wise words. Extends is evil, but not in the way that is should be banished. It could be conidered a bad smell (like BadSmellsInObjC), when classes are too tightly coupled (which they often become when they form a extends-hierarchy). Extends can (and should) be used properly, but is often overused. A good example of this is an anecdote in the foreword of AaronHillegass' BookCocoaProgMacOSX where Aaron explains why he thinks that Cocoa is superior to other frameworks, which is largely because of the use of delegation before inheritance.
 
-What General/ExtendsIsEvil wants to teach us is that it often suffices to use delegation instead of extends. Extends will complicate your life, whereas delegation will simplify it. 
+What ExtendsIsEvil wants to teach us is that it often suffices to use delegation instead of extends. Extends will complicate your life, whereas delegation will simplify it. 
 
-There are of course examples of good uses of extends, there is a reason why it exists at all. One example is the General/TemplateMethod General/DesignPattern, and also other uses of abstract classes.
+There are of course examples of good uses of extends, there is a reason why it exists at all. One example is the TemplateMethod DesignPattern, and also other uses of abstract classes.
 
--- General/TheoHultberg/Iconara
+-- TheoHultberg/Iconara

@@ -7,14 +7,14 @@ I was thinking of automating this process by iterating over all my properties an
 
     
 
-// General/ReleaseProperties.c
+// ReleaseProperties.c
 
 #import <objc/runtime.h>
-#import "General/ReleaseProperties.h"
+#import "ReleaseProperties.h"
 
 #define	LOG_DEBUG	0
 
-void	General/ReleaseInstancePropertiesForNSObject( General/NSObject* obj, Class objClass )
+void	ReleaseInstancePropertiesForNSObject( NSObject* obj, Class objClass )
 {
 	unsigned int propCount = 0;
 	
@@ -35,9 +35,9 @@ void	General/ReleaseInstancePropertiesForNSObject( General/NSObject* obj, Class 
 					id	iobj = object_getIvar( obj, ivar );
 					if ( iobj ) {
 						#if LOG_DEBUG
-							General/NSLog(@"Release property: %s %p from %@", propName, iobj, objClass );
+							NSLog(@"Release property: %s %p from %@", propName, iobj, objClass );
 						#endif
-						[obj setValue:nil forKey:General/[NSString stringWithUTF8String:propName]];
+						[obj setValue:nil forKey:[NSString stringWithUTF8String:propName]];
 					}
 				}
 			}
@@ -55,18 +55,18 @@ Combined with a macro like below we can make it really easy to implement a deall
 
     
 
-// General/ReleaseProperties.h
+// ReleaseProperties.h
 
 /** Note: Properties in your object must be retained!!! Non-retained (assigned) objects will result in over-released objects. **/
 
-void	General/ReleaseInstancePropertiesForNSObject( General/NSObject* obj, Class objClass );
+void	ReleaseInstancePropertiesForNSObject( NSObject* obj, Class objClass );
 
-#define	DEALLOC_RELEASE_PROPERTIES(a)	-(void)dealloc { General/ReleaseInstancePropertiesForNSObject( self, [a class] );  [super dealloc];  }
-// Usage: DEALLOC_RELEASE_PROPERTIES(General/YourClassName)
+#define	DEALLOC_RELEASE_PROPERTIES(a)	-(void)dealloc { ReleaseInstancePropertiesForNSObject( self, [a class] );  [super dealloc];  }
+// Usage: DEALLOC_RELEASE_PROPERTIES(YourClassName)
 
 
 
-Include General/ReleaseProperties.h in your source and put DEALLOC_RELEASE_PROPERTIES(General/YourClassName) in your implementation and your done! 
+Include ReleaseProperties.h in your source and put DEALLOC_RELEASE_PROPERTIES(YourClassName) in your implementation and your done! 
 
 Now, the big question: Is this a bad idea? Can anybody think of any reasons why this could screw up badly? -- rjt
 
@@ -87,55 +87,55 @@ Ok, I've updated the code to use [setValue:forKey:]. However, I'm still using ob
 
 ----
 
-I still don't like this idea, because it makes subclassing a dangerous operation.      General/ReleaseInstancePropertiesForNSObject() causes the superclass to access any properties of its derived classes.  Now, I understand that in a dynamic language like General/ObjC it's common for the superclass to access behavior that is overridden by a subclass, but here you're manipulating the actual data structure of the subclass.  What if the subclass performs some super-special processing in     -dealloc?  As a completely contrived example, this will break:
+I still don't like this idea, because it makes subclassing a dangerous operation.      ReleaseInstancePropertiesForNSObject() causes the superclass to access any properties of its derived classes.  Now, I understand that in a dynamic language like ObjC it's common for the superclass to access behavior that is overridden by a subclass, but here you're manipulating the actual data structure of the subclass.  What if the subclass performs some super-special processing in     -dealloc?  As a completely contrived example, this will break:
 
     
-extern General/NSMutableSet *freeLater; // A set of objects that we will free later
+extern NSMutableSet *freeLater; // A set of objects that we will free later
 
-@interface General/ClassA : General/NSObject
+@interface ClassA : NSObject
 {
-    @property General/NSString *label;
+    @property NSString *label;
 }
 
 @end
 
-@implementation General/ClassA
+@implementation ClassA
 
 - (void)dealloc
 {
-    General/ReleaseInstancePropertiesForNSObject(self);
+    ReleaseInstancePropertiesForNSObject(self);
     [super dealloc];
 
-    // As far as the author of General/ClassA is concerned, this should only
+    // As far as the author of ClassA is concerned, this should only
     // wind up freeing self.label.
 }
 
 @end
 
-// Someone else has come along and created General/ClassB, which derives
-// from General/ClassA.  It might be another person on the team, maintaining
+// Someone else has come along and created ClassB, which derives
+// from ClassA.  It might be another person on the team, maintaining
 // the program three years from now.  Who knows?
 
-@interface General/ClassB : General/ClassA
+@interface ClassB : ClassA
 {
-    @property General/LongTermObject *lto;
+    @property LongTermObject *lto;
 }
 
 @end
 
-@implementation General/ClassB
+@implementation ClassB
 
 - (void)dealloc
 {
-    // For some reason, General/LongTermObjects need to persist for a while
-    // after their "containing" General/ClassB objects are destroyed.  They're put on
+    // For some reason, LongTermObjects need to persist for a while
+    // after their "containing" ClassB objects are destroyed.  They're put on
     // the freeLater list and dealt with at another time.
 
-    // The author of General/ClassB doesn't know about the shortcut that the author
-    // of General/ClassA took when writing -dealloc, so the following code will fail,
+    // The author of ClassB doesn't know about the shortcut that the author
+    // of ClassA took when writing -dealloc, so the following code will fail,
     // despite the intentional lack of a call to [self setLto:nil].
 
-    General/LongTermObject *myLto = self.lto;
+    LongTermObject *myLto = self.lto;
     [super dealloc];
     [freeLater addObject:myLto];  // crashes with message to garbage object
 }
@@ -169,7 +169,7 @@ Maybe it is worth going back to directly releasing the ivar (without using setVa
 Keep that feedback coming!  I want to keep exploring this idea and looking for its limits. 
 
 ----
-I'm all for exploring a concept, but at the end of the day I have to wonder why you don't just turn on garbage collection and be done with it? In a language like Objective-C where so much is done by convention rather than being enforced by the compiler, it's really helpful to stick with the convention unless there's a compelling reason for doing otherwise. It seems like you're adding significant complexity here to avoid a fairly small bit of work (setting properties to nil), or to avoid using the system that's designed to solve the very problem you're addressing, and more. The complexity comes from the fact that you have to understand what this General/ReleaseProperties thing does, you have to remember when you can and when you can't use it, and you have to explain it to anyone else that might ever look at your code. -CS
+I'm all for exploring a concept, but at the end of the day I have to wonder why you don't just turn on garbage collection and be done with it? In a language like Objective-C where so much is done by convention rather than being enforced by the compiler, it's really helpful to stick with the convention unless there's a compelling reason for doing otherwise. It seems like you're adding significant complexity here to avoid a fairly small bit of work (setting properties to nil), or to avoid using the system that's designed to solve the very problem you're addressing, and more. The complexity comes from the fact that you have to understand what this ReleaseProperties thing does, you have to remember when you can and when you can't use it, and you have to explain it to anyone else that might ever look at your code. -CS
 
 ----
 
@@ -184,7 +184,7 @@ CS, K - I couldn't agree more. I started this idea and I'm far from convinced it
 I'm just not ready to go that extra step and turn on Apple's garbage collector (mostly for reasons I won't go into here) and wanted a way to avoid writing that extra dealloc code (especially since my dealloc will not even be called when I DO enable GC). -- rjt
 
 ----
-In that case, consider writing an General/AppleScript, Xcode plugin, service, or just a command line tool that parses a class interface and emits a     -dealloc with the relevant     [self setFoo:nil] calls. You can then simply paste that into your implementation and modify it as necessary. Perfectly conventional code will be right there where everyone expects it, doing just what any Obj-C programmer would expect, and yet you avoid the tedium of writing it. -CS
+In that case, consider writing an AppleScript, Xcode plugin, service, or just a command line tool that parses a class interface and emits a     -dealloc with the relevant     [self setFoo:nil] calls. You can then simply paste that into your implementation and modify it as necessary. Perfectly conventional code will be right there where everyone expects it, doing just what any Obj-C programmer would expect, and yet you avoid the tedium of writing it. -CS
 
 ----
 
@@ -192,9 +192,9 @@ In that case, consider writing an General/AppleScript, Xcode plugin, service, or
 
 #define	DEALLOC_RELEASE_IVARS(b)	-(void)dealloc 
 { 
-	General/NSString	*ivarsStringNoSpaces = [@b stringByReplacingOccurrencesOfString:@" " withString:@""]; 
-	General/NSArray		*ivarsArray = [ivarsStringNoSpaces componentsSeparatedByString:@","]; 
-	for (General/NSString *ivarName in ivarsArray) { 
+	NSString	*ivarsStringNoSpaces = [@b stringByReplacingOccurrencesOfString:@" " withString:@""]; 
+	NSArray		*ivarsArray = [ivarsStringNoSpaces componentsSeparatedByString:@","]; 
+	for (NSString *ivarName in ivarsArray) { 
 		[self setValue:nil forKey:ivarName]; 
 	} 
 

@@ -33,15 +33,15 @@ i am
 
 *Ah. Then in that case, you're screwed. ;-) There is no method that makes this possible for *other* apps. However (and this doesn't really help you, but rather people who are searching this site for 'kiosk'), you can create a kiosk mode for your own app by reading this: * http://developer.apple.com/technotes/tn2002/tn2062.html
 
-You should be able to make an APE or an General/InputManager that makes the other app run in kiosk mode. It's not going to be easy to make, though.
+You should be able to make an APE or an InputManager that makes the other app run in kiosk mode. It's not going to be easy to make, though.
 
-*No, I don't believe that's possible. The application itself would need to take advantage of the kiosk General/APIs. Well ... thinking better of this, I suppose you're right, but 'not easy' is a severe understatement.*
+*No, I don't believe that's possible. The application itself would need to take advantage of the kiosk APIs. Well ... thinking better of this, I suppose you're right, but 'not easy' is a severe understatement.*
 
-It basically seems to come down to calling General/SetSystemUIMode(), disabling/removing a bunch of menu items, and possibly adding a fullscreen window behind the app's windows to hide the desktop. These are all within the realm of the possible. You won't find me trying, though. :-)
+It basically seems to come down to calling SetSystemUIMode(), disabling/removing a bunch of menu items, and possibly adding a fullscreen window behind the app's windows to hide the desktop. These are all within the realm of the possible. You won't find me trying, though. :-)
 
-Can you have the settings of one application change others real time? like General/SetSystemUIMode and then changing an app like that?
+Can you have the settings of one application change others real time? like SetSystemUIMode and then changing an app like that?
 
-*No, you'd have to hack your way into the application and do it from the inside.  That's what the APE/General/InputManager stuff is about (General/InputManagers are cocoa only, by the way.  APE or mach_inject would be necessary).  Why would doing this be any better than choosing "Hide Others" from the application menu?*
+*No, you'd have to hack your way into the application and do it from the inside.  That's what the APE/InputManager stuff is about (InputManagers are cocoa only, by the way.  APE or mach_inject would be necessary).  Why would doing this be any better than choosing "Hide Others" from the application menu?*
 
 Im gonna try making a SIMBL plugin that will do this. It might work although how to you get it to target all cocoa apps by making a "menu bar thing that will allow it to go into fullscreen"
 
@@ -61,11 +61,11 @@ Basically, you write your little plugin which checks for switches in the prefere
 
 I was only targeting a specific version of a specific Cocoa application, for personal use at that. This way I could make some assumptions that wouldn't be ok otherwise. I could rely on class foo being there to provide me with xyz, etc. Doing it on a system-wide scale would be more difficult...there's no     -goIntoKioskMode method. If this is just a learning exercise I'd say forget it and set your sites lower. Get your code into another app first and dink around.
 
-As far as "capturing applications" goes, I think you've found your answer; SIMBL(/General/InputManager), APE or mach_inject.
+As far as "capturing applications" goes, I think you've found your answer; SIMBL(/InputManager), APE or mach_inject.
 ----
 Some of the work could be potentially done with poseAsClass: using a custom window class.
 ----
-Most of the work for something like this would be in doing something different for each app. Forcing General/TextEdit into fullscreen is different than doing the same for iChat. That's what makes it "impossible" - how do you man-handle new apps or ones you haven't specifically accounted for?
+Most of the work for something like this would be in doing something different for each app. Forcing TextEdit into fullscreen is different than doing the same for iChat. That's what makes it "impossible" - how do you man-handle new apps or ones you haven't specifically accounted for?
 
 The only way I can see to make a "kiosk" out of *any* app is if you force the frontmost app to stay frontmost no matter what. Then you don't have to figure out how to make each app fullscreen-able. You probably don't need to inject your code into other processes. You could watch for a keycombo to bring up the getmeoutofthekiosk dialog..etc.
 

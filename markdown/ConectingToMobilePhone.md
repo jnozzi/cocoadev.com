@@ -1,4 +1,4 @@
-Describe General/ConectingToMobilePhone here.
+Describe ConectingToMobilePhone here.
 
 I want to make an application that basicaly uses a mobile phone as a remote control.
 Lets say I have a nokia, plugged in via usb, I need to generate an event that my application could act on when someone phones the mobile number.

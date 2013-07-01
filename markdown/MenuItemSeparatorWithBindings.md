@@ -1,9 +1,9 @@
 Greetings!
 
-Is there a way to define Menu item separators in your model layer so that Panther's controller layer will recognize this token and create menu separators from an General/NSArrayController's contents?
+Is there a way to define Menu item separators in your model layer so that Panther's controller layer will recognize this token and create menu separators from an NSArrayController's contents?
 
 Thanks
--- General/EliotSimcoe
+-- EliotSimcoe
 
 BUMP
 
@@ -25,10 +25,10 @@ Later
 What is the desired approach for accomplishing this using the new controller layer in Panther?
 
 Thanks for any suggestions :-)
--- General/EliotSimcoe
+-- EliotSimcoe
 
 ----
 
-IB does not allow you to bind directly to the menu key of the General/NSPopupButton, but you can do so in code using     bind:toObject:withKeyPath:options:, bind it to the item array of your model and provide a value transformer in the options dictionary. The transformer should then transform an General/NSArray to an General/NSMenu.
+IB does not allow you to bind directly to the menu key of the NSPopupButton, but you can do so in code using     bind:toObject:withKeyPath:options:, bind it to the item array of your model and provide a value transformer in the options dictionary. The transformer should then transform an NSArray to an NSMenu.
 
 I have not tried it, but I would assume it to work.

@@ -1,6 +1,6 @@
 There are some kernel functions which could be useful in normal Cocoa applications. But the API seems to be completely undocumented? not even the headers in /usr/include/mach/ carries any interesting comments, and using Google to search for some of the functions turns up < 5 hits...
 
-Is the Darwin API undocumented? is there perhaps some documentation for the Mach or BSD General/APIs which can be used instead?
+Is the Darwin API undocumented? is there perhaps some documentation for the Mach or BSD APIs which can be used instead?
 
 ----
 
@@ -22,7 +22,7 @@ And, last but not least, there is the Darwin source code.
 
 Thanks, but none of this documentation seems to document the things in /usr/include/mach/ -- for example try to find some documentation on the functions in semaphore.h.
 
-Which would be: http://developer.apple.com/documentation/Darwin/Conceptual/General/KernelProgramming/synchronization/index.html but this page only mentions some of the functions, and say the documentation is in the header (which it isn't).
+Which would be: http://developer.apple.com/documentation/Darwin/Conceptual/KernelProgramming/synchronization/index.html but this page only mentions some of the functions, and say the documentation is in the header (which it isn't).
 
 ----
 
@@ -55,7 +55,7 @@ My actual problem is that I wish to wait for both a normal signal (normally done
 
 ----
 
-http://developer.apple.com/documentation/Darwin/Conceptual/General/KernelProgramming/synchronization/chapter_15_section_2.html
+http://developer.apple.com/documentation/Darwin/Conceptual/KernelProgramming/synchronization/chapter_15_section_2.html
 
 *Which, as stated above, does not document the functions � it only lists **some** of them, and state the documentation is in the headers.*
 
@@ -77,4 +77,4 @@ http://cvs.opendarwin.org/index.cgi/~checkout~/src/xnu/osfmk/man/index.html?rev=
 
 ----
 
-Sorry, I guess you can't have everything. ;-) File a bug report with Apple, as these seem to be extensions added to mach by General/NeXT or Apple. I was unable to find any reference to these functions outside of Apple that was not related to Darwin. As a note, the sem_ functions noted by zootbobbalu are the IPC primitive functions for SMP suport in BSD. While I have not checked myself, I would suspect (and this is easily verifiable in the Darwin source) that these boil down to wrappers/extensions around the mach primitives.
+Sorry, I guess you can't have everything. ;-) File a bug report with Apple, as these seem to be extensions added to mach by NeXT or Apple. I was unable to find any reference to these functions outside of Apple that was not related to Darwin. As a note, the sem_ functions noted by zootbobbalu are the IPC primitive functions for SMP suport in BSD. While I have not checked myself, I would suspect (and this is easily verifiable in the Darwin source) that these boil down to wrappers/extensions around the mach primitives.

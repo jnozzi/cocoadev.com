@@ -3,11 +3,11 @@ How can I get this address?
 
 ----
 
-You would have to create it. Get the IP address using     General/[[NSHost currentHost] address] and then use General/NSString's     stringByAppendingPathComponent method to append to that the current OS X user name and then the file name. That make sense?
+You would have to create it. Get the IP address using     [[NSHost currentHost] address] and then use NSString's     stringByAppendingPathComponent method to append to that the current OS X user name and then the file name. That make sense?
 
 ----
 
-I'm not sure what the best way to get the username is, but since the path "~" applies to the /User/<username>/ folder, you could maybe do...     General/@"~" stringByExpandingTildeInPath] lastPathComponent] (untested!)
+I'm not sure what the best way to get the username is, but since the path "~" applies to the /User/<username>/ folder, you could maybe do...     @"~" stringByExpandingTildeInPath] lastPathComponent] (untested!)
 
 ----
 
@@ -15,15 +15,15 @@ There's also a [[NSHomeDirectory() function
 
 ----
 
-Or if you are just looking for the user's name, General/NSUserName()
+Or if you are just looking for the user's name, NSUserName()
 
 ----
 
 Something weird (to me) is happening when I delete the last component of a URL's absoluteString :
 
     
-General/NSMutableArray *filesArray = General/[NSMutableArray arrayWithArray:[openPanel General/URLs]];
-General/NSLog(@"absoluteString : %@", General/filesArray objectAtIndex:0] absoluteString]);
+NSMutableArray *filesArray = [NSMutableArray arrayWithArray:[openPanel URLs]];
+NSLog(@"absoluteString : %@", filesArray objectAtIndex:0] absoluteString]);
 [[NSLog(@"cuttedString : %@", [[filesArray objectAtIndex:0] absoluteString] stringByDeletingLastPathComponent]);
 
 

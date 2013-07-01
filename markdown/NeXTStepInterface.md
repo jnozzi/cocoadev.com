@@ -1,14 +1,14 @@
-I was reading a old General/MacAddict, and I saw a way to change the interface style of an app to the old General/NeXTStep style, by adding the this line
-    <key>General/NSInterfaceStyle</key>
+I was reading a old MacAddict, and I saw a way to change the interface style of an app to the old NeXTStep style, by adding the this line
+    <key>NSInterfaceStyle</key>
 <string>nextstep</string>
 
 in the Preference file of the app. But it did not work, any help?
 
---General/JoshaChapmanDodson
+--JoshaChapmanDodson
 
 ----
 
-As you have discovered, this no longer works (as of circa Public Beta...) -- General/FinlayDobbie
+As you have discovered, this no longer works (as of circa Public Beta...) -- FinlayDobbie
 
 ----
 
@@ -21,4 +21,4 @@ Anyone got any pics of this? I'm curious what it was before it was aqua. Was it 
 It looked something like this
 http://www120.pair.com/mccarthy/nextstep/intro.htmld/mailActive.gif
 
---General/JoshaChapmanDodson
+--JoshaChapmanDodson

@@ -1,6 +1,6 @@
 
 
-For all General/AspectCocoa related purposes, an General/ACInvocation is the same thing as an General/NSInvocation except that it is not actually an General/NSInvocation (not a subclass of General/NSInvocation).  Otherwise it has nearly the same interface.
+For all AspectCocoa related purposes, an ACInvocation is the same thing as an NSInvocation except that it is not actually an NSInvocation (not a subclass of NSInvocation).  Otherwise it has nearly the same interface.
 
     
 
@@ -23,7 +23,7 @@ For all General/AspectCocoa related purposes, an General/ACInvocation is the sam
  
  /*
      returns the class containg the method for which this invocation was created
-     note that this may or may not the same class as General/invocation target] class];
+     note that this may or may not the same class as invocation target] class];
      (which will always return the lowest level class of the object.)
  */
  - (Class)getClass;

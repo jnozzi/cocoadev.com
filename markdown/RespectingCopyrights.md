@@ -2,11 +2,11 @@
 
 Just a question regarding adding new content:
 
-I sometimes post info here that I got from the General/MacOsxDev list - I list the original authors' name(s) but usually don't ask for permission before adding this to General/CocoaDev. 
+I sometimes post info here that I got from the MacOsxDev list - I list the original authors' name(s) but usually don't ask for permission before adding this to CocoaDev. 
 
 Is that okay or should I always get permission, even if the sample code or tips are made public through the mailing list?
 
--- General/JensBaumeister
+-- JensBaumeister
 
 ----
 
@@ -14,4 +14,4 @@ That's an interesting question...  I've done the same thing too.  My feeling is 
 
 That's more of a philosophical perspective than a legal one, though...
 
--- General/StevenFrank
+-- StevenFrank

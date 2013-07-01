@@ -1,57 +1,57 @@
-General/NSView's have a method to associate an event with a context menu (    menuForEvent:). Here's an example of how you can use this method: --zootbobbalu
+NSView's have a method to associate an event with a context menu (    menuForEvent:). Here's an example of how you can use this method: --zootbobbalu
 
 *some custom view*
     
-- (void)copyToPasteboard:(id)sender {General/NSLog(@"copyToPasteboard");}
-- (void)deleteFile:(id)sender {General/NSLog(@"deleteFile");}
-- (void)openInTextEdit:(id)sender {General/NSLog(@"openInTextEdit");}
-- (void)showInFinder:(id)sender {General/NSLog(@"showInFinder");}
+- (void)copyToPasteboard:(id)sender {NSLog(@"copyToPasteboard");}
+- (void)deleteFile:(id)sender {NSLog(@"deleteFile");}
+- (void)openInTextEdit:(id)sender {NSLog(@"openInTextEdit");}
+- (void)showInFinder:(id)sender {NSLog(@"showInFinder");}
 
-- (General/NSMenu *)menuForRightMouseDownEvent {
-    General/NSDictionary *editInfo, *info;
-    editInfo = General/[NSMenu infoWithTitle:@"Edit" items:@"Copy to Pasteboard/copyToPasteboard:", 
+- (NSMenu *)menuForRightMouseDownEvent {
+    NSDictionary *editInfo, *info;
+    editInfo = [NSMenu infoWithTitle:@"Edit" items:@"Copy to Pasteboard/copyToPasteboard:", 
                                                     @"Delete File/deleteFile:", nil];
-    info = General/[NSMenu infoWithTitle:@"" items:editInfo, @"Open in General/TextEdit/openInTextEdit:", 
+    info = [NSMenu infoWithTitle:@"" items:editInfo, @"Open in TextEdit/openInTextEdit:", 
                                                     @"Show in Finder/showInFinder:", nil];
-    return General/[NSMenu popUpMenuWithInfo:info target:self];
+    return [NSMenu popUpMenuWithInfo:info target:self];
 }
 
-- (General/NSMenu *)menuForEvent:(General/NSEvent *)theEvent {
-    if ([theEvent type] == General/NSRightMouseDown) return [self menuForRightMouseDownEvent];
+- (NSMenu *)menuForEvent:(NSEvent *)theEvent {
+    if ([theEvent type] == NSRightMouseDown) return [self menuForRightMouseDownEvent];
     return nil; 
 }
 
 
-*category addition to General/NSMenu to help create a quick General/PopUpMenu*
+*category addition to NSMenu to help create a quick PopUpMenu*
     
-@interface General/NSMenu (NSMenu_PopUpAdditions)
-+ (General/NSMenu *)popUpMenuWithInfo:(General/NSDictionary *)plist target:(id)target;
-+ (General/NSDictionary *)infoWithTitle:(General/NSString *)title items:(id)item, ...;
-@end General/NSMenu (NSMenu_PopUpAdditions)
+@interface NSMenu (NSMenu_PopUpAdditions)
++ (NSMenu *)popUpMenuWithInfo:(NSDictionary *)plist target:(id)target;
++ (NSDictionary *)infoWithTitle:(NSString *)title items:(id)item, ...;
+@end NSMenu (NSMenu_PopUpAdditions)
 
-@implementation General/NSMenu (NSMenu_PopUpAdditions)
+@implementation NSMenu (NSMenu_PopUpAdditions)
 
-+ (General/NSMenu *)popUpMenuWithInfo:(General/NSDictionary *)info target:(id)target {
-    if (![info isKindOfClass:General/[NSDictionary class]]) return nil;
-    General/NSString *title = [info objectForKey:@"title"];
-    General/NSArray *items = [info objectForKey:@"items"];
++ (NSMenu *)popUpMenuWithInfo:(NSDictionary *)info target:(id)target {
+    if (![info isKindOfClass:[NSDictionary class]]) return nil;
+    NSString *title = [info objectForKey:@"title"];
+    NSArray *items = [info objectForKey:@"items"];
     if (!title) title = @"";
-    if (![items isKindOfClass:General/[NSArray class]]) return nil;
-    General/NSMenu *menu = General/[[[NSMenu alloc] initWithTitle:title] autorelease];
-    General/NSEnumerator *itemEnum = [items objectEnumerator]; id item;
+    if (![items isKindOfClass:[NSArray class]]) return nil;
+    NSMenu *menu = [[[NSMenu alloc] initWithTitle:title] autorelease];
+    NSEnumerator *itemEnum = [items objectEnumerator]; id item;
     while (item = [itemEnum nextObject]) {
-        if ([item isKindOfClass:General/[NSDictionary class]]) {
-            General/NSMenu *submenu = [self popUpMenuWithInfo:item target:target];
+        if ([item isKindOfClass:[NSDictionary class]]) {
+            NSMenu *submenu = [self popUpMenuWithInfo:item target:target];
             if (!submenu) continue; 
-            General/NSMenuItem *subItem = General/[[[NSMenuItem alloc] init] autorelease];
+            NSMenuItem *subItem = [[[NSMenuItem alloc] init] autorelease];
             [subItem setTitle:[submenu title]];
             [subItem setSubmenu:submenu];
             [menu addItem:subItem];
-        } else if ([item isKindOfClass:General/[NSString class]]) {
-            General/NSArray *comps = [item componentsSeparatedByString:@"/"];
+        } else if ([item isKindOfClass:[NSString class]]) {
+            NSArray *comps = [item componentsSeparatedByString:@"/"];
             if ([comps count] < 2) continue;
-            General/NSMenuItem *menuItem = [menu addItemWithTitle:[comps objectAtIndex:0] 
-                                        action:General/NSSelectorFromString([comps lastObject])
+            NSMenuItem *menuItem = [menu addItemWithTitle:[comps objectAtIndex:0] 
+                                        action:NSSelectorFromString([comps lastObject])
                                         keyEquivalent:@""];
             [menuItem setTarget:target];
         }
@@ -59,13 +59,13 @@ General/NSView's have a method to associate an event with a context menu (    me
     return menu;
 }
 
-+ (General/NSDictionary *)infoWithTitle:(General/NSString *)title items:(id)item, ... {
++ (NSDictionary *)infoWithTitle:(NSString *)title items:(id)item, ... {
     va_list ap; 
     va_start(ap, item);
     id nextItem = nil;
-    General/NSMutableDictionary *info = General/[NSMutableDictionary dictionary];
+    NSMutableDictionary *info = [NSMutableDictionary dictionary];
     [info setValue:title forKey:@"title"];
-    General/NSMutableArray *items = General/[NSMutableArray array];
+    NSMutableArray *items = [NSMutableArray array];
     if (item) [items addObject:item];
     while (nextItem = va_arg(ap, id)) [items addObject:nextItem];
     [info setValue:items forKey:@"items"];

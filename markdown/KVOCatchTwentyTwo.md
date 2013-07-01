@@ -12,15 +12,15 @@ Hillegass handles it the other way around, where the observer is responsible for
 
 I might also mention that I am not using Core Data (to do so would require a complete rewrite of more than 150 classes).
 
-Has anyone already hit this snag? If so, how did you solve it? And why is KVO so picky and fragile instead of being helpful and robust, like most other stuff? --General/GrahamCox
+Has anyone already hit this snag? If so, how did you solve it? And why is KVO so picky and fragile instead of being helpful and robust, like most other stuff? --GrahamCox
 
 ----
 Because the goal is to support undo, it might be better to take an approach I've seen before: a     deleted flag. Rather than deallocating the node during its lifetime, just set its deleted flag and hide it. Actually deallocate it when the document is closed (or, if you need to save RAM, when the user saves), either by maintaining a set of deleted objects or by walking the tree.
 
-And I would guess KVO is "picky and fragile" to make it as lightweight as possible, though compared to KVC it's not nearly as easy or as elegant. --General/JediKnil
+And I would guess KVO is "picky and fragile" to make it as lightweight as possible, though compared to KVC it's not nearly as easy or as elegant. --JediKnil
 ----
 
-For a tree, you generally want to stop observing changes to a leaf when it is removed from the tree. If you observe the addLeaf and removeLeaf operations on the leaf's parent, it is very easy for you to stop observing the leaf. -- General/DavidPhillipOster
+For a tree, you generally want to stop observing changes to a leaf when it is removed from the tree. If you observe the addLeaf and removeLeaf operations on the leaf's parent, it is very easy for you to stop observing the leaf. -- DavidPhillipOster
 
 ----
-Another way (a bit hackish though) might be to include a toBeDeleted flag which is also observed. The delete method starts off by setting this, triggering a change observation which allows all observeres to disconnect themselves. The delete method can then continue with the delete. -- General/JulianBlow
+Another way (a bit hackish though) might be to include a toBeDeleted flag which is also observed. The delete method starts off by setting this, triggering a change observation which allows all observeres to disconnect themselves. The delete method can then continue with the delete. -- JulianBlow

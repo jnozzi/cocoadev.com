@@ -1,32 +1,32 @@
-I'm a new cocoa programmer and am creating a General/WebView to handle some of my interface elements. I dug around in some bundles and have noticed that people are loading predefined chunks of html saved in files in the application bundle. These files take the form of standard html with tokens such as @pageTitle defined within them. At runtime these tokens have been replaced with values from other parts of the program.
+I'm a new cocoa programmer and am creating a WebView to handle some of my interface elements. I dug around in some bundles and have noticed that people are loading predefined chunks of html saved in files in the application bundle. These files take the form of standard html with tokens such as @pageTitle defined within them. At runtime these tokens have been replaced with values from other parts of the program.
 
 What's the best way to do this replacement?.
 
 ----
 
-Try General/NSMutableString's replaceOccurrencesOfString:withString:options:range: method.
+Try NSMutableString's replaceOccurrencesOfString:withString:options:range: method.
 
     
-General/NSString * foo = @"foo";
-General/NSString * formattedFoo = @"<a href=\"http://www.foo.com\">Foo!</a>";
-General/NSMutableString * templateHTML = General/[[NSMutableString alloc] initWithContentsOfFile:@"template.html"];
+NSString * foo = @"foo";
+NSString * formattedFoo = @"<a href=\"http://www.foo.com\">Foo!</a>";
+NSMutableString * templateHTML = [[NSMutableString alloc] initWithContentsOfFile:@"template.html"];
 
 [templateHTML replaceOccurrencesOfString:foo withString:formattedFoo 
-                            options:General/NSCaseInsensitiveSearch 
-                            range:General/NSMakeRange(0, [templateHTML length])];
+                            options:NSCaseInsensitiveSearch 
+                            range:NSMakeRange(0, [templateHTML length])];
 [templateHTML writeToFile:@"finished.html"];
 [templateHTML release];
 
 
 ----
 
-I'm reading a text file into an General/NSString. To replace all of the newlines in the resulting string with spaces
+I'm reading a text file into an NSString. To replace all of the newlines in the resulting string with spaces
 (assuming the original instance     string is already autoreleased):
 
     
-General/NSMutableString *mString = [string mutableCopy];
-[mString replaceOccurrencesOfString:@"\n" withString:@" " options:General/NSCaseInsensitiveSearch range:(General/NSRange){0,[mString length]}];
-string = [ General/NSString stringWithString: [ mstring autorelease ]];
+NSMutableString *mString = [string mutableCopy];
+[mString replaceOccurrencesOfString:@"\n" withString:@" " options:NSCaseInsensitiveSearch range:(NSRange){0,[mString length]}];
+string = [ NSString stringWithString: [ mstring autorelease ]];
 
 
 ----
@@ -35,23 +35,23 @@ On a pre-10.2 system when using
 
 replaceOccurrencesOfString:withString:options:range:
 
-- (unsigned int)replaceOccurrencesOfString:(General/NSString *)target withString:(General/NSString *)replacement options:(unsigned)opts range:(General/NSRange)searchRange
+- (unsigned int)replaceOccurrencesOfString:(NSString *)target withString:(NSString *)replacement options:(unsigned)opts range:(NSRange)searchRange
 
-with a General/NSMutableString. Error message when compiling:
+with a NSMutableString. Error message when compiling:
 
-"warning: General/NSMutableString does not respond to replaceOccurrencesOfString:withString:options:range:"
+"warning: NSMutableString does not respond to replaceOccurrencesOfString:withString:options:range:"
 
 Code is:
 
     
--(General/NSMutableString*)getPattern
+-(NSMutableString*)getPattern
 {
 
-    General/NSRange rangeH;
+    NSRange rangeH;
 
-    General/NSMutableString * patternString;
+    NSMutableString * patternString;
     
-    patternString=General/[NSMutableString    stringWithFormat: @"%@%@%@ %@%@%@ %@%@%@ %@%@%@ %@%@%@", 
+    patternString=[NSMutableString    stringWithFormat: @"%@%@%@ %@%@%@ %@%@%@ %@%@%@ %@%@%@", 
    
     [t11 stringValue],[t21 stringValue],[t31 stringValue],
     [t12 stringValue],[t22 stringValue],[t32 stringValue],
@@ -61,9 +61,9 @@ Code is:
     ];
    
     printf("%s\n", [patternString UTF8String]);
-    rangeH = General/NSMakeRange(0, [patternString length]);
+    rangeH = NSMakeRange(0, [patternString length]);
 
-    [patternString replaceOccurrencesOfString:@"h" withString:@"G" options:General/NSLiteralSearch range:rangeH];
+    [patternString replaceOccurrencesOfString:@"h" withString:@"G" options:NSLiteralSearch range:rangeH];
     
      return patternString;
 }

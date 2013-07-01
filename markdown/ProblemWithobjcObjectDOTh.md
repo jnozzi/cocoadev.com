@@ -56,7 +56,7 @@ int main (int argc, char *argv[])
 {
         Point *pt1, *pt2;
 
-        pt1 = General/Point alloc] init];
+        pt1 = Point alloc] init];
         pt2 = [[Point alloc] init];
 
         // set first point to (100, 200)
@@ -88,7 +88,7 @@ You probably need to link against libobjc by adding     -lobjc to your compiler 
 
 ----
 
-If you're just starting out with General/ObjC, you'd probably find it easier using the Cocoa NS* classes.
+If you're just starting out with ObjC, you'd probably find it easier using the Cocoa NS* classes.
 
 
 Thanks alot for your help, linking with -lobjc did the trick, compiles with no dramas now, now i can stop pulling my hair out.

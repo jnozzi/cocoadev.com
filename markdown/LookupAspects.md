@@ -1,18 +1,18 @@
-**General/LookupAspects** - 
+**LookupAspects** - 
 
-see General/ACProblemOfVariableTypes
+see ACProblemOfVariableTypes
 
-The solution to the problem of where to store the original IMP pointers of the functions is the major difference between all of our implmentation possibilities.  This one uses the good old fashioned General/NSMutableDictionary via some other classes: General/ACAdviceList and General/ACAspectManager (which has an General/ACAdviceLookup ).  See discussion following the code for alternate lookup possibilites/suggestions. http://www.ccs.neu.edu/home/igotimac/General/LookupAspect.zip defines all these classes and a little example...
+The solution to the problem of where to store the original IMP pointers of the functions is the major difference between all of our implmentation possibilities.  This one uses the good old fashioned NSMutableDictionary via some other classes: ACAdviceList and ACAspectManager (which has an ACAdviceLookup ).  See discussion following the code for alternate lookup possibilites/suggestions. http://www.ccs.neu.edu/home/igotimac/LookupAspect.zip defines all these classes and a little example...
 
-And this leads me to General/AspectCocoaBugs
+And this leads me to AspectCocoaBugs
 
     
 
-#import "General/ACLookAspect.h"
-#import "General/ACAdviceList.h"
-#import "General/ACMethodIterator.h"
+#import "ACLookAspect.h"
+#import "ACAdviceList.h"
+#import "ACMethodIterator.h"
 #import </usr/include/objc/objc-class.h>
-#import "General/ACAspectManager.h"
+#import "ACAspectManager.h"
 
 /*
 struct objc_method {
@@ -28,11 +28,11 @@ struct objc_method_list {
 };
 */
 
-@implementation General/ACLookAspect
+@implementation ACLookAspect
 +(id)wrapAllOfClass: (Class)toWrap withAdviceObject: (id)advice{
-    General/ACMethodIterator * iterator = General/[[ACMethodIterator alloc] initWithClass: toWrap];
+    ACMethodIterator * iterator = [[ACMethodIterator alloc] initWithClass: toWrap];
     //go through every method on the class and give it a replacement IMP
-    General/ACAspectManager * manager = General/[ACAspectManager sharedManager];
+    ACAspectManager * manager = [ACAspectManager sharedManager];
     while([iterator thereIsAnotherMethod]){
         struct objc_method * method = [iterator nextMethod];
         //ask the pointcut object if we should wrap this method
@@ -44,7 +44,7 @@ struct objc_method_list {
 
 +(struct objc_method *)replaceMethod:(struct objc_method *) method{
     SEL selector = method->method_name;
-    General/NSLog(@"selector %s", selector);
+    NSLog(@"selector %s", selector);
     return [self replace: method with: [self getReplacementSEL: method]];
 }
 
@@ -67,14 +67,14 @@ struct objc_method_list {
 }
 
 /*
-* none of the methods below should ever be called as members of this class! (General/ACLookAspect)
-* and are therefore not declared in General/ACLookAspect.h
+* none of the methods below should ever be called as members of this class! (ACLookAspect)
+* and are therefore not declared in ACLookAspect.h
 */
 
 //no return type casting, because we don't know what the return type will be...
 -replacement{
-    //get the General/ACAdviceList
-    General/ACAdviceList * advice = General/[[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
+    //get the ACAdviceList
+    ACAdviceList * advice = [[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
     if(advice == nil)
         return;
     int i;
@@ -95,8 +95,8 @@ struct objc_method_list {
 }
 
 -replacement: a{
-    //get the General/ACAdviceList
-    General/ACAdviceList * advice = General/[[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
+    //get the ACAdviceList
+    ACAdviceList * advice = [[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
     if(advice == nil)
         return;
     int i;
@@ -117,8 +117,8 @@ struct objc_method_list {
 }
 
 -replacement: a r: b{
-    //get the General/ACAdviceList
-    General/ACAdviceList * advice = General/[[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
+    //get the ACAdviceList
+    ACAdviceList * advice = [[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
     if(advice == nil)
         return;
     int i;
@@ -140,8 +140,8 @@ struct objc_method_list {
 }
 
 -replacement: a r: b r: c{
-    //get the General/ACAdviceList
-    General/ACAdviceList * advice = General/[[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
+    //get the ACAdviceList
+    ACAdviceList * advice = [[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
     if(advice == nil)
         return;
     int i;
@@ -166,7 +166,7 @@ struct objc_method_list {
 
 
 
-So we could pass General/NSObject to the code below and it would work.. but what do we do with all of General/NSObjects original methods, so that we can access them when we need them (sorted by selector somewhere)
+So we could pass NSObject to the code below and it would work.. but what do we do with all of NSObjects original methods, so that we can access them when we need them (sorted by selector somewhere)
 Does anybody know of a good data structure for make a dictionary with Selectors as keys and Methods as entries?
 how would I go about creating such a data structure?
 
@@ -175,16 +175,16 @@ how would I go about creating such a data structure?
 
 I believe selectors and objc_methods don't need retaining - the pointers never go away. (selectors are constant c-strings in your global space, objc_methods are structs which probably point into per-class memory allocated by the runtime.)
 
-Given that, you could use a General/CFDictionary or General/CFMutableDictionary, specifying NULL for the callback structs when you create it. That will give you a nice simple key-value relationship which can be used to store any pointer-sized value without requiring it to be an NS/CF object. Once you create the dictionary with CF, it will be toll-free bridged to General/NSDictionary and you should be able to add and retrieve items via the General/NSDictionary General/APIs like normal. Even if you find that you can't, it's not much trouble to use the General/CFDictionary General/APIs if you have to. That should get you something functional.
+Given that, you could use a CFDictionary or CFMutableDictionary, specifying NULL for the callback structs when you create it. That will give you a nice simple key-value relationship which can be used to store any pointer-sized value without requiring it to be an NS/CF object. Once you create the dictionary with CF, it will be toll-free bridged to NSDictionary and you should be able to add and retrieve items via the NSDictionary APIs like normal. Even if you find that you can't, it's not much trouble to use the CFDictionary APIs if you have to. That should get you something functional.
 
 ----
 
-One additional thing to note is that I've heard some talk that CF's default hash method is suboptimal for storing pointers, because it only uses the low bits for the hash value... since pointers (and function pointers, if you go that route) tend to be 16-byte aligned, many of those bits are zero, which can cause more hash collisions than necessary. So a possible optimization would be rather than using NULL callbacks in the General/CFDictionary, to pass in an empty struct that only has a hash callback. A faster hash would be something like
+One additional thing to note is that I've heard some talk that CF's default hash method is suboptimal for storing pointers, because it only uses the low bits for the hash value... since pointers (and function pointers, if you go that route) tend to be 16-byte aligned, many of those bits are zero, which can cause more hash collisions than necessary. So a possible optimization would be rather than using NULL callbacks in the CFDictionary, to pass in an empty struct that only has a hash callback. A faster hash would be something like
 
     
-General/CFHashCode General/BetterPointerHash(const void *value)
+CFHashCode BetterPointerHash(const void *value)
 {
- General/CFHashCode hash = (General/CFHashCode)value;
+ CFHashCode hash = (CFHashCode)value;
  return (hash >> 4) ^ (hash << (sizeof(const void*)*8 - 4);
 }
 

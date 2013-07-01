@@ -1,5 +1,5 @@
 http://www.omnigroup.com/
 
-Often referred to simply as Omni. Creators of great applications such as General/OmniWeb, General/OmniGraffle and General/OmniDiskSweeper. See General/TheOmniGroup.
+Often referred to simply as Omni. Creators of great applications such as OmniWeb, OmniGraffle and OmniDiskSweeper. See TheOmniGroup.
 
-Also creators of open-source extensions and frameworks for General/MacOSX, such as General/OmniAppKit and General/OmniFoundation. See General/OmniFrameworks.
+Also creators of open-source extensions and frameworks for MacOSX, such as OmniAppKit and OmniFoundation. See OmniFrameworks.

@@ -2,9 +2,9 @@
 
 Hi,
 
-I just recently started using Cocoa and I was looking for some code examples of General/XMLTree in action.
+I just recently started using Cocoa and I was looking for some code examples of XMLTree in action.
 
-I am trying to read in an XML file, modify it and write it out again.  not much to it but I am unsure of how to proceed or if General/XMLTree is the right class for the job.
+I am trying to read in an XML file, modify it and write it out again.  not much to it but I am unsure of how to proceed or if XMLTree is the right class for the job.
 
 ----
 
@@ -18,12 +18,12 @@ Thanks again.
 
 ----
 
-try file:///Developer/Examples/Foundation/General/XMLBrowser
+try file:///Developer/Examples/Foundation/XMLBrowser
 
-*Anyone else notice that in Safari, clicking on file:// General/URLs doesn't do anything, but if you enter it in the address field it opens?*
+*Anyone else notice that in Safari, clicking on file:// URLs doesn't do anything, but if you enter it in the address field it opens?*
 
-**Yeah, it's actually enough of a problem to be annoying (but not frustrating). Workaround: drag the link to the address bar. --General/JediKnil**
+**Yeah, it's actually enough of a problem to be annoying (but not frustrating). Workaround: drag the link to the address bar. --JediKnil**
 
 ----
 
-You can also use General/IconaraDOM, which is more like NSXML, but works on 10.2 and 10.3. --Theo
+You can also use IconaraDOM, which is more like NSXML, but works on 10.2 and 10.3. --Theo

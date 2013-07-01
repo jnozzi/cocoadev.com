@@ -1,7 +1,7 @@
 I am looking for some debugging advice for an exception raised somewhere in my awakeFromNib.
 
 I am developing a document-based, table-centered app as a learning project, pursuing one tutorial's suggestion to let the user customize
-table column configurations. The column configurations are stored in the document model as an General/NSDictionary object. Attributes include
+table column configurations. The column configurations are stored in the document model as an NSDictionary object. Attributes include
 the column's max, min, and user-specified width, the header-cell title, and a table column identifier to use in connecting table column
 customizing operations to other interface controls, or the alignment of the title in the column's header cell. For example, a set of controls
 allows the user to turn on and off the display of a particular column in the table by use of a checkbox in another part of the interface.
@@ -13,7 +13,7 @@ if I resize the window, the rightmost column resizes automatically to fit. If I 
 exception in my run log, for a notification posted sometime during awake from nib:
 
 *
-Exception raised during posting of notification.  Ignored.  exception: *** -General/[NSDictionary setObject:forKey:]: attempt to insert nil value
+Exception raised during posting of notification.  Ignored.  exception: *** -[NSDictionary setObject:forKey:]: attempt to insert nil value
 *
 
 I emphasize that this exception only appears after a column has been auto-resized by resizing the window. If I specify that all columns
@@ -29,13 +29,13 @@ about debugging techniques for this kind of bug.
 I will publish the relevant code for maintaining the column descriptions below if somebody needs a bribe in order to help me out  ;-)
 At this point I am just looking for some advice on debugging strategies to find the object that is posting the notification.
 
-*Look at the General/DebuggingTechniques page to see how to debug exceptions. You are giving General/NSDictionary a nil object, whether you believe it or not, and you need to find out what it is so you can fix it.*
+*Look at the DebuggingTechniques page to see how to debug exceptions. You are giving NSDictionary a nil object, whether you believe it or not, and you need to find out what it is so you can fix it.*
 
 ----
 
-I recall seeing this problem when I had an General/NSTableView with an autosave name, but I hadn't given all of the table columns an identifier. It was saving nil as the identifier, and then when it would restore, it didn't check for nil, causing the assertion failure you're seeing. Try making sure that all of your columns have identifiers, even if you're using bindings and don't need it.
+I recall seeing this problem when I had an NSTableView with an autosave name, but I hadn't given all of the table columns an identifier. It was saving nil as the identifier, and then when it would restore, it didn't check for nil, causing the assertion failure you're seeing. Try making sure that all of your columns have identifiers, even if you're using bindings and don't need it.
 
-Otherwise, you can debug this by setting a symbolic breakpoint on     -General/[NSException raise]. See General/DebuggingTechniques for details. Once you have the debugger stopped there, you can examine the call stack and figure out exactly what's triggering it, which should help you figure out how to stop it.
+Otherwise, you can debug this by setting a symbolic breakpoint on     -[NSException raise]. See DebuggingTechniques for details. Once you have the debugger stopped there, you can examine the call stack and figure out exactly what's triggering it, which should help you figure out how to stop it.
 
 ----
 

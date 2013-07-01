@@ -2,19 +2,19 @@
 
 
 
-* *Making good ol' General/MrC open-source* (Votes: AYES: 3 NAYS: 0)
+* *Making good ol' MrC open-source* (Votes: AYES: 3 NAYS: 0)
 
-Didn't Apple port General/MrC's optimizer to gcc?
+Didn't Apple port MrC's optimizer to gcc?
 
-No. gcc has no General/MrC code in it. General/MrC was entirely different in internal structure from gcc, which makes porting between the two impossible. Apple has been working on improving gcc's optimization and compile time, however.
+No. gcc has no MrC code in it. MrC was entirely different in internal structure from gcc, which makes porting between the two impossible. Apple has been working on improving gcc's optimization and compile time, however.
 
-Impossible; General/MrC is encumbered by contracts with Symantec, who provided the original front end.
+Impossible; MrC is encumbered by contracts with Symantec, who provided the original front end.
 
 ----
-Still unlikely, but the above is incorrect. General/MrC is made of up two parts: a derivative of the Zortech/Symantec front-end and a derivative of the Lucid back-end. The Lucid back-end was purchased by Tartan when Lucid's assets went up for auction. Tartan was later bought by Texas Instruments. It's believed that TI is no longer using any derived work from Lucid. Some former Lucid engineers now work on gcc and LLVM at Apple, however, none of them worked on General/MrC itself, which had plenty of Apple technology added to it. The General/MrC engineers have scattered around the industry or retired but amazingly they still occasionally meet for pizza.
+Still unlikely, but the above is incorrect. MrC is made of up two parts: a derivative of the Zortech/Symantec front-end and a derivative of the Lucid back-end. The Lucid back-end was purchased by Tartan when Lucid's assets went up for auction. Tartan was later bought by Texas Instruments. It's believed that TI is no longer using any derived work from Lucid. Some former Lucid engineers now work on gcc and LLVM at Apple, however, none of them worked on MrC itself, which had plenty of Apple technology added to it. The MrC engineers have scattered around the industry or retired but amazingly they still occasionally meet for pizza.
 ----
 
-*  *General/MachO should be revised and possibly replaced by a more modern ABI* (Votes: AYES: 4 NAYS: 0) [note6]
+*  *MachO should be revised and possibly replaced by a more modern ABI* (Votes: AYES: 4 NAYS: 0) [note6]
 
 What about adopting CFM/PEF?
 
@@ -29,4 +29,4 @@ CFM/PEF -- Nah, not with all the time we already spent un-adopting it. I'd like 
 ----
 ----
 
-*Back to General/CocoaMostWanted*
+*Back to CocoaMostWanted*

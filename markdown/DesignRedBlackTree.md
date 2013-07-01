@@ -186,20 +186,20 @@ This completes the re-balancing of the tree; it involves no more than 3 rotation
 
 Red-black trees are used in many C++ libraries to implement their storage types (map, set, etc). Their use is almost guaranteed by the ANSI/ISO demands upon execution times of the searching/insertion/deletion algorithms. Because they rely solely upon an ordering, they can use any ordered space for keys, but you cannot mix different key types in the same storage object.
 
-Cocoa's General/FoundationCollections, on the other hand, do not use red-black trees, but are instead based on General/DesignHashTable; Apple's Senior Cocoa Software Engineer professed not to know how efficient their implementation of hash tables is.
+Cocoa's FoundationCollections, on the other hand, do not use red-black trees, but are instead based on DesignHashTable; Apple's Senior Cocoa Software Engineer professed not to know how efficient their implementation of hash tables is.
 
-General/KTMatrix (see General/DesignMatrix) may use a Red-black tree in the future instead of hash tables; this is being looked into.
+KTMatrix (see DesignMatrix) may use a Red-black tree in the future instead of hash tables; this is being looked into.
 
 ----**appendix - References**----
 The following frameworks have implementation of red-black trees: 
-* General/EDCommon ( http://www.mulle-kybernetik.com/software/General/EDFrameworks/ ) (General/EDSortedArray class)
-* General/CHDataStructures ( http://cocoaheads.byu.edu/code/General/CHDataStructures ) ("General/CHRedBlackTree" class)
+* EDCommon ( http://www.mulle-kybernetik.com/software/EDFrameworks/ ) (EDSortedArray class)
+* CHDataStructures ( http://cocoaheads.byu.edu/code/CHDataStructures ) ("CHRedBlackTree" class)
  
 
 Also, the following frameworks have implementation of AVL trees, which are self-balancing binary search trees, just like red-black trees: 
-* General/CHDataStructures ( http://cocoaheads.byu.edu/code/General/CHDataStructures ) (General/CHAVLTree)
-* General/SortedDictionary ( https://code.google.com/p/cocoa-sorted-dictionary/ )
-* OFC ( https://code.google.com/p/ofc/ ) (General/DAvlTree)
+* CHDataStructures ( http://cocoaheads.byu.edu/code/CHDataStructures ) (CHAVLTree)
+* SortedDictionary ( https://code.google.com/p/cocoa-sorted-dictionary/ )
+* OFC ( https://code.google.com/p/ofc/ ) (DAvlTree)
  
 
 I trawled the following in my quest to determine the RB insertion/deletion algorithms: 
@@ -207,13 +207,13 @@ I trawled the following in my quest to determine the RB insertion/deletion algor
 * http://www.ddj.com/documents/s=1049/ddj9204c/9204c.htm
  My thanks to their authors for not being too impenetrable.
 
--- General/KritTer; comments appreciated
+-- KritTer; comments appreciated
 
 ----comments----
 
 A Five-Star page IMHO -- peacha
 
-Thanks, peacha! -- General/KritTer
+Thanks, peacha! -- KritTer
 
 Nicely summarized.  You might want to look at AVL (Adelson-Velskii and Landis) trees also.  Their implementation is similar to
 red-black trees.  They are not perfectly balanced, but pairs of sub-trees differ in height by at most 1, maintaining an O(log n) search time. Addition and deletion operations also take O(log n) time.

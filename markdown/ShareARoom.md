@@ -21,4 +21,4 @@ A place for folks to meet up for hotel room sharing at conferences:
 
  
 * Ian Baird (rtmfd at _remove_this_ mac dot com) - I booked a nonsmoking king (floor space available) at Marriott Chicago/UIC ($314/night), 2.10 miles away from the convention center. I'm looking for (a) roommate(s).
-* Zac Bir (zbir at _remove_this_ urbanape dot com) - I booked a nonsmoking room with two queen beds (floor space available) at Courtyard O'Hare ($119/night), 1 mile from the Rosemont L station. I'm no longer looking - rooming with General/JustinMiller.
+* Zac Bir (zbir at _remove_this_ urbanape dot com) - I booked a nonsmoking room with two queen beds (floor space available) at Courtyard O'Hare ($119/night), 1 mile from the Rosemont L station. I'm no longer looking - rooming with JustinMiller.

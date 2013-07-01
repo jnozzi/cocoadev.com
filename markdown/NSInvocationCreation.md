@@ -4,7 +4,7 @@ But, what if I want to do more than two arguments?  performSelector does not ape
 
 ----
 
-General/NSInvocation is probably your only option here. -- General/RobRix
+NSInvocation is probably your only option here. -- RobRix
 
 ----
 
@@ -12,31 +12,31 @@ I'm having trouble getting a small implementation of HOM to work (without using 
 
 ----
 
-As mentioned in the docs for -General/[NSInvocation setArgument:atIndex:], the 0th and 1st arguments set the target and the selector.  To set what you think of as arguments, start at index 2.
+As mentioned in the docs for -[NSInvocation setArgument:atIndex:], the 0th and 1st arguments set the target and the selector.  To set what you think of as arguments, start at index 2.
 
 ----
 
-For an interesting digression on this, see General/ObjectiveMethod by General/RobRix
+For an interesting digression on this, see ObjectiveMethod by RobRix
 
-*Editor's Note:* Content prior to 4/26/06: What turned out to be a quick question about General/NSTableView pasteboard operations using a method whose selector is known at compile time has been appended to the General/SimpleSolutionsNSTableView page.
+*Editor's Note:* Content prior to 4/26/06: What turned out to be a quick question about NSTableView pasteboard operations using a method whose selector is known at compile time has been appended to the SimpleSolutionsNSTableView page.
 
 ----
 
-I'm having a problem with creating any General/NSInvocation objects, no matter what sources I look at from either Apple, or other tutorials and references around the net it will always error when I try to run it.
+I'm having a problem with creating any NSInvocation objects, no matter what sources I look at from either Apple, or other tutorials and references around the net it will always error when I try to run it.
 
     
-- (General/IBAction)doAction:(id)sender {
+- (IBAction)doAction:(id)sender {
 	SEL theSelector;
-	General/NSMethodSignature *aSignature;
-	General/NSInvocation *anInvocation;
+	NSMethodSignature *aSignature;
+	NSInvocation *anInvocation;
 	
 	theSelector = @selector(setIntValue:);
-	aSignature = General/self class] instanceMethodSignatureForSelector:theSelector];
+	aSignature = self class] instanceMethodSignatureForSelector:theSelector];
 	anInvocation = [[[NSInvocation invocationWithMethodSignature:aSignature]; // Error occurs here... "EXC_BAD_ACCESS"
 	[anInvocation setSelector:theSelector];
 	[anInvocation setTarget:slider];
 	
-	General/NSNumber *number = General/[NSNumber numberWithInt:20];
+	NSNumber *number = [NSNumber numberWithInt:20];
 	[anInvocation setArgument:&number atIndex:2];
 	
 	[anInvocation invoke];
@@ -51,7 +51,7 @@ Is <aSignature> valid? If your class doesn't implement setIntValue: it will retu
 
 ----
 
-Ah, so when I request a new instance of General/NSMethodSignature I should always call it from the target class?
+Ah, so when I request a new instance of NSMethodSignature I should always call it from the target class?
 
 ----
 

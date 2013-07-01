@@ -8,4 +8,4 @@ Brad S.
 "Quartz event tap" is your friend.
 Create an event tap to catch F1-F12 keydown event at system or session level. The callback function can return a NULL value to prevent this event to be sent to the next step of window server event processing.
 
-General/MrBru.
+MrBru.

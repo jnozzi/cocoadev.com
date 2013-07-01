@@ -1,5 +1,5 @@
-General/OSXvnc is a VNC remote access server for OSX, available from http://www.redstonesoftware.com/vnc.html
+OSXvnc is a VNC remote access server for OSX, available from http://www.redstonesoftware.com/vnc.html
 
-See General/ChickenOfTheVNC
+See ChickenOfTheVNC
 
-General/RufusCable
+RufusCable

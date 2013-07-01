@@ -5,10 +5,10 @@ I dont get the int value of score1, I get 0.
 here is the code:
 
     
-General/NSString *scoreName1 = @"scoreName1key";
-General/NSString *score1 = @"score1key";
-General/NSDictionary *dict = General/[NSDictionary dictionaryWithContentsOfFile:@"/Library/Preferences/sbhs"];
- if (!dict) General/NSLog(@"Failed to read the high scores.");
+NSString *scoreName1 = @"scoreName1key";
+NSString *score1 = @"score1key";
+NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:@"/Library/Preferences/sbhs"];
+ if (!dict) NSLog(@"Failed to read the high scores.");
  [scoreName1TextField setStringValue: [dict objectForKey:scoreName1] ];
 [score1TextField setStringValue: [dict objectForKey:score1] ];
     

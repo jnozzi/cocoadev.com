@@ -4,4 +4,4 @@ I custom draw my tableview row background and manually return white text for the
 
 ----
 
-Make an image of the text string in black and return it from     - (General/NSImage *)dragImageForRows:(General/NSArray *)dragRows event:(General/NSEvent *)dragEvent dragImageOffset:(General/NSPointPointer)dragImageOffset
+Make an image of the text string in black and return it from     - (NSImage *)dragImageForRows:(NSArray *)dragRows event:(NSEvent *)dragEvent dragImageOffset:(NSPointPointer)dragImageOffset

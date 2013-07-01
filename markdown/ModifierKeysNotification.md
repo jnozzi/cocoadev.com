@@ -6,16 +6,16 @@ Is there a possibility to do that?
 
 ----
 
-It's polling (ew) but you could set up an General/NSTimer on your run loop to fire once ever, say, 5ms. It would then call General/GetCurrentKeyModifiers() and perform its action depending on the result.
+It's polling (ew) but you could set up an NSTimer on your run loop to fire once ever, say, 5ms. It would then call GetCurrentKeyModifiers() and perform its action depending on the result.
 
 ----
 
-Perhaps you could subclass your General/NSApplication and override sendEvent:?
+Perhaps you could subclass your NSApplication and override sendEvent:?
 
 ----
-You want them to be visible while the keys are down and go back up when the user releases the keys, right? If you're willing to instead use a toggle (press Command-Option-whatever to make them clickable, press it again to not), you could use General/GlobalHotKeys. Going this route might make you want to just use show/hide.
+You want them to be visible while the keys are down and go back up when the user releases the keys, right? If you're willing to instead use a toggle (press Command-Option-whatever to make them clickable, press it again to not), you could use GlobalHotKeys. Going this route might make you want to just use show/hide.
 
-Come to think of it, why *do* you want this? Non-clickable windows generally frustrate me. --General/JediKnil
+Come to think of it, why *do* you want this? Non-clickable windows generally frustrate me. --JediKnil
 
 ----
 

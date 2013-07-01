@@ -4,4 +4,4 @@ I've been having a problem with providing storage for plugins in my document bas
 
 Anyone else have better ideas for this sort of plugin architecture?  One fix to my problem is simply to ask plugin developers to only use standard objects, and not custom classes.  This is fine, but I feel like there must be more elegant solutions (perhaps ones involving Core Data, as I see no way around the problem).
 
-*One thing you could try is making your documents into bundles. This way, each plugin can save a file in the bundle, with the application saving most of the data in a main file. Any data a plugin needs can be loaded out of the plugin's file, if it exists. If the data is not needed, the file will not be touched. --General/JediKnil*
+*One thing you could try is making your documents into bundles. This way, each plugin can save a file in the bundle, with the application saving most of the data in a main file. Any data a plugin needs can be loaded out of the plugin's file, if it exists. If the data is not needed, the file will not be touched. --JediKnil*

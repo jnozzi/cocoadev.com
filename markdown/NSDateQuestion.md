@@ -5,13 +5,13 @@ Why this code doesn't works fine ?! tmpDate != dateNew
     
 
   {
-    General/NSDate  *tmpDate = General/[NSDate date];
+    NSDate  *tmpDate = [NSDate date];
     
-    General/NSNumber *tmpNum = General/[NSNumber numberWithFloat:[tmpDate timeIntervalSince1970]];    
-    General/NSDate *dateNew = General/[NSDate dateWithTimeIntervalSince1970:[tmpNum floatValue]];
+    NSNumber *tmpNum = [NSNumber numberWithFloat:[tmpDate timeIntervalSince1970]];    
+    NSDate *dateNew = [NSDate dateWithTimeIntervalSince1970:[tmpNum floatValue]];
     
-    General/NSLog(@"%@", [tmpDate descriptionWithLocale:nil]);
-    General/NSLog(@"%@", [dateNew descriptionWithLocale:nil]);
+    NSLog(@"%@", [tmpDate descriptionWithLocale:nil]);
+    NSLog(@"%@", [dateNew descriptionWithLocale:nil]);
   }
 
 
@@ -32,13 +32,13 @@ You must use double instead of float
 
     
   {
-    General/NSDate  *tmpDate = General/[NSDate date];
+    NSDate  *tmpDate = [NSDate date];
     
-    General/NSNumber *tmpDouble = General/[NSNumber numberWithDouble:[tmpDate timeIntervalSince1970]];
-    General/NSDate *dateNew = General/[NSDate dateWithTimeIntervalSince1970:[tmpDouble doubleValue]];
+    NSNumber *tmpDouble = [NSNumber numberWithDouble:[tmpDate timeIntervalSince1970]];
+    NSDate *dateNew = [NSDate dateWithTimeIntervalSince1970:[tmpDouble doubleValue]];
     
-    General/NSLog(@"%@", [tmpDate descriptionWithLocale:nil]);
-    General/NSLog(@"%@", [dateNew descriptionWithLocale:nil]);
+    NSLog(@"%@", [tmpDate descriptionWithLocale:nil]);
+    NSLog(@"%@", [dateNew descriptionWithLocale:nil]);
   }
 
 

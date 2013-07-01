@@ -1,10 +1,10 @@
-I am having a really annoying problem with an General/NSTableView not responding to reloadData.  I'm pretty new at Cocoa development, so bear with me.
+I am having a really annoying problem with an NSTableView not responding to reloadData.  I'm pretty new at Cocoa development, so bear with me.
 
 So I stumbled across this article http://cocoadevcentral.com/articles/000080.php  discussing binding array controllers to tableviews.  I worked it into my application, and it worked fine.  However, I have another part of my program that also enters data into the array so I formatted it like this:
 
     
 	Author *newAuth;
-	newAuth = General/Author alloc] init];
+	newAuth = Author alloc] init];
 	[[newAuth properties] setValue:@"first" forKey:@"firstname"];
 	[[newAuth properties] setValue:@"last" forKey:@"lastname"];
 	[_authors addObject:newAuth];
@@ -29,7 +29,7 @@ Hello.  I'm not entirely sure what's going on, but I suspect     reloadData is o
 
     
 	Author *newAuth;
-	newAuth = General/Author alloc] init];
+	newAuth = Author alloc] init];
 	[[newAuth properties] setValue:@"first" forKey:@"firstname"];
 	[[newAuth properties] setValue:@"last" forKey:@"lastname"];
 	[self insertObject:newAuth inAuthorsAtIndex:*foo*];
@@ -37,14 +37,14 @@ Hello.  I'm not entirely sure what's going on, but I suspect     reloadData is o
 	[newAuth release];
 
 
-and implement     -[[[YourClass insertObject:inAuthorsAtIndex:].  You might want to go for     -General/[YourClass countOfAuthors] while you're at it, so you can use that where I wrote *foo*.
+and implement     -[[[YourClass insertObject:inAuthorsAtIndex:].  You might want to go for     -[YourClass countOfAuthors] while you're at it, so you can use that where I wrote *foo*.
 
 The issue is that     [_authors addObject:] is to     -[self insertObject:inAuthorsAtIndex:] as     _authors = newArray is to     [self setAuthors:newArray].  It goes behind the back of the bindings system, and objects which bind to     _authors do not get properly notified.  
 
-Take a look at http://homepage.mac.com/mmalc/General/CocoaExamples/controllers.html if you have not already.  Mmalc covers this.
+Take a look at http://homepage.mac.com/mmalc/CocoaExamples/controllers.html if you have not already.  Mmalc covers this.
 
 Unrelatedly, Apple reserves the underscore prefix for their own private variables.  You want to do something different to avoid name collision.
 
--General/KenFerry
+-KenFerry
 ----
 That did it!  Thanks a ton!

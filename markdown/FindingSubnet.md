@@ -3,10 +3,10 @@
 Hey,
 
 
-As an aside to my post for General/MachineSpecificInformation, I need to find the subnet for a computer system.  I am almost completely lost on the General/IOKit, so if I have to use the General/IOKit, I will REALLY need some sample code.  Can anyone help with this?
+As an aside to my post for MachineSpecificInformation, I need to find the subnet for a computer system.  I am almost completely lost on the IOKit, so if I have to use the IOKit, I will REALLY need some sample code.  Can anyone help with this?
 
 
-General/ChrisGiddings
+ChrisGiddings
 
 
 President, Ripple
@@ -30,7 +30,7 @@ chris.giddings **at** ripplesw.net Dffs
 
 *Chris, I really don't think you want to put your email address up raw here - I'm getting rid of the @ sign again.  No one will email you anyway, they will reply here so that the information can benefit everyone.*
 
-Some of us have e-mail addresses that are so public and have been used for so long that there's no point in spamproofing them, because all the spammers already have them. Changing it is pointless anyway, since all you have to do is click the History button. -- General/MikeAsh (mike@mikeash.com)
+Some of us have e-mail addresses that are so public and have been used for so long that there's no point in spamproofing them, because all the spammers already have them. Changing it is pointless anyway, since all you have to do is click the History button. -- MikeAsh (mike@mikeash.com)
 
 ----
 
@@ -75,7 +75,7 @@ struct ifaddrs *ifap, *ifp;
 
 
 
-General/ChrisGiddings
+ChrisGiddings
 
 President, Ripple
 

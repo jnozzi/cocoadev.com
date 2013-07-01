@@ -1,12 +1,12 @@
 In the process of wrapping a Cocoa gui around a C++ library, I've come across a case where it would be
-convenient (or so I think) to stash some dynamically allocated memory (from malloc) on to the General/AutoreleasePool.
-I've written the following code which I hoped would make this happen, but it seems to leak anyways. (i.e. the General/MemoryHolder
+convenient (or so I think) to stash some dynamically allocated memory (from malloc) on to the AutoreleasePool.
+I've written the following code which I hoped would make this happen, but it seems to leak anyways. (i.e. the MemoryHolder
 is never deallocated, and hence the ptr is never free'd either).
 
 Does anyone know why?  Is there a better way to do what I'm trying to do?
 
     
-@interface General/MemoryHolder : General/NSObject
+@interface MemoryHolder : NSObject
 {
     void *ptr;
 }
@@ -14,7 +14,7 @@ Does anyone know why?  Is there a better way to do what I'm trying to do?
 - (id)initWithPointer:(void *)ptr;
 @end
 
-@implementation General/MemoryHolder
+@implementation MemoryHolder
 - (id)initWithPointer:(void *)_ptr
 {
     if (self = [super init]) {
@@ -35,13 +35,13 @@ The usage is something like this:
     
 char *contrivedExample() {
     char *buf = (char *) malloc(10);
-    General/[[[MemoryHolder alloc] initWithPointer:buf] autorelease];
+    [[[MemoryHolder alloc] initWithPointer:buf] autorelease];
     return buf;
 }
 
 
 
--- General/WendellHicken
+-- WendellHicken
 
 ----
 
@@ -62,7 +62,7 @@ D'oh!  Yep, that fixed it.  Thanks!
 
 ----
 
-There's no need to write a custom class for this. General/NSData can do it, by using     -initWithBytesNoCopy:length:freeWhenDone:.
+There's no need to write a custom class for this. NSData can do it, by using     -initWithBytesNoCopy:length:freeWhenDone:.
 
 ----
 

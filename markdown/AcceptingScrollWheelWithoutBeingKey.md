@@ -13,4 +13,4 @@ Yeah drawers do it somehow :-/ becomeKeyWindow doesn't seem to do anything (I pu
 
 ----
 
-If you only want to catch these events when your application is frontmost, this should be possible to hack. Override General/NSApplication's -sendEvent: and have it send scroll events to your window when the cursor is over it (but not over a window in front of it), and I think everything will Just Work from there.
+If you only want to catch these events when your application is frontmost, this should be possible to hack. Override NSApplication's -sendEvent: and have it send scroll events to your window when the cursor is over it (but not over a window in front of it), and I think everything will Just Work from there.

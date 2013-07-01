@@ -20,7 +20,7 @@ However, I have a little problem with this method.  Specifically, it seems that 
  2004-04-04 14:44:10.830 Test[667] Created instance: <ManagerClass: 0x33feb0>
 
 
-Clearly to different instances of the singleton are being created.  The singleton is based on the most simple example over in General/SingletonDesignPattern.
+Clearly to different instances of the singleton are being created.  The singleton is based on the most simple example over in SingletonDesignPattern.
 :
 I have found this site: http://freaky.staticusers.net/ugboard/viewtopic.php?p=27368#27368 which mentions a similar problem.  His solution was to not include the code (.m) in both the plugin and in the host application.  My plugin code does not include any code from the host app, and references the manager using a @class directive.  I have tried including just the "ManagerClass.h" file in the plugin target as well, with the same results.
 

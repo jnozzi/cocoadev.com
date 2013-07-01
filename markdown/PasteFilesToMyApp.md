@@ -1,9 +1,9 @@
-I am eager to know how to get the file names in General/NSPasteboard
+I am eager to know how to get the file names in NSPasteboard
 
 1) Copy more than one files in Finder
-2) In my Cocoa Application, I need to get these file names through General/NSFilenamesPboardType but I failed.
+2) In my Cocoa Application, I need to get these file names through NSFilenamesPboardType but I failed.
 
-Does any one here know how to get these information about the files in General/NSPboard?
+Does any one here know how to get these information about the files in NSPboard?
 
 Thanks
 
@@ -12,9 +12,9 @@ Thanks
 are you reading with
 
     
-General/[[NSPasteboard generalPasteboard] propertyListForType: General/NSFilenamesPboardType]
+[[NSPasteboard generalPasteboard] propertyListForType: NSFilenamesPboardType]
 
-? See [http://developer.apple.com/documentation/Cocoa/Conceptual/General/CopyandPaste/Concepts/General/DataTypes.html]
+? See [http://developer.apple.com/documentation/Cocoa/Conceptual/CopyandPaste/Concepts/DataTypes.html]
 
 ----
 
@@ -25,24 +25,24 @@ Apparently you're not the only one who's run into this- see [http://cocoa.mamasa
 It looks like you are out of luck if you need the full paths to the items copied from the finder. The only types posted to the general pasteboard when multiple items are selected and copied in the finder are:
 
     
-    "General/CorePasteboardFlavorType 0x75747874", 
-    General/NSStringPboardType, 
-    "General/CorePasteboardFlavorType 0x54455854", 
-    "General/CorePasteboardFlavorType 0xC46C7374", 
-    "General/CorePasteboardFlavorType 0x66636363"
+    "CorePasteboardFlavorType 0x75747874", 
+    NSStringPboardType, 
+    "CorePasteboardFlavorType 0x54455854", 
+    "CorePasteboardFlavorType 0xC46C7374", 
+    "CorePasteboardFlavorType 0x66636363"
 
 
-http://www.bekkoame.ne.jp/~n-iyanag/researchTools/clip_utils_osx.html <- talks about the General/CorePasteboardFlavorType
+http://www.bekkoame.ne.jp/~n-iyanag/researchTools/clip_utils_osx.html <- talks about the CorePasteboardFlavorType
 
 If you ask for:
 
     
- [generalPboard stringForType:General/NSStringPboardType];
+ [generalPboard stringForType:NSStringPboardType];
 
 
 you get a string with just filenames, not full paths. 
 
-You can get full paths by registering a view for the dragAndDrop of filenames (General/DragAndDropWithNSViewSubclass):
+You can get full paths by registering a view for the dragAndDrop of filenames (DragAndDropWithNSViewSubclass):
 
 ----
 

@@ -1,42 +1,42 @@
 
 
-See also General/DistributedObjectsForInterThreadCommunication.
+See also DistributedObjectsForInterThreadCommunication.
 
-I'm experiencing a lot of trouble using General/DistributedObjects for interthread communications. My distributed object code was based fairly closely on Apple's General/SimpleThreads example, but in its latest variant, is slightly closer to: 
+I'm experiencing a lot of trouble using DistributedObjects for interthread communications. My distributed object code was based fairly closely on Apple's SimpleThreads example, but in its latest variant, is slightly closer to: 
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/articles/General/CocoaDOComm.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/articles/CocoaDOComm.html
 
 In my application, I'm getting a crash in __CFRunLoopFindMode quite regularly, especially when I have two worker threads running.
 
-I can replicate this crash in General/SimpleThreads, although I need to generate a lot more threads to do so quickly and reliably. My General/SimpleThreads variant creates 10 blocks of 200 threads at a time. The threads don't actually do anything, and are killed before the next block starts. I typically get the crash in about the 7th or 8th block. Although creating this many threads is obviously excessive, I get the same crash, but less reliably and conveniently, in my app with only a handful of threads.
+I can replicate this crash in SimpleThreads, although I need to generate a lot more threads to do so quickly and reliably. My SimpleThreads variant creates 10 blocks of 200 threads at a time. The threads don't actually do anything, and are killed before the next block starts. I typically get the crash in about the 7th or 8th block. Although creating this many threads is obviously excessive, I get the same crash, but less reliably and conveniently, in my app with only a handful of threads.
 
-I have posted my General/SimpleThreads variant at
+I have posted my SimpleThreads variant at
 
-http://www.mildmanneredindustries.com/downloads/General/SimpleThreadsCrashes.dmg
+http://www.mildmanneredindustries.com/downloads/SimpleThreadsCrashes.dmg
 
-There are a few defines in Controller.h that you can use to change the DO threading behavior slightly. They all crash. There is a General/ReadMe.txt file with details.
+There are a few defines in Controller.h that you can use to change the DO threading behavior slightly. They all crash. There is a ReadMe.txt file with details.
 
 I have read up on using DO for inter thread comms fairly extensively, and I don't seem to be doing anything drastically different from anyone else.
 
 A few more things worth noting: 
 
-I get an identical crash on intel and PPC. The crash is located at General/CFRunLoop.c line 371, which looks fairly innocuous:
+I get an identical crash on intel and PPC. The crash is located at CFRunLoop.c line 371, which looks fairly innocuous:
 
    _CFRuntimeSetInstanceTypeID(&srlm, __kCFRunLoopModeTypeID); // Line 371
 
 _CFRuntimeSetInstanceTypeID is a one liner that reads:
 
-    __CFBitfieldSetValue(((General/CFRuntimeBase *)cf)->_info, 15, 8, typeID);
+    __CFBitfieldSetValue(((CFRuntimeBase *)cf)->_info, 15, 8, typeID);
 
 Strangely, the crash is shown as SIGTRAP in the debugger, and as a Trace/BPT error in a deployment command line version. A screenshot of the debugger on a PPC box is at 
 
-http://www.mildmanneredindustries.com/graphics/General/CFRunLoopFindModePPC.png
+http://www.mildmanneredindustries.com/graphics/CFRunLoopFindModePPC.png
 
 (this is a slightly different test program, which is a command line tool, and with the debug libraries enabled).
 
 The crash has a tendency to bring other applications down with it. Apple Mail often suffers from this.
 
-There is something suspicious about the regularity with which it crashes the test program at about the same point. Richard Low reported a DO issue that sounds similar (http://www.wentnet.com/misc/nsproxy.html) where the crash always occurred at a certain point in the program (although I'm not certain that this was a crash in General/CFRunLoopFindMode).
+There is something suspicious about the regularity with which it crashes the test program at about the same point. Richard Low reported a DO issue that sounds similar (http://www.wentnet.com/misc/nsproxy.html) where the crash always occurred at a certain point in the program (although I'm not certain that this was a crash in CFRunLoopFindMode).
 
 Obviously I have a radar issue (4838357) open on this. Any fix for the crash would be wonderful, but in the absence of that, I guess my question is, what alternatives do I have to DO for interthread communication?
 
@@ -56,13 +56,13 @@ This is how the process looks:
     
 cristi:~ diciu$ ps axM -p 552
 USER    PID  TT  %CPU STAT PRI     STIME     UTIME COMMAND
-diciu   552  ??    0.0 S     46   0:03.53   0:18.38 /Users/diciu/Desktop/st/build/Default/General/SimpleThreads.app/Contents/General/MacOS/General/SimpleThreads
+diciu   552  ??    0.0 S     46   0:03.53   0:18.38 /Users/diciu/Desktop/st/build/Default/SimpleThreads.app/Contents/MacOS/SimpleThreads
 cristi:~ diciu$ ps axM -p 552
 USER    PID  TT  %CPU STAT PRI     STIME     UTIME COMMAND
-diciu   552  ??    0.0 S     46   0:03.53   0:18.38 /Users/diciu/Desktop/st/build/Default/General/SimpleThreads.app/Contents/General/MacOS/General/SimpleThreads
+diciu   552  ??    0.0 S     46   0:03.53   0:18.38 /Users/diciu/Desktop/st/build/Default/SimpleThreads.app/Contents/MacOS/SimpleThreads
 cristi:~ diciu$ ps axM -p 552
 USER    PID  TT  %CPU STAT PRI     STIME     UTIME COMMAND
-diciu   552  ??   53.1 R     24   0:03.62   0:18.71 /Users/diciu/Desktop/st/build/Default/General/SimpleThreads.app/Contents/General/MacOS/General/SimpleThreads
+diciu   552  ??   53.1 R     24   0:03.62   0:18.71 /Users/diciu/Desktop/st/build/Default/SimpleThreads.app/Contents/MacOS/SimpleThreads
         552        0.0 S     46   0:00.00   0:00.00                 
         552        0.0 S     46   0:00.00   0:00.00                 
         552        0.0 S     46   0:00.00   0:00.00                 
@@ -73,14 +73,14 @@ diciu   552  ??   53.1 R     24   0:03.62   0:18.71 /Users/diciu/Desktop/st/buil
 I'm on a Powerbook 17* with 1.25 Gb of RAM, 10.4.8.
 
 --
-General/CristianDraghici
+CristianDraghici
 
 ----
 
 
 ----
 
-Actually, that's worth quite a lot. I have managed to get it to run once (only once) through without crashing. Can you run it repeatedly without it crashing? I got the crash very reliably on General/PowerPC. Comment out the ORIGINAL_RUN_LOOP define in Controller.h for best (worst) results.
+Actually, that's worth quite a lot. I have managed to get it to run once (only once) through without crashing. Can you run it repeatedly without it crashing? I got the crash very reliably on PowerPC. Comment out the ORIGINAL_RUN_LOOP define in Controller.h for best (worst) results.
 
 -- Martin
 
@@ -90,7 +90,7 @@ Actually, that's worth quite a lot. I have managed to get it to run once (only o
 you're right.
 uncommenting the line makes it much worse. I've previously ran it two times w/o errors. The new version crashes every time.
 
-Using Build and Run under General/XCode kills General/XCode as well. I don't get a crashdump either.
+Using Build and Run under XCode kills XCode as well. I don't get a crashdump either.
 
 Under gdb, I get the backtrace you describe:
 
@@ -100,13 +100,13 @@ Program received signal SIGTRAP, Trace/breakpoint trap.
 0x907da280 in __CFRunLoopFindMode ()
 (gdb) bt
 #0  0x907da280 in __CFRunLoopFindMode ()
-#1  0x907da500 in General/CFRunLoopAddSource ()
-#2  0x92952084 in -General/[NSMachPort scheduleInRunLoop:forMode:] ()
-#3  0x92a3d4b4 in +General/[NSRunLoop _runLoop:addPort:forMode:] ()
-#4  0x92952b54 in -General/[NSMachPort addConnection:toRunLoop:forMode:] ()
-#5  0x92952a84 in -General/[NSConnection addPortsToRunLoop:] ()
-#6  0x92952a2c in -General/[NSConnection addPortsToAllRunLoops] ()
-#7  0x0000903c in +General/[TransferServer connectWithPorts:] (self=0x10000, _cmd=0x3, portArray=0xc180) at General/TransferServer.m:128
+#1  0x907da500 in CFRunLoopAddSource ()
+#2  0x92952084 in -[NSMachPort scheduleInRunLoop:forMode:] ()
+#3  0x92a3d4b4 in +[NSRunLoop _runLoop:addPort:forMode:] ()
+#4  0x92952b54 in -[NSMachPort addConnection:toRunLoop:forMode:] ()
+#5  0x92952a84 in -[NSConnection addPortsToRunLoop:] ()
+#6  0x92952a2c in -[NSConnection addPortsToAllRunLoops] ()
+#7  0x0000903c in +[TransferServer connectWithPorts:] (self=0x10000, _cmd=0x3, portArray=0xc180) at TransferServer.m:128
 #8  0x92961194 in forkThreadForFunction ()
 #9  0x9002b508 in _pthread_body ()
 
@@ -134,7 +134,7 @@ Please do update this page once Apple Radar qualifies your bug report.
 
 Thanks,
 --
-General/CristianDraghici
+CristianDraghici
 
 ----
 
@@ -163,21 +163,21 @@ static __CFPort __CFPortAllocate(void) {
 
     
 /* call with rl locked */
-static General/CFRunLoopModeRef __CFRunLoopFindMode(General/CFRunLoopRef rl, General/CFStringRef modeName, Boolean create) {
-    General/CFRunLoopModeRef rlm;
+static CFRunLoopModeRef __CFRunLoopFindMode(CFRunLoopRef rl, CFStringRef modeName, Boolean create) {
+    CFRunLoopModeRef rlm;
     struct __CFRunLoopMode srlm;
     srlm._base._isa = __CFISAForTypeID(__kCFRunLoopModeTypeID);
     srlm._base._info = 0;
     _CFRuntimeSetInstanceTypeID(&srlm, __kCFRunLoopModeTypeID); // line 371
     srlm._name = modeName;
-    rlm = (General/CFRunLoopModeRef)General/CFSetGetValue(rl->_modes, &srlm);
+    rlm = (CFRunLoopModeRef)CFSetGetValue(rl->_modes, &srlm);
 
 
 -- Martin
 
 ----
 
-This is all speculation on my part but I imagine General/CFRunLoop is _not_ a loop per se.
+This is all speculation on my part but I imagine CFRunLoop is _not_ a loop per se.
 But rather it's the equivalent of a UNIX poll call waiting on a set of file descriptors to be marked active. And in our case I imagine it's the mach ports that get activity and awake the process from waiting on the run loop.
 i see run loop like this:
 - wait on activity on given set of mach ports
@@ -185,16 +185,16 @@ i see run loop like this:
 - expose a method for 3rd parties to add to our set of watched mach ports
 
 A bit of background on poll - sorry if this is not the case - In the UNIX world say I'm a server and I have 20000 clients.
-I would keep 20000 connections open with all these clients but how would I know which one to process (i.e. which client is talking to me right now) - iterating through 20000 General/FDs and trying to _read_ from them, even if trying to _read_ in non blocking mode would be very inneficient.
+I would keep 20000 connections open with all these clients but how would I know which one to process (i.e. which client is talking to me right now) - iterating through 20000 FDs and trying to _read_ from them, even if trying to _read_ in non blocking mode would be very inneficient.
 
 So we have the poll UNIX call where set up a set of file descriptors to watch (our 20000 in this case).
-We then block in the _poll_ call and are awaken by the OS which has previously marked interesting General/FDs in our FD set.
+We then block in the _poll_ call and are awaken by the OS which has previously marked interesting FDs in our FD set.
 
-Now I'm not sure what General/FindMode does so that it needs allocating ports but unless we completely understand how General/RunLoops work in OS X.
+Now I'm not sure what FindMode does so that it needs allocating ports but unless we completely understand how RunLoops work in OS X.
 
 PS I don't have Amit Singh's book on Mac OS X but I did get some very competent answers from him a while back so if you have access to it it might be worth checking out.
 
---General/CristianDraghici
+--CristianDraghici
 
 ----
 
@@ -203,14 +203,14 @@ It should crash here (i'm reading the source from opendarwin):
 
     
 /* call with rl locked */
-static General/CFRunLoopModeRef __CFRunLoopFindMode(General/CFRunLoopRef rl, General/CFStringRef modeName, Boolean create) {
-    General/CFRunLoopModeRef rlm;
+static CFRunLoopModeRef __CFRunLoopFindMode(CFRunLoopRef rl, CFStringRef modeName, Boolean create) {
+    CFRunLoopModeRef rlm;
     struct __CFRunLoopMode srlm;
     srlm._base._isa = __CFISAForTypeID(__kCFRunLoopModeTypeID);
     srlm._base._info = 0;
     _CFRuntimeSetInstanceTypeID(&srlm, __kCFRunLoopModeTypeID);
     srlm._name = modeName;
-    rlm = (General/CFRunLoopModeRef)General/CFSetGetValue(rl->_modes, &srlm);
+    rlm = (CFRunLoopModeRef)CFSetGetValue(rl->_modes, &srlm);
     if (NULL != rlm) {
 	__CFRunLoopModeLock(rlm);
 	return rlm;
@@ -218,12 +218,12 @@ static General/CFRunLoopModeRef __CFRunLoopFindMode(General/CFRunLoopRef rl, Gen
     if (!create) {
 	return NULL;
     }
-    rlm = (General/CFRunLoopModeRef)_CFRuntimeCreateInstance(General/CFGetAllocator(rl), __kCFRunLoopModeTypeID, sizeof(struct __CFRunLoopMode) - sizeof(General/CFRuntimeBase), NULL);
+    rlm = (CFRunLoopModeRef)_CFRuntimeCreateInstance(CFGetAllocator(rl), __kCFRunLoopModeTypeID, sizeof(struct __CFRunLoopMode) - sizeof(CFRuntimeBase), NULL);
     if (NULL == rlm) {
 	return NULL;
     }
     rlm->_lock = 0;
-    rlm->_name = General/CFStringCreateCopy(General/CFGetAllocator(rlm), modeName);
+    rlm->_name = CFStringCreateCopy(CFGetAllocator(rlm), modeName);
     rlm->_stopped = false;
     rlm->_sources = NULL;
     rlm->_observers = NULL;
@@ -245,7 +245,7 @@ CF_INLINE __CFPortSet __CFPortSetAllocate(void) {
 
 I think you're running out of mach ports.
 
--- General/CristianDraghici
+-- CristianDraghici
 
 ----
 
@@ -263,8 +263,8 @@ The fix is as follows. The method that you call from the "parent" thread to kill
     [server stopServer:self];
     
     [server disconnect];
-    General/NSConnection *connection = [(id) server connectionForProxy];
-    General/connection receivePort] invalidate];
+    NSConnection *connection = [(id) server connectionForProxy];
+    connection receivePort] invalidate];
     [[connection sendPort] invalidate];
     [connection release];
 };
@@ -272,15 +272,15 @@ The fix is as follows. The method that you call from the "parent" thread to kill
 
 Where stopServer: is a method that sets the boolean flag indicating that the child thread should stop running (see http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/articles/[[CocoaDOComm.html or the sample code I posted).
 
-The disconnect method is the one suggested by John Nairn (http://www.cocoabuilder.com/archive/message/cocoa/2002/8/23/51214) to fix the General/SimpleThreads code:
+The disconnect method is the one suggested by John Nairn (http://www.cocoabuilder.com/archive/message/cocoa/2002/8/23/51214) to fix the SimpleThreads code:
 
     
 - (oneway void)disconnect
 {
-    General/NSArray *connectionsArray=General/[NSConnection allConnections];
-    General/NSEnumerator *connectionsArrayEnumerator=[connectionsArray 
+    NSArray *connectionsArray=[NSConnection allConnections];
+    NSEnumerator *connectionsArrayEnumerator=[connectionsArray 
 objectEnumerator];
-    General/NSConnection *thisConnection;
+    NSConnection *thisConnection;
 
     while(thisConnection=[connectionsArrayEnumerator nextObject])
     {    if([thisConnection rootObject]==self)

@@ -1,6 +1,6 @@
-In the relatively short while I've been coding in Cocoa, I've always provided accessor and mutator methods for my General/IBOutlet<nowiki/>s.  This is as per the documentation, which says that General/NSNib looks for the mutator first, falling back on directly setting the General/InstanceVariable if a mutator is not found.   Since the default scope of ivars is protected, I assumed that I was required (and it would be safest) to provide accessors and mutators for all of my outlets.
+In the relatively short while I've been coding in Cocoa, I've always provided accessor and mutator methods for my IBOutlet<nowiki/>s.  This is as per the documentation, which says that NSNib looks for the mutator first, falling back on directly setting the InstanceVariable if a mutator is not found.   Since the default scope of ivars is protected, I assumed that I was required (and it would be safest) to provide accessors and mutators for all of my outlets.
 
-Any time I've seen code involving General/IBOutlet<nowiki/>s, there are never any accessors or mutators, nor @public directives.  I would love to dispense with the annoying practice of implementing stub accessors and mutators, but how will General/NSNib set my ivars?  Does General/NSObject provide some default implementation for KVC-style accessors and mutators that will spare me?
+Any time I've seen code involving IBOutlet<nowiki/>s, there are never any accessors or mutators, nor @public directives.  I would love to dispense with the annoying practice of implementing stub accessors and mutators, but how will NSNib set my ivars?  Does NSObject provide some default implementation for KVC-style accessors and mutators that will spare me?
 
 ----
 Yes, it does. No doubt the fine manual for valueForKey: and setValue:forKey: will elaborate.
@@ -11,7 +11,7 @@ B) @private and @protected and @public are just compile time hints in Objective-
 
 C) Use Accessorizer to automatically generate accessors/mutators.  It is a good practice to have them and use them even if you don't need them.  Don't even access your own instance variables directly in your own non-accessor methods.  Always go through the accessors.  It will save you headaches later when you want to change something, and it costs you nothing now thanks to accessorizer.  http://www.kevincallahan.org/software/accessorizer.html
 ----
-Thinking about it, it figures that General/NSNib would do anything in its power to set outlets.  Thanks a bunch.
+Thinking about it, it figures that NSNib would do anything in its power to set outlets.  Thanks a bunch.
 
 ----
 "It is a good practice to have them and use them even if you don't need them."

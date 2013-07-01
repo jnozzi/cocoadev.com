@@ -1,9 +1,9 @@
 
 
-I'm using a project that I have written and compiled with General/XCode 1.5.  Worked fine then, in both development and deployment builds.
-Now, using General/XCode 2.0, when I try to set the build style to "deployment" it snaps back to "development".  If I set it, close the window, then open it again I find that it has switched back to development.
+I'm using a project that I have written and compiled with XCode 1.5.  Worked fine then, in both development and deployment builds.
+Now, using XCode 2.0, when I try to set the build style to "deployment" it snaps back to "development".  If I set it, close the window, then open it again I find that it has switched back to development.
 
-Is there something else I need to do in General/XCode 2.0 now?
+Is there something else I need to do in XCode 2.0 now?
 
 ----
 
@@ -11,7 +11,7 @@ Just upgraded to Xcode 2.0 and Tiger and I have a problem. With all my projects 
 
 ----
 
-see General/BuildConfigurations
+see BuildConfigurations
 
 ----
 

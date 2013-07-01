@@ -6,7 +6,7 @@ They are probably custom carbon views since iTunes is Carbon.
 
 ----
 
-Thanks.  If it is indeed custom carbon, then I may have found an "approximation".  Drag a General/NSTableView onto a brushed metal window, and deselect all of the Display option.  This does leave out the Source  or Now Playing header, but you could always do that with an image, I guess.
+Thanks.  If it is indeed custom carbon, then I may have found an "approximation".  Drag a NSTableView onto a brushed metal window, and deselect all of the Display option.  This does leave out the Source  or Now Playing header, but you could always do that with an image, I guess.
 
 ----
 
@@ -21,4 +21,4 @@ A topic title such as the above begs to be linked to the best of the iTunes styl
 
 ----
 
-Actually, I am getting a small urge to develop a topic related to various "effects", given the recent attention paid in General/VisualEffectsInCocoaApps - I will look around and see if something this general is already under way...
+Actually, I am getting a small urge to develop a topic related to various "effects", given the recent attention paid in VisualEffectsInCocoaApps - I will look around and see if something this general is already under way...

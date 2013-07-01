@@ -2,25 +2,25 @@
 
 [ Page re-factored to be a how-to. ]
 
-Often times developers have the need to immediately edit an attribute (such as a title) of a newly-inserted object in a table. For instance, inserting a new "entry" into a list of entries, you'll want to immediately begin editing the title rather than naming it "New Entry" and forcing the user to double-click to edit the title, since that's the first thing users are likely to want to do. There are several key things to keep in mind when doing this with a General/CoreData application using the General/CocoaBindings mechanism.
+Often times developers have the need to immediately edit an attribute (such as a title) of a newly-inserted object in a table. For instance, inserting a new "entry" into a list of entries, you'll want to immediately begin editing the title rather than naming it "New Entry" and forcing the user to double-click to edit the title, since that's the first thing users are likely to want to do. There are several key things to keep in mind when doing this with a CoreData application using the CocoaBindings mechanism.
 
 ----
 
 **Insertion**
 
-After the new entity instance is inserted into the managed object context (either via an object controller's     -add: method or by     General/NSEntityDescription's     +insertNewObjectForEntityForName:inManagedObjectContext: method), you should make any changes to the object, then call your managed object context's     -processPendingChanges method.
+After the new entity instance is inserted into the managed object context (either via an object controller's     -add: method or by     NSEntityDescription's     +insertNewObjectForEntityForName:inManagedObjectContext: method), you should make any changes to the object, then call your managed object context's     -processPendingChanges method.
 
     
-- (General/IBAction)newEntry:(id)sender
+- (IBAction)newEntry:(id)sender
 {
 	// Add a new entry
-	id newEntry = General/[NSEntityDescription 
+	id newEntry = [NSEntityDescription 
                                 insertNewObjectForEntityForName:@"Entry" 
                                 inManagedObjectContext:[self managedObjectContext]];
        // Make changes to newEntry here ...
 
        // Force the context to process the changes
-	General/self managedObjectContext] processPendingChanges];
+	self managedObjectContext] processPendingChanges];
 	
        // Inform some controller that it needs
        // to rename the entry
@@ -59,10 +59,10 @@ It's brain-dead simple once you know how ... Of course you could combine these t
 
 *<Mike Myers jewish princess voice>[[NSArrayController - neitha' an array noa' a controlla' ... discuss.</Mike Myers jewish princess voice>*
 
-FYI: Corrected code     int row = General/entryArrayController arrangedObjects] indexOfObject:entry]; (right?) --[[CharlesParnot
+FYI: Corrected code     int row = entryArrayController arrangedObjects] indexOfObject:entry]; (right?) --[[CharlesParnot
 
 *Right. My bad. Thanks, again, Charles.*
 
 ----
 
-Now how does this work with an General/NSTreeController and General/NSOutlineView? General/NSTreeController does not understand     setSelectionIndex: but rather requires an General/NSIndexPath via     setSelectionIndexPath:. How do you determine the index path to a given object as above?
+Now how does this work with an NSTreeController and NSOutlineView? NSTreeController does not understand     setSelectionIndex: but rather requires an NSIndexPath via     setSelectionIndexPath:. How do you determine the index path to a given object as above?

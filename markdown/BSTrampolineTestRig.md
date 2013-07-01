@@ -2,24 +2,24 @@
 
     
 #import <Foundation/Foundation.h>
-#import "General/NSArray(General/HigherOrderMessaging).h"
+#import "NSArray(HigherOrderMessaging).h"
 
 int main (int argc, const char * argv[]) {
-    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-    General/NSMutableString *a = General/[NSMutableString stringWithString:@"a"], *b = General/[NSMutableString stringWithString:@"b"], *c = General/[NSMutableString stringWithString:@"c"];
-    General/NSArray *array = General/[[NSArray alloc] initWithObjects:a, b, c, nil];
-    General/NSString *index;
+    NSMutableString *a = [NSMutableString stringWithString:@"a"], *b = [NSMutableString stringWithString:@"b"], *c = [NSMutableString stringWithString:@"c"];
+    NSArray *array = [[NSArray alloc] initWithObjects:a, b, c, nil];
+    NSString *index;
 
 
-    General/NSEnumerator *enumerator = [array objectEnumerator];
+    NSEnumerator *enumerator = [array objectEnumerator];
     while (index = [enumerator nextObject]) {
-        General/NSLog(index);
+        NSLog(index);
     }
 
 
-    General/NSLog(@"Testing: -do");
-    General/array do] appendString:@"_"];
+    NSLog(@"Testing: -do");
+    array do] appendString:@"_"];
 
     enumerator = [array objectEnumerator];
     while (index = [enumerator nextObject]) {
@@ -27,8 +27,8 @@ int main (int argc, const char * argv[]) {
     }
 
 
-    General/NSLog(@"Testing: -collect");
-    General/NSArray *anotherArray = General/array collect] stringByAppendingString:@"_"];
+    NSLog(@"Testing: -collect");
+    NSArray *anotherArray = array collect] stringByAppendingString:@"_"];
     
     enumerator = [anotherArray objectEnumerator];
     while (index = [enumerator nextObject]) {
@@ -36,8 +36,8 @@ int main (int argc, const char * argv[]) {
     }
 
 
-    General/NSLog(@"Testing: -select");
-    anotherArray = General/array select] hasPrefix:@"a"];
+    NSLog(@"Testing: -select");
+    anotherArray = array select] hasPrefix:@"a"];
     
     enumerator = [anotherArray objectEnumerator];
     while (index = [enumerator nextObject]) {
@@ -45,8 +45,8 @@ int main (int argc, const char * argv[]) {
     }
 
 
-    General/NSLog(@"Testing: -reject");
-    anotherArray = General/array reject] hasPrefix:@"a"];
+    NSLog(@"Testing: -reject");
+    anotherArray = array reject] hasPrefix:@"a"];
 
     enumerator = [anotherArray objectEnumerator];
     while (index = [enumerator nextObject]) {

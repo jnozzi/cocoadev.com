@@ -6,4 +6,4 @@ Does any one know how to find the window title of the current active window on t
 Check out the Accessibility API.
 
 ----
-See General/HowToGetTheKeyWindow
+See HowToGetTheKeyWindow

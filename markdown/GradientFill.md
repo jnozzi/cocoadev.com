@@ -1,10 +1,10 @@
 
 
-In Mac OS X 10.3 and later, use General/NSGradient. ~~ Alex Akers
+In Mac OS X 10.3 and later, use NSGradient. ~~ Alex Akers
 
 ----
 
-How would I go about creating a gradient fill between a foreground and background color in a custom General/NSView?
+How would I go about creating a gradient fill between a foreground and background color in a custom NSView?
 
 ----
 
@@ -13,7 +13,7 @@ http://wilshipley.com/blog/2005/07/pimp-my-code-part-3-gradient.html
 
 ----
 
-I don't think there is any API for this in Cocoa, so you'll need to use General/CoreGraphics directly, here is an example of using the gradient fill support in an General/NSView subclass:
+I don't think there is any API for this in Cocoa, so you'll need to use CoreGraphics directly, here is an example of using the gradient fill support in an NSView subclass:
     
 void Interpolate (void* info, float const* inData, float* outData)
 {
@@ -23,52 +23,52 @@ void Interpolate (void* info, float const* inData, float* outData)
    outData[3] = 1.0;
 }
 
-@implementation General/MyView
+@implementation MyView
 
-- (id)initWithFrame:(General/NSRect)frameRect
+- (id)initWithFrame:(NSRect)frameRect
 {
    [super initWithFrame:frameRect];
    return self;
 }
 
-- (void)drawRect:(General/NSRect)rect
+- (void)drawRect:(NSRect)rect
 {
-   General/NSEraseRect(rect);
+   NSEraseRect(rect);
 
-   struct General/CGFunctionCallbacks callbacks = { 0, Interpolate, NULL };
+   struct CGFunctionCallbacks callbacks = { 0, Interpolate, NULL };
 
-   General/CGFunctionRef function = General/CGFunctionCreate(
+   CGFunctionRef function = CGFunctionCreate(
       NULL,       // void* info,
       1,          // size_t domainDimension,
       NULL,       // float const* domain,
       4,          // size_t rangeDimension,
       NULL,       // float const* range,
-      &callbacks  // General/CGFunctionCallbacks const* callbacks
+      &callbacks  // CGFunctionCallbacks const* callbacks
    );
 
-   General/CGColorSpaceRef cspace = General/CGColorSpaceCreateDeviceRGB();
+   CGColorSpaceRef cspace = CGColorSpaceCreateDeviceRGB();
 
-   General/NSRect bounds = [self bounds];
-   float srcX = General/NSMinX(bounds), srcY = General/NSMinY(bounds);
-   float dstX = General/NSMaxX(bounds), dstY = General/NSMaxY(bounds);
-   General/CGShadingRef shading = General/CGShadingCreateAxial(
-      cspace,                    // General/CGColorSpaceRef colorspace,
-      General/CGPointMake(srcX, srcY),   // General/CGPoint start,
-      General/CGPointMake(dstX, dstY),   // General/CGPoint end,
-      function,                  // General/CGFunctionRef function,
+   NSRect bounds = [self bounds];
+   float srcX = NSMinX(bounds), srcY = NSMinY(bounds);
+   float dstX = NSMaxX(bounds), dstY = NSMaxY(bounds);
+   CGShadingRef shading = CGShadingCreateAxial(
+      cspace,                    // CGColorSpaceRef colorspace,
+      CGPointMake(srcX, srcY),   // CGPoint start,
+      CGPointMake(dstX, dstY),   // CGPoint end,
+      function,                  // CGFunctionRef function,
       false,                     // bool extendStart,
       false                      // bool extendEnd
    );
 
-   General/CGContextRef context = (General/CGContextRef)General/[[NSGraphicsContext currentContext] graphicsPort];
-   General/CGContextDrawShading(
+   CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
+   CGContextDrawShading(
       context,
       shading
    );
 
-   General/CGShadingRelease(shading);
-   General/CGColorSpaceRelease(cspace);
-   General/CGFunctionRelease(function);
+   CGShadingRelease(shading);
+   CGColorSpaceRelease(cspace);
+   CGFunctionRelease(function);
 }
 
 @end
@@ -92,13 +92,13 @@ void Interpolate (void* info, float const* inData, float *outData)
 
 ----
 
-Here is a category on General/NSBezierPath to do a linear gradient fill of an area using two specified colors.
+Here is a category on NSBezierPath to do a linear gradient fill of an area using two specified colors.
 
     
 
 
 //### globals
-General/CGColorSpaceRef colorspace = nil;
+CGColorSpaceRef colorspace = nil;
 
 float	start_red,
 		start_green,
@@ -113,7 +113,7 @@ float	d_red,
 		d_blue,
 		d_alpha;
 
-@implementation General/NSBezierPath(General/MRGradientFill) 
+@implementation NSBezierPath(MRGradientFill) 
 
 static void
 evaluate(void *info, const float *in, float *out)
@@ -132,25 +132,25 @@ evaluate(void *info, const float *in, float *out)
 }
 
 
--(void)linearGradientFill:(General/NSRect)thisRect 
-	startColor:(General/NSColor *)startColor 
-	endColor:(General/NSColor *)endColor
+-(void)linearGradientFill:(NSRect)thisRect 
+	startColor:(NSColor *)startColor 
+	endColor:(NSColor *)endColor
 {
-	General/CGShadingRef shading;
-	static General/CGPoint startPoint = { 0, 0 };
-	static General/CGPoint endPoint = { 0, 0 };
+	CGShadingRef shading;
+	static CGPoint startPoint = { 0, 0 };
+	static CGPoint endPoint = { 0, 0 };
 	int k;
-	General/CGFunctionRef function;
-	General/CGFunctionRef (*getFunction)(General/CGColorSpaceRef);
-	General/CGShadingRef (*getShading)(General/CGColorSpaceRef, General/CGFunctionRef);
+	CGFunctionRef function;
+	CGFunctionRef (*getFunction)(CGColorSpaceRef);
+	CGShadingRef (*getShading)(CGColorSpaceRef, CGFunctionRef);
 
 	// get my context
-	General/CGContextRef currentContext = 
-		(General/CGContextRef)General/[[NSGraphicsContext currentContext] graphicsPort];
+	CGContextRef currentContext = 
+		(CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
 
 	
-	General/NSColor *s = [startColor colorUsingColorSpaceName:General/NSDeviceRGBColorSpace];
-	General/NSColor *e = [endColor colorUsingColorSpaceName:General/NSDeviceRGBColorSpace];
+	NSColor *s = [startColor colorUsingColorSpaceName:NSDeviceRGBColorSpace];
+	NSColor *e = [endColor colorUsingColorSpaceName:NSDeviceRGBColorSpace];
 
 	// set up colors for gradient
 	start_red		= [s redComponent];
@@ -170,30 +170,30 @@ evaluate(void *info, const float *in, float *out)
 			
 
 	// draw gradient
-	colorspace = General/CGColorSpaceCreateDeviceRGB();
+	colorspace = CGColorSpaceCreateDeviceRGB();
 
     size_t components;
     static const float domain[2] = { 0.0, 1.0 };
     static const float range[10] = { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 };
-    static const General/CGFunctionCallbacks callbacks = { 0, &evaluate, NULL };
+    static const CGFunctionCallbacks callbacks = { 0, &evaluate, NULL };
 
-    components = 1 + General/CGColorSpaceGetNumberOfComponents(colorspace);
-    function =  General/CGFunctionCreate((void *)components, 1, domain, components,
+    components = 1 + CGColorSpaceGetNumberOfComponents(colorspace);
+    function =  CGFunctionCreate((void *)components, 1, domain, components,
                             range, &callbacks);
 
 	// function = getFunction(colorspace);	
 	startPoint.x=0;
 	startPoint.y=thisRect.origin.y;
 	endPoint.x=0;
-	endPoint.y=General/NSMaxY(thisRect);
+	endPoint.y=NSMaxY(thisRect);
 	
 	
-	shading = General/CGShadingCreateAxial(colorspace, 
+	shading = CGShadingCreateAxial(colorspace, 
 		startPoint, endPoint,
         function, 
 		NO, NO);
 	
-	General/CGContextDrawShading(currentContext, shading);
+	CGContextDrawShading(currentContext, shading);
 
 };
 
@@ -204,22 +204,22 @@ evaluate(void *info, const float *in, float *out)
 You can use it like this:
 
     
-- (void)drawRect:(General/NSRect)rect 
+- (void)drawRect:(NSRect)rect 
 {
 	
 	// get inset rect
-	General/NSRect thisRect = General/NSInsetRect(rect, 15.5, 15.5);
+	NSRect thisRect = NSInsetRect(rect, 15.5, 15.5);
 	
 	// get bezier path and draw rounded rect
-	General/NSBezierPath *rr = General/[NSBezierPath bezierPath];	
+	NSBezierPath *rr = [NSBezierPath bezierPath];	
 	[rr appendRoundedRect:thisRect cornerRadius:8.0];
 	
 	[rr addClip];
 	[rr linearGradientFill:thisRect 
-				startColor:General/[NSColor whiteColor] 
-				  endColor:General/[NSColor selectedControlColor]];
+				startColor:[NSColor whiteColor] 
+				  endColor:[NSColor selectedControlColor]];
 	
-	General/[[NSColor blackColor] set];
+	[[NSColor blackColor] set];
 	
 	[rr stroke];
 	
@@ -229,9 +229,9 @@ You can use it like this:
 The code above doesn't free resources lit it should, so be careful about copy-and-paste. You might want to add something like this somewhere:
 
     
-	General/CGFunctionRelease(function);
-	General/CGShadingRelease(shading);
-	General/CGColorSpaceRelease(colorspace);
+	CGFunctionRelease(function);
+	CGShadingRelease(shading);
+	CGColorSpaceRelease(colorspace);
 
 
 -Michael Rothwell (michael@rothwell.us)
@@ -239,7 +239,7 @@ The code above doesn't free resources lit it should, so be careful about copy-an
 
 ----
 
-I'm getting a General/ZeroLink 'unknown symbol' error relating to where() (and if I comment that out, absDiff()) ... I assume I need to be including a library or several somewhere ... Which ones? Jul 09 '05
+I'm getting a ZeroLink 'unknown symbol' error relating to where() (and if I comment that out, absDiff()) ... I assume I need to be including a library or several somewhere ... Which ones? Jul 09 '05
 
 **Update** - I feel like a moron. ;-) absDiff() isn't some standard function in some library somewhere; it's a relatively simple function like so:
 
@@ -259,70 +259,70 @@ So I guess the question is, what's wrong with     endColor?
 **Solution:** Well for one thing I realized that the absDiff function should be handling floats to be more precise (to match the floats used in graphics functions). But the main problem appears to be things that are solid white or solid black. Using the following colors to get a pretty grey-white matte gradient:
 
     
-	General/NSColor * sColor = General/[NSColor colorWithCalibratedWhite:0.7 alpha:1.0];
-	General/NSColor * eColor = General/[NSColor colorWithCalibratedWhite:0.3 alpha:1.0]; 
+	NSColor * sColor = [NSColor colorWithCalibratedWhite:0.7 alpha:1.0];
+	NSColor * eColor = [NSColor colorWithCalibratedWhite:0.3 alpha:1.0]; 
 
 
 What a night ...
 
 ----
 
-Since the code throughout this page is referencing General/NSRects, will it work with additions like General/NSBezierPathCategory or General/RoundedRectangles?
+Since the code throughout this page is referencing NSRects, will it work with additions like NSBezierPathCategory or RoundedRectangles?
 
-*No, but you could make it work by sending the rounded path addClip before using the gradient. Just make sure to save and restore the graphics context beforehand. --General/AndyMatuschak*
+*No, but you could make it work by sending the rounded path addClip before using the gradient. Just make sure to save and restore the graphics context beforehand. --AndyMatuschak*
 
 ----
 
-I've been playing with some code tonight to do a linear gradient fill in a bezier path using General/CoreImage. It's not fully functional, but whatever, it kinda works (sorry, it's just late and I don't feel like playing with this code anymore). If anyone feels the need, please fix it up, it seems pretty fast. A few problems: if I apply an General/NSShadow before calling this fill method, it doesn't really get applied (it does, but because of the clipping, it just doesn't work as it should, not sure if there is a way around this).
+I've been playing with some code tonight to do a linear gradient fill in a bezier path using CoreImage. It's not fully functional, but whatever, it kinda works (sorry, it's just late and I don't feel like playing with this code anymore). If anyone feels the need, please fix it up, it seems pretty fast. A few problems: if I apply an NSShadow before calling this fill method, it doesn't really get applied (it does, but because of the clipping, it just doesn't work as it should, not sure if there is a way around this).
 
 Anyway, just post changes you make, this code seems somewhat simpler (and perhaps faster?) than the code above, and I think it could be made smarter to do caching (perhaps that's overkill)...
 
     
 
-@interface General/NSBezierPath (Additions)
-- (void)fillGradientFrom:(General/NSColor*)inStartColor to:(General/NSColor*)inEndColor angle:(float)inAngle;
+@interface NSBezierPath (Additions)
+- (void)fillGradientFrom:(NSColor*)inStartColor to:(NSColor*)inEndColor angle:(float)inAngle;
 @end
 
-@implementation General/NSBezierPath (Additions)
+@implementation NSBezierPath (Additions)
 
-- (void)fillGradientFrom:(General/NSColor*)inStartColor to:(General/NSColor*)inEndColor angle:(float)inAngle
+- (void)fillGradientFrom:(NSColor*)inStartColor to:(NSColor*)inEndColor angle:(float)inAngle
 {
-	General/CIImage*	coreimage;
+	CIImage*	coreimage;
 	
-	inStartColor = [inStartColor colorUsingColorSpaceName:General/NSCalibratedRGBColorSpace];
-	inEndColor = [inEndColor colorUsingColorSpaceName:General/NSCalibratedRGBColorSpace];
+	inStartColor = [inStartColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
+	inEndColor = [inEndColor colorUsingColorSpaceName:NSCalibratedRGBColorSpace];
 		
-	General/CIColor* startColor = General/[CIColor colorWithRed:[inStartColor redComponent] green:[inStartColor greenComponent] blue:[inStartColor blueComponent] alpha:[inStartColor alphaComponent]];
-	General/CIColor* endColor = General/[CIColor colorWithRed:[inEndColor redComponent] green:[inEndColor greenComponent] blue:[inEndColor blueComponent] alpha:[inEndColor alphaComponent]];
+	CIColor* startColor = [CIColor colorWithRed:[inStartColor redComponent] green:[inStartColor greenComponent] blue:[inStartColor blueComponent] alpha:[inStartColor alphaComponent]];
+	CIColor* endColor = [CIColor colorWithRed:[inEndColor redComponent] green:[inEndColor greenComponent] blue:[inEndColor blueComponent] alpha:[inEndColor alphaComponent]];
 	
-	General/CIFilter* filter;
+	CIFilter* filter;
 	
-	filter = General/[CIFilter filterWithName:@"General/CILinearGradient"];
+	filter = [CIFilter filterWithName:@"CILinearGradient"];
 	[filter setValue:startColor forKey:@"inputColor0"];
 	[filter setValue:endColor forKey:@"inputColor1"];
 	
-	General/CIVector* startVector;
-	General/CIVector* endVector;
+	CIVector* startVector;
+	CIVector* endVector;
 	
-	startVector = General/[CIVector vectorWithX:0.0 Y:0.0];
-	endVector = General/[CIVector vectorWithX:0.0 Y:[self bounds].size.height];
+	startVector = [CIVector vectorWithX:0.0 Y:0.0];
+	endVector = [CIVector vectorWithX:0.0 Y:[self bounds].size.height];
 	
 	[filter setValue:startVector forKey:@"inputPoint0"];
 	[filter setValue:endVector forKey:@"inputPoint1"];
 	
 	coreimage = [filter valueForKey:@"outputImage"];
 	
-	General/[[NSGraphicsContext currentContext] saveGraphicsState];
+	[[NSGraphicsContext currentContext] saveGraphicsState];
 	
-	General/CIContext* context;
+	CIContext* context;
 	
-	context = General/[[NSGraphicsContext currentContext] General/CIContext];
+	context = [[NSGraphicsContext currentContext] CIContext];
 	
 	[self setClip];
 	
-	[context drawImage:coreimage atPoint:General/CGPointZero fromRect:General/CGRectMake( 0.0, 0.0, [self bounds].size.width + 100.0, [self bounds].size.height + 100.0 )];
+	[context drawImage:coreimage atPoint:CGPointZero fromRect:CGRectMake( 0.0, 0.0, [self bounds].size.width + 100.0, [self bounds].size.height + 100.0 )];
 	
-	General/[[NSGraphicsContext currentContext] restoreGraphicsState];
+	[[NSGraphicsContext currentContext] restoreGraphicsState];
 }
 
 @end
@@ -336,14 +336,14 @@ http://blog.oofn.net/2006/01/15/gradients-in-cocoa/
 
 ----
 
-see General/OAGradientTableView
+see OAGradientTableView
 
 You should also check out:
 
 http://www.harmless.de/cocoa.html
 
-Andreas Mayer's General/AMRollOverButton includes General/NSBezierCategories that do lovely gradient fills with rounded rectangles and everything. Very nice.
+Andreas Mayer's AMRollOverButton includes NSBezierCategories that do lovely gradient fills with rounded rectangles and everything. Very nice.
 
 ----
 
-In 10.5 see General/NSGradient.
+In 10.5 see NSGradient.

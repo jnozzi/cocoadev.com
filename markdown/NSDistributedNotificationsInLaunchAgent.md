@@ -1,15 +1,15 @@
 Hey
 
-I have created a launch agent and have been successfully sending out General/NSDistributedNotifications to applications. However, I have trouble receiving any distributed Notifications inside the launch agent and I was wondering if I am doing something wrong with the run loop. My basic setup is as follows:
+I have created a launch agent and have been successfully sending out NSDistributedNotifications to applications. However, I have trouble receiving any distributed Notifications inside the launch agent and I was wondering if I am doing something wrong with the run loop. My basic setup is as follows:
 
 
     
 @interface aObject {}
--(void)anAction:(General/NSNotification*)aNotification;
+-(void)anAction:(NSNotification*)aNotification;
 @end
 
 @implementation aObject
--(void)anAction:(General/NSNotification*)aNotification {
+-(void)anAction:(NSNotification*)aNotification {
     fprintf(stdout, "Notification Recieved");
 }
 @end
@@ -17,10 +17,10 @@ I have created a launch agent and have been successfully sending out General/NSD
 int main () {
     // Initialization stuff for Launchd
 
-   id myAction = General/aObject alloc] init];
+   id myAction = aObject alloc] init];
 	[[[[NSDistributedNotificationCenter defaultCenter] addObserver:myAction
 		 selector:@selector(anAction:)
-		name:@"General/AppSomeRandomSignal" object:Nil];
+		name:@"AppSomeRandomSignal" object:Nil];
    while(running) {
          // do stuff
          // send distributed notification if needed
@@ -33,6 +33,6 @@ int main () {
 
 I have tried various combinations of receiving distributed notifications with no success including throwing the registration into the init of anObject. I am thinking it has something to do with my run loop going to sleep? Any help.
 
-So in short I can send General/NSDistributedNotifications from a launch agent to an App and receive them fine, but I cannot do the opposite.
+So in short I can send NSDistributedNotifications from a launch agent to an App and receive them fine, but I cannot do the opposite.
 
 Thanks

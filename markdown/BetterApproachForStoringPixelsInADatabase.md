@@ -54,7 +54,7 @@ Deficiencies: If I pull up a row, decompress it for processing, release it, then
 Any input would be much appreciated!
 
 ----
-For the last solution, you could try adding a cache, which either stores the last few accessed rows, or just contains all the rows that have been accessed. Then, when your application quits, you can write the cache back into memory. --General/JediKnil
+For the last solution, you could try adding a cache, which either stores the last few accessed rows, or just contains all the rows that have been accessed. Then, when your application quits, you can write the cache back into memory. --JediKnil
 
 ----
 I was thinking the same thing, but have a cache that would store *all* the uncompressed rows, until it filled up (give it some maxiumum size, at which point it starts acting like a LIFO queue.  It seems like there should be some nifty data structure out there to do this.. 

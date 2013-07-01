@@ -15,8 +15,8 @@ Send Resume & Code Sample to resume1@neb.rr.com
 
 **West Coast USA**
 
-General/PanicInc has an immediate opening for an experienced Cocoa programmer in the Portland, Oregon area.  Please see this page for requirements and details:
+PanicInc has an immediate opening for an experienced Cocoa programmer in the Portland, Oregon area.  Please see this page for requirements and details:
 
 http://panic.com/jobs/
 
--- General/StevenFrank July 13, 2005
+-- StevenFrank July 13, 2005

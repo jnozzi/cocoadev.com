@@ -2,15 +2,15 @@
 
 **Table of Contents:**
 
-*entry1 - Change, or hide, the highlighting (selected row background) color in an General/NSTableView
-*entry2 - Drag a color (from under the mouse pointer) out of an General/NSView subclass
+*entry1 - Change, or hide, the highlighting (selected row background) color in an NSTableView
+*entry2 - Drag a color (from under the mouse pointer) out of an NSView subclass
 
 ----
 
-*General/SimpleSolutions Pages are for solutions to problems it took you "way too long" to figure out but ended up being really short, simple pieces of code. Whether or not it would take someone else a long time is beside the point. Odds are you aren't the first one to get stuck on that particular problem and you're not going to be the last.*
+*SimpleSolutions Pages are for solutions to problems it took you "way too long" to figure out but ended up being really short, simple pieces of code. Whether or not it would take someone else a long time is beside the point. Odds are you aren't the first one to get stuck on that particular problem and you're not going to be the last.*
 
 ----
-**This page is for General/NSColor related solutions only**.
+**This page is for NSColor related solutions only**.
 ----
 
 Feel free to add to this page. *Short*, **tested** code is best. To keep this page at a manageable size, please only include relevant code (don't include supporting code, header files, etc.). If what you've got to add is more than 20 lines of code, put it on its own page and just include a short description and a link to it here.
@@ -19,12 +19,12 @@ Comments about a solution and its code are fine, but comments about how *you* fo
 
 ----
 
-entry1 - **Change, or hide, the highlighting (selected row background) color in an General/NSTableView**:
+entry1 - **Change, or hide, the highlighting (selected row background) color in an NSTableView**:
 
 In your table view subclass, add the following (replacing the color with whatever you want):
     
-- (id)_highlightColorForCell:(General/NSCell *)cell {
-  return General/[NSColor colorWithCalibratedWhite:0.9f alpha:1.0f];
+- (id)_highlightColorForCell:(NSCell *)cell {
+  return [NSColor colorWithCalibratedWhite:0.9f alpha:1.0f];
 }
 
 If you're going to copy this manually, make note of that underscore in front of the method name. 
@@ -33,16 +33,16 @@ If you're providing special row highlighting in your code, you'll have to add th
 
 ----
 
-entry2 - **Drag a color (from under the mouse pointer) out of an General/NSView subclass so you can drop it somewhere else (like into a color well):**
+entry2 - **Drag a color (from under the mouse pointer) out of an NSView subclass so you can drop it somewhere else (like into a color well):**
 
 Add this to your view subclass:
     
--(void)mouseDown:(General/NSEvent *)theEvent {
-  General/NSPoint p = [self convertPoint:[theEvent locationInWindow] fromView:nil];
+-(void)mouseDown:(NSEvent *)theEvent {
+  NSPoint p = [self convertPoint:[theEvent locationInWindow] fromView:nil];
   [self lockFocus]; 
-  General/NSColor *c = General/NSReadPixel(p); 
+  NSColor *c = NSReadPixel(p); 
   [self unlockFocus];
-  General/[NSColorPanel dragColor:c withEvent:theEvent fromView:self];
+  [NSColorPanel dragColor:c withEvent:theEvent fromView:self];
 }
 
 (Tested in 10.3, Xcode 1.5)

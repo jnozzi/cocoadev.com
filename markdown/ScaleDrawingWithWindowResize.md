@@ -27,7 +27,7 @@ If somebody has better idea then we will both learn something.
 	{
 		float delta = aFactor / scaleFactor;
 		scaleFactor = aFactor;
-		**[ [ self contentView ] scaleUnitSquareToSize: General/NSMakeSize( delta, delta ) ];**      // here is the rescaling
+		**[ [ self contentView ] scaleUnitSquareToSize: NSMakeSize( delta, delta ) ];**      // here is the rescaling
 	}
 	
 	[ nzView setFrame: [ [ self contentView ] frame ] ];                 // nzView is an outlet to the non-zooming superclass of the

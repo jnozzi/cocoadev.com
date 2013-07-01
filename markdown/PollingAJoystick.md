@@ -6,7 +6,7 @@ If some kind soul can either give me a 10000 foot followed by 1000 foot rundown 
 
 Otherwise, if anybody knows of a nice Cocoa class which wraps all this already... well, consider me 1 beer in debt to you (unless you're underage of course ;).
 
--- General/ShamylZakariya
+-- ShamylZakariya
 
 
 ----

@@ -3,6 +3,6 @@
 
 
 
-*Looks like you're no longer a General/CocoaDevTeen -- or 17, for that matter :D*
+*Looks like you're no longer a CocoaDevTeen -- or 17, for that matter :D*
 
 Haha, shows how often I visit this page...

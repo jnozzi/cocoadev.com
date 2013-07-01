@@ -4,15 +4,15 @@ My mainController.h file
     
 @class Qualification_Controller;
 
-@interface appController : General/NSObject
+@interface appController : NSObject
 {
-    General/IBOutlet id qualDefSheet_NameFld;
+    IBOutlet id qualDefSheet_NameFld;
    Qualification_Controller * qualController;
 }
 
 -(void)awakeFromNib;
 
-- (General/IBAction)newQualification:(id)sender;
+- (IBAction)newQualification:(id)sender;
 
  @end
 
@@ -26,12 +26,12 @@ My maincontroller .m file
 
 -(void)awakeFromNib
 {
-	qualController = General/Qualification_Controller shared_QualificationControllerWithView: 
+	qualController = Qualification_Controller shared_QualificationControllerWithView: 
                                   ([[NSOutlineView *)qualDefOutline] retain ];
        ...
 }
 
-- (General/IBAction)newQualification:(id)sender
+- (IBAction)newQualification:(id)sender
 {
 	[qualController showQualificationSheet];
 }
@@ -45,12 +45,12 @@ The Singleton qualController.h
 
 //#import "QualificationController_SheetCat.h"
 
-@interface Qualification_Controller : General/NSObject
+@interface Qualification_Controller : NSObject
 {
-	General/NSWindow* qualDefSheet;
+	NSWindow* qualDefSheet;
 ...
 }
-+ (id) shared_QualificationControllerWithView: (General/NSOutlineView *)qualOutlineView ;
++ (id) shared_QualificationControllerWithView: (NSOutlineView *)qualOutlineView ;
 @end
 
 
@@ -69,7 +69,7 @@ The for the Singleton qualController category.h file
 @interface Qualification_Controller ( QualificationController_SheetCat )
 
 //#pragma mark -
-//#pragma mark General/QualificationSheet - handling ( sheet controller )
+//#pragma mark QualificationSheet - handling ( sheet controller )
 
 - (void) showQualificationSheet;
 

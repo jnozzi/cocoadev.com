@@ -6,13 +6,13 @@ Thanks.
 
 Controlling the Mouse Cursor
 
-http://developer.apple.com/documentation/General/GraphicsImaging/Reference/Quartz_Services_Ref/Reference/reference.html#//apple_ref/c/func/General/CGDisplayMoveCursorToPoint
+http://developer.apple.com/documentation/GraphicsImaging/Reference/Quartz_Services_Ref/Reference/reference.html#//apple_ref/c/func/CGDisplayMoveCursorToPoint
 
 ----
 
 Followup, the code I used to position the cursor is the following:
     
-General/CGDisplayMoveCursorToPoint(General/CGDisplayPrimaryDisplay(NULL),(General/CGPoint){4,4});
+CGDisplayMoveCursorToPoint(CGDisplayPrimaryDisplay(NULL),(CGPoint){4,4});
 
 
 ----
@@ -21,11 +21,11 @@ Out of curiosity, won't this (as is) potentially fail (not fail, but cause errat
 
 ----
 
-Do cursors no longer have any concept of hot points, like they did back in the General/ResEdit days? It would seem that such a concept would be there precisely to make sure that things will line up properly...
+Do cursors no longer have any concept of hot points, like they did back in the ResEdit days? It would seem that such a concept would be there precisely to make sure that things will line up properly...
 
 ----
 
-Why not look at the documentation? General/NSCursor has a method     -initWithImage:hotSpot:
+Why not look at the documentation? NSCursor has a method     -initWithImage:hotSpot:
 
 ----
 

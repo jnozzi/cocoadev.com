@@ -24,13 +24,13 @@ do
   i++;
 } while (i < numberOfSongs);
 
-General/NSEnumerator:
+NSEnumerator:
 
-    General/NSEnumerator * enumerator = General/[[NSArray arrayWithObjects:@"1",@"2",nil] objectEnumerator];
-General/NSString * string;
+    NSEnumerator * enumerator = [[NSArray arrayWithObjects:@"1",@"2",nil] objectEnumerator];
+NSString * string;
 while (string = [enumerator nextObject])
 {
-General/NSLog(string);
+NSLog(string);
 }
 
 

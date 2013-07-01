@@ -1,44 +1,44 @@
 
 
-Here's a method to construct General/NSBrowser friendly icons.  --zootbobbalu
+Here's a method to construct NSBrowser friendly icons.  --zootbobbalu
 
-Just pass this method a path to a safe location so a new folder can be created and filled with tiff images for all of the system icons. These General/TIFFs are sized to create an General/NSBrowser that looks close to the finders column view layout. 
+Just pass this method a path to a safe location so a new folder can be created and filled with tiff images for all of the system icons. These TIFFs are sized to create an NSBrowser that looks close to the finders column view layout. 
 
-(Note - the General/SystemIcons.bundle seems to have changed to General/CoreTypes.bundle in Tiger or at some earlier time...)
+(Note - the SystemIcons.bundle seems to have changed to CoreTypes.bundle in Tiger or at some earlier time...)
 
     
-- (BOOL)constructFinderIconsAtPath:(General/NSString *)path {
-    General/NSFileManager *manager = General/[NSFileManager defaultManager];
-    General/NSString *iconPath = @"/System/Library/General/CoreServices/General/SystemIcons.bundle/Contents/Resources";
-    General/NSArray *files = [manager directoryContentsAtPath:iconPath];
-    General/NSEnumerator *fileEnum = [files objectEnumerator]; General/NSString *file;
-    General/NSImage *imageBuffer = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(24, 16)] autorelease];
+- (BOOL)constructFinderIconsAtPath:(NSString *)path {
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *iconPath = @"/System/Library/CoreServices/SystemIcons.bundle/Contents/Resources";
+    NSArray *files = [manager directoryContentsAtPath:iconPath];
+    NSEnumerator *fileEnum = [files objectEnumerator]; NSString *file;
+    NSImage *imageBuffer = [[[NSImage alloc] initWithSize:NSMakeSize(24, 16)] autorelease];
     [manager changeCurrentDirectoryPath:iconPath];
-    General/NSImage *smallBuffer = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(14, 14)] autorelease];
+    NSImage *smallBuffer = [[[NSImage alloc] initWithSize:NSMakeSize(14, 14)] autorelease];
     BOOL isDir;
     if (![manager fileExistsAtPath:path isDirectory:&isDir]) {
         if (![manager createDirectoryAtPath:path attributes:nil]) return NO;
     }
     else if (!isDir) return NO;
     while (file = [fileEnum nextObject]) {
-        General/NSImage *image = General/[[[NSImage alloc] initWithContentsOfFile:file] autorelease];
-        General/NSArray *reps = [image representations];
-        General/NSEnumerator *repEnum = [reps objectEnumerator]; General/NSImageRep *rep;
+        NSImage *image = [[[NSImage alloc] initWithContentsOfFile:file] autorelease];
+        NSArray *reps = [image representations];
+        NSEnumerator *repEnum = [reps objectEnumerator]; NSImageRep *rep;
         while (rep = [repEnum nextObject]) {
-            General/NSSize size = [rep size];
-            if (General/NSEqualSizes(size, General/NSMakeSize(16, 16))) {
+            NSSize size = [rep size];
+            if (NSEqualSizes(size, NSMakeSize(16, 16))) {
                 [smallBuffer addRepresentation:rep];
                 [smallBuffer setScalesWhenResized:YES];
-                [smallBuffer setSize:General/NSMakeSize(15, 15)];
+                [smallBuffer setSize:NSMakeSize(15, 15)];
                 [imageBuffer lockFocus];
-                [smallBuffer drawAtPoint:General/NSMakePoint(5, 0) fromRect:General/NSMakeRect(0, 0, 15, 15) 
-                            operation:General/NSCompositeCopy fraction:1.0f];
+                [smallBuffer drawAtPoint:NSMakePoint(5, 0) fromRect:NSMakeRect(0, 0, 15, 15) 
+                            operation:NSCompositeCopy fraction:1.0f];
                 [imageBuffer unlockFocus];
-                General/NSData *tiff = [imageBuffer General/TIFFRepresentation];
-                General/NSString *writePath = [file stringByDeletingPathExtension];
-                writePath = General/[NSString stringWithFormat:@"%@/%@.tiff", path, writePath];
+                NSData *tiff = [imageBuffer TIFFRepresentation];
+                NSString *writePath = [file stringByDeletingPathExtension];
+                writePath = [NSString stringWithFormat:@"%@/%@.tiff", path, writePath];
                 if ([tiff writeToFile:writePath atomically:YES]) {
-                    General/NSLog(@"new icon at path: %@", writePath);
+                    NSLog(@"new icon at path: %@", writePath);
                 }
                 [smallBuffer removeRepresentation:rep];
             }
@@ -50,25 +50,25 @@ Just pass this method a path to a safe location so a new folder can be created a
 
 ----
 
-OK this is awesome *just* what I needed, except I don't need the images as files since my images are created on the fly (using General/NSWorkspace's iconForFileType). I just edited it so it returns the resized image for an image that is passed to it: --General/KevinWojniak
+OK this is awesome *just* what I needed, except I don't need the images as files since my images are created on the fly (using NSWorkspace's iconForFileType). I just edited it so it returns the resized image for an image that is passed to it: --KevinWojniak
 
     
-- (General/NSImage *)browserIconForImage:(General/NSImage *)image {
-    General/NSImage *imageBuffer = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(24, 16)] autorelease];
-    General/NSImage *smallBuffer = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(14, 14)] autorelease];
+- (NSImage *)browserIconForImage:(NSImage *)image {
+    NSImage *imageBuffer = [[[NSImage alloc] initWithSize:NSMakeSize(24, 16)] autorelease];
+    NSImage *smallBuffer = [[[NSImage alloc] initWithSize:NSMakeSize(14, 14)] autorelease];
 
-    General/NSArray *reps = [image representations];
-    General/NSEnumerator *repEnum = [reps objectEnumerator];
-    General/NSImageRep *rep;
+    NSArray *reps = [image representations];
+    NSEnumerator *repEnum = [reps objectEnumerator];
+    NSImageRep *rep;
     while (rep = [repEnum nextObject]) {
-        General/NSSize size = [rep size];
-        if (General/NSEqualSizes(size, General/NSMakeSize(16, 16))) {
+        NSSize size = [rep size];
+        if (NSEqualSizes(size, NSMakeSize(16, 16))) {
             [smallBuffer addRepresentation:rep];
             [smallBuffer setScalesWhenResized:YES];
-            [smallBuffer setSize:General/NSMakeSize(15, 15)];
+            [smallBuffer setSize:NSMakeSize(15, 15)];
             [imageBuffer lockFocus];
-            [smallBuffer drawAtPoint:General/NSMakePoint(5, 0) fromRect:General/NSMakeRect(0, 0, 15, 15) 
-                            operation:General/NSCompositeCopy fraction:1.0f];
+            [smallBuffer drawAtPoint:NSMakePoint(5, 0) fromRect:NSMakeRect(0, 0, 15, 15) 
+                            operation:NSCompositeCopy fraction:1.0f];
             [imageBuffer unlockFocus];
             
             [smallBuffer removeRepresentation:rep];
@@ -91,66 +91,66 @@ Ditto to the person above - I can't figure out exactly how to use this code.
 I posted this a long time ago. Sorry for the hack job. I now draw icons the Finder way.
 
 
-*Create a new Cocoa Application Project named General/IconApp
-*Open the General/MainMenu.nib file in IB
+*Create a new Cocoa Application Project named IconApp
+*Open the MainMenu.nib file in IB
 *Add an image view to the main window
-*Subclass General/NSObject and name the new class General/IconController
-*Instantiate General/IconController and then add an outlet named "imageView"
-*Connect the "imageView" outlet from the controller to the General/NSImageView in the main window
-*Create files for General/IconController
-*Save "General/MainMenu.nib"
-*Edit "General/IconController.h" and "General/IconController.m" so that it looks like the code below
+*Subclass NSObject and name the new class IconController
+*Instantiate IconController and then add an outlet named "imageView"
+*Connect the "imageView" outlet from the controller to the NSImageView in the main window
+*Create files for IconController
+*Save "MainMenu.nib"
+*Edit "IconController.h" and "IconController.m" so that it looks like the code below
 *Build and run
 
 
-**General/IconController.h**
+**IconController.h**
 
     
 #import <Cocoa/Cocoa.h>
 
-@interface General/IconController : General/NSObject
+@interface IconController : NSObject
 {
-    General/IBOutlet id imageView;
+    IBOutlet id imageView;
 }
 @end
 
-@interface General/XFIcon : General/NSObject {
-	General/IconRef iconRef;
+@interface XFIcon : NSObject {
+	IconRef iconRef;
 }
-- (id)initWithIconForFile:(General/NSString *)file;
-- (void)drawWithFrame:(General/NSRect)frame context:(General/CGContextRef)context;
+- (id)initWithIconForFile:(NSString *)file;
+- (void)drawWithFrame:(NSRect)frame context:(CGContextRef)context;
 @end
 
 
 
 
-**General/IconController.m**
+**IconController.m**
 
     
-#import "General/IconController.h"
+#import "IconController.h"
 
-General/NSRect General/XFImageBoundsForFrame(General/NSRect fr, General/NSSize size) {
-	float srcRatio = size.width / size.height, destRatio = General/NSWidth(fr) / General/NSHeight(fr);
-    fr = General/NSInsetRect(fr, 1.0f, 1.0f);
+NSRect XFImageBoundsForFrame(NSRect fr, NSSize size) {
+	float srcRatio = size.width / size.height, destRatio = NSWidth(fr) / NSHeight(fr);
+    fr = NSInsetRect(fr, 1.0f, 1.0f);
 	if (srcRatio > destRatio) 
-		return General/NSInsetRect(fr, 0.0f, (General/NSHeight(fr) - General/NSWidth(fr) / srcRatio) / 2.0f);
+		return NSInsetRect(fr, 0.0f, (NSHeight(fr) - NSWidth(fr) / srcRatio) / 2.0f);
 	else 
-		return General/NSInsetRect(fr, (General/NSWidth(fr) - General/NSHeight(fr) * srcRatio) / 2.0f, 0.0f);
+		return NSInsetRect(fr, (NSWidth(fr) - NSHeight(fr) * srcRatio) / 2.0f, 0.0f);
 }
 
-@implementation General/XFIcon
+@implementation XFIcon
 
-- (id)initWithIconForFile:(General/NSString *)file {
+- (id)initWithIconForFile:(NSString *)file {
 	self = [super init];
 	if (self) {
-		General/FSRef ref;
-		General/FSSpec fsSpec;
+		FSRef ref;
+		FSSpec fsSpec;
 		SInt16 iconLabel;
 		Boolean isDir;
-		General/FSCatalogInfo catInfo;
-		if (General/FSPathMakeRef((const UInt8 *)[file fileSystemRepresentation], &ref, &isDir)) goto ABORT;
-		if (General/FSGetCatalogInfo(&ref, kFSCatInfoCreateDate, &catInfo, NULL, &fsSpec, NULL)) goto ABORT;
-		if (General/GetIconRefFromFile(&fsSpec, &iconRef, &iconLabel)) goto ABORT;
+		FSCatalogInfo catInfo;
+		if (FSPathMakeRef((const UInt8 *)[file fileSystemRepresentation], &ref, &isDir)) goto ABORT;
+		if (FSGetCatalogInfo(&ref, kFSCatInfoCreateDate, &catInfo, NULL, &fsSpec, NULL)) goto ABORT;
+		if (GetIconRefFromFile(&fsSpec, &iconRef, &iconLabel)) goto ABORT;
 	}
 	return self;
 	
@@ -159,26 +159,26 @@ ABORT:;
 	return nil;
 }
 - (void)dealloc {
-	if (iconRef) General/ReleaseIconRef(iconRef);
+	if (iconRef) ReleaseIconRef(iconRef);
 	[super dealloc];
 }
 
-- (void)drawWithFrame:(General/NSRect)frame context:(General/CGContextRef)context {
-	frame = General/XFImageBoundsForFrame(frame, General/NSMakeSize(16.0f, 16.0f));
-	General/PlotIconRefInContext(context, (General/CGRect *)&frame, nil, nil, nil, nil, iconRef);
+- (void)drawWithFrame:(NSRect)frame context:(CGContextRef)context {
+	frame = XFImageBoundsForFrame(frame, NSMakeSize(16.0f, 16.0f));
+	PlotIconRefInContext(context, (CGRect *)&frame, nil, nil, nil, nil, iconRef);
 }
 
 @end
 
 
-@implementation General/IconController
+@implementation IconController
 - (void)awakeFromNib {
-	General/NSImage *image = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(128.0f, 128.0f)] autorelease];
-	General/NSString *file = @"/Applications/Address Book.app";
-	General/XFIcon *icon = General/[[[XFIcon alloc] initWithIconForFile:file] autorelease];
+	NSImage *image = [[[NSImage alloc] initWithSize:NSMakeSize(128.0f, 128.0f)] autorelease];
+	NSString *file = @"/Applications/Address Book.app";
+	XFIcon *icon = [[[XFIcon alloc] initWithIconForFile:file] autorelease];
 	[image lockFocus];
-	[icon drawWithFrame:General/NSMakeRect(0.0f, 0.0f, 128.0f, 128.0f) 
-			context:General/[[NSGraphicsContext currentContext] graphicsPort]];
+	[icon drawWithFrame:NSMakeRect(0.0f, 0.0f, 128.0f, 128.0f) 
+			context:[[NSGraphicsContext currentContext] graphicsPort]];
 	[image unlockFocus];
 	[imageView setImage:image];
 }
@@ -191,11 +191,11 @@ I spent all of about ten minutes typing this up without checking for errors, so 
 
 --zootbobbalu
 
-*That     goto is pretty ugly...why can't you just nest your     if statements? Also, check out Apple's General/ImageAndTextCell class, part of the General/DragNDropOutlineView example. --General/JediKnil*
+*That     goto is pretty ugly...why can't you just nest your     if statements? Also, check out Apple's ImageAndTextCell class, part of the DragNDropOutlineView example. --JediKnil*
 
 ----
 
-I don't think General/DragNDropOutlineView shows you how to obtain finder icons, but I could be wrong. I was just trying to give an example on how to get file icons. 
+I don't think DragNDropOutlineView shows you how to obtain finder icons, but I could be wrong. I was just trying to give an example on how to get file icons. 
 
 Is     goto inherently ugly? Personally I'm not neurotic about the goto statement. Using spotlight to search for the string "goto bail" I get 400+ hits in the source code for Darwin 8.2 (that's 400+ individual files containing "goto bail"). 
 
@@ -221,17 +221,17 @@ Zoot, I followed the instructions, built it without errors, and the app just sit
 Can you run/log this and tell me what you get?
 
     
-@implementation General/IconController
+@implementation IconController
 - (void)awakeFromNib {
-    General/NSImage *image = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(128.0f, 128.0f)] autorelease];
-    General/NSString *file = @"/Applications/Address Book.app";
-    General/XFIcon *icon = General/[[[XFIcon alloc] initWithIconForFile:file] autorelease];
+    NSImage *image = [[[NSImage alloc] initWithSize:NSMakeSize(128.0f, 128.0f)] autorelease];
+    NSString *file = @"/Applications/Address Book.app";
+    XFIcon *icon = [[[XFIcon alloc] initWithIconForFile:file] autorelease];
     [image lockFocus];
-    [icon drawWithFrame:General/NSMakeRect(0.0f, 0.0f, 128.0f, 128.0f) 
-			context:General/[[NSGraphicsContext currentContext] graphicsPort]];
+    [icon drawWithFrame:NSMakeRect(0.0f, 0.0f, 128.0f, 128.0f) 
+			context:[[NSGraphicsContext currentContext] graphicsPort]];
     [image unlockFocus];
     [imageView setImage:image];
-    General/NSLog(@"imageView: %@ image: %@ icon: %@", imageView, [imageView image], General/NSStringFromClass([icon class]));
+    NSLog(@"imageView: %@ image: %@ icon: %@", imageView, [imageView image], NSStringFromClass([icon class]));
 }
 @end
 
@@ -243,7 +243,7 @@ Can you run/log this and tell me what you get?
 
     
 [Session started at 2006-01-05 23:02:05 -0500.]
-2006-01-05 23:02:07.504 General/IconApp[6113] imageView: (null) image: (null) icon: General/XFIcon
+2006-01-05 23:02:07.504 IconApp[6113] imageView: (null) image: (null) icon: XFIcon
 
 
 --endymion
@@ -251,14 +251,14 @@ Can you run/log this and tell me what you get?
 ----
 
     
-@interface General/IconController : General/NSObject
+@interface IconController : NSObject
 {
-    General/IBOutlet id imageView;
+    IBOutlet id imageView;
 }
 @end
 
 
-Looks like the problem is you didn't make a connection between the General/IBOutlet "imageView" and an image view placed in the main window of the application. --zootbobbalu
+Looks like the problem is you didn't make a connection between the IBOutlet "imageView" and an image view placed in the main window of the application. --zootbobbalu
 
 ----
 

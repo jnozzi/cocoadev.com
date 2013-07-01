@@ -1,10 +1,10 @@
 
 
-Is there a way to get General/NSFontPanel's contentView inside a drawer and have my clicks in the font list update a text view in my window?
+Is there a way to get NSFontPanel's contentView inside a drawer and have my clicks in the font list update a text view in my window?
 
 I've got the first part done:
     
-General/NSFontPanel *p = General/[NSFontPanel sharedFontPanel];
+NSFontPanel *p = [NSFontPanel sharedFontPanel];
 [theDrawerView addSubview:[p contentView]];
 
 
@@ -14,10 +14,10 @@ Any ideas?  TIA
 
 ----
 
-I'd try setting the text view as the General/NSFontManager's delegate. *shrug*
+I'd try setting the text view as the NSFontManager's delegate. *shrug*
 
 ----
 
 i've found that putting yourself in the responder chain to be the only way to make the detached font panel work.
 
-General/MattO
+MattO

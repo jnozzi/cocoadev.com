@@ -19,7 +19,7 @@ boolean_t IsG4()
 	return (KERN_SUCCESS == ret && (hostInfo.cpu_type == CPU_TYPE_POWERPC) && (hostInfo.cpu_subtype == CPU_SUBTYPE_POWERPC_7400 || hostInfo.cpu_subtype == CPU_SUBTYPE_POWERPC_7450));
 }                                       
 
-boolean_t General/IsAltiVecAvailable()
+boolean_t IsAltiVecAvailable()
 {
 	int name[2] = { CTL_HW, HW_VECTORUNIT };
 	int hasVectorUnit = 0;

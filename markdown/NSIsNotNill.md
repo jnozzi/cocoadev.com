@@ -1,1 +1,1 @@
-This value transformer returns YES if the value is nil. This transformer is not reversible. See General/NSValueTransformer.
+This value transformer returns YES if the value is nil. This transformer is not reversible. See NSValueTransformer.

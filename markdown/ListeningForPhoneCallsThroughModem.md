@@ -3,7 +3,7 @@ I am trying to do something rather odd. In my application i am trying to listen 
 Peter
 
 ----
-It has nothing to do with BSD sockets, which are used to communicate over the internet. You want to talk to a serial device, check out General/AMSerial.
+It has nothing to do with BSD sockets, which are used to communicate over the internet. You want to talk to a serial device, check out AMSerial.
 ----
 Serial port communication, modem commands, AT Commands are the key to go..
 ----

@@ -2,11 +2,11 @@ I'm not a comp sci major, I'm actually network administration so I don't have mu
 
 When working with Java I found the documentation to be a great resource (duh) and I hope to use the Apple Cocoa documentation a lot throughout the semester.  I might be jumping the gun but reviewing the documentation for Obj-C I can't quite put it together.  Does anyone have a good explanation on utilizing the Apple documentation or how to read it?
 
-Example using the General/NSTimer class
+Example using the NSTimer class
 
 Creating a timer
 + scheduledTimerWithTimeInterval:invocation:repeats:
-Returns a new General/NSTimer object and adds it to the current General/NSRunLoop in the default mode.
+Returns a new NSTimer object and adds it to the current NSRunLoop in the default mode.
 
 Information about a timer
 � isValid
@@ -18,7 +18,7 @@ Thanks!
 
 ----
 
-+ means it's a class method, - means it's an instance method.  I'd recommend reading Apple's online book, The Objective-C Programming Language before diving into Cocoa.  Do you have to?  No.  But it isn't that long, and if you do that then you'll have a thorough understanding of the underpinnings.  Then you can start slapping piecemeal Cocoa knowledge on top. :-) http://developer.apple.com/documentation/Cocoa/Conceptual/General/ObjectiveC/index.html
++ means it's a class method, - means it's an instance method.  I'd recommend reading Apple's online book, The Objective-C Programming Language before diving into Cocoa.  Do you have to?  No.  But it isn't that long, and if you do that then you'll have a thorough understanding of the underpinnings.  Then you can start slapping piecemeal Cocoa knowledge on top. :-) http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/index.html
 
 
 ----

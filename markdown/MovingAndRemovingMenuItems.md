@@ -8,7 +8,7 @@ Any thoughts?  --Seb
 
     
 
--(General/IBAction)moveMenu:(id)sender
+-(IBAction)moveMenu:(id)sender
 {
 	// move the menu in/out of main menu bar
 
@@ -17,10 +17,10 @@ Any thoughts?  --Seb
 	// myFromNib is the menu loaded from the nib attached as submenu to myOwnMenu
 	
 	int index,menuPlace=0;
-	General/NSMenu *appMenu=General/[[[NSApp mainMenu] itemAtIndex:0] submenu];  // the app's menu item in the menu bar
-	General/NSMenuItem *myOwnMenu;
+	NSMenu *appMenu=[[[NSApp mainMenu] itemAtIndex:0] submenu];  // the app's menu item in the menu bar
+	NSMenuItem *myOwnMenu;
 
-	General/NSLog(@"menu before:%@",General/[NSApp mainMenu]);
+	NSLog(@"menu before:%@",[NSApp mainMenu]);
 
 	if(hidden) // hidden in the app's menu, move it to menu bar
 	{
@@ -29,35 +29,35 @@ Any thoughts?  --Seb
 		[appMenu removeItem: myOwnMenu];
 		
 		// just add it to the end in the menu bar
-		General/[[NSApp mainMenu] addItem:myOwnMenu];
+		[[NSApp mainMenu] addItem:myOwnMenu];
 	}
 	else // in menu bar, move the app's menu
 	{
-		index=General/[[NSApp mainMenu] indexOfItemWithSubmenu:menuFromNIB];
-		myOwnMenu =General/[[NSApp mainMenu] itemAtIndex:index];
-		General/[[NSApp mainMenu] removeItem: myOwnMenu];
+		index=[[NSApp mainMenu] indexOfItemWithSubmenu:menuFromNIB];
+		myOwnMenu =[[NSApp mainMenu] itemAtIndex:index];
+		[[NSApp mainMenu] removeItem: myOwnMenu];
 		  // update: see note below on what to add here
 
 
 		// hide it in app's main menu, after preferences just before next separator
-		General/NSMenuItem *tempItem;
+		NSMenuItem *tempItem;
 		while(tempItem=[appMenu itemAtIndex:menuPlace])
 		{
-			if(General/tempItem keyEquivalent] isEqualToString:@","] && ([tempItem keyEquivalentModifierMask] & [[NSCommandKeyMask))
+			if(tempItem keyEquivalent] isEqualToString:@","] && ([tempItem keyEquivalentModifierMask] & [[NSCommandKeyMask))
 				break;
 			menuPlace++;
 		}
-		while(!General/appMenu itemAtIndex:++menuPlace] isSeparatorItem]){}
+		while(!appMenu itemAtIndex:++menuPlace] isSeparatorItem]){}
 		[appMenu insertItem: myOwnMenu atIndex:menuPlace];
 	}
 
-	[[NSLog(@"menu after:%@",General/[NSApp mainMenu]);
+	[[NSLog(@"menu after:%@",[NSApp mainMenu]);
 
 	hidden=!hidden;
 }
 
 
-Sorry, but my only thought is 'General/NSMenu does it again'. I can't tell you how weird General/NSMenu has acted for me, sometimes the 'fixes' I found made no sense (reversing two method calls) and other times I have had to change to a different system. Also, let th wiki know what dev-system you are using (10.3 or Tiger?). --General/JeremyJurksztowicz
+Sorry, but my only thought is 'NSMenu does it again'. I can't tell you how weird NSMenu has acted for me, sometimes the 'fixes' I found made no sense (reversing two method calls) and other times I have had to change to a different system. Also, let th wiki know what dev-system you are using (10.3 or Tiger?). --JeremyJurksztowicz
 
 ----
 I'm coding on Tiger, but it also happens on 10.3.9
@@ -68,8 +68,8 @@ And it looks like I'm not the only one that's run into this without a solution (
 
 OK, found it! Seems one must post a notification that the main menu changed when removing the item; so the above code is updated to (relevant section):
     
-General/[[NSApp mainMenu] removeItem: myOwnMenu];
-General/[[NSNotificationCenter defaultCenter] postNotificationName:@"General/NSMenuDidRemoveItemNotification" object:General/[NSApp mainMenu] userInfo:General/[NSDictionary dictionaryWithObject:General/[NSNumber numberWithInt:index] forKey:@"General/NSMenuItemIndex"]];
+[[NSApp mainMenu] removeItem: myOwnMenu];
+[[NSNotificationCenter defaultCenter] postNotificationName:@"NSMenuDidRemoveItemNotification" object:[NSApp mainMenu] userInfo:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:index] forKey:@"NSMenuItemIndex"]];
 
 
 Note: while the docs state that using     removeItemAtIndex (which I had tried) automatically posts that notification, it still seems necessary to do so, at least for the app's main menu. But it still doesn't explain why it initially worked only once and not on subsequent attempts.  --Seb

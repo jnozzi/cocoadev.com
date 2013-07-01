@@ -1,4 +1,4 @@
-Does anyone know how to make use of the General/BezelServices framework?  It is a private framework, and I assume it is the one that provides OS X with the ability to display feedback images for changes in volume, display brightness, etc (the images are located in /System/Library/General/CoreServices/General/BezelUI/Images/).  I would like to provide this functionality for one of my applications.  Any ideas or feedback would be appreciated.
+Does anyone know how to make use of the BezelServices framework?  It is a private framework, and I assume it is the one that provides OS X with the ability to display feedback images for changes in volume, display brightness, etc (the images are located in /System/Library/CoreServices/BezelUI/Images/).  I would like to provide this functionality for one of my applications.  Any ideas or feedback would be appreciated.
 
 ----
     /*
@@ -8,10 +8,10 @@ Does anyone know how to make use of the General/BezelServices framework?  It is 
  */
 
 /*
- * File: General/BezelServices.framework/Versions/A/General/BezelServices
+ * File: BezelServices.framework/Versions/A/BezelServices
  */
 
-@protocol General/BezelServicesWireProtocol
+@protocol BezelServicesWireProtocol
 - (id)preference;
 - (int)setPreference:(id)fp8;
 - (id)objectForPrefKey:(id)fp8;
@@ -39,4 +39,4 @@ grEvenX
 ----
 If you want to create bezels - try Growl ( http://www.growl.info ) - it has a bezel display.   You can also embed it in your app (so that if people don't have growl it will offer to install it for them.)
 
-General/DiggoryLaycock
+DiggoryLaycock

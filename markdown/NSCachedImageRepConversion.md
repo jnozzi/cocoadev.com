@@ -1,12 +1,12 @@
-In my program I've got code that generates a quicktime movie from snapshots taken live from my simulation's General/OpenGL output. It is based off apple sample code which takes General/NSImages and extracts their General/NSBitmapImageRep to pass pixel data to the hairy underbelly of General/QuickDraw & General/QuickTime.
+In my program I've got code that generates a quicktime movie from snapshots taken live from my simulation's OpenGL output. It is based off apple sample code which takes NSImages and extracts their NSBitmapImageRep to pass pixel data to the hairy underbelly of QuickDraw & QuickTime.
 
-Now, it used to work just fine, when I was saving General/NSImages for each frame to General/NSTemporaryDirectory() on the runtime "record" pass and then subsequently reloading them when I was encoding. I don't encode at runtime simply because it would be too slow, so I record first, to /tmp and then encode later.
+Now, it used to work just fine, when I was saving NSImages for each frame to NSTemporaryDirectory() on the runtime "record" pass and then subsequently reloading them when I was encoding. I don't encode at runtime simply because it would be too slow, so I record first, to /tmp and then encode later.
 
-However, this weekend I decided to optimize and instead of saving out General/TiffRepresentations ( which is pretty slow, when you consider that I'm trying to do this 25 times per second ): now I write raw gl image buffer data to one huge flat file and, and then subsequently in the encoding pass ( which can be slow ) I read one image at a time from the huge cache file and create General/NSImage from that data. I do this by reading the number of bytes for each image ( 24 bit, RGB ) from the file and populating a freshly allocated General/NSBitmapImageRep's pixel data. I then add this rep to an General/NSImage and pass that on to my General/QuickTime code.
+However, this weekend I decided to optimize and instead of saving out TiffRepresentations ( which is pretty slow, when you consider that I'm trying to do this 25 times per second ): now I write raw gl image buffer data to one huge flat file and, and then subsequently in the encoding pass ( which can be slow ) I read one image at a time from the huge cache file and create NSImage from that data. I do this by reading the number of bytes for each image ( 24 bit, RGB ) from the file and populating a freshly allocated NSBitmapImageRep's pixel data. I then add this rep to an NSImage and pass that on to my QuickTime code.
 
 That much works fine, I know for a fact that the images are being reconstructed correctly.
 
-The trouble is this: General/OpenGL and Quicktime have different row-ordering, where General/OpenGL, like Quartz, considers 0,0 to be lower left and Quicktime considers it to be upper left. So, to prevent having my movies upside-down I call:�
+The trouble is this: OpenGL and Quicktime have different row-ordering, where OpenGL, like Quartz, considers 0,0 to be lower left and Quicktime considers it to be upper left. So, to prevent having my movies upside-down I call:�
 
     
 [image setFlipped: YES];
@@ -15,13 +15,13 @@ The trouble is this: General/OpenGL and Quicktime have different row-ordering, w
 
 ( note, I'm at work and I might not have typed the above correctly )
 
-This is known to work -- in that if I then save that image to disk as a tiff, via      General/image [[TIFFRepresentation] writeToDisk: @"somefile" atomically: NO]  and look at it with an image viewer it IS correctly displayed.
+This is known to work -- in that if I then save that image to disk as a tiff, via      image [[TIFFRepresentation] writeToDisk: @"somefile" atomically: NO]  and look at it with an image viewer it IS correctly displayed.
 
-However, the quicktime code expects the General/NSImage to have an General/NSBitmapImageRep and it seems that when I flip the image, the General/NSBitmapImageRep is converted to an General/NSCachedImageRep ( I guess that means it's holding an affine transform for the flipping, instead of actually flipping the bitmap )
+However, the quicktime code expects the NSImage to have an NSBitmapImageRep and it seems that when I flip the image, the NSBitmapImageRep is converted to an NSCachedImageRep ( I guess that means it's holding an affine transform for the flipping, instead of actually flipping the bitmap )
 
-Suffice it to say, the General/QuickTime encoding chokes, because it cannot find an General/NSBitmapImageRep.
+Suffice it to say, the QuickTime encoding chokes, because it cannot find an NSBitmapImageRep.
 
-So, what I'm wondering is how can I convert that General/NSCachedImageRep back to an General/NSBitmapImageRep? I'd rather not have to flip the scanlines of the bitmap data myself ( though I can, and have before, I just don't want to ).
+So, what I'm wondering is how can I convert that NSCachedImageRep back to an NSBitmapImageRep? I'd rather not have to flip the scanlines of the bitmap data myself ( though I can, and have before, I just don't want to ).
 
 ----
 
@@ -29,6 +29,6 @@ A cached image rep means that the image has been drawn into an offscreen window,
 
 ----
 
-I haven't tested it at home, but I wrote a test on my machine at work, just now, and I discovered a low-down-dirty way to make it work. I'm positively ashamed at myself, but it works, and it's a one liner. Instead of returning the flipped image,      return General/[[NSImage alloc] initWithData: [image General/TIFFRepresentation]]; 
+I haven't tested it at home, but I wrote a test on my machine at work, just now, and I discovered a low-down-dirty way to make it work. I'm positively ashamed at myself, but it works, and it's a one liner. Instead of returning the flipped image,      return [[NSImage alloc] initWithData: [image TIFFRepresentation]]; 
 
 it works....

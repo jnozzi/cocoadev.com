@@ -1,28 +1,28 @@
-Is there any way to create General/NSTableView with multi-row cells (like, for example, Excel) for displaying more than a few words?
+Is there any way to create NSTableView with multi-row cells (like, for example, Excel) for displaying more than a few words?
 
 ----
 
-You can use a custom General/NSCell subclass, and do whatever you like.
+You can use a custom NSCell subclass, and do whatever you like.
 
 ----
 
 can you have rows of different heights in one matrix?
-I read in the General/NSMatrix class that this was not an option.  I think I've seen it, but I have yet to find any examples.
+I read in the NSMatrix class that this was not an option.  I think I've seen it, but I have yet to find any examples.
 
 ----
 
-Check out General/RowResizableViews at [http://www.eng.uwaterloo.ca/~ejones/software/osx-tableview.html]
+Check out RowResizableViews at [http://www.eng.uwaterloo.ca/~ejones/software/osx-tableview.html]
 
 ----
 
-I can't get General/ReResizableViews demo app to run on Panther.  Anyone having any luck?
+I can't get ReResizableViews demo app to run on Panther.  Anyone having any luck?
 
-2004-04-17 08:57:42.612 General/RowResizableViews[10764] *** Assertion failure in -[iPhotoLibraryDataSource init], iPhotoLibraryDataSource.m:172
-2004-04-17 08:57:42.614 General/RowResizableViews[10764] An uncaught exception was raised
-2004-04-17 08:57:42.614 General/RowResizableViews[10764] Error getting albums
-2004-04-17 08:57:42.615 General/RowResizableViews[10764] *** Uncaught exception: <General/NSInternalInconsistencyException> Error getting albums
+2004-04-17 08:57:42.612 RowResizableViews[10764] *** Assertion failure in -[iPhotoLibraryDataSource init], iPhotoLibraryDataSource.m:172
+2004-04-17 08:57:42.614 RowResizableViews[10764] An uncaught exception was raised
+2004-04-17 08:57:42.614 RowResizableViews[10764] Error getting albums
+2004-04-17 08:57:42.615 RowResizableViews[10764] *** Uncaught exception: <NSInternalInconsistencyException> Error getting albums
 
-General/RowResizableViews has exited due to signal 5 (SIGTRAP).
+RowResizableViews has exited due to signal 5 (SIGTRAP).
 
 ----
 

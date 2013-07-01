@@ -29,8 +29,8 @@ In just 24 sessions of one hour or less, learn how to build powerful mobile appl
 * Access the Internet and networks and show web pages
 * Save and retrieve data, including user preferences
 * Build applications that play and record media 
-* Use the iPhone's built-in accelerometer, GPS capabilities, and General/WiFi support
-* Share data via custom General/URLs, emails, and other techniques
+* Use the iPhone's built-in accelerometer, GPS capabilities, and WiFi support
+* Share data via custom URLs, emails, and other techniques
 * Find and fix common Cocoa Touch software bugs, fast
 * Avoid the performance bottlenecks that affect Cocoa Touch code
 

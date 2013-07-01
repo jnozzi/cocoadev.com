@@ -1,9 +1,9 @@
-I have a program that displays a series of images using General/NSImageView.  The memory used by each image is not released and eventually swap space runs out.  Here is my code snippit:
+I have a program that displays a series of images using NSImageView.  The memory used by each image is not released and eventually swap space runs out.  Here is my code snippit:
 
     
-General/IBOutlet General/NSImageView *imageView;
+IBOutlet NSImageView *imageView;
 
-General/NSImage* image = General/[[NSImage alloc] initWithContentsOfFile: fileName];
+NSImage* image = [[NSImage alloc] initWithContentsOfFile: fileName];
 [imageView setImage: image];
 [image release];
 [imageView display];
@@ -20,7 +20,7 @@ Oh, one other problem with     [imageView display]; for some bad images I get a 
 try
 
     
-General/NSImage* image = General/[[[NSImage alloc] initWithContentsOfFile: fileName] autorelease];
+NSImage* image = [[[NSImage alloc] initWithContentsOfFile: fileName] autorelease];
 [imageView setImage: image];
 [imageView setNeedsDisplay:YES];
 
@@ -29,7 +29,7 @@ and see what happens. If you still have a memory leak than I think it's safe to 
 
 ----
 
-It does not seem that way, commenting out the General/NSImageView stuff results in no noticable leak.  With the General/NSImageView code I am leaking about 1GB/minute.
+It does not seem that way, commenting out the NSImageView stuff results in no noticable leak.  With the NSImageView code I am leaking about 1GB/minute.
 
 ----
 
@@ -37,12 +37,12 @@ I think you are not giving the autorelease pool a chance to cycle and do it's th
 
 ----
 
-I call General/RunModal.
+I call RunModal.
 
-But, the real problem is General/NSImage.  This leaks:
+But, the real problem is NSImage.  This leaks:
 
     
-image = General/[[NSImage alloc] initWithContentsOfFile: fileName];
+image = [[NSImage alloc] initWithContentsOfFile: fileName];
 [image release];
 
 
@@ -62,7 +62,7 @@ First: Because I have a progress indicator and need to update the GUI.
 
 Second: Yes.
 
-I found the problem but do not have the solution.  Evidently General/NSImage is autoreleasing the memory and since I an not going back to the run loop it never gets released.
+I found the problem but do not have the solution.  Evidently NSImage is autoreleasing the memory and since I an not going back to the run loop it never gets released.
 
 ----
 
@@ -71,7 +71,7 @@ In that case, the solution is to manually create your own autorelease pool.   Th
 - (void)myLoopedMethod
 {
 	// when you create one, it's automatically made the current pool.
-	General/NSAutoreleasePool *thePool = General/[[NSAutoreleasePool alloc] init];  
+	NSAutoreleasePool *thePool = [[NSAutoreleasePool alloc] init];  
 	
 	// your code that needs stuff autoreleased outside of the main run loop goes here
 

@@ -2,7 +2,7 @@
 
 Is there a simple clean way to get the progress (ie. bytes copied) of a file copy that is occuring in the background?
 
-I am looking for some sort of Cocoa wrapper or a way to do it via General/NSFileManager.
+I am looking for some sort of Cocoa wrapper or a way to do it via NSFileManager.
 
 ----
 
@@ -10,7 +10,7 @@ I am looking for some sort of Cocoa wrapper or a way to do it via General/NSFile
 
 ----
 
-You would probably have to do it using some Carbon call; You may also be able to have another thread using General/NSFileManager to get the size of the destiantion file during copying, but I would say that that would be verrrrry buggy, and hard to implement in realtime.
+You would probably have to do it using some Carbon call; You may also be able to have another thread using NSFileManager to get the size of the destiantion file during copying, but I would say that that would be verrrrry buggy, and hard to implement in realtime.
 
 ----
 
@@ -20,12 +20,12 @@ If you really need this, you could just manually copy the file by opening the de
 
 ----
 
-I like the last idea, just above... about copying part by part manually... I want to create an General/NSFileManager category for this. Can anyone help out with a simple hint on how I would go about splitting any given file, could be small, could be large into blocks and copying it all reliably part by part?
+I like the last idea, just above... about copying part by part manually... I want to create an NSFileManager category for this. Can anyone help out with a simple hint on how I would go about splitting any given file, could be small, could be large into blocks and copying it all reliably part by part?
 
 Okay I've got it working:
 
     
-- (BOOL)copyPath:(General/NSString *)source toPath:(General/NSString *)destination delegate:(id)delegate {
+- (BOOL)copyPath:(NSString *)source toPath:(NSString *)destination delegate:(id)delegate {
 	BOOL isDirectory;
 	if(![self fileExistsAtPath:source isDirectory:&isDirectory] || [self fileExistsAtPath:destination]) return NO;
 	else if(isDirectory) return [self copyPath:source toPath:destination handler:delegate];
@@ -38,7 +38,7 @@ Okay I've got it working:
 	if(!(sourceFile = fopen([source fileSystemRepresentation], "r"))) {
 		return NO;
 	} else if(!(destinationFile = fopen([destination fileSystemRepresentation], "w+"))) {
-		General/NSDictionary * errorDict = General/[NSDictionary dictionaryWithObjectsAndKeys:
+		NSDictionary * errorDict = [NSDictionary dictionaryWithObjectsAndKeys:
 										@"Couldn't create", @"Error",
 										destination, @"Path",
 									nil];
@@ -50,14 +50,14 @@ Okay I've got it working:
 
 	while(bytes = fread(buffer, 1, sizeof(buffer), sourceFile)) {
 		if(!fwrite(buffer, 1, bytes, destinationFile)) {
-			General/NSDictionary * errorDict = General/[NSDictionary dictionaryWithObjectsAndKeys:
+			NSDictionary * errorDict = [NSDictionary dictionaryWithObjectsAndKeys:
 											@"Couldn't create", @"Error",
 											destination, @"Path",
 										nil];
 			[delegate performSelector:@selector(fileManager:shouldProceedAfterError:) withObject:self withObject:errorDict];
 			break;
 		}
-		if([delegate performSelector:@selector(copiedBytes:toPath:) withObject:General/[NSNumber numberWithUnsignedLongLong:bytes] withObject:destination]) break;
+		if([delegate performSelector:@selector(copiedBytes:toPath:) withObject:[NSNumber numberWithUnsignedLongLong:bytes] withObject:destination]) break;
 	}
 	
 	fclose(destinationFile);
@@ -78,14 +78,14 @@ Getting more advanced, does anyone know how to stop OS X from caching the file d
 ----
 On the original question...
 
-How about using General/NSFileHandle readInBackgroundAndNotify on the input file? It should get you where you want with very little effort.
+How about using NSFileHandle readInBackgroundAndNotify on the input file? It should get you where you want with very little effort.
 ----
 
-The code above doesn't handle resource forks or other metadata. General/NSFileManager does (as of 10.2). Also take a look at the General/FSCopyObject sample code from DTS. -- General/FinlayDobbie
+The code above doesn't handle resource forks or other metadata. NSFileManager does (as of 10.2). Also take a look at the FSCopyObject sample code from DTS. -- FinlayDobbie
 
 ----
 
-Why not just periodically check the size of the destination file against the size of the source file, and set the progress bar accordingly? This should take care of accuracy, forks, etc., while still letting the OS do its thing. �General/DustinVoss
+Why not just periodically check the size of the destination file against the size of the source file, and set the progress bar accordingly? This should take care of accuracy, forks, etc., while still letting the OS do its thing. �DustinVoss
 
 --
 
@@ -93,4 +93,4 @@ Well, luckily in my case, this is exactly what I want, *NO* resource forks :)
 
 ----
 
-You can't do the size check on the destination file - you're ignoring caching. And the copy method posted above will probably work, but should use some bigger buffer (and not copy 1 byte at a time) - the General/FSCopyObject sample referenced above does that. --Cristi
+You can't do the size check on the destination file - you're ignoring caching. And the copy method posted above will probably work, but should use some bigger buffer (and not copy 1 byte at a time) - the FSCopyObject sample referenced above does that. --Cristi

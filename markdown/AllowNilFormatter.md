@@ -1,8 +1,8 @@
 For a database app I'm writing I need text fields to preserve NULL values.
 
-In a normal text field, [NSNull null] as the value renders to the empty string, and tabbing through a field set to null will convert the field's value to the empty string. What we want is for the field to stay null if the value isn't changed, as some database columns may allow NULL as a value. I coded a solution by subclassing General/NSFormatter to preserve null values, and render them in a different color.
+In a normal text field, [NSNull null] as the value renders to the empty string, and tabbing through a field set to null will convert the field's value to the empty string. What we want is for the field to stay null if the value isn't changed, as some database columns may allow NULL as a value. I coded a solution by subclassing NSFormatter to preserve null values, and render them in a different color.
 
--- General/AdamVandenberg
+-- AdamVandenberg
 
 ----
 
@@ -49,7 +49,7 @@ In a normal text field, [NSNull null] as the value renders to the empty string, 
          nullString = @"<NULL>";
          
          _attributedStringForNil = 
-            General/NSAttributedString alloc] initWithString: nullString
+            NSAttributedString alloc] initWithString: nullString
              attributes: [NSDictionary dictionaryWithObjectsAndKeys:
                  [NSColor redColor], NSForegroundColorAttributeName, nil;
      }
@@ -63,7 +63,7 @@ In a normal text field, [NSNull null] as the value renders to the empty string, 
  }
  
  - (NSAttributedString *) attributedStringForNil 
- { return General/_attributedStringForNil retain] autorelease]; }
+ { return _attributedStringForNil retain] autorelease]; }
  
  - (void) setAttributedStringForNil: 
     (NSAttributedString *) anAttributedStringForNil {
@@ -135,4 +135,4 @@ Note that this code only solves half of my problem, preserving and displaying nu
 
 If anyone has an example of getting a text field / cell to respond to a custom control-key hot key, I'd love to see it.
 
--- General/AdamVandenberg
+-- AdamVandenberg

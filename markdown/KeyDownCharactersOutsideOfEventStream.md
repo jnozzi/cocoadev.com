@@ -1,9 +1,9 @@
-related key words - General/NSEvent, General/NSKeyDown, General/KeyMap, General/NSResponder, sendEvent
+related key words - NSEvent, NSKeyDown, KeyMap, NSResponder, sendEvent
 
 Here's a simple way to get the current keyDown characters outside of the event stream. 
 
     
-static char General/XFKeyMap[] = {0x00, 0x78, 0x7a, 0x67, 0x68, 0x66, 0x64, 0x73, 
+static char XFKeyMap[] = {0x00, 0x78, 0x7a, 0x67, 0x68, 0x66, 0x64, 0x73, 
                               0x61, 0x72, 0x65, 0x77, 0x71, 0x62, 0x00, 0x76, 
                               0x63, 0x35, 0x36, 0x34, 0x33, 0x32, 0x31, 0x74, 
                               0x79, 0x6f, 0x5d, 0x30, 0x38, 0x2d, 0x37, 0x39, 
@@ -20,18 +20,18 @@ static char General/XFKeyMap[] = {0x00, 0x78, 0x7a, 0x67, 0x68, 0x66, 0x64, 0x73
                               0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 
                               0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00};
 
-- (General/NSString *)currentKeyDownCharacters {
+- (NSString *)currentKeyDownCharacters {
 	
 	unsigned char bytes[16];
-	General/GetKeys((void *)bytes);
+	GetKeys((void *)bytes);
 	int bitNumber = 0, i;
-	General/NSMutableString *characters = General/[NSMutableString stringWithCapacity:128];
+	NSMutableString *characters = [NSMutableString stringWithCapacity:128];
 	for (i = 0; i < 16; i++) {
 		int mask = 0x80;
 		while (mask) {
 			bitNumber++;
 			if (mask & bytes[i]) {
-				char c = General/XFKeyMap[bitNumber];
+				char c = XFKeyMap[bitNumber];
 				if (c) [characters appendFormat:@"%c", c];
 			}
 			mask = mask >> 1;
@@ -46,4 +46,4 @@ static char General/XFKeyMap[] = {0x00, 0x78, 0x7a, 0x67, 0x68, 0x66, 0x64, 0x73
 
 ----
 
-That code isn't very robust, especially when using non-English keyboard layouts. I've created an General/NSApplication category that handles (AFAIK) all keyboard layouts, and have posted it at http://www.ghosttiger.com/?p=136 - General/JonathanGrynspan
+That code isn't very robust, especially when using non-English keyboard layouts. I've created an NSApplication category that handles (AFAIK) all keyboard layouts, and have posted it at http://www.ghosttiger.com/?p=136 - JonathanGrynspan

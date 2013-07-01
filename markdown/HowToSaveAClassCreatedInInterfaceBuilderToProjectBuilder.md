@@ -2,4 +2,4 @@ Once you create a class in Interface Builder, you can save it to Project Builder
 
 To do this, you must be in Interface Builder.  Go to the Classes menu and choose "Create Files for myClass" where "myClass" is the name of your class.  Follow the directions and it will create a new .h and .m files for Project Builder.
 
-Go back to General/HowToProgramInOSX
+Go back to HowToProgramInOSX

@@ -9,27 +9,27 @@ behaves just like a native application.  Unfortunately this is the only tutorial
     
 exchangeRate := 1.33.
 
-(window := General/MacWindowFrame new)
+(window := MacWindowFrame new)
   text: 'Currency Converter';
   position: 20@60;
   extent: 300@160.
 
-(amountLabel := General/MacTextLabel new)
+(amountLabel := MacTextLabel new)
   text: 'Amount to convert:';
   extent: 100@15.
 
-(amountField := General/MacTextField new)
+(amountField := MacTextField new)
   extent: 100@15.
 
-(resultLabel := General/MacTextLabel new)
+(resultLabel := MacTextLabel new)
   text: 'Result:';
   extent: 100@15.
 
-(resultField := General/MacTextField new)
+(resultField := MacTextField new)
   disable;
   extent: 100@15.
 
-(convertButton := General/MacPushButton new)
+(convertButton := MacPushButton new)
   text: 'Convert';
   beDefault;
   extent: 100@20;
@@ -39,13 +39,13 @@ exchangeRate := 1.33.
     ) asString].
 
 window
-  layout: General/LinearLayout new beVertical;
+  layout: LinearLayout new beVertical;
   addControl: amountLabel;
   addControl: amountField;
   addControl: resultLabel;
   addControl: resultField;
   addControl: convertButton layoutConstraints: (
-    General/LinearLayoutConstraints new
+    LinearLayoutConstraints new
       anchorRight;
       stretchHorizontally: false;
       yourself).
@@ -63,9 +63,9 @@ I found the IDE lacking in many areas. Most of all, where are the preferences? T
 
 Over all, the IDE seems like a good first beta. There appears to be a lot under the hood and they may just need to beef up the UI with some more features. I look forward to playing around with Smalltalk in the future and seeing how this tool grows.
 
--- General/RyanBates
+-- RyanBates
 
-*BTW, it is possible to change the font by copying and pasting rich text from General/TextEdit, however, it doesn't appear to keep the attributes when saving so it's not all that useful.*
+*BTW, it is possible to change the font by copying and pasting rich text from TextEdit, however, it doesn't appear to keep the attributes when saving so it's not all that useful.*
 
 ----
 

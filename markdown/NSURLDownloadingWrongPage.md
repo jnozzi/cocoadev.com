@@ -4,11 +4,11 @@ At first this seemed like a simple task, but for some reason what is downloaded 
 
 I have downloaded other xml data and other urls with queries contained in them with no problems. I have also checked to ensure that all the characters in my url string are eligible to make a url. Can someone please help? I am using OS X 10.1.5 and this is the code I am trying:
 
-NSURL *url = [NSURL General/URLWithString:@"http://xoap.weather.com/search/search?where=atlanta"];
+NSURL *url = [NSURL URLWithString:@"http://xoap.weather.com/search/search?where=atlanta"];
 
-General/NSString *response = General/[NSString stringWithContentsOfURL:url];
+NSString *response = [NSString stringWithContentsOfURL:url];
 
-General/NSLog( @"%@", response );
+NSLog( @"%@", response );
 
 [response writeToFile:@"Response.html" atomically:NO];
 
@@ -18,7 +18,7 @@ maybe it is just redirected to the the new URL...
 
 ----
 
-I'm not sure what the problem is, but all the URL downloading problems I had disappeared when I switched to General/CURLHandle (http://curlhandle.sourceforge.net ); it's pretty much a drop-in replacement for General/NSURLHandle and works about a kojillion times better.  With the Safari 1.0 release, NSURL now uses the same download code as Safari and works much better as well, but that doesn't help you back on 10.1.  --Bo
+I'm not sure what the problem is, but all the URL downloading problems I had disappeared when I switched to CURLHandle (http://curlhandle.sourceforge.net ); it's pretty much a drop-in replacement for NSURLHandle and works about a kojillion times better.  With the Safari 1.0 release, NSURL now uses the same download code as Safari and works much better as well, but that doesn't help you back on 10.1.  --Bo
 
 ----
 
@@ -31,7 +31,7 @@ i.e.: **search/search?where=atlanta**
 
 ----
 
-Hmm. Occasionally some brain-dead web servers will still stuff this up if they're hosted on the same box, but are not configured to use address-based virtual hosting (ie each host listens on all available addresses). I'm pretty sure General/NSURLRequest in General/WebKit adds a host header automatically for 'http://' General/URLs; I couldn't tell you whether NSURL does or not. Is there any way to add http headers? 
+Hmm. Occasionally some brain-dead web servers will still stuff this up if they're hosted on the same box, but are not configured to use address-based virtual hosting (ie each host listens on all available addresses). I'm pretty sure NSURLRequest in WebKit adds a host header automatically for 'http://' URLs; I couldn't tell you whether NSURL does or not. Is there any way to add http headers? 
 
 Actually, netcraft says they're running apache on linux (I take back the brain-dead bit :) ). It's still possible to configure Apache this way, just more difficult to do it by accident. --Sam
 ----

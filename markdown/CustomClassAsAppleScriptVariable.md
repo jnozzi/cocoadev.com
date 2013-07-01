@@ -1,29 +1,29 @@
 I'm trying to implement Applescript support in a Cocoa Document-based application, and I've run into an unexpected problem.  Here's the (general) layout:
 
-"General/MyApp" (an General/NSApplication) has a General/ToManyRelationships with the class "General/MyDocument".
+"MyApp" (an NSApplication) has a ToManyRelationships with the class "MyDocument".
 
-"General/MyDocument" (subclass of General/NSDocument) has an attribute named "my stuff", which is a holder for a 
+"MyDocument" (subclass of NSDocument) has an attribute named "my stuff", which is a holder for a 
 
-"General/MyObject" (subclass of General/NSObject).  "General/MyObject" has an attribute named "title" (an General/NSString).  
+"MyObject" (subclass of NSObject).  "MyObject" has an attribute named "title" (an NSString).  
 
-General/MyObject also happens to be a holder for other General/MyObjects.
+MyObject also happens to be a holder for other MyObjects.
 
 If I write an Applescript like this:
 
     
-tell application "General/MyApp"
+tell application "MyApp"
   set dc to the front document 
   set n to the title of my stuff of dc
   display dialog "the title is " & n
 end tell
 
 
-Things works just fine.  A dialog appears with the correct title of the correct "General/MyObject".
+Things works just fine.  A dialog appears with the correct title of the correct "MyObject".
 
 If, however, I write this
 
     
-tell application "General/MyApp"
+tell application "MyApp"
   set dc to the front document
   set mo to my stuff of dc
   set n to the title of mo
@@ -41,9 +41,9 @@ scripts when I have to write out the full hierarchy from the document level.
 ----
 Well - I've made some progress, but still not all the way.
 
-I implemented the **objectSpecifier** method for the "General/MyObject" class.
+I implemented the **objectSpecifier** method for the "MyObject" class.
 
-Now, I can save anything contained by the General/MyObject object gotten to by the "my stuff" attribute of 
+Now, I can save anything contained by the MyObject object gotten to by the "my stuff" attribute of 
 
 the document in a variable and things work a-ok.  The problem now comes when I try to store
 
@@ -51,7 +51,7 @@ objects underneath that first level.
 
 In other words, the following hierarchy:
 
-*General/MyObject (from "my stuff" attribute of General/MyDocument)
+*MyObject (from "my stuff" attribute of MyDocument)
 
 * ob1
 * ob2
@@ -63,28 +63,28 @@ In other words, the following hierarchy:
 *ob6
 
  
- the "General/MyObject" from the my stuff attribute, ob1, ob2, ob3, and ob6 can be stored in a variable,
+ the "MyObject" from the my stuff attribute, ob1, ob2, ob3, and ob6 can be stored in a variable,
 but ob4 and ob5 cannot.
 
 Here's my code for objectSpecifier.  If anybody's got a suggestion, or needs more information to 
 
-make a suggestion, I'd greatly apprecaite it.  FYI - "General/MyObject" has a method "parent" which returns 
+make a suggestion, I'd greatly apprecaite it.  FYI - "MyObject" has a method "parent" which returns 
 
-the "General/MyObject" (or General/MyDocument) containing it, and a method "childArray" which returns a mutable 
+the "MyObject" (or MyDocument) containing it, and a method "childArray" which returns a mutable 
 
 array containing its children.
 
     
-- (General/NSScriptObjectSpecifier *)objectSpecifier
+- (NSScriptObjectSpecifier *)objectSpecifier
 {
   id parent = [self parent];
-  General/NSScriptObjectSpecifier *containerRef = [parent objectSpecifier];
-  if ([parent isKindOfClass:General/[MyObject class]]) {
-    unsigned index = General/parent childArray] indexOfObjectIdenticalTo:self];
+  NSScriptObjectSpecifier *containerRef = [parent objectSpecifier];
+  if ([parent isKindOfClass:[MyObject class]]) {
+    unsigned index = parent childArray] indexOfObjectIdenticalTo:self];
     if (index != [[NSNotFound) {
-      return General/[[[NSIndexSpecifier allocWithZone:[self zone]] initWithContainerClassDescription:[containerRef keyClassDescription] containerSpecifier:containerRef key:@"childArray" index:index] autorelease];
+      return [[[NSIndexSpecifier allocWithZone:[self zone]] initWithContainerClassDescription:[containerRef keyClassDescription] containerSpecifier:containerRef key:@"childArray" index:index] autorelease];
     } else 
       return nil;
   } else  // "myStuff" attribute
-    return General/[[[NSPropertySpecifier allocWithZone:[self zone]] initWithContainerSpecifier:containerRef key:@"myStuff"] autorelease];
+    return [[[NSPropertySpecifier allocWithZone:[self zone]] initWithContainerSpecifier:containerRef key:@"myStuff"] autorelease];
 }

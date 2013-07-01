@@ -10,7 +10,7 @@ Seems the Carbon documentation also refers to the clipboard as the 'scrap'.
 
 ----
 
-General/NeXT people say pasteboard, Classic people say clipboard. The terms are interchangeable as far as developers are concerned (barring religious API wars.) I would use clipboard in the UI, since it's what most Mac users are familiar with.
+NeXT people say pasteboard, Classic people say clipboard. The terms are interchangeable as far as developers are concerned (barring religious API wars.) I would use clipboard in the UI, since it's what most Mac users are familiar with.
 
 ----
 

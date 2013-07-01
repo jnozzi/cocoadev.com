@@ -1,6 +1,6 @@
-**Improving the General/XCode IDE: More Than a Source Editor?**
+**Improving the XCode IDE: More Than a Source Editor?**
 
-(Inspired by General/XCodeTooMuchLikeATextEditor)
+(Inspired by XCodeTooMuchLikeATextEditor)
 
 Software, in the abstract, is like Cosmo Kramer's apartment re-design: it's got many levels. How much this is true in reality depends on how much reality you think exists in software and the process of software development. But I'll just assume that the description holds.
 
@@ -30,7 +30,7 @@ To say that design is not needed is to say that programs cannot be more or less 
 
 The design of our design tools and processes, then, being ideally software-based, ought to follow along with our current best methods for designing other software. It should be iterative, it should be fluid, and it should be descriptive as well as prescriptive. Ultimately, it should be integrated with the primary process of constructing useful software. What is necessary is to see that there is a secondary construction process � that of making useful software development tools. Like all software development, it is an ongoing process. (This puts software development tools in the Escherian state of being rather self-constructing, when the tools are used in their own development. In this way, they are vividly an extension of human beings themselves.)
 
-Consider Apple's General/XCode IDE. An IDE, for starters, is meant to integrate the tasks necessary in software construction: writing source code, specifying dependencies, and managing compiling and linking. It is a Swiss Army Knife of construction-centric software development. General/XCode extends its mandate as much as possible, allowing quick turnaround of code changes into development builds, speeding coding with code completion, integrated documentation and API browsing, support for source code versioning, and other treats. How can we extend this tool naturally to make design decisions more explicit (for inspection) and high level (for specification)?
+Consider Apple's XCode IDE. An IDE, for starters, is meant to integrate the tasks necessary in software construction: writing source code, specifying dependencies, and managing compiling and linking. It is a Swiss Army Knife of construction-centric software development. XCode extends its mandate as much as possible, allowing quick turnaround of code changes into development builds, speeding coding with code completion, integrated documentation and API browsing, support for source code versioning, and other treats. How can we extend this tool naturally to make design decisions more explicit (for inspection) and high level (for specification)?
 
 We can learn a lot by considering possibilities for inspecting the design. Imagine features that could answer the following questions (couched in Cocoa terminology):
 
@@ -82,4 +82,4 @@ The crux of the argument, here, is that the notion of a class is more fluid than
 
 By the nature of the tools we use, software development tends to put emphasis on the static representation of a program in source code. Many design tools attempt to get away from the specifics of source code, to look at higher level structures, but they usually still retain the focus on the static structure of the program pre-compilation. Even seemingly dynamic tools like sequence diagrams are tied to the structure of source code. They downplay other structures, specifically those that are created when the application is running � when it is actually working and doing what it was meant to. The next generation of development tools will have to shift the focus away from static structures towards dynamic behaviours. The way to start is to use the source code to find and reveal dynamic structure which is inherent, especially message passing patterns, which help predict the behaviour of an application at runtime.
 
-� General/BrentGulanowski
+� BrentGulanowski

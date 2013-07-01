@@ -12,7 +12,7 @@ Any pointers/help would be appreciated.
 
 ----
 
-Please read General/MailingListMode and learn General/HowToUseThisSite.
+Please read MailingListMode and learn HowToUseThisSite.
 
 
 ----
@@ -26,8 +26,8 @@ Thanks
 
 ----
 
-General/LIkely nobody bothered to correct you in the past. The better link to post in this case is General/HowToAskQuestions. What have you tried already? What resources have you found already? The page title suggests (since this is a wiki and not a mailing list) the page will contain useful information on Bluetooth Server Tutorials ... so it should try as hard as it can to be that resource. If you don't have much info, that's fine, but post what you've got and ask specific, pointed questions about what info you're looking for / missing. The page is useless as a pointer to information that could be found via Google.
+LIkely nobody bothered to correct you in the past. The better link to post in this case is HowToAskQuestions. What have you tried already? What resources have you found already? The page title suggests (since this is a wiki and not a mailing list) the page will contain useful information on Bluetooth Server Tutorials ... so it should try as hard as it can to be that resource. If you don't have much info, that's fine, but post what you've got and ask specific, pointed questions about what info you're looking for / missing. The page is useless as a pointer to information that could be found via Google.
 
 ----
 
-In all fairness, it's difficult to separate this out initially, but the above poster is right. You should at least post what you already know or already have tried and ask for clarification on the information you're missing, rather than create a page whose title indicates the page is a "signpost" for external information. This is analogous to creating a page for each Foundation or General/AppKit object, only to reference its documentation on ADC. If there's nothing more than a pointer to an external resource, it's no more useful than Google.
+In all fairness, it's difficult to separate this out initially, but the above poster is right. You should at least post what you already know or already have tried and ask for clarification on the information you're missing, rather than create a page whose title indicates the page is a "signpost" for external information. This is analogous to creating a page for each Foundation or AppKit object, only to reference its documentation on ADC. If there's nothing more than a pointer to an external resource, it's no more useful than Google.

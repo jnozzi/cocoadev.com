@@ -8,17 +8,17 @@ b) show a progress indicator to update the progress of the operation
 c) make sure that the GUI is still responsive and that the thread can be stopped/restarted
 
 **How I did it:**
-a) I used code from the Anguish/Buck/Yacktman book "Cocoa Programming" example 'General/ThreadExample'
+a) I used code from the Anguish/Buck/Yacktman book "Cocoa Programming" example 'ThreadExample'
 b) uses Distributed Objects to setup additional threads that allow for talking between the multi-thread and the 'main' thread
 
 **some code:**
 Controller class-
     
-@protocol General/ApplescriptController
+@protocol ApplescriptController
 // the server object will send the controller (parent) these messages
 - (void)setServer:(id)anObject tag:(int)serverTag;
 - (void)addData:(id)data tag:(int)tag;	// indicates that the process running in the serverobject is returning data
-- (void)sendError:(General/NSDictionary *)dict;
+- (void)sendError:(NSDictionary *)dict;
 - (void)processFinished:(int)tag;
 
 - (void)launchThread;
@@ -27,8 +27,8 @@ Controller class-
 - (void)startProcess;
 - (void)stopProcess;
 
-@interface iLHThreadediTunesController : General/NSObject <General/ApplescriptController>  {
-	id <General/ApplescriptMethods>setInterface;
+@interface iLHThreadediTunesController : NSObject <ApplescriptController>  {
+	id <ApplescriptMethods>setInterface;
 }
 @end
 
@@ -44,19 +44,19 @@ Controller class-
 	[iLHThreadedSetApplescriptInterface startServerThreadWithTag:0 forController:self];
 }
 - (void)setServer:(id)anObject tag:(int)serverTag {
-	[anObject setProtocolForProxy:@protocol(General/ApplescriptMethods)];
+	[anObject setProtocolForProxy:@protocol(ApplescriptMethods)];
 	[anObject retain];
-	if(serverTag==0) setInterface=(id <General/ApplescriptMethods>)anObject;
+	if(serverTag==0) setInterface=(id <ApplescriptMethods>)anObject;
 }
 - (void)addData:(id)data tag:(int)tag {
-	if(tag==0) {	// coming from interface, data= General/NSDictionary
+	if(tag==0) {	// coming from interface, data= NSDictionary
 		// just setting data for display here
 	}
 }
 
 server object class-
     
-@protocol General/ApplescriptMethods
+@protocol ApplescriptMethods
 // the applescript controller (parent) calls these to control the applescript object
 - (void)start;
 - (void)togglePause;
@@ -66,34 +66,34 @@ server object class-
 - (void)exit;
 @end
 
-@interface General/ApplescriptObject : General/NSObject <General/ApplescriptMethods> {
+@interface ApplescriptObject : NSObject <ApplescriptMethods> {
     int amountDone, tag;
     BOOL paused, running, suppressProgress;
-    id <General/ApplescriptController> parent;
+    id <ApplescriptController> parent;
 }
 // you call this to spawn a new thread
-+ (General/NSConnection *)startServerThreadWithTag:(int)tag forController:(id <General/ApplescriptController>)controller;
++ (NSConnection *)startServerThreadWithTag:(int)tag forController:(id <ApplescriptController>)controller;
 // these are for subclasses to override
-- (id)initForParent:(id <General/ApplescriptController>)theParent withTag:(int)theTag; // be sure to call super!
+- (id)initForParent:(id <ApplescriptController>)theParent withTag:(int)theTag; // be sure to call super!
 @end
 
-@interface General/ApplescriptObject(_private)
+@interface ApplescriptObject(_private)
 // main thread calls this to set up a new server; called by method above
 // this runs in the new thread.
-+ (void)_connectWithPorts:(General/NSArray *)portArray;
++ (void)_connectWithPorts:(NSArray *)portArray;
 @end
 
 
-@implementation General/ApplescriptObject
+@implementation ApplescriptObject
 // sets up a DO connection in the main thread and then kicks off a
 // new thread with a brand new server object in it.
-+ (General/NSConnection *)startServerThreadWithTag:(int)theTag forController:(id <General/ApplescriptController>)controller {
-    General/NSPort *port1 = General/[NSPort port];
-    General/NSPort *port2 = General/[NSPort port];
-    General/NSArray *portArray = General/[NSArray arrayWithObjects:port2, port1, General/[NSNumber numberWithInt:theTag], nil];
-    General/NSConnection *serverConnection = General/[[NSConnection alloc] initWithReceivePort:port1 sendPort:port2];
++ (NSConnection *)startServerThreadWithTag:(int)theTag forController:(id <ApplescriptController>)controller {
+    NSPort *port1 = [NSPort port];
+    NSPort *port2 = [NSPort port];
+    NSArray *portArray = [NSArray arrayWithObjects:port2, port1, [NSNumber numberWithInt:theTag], nil];
+    NSConnection *serverConnection = [[NSConnection alloc] initWithReceivePort:port1 sendPort:port2];
     [serverConnection setRootObject:controller];
-    General/[NSThread detachNewThreadSelector:@selector(_connectWithPorts:) toTarget:self withObject:portArray];
+    [NSThread detachNewThreadSelector:@selector(_connectWithPorts:) toTarget:self withObject:portArray];
     return serverConnection;
 }
 
@@ -102,12 +102,12 @@ server object class-
 // will call us with requests to process data which the run
 // loop will pick up.  If there's nothing to do, the run
 // loop will block and no CPU time will be wasted.
-+ (void)_connectWithPorts:(General/NSArray *)portArray {
-    General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
-    General/NSConnection *serverConnection = General/[NSConnection connectionWithReceivePort:[portArray objectAtIndex:0] sendPort:[portArray objectAtIndex:1]];
-    int theTag = General/portArray objectAtIndex:2] intValue];
++ (void)_connectWithPorts:(NSArray *)portArray {
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSConnection *serverConnection = [NSConnection connectionWithReceivePort:[portArray objectAtIndex:0] sendPort:[portArray objectAtIndex:1]];
+    int theTag = portArray objectAtIndex:2] intValue];
     id rootProxy = (id)[serverConnection rootProxy];
-    [[ApplescriptObject *serverObject = General/self alloc] initForParent:rootProxy withTag:theTag];
+    [[ApplescriptObject *serverObject = self alloc] initForParent:rootProxy withTag:theTag];
     [rootProxy setServer:serverObject tag:theTag];
     [serverObject release];
     
@@ -118,7 +118,7 @@ server object class-
 - (id)init {
     return [self initForParent:nil withTag:0];
 }
-- (id)initForParent:(id <General/ApplescriptController>)theParent withTag:(int)theTag {
+- (id)initForParent:(id <ApplescriptController>)theParent withTag:(int)theTag {
     self = [super init];
     if (self) {
 		tag = theTag;
@@ -161,7 +161,7 @@ server object class-
 
 server object subclass
     
-@interface iLHThreadedSetApplescriptInterface : General/ApplescriptObject {
+@interface iLHThreadedSetApplescriptInterface : ApplescriptObject {
 }
 @end
 
@@ -183,26 +183,26 @@ server object subclass
 	[parent startProcess];
 	// create digital booklet and send to iTunes
 	// 1) create an images array from the data array
-	General/NSMutableArray *imagesArray=General/[NSMutableArray arrayWithCapacity:0];
+	NSMutableArray *imagesArray=[NSMutableArray arrayWithCapacity:0];
 	int z;
 	for(z=0;z<[data count];z++) {
-		General/NSData *nextObject=[data objectAtIndex:z];
-		General/NSImage *nextImage=General/[[[NSImage alloc] initWithData:nextObject] autorelease];
+		NSData *nextObject=[data objectAtIndex:z];
+		NSImage *nextImage=[[[NSImage alloc] initWithData:nextObject] autorelease];
 		if(nextImage!=nil) {
 			[imagesArray addObject:nextImage];
 		}
 	}
 	
 	// 2) save pdf to file
-	General/NSString *pathToFile=General/[NSString stringWithFormat:@"%@/booklet.pdf",pathToFolder,nil];
-	iLHBookletImageView *bookletPDF=General/iLHBookletImageView alloc] 
+	NSString *pathToFile=[NSString stringWithFormat:@"%@/booklet.pdf",pathToFolder,nil];
+	iLHBookletImageView *bookletPDF=iLHBookletImageView alloc] 
 										initWithFrame:[[NSMakeRect(0.0f,0.0f,800,600)
 										images:imagesArray];
 	
 	// print as a pdf- save to file
-	General/NSDictionary *printInfoDict=General/[[NSDictionary alloc] initWithObjectsAndKeys:[pathToFile stringByExpandingTildeInPath],General/NSPrintSavePath,nil];
-	General/NSPrintInfo *printInfo=General/[[NSPrintInfo alloc] initWithDictionary:printInfoDict];
-	[printInfo setJobDisposition:General/NSPrintSaveJob];
+	NSDictionary *printInfoDict=[[NSDictionary alloc] initWithObjectsAndKeys:[pathToFile stringByExpandingTildeInPath],NSPrintSavePath,nil];
+	NSPrintInfo *printInfo=[[NSPrintInfo alloc] initWithDictionary:printInfoDict];
+	[printInfo setJobDisposition:NSPrintSaveJob];
 	[printInfo setTopMargin:0.0f];
 	[printInfo setBottomMargin:0.0f];
 	[printInfo setLeftMargin:0.0f];
@@ -211,7 +211,7 @@ server object subclass
 	[printInfo setPaperSize:[bookletPDF getPageSizeFromImages]];
 	[printInfo setVerticallyCentered:YES];
 	[printInfo setHorizontallyCentered:YES];
-	id op=General/[NSPrintOperation printOperationWithView:bookletPDF printInfo:printInfo];
+	id op=[NSPrintOperation printOperationWithView:bookletPDF printInfo:printInfo];
 	[op setShowPanels:NO];
 	[op runOperation];
 	
@@ -241,19 +241,19 @@ You are going to have to tell us more.  I just downloaded and built the example 
 Just update the progress bar in a method that you execute via -performSelectorOnMainThread:withObject:waitUntilDone: called from the worker thread.  The worker thread can check the value of a shared variable periodically to see if the work should be canceled or not.
 ----
 
-I just spotted the problem.  The General/AppKit is not thread safe, and you are using the General/AppKit from the main thread and the worker thread.  You can't use General/NSImage or General/NSPrintInfo or iLHBookletImageView (assuming is is a subclass of General/NSView) in your worker thread!
+I just spotted the problem.  The AppKit is not thread safe, and you are using the AppKit from the main thread and the worker thread.  You can't use NSImage or NSPrintInfo or iLHBookletImageView (assuming is is a subclass of NSView) in your worker thread!
 ----
 
-Why are you doing this is a sepearte THREAD ?  Why not use an entirely seperate server application if you are going to use DO and/or General/AppleScript anyway ?
+Why are you doing this is a sepearte THREAD ?  Why not use an entirely seperate server application if you are going to use DO and/or AppleScript anyway ?
 A server application will have its own connection to Quartz and its own protected memory etc.  
 
 *Multi-threaded programming is an insidious nightmare and should be avoided whenever possible.*
 
-See also General/SignalSafety, General/NotificationsAcrossThreads, General/UpdatingUIWhileBusyWithoutThreads, General/ThreadSafety, General/UpdatingDisplayDuringTimeConsumingTasks, General/NSTaskTermination, General/NSProgressIndicatorInMultithreadedDrawing, General/ProducersAndConsumerModel, 
+See also SignalSafety, NotificationsAcrossThreads, UpdatingUIWhileBusyWithoutThreads, ThreadSafety, UpdatingDisplayDuringTimeConsumingTasks, NSTaskTermination, NSProgressIndicatorInMultithreadedDrawing, ProducersAndConsumerModel, 
 ----
 
-I recommend the General/TrivialThreads sample from developer.apple.com as a better (more current) sample from to base your project.
-General/BroadcasterDaemon is another relevant Apple sample.
+I recommend the TrivialThreads sample from developer.apple.com as a better (more current) sample from to base your project.
+BroadcasterDaemon is another relevant Apple sample.
 
 ----
 
@@ -264,7 +264,7 @@ Thanks for the response eveyone!  As always, this site provides quick and useful
 ----
 I wouldn't go so far as to say MT is a nightmare and should be avoided. However, I would not recommend Cocoa MT for beginners. It is the most complicated threading API to use that I have seen. Yes, I admit that methods such as performSelectorOnMainThread make it very easy to create an run threads. Communication between threads is very difficult in Cocoa. It is difficult because it isn't well understood - Proxies, Connection Kits, run loops, more proxies, arg!. I don't understand it that well and I am not going to release MT code that I don't understand. 
 
-I suggest looking at some older and simpler MT General/APIs like pthreads. You can set up a simple producer-consumer model with a mutex and a container. It will run fast, be simple to code, and fairly foolproof. 
+I suggest looking at some older and simpler MT APIs like pthreads. You can set up a simple producer-consumer model with a mutex and a container. It will run fast, be simple to code, and fairly foolproof. 
 
 ----
-Just to make it clear, you can set up a simple General/ProducersAndConsumerModel with an General/NSConditionLock and an General/NSArray — no need to delve into pthreads unless you want to. Also, the General/WorkerThread page is an attempt to provide a simple model for multithreading, again 100% Cocoa-based.
+Just to make it clear, you can set up a simple ProducersAndConsumerModel with an NSConditionLock and an NSArray — no need to delve into pthreads unless you want to. Also, the WorkerThread page is an attempt to provide a simple model for multithreading, again 100% Cocoa-based.

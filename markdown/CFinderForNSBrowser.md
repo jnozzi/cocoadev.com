@@ -1,8 +1,8 @@
 
 
-Here's a simple finder for an General/NSBrowser view using basic C function calls. You can find many of the icons in the systems folder by searching for ".icns" file extensions. Check out General/NSBrowserIcons for info on how to create images that are more suited for being displayed in an General/NSBrowser view --zootbobbalu
+Here's a simple finder for an NSBrowser view using basic C function calls. You can find many of the icons in the systems folder by searching for ".icns" file extensions. Check out NSBrowserIcons for info on how to create images that are more suited for being displayed in an NSBrowser view --zootbobbalu
 
-I still have to add the hooks for general file extensions, but this General/NSBrowser delegate works pretty good as is. 
+I still have to add the hooks for general file extensions, but this NSBrowser delegate works pretty good as is. 
 
 The number of levels this delegate will buffer is currently set at 256 (MAX_BROWSER_COLUMNS) 
 
@@ -12,18 +12,18 @@ The number of levels this delegate will buffer is currently set at 256 (MAX_BROW
 #define MAX_BROWSER_COLUMNS 256
 #define MAX_DIRENT_NAMLEN 256
 
-@interface CF<nowiki/>inder : General/NSObject
+@interface CF<nowiki/>inder : NSObject
 {
     struct dirent *directoryEntryBuffers[MAX_BROWSER_COLUMNS];
     int entryCounts[MAX_BROWSER_COLUMNS];
     int bufferCapacities[MAX_BROWSER_COLUMNS];
-    General/NSMutableDictionary *fileIcons;
-    General/NSMutableDictionary *folderIcons;
-    General/NSImage *genericDocumentIcon, *genericFolderIcon, *applicationIcon, *homeFolderIcon,
+    NSMutableDictionary *fileIcons;
+    NSMutableDictionary *folderIcons;
+    NSImage *genericDocumentIcon, *genericFolderIcon, *applicationIcon, *homeFolderIcon,
             *privateFolderIcon, *usersFolderIcon, *quickTimeIcon, *developersIcon;
-    General/NSArray *imageTypes, *movieTypes, *bundles;
+    NSArray *imageTypes, *movieTypes, *bundles;
     char *cStringBuffer, *cStringBuffer2;
-    General/NSMutableDictionary *chalkboard;
+    NSMutableDictionary *chalkboard;
     char homeDir[256];
 
 }
@@ -41,12 +41,12 @@ The number of levels this delegate will buffer is currently set at 256 (MAX_BROW
 #import <sys/time.h>
 
 
-static General/NSString *General/ExtensionFromName(struct dirent *entry) {
+static NSString *ExtensionFromName(struct dirent *entry) {
     int i = entry->d_namlen;
     for (; i; --i) {
         if (entry->d_name[i] == '/') return @"";
         if ((entry->d_name[i] == '.') && ((i + 1) < entry->d_namlen)) {
-            return General/[NSString stringWithCString:&entry->d_name[i + 1]];
+            return [NSString stringWithCString:&entry->d_name[i + 1]];
         }
     }
     return @"";
@@ -54,7 +54,7 @@ static General/NSString *General/ExtensionFromName(struct dirent *entry) {
 
 @interface CF<nowiki/>inder (Private)
 - (void)setup;
-- (void)browser:(General/NSBrowser *)sender willDisplayRootLevelCell:(id)cell 
+- (void)browser:(NSBrowser *)sender willDisplayRootLevelCell:(id)cell 
           atRow:(int)row column:(int)column;
 @end
 
@@ -70,35 +70,35 @@ static General/NSString *General/ExtensionFromName(struct dirent *entry) {
 
 - (void)setup {
 
-    chalkboard = General/[[NSMutableDictionary dictionary] retain];
-    bundles = General/[NSArray arrayWithObjects:@"app", nil];
+    chalkboard = [[NSMutableDictionary dictionary] retain];
+    bundles = [NSArray arrayWithObjects:@"app", nil];
     [chalkboard setObject:bundles forKey:@"bundles"];
 
-    fileIcons = General/[NSMutableDictionary dictionary];
+    fileIcons = [NSMutableDictionary dictionary];
     [chalkboard setObject:fileIcons forKey:@"fileIcons"];
-    folderIcons = General/[NSMutableDictionary dictionary];
+    folderIcons = [NSMutableDictionary dictionary];
     [chalkboard setObject:folderIcons forKey:@"folderIcons"];
-    imageTypes = General/[NSImage imageFileTypes];
+    imageTypes = [NSImage imageFileTypes];
     [chalkboard setObject:imageTypes forKey:@"imageTypes"];
-    movieTypes = General/[NSMovie movieUnfilteredFileTypes];
+    movieTypes = [NSMovie movieUnfilteredFileTypes];
     [chalkboard setObject:movieTypes forKey:@"movieTypes"];
-    General/NSImage **images[8] = {&genericDocumentIcon, &genericFolderIcon, 
+    NSImage **images[8] = {&genericDocumentIcon, &genericFolderIcon, 
                             &applicationIcon, &homeFolderIcon, 
                             &privateFolderIcon, &usersFolderIcon,
                             &quickTimeIcon, &developersIcon};
-    General/NSString *names[8] = {@"General/GenericDocumentIcon", @"General/GenericFolderIcon", 
-                        @"General/ApplicationsFolderIcon", @"General/HomeFolderIcon", 
-                        @"General/PrivateFolderIcon", @"General/UsersFolderIcon", 
-                        @"QT", @"General/DeveloperFolderIcon"};
+    NSString *names[8] = {@"GenericDocumentIcon", @"GenericFolderIcon", 
+                        @"ApplicationsFolderIcon", @"HomeFolderIcon", 
+                        @"PrivateFolderIcon", @"UsersFolderIcon", 
+                        @"QT", @"DeveloperFolderIcon"};
     int i;
     for (i = 0; i < 8; i++) {
-        *images[i] = General/[NSImage imageNamed:names[i]];
+        *images[i] = [NSImage imageNamed:names[i]];
         if (*images[i]) [chalkboard setObject:*images[i] forKey:names[i]];
     }
     if (applicationIcon) [folderIcons setObject:applicationIcon forKey:@"app"];
     cStringBuffer = malloc(MAX_BROWSER_COLUMNS * MAX_DIRENT_NAMLEN); 
     cStringBuffer2 = malloc(MAX_BROWSER_COLUMNS * MAX_DIRENT_NAMLEN);
-    General/@"~" stringByExpandingTildeInPath] getCString:homeDir];
+    @"~" stringByExpandingTildeInPath] getCString:homeDir];
     
 }
 
@@ -116,7 +116,7 @@ static General/NSString *General/ExtensionFromName(struct dirent *entry) {
 {
     if (column >= MAX_BROWSER_COLUMNS) return 0;
     struct stat fileStat;
-    General/NSString *path = [sender path];
+    NSString *path = [sender path];
     struct dirent *direntBuf = (struct dirent *)directoryEntryBuffers[column];
     if (column == 0) cStringBuffer[0] = '/', cStringBuffer[1] = nil;
     else [path getCString:cStringBuffer];
@@ -143,13 +143,13 @@ static General/NSString *General/ExtensionFromName(struct dirent *entry) {
 
 }
 
-- (void)browser:(General/NSBrowser *)sender willDisplayRootLevelCell:(id)cell 
+- (void)browser:(NSBrowser *)sender willDisplayRootLevelCell:(id)cell 
           atRow:(int)row column:(int)column 
 {
-    General/NSImage *icon = nil;
+    NSImage *icon = nil;
     if (row < entryCounts[column]) {
         struct dirent *direntBuf = (struct dirent *)directoryEntryBuffers[column];
-        [cell setTitle:General/[NSString stringWithCString:direntBuf[row].d_name]];
+        [cell setTitle:[NSString stringWithCString:direntBuf[row].d_name]];
         if (direntBuf[row].d_type == 4) {
             [cell setLeaf:NO];
             if (!strcmp(direntBuf[row].d_name, "Applications")) icon = applicationIcon;
@@ -158,7 +158,7 @@ static General/NSString *General/ExtensionFromName(struct dirent *entry) {
             if (!icon) icon = genericFolderIcon; [cell setImage:icon];
         }
         else {
-            icon = [fileIcons objectForKey:General/ExtensionFromName(&direntBuf[row])];
+            icon = [fileIcons objectForKey:ExtensionFromName(&direntBuf[row])];
             if (!icon) icon = genericDocumentIcon;
             [cell setImage:icon]; [cell setLeaf:YES];
         }
@@ -167,14 +167,14 @@ static General/NSString *General/ExtensionFromName(struct dirent *entry) {
 
 }
 
-- (void)browser:(General/NSBrowser *)sender willDisplayCell:(id)cell atRow:(int)row column:(int)column {
+- (void)browser:(NSBrowser *)sender willDisplayCell:(id)cell atRow:(int)row column:(int)column {
 
-    General/NSString *path = [sender path];
+    NSString *path = [sender path];
     [path getCString:cStringBuffer]; [cell setLeaf:YES];
     struct dirent *direntBuf = (struct dirent *)directoryEntryBuffers[column];
     if (row < entryCounts[column]) {
-        [cell setTitle:General/[NSString stringWithCString:direntBuf[row].d_name]];
-        General/NSString *key = General/ExtensionFromName(&direntBuf[row]);
+        [cell setTitle:[NSString stringWithCString:direntBuf[row].d_name]];
+        NSString *key = ExtensionFromName(&direntBuf[row]);
         switch (column) {
             case 0 : {
                 [self browser:sender willDisplayRootLevelCell:cell atRow:row column:column];
@@ -188,13 +188,13 @@ static General/NSString *General/ExtensionFromName(struct dirent *entry) {
             }
             default : {
                 if (direntBuf[row].d_type == 4) {
-                    General/NSImage *icon = [folderIcons objectForKey:key];
+                    NSImage *icon = [folderIcons objectForKey:key];
                     if (!icon) icon = genericFolderIcon; [cell setImage:icon];
                     if (![bundles containsObject:key]) [cell setLeaf:NO];
-                    else [cell setTitle:General/cell title] stringByDeletingPathExtension;
+                    else [cell setTitle:cell title] stringByDeletingPathExtension;
                 }
                 else {
-                    General/NSImage *icon = [fileIcons objectForKey:key];
+                    NSImage *icon = [fileIcons objectForKey:key];
                     if (!icon) icon = genericDocumentIcon; [cell setImage:icon];
                 }
             }

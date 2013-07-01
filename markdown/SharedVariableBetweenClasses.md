@@ -1,6 +1,6 @@
 I need some help on how to share/communicate variable between classes.
 Let's say i have 2 classes, Controller1 and Controller2.  
-In Controller1, I have methods getUserID, setUserID and a variable General/NSString* _userid in my header file.
+In Controller1, I have methods getUserID, setUserID and a variable NSString* _userid in my header file.
 
 When i tried to access the _userid in Controller2 by calling 
 
@@ -35,14 +35,14 @@ The question now is how do I get the _userid from Controller2 class?
 ----
 
 Where are you calling     setUserID for     Controller1?
-Try putting an     General/NSLog(@"Setting General/UserID"); there or running the debugger to see if it's actually getting called.
+Try putting an     NSLog(@"Setting UserID"); there or running the debugger to see if it's actually getting called.
 
 ----
 In response to the question, I also think there is a misunderstanding here!! Can you make your question clearer?
 
 �Exactly what do you do in your Controller1 class?
 
-�Is     _userid an instance variable or a global variable? What do you mean by *variable General/NSString* _userid in my header file*?
+�Is     _userid an instance variable or a global variable? What do you mean by *variable NSString* _userid in my header file*?
 
 �When do you call     setUserID: (or is it     setUserID( ) ???) ? I don't see any call to setUserID in your snippet
 
@@ -58,15 +58,15 @@ Maybe you are looking for something like this? It is a contrived example that is
 //Controller1.h
 #import <Foundation/Foundation.h>
 
-@interface Controller1 : General/NSObject
+@interface Controller1 : NSObject
 {
-    General/NSString * user_id;
+    NSString * user_id;
 }
 
 +(Controller1 *)sharedController;
 
--(void)setUserID: (General/NSString *)aUserID;
--(General/NSString *)getUserID;
+-(void)setUserID: (NSString *)aUserID;
+-(NSString *)getUserID;
 
 @end
 
@@ -80,7 +80,7 @@ static id _sharedController = nil;
 +(Controller1 *)sharedController;
 {
     if (_sharedController == nil) {
-        _sharedController = General/Controller1 alloc] init];
+        _sharedController = Controller1 alloc] init];
     }
     return _sharedController;
 }
@@ -98,7 +98,7 @@ static id _sharedController = nil;
     user_id = [aUserID retain];
 }
 
--(General/NSString *)getUserID;
+-(NSString *)getUserID;
 {
     return user_id;
 }
@@ -122,23 +122,23 @@ static id _sharedController = nil;
 -(id)init;
 {
     Controller1 *l = [Controller1 sharedController];
-    Controller1 *k = General/Controller1 alloc] init];
+    Controller1 *k = Controller1 alloc] init];
     self = [super init];
     [[NSLog(@"sharedController's user id is %@", [l getUserID]);
     [l setUserID: @"baz"];
-    General/NSLog(@"sharedController's user id is now %@", [l getUserID]);
-    General/NSLog(@"----------------------------------");
-    General/NSLog(@"controller2's user id is %@", [self getUserID]);
+    NSLog(@"sharedController's user id is now %@", [l getUserID]);
+    NSLog(@"----------------------------------");
+    NSLog(@"controller2's user id is %@", [self getUserID]);
     [self setUserID: @"foo"];
-    General/NSLog(@"controller2's user id is now %@", [self getUserID]);
-    General/NSLog(@"----------------------------------");
-    General/NSLog(@"sharedController's user id is still %@", [l getUserID]);
-    General/NSLog(@"----------------------------------");
-    General/NSLog(@"a brand new controller1's user id is %@", [k getUserID]);
+    NSLog(@"controller2's user id is now %@", [self getUserID]);
+    NSLog(@"----------------------------------");
+    NSLog(@"sharedController's user id is still %@", [l getUserID]);
+    NSLog(@"----------------------------------");
+    NSLog(@"a brand new controller1's user id is %@", [k getUserID]);
     [k setUserID: @"blarg"];
-    General/NSLog(@"a brand new controller1's user id is now %@", [k getUserID]);
-    General/NSLog(@"----------------------------------");
-    General/NSLog(@"the sharedController's user id is still %@", [l getUserID]);
+    NSLog(@"a brand new controller1's user id is now %@", [k getUserID]);
+    NSLog(@"----------------------------------");
+    NSLog(@"the sharedController's user id is still %@", [l getUserID]);
     return self;
 }
 

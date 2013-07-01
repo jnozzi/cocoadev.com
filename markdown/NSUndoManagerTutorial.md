@@ -1,14 +1,14 @@
 
 � Copyright 2001 Raphael Sebbe
 
-As I recently went through implementing undo/redo support in some projects of mine, I decided I would share this experience with the Cocoa community. I will first cover the basics of General/NSUndoManager, next the higher level considerations of how it is integrated into the application design and finally some practical considerations of implementing undo. I have learned most of this by looking at Apple's Sketch.app, available on every General/MacOS X development installation, and actually making the implementation of it into applications.
+As I recently went through implementing undo/redo support in some projects of mine, I decided I would share this experience with the Cocoa community. I will first cover the basics of NSUndoManager, next the higher level considerations of how it is integrated into the application design and finally some practical considerations of implementing undo. I have learned most of this by looking at Apple's Sketch.app, available on every MacOS X development installation, and actually making the implementation of it into applications.
 
 ----
 **Basics**
 
 Cocoa frameworks offer a really elegant yet powerful way of handling undos and redos in applications. The main idea behind it is that each time you perform an operation, you provide the application the operation that will revert it. Those undo operations are put into a stack and retrieved when the user hits the undo button.
 
-General/NSUndoManager class is used to build the undo stack, using either of the following methods, 
+NSUndoManager class is used to build the undo stack, using either of the following methods, 
 
     
 [undoManager registerUndoWithTarget:target selector:@selector(myMethodWithArg:) object:argument];
@@ -17,7 +17,7 @@ General/NSUndoManager class is used to build the undo stack, using either of the
 for methods with one (Objective-C object) argument, or the more general, invocation based method,
 
     
-General/undoManager prepareWithInvocationTarget:target] myMethodWithArg1:arg1 andArg2:arg2];
+undoManager prepareWithInvocationTarget:target] myMethodWithArg1:arg1 andArg2:arg2];
 
 
 A simple example of method implementing undo could be :
@@ -25,7 +25,7 @@ A simple example of method implementing undo could be :
     
 - (void)setSize:([[NSSize)aSize
 {
-  General/undoManager prepareWithInvocationTarget:self] setSize:size];
+  undoManager prepareWithInvocationTarget:self] setSize:size];
   size = aSize;
 }
 
@@ -56,9 +56,9 @@ Let's take an example to make that clear. In a drawing software, you can create 
 That is really beautifully done in Cocoa. Let's use an example to show how it works.
 
     
-- (void)setColor:(General/NSColor*)color
+- (void)setColor:(NSColor*)color
 {
-  General/[self undoManager] prepareWithInvocationTarget:self] setColor:_color];
+  [self undoManager] prepareWithInvocationTarget:self] setColor:_color];
   
   [_color release];
   _color = [color copy];
@@ -72,19 +72,19 @@ When -setColor: is invoked with "red", it pushes a -setColor: invocation into th
 
 Application design can be done in various ways. One path often followed by Cocoa developers is the Model-View-Controller paradigm. It makes the distinction between the models, the objects that implement the core data and operations on it, the views, which is the graphical user interface, and the controllers which make the connection between the other two. One question you may ask, and I asked this myself when first toying with undo stuff, is where does the undo considerations fit into the MVC paradigm.
 
-It turns out that most of the undo implementation work should be done at the model level. Models often have a set of primitive operations on which other model and controller operations are based. This means that supporting undo for those will make it available whatever the context in which they are used. Reusing the example of the drawing program, if the model method -[Shape setColor] is undoable, then every action in the application that come back to call this one will be undoable. This means the color well in the inspector, the copy/paste color menu item or the General/AppleScript command doing exactly that... All those will be undoable without even writing a single line of code specifically for them.
+It turns out that most of the undo implementation work should be done at the model level. Models often have a set of primitive operations on which other model and controller operations are based. This means that supporting undo for those will make it available whatever the context in which they are used. Reusing the example of the drawing program, if the model method -[Shape setColor] is undoable, then every action in the application that come back to call this one will be undoable. This means the color well in the inspector, the copy/paste color menu item or the AppleScript command doing exactly that... All those will be undoable without even writing a single line of code specifically for them.
 
-Implementing undo at the model level does also mean that you need a mecanism to let the controllers know that the model has been updated, so that the GUI is correctly updated. As you obviously don't want the model to know its controller, General/NSNotification can be used for this.
+Implementing undo at the model level does also mean that you need a mecanism to let the controllers know that the model has been updated, so that the GUI is correctly updated. As you obviously don't want the model to know its controller, NSNotification can be used for this.
 
 Controllers also have something to say when it comes to undo. A single user action can translate into many model primitive operations which don't know by themselves what it is for. Controllers know because they implement that action (in Cocoa's sense), and they can provide the name that will appear in the undo menu. This could be done like this :
 
     
-- (General/IBAction)changeParameter:(id)sender
+- (IBAction)changeParameter:(id)sender
 {
   [model1 setFoo:bar]; 
   [model2 setBar:foo];
 
-  General/self undoManager] setActionName:@"Change Parameter"];
+  self undoManager] setActionName:@"Change Parameter"];
 }
 
 
@@ -136,7 +136,7 @@ First, you need that flag, as an instance variable. Lets call it "manipulating";
 
 - (void)stopManipulating
 {
-  General/NSSize newSize;
+  NSSize newSize;
 
   newSize = size;
   [self setSize:oldSize]
@@ -144,9 +144,9 @@ First, you need that flag, as an instance variable. Lets call it "manipulating";
   [self setSize:newSize]; // this one is recorded in the undo stack
 }
 
-- (void)setSize:(General/NSSize)aSize
+- (void)setSize:(NSSize)aSize
 {
-  if(!manipulating) General/[self undoManager] prepareWithInvocationTarget:self] setSize:size];
+  if(!manipulating) [self undoManager] prepareWithInvocationTarget:self] setSize:size];
   size = aSize;
   [self notifyChange]; // tell controllers...
 }
@@ -159,7 +159,7 @@ Just remember that the methods pushed in the undo stack are invoked in reverse o
     
 - (void)setSize:([[NSSize)aSize
 {
-  General/[self undoManager] prepareWithInvocationTarget:self] notifyChange];
+  [self undoManager] prepareWithInvocationTarget:self] notifyChange];
   [[[self undoManager] prepareWithInvocationTarget:self] setSize:size];
   size = aSize;
 }
@@ -174,8 +174,8 @@ I hope this article will be of interest when you'll need to implement undo in yo
 
 ----
 
-A good article! One thing though - you state: "But [[NSUndoManager won't retain those for you". It appears it will, in fact. With invocation-based Undo, it depends on whether the invocations are set to retain their arguments. The documentation for General/NSUndoManager isn't explicit about this point, but my experience is that objects you pass to it are retained by the undo manager. The same is true of the simpler target + object undo approach. This means that there's no need to set up a pool for handling deleted objects - the undo manager itself retains those objects so they are never really deleted - they are stored in the undo stack. Maybe this is a change to the undo manager's behaviour that came in with a certain system version (???) but if you think about it, it makes sense for the undo manager to retain any objects it is passed. Then no matter what the rest of the app does with them, they are always available for undo - only when the undo task itself is thrown away is the object finally released.  --General/GrahamCox.
+A good article! One thing though - you state: "But [[NSUndoManager won't retain those for you". It appears it will, in fact. With invocation-based Undo, it depends on whether the invocations are set to retain their arguments. The documentation for NSUndoManager isn't explicit about this point, but my experience is that objects you pass to it are retained by the undo manager. The same is true of the simpler target + object undo approach. This means that there's no need to set up a pool for handling deleted objects - the undo manager itself retains those objects so they are never really deleted - they are stored in the undo stack. Maybe this is a change to the undo manager's behaviour that came in with a certain system version (???) but if you think about it, it makes sense for the undo manager to retain any objects it is passed. Then no matter what the rest of the app does with them, they are always available for undo - only when the undo task itself is thrown away is the object finally released.  --GrahamCox.
 
 ----
 
-You're right. I believe this changed a couple years back (I remember somehow this problem was real at the time). --General/RaphaelSebbe
+You're right. I believe this changed a couple years back (I remember somehow this problem was real at the time). --RaphaelSebbe

@@ -1,8 +1,8 @@
 In my application I'm using:
     
-- (General/NSArray *)toolbarSelectableItemIdentifiers:(General/NSToolbar *)toolbar
+- (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
 {
-     return General/[NSArray arrayWithObjects:@"General",@"Misc",@"Updates",@"Registration",General/NSToolbarFlexibleSpaceItemIdentifier,nil];
+     return [NSArray arrayWithObjects:@"General",@"Misc",@"Updates",@"Registration",NSToolbarFlexibleSpaceItemIdentifier,nil];
 }
 
 
@@ -21,9 +21,9 @@ if ([toolbar respondsToSelector:@selector(setSelectedItemIdentifier:)]) {
 I don't know how to avoid 10.2 seeing the method itself. Because of this, this class doesn't work in Jaguar. Is there a way to do something like:
     
 if ([toolbar respondsToSelector:@selector(setSelectedItemIdentifier:)]) {
-     - (General/NSArray *)toolbarSelectableItemIdentifiers:(General/NSToolbar *)toolbar
+     - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar
      {
-          return General/[NSArray arrayWithObjects:@"General",@"Misc",@"Updates",@"Registration",General/NSToolbarFlexibleSpaceItemIdentifier,nil];
+          return [NSArray arrayWithObjects:@"General",@"Misc",@"Updates",@"Registration",NSToolbarFlexibleSpaceItemIdentifier,nil];
      }
 }
 
@@ -33,7 +33,7 @@ In the class? Obviously that won't work, but something like it?
 Help!
 
 Thanks,
-General/GarrettMurray
+GarrettMurray
 
 ----
 
@@ -41,4 +41,4 @@ I might just be being dense, but how does this method's existence keep it from r
 
 ----
 
-Actually, you're quite right Bo, and it was me who was being dense. I just responds-checked any sets and it's running perfectly. Sorry about that. --General/GarrettMurray
+Actually, you're quite right Bo, and it was me who was being dense. I just responds-checked any sets and it's running perfectly. Sorry about that. --GarrettMurray

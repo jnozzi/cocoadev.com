@@ -1,10 +1,10 @@
 
 
-After reading the General/ClassClusters tutorial (great reading, thanks!), I still have a design question.
+After reading the ClassClusters tutorial (great reading, thanks!), I still have a design question.
 
 For clarity, I will call *public superclass* the public abstract superclass from which all the private subclasses are derived, and I will call *placeholder class* the class that is used in the     +(id)alloc method. This placeholder class is needed to create a temporary light object, and when the     -(id)init method is called, the final object is allocated as one of the *private concrete subclass*.
 
-In the General/ClassClusters tutorial, the *public superclass* does not have any instance variables, and the *placeholder class* is a subclass of the *public superclass*. When alloc-ed, the *public superclass* actually alloc an instance of *placeholder class*. The *placeholder class* does not have additional instance variables, so it is very very similar to the *public superclass*.
+In the ClassClusters tutorial, the *public superclass* does not have any instance variables, and the *placeholder class* is a subclass of the *public superclass*. When alloc-ed, the *public superclass* actually alloc an instance of *placeholder class*. The *placeholder class* does not have additional instance variables, so it is very very similar to the *public superclass*.
 
 Thus I have two questions:
 
@@ -19,11 +19,11 @@ Thus I have two questions:
 
 
 
-What do you think? --General/CharlesParnot
+What do you think? --CharlesParnot
 
 ----
 
-That is an interesting question.  I think that the main reason why the placeholder is a subclass of the public class is so that the API methods can be overridden to give more useful information about how the selector is not recognized since the cluster is not being used correctly.  It is a good point, though, and I can't think of why this needs to be a subclass, off the top of my head.  Unless you want to have it respond in some special way, it does seem as though making the placeholder a subclass of General/NSObject would probably be sufficient.  Note that this isn't evident in the tutorial you mentioned since the public superclass did this for them.  This is not the general case since some of the public methods may be worth implementing in the superclass.
+That is an interesting question.  I think that the main reason why the placeholder is a subclass of the public class is so that the API methods can be overridden to give more useful information about how the selector is not recognized since the cluster is not being used correctly.  It is a good point, though, and I can't think of why this needs to be a subclass, off the top of my head.  Unless you want to have it respond in some special way, it does seem as though making the placeholder a subclass of NSObject would probably be sufficient.  Note that this isn't evident in the tutorial you mentioned since the public superclass did this for them.  This is not the general case since some of the public methods may be worth implementing in the superclass.
 
 However, there is no real problem with subclassing the public superclass since allocating the instance variables takes no time (a larger chunk of memory is malloc'ed - which may take more or less time depending on the implementation and if a new page has to be requested) so long as they are not initialized.  If there is common code, shared by the subclasses, which requires these instance variables, then there is no problem with declaring the instance variables in the public superclass.  If only some of the subclasses share this code, however, it should probably be some intermediate class which declares them and implements the code, not the superclass (this is one of the concerns with allowing third-party extensions of a cluster).
 
@@ -31,7 +31,7 @@ The only other thing worth mentioning is that having lots of classes is not a pr
 
 Is that input of any use?
 
---General/JeffDisher
+--JeffDisher
 
 ----
 
@@ -41,17 +41,17 @@ I actually thought one really wants to avoid allocating all the instance variabl
 
 BTW, I followed your link http://www.livejournal.com/community/ood/ and found that interesting sentence: *This is useful because the allocation class method returns an instance of a temporary class which knows how to do nothing except for receive these initialization methods which, in turn, cause it to return yet a different object (traditionally, another sub-class of the parent)*. I found the comment in the parenthesis interesting: I realized that the returned object does not even have to belong to a subclass! I don't know why you would not want that, but knowing it broadens one's way of thinking its program design...
 
---General/CharlesParnot
+--CharlesParnot
 
 ----
 
-I have, sucessfully, implemented a class-cluster without the intermediate class. The *public superclass* took care of selecting a concrete subclass, making my implementation more like the General/AbstractFactoryDesignPattern. 
+I have, sucessfully, implemented a class-cluster without the intermediate class. The *public superclass* took care of selecting a concrete subclass, making my implementation more like the AbstractFactoryDesignPattern. 
 
---General/TheoHultberg
+--TheoHultberg
 
 ----
 
-Thanks for the input, General/TheoHultberg... I am glad my question was relevant and that somebody actually did not use a placeholder class! Did you have any instance variable in your superclass, and what do you think of the allocation problem? --General/CharlesParnot
+Thanks for the input, TheoHultberg... I am glad my question was relevant and that somebody actually did not use a placeholder class! Did you have any instance variable in your superclass, and what do you think of the allocation problem? --CharlesParnot
 
 ----
 
@@ -59,7 +59,7 @@ The public superclass did have an instance variable, which wasn't alloc'ed (as i
 
 I'm not too worried about allocating a little larger chunk of memory by having instance variables declared in the public superclass, as long as it's just pointers it's nothing.
 
---General/TheoHultberg
+--TheoHultberg
 
 ----
 
@@ -69,10 +69,10 @@ Is it necessary to partition responsibility in this way for a class cluster? No,
 
 If I'm way off, please respond and set me straight. This is just my .02
 
--- General/EliotSimcoe
+-- EliotSimcoe
 
-The same logic applies to including instance variables in the public superclass. One would need to see an actual instance to say "don't put instance variables in the superclass", but I would tend that way unless there was a good reason. Again, .02 :) -- General/KritTer
+The same logic applies to including instance variables in the public superclass. One would need to see an actual instance to say "don't put instance variables in the superclass", but I would tend that way unless there was a good reason. Again, .02 :) -- KritTer
 
 ----
 
-It's definitely a good idea to separate responsibilities by having an intermediate placeholder class, just for good design. It's not much work, but it simplifies things. --General/TheoHultberg
+It's definitely a good idea to separate responsibilities by having an intermediate placeholder class, just for good design. It's not much work, but it simplifies things. --TheoHultberg

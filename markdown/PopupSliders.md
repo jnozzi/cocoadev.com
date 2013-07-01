@@ -1,37 +1,37 @@
 
 
 
-I'm looking for sample code to create a popup slider control, like the opacity controls used in recent versions of General/PhotoShop. Can anybody help?
+I'm looking for sample code to create a popup slider control, like the opacity controls used in recent versions of PhotoShop. Can anybody help?
 
 To clarify:
 
 I want to have an input box for numeric values, with a clickable triangle on its right, much like a combo box. When you click on the triangle, a slider appears below the input box, and you can drag the knob on the slider to adjust the value in the input box.
 
-I will eventually insert popup sliders into an General/NSTableView, but I have to figure out how to use General/NSTableViews with different types of controls for each column first. (checkboxes, popup buttons, color wells, General/NSTextFields, General/NSTextFields with popup sliders, etc.
+I will eventually insert popup sliders into an NSTableView, but I have to figure out how to use NSTableViews with different types of controls for each column first. (checkboxes, popup buttons, color wells, NSTextFields, NSTextFields with popup sliders, etc.
 
-Sample code for General/NSTableViews with different control types for each column would also be helpful.
+Sample code for NSTableViews with different control types for each column would also be helpful.
 
 
 Duncan C
 
 ----
-The only way I can think of to do this well is by using a borderless window for the slider control that appears when you click the button and disappears after you click outside. General/NSBorderlessWindowMask is what you would want for this, just look in the General/NSWindow docs. As for using it in a table view, you would have to make the original entry field not only with General/NSControl but also using General/NSCell, therefore you can then use it in an General/NSTableView, and then have the window appear from there when the cell is clicked. Hope this helps. --General/LoganCollins
+The only way I can think of to do this well is by using a borderless window for the slider control that appears when you click the button and disappears after you click outside. NSBorderlessWindowMask is what you would want for this, just look in the NSWindow docs. As for using it in a table view, you would have to make the original entry field not only with NSControl but also using NSCell, therefore you can then use it in an NSTableView, and then have the window appear from there when the cell is clicked. Hope this helps. --LoganCollins
 ----
-As sometimes happens, I thought this was an interesting question so in the hour or two since I noticed the question, I have built a working example complete with an xCode project: ** http://www.stepwise.com/EMB/General/PopupHelper/General/PopupHelper.zip **
+As sometimes happens, I thought this was an interesting question so in the hour or two since I noticed the question, I have built a working example complete with an xCode project: ** http://www.stepwise.com/EMB/PopupHelper/PopupHelper.zip **
 
 
 Here is how it works:
-1) In Interface Builder, place a small button next to whatever General/NSControl you want to give a pop-up helper.  For example, if you have an General/NSTextField in IB, place a small button next to it.
+1) In Interface Builder, place a small button next to whatever NSControl you want to give a pop-up helper.  For example, if you have an NSTextField in IB, place a small button next to it.
 
-2) Create an instance of General/PopupHelper class (source code below) in the same nib as the  General/NSControl you want to give a pop-up helper.
+2) Create an instance of PopupHelper class (source code below) in the same nib as the  NSControl you want to give a pop-up helper.
 
-3) Connect the General/PopupHelper instance's controlToHelp outlet to the control that needs help.
+3) Connect the PopupHelper instance's controlToHelp outlet to the control that needs help.
 
-4) Connect the target/action of the button to the General/PopupHelper instance's -toggleShowHelper: action.
+4) Connect the target/action of the button to the PopupHelper instance's -toggleShowHelper: action.
 
 5) Create a new empty nib.  Drag an Custom View into the instances area of the empty nib.  Then place whatever controls you want in the custom view.  Sliders and button work well in the custom view, but text views do not because they want to be in a key window and popup helper windows never become key.
 
-6) Make the File's Owner of the new nib be of class General/PopupHelper.
+6) Make the File's Owner of the new nib be of class PopupHelper.
 
 7) Bind the values of the controls in the custom view to whatever you want using the File's Owner->controlToHelp key path.  For example, bind a sliders value to File's Owner->controlToHelp.floatValue
 
@@ -55,38 +55,38 @@ D) Because of the the dynamic nib loading approach, you can have complex popup h
 #import <Cocoa/Cocoa.h>
 
 
-@interface General/PopupHelper : General/NSObject <General/NSCoding>
+@interface PopupHelper : NSObject <NSCoding>
 {
-   General/IBOutlet General/NSControl   *controlToHelp;  // determines position of helper window
-   General/IBOutlet General/NSView      *helperView;     // set when nib containing helper controls is loaded
-   General/NSWindow             *popupWindow;    // child window created on demand to hold helper controls
+   IBOutlet NSControl   *controlToHelp;  // determines position of helper window
+   IBOutlet NSView      *helperView;     // set when nib containing helper controls is loaded
+   NSWindow             *popupWindow;    // child window created on demand to hold helper controls
 }
 
 + (void)hideAllPopupHelpers;
 
-- (General/IBAction)togleShowHelper:(id)sender;
+- (IBAction)togleShowHelper:(id)sender;
 
-- (General/NSControl *)controlToHelp;
-- (void)setControlToHelp:(General/NSControl *)aControlToHelp;
-- (General/NSView *)helperView;
-- (void)setHelperView:(General/NSView *)aHelperView;
+- (NSControl *)controlToHelp;
+- (void)setControlToHelp:(NSControl *)aControlToHelp;
+- (NSView *)helperView;
+- (void)setHelperView:(NSView *)aHelperView;
 
 @end
 
 
     
-#import "General/PopupHelper.h"
+#import "PopupHelper.h"
 
 
-@implementation General/PopupHelper
+@implementation PopupHelper
 
 // Class varaible is used to enable hiding of all helper popups
-static General/NSMutableSet     *existingHelpers = nil;
+static NSMutableSet     *existingHelpers = nil;
 
 
 - (void)dealloc
 {
-   General/[[NSNotificationCenter defaultCenter] removeObserver:self];
+   [[NSNotificationCenter defaultCenter] removeObserver:self];
    [self setControlToHelp: nil];
    [self setHelperView: nil];
    [popupWindow release];
@@ -95,13 +95,13 @@ static General/NSMutableSet     *existingHelpers = nil;
 }
 
 
-- (void)encodeWithCoder:(General/NSCoder *)coder 
+- (void)encodeWithCoder:(NSCoder *)coder 
 {
    [coder encodeObject:[self controlToHelp] forKey:@"controlToHelp"];
 }
 
 
-- (id)initWithCoder:(General/NSCoder *)coder 
+- (id)initWithCoder:(NSCoder *)coder 
 {
    [self setControlToHelp:[coder decodeObjectForKey:@"controlToHelp"]];
    return self;
@@ -129,16 +129,16 @@ static General/NSMutableSet     *existingHelpers = nil;
 {
    if(nil == existingHelpers)
    {
-      existingHelpers = General/[[NSMutableSet alloc] init];
+      existingHelpers = [[NSMutableSet alloc] init];
    }
    
    [existingHelpers addObject:aHelper];
 }
 
 
-- (void)controlWindowDidUpdate:(General/NSNotification *)aNotification
+- (void)controlWindowDidUpdate:(NSNotification *)aNotification
 {  // Reposition the popup helper after the controlToHelp's window updates
-   General/NSPoint position = General/NSMakePoint(General/NSMaxX(General/self controlToHelp] frame]), [[NSMinY(General/self controlToHelp] frame]));
+   NSPoint position = NSMakePoint(NSMaxX(self controlToHelp] frame]), [[NSMinY(self controlToHelp] frame]));
    position = [[[self controlToHelp] superview] convertPoint:position toView:nil];
    position = [[[self controlToHelp] window] convertBaseToScreen:position];
    [popupWindow setFrameTopLeftPoint:position];
@@ -154,39 +154,39 @@ static General/NSMutableSet     *existingHelpers = nil;
    
    if(nil != [self helperView])
    {
-      General/NSRect contentRect = General/[NSWindow frameRectForContentRect:General/self helperView] frame] styleMask:[[NSBorderlessWindowMask];         
-      General/NSPoint position = General/NSMakePoint(General/NSMaxX(General/self controlToHelp] frame]), [[NSMinY(General/self controlToHelp] frame]));
+      NSRect contentRect = [NSWindow frameRectForContentRect:self helperView] frame] styleMask:[[NSBorderlessWindowMask];         
+      NSPoint position = NSMakePoint(NSMaxX(self controlToHelp] frame]), [[NSMinY(self controlToHelp] frame]));
       
       [[self class] hideAllPopupHelpers];
       [[[self controlToHelp] window] makeFirstResponder:[self controlToHelp;
-      popupWindow = General/[[NSWindow alloc] initWithContentRect:contentRect styleMask:General/NSBorderlessWindowMask backing:General/NSBackingStoreBuffered defer:NO];
+      popupWindow = [[NSWindow alloc] initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
       [popupWindow setReleasedWhenClosed:NO];
       [popupWindow setContentView:[self helperView]];
-      position = General/[self controlToHelp] superview] convertPoint:position toView:nil];
+      position = [self controlToHelp] superview] convertPoint:position toView:nil];
       position = [[[self controlToHelp] window] convertBaseToScreen:position];
       [popupWindow setFrameTopLeftPoint:position];
       [[[self controlToHelp] window] addChildWindow:popupWindow ordered:[[NSWindowAbove];
       [popupWindow orderFront:self];
-      General/self class] registerVisiblePopupHelper:self];    
+      self class] registerVisiblePopupHelper:self];    
       
-      [[[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlWindowDidUpdate:) name:General/NSWindowDidUpdateNotification object:General/self controlToHelp] window;  
+      [[[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(controlWindowDidUpdate:) name:NSWindowDidUpdateNotification object:self controlToHelp] window;  
    }
 }
 
 
 - (void)hideHelper
 {
-   General/[self controlToHelp] window] removeChildWindow:popupWindow];
+   [self controlToHelp] window] removeChildWindow:popupWindow];
    [popupWindow orderOut:self];
    [popupWindow close];
    [popupWindow release];
    popupWindow = nil;
    
-   [[[[NSNotificationCenter defaultCenter] removeObserver:self name:General/NSWindowDidUpdateNotification object:General/self controlToHelp] window;  
+   [[[[NSNotificationCenter defaultCenter] removeObserver:self name:NSWindowDidUpdateNotification object:self controlToHelp] window;  
 }
 
 
-- (General/IBAction)togleShowHelper:(id)sender
+- (IBAction)togleShowHelper:(id)sender
 {
    if(nil == popupWindow && nil != [sender title] && nil != [self controlToHelp])
    {
@@ -200,26 +200,26 @@ static General/NSMutableSet     *existingHelpers = nil;
 }
 
 
-- (General/NSControl *)controlToHelp 
+- (NSControl *)controlToHelp 
 {
    return controlToHelp; 
 }
 
-- (void)setControlToHelp:(General/NSControl *)aControlToHelp 
+- (void)setControlToHelp:(NSControl *)aControlToHelp 
 {
    [aControlToHelp retain];
    [controlToHelp release];
    controlToHelp = aControlToHelp;
 }
 
-- (General/NSView *)helperView
+- (NSView *)helperView
 {
    return helperView; 
 }
 
-- (void)setHelperView:(General/NSView *)aHelperView
+- (void)setHelperView:(NSView *)aHelperView
 {
-   General/self class] unregisterVisiblePopupHelper:helperView];
+   self class] unregisterVisiblePopupHelper:helperView];
    [aHelperView retain];
    [helperView release];
    helperView = aHelperView;
@@ -230,7 +230,7 @@ static General/NSMutableSet     *existingHelpers = nil;
 
 ----
 
-An alternative, and in my opinion a much easier class to do this is [[GCWindowMenu, available here: http://apptree.net/gcwindowmenu.htm One line creates the menu with any view you care to give it - for example an General/NSSlider from a NIB, as demonstrated in the example project, and one more line does the rest - displaying the menu, tracking it, and fading it away quickly at the end. --General/GrahamCox
+An alternative, and in my opinion a much easier class to do this is [[GCWindowMenu, available here: http://apptree.net/gcwindowmenu.htm One line creates the menu with any view you care to give it - for example an NSSlider from a NIB, as demonstrated in the example project, and one more line does the rest - displaying the menu, tracking it, and fading it away quickly at the end. --GrahamCox
 
 ----
 It is nice to see alternative approaches.  The gcwindowmenu has some polish that the other example lacks.  However, to be fair, the first example doesn't require any code to use the existing classes.  The gcwindowmenu requires "two lines" of code (as if that matters).
@@ -244,7 +244,7 @@ Fair comment - I suppose what you consider easier is down to your perspective. F
 Fair comment ;-)  Both examples need steps 1,3,4,7, and 10 identified in the first example.  If the pop-up view is stored in a separate nib with the gcwindowmenu example, both examples also need steps 5, 6, and 8.  So, in some cases, the gcwindowmenu approach uses two lines of code in order to avoid steps
 
 
-2) Create an instance of General/PopupHelper class in the same nib as the  General/NSControl you want to give a pop-up helper.
+2) Create an instance of PopupHelper class in the same nib as the  NSControl you want to give a pop-up helper.
 
 
 and

@@ -1,8 +1,8 @@
-I had need recently to lay out a ( varying ) number of procedurally-generated same-size elements in a window such that the elements would layout out in a grid with an optimal number of rows and columns for window dimensions. These had to be General/NSView subclasses since some of them had to be able to hold arbitrary controls and some were just text views.
+I had need recently to lay out a ( varying ) number of procedurally-generated same-size elements in a window such that the elements would layout out in a grid with an optimal number of rows and columns for window dimensions. These had to be NSView subclasses since some of them had to be able to hold arbitrary controls and some were just text views.
 
-Having written layout managers before for General/BeOS and for Qt & for Java I decided why not attempt to make a general purpose "flow layout" for Cocoa...
+Having written layout managers before for BeOS and for Qt & for Java I decided why not attempt to make a general purpose "flow layout" for Cocoa...
 
-Here's the header ( General/ZFlowLayout.h )
+Here's the header ( ZFlowLayout.h )
 
     
 
@@ -21,24 +21,24 @@ Here's the header ( General/ZFlowLayout.h )
 */
 typedef enum _ZFlowLayoutSpring
 {
-	General/ZNoSpring = 0,
-	General/ZSpringLeft = 1,
-	General/ZSpringRight = 2,
-	General/ZSpringLeftRight = 3,
-} General/ZFlowLayoutSpring;
+	ZNoSpring = 0,
+	ZSpringLeft = 1,
+	ZSpringRight = 2,
+	ZSpringLeftRight = 3,
+} ZFlowLayoutSpring;
 
 typedef struct _ZFlowLayoutSizing
 {
-	General/NSSize minSize;
+	NSSize minSize;
 	int padding;
 	int spring;
 	bool oneColumn;
-} General/ZFlowLayoutSizing;
+} ZFlowLayoutSizing;
 
-static inline General/ZFlowLayoutSizing General/ZMakeFlowLayoutSizing( General/NSSize minSize, int padding, 
+static inline ZFlowLayoutSizing ZMakeFlowLayoutSizing( NSSize minSize, int padding, 
     int spring, BOOL oneColumn )
 {
-	General/ZFlowLayoutSizing sizing;
+	ZFlowLayoutSizing sizing;
 	sizing.minSize = minSize;
 	sizing.padding = padding;
 	sizing.spring = spring;
@@ -47,27 +47,27 @@ static inline General/ZFlowLayoutSizing General/ZMakeFlowLayoutSizing( General/N
 }
 
 /******************************************************************************
-	General/ZFlowLayout
+	ZFlowLayout
 ******************************************************************************/
 
-@interface General/ZFlowLayout : General/NSView
+@interface ZFlowLayout : NSView
 {
-	General/ZFlowLayoutSizing _sizing;
-	General/NSSize _lastSize;
+	ZFlowLayoutSizing _sizing;
+	NSSize _lastSize;
 	int _numElements;
 	unsigned int _gridMask;
 	BOOL _ignoreThisLayoutPass, _alternatingRowColors;
-	General/NSColor *_backgroundColor, *_gridColor;
+	NSColor *_backgroundColor, *_gridColor;
 }
 
-- (void) setSizing: (General/ZFlowLayoutSizing) sizing;
-- (General/ZFlowLayoutSizing) sizing;
+- (void) setSizing: (ZFlowLayoutSizing) sizing;
+- (ZFlowLayoutSizing) sizing;
 
 /*
 	Draw a solid background color
 */
-- (void) setBackgroundColor: (General/NSColor *) color;
-- (General/NSColor *) backgroundColor;
+- (void) setBackgroundColor: (NSColor *) color;
+- (NSColor *) backgroundColor;
 
 /*
 	Draw background using system alternating row colors
@@ -80,33 +80,33 @@ static inline General/ZFlowLayoutSizing General/ZMakeFlowLayoutSizing( General/N
 - (void) setGridStyleMask:(unsigned int)gridType;
 - (unsigned int) gridStyleMask;
 
-- (void) setGridColor:(General/NSColor *)aColor;
-- (General/NSColor *) gridColor;
+- (void) setGridColor:(NSColor *)aColor;
+- (NSColor *) gridColor;
 
 @end
 
 
 
 
-And here's the implementation ( General/ZFlowLayout.m ):
+And here's the implementation ( ZFlowLayout.m ):
 
     
 
-#import "General/ZFlowLayout.h"
+#import "ZFlowLayout.h"
 
 /******************************************************************************
-	General/ZFlowLayout
+	ZFlowLayout
 
-	General/ZFlowLayoutSizing _sizing;
-	General/NSSize _lastSize;
+	ZFlowLayoutSizing _sizing;
+	NSSize _lastSize;
 	int _numElements;
 	unsigned int _gridMask;
 	BOOL _ignoreThisLayoutPass, _alternatingRowColors;
-	General/NSColor *_backgroundColor, *_gridColor;
+	NSColor *_backgroundColor, *_gridColor;
 
 ******************************************************************************/
 
-@interface General/ZFlowLayout (Internal)
+@interface ZFlowLayout (Internal)
 
 - (void) layout;
 - (int) numElements;
@@ -114,28 +114,28 @@ And here's the implementation ( General/ZFlowLayout.m ):
 
 @end
 
-@implementation General/ZFlowLayout
+@implementation ZFlowLayout
 
-- (id)initWithFrame:(General/NSRect)frameRect
+- (id)initWithFrame:(NSRect)frameRect
 {
 	if ((self = [super initWithFrame:frameRect]) != nil) 
 	{
-		_sizing = General/ZMakeFlowLayoutSizing( General/NSMakeSize( 100, 100 ), 10, 0, NO );
-		_lastSize = General/NSMakeSize( 0, 0 );
+		_sizing = ZMakeFlowLayoutSizing( NSMakeSize( 100, 100 ), 10, 0, NO );
+		_lastSize = NSMakeSize( 0, 0 );
 		_numElements = 0;
 		_ignoreThisLayoutPass = NO;
 		_alternatingRowColors = NO;
 		_backgroundColor = nil;
-		_gridColor = General/[[NSColor colorWithDeviceWhite: 0.5 alpha: 0.4] retain];
-		_gridMask = General/NSTableViewGridNone;
+		_gridColor = [[NSColor colorWithDeviceWhite: 0.5 alpha: 0.4] retain];
+		_gridMask = NSTableViewGridNone;
 
 	
 		[self setPostsFrameChangedNotifications: YES];
 		
-		General/NSNotificationCenter *nc = General/[NSNotificationCenter defaultCenter];
+		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 		[nc addObserver:self 
 			selector: @selector( frameSizeChanged: ) 
-			name: General/NSViewFrameDidChangeNotification 
+			name: NSViewFrameDidChangeNotification 
 			object: nil ];
 
 	}
@@ -144,7 +144,7 @@ And here's the implementation ( General/ZFlowLayout.m ):
 
 - (void) awakeFromNib 
 {
-	General/NSScrollView *sv;
+	NSScrollView *sv;
 	if ( sv = [self enclosingScrollView] )
 	{
 		/*
@@ -152,14 +152,14 @@ And here's the implementation ( General/ZFlowLayout.m ):
 			And set width/height resizable
 		*/
 		
-		General/NSSize contentSize = [sv contentSize];
+		NSSize contentSize = [sv contentSize];
 		[self setFrameSize: contentSize];		
 		[self setAutoresizingMask: 
-			General/NSViewWidthSizable | General/NSViewHeightSizable];
+			NSViewWidthSizable | NSViewHeightSizable];
 	}   
 }
 
-- (void) setSizing: (General/ZFlowLayoutSizing) sizing
+- (void) setSizing: (ZFlowLayoutSizing) sizing
 {
 	if ( _sizing.minSize.width != sizing.minSize.width ||
 	     _sizing.minSize.height != sizing.minSize.height ||
@@ -173,18 +173,18 @@ And here's the implementation ( General/ZFlowLayout.m ):
 	}
 }
 
-- (General/ZFlowLayoutSizing) sizing
+- (ZFlowLayoutSizing) sizing
 {
 	return _sizing;
 }
 
-- (void) setBackgroundColor: (General/NSColor *) color
+- (void) setBackgroundColor: (NSColor *) color
 {
 	[_backgroundColor autorelease];
 	_backgroundColor = [color retain];
 }
 
-- (General/NSColor *) backgroundColor
+- (NSColor *) backgroundColor
 {
 	return _backgroundColor;
 }
@@ -210,13 +210,13 @@ And here's the implementation ( General/ZFlowLayout.m ):
 	return _gridMask;
 }
 
-- (void) setGridColor:(General/NSColor *)aColor
+- (void) setGridColor:(NSColor *)aColor
 {
 	[_gridColor autorelease];
 	_gridColor = [aColor retain];
 }
 
-- (General/NSColor *) gridColor
+- (NSColor *) gridColor
 {
 	return _gridColor;
 }
@@ -236,10 +236,10 @@ And here's the implementation ( General/ZFlowLayout.m ):
 	return YES;
 }
 
-- (void)drawRect:(General/NSRect)rect 
+- (void)drawRect:(NSRect)rect 
 {
-	General/NSRect bounds = [self bounds];
-	General/NSBezierPath *fill = General/[NSBezierPath bezierPathWithRect: bounds];
+	NSRect bounds = [self bounds];
+	NSBezierPath *fill = [NSBezierPath bezierPathWithRect: bounds];
 
 	if ( !_alternatingRowColors )
 	{
@@ -249,18 +249,18 @@ And here's the implementation ( General/ZFlowLayout.m ):
 	}
 	else
 	{
-		General/NSArray *colors = General/[NSColor controlAlternatingRowBackgroundColors];
-		General/NSColor *color = nil;
+		NSArray *colors = [NSColor controlAlternatingRowBackgroundColors];
+		NSColor *color = nil;
 		
 		int row = 0;
 		float rowHeight = _sizing.minSize.height + _sizing.padding;
-		General/NSRect rowRect = General/NSMakeRect( 0, bounds.size.height - rowHeight, 
+		NSRect rowRect = NSMakeRect( 0, bounds.size.height - rowHeight, 
                     bounds.size.width, rowHeight);
 				
 		while ( 1 )
 		{
 			color = [colors objectAtIndex: (row % [colors count])];
-			General/NSBezierPath *fill = General/[NSBezierPath bezierPathWithRect: rowRect];
+			NSBezierPath *fill = [NSBezierPath bezierPathWithRect: rowRect];
 
 			[color set];
 			[fill fill];
@@ -272,14 +272,14 @@ And here's the implementation ( General/ZFlowLayout.m ):
 		}
 	}
 	
-	if ( _gridMask & General/NSTableViewSolidVerticalGridLineMask )
+	if ( _gridMask & NSTableViewSolidVerticalGridLineMask )
 	{
 
 	}
 	
-	if ( _gridMask & General/NSTableViewSolidHorizontalGridLineMask )
+	if ( _gridMask & NSTableViewSolidHorizontalGridLineMask )
 	{
-		General/NSBezierPath *hLines = General/[NSBezierPath bezierPath];
+		NSBezierPath *hLines = [NSBezierPath bezierPath];
 		
 		int row = 0;
 		float rowHeight = _sizing.minSize.height + _sizing.padding, 
@@ -289,8 +289,8 @@ And here's the implementation ( General/ZFlowLayout.m ):
 		{
 			if ( row > 0 )
 			{			
-				[hLines moveToPoint: General/NSMakePoint( 0, y )];
-				[hLines lineToPoint: General/NSMakePoint( bounds.size.width, y )];
+				[hLines moveToPoint: NSMakePoint( 0, y )];
+				[hLines lineToPoint: NSMakePoint( bounds.size.width, y )];
 			}
 			
 			y-= rowHeight;
@@ -307,8 +307,8 @@ And here's the implementation ( General/ZFlowLayout.m ):
 
 - (void) layout
 {
-	General/NSRect bounds = [self bounds], elementRect;
-	General/NSPoint origin;
+	NSRect bounds = [self bounds], elementRect;
+	NSPoint origin;
 
 	if ( bounds.size.width == _lastSize.width &&
 		 bounds.size.height == _lastSize.height  )
@@ -376,7 +376,7 @@ And here's the implementation ( General/ZFlowLayout.m ):
 	elementRect.size.width = minWidth;
 	elementRect.size.height = _sizing.minSize.height;
 	
-	if ( !(_sizing.spring & General/ZSpringLeft) && !(_sizing.spring & General/ZSpringRight) )
+	if ( !(_sizing.spring & ZSpringLeft) && !(_sizing.spring & ZSpringRight) )
 		elementRect.size.width += widthPad;
 
 
@@ -388,17 +388,17 @@ And here's the implementation ( General/ZFlowLayout.m ):
 	*/
 
 	// left spring only
-	if ( (_sizing.spring & General/ZSpringLeft) && !(_sizing.spring & General/ZSpringRight))
+	if ( (_sizing.spring & ZSpringLeft) && !(_sizing.spring & ZSpringRight))
 	{
 		origin.x = _sizing.padding + remainingWidth;
 	}
 	//right spring only
-	else if ( !(_sizing.spring & General/ZSpringLeft) && (_sizing.spring & General/ZSpringRight))
+	else if ( !(_sizing.spring & ZSpringLeft) && (_sizing.spring & ZSpringRight))
 	{
 		origin.x = _sizing.padding;
 	}
 	//both left and right springs
-	else if ( (_sizing.spring & General/ZSpringLeft) && (_sizing.spring & General/ZSpringRight))
+	else if ( (_sizing.spring & ZSpringLeft) && (_sizing.spring & ZSpringRight))
 	{
 		origin.x = _sizing.padding + remainingWidth / 2.0;
 	}
@@ -411,7 +411,7 @@ And here's the implementation ( General/ZFlowLayout.m ):
 		don't fit.
 	*/
 	
-	General/NSArray *views = [self subviews];
+	NSArray *views = [self subviews];
 
 	if ( ![self enclosingScrollView] )
 	{
@@ -428,7 +428,7 @@ And here's the implementation ( General/ZFlowLayout.m ):
 				    ( (i + 1) * (elementRect.size.height) );
 				if ( i > 0 ) elementRect.origin.y -= ( i * _sizing.padding);
 
-				General/NSView *view = [views objectAtIndex: k];	
+				NSView *view = [views objectAtIndex: k];	
 				[view setFrame: elementRect];
 				[view setHidden: NO];
 		
@@ -445,7 +445,7 @@ And here's the implementation ( General/ZFlowLayout.m ):
 		
 		while ( k < count )
 		{
-			General/views objectAtIndex: k++] setHidden: YES];
+			views objectAtIndex: k++] setHidden: YES];
 		}
 	}
 	else
@@ -479,7 +479,7 @@ And here's the implementation ( General/ZFlowLayout.m ):
 		}
 		
 		float minHeight = ( i * ( elementRect.size.height + _sizing.padding ));
-		General/NSSize contentSize = General/self enclosingScrollView] contentSize];
+		NSSize contentSize = self enclosingScrollView] contentSize];
 		
 		/*
 			One-time ignore, since changing our size, here, would 
@@ -506,14 +506,14 @@ And here's the implementation ( General/ZFlowLayout.m ):
 
 - (void) forceLayout
 {
-	_lastSize = General/NSMakeSize( 0, 0 );
+	_lastSize = NSMakeSize( 0, 0 );
 	[self layout];
 }
 
 ///////////////////////////////////////////////////////////////////////
-// Override General/NSView
+// Override NSView
 
-- (void) addSubview:(General/NSView *)aView
+- (void) addSubview:(NSView *)aView
 {
 	[super addSubview: aView];
 	_numElements++;
@@ -521,7 +521,7 @@ And here's the implementation ( General/ZFlowLayout.m ):
 	[self display];
 }
 
-- (void)willRemoveSubview:(General/NSView *)subview
+- (void)willRemoveSubview:(NSView *)subview
 {
 	[super willRemoveSubview: subview];
 	_numElements--;
@@ -531,7 +531,7 @@ And here's the implementation ( General/ZFlowLayout.m ):
 	[self display];
 }
 
-- (void) frameSizeChanged: (General/NSNotification *) aNotification
+- (void) frameSizeChanged: (NSNotification *) aNotification
 {
 	if ( _ignoreThisLayoutPass )
 	{
@@ -549,24 +549,24 @@ And here's the implementation ( General/ZFlowLayout.m ):
 
 Usage is straightforward enough, instead of adding elements via IB, you just create your object and add it via      [layout addSubview: someView]; 
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
-I fixed a potential linker error situation with the General/ZMakeFlowLayoutSizing function. Strangely, it was linking from Objective-C++ just fine, but not pure Objective-C. --SZ
+I fixed a potential linker error situation with the ZMakeFlowLayoutSizing function. Strangely, it was linking from Objective-C++ just fine, but not pure Objective-C. --SZ
 
 ----
-This is an awesome piece of code. Best example I've seen of a custom General/NSView. Thanks! 
+This is an awesome piece of code. Best example I've seen of a custom NSView. Thanks! 
 
 One nit - I think [self forceLayout]; is what we want inside frameSizeChanged. This makes it work nicely when resizing the window.
 
 ----
 
-**How can we add the ability to drag-reorder objects in a 'pretty' way? I mean, having everything slide out of the way smoothly like an General/NSToolbar, leaving room for the dropped element? 11/14/2005**
+**How can we add the ability to drag-reorder objects in a 'pretty' way? I mean, having everything slide out of the way smoothly like an NSToolbar, leaving room for the dropped element? 11/14/2005**
 
 ----
 
 Instead of using notifications to get size change uh...notifications it works better to override
 
     
- (void)resizeSubviewsWithOldSize:(General/NSSize)oldBoundsSize;
+ (void)resizeSubviewsWithOldSize:(NSSize)oldBoundsSize;

@@ -18,10 +18,10 @@ The actual file data (the extents) will pretty much stay wherever it happens to 
 
 If you write/grow more than one large file at a time, they will be fragmented on the disk and interleaved with each other. If you then read just one of them from start-to-finish, you'll spend a lot of time seeking as you skip across the blocks that were allocated for the other file(s). 
 
-How can you avoid this fragmenting? Well, if you know the size of the files you're going to write beforehand, or even an upper bound on their sizes, you can do a greedy allocation and grow the files to their maximum size as soon as you create them. This can get around the fragmenting/interleaving problem. You can do this with a General/SetEOF in the Carbon File Manager. I'm not sure of the Cocoa equivalent but after browsing a few man pages, it'd probably be something like this. (and btw, tossing this into a category on General/NSFileHandle might be cleaner...)
+How can you avoid this fragmenting? Well, if you know the size of the files you're going to write beforehand, or even an upper bound on their sizes, you can do a greedy allocation and grow the files to their maximum size as soon as you create them. This can get around the fragmenting/interleaving problem. You can do this with a SetEOF in the Carbon File Manager. I'm not sure of the Cocoa equivalent but after browsing a few man pages, it'd probably be something like this. (and btw, tossing this into a category on NSFileHandle might be cleaner...)
 
     
-- (off_t) preallocateSpace:(off_t)bytes inFile:(General/NSFileHandle*)fh
+- (off_t) preallocateSpace:(off_t)bytes inFile:(NSFileHandle*)fh
 {
     fstore_t fst = {};
     fst.fst_flags = F_ALLOCATECONTIG;
@@ -30,7 +30,7 @@ How can you avoid this fragmenting? Well, if you know the size of the files you'
     fst.fst_length = bytes;
     
     if (fcntl([fh fileDescriptor],F_PREALLOCATE,&fst) != 0)
-        General/NSLog(@"fcntl(%d,F_PREALLOCATE,%lld bytes) failed! errno = %d",
+        NSLog(@"fcntl(%d,F_PREALLOCATE,%lld bytes) failed! errno = %d",
                 [fh fileDescriptor], (long long)bytes, (int)errno);
 
     return fst.fst_bytesalloc; // return number of bytes actually allocated
@@ -38,7 +38,7 @@ How can you avoid this fragmenting? Well, if you know the size of the files you'
 
 
 I haven't tested the above code but it's probably not far off ...
- -- General/DrewThaler
+ -- DrewThaler
 
 ----
 

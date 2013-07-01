@@ -2,13 +2,13 @@
 
 
 
-Cocoa uses Notifications as a convenient way to broadcast one message to multiple Clients. See General/NSNotification, General/NSNotificationCenter, and General/NotificationSampleCode for more information on using notifications. 
+Cocoa uses Notifications as a convenient way to broadcast one message to multiple Clients. See NSNotification, NSNotificationCenter, and NotificationSampleCode for more information on using notifications. 
 
-When your application posts a notification with General/NSNotificationCenter your app will block until all of the registered notification observers have processed your notification. This is very convenient -- observers receive notifications immediately and posters can continue knowing all interested parties have processed their requests. (Note that the General/NSDistributedNotificationCenter does not behave this way -- I'll save that for another time)
+When your application posts a notification with NSNotificationCenter your app will block until all of the registered notification observers have processed your notification. This is very convenient -- observers receive notifications immediately and posters can continue knowing all interested parties have processed their requests. (Note that the NSDistributedNotificationCenter does not behave this way -- I'll save that for another time)
 
-But this poses a problem for multi-threaded apps. If an app posts a notification from a secondary thread, the observers will receive the notification on that secondary thread. Often, as is the case in the General/NotificationSampleCode example, it isn't obvious that that's the case. The secondary thread is a tight method with a clear beginning, middle, and end.
+But this poses a problem for multi-threaded apps. If an app posts a notification from a secondary thread, the observers will receive the notification on that secondary thread. Often, as is the case in the NotificationSampleCode example, it isn't obvious that that's the case. The secondary thread is a tight method with a clear beginning, middle, and end.
 
-This is a problem because much of General/AppKit isn't thread-safe -- unless you know otherwise, General/AppKit operations should be performed on the main thread only. Most of Carbon (which provides the implementation for a number of General/AppKit functions, such as the menu bar) also is not thread-safe -- all Carbon operations should be performed on the main thread only. And General/OpenGL (to bring up another example) is thread-safe only if you can guarantee its only being called on one thread (not necessarily the main thread) -- I call General/OpenGL "Thread Agnostic". App writers need to be very conscious of the work they are doing on secondary threads and ensure only safe functions and methods are used at this time.
+This is a problem because much of AppKit isn't thread-safe -- unless you know otherwise, AppKit operations should be performed on the main thread only. Most of Carbon (which provides the implementation for a number of AppKit functions, such as the menu bar) also is not thread-safe -- all Carbon operations should be performed on the main thread only. And OpenGL (to bring up another example) is thread-safe only if you can guarantee its only being called on one thread (not necessarily the main thread) -- I call OpenGL "Thread Agnostic". App writers need to be very conscious of the work they are doing on secondary threads and ensure only safe functions and methods are used at this time.
 
 Here's a sample program that illustrates the problem:
 
@@ -16,53 +16,53 @@ Here's a sample program that illustrates the problem:
 #include <unistd.h>
 #import <Foundation/Foundation.h>
 
-static General/NSString *General/ThreadTestDidFinishWork = @"General/ThreadTestDidFinishWork";
+static NSString *ThreadTestDidFinishWork = @"ThreadTestDidFinishWork";
 static BOOL gDone = false; // how old fashioned ... 
 
-@interface General/ThreadTest : General/NSObject
+@interface ThreadTest : NSObject
 {
 }
 - (void)startWork;
 - (void)doWork:(id)sender;
-- (void)finishWorkHandler:(General/NSNotification*)note;
+- (void)finishWorkHandler:(NSNotification*)note;
 @end
 
-@implementation General/ThreadTest
+@implementation ThreadTest
 
 - (void)startWork
 {
     // register our handler
-    General/[[NSNotificationCenter defaultCenter] addObserver:self 
-selector:@selector(finishWorkHandler:) name:General/ThreadTestDidFinishWork
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+selector:@selector(finishWorkHandler:) name:ThreadTestDidFinishWork
 object:nil];
     
     // start our thread
-    General/[NSThread detachNewThreadSelector:@selector(doWork:) toTarget:self withObject:nil];
+    [NSThread detachNewThreadSelector:@selector(doWork:) toTarget:self withObject:nil];
 
 }
 
 - (void)doWork:(id)sender
 {
-    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-    General/NSLog(@"work thread: %@", General/[NSThread currentThread]);
+    NSLog(@"work thread: %@", [NSThread currentThread]);
 
     // do time intensive work
     sleep(5);
     
     // post notification
-    General/[[NSNotificationCenter defaultCenter] 
-postNotificationName:General/ThreadTestDidFinishWork object:nil];
+    [[NSNotificationCenter defaultCenter] 
+postNotificationName:ThreadTestDidFinishWork object:nil];
     
     [pool release];
 }
 
-- (void)finishWorkHandler:(General/NSNotification*)note
+- (void)finishWorkHandler:(NSNotification*)note
 {
-    General/NSLog(@"note thread: %@", General/[NSThread currentThread]);
+    NSLog(@"note thread: %@", [NSThread currentThread]);
 
     // unregister
-    General/[[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     // quit
     gDone = true;
@@ -72,18 +72,18 @@ postNotificationName:General/ThreadTestDidFinishWork object:nil];
 
 int main (int argc, const char * argv[])
 {
-    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
-    General/ThreadTest *test = General/[[ThreadTest alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+    ThreadTest *test = [[ThreadTest alloc] init];
 
-    General/NSLog(@"main thread: %@", General/[NSThread currentThread]);
+    NSLog(@"main thread: %@", [NSThread currentThread]);
 
     [test startWork];
 
     // please don't write real apps like this! this is just for the
     // sake of the test! use real run loops! I beg you!
     while (!gDone) {
-        (void)General/[[NSRunLoop currentRunLoop] 
-runMode:General/NSDefaultRunLoopMode      beforeDate:General/[NSDate distantFuture]];
+        (void)[[NSRunLoop currentRunLoop] 
+runMode:NSDefaultRunLoopMode      beforeDate:[NSDate distantFuture]];
     }
     
     [test release];
@@ -123,38 +123,38 @@ Starting program: /Users/Shared/Builds/mtrent/./threadNoteTest
 [Switching to thread 1 (process 393 thread 0x1903)]
 Reading symbols for shared libraries ... done
 Error in re-setting breakpoint 1:
-Function "main.m:-General/[ThreadTest finishWorkHandler:]" not defined.
+Function "main.m:-[ThreadTest finishWorkHandler:]" not defined.
 Re-enabling shared library breakpoints: 1
 Apr 25 01:02:47 threadNoteTest[393] main thread: Thread 0xc200
 Apr 25 01:02:47 threadNoteTest[393] work thread: Thread 0x1f930
 [Switching to thread 2 (process 393 thread 0x2403)]
 [Switching to process 393 thread 0x2403]
 
-Breakpoint 1, -General/[ThreadTest finishWorkHandler:] (self=0xe000, _cmd=0x2dd8, note=0x21140)
+Breakpoint 1, -[ThreadTest finishWorkHandler:] (self=0xe000, _cmd=0x2dd8, note=0x21140)
 at main.m:43
-43          General/NSLog(@"note thread: %@", General/[NSThread currentThread]);
+43          NSLog(@"note thread: %@", [NSThread currentThread]);
 (gdb) t a a bt
 
 Thread 2 (process 393 thread 0x2403):
-#0  -General/[ThreadTest finishWorkHandler:] (self=0xe000, _cmd=0x2dd8, note=0x21140) at main.m:43
+#0  -[ThreadTest finishWorkHandler:] (self=0xe000, _cmd=0x2dd8, note=0x21140) at main.m:43
 #1  0x70989598 in _nsNotificationCenterCallBack ()
 #2  0x70198e20 in _postNotification ()
 #3  0x70196750 in _CFNotificationCenterPostLocalNotification ()
 #4  0x70196494 in _CFNotificationCenterPostNotification ()
-#5  0x7097fa5c in -General/[NSNotificationCenter postNotificationName:object:userInfo:flags:] ()
-#6  0x7097f9ec in -General/[NSNotificationCenter postNotificationName:object:] ()
-#7  0x0000298c in -General/[ThreadTest doWork:] (self=0xe000, _cmd=0x2dec, sender=0x0) at main.m:36
+#5  0x7097fa5c in -[NSNotificationCenter postNotificationName:object:userInfo:flags:] ()
+#6  0x7097f9ec in -[NSNotificationCenter postNotificationName:object:] ()
+#7  0x0000298c in -[ThreadTest doWork:] (self=0xe000, _cmd=0x2dec, sender=0x0) at main.m:36
 #8  0x709ecc34 in forkThreadForFunction ()
 #9  0x700150f4 in _pthread_body ()
 #10 0x00000000 in ?? ()
 
 Thread 1 (process 393 thread 0x1903):
-#0  0x7099a544 in -General/[NSRunLoop runMode:beforeDate:] ()
+#0  0x7099a544 in -[NSRunLoop runMode:beforeDate:] ()
 #1  0x00002c30 in main (argc=1, argv=0xbffffb38) at main.m:65
 #2  0x000026fc in _start ()
 #3  0x0000253c in start ()
 #4  0x00000000 in ?? ()
-43          General/NSLog(@"note thread: %@", General/[NSThread currentThread]);
+43          NSLog(@"note thread: %@", [NSThread currentThread]);
 (gdb) 
 
 
@@ -162,49 +162,49 @@ Note that Thread 1 is still spinning along processing our runloop (I'll bet you 
 
 Knowing that notifications are posted immediately to observers is good to know. It means observers can assume they will receive their notifications immediately and posters can assume all observers have completed processing their notifications before resuming. But that means program authors need to be extra careful when posting notifications from worker threads, since many of our libraries and classes are not thread-safe.
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
-See also: General/ThreadSafety General/ThreadWorker General/ThreadCommunication General/InterThreadMessaging
+See also: ThreadSafety ThreadWorker ThreadCommunication InterThreadMessaging
 
 ----
 
 Here is some GPL code I wrote that lets you easily send notifications to the main thread (with the option to wait or not).
 
     
-@interface General/NSNotificationCenter (General/NSNotificationCenterAdditions)
-- (void) postNotificationOnMainThread:(General/NSNotification *) notification;
-- (void) postNotificationOnMainThread:(General/NSNotification *) notification waitUntilDone:(BOOL) wait;
+@interface NSNotificationCenter (NSNotificationCenterAdditions)
+- (void) postNotificationOnMainThread:(NSNotification *) notification;
+- (void) postNotificationOnMainThread:(NSNotification *) notification waitUntilDone:(BOOL) wait;
 
-- (void) postNotificationOnMainThreadWithName:(General/NSString *) name object:(id) object;
-- (void) postNotificationOnMainThreadWithName:(General/NSString *) name object:(id) object userInfo:(General/NSDictionary *) userInfo;
-- (void) postNotificationOnMainThreadWithName:(General/NSString *) name object:(id) object userInfo:(General/NSDictionary *) userInfo waitUntilDone:(BOOL) wait;
+- (void) postNotificationOnMainThreadWithName:(NSString *) name object:(id) object;
+- (void) postNotificationOnMainThreadWithName:(NSString *) name object:(id) object userInfo:(NSDictionary *) userInfo;
+- (void) postNotificationOnMainThreadWithName:(NSString *) name object:(id) object userInfo:(NSDictionary *) userInfo waitUntilDone:(BOOL) wait;
 @end
 
-@interface General/NSNotificationQueue (General/NSNotificationQueueAdditions)
-- (void) enqueueNotificationOnMainThread:(General/NSNotification *) notification postingStyle:(General/NSPostingStyle) postingStyle;
-- (void) enqueueNotificationOnMainThread:(General/NSNotification *) notification postingStyle:(General/NSPostingStyle) postingStyle coalesceMask:(unsigned) coalesceMask forModes:(General/NSArray *) modes;
+@interface NSNotificationQueue (NSNotificationQueueAdditions)
+- (void) enqueueNotificationOnMainThread:(NSNotification *) notification postingStyle:(NSPostingStyle) postingStyle;
+- (void) enqueueNotificationOnMainThread:(NSNotification *) notification postingStyle:(NSPostingStyle) postingStyle coalesceMask:(unsigned) coalesceMask forModes:(NSArray *) modes;
 @end
 
 
     
-#import "General/NSNotificationAdditions.h"
+#import "NSNotificationAdditions.h"
 #import <pthread.h>
 
-@implementation General/NSNotificationCenter (General/NSNotificationCenterAdditions)
-- (void) postNotificationOnMainThread:(General/NSNotification *) notification {
+@implementation NSNotificationCenter (NSNotificationCenterAdditions)
+- (void) postNotificationOnMainThread:(NSNotification *) notification {
 	if( pthread_main_np() ) return [self postNotification:notification];
 	[self postNotificationOnMainThread:notification waitUntilDone:NO];
 }
 
-- (void) postNotificationOnMainThread:(General/NSNotification *) notification waitUntilDone:(BOOL) wait {
+- (void) postNotificationOnMainThread:(NSNotification *) notification waitUntilDone:(BOOL) wait {
 	if( pthread_main_np() ) return [self postNotification:notification];
-	General/self class] performSelectorOnMainThread:@selector( _postNotification: ) withObject:notification waitUntilDone:wait];
+	self class] performSelectorOnMainThread:@selector( _postNotification: ) withObject:notification waitUntilDone:wait];
 }
 
 + (void) _postNotification:([[NSNotification *) notification {
-	General/self defaultCenter] postNotification:notification];
+	self defaultCenter] postNotification:notification];
 }
 
 - (void) postNotificationOnMainThreadWithName:([[NSString *) name object:(id) object {
@@ -212,65 +212,65 @@ Here is some GPL code I wrote that lets you easily send notifications to the mai
 	[self postNotificationOnMainThreadWithName:name object:object userInfo:nil waitUntilDone:NO];
 }
 
-- (void) postNotificationOnMainThreadWithName:(General/NSString *) name object:(id) object userInfo:(General/NSDictionary *) userInfo {
+- (void) postNotificationOnMainThreadWithName:(NSString *) name object:(id) object userInfo:(NSDictionary *) userInfo {
 	if( pthread_main_np() ) return [self postNotificationName:name object:object userInfo:userInfo];
 	[self postNotificationOnMainThreadWithName:name object:object userInfo:nil waitUntilDone:NO];
 }
 
-- (void) postNotificationOnMainThreadWithName:(General/NSString *) name object:(id) object userInfo:(General/NSDictionary *) userInfo waitUntilDone:(BOOL) wait {
+- (void) postNotificationOnMainThreadWithName:(NSString *) name object:(id) object userInfo:(NSDictionary *) userInfo waitUntilDone:(BOOL) wait {
 	if( pthread_main_np() ) return [self postNotificationName:name object:object userInfo:userInfo];
 
-	General/NSMutableDictionary *info = General/[[NSMutableDictionary allocWithZone:nil] init];
+	NSMutableDictionary *info = [[NSMutableDictionary allocWithZone:nil] init];
 	[info setObject:name forKey:@"name"];
 	if( object ) [info setObject:object forKey:@"object"];
 	if( userInfo ) [info setObject:userInfo forKey:@"userInfo"];
 
-	General/self class] performSelectorOnMainThread:@selector( _postNotificationName: ) withObject:info waitUntilDone:wait];
+	self class] performSelectorOnMainThread:@selector( _postNotificationName: ) withObject:info waitUntilDone:wait];
 	[info release];
 }
 
 + (void) _postNotificationName:([[NSDictionary *) info {
-	General/NSString *name = [info objectForKey:@"name"];
+	NSString *name = [info objectForKey:@"name"];
 	id object = [info objectForKey:@"object"];
-	General/NSDictionary *userInfo = [info objectForKey:@"userInfo"];
+	NSDictionary *userInfo = [info objectForKey:@"userInfo"];
 
-	General/self defaultCenter] postNotificationName:name object:object userInfo:userInfo];
+	self defaultCenter] postNotificationName:name object:object userInfo:userInfo];
 }
 @end
 
-@implementation [[NSNotificationQueue (General/NSNotificationQueueAdditions)
-- (void) enqueueNotificationOnMainThread:(General/NSNotification *) notification postingStyle:(General/NSPostingStyle) postingStyle {
-	if( pthread_main_np() ) return [self enqueueNotification:notification postingStyle:postingStyle coalesceMask:( General/NSNotificationCoalescingOnName | General/NSNotificationCoalescingOnSender ) forModes:nil];
-	[self enqueueNotificationOnMainThread:notification postingStyle:postingStyle coalesceMask:( General/NSNotificationCoalescingOnName | General/NSNotificationCoalescingOnSender ) forModes:nil];
+@implementation [[NSNotificationQueue (NSNotificationQueueAdditions)
+- (void) enqueueNotificationOnMainThread:(NSNotification *) notification postingStyle:(NSPostingStyle) postingStyle {
+	if( pthread_main_np() ) return [self enqueueNotification:notification postingStyle:postingStyle coalesceMask:( NSNotificationCoalescingOnName | NSNotificationCoalescingOnSender ) forModes:nil];
+	[self enqueueNotificationOnMainThread:notification postingStyle:postingStyle coalesceMask:( NSNotificationCoalescingOnName | NSNotificationCoalescingOnSender ) forModes:nil];
 }
 
-- (void) enqueueNotificationOnMainThread:(General/NSNotification *) notification postingStyle:(General/NSPostingStyle) postingStyle coalesceMask:(unsigned) coalesceMask forModes:(General/NSArray *) modes {
+- (void) enqueueNotificationOnMainThread:(NSNotification *) notification postingStyle:(NSPostingStyle) postingStyle coalesceMask:(unsigned) coalesceMask forModes:(NSArray *) modes {
 	if( pthread_main_np() ) return [self enqueueNotification:notification postingStyle:postingStyle coalesceMask:coalesceMask forModes:modes];
 
-	General/NSMutableDictionary *info = General/[[NSMutableDictionary allocWithZone:nil] init];
+	NSMutableDictionary *info = [[NSMutableDictionary allocWithZone:nil] init];
 	[info setObject:notification forKey:@"notification"];
-	[info setObject:General/[NSNumber numberWithUnsignedInt:postingStyle] forKey:@"postingStyle"];
-	[info setObject:General/[NSNumber numberWithUnsignedInt:coalesceMask] forKey:@"coalesceMask"];
+	[info setObject:[NSNumber numberWithUnsignedInt:postingStyle] forKey:@"postingStyle"];
+	[info setObject:[NSNumber numberWithUnsignedInt:coalesceMask] forKey:@"coalesceMask"];
 	if( modes ) [info setObject:modes forKey:@"modes"];
 
-	General/self class] performSelectorOnMainThread:@selector( _enqueueNotification: ) withObject:info waitUntilDone:NO];
+	self class] performSelectorOnMainThread:@selector( _enqueueNotification: ) withObject:info waitUntilDone:NO];
 	[info release];
 }
 
 + (void) _enqueueNotification:([[NSDictionary *) info {
-	General/NSNotification *notification = [info objectForKey:@"notification"];
-	General/NSPostingStyle postingStyle = General/info objectForKey:@"postingStyle"] unsignedIntValue];
+	NSNotification *notification = [info objectForKey:@"notification"];
+	NSPostingStyle postingStyle = info objectForKey:@"postingStyle"] unsignedIntValue];
 	unsigned coalesceMask = [[info objectForKey:@"coalesceMask"] unsignedIntValue];
 	[[NSArray *modes = [info objectForKey:@"modes"];
 
-	General/self defaultQueue] enqueueNotification:notification postingStyle:postingStyle coalesceMask:coalesceMask forModes:modes];
+	self defaultQueue] enqueueNotification:notification postingStyle:postingStyle coalesceMask:coalesceMask forModes:modes];
 }
 @end
 
 
 Latest version of the code available at: http://project.colloquy.info/trac/browser/trunk/Additions/[[NSNotificationAdditions.m
 
-~ General/TimothyHatcher
+~ TimothyHatcher
 
 ----
 
@@ -278,7 +278,7 @@ Thanks a lot - This is very helpful.
 
 There is a typo in one of your method - You force the userInfo to be nil.
     
-- (void) postNotificationOnMainThreadWithName:(General/NSString *) name object:(id) object userInfo:(General/NSDictionary *) userInfo {
+- (void) postNotificationOnMainThreadWithName:(NSString *) name object:(id) object userInfo:(NSDictionary *) userInfo {
 	if( pthread_main_np() ) return [self postNotificationName:name object:object userInfo:userInfo];
 	[self postNotificationOnMainThreadWithName:name object:object userInfo:nil waitUntilDone:NO];
 }
@@ -286,7 +286,7 @@ There is a typo in one of your method - You force the userInfo to be nil.
 
 should be:
     
-- (void) postNotificationOnMainThreadWithName:(General/NSString *) name object:(id) object userInfo:(General/NSDictionary *) userInfo {
+- (void) postNotificationOnMainThreadWithName:(NSString *) name object:(id) object userInfo:(NSDictionary *) userInfo {
 	if( pthread_main_np() ) return [self postNotificationName:name object:object userInfo:userInfo];
 	[self postNotificationOnMainThreadWithName:name object:object userInfo:userInfo waitUntilDone:NO];
 }
@@ -300,10 +300,10 @@ if ( pthread_main_np() ) {
 
 with:
     
-if (General/[NSThread isMainThread]) {
+if ([NSThread isMainThread]) {
 }
 
 
-I dont know if this would work with Cocoa on General/MacOS.
+I dont know if this would work with Cocoa on MacOS.
 
 ~ Thomas Sarlandie

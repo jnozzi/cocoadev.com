@@ -1,49 +1,49 @@
  Please help me
-  How to get General/PicHandle
-  I  can get image Width, Height,Resolution&image data Buffer.But I don't know How to get "General/PicHandle".
+  How to get PicHandle
+  I  can get image Width, Height,Resolution&image data Buffer.But I don't know How to get "PicHandle".
   I do it in this way
 ----
     
 
 //******************************************************************************//
 2003-10-5
-General/GetImageHandle  
-Return   General/PicHandle
+GetImageHandle  
+Return   PicHandle
 //****************************************************************************'//
 
--(General/PicHandle)General/GetImageHandle{
+-(PicHandle)GetImageHandle{
    
- General/PicHandle hSMPicHandle;
+ PicHandle hSMPicHandle;
  hSMPicHandle=nil;
  unsigned Picsize;
 
 // 24bit color picture
-Picsize= General/ImageHeight* General/ImageWidth*3 ; // Get image size;
+Picsize= ImageHeight* ImageWidth*3 ; // Get image size;
 
 // imageBlock.pBuffer:  The memory address that holds the image data.
 //get image data
-DS_RETURNCODE  result = General/[[SMClient shareSMClient ] General/SMQueryBlock:&imageBlock];       
+DS_RETURNCODE  result = [[SMClient shareSMClient ] SMQueryBlock:&imageBlock];       
 if (result != DSRC_SCANDONE && result != DSRC_SCANMORE) 
      { 
-        General/NSLog(@"General/QueryBlock failed. result = %d",result); 
+        NSLog(@"QueryBlock failed. result = %d",result); 
         return  nil;  
      }
 
-General/OpenCPicParams Parameter;
-General/PicHandle General/TempPicHandle;
+OpenCPicParams Parameter;
+PicHandle TempPicHandle;
 Handle dataHandle;
 
 //Init Parameter
-[self General/SetupOpenCPicture:&Parameter];
+[self SetupOpenCPicture:&Parameter];
 
-dataHandle= General/NewHandle(Picsize+sizeof(General/PicHandle));
+dataHandle= NewHandle(Picsize+sizeof(PicHandle));
 
-General/TempPicHandle= General/OpenCPicture(&Parameter);
+TempPicHandle= OpenCPicture(&Parameter);
 /*
-// (**General/TemPicHandle).picSize=40 is error
-//(**General/TemPicHandle).picFrame.top=840 is error
+// (**TemPicHandle).picSize=40 is error
+//(**TemPicHandle).picFrame.top=840 is error
 //
-//I thank (**General/TemPicHandle).picFrame values should equal to
+//I thank (**TemPicHandle).picFrame values should equal to
  Paramteter->srcRect.top
  Paramteter ->srcRect.left
  Paramteter ->srcRect.bottom
@@ -51,12 +51,12 @@ General/TempPicHandle= General/OpenCPicture(&Parameter);
 */ 
 
 // move Header information to dataHandle
-General/BlockMoveData(*General/TempPicHandl,*dataHandle,sizeof(General/PicHandle));  
+BlockMoveData(*TempPicHandl,*dataHandle,sizeof(PicHandle));  
 
 // move image data to dataHandle; 
-General/BlockMoveData(imageBlock.pBuffer,*dataHandle+sizeo(General/PicHandle ),Picsize);
+BlockMoveData(imageBlock.pBuffer,*dataHandle+sizeo(PicHandle ),Picsize);
         
-hSMPicHandle=(General/PicHandle)dataHandle;
+hSMPicHandle=(PicHandle)dataHandle;
 
 return hSMPicHandle;
 }
@@ -65,11 +65,11 @@ return hSMPicHandle;
 
 //******************************************************************************//
 2003-10-5
-General/SetupOpenCPicture  Init. "General/OpenCPicParams" structure
+SetupOpenCPicture  Init. "OpenCPicParams" structure
 Return   NULL
 //****************************************************************************'//
 
-  -(void) General/SetupOpenCPicture:(General/OpenCPicParams*) pOpenCPara{
+  -(void) SetupOpenCPicture:(OpenCPicParams*) pOpenCPara{
  pOpenCPara->srcRect.top=0;
  pOpenCPara->srcRect.left=0;
  pOpenCPara->srcRect.bottom=(short) Image.Height;//1170
@@ -87,20 +87,20 @@ Please help me
 Thank you for posting your code. What error(s) are you getting?
 
 ----
-This strikes me as the sort of thing that would have much more success on carbon-dev or the General/CarbonDev wiki or some other Carbon-oriented forum. Feel free to keep trying here, but it's really a Carbon question and I am personally clueless about it.
+This strikes me as the sort of thing that would have much more success on carbon-dev or the CarbonDev wiki or some other Carbon-oriented forum. Feel free to keep trying here, but it's really a Carbon question and I am personally clueless about it.
 
 ----
 
-Be advised that Apple deprecated General/QuickDraw in Tiger. If you can avoid using it in new projects, you should do so.
+Be advised that Apple deprecated QuickDraw in Tiger. If you can avoid using it in new projects, you should do so.
 
 ----
-You probably don't want to name your method "General/GetImageHandle" : 
+You probably don't want to name your method "GetImageHandle" : 
 Method names should start with a lower case letter.
 "Get" has a reserved meaning different for the meaning implied in your code.
 
-<http://developer.apple.com/documentation/Cocoa/Conceptual/General/CodingGuidelines/Articles/General/NamingMethods.html>
+<http://developer.apple.com/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingMethods.html>
 
-<http://developer.apple.com/documentation/Cocoa/Conceptual/General/CodingGuidelines/General/CodingGuidelines.html>
+<http://developer.apple.com/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html>
 
 <http://www.stuffonfire.com/2007/04/29/get-stuffed/>
 

@@ -1,19 +1,19 @@
 
 
-Hi there, I've been trying to figure out how to get the current time since 1970 in microseconds, as a General/NSString. Any help for this noob would be appreciated.
+Hi there, I've been trying to figure out how to get the current time since 1970 in microseconds, as a NSString. Any help for this noob would be appreciated.
 
 Thanks,
 Alexandre
 
 ----
-I'm going to have to say RTM in general, but basically you should look to General/NSDate's     timeIntervalSince1970, General/NSTimeInterval, and General/NSString's     initWithFormat:. --General/JediKnil
+I'm going to have to say RTM in general, but basically you should look to NSDate's     timeIntervalSince1970, NSTimeInterval, and NSString's     initWithFormat:. --JediKnil
 
 ----
 
-A note: General/NSTimeInterval values measure seconds. Microseconds (which due to the nature of floating point values will eventually be unrepresentable) can be got from a time interval by multiplying by one million, e.g. with the following macro:
+A note: NSTimeInterval values measure seconds. Microseconds (which due to the nature of floating point values will eventually be unrepresentable) can be got from a time interval by multiplying by one million, e.g. with the following macro:
 
     
-#define General/MicrosecondsFromTimeInterval(TI) ((TI) * 1000000.0)
+#define MicrosecondsFromTimeInterval(TI) ((TI) * 1000000.0)
 
 
 ----
@@ -51,7 +51,7 @@ seconds 1173355247, microseconds 223942
 seconds 1173355247, microseconds 224059
 
 
-hth, General/CristianDraghici
+hth, CristianDraghici
 
 
 ----
@@ -59,10 +59,10 @@ hth, General/CristianDraghici
 Hey guys, I ended up writing this function to do it...
 
     
-- (General/NSString *)getCurrentTime
+- (NSString *)getCurrentTime
 {
-General/NSTimeInterval todayinterval = General/[[NSDate date] timeIntervalSince1970];
-General/NSString *aString = General/[NSString stringWithFormat:@"%f", todayinterval];
+NSTimeInterval todayinterval = [[NSDate date] timeIntervalSince1970];
+NSString *aString = [NSString stringWithFormat:@"%f", todayinterval];
 return aString;
 }
 

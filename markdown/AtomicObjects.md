@@ -1,1 +1,1 @@
-An "atomic object" is an object that doesn't contain pointers to any other objects.  Examples are General/NSNumber, General/NSString, etc.
+An "atomic object" is an object that doesn't contain pointers to any other objects.  Examples are NSNumber, NSString, etc.

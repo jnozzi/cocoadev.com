@@ -3,10 +3,10 @@
 Before creating a new page ...
 
 
-*Use the General/FindPage to **search** the wiki to make sure your topic has not already been covered.
-*Read General/HowToCreateNewPages, General/HowToUseThisSite, and General/HowToAskQuestions and **follow the rules and guidelines therein**.
+*Use the FindPage to **search** the wiki to make sure your topic has not already been covered.
+*Read HowToCreateNewPages, HowToUseThisSite, and HowToAskQuestions and **follow the rules and guidelines therein**.
 *Make sure the title of your page is directly relevant to its content and **spelled correctly**.
-***DO NOT** create pages in General/MailingListMode.
+***DO NOT** create pages in MailingListMode.
 
 
 ----

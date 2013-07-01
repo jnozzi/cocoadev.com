@@ -1,5 +1,5 @@
 A book or manual that reflects red light but absorbs all other wavelengths.
 
-Colloquially, General/TheOpenGLRedBook.
+Colloquially, TheOpenGLRedBook.
 
-See also: General/BlueBook.
+See also: BlueBook.

@@ -25,13 +25,13 @@ Ummm.  What can I say?  Buy this book right away.  It's probably the best book I
 
 'Smalltalk Best Practice Patterns isn't just for Smalltalkers---there's something here for everyone who programs. Kent's insights, experiences, and raw wit are as entertaining as they are enlightening. If you have any passion for programming, in any language, buy this book. Read it. Live it.'
 
-'Although I've never used General/SmallTalk and have read only a couple of on-line introduction chapters on Dolphin General/SmallTalk, I had no problems reading it and applying the patterns in another language like Java, C++ or Python.  Let me put it simple: If you want to learn to think in objects, don't just read the book, do it!'
+'Although I've never used SmallTalk and have read only a couple of on-line introduction chapters on Dolphin SmallTalk, I had no problems reading it and applying the patterns in another language like Java, C++ or Python.  Let me put it simple: If you want to learn to think in objects, don't just read the book, do it!'
 
 'I'm currently using the book as a reference for style of OOP. From a teaching point of view, the book is also extremely useful. Kent Beck likes to ask quistions in a heuristic manner. Because of the simple approach to every day experiences of developing, all the way down to the experiences of beginners, you won't have any trouble answering these quistions. In fact you'll probably start asking quistions to yourself likewise because of the magnicifent way this mind trick works for your way of thinking in objects (or otherwise).'
 
 Enough.  Buy it, already.
 
-General/TufTy
+TufTy
 
 ***Amazon Link:**
 http://www.amazon.com/exec/obidos/ISBN=013476904X 
@@ -60,7 +60,7 @@ Most of the stuff in here is, really, commonsense, and anyone who's been doing O
 
 This qualifies as a 'must have' book for anyone doing OO work.  No question.  If you don't have a copy, what are you doing reading this?  Go buy it **right now**.
 
-General/TufTy
+TufTy
 
 ***Amazon Link:**
 http://www.amazon.com/exec/obidos/ISBN=0201633612
@@ -83,11 +83,11 @@ $39.76
 0201184621 
 
 ***Description:**
-This is a companion to the above book, but stands by itself quite well if you know any General/SmallTalk.  If you're doing Objective-C Cocoa development, the similarities between the two languages will mean that this book is possibly more useful than the original. I personally find myself using this as much if not more than the original Gang Of Four book, especially whilst doing Cocoa stuff, but then I grok Smalltalk.
+This is a companion to the above book, but stands by itself quite well if you know any SmallTalk.  If you're doing Objective-C Cocoa development, the similarities between the two languages will mean that this book is possibly more useful than the original. I personally find myself using this as much if not more than the original Gang Of Four book, especially whilst doing Cocoa stuff, but then I grok Smalltalk.
 
 This is maybe not a 'must buy', but is definitely worth getting on permanent loan from the library.
 
-General/TufTy
+TufTy
 
 ***Amazon Link:**
 http://www.amazon.com/exec/obidos/ISBN=0201184621 
@@ -111,11 +111,11 @@ $29.95
 0201708426 
 
 ***Description:**
-The only one of the 'Extreme Programming' series I've got round to reading, and it's a good read.  If you've ever done any programming in a large team environment, you'll find yourself nodding as you read.  Not 'nodding off', but nodding in vigorous agreement.  Again, it's another 'commonsense' book.  So where's the impact on Cocoa?  Well, first off, after reading this, you'l understand why Sen::te's (http://www.sente.ch) rather wonderful General/OCUnit software is there.  And why it's so wonderful.  And why you should use it.  And if that's all you get from reading this, you haven't wasted your money.
+The only one of the 'Extreme Programming' series I've got round to reading, and it's a good read.  If you've ever done any programming in a large team environment, you'll find yourself nodding as you read.  Not 'nodding off', but nodding in vigorous agreement.  Again, it's another 'commonsense' book.  So where's the impact on Cocoa?  Well, first off, after reading this, you'l understand why Sen::te's (http://www.sente.ch) rather wonderful OCUnit software is there.  And why it's so wonderful.  And why you should use it.  And if that's all you get from reading this, you haven't wasted your money.
 
 It should be noted that this book can also be downloaded in pdf form, free of charge, from http://www.xprogramming.com.  If you can bear reading off the screen (or have access to a laserprinter), that's a rather good deal.
 
-General/TufTy
+TufTy
 
 ***Amazon Link:**
 http://www.amazon.com/exec/obidos/ISBN=0201708426 
@@ -124,7 +124,7 @@ http://www.amazon.com/exec/obidos/ISBN=0201708426
 
 ----
 
- http://images.amazon.com/images/P/0131103628.01._PE_PIdp-schmoo2,General/TopRight,7,-26_SCMZZZZZZZ_.jpg
+ http://images.amazon.com/images/P/0131103628.01._PE_PIdp-schmoo2,TopRight,7,-26_SCMZZZZZZZ_.jpg
 
 
 ***Title:**
@@ -140,7 +140,7 @@ $40.00
 ***ISBN:**
 0131103628
 ***Description:**
-( NOTE: I changed the name from Kernighan to Ritchie, as it was Ritchie who made C, not Kernighan - General/PietroGagliardi )
+( NOTE: I changed the name from Kernighan to Ritchie, as it was Ritchie who made C, not Kernighan - PietroGagliardi )
 A must read for anyone who wants to learn a language built on top of C. If you don't know who Ritchie is then you should find out!! Apple's book on Objective-C "Inside Cocoa: Object-Oriented Programming and the Objective-C Language" recommends one book, this one (Chapter 1 p13). Need I say more.
 
 Yes, I agree this is a supplemental reading.
@@ -153,8 +153,8 @@ After drinking the Kool Aid and pledging my elegance to OOP, I have to admit tha
 
     
 
-void General/NSFrameRect(General/NSRect aRect);
-void General/NSFrameRectFillList(const General/NSRect *rects, int count);
+void NSFrameRect(NSRect aRect);
+void NSFrameRectFillList(const NSRect *rects, int count);
 
 
 
@@ -167,7 +167,7 @@ But.........
 If done carefully and with discretion, passing pointers to instance variables is a practice that has a place in Cocoa programming. Wrapping objects that share data into a single autonomous object should be a design apprach to consider. 
 
 ----
-If you want to learn C++, Java, Objective-C - heck, even C - this is the VERY FIRST BOOK YOU MUST GRAB. (Or borrow from your cousin like I do :-) ) WHY? It was co-authored by THE GUY WHO MADE C AND Unix: Dennis Ritchie. C is THE language on which C++, Objective-C, and Java were based upon (although Java was initially a replacement for C++), thus it is ESSENTIAL. The first edition was the book used by many programmers to learn C and build C implementations. This second edition covers the ANSI/ISO 1989 standard of C (Ritchie does not want to write a version for the new 1999 standard, although it has very little essential language functionality that is added on). Unix 2.0 and onwards was written mostly in C, and General/MacOSX was based on Mach, a Unix clone. In short, BUY IT NOW!!! - General/PietroGagliardi
+If you want to learn C++, Java, Objective-C - heck, even C - this is the VERY FIRST BOOK YOU MUST GRAB. (Or borrow from your cousin like I do :-) ) WHY? It was co-authored by THE GUY WHO MADE C AND Unix: Dennis Ritchie. C is THE language on which C++, Objective-C, and Java were based upon (although Java was initially a replacement for C++), thus it is ESSENTIAL. The first edition was the book used by many programmers to learn C and build C implementations. This second edition covers the ANSI/ISO 1989 standard of C (Ritchie does not want to write a version for the new 1999 standard, although it has very little essential language functionality that is added on). Unix 2.0 and onwards was written mostly in C, and MacOSX was based on Mach, a Unix clone. In short, BUY IT NOW!!! - PietroGagliardi
 
 
 ***Amazon Link:**
@@ -177,7 +177,7 @@ http://www.amazon.com/exec/obidos/ISBN=0131103628
 
 ----
 
-http://images.amazon.com/images/P/1565923065.01._PE30_PIdp-schmoo2,General/TopRight,7,-26_SCMZZZZZZZ_.gif
+http://images.amazon.com/images/P/1565923065.01._PE30_PIdp-schmoo2,TopRight,7,-26_SCMZZZZZZZ_.gif
 
 
 ***Title:**
@@ -211,7 +211,7 @@ http://www.amazon.com/exec/obidos/ISBN=1565923065
 
 ----
 
-http://images.amazon.com/images/P/1861001142.01._PE_PIdp-schmoo2,General/TopRight,7,-26_SCMZZZZZZZ_.jpg
+http://images.amazon.com/images/P/1861001142.01._PE_PIdp-schmoo2,TopRight,7,-26_SCMZZZZZZZ_.jpg
 
 
 ***Title:**
@@ -245,7 +245,7 @@ http://www.amazon.com/exec/obidos/ISBN=1861001142
 
 ----
 
-http://images.amazon.com/images/P/0201485672.01._PE23_PIdp-schmoo2,General/TopRight,7,-26_SCMZZZZZZZ_.jpg
+http://images.amazon.com/images/P/0201485672.01._PE23_PIdp-schmoo2,TopRight,7,-26_SCMZZZZZZZ_.jpg
 
 
 ***Title:**
@@ -263,7 +263,7 @@ $54.99
 ***Description:**
 "Refactoring: Improving the Design of Existing Code" starts off with an example on refactoring a simple Java application. It then provides further detail on detecting when you need to refactor and why it is important. This book also provides a catalog of many refactorings to apply in different situations. Each refactoring provides a quick example (code or UML diagram), steps in order to accomplish the refactoring, and a detailed example and description of the refactoring process.
 
-*I must say, this book has improved my programming technique more than any other book I have read. (No more spaghetti code for me!) Even though I have no experience with Java, the examples are easy to understand and all ideas found in this book can be applied to Objective-C. A must read for any experienced programmer wanting to improve the design of their code. -- General/RyanBates*
+*I must say, this book has improved my programming technique more than any other book I have read. (No more spaghetti code for me!) Even though I have no experience with Java, the examples are easy to understand and all ideas found in this book can be applied to Objective-C. A must read for any experienced programmer wanting to improve the design of their code. -- RyanBates*
 
 ***Amazon Link:**
 http://www.amazon.com/exec/obidos/ISBN=0201485672
@@ -272,7 +272,7 @@ http://www.amazon.com/exec/obidos/ISBN=0201485672
 
 ----
 
-http://images.amazon.com/images/P/1932111816.01._PE32_PIdp-schmooS,General/TopRight,7,-26_SCMZZZZZZZ_.jpg
+http://images.amazon.com/images/P/1932111816.01._PE32_PIdp-schmooS,TopRight,7,-26_SCMZZZZZZZ_.jpg
 
 
 ***Title:**

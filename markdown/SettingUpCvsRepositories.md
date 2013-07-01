@@ -2,9 +2,9 @@
 
 **Setting up CVS Repositories**
 
-Someone asked on the General/CvsBasics page how you go about creating a CVS repository if your project is not already in one.
+Someone asked on the CvsBasics page how you go about creating a CVS repository if your project is not already in one.
 
-I'm not an expert, but I will explain to the best of my understanding.  For in-depth information, you should refer to the web pages and books recommended on the General/CvsBasics page.
+I'm not an expert, but I will explain to the best of my understanding.  For in-depth information, you should refer to the web pages and books recommended on the CvsBasics page.
 
 **Local or remote?**
 
@@ -46,12 +46,12 @@ As an experiment, try this.  Change directory to /tmp, or some other temporary d
 
 CVS will create a projectname directory, and spew a copy of the current version of the code into it.  You can do this many times.  Your original code is still safe in the CVS repository.
 
-When you are convinced that everything is working properly, you can delete (please make a backup first!) your original code, and then check it out from CVS into your working directory.  Now that the CVS directories are present, you can re-launch your project in General/ProjectBuilder, and you should see that it has noticed that your code is now under version control.
+When you are convinced that everything is working properly, you can delete (please make a backup first!) your original code, and then check it out from CVS into your working directory.  Now that the CVS directories are present, you can re-launch your project in ProjectBuilder, and you should see that it has noticed that your code is now under version control.
 
 **For more info...**
 
-See General/CvsBasics for more information.  In particular, the Fogel book mentioned on that page is highly recommended for full understanding of CVS.  The only reason I know any of this is because of that book.
+See CvsBasics for more information.  In particular, the Fogel book mentioned on that page is highly recommended for full understanding of CVS.  The only reason I know any of this is because of that book.
 
-See General/CvsWrappers for information about storing binary files in CVS.
+See CvsWrappers for information about storing binary files in CVS.
 
--- General/StevenFrank
+-- StevenFrank

@@ -27,7 +27,7 @@ I have a program which stores preference data in arrays, which are stored in two
     }
 }
 
-My program needs to add or remove stuff from the deeply-nested arrays, but the only way I've seen to do that so far (using General/NSUserDefaults or even General/CFUserDefaults) involves taking out the *entire* "Addresses" dictionary and putting it in an General/NSDictionary, modifying that, and writing the whole thing back.  Is there (maybe, possibly) any way to just get at the arrays without dealing with their enclosing collection?  Thanks; any help is appreciated.
+My program needs to add or remove stuff from the deeply-nested arrays, but the only way I've seen to do that so far (using NSUserDefaults or even CFUserDefaults) involves taking out the *entire* "Addresses" dictionary and putting it in an NSDictionary, modifying that, and writing the whole thing back.  Is there (maybe, possibly) any way to just get at the arrays without dealing with their enclosing collection?  Thanks; any help is appreciated.
 
 ----
 Nope, you have to do it the hard way.
@@ -37,16 +37,16 @@ Sigh... that's what I was afraid of.  Oh well.  Thanks.
 
 ----
 
-If at all possible, this should be a class with the appropriate methods which implements General/NSCoding and so can be freeze-dried to user preferences. Failing that, you might want to write helper functions that do all that for you, e.g.
+If at all possible, this should be a class with the appropriate methods which implements NSCoding and so can be freeze-dried to user preferences. Failing that, you might want to write helper functions that do all that for you, e.g.
 
     
-void General/SetEmailAddressAllowed(General/NSString *email, flag);
-BOOL General/IsEmailAddressAllowed(General/NSString *email);
+void SetEmailAddressAllowed(NSString *email, flag);
+BOOL IsEmailAddressAllowed(NSString *email);
 /* etc */
 
 
 ----
-Another nice pattern for this is to create a class which directly represents your     Addresses key (and other classes for any other data structures you have), then give that class     -plistRepresentation and     -initWithPlistRepresentation: methods. Then it's a simple one-liner to instantiate it from General/NSUserDefaults, and another one-liner to put the changes back in.
+Another nice pattern for this is to create a class which directly represents your     Addresses key (and other classes for any other data structures you have), then give that class     -plistRepresentation and     -initWithPlistRepresentation: methods. Then it's a simple one-liner to instantiate it from NSUserDefaults, and another one-liner to put the changes back in.
 
 ----
 

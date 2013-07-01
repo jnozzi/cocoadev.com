@@ -1,17 +1,17 @@
 Ever wanted a comparison that put Cat2 before Cat20?
 
-Here's chunk of code to allow one to General/CompareNumerically, as taken from a post on the General/CocoaDev mailing list:
+Here's chunk of code to allow one to CompareNumerically, as taken from a post on the CocoaDev mailing list:
 
 ----The original method [see also http://cocoa.mamasam.com/COCOADEV/2002/01/2/22178.php]----
 
     
  In general, the example I've posted yesterday deals with multiple embedded
  numbers as well. However, I just found one case where my implementation
- fails while General/SmartCompare works properly. Comparing aaa1bbb with aaa01ccc
+ fails while SmartCompare works properly. Comparing aaa1bbb with aaa01ccc
  delivers 'equal' instead of 'ascending'.
  
  So here's a new, corrected version. It has been highly optimized (about 10
- times faster than the General/SmartCompare implementation). The performance may be
+ times faster than the SmartCompare implementation). The performance may be
  relevant if you you use this method for sorting large string arrays.
  
  Best Regards, Norbert

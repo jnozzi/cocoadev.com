@@ -1,6 +1,6 @@
 
 
-Shark is one of the CHUD tools, useful for General/OptimizingCocoaCode and of course optimizing many other things as well.
+Shark is one of the CHUD tools, useful for OptimizingCocoaCode and of course optimizing many other things as well.
 
 Apple's tutorial is at ( http://developer.apple.com/tools/shark_optimize.html )
 

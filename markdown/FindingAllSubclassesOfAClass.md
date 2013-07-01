@@ -1,11 +1,11 @@
 
 
-What I would really like to be able to do is find each of the subclasses (not instances) of a particular class so that I can call something like the following. http://goo.gl/General/OeSCu
+What I would really like to be able to do is find each of the subclasses (not instances) of a particular class so that I can call something like the following. http://goo.gl/OeSCu
 
     
 + (void)registerAllTools
 {
-    General/NSEnumerator *objectEnumerator = General/self subclasses] objectEnumerator];
+    NSEnumerator *objectEnumerator = self subclasses] objectEnumerator];
     id object;
 
     while( object = [objectEnumerator nextObject] )
@@ -22,35 +22,35 @@ Thanks for any suggestions
 
 ----
 
-General/NSObject+General/SubclassEnumeration.h
+NSObject+SubclassEnumeration.h
 
     
 #import <Foundation/Foundation.h>
 
-@interface General/NSObject (General/SubclassEnumeration)
-+ (General/NSEnumerator*)subclasses;
-+ (General/NSEnumerator*)directSubclasses;
+@interface NSObject (SubclassEnumeration)
++ (NSEnumerator*)subclasses;
++ (NSEnumerator*)directSubclasses;
 @end
 
 
-General/NSObject+General/SubclassEnumeration.m
+NSObject+SubclassEnumeration.m
 
     
-#import "General/NSObject+General/SubclassEnumeration.h"
+#import "NSObject+SubclassEnumeration.h"
 #import <objc/objc-runtime.h>
 
-@implementation General/NSObject (General/SubclassEnumeration)
+@implementation NSObject (SubclassEnumeration)
 
-+ (General/NSEnumerator*)subclasses
++ (NSEnumerator*)subclasses
 {
-    General/NSMutableArray    *tempArray;
-    General/NSArray           *resultArray;
+    NSMutableArray    *tempArray;
+    NSArray           *resultArray;
     Class             *classes;
     struct objc_class *superClass;
     Class             *current;
     int                count, newCount, index;
 
-    tempArray   = General/[[NSMutableArray allocWithZone:nil] initWithCapacity:12];
+    tempArray   = [[NSMutableArray allocWithZone:nil] initWithCapacity:12];
     resultArray = nil;
 
     if (tempArray)
@@ -102,22 +102,22 @@ General/NSObject+General/SubclassEnumeration.m
             free(classes);
         }
 
-        resultArray = General/[NSArray arrayWithArray:tempArray];
+        resultArray = [NSArray arrayWithArray:tempArray];
         [tempArray release];
     }
 
     return (resultArray) ? [resultArray objectEnumerator] : nil;
 }
 
-+ (General/NSEnumerator*)directSubclasses
++ (NSEnumerator*)directSubclasses
 {
-    General/NSMutableArray *tempArray;
-    General/NSArray        *resultArray;
+    NSMutableArray *tempArray;
+    NSArray        *resultArray;
     Class          *classes;
     Class          *current;
     int             count, newCount, index;
 
-    tempArray   = General/[[NSMutableArray allocWithZone:nil] initWithCapacity:12];
+    tempArray   = [[NSMutableArray allocWithZone:nil] initWithCapacity:12];
     resultArray = nil;
 
     if (tempArray)
@@ -157,7 +157,7 @@ General/NSObject+General/SubclassEnumeration.m
             free(classes);
         }
 
-        resultArray = General/[NSArray arrayWithArray:tempArray];
+        resultArray = [NSArray arrayWithArray:tempArray];
         [tempArray release];
     }
 
@@ -167,27 +167,27 @@ General/NSObject+General/SubclassEnumeration.m
 @end
 
 
---General/NeilVanNote
+--NeilVanNote
 
 ----
 
 Wow... I was expecting some pointers, but this is incredible! Should this be moved to the sample code section? Thank you so much, to whomever posted this :-)
-Just one question. Is there a reason you initialized the mutable array with a capacity of 12? Why not just use its -init method? --General/EliotSimcoe
+Just one question. Is there a reason you initialized the mutable array with a capacity of 12? Why not just use its -init method? --EliotSimcoe
 
 ----
 
-I picked 12 out of thin air to give the General/NSMutableArray a running start. -init would suffice.
+I picked 12 out of thin air to give the NSMutableArray a running start. -init would suffice.
 
---General/NeilVanNote
+--NeilVanNote
 
 ----
 
 I added one last method which I have found to be very useful. I don't think I'm leaking any memory, but I wouldn't mind a second check if anyone is willing. Any optimizations to the algorithm are also more than welcome. It is kind of simplistic as it stands. This method finds all classes at the "end" of the class tree.
 
     
-+ (General/NSArray *)terminalSubclasses
++ (NSArray *)terminalSubclasses
 {
-    General/NSMutableArray *subclasses = General/[[NSMutableArray allocWithZone:nil] init];
+    NSMutableArray *subclasses = [[NSMutableArray allocWithZone:nil] init];
     
     if( subclasses )
     {
@@ -318,12 +318,12 @@ I added one last method which I have found to be very useful. I don't think I'm 
         }
     }
     
-    return (General/NSArray *)[subclasses autorelease];
+    return (NSArray *)[subclasses autorelease];
 }
 
 
 
-Thanks for any comments --General/EliotSimcoe
+Thanks for any comments --EliotSimcoe
 
 ----
 
@@ -331,7 +331,7 @@ You should really be double checking the result of your allocations. They can fa
 
 I admit, my original methods did have a possible memory leak. In the event realloc fails, it doesn't free the pointer I gave it. I have since updated the code to use reallocf which should do the trick. I should really bite the bullet and replace the mess with a malloc/free dance since the loop doesn't need the copy semantics of realloc anyways.
 
---General/NeilVanNote
+--NeilVanNote
 
 ----
 
@@ -339,7 +339,7 @@ This is my last adjustment for this one. Changed the initial allocations to rid 
 
 Cheers,
 
---General/NeilVanNote
+--NeilVanNote
 
 ----
 
@@ -363,11 +363,11 @@ In particular, the following things, even if they can work in a particular case,
 
 In the code above, messages are sent to arbitrary objects (the subclasses), unless they are declared in the same file.
 
---General/AllanOdgaard
+--AllanOdgaard
 
 ----
 
-Then it's not legal (my bad... I actually kind of thought that it might not be...) but I am still interested in this category that is forming. To remedy the illegality of the above code, I am going to place the above in a +register method that gets called by the controlling class. I made a couple of corrections to my code above, and I think it's a lot better now. I would however, appreciate it if anyone could point out any further flaws in it.  Thanks again --General/EliotSimcoe
+Then it's not legal (my bad... I actually kind of thought that it might not be...) but I am still interested in this category that is forming. To remedy the illegality of the above code, I am going to place the above in a +register method that gets called by the controlling class. I made a couple of corrections to my code above, and I think it's a lot better now. I would however, appreciate it if anyone could point out any further flaws in it.  Thanks again --EliotSimcoe
 
 ----
 
@@ -377,13 +377,13 @@ It's not anything the category methods are doing that illegal, it's what what th
 
 ----
 
-I realize this. That's why I changed my calling method from +load to +registerAllTools (which is called from -applicationWillFinishLaunching).  Anyway, does anyone care to punch some holes in my implementation of +terminalSubclasses? I always like second, third and fourth opinions. :-D --General/EliotSimcoe
+I realize this. That's why I changed my calling method from +load to +registerAllTools (which is called from -applicationWillFinishLaunching).  Anyway, does anyone care to punch some holes in my implementation of +terminalSubclasses? I always like second, third and fourth opinions. :-D --EliotSimcoe
 
 ----
 
 Hello. Is it just me, or is some of this code excessively verbose and unnecessary? For example, the first function will potentially call objc_getClassList more than once, as if the number of classes would ever change? Or am I just not seeing something here. Thanks for your code. - Sammi
 
-*It might. General/ObjC supports dynamic loading of bundles, which can add classes to the runtime. This is actually a great feature, and supports the creation of plugins. For this example, say that you have a class, **Plug<nowiki/>In**, which represents a generic addition to your application (you would probably use a protocol for this, but that wouldn't fit this page). You then open a kind of plugin manager window, which uses     +subclasses to list all available plugins (again, probably not the best solution). Then you download this cool new plugin that allows you to...do something cool. So you load it into the application, and suddenly you have another subclass. Instead of having to restart the program, you can now use General/ObjC's dynamism to change the list of classes. Sooooo...the number of classes can change during an application's lifespan. --General/JediKnil (We now return to our regular, on-topic discussion that I so rudely interrupted)*
+*It might. ObjC supports dynamic loading of bundles, which can add classes to the runtime. This is actually a great feature, and supports the creation of plugins. For this example, say that you have a class, **Plug<nowiki/>In**, which represents a generic addition to your application (you would probably use a protocol for this, but that wouldn't fit this page). You then open a kind of plugin manager window, which uses     +subclasses to list all available plugins (again, probably not the best solution). Then you download this cool new plugin that allows you to...do something cool. So you load it into the application, and suddenly you have another subclass. Instead of having to restart the program, you can now use ObjC's dynamism to change the list of classes. Sooooo...the number of classes can change during an application's lifespan. --JediKnil (We now return to our regular, on-topic discussion that I so rudely interrupted)*
 
 Look at the code though - it's calling it 3 times from the same method. There's probably a reason for that, but I don't know what it is.
 
@@ -393,15 +393,15 @@ It is nice to be able to use the run-time to find lots of information.  However,
 
 Why not have the plug-in base class store a collection of plug-in classes and have each plug-in class register.
 
-@implementation Plugin : General/NSObject
+@implementation Plugin : NSObject
 
-static General/NSMutableSet   *pluginClasses = nil;
+static NSMutableSet   *pluginClasses = nil;
 
 + registerPluginClass:(Class)aClass
 {
   if(nil == pluginClasses)
   {
-    pluginClasses = General/[[NSMutableSet alloc] init];
+    pluginClasses = [[NSMutableSet alloc] init];
   }
   [pluginClasses addObject:aClass];
 }
@@ -418,7 +418,7 @@ Use pluginClasses in other methods to access the set of known plugin classes.
 
 In addition to using a lot less code than searching the runtime data structures, this approach is less invasive, works with multiple runtimes, can be polymorphically customized in the future, does not have any explicit opportunities for seg-faults, and still does not require plugin writers to register explicitly...  It is automatic.
 
-*True...it was a bad example. I know it's really not a good idea to implement a plugin architecture this way. However, I just wanted to give an example of how to use     +subclasses in a dynamic runtime, if not when. --General/JediKnil*
+*True...it was a bad example. I know it's really not a good idea to implement a plugin architecture this way. However, I just wanted to give an example of how to use     +subclasses in a dynamic runtime, if not when. --JediKnil*
 
 ----
 
@@ -426,21 +426,21 @@ Here is a much better implementation of the above code:
 
     
 
-+ (General/NSArray*) subclasses {
-    General/NSMutableArray		*subclasses;
++ (NSArray*) subclasses {
+    NSMutableArray		*subclasses;
     struct objc_class	*superClass;
     Class				*classes = NULL;
     Class				*current;
 	const Class			thisClass = self;
     int					count, index;
 
-    subclasses = General/[[NSMutableArray alloc] initWithCapacity:12];
+    subclasses = [[NSMutableArray alloc] initWithCapacity:12];
 
 	count = objc_getClassList(NULL, 0);
 		
 	if (count) {
 		classes = malloc(sizeof(Class) * count);
-		General/NSAssert (classes != NULL, @"Memory Allocation Failed in General/[NSObject +subclasses].");
+		NSAssert (classes != NULL, @"Memory Allocation Failed in [NSObject +subclasses].");
 
 		(void) objc_getClassList(classes, count);
 	}
@@ -479,15 +479,15 @@ Here follows a new version of the code posted above. It is even more simple and 
 
     
 
-+(General/NSArray *)subclasses
++(NSArray *)subclasses
 {
-	General/NSMutableArray *subClasses = General/[NSMutableArray array];
+	NSMutableArray *subClasses = [NSMutableArray array];
 	Class				   *classes    = nil;
 	int             count      = objc_getClassList(NULL, 0);
 	
 	if (count) {
 		classes = malloc(sizeof(Class) * count);
-		General/NSAssert (classes != NULL, @"Memory Allocation Failed in [Content +subclasses].");
+		NSAssert (classes != NULL, @"Memory Allocation Failed in [Content +subclasses].");
 		
 		(void) objc_getClassList(classes, count);
 	}

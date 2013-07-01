@@ -6,7 +6,7 @@ Thanks
 
 ----
 
-It's called General/NSOutlineView.
+It's called NSOutlineView.
 
 ----
 
@@ -16,17 +16,17 @@ What I mean was a List / Table view that holds Outline views too.. I know there 
 
 I'm afraid I haven't the slightest clue of what you're talking about. Can you describe it in some coherent manner, or provide a screenshot?
 
-An General/NSOutlineView is just an General/NSTableView (it's even a subclass, imagine that) with the *possibility* for disclosure triangles. You aren't forced to use them everywhere. How does this differ from what you want?
+An NSOutlineView is just an NSTableView (it's even a subclass, imagine that) with the *possibility* for disclosure triangles. You aren't forced to use them everywhere. How does this differ from what you want?
 
 ----
 
-Maybe he means something like General/TextBox? Just guessing here.
+Maybe he means something like TextBox? Just guessing here.
 
 ----
 Thanks I will try to post a screenshot soon.. but as always a helpful forum!!
 ----
 
-I think what you're talking about is the default behavior.  Do you think that an General/NSOutlineView is limited to only one level of disclosures? This is not true.  At any level there may be children of a line.
+I think what you're talking about is the default behavior.  Do you think that an NSOutlineView is limited to only one level of disclosures? This is not true.  At any level there may be children of a line.
 
 *And upon hearing this, the master became enlightened.*
 

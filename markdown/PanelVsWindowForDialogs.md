@@ -12,7 +12,7 @@ And should this dialog be a panel or a window?
 
 ----
 
-My rule of thumb is that if it should show up in the Window menu's list, it should be an General/NSWindow, if it should not, it should be an General/NSPanel. I'd say that this dialog should be a panel.
+My rule of thumb is that if it should show up in the Window menu's list, it should be an NSWindow, if it should not, it should be an NSPanel. I'd say that this dialog should be a panel.
 
 There are several ways to deal with the UI issue. For app-level scripts, you could have the typical "Record Script" and "Stop Recording" menu items. The "Stop Recording" item handles the save dialog. "Record Script" would be disabled until the "Stop Recording" action is complete. "Stop Recording" would pop up a dialog asking for a save name. I think it would be okay to make this dialog app-modal. "Stop Recording" would remain highlighted until the user makes a decision.
 
@@ -20,4 +20,4 @@ If the scripts are doc-level scripts, I think they should be saved using a docum
 
 Alternatively, you could treat scripts as a secondary document type. After recording, you would display a window with the recorded script and allow the user to inspect or alter it. Then he can save it via a sheet, like any document.
 
---General/DustinVoss
+--DustinVoss

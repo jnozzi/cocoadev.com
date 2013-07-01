@@ -1,4 +1,4 @@
-I'm trying to build a number generator that creates 16 character serials by using input from a General/NSTextField. So I can create SN for my app,
+I'm trying to build a number generator that creates 16 character serials by using input from a NSTextField. So I can create SN for my app,
 For Example
 
 *Name:Bob Smith
@@ -17,6 +17,6 @@ A simple way to do this would be to generate a hash of the customer name, combin
 
 Of course, your *secret* number must be embedded within the application in order to verify the SN/key in this way. You could make the process more secure by making your app establish a network connection to your server (which has the secret number instead of the application) and ask it to verify the SN/key.
 
-There are many different ways to do this sort of thing. If you are looking for a more secure method, you might explore using RSA/General/PublicKey encryption techniques.
+There are many different ways to do this sort of thing. If you are looking for a more secure method, you might explore using RSA/PublicKey encryption techniques.
 
 Fundamentally, any code that runs on a client computer is totally untrustworthy as far as security is concerened, because there is nothing stopping the user from re-writing the code or using a debugger to examine the internal processes for weaknesses.

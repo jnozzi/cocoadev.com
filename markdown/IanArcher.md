@@ -6,4 +6,4 @@ I am Ian Archer.
 
 *Calm down, boys... We're **all** Ian Archer.*
 
-"I'm not" -- General/LloydSargent
+"I'm not" -- LloydSargent

@@ -6,11 +6,11 @@
 
 To do a "Reveal in Finder" type command, you just need the (full) path, and then write something like the following call:
     
- (General/IBAction)revealLocal:(id)sender{
-        General/NSWorkspace *sw = General/[NSWorkspace sharedWorkspace];
+ (IBAction)revealLocal:(id)sender{
+        NSWorkspace *sw = [NSWorkspace sharedWorkspace];
 
 	 // probably going to use your own path, this is just to remind you to expand '~'.
-	General/NSString *path = [@"~/Desktop/General/MyFile.pdf" stringByExpandingTildeInPath]; 
+	NSString *path = [@"~/Desktop/MyFile.pdf" stringByExpandingTildeInPath]; 
 
  	[sw selectFile:path inFileViewerRootedAtPath:nil];
 }
@@ -29,7 +29,7 @@ I'm getting a new file viewer created each time I call this even though I'm pass
 
 UPDATE: This only happens if I call the method with a path to a folder.  Works as advertised for files.
 
--General/KenAspeslagh
+-KenAspeslagh
 
 ----
 
@@ -39,4 +39,4 @@ Did you try passing 'nil' as the path? *Sorry, brain-dead question. Never mind I
 
 What if you specify the parent folder as the rootFullPath? 
 ----
-works great for me!  General/EcumeDesJours
+works great for me!  EcumeDesJours

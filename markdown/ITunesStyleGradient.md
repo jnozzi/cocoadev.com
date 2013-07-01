@@ -2,8 +2,8 @@ How do you make that cool iTunes-style gradient?
 
 [http://mattgemmell.com/source] (under iTableView)
 
-Also see General/OAGradientTableView, General/CCDGradientSelectionTableView
+Also see OAGradientTableView, CCDGradientSelectionTableView
 
 ----
 
-You might also try the General/CGShading API: http://developer.apple.com/documentation/General/GraphicsImaging/Reference/Quartz_2D_Ref/qref_main/function_group_27.html
+You might also try the CGShading API: http://developer.apple.com/documentation/GraphicsImaging/Reference/Quartz_2D_Ref/qref_main/function_group_27.html

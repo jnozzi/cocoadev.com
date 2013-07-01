@@ -1,5 +1,5 @@
 Is there a "reasonably safe" (i.e., "somewhat general", non-installation-specific)
-way to ask for a monospace font when using the General/NSFont class?
+way to ask for a monospace font when using the NSFont class?
 
 I just want to set a monospaced font for some results I am displaying in a text view.
 
@@ -8,7 +8,7 @@ On most people's systems?
 
 ----
 
-Try     General/[NSFont userFixedPitchFontOfSize:0.0] to get the user's default monospace font and size.
+Try     [NSFont userFixedPitchFontOfSize:0.0] to get the user's default monospace font and size.
 
 ----
 
@@ -25,6 +25,6 @@ they are missing the Monaco font.
 
 ----
 
-You must realize that starting with panther, it is possible to disable fonts via General/FontBook.  See: http://diveintoosx.org/panther/font_management.html
+You must realize that starting with panther, it is possible to disable fonts via FontBook.  See: http://diveintoosx.org/panther/font_management.html
 
-General/JoeCrow
+JoeCrow

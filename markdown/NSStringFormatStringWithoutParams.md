@@ -1,28 +1,28 @@
 
 
 Hi , all!
-I have looked on General/NSString documentation . And trying to use the General/NSString with the Format string.
+I have looked on NSString documentation . And trying to use the NSString with the Format string.
 I have a piece of code , and want to know how it works .
-Usually , we use our General/NSString like this , General/NSString *aString = General/[NSString stringWithFormat:@"XXX%@XX%dX...",params1,params2,...];
+Usually , we use our NSString like this , NSString *aString = [NSString stringWithFormat:@"XXX%@XX%dX...",params1,params2,...];
 if I don't pass in the parameter , what will happen? 
      
-General/NSString *aString = General/[NSString stringWithFormat:@"%@"];
-General/NSLog(@"%@",aString);
+NSString *aString = [NSString stringWithFormat:@"%@"];
+NSLog(@"%@",aString);
 
 this piece of code crashed app.
 If I change something in the code , making it like this
      
-General/NSString *anotherString = General/[NSString stringWithFormat:@"%@",@"testing"];
-General/NSString *aString = General/[NSString stringWithFormat:@"%@"];
-General/NSLog(@"%@",aString);
+NSString *anotherString = [NSString stringWithFormat:@"%@",@"testing"];
+NSString *aString = [NSString stringWithFormat:@"%@"];
+NSLog(@"%@",aString);
 
 this time , the app doesn't crash , but it prints "testing"
-I don't pass in anotherString to General/NSLog , but the log prints the "testing". It's really kind of weird . 
+I don't pass in anotherString to NSLog , but the log prints the "testing". It's really kind of weird . 
 Can some one give me some explanation ?
 thanks a lot.
 --Daniel
 ----
-Why can't you just do     General/NSString *anotherString = @"%@";?
+Why can't you just do     NSString *anotherString = @"%@";?
 
 ----
 
@@ -30,7 +30,7 @@ You need to look into how varargs works and there are no portable assumptions wh
 
 Does that make sense?
 
---General/JeffDisher
+--JeffDisher
 ----
 
 yep.I think it's really a dangerous behavior.--Daniel
@@ -39,4 +39,4 @@ yep.I think it's really a dangerous behavior.--Daniel
 Welcome to C: if you make the wrong move, your app will crash or, worse, silently corrupt your data. If you don't like that sort of thing, this is probably not the language for you.
 
 ----
-This stack-smashing is such a common occurrence in straight C that the gcc guys introduced lint-checking for     printf, so that if the number or type of the arguments to     printf does not mesh with the field codes in the format string, gcc will warn you.  I wish the same feature were present for     General/NSString and     General/NSLog().
+This stack-smashing is such a common occurrence in straight C that the gcc guys introduced lint-checking for     printf, so that if the number or type of the arguments to     printf does not mesh with the field codes in the format string, gcc will warn you.  I wish the same feature were present for     NSString and     NSLog().

@@ -14,4 +14,4 @@ In particular the SKTDocument class defines several keys (circles, rectangles, l
 
 -----
 
-General/HowToSupportAppleScript
+HowToSupportAppleScript

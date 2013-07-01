@@ -18,9 +18,9 @@ o Apple Xcode
 
 o Network & related communications protocols (TCP/IP, HTTP, SSL, XML)
 
-o General/CodeWarrior IDE
+o CodeWarrior IDE
 
-o General/PowerPlant
+o PowerPlant
 
 o Experience developing with embedded browsers
 

@@ -5,7 +5,7 @@ Blocks are declared and typed as follows:
 An example of a block that returns an int for two strings would be:
 
     
-int (^)(General/NSString*, General/NSString*)
+int (^)(NSString*, NSString*)
 
 
 An example of a block that returns nothing from no arguments would be:
@@ -27,8 +27,8 @@ int main(int argc, string[] *argv)
 
 
 *The original message announcing blocks to the Clang list: http://lists.cs.uiuc.edu/pipermail/cfe-dev/2008-August/002670.html
-*Blocks on the Clang site: http://clang.llvm.org/docs/General/LanguageExtensions.html#blocks
-*General/MikeAsh's introduction: http://www.mikeash.com/?page=pyblog/friday-qa-2008-12-26.html
+*Blocks on the Clang site: http://clang.llvm.org/docs/LanguageExtensions.html#blocks
+*MikeAsh's introduction: http://www.mikeash.com/?page=pyblog/friday-qa-2008-12-26.html
 *A backport of blocks for Leopard and iPhoneOS: http://www.plausiblelabs.com/blog/?p=8 http://code.google.com/p/plblocks/
 *A guide to using blocks in C and Objective-C: http://thirdcog.eu/pwcblocks/
 

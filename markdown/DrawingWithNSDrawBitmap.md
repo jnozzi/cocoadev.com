@@ -1,6 +1,6 @@
 
 
-Does anyone know to write to an General/NSGraphicsContext with General/NSDrawBitmap, or using the General/NSBitmapImageRep? All I need is the ability to write color data to a given pixel. I know you can draw with General/NSRectFillListWithColors(), but it's painfully slow. I'm trying to figure out how to do simple pixel-level image manipulation.
+Does anyone know to write to an NSGraphicsContext with NSDrawBitmap, or using the NSBitmapImageRep? All I need is the ability to write color data to a given pixel. I know you can draw with NSRectFillListWithColors(), but it's painfully slow. I'm trying to figure out how to do simple pixel-level image manipulation.
 
 ----
 
@@ -11,23 +11,23 @@ typedef struct _BIRPixel {
     unsigned char green;
     unsigned char blue;
     unsigned char alpha;
-} General/BIRPixel;
+} BIRPixel;
 
 
 void birTest() {
     int width=100;
     int height=100;
-    id bir=General/[[[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
+    id bir=[[[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil
                 pixelsWide:width
                 pixelsHigh:height
                 bitsPerSample:8
                 samplesPerPixel:4
                 hasAlpha:YES
                 isPlanar:NO
-                colorSpaceName:General/NSDeviceRGBColorSpace
+                colorSpaceName:NSDeviceRGBColorSpace
                 bytesPerRow:width*4
                 bitsPerPixel:8*4] autorelease];
-    General/BIRPixel *pixels=(General/BIRPixel *)[bir bitmapData];
+    BIRPixel *pixels=(BIRPixel *)[bir bitmapData];
     char *bytes=(char *)pixels;
     memset(bytes, 255, width*height*4);  // paints all pixels white
     int row, column;
@@ -74,14 +74,14 @@ void birTest() {
     }
     
     
-    id tiff=[bir General/TIFFRepresentation];
+    id tiff=[bir TIFFRepresentation];
     [tiff writeToFile:@"/Users/zoot/temp/bir.tiff" atomically:YES];
 }
 
 
 
 
-If you are familiar with C, then you should know how to manipulate bytes without using a struct. But, if you are not familiar with C then I would play with this struct (General/BIRPixel) until you get a feel for how the byte order works. Basically the sequence of bytes goes RGBARGBARGBA for Red-Green-Blue-Alpha-Red-Green-Blue-Alpha-Red-Green-Blue-Alpha. If you notice, the order of the members of the struct General/BIRPixel are also Red-Green-Blue-Alpha. Once you get the hang of this byte order you can use a pointer of type (unsigned char *) to manipulate the individual color components. 
+If you are familiar with C, then you should know how to manipulate bytes without using a struct. But, if you are not familiar with C then I would play with this struct (BIRPixel) until you get a feel for how the byte order works. Basically the sequence of bytes goes RGBARGBARGBA for Red-Green-Blue-Alpha-Red-Green-Blue-Alpha-Red-Green-Blue-Alpha. If you notice, the order of the members of the struct BIRPixel are also Red-Green-Blue-Alpha. Once you get the hang of this byte order you can use a pointer of type (unsigned char *) to manipulate the individual color components. 
 
     
 int r,c;
@@ -106,4 +106,4 @@ The bitmap data is rastered in a Z pattern starting with the top row going from 
 
 --zootbobbalu  
 
-General/WhoOwnsNSBitmapImageRepBuffers
+WhoOwnsNSBitmapImageRepBuffers

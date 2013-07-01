@@ -1,39 +1,39 @@
 
 
-General/NSPreferences is a class the provides a pseudo-standard look-and-feel for editing application preferences. It is used in both Safari and Mail.  It basically controls a tabbed view with a toolbar-style series of icons.  IMHO, it is much more efficient for small sets of preferences than the General/PreferencesPane interface seen in System Preferences.
+NSPreferences is a class the provides a pseudo-standard look-and-feel for editing application preferences. It is used in both Safari and Mail.  It basically controls a tabbed view with a toolbar-style series of icons.  IMHO, it is much more efficient for small sets of preferences than the PreferencesPane interface seen in System Preferences.
 
-This falls under the General/UndocumentedGoodness category.  There are a few minor hiccups, but after that, it's smooth sailing. http://goo.gl/General/OeSCu
+This falls under the UndocumentedGoodness category.  There are a few minor hiccups, but after that, it's smooth sailing. http://goo.gl/OeSCu
 
-Due to something funky in the General/NSPreferences init method, I've found that you have to do this override to avoid a segfault.  I'm kind of interested in figuring out why this is, but for the time being, it was easier to hack around.
+Due to something funky in the NSPreferences init method, I've found that you have to do this override to avoid a segfault.  I'm kind of interested in figuring out why this is, but for the time being, it was easier to hack around.
 
     
-@interface General/MSPreferences : General/NSPreferences
+@interface MSPreferences : NSPreferences
 {
 }
 
 @end
 
 
-@implementation General/MSPreferences
+@implementation MSPreferences
 
 - init
 {
-	_preferenceTitles = General/[[NSMutableArray alloc] init];
-	_preferenceModules = General/[[NSMutableArray alloc] init];
-	_masterPreferenceViews = General/[[NSMutableDictionary alloc] init];
-	_currentSessionPreferenceViews = General/[[NSMutableDictionary alloc] init];
+	_preferenceTitles = [[NSMutableArray alloc] init];
+	_preferenceModules = [[NSMutableArray alloc] init];
+	_masterPreferenceViews = [[NSMutableDictionary alloc] init];
+	_currentSessionPreferenceViews = [[NSMutableDictionary alloc] init];
 	return self;
 }
 
 @end
 
 
-What you mostly need to do is extend the General/NSPreferencesModule and flesh it out with all the gory details of your interface.
+What you mostly need to do is extend the NSPreferencesModule and flesh it out with all the gory details of your interface.
 
     
-@interface General/NSPreferencesModule:General/NSObject <General/NSPreferencesModule>
+@interface NSPreferencesModule:NSObject <NSPreferencesModule>
 {
-    General/NSBox *_preferencesView;	// 4 = 0x4
+    NSBox *_preferencesView;	// 4 = 0x4
     struct _NSSize _minSize;	// 8 = 0x8
     char _hasChanges;	// 16 = 0x10
     void *_reserved;	// 20 = 0x14
@@ -62,26 +62,26 @@ What you mostly need to do is extend the General/NSPreferencesModule and flesh i
 
 @end
 
-@interface General/SamplePreferencesModule : General/NSPreferencesModule
+@interface SamplePreferencesModule : NSPreferencesModule
 {
 }
 @end
 
-@implementation General/SamplePreferencesModule
+@implementation SamplePreferencesModule
 
 /**
  * Image to display in the preferences toolbar
  */
-- (General/NSImage *) imageForPreferenceNamed:(General/NSString *)_name
+- (NSImage *) imageForPreferenceNamed:(NSString *)_name
 
 /**
  * Override to return the name of the relevant nib
  */
-- (General/NSString *) preferencesNibName
+- (NSString *) preferencesNibName
 
 - (void) didChange
 
-- (General/NSView*) viewForPreferenceNamed:(General/NSString *)aName;
+- (NSView*) viewForPreferenceNamed:(NSString *)aName;
 
 /**
 * Called when switching preference panels.
@@ -111,37 +111,37 @@ What you mostly need to do is extend the General/NSPreferencesModule and flesh i
 @end
 
 
-You'll need to define a nib file (and specify it's name in the module class.  You probably want to create an General/NSPreferencesModule class in General/InterfaceBuilder and make sure it has an outlet for General/NSBox* _preferencesView.  Once you have that taken care of, you just need the following lines in you application:
+You'll need to define a nib file (and specify it's name in the module class.  You probably want to create an NSPreferencesModule class in InterfaceBuilder and make sure it has an outlet for NSBox* _preferencesView.  Once you have that taken care of, you just need the following lines in you application:
 
     
-	General/[NSPreferences setDefaultPreferencesClass:General/[MSPreferences class]];
-	General/NSPreferences* prefs = General/[NSPreferences sharedPreferences];
-	[prefs addPreferenceNamed:@"General/SamplePreferencesModule" owner:General/[SamplePreferencesModule sharedInstance]];
+	[NSPreferences setDefaultPreferencesClass:[MSPreferences class]];
+	NSPreferences* prefs = [NSPreferences sharedPreferences];
+	[prefs addPreferenceNamed:@"SamplePreferencesModule" owner:[SamplePreferencesModule sharedInstance]];
 
 
-Obviously, I've left out a few things from my actual implementation, but hopefully this can get you started.  If you are having trouble, please drop me a note and I'll try update these notes to help you solve your problem.  --General/MikeSolomon
+Obviously, I've left out a few things from my actual implementation, but hopefully this can get you started.  If you are having trouble, please drop me a note and I'll try update these notes to help you solve your problem.  --MikeSolomon
 
 ----
 
-A more complete header for General/NSPreferences (and friends) that has 10.2 and 10.3 differences broken out.
+A more complete header for NSPreferences (and friends) that has 10.2 and 10.3 differences broken out.
 
     
-#import <Foundation/General/NSObject.h>
-#import <Foundation/General/NSGeometry.h>
-#import <General/AppKit/General/NSNibDeclarations.h>
+#import <Foundation/NSObject.h>
+#import <Foundation/NSGeometry.h>
+#import <AppKit/NSNibDeclarations.h>
 
-// Private classes from the General/AppKit framework; used by Safari and Mail.
+// Private classes from the AppKit framework; used by Safari and Mail.
 
-@class General/NSWindow;
-@class General/NSMatrix;
-@class General/NSBox;
-@class General/NSButtonCell;
-@class General/NSImage;
-@class General/NSView;
-@class General/NSMutableArray;
-@class General/NSMutableDictionary;
+@class NSWindow;
+@class NSMatrix;
+@class NSBox;
+@class NSButtonCell;
+@class NSImage;
+@class NSView;
+@class NSMutableArray;
+@class NSMutableDictionary;
 
-@protocol General/NSPreferencesModule
+@protocol NSPreferencesModule
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_3
 - (BOOL) preferencesWindowShouldClose;
 - (BOOL) moduleCanBeRemoved;
@@ -153,35 +153,35 @@ A more complete header for General/NSPreferences (and friends) that has 10.2 and
 - (void) willBeDisplayed;
 - (void) saveChanges;
 - (BOOL) hasChangesPending;
-- (General/NSImage *) imageForPreferenceNamed:(General/NSString *) name;
-- (General/NSView *) viewForPreferenceNamed:(General/NSString *) name;
+- (NSImage *) imageForPreferenceNamed:(NSString *) name;
+- (NSView *) viewForPreferenceNamed:(NSString *) name;
 @end
 
-@interface General/NSPreferences : General/NSObject {
+@interface NSPreferences : NSObject {
 #if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_2
 	id preferencesPanel;
-	General/NSBox *preferenceBox;
+	NSBox *preferenceBox;
 	id moduleMatrix;
 	id okButton;
 	id cancelButton;
 	id applyButton;
 #else
-	General/NSWindow *_preferencesPanel;
-	General/NSBox *_preferenceBox;
-	General/NSMatrix *_moduleMatrix;
-	General/NSButtonCell *_okButton;
-	General/NSButtonCell *_cancelButton;
-	General/NSButtonCell *_applyButton;
+	NSWindow *_preferencesPanel;
+	NSBox *_preferenceBox;
+	NSMatrix *_moduleMatrix;
+	NSButtonCell *_okButton;
+	NSButtonCell *_cancelButton;
+	NSButtonCell *_applyButton;
 #endif
-	General/NSMutableArray *_preferenceTitles;
-	General/NSMutableArray *_preferenceModules;
+	NSMutableArray *_preferenceTitles;
+	NSMutableArray *_preferenceModules;
 #if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_2
-	General/NSMutableDictionary *_preferenceViews;
+	NSMutableDictionary *_preferenceViews;
 #else
-	General/NSMutableDictionary *_masterPreferenceViews;
-	General/NSMutableDictionary *_currentSessionPreferenceViews;
+	NSMutableDictionary *_masterPreferenceViews;
+	NSMutableDictionary *_currentSessionPreferenceViews;
 #endif
-	General/NSBox *_originalContentView;
+	NSBox *_originalContentView;
 	BOOL _isModal;
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_3
 	float _constrainedWidth;
@@ -195,9 +195,9 @@ A more complete header for General/NSPreferences (and friends) that has 10.2 and
 
 - (id) init;
 - (void) dealloc;
-- (void) addPreferenceNamed:(General/NSString *) name owner:(id) owner;
+- (void) addPreferenceNamed:(NSString *) name owner:(id) owner;
 
-- (General/NSSize) preferencesContentSize;
+- (NSSize) preferencesContentSize;
 
 - (void) showPreferencesPanel;
 - (void) showPreferencesPanelForOwner:(id) owner;
@@ -208,7 +208,7 @@ A more complete header for General/NSPreferences (and friends) that has 10.2 and
 - (void) cancel:(id) sender;
 - (void) apply:(id) sender;
 
-- (General/NSString *) windowTitle;
+- (NSString *) windowTitle;
 - (BOOL) usesButtons;
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_2
@@ -216,27 +216,27 @@ A more complete header for General/NSPreferences (and friends) that has 10.2 and
 #endif
 @end
 
-@interface General/NSPreferencesModule : General/NSObject <General/NSPreferencesModule> {
+@interface NSPreferencesModule : NSObject <NSPreferencesModule> {
 #if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_2
-	General/IBOutlet General/NSBox *preferencesView;
+	IBOutlet NSBox *preferencesView;
 	BOOL hasChanges;
 #else
-	General/IBOutlet General/NSBox *_preferencesView;
-	General/NSSize _minSize;
+	IBOutlet NSBox *_preferencesView;
+	NSSize _minSize;
 	BOOL _hasChanges;
 	void *_reserved;
 #endif
 }
 + (id) sharedInstance;
 - (id) init;
-- (General/NSString *) preferencesNibName;
+- (NSString *) preferencesNibName;
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_3
-- (void) setPreferencesView:(General/NSView *) view;
+- (void) setPreferencesView:(NSView *) view;
 #endif
-- (General/NSView *) viewForPreferenceNamed:(General/NSString *) name;
-- (General/NSImage *) imageForPreferenceNamed:(General/NSString *) name;
+- (NSView *) viewForPreferenceNamed:(NSString *) name;
+- (NSImage *) imageForPreferenceNamed:(NSString *) name;
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_3
-- (General/NSString *) titleForIdentifier:(General/NSString *) identifier;
+- (NSString *) titleForIdentifier:(NSString *) identifier;
 #endif
 - (BOOL) hasChangesPending;
 - (void) saveChanges;
@@ -244,8 +244,8 @@ A more complete header for General/NSPreferences (and friends) that has 10.2 and
 - (void) initializeFromDefaults;
 - (void) didChange;
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_3
-- (General/NSSize) minSize;
-- (void) setMinSize:(General/NSSize) size;
+- (NSSize) minSize;
+- (void) setMinSize:(NSSize) size;
 - (void) moduleWillBeRemoved;
 - (void) moduleWasInstalled;
 - (BOOL) moduleCanBeRemoved;
@@ -255,11 +255,11 @@ A more complete header for General/NSPreferences (and friends) that has 10.2 and
 @end
 
 
-Also since _currentSessionPreferenceViews and _masterPreferenceViews were added in 10.3, leaving those allocs out in your custom override init method will allow your code to work in 10.2 and 10.3. General/NSPreferences seems to allocate these lazily. --General/TimothyHatcher
+Also since _currentSessionPreferenceViews and _masterPreferenceViews were added in 10.3, leaving those allocs out in your custom override init method will allow your code to work in 10.2 and 10.3. NSPreferences seems to allocate these lazily. --TimothyHatcher
 
 ----
 
-If you want to avoid stuff that isn't officially allowed for use by Apple (it looks like General/NSPreferences is private), you can also use my General/UKPrefsPanel class, which does something similar when combined with General/NSUserDefaults. Not quite as advanced, but similar enough. It's at http://www.zathras.de/programming/sourcecode.htm#General/UKPrefsPanel -- General/UliKusterer
+If you want to avoid stuff that isn't officially allowed for use by Apple (it looks like NSPreferences is private), you can also use my UKPrefsPanel class, which does something similar when combined with NSUserDefaults. Not quite as advanced, but similar enough. It's at http://www.zathras.de/programming/sourcecode.htm#UKPrefsPanel -- UliKusterer
 
 
 ----
@@ -268,7 +268,7 @@ Could someone post an example? I'm completely lost :(
 
 
 
--General/JohnWells
+-JohnWells
 
 ----
 I'm guessing there's a reason why sending init doesn't work.  You probably have to call something like initWithWindow: or something like that... for debugging purposes someone probably threw in an assertation or something like it into the init method which is why you see your program exit.
@@ -280,9 +280,9 @@ Do anyone know why this happens? And any idea how to fix it...?
 
 UPDATE: Safari saves the last preference module that was open. If my module was not the last, it has to be clicked on in the preferences toolbar twice. If it was the last, it is as described above. It seems like it has to be activated one time first to "activate" it, and then another time to really open.
 
-UPDATE2: It is fixed! I had connected the preferencesView-outlet to a General/NSView, but it needed to be a General/NSBox. The naming confused me. (and maybe others, so I don't delete this comment.)
+UPDATE2: It is fixed! I had connected the preferencesView-outlet to a NSView, but it needed to be a NSBox. The naming confused me. (and maybe others, so I don't delete this comment.)
 
--General/HannesPetrihttp://jamtangankanan.blogspot.com/
+-HannesPetrihttp://jamtangankanan.blogspot.com/
 http://www.souvenirnikahku.com/
 http://xamthonecentral.com/
 http://www.jualsextoys.com

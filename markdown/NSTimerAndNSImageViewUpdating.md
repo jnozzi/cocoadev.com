@@ -9,7 +9,7 @@ Hi, folks, and sorry my english. I have such a problem in my app, but i'll show 
 	static const double interval = 0.1;
 
 	if (_timer == nil)
-	    _timer = General/[NSTimer
+	    _timer = [NSTimer
           scheduledTimerWithTimeInterval:interval
           target:self
           selector:@selector(update)
@@ -21,18 +21,18 @@ Hi, folks, and sorry my english. I have such a problem in my app, but i'll show 
 
 - (id)update
 {
-  General/NSImage *imageFromBundle = General/[[NSImage alloc] initWithContentsOfFile:@"/mybmp.bmp"];
+  NSImage *imageFromBundle = [[NSImage alloc] initWithContentsOfFile:@"/mybmp.bmp"];
   
   if([imageFromBundle isValid]) printf("\n imageFromBundle valid \n");
 
   if (imageFromBundle)
   {
-    [myImageView setImage:imageFromBundle]; //  General/NSImageView* myImageView
+    [myImageView setImage:imageFromBundle]; //  NSImageView* myImageView
     [imageFromBundle release];
   }
   else
   {
-    General/NSLog(@"File could not be loaded.");
+    NSLog(@"File could not be loaded.");
   }
   
   return 0;
@@ -40,11 +40,11 @@ Hi, folks, and sorry my english. I have such a problem in my app, but i'll show 
 
 
 
-So as you can see i've started timer pointed to 'update' function, where simply opening and drawing bmp file. But is not drawing! Only 'white' area ov General/NSImageView in my gui. What is the problem? May be you know.. (( The thing is that when i'm not runnig General/NSTimer and simply run 'update' BMP is normaly drawed...
+So as you can see i've started timer pointed to 'update' function, where simply opening and drawing bmp file. But is not drawing! Only 'white' area ov NSImageView in my gui. What is the problem? May be you know.. (( The thing is that when i'm not runnig NSTimer and simply run 'update' BMP is normaly drawed...
 
 ----
 
-This is because you need to add it to the General/NSRunLoop first:
+This is because you need to add it to the NSRunLoop first:
 
     
 - (id)timer
@@ -52,13 +52,13 @@ This is because you need to add it to the General/NSRunLoop first:
 	static const double interval = 0.1;
 
 	if (_timer == nil){
-	    _timer = General/[NSTimer
+	    _timer = [NSTimer
           scheduledTimerWithTimeInterval:interval
           target:self
           selector:@selector(update)
           userInfo:nil
           repeats:YES];
-       General/[[NSRunLoop currentRunLoop] addTimer:_timer forMode:General/NSDefaultRunLoopMode];
+       [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
   }
   return 0;
 }
@@ -82,18 +82,18 @@ You may need to force drawing here. After you set your image view's image, call:
 ----
 
 I've already tried force redraw, nothing new..
-There is one more thing that i've not undisclosed. I'm grabbing frames from camera, i mean system web camera, by General/QuickTime components like General/SGStartRecord.. and then having some frame data i'm trying to draw it in General/NSImageView.. For now i suppose that it's the problem of some type of General/SequenseGrabber loop.. and i don't know were and what for to look at..
+There is one more thing that i've not undisclosed. I'm grabbing frames from camera, i mean system web camera, by QuickTime components like SGStartRecord.. and then having some frame data i'm trying to draw it in NSImageView.. For now i suppose that it's the problem of some type of SequenseGrabber loop.. and i don't know were and what for to look at..
 
     
 
 int opencam (...)
 {
-  grabber = General/OpenDefaultComponent (General/SeqGrabComponentType, 0);
+  grabber = OpenDefaultComponent (SeqGrabComponentType, 0);
 
   ....
-  result = General/SGSetDataProc (grabber, General/NewSGDataUPP(dataproc), (long) capture)
+  result = SGSetDataProc (grabber, NewSGDataUPP(dataproc), (long) capture)
   ....
-  result = General/SGStartRecord (grabber);
+  result = SGStartRecord (grabber);
   ....   
 
   dr = new Dr();
@@ -102,7 +102,7 @@ int opencam (...)
   return 1;
 } //init components
 
-General/OSErr dataproc (General/SGChannel channel, Ptr data, long len, long *, long, General/TimeValue time, short, long refCon)
+OSErr dataproc (SGChannel channel, Ptr data, long len, long *, long, TimeValue time, short, long refCon)
 {
   handledata(data);  
   return noErr;
@@ -123,35 +123,35 @@ void handledata(void* data)
 void Draw::drawFrame(void* data, mySize roi)
 {
   ...
-  General/NSImage* outimage = General/[[NSImage alloc] initWithSize:General/NSMakeSize(roi.width, roi.height)];
+  NSImage* outimage = [[NSImage alloc] initWithSize:NSMakeSize(roi.width, roi.height)];
   [myViewClass updateImage:outimage];
 
 } // another editing data an send it to redraw. For NOW it's not used!!
 
 
-void Dr:: taskgrabber(General/SeqGrabComponent grabber)
+void Dr:: taskgrabber(SeqGrabComponent grabber)
 {
   //[myViewClass setgrabber:grabber];
   [myViewClass update];
 
-} // need to show my General/SeqGrabComponent to another class. For NOW it's used for simply file drawing function calling
+} // need to show my SeqGrabComponent to another class. For NOW it's used for simply file drawing function calling
 
 --------------
 
-- (id)update//:(General/NSImage*)outimage
+- (id)update//:(NSImage*)outimage
 {
-  General/NSImage *imageFromBundle = General/[[NSImage alloc] initWithContentsOfFile:@"/mybmp.bmp"];
+  NSImage *imageFromBundle = [[NSImage alloc] initWithContentsOfFile:@"/mybmp.bmp"];
   
   if([imageFromBundle isValid]) printf("\n imageFromBundle valid \n");
 
   if (imageFromBundle)
   {
-    [myImageView setImage:imageFromBundle]; //  General/NSImageView* myImageView
+    [myImageView setImage:imageFromBundle]; //  NSImageView* myImageView
     [imageFromBundle release];
   }
   else
   {
-    General/NSLog(@"File could not be loaded.");
+    NSLog(@"File could not be loaded.");
   }
   
   //[output setImage:outimage];
@@ -161,7 +161,7 @@ void Dr:: taskgrabber(General/SeqGrabComponent grabber)
 
 
 
-- (id)setgrabber:(General/SeqGrabComponent)grabber
+- (id)setgrabber:(SeqGrabComponent)grabber
 {
   _grabber = grabber;
     
@@ -176,10 +176,10 @@ void Dr:: taskgrabber(General/SeqGrabComponent grabber)
 {
   static const double idleInterval = 1.0 / 60.0;
 
-  General/SGIdle(_grabber); // grab frame
+  SGIdle(_grabber); // grab frame
 
   if (_timer == nil)
-  	_timer = General/[NSTimer
+  	_timer = [NSTimer
           scheduledTimerWithTimeInterval:idleInterval
           target:self
           selector:@selector(timer)

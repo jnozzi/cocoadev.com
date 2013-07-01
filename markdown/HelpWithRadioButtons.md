@@ -6,9 +6,9 @@ Thanks in advance.
 
 ----
 
-To get more rows, hold down the option key and resize the General/NSMatrix (making it higher), new rows will appear, as space permits.
+To get more rows, hold down the option key and resize the NSMatrix (making it higher), new rows will appear, as space permits.
 
-To change the tag, double click the General/NSMatrix, which should select the cell, open the Info utility window and at the attributes pane there is a text field where you can enter the tag (the title of this Info panel should be General/NSButtonCell).
+To change the tag, double click the NSMatrix, which should select the cell, open the Info utility window and at the attributes pane there is a text field where you can enter the tag (the title of this Info panel should be NSButtonCell).
 
 ----
 
@@ -18,9 +18,9 @@ I'm new to objective C and just OS X programming altogether. I used to program j
 
 ----
 
-Do you have them properly connected to your class in Interface Builder? Without this, you can't easiliy find out about any controls or objects in your window. You need to create an instance of your class via Interface Builder, and then connect the outlets in your class to the radio buttons in your window. If you're unsure of how to do this, you might want to read up on a few of the pages at General/HowToProgramInOSX (more specifically General/HowToUseOutlets).
+Do you have them properly connected to your class in Interface Builder? Without this, you can't easiliy find out about any controls or objects in your window. You need to create an instance of your class via Interface Builder, and then connect the outlets in your class to the radio buttons in your window. If you're unsure of how to do this, you might want to read up on a few of the pages at HowToProgramInOSX (more specifically HowToUseOutlets).
 
-*Well, first of all, make sure you know basic IB and Cocoa stuff. You can screw things up horribly if you don't know any Cocoa, (I know; I went through the exact same transition), especially General/MemoryManagement. Basically, what you want to do here is to connect the radio buttons (or the General/NSMatrix containing them) to an action in your controller class. Then in your     .m file, implement the action as if the sender was the containing     General/NSMatrix. This means that you can call     selectedCell to get the radio button instance, or     selectedRow to get the row that was clicked. If you need more in-depth instructions, look around at General/HowToProgramInOSX. Oh, and can you try to use good grammar and spelling (and not swear)? No offense meant -- it just always helps when other people can learn from your solutions, and a nice page aids that process. Good luck! --General/JediKnil*
+*Well, first of all, make sure you know basic IB and Cocoa stuff. You can screw things up horribly if you don't know any Cocoa, (I know; I went through the exact same transition), especially MemoryManagement. Basically, what you want to do here is to connect the radio buttons (or the NSMatrix containing them) to an action in your controller class. Then in your     .m file, implement the action as if the sender was the containing     NSMatrix. This means that you can call     selectedCell to get the radio button instance, or     selectedRow to get the row that was clicked. If you need more in-depth instructions, look around at HowToProgramInOSX. Oh, and can you try to use good grammar and spelling (and not swear)? No offense meant -- it just always helps when other people can learn from your solutions, and a nice page aids that process. Good luck! --JediKnil*
 
 ----
 
@@ -28,7 +28,7 @@ I did create an instance of the class and I did have them connected properly to 
 
 ----
 
-A quick and dirty way to determine if your outlets are properly connected, is on     awakeFromNib General/NSLog your outlets:     General/NSLog(@"%@", radioButton1); and if it shows (null) then it's not setup properly.
+A quick and dirty way to determine if your outlets are properly connected, is on     awakeFromNib NSLog your outlets:     NSLog(@"%@", radioButton1); and if it shows (null) then it's not setup properly.
 
 ----
 

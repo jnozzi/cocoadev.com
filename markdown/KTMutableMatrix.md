@@ -1,7 +1,7 @@
-See also General/DesignMatrix.
+See also DesignMatrix.
 
-I have passed a varible General/KTMutableMatrix * clientClusterMatrix  when window is load, it receives Okay. But when I  try to obtain it  in later methods, 
-I got General/AccessBadMemory debug message. It seems like that clientClusterMatrix can not be obtained by the "getter"
+I have passed a varible KTMutableMatrix * clientClusterMatrix  when window is load, it receives Okay. But when I  try to obtain it  in later methods, 
+I got AccessBadMemory debug message. It seems like that clientClusterMatrix can not be obtained by the "getter"
 
 Any help would be appreciated.
 
@@ -10,19 +10,19 @@ Phyllis
 
 
     
-// Note: General/KTMutableMatrix * clientClusterMatrix has been defined as a  
+// Note: KTMutableMatrix * clientClusterMatrix has been defined as a  
 global variable in the .h file
 
--(void) windowWillLoad: (General/KTMutableMatrix*)cCMatrix
+-(void) windowWillLoad: (KTMutableMatrix*)cCMatrix
 {     
       [super windowWillLoad];    
-      clientClusterMatrix= General/[[KTMutableMatrix alloc] init];
+      clientClusterMatrix= [[KTMutableMatrix alloc] init];
       clientClusterMatrix= cCMatrix;  // <<<<-----received fine here
       ...	
       [clientClusterMatrix autorelease];
 }
 
--(General/KTMutableMatrix*)getClientClusterMatrix
+-(KTMutableMatrix*)getClientClusterMatrix
 {
     return clientClusterMatrix;
 }
@@ -34,7 +34,7 @@ global variable in the .h file
       ...
 }
 
--(void)setSegNum:(General/KTMutableMatrix*) matrix by:(int) wordNum
+-(void)setSegNum:(KTMutableMatrix*) matrix by:(int) wordNum
 {      ...      
        if ([matrix objectAtCoordinates:j,i] !=nil && [matrix objectAtCoordinates:j,i] !=@"")
                     [tempArray addObject:[ matrix objectAtCoordinates:j,i] ];
@@ -47,7 +47,7 @@ global variable in the .h file
 
 ----
 
-Are you sure you want to be calling [clientClusterMatrix autorelease]; at the end of the windowWillLoad method?  Unless you retained it somewhere else it will be deallocated almost immediately after the method finishes.  -- General/JamesCallender 
+Are you sure you want to be calling [clientClusterMatrix autorelease]; at the end of the windowWillLoad method?  Unless you retained it somewhere else it will be deallocated almost immediately after the method finishes.  -- JamesCallender 
 
 ----
 I noticed that and deleted that line too, but problem exists same :(
@@ -58,26 +58,26 @@ Phyllis
 ----
 
     
-clientClusterMatrix= General/[[KTMutableMatrix alloc] init];
+clientClusterMatrix= [[KTMutableMatrix alloc] init];
 clientClusterMatrix= cWArry;  // <<<<-----received fine here
 
 
-I'm confused what you're doing here, and I'm guessing you might be too. You appear to be creating a new General/KTMatrix then immediately killing all references to it - a memory leak - then not retaining the new array. Perhaps you wanted:
+I'm confused what you're doing here, and I'm guessing you might be too. You appear to be creating a new KTMatrix then immediately killing all references to it - a memory leak - then not retaining the new array. Perhaps you wanted:
     
 clientClusterMatrix= [cWArry mutableCopy];
 
-here? Except you're passing in an General/NSMutableArray *, not a General/KTMatrix *.
+here? Except you're passing in an NSMutableArray *, not a KTMatrix *.
 
 What are you attempting to achieve? (To be honest, I can't see why the code even compiles as you've written it, the pointer assignment should at least give a warning.)
 
--- General/KritTer
+-- KritTer
 ----
 I appologize. It was copy&paste error. This was in my original code:
     
--(void) windowWillLoad: (General/KTMutableMatrix*)cCMatrix
+-(void) windowWillLoad: (KTMutableMatrix*)cCMatrix
 {     
       [super windowWillLoad];    
-      clientClusterMatrix= General/[[KTMutableMatrix alloc] init];
+      clientClusterMatrix= [[KTMutableMatrix alloc] init];
       clientClusterMatrix= cCMatrix;  // <<<<-----received fine here, but cannot 
                                                     get it through getter later on
       ...	
@@ -85,23 +85,23 @@ I appologize. It was copy&paste error. This was in my original code:
 }
 ...
 
-So I have to use mutableCopy whenever I pass around the General/KTMatrix object?
+So I have to use mutableCopy whenever I pass around the KTMatrix object?
 
-*No, you could just use -retain. It also depends on whether the code that calls -windowWillLoad: will release cCMatrix or not; it should do so, in which case you want one of the two! -- General/KritTer *
+*No, you could just use -retain. It also depends on whether the code that calls -windowWillLoad: will release cCMatrix or not; it should do so, in which case you want one of the two! -- KritTer *
 
 ----
 I finallly obtained the object by changing the getter method:
     
--(General/KTMutableMatrix*)getClientClusterMatrix
+-(KTMutableMatrix*)getClientClusterMatrix
 {
-    General/ clientClusterMatrix retain] autorelease]  ;
+     clientClusterMatrix retain] autorelease]  ;
 
 }
 
 -(void) windowWillLoad: ([[KTMutableMatrix*)cCMatrix
 {     
       [super windowWillLoad];    
-      clientClusterMatrix= General/[[KTMutableMatrix alloc] init];
+      clientClusterMatrix= [[KTMutableMatrix alloc] init];
       clientClusterMatrix= cCMatrix;  
       ...	
      // [clientClusterMatrix autorelease]; // <<<<-----delete this line
@@ -120,13 +120,13 @@ Questions I don't understand:
 
 Phyllis
 
-My guess would be that you have to retain it in the getter because you're autoreleasing it in the getter. If you just autoreleased it in the getter without retaining it first then it would be released every time someone used the getter, and sooner or later its retain count would get to zero and it would be deallocated. You could just have the getter return it with no retain or release, unless it's important that the matrix be able to stick around after the object which it came from is gone. -- General/AngelaBrett
+My guess would be that you have to retain it in the getter because you're autoreleasing it in the getter. If you just autoreleased it in the getter without retaining it first then it would be released every time someone used the getter, and sooner or later its retain count would get to zero and it would be deallocated. You could just have the getter return it with no retain or release, unless it's important that the matrix be able to stick around after the object which it came from is gone. -- AngelaBrett
 
 I'm still really disturbed by this line:
     
-      clientClusterMatrix= General/[[KTMutableMatrix alloc] init];
+      clientClusterMatrix= [[KTMutableMatrix alloc] init];
 
-You realise that this line is entirely superfluous and just leaking memory, right? -- General/KritTer
+You realise that this line is entirely superfluous and just leaking memory, right? -- KritTer
 ----
 Thanks a lot, I fixed them.  And I still kept the retain/release in getter just to make sure it will be there. 
 
@@ -135,15 +135,15 @@ What a practice on memory management  :-))
 Phyllis
 
     
--(void) windowWillLoad:  (General/KTMutableMatrix*)cCMatrix 
+-(void) windowWillLoad:  (KTMutableMatrix*)cCMatrix 
 {
     [super windowWillLoad];   
     clientClusterMatrix =[cCMatrix mutableCopy];
 }
 
--(General/KTMutableMatrix*)getClientClusterMatrix
+-(KTMutableMatrix*)getClientClusterMatrix
 {
-    return General/ clientClusterMatrix retain] autorelease ]  ;
+    return  clientClusterMatrix retain] autorelease ]  ;
 }
 
 

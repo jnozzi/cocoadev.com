@@ -1,23 +1,23 @@
 
 
-Quartz Composer app creates files that can be opened by General/QuickTime Player. General/QTMovie can also open these files to play in a General/QTMovieView. One thing you should understand before jumping into creating "qtz" files is the concept of a "Rendering Destination". Quartz Composer files define image compositions that are a function of time, input parameters and environment variables. These compositions are rendered dynamically into a "destination". The destination's exact dimensions are not a known constant. Instead it is up to you to create a Quartz Composer file that can adapt to variable dimensions (e.g. preserving an aspect ratio or centering an image). When you open a "qtz" file with General/QTMovie, you can define the "Rendering Destination" and the duration of the movie. This is done by changing the Quartz Composer environment. There are three user defaults that define the destination's size and movie duration. If you would like to define the state that a Quartz composition uses when rendering you must define this environment before you initialize a General/QTMovie with a "qtz" file. After the movie has been initialized you can change this environment for another movie.
+Quartz Composer app creates files that can be opened by QuickTime Player. QTMovie can also open these files to play in a QTMovieView. One thing you should understand before jumping into creating "qtz" files is the concept of a "Rendering Destination". Quartz Composer files define image compositions that are a function of time, input parameters and environment variables. These compositions are rendered dynamically into a "destination". The destination's exact dimensions are not a known constant. Instead it is up to you to create a Quartz Composer file that can adapt to variable dimensions (e.g. preserving an aspect ratio or centering an image). When you open a "qtz" file with QTMovie, you can define the "Rendering Destination" and the duration of the movie. This is done by changing the Quartz Composer environment. There are three user defaults that define the destination's size and movie duration. If you would like to define the state that a Quartz composition uses when rendering you must define this environment before you initialize a QTMovie with a "qtz" file. After the movie has been initialized you can change this environment for another movie.
 
     
-static void General/SetQuartzComposerState(int width, int height, float duration) {
-    General/NSUserDefaults *defaults = General/[NSUserDefaults standardUserDefaults];
-    [defaults setObject:General/[NSNumber numberWithInt:width] forKey:@"General/QuartzComposerDefaultMovieWidth"];
-    [defaults setObject:General/[NSNumber numberWithInt:height] forKey:@"General/QuartzComposerDefaultMovieHeight"];
-    [defaults setObject:General/[NSNumber numberWithFloat:time] forKey:@"General/QuartzComposerDefaultMovieDuration"];
+static void SetQuartzComposerState(int width, int height, float duration) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSNumber numberWithInt:width] forKey:@"QuartzComposerDefaultMovieWidth"];
+    [defaults setObject:[NSNumber numberWithInt:height] forKey:@"QuartzComposerDefaultMovieHeight"];
+    [defaults setObject:[NSNumber numberWithFloat:time] forKey:@"QuartzComposerDefaultMovieDuration"];
 }
 
-- (void)openQuartzComposerFileAtPath:(General/NSString *)file {
+- (void)openQuartzComposerFileAtPath:(NSString *)file {
     
-    if (General/file pathExtension] isEqualToString:@"qtz"]) {
+    if (file pathExtension] isEqualToString:@"qtz"]) {
         // set Quartz Composer environment
         [[SetQuartzComposerState(320, 240, 60.0f);
         // open quarts movie
-        General/QTMovie *movie = General/[QTMovie movieWithFile:file error:nil];
-        // set movie (movieView is a General/QTMovieView)
+        QTMovie *movie = [QTMovie movieWithFile:file error:nil];
+        // set movie (movieView is a QTMovieView)
         [movieView setMovie:movie];
     }
 }
@@ -25,13 +25,13 @@ static void General/SetQuartzComposerState(int width, int height, float duration
 
 The default destination size is 640x480 and the default duration is 30 seconds (the minimum duration is 3 seconds).
 
-Below is sample code and the basic steps to open and export a "qtz" file using General/QTKit. 
+Below is sample code and the basic steps to open and export a "qtz" file using QTKit. 
 
 
-*Open General/XCode
+*Open XCode
 *Create a new "Cocoa Document-based Application" project (File->New Project->Cocoa Document-based Application)
-*Edit the "General/MyDocument.m" file so it looks like the code below.
-*Add the General/QTKit framework to the doc-app target.
+*Edit the "MyDocument.m" file so it looks like the code below.
+*Add the QTKit framework to the doc-app target.
 *Build/Run.
 
 
@@ -39,54 +39,54 @@ There are four movies involved in this example:
 
 
 *Movie A - quicktime movie with 30 fps video (this can be any movie)
-*Movie B - General/QTMovie initialized with a "qtz" file that uses "Movie A" as source material
-*Movie C - General/CustomMovie object used to create and export a new movie from frames rendered by "Movie B"
-*Movie D - General/QTMovie initialized with a reference to "Movie A" to get unique frame times since Quartz Composer movies (e.g. Movie B) do not have discrete frame times.  
+*Movie B - QTMovie initialized with a "qtz" file that uses "Movie A" as source material
+*Movie C - CustomMovie object used to create and export a new movie from frames rendered by "Movie B"
+*Movie D - QTMovie initialized with a reference to "Movie A" to get unique frame times since Quartz Composer movies (e.g. Movie B) do not have discrete frame times.  
 
 
-The macro definition "General/OpenNewFilesWithSharedWorkspace" can be used to view the two resource files generated by this code. Just set "General/OpenNewFilesWithSharedWorkspace" to 1 if you would like "Quartz Composer" and "General/QuickTime Player" to automatically open these files for you. The "qtz" file and source movie are located in the newly created app's resource directory (hopefully you already know how to view an app's package contents with the Finder). 
+The macro definition "OpenNewFilesWithSharedWorkspace" can be used to view the two resource files generated by this code. Just set "OpenNewFilesWithSharedWorkspace" to 1 if you would like "Quartz Composer" and "QuickTime Player" to automatically open these files for you. The "qtz" file and source movie are located in the newly created app's resource directory (hopefully you already know how to view an app's package contents with the Finder). 
 
-A "qtz" file is just a property list. You can edit it in "Property List Editor" or change input parameters directly by editing an General/NSMutableDictionary initialized with the contents of a "qtz" file and then writing this file back to disk. 
+A "qtz" file is just a property list. You can edit it in "Property List Editor" or change input parameters directly by editing an NSMutableDictionary initialized with the contents of a "qtz" file and then writing this file back to disk. 
 
-This sample code generates a generic "qtz" file for you, but once you become familiar with General/QuartzComposer and "qtz" files you can create movies with more advanced filters and effects. This code also shows you how to render specific frames by setting the Quartz movie's current time and creating General/NSImage objects using General/QTMovie's instance method     currentFrameImage. Once you have access to individual frame images, the possibilities are endless. 
+This sample code generates a generic "qtz" file for you, but once you become familiar with QuartzComposer and "qtz" files you can create movies with more advanced filters and effects. This code also shows you how to render specific frames by setting the Quartz movie's current time and creating NSImage objects using QTMovie's instance method     currentFrameImage. Once you have access to individual frame images, the possibilities are endless. 
 
-This is only a starting point and there are many performance optimizations that can be pursued. For example, you could set the context, that the Quartz movie draws into, to a pixel buffer so you can pull frames faster. Or, you could figure out the lower level General/QuickTime calls needed to add raw image sample data directly to the export movie to avoid the performance hit caused by using     addImage:forDuration:withAttributes:.
+This is only a starting point and there are many performance optimizations that can be pursued. For example, you could set the context, that the Quartz movie draws into, to a pixel buffer so you can pull frames faster. Or, you could figure out the lower level QuickTime calls needed to add raw image sample data directly to the export movie to avoid the performance hit caused by using     addImage:forDuration:withAttributes:.
 
 --zootbobbalu
 
     
-#import "General/MyDocument.h"
-#import <General/QTKit/General/QTKit.h>
+#import "MyDocument.h"
+#import <QTKit/QTKit.h>
 
-#ifndef General/PostError
-#define General/PostError(n, ...) {error = General/[NSString stringWithFormat:n, ## __VA_ARGS__]; goto ERROR;}
+#ifndef PostError
+#define PostError(n, ...) {error = [NSString stringWithFormat:n, ## __VA_ARGS__]; goto ERROR;}
 #endif
 
-#define General/OpenNewFilesWithSharedWorkspace 0
+#define OpenNewFilesWithSharedWorkspace 0
 
 
-@interface General/CustomMovie : General/QTMovie {
-	General/DataHandler outputHandler;
+@interface CustomMovie : QTMovie {
+	DataHandler outputHandler;
 	Handle dataHandle;
-	General/NSString *tempPath;
-	General/QTVisualContextRef context;
+	NSString *tempPath;
+	QTVisualContextRef context;
 	unsigned cntxWidth, cntxHeight;
 }
-- (General/NSString *)cachePath;
-- (id)initWithCacheDirectory:(General/NSString *)cp width:(unsigned)w height:(unsigned)h;
-- (BOOL)writeToFile:(General/NSString *)file atomically:(BOOL)atomically;
+- (NSString *)cachePath;
+- (id)initWithCacheDirectory:(NSString *)cp width:(unsigned)w height:(unsigned)h;
+- (BOOL)writeToFile:(NSString *)file atomically:(BOOL)atomically;
 @end
 
 
-@interface General/MyDocument (Private)
-- (General/NSDictionary *)rootPatch;
-- (void)createMovieAtPath:(General/NSString *)path;
-- (void)createQuartzCompositionAtPath:(General/NSString *)path moviePath:(General/NSString *)moviePath;
-- (General/NSString *)resourceDirectory;
-- (General/QTMovieView *)setupWindow:(General/NSWindow *)window;
-- (void)exportMovieWithQuartzPath:(General/NSString *)qtzPath
-					   sourcePath:(General/NSString *)moviePath
-					   exportPath:(General/NSString *)exportPath;
+@interface MyDocument (Private)
+- (NSDictionary *)rootPatch;
+- (void)createMovieAtPath:(NSString *)path;
+- (void)createQuartzCompositionAtPath:(NSString *)path moviePath:(NSString *)moviePath;
+- (NSString *)resourceDirectory;
+- (QTMovieView *)setupWindow:(NSWindow *)window;
+- (void)exportMovieWithQuartzPath:(NSString *)qtzPath
+					   sourcePath:(NSString *)moviePath
+					   exportPath:(NSString *)exportPath;
 
 @end
 
@@ -94,12 +94,12 @@ This is only a starting point and there are many performance optimizations that 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////
-////									General/MyDocument
+////									MyDocument
 ////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation General/MyDocument
+@implementation MyDocument
 
 
 - (id)init {
@@ -112,10 +112,10 @@ This is only a starting point and there are many performance optimizations that 
 }
 
 - (void)export {
-	General/[NSApp activateIgnoringOtherApps:YES];
-	General/NSSavePanel *savePanel = General/[NSSavePanel savePanel];
+	[NSApp activateIgnoringOtherApps:YES];
+	NSSavePanel *savePanel = [NSSavePanel savePanel];
 	[savePanel setCanCreateDirectories:YES];
-	[savePanel beginSheetForDirectory:General/[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"]
+	[savePanel beginSheetForDirectory:[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"]
 								 file:@"test_quartz_export.mov"
 					   modalForWindow:[self windowForSheet]
 						modalDelegate:self
@@ -124,67 +124,67 @@ This is only a starting point and there are many performance optimizations that 
 
 }
 
-- (void)savePanelDidEnd:(General/NSOpenPanel *)openPanel
+- (void)savePanelDidEnd:(NSOpenPanel *)openPanel
 			 returnCode:(int)returnCode
 			contextInfo:(void *)contextInfo
 {
-	if (returnCode == General/NSOKButton) {
-		General/NSArray *filenames = [openPanel filenames];
+	if (returnCode == NSOKButton) {
+		NSArray *filenames = [openPanel filenames];
 		if ([filenames count] == 1) {
-			General/NSString *path = [filenames lastObject];
-			if (!General/path pathExtension] isEqualToString:@"mov"])
+			NSString *path = [filenames lastObject];
+			if (!path pathExtension] isEqualToString:@"mov"])
 				path = [path stringByAppendingPathExtension:@"mov"];
 					
 			BOOL isDir;
-			[[NSFileManager *manager = General/[NSFileManager defaultManager];
+			[[NSFileManager *manager = [NSFileManager defaultManager];
 			if ([manager fileExistsAtPath:path isDirectory:&isDir] && !isDir)	
 				[manager removeFileAtPath:path handler:nil];
 
-			General/NSString *resDir = [self resourceDirectory];
+			NSString *resDir = [self resourceDirectory];
 			[self exportMovieWithQuartzPath:[resDir stringByAppendingPathComponent:@"test.qtz"]
 								 sourcePath:[resDir stringByAppendingPathComponent:@"source.mov"]
 								 exportPath:path];
 		} else {
 			int result =
-				General/NSRunAlertPanel(@"Only one file can be exported at a time", nil, @"OK", @"Cancel", nil);
-			if (result == General/NSAlertDefaultReturn)
+				NSRunAlertPanel(@"Only one file can be exported at a time", nil, @"OK", @"Cancel", nil);
+			if (result == NSAlertDefaultReturn)
 				[self export];
 		}
 	}
 }
 
 
-- (void)windowControllerDidLoadNib:(General/NSWindowController *)aController {
+- (void)windowControllerDidLoadNib:(NSWindowController *)aController {
 
 	static BOOL isFirstLoad = YES;
 
     [super windowControllerDidLoadNib:aController];
-	General/QTMovieView *movieView = [self setupWindow:[aController window]];
+	QTMovieView *movieView = [self setupWindow:[aController window]];
 	
-	General/NSString *resourceDirectory = [self resourceDirectory];
+	NSString *resourceDirectory = [self resourceDirectory];
 	
 	if (resourceDirectory && ![movieView movie]) {
 
-		General/NSString *qtzPath = [resourceDirectory stringByAppendingPathComponent:@"test.qtz"];
-		General/NSString *moviePath = [resourceDirectory stringByAppendingPathComponent:@"source.mov"];
+		NSString *qtzPath = [resourceDirectory stringByAppendingPathComponent:@"test.qtz"];
+		NSString *moviePath = [resourceDirectory stringByAppendingPathComponent:@"source.mov"];
 
 		if (isFirstLoad) {
 			isFirstLoad = NO;
-			General/NSFileManager *manager = General/[NSFileManager defaultManager];
+			NSFileManager *manager = [NSFileManager defaultManager];
 
 			if (![manager fileExistsAtPath:moviePath])
 				[self createMovieAtPath:moviePath];
 
-#if General/OpenNewFilesWithSharedWorkspace == 1
-			General/NSWorkspace *sws = General/[NSWorkspace sharedWorkspace];
-			[sws openFile:moviePath withApplication:@"General/QuickTime Player"];
+#if OpenNewFilesWithSharedWorkspace == 1
+			NSWorkspace *sws = [NSWorkspace sharedWorkspace];
+			[sws openFile:moviePath withApplication:@"QuickTime Player"];
 #endif
 
 			[manager removeFileAtPath:qtzPath handler:nil];
 			[self createQuartzCompositionAtPath:qtzPath moviePath:moviePath];
 		}
 		
-		[movieView setMovie:General/[QTMovie movieWithFile:qtzPath error:nil]];
+		[movieView setMovie:[QTMovie movieWithFile:qtzPath error:nil]];
 		
 		[self performSelector:@selector(export) withObject:nil afterDelay:1.0f];
 		
@@ -193,29 +193,29 @@ This is only a starting point and there are many performance optimizations that 
 	
 }
 
-- (General/NSString *)windowNibName {return @"General/MyDocument";}
-- (General/NSData *)dataRepresentationOfType:(General/NSString *)aType {return nil;}
-- (BOOL)loadDataRepresentation:(General/NSData *)data ofType:(General/NSString *)aType {return YES;}
+- (NSString *)windowNibName {return @"MyDocument";}
+- (NSData *)dataRepresentationOfType:(NSString *)aType {return nil;}
+- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType {return YES;}
 
 @end
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////
-////									General/MyDocument (Private)
+////									MyDocument (Private)
 ////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-@implementation General/MyDocument (Private)
-- (General/NSDictionary *)rootPatch {
-	General/NSString *xmlString = @"\
+@implementation MyDocument (Private)
+- (NSDictionary *)rootPatch {
+	NSString *xmlString = @"\
 <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\
-<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/General/DTDs/General/PropertyList-1.0.dtd\">\n\
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">\n\
 <plist version=\"1.0\">\n\
 <dict>\n\
 	<key>class</key>\n\
-	<string>General/QCPatch</string>\n\
+	<string>QCPatch</string>\n\
 	<key>state</key>\n\
 	<dict>\n\
 		<key>connections</key>\n\
@@ -236,7 +236,7 @@ This is only a starting point and there are many performance optimizations that 
 		<array>\n\
 			<dict>\n\
 				<key>class</key>\n\
-				<string>General/QCQuickTimePlayer</string>\n\
+				<string>QCQuickTimePlayer</string>\n\
 				<key>key</key>\n\
 				<string>QuickTimePlayer_1</string>\n\
 				<key>state</key>\n\
@@ -265,12 +265,12 @@ This is only a starting point and there are many performance optimizations that 
 			</dict>\n\
 			<dict>\n\
 				<key>class</key>\n\
-				<string>General/QCBillboard</string>\n\
+				<string>QCBillboard</string>\n\
 				<key>key</key>\n\
 				<string>Billboard_1</string>\n\
 				<key>state</key>\n\
 				<dict>\n\
-					<key>General/CIRendering</key>\n\
+					<key>CIRendering</key>\n\
 					<false/>\n\
 					<key>ivarInputPortStates</key>\n\
 					<dict>\n\
@@ -366,48 +366,48 @@ This is only a starting point and there are many performance optimizations that 
 </plist>";
 
 	char *xmlUTF8 = (char *)[xmlString UTF8String];
-	General/NSPropertyListFormat format = NSPropertyListXMLFormat_v1_0;
-	return General/[NSPropertyListSerialization propertyListFromData:General/[NSData dataWithBytes:xmlUTF8 length:strlen(xmlUTF8)]
-											mutabilityOption:General/NSPropertyListMutableContainersAndLeaves
+	NSPropertyListFormat format = NSPropertyListXMLFormat_v1_0;
+	return [NSPropertyListSerialization propertyListFromData:[NSData dataWithBytes:xmlUTF8 length:strlen(xmlUTF8)]
+											mutabilityOption:NSPropertyListMutableContainersAndLeaves
 													  format:&format
 											errorDescription:(void *)NULL];
 	
 }
 
-- (void)createMovieAtPath:(General/NSString *)path {
+- (void)createMovieAtPath:(NSString *)path {
 
-	General/NSString *cachePath = [path stringByAppendingPathExtension:@"cache"];
-	General/[[NSFileManager defaultManager] removeFileAtPath:cachePath handler:nil];
-	General/CustomMovie *mov = 
-		General/[[CustomMovie alloc] initWithCacheDirectory:[path stringByDeletingLastPathComponent]
+	NSString *cachePath = [path stringByAppendingPathExtension:@"cache"];
+	[[NSFileManager defaultManager] removeFileAtPath:cachePath handler:nil];
+	CustomMovie *mov = 
+		[[CustomMovie alloc] initWithCacheDirectory:[path stringByDeletingLastPathComponent]
 											  width:360
 											 height:240];	
-	General/NSRect r = General/NSMakeRect(0.0f, 0.0f, 360.0f, 240.0f);
-	General/NSImage *img = General/[[NSImage alloc] initWithSize:r.size];
-	General/NSDictionary *att =
-		General/[NSDictionary dictionaryWithObjectsAndKeys:
-								General/[NSFont fontWithName:@"Courier" size:22.0f], General/NSFontAttributeName,
-								General/[NSColor whiteColor], General/NSForegroundColorAttributeName, nil];
+	NSRect r = NSMakeRect(0.0f, 0.0f, 360.0f, 240.0f);
+	NSImage *img = [[NSImage alloc] initWithSize:r.size];
+	NSDictionary *att =
+		[NSDictionary dictionaryWithObjectsAndKeys:
+								[NSFont fontWithName:@"Courier" size:22.0f], NSFontAttributeName,
+								[NSColor whiteColor], NSForegroundColorAttributeName, nil];
 	
-	General/NSDictionary *movieAtt =
-		General/[NSDictionary dictionaryWithObjectsAndKeys:
-								@"mp4v", General/QTAddImageCodecType,
-								General/[NSNumber numberWithLong:codecHighQuality], General/QTAddImageCodecQuality, nil];
+	NSDictionary *movieAtt =
+		[NSDictionary dictionaryWithObjectsAndKeys:
+								@"mp4v", QTAddImageCodecType,
+								[NSNumber numberWithLong:codecHighQuality], QTAddImageCodecQuality, nil];
 	int i;
 	for (i = 0; i < 90; i++) {
-		General/NSAutoreleasePool *innerPool = General/[[NSAutoreleasePool alloc] init];
+		NSAutoreleasePool *innerPool = [[NSAutoreleasePool alloc] init];
 		[img lockFocus];
-		General/[[NSColor blueColor] set];
-		General/NSRectFill(r);
-		General/NSString *num = General/[NSString stringWithFormat:@"%i", i];
-		General/NSSize size = [num sizeWithAttributes:att];
-		General/NSRect numRect = General/NSInsetRect(r, (General/NSWidth(r) - size.width) / 2.0f, (General/NSHeight(r) - size.height) / 2.0f);
+		[[NSColor blueColor] set];
+		NSRectFill(r);
+		NSString *num = [NSString stringWithFormat:@"%i", i];
+		NSSize size = [num sizeWithAttributes:att];
+		NSRect numRect = NSInsetRect(r, (NSWidth(r) - size.width) / 2.0f, (NSHeight(r) - size.height) / 2.0f);
 		[num drawInRect:numRect withAttributes:att];
 		[img unlockFocus];
-		[mov addImage:img forDuration:General/QTMakeTime(20, 600) withAttributes:movieAtt];
+		[mov addImage:img forDuration:QTMakeTime(20, 600) withAttributes:movieAtt];
 		[innerPool release];
 		if ((i % 30) == 0)
-			General/NSLog(@"<%p>%s: frame: %i", self, __PRETTY_FUNCTION__, i);
+			NSLog(@"<%p>%s: frame: %i", self, __PRETTY_FUNCTION__, i);
 	}
 	
 	[img release];
@@ -418,38 +418,38 @@ This is only a starting point and there are many performance optimizations that 
 
 }
 
-- (void)createQuartzCompositionAtPath:(General/NSString *)path moviePath:(General/NSString *)moviePath {
+- (void)createQuartzCompositionAtPath:(NSString *)path moviePath:(NSString *)moviePath {
 
-	General/NSMutableDictionary *quartzComposition = General/[NSMutableDictionary dictionary];
+	NSMutableDictionary *quartzComposition = [NSMutableDictionary dictionary];
 	[quartzComposition setValue:@"617 572 512 430 0 0 1280 1002 " forKey:@"editorViewerWindow"];
-	[quartzComposition setValue:General/[NSDictionary dictionaryWithObject:moviePath forKey:@"Movie_Path"]
+	[quartzComposition setValue:[NSDictionary dictionaryWithObject:moviePath forKey:@"Movie_Path"]
 						 forKey:@"inputParameters"];
 	[quartzComposition setValue:[self rootPatch] forKey:@"rootPatch"];
-	General/NSData *xmlData = General/[NSPropertyListSerialization dataFromPropertyList:quartzComposition
+	NSData *xmlData = [NSPropertyListSerialization dataFromPropertyList:quartzComposition
 																 format:NSPropertyListBinaryFormat_v1_0
 													   errorDescription:nil];
 	[xmlData writeToFile:path atomically:YES];
 	
-#if General/OpenNewFilesWithSharedWorkspace == 1
-	General/NSWorkspace *sws = General/[NSWorkspace sharedWorkspace];
+#if OpenNewFilesWithSharedWorkspace == 1
+	NSWorkspace *sws = [NSWorkspace sharedWorkspace];
 	[sws openFile:path withApplication:@"Quartz Composer"];
 #endif
 
 }
 
-- (General/NSString *)resourceDirectory {
-	General/NSString *resourcePath = General/[[NSBundle mainBundle] resourcePath];
-	General/NSArray *comps = [resourcePath pathComponents];
+- (NSString *)resourceDirectory {
+	NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+	NSArray *comps = [resourcePath pathComponents];
 	unsigned cmp_cnt = [comps count];
-	if ((cmp_cnt > 3) && General/[comps objectAtIndex:cmp_cnt - 3] pathExtension] isEqualToString:@"app"])
+	if ((cmp_cnt > 3) && [comps objectAtIndex:cmp_cnt - 3] pathExtension] isEqualToString:@"app"])
 		return resourcePath;
 	return nil;
 }
 
 
-- ([[QTMovieView *)setupWindow:(General/NSWindow *)window {
-	General/NSView *contentView = [window contentView];
-	General/QTMovieView *movieView = General/[[QTMovieView alloc] initWithFrame:[contentView frame]];
+- ([[QTMovieView *)setupWindow:(NSWindow *)window {
+	NSView *contentView = [window contentView];
+	QTMovieView *movieView = [[QTMovieView alloc] initWithFrame:[contentView frame]];
 	[window setContentView:movieView];
 	[movieView release];
 	[movieView setAutoresizingMask:18];
@@ -458,78 +458,78 @@ This is only a starting point and there are many performance optimizations that 
 	return movieView;
 }
 
-- (void)nextFrame:(General/NSMutableDictionary *)info {
+- (void)nextFrame:(NSMutableDictionary *)info {
 
-	General/QTMovie *quartzMovie = [info objectForKey:@"quartzMovie"];
-	General/QTMovie *sourceMovie = [info objectForKey:@"sourceMovie"];
-	General/CustomMovie *exportMovie = [info objectForKey:@"exportMovie"];
-	General/QTTime lastTime = General/info objectForKey:@"lastTime"] [[QTTimeValue];
-	int duplicateCount = General/info objectForKey:@"duplicateCount"] intValue];	
+	QTMovie *quartzMovie = [info objectForKey:@"quartzMovie"];
+	QTMovie *sourceMovie = [info objectForKey:@"sourceMovie"];
+	CustomMovie *exportMovie = [info objectForKey:@"exportMovie"];
+	QTTime lastTime = info objectForKey:@"lastTime"] [[QTTimeValue];
+	int duplicateCount = info objectForKey:@"duplicateCount"] intValue];	
 	[[NSDictionary *exportAttributes = [info objectForKey:@"exportAttributes"];
-	General/NSWindow *window = [self windowForSheet];
+	NSWindow *window = [self windowForSheet];
 
-	General/NSImage *img = [quartzMovie currentFrameImage];	
-	General/QTTime sourceDuration = [sourceMovie duration];
+	NSImage *img = [quartzMovie currentFrameImage];	
+	QTTime sourceDuration = [sourceMovie duration];
 
 	[sourceMovie stepForward];
-	General/QTTime time = [sourceMovie currentTime];
+	QTTime time = [sourceMovie currentTime];
 	[quartzMovie setCurrentTime:time];
 
-	General/QTTime frameDuration = time;
+	QTTime frameDuration = time;
 	frameDuration.timeValue = time.timeValue - lastTime.timeValue;
 	[exportMovie addImage:img forDuration:frameDuration withAttributes:exportAttributes];
 
-	if (General/QTTimeCompare(time, lastTime) == General/NSOrderedSame)
+	if (QTTimeCompare(time, lastTime) == NSOrderedSame)
 		duplicateCount++;
 	
 	
 	
 	if (duplicateCount > 2) {
-		General/NSString *exportPath = [info objectForKey:@"exportPath"];
+		NSString *exportPath = [info objectForKey:@"exportPath"];
 		[exportMovie writeToFile:exportPath atomically:YES];
 		[window setTitle:@"Done"];
 		
-#if General/OpenNewFilesWithSharedWorkspace == 1
-		General/NSWorkspace *sws = General/[NSWorkspace sharedWorkspace];
-		[sws openFile:exportPath withApplication:@"General/QuickTime Player"];
+#if OpenNewFilesWithSharedWorkspace == 1
+		NSWorkspace *sws = [NSWorkspace sharedWorkspace];
+		[sws openFile:exportPath withApplication:@"QuickTime Player"];
 #endif
 
 	} else {
 		float percentDone = (float)time.timeValue / (float)sourceDuration.timeValue * 100.0f;
-		[window setTitle:General/[NSString stringWithFormat:@"%.2f Percent Done", percentDone]];
-		[info setValue:General/[NSNumber numberWithInt:duplicateCount] forKey:@"duplicateCount"];
-		[info setValue:General/[NSValue valueWithQTTime:time] forKey:@"lastTime"];
+		[window setTitle:[NSString stringWithFormat:@"%.2f Percent Done", percentDone]];
+		[info setValue:[NSNumber numberWithInt:duplicateCount] forKey:@"duplicateCount"];
+		[info setValue:[NSValue valueWithQTTime:time] forKey:@"lastTime"];
 		[self performSelector:@selector(nextFrame:) withObject:info afterDelay:0.0f];
 	}
 	
 }
 
-- (void)exportMovieWithQuartzPath:(General/NSString *)qtzPath
-					   sourcePath:(General/NSString *)moviePath
-					   exportPath:(General/NSString *)exportPath
+- (void)exportMovieWithQuartzPath:(NSString *)qtzPath
+					   sourcePath:(NSString *)moviePath
+					   exportPath:(NSString *)exportPath
 {
 
-	General/[NSApp activateIgnoringOtherApps:YES];
-	General/QTMovie *quartzMovie = General/[QTMovie movieWithFile:qtzPath error:nil];
-	General/QTMovie *sourceMovie = General/[QTMovie movieWithFile:moviePath error:nil];
-	General/CustomMovie *exportMovie = 
-		General/[[CustomMovie alloc] initWithCacheDirectory:[exportPath stringByDeletingLastPathComponent]
+	[NSApp activateIgnoringOtherApps:YES];
+	QTMovie *quartzMovie = [QTMovie movieWithFile:qtzPath error:nil];
+	QTMovie *sourceMovie = [QTMovie movieWithFile:moviePath error:nil];
+	CustomMovie *exportMovie = 
+		[[CustomMovie alloc] initWithCacheDirectory:[exportPath stringByDeletingLastPathComponent]
 											  width:360
 											 height:240];	
-	General/NSDictionary *exportAttributes =
-		General/[NSDictionary dictionaryWithObjectsAndKeys:
-								@"mp4v", General/QTAddImageCodecType,
-								General/[NSNumber numberWithLong:codecHighQuality], General/QTAddImageCodecQuality, nil];
+	NSDictionary *exportAttributes =
+		[NSDictionary dictionaryWithObjectsAndKeys:
+								@"mp4v", QTAddImageCodecType,
+								[NSNumber numberWithLong:codecHighQuality], QTAddImageCodecQuality, nil];
 
 	if (quartzMovie && sourceMovie && exportMovie && exportAttributes) {
-		[quartzMovie setCurrentTime:General/QTZeroTime];
-		[sourceMovie setCurrentTime:General/QTZeroTime];
-		General/QTTime time = [sourceMovie currentTime];
-		General/NSMutableDictionary *info =
-			General/[NSMutableDictionary dictionaryWithObjectsAndKeys:
+		[quartzMovie setCurrentTime:QTZeroTime];
+		[sourceMovie setCurrentTime:QTZeroTime];
+		QTTime time = [sourceMovie currentTime];
+		NSMutableDictionary *info =
+			[NSMutableDictionary dictionaryWithObjectsAndKeys:
 													exportAttributes, @"exportAttributes",
-													General/[NSValue valueWithQTTime:time], @"lastTime",
-													General/[NSNumber numberWithInt:0], @"duplicateCount",
+													[NSValue valueWithQTTime:time], @"lastTime",
+													[NSNumber numberWithInt:0], @"duplicateCount",
 													exportPath, @"exportPath",
 													quartzMovie, @"quartzMovie",
 													sourceMovie, @"sourceMovie",
@@ -546,76 +546,76 @@ This is only a starting point and there are many performance optimizations that 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 ////
-////									General/CustomMovie
+////									CustomMovie
 ////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-static General/OSStatus General/CreatePixelBufferContext(SInt32 format, 
+static OSStatus CreatePixelBufferContext(SInt32 format, 
 										 SInt32 width,
 										 SInt32 height, 
-										 General/QTVisualContextRef *contextPtr,
-										 General/NSString **errorStringPtr)
+										 QTVisualContextRef *contextPtr,
+										 NSString **errorStringPtr)
 {
-    General/QTVisualContextRef context = NULL;
-    General/CFDictionaryRef pixelBufferOptions = NULL;
-    General/CFDictionaryRef visualContextOptions = NULL;
-    General/OSStatus err = noErr;
-	General/NSString *error = nil;
+    QTVisualContextRef context = NULL;
+    CFDictionaryRef pixelBufferOptions = NULL;
+    CFDictionaryRef visualContextOptions = NULL;
+    OSStatus err = noErr;
+	NSString *error = nil;
 	SInt32 alignment = 16;
-	General/CFTypeRef vals[] = {NULL, NULL, NULL, NULL};
-	General/CFTypeRef keys[] = {	kCVPixelBufferPixelFormatTypeKey,
+	CFTypeRef vals[] = {NULL, NULL, NULL, NULL};
+	CFTypeRef keys[] = {	kCVPixelBufferPixelFormatTypeKey,
 							kCVPixelBufferWidthKey,
 							kCVPixelBufferHeightKey,
 							kCVPixelBufferBytesPerRowAlignmentKey	};
 	
     if (!contextPtr || !format || (width < 1) || (height < 1)) 
-		General/PostError(@"invalid input parameters: %i", err = paramErr);
+		PostError(@"invalid input parameters: %i", err = paramErr);
 
-	if (vals[0] = General/CFNumberCreate(NULL, kCFNumberSInt32Type, (void *)&format)) {
-		if (vals[1] = General/CFNumberCreate(NULL, kCFNumberSInt32Type, (void *)&width)) {
-			if (vals[2] = General/CFNumberCreate(NULL, kCFNumberSInt32Type, (void *)&height)) {
-				if (vals[3] = General/CFNumberCreate(NULL, kCFNumberSInt32Type, (void *)&alignment)) {
-					pixelBufferOptions = General/CFDictionaryCreate(NULL, 
+	if (vals[0] = CFNumberCreate(NULL, kCFNumberSInt32Type, (void *)&format)) {
+		if (vals[1] = CFNumberCreate(NULL, kCFNumberSInt32Type, (void *)&width)) {
+			if (vals[2] = CFNumberCreate(NULL, kCFNumberSInt32Type, (void *)&height)) {
+				if (vals[3] = CFNumberCreate(NULL, kCFNumberSInt32Type, (void *)&alignment)) {
+					pixelBufferOptions = CFDictionaryCreate(NULL, 
 															(const void **)keys, 
 															(const void **)vals, 
-															(General/CFIndex)4, 
+															(CFIndex)4, 
 															&kCFTypeDictionaryKeyCallBacks, 
 															&kCFTypeDictionaryValueCallBacks);
-					General/CFRelease((General/CFTypeRef)vals[3]);
+					CFRelease((CFTypeRef)vals[3]);
 				}
-				General/CFRelease((General/CFTypeRef)vals[2]);
+				CFRelease((CFTypeRef)vals[2]);
 			}
-			General/CFRelease((General/CFTypeRef)vals[1]);
+			CFRelease((CFTypeRef)vals[1]);
 		}
-		General/CFRelease((General/CFTypeRef)vals[0]);
+		CFRelease((CFTypeRef)vals[0]);
 	}
 
 	if (!pixelBufferOptions) 
-		General/PostError(@"unable to create pixel buffer options: %i", err = coreFoundationUnknownErr);
+		PostError(@"unable to create pixel buffer options: %i", err = coreFoundationUnknownErr);
 
-    visualContextOptions = General/CFDictionaryCreate(NULL, 
+    visualContextOptions = CFDictionaryCreate(NULL, 
 											  (const void **)&kQTVisualContextPixelBufferAttributesKey, 
 											  (const void **)&pixelBufferOptions, 
-											  (General/CFIndex)1, 
+											  (CFIndex)1, 
 											  &kCFTypeDictionaryKeyCallBacks, 
 											  &kCFTypeDictionaryValueCallBacks);
 	
 	if (!visualContextOptions) 
-		General/PostError(@"unable to create visual context options: %i", err = coreFoundationUnknownErr);
+		PostError(@"unable to create visual context options: %i", err = coreFoundationUnknownErr);
 
-    if (err = General/QTPixelBufferContextCreate(kCFAllocatorDefault, visualContextOptions, &context))
-		General/PostError(@"unable to create pixel buffer context: %i", err);
+    if (err = QTPixelBufferContextCreate(kCFAllocatorDefault, visualContextOptions, &context))
+		PostError(@"unable to create pixel buffer context: %i", err);
 
     *contextPtr = context;
     context = NULL;
 
 ERROR:
 
-    if (visualContextOptions) General/CFRelease(visualContextOptions);
-    if (pixelBufferOptions) General/CFRelease(pixelBufferOptions);
-    if (context) General/QTVisualContextRelease(context);
+    if (visualContextOptions) CFRelease(visualContextOptions);
+    if (pixelBufferOptions) CFRelease(pixelBufferOptions);
+    if (context) QTVisualContextRelease(context);
     
 	if (errorStringPtr) 
 		*errorStringPtr = error;
@@ -623,105 +623,105 @@ ERROR:
     return err;
 }
 
-@implementation General/CustomMovie
+@implementation CustomMovie
 
 
-- (id)initWithCacheDirectory:(General/NSString *)dir width:(unsigned)w height:(unsigned)h {
+- (id)initWithCacheDirectory:(NSString *)dir width:(unsigned)w height:(unsigned)h {
 
-	General/CFStringRef temp = nil;
-	General/NSString *error = nil;
-	General/NSError *nsErr = nil;
-	General/OSErr err = 0;
-	General/OSType dt;
+	CFStringRef temp = nil;
+	NSString *error = nil;
+	NSError *nsErr = nil;
+	OSErr err = 0;
+	OSType dt;
 	Movie mov = nil;
 	
 	BOOL isDir;
-	if (!(General/[[NSFileManager defaultManager] fileExistsAtPath:dir isDirectory:&isDir] && isDir)) 
-		General/PostError(@"cache directory path is not a valid directory: %@", dir);
+	if (!([[NSFileManager defaultManager] fileExistsAtPath:dir isDirectory:&isDir] && isDir)) 
+		PostError(@"cache directory path is not a valid directory: %@", dir);
 	
-	temp = (General/CFStringRef)[dir stringByAppendingPathComponent:General/[[NSProcessInfo processInfo] globallyUniqueString]];
+	temp = (CFStringRef)[dir stringByAppendingPathComponent:[[NSProcessInfo processInfo] globallyUniqueString]];
 	if (!temp) 
-		General/PostError(@"unable to create temporary cache path");
+		PostError(@"unable to create temporary cache path");
 	
-	if (err = General/QTNewDataReferenceFromFullPathCFString(temp, kQTNativeDefaultPathStyle, 0, &dataHandle, &dt)) 
-		General/PostError(@"unable to create new data reference at path: %@", temp);
+	if (err = QTNewDataReferenceFromFullPathCFString(temp, kQTNativeDefaultPathStyle, 0, &dataHandle, &dt)) 
+		PostError(@"unable to create new data reference at path: %@", temp);
 		
-	if (err = General/CreateMovieStorage(dataHandle, dt, 'TVOD', smSystemScript, newMovieActive, &outputHandler, &mov)) 
-		General/PostError(@"unable to create movie with storage");
+	if (err = CreateMovieStorage(dataHandle, dt, 'TVOD', smSystemScript, newMovieActive, &outputHandler, &mov)) 
+		PostError(@"unable to create movie with storage");
 
 
 	if (self = [self initWithQuickTimeMovie:mov disposeWhenDone:YES error:&nsErr]) {
 
-		[self setAttribute:(id)kCFBooleanTrue forKey:General/QTMovieEditableAttribute];
+		[self setAttribute:(id)kCFBooleanTrue forKey:QTMovieEditableAttribute];
 		
 		if (w && h) {
-			if (err = General/CreatePixelBufferContext(k32ARGBPixelFormat, cntxWidth = w, cntxHeight = w, &context, &error))
+			if (err = CreatePixelBufferContext(k32ARGBPixelFormat, cntxWidth = w, cntxHeight = w, &context, &error))
 				goto ERROR;
 		}
 		
-		General/SetMovieVisualContext(mov, context);
-		tempPath = (id)General/CFRetain(temp);
+		SetMovieVisualContext(mov, context);
+		tempPath = (id)CFRetain(temp);
 		
 	} else
-		General/PostError(@"unable to create movie!! %@", [nsErr localizedFailureReason]);
+		PostError(@"unable to create movie!! %@", [nsErr localizedFailureReason]);
 
 	return self;
 
 ERROR:;
 
-	General/NSLog(@"<%p>%s: ERROR!! (%i) %@", self, __PRETTY_FUNCTION__, err, error);
+	NSLog(@"<%p>%s: ERROR!! (%i) %@", self, __PRETTY_FUNCTION__, err, error);
 	[self release];
 	return nil;
 
 }
-- (General/NSString *)cachePath {return tempPath;}
+- (NSString *)cachePath {return tempPath;}
 - (void)dealloc {
 
 	if (tempPath) {
-		General/[[NSFileManager defaultManager] removeFileAtPath:tempPath handler:nil];
+		[[NSFileManager defaultManager] removeFileAtPath:tempPath handler:nil];
 		[tempPath release];
 	}
 
 	if (outputHandler) 
-		General/CloseMovieStorage(outputHandler);
+		CloseMovieStorage(outputHandler);
 	if (dataHandle) 
-		General/DisposeHandle(dataHandle);	
+		DisposeHandle(dataHandle);	
 	if (context) 
-		General/CFRelease((General/CFTypeRef)context);
+		CFRelease((CFTypeRef)context);
 
 	[super dealloc];
 
 }
 
-- (BOOL)writeToFile:(General/NSString *)file atomically:(BOOL)atomically {
+- (BOOL)writeToFile:(NSString *)file atomically:(BOOL)atomically {
 
-	General/NSString *error = nil;
-	General/NSString *atomicPath = nil;
-	General/NSString *tempName = nil;
-	General/NSFileManager *manager = General/[NSFileManager defaultManager];
+	NSString *error = nil;
+	NSString *atomicPath = nil;
+	NSString *tempName = nil;
+	NSFileManager *manager = [NSFileManager defaultManager];
 	
 	if ([manager fileExistsAtPath:file]) 
-		General/PostError(@"file exists at path: %@", file);
+		PostError(@"file exists at path: %@", file);
 		
-	General/NSDictionary *att = General/[NSDictionary dictionaryWithObject:General/[NSNumber numberWithBool:YES] 
-													forKey:General/QTMovieFlatten];
+	NSDictionary *att = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] 
+													forKey:QTMovieFlatten];
 	if (atomically) {
 		atomicPath = [file stringByDeletingLastPathComponent];
-		tempName = General/[NSString stringWithFormat:@"%@.mov", General/[[NSProcessInfo processInfo] globallyUniqueString]];
+		tempName = [NSString stringWithFormat:@"%@.mov", [[NSProcessInfo processInfo] globallyUniqueString]];
 		atomicPath = [atomicPath stringByAppendingPathComponent:tempName];
 		if ([self writeToFile:atomicPath withAttributes:att]) {
 			if (![manager movePath:atomicPath toPath:file handler:nil])
-				General/PostError(@"unable to move temporary movie at path: %@ to path: %@", atomicPath, file);
+				PostError(@"unable to move temporary movie at path: %@ to path: %@", atomicPath, file);
 		} else
-			General/PostError(@"unable to create temporary movie at path: %@", atomicPath);
+			PostError(@"unable to create temporary movie at path: %@", atomicPath);
 	} else if (![self writeToFile:file withAttributes:att])
-		General/PostError(@"unable to writeToFile: %@", file);
+		PostError(@"unable to writeToFile: %@", file);
 
 	return YES;
 
 ERROR:;
 	
-	General/NSLog(@"<%p>%s: ERROR: %@", self, __PRETTY_FUNCTION__, error);
+	NSLog(@"<%p>%s: ERROR: %@", self, __PRETTY_FUNCTION__, error);
 
 	BOOL isDir;
 	if (atomicPath &&

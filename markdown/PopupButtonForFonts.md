@@ -1,8 +1,8 @@
-I am creating a custom text editor and I don't want to use the default Font Panel which comes with General/NSTextView. I want to have a General/PopupButton that lists all the fonts and when the user selects a font the font is applied to General/NSTextView's selection, sort of like Font Popupmenu in Microsoft Word's Formatting Palette. But unfortunately I don't have a clue on how to implement it. - Saad R. Abbasi
+I am creating a custom text editor and I don't want to use the default Font Panel which comes with NSTextView. I want to have a PopupButton that lists all the fonts and when the user selects a font the font is applied to NSTextView's selection, sort of like Font Popupmenu in Microsoft Word's Formatting Palette. But unfortunately I don't have a clue on how to implement it. - Saad R. Abbasi
 
 ----
 
-Just populate the popup button with the available font names from General/NSFontManager and set the General/NSTextView's font in the button's action method
+Just populate the popup button with the available font names from NSFontManager and set the NSTextView's font in the button's action method
 
 ----
 

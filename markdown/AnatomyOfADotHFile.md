@@ -7,35 +7,35 @@ Here is the layout for a header (interface) file.  For this example, we will ass
 
 // Then forward-declare any non-Cocoa classes
 // (Except those being inherited from)
-// (See General/AdviceOnImportingHeaders)
+// (See AdviceOnImportingHeaders)
 
-@class General/BossMan;
+@class BossMan;
 
 // Next, put in this line which declares the name of the class
 // and gives the name of the superclass it derives from.  In this
 // case the name of the class is Foo and the name of the
-// superclass is General/NSObject.
+// superclass is NSObject.
 
-@interface Foo: General/NSObject
+@interface Foo: NSObject
 
 // Next, in braces, declare your instance variables and your outlets.
 
 {
 
-   General/NSMutableArray   *foo;
-   General/NSString         *personName;
+   NSMutableArray   *foo;
+   NSString         *personName;
    float            expectedRaise;
-   General/BossMan*         bossApprovingRaise;
+   BossMan*         bossApprovingRaise;
 
-   General/IBOutlet id          textField;
-   General/IBOutlet id          customView;
-   General/IBOutlet General/NSTextField *staticText;
+   IBOutlet id          textField;
+   IBOutlet id          customView;
+   IBOutlet NSTextField *staticText;
 }
 
 // Next, declare your actions...
 
-- (General/IBAction) createEmployee: (id) sender;
-- (General/IBAction) drawCoolStuff: (id) sender;
+- (IBAction) createEmployee: (id) sender;
+- (IBAction) drawCoolStuff: (id) sender;
 
 // and your instance methods.
 
@@ -48,9 +48,9 @@ Here is the layout for a header (interface) file.  For this example, we will ass
 @end
 
 
-Back to General/HowToProgramInOSX
+Back to HowToProgramInOSX
 
-For how to use forward declarations in a header file see General/AdviceOnImportingHeaders
+For how to use forward declarations in a header file see AdviceOnImportingHeaders
 (you should not need to import header files directly into your header file except for importing
 the requisite super-class header). In the case of category headers, you need to
 import the header for the class on which you are adding the category.

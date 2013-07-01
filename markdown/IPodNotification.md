@@ -4,7 +4,7 @@ I have a rather involving question.
 
 **Q:** First up, I know how to find an iPod that is mounted on the computer and use it. I can easily run a timer to check every 5s or so to see if an iPod is mounted for my app to use it, but is there any system wide notification that I can use and how would I access it?
 
-**A:** Register for General/NSWorkspaceDidMountNotification and check to see if it was an iPod that was mounted?
+**A:** Register for NSWorkspaceDidMountNotification and check to see if it was an iPod that was mounted?
 
 **Q:** Second, iTunes manages to detect that there is an iPod attached when you first start it even if the iPod is not mounted. How does it do this and how does it mount it?
 
@@ -24,11 +24,11 @@ Could someone post some code explaining the use of the private iPod.framework? O
 
 ----
 
-You may want to check into the General/DiskArbitration framework.  There are headers in /System/Library/Private Frameworks, and the source is in Darwin.  You can get notified when a new drive is mounted, and there may be a way to tell if this new drive is an ipoodle or not.
+You may want to check into the DiskArbitration framework.  There are headers in /System/Library/Private Frameworks, and the source is in Darwin.  You can get notified when a new drive is mounted, and there may be a way to tell if this new drive is an ipoodle or not.
 
 ----
 
-Easier...General/NSWorkspace has notifications for new mounted drives. Check if its an iPod by looking for iPod_Control.
+Easier...NSWorkspace has notifications for new mounted drives. Check if its an iPod by looking for iPod_Control.
 
 ----
 
@@ -36,4 +36,4 @@ hmm... what if something "slow" is mounted, like a tape archiver, a CD-ROM or si
 
 ----
 
-Oh I can search for files, but someone could copy the files to a disk image, just as I have done to test parts of my app. But with the framework, it may keep me from having to dig into General/SysInfo to get the iPods OS version.
+Oh I can search for files, but someone could copy the files to a disk image, just as I have done to test parts of my app. But with the framework, it may keep me from having to dig into SysInfo to get the iPods OS version.

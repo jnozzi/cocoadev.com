@@ -22,7 +22,7 @@ Second, you'll want to position and size everything *before* they'll be displaye
 
 Third, be cognizant of the display color(s) of the superview(s) / window your views are in. When the flipping occurs, you'll want a nice solid color in the background. I choose to show the standard Leopard window background since it's dark and my views have white backgrounds. It sets off the edges of the animation nicely. I originally used a white background but it just didn't look as pretty.
 
-Fourth, if you're not using General/GarbageCollection, you'll want to make sure you properly retain/release your views while swapping them around. Newbies beware. :-)
+Fourth, if you're not using GarbageCollection, you'll want to make sure you properly retain/release your views while swapping them around. Newbies beware. :-)
 
 Fifth, there are some times when the animation slows down. WAY down. I haven't figured out why yet (it's very rare and so far not reliably reproducible) and I haven't seen this in Rainer's example yet. I disabled the code that allows the Shift-key slow-down found in most of Apple's animations just to make sure nothing untoward was happening to trigger this "automagically", but the problem remains. I have not yet done any real testing yet, but I'm sure this is my fault.
 
@@ -39,5 +39,5 @@ Fifth, there are some times when the animation slows down. WAY down. I haven't f
 
 It may be a bit obvious to some of the more astute readers, but I hope the community at large finds this useful. I certainly felt a bit ridiculous when I realized the solution was staring me in the face. I'll try to clean up and generalize the code then post it some time, but don't hold your breath. ;-)
 
- - General/JNozzi
+ - JNozzi
  Pour devenir figurant sur   maintiennent numéro, vous aurez  pu   compte   Agent  ( Règle) [http://obtenir-rio.info numero rio]. Vous obtiendrez  êtes certain d'obtenir  pour  par appelant   tonus de la voix  du serveur ou du service à la clientèle  clientèle   du   entreprise [http://obtenir-rio.info/rio-bouygues numero rio bouygues] . Vous ne  certainement  acquérir  un SMS avec votre . Avec  votre actuelle [http://obtenir-rio.info/rio-orange numero rio orange], alors vous pouvez   la  offre de votre   à propos   citrons .

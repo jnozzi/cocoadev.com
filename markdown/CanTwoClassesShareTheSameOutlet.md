@@ -1,6 +1,6 @@
 
 
-Is it possible to have two instantiated classes share the same outlet (I'm not talking about 1 button having two actions, rather two different classes each having a reference to the same outlet)? I've tried to set this up in IB (a General/NSButton in my case), but one of the classes just sees it as null. Is there a special condition that has to be met (the class be file's owner, delegate?) for this to work?
+Is it possible to have two instantiated classes share the same outlet (I'm not talking about 1 button having two actions, rather two different classes each having a reference to the same outlet)? I've tried to set this up in IB (a NSButton in my case), but one of the classes just sees it as null. Is there a special condition that has to be met (the class be file's owner, delegate?) for this to work?
 
 **No, outlets just work. There is no special requirement as to what the object must be, and there is no way for two outlets to the same object to somehow interfere. You're doing something wrong and it's not related to having two outlets.**
 
@@ -46,26 +46,26 @@ Yes, I speak english very well, and yes I *do* know what an outlet and class is 
 
 I disagree whole-heartedly. A Q&A page can easily turn into a valuable resource. In fact, most of the pages on this site that I found useful as a beginner were Q&A pages (that weren't even refactored). If it's a Q&A that actually has an 'A', then remove the discussion of the 'Q', refine the 'Q', and make the 'A' more of a 'documented fact'. This is called 'refactoring'. This is one of the primary ways a wiki grows. Additionally, after a few years, I've become a pretty darned knowledgeable person myself and have contributed a great deal over the last year and a half to this wiki (actual how-to pages that started out as my own or someone else's Q&A page). - Anonymous1234
 
-Yes, I agree, it's just painful experiences like this one which make me doubt. We must realize that the Q&A process is a two-way street. Yes, this means that the people writing the answers must keep an open mind and try to do a good job, but it *also* means that the people writing the *questions* must try to take care of their part of the bargain. I really hate it when somebody's question is obviously badly-worded and causing problems, but as soon as someone actually says so, the person who asked it usually gets very upset and accusatory. Above all, people who post questions need to understand that this is a site visited and run by volunteers, and that getting an answer to your question is something which happens because someone who knows the answer decided to use some of his free time to answer it, and that getting an answer is not any kind of right. -- General/PrimeOperator
+Yes, I agree, it's just painful experiences like this one which make me doubt. We must realize that the Q&A process is a two-way street. Yes, this means that the people writing the answers must keep an open mind and try to do a good job, but it *also* means that the people writing the *questions* must try to take care of their part of the bargain. I really hate it when somebody's question is obviously badly-worded and causing problems, but as soon as someone actually says so, the person who asked it usually gets very upset and accusatory. Above all, people who post questions need to understand that this is a site visited and run by volunteers, and that getting an answer to your question is something which happens because someone who knows the answer decided to use some of his free time to answer it, and that getting an answer is not any kind of right. -- PrimeOperator
 
-Too lazy to search right now, but I thought there was a page about how to ask questions ... maybe General/HowToAskQuestions ... ? ;-) At any rate, if someone posts a 'dumb question', reply with a link to that page. Keep the smart-a$$ tone out of the message, too, and nobody could argue you didn't do the right thing. If the question's a bad one, this doesn't say "your question's a bad one, dumb-a$$", it says "you need to rephrase your question - here's how". - Anonymous1234
+Too lazy to search right now, but I thought there was a page about how to ask questions ... maybe HowToAskQuestions ... ? ;-) At any rate, if someone posts a 'dumb question', reply with a link to that page. Keep the smart-a$$ tone out of the message, too, and nobody could argue you didn't do the right thing. If the question's a bad one, this doesn't say "your question's a bad one, dumb-a$$", it says "you need to rephrase your question - here's how". - Anonymous1234
 
-(Further discussion moved to General/HowToAskQuestions.)
+(Further discussion moved to HowToAskQuestions.)
 
 ----
 
-General/SignArguments. -- General/KritTer
+SignArguments. -- KritTer
 ----
 
-*Above, you said, "two different classes each having a reference to the same outlet" How can that possibly mean, "2 outlets 1 class"?* It doesn't. **You** mixed it up again. My original question never, ever implied 2 outlets. That was even clarified; which matches the title General/CanTwoClassesShareTheSameOutlet (ie. Two (2) classes sharing the same (1) outlet) -OP
+*Above, you said, "two different classes each having a reference to the same outlet" How can that possibly mean, "2 outlets 1 class"?* It doesn't. **You** mixed it up again. My original question never, ever implied 2 outlets. That was even clarified; which matches the title CanTwoClassesShareTheSameOutlet (ie. Two (2) classes sharing the same (1) outlet) -OP
 
-OTOH, you later posted "...if someone reads "2 outlets 1 class" as "2 classes 1 outlet"...". Perhaps you wrote that backwards? I think this was the point of contention -- General/KritTer
+OTOH, you later posted "...if someone reads "2 outlets 1 class" as "2 classes 1 outlet"...". Perhaps you wrote that backwards? I think this was the point of contention -- KritTer
 
 *That was when I was pointing out that the person complaining about the question had mis-read my original post - that wan't even part of intended original discussion at that point* -OP
 
-I think it pushed Anonymous1234 over the edge, though. (Poor chap has a short tether ;) -- General/KritTer
+I think it pushed Anonymous1234 over the edge, though. (Poor chap has a short tether ;) -- KritTer
 
-This page has proven useful for generating a meta discussion, but that has been moved to another page now, and this page contains nothing of note. If the original poster is still interested in an answer or discussion about his problem, I would propose that he delete the current contents of the page and re-post a question, hopefully in a clearer form. If not, then perhaps it is time to get out the General/DeleteMe, since we're not going anywhere otherwise. -- General/PrimeOperator
+This page has proven useful for generating a meta discussion, but that has been moved to another page now, and this page contains nothing of note. If the original poster is still interested in an answer or discussion about his problem, I would propose that he delete the current contents of the page and re-post a question, hopefully in a clearer form. If not, then perhaps it is time to get out the DeleteMe, since we're not going anywhere otherwise. -- PrimeOperator
 
 ----
-A pointer to General/HowToWriteHelpfulAnswers seems also relevant.
+A pointer to HowToWriteHelpfulAnswers seems also relevant.

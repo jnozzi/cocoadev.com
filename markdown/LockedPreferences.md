@@ -16,7 +16,7 @@ You wouldn't store it. If you try it out, Apple's preference panes stay unlocked
 
 ----
 
-Actually, I think the OP is asking how to make system-wide preferences for an app, not necessarily a prefsPane. You need to store your preferences in the proper domain. See: http://developer.apple.com/documentation/General/CoreFoundation/Reference/General/CFPreferencesUtils/Reference/reference.html
+Actually, I think the OP is asking how to make system-wide preferences for an app, not necessarily a prefsPane. You need to store your preferences in the proper domain. See: http://developer.apple.com/documentation/CoreFoundation/Reference/CFPreferencesUtils/Reference/reference.html
 
 As to handling authorization (requesting permission to modify the permissions in a non-user domain), see: http://developer.apple.com/documentation/Security/Conceptual/authorization_concepts/index.html
 

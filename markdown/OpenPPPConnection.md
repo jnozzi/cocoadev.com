@@ -7,4 +7,4 @@ Thanks.
 ----
 
 http://cocoadevcentral.com/articles/000033.php might be of some use to you
--- General/FinlayDobbie
+-- FinlayDobbie

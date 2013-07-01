@@ -1,6 +1,6 @@
 
 
-A decrepit General/FileSystem that is agonizingly pervasive.
+A decrepit FileSystem that is agonizingly pervasive.
 Compact Flash and Smart Media flashcards for digital cameras use MSDOS filesystems, for instance.
 
 These filesystems usually come about because of the existence nearby of a Wintel machine.

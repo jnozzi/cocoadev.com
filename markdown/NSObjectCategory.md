@@ -1,8 +1,8 @@
 
 
-** General/NSObject category General/CocoaDevUsersAdditions:**
+** NSObject category CocoaDevUsersAdditions:**
 
-** General/NSObject +General/CocoaDevUsersAdditions.h**
+** NSObject +CocoaDevUsersAdditions.h**
     
  #import <Foundation/Foundation.h>
  
@@ -19,7 +19,7 @@
  
  @end
 
-**General/NSObject+General/CocoaDevUsersAdditions.m**
+**NSObject+CocoaDevUsersAdditions.m**
     
  #import "NSObject+CocoaDevUsersAdditions.h"
  
@@ -65,4 +65,4 @@
 
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

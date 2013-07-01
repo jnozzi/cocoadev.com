@@ -6,4 +6,4 @@ I believe I've narrowed the cause down to me setting the contents of a control i
 
 ----
 
-Take a look at General/NSResponder and the Cocoa event handling guide. In particular, General/NSWindow's makeFirstResponder, or General/NSResponder's acceptsFirstResponder and resignFirstResponder, depending on what is actually happening to make your control lose key focus.
+Take a look at NSResponder and the Cocoa event handling guide. In particular, NSWindow's makeFirstResponder, or NSResponder's acceptsFirstResponder and resignFirstResponder, depending on what is actually happening to make your control lose key focus.

@@ -14,7 +14,7 @@ Careful with this sample code though, there is a small error:
     
 - (void)setupToolbar
 {
-    General/NSToolbar *toolbar = General/[[NSToolbar alloc] initWithIdentifier:@"mainToolbar"];
+    NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:@"mainToolbar"];
     [toolbar autorelease]; // wrong
     [toolbar setDelegate:self];
     [toolbar setAllowsUserCustomization:YES];
@@ -33,40 +33,40 @@ As you can see, there is a double autorelease, which is incorrect; it will cause
 An efficient method to validate toolbar items based on multiple conditions. This needs to go in your toolbar's **target** not your toolbar controller
 
     
-- (BOOL)validateToolbarItem:(General/NSToolbarItem *)theItem
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
 {
-    General/NSMutableSet *itemsToDisable = General/[NSMutableSet setWithCapacity:0];
+    NSMutableSet *itemsToDisable = [NSMutableSet setWithCapacity:0];
     
     if (someCondition)
       {
-	General/NSSet *myItems = General/[NSSet setWithObjects:@"toolbarItemIdentifier1", @"toolbarItemIdentifier2", 
+	NSSet *myItems = [NSSet setWithObjects:@"toolbarItemIdentifier1", @"toolbarItemIdentifier2", 
                          @"toolbarItemIdentifier3", NULL];
 	[itemsToDisable unionSet:myItems];
       }
 
     if (!anotherCondition)
       {
-	General/NSSet *myItems = General/[NSSet setWithObjects: @"toolbarItemIdentifier4", NULL];
+	NSSet *myItems = [NSSet setWithObjects: @"toolbarItemIdentifier4", NULL];
 	[itemsToDisable unionSet:myItems];
       }
     return ![itemsToDisable containsObject:[theItem itemIdentifier]];
 }
 
 ----
-Ok, I have General/MainToolbar.h and General/MainToolbar.m, and then I have General/MainDocument.h and General/MainDocument.m. I want to know how to create an action for General/MainDocument that will change the the selected General/NSToolbarItem. How would I go about doing this?
+Ok, I have MainToolbar.h and MainToolbar.m, and then I have MainDocument.h and MainDocument.m. I want to know how to create an action for MainDocument that will change the the selected NSToolbarItem. How would I go about doing this?
 
 ----
 
-Add an action to General/FirstResponder in General/MainDocument's nib, and implement the action in General/MainToolbar to call     setSelectedItemIdentifier:
+Add an action to FirstResponder in MainDocument's nib, and implement the action in MainToolbar to call     setSelectedItemIdentifier:
 
 ----
 
 If you want to create a toolbar in Interface Builder 3 or higher, the instructions at http://www.katoemba.net/makesnosenseatall/tag/nstoolbar/ are of great help.
 
-In a nutshell, you need to add General/NSToolbar from the Library tools to the window of your choice, add General/NSToolbarItems as you see fit, and link the toolbar item to the function you want it to call.
+In a nutshell, you need to add NSToolbar from the Library tools to the window of your choice, add NSToolbarItems as you see fit, and link the toolbar item to the function you want it to call.
 You still need to implement the following function to make the buttons clickable:
     
-- (BOOL)validateToolbarItem:(General/NSToolbarItem *)theItem
+- (BOOL)validateToolbarItem:(NSToolbarItem *)theItem
 {
     if ([theItem tag] == 1001) // Save toolbar item
         return [self isDocumentEdited];

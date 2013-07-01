@@ -5,13 +5,13 @@ Thanks in advance
 
 ----
 
-Simple answer: there is no such thing as abstract classes in General/ObjectiveC.
+Simple answer: there is no such thing as abstract classes in ObjectiveC.
 
-Complex answer: if you really need to have an abstract class you can implement one of its methods as     [self doesNotRecognizeSelector:_cmd] or     General/[NSException raise:General/NSGenericException format:@"Method %s is abstract", _cmd] or something like it. It won't stop anyone from instantiating the class, but it will stop them from using it, without overriding that method. --General/TheoHultberg/Iconara
+Complex answer: if you really need to have an abstract class you can implement one of its methods as     [self doesNotRecognizeSelector:_cmd] or     [NSException raise:NSGenericException format:@"Method %s is abstract", _cmd] or something like it. It won't stop anyone from instantiating the class, but it will stop them from using it, without overriding that method. --TheoHultberg/Iconara
 
 ----
 
-Also see General/AbstractSuperClass. You might be able to use General/FormalProtocols.
+Also see AbstractSuperClass. You might be able to use FormalProtocols.
 
 ----
 
@@ -23,44 +23,44 @@ OK, Thank you. I guess I can leave that class as it is and it'll be abstract onl
 
 ----
 
-I've said it before, and I'll say it again: General/ObjectiveC really needs proper access modifiers and support for things like final and abstract classes and methods.
+I've said it before, and I'll say it again: ObjectiveC really needs proper access modifiers and support for things like final and abstract classes and methods.
 
---General/TheoHultberg/Iconara
+--TheoHultberg/Iconara
 
 ----
 
 We don't need abstract classes: we have protocols. Also, "final" was added to Java because many web applets have to extend various classes to implement their functionality, but if they can override *anything*, that introduces a security hole large enough to park an iceberg though :)  We don't need final methods: we don't run untrusted code like Java does.
 
-Why do you feel we need these tools? -- General/KritTer
+Why do you feel we need these tools? -- KritTer
 
 ----
 
-Abstract classes are good since they they make the contract obvious. I can agree that it's just syntax sugar, but it's very good to be able to have compile-time-checking that you follow the contracts (that's why I really like General/ObjectiveC's static typing, even though it's just syntax sugar). If the designer of a framework intended the class to be abstract, I think it's very good that the compiler tells me so. Moreover, abstract classes are more powerful than protocols, or rather, they solve another problem. An abstract class can contain logic with empty boxes, which the client programmer can fill in, as in General/TemplateMethod General/DesignPattern, a protocol cannot. Protocols are good for other things. 
+Abstract classes are good since they they make the contract obvious. I can agree that it's just syntax sugar, but it's very good to be able to have compile-time-checking that you follow the contracts (that's why I really like ObjectiveC's static typing, even though it's just syntax sugar). If the designer of a framework intended the class to be abstract, I think it's very good that the compiler tells me so. Moreover, abstract classes are more powerful than protocols, or rather, they solve another problem. An abstract class can contain logic with empty boxes, which the client programmer can fill in, as in TemplateMethod DesignPattern, a protocol cannot. Protocols are good for other things. 
 
 Final is good for the same reason as abstract classes: a message that can't be missed: don't override this method! It is a useful feature of the Java language, for more things than applet access-control. If my design requires the exact implementation of a method, I mark it as final. If I have a class that should never be subclasses (since it would create strange and undefined behaviour), I mark it as final, nice.
 
---General/TheoHultberg/Iconara
+--TheoHultberg/Iconara
 
 ----
 It's not indispensable, though, unlike in Java.
 
 As to using abstract classes as a template, why not use a delegate object?
--- General/KritTer
+-- KritTer
 
 ----
-That's another solution to the same problem, it's very elegant in General/ObjectiveC, but it's not an argument for not having real abstract classes. 
---General/TheoHultberg/Iconara
+That's another solution to the same problem, it's very elegant in ObjectiveC, but it's not an argument for not having real abstract classes. 
+--TheoHultberg/Iconara
 
 ----
-See General/TemplateMethod for how to use a delegate object to implement this General/DesignPattern.
---General/AndrewBowman
+See TemplateMethod for how to use a delegate object to implement this DesignPattern.
+--AndrewBowman
 
 ----
 
 You can just override the designated initlializer of your code and go 
     
-if (General/self class] isEqualTo:[[[AbstractClass class]]) { 
-    General/NSLog(@"Error, attempting to instantiate General/AbstractClass directly."); 
+if (self class] isEqualTo:[[[AbstractClass class]]) { 
+    NSLog(@"Error, attempting to instantiate AbstractClass directly."); 
     [self release]; 
     return nil; 
 }
@@ -70,14 +70,14 @@ if (General/self class] isEqualTo:[[[AbstractClass class]]) {
 
 Wouldn't it be better to raise an exception rather than just log an error?
 
-    General/[NSException raise:@"Abstract Class Exception" format:@"Error, attempting to instantiate General/AbstractClass directly."]
+    [NSException raise:@"Abstract Class Exception" format:@"Error, attempting to instantiate AbstractClass directly."]
 
 *as stated above...*
 
 ----
 
-Also, see General/WhyDeclareClassAsAbstract
+Also, see WhyDeclareClassAsAbstract
 
 ----
 
-Just use a General/FormalProtocols.
+Just use a FormalProtocols.

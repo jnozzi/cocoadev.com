@@ -1,11 +1,11 @@
-Has anyone else had problems using images in General/NIBs in the version of Interface Builder that ships with Xcode?
+Has anyone else had problems using images in NIBs in the version of Interface Builder that ships with Xcode?
 
 I am trying to use images as icons for buttons and for some reason they aren't working. I have even tried using images from Apple's own apps, and no dice.
 
 ----
 I've sucessfully used images as icons for buttons with Xcode's IB.  I have found for some projects created in Project Builder,  Xcode sometimes don't put resource in the right place inside the application bundle.  Open up your application bundle and make sure that all your images are inside the Resources folder.
 
--General/HuaYingLing
+-HuaYingLing
 
 ----
 

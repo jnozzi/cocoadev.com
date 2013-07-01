@@ -1,4 +1,4 @@
-Related Links: General/AspectCocoa, General/AspectCocoaDocumentation, General/AdviceProtection, General/AspectCocoaBugs, General/ProgrammingByContract, General/EiffelProgrammingLanguage
+Related Links: AspectCocoa, AspectCocoaDocumentation, AdviceProtection, AspectCocoaBugs, ProgrammingByContract, EiffelProgrammingLanguage
 
 ----
 
@@ -7,18 +7,18 @@ Invariance checking is defining a set of conditions that must be true for a clas
     
 //main.m
 #import <Cocoa/Cocoa.h>
-#import "General/ACInvariance.h"
+#import "ACInvariance.h"
 
 int main(int argc, const char *argv[])
 {
-	General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 	
-	// change General/InvariantObject to the name of the class you want to have invariant checking
+	// change InvariantObject to the name of the class you want to have invariant checking
 	// call it multiple times to load for multiple classes
-	// General/InvariantObject should have a -invariant method and a +invariant method defined
-	General/[ACInvariance loadAspectForClass:@"General/InvariantObject"];
+	// InvariantObject should have a -invariant method and a +invariant method defined
+	[ACInvariance loadAspectForClass:@"InvariantObject"];
 	
-        int result = General/NSApplicationMain(argc, argv);
+        int result = NSApplicationMain(argc, argv);
 	
 	[pool release];
 	
@@ -29,34 +29,34 @@ int main(int argc, const char *argv[])
 ----
 Here's the class itself
     
-//General/ACInvariance.h
+//ACInvariance.h
 #import <Cocoa/Cocoa.h>
-#import <General/AspectCocoa/General/AspectCocoa.h>
+#import <AspectCocoa/AspectCocoa.h>
 
-@interface General/ACInvariance : General/NSObject
+@interface ACInvariance : NSObject
 {} // No instance vars
-+(void)loadAspectForClass:(General/NSString*)aClass;
--(void)before:(General/ACInvocation*)invocation;
--(void)after:(General/ACInvocation*)invocation;
++(void)loadAspectForClass:(NSString*)aClass;
+-(void)before:(ACInvocation*)invocation;
+-(void)after:(ACInvocation*)invocation;
 @end
 
 ----
     
-//General/ACInvariance.m
-#import "General/ACInvariance.h"
+//ACInvariance.m
+#import "ACInvariance.h"
 
-@implementation General/ACInvariance
-+(void)loadAspectForClass:(General/NSString*)aClass {
+@implementation ACInvariance
++(void)loadAspectForClass:(NSString*)aClass {
 	
-	id allClasses = General/[ACPointCut enumerateClassesNamed:aClass,nil];
+	id allClasses = [ACPointCut enumerateClassesNamed:aClass,nil];
 	id eachClass, resultClasses;
-	resultClasses = General/[[NSMutableArray alloc] init];
+	resultClasses = [[NSMutableArray alloc] init];
 	while( eachClass = [allClasses nextObject] ) {
 		if( class_getInstanceMethod([eachClass getClass],@selector(invariant)) != NULL){
 			id allMethods = [eachClass methodEnumerator];
 			id eachMethod;
 			while(eachMethod = [allMethods nextObject]) {
-				if( ! General/eachMethod methodName] hasPrefix:@"init"] && 
+				if( ! eachMethod methodName] hasPrefix:@"init"] && 
 					! [[eachMethod methodName] hasPrefix:@"alloc"] &&
 					! [[eachMethod methodName] hasPrefix:@"invariant"])
 				{
@@ -67,14 +67,14 @@ Here's the class itself
 		}
 	}
 	id pointCut = [[[[ACPointCut alloc] initWithJoinPoints:resultClasses];
-	General/ACAspect* invariantAspect = General/[[ACAspect alloc] 
-                         initWithPointCut: pointCut  andAdviceObject: General/[[ACInvariance alloc]init]];
+	ACAspect* invariantAspect = [[ACAspect alloc] 
+                         initWithPointCut: pointCut  andAdviceObject: [[ACInvariance alloc]init]];
 	[invariantAspect load];
 	[invariantAspect autorelease];
 }
--(void)before:(General/ACInvocation*)invocation 
+-(void)before:(ACInvocation*)invocation 
 { 
-	General/invocation target] invariant]; 
+	invocation target] invariant]; 
 }
 -(void)after:([[ACInvocation*)invocation 
 { 

@@ -1,13 +1,13 @@
-Hi, I'm a newbie writing my second app, a HTML/General/JavaScript Editor.
+Hi, I'm a newbie writing my second app, a HTML/JavaScript Editor.
 I have two questions:
 
-1) I'm looking for a simple way to add some text to a General/NSTextView and then hightlight the text I have inserted.
+1) I'm looking for a simple way to add some text to a NSTextView and then hightlight the text I have inserted.
 All I have is this...
 
     
-- (General/IBAction)insertText:(id)sender
+- (IBAction)insertText:(id)sender
 {
-    General/NSString *myCode;
+    NSString *myCode;
     myCode = @"some javascript code here";
     [_textView insertText:myCode];
 }
@@ -15,17 +15,17 @@ All I have is this...
 
 ... which works fine, very simple. Now I would like the text that was inserted (myCode) to be highlighted (something like a sintax coloring, but much simpler).
 
-2) Is there some way to insert some text and then select just part of it, like General/XCode does when you choose a parameter from the Hint list? (e.g. <#(General/NSString *)format#> gets selected when you choose stringWithFormat) Can I do it with General/[NSTextView selectWord:(id)sender]; ?
+2) Is there some way to insert some text and then select just part of it, like XCode does when you choose a parameter from the Hint list? (e.g. <#(NSString *)format#> gets selected when you choose stringWithFormat) Can I do it with [NSTextView selectWord:(id)sender]; ?
 
 Thanx in advance.
 
-- General/FernandoLucasSantos
+- FernandoLucasSantos
 
 
 ----
 
-Use General/NSTextView's setSelectedRange and pass it the range of what you just inserted. Something like     [_textView setSelectedRange:General/NSMakeRange([_textView selectedRange].location, [myCode length])]
+Use NSTextView's setSelectedRange and pass it the range of what you just inserted. Something like     [_textView setSelectedRange:NSMakeRange([_textView selectedRange].location, [myCode length])]
 
 ----
 
-Also see General/HelpWithNSTextView and General/SettingInsertionPoint for why using     insertText: is probably not the best way to get text into a General/NSTextView programatically.
+Also see HelpWithNSTextView and SettingInsertionPoint for why using     insertText: is probably not the best way to get text into a NSTextView programatically.

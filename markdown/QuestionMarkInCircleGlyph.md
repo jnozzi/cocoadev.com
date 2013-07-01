@@ -4,7 +4,7 @@ Does anybody know if this glyph has a legal unicode mapping?
 
 ----
 
-That glyph is for the Help key. General/NSEvent.h defines it as U+F746, which is in Unicode's Private Use Area. -- General/DustinVoss
+That glyph is for the Help key. NSEvent.h defines it as U+F746, which is in Unicode's Private Use Area. -- DustinVoss
 
 ----
 
@@ -20,7 +20,7 @@ printf "\376\377\000\077\040\335\000\n" > /tmp/qmic.txt
 open -e /tmp/qmic.txt
 
 
---General/DrewThaler
+--DrewThaler
 
 ----
 
@@ -30,15 +30,15 @@ Font GB18030Bitmap: in _readBasicMetricsForSize, claims 0 max advance but is fix
 Font Screen-GB18030Bitmap: in _readBasicMetricsForSize, claims 0 max advance but is fixed-pitch.
 
 
-This is how I create the string (which I use for a button title, using setTitle: on General/NSButton):
+This is how I create the string (which I use for a button title, using setTitle: on NSButton):
     
 unichar chars[] = { 0xFEFF, '?', 0x20DD };
-General/NSString *str = General/[NSString stringWithCharacters:str length:sizeof(chars)/sizeof(chars[0])];
+NSString *str = [NSString stringWithCharacters:str length:sizeof(chars)/sizeof(chars[0])];
 
 
 ----
 
-You shouldn't need the byte-order metacharacter in an General/NSString; all the unicode characters in an General/NSString are implicitly in native byte order. The 0xFEFF was simply to make sure General/TextEdit recognized the .txt file as unicode. Try it without the 0xFEFF.
+You shouldn't need the byte-order metacharacter in an NSString; all the unicode characters in an NSString are implicitly in native byte order. The 0xFEFF was simply to make sure TextEdit recognized the .txt file as unicode. Try it without the 0xFEFF.
 
 ----
 

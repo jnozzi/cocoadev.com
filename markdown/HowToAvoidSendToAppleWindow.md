@@ -10,7 +10,7 @@ If you mean that you'd like to stop all the annoying crash dialogs while you're 
 
 If you mean you'd like to avoid the dialog for users as well, take a look at the Adium source code.  They have a scheme to grab bug reports for themselves and skip the Apple dialog.  I believe it uses a child process that really runs the app and a master process that catches crashes in the child.
 
--General/KenFerry
+-KenFerry
 
 ----
 

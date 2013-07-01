@@ -1,21 +1,21 @@
-General/NSAppleEventDescriptor is a wrapper for Carbon's     General/AEDesc type. Each General/NSAppleEventDescriptor has a **descriptorType** and **data**. The data may contain additional nested     General/AEDescs.
+NSAppleEventDescriptor is a wrapper for Carbon's     AEDesc type. Each NSAppleEventDescriptor has a **descriptorType** and **data**. The data may contain additional nested     AEDescs.
 
-An     General/AppleEvent type is an     General/AEDesc, as is each parameter of an Apple Script command.
+An     AppleEvent type is an     AEDesc, as is each parameter of an Apple Script command.
 
-Most General/NSAppleEventDescriptor methods are convenience methods for dealing with the data of various descriptor types. They may not always be applicable. 
+Most NSAppleEventDescriptor methods are convenience methods for dealing with the data of various descriptor types. They may not always be applicable. 
 
 See also:
 
 *Class documentation at http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/NSAppleEventDescriptor.html
-*    General/AEDesc documentation at http://developer.apple.com/documentation/mac/IAC/IAC-98.html
+*    AEDesc documentation at http://developer.apple.com/documentation/mac/IAC/IAC-98.html
 *Descriptor types at http://developer.apple.com/documentation/Carbon/Reference/Apple_Event_Manager/Reference/reference.html#//apple_ref/doc/uid/TP30000134-CH4g-C006985
 
 
 ----
 
-General/KFAppleScriptHandlerAddtions (http://homepage.mac.com/kenferry/software.html#KFAppleScript) has some routines for converting back and forth between descriptors and cocoa objects.
+KFAppleScriptHandlerAddtions (http://homepage.mac.com/kenferry/software.html#KFAppleScript) has some routines for converting back and forth between descriptors and cocoa objects.
 
-    General/AEVTBuilder is another Cocoa glue classes which build General/NSAppleEventDescriptor.
+    AEVTBuilder is another Cocoa glue classes which build NSAppleEventDescriptor.
 
 
 ----
@@ -27,13 +27,13 @@ The *actual* reason why is because the original Mac OS toolbox was based on Pasc
 * you can measure the length of an array in O(1) time 
 * items are referenced in lexical order. E.g., "item 1 is in slot 1". 
 
-The Cocoa Apple Script code was just thinly veiled shims around the older System 7 implementation -- and the API still betrays that heritage. HTH -- General/MikeTrent
+The Cocoa Apple Script code was just thinly veiled shims around the older System 7 implementation -- and the API still betrays that heritage. HTH -- MikeTrent
 
 P.S., I've left the other guesses behind for your amusement:
 
 ----
 
-*I guess the method should have been named     -descriptorAtAppleScriptIndex:. General/AppleScript uses 1-based array indices, for the same reason BASIC does. -- General/DustinVoss*
+*I guess the method should have been named     -descriptorAtAppleScriptIndex:. AppleScript uses 1-based array indices, for the same reason BASIC does. -- DustinVoss*
 
 *and that reason is? "no good one" is all that comes to my mind.*
 
@@ -50,7 +50,7 @@ Pascal did not store the actual length of an array at position [0].  Many versio
 
 var a : array[1..20] of integer;
 
-Because people normally count from 1, Pascal programmers normally based their arrays from 1.  And that Pascal heritage is indeed why the General/AppleScript descriptorAtIndex is 1-based.
+Because people normally count from 1, Pascal programmers normally based their arrays from 1.  And that Pascal heritage is indeed why the AppleScript descriptorAtIndex is 1-based.
 
 For strings, the definition like:
 

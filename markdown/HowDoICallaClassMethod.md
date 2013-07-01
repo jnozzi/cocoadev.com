@@ -9,7 +9,7 @@ do I need to change it to an instance method? When I have the compiler barfs out
 
 can I not just call this method 
 
-General/[ClassthatOwnsMethod  writeafile]:
+[ClassthatOwnsMethod  writeafile]:
 
 ----
 
@@ -19,7 +19,7 @@ class methods need to start with a + not a -... To do what I think you're thinki
 
 and then call it as
 
-General/[ClassThatOwnsMethod writeFile];
+[ClassThatOwnsMethod writeFile];
 
 ----
 
@@ -29,7 +29,7 @@ So, assuming the other class has a pointer to an instance of your classthatownsm
 
 May I recommend some light reading?
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/ObjectiveC/General/ObjC.pdf
+http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/ObjC.pdf
 
 ---- 
 

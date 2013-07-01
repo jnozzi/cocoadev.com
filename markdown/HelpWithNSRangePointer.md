@@ -1,41 +1,41 @@
-My program sometimes crashes when the following code is called and I can't figure out why.  I get a sigbus error from General/NSIntersectionRange().  When I break on my method and try to step through it everything is fine, the program doesn't crash.  Can someone with a better understanding of pointers help me figure this out?
+My program sometimes crashes when the following code is called and I can't figure out why.  I get a sigbus error from NSIntersectionRange().  When I break on my method and try to step through it everything is fine, the program doesn't crash.  Can someone with a better understanding of pointers help me figure this out?
 
-The code below is supposed to remove the General/NSLinkTextAttribute from an General/NSAttributedString in my textView.
+The code below is supposed to remove the NSLinkTextAttribute from an NSAttributedString in my textView.
 
     
-- (General/IBAction)removeAnnotation:(id)sender {
+- (IBAction)removeAnnotation:(id)sender {
 
 	if ( [textView selectedRange].length == 0) {
 		return;
 	}
 
 	// if it's the whole range remove it from the annotations array
-	General/NSRangePointer annotationRange;
+	NSRangePointer annotationRange;
 	// if this returns nil the selected text is not linked 
 	// this also fills annotationRange
-	id attribute = General/textView textStorage] attribute:[[NSLinkAttributeName 
+	id attribute = textView textStorage] attribute:[[NSLinkAttributeName 
 		atIndex:[textView selectedRange].location
 		longestEffectiveRange:annotationRange
-		inRange:General/NSMakeRange(0,General/textView textStorage] length])];
+		inRange:NSMakeRange(0,textView textStorage] length])];
 		
 	if (attribute == nil) { // should never happen
 		return;
 	} else {
 
 		if ([[NSEqualRanges([textView selectedRange], *annotationRange)) {
-			General/AVNRannotation *thisNote = General/textView textStorage] 
+			AVNRannotation *thisNote = textView textStorage] 
 				attribute: [[NSLinkAttributeName
 				atIndex: [textView selectedRange].location
 				effectiveRange:NULL];
 			
 			[self willChangeValueForKey:@"annotationList"];
-			General/[self document] annotations] removeObject: thisNote];
+			[self document] annotations] removeObject: thisNote];
 			[self didChangeValueForKey:@"annotationList"];
 		}
 	}
 	
 	[[textView textStorage] removeAttribute:[[NSLinkAttributeName range:[textView selectedRange]];
-	General/self document] updateChangeCount:[[NSChangeDone];	
+	self document] updateChangeCount:[[NSChangeDone];	
 }
 
 
@@ -44,10 +44,10 @@ The code below is supposed to remove the General/NSLinkTextAttribute from an Gen
 
 Both the original post and the reply above belie a horrible misunderstanding of the situation. (No offense, it's just the kind of thing that will make horrible, hard-to-find bugs.)
 
-The     attribute:... method asks for an General/NSRangePointer because it's *returning* an General/NSRange. Thus, you should not be passing it a variable General/NSRangePointer, initialized to nil or otherwise. What you should be doing is passing it a pointer to an existing General/NSRange, like this:
+The     attribute:... method asks for an NSRangePointer because it's *returning* an NSRange. Thus, you should not be passing it a variable NSRangePointer, initialized to nil or otherwise. What you should be doing is passing it a pointer to an existing NSRange, like this:
     
-General/NSRange annotationRange;
-id attribute = General/textView textStorage] attribute:[[NSLinkAttributeName 
+NSRange annotationRange;
+id attribute = textView textStorage] attribute:[[NSLinkAttributeName 
 	atIndex:[textView selectedRange].location
 	effectiveRange:&annotationRange];
 

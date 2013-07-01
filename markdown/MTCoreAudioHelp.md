@@ -1,28 +1,28 @@
-I am a newbie have been really trying to get General/MTCoreAudio to work and so far I have come up with this code. It runs(compiles with no errors or warnings) but the sound that comes out of the speakers is garbage noise. I understand that the problem is with not converting the buffer I create to a format that the input output callback will understand. However, I really don't know how to do it. Can someone please give me a small snippet of code to accomplish this task. Its been a real challenge coming up with this and any help is really appreciated.
+I am a newbie have been really trying to get MTCoreAudio to work and so far I have come up with this code. It runs(compiles with no errors or warnings) but the sound that comes out of the speakers is garbage noise. I understand that the problem is with not converting the buffer I create to a format that the input output callback will understand. However, I really don't know how to do it. Can someone please give me a small snippet of code to accomplish this task. Its been a real challenge coming up with this and any help is really appreciated.
 
 The Interface File
     
 #import <Cocoa/Cocoa.h>
-#import <General/QTKit/General/QTKit.h>
-#import <General/MTCoreAudio/General/MTCoreAudio.h>
-#import <General/CoreAudio/General/CoreAudio.h>
+#import <QTKit/QTKit.h>
+#import <MTCoreAudio/MTCoreAudio.h>
+#import <CoreAudio/CoreAudio.h>
 
-@interface Controller : General/NSObject
+@interface Controller : NSObject
 {
-    General/IBOutlet General/NSSlider *outputVolumeSlider;
+    IBOutlet NSSlider *outputVolumeSlider;
 
-    General/IBOutlet General/NSButton *playStopButton;
+    IBOutlet NSButton *playStopButton;
 
-    General/MTCoreAudioDevice *outputDevice;
+    MTCoreAudioDevice *outputDevice;
 	
-    General/NSArray *fileToOpen;
-    General/NSData *myData;
+    NSArray *fileToOpen;
+    NSData *myData;
 }
 
-- (General/IBAction) startPlaying: (id) sender;
-- (General/IBAction) stopPlaying: (id) sender;
+- (IBAction) startPlaying: (id) sender;
+- (IBAction) stopPlaying: (id) sender;
 
-- (General/IBAction) changeOutputVolume: (id) sender;
+- (IBAction) changeOutputVolume: (id) sender;
 
 - (void)byteCreator;
 
@@ -42,12 +42,12 @@ static int g_bufferSize;
 
 @implementation Controller
 
-- (General/OSStatus) writeCycleForDevice: (General/MTCoreAudioDevice *) theDevice 
-		       timeStamp: (const General/AudioTimeStamp *) now 
-		       inputData: (const General/AudioBufferList *) inputData 
-		       inputTime: (const General/AudioTimeStamp *) inputTime 
-		      outputData: (General/AudioBufferList *) outputData 
-		      outputTime: (const General/AudioTimeStamp *) outputTime 
+- (OSStatus) writeCycleForDevice: (MTCoreAudioDevice *) theDevice 
+		       timeStamp: (const AudioTimeStamp *) now 
+		       inputData: (const AudioBufferList *) inputData 
+		       inputTime: (const AudioTimeStamp *) inputTime 
+		      outputData: (AudioBufferList *) outputData 
+		      outputTime: (const AudioTimeStamp *) outputTime 
 		      clientData: (void *) clientData
 { 
 
@@ -59,7 +59,7 @@ static int g_bufferSize;
 
     } else {
 
-	General/AudioBuffer *buffer;
+	AudioBuffer *buffer;
 	buffer = &outputData->mBuffers[0];
 	
 	memcpy (buffer->mData, g_soundBuffer + g_lastIndex, buffer->mDataByteSize);
@@ -73,7 +73,7 @@ static int g_bufferSize;
 
 - (void) setStuffBasedOnVolume
 {
-    General/MTCoreAudioVolumeInfo volumeInfo;
+    MTCoreAudioVolumeInfo volumeInfo;
 
     volumeInfo = [outputDevice volumeInfoForChannel: 1 forDirection: kMTCoreAudioDevicePlaybackDirection];
 
@@ -83,7 +83,7 @@ static int g_bufferSize;
 
 - (void) awakeFromNib
 {
-    outputDevice = General/[MTCoreAudioDevice defaultOutputDevice];
+    outputDevice = [MTCoreAudioDevice defaultOutputDevice];
     [outputDevice retain];
 
     [outputDevice setIOTarget: self
@@ -102,19 +102,19 @@ static int g_bufferSize;
 
 }
 
-- (General/IBAction) startPlaying: (id) sender
+- (IBAction) startPlaying: (id) sender
 {
 	int result;
-	General/NSOpenPanel *oPanel = General/[NSOpenPanel openPanel];
+	NSOpenPanel *oPanel = [NSOpenPanel openPanel];
 	
-	General/NSMutableArray *fileTypes = General/[QTMovie movieFileTypes:0];
+	NSMutableArray *fileTypes = [QTMovie movieFileTypes:0];
 	
 	[oPanel setAllowsMultipleSelection:NO];
 	[oPanel setCanChooseDirectories:NO];
 
 	result = [oPanel runModalForTypes:fileTypes];
 	
-	if(result == General/NSOKButton)
+	if(result == NSOKButton)
 	{
 		fileToOpen = [oPanel filenames];
 		[self byteCreator];
@@ -122,7 +122,7 @@ static int g_bufferSize;
 	
 	else
 	{
-		General/NSLog(@"Sound Not Loaded");
+		NSLog(@"Sound Not Loaded");
 	}
     
     g_lastIndex = 0;
@@ -140,14 +140,14 @@ static int g_bufferSize;
 	}
 	g_lastIndex = 0;
 	g_bufferSize = 0;
-	General/NSString *theFileName = [fileToOpen objectAtIndex:0];
-	myData = General/[NSData dataWithContentsOfFile:theFileName]; 
+	NSString *theFileName = [fileToOpen objectAtIndex:0];
+	myData = [NSData dataWithContentsOfFile:theFileName]; 
 	g_soundBuffer = malloc([myData length]);
 	[myData getBytes:g_soundBuffer];
 	g_bufferSize = [myData length];
 }
 
-- (General/IBAction) stopPlaying: (id) sender
+- (IBAction) stopPlaying: (id) sender
 {
     [outputDevice deviceStop];
 
@@ -155,7 +155,7 @@ static int g_bufferSize;
 
 } 
 
-- (General/IBAction) changeOutputVolume: (id) sender
+- (IBAction) changeOutputVolume: (id) sender
 {
     [outputDevice setVolume: [outputVolumeSlider floatValue]
 		 forChannel: 1
@@ -174,7 +174,7 @@ Shaun.
 
 ----
 
-Hey, you need to insert an audio converter in the callback function you have. Study the General/AudioConverter stuff in the OSX sample code (under coreaudio). Also (or? I don't use General/MTCoreAudio), when you create the default audio in awakeFromNib, you might want to set the output format there. In byteCreator I assume that you are opening a RAW file, otherwise you need to use some file loading API, either the built in General/AudioFile API, or maybe libsndfile (a personal favorite).
+Hey, you need to insert an audio converter in the callback function you have. Study the AudioConverter stuff in the OSX sample code (under coreaudio). Also (or? I don't use MTCoreAudio), when you create the default audio in awakeFromNib, you might want to set the output format there. In byteCreator I assume that you are opening a RAW file, otherwise you need to use some file loading API, either the built in AudioFile API, or maybe libsndfile (a personal favorite).
 Just to let you know, I feel your pain, learning audio programming is very tough. It took me almost two years to really convert my app programming skills into audio programming skills, because there is scant info for beginners. Do a google search on realtime programming and one of the most useful hits is a DEC realtime programming manual from 1996, yeah, lots of support for newbies! One problem is that we literally have to unlearn a lot of what we thought was good programming practice in the app world.
 Anyways, I am very, very close to releasing an open source audio engine with file/network streaming support, regions, editing, audio unit routing, the whole gamut, along with a comprehensive audio programming tutorial and copiously commented code. Stay tuned to cocoadev, and keep trying. JJJ
 
@@ -188,6 +188,6 @@ Shaun.
 
 Shaun,
 
-I'm trying to do the same thing.  The sound rate is off in playback.  I am going to try to set the device sample rate with General/AudioDeviceSetProperty.  Let me know if you figured it out.  It would be much appreciated.
+I'm trying to do the same thing.  The sound rate is off in playback.  I am going to try to set the device sample rate with AudioDeviceSetProperty.  Let me know if you figured it out.  It would be much appreciated.
 
 -- tim

@@ -1,19 +1,19 @@
-Apple's General/NSCoder docs: http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSCoder_Class/Reference/General/NSCoder.html
+Apple's NSCoder docs: http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSCoder_Class/Reference/NSCoder.html
 
 Apple's Docs on the concept of Archiving: http://developer.apple.com/documentation/Cocoa/Conceptual/Archiving/
 ----
 
-General/NSCoder is an abstractClass which represents a stream of data. They are used in Archiving and Unarchiving.
+NSCoder is an abstractClass which represents a stream of data. They are used in Archiving and Unarchiving.
 
-you can read data from an General/NSCoder or write data to an General/NSCoder.
+you can read data from an NSCoder or write data to an NSCoder.
 
-General/NSCoder objects are usually used in a method that is being implemented so that the class conforms to the <General/NSCoding> protocol.
-You generally don't need to intialise General/NSCoder objects - you will be given them as an argument to an <General/NSCoding> method.
-When a class implements the <General/NSCoding> protocol it can initialise itself from a coder or write itself out to a coder.
+NSCoder objects are usually used in a method that is being implemented so that the class conforms to the <NSCoding> protocol.
+You generally don't need to intialise NSCoder objects - you will be given them as an argument to an <NSCoding> method.
+When a class implements the <NSCoding> protocol it can initialise itself from a coder or write itself out to a coder.
 
 ----
 
-Some of General/NSCoder's encoding methods: (often used in <General/NSCoding's> encodeWithCoder:)
+Some of NSCoder's encoding methods: (often used in <NSCoding's> encodeWithCoder:)
 
     
 -(void)encodeObject:(id)anObject
@@ -27,7 +27,7 @@ like encodeObject: but used when you want to encode a non-object instance variab
 
 
 
-There are also decoding methods: (often used in <General/NSCoding's> initWithCoder:)
+There are also decoding methods: (often used in <NSCoding's> initWithCoder:)
 
     
 -(id)decodeObject
@@ -42,17 +42,17 @@ The Class must encode objects and structs in exactly the same order as it decode
 
 ----
 
-Here is an example - here are the two <General/NSCoding> methods for some fictional class (fooClass) that has four instance variables: an General/NSString, an General/NSDictionary, a BOOL and a float.  The class also has accessor methods for setting the values of these variables.
+Here is an example - here are the two <NSCoding> methods for some fictional class (fooClass) that has four instance variables: an NSString, an NSDictionary, a BOOL and a float.  The class also has accessor methods for setting the values of these variables.
 
-When an instantiated fooClass object is sent the encodeWithCoder: message it will encode its instance variables (objects and structs) into the General/NSCoder.
+When an instantiated fooClass object is sent the encodeWithCoder: message it will encode its instance variables (objects and structs) into the NSCoder.
 
-When sent the message initWithCoder: the Class will initialise itself by decoding the variables out of the General/NSCoder.
+When sent the message initWithCoder: the Class will initialise itself by decoding the variables out of the NSCoder.
 
-*n.b.* **if the class inherits from a Class that conforms to <General/NSCoding> (General/NSObject does not conform) then you should include the bold lines.  Else include the italic line.**
+*n.b.* **if the class inherits from a Class that conforms to <NSCoding> (NSObject does not conform) then you should include the bold lines.  Else include the italic line.**
     
-//	<General/NSCoding> protocol methods
+//	<NSCoding> protocol methods
 
--(void)encodeWithCoder:(General/NSCoder*)coder
+-(void)encodeWithCoder:(NSCoder*)coder
 {
 	**[super encodeWithCoder:coder];**
     [coder encodeObject: theNSStringInstanceVariable];
@@ -61,7 +61,7 @@ When sent the message initWithCoder: the Class will initialise itself by decodin
     [coder encodeValueOfObjCType:@encode(float) at:&theFloatInstanceVariable];
 }
 
--(id)initWithCoder:(General/NSCoder*)coder
+-(id)initWithCoder:(NSCoder*)coder
 {
   **  if (self=[super initWithCoder:coder]) {**
     *if (self=[super init]) {*
@@ -76,27 +76,27 @@ When sent the message initWithCoder: the Class will initialise itself by decodin
 
 
 ----
-Over time you classes may change. The correct way to deal with this is with class versioning.  If you want them to be able to gracefully initFromCoder: from  an archive of an older version of your class you may want to look at General/VersioningUsingCoder
+Over time you classes may change. The correct way to deal with this is with class versioning.  If you want them to be able to gracefully initFromCoder: from  an archive of an older version of your class you may want to look at VersioningUsingCoder
 
 ----
 
-My first go at being useful here! General/DiggoryLaycock.  p.s. if it's poorly written or inaccurate make it better!
+My first go at being useful here! DiggoryLaycock.  p.s. if it's poorly written or inaccurate make it better!
 
-p.p.s. Hillegass's book covers this subject much more elegantly than I can! (see "Cocoa Programming for Mac OS X" in General/CocoaBooks)
+p.p.s. Hillegass's book covers this subject much more elegantly than I can! (see "Cocoa Programming for Mac OS X" in CocoaBooks)
 
 ----
 
 Hey, do you need to retain the value returned by -decodeObject (Non keyed)? This is how I have it currently:
 
-    - (id)initWithCoder:(General/NSCoder *)coder
+    - (id)initWithCoder:(NSCoder *)coder
 {
     if ((self = [super init]) != nil)
 	{
-		nc = General/[NSNotificationCenter defaultCenter];
+		nc = [NSNotificationCenter defaultCenter];
 		
 		if ([coder allowsKeyedCoding])
 		{
-			subView = General/coder decodeObjectForKey:[[TRSubviewKey] retain];
+			subView = coder decodeObjectForKey:[[TRSubviewKey] retain];
 		}
 		else
 		{
@@ -106,11 +106,11 @@ Hey, do you need to retain the value returned by -decodeObject (Non keyed)? This
     return self;
 }
 
-- (void)encodeWithCoder:(General/NSCoder *)coder
+- (void)encodeWithCoder:(NSCoder *)coder
 {
 	if ([coder allowsKeyedCoding])
 	{
-		[coder encodeObject:subView forKey:General/TRSubviewKey];
+		[coder encodeObject:subView forKey:TRSubviewKey];
 	}
 	else
 	{
@@ -124,11 +124,11 @@ Hey, do you need to retain the value returned by -decodeObject (Non keyed)? This
 From Apple's docs:
 
 *
-The implementation for the concrete subclass General/NSUnarchiver returns an object that is retained by the unarchiver and is released when the unarchiver is deallocated. Therefore, you must retain the returned object before releasing the unarchiver. General/NSKeyedUnarchiver�s implementation, however, returns an autoreleased object, so its life is the same as the current autorelease pool instead of the keyed unarchiver.
+The implementation for the concrete subclass NSUnarchiver returns an object that is retained by the unarchiver and is released when the unarchiver is deallocated. Therefore, you must retain the returned object before releasing the unarchiver. NSKeyedUnarchiver�s implementation, however, returns an autoreleased object, so its life is the same as the current autorelease pool instead of the keyed unarchiver.
 *
 
 ----
 
-NB: 1- In case the super-class doesn't implement the General/NSCoding protocol, the super-class still requires to initialize its instance variables, hence why you need to do if(self = [super init]) in your own -initWithCoder:.
-2- The init message to send to super is usually the super-class designated initializer. In case of General/NSObject it is -init.
+NB: 1- In case the super-class doesn't implement the NSCoding protocol, the super-class still requires to initialize its instance variables, hence why you need to do if(self = [super init]) in your own -initWithCoder:.
+2- The init message to send to super is usually the super-class designated initializer. In case of NSObject it is -init.
  Pour participer   maintiennent numéro, vous aurez  peuvent avoir  compte  opérateur d'identification  (code RIO ) [http://obtenir-rio.info numéro rio]. Vous obtiendrez  pour  par  contacter   du serveur ou du service à la clientèle  satisfaction client  du  vieille fournisseur  [http://obtenir-rio.info/rio-bouygues numero rio bouygues] . Vous ne  mai   obtenir  un SMS avec votre . Avec votre  [http://obtenir-rio.info/rio-orange code rio orange], alors  vous êtes capable d'  vers le  offre de  de son   en orange orange .

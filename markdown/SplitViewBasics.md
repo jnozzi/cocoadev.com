@@ -1,12 +1,12 @@
 
 
-While it may seem obvious to more experienced Cocoa programmers, creating a General/NSSplitView in General/InterfaceBuilder is not as obvious to people new to the tools. Luckily it is rather easy:
+While it may seem obvious to more experienced Cocoa programmers, creating a NSSplitView in InterfaceBuilder is not as obvious to people new to the tools. Luckily it is rather easy:
 
-First create the Views that you would like to have in your General/NSSplitView by dragging them from the palette. Then select them all at once and select Make subview of -> Split View from the Layout menu. To do some more interesting things you will have to set a delegate for the General/NSSplitView and do things programmatically as it does not appear that you can do any adjustments in Interface Builder.
+First create the Views that you would like to have in your NSSplitView by dragging them from the palette. Then select them all at once and select Make subview of -> Split View from the Layout menu. To do some more interesting things you will have to set a delegate for the NSSplitView and do things programmatically as it does not appear that you can do any adjustments in Interface Builder.
 
 ----
 
-Here's how you can control an General/NSSplitView with a delegate:
+Here's how you can control an NSSplitView with a delegate:
 
 
     *You start by setting the split view's delegate
@@ -14,9 +14,9 @@ Here's how you can control an General/NSSplitView with a delegate:
         
             *This method (splitView:resizeSubviewsWithOldSize:) is the trickiest method to implement because many factors affect the tiling (subview arrangement) of the subviews. * see the example below for more information on how to implement this method *  
         
-    *To control the minimum dimension of a subview implement splitView:constrainMinCoordinate:ofSubviewAt: (see General/AppKit documentation)
-    *To control the maximum dimension of a subview implement splitView:constrainMaxCoordinate:ofSubviewAt: (see General/AppKit documentation)
-    *To control the position of the divider implement splitView:constrainSplitPosition:ofSubviewAt: (see General/AppKit documentation)
+    *To control the minimum dimension of a subview implement splitView:constrainMinCoordinate:ofSubviewAt: (see AppKit documentation)
+    *To control the maximum dimension of a subview implement splitView:constrainMaxCoordinate:ofSubviewAt: (see AppKit documentation)
+    *To control the position of the divider implement splitView:constrainSplitPosition:ofSubviewAt: (see AppKit documentation)
 
 
 There are a couple of other delegate methods, but the ones listed above are the main ones. 
@@ -36,44 +36,44 @@ This method is not documented very well, and it took me a whole bunch of runtime
 **
 First off, you have to be aware of something that IB does behind the scenes that can make your life miserable if you don't catch it up front. 
 **
-IB will connect the document view of General/NSTextViews to the General/IBOutlet, so if you are attempting to customize the tiling behavior of an General/NSSplitView you have to be aware of this. Tiling involves adjusting subviews within a split view so that all the subviews fill the split view (including dividers). If you assume that an outlet is the scrollview of a text view, you will be tiling the subviews of your split view based on frame dimensions for the document view not the scroll view!! Introspection is the best way to avoid this. The first thing you should do when prototyping custom split view tiling behavior is to log the class descriptions of each subview in your split view.
+IB will connect the document view of NSTextViews to the IBOutlet, so if you are attempting to customize the tiling behavior of an NSSplitView you have to be aware of this. Tiling involves adjusting subviews within a split view so that all the subviews fill the split view (including dividers). If you assume that an outlet is the scrollview of a text view, you will be tiling the subviews of your split view based on frame dimensions for the document view not the scroll view!! Introspection is the best way to avoid this. The first thing you should do when prototyping custom split view tiling behavior is to log the class descriptions of each subview in your split view.
 
     
-    General/NSLog(@"leftTextView: %@ rightTableView: %@",
-        General/NSStringFromClass([leftTextView class]), General/NSStringFromClass([rightTableView class]));
+    NSLog(@"leftTextView: %@ rightTableView: %@",
+        NSStringFromClass([leftTextView class]), NSStringFromClass([rightTableView class]));
 
 
-If leftTextView tells you that it is a text view than, you have to check to see if its superview is a clip view. If the leftTextView's superview is in fact a clip view than the subview you want to tile in the split view is the scroll view for the text view. The scroll view should be the superview of the superview of the text view. It can't hurt to check to see if the superview of the scroll view is in fact the split view. Use the same introspection techniques to check to see that you have the correct subview for the right subview. I'm not sure what IB connects to when dealing with General/NSTableView's, so you have to check yourself if you plan on customizing the tiling behavior of a split view that has General/NSTableViews added and connected in IB. It probabaly isn't a bad idea to do this for every connection you make in IB to subviews of a split view.
+If leftTextView tells you that it is a text view than, you have to check to see if its superview is a clip view. If the leftTextView's superview is in fact a clip view than the subview you want to tile in the split view is the scroll view for the text view. The scroll view should be the superview of the superview of the text view. It can't hurt to check to see if the superview of the scroll view is in fact the split view. Use the same introspection techniques to check to see that you have the correct subview for the right subview. I'm not sure what IB connects to when dealing with NSTableView's, so you have to check yourself if you plan on customizing the tiling behavior of a split view that has NSTableViews added and connected in IB. It probabaly isn't a bad idea to do this for every connection you make in IB to subviews of a split view.
 
 After you are confident that you dealing with the right subviews in your split view you can start customizing the tiling behavior. 
 
-*One solution is to bypass all of this in IB. Lay out two (or whatever number) General/NSView custom views, select them both, then do "Make Subviews Of ... Split View". Then place all your interface elements *inside* the custom views. It does take a lot of double-clicking to drill down and get to individual controls and IB seems to bog down if nesting gets too complicated, but it can save hours of frustration down the line ... ;-)*
+*One solution is to bypass all of this in IB. Lay out two (or whatever number) NSView custom views, select them both, then do "Make Subviews Of ... Split View". Then place all your interface elements *inside* the custom views. It does take a lot of double-clicking to drill down and get to individual controls and IB seems to bog down if nesting gets too complicated, but it can save hours of frustration down the line ... ;-)*
 
 **Second important piece of info, **
 
 **splitView:constrainMinCoordinate:ofSubviewAt:, splitView:constrainMaxCoordinate:ofSubviewAt:** and **splitView:constrainSplitPosition:ofSubviewAt:** do not control the resizing behavior of a split view when the window is resized, so you can toss out all the rules defined by these delegate methods when tiling a split view with **splitView:resizeSubviewsWithOldSize:**. The "constrain" methods only assist the split view when a divider is being dragged. The "resize" method tiles/adjusts the subviews when the window is resized or when the splitview is resize by a superview. 
 
     
-- (void)splitView:(General/NSSplitView *)sender resizeSubviewsWithOldSize:(General/NSSize)oldSize {
-    id leftClass = General/NSStringFromClass([leftTextView class]);
-    id rightClass = General/NSStringFromClass([rightTableView class]);
-    General/NSLog(@"leftTextView: %@ rightTableView: %@", leftClass, rightClass);
+- (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize {
+    id leftClass = NSStringFromClass([leftTextView class]);
+    id rightClass = NSStringFromClass([rightTableView class]);
+    NSLog(@"leftTextView: %@ rightTableView: %@", leftClass, rightClass);
     float dividerThickness = [sender dividerThickness];
-    id leftTextViewScrollView = General/leftTextView superview] superview];
+    id leftTextViewScrollView = leftTextView superview] superview];
     
     // Here's how you check to make sure you are dealing with the correct subviews.
     // Both descriptions should confirm that the superviews are the same [[NSSplitView
-    id leftDiscription = General/leftTextViewScrollView superview] description];
+    id leftDiscription = leftTextViewScrollView superview] description];
     id rightDiscription = [[rightTableView superview] description];
     [[NSLog(@"leftTextViewScrollView's superview: %@ rightTableView's superview: %@",
         leftDiscription, rightDiscription);
-    General/NSRect newFrame = [sender frame];
+    NSRect newFrame = [sender frame];
     // The text view is in a scroll view so the frame 
     // you want to tile is the frame of the scroll view not the text view
-    General/NSRect leftFrame = [ frame]; 
+    NSRect leftFrame = [ frame]; 
     // Not sure what IB connects to when dealing with table views so do whatever is
     // correct here. This is just an example and I have not tested this
-    General/NSRect rightFrame = [rightTableView frame];
+    NSRect rightFrame = [rightTableView frame];
     // mySplitView has a vertical divider so the two subviews 
     // are tiled from left to right (text view to table view)
     if (sender==mySplitView) {
@@ -90,7 +90,7 @@ After you are confident that you dealing with the right subviews in your split v
         // thinking about how to constrain dimensions here. 
         leftFrame.size.width = someValueOfYourChoosing; 
         leftFrame.size.height = newFrame.size.height;
-        leftFrame.origin = General/NSMakePoint(0,0);
+        leftFrame.origin = NSMakePoint(0,0);
         rightFrame.size.width = newFrame.size.width - leftFrame.size.width - dividerThickness;
         rightFrame.size.height = newFrame.size.height;
         rightFrame.origin.x = leftFrame.size.width + dividerThickness;
@@ -110,19 +110,19 @@ The parameter "someValueOfYourChoosing" is how you define the resizing behavior.
 
 ----
 
-I found this works for me. The left view is an General/NSOutlineView, the right is an General/NSTextView:
+I found this works for me. The left view is an NSOutlineView, the right is an NSTextView:
     
-- (void)splitView:(General/NSSplitView *)sender resizeSubviewsWithOldSize:(General/NSSize)oldSize
+- (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize
 {
     // how to resize a horizontal split view so that the left frame stays a constant size
-    General/NSView *left = General/sender subviews] objectAtIndex:0];      // get the two sub views
-    [[NSView *right = General/sender subviews] objectAtIndex:1];
+    NSView *left = sender subviews] objectAtIndex:0];      // get the two sub views
+    [[NSView *right = sender subviews] objectAtIndex:1];
     float dividerThickness = [sender dividerThickness];         // and the divider thickness
     [[NSRect newFrame = [sender frame];                           // get the new size of the whole splitView
-    General/NSRect leftFrame = [left frame];                            // current size of the left subview
-    General/NSRect rightFrame = [right frame];                          // ...and the right
+    NSRect leftFrame = [left frame];                            // current size of the left subview
+    NSRect rightFrame = [right frame];                          // ...and the right
     leftFrame.size.height = newFrame.size.height;               // resize the height of the left
-    leftFrame.origin = General/NSMakePoint(0,0);                        // don't think this is needed
+    leftFrame.origin = NSMakePoint(0,0);                        // don't think this is needed
      // the rest of the width...
     rightFrame.size.width = newFrame.size.width - leftFrame.size.width - dividerThickness;
     rightFrame.size.height = newFrame.size.height;              // the whole height
@@ -155,16 +155,16 @@ I found that I needed to add this bit just before setting the left and right fra
 
 ----
 
-I found myself needing an General/NSSplitView with three subviews, that would obey the minimum sizes I had set in "-splitView:constrainMinCoordinate:ofSubviewAt:".  I'm not too advanced when it comes to computer algorithms, so I just did it with brute force.  Here's what I came up with:
+I found myself needing an NSSplitView with three subviews, that would obey the minimum sizes I had set in "-splitView:constrainMinCoordinate:ofSubviewAt:".  I'm not too advanced when it comes to computer algorithms, so I just did it with brute force.  Here's what I came up with:
 
     
-- (void)splitView:(General/NSSplitView *)sender resizeSubviewsWithOldSize:(General/NSSize)oldSize
+- (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize
 {
 	[sender adjustSubviews];
 	
 	//////////////// maintain splitview subview widths of at least 128, unless collapsed
 	
-	General/NSArray *viewArray = [sender subviews];
+	NSArray *viewArray = [sender subviews];
 	id viewOne = [viewArray objectAtIndex:0];
 	id viewTwo = [viewArray objectAtIndex:1];
 	id viewThree = [viewArray objectAtIndex:2];
@@ -201,7 +201,7 @@ I found myself needing an General/NSSplitView with three subviews, that would ob
 	
 	if(viewOneWidth != [viewOne frame].size.width)
 	{
-		[viewOne setFrame:General/NSMakeRect([viewOne frame].origin.x,
+		[viewOne setFrame:NSMakeRect([viewOne frame].origin.x,
 		    [viewOne frame].origin.y,
 		    viewOneWidth,
 		    [viewOne frame].size.height)];
@@ -209,7 +209,7 @@ I found myself needing an General/NSSplitView with three subviews, that would ob
 	
 	if(viewTwoWidth != [viewTwo frame].size.width)
 	{
-		[viewTwo setFrame:General/NSMakeRect([viewTwo frame].origin.x,
+		[viewTwo setFrame:NSMakeRect([viewTwo frame].origin.x,
 		    [viewTwo frame].origin.y,
 		    viewTwoWidth,
 		    [viewTwo frame].size.height)];
@@ -217,7 +217,7 @@ I found myself needing an General/NSSplitView with three subviews, that would ob
 	
 	if(viewThreeWidth != [viewThree frame].size.width)
         {
-		[viewThree setFrame:General/NSMakeRect([viewThree frame].origin.x,
+		[viewThree setFrame:NSMakeRect([viewThree frame].origin.x,
                     [viewThree frame].origin.y,
 		    viewThreeWidth,
 		    [viewThree frame].size.height)];
@@ -227,9 +227,9 @@ I found myself needing an General/NSSplitView with three subviews, that would ob
 
 This code assumes throughout that there is a minimum width on all subviews of 128 pixels and no maximum width.  I should also note that the subviews don't always shrink or grow equally, but they don't with Apple's default implementation as well.  I'd be curious if anyone has any ideas how to keep the resize equally distributed (over the course of a drag, of course, since it can never be equal between all views on a single step when the view widths are constrained to integer pixel values).
 
-No promises as to performance, but it resizes smoothly on my General/PowerBook G4 1.33 General/GHz.  Further optimizations from the community would be appreciated.  Hope someone finds this helpful.
+No promises as to performance, but it resizes smoothly on my PowerBook G4 1.33 GHz.  Further optimizations from the community would be appreciated.  Hope someone finds this helpful.
 
--- General/DanielToddCurrie, 2004-X-18
+-- DanielToddCurrie, 2004-X-18
 
 ----
 
@@ -244,32 +244,32 @@ If you try this out for yourself, you'll have to adjust the static float values 
 
 **Something happening here / What it is ain't exactly clear ...**
 
-One thing I learned doing this (which may be discussed above but I didn't notice it) is exactly *when* the delegate messages do and *do not* get sent. It wasn't quite what I was expecting when I first read through the docs for General/NSSplitView. (See the comments for each of the methods in the code, and leave the log statements in when you first start playing with it so you can see when each method is invoked.)
+One thing I learned doing this (which may be discussed above but I didn't notice it) is exactly *when* the delegate messages do and *do not* get sent. It wasn't quite what I was expecting when I first read through the docs for NSSplitView. (See the comments for each of the methods in the code, and leave the log statements in when you first start playing with it so you can see when each method is invoked.)
 
 
 **Note**: Parts of the following class are built around code found above (by "mrwalker" and "rantler").
 
     
-/* General/MainSVDelegate.h */
+/* MainSVDelegate.h */
 
 #import <Cocoa/Cocoa.h>
 
-@interface General/MainSVDelegate : General/NSObject
+@interface MainSVDelegate : NSObject
 {
 }
 @end
 
 --------------
 
-/* General/MainSVDelegate.m */
+/* MainSVDelegate.m */
 
-#import "General/MainSVDelegate.h"
+#import "MainSVDelegate.h"
 
-// The Main General/SplitView is a horizontal split. 
+// The Main SplitView is a horizontal split. 
 // The left frame is collapsible. 
 // The right frame isn't.
 
-@implementation General/MainSVDelegate
+@implementation MainSVDelegate
 
 static float leftFrameMax  = 253.0f; // maximum width (left)
 
@@ -290,9 +290,9 @@ static float rightFrameMin = 395.0f; // minimum width (right)
  * The message is sent once for each subview when you click on the divider.
  *================================================================================
 */
-- (BOOL)splitView:(General/NSSplitView *)sender canCollapseSubview:(General/NSView *)subview {
+- (BOOL)splitView:(NSSplitView *)sender canCollapseSubview:(NSView *)subview {
 
-    General/NSView *right = General/sender subviews] objectAtIndex:1];
+    NSView *right = sender subviews] objectAtIndex:1];
 
     if (right == subview) {
 
@@ -301,7 +301,7 @@ static float rightFrameMin = 395.0f; // minimum width (right)
        return NO;
     }
 
-General/NSLog(@"canCollapseSubview (left): allowed");
+NSLog(@"canCollapseSubview (left): allowed");
 
     return YES;
 }
@@ -310,13 +310,13 @@ General/NSLog(@"canCollapseSubview (left): allowed");
  * constrainMinCoordinate message is sent ONLY when the divider is clicked on.
  *================================================================================
 */
-- (float)splitView:(General/NSSplitView *)sender 
+- (float)splitView:(NSSplitView *)sender 
          constrainMinCoordinate:(float)proposedMin
                     ofSubviewAt:(int)offset {
 
     float allowed = proposedMin + leftFrameMin;
 
-General/NSLog(@"constrainMinCoordinate %d: proposed=%f, allowed=%f", offset, proposedMin, allowed);
+NSLog(@"constrainMinCoordinate %d: proposed=%f, allowed=%f", offset, proposedMin, allowed);
 
     return allowed;
 }
@@ -325,14 +325,14 @@ General/NSLog(@"constrainMinCoordinate %d: proposed=%f, allowed=%f", offset, pro
  * constrainMaxCoordinate message is sent ONLY when the divider is clicked on.
  *================================================================================
 */
-- (float)splitView:(General/NSSplitView *)sender 
+- (float)splitView:(NSSplitView *)sender 
          constrainMaxCoordinate:(float)proposedMax // = width if right were collapsed
                     ofSubviewAt:(int)offset { 
 
     float allowed = proposedMax - rightFrameMin;
     allowed = (allowed > leftFrameMax) ? leftFrameMax : allowed;
 
-General/NSLog(@"constrainMaxCoordinate %d: proposed=%f, allowed=%f", offset, proposedMax, allowed);
+NSLog(@"constrainMaxCoordinate %d: proposed=%f, allowed=%f", offset, proposedMax, allowed);
 
     return allowed;
 }
@@ -342,22 +342,22 @@ General/NSLog(@"constrainMaxCoordinate %d: proposed=%f, allowed=%f", offset, pro
  * size (e.g., when you resize the window and this affects the splitview's size).
  *================================================================================
 */
-- (void)splitView:(General/NSSplitView *)sender resizeSubviewsWithOldSize:(General/NSSize)oldSize {
+- (void)splitView:(NSSplitView *)sender resizeSubviewsWithOldSize:(NSSize)oldSize {
 
-    General/NSRect newFrame = [sender frame];                           // get the new size of the whole splitView
+    NSRect newFrame = [sender frame];                           // get the new size of the whole splitView
     if (newFrame.size.width == oldSize.width) {                 // if the width hasn't changed
        [sender adjustSubviews];                                 // tell sender to adjust subviews
        return;
     }
 
-    General/NSView *left = General/sender subviews] objectAtIndex:0];         // get the left subview
-    [[NSView *right = General/sender subviews] objectAtIndex:1];        // and the right subview
+    NSView *left = sender subviews] objectAtIndex:0];         // get the left subview
+    [[NSView *right = sender subviews] objectAtIndex:1];        // and the right subview
 
     float dividerThickness = [sender dividerThickness];         // and the divider thickness
     [[NSRect leftFrame = [left frame];                            // current size of the left subview
-    General/NSRect rightFrame = [right frame];                          // ...and the right
+    NSRect rightFrame = [right frame];                          // ...and the right
 
-General/NSLog(@"resizeSubviewsWithOldSize old width: %f, new width: %f", oldSize.width, newFrame.size.width);
+NSLog(@"resizeSubviewsWithOldSize old width: %f, new width: %f", oldSize.width, newFrame.size.width);
 
     float allowed = newFrame.size.width - (rightFrameMin + dividerThickness);
     allowed = (allowed >= leftFrameMax)? leftFrameMax:allowed;  // keep allowed <= max
@@ -387,9 +387,9 @@ General/NSLog(@"resizeSubviewsWithOldSize old width: %f, new width: %f", oldSize
 
 Hopefully this code will save you some time trying to figure this splitview stuff out.
 
-Personally, I think this degree of control over splitviews should be something doable completely from within IB (without having to write any code). I don't see why this wouldn't be possible given the right parameters built into the General/NSSplitView class. If you agree, I've added a suggestion to that effect to General/AppKitMostWanted (see the entry dated **2004.09.30** there) where you can "vote for it" by adding 1 to the **AYES** count.
+Personally, I think this degree of control over splitviews should be something doable completely from within IB (without having to write any code). I don't see why this wouldn't be possible given the right parameters built into the NSSplitView class. If you agree, I've added a suggestion to that effect to AppKitMostWanted (see the entry dated **2004.09.30** there) where you can "vote for it" by adding 1 to the **AYES** count.
 
---General/PaulPomeroy, **2004.10.23**
+--PaulPomeroy, **2004.10.23**
 
 *Fixed a misstatement in the above code. The right and left frame **minimums** + the divider thickness (which is 6 by default) must add up to the total width of the **splitframe** when the window is at its minimum allowed width.* (oct. 25)
 
@@ -399,33 +399,33 @@ I wish I had time to go through the above code and fix it, but most of those com
 
 It really isn't a good idea to just *assume* that you've found a bug if things don't work as you expect.
 
-*Okay, I removed the "apparently this is only sent for a ofSubviewAt:offset value of 0" comments. Thanks for clearing that up. As for the canCollapseSubView strangeness, I only know that I was seeing my "canCollapseSubView denied" log statement show up right when the view collapsed. Here's my *unconfirmed assumption* on this: if you return YES to the message that is sent when you click on the divider it doesn't matter if you then return NO for the message that gets sent when the view is actually collapsing. The above code isn't subject to this problem as it's always returning NO to the canCollapseSubview message for the left frame. Like you, I don't have the time to look into this right now. Maybe someone else can confirm or deny? Someone else with the time might also add the necessary code to set the **leftFrameMin** or **rightFrameMin** values instead of having them hard-coded (minimum allowed window width minus left/right padding around splitview minus divider thickness will get you the smallest width possible for the splitview and from there you can figure out, given one frames minimum, what the other's is) . That would make the whole process of using the code a lot easier. -- General/PaulPomeroy **2004.10.27***
+*Okay, I removed the "apparently this is only sent for a ofSubviewAt:offset value of 0" comments. Thanks for clearing that up. As for the canCollapseSubView strangeness, I only know that I was seeing my "canCollapseSubView denied" log statement show up right when the view collapsed. Here's my *unconfirmed assumption* on this: if you return YES to the message that is sent when you click on the divider it doesn't matter if you then return NO for the message that gets sent when the view is actually collapsing. The above code isn't subject to this problem as it's always returning NO to the canCollapseSubview message for the left frame. Like you, I don't have the time to look into this right now. Maybe someone else can confirm or deny? Someone else with the time might also add the necessary code to set the **leftFrameMin** or **rightFrameMin** values instead of having them hard-coded (minimum allowed window width minus left/right padding around splitview minus divider thickness will get you the smallest width possible for the splitview and from there you can figure out, given one frames minimum, what the other's is) . That would make the whole process of using the code a lot easier. -- PaulPomeroy **2004.10.27***
 ----
 
-**Note:** if you have multiple General/NSSplitView's with the same delegate, you must call     adjustSubviews on the split views that you don't adjust! Here's the modified code from above:
+**Note:** if you have multiple NSSplitView's with the same delegate, you must call     adjustSubviews on the split views that you don't adjust! Here's the modified code from above:
     if (sender == mainSplitView) // your split view
 {
-	General/NSView *left = General/sender subviews] objectAtIndex:0];
-	[[NSView *right = General/sender subviews] objectAtIndex:1];
+	NSView *left = sender subviews] objectAtIndex:0];
+	[[NSView *right = sender subviews] objectAtIndex:1];
 	float dividerThickness = [sender dividerThickness];
 	[[NSRect newFrame = [sender frame];
-	General/NSRect leftFrame = [left frame];
-	General/NSRect rightFrame = [right frame];
+	NSRect leftFrame = [left frame];
+	NSRect rightFrame = [right frame];
 	leftFrame.size.height = newFrame.size.height;
-	leftFrame.origin = General/NSMakePoint(0,0);
+	leftFrame.origin = NSMakePoint(0,0);
 	rightFrame.size.width = newFrame.size.width - leftFrame.size.width - dividerThickness;
 	rightFrame.size.height = newFrame.size.height;
 	rightFrame.origin.x = leftFrame.size.width + dividerThickness;
 	[left setFrame:leftFrame];
 	[right setFrame:rightFrame];
-	[(General/NSSplitView *)right adjustSubviews]; // not sure if this is necessary (My right side is another split view)
+	[(NSSplitView *)right adjustSubviews]; // not sure if this is necessary (My right side is another split view)
 }
 else
 {
-	[(General/NSSplitView *)sender adjustSubviews]; // this is necessary or you get weird drawing behavior!
+	[(NSSplitView *)sender adjustSubviews]; // this is necessary or you get weird drawing behavior!
 }
 
 
 ----
 
-Also see General/RBSplitView.
+Also see RBSplitView.

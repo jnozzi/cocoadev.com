@@ -1,7 +1,7 @@
 I have a method, and then a function:
 
     -(void)update;
--(General/NSNumber *)maxPopulation;
+-(NSNumber *)maxPopulation;
 
 maxPopulation takes no arguments - it uses instance variables to determine the value to return. But whenever I call maxPopulation in update, PB says: 'maxPopulation' undeclared (first use in this function). Any ideas about what I'm missing?
 
@@ -13,7 +13,7 @@ Looks good to me.  Let me see the code of the maxPopulation in the .m file.
 
 ----
 
-You have declared maxPopulation as an instance method of whatever class you are working on.  It is not a C function.  To call it you need to send a message to a class.  So in update you probably want to use something like General/NSNumber *max = [self maxPopulation];
+You have declared maxPopulation as an instance method of whatever class you are working on.  It is not a C function.  To call it you need to send a message to a class.  So in update you probably want to use something like NSNumber *max = [self maxPopulation];
 
 ----
 

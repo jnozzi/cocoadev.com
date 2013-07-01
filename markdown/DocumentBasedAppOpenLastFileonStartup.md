@@ -9,18 +9,18 @@ Is there any way to make it open the last file saved on startup, rather than a n
 Not too difficult. In your app delegate:
 
     
-- (BOOL)applicationShouldOpenUntitledFile:(General/NSApplication *)sender
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 {
-    id dc = General/[NSDocumentController sharedDocumentController];
+    id dc = [NSDocumentController sharedDocumentController];
  
     // Reopen last document if user prefers
     if (preferencesSayToLoadTheLastDocument && 
-        General/dc recentDocumentURLs] count] > 0)
+        dc recentDocumentURLs] count] > 0)
     {
   	 // Only open the first in the list if it exists
-	 if ([[[[NSFileManager defaultManager] fileExistsAtPath:General/[dc recentDocumentURLs] objectAtIndex:0] path)
+	 if ([[[[NSFileManager defaultManager] fileExistsAtPath:[dc recentDocumentURLs] objectAtIndex:0] path)
         {
-            if ([dc openDocumentWithContentsOfFile:General/[dc recentDocumentURLs] objectAtIndex:0] path] display:YES])
+            if ([dc openDocumentWithContentsOfFile:[dc recentDocumentURLs] objectAtIndex:0] path] display:YES])
                 return NO; // Doc open succeeded, return no, shouldn't open untitled file
         }
     }
@@ -39,21 +39,21 @@ That worked great, thanks for the response.
 
 Just note the "if user prefers" part. Not everybody wants this non-standard behavior. In fact, many prefer otherwise, which is probably a good reason to have it off by default, too. :-)
 ----
-Few things updated for OS X 10.4, since openDocumentWithContentsOfFile:display: has been deprecated. Here's a new version that seems to work. (Since it took me a little while to figure this part out, edit [[MainMenu.nib in IB, click on classes, add a class "General/MyAppDelegate," instantiate it, click on Instances, control-drag between File's Owner and myAppController, press Apple-2, and set choose delegate for this outlet connection. add the files to General/XCode, then add this code to General/MyAppDelegate.m.) I'm a novice, so please fix any errors if you find them!
+Few things updated for OS X 10.4, since openDocumentWithContentsOfFile:display: has been deprecated. Here's a new version that seems to work. (Since it took me a little while to figure this part out, edit [[MainMenu.nib in IB, click on classes, add a class "MyAppDelegate," instantiate it, click on Instances, control-drag between File's Owner and myAppController, press Apple-2, and set choose delegate for this outlet connection. add the files to XCode, then add this code to MyAppDelegate.m.) I'm a novice, so please fix any errors if you find them!
 
     
-- (BOOL)applicationShouldOpenUntitledFile:(General/NSApplication *)sender
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 {
-	id myDocumentController = General/[NSDocumentController sharedDocumentController];
+	id myDocumentController = [NSDocumentController sharedDocumentController];
 	
 	// Reopen last document if user prefers
-	// For now, ignore any preference setting since I haven't coded for them yet. This routine is largely from www.General/CocoaDev.com
+	// For now, ignore any preference setting since I haven't coded for them yet. This routine is largely from www.CocoaDev.com
 	int preferencesSayToLoadTheLastDocument = 1;
 	if (preferencesSayToLoadTheLastDocument && 
-		General/myDocumentController recentDocumentURLs] count] > 0)
+		myDocumentController recentDocumentURLs] count] > 0)
 	{
 		NSURL *myURL = [[[NSURL alloc] init] autorelease];
-		[[NSEnumerator *theRecentFilesEnumerator = General/[myDocumentController recentDocumentURLs] retain] objectEnumerator];
+		[[NSEnumerator *theRecentFilesEnumerator = [myDocumentController recentDocumentURLs] retain] objectEnumerator];
 		while (myURL = [theRecentFilesEnumerator nextObject])		
 		{
 			if ([[[[NSFileManager defaultManager] fileExistsAtPath:[myURL path]])
@@ -71,17 +71,17 @@ Few things updated for OS X 10.4, since openDocumentWithContentsOfFile:display: 
 -dan
 
 
-This is a lot simpler, you don't need to alloc the myURL, since it's just pointing into the array. Also, you can use a simple for loop on an General/NSArray, General/XCode even makes one for you with tab completion. 
+This is a lot simpler, you don't need to alloc the myURL, since it's just pointing into the array. Also, you can use a simple for loop on an NSArray, XCode even makes one for you with tab completion. 
     
-- (BOOL)applicationShouldOpenUntitledFile:(General/NSApplication *)sender
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender
 {
-	id myDocumentController = General/[NSDocumentController sharedDocumentController];
+	id myDocumentController = [NSDocumentController sharedDocumentController];
 	
 	// Reopen last document if user prefers
-	// For now, ignore any preference setting since I haven't coded for them yet. This routine is largely from www.General/CocoaDev.com
+	// For now, ignore any preference setting since I haven't coded for them yet. This routine is largely from www.CocoaDev.com
 	int preferencesSayToLoadTheLastDocument = 1;
 	if (preferencesSayToLoadTheLastDocument && 
-		General/myDocumentController recentDocumentURLs] count] > 0)
+		myDocumentController recentDocumentURLs] count] > 0)
 	{
 		NSURL *myURL;
                 unsigned int i, count = [urlArray count];
@@ -105,18 +105,18 @@ This is a lot simpler, you don't need to alloc the myURL, since it's just pointi
 
 ----
 
-Make sure General/AppController instance is in General/MainMenu.nib, not General/MyDocument.nib. I've just made this stupid mistake... -- General/DmitryChestnykh
+Make sure AppController instance is in MainMenu.nib, not MyDocument.nib. I've just made this stupid mistake... -- DmitryChestnykh
 
 Also, here's 10.5 version:
 
     
-- (BOOL)applicationShouldOpenUntitledFile:(General/NSApplication *)sender;
+- (BOOL)applicationShouldOpenUntitledFile:(NSApplication *)sender;
 {
-	id documentController = General/[NSDocumentController sharedDocumentController];
+	id documentController = [NSDocumentController sharedDocumentController];
 	
 	// Reopen last document
 	for (NSURL *url in [documentController recentDocumentURLs]) {
-		if (General/[[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+		if ([[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
 			if([documentController openDocumentWithContentsOfURL:url display:YES error:nil])
 				return NO;
 		}

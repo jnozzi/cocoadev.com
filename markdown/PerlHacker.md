@@ -8,4 +8,4 @@ With a very nice, active development community.
 
 Really, give it a try ;-)
 
--- General/KayRoepke
+-- KayRoepke

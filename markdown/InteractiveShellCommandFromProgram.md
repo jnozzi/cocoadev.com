@@ -2,7 +2,7 @@ I'd like to launch a shell command from my program, but this command may need us
 
 Is there anyone who can point me toward what I need to know for this setup? I realise it might be complex, allocating tty-devices, terminal emulation and such -- but I am ready to do it all (basically a full terminal emulation), I just have not been able to find any canonical information guide to which steps one must take, and since shell/terminals have like 30 years of history with a lot of legacy protocols, it's really a rather diverse subject with dozen of blind ends.
 
-So if anyone could perhaps help me with some guidance? maybe in the form of links. And please do not just say that I can take a look at Terminal.app from General/GNUStep or Emacs terminal emulation -- I really want to understand these things, not have to read through thousand of source code lines...
+So if anyone could perhaps help me with some guidance? maybe in the form of links. And please do not just say that I can take a look at Terminal.app from GNUStep or Emacs terminal emulation -- I really want to understand these things, not have to read through thousand of source code lines...
 
 Thanks in advance!
 

@@ -7,14 +7,14 @@ How do I fix it?
 
 Thanks everyone,
 
-General/KentSignorini
+KentSignorini
 
 ----
 
-I believe this means that you are using an General/NSPanel rather than an General/NSWindow for your window's class; switch it back to General/NSWindow and that behavior should disappear. -- Bo
+I believe this means that you are using an NSPanel rather than an NSWindow for your window's class; switch it back to NSWindow and that behavior should disappear. -- Bo
 
 ----
 
 Thanks, Bo.  That was it.
 
-General/KentSignorini
+KentSignorini

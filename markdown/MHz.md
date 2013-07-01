@@ -1,4 +1,4 @@
-1,000 General/KHz. *These days, more like .001 General/GHz*
+1,000 KHz. *These days, more like .001 GHz*
 
 Note that while a capital 'K' is necessary for wiki linking, the correct SI prefix is a lower-case 'k'.  Gads it annoys me when applications use "KB" as an abbreviation for kilobyte.  It's "kB" please! 
 
@@ -27,4 +27,4 @@ I have frequently made the mistake of using KB when it should be kB.  My persona
 
 This, of course, is another example of mistakes (like the above KB) made by large software companies (such as Apple).  It isn't a big deal but it is starting to become one (since *iB and *B are diverging noticeably, now).  Some tools (such as very recent version of ifconfig under Linux, I think) are starting to report kiB instead of incorrectly reporting kB when talking about multiples of 1024.
 
---General/JeffDisher
+--JeffDisher

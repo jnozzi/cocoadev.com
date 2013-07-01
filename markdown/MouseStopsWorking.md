@@ -11,4 +11,4 @@ Are you sure it's not actually a problem with your mouse?  I've never heard of s
 Yes, the mouse is definitely working.  The application has three windows, and the other windows continue responding to the mouse as they had before.  It's just the one window's buttons and text fields that stop doing anything when clicked.
 
 ----
-I have seen similar symptoms to this when I had accidentally divided by 0, and then passed the resulting General/NaN into an General/NSScroller. Apparently giving nonexistent numbers to views can really screw up event processing and the view hierarchy. Try to figure out exactly what you do that causes the problem, then trace through the code that runs and see if there's anything fishy happening such as this.
+I have seen similar symptoms to this when I had accidentally divided by 0, and then passed the resulting NaN into an NSScroller. Apparently giving nonexistent numbers to views can really screw up event processing and the view hierarchy. Try to figure out exactly what you do that causes the problem, then trace through the code that runs and see if there's anything fishy happening such as this.

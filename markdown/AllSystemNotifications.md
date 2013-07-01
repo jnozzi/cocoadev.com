@@ -1,25 +1,25 @@
 
 
 I know this can be cleaner, but I have to go to sleep.
-If anyone feels like putting this all into an General/NSMutableDictionary you would be worshipped (but only slightly).
+If anyone feels like putting this all into an NSMutableDictionary you would be worshipped (but only slightly).
 
     
 
 - (void)logNote:(id)sysNote
 {
-General/NSEnumerator *noteKeys = General/sysNote userInfo] keyEnumerator];
+NSEnumerator *noteKeys = sysNote userInfo] keyEnumerator];
 
 int x = 0;
 id keyVal;
 
-[[NSMutableArray *infoArray = General/[NSMutableArray arrayWithCapacity:General/sysNote userInfo] count]+2]; 
+[[NSMutableArray *infoArray = [NSMutableArray arrayWithCapacity:sysNote userInfo] count]+2]; 
 
 [infoArray insertObject:[@"\n noteMessage:" stringByAppendingString:[sysNote name 
 atIndex:0
 ];
 
 
-if (General/sysNote object] className])
+if (sysNote object] className])
 	{
 	[infoArray insertObject:[@"\n objectClass:" stringByAppendingString:[[sysNote object] className 
 	atIndex:1
@@ -37,8 +37,8 @@ while (keyVal = [noteKeys nextObject])
 }
 
 
-General/NSMutableString *noteAll = General/[NSMutableString stringWithCapacity:256];
-General/NSEnumerator *allEnum = [infoArray objectEnumerator];
+NSMutableString *noteAll = [NSMutableString stringWithCapacity:256];
+NSEnumerator *allEnum = [infoArray objectEnumerator];
 id allVal;
 
 
@@ -47,14 +47,14 @@ while (allVal = [allEnum nextObject])
 	[noteAll appendString:allVal];
         }
 
-General/NSLog(noteAll);
+NSLog(noteAll);
 }
 
 
 
 -(void)awakeFromNib
 {
-General/[[NSDistributedNotificationCenter defaultCenter] 
+[[NSDistributedNotificationCenter defaultCenter] 
    addObserver:self
    selector:@selector(logNote:)
    name:nil
@@ -66,15 +66,15 @@ General/[[NSDistributedNotificationCenter defaultCenter]
 One problem is that I havent found a good place to remove the observer....
 Also oblectClass always returns nil
 
-General/ChrisW
+ChrisW
 
 ----
 
-You would remove the observer in dealloc, same as usual. Also why do you have a General/NSDistributedNotificationCenter called allSystem, then assign void (the results of addObserver) to it? You probably mean something like
+You would remove the observer in dealloc, same as usual. Also why do you have a NSDistributedNotificationCenter called allSystem, then assign void (the results of addObserver) to it? You probably mean something like
 
     
 
-General/NSDistributedNotificationCenter *allSystem = General/[NSDistributedNotificationCenter defaultCenter];
+NSDistributedNotificationCenter *allSystem = [NSDistributedNotificationCenter defaultCenter];
    [allSystem addObserver:self
    selector:@selector(logNote:)
    name:nil
@@ -84,7 +84,7 @@ General/NSDistributedNotificationCenter *allSystem = General/[NSDistributedNotif
 
 But you could also just remove allSystem entirely.
 
-The code for General/NotificationWatcher [http://www.tildesoft.com/Programs.html] would probably be of help to you. 
+The code for NotificationWatcher [http://www.tildesoft.com/Programs.html] would probably be of help to you. 
 
 ----
 
@@ -92,7 +92,7 @@ Thanks
 I cut it down to
 
     
-General/[[NSDistributedNotificationCenter defaultCenter] 
+[[NSDistributedNotificationCenter defaultCenter] 
    addObserver:self
    selector:@selector(logNote:)
    name:nil

@@ -1,13 +1,13 @@
 
 
-How do i catch the error given by General/NSFileManager movePath ?
+How do i catch the error given by NSFileManager movePath ?
 I don't know how to use handlers or anything, i just know that sometimes the action failes and it would be nice to know what is the cause of it
 
 ----
 
 The fine manual tells all:
 
-*The argument handler identifies an object that responds to the callback messages fileManager:willProcessPath: and fileManager:shouldProceedAfterError: (see "Methods Implemented by the Delegate"). This callback mechanism is similar to delegation. General/NSFileManager sends the first message when it begins a copy, move, remove, or link operation. It sends the second message when it encounters any error in processing.*
+*The argument handler identifies an object that responds to the callback messages fileManager:willProcessPath: and fileManager:shouldProceedAfterError: (see "Methods Implemented by the Delegate"). This callback mechanism is similar to delegation. NSFileManager sends the first message when it begins a copy, move, remove, or link operation. It sends the second message when it encounters any error in processing.*
 
 In other words, pass an object in that can respond to those two methods. It will receive the error that caused the failure, and from there you can do anything you want to do with it.
 
@@ -15,22 +15,22 @@ In other words, pass an object in that can respond to those two methods. It will
 
 I implemented 
     
-+ (BOOL)fileManager:(General/NSFileManager *)manager
-shouldProceedAfterError:(General/NSDictionary *)errorDict
++ (BOOL)fileManager:(NSFileManager *)manager
+shouldProceedAfterError:(NSDictionary *)errorDict
 {
     int result;
-    result = General/NSRunAlertPanel(@"program",
+    result = NSRunAlertPanel(@"program",
         @"File operation error: %@ with file: %@",@"Proceed", @"Stop", NULL,
         [errorDict objectForKey:@"Error"],
         [errorDict objectForKey:@"Path"]);
 
-    if (result == General/NSAlertDefaultReturn)
+    if (result == NSAlertDefaultReturn)
         return YES;
     else
         return NO;
 }
 
-+ (void)fileManager:(General/NSFileManager *)fm willProcessPath:(General/NSString *)path
++ (void)fileManager:(NSFileManager *)fm willProcessPath:(NSString *)path
 {
 }
 
@@ -54,7 +54,7 @@ I'm pretty much out of ideas. One more thing, though; the handler methods are in
 
 ----
 
-Usually when I have problems with General/NSFileManager operations, it's because of a screwed up path. Use General/NSLog() to write out the paths you're passing to General/NSFileManager so you're sure they're valid. They should be full paths - in other words, "~/Documents/Mydoc.txt" is an invalid path; you'd need to use [path stringByExpandingTildeInPath] or [path stringByStandardizingPath] to make sure you get something like "/Users/me/Documents/Mydoc.txt". Log it out and make *SURE* the paths are valid. If you haven't done this yet and are still experiencing problems, you kind of deserve it. ;-)
+Usually when I have problems with NSFileManager operations, it's because of a screwed up path. Use NSLog() to write out the paths you're passing to NSFileManager so you're sure they're valid. They should be full paths - in other words, "~/Documents/Mydoc.txt" is an invalid path; you'd need to use [path stringByExpandingTildeInPath] or [path stringByStandardizingPath] to make sure you get something like "/Users/me/Documents/Mydoc.txt". Log it out and make *SURE* the paths are valid. If you haven't done this yet and are still experiencing problems, you kind of deserve it. ;-)
 
 ----
 
@@ -66,7 +66,7 @@ Trust me, i put out everything with nslog atm. Just trying to understand all the
 
 Thanks, but atm i think it has something to do with the arrays im trying to use with the renaming procedure.. 
 i try to empty my array with [myfileList removeAllObjects] since im refilling it, but im not sure it's working.. 
-in my init i declare myfileList = General/[[NSMutableArray alloc] init]; , am i doing something wrong or am i on the wrong track ?
+in my init i declare myfileList = [[NSMutableArray alloc] init]; , am i doing something wrong or am i on the wrong track ?
 
 ----
 
@@ -80,9 +80,9 @@ However the i'm using _LSCopyAllApplicationURLs with all this. so myfileList is 
 when im running my algorithm for moving the files, it says the action went alright:
     
 if(!{fm movePath: aFullPath toPath: aFullPathUnhide handler:nil]){
- General/NSLog(@"failed");
+ NSLog(@"failed");
 } else {
- General/NSLog(@"succeeded");
+ NSLog(@"succeeded");
 }
 
 
@@ -101,17 +101,17 @@ My Code
 
     
 
-	General/NSString *filename = General/dictionaryName stringValue] stringByStandardizingPath];
+	NSString *filename = dictionaryName stringValue] stringByStandardizingPath];
 	[[NSString *homeDir = @"/Users/mat";
 	//get the location of the dictionary
-	General/NSString *applicationSupportFolder =
-        General/[[[NSFileManager defaultManager] findSystemFolderType:kApplicationSupportFolderType forDomain:kOnSystemDisk] stringByStandardizingPath];
-	General/NSString *newLocation = General/[[NSString stringWithFormat:@"%@/%@/Words/edicts/%@", homeDir, applicationSupportFolder, filename] stringByStandardizingPath];
-	General/NSString *originalLocation =General/edictLocation stringValue] stringByStandardizingPath];
+	NSString *applicationSupportFolder =
+        [[[NSFileManager defaultManager] findSystemFolderType:kApplicationSupportFolderType forDomain:kOnSystemDisk] stringByStandardizingPath];
+	NSString *newLocation = [[NSString stringWithFormat:@"%@/%@/Words/edicts/%@", homeDir, applicationSupportFolder, filename] stringByStandardizingPath];
+	NSString *originalLocation =edictLocation stringValue] stringByStandardizingPath];
 	[[NSLog(@"%@", newLocation);
-	General/NSLog(@"%@", originalLocation);
-	if(General/[[NSFileManager defaultManager] movePath:originalLocation toPath:newLocation handler:nil]){
-		General/NSLog(@"Copied to: %@", newLocation);
+	NSLog(@"%@", originalLocation);
+	if([[NSFileManager defaultManager] movePath:originalLocation toPath:newLocation handler:nil]){
+		NSLog(@"Copied to: %@", newLocation);
 	}
 
 

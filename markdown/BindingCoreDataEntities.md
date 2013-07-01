@@ -1,14 +1,14 @@
 
 
-Hello! I'm develping a school gradebook app, and I'm having trouble getting General/CoreData to work. I have two entities, Student and Activity, and array controllers in IB. Both entities have attributes and relationships to each other. In IB I have a table with two columns: student and grade. The table's connected to the student array controller. Another table holds a list of activities, connected to the activities array controller. What I want to do is have the grade column show the respective students' grade for the selected activity, and change when selection of activity changes. I've tried everything I can think of. Is there an easy way to do this? Thanks, --General/LoganCollins
+Hello! I'm develping a school gradebook app, and I'm having trouble getting CoreData to work. I have two entities, Student and Activity, and array controllers in IB. Both entities have attributes and relationships to each other. In IB I have a table with two columns: student and grade. The table's connected to the student array controller. Another table holds a list of activities, connected to the activities array controller. What I want to do is have the grade column show the respective students' grade for the selected activity, and change when selection of activity changes. I've tried everything I can think of. Is there an easy way to do this? Thanks, --LoganCollins
 
 ----
-This seems like a popular homebrew application. I am writing one for my father's use at the moment (4 June 2006). From my experience it is an excellent way to get a thorough understanding of General/CoreData, General/InterfaceBuilder, and General/CocoaBindings.
+This seems like a popular homebrew application. I am writing one for my father's use at the moment (4 June 2006). From my experience it is an excellent way to get a thorough understanding of CoreData, InterfaceBuilder, and CocoaBindings.
 
 Here are the aspects of the development that I will cover:
 
 *Maintaining common Activities with separate grading per Student
-*Populating tables using General/InterfaceBuilder (IB) and General/CocoaBindings
+*Populating tables using InterfaceBuilder (IB) and CocoaBindings
 
 
 **Maintaining common Activities with separate grading per Student**
@@ -39,7 +39,7 @@ First, the Data Model needs to be changed. I suggest adding a bridging object, R
 
 I use the following algorithm to programmatically generate Reports for Students across a set of common Activities (I am using your terminology rather than mine for clarity):
 
-Activity custom General/NSManagedObject subclass:
+Activity custom NSManagedObject subclass:
     
 **function** awakeOnInsert
     **for each** student **in fetch of all** Students
@@ -49,7 +49,7 @@ Activity custom General/NSManagedObject subclass:
         **add** the new Report to student of this iteration's list of reports
 
 
-Student custom General/NSManagedObject subclass:
+Student custom NSManagedObject subclass:
     
 **function** awakeOnInsert
     **for each** activity **in fetch of all** Activities
@@ -59,23 +59,23 @@ Student custom General/NSManagedObject subclass:
         **add** the new Report to this Student's list of reports
 
 
-**Populating tables using General/InterfaceBuilder (IB) and General/CocoaBindings**
+**Populating tables using InterfaceBuilder (IB) and CocoaBindings**
 
-To get the Reports to show up in General/InterfaceBuilder you will need a new General/ArrayController for Report entities (that has **managedObjectContext** bound to File's Owner's **managedObjectContext** key) and whose **contentSet** is bound to the Student General/ArrayController's controller key **selection** and model key **reports**.
+To get the Reports to show up in InterfaceBuilder you will need a new ArrayController for Report entities (that has **managedObjectContext** bound to File's Owner's **managedObjectContext** key) and whose **contentSet** is bound to the Student ArrayController's controller key **selection** and model key **reports**.
 
-(General/NSArrayController)Students:
+(NSArrayController)Students:
 
 *Entity: (Student)
 *managedObjectContext: **File's Owner** model key **managedObjectContext**
 
 
-(General/NSArrayController)R<nowiki/>eportsForSelectedStudent:
+(NSArrayController)R<nowiki/>eportsForSelectedStudent:
 
 *managedObjectContext: **File's Owner** model key **managedObjectContext**
 *contentSet: **Students** controller key **selection** model key **reports**
 
 
-With these General/NSArrayController's you can now bind a table called Reports in your Student record view with columns Activity, Mark, and Weight as follows:
+With these NSArrayController's you can now bind a table called Reports in your Student record view with columns Activity, Mark, and Weight as follows:
 
 Reports table in Student view:
 
@@ -86,5 +86,5 @@ Reports table in Student view:
 
 I hope this helps. Please contact me if you are having trouble. My contact info is on my profile page linked below.
 
---General/AlainODea (4 June 2006)
+--AlainODea (4 June 2006)
 *

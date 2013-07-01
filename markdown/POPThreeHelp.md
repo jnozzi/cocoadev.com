@@ -1,6 +1,6 @@
 Hey, y'all!
 
-I'm trying to make a mail client, but I cannot get it to work.  I have tried with several different socket-classes (General/SmallSockets, General/NetSocket..) but what happens is all the time the same:
+I'm trying to make a mail client, but I cannot get it to work.  I have tried with several different socket-classes (SmallSockets, NetSocket..) but what happens is all the time the same:
 
 
 *    1.  I connct to the POP3 server on port 110
@@ -15,17 +15,17 @@ I'm trying to make a mail client, but I cannot get it to work.  I have tried wit
     Please help me!
 
 
---General/AntonKiland
+--AntonKiland
 
 Are you perhaps not sending the CR/LF pair to end the user line (i.e. @"USER ****'@*****.com\r\n")? 
 
 Alternatively, I believe the Pantomime framework (available at http://www.collaboration-world.com/pantomime ) implements POP3 retrieval (in addition to a lot of the other low-level gruntwork involved in email handling) if you don't feel like implementing it yourself. -- Bo
 
-Oh, I just think I've forgotten all about the CRLF-combination.. Major thanks! =)  --General/AntonKiland
+Oh, I just think I've forgotten all about the CRLF-combination.. Major thanks! =)  --AntonKiland
 
 ----
 
-I cannot seem to find any documentation for Pantomime anywhere.. Anyone who can help me out here?  Huge thanks!  --General/AntonKiland
+I cannot seem to find any documentation for Pantomime anywhere.. Anyone who can help me out here?  Huge thanks!  --AntonKiland
 
 ----
 
@@ -36,4 +36,4 @@ Seems to be one of those 'the source code is the documentation' situations.  Whi
 *Call -allMessages on the POP3Folder object returned in the last step to get the messages.  Look at the Folder.h header to see all the other various methods supported by POP3Folder.
 *Look in the Message.h and Part.h to see the various operations you can perform on the messages.
 
-You'll probably also have to spawn a new thread to do this in since these POP3 commands all seem to be synchronous.  Truth be told, using this framework, for POP3 at least, seems like more work than a simple wrapper around General/NetSocket. -- Bo
+You'll probably also have to spawn a new thread to do this in since these POP3 commands all seem to be synchronous.  Truth be told, using this framework, for POP3 at least, seems like more work than a simple wrapper around NetSocket. -- Bo

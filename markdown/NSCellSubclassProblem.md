@@ -1,4 +1,4 @@
-Hi, I've been working on a small General/NSCell subclass to display the icon of a given file path, along with the filename in bold and the actual filepath below in light gray.  Everything works fine until I click on the data cell in the table view, at which point it crashes and it's "unable to recover the stack frame".  I've tried conventional debugging here but it has led me nowhere and I don't really know what else to do.  Any help would be appreciated.
+Hi, I've been working on a small NSCell subclass to display the icon of a given file path, along with the filename in bold and the actual filepath below in light gray.  Everything works fine until I click on the data cell in the table view, at which point it crashes and it's "unable to recover the stack frame".  I've tried conventional debugging here but it has led me nowhere and I don't really know what else to do.  Any help would be appreciated.
 
 (Note: there are some category methods in use here, let me know if any particular one should be posted)
 
@@ -16,8 +16,8 @@ Update: I have been investigating this and it appears that my cell is being rele
 		mPath = nil;
 		mIconImage = nil;
 		
-		fileNameFont = General/[[NSFont boldSystemFontOfSize:11.0f] retain];
-		pathFont = General/[[NSFont systemFontOfSize:General/[NSFont smallSystemFontSize]] retain];
+		fileNameFont = [[NSFont boldSystemFontOfSize:11.0f] retain];
+		pathFont = [[NSFont systemFontOfSize:[NSFont smallSystemFontSize]] retain];
 	}
 	
 	return self;
@@ -34,7 +34,7 @@ Update: I have been investigating this and it appears that my cell is being rele
 	[super dealloc];
 }
 
-- (void)setFilePath:(General/NSString*)path
+- (void)setFilePath:(NSString*)path
 {
 	if (mPath != path)
 	{
@@ -42,65 +42,65 @@ Update: I have been investigating this and it appears that my cell is being rele
 		mPath = [path retain];
 		
 		[mIconImage release];
-		mIconImage = General/[[NSWorkspace sharedWorkspace] iconForFile:path];
+		mIconImage = [[NSWorkspace sharedWorkspace] iconForFile:path];
 		[mIconImage setScalesWhenResized:YES];
-		[mIconImage setSize:General/NSMakeSize(32.0f, 32.0f)];
+		[mIconImage setSize:NSMakeSize(32.0f, 32.0f)];
 		[mIconImage setFlipped:YES];
 		[mIconImage retain];
 	}
 }
 
-- (General/NSImage*)iconImage
+- (NSImage*)iconImage
 {
 	return mIconImage;
 }
 
-- (General/NSString*)path
+- (NSString*)path
 {
 	return mPath;
 }
 
-- (General/NSString*)fileName
+- (NSString*)fileName
 {
 	return [mPath lastPathComponent];
 }
 
-- (void)drawInteriorWithFrame:(General/NSRect)cellFrame inView:(General/NSView *)controlView
+- (void)drawInteriorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {	
-	General/NSSize imageSize = [mIconImage size];
+	NSSize imageSize = [mIconImage size];
 	
-	General/NSPoint imagePoint;
+	NSPoint imagePoint;
 	imagePoint.x = 10.0f;
 	imagePoint.y = (cellFrame.size.height / 2) - (imageSize.height / 2);
 	
-	[mIconImage drawAtPoint:imagePoint fromRect:[mIconImage drawingRect] operation:General/NSCompositeSourceOver fraction:1.0];
+	[mIconImage drawAtPoint:imagePoint fromRect:[mIconImage drawingRect] operation:NSCompositeSourceOver fraction:1.0];
 	
-	General/NSString* path = [self path];
-	General/NSString* filename = [self fileName];
+	NSString* path = [self path];
+	NSString* filename = [self fileName];
 	
-	General/NSColor* filenameColor = General/[NSColor blackColor];
-	General/NSColor* pathColor = General/[NSColor lightGrayColor];
+	NSColor* filenameColor = [NSColor blackColor];
+	NSColor* pathColor = [NSColor lightGrayColor];
 	
-	[filename drawAtPoint:General/NSMakePoint(52.0f, 10.0f) withAttributes:[fileNameFont drawingAttributesWithColor:filenameColor]];
-	[path drawAtPoint:General/NSMakePoint(52.0f, cellFrame.size.height - 25.0f) withAttributes:[pathFont drawingAttributesWithColor:pathColor]];
+	[filename drawAtPoint:NSMakePoint(52.0f, 10.0f) withAttributes:[fileNameFont drawingAttributesWithColor:filenameColor]];
+	[path drawAtPoint:NSMakePoint(52.0f, cellFrame.size.height - 25.0f) withAttributes:[pathFont drawingAttributesWithColor:pathColor]];
 }
 
 
 ----
-See General/MemoryManagement. When you assign an ivar to a class factory method, you must retain it.
+See MemoryManagement. When you assign an ivar to a class factory method, you must retain it.
 ----
 Code has been updated to the above suggestion, but the crash has not changed.
 
 ----
-You need to implement General/NSCopying. Cells get copied a lot and the default implementation will completely break the memory management on your own ivars, so overriding it is mandatory.
+You need to implement NSCopying. Cells get copied a lot and the default implementation will completely break the memory management on your own ivars, so overriding it is mandatory.
 
-If that still doesn't work, try General/NSZombieEnabled. As a supplement or alternative, override     -dealloc and put a breakpoint on it so you can see where and why it's getting called.
+If that still doesn't work, try NSZombieEnabled. As a supplement or alternative, override     -dealloc and put a breakpoint on it so you can see where and why it's getting called.
 ----
-OK, thanks, implementing General/NSCopying have fixed the problem.  For anyone who is curious, here is the copyWithZone: implementation:
+OK, thanks, implementing NSCopying have fixed the problem.  For anyone who is curious, here is the copyWithZone: implementation:
     
-- (id)copyWithZone:(General/NSZone *)zone
+- (id)copyWithZone:(NSZone *)zone
 {
-	General/JLFileCell* cellCopy = General/[[JLFileCell allocWithZone:zone] init];
+	JLFileCell* cellCopy = [[JLFileCell allocWithZone:zone] init];
 	
 	[cellCopy setFilePath:[self path]];
 	
@@ -111,7 +111,7 @@ OK, thanks, implementing General/NSCopying have fixed the problem.  For anyone w
 The fruit of my labors: http://yetanothersite.com/joel/cell.png
 
 ----
-It's good that it works, but this copy method is somewhat incomplete. You don't call your superclass's copy method, but General/NSCell does implement General/NSCopying, so you're failing to copy any attributes that General/NSCell has. This may not matter in this case, but you never know when this sort of thing may bite you. Unfortunately, integrating a superclass's copy method isn't always simple. There are links to Apple documentation on the General/NSCopying page which discuss the various approaches on how to do this.
+It's good that it works, but this copy method is somewhat incomplete. You don't call your superclass's copy method, but NSCell does implement NSCopying, so you're failing to copy any attributes that NSCell has. This may not matter in this case, but you never know when this sort of thing may bite you. Unfortunately, integrating a superclass's copy method isn't always simple. There are links to Apple documentation on the NSCopying page which discuss the various approaches on how to do this.
 ----
 
 Yes, the above will not work.  You've avoided the crashes, which is great, but you're still going to see inexplicable behavior due to not copying the cell correctly.  
@@ -119,9 +119,9 @@ Yes, the above will not work.  You've avoided the crashes, which is great, but y
 Try this:
 
     
-- (id)copyWithZone:(General/NSZone *)zone
+- (id)copyWithZone:(NSZone *)zone
 {
-	General/JLFileCell* cellCopy = [super copyWithZone:zone];
+	JLFileCell* cellCopy = [super copyWithZone:zone];
 
 	cellCopy->filePath = [filePath copy];
 	
@@ -129,6 +129,6 @@ Try this:
 }
 
 
-You cannot just call your accessor due to General/NSCell's use of General/NSCopyObject.  See http://developer.apple.com/documentation/Cocoa/Conceptual/General/MemoryMgmt/Tasks/General/ImplementCopy.html#//apple_ref/doc/uid/20000049-997407 .
+You cannot just call your accessor due to NSCell's use of NSCopyObject.  See http://developer.apple.com/documentation/Cocoa/Conceptual/MemoryMgmt/Tasks/ImplementCopy.html#//apple_ref/doc/uid/20000049-997407 .
 ----
 Thanks everyone who replied, this cell subclass has proved to be a huge learning experience for me.

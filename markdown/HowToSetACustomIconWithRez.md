@@ -4,16 +4,16 @@ To set an icns file *<source.icns>* to be the custom icon of a file *<target_fil
 
     
 echo "read 'icns' (-16455) \"*<source.icns>*\";" | /Developer/Tools/Rez -o *<target_file>*
-/Developer/Tools/General/SetFile -a "C" *<target_file>*
+/Developer/Tools/SetFile -a "C" *<target_file>*
 
 
 To set the custom icon on a folder *<target_folder>*, do
 
     
 echo "read 'icns' (-16455) \"*<source.icns>*\";" | /Developer/Tools/Rez -o `printf "*<target_folder>*/Icon\r"`
-/Developer/Tools/General/SetFile -a "C" *<target_folder>*
+/Developer/Tools/SetFile -a "C" *<target_folder>*
 
 
 Hope this helps somebody.
 
--General/KenFerry
+-KenFerry

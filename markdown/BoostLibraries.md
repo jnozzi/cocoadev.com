@@ -2,11 +2,11 @@
 
 ----
 
-Can't help with that, but apparently it doesn't like installing on General/MacOSX due to a bug with gcc whereby files passed with -isystem are extern "C"'ed... which breaks the templates in, e.g., Spirit. (Spirit gave me 1286 errors, most of which were "template with C linkage" or some such.) Apparently you have to pass -I (that's a capital i, not an L or something like that) when including boost's headers, and I for one don't know how to do that with Xcode or my life would be a lot easier.
+Can't help with that, but apparently it doesn't like installing on MacOSX due to a bug with gcc whereby files passed with -isystem are extern "C"'ed... which breaks the templates in, e.g., Spirit. (Spirit gave me 1286 errors, most of which were "template with C linkage" or some such.) Apparently you have to pass -I (that's a capital i, not an L or something like that) when including boost's headers, and I for one don't know how to do that with Xcode or my life would be a lot easier.
 
 As it is, I'm using flex, and I'm not fond of it.
 
--- General/RobRix
+-- RobRix
 
 ----
 

@@ -16,7 +16,7 @@ Registering a URL handler with your application will allow it to respond to user
 
 Here is what you need to do to register your app for a custom URL scheme (for the example we will use a "myapp" scheme).
 
-1) In your Info.plist, add a new entry for General/CFBundleURLTypes:
+1) In your Info.plist, add a new entry for CFBundleURLTypes:
 
     
  <key>CFBundleURLTypes</key>
@@ -37,7 +37,7 @@ Here is what you need to do to register your app for a custom URL scheme (for th
     
  - (void)registerMyApp
  {
- 	General/NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
+ 	NSAppleEventManager sharedAppleEventManager] setEventHandler:self andSelector:@selector(getUrl:withReplyEvent:) forEventClass:kInternetEventClass andEventID:kAEGetURL];
  }
  
  - (void)getUrl:(NSAppleEventDescriptor)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent

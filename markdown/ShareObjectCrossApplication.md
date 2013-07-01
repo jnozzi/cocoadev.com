@@ -9,7 +9,7 @@ Newbies
 
 ----
 
-General/NSDocumentController 
+NSDocumentController 
 
 'nough said.
 

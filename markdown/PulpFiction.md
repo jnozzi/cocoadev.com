@@ -1,5 +1,5 @@
-One of the many General/RSSNewsReaders for the Mac...
+One of the many RSSNewsReaders for the Mac...
 
 Created by Freshly Squeezed Software: http://freshsqueeze.com/products/pulpfiction/
 
-Like General/NetNewsWire and General/NewsMac, offers "lite" and full versions.
+Like NetNewsWire and NewsMac, offers "lite" and full versions.

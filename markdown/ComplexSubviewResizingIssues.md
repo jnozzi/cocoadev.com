@@ -3,7 +3,7 @@ the behavior that is wrong is that I have two subViews, and my superview lays th
 this is done by looping through the list of subviews, and lining them up vertically.
 then My superview resizes itself to be just a hair taller than the combined height of its subViews.
 
-when I run the app, the loop drops out Before it gets to the last subView, so My General/SuperView winds up Cropping out the last view!
+when I run the app, the loop drops out Before it gets to the last subView, so My SuperView winds up Cropping out the last view!
 
 
 BUT 
@@ -18,15 +18,15 @@ has anybody had this problem?   What the heck is going on?
 heres a snippit of my update UI method.
 its messy, because I have been trying for hours to get this to work...
     
-- (General/IBAction)updateUI:(id)sender
+- (IBAction)updateUI:(id)sender
 {
-	General/NSRect newFrame;
+	NSRect newFrame;
 	int newMyHeight;
-	General/NSEnumerator *childrenEnum;
-	General/BTInfoSubBox	*theChildAtHand;
+	NSEnumerator *childrenEnum;
+	BTInfoSubBox	*theChildAtHand;
 	int i;
 
-	General/self superview] setNeedsDisplay:YES];
+	self superview] setNeedsDisplay:YES];
 
 
 ->	**newMyHeight = 10;**
@@ -93,7 +93,7 @@ btw: wiki is screwing up my line endings.  everything looks right until I hit sa
 
 ----
 
-PLEASE stop making so many edits so quickly without checking to see if there's been a change -- this is the fourth time I've had to repost my response to you. Um ... did you try the IB suggestion? And what *exactly* are you doing with the views, just resizing / repositioning them? Are you sure the last view is being touched? Perhaps you should rebuild your method using the enumerator normally and have it call a "touchMe" method that General/NSLog's out the fact that "I'm child view 6 and I've been touched" (insert inappropriate Michael Jackson comments here). This would tell you right away if your assumption is true or it's just your positioning math (which may be putting the subview somewhere you can't see). I managed to create a routine that accomplishes the exact same goal inside of an hour (I'd never done anything like that before) and with a little finesse, it works perfectly fine. "It ain't the enumerator."
+PLEASE stop making so many edits so quickly without checking to see if there's been a change -- this is the fourth time I've had to repost my response to you. Um ... did you try the IB suggestion? And what *exactly* are you doing with the views, just resizing / repositioning them? Are you sure the last view is being touched? Perhaps you should rebuild your method using the enumerator normally and have it call a "touchMe" method that NSLog's out the fact that "I'm child view 6 and I've been touched" (insert inappropriate Michael Jackson comments here). This would tell you right away if your assumption is true or it's just your positioning math (which may be putting the subview somewhere you can't see). I managed to create a routine that accomplishes the exact same goal inside of an hour (I'd never done anything like that before) and with a little finesse, it works perfectly fine. "It ain't the enumerator."
 
 ---- 
 
@@ -102,11 +102,11 @@ I myself have just had MY post erased.
 
 I am positioning my views vertically. then sizing the superview so that it is just bigger than the combined subViews. and then redrawing the whole thing.
 
-in IB I have a superView (General/NSBox subclass) two subViews (General/NSBox subclass)  the sub views are both already vertically arranged, and not overlapping.
+in IB I have a superView (NSBox subclass) two subViews (NSBox subclass)  the sub views are both already vertically arranged, and not overlapping.
 
 I have painstakingly checked this in my IB doc AND the documentation numerous times, hence that being not relevant.
 
-my General/SubViews? have an outlet to the superview, in their "awakeFromNib" method, they send a "addMe:self" message to the superView. the superView adds them to an array and then Updates its layout.
+my SubViews? have an outlet to the superview, in their "awakeFromNib" method, they send a "addMe:self" message to the superView. the superView adds them to an array and then Updates its layout.
 
 in the updateUI: method the superview, steps through the array of subViews, it resets the frame of each of them. making the width match the width of the super view making the origin line up with the left edge, and placing each subView in descending order vertically. leaving the height alone, but adding it to an integer that totals all of the heights of the subViews.
 
@@ -119,7 +119,7 @@ heres my loop where i step through the subViews: newMyHeight is the int var that
 i = 0; // childrenEnum = [childViews objectEnumerator];
 while (i < [childViews count]) // (theChildAtHand = [childrenEnum nextObject])
 {
-  newFrame.origin.y = newFrame.origin.y - (General/childViews objectAtIndex:i] frame].size.height);
+  newFrame.origin.y = newFrame.origin.y - (childViews objectAtIndex:i] frame].size.height);
   newFrame.size.height = [[childViews objectAtIndex:i] frame].size.height;
   [[childViews objectAtIndex:i] setFrame:newFrame];
   newMyHeight = newMyHeight + [[childViews objectAtIndex:i] frame].size.height;
@@ -128,10 +128,10 @@ while (i < [childViews count]) // (theChildAtHand = [childrenEnum nextObject])
 
 *Sorry for interfering with your code, but it was hard to read. Just remember to put it between \\%\\%BEGINCODE\\%\\% and \\%\\%ENDCODE\\%\\%. --[[JediKnil*
 
-Do you set General/NewMyHeight to zero somewhere?
+Do you set NewMyHeight to zero somewhere?
 
 ----
-i start with General/NewMyHeight = 10;  its to offset from the rendered edges of the General/NSBox.
+i start with NewMyHeight = 10;  its to offset from the rendered edges of the NSBox.
 see the now out of date example at the top of the thread for an idea of where I do that in context.
 
 ----
@@ -188,7 +188,7 @@ The three solutions I can think of for this (all untested):
 
 *Disable resizing subviews. If the view changes, resize subviews yourself.
 *Cleverly play with autoresizing that changing the view size doesn't screw anything up. This may not be possible but if you try, remember than for most of Cocoa's views the origin is at the bottom-left corner.
-*Size the subviews to the superview instead of vice versa. (This is how General/NSScrollView and such work, BTW.)
+*Size the subviews to the superview instead of vice versa. (This is how NSScrollView and such work, BTW.)
 
 
-And this page could really use some refactoring. And since you've managed to reproduce the problem... --General/JediKnil
+And this page could really use some refactoring. And since you've managed to reproduce the problem... --JediKnil

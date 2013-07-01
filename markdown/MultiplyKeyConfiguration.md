@@ -8,5 +8,5 @@ Can somebody help me with how to toggle with multiple key configurations, like S
 
 ----
 
-Check this page out: General/TestForKeyDownOnLaunch
+Check this page out: TestForKeyDownOnLaunch
 You need to link against Carbon to get it to work, but it *does* work.

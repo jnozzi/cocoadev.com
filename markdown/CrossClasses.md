@@ -12,17 +12,17 @@ To get send a message to an object, use the following notation:
 
 [destObject methodName:argument];
 
-You really should learn C, and then read General/ObjC.pdf, included in the Developer documentation.
+You really should learn C, and then read ObjC.pdf, included in the Developer documentation.
 
 ----
 
 I should probably go into a fair bit more detail as all I did was sound like a newbie. I know a fair bit of c so there is no problems there and I know that Classes don't have variables, instead they contain pointers.
 
-What I want to do is have a class with an General/NSDictionary in it. I want to be able to call to get this General/NSDictionary from another class.
+What I want to do is have a class with an NSDictionary in it. I want to be able to call to get this NSDictionary from another class.
 
 I have this;
 
-(General/NSDictionary *)dict
+(NSDictionary *)dict
 {
       return dict;
 }
@@ -37,4 +37,4 @@ Try [myObject dict].
 
 I assume everywhere you use the word "class" you mean "instance of class" (AKA "object")? A class is not an object. Also, we use the word "method", not "function", mainly because the syntax is different.
 
--- General/KritTer
+-- KritTer

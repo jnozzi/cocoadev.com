@@ -2,7 +2,7 @@ Everyone knows that there are virtually no viruses for Mac OS X. I believe as Ma
 
 I'm not talking about trojans - programs disguised as something else, but when run can do bad things to your system. I'm talking about the ones that can be activated automatically via email or web, or another method.
 
-I've thought hard about how one could download a program, and then execute it by email or web, and I really do not know of any way. It wouldn't be hard to automatically download something, but to then know where it launched would be impossible, even since General/JavaScript can't determine the user's name (users can change their download directory - not accessible via General/JavaScript, nor is their username).
+I've thought hard about how one could download a program, and then execute it by email or web, and I really do not know of any way. It wouldn't be hard to automatically download something, but to then know where it launched would be impossible, even since JavaScript can't determine the user's name (users can change their download directory - not accessible via JavaScript, nor is their username).
 
 Anyways, I'm just trying to see where people would exploit the OS, and I really can't see anything. I know there are tons of people out there who are trying to write a Mac virus, and if it was possible, it would have been done because everyone brags about how they're invulnerable.
 
@@ -16,17 +16,17 @@ Since OS X is built on a bunch of little open source programs like say, sshd, wh
 
 ----
 
-I find buffer overflows to be a pretty hard sell for Cocoa apps. Would'nt there have to be a bug in General/NSData, or General/NSString to exploit a buffer overrun? I would guess that these classes would have undergone extensive testing over the last 10 odd years. -JJJ
+I find buffer overflows to be a pretty hard sell for Cocoa apps. Would'nt there have to be a bug in NSData, or NSString to exploit a buffer overrun? I would guess that these classes would have undergone extensive testing over the last 10 odd years. -JJJ
 
 ----
 
-Up until 10.3, there was a flaw in General/NSTextFields where you could crash a program by putting more than X characters in it. That is how people got around the screensaver lock in early 10.3. General/NSTextFields had been around for quite a while (The NS stands for General/NextStep)...Plus, there are so many new classes that introduce new security risks. For example, there was a flaw in the Word document reading class apple made. You could run code through a specifically crafted doc file. This was fixed in a security update, but this kind of stuff is found all the time. The only saving grace is, it is usually found by Apple before anyone else. That, and there aren't 10s of thousands of people trying to crack and break all of Apple's stuff all the time.
+Up until 10.3, there was a flaw in NSTextFields where you could crash a program by putting more than X characters in it. That is how people got around the screensaver lock in early 10.3. NSTextFields had been around for quite a while (The NS stands for NextStep)...Plus, there are so many new classes that introduce new security risks. For example, there was a flaw in the Word document reading class apple made. You could run code through a specifically crafted doc file. This was fixed in a security update, but this kind of stuff is found all the time. The only saving grace is, it is usually found by Apple before anyone else. That, and there aren't 10s of thousands of people trying to crack and break all of Apple's stuff all the time.
 
 ----
 
-For the most part, buffer overflow vulnerabilities are hard to come by on OS X and General/PowerPC code, in general.  The reason why OS X software tends not to have these problems is that most software developers who don't know the implications of using some of the C lib calls that have these problems (string copy routines, for example) are the kind of developers that don't use them, anyway.  On that front, we are safe as Cocoa is.
+For the most part, buffer overflow vulnerabilities are hard to come by on OS X and PowerPC code, in general.  The reason why OS X software tends not to have these problems is that most software developers who don't know the implications of using some of the C lib calls that have these problems (string copy routines, for example) are the kind of developers that don't use them, anyway.  On that front, we are safe as Cocoa is.
 
-General/PowerPC code tends not to have as many of those exploits since many of them rely on being able to write null-less code which is hard to do when you have a fixed instruction size that often has null bytes in it.
+PowerPC code tends not to have as many of those exploits since many of them rely on being able to write null-less code which is hard to do when you have a fixed instruction size that often has null bytes in it.
 
 I think that this is why installers (especially those which require root access) are to be discouraged.  If users become accustomed to elevating the privilege levels of random un-trusted apps, then we have a real problem.
 

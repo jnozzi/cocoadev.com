@@ -2,13 +2,13 @@
 
 Hello everyone!
 
-I've been banging my head against a wall trying to solve this for the past day and a half, so now I turn to the gurus at General/CocoaDev for advice. I am implementing a canvas (an General/NSControl subclass) that keeps track of the currently selected tool (for modifying the image in the control), and I want to implement hot keys to switch between the tools. I want it to automatically choose one tool when the command key is held down, another when the option key, and a third with the control key.
+I've been banging my head against a wall trying to solve this for the past day and a half, so now I turn to the gurus at CocoaDev for advice. I am implementing a canvas (an NSControl subclass) that keeps track of the currently selected tool (for modifying the image in the control), and I want to implement hot keys to switch between the tools. I want it to automatically choose one tool when the command key is held down, another when the option key, and a third with the control key.
 
 I am using flagsChanged: to monitor for these key presses and everything works beautifully when the control is the key view, but when it is not, I can't trap the message. How can I get around this?
 
 I guess my initial impulse is to find a way to keep my view in the responder chain at all times, but I'm really not sure how to do this. Any suggestions would be greatly appreciated. Thanks!
 
---General/EliotSimcoe
+--EliotSimcoe
 
 ---- 
 
@@ -22,9 +22,9 @@ Manually playing with the responder chain is usually a bad idea. Keep in mind th
 
 ----
 
-Well, think of it kind of like Photoshop, where you have a canvas, and tools that operate on the image in the canvas. When you hold down the command key and are hovering over the canvas, the "move" tool is automatically selected. When the command key is released, the tool changes back to what it was before the "hot switch". This is the effect I am going for. Consider however, that the tools are also managed by the view. I guess the paradigm is similar to that of General/NSToolbar, but that is irrellivent for this discussion. Anyway, that is the behavior I am trying to implement. The only issue I am having, is that I don't receive notification that the modifier flags have changed unless I am key view.
+Well, think of it kind of like Photoshop, where you have a canvas, and tools that operate on the image in the canvas. When you hold down the command key and are hovering over the canvas, the "move" tool is automatically selected. When the command key is released, the tool changes back to what it was before the "hot switch". This is the effect I am going for. Consider however, that the tools are also managed by the view. I guess the paradigm is similar to that of NSToolbar, but that is irrellivent for this discussion. Anyway, that is the behavior I am trying to implement. The only issue I am having, is that I don't receive notification that the modifier flags have changed unless I am key view.
 
--- General/EliotSimcoe
+-- EliotSimcoe
 
 ----
 
@@ -32,22 +32,22 @@ Ok, I'm pretty sure I know what you're talking about now.  First, Cocoa has curs
     
 // implementing this function will tell your app what you want the cursor
 // to be when it's over your view.
-@implementation General/MYCursorChangingView
+@implementation MYCursorChangingView
 - (void)resetCursorRects
 {
 	unsigned int currentFlags = 
-			General/[[[NSApplication sharedApplication] currentEvent] modifierFlags];
+			[[[NSApplication sharedApplication] currentEvent] modifierFlags];
 	// these are just placeholders
 	// your function will probably be a bit more complex ;)
-	if (currentFlags & General/NSShiftKeyMask) {
-		viewCursor = General/[NSCursor General/IBeamCursor];
-	} else if (currentFlags & General/NSAlternateKeyMask) {
-		viewCursor = General/[NSCursor crosshairCursor];
-	} else if (currentFlags & General/NSCommandKeyMask) {
-		viewCursor = General/[NSCursor openHandCursor];
+	if (currentFlags & NSShiftKeyMask) {
+		viewCursor = [NSCursor IBeamCursor];
+	} else if (currentFlags & NSAlternateKeyMask) {
+		viewCursor = [NSCursor crosshairCursor];
+	} else if (currentFlags & NSCommandKeyMask) {
+		viewCursor = [NSCursor openHandCursor];
 	} else {
 		// this is for no modifiers
-		viewCursor = General/[NSCursor pointingHandCursor];
+		viewCursor = [NSCursor pointingHandCursor];
 	}
 	[self addCursorRect:[self bounds] cursor:viewCursor];
 }
@@ -58,36 +58,36 @@ Ok, I'm pretty sure I know what you're talking about now.  First, Cocoa has curs
 // the window is frontmost, which is how most Mac apps seem to handle cursor
 // changes. The window's -resetCursorRects will automatically call your view's 
 // -resetCursorRects method
-@implementation General/MYWindowControllerWhichMustAlsoBeSetToWindowsDelegate
-- (void)flagsChanged:(General/NSEvent*)inEvent
+@implementation MYWindowControllerWhichMustAlsoBeSetToWindowsDelegate
+- (void)flagsChanged:(NSEvent*)inEvent
 {
-	General/self window] resetCursorRects];
+	self window] resetCursorRects];
 }
 // this is needed too because the modifiers can change 
 // when it's not main without it being told
 - (void)windowDidBecomeMain:([[NSNotification*)inNot
 {
-	General/self window] resetCursorRects];
+	self window] resetCursorRects];
 }	
 @end
 
 Now, you figure out the tool based on the modifier keys only when they click, which would look something like this:
     
 @implementation [[MYCursorChangingView
-- (void)mouseDown:(General/NSEvent*)inEvent
+- (void)mouseDown:(NSEvent*)inEvent
 {
 	unsigned int currentFlags = [inEvent modifierFlags];
-	if (currentFlags & General/NSShiftKeyMask) {
+	if (currentFlags & NSShiftKeyMask) {
 		// this is all just placeholder code for whatever 
 		// you'd really be doing to set the tool
-		[self setTool:General/[MYToolChest textTypingTool]];
-	} else if (currentFlags & General/NSAlternateKeyMask) {
-		[self setTool:General/[MYToolChest selectAreaTool]];
-	} else if (currentFlags & General/NSCommandKeyMask) {
-		[self setTool:General/[MYToolChest dragObjectTool]];
+		[self setTool:[MYToolChest textTypingTool]];
+	} else if (currentFlags & NSAlternateKeyMask) {
+		[self setTool:[MYToolChest selectAreaTool]];
+	} else if (currentFlags & NSCommandKeyMask) {
+		[self setTool:[MYToolChest dragObjectTool]];
 	} else {
 		// this is for no modifiers
-		[self setTool:General/[MYToolChest currentTool]];
+		[self setTool:[MYToolChest currentTool]];
 	}
 	// and then do whatever drawing your tool does here
 	// or in -mouseDragged: or -mouseUp:
@@ -102,7 +102,7 @@ Here is the gatcha... I can't enforce that the window controller reset the curso
 
 P.S. The tool is changed in the flagsChanged: method...
 
--- General/EliotSimcoe
+-- EliotSimcoe
 
 ----
 
@@ -110,8 +110,8 @@ Uh, ok.  That's a bit more complicated.  This might be the incantation you're lo
     
 - (void)awakeFromNib
 {
-	[self setNextResponder:General/self window] nextResponder;
-	General/self window] setNextResponder:self];
+	[self setNextResponder:self window] nextResponder;
+	self window] setNextResponder:self];
 }
 
 There are some caveats however.  The biggest one is: Don't let yourself become first responder if you're going to use this.  You'll short-circuit the window and your superviews right out of the responder chain.  Getting around this would require you to override the     -becomeFirstResponder and     -resignFirstResponder methods and fix the responder chain manually, which is, alas, outside the scope of this comment.  I'd still recommend using cursor rects to change the cursor rather than manually changing it; just call     [[self window] invalidateCursorRectsForView:self]; in your     -flagsChanged: method.  -- Bo
@@ -137,7 +137,7 @@ Okay! Here is what I have implemented and it seems to work well.
 #pragma mark
 #pragma mark Modifying the responder chain
 #endif
-- (void)addToResponderChainOfObject:(General/NSResponder *)anObject
+- (void)addToResponderChainOfObject:(NSResponder *)anObject
 {
     id responder = anObject;
     id nextResponder = nil;
@@ -151,7 +151,7 @@ Okay! Here is what I have implemented and it seems to work well.
     [responder setNextResponder:self];
 }
 
-- (void)removeFromResponderChainOfObject:(General/NSResponder *)anObject
+- (void)removeFromResponderChainOfObject:(NSResponder *)anObject
 {
     id responder = anObject;
     id nextResponder = nil;
@@ -202,7 +202,7 @@ Okay! Here is what I have implemented and it seems to work well.
 #pragma mark
 #pragma mark Managing the view hierarchy
 #endif
-- (void)viewWillMoveToWindow:(General/NSWindow *)newWindow
+- (void)viewWillMoveToWindow:(NSWindow *)newWindow
 {
     [self removeFromResponderChainOfObject:[self window]];
     [self addToResponderChainOfObject:newWindow];
@@ -211,19 +211,19 @@ Okay! Here is what I have implemented and it seems to work well.
 }
 
 
-Can you find anything illegal in my implementation? I tried what you suggested, inserting the view as General/NSWindow's resonder, but it caused IB to crash. I think this is better anyway, because now the view can keep its next responder, where before it would have been lost.
+Can you find anything illegal in my implementation? I tried what you suggested, inserting the view as NSWindow's resonder, but it caused IB to crash. I think this is better anyway, because now the view can keep its next responder, where before it would have been lost.
 
--- General/EliotSimcoe
-
-----
-
-It caused General/InterfaceBuilder to crash?  That's odd, since I don't remember suggesting changing anything in IB.  Anyway, this code looks like it sets up a loop in the responder chain in -addToResponderChainOfObject:, since your view's starting nextResponder (which you make a point of not changing) will invariably point back to the window in a couple of steps, where it'll point back to your view in a couple more steps, etc.  Unless there's something I'm not seeing here, I'd guess that what's actually happening is your -addToResponderChainOfObject: method is never getting called because your view is never resigning first responder and never changing windows, and your code is only working because your view is always the firstResponder.  -- Bo
+-- EliotSimcoe
 
 ----
 
-What's so odd about it? It is an General/NSControl subclass which happens to have an IB palette created for ease of use. This IB palette loads the class into IB when it is loaded, and my view caused a crash when first responder changed in IB (Before my modifications noted above).
+It caused InterfaceBuilder to crash?  That's odd, since I don't remember suggesting changing anything in IB.  Anyway, this code looks like it sets up a loop in the responder chain in -addToResponderChainOfObject:, since your view's starting nextResponder (which you make a point of not changing) will invariably point back to the window in a couple of steps, where it'll point back to your view in a couple more steps, etc.  Unless there's something I'm not seeing here, I'd guess that what's actually happening is your -addToResponderChainOfObject: method is never getting called because your view is never resigning first responder and never changing windows, and your code is only working because your view is always the firstResponder.  -- Bo
 
-My class is NOT always first responder. I have an General/NSTableView which manages some information about the image displayed in my class, it is becomes first responder as necessary and behaves normally.
+----
+
+What's so odd about it? It is an NSControl subclass which happens to have an IB palette created for ease of use. This IB palette loads the class into IB when it is loaded, and my view caused a crash when first responder changed in IB (Before my modifications noted above).
+
+My class is NOT always first responder. I have an NSTableView which manages some information about the image displayed in my class, it is becomes first responder as necessary and behaves normally.
 
 -addToResponderChainOfObject: is in fact getting called every time I resign first responder, but you are correct that if a message was passed down the responder chain it created a loop. I hadn't noticed this at first, so thank you for your insight. I have made the following modification to my method and things seem to work well now (though they SEEMED to work well before, so this doesn't voice confidence).
 
@@ -247,7 +247,7 @@ My class is NOT always first responder. I have an General/NSTableView which mana
 
 
 I don't know what warranted the hostile remark about your not having suggested changing IB, but I appologize if I have offended you.
--- General/EliotSimcoe
+-- EliotSimcoe
 
 ----
 

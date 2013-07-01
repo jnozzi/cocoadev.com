@@ -1,9 +1,9 @@
 I'm looking for a capable freelance Cocoa developer to assist me in completing a project. Any interested parties, please submit your contact information. Thanks!
 I'm not really understanding the basis for this Wiki site, so I'm hoping I posted this in the right place - in the right manner.
 
-*For one, it might be a good idea to post an e-mail address so that people can get in touch privately rather than publicly... as to whether such is well-suited for this website, that's gonna be up for discussion. I don't mind, but this isn't my site; it's everyone's. -- General/RobRix*
+*For one, it might be a good idea to post an e-mail address so that people can get in touch privately rather than publicly... as to whether such is well-suited for this website, that's gonna be up for discussion. I don't mind, but this isn't my site; it's everyone's. -- RobRix*
 
-*I would prefer a General/FreelanceCocoaDevelopers page so more of these don't pop up. Make it so we can add/remove ourselves from our General/CocoaDevUsers pages and stick a link to it on the front page. /thinking out loud*
+*I would prefer a FreelanceCocoaDevelopers page so more of these don't pop up. Make it so we can add/remove ourselves from our CocoaDevUsers pages and stick a link to it on the front page. /thinking out loud*
 
 Also, you may want to note the geographic location as a paid collaboration may be difficult to do legitimately across certain borders ...
 

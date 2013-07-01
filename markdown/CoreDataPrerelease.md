@@ -1,8 +1,8 @@
 
 
-In an effort to avoid the General/CocoaDev chaos that came with the introduction of General/CocoaBindings, and given that Tiger will be released within about a month or so, I've moved the General/CoreData speculation and pre-release information to this page, leaving the General/CoreData page itself open for solid info. �General/DustinVoss
+In an effort to avoid the CocoaDev chaos that came with the introduction of CocoaBindings, and given that Tiger will be released within about a month or so, I've moved the CoreData speculation and pre-release information to this page, leaving the CoreData page itself open for solid info. �DustinVoss
 ----
-General/CoreData is a new technology in Tiger. The following is the only information that has been made publicly available (as part of the WWDC session descriptions):
+CoreData is a new technology in Tiger. The following is the only information that has been made publicly available (as part of the WWDC session descriptions):
 
 ----
 418 **Introduction to Core Data**
@@ -20,7 +20,7 @@ The following extract hints at it being integrated with Xcode's new modelling st
 Want to take your software design skills to the next level? Learn about Xcode's new design tools for object design and persistent object modeling. With these new tools you can view and edit a visual model of your object-oriented code in C++, Objective-C, or Java, and use the model to navigate your source base. Then, create an object graph of your application's object model, and automatically generate a schema for Cocoa's new Persistence Framework.
 
 
-Here's to hoping that it finally provides a replacement for General/EnterpriseObjectsFramework!
+Here's to hoping that it finally provides a replacement for EnterpriseObjectsFramework!
 
 
 ----
@@ -37,9 +37,9 @@ In Tiger, Core Data will support three different kinds of files for storage of d
 
 - A better performing binary file format
 
-- A high-performance, General/SQLite-based database file format
+- A high-performance, SQLite-based database file format
 
-Each of these file formats has its strengths. The XML file format is a good choice during the development of an application as it allows you to peek inside the file and see what is going on. The General/SQLite format will often be the best choice for desktop applications because of its performance characteristics.
+Each of these file formats has its strengths. The XML file format is a good choice during the development of an application as it allows you to peek inside the file and see what is going on. The SQLite format will often be the best choice for desktop applications because of its performance characteristics.
 
 ----
 
@@ -51,7 +51,7 @@ NDA?  We don't need no steenkin' NDA.
 
 From a chapter about Core Data published by Apple in the public Tiger overview document.
 
-The Core Data framework (General/CoreData.framework) is a new Cocoa technology that integrates with Cocoa bindings to make it even easier to create applications based on a Model-View-Controller architecture. Core Data applies to the data portion of your model and helps you persist your data to any number of different storage mediums. A new tool in Xcode lets you graphically create a schema that describes the data entities in your application. Instances of these entities are then managed by the Core Data framework and stored to a storage medium such as an XML file or General/SQLite database.
+The Core Data framework (CoreData.framework) is a new Cocoa technology that integrates with Cocoa bindings to make it even easier to create applications based on a Model-View-Controller architecture. Core Data applies to the data portion of your model and helps you persist your data to any number of different storage mediums. A new tool in Xcode lets you graphically create a schema that describes the data entities in your application. Instances of these entities are then managed by the Core Data framework and stored to a storage medium such as an XML file or SQLite database.
 
 By using Core Data to manage your data model, you significantly reduce the amount of infrastructure code you have to write for your application. You no longer have to worry about the problems associated with object lifecycle management. Core Data handles tasks such as retrieving object data from disk, maintaining references to those objects, and writing modified objects back to disk. Core Data also provides the following features: 
 
@@ -69,7 +69,7 @@ Core Data is intended for applications that have some amount of structured data 
 
 * Where is this magic Cocoa Design Guidelines Documentation of which you speak? I didn't think anything in-depth has been published due to NDA.*
 
-http://developer.apple.com/documentation/Cocoa/General/DesignGuidelines-date.html#//apple_ref/doc/uid/TP30000416-TP30000556
+http://developer.apple.com/documentation/Cocoa/DesignGuidelines-date.html#//apple_ref/doc/uid/TP30000416-TP30000556
 
 *I see no Core Data Concepts here.*
 
@@ -86,46 +86,46 @@ Data models go beyond graphically representing the class hierarchies in your app
 Very little code is actually required to take advantage of these features. Core Data can use a data model, also known as a schema, to define the data-bearing entities in your application and then manage and store those entities for you. It takes care of all of the details of mapping the data in a persistent store to instances of objects in your application. By creating these models graphically in Xcode, you can quickly and easily define your schema without having to create and edit large XML files or write a lot of tedious boilerplate code.
 
 ----
-Without breaking any General/NDAs, I can say that General/CoreData is not scaleable.   The most robust store General/CoreData supports is General/SQLite which is unreasonably slow for any serious data load.  If you're a researcher working with 100s of gigabytes of data, sadly, you will still be using your own store or a better databse than lite.  General/SQLite provides niether the storing nor the retrieving you'll need, if nothing else at least in terms of speed.  For example, to import a 10 gigabyte csv file with three fields, you'll spend 4 hours alone in btree rebalancing, plus whatever overhead coredata introduces and the parsing and resulting object instantiation time.
+Without breaking any NDAs, I can say that CoreData is not scaleable.   The most robust store CoreData supports is SQLite which is unreasonably slow for any serious data load.  If you're a researcher working with 100s of gigabytes of data, sadly, you will still be using your own store or a better databse than lite.  SQLite provides niether the storing nor the retrieving you'll need, if nothing else at least in terms of speed.  For example, to import a 10 gigabyte csv file with three fields, you'll spend 4 hours alone in btree rebalancing, plus whatever overhead coredata introduces and the parsing and resulting object instantiation time.
 
 *
-None of the General/CoreData docs I've seen imply that it's meant for any kind of massive enterprise-level store. It's for desktop apps. If you want massive data handling, it's a full size RDBMS for you.
+None of the CoreData docs I've seen imply that it's meant for any kind of massive enterprise-level store. It's for desktop apps. If you want massive data handling, it's a full size RDBMS for you.
 *
 
 Now you're right about a full size RDBMS... but I will say this:  Apple DID claim their sqlite store was "scaleable" (and I quote).  Moreover, at a meta level, with xgrid Apple is positioning themselves to be truly useful in the scientific/research community... coredata is an incredible concept -- and Apple has really proven again that they are a class act technologically speaking.  However, by using sqlite they are unnecessarily cripling the utility of an otherwise great technology.
 
 *
-I can't find the quote you're referring to. Could you link it? I've found General/SQLite developers using the term "scaleable" about General/SQLite. I wouldn't be surprised if General/CoreData is considered scalable from XML files to General/SQLite. But I can't find anything that implies General/CoreData is being as anything beyond desktop use. To quote Apple: "The General/SQLite format will often be the best choice for desktop applications because of its performance characteristics."
+I can't find the quote you're referring to. Could you link it? I've found SQLite developers using the term "scaleable" about SQLite. I wouldn't be surprised if CoreData is considered scalable from XML files to SQLite. But I can't find anything that implies CoreData is being as anything beyond desktop use. To quote Apple: "The SQLite format will often be the best choice for desktop applications because of its performance characteristics."
 *
 
 *
-I'd expect that new back-ends could be added to handle other databases. But I (obviously) don't know whether the General/CoreData code itself has scaling issues.
+I'd expect that new back-ends could be added to handle other databases. But I (obviously) don't know whether the CoreData code itself has scaling issues.
 *
 
-Again, the issue isn't General/CoreData so much itself, though EOF does add some heft.  The real problem lies in General/SQLite... which is not meant for serious heavy lifting.
+Again, the issue isn't CoreData so much itself, though EOF does add some heft.  The real problem lies in SQLite... which is not meant for serious heavy lifting.
 
-*..and sqlite is just one possible backend for General/CoreData.  Maybe in the future Apple (or someone else) will write a backend to a more serious database.*
+*..and sqlite is just one possible backend for CoreData.  Maybe in the future Apple (or someone else) will write a backend to a more serious database.*
 
 ----
 
-Last october at the O'Reilly conference someone from Apple working on General/CoreData stated that one can look at EOF (Enterprise Object Framework) to prepare for General/CoreData.
+Last october at the O'Reilly conference someone from Apple working on CoreData stated that one can look at EOF (Enterprise Object Framework) to prepare for CoreData.
 EOF links:
     
-http://developer.apple.com/documentation/General/LegacyTechnologies/General/WebObjects/WebObjects_4.5/System/Documentation/Developer/General/EnterpriseObjects/General/DevGuide/General/GuideTOC.html
+http://developer.apple.com/documentation/LegacyTechnologies/WebObjects/WebObjects_4.5/System/Documentation/Developer/EnterpriseObjects/DevGuide/GuideTOC.html
 
 
-http://developer.apple.com/documentation/General/LegacyTechnologies/General/WebObjects/WebObjects_4.5/System/Documentation/Developer/General/EnterpriseObjects/General/EOTools/General/EOToolsTOC.html 
+http://developer.apple.com/documentation/LegacyTechnologies/WebObjects/WebObjects_4.5/System/Documentation/Developer/EnterpriseObjects/EOTools/EOToolsTOC.html 
 
 
 ----
 
 **Networked Applications**
 
-It looks like Core Data is not meant to be used for Networked Applications (ie. network accessible persistent stores/database back ends).  So other than General/WebObjects, what other competing technologies exist on OS X to produce Cocoa network-based database applications?  I'm looking for something like General/WebObjects, but with Cocoa - Objective-C instead of Java.
+It looks like Core Data is not meant to be used for Networked Applications (ie. network accessible persistent stores/database back ends).  So other than WebObjects, what other competing technologies exist on OS X to produce Cocoa network-based database applications?  I'm looking for something like WebObjects, but with Cocoa - Objective-C instead of Java.
 
-* I don't know that this is a General/CoreData limitation. It may just be an General/SQLite issue. *
+* I don't know that this is a CoreData limitation. It may just be an SQLite issue. *
 
-* I have been studying the documentation on the General/SyncServices for 10.4, and if I am reading them correctly you can use the General/SyncServices to sync multiple instances of a General/CoreData application (each acting as a client) with one General/TruthDatabase (used by General/SyncServices as the main database).  By creating your own data stucture, much like Apple has created one for iCal or Address Book, you can have them all sync in the background, just as iCal does.  If anyone knows more about this or has used it I would really like to hear your feedback, as this is a route I was thinking of going when developing a networked General/CoreData application. *
+* I have been studying the documentation on the SyncServices for 10.4, and if I am reading them correctly you can use the SyncServices to sync multiple instances of a CoreData application (each acting as a client) with one TruthDatabase (used by SyncServices as the main database).  By creating your own data stucture, much like Apple has created one for iCal or Address Book, you can have them all sync in the background, just as iCal does.  If anyone knows more about this or has used it I would really like to hear your feedback, as this is a route I was thinking of going when developing a networked CoreData application. *
 
 With X-San and all the networking tech like X-Grid that Apple has, I'd be surprised if it didn't have an awesome API for Networked Applications.
 ----
@@ -146,7 +146,7 @@ In this hands-on session, we'll expand on the basics of Core Data by walking you
 
 **Cocoa and Core Data Feedback Forum**
 
-Come give us your feedback on Cocoa and its Core Data General/APIs.
+Come give us your feedback on Cocoa and its Core Data APIs.
 
 ----
 

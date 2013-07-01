@@ -1,4 +1,4 @@
-How come General/NSTextView doesn't have bindings options for font family and font size etc? Is there away to set this up using bindings? General/NSTextField has the bindings options I want but I must use a General/NSTextView. Any ideas?
+How come NSTextView doesn't have bindings options for font family and font size etc? Is there away to set this up using bindings? NSTextField has the bindings options I want but I must use a NSTextView. Any ideas?
 
 ----
 

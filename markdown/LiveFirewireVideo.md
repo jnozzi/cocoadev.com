@@ -4,9 +4,9 @@ Thanks for any help in advance!
 
 ----
 
-I believe video capture is handled by General/QuickTime.
+I believe video capture is handled by QuickTime.
 
--- General/FinlayDobbie
+-- FinlayDobbie
 
 ----
 

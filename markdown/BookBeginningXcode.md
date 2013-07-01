@@ -15,7 +15,7 @@ $39.99
 0-471-75479-X
 
 
-*http://www.wiley.com/General/WileyCDA/General/WileyTitle/productCd-047175479X.html
+*http://www.wiley.com/WileyCDA/WileyTitle/productCd-047175479X.html
 *http://www.amazon.com/o/ASIN/047175479X/
 *http://search.barnesandnoble.com/booksearch/isbnInquiry.asp?isbn=047175479X
 
@@ -25,7 +25,7 @@ Being proficient in Xcode is a crucial part of being an effective Cocoa programm
 
 ***Description:**
 
-Xcode is a powerful suite of free development tools from Apple Computer that will allow you to create Macintosh applications, plug-ins, web components, applets, and more using languages such as C, C++, Objective-C, Java, and General/AppleScript.
+Xcode is a powerful suite of free development tools from Apple Computer that will allow you to create Macintosh applications, plug-ins, web components, applets, and more using languages such as C, C++, Objective-C, Java, and AppleScript.
 
 What you will learn from this book: 
 

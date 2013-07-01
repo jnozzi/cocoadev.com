@@ -6,12 +6,12 @@ Yes, very nice read --zootbobbalu
 
 ----
 
-(at one time) General/CocoaDev's wiki (was) choking on the ampersands...
+(at one time) CocoaDev's wiki (was) choking on the ampersands...
 
-*I'll look at it -- General/KritTer*
+*I'll look at it -- KritTer*
 
 *All sorted.*
 
-You rock, General/KritTer! Now how about HTML diff-ing :-D
+You rock, KritTer! Now how about HTML diff-ing :-D
 
 *Thank you :) Unfortunately, while I have time for a single-character change in a single, easily-found line of code, I definitely don't have time to underwrite a massive multi-line project like that :(*

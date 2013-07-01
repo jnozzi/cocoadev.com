@@ -1,28 +1,28 @@
 Defined as:
 
     
-struct General/CFStreamClientContext {
-   General/CFIndex version;
+struct CFStreamClientContext {
+   CFIndex version;
    void *info;
    void *(*retain)(void *info);
    void (*release)(void *info);
-   General/CFStringRef (*copyDescription)(void *info);
-} General/CFStreamClientContext;
+   CFStringRef (*copyDescription)(void *info);
+} CFStreamClientContext;
  
 
-In the "Working with Streams" section of the General/CFNetwork guide, the example uses custom function pointers as listed below:
+In the "Working with Streams" section of the CFNetwork guide, the example uses custom function pointers as listed below:
 
     
-General/CFStreamClientContext myContext = {0, myPtr, myRetain, myRelease, myCopyDesc};
+CFStreamClientContext myContext = {0, myPtr, myRetain, myRelease, myCopyDesc};
  
 
-It's much easier, and just as valid to use the built in General/CoreFoundation functions:
+It's much easier, and just as valid to use the built in CoreFoundation functions:
 
     
-General/CFStreamClientContext myContext = {
+CFStreamClientContext myContext = {
     0,
     self,
-    (void *(*)(void *info))General/CFRetain,
-    (void (*)(void *info))General/CFRelease,
-    (General/CFStringRef (*)(void *info))General/CFCopyDescription
+    (void *(*)(void *info))CFRetain,
+    (void (*)(void *info))CFRelease,
+    (CFStringRef (*)(void *info))CFCopyDescription
 };

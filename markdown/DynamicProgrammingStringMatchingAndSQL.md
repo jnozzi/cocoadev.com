@@ -1,4 +1,4 @@
-I'm in the process of writing a search tool and would like to use General/SQLite for persistant storage. I have already created a string matching function that uses simple "dynamic programming" ideas to create scores for partial matches. Does anyone know if General/SQLite has the ability to hook into my function to select records?
+I'm in the process of writing a search tool and would like to use SQLite for persistant storage. I have already created a string matching function that uses simple "dynamic programming" ideas to create scores for partial matches. Does anyone know if SQLite has the ability to hook into my function to select records?
 
 What would be ideal is if there was a way you could set a threshold for a SELECT. Say you would like to select all records with the first name Steve and set a threshold of 10 for the partial match deviation. 
 

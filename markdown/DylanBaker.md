@@ -6,7 +6,7 @@ I wrote a couple of... um... "bad" programs in TI-BASIC, then a couple good ones
 
 Well, technically, that's ALL history, since it's all gone past. Not to ruin the colloquialism or anything.
 
-So yeah, I know TI-BASIC, HTML, PHP (with General/MySQL), Inform, a smattering of C++, and now I'm learning Cocoa.
+So yeah, I know TI-BASIC, HTML, PHP (with MySQL), Inform, a smattering of C++, and now I'm learning Cocoa.
 
 **Stuff Not Related To Programming**
 I'm an Eagle Scout.

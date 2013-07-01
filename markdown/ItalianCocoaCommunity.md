@@ -8,11 +8,11 @@ del nuovo sistema operativo Apple.
 Possibili sotto categorie per il gruppo di discussione :
 
 
-* General/NeofitiMacOs X
-* General/NeofitiCocoa
-* General/NeofitiJava
-* General/NeofitiDatabase
-* General/VariEdEventuali
+* NeofitiMacOs X
+* NeofitiCocoa
+* NeofitiJava
+* NeofitiDatabase
+* VariEdEventuali
 
 
 Links e risorse:
@@ -28,4 +28,4 @@ Links e risorse:
 Nota: Per modifiche corpose, lasciate un' indicazione con la data e un vostro nome/pseudonimo, comunque lasciate un segno del vostro passaggio.
 Grazie
 ----
-General/[FilippoPascolo]
+[FilippoPascolo]

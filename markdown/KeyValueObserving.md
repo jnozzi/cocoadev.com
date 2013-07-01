@@ -1,11 +1,11 @@
 
 
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/KeyValueObserving/General/KeyValueObserving.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html
 
 ----
 
-Reading through the preliminary documentation about the new bindings system I saw that values from the view are pushed to the model using General/KeyValueCoding, but afterwards, the view is updated using *key-value observing*, I have searched the documentation and Google, but cannot find any details about this new protocol.
+Reading through the preliminary documentation about the new bindings system I saw that values from the view are pushed to the model using KeyValueCoding, but afterwards, the view is updated using *key-value observing*, I have searched the documentation and Google, but cannot find any details about this new protocol.
 
 Does anyone have any insight?
 
@@ -15,11 +15,11 @@ On a related note, I cannot make my view update its state when my model change -
 
 But ehm... how? I have one view that sets some value in the model which affects other values of the model, currently shown by other views -- how do I make these other views update? the idea with the binding-stuff is that I shouldn't need to write controller code to setNeedsDisplay: or similar.
 
-*In your General/NSView subclass, when someone does a -setFoo:bar your -setFoo: method should call [self setNeedsDisplay:YES] (or -setNeedsDisplayInRect: if you don't need to update the whole thing).  I believe this is what happens in General/NSControl and its subclasses, for example.*
+*In your NSView subclass, when someone does a -setFoo:bar your -setFoo: method should call [self setNeedsDisplay:YES] (or -setNeedsDisplayInRect: if you don't need to update the whole thing).  I believe this is what happens in NSControl and its subclasses, for example.*
 
-**No, this is not the intent of General/KeyValueObserving -- the idea is that a value in the model changes, and the view automatically updates based on this new value, without having code invoke setNeedsDisplay: or similar**
+**No, this is not the intent of KeyValueObserving -- the idea is that a value in the model changes, and the view automatically updates based on this new value, without having code invoke setNeedsDisplay: or similar**
 
-The mechanism works just fine, without any additional code written by the user (unless the user wants to give the system some extra handy information!).  Lets say I have a General/NSObject subclass, called (say) Employee, and the class has two instance variables; Name and dateOfBirth.  If a particular instance is displayed, using bindings, in a view, then all I need to do to ensure that the values are updated in the view is update them using an accessor with the correct name: e.g. [ self setName ] or [ someEmployee setDateOfBirth ].  I must do this even if I could access the variables locally - this ensures the General/KeyValueObserving mechanism picks up the change. 
+The mechanism works just fine, without any additional code written by the user (unless the user wants to give the system some extra handy information!).  Lets say I have a NSObject subclass, called (say) Employee, and the class has two instance variables; Name and dateOfBirth.  If a particular instance is displayed, using bindings, in a view, then all I need to do to ensure that the values are updated in the view is update them using an accessor with the correct name: e.g. [ self setName ] or [ someEmployee setDateOfBirth ].  I must do this even if I could access the variables locally - this ensures the KeyValueObserving mechanism picks up the change. 
 
 
 If I want to have a third *derived* value on the class, such as age, which is calculated automatically when [ myEmployee age] is invoked, I clearly don't have a mutator (set accessor such as [ bob setAge ]) for it, since it is derived from the dateOfBirth value.  In this case I must tell the system that the value for the key 'age' has changed, using [ self willChangeValueForKey:@"age" ] before the change to the value it is derived from (dateOFBirth), and [ self didChangeValueForKey:@"age" ] after the change.  The UI element displaying the age will then update correctly.
@@ -36,7 +36,7 @@ If I want to have a third *derived* value on the class, such as age, which is ca
 
 
 Please excuse any coding/naming errors in the above - I left my iBook at work today. :-(
---General/AlexBrown
+--AlexBrown
 
 ----
 
@@ -48,7 +48,7 @@ There is also a mechanism for declaring derived key relationships that avoids th
 {
   ...
 
-  General/self class] setKeys:[[[NSArray arrayWithObject:@"dateOfBirth"]
+  self class] setKeys:[[[NSArray arrayWithObject:@"dateOfBirth"]
     triggerChangeNotificationsForDependentKey:@"age"];
 
   ...
@@ -61,23 +61,23 @@ Notice that you have to call this method on the class, not on the instance. This
     
 + (void)initialize {
     [super initialize];
-    General/self class] setKeys:[[[NSArray arrayWithObject:@"dateOfBirth"] triggerChangeNotificationsForDependentKey:@"age"];
+    self class] setKeys:[[[NSArray arrayWithObject:@"dateOfBirth"] triggerChangeNotificationsForDependentKey:@"age"];
 }
 
 
 See the linked documentation, or 
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/KeyValueObserving/Concepts/General/DependentKeys.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/KeyValueObserving/Concepts/DependentKeys.html
 
 for more details.
 
 ----
 
-There is some documentation about observers as part of the General/NSObject API description. It was also briefly mentioned in one of the free ADC TV videos (New Cocoa API or similar).
+There is some documentation about observers as part of the NSObject API description. It was also briefly mentioned in one of the free ADC TV videos (New Cocoa API or similar).
 
 ----
 
-Hey, I tried to watch the free ADC videos, but when I try, quicktime (e.g., not Safari) starts and always asks me for a login and password. I tried my ADC login/pass but no luck. What's the deal? Did I miss some documentation explaining the patently obvious? -- General/ShamylZakariya
+Hey, I tried to watch the free ADC videos, but when I try, quicktime (e.g., not Safari) starts and always asks me for a login and password. I tried my ADC login/pass but no luck. What's the deal? Did I miss some documentation explaining the patently obvious? -- ShamylZakariya
 
 ----
 

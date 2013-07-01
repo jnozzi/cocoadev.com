@@ -38,9 +38,9 @@ The list of recently opened projects is most likely stored in the preferences sy
 defaults read com.apple.Xcode
 
 You might want to move the preferences file altogether, in case something went haywire in there.
-Move  ~/Library/Preferences/com.apple.Xcode.plist somewhere else and start General/XCode, see if it helps.
+Move  ~/Library/Preferences/com.apple.Xcode.plist somewhere else and start XCode, see if it helps.
 
---General/CristianDraghici
+--CristianDraghici
 
 ----
 

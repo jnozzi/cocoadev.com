@@ -4,7 +4,7 @@ http://web.me.com/oasis/ogrekit/
 
 Regex framework, released under a BSD license. Supports multiple regex syntax styles and is a drop-in replacement for the standard Cocoa text-finding stuff. The only documentation for it so far is in Japanese, so perhaps this page could be useful for those of us who don't read Japanese to share information. This is AFAIK the only Cocoa regex package that provides user interface elements such as a find panel and a 'find all' results panel.
 
-Notably used in General/SubEthaEdit. Also in the open-source editor General/TextForge. Not necessarily in that chronological order.
+Notably used in SubEthaEdit. Also in the open-source editor TextForge. Not necessarily in that chronological order.
 
 Can you use this in your shareware app LEGALLY?
 

@@ -10,5 +10,5 @@ Previous competitions have been:
 *I - (March 3rd 2006) Accessibility API and Mardi Gras
 *II - iTunes visualization and Emily Dickinson
 *III - Quartz framework and Time
-*IV - General/CoreImage and Space
-*V - (March 30th 2007) General/ScreenSaver framework and Life
+*IV - CoreImage and Space
+*V - (March 30th 2007) ScreenSaver framework and Life

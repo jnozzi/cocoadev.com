@@ -2,11 +2,11 @@ Hi,
 
 I want to know if it's possible to get the default printer status. Perhaps with CUPS ? Is there a class that implements this?
 
--- JMM General/CodePark ( http://jm.marino.free.fr )
+-- JMM CodePark ( http://jm.marino.free.fr )
 
 ----
 
-Depending on what you mean by 'status' General/NSPrinter might have what you want.
+Depending on what you mean by 'status' NSPrinter might have what you want.
 
 ----
 
@@ -35,7 +35,7 @@ BAD BAD BAD ...
 
 ----
 
-Try the General/PrintCore framework, part of the General/ApplicationServices General/UmbrellaFramework
+Try the PrintCore framework, part of the ApplicationServices UmbrellaFramework
 
 ----
 

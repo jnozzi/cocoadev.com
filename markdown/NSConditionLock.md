@@ -4,7 +4,7 @@ http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/
 
 ----**The definition**----
 
-General/NSConditionLock is an implementation of the General/NSLocking protocol; it extends the protocol by allowing threads to wait on the lock until the condition is met for it to wake up. While a thread is waiting, it consumes no processor time, making this an effective means of putting a thread to sleep and waking it up again in a high-level fashion.
+NSConditionLock is an implementation of the NSLocking protocol; it extends the protocol by allowing threads to wait on the lock until the condition is met for it to wake up. While a thread is waiting, it consumes no processor time, making this an effective means of putting a thread to sleep and waking it up again in a high-level fashion.
 
 Each condition lock has an associated *condition* - an integer whose value can only be set on initialization (defaults to 0) or when releasing the lock (optional). Threads wait on the lock until the condition is a given value by attempting to acquire the lock (the condition aspect is, again, optional).
 
@@ -12,7 +12,7 @@ All this can easily be garnered from Apple's documentation, but what good is a c
 
 ----**Uses for condition locks**----
 
-A condition lock can be used to synchronize the passing of information between threads, usually states. Drawing on General/ProducersAndConsumerModel, the states could be: 
+A condition lock can be used to synchronize the passing of information between threads, usually states. Drawing on ProducersAndConsumerModel, the states could be: 
 * 0 - New data is not yet available on an interthread queue queue
 * 1 - New data is now available on the queue
 
@@ -32,14 +32,14 @@ Each thread attempts to grab the condition lock in condition 0, so nearly all wi
 
 When a watching thread gets something to deal with, it grabs the lock (ignoring the condition) and marks its source as unwatched again before rocking the lock to 0. It then goes off, does its processing, before repeating the cycle by waiting for the lock to reach condition 0.
 
-A little analysis confirms this has the desired effect - every source will be watched by a thread if one is available, and the shared memory will be adequately protected from data races (see General/SynchronizationPoints) by the condition lock.
+A little analysis confirms this has the desired effect - every source will be watched by a thread if one is available, and the shared memory will be adequately protected from data races (see SynchronizationPoints) by the condition lock.
 
 ----**The hazards**----
 
-Systems using General/NSConditionLock**'s have to be careful to avoid General/DeadLock. They are also susceptible to General/PriorityInversion, since they are by definition a means of blocking until a condition is true, but this is less relevant to most Cocoa programmers.
+Systems using NSConditionLock**'s have to be careful to avoid DeadLock. They are also susceptible to PriorityInversion, since they are by definition a means of blocking until a condition is true, but this is less relevant to most Cocoa programmers.
 
 ----**Example codes**----
 
 
-* General/NSConditionLockMultiJobExample
-* General/ProducersAndConsumerModel
+* NSConditionLockMultiJobExample
+* ProducersAndConsumerModel

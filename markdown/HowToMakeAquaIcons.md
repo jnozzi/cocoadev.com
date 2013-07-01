@@ -2,9 +2,9 @@ How do YOU make those beautiful icons for your latest application?  Tell us here
 
 ----
 
-First of all, you should read Apple's Aqua Human Interface Guidelines. Not only does it explain how a well-designed OS X icon should look, but it also explains how a well-designed OS X app should look overall. See http://developer.apple.com/ue/aqua/icons.html . A good program for "aquefying" graphics is General/AquaTint- see http://www.sticksoftware.com/software/Aquatint.html . You simply input a monochrome image, and it aquefies it. Remember, don't overuse the aqua look- only use it where appropriate (UI widgets, etc.).
+First of all, you should read Apple's Aqua Human Interface Guidelines. Not only does it explain how a well-designed OS X icon should look, but it also explains how a well-designed OS X app should look overall. See http://developer.apple.com/ue/aqua/icons.html . A good program for "aquefying" graphics is AquaTint- see http://www.sticksoftware.com/software/Aquatint.html . You simply input a monochrome image, and it aquefies it. Remember, don't overuse the aqua look- only use it where appropriate (UI widgets, etc.).
 
--- General/AdamAtlas
+-- AdamAtlas
 
 ----
 
@@ -23,7 +23,7 @@ Finder (and all OS X windows with the ability to browse file systems) gets Appli
 
 Software mainly used for creating icons are Adobe Photoshop, Adobe Illustrator, Macromedia Fireworks and GIMP. You can also use additional software, but those should do the job. Pick one or two that will complement each other's job and get to it!
 
--- General/FernandoLucasSantos
+-- FernandoLucasSantos
 
 ----
 
@@ -31,7 +31,7 @@ Where did those generic Aqua icons go?  I tend to need them from time to time bu
 
 ----
 
-Does anyone know where I can find a .png of the generic (blank white paper) OS X document icon?  I can modify it into my own document icon, but first I have to find it.  (Screen-capturing it from the Get Info dialog doesn't work, because it doesn't get the transparency.)  Thanks!  --General/DarelRex@gmail.com
+Does anyone know where I can find a .png of the generic (blank white paper) OS X document icon?  I can modify it into my own document icon, but first I have to find it.  (Screen-capturing it from the Get Info dialog doesn't work, because it doesn't get the transparency.)  Thanks!  --DarelRex@gmail.com
 ----
 
 What I did was ( so far as I can remember ):
@@ -99,7 +99,7 @@ HTH
 R
 
 ----
-Or you can just find the icon in this folder: /System/Library/General/CoreServices/General/CoreTypes.bundle/Contents/Resources/
+Or you can just find the icon in this folder: /System/Library/CoreServices/CoreTypes.bundle/Contents/Resources/
 ----
 Maybe he can use folder icon x. Never used really, but I saw they have templates. But still, there will be the shadow problem of the curl if the app image is in the middle or to big. BTW. He mentioned that he was searching for a png. 
 ----

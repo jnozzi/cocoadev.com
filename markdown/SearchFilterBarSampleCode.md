@@ -10,28 +10,28 @@ does NOT connect to a delegate, therefore there is only one button in the bar (b
 
 Heads up:
 the three classes are:
-General/FilterBar
-General/SDFilterBarButton
-General/SDFilterBarButtonCell
+FilterBar
+SDFilterBarButton
+SDFilterBarButtonCell
 
 ----
 
     
-/* General/FilterBar */
+/* FilterBar */
 
 #import <Cocoa/Cocoa.h>
-#import "General/SDFilterBarButton.h"
-#import "General/SDFilterBarButtonCell.h"
+#import "SDFilterBarButton.h"
+#import "SDFilterBarButtonCell.h"
 
 
-@interface General/FilterBar : General/NSView
+@interface FilterBar : NSView
 {
-	General/NSImage *backgroundImage;
-	General/NSMutableArray *buttons;
+	NSImage *backgroundImage;
+	NSMutableArray *buttons;
 }
 
-- (General/NSButton *)newButton;
-- (BOOL)addButtonWithTitle:(General/NSString *) representedObject:(id)repObject toFamily:(General/NSString *)family;
+- (NSButton *)newButton;
+- (BOOL)addButtonWithTitle:(NSString *) representedObject:(id)repObject toFamily:(NSString *)family;
 
 - (id)delegate;
 - (void)setDelegate:(id)delegate;
@@ -39,39 +39,39 @@ General/SDFilterBarButtonCell
 @end
 
 
-#import "General/FilterBar.h"
+#import "FilterBar.h"
 
-@implementation General/FilterBar
+@implementation FilterBar
 
 #pragma mark -
 #pragma mark Setup
 
-- (id)initWithFrame:(General/NSRect)frameRect
+- (id)initWithFrame:(NSRect)frameRect
 {
 	if ( (self = [super initWithFrame:frameRect]) == nil )
 		return nil;
 	
-	backgroundImage = General/[[NSImage imageNamed:@"General/FilterBarBackground"] retain];
-	buttons = General/[[NSMutableArray alloc] init];
+	backgroundImage = [[NSImage imageNamed:@"FilterBarBackground"] retain];
+	buttons = [[NSMutableArray alloc] init];
 	
-	General/[SDFilterBarButton setCellClass:General/[SDFilterBarButtonCell class]];
+	[SDFilterBarButton setCellClass:[SDFilterBarButtonCell class]];
 	
 	return self;
 }
 
 - (void)awakeFromNib
 {
-	//General/self window] setAcceptsMouseMovedEvents:YES];
+	//self window] setAcceptsMouseMovedEvents:YES];
 	
 	[[SDFilterBarButton *newButton;
 	newButton = [self newButton];
 
-	General/NSRect frame = [newButton frame];
+	NSRect frame = [newButton frame];
 	frame.origin.x = 4;
 	frame.origin.y = 2;
 	[newButton setFrame:frame];
 	
-	General/newButton cell] setBezeled:NO];
+	newButton cell] setBezeled:NO];
 	
 	[buttons addObject:newButton];
 	
@@ -83,22 +83,22 @@ General/SDFilterBarButtonCell
 
 - (void)drawRect:([[NSRect)rect
 {
-	General/NSLog(@"Displaying");
+	NSLog(@"Displaying");
 	[super drawRect:rect];
-	[backgroundImage compositeToPoint:General/NSMakePoint(0,0) operation:General/NSCompositeCopy]; //General/NSCompositeSourceOver
+	[backgroundImage compositeToPoint:NSMakePoint(0,0) operation:NSCompositeCopy]; //NSCompositeSourceOver
 }
 
 #pragma mark -
 #pragma mark Cell creation
 
-- (General/NSButton *)newButton
+- (NSButton *)newButton
 {
-	General/SDFilterBarButton *newButton = General/[[SDFilterBarButton alloc] init];
+	SDFilterBarButton *newButton = [[SDFilterBarButton alloc] init];
 	[newButton setTitle:@"button title"];
-	[newButton setButtonType:General/NSPushOnPushOffButton];
-	[newButton setBezelStyle:General/NSRecessedBezelStyle];
+	[newButton setButtonType:NSPushOnPushOffButton];
+	[newButton setBezelStyle:NSRecessedBezelStyle];
 	[newButton sizeToFit];
-	//General/newButton cell] setBackgroundColor:nil];
+	//newButton cell] setBackgroundColor:nil];
 	
 	[[newButton cell] setHighlighted:NO];
 	[[newButton cell] setShowsBorderOnlyWhileMouseInside:NO]; //NO
@@ -113,35 +113,35 @@ General/SDFilterBarButtonCell
 #pragma mark -
 #pragma mark Expiremental
 
-- (void)mouseMoved:(General/NSEvent *)theEvent
+- (void)mouseMoved:(NSEvent *)theEvent
 {
-	General/NSLog(@"YAY!");
+	NSLog(@"YAY!");
 }
 
-- (void)mouseEntered:(General/NSEvent *)theEvent
+- (void)mouseEntered:(NSEvent *)theEvent
 {
-	General/NSLog(@"mouse in filterBar");
+	NSLog(@"mouse in filterBar");
 }
 
 #pragma mark -
 #pragma mark Tracking rects
 
-- (void)addSubview:(General/NSView *)aView
+- (void)addSubview:(NSView *)aView
 {
-	General/NSLog(@"addSubview");
+	NSLog(@"addSubview");
 	[self setValue:[self addTrackingRect:[aView frame] 
 								   owner:aView 
 								userData:nil 
 							assumeInside:NO] 
-		forKeyPath:General/[NSString stringWithFormat:@"subviews.%@.tag", [aView title]]];
+		forKeyPath:[NSString stringWithFormat:@"subviews.%@.tag", [aView title]]];
 	
 	[super addSubview:aView];
 }
 
-- (void)willRemoveSubview:(General/NSView *)subview
+- (void)willRemoveSubview:(NSView *)subview
 {
-	General/NSLog(@"willRemoveSubview");
-	[self removeTrackingRect:General/self valueForKeyPath:[[[NSString stringWithFormat:@"subviews.%@.tag", [subview title]]] intValue]];
+	NSLog(@"willRemoveSubview");
+	[self removeTrackingRect:self valueForKeyPath:[[[NSString stringWithFormat:@"subviews.%@.tag", [subview title]]] intValue]];
 	
 	[super willRemoveSubview:subview];
 }
@@ -154,10 +154,10 @@ General/SDFilterBarButtonCell
     
 
 #import <Cocoa/Cocoa.h>
-#import "General/SDFilterBarButtonCell.h"
+#import "SDFilterBarButtonCell.h"
 
 
-@interface General/SDFilterBarButton : General/NSButton 
+@interface SDFilterBarButton : NSButton 
 {
 
 }
@@ -167,10 +167,10 @@ General/SDFilterBarButtonCell
 
 
 
-#import "General/SDFilterBarButton.h"
+#import "SDFilterBarButton.h"
 
 
-@implementation General/SDFilterBarButton
+@implementation SDFilterBarButton
 
 #pragma mark -
 #pragma mark Setup
@@ -189,24 +189,24 @@ General/SDFilterBarButtonCell
 #pragma mark -
 #pragma mark Mouse tracking
 
-- (void)mouseEntered:(General/NSEvent *)event
+- (void)mouseEntered:(NSEvent *)event
 {
-	General/self cell] setValue:[[[NSNumber numberWithBool:YES] forKey:@"mouseInView"];
+	self cell] setValue:[[[NSNumber numberWithBool:YES] forKey:@"mouseInView"];
 	[self setNeedsDisplay:YES];
 }
 
-- (void)mouseExited:(General/NSEvent *)event
+- (void)mouseExited:(NSEvent *)event
 {
-	General/self cell] setValue:[[[NSNumber numberWithBool:NO] forKey:@"mouseInView"];
+	self cell] setValue:[[[NSNumber numberWithBool:NO] forKey:@"mouseInView"];
 	[self setNeedsDisplay:YES];
 }
 
 #pragma mark -
 #pragma mark Action
 
-- (General/IBAction)buttonDown:(id)sender
+- (IBAction)buttonDown:(id)sender
 {
-	General/self cell] toggleSelected];
+	self cell] toggleSelected];
 }
 
 @end
@@ -219,7 +219,7 @@ General/SDFilterBarButtonCell
 #import <Cocoa/Cocoa.h>
 
 
-@interface [[SDFilterBarButtonCell : General/NSButtonCell
+@interface [[SDFilterBarButtonCell : NSButtonCell
 {
 	BOOL selected;
 	BOOL mouseInView;
@@ -230,10 +230,10 @@ General/SDFilterBarButtonCell
 @end
 
 
-#import "General/SDFilterBarButtonCell.h"
+#import "SDFilterBarButtonCell.h"
 
 
-@implementation General/SDFilterBarButtonCell
+@implementation SDFilterBarButtonCell
 
 #pragma mark -
 #pragma mark Setup
@@ -264,7 +264,7 @@ General/SDFilterBarButtonCell
 #pragma mark -
 #pragma mark Drawing
 
-- (void)drawBezelWithFrame:(General/NSRect)frame inView:(General/NSView*)controlView
+- (void)drawBezelWithFrame:(NSRect)frame inView:(NSView*)controlView
 {
 	if ( !mouseInView && !selected )
 		return;	
@@ -272,19 +272,19 @@ General/SDFilterBarButtonCell
 	[super drawBezelWithFrame:frame inView:controlView];
 }
 
-- (General/NSRect)drawTitle:(General/NSAttributedString*)title withFrame:(General/NSRect)frame inView:(General/NSView*)controlView
+- (NSRect)drawTitle:(NSAttributedString*)title withFrame:(NSRect)frame inView:(NSView*)controlView
 {
 	if ( mouseInView || selected )
 		return [super drawTitle:title withFrame:frame inView:controlView];
 		
-	General/NSMutableAttributedString *prettyTitle = General/[[NSMutableAttributedString alloc] initWithAttributedString:title];
-	[prettyTitle addAttribute:General/NSForegroundColorAttributeName value:General/[NSColor blackColor] range:General/NSMakeRange(0, [title length])]; //darkGrayColor
+	NSMutableAttributedString *prettyTitle = [[NSMutableAttributedString alloc] initWithAttributedString:title];
+	[prettyTitle addAttribute:NSForegroundColorAttributeName value:[NSColor blackColor] range:NSMakeRange(0, [title length])]; //darkGrayColor
 	
-	General/NSShadow *shadow = General/[[NSShadow alloc] init];
-		[shadow setShadowColor:General/[NSColor whiteColor]];
+	NSShadow *shadow = [[NSShadow alloc] init];
+		[shadow setShadowColor:[NSColor whiteColor]];
 		[shadow setShadowBlurRadius:2];
-		[shadow setShadowOffset:General/NSMakeSize(1, -1)];
-	[prettyTitle addAttribute:General/NSShadowAttributeName value:shadow range:General/NSMakeRange(0, [title length])];
+		[shadow setShadowOffset:NSMakeSize(1, -1)];
+	[prettyTitle addAttribute:NSShadowAttributeName value:shadow range:NSMakeRange(0, [title length])];
 	
 	return [super drawTitle:prettyTitle withFrame:frame inView:controlView];
 }

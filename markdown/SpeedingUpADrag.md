@@ -3,26 +3,26 @@
 I'm learning drag and drop now. I have several subviews (of the same class) in a view. I can drag these subviews using this code :
 
     
-- (void)mouseDown:(General/NSEvent *)event
+- (void)mouseDown:(NSEvent *)event
 {
-	if (General/self window] firstResponder] == self)
+	if (self window] firstResponder] == self)
 	{
-	[[NSPasteboard *pboard =General/[NSPasteboard pasteboardWithName:General/NSDragPboard];
-	General/NSData *data = [self dataWithPDFInsideRect:[self bounds]];
-	General/NSImage *image = General/[[NSImage alloc] initWithData:data];
+	[[NSPasteboard *pboard =[NSPasteboard pasteboardWithName:NSDragPboard];
+	NSData *data = [self dataWithPDFInsideRect:[self bounds]];
+	NSImage *image = [[NSImage alloc] initWithData:data];
     [pboard declareTypes:
-		General/[NSArray arrayWithObjects:General/NSPDFPboardType,
-			General/NSStringPboardType,nil] 
+		[NSArray arrayWithObjects:NSPDFPboardType,
+			NSStringPboardType,nil] 
 				   owner:self];
 	[self dragImage:image
-				 at:General/NSMakePoint(0,0)
-			 offset:General/NSMakeSize(0,0)
+				 at:NSMakePoint(0,0)
+			 offset:NSMakeSize(0,0)
 			  event:event
 		 pasteboard:pboard source:self
 		  slideBack:YES];
 	[image autorelease];
 	} else {
-		General/self window] makeFirstResponder:self];
+		self window] makeFirstResponder:self];
 	}
 }
 
@@ -41,34 +41,34 @@ ahh damn.. my     -drawRect: code is pretty big... here a resumed version:
 
     
 
-	int boxwidth = General/self superview] bounds].size.width -marge;
+	int boxwidth = self superview] bounds].size.width -marge;
 	int top = [self bounds].origin.y +[self bounds].size.height -(curve*2) -marge;
 	int height = [self bounds].size.height -(curve*2) -(bottomheight +curve) -marge -marge ;
 		
 	//=== top ===
-	[[NSBezierPath *pathTop = General/[NSBezierPath bezierPath];
+	[[NSBezierPath *pathTop = [NSBezierPath bezierPath];
 	// cut ->4 bezier operations
 	[pathTop closePath];
 	
 	//=== closebox ===
-	closeBoxBounds = General/NSMakeRect(boxwidth-13-marge+2, top+3+3, 13, 13);
+	closeBoxBounds = NSMakeRect(boxwidth-13-marge+2, top+3+3, 13, 13);
 	if (!closeBox)
 	{
-		closeBox = General/[[NSButton alloc] initWithFrame:closeBoxBounds];
-		[closeBox setButtonType: General/NSMomentaryChangeButton];
+		closeBox = [[NSButton alloc] initWithFrame:closeBoxBounds];
+		[closeBox setButtonType: NSMomentaryChangeButton];
 		[closeBox setBordered: NO];
 		[closeBox setAction: @selector(closeBloc)];
 		[closeBox setTarget: self];
 		
-		General/NSImage *General/BoxButtons = General/[NSImage imageNamed: @"blocs-buttons"];
-		General/NSImage *closeBoxImage = General/[[NSImage alloc] initWithSize:General/NSMakeSize(13, 13)];
-		General/NSImage *closeBoxImagePressed = General/[[NSImage alloc] initWithSize:General/NSMakeSize(13, 13)];
+		NSImage *BoxButtons = [NSImage imageNamed: @"blocs-buttons"];
+		NSImage *closeBoxImage = [[NSImage alloc] initWithSize:NSMakeSize(13, 13)];
+		NSImage *closeBoxImagePressed = [[NSImage alloc] initWithSize:NSMakeSize(13, 13)];
 		
 		[closeBoxImage lockFocus];
-		General/[BoxButtons compositeToPoint:General/NSZeroPoint fromRect:General/NSMakeRect(52, 39, 13, 13) operation:General/NSCompositeCopy];
+		[BoxButtons compositeToPoint:NSZeroPoint fromRect:NSMakeRect(52, 39, 13, 13) operation:NSCompositeCopy];
 		[closeBoxImage unlockFocus];
 		[closeBoxImagePressed lockFocus];
-		General/[BoxButtons compositeToPoint:General/NSZeroPoint fromRect:General/NSMakeRect(52, 26, 13, 13) operation:General/NSCompositeCopy];
+		[BoxButtons compositeToPoint:NSZeroPoint fromRect:NSMakeRect(52, 26, 13, 13) operation:NSCompositeCopy];
 		[closeBoxImagePressed unlockFocus];
 		
 		[closeBox setImage: closeBoxImage];
@@ -80,56 +80,56 @@ ahh damn.. my     -drawRect: code is pretty big... here a resumed version:
 	} else [closeBox setFrame:closeBoxBounds];
 	
 	//=== editbox ===
-	editBoxBounds = General/NSMakeRect(marge+indexdiameter+4+4, top+3+3, 13, 13);
+	editBoxBounds = NSMakeRect(marge+indexdiameter+4+4, top+3+3, 13, 13);
 	if (!editBox)
 	{
 	//cut -> almost the same as above (closebox)
 	} else [editBox setFrame:editBoxBounds];
 	
 	//=== index ===
-	General/NSRect circleNumberBounds = General/NSMakeRect(marge+4, top+4, indexdiameter, indexdiameter);
-	General/NSBezierPath *pathCircleNumber = General/[NSBezierPath bezierPathWithOvalInRect:circleNumberBounds];
-	string = General/[NSString stringWithFormat: @"%@", index];
+	NSRect circleNumberBounds = NSMakeRect(marge+4, top+4, indexdiameter, indexdiameter);
+	NSBezierPath *pathCircleNumber = [NSBezierPath bezierPathWithOvalInRect:circleNumberBounds];
+	string = [NSString stringWithFormat: @"%@", index];
 	
 	//=== title ===
-	General/NSRect titleBounds = General/NSMakeRect(marge+26, top+3, boxwidth-54, indexdiameter);
+	NSRect titleBounds = NSMakeRect(marge+26, top+3, boxwidth-54, indexdiameter);
 	
 	//=== bottom ===
-	General/NSBezierPath *pathBottom = General/[NSBezierPath bezierPath];
+	NSBezierPath *pathBottom = [NSBezierPath bezierPath];
 	// cut -> 5 bezier operations
 	
 	//=== drawing ===
-	General/NSShadow *shadow = General/[[NSShadow alloc] init];
-	[shadow setShadowOffset:General/NSMakeSize(0,-2)];
+	NSShadow *shadow = [[NSShadow alloc] init];
+	[shadow setShadowOffset:NSMakeSize(0,-2)];
 	[shadow setShadowBlurRadius:4];
-	[shadow setShadowColor:General/[NSColor colorWithCalibratedWhite:0.5 alpha:0.8]];
-	General/[NSGraphicsContext saveGraphicsState];
+	[shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.5 alpha:0.8]];
+	[NSGraphicsContext saveGraphicsState];
 	[shadow set];
 	
-	General/[[NSColor lightGrayColor] set];
+	[[NSColor lightGrayColor] set];
 	[pathTop fill];
-	General/[[NSColor whiteColor] set];
+	[[NSColor whiteColor] set];
 	[pathBottom fill];
 	
-	General/[NSGraphicsContext restoreGraphicsState];
+	[NSGraphicsContext restoreGraphicsState];
 	
 	if (selected) {
 		[pathTop setLineWidth:2.0];
 		[pathBottom setLineWidth:2.0];
-		General/[[NSColor keyboardFocusIndicatorColor] set];
+		[[NSColor keyboardFocusIndicatorColor] set];
 	} else {
 		[pathTop setLineWidth:1.0];
 		[pathBottom setLineWidth:1.0];
-		General/[[NSColor lightGrayColor] set];
+		[[NSColor lightGrayColor] set];
 	}
 
 	[pathTop stroke];
 	[pathBottom stroke];
-	General/[[NSColor whiteColor] set];
+	[[NSColor whiteColor] set];
 	[pathCircleNumber fill];
-	[self prepareAttributesWithColor:General/[NSColor lightGrayColor]];
+	[self prepareAttributesWithColor:[NSColor lightGrayColor]];
 	[self drawString: string centeredIn: circleNumberBounds];
-	[self prepareAttributesWithColor:General/[NSColor whiteColor]];
+	[self prepareAttributesWithColor:[NSColor whiteColor]];
 	[self drawString: title centeredIn: titleBounds];
 	
 	[shadow release];
@@ -137,11 +137,11 @@ ahh damn.. my     -drawRect: code is pretty big... here a resumed version:
 	//=== focus ===
 	if ( shouldDrawFocusRing ) 
     {
-        General/NSBezierPath *pathFocus = General/[NSBezierPath bezierPath];
+        NSBezierPath *pathFocus = [NSBezierPath bezierPath];
 		// cut -> 8 Bezier operations
 		[pathFocus closePath];
 		[pathFocus setLineWidth:2.0];
-		General/[[NSColor selectedMenuItemColor] set];
+		[[NSColor selectedMenuItemColor] set];
 		[pathFocus stroke];
     }
 	
@@ -155,7 +155,7 @@ A good litmus test would be to see if the long delay comes back if the view chan
 
 ----
 
-Your problem could be that you are locking focus on an General/NSImage while you are drawing into a view. You might want to draw the closeBoxImage in your     init method. --zootbobbalu
+Your problem could be that you are locking focus on an NSImage while you are drawing into a view. You might want to draw the closeBoxImage in your     init method. --zootbobbalu
 
 
 ----
@@ -168,7 +168,7 @@ Zoot is correct - you should be creating your images elsewhere (like init or awa
 
 ----
 
-Regardless of whether the drawRect code is good or not dataWithPDFInsideRect:[self bounds] takes a lot longer the first time you call it.  I have seen the behaviour myself and have not found a way round it.  If anyone can post code to get the contents of a view drawn inside an General/NSImage that will work even if the view is not and has never been on screen that is faster than dataWithPDFInsideRect: I'd be happy.  Robbie
+Regardless of whether the drawRect code is good or not dataWithPDFInsideRect:[self bounds] takes a lot longer the first time you call it.  I have seen the behaviour myself and have not found a way round it.  If anyone can post code to get the contents of a view drawn inside an NSImage that will work even if the view is not and has never been on screen that is faster than dataWithPDFInsideRect: I'd be happy.  Robbie
 
 ----
 
@@ -177,14 +177,14 @@ If that is the case then why not just have the view draw into an image?
     
 
 - (void)awakeFromNib {
-    General/NSView *view = [window contentView];
+    NSView *view = [window contentView];
     [view lockFocus];
-    General/NSBitmapImageRep *bir =
-        General/[[[NSBitmapImageRep alloc] initWithFocusedViewRect:[view bounds]] autorelease];
+    NSBitmapImageRep *bir =
+        [[[NSBitmapImageRep alloc] initWithFocusedViewRect:[view bounds]] autorelease];
     [view unlockFocus];
-    General/NSImage *image = General/[[[NSImage alloc] init] autorelease];
+    NSImage *image = [[[NSImage alloc] init] autorelease];
     [image addRepresentation:bir];
-    General/image [[TIFFRepresentation] writeToFile:@"/tmp/tiff.tiff" atomically:YES];
+    image [[TIFFRepresentation] writeToFile:@"/tmp/tiff.tiff" atomically:YES];
 }
 
 
@@ -192,10 +192,10 @@ If that is the case then why not just have the view draw into an image?
 
 ----
 
-If only that worked.  This is getting a bit off topic but the code above does not work for me as I have views that have never been on screen.  I am loading the views from plugins and then want to get the contents as an General/NSImage.  If I do the above I get:
+If only that worked.  This is getting a bit off topic but the code above does not work for me as I have views that have never been on screen.  I am loading the views from plugins and then want to get the contents as an NSImage.  If I do the above I get:
 
-2005-04-25 19:27:15.121 General/FolderSync[4384] *** Assertion failure in -General/[NSView lockFocus], General/AppKit.subproj/General/NSView.m:2748
-2005-04-25 19:27:15.122 General/FolderSync[4384] lockFocus sent to a view whose window is deferred and does not yet have a corresponding platform window
+2005-04-25 19:27:15.121 FolderSync[4384] *** Assertion failure in -[NSView lockFocus], AppKit.subproj/NSView.m:2748
+2005-04-25 19:27:15.122 FolderSync[4384] lockFocus sent to a view whose window is deferred and does not yet have a corresponding platform window
 
 Note that the neither the window the view is in when it's loaded from the plugin and the window the view will end up in are deferred!  I think my best solution will be a tab control with the tabs hidden.  Then all the views will be in a real valid window.
 
@@ -215,10 +215,10 @@ I just figured out that i don't redraw the buttons on each     drawRect:. I'm cr
 
     
 	//=== closebox ===
-	closeBoxBounds = General/NSMakeRect(boxwidth-13-marge+2, top+3+3, 13, 13);
+	closeBoxBounds = NSMakeRect(boxwidth-13-marge+2, top+3+3, 13, 13);
 	if (!closeBox)
 	{
-		closeBox = General/[[NSButton alloc] initWithFrame:closeBoxBounds];
+		closeBox = [[NSButton alloc] initWithFrame:closeBoxBounds];
 		
 		// �
 		// and blah blah blah�
@@ -227,7 +227,7 @@ I just figured out that i don't redraw the buttons on each     drawRect:. I'm cr
 	} else [closeBox setFrame:closeBoxBounds];
 
 
-So i don't think the slow down comes from here. -General/StephaneDassieu
+So i don't think the slow down comes from here. -StephaneDassieu
 
 ----
 
@@ -237,8 +237,8 @@ Well since you're complaining of a slow first-drag, I'd say you're wrong. Create
 
 Maybe you can try like this:
     
-	General/NSImage *im = General/[[NSImage alloc] initWithSize:
-                General/NSMakeSize([view frame].size.width, [view frame].size.height)];
+	NSImage *im = [[NSImage alloc] initWithSize:
+                NSMakeSize([view frame].size.width, [view frame].size.height)];
 	[im lockFocus];
 	[view drawRect:[view frame]];
 	[im unlockFocus];
@@ -256,7 +256,7 @@ I may try to create the image on     awakeFromNib: and keep it in memory.. but i
 *
 I just had the same speed problem with     dataWithPDFInsideRect:, so I came up with this code. I believe the slowdown is in     dataWithPDFInsideRect:.
 *
---General/AndreiKozlov
+--AndreiKozlov
 
 ----
 

@@ -2,7 +2,7 @@
 
 Do you mean java beans? *<-- You know, seperate from all the flamebait "discussion" going on here, this is just classic.*
 
-FYI, The only reason this was posted was because someone had General/JavaBlowsJammedTogether in a discussion and I couldn't keep myself from clicking on the question mark to get rid of it. So to make a long story short I personally don't have anything against Java. 
+FYI, The only reason this was posted was because someone had JavaBlowsJammedTogether in a discussion and I couldn't keep myself from clicking on the question mark to get rid of it. So to make a long story short I personally don't have anything against Java. 
 
 ----
 
@@ -16,8 +16,8 @@ Actually, Java itself is not bad - in fact, it's rather good. The problem that J
 
 ----
 
-IBM has released a good UI library for Java called SWT. It's part of their Eclipse projet and it has been ported to General/MacOSX. Don't be fooled by the Eclipse surrounding, SWT is available standalone. The link is http://www.eclipse.org
-SWT uses native components as much as possible (i.e. if you draw a tree, it's a native tree) so you get the same performance as AWT. However it supports a rich set of widgets, like Swing. Those widgets that are not available on a given platform are emulated through Java code. So essentially you have all the performance of AWT with the rich set of controls from Swing. Sweet. --General/BenoitMarchal
+IBM has released a good UI library for Java called SWT. It's part of their Eclipse projet and it has been ported to MacOSX. Don't be fooled by the Eclipse surrounding, SWT is available standalone. The link is http://www.eclipse.org
+SWT uses native components as much as possible (i.e. if you draw a tree, it's a native tree) so you get the same performance as AWT. However it supports a rich set of widgets, like Swing. Those widgets that are not available on a given platform are emulated through Java code. So essentially you have all the performance of AWT with the rich set of controls from Swing. Sweet. --BenoitMarchal
 
 ----
 
@@ -60,14 +60,14 @@ Now what is so hard about that?
 Okay - then here's another way to do the same thing in Java, using an automatically growing array. The code is not bloated...
 
     
-List list = new General/ArrayList(Arrays.asList( new Integer[]{ new Integer(1), new Integer(2), new Integer(3), new Integer(4), new Integer(5)}));
+List list = new ArrayList(Arrays.asList( new Integer[]{ new Integer(1), new Integer(2), new Integer(3), new Integer(4), new Integer(5)}));
 for(int i = list.size() ; i > 0; i--)
     System.out.println("Element at index " + i + " is " + list.get(i));
 
 
 In Java 1.5, the first line can be replaced with this:
     
-List list = new General/ArrayList(Arrays.asList( new int[]{ 1, 2, 3, 4, 5 } ));//Arrays.asList returns a fixed size list. You require a dynamic list...
+List list = new ArrayList(Arrays.asList( new int[]{ 1, 2, 3, 4, 5 } ));//Arrays.asList returns a fixed size list. You require a dynamic list...
 
 
 
@@ -115,12 +115,12 @@ Ummm... ever heard of Arrays.binarySearch, Arrays.sort? I'm not huge Java zealot
 
 ----
 
-Seems to me that you should use one of the more advance Java classes like a General/HashMap for that table...  Besides the example you give for your statically allocated lookup table forces you to address it with array access and to check the value of each item to find which item your trying to get in the struct. Unless of course you implemented a few lookup functions to hide that, but then if you do that, your bloated.... If you use the correct Java datastructure, then you have a easy solution.  
+Seems to me that you should use one of the more advance Java classes like a HashMap for that table...  Besides the example you give for your statically allocated lookup table forces you to address it with array access and to check the value of each item to find which item your trying to get in the struct. Unless of course you implemented a few lookup functions to hide that, but then if you do that, your bloated.... If you use the correct Java datastructure, then you have a easy solution.  
 
 and to initialize it you can do this:
 
     
-myHM = new General/HashMap();
+myHM = new HashMap();
 myHM.put("&", "nbsp");
 myHM.put("\"", "quot");
 ....
@@ -138,20 +138,20 @@ so it's basically the same.... and I don't need some specialized sturct....
 So let's demonstrate how to create a data table in Java, and to do so compactly. Yes, Java eschews the stack in favor of the heap. Precious little is on the stack. So we get to avoid issues with memory addresses being no longer valid because the stack has been popped. Yes it's a tradeoff. I can type, though. A few extra characters don't mean much.
 
     
-Map map = Maps.General/ArrayToMap( new Object[]{ new Character('&'),  
+Map map = Maps.ArrayToMap( new Object[]{ new Character('&'),  
          "nbsp", new Character('\*), "quot", new Character('<'), "lt", new Integer(160), "nbsp"});
 *
 
-And yes, no such thing as Maps.General/ArrayToMap exists. I'd have to write it. Pretty straightforward, though.
+And yes, no such thing as Maps.ArrayToMap exists. I'd have to write it. Pretty straightforward, though.
 
     
 class Maps
 {
-    static Map General/ArrayToMap( Object[] keyValuePairs )
+    static Map ArrayToMap( Object[] keyValuePairs )
     {
         if( keyValuePairs.length % 2 != 0 )
-            throw new General/IllegalArgumentException( "The last key is missing it's value pair" );
-        Map *map = new General/HashMap();
+            throw new IllegalArgumentException( "The last key is missing it's value pair" );
+        Map *map = new HashMap();
         for( int i = 0; i < keyValuePairs; i+=2 )
         {
             map.put( keyValuePairs[i], keyValuePairs[i+1]);
@@ -164,7 +164,7 @@ class Maps
 
 Java 1.5 will allow this:
     
-Map map = Maps.General/ArrayToMap( new Object[]{ '&',  "nbsp", '\*, "quot", '<', "lt", 160, "nbsp"});
+Map map = Maps.ArrayToMap( new Object[]{ '&',  "nbsp", '\*, "quot", '<', "lt", 160, "nbsp"});
 
 
 
@@ -212,7 +212,7 @@ fun find n lf = false
 Umm... classes *instead of* types? Classes ARE types. Just as they are in C++.
 ----
 
-Quoting Alexander Stepanov http://www.stlport.org/resources/General/StepanovUSA.html
+Quoting Alexander Stepanov http://www.stlport.org/resources/StepanovUSA.html
 
 *You can't write a generic max() in Java that takes two arguments of some type and has a return value of that same type. Inheritance and interfaces don't help. And if they cannot implement max or swap or linear search, what chances do they have to implement really complex stuff?*
 
@@ -226,11 +226,11 @@ After reading the whole article at the link above I came to two conclusions. Fir
 
 He is attending a workshop at my former university this summer, and I honestly don't remember when I was as excited about something as when to get a chance to meet him! He is one of my biggest idols ;-)
 
-About your second point: As I see it, General/ObjectiveCee is for GUI programming and inter-app communication (i.e. exchanging "data" between applications) � for everything else it sucks! But for this subdomain it actually has some advantages, i.e. keeping methods as their own type (allowing things like the responder chain), categories (extend objects that other people instantiate), forward unsupported methods (allowing class-posing, decorators, etc.), introspection (take something like the keybinding dictionary, which is just a list of methods, where the responder is asked at runtime for support of the action method) etc. etc.
+About your second point: As I see it, ObjectiveCee is for GUI programming and inter-app communication (i.e. exchanging "data" between applications) � for everything else it sucks! But for this subdomain it actually has some advantages, i.e. keeping methods as their own type (allowing things like the responder chain), categories (extend objects that other people instantiate), forward unsupported methods (allowing class-posing, decorators, etc.), introspection (take something like the keybinding dictionary, which is just a list of methods, where the responder is asked at runtime for support of the action method) etc. etc.
 
 And none of these features exist in Java ;-)
 
-Btw: I have written iterators, functors and some helper functions to be used with General/ObjectiveCee, allowing collections to be used with normal STL algorithms, and functors to easily be constructed from selectors � if there is any interest, I can try to wrap it up in a nice package and put it online (I don't know how many Cocoa programmers actually use STL?).
+Btw: I have written iterators, functors and some helper functions to be used with ObjectiveCee, allowing collections to be used with normal STL algorithms, and functors to easily be constructed from selectors � if there is any interest, I can try to wrap it up in a nice package and put it online (I don't know how many Cocoa programmers actually use STL?).
 
 ----
 
@@ -245,7 +245,7 @@ And you wouldn't be able to do e.g. Vector<bool>. But autoboxing (as they call i
 
 ----
 
-To say that Java is bad because it's cumbersome to print a list of integers in reverse order is like saying that a dishwasher is bad, since it won't wash my clothes. Get real. -- General/TheoHultberg/Iconara
+To say that Java is bad because it's cumbersome to print a list of integers in reverse order is like saying that a dishwasher is bad, since it won't wash my clothes. Get real. -- TheoHultberg/Iconara
 
 ----
 
@@ -253,19 +253,19 @@ No it is not � it might be like saying that a hammer is bad because it cannot 
 
 ----
 
-*About your second point: As I see it, General/ObjectiveCee is for GUI programming and inter-app communication (i.e. exchanging "data" between applications) � for everything else it sucks!*
+*About your second point: As I see it, ObjectiveCee is for GUI programming and inter-app communication (i.e. exchanging "data" between applications) � for everything else it sucks!*
 
-General/ObjectiveCee is also good for publishing robust object-oriented interfaces (API / SPI), such as framework and plugin API. You can add methods to frameworks and libraries without invalidating the interface; unlike C++ where you have to recompile all clients if the methods change (and why C++ is better off statically linked). (Note: you still can't change the number of instance variables in an General/ObjC object -- just methods). General/ObjC's dynamic lookup mechanism makes loading, querying, and running plugins relatively easy.
+ObjectiveCee is also good for publishing robust object-oriented interfaces (API / SPI), such as framework and plugin API. You can add methods to frameworks and libraries without invalidating the interface; unlike C++ where you have to recompile all clients if the methods change (and why C++ is better off statically linked). (Note: you still can't change the number of instance variables in an ObjC object -- just methods). ObjC's dynamic lookup mechanism makes loading, querying, and running plugins relatively easy.
 
--- General/MikeTrent
+-- MikeTrent
 
-Computer languages blow. All of 'em. General/ObjC is nice, but it blows. Java may be nice--though personally I don't think so--but it blows. C++ also blows. Haskell would blow if it were more popular. Even Smalltalk and Lisp, beautiful though they are, blow.
+Computer languages blow. All of 'em. ObjC is nice, but it blows. Java may be nice--though personally I don't think so--but it blows. C++ also blows. Haskell would blow if it were more popular. Even Smalltalk and Lisp, beautiful though they are, blow.
 
-The tradeoffs in blowiness is kind of hard to itemize at this time of night, but you can sometimes say things like "General/ObjC blows for down-to-Earth mathematical structures" or "Java blows for anything I want to do with it."
+The tradeoffs in blowiness is kind of hard to itemize at this time of night, but you can sometimes say things like "ObjC blows for down-to-Earth mathematical structures" or "Java blows for anything I want to do with it."
 
--- General/RobRix (who wonders why we need this page. Isn't it obvious that everything blows?)
+-- RobRix (who wonders why we need this page. Isn't it obvious that everything blows?)
 
-Yeah.  On some level, every language blows.  I sure as hell wouldn't use Objective-C to write enterprise business logic, nor as a server-side language, but those happen to be the few areas where Java doesn't blow.  Client-side Java definitely blows, though.  C++ blows at everything, etc.  --General/OwenAnderson
+Yeah.  On some level, every language blows.  I sure as hell wouldn't use Objective-C to write enterprise business logic, nor as a server-side language, but those happen to be the few areas where Java doesn't blow.  Client-side Java definitely blows, though.  C++ blows at everything, etc.  --OwenAnderson
 
 ----
 
@@ -290,7 +290,7 @@ for (int i = 0, i < N, i++)
 
 
 And finally, yes, it's easy to say that anything blows, which is exactly why it's done on **this page**.  For an interesting question on why blowing may not be particularly **bad**, see the following:
-http://www.dreamsongs.com/General/WorseIsBetter.html (the bit where the author argues against himself is entertaining)
+http://www.dreamsongs.com/WorseIsBetter.html (the bit where the author argues against himself is entertaining)
 *
 
 
@@ -319,7 +319,7 @@ Yes, novice Cocoa programmers and script kiddies are empowered by technologies t
 
 *"I find it amusing that some programmers feel a need to idealize their convictions."*
 
-You're attributing a sentiment that really isn't there; I use OO all the time and like it well enough - if I didn't, I wouldn't hang around a Cocoa wiki.  This doesn't prevent me from seeing how it *can be used* in General/TheRealWorld.  Any number of well-thought-of books (Antipatterns spring to mind, in fact, the whole patterns field arose from trying to avoid OO-related blowiness) have documented this, and all of them will tell you the same basic truth: no matter how good the tool, some people will use it poorly.  The ways that things are used poorly will vary from tool to tool, and this, in the context of this page is "blow".  Java blows for static tables (above).  Perl blows for readability.  Lisp blows for efficiency.  Prolog blows for string handling.  One way in which OO blows is that it mitigates sloppy design and implementation.  These aren't faults of novices and script kiddies, they're mistakes made all over the place by any number of people for a variety of different reasons, poor scheduling, dealing with legacy code, lack of coffee that day, and so on.  If you've never been unfortunate enough to end up on a project like that, it's because you're lucky, not because OO is somehow perfect.
+You're attributing a sentiment that really isn't there; I use OO all the time and like it well enough - if I didn't, I wouldn't hang around a Cocoa wiki.  This doesn't prevent me from seeing how it *can be used* in TheRealWorld.  Any number of well-thought-of books (Antipatterns spring to mind, in fact, the whole patterns field arose from trying to avoid OO-related blowiness) have documented this, and all of them will tell you the same basic truth: no matter how good the tool, some people will use it poorly.  The ways that things are used poorly will vary from tool to tool, and this, in the context of this page is "blow".  Java blows for static tables (above).  Perl blows for readability.  Lisp blows for efficiency.  Prolog blows for string handling.  One way in which OO blows is that it mitigates sloppy design and implementation.  These aren't faults of novices and script kiddies, they're mistakes made all over the place by any number of people for a variety of different reasons, poor scheduling, dealing with legacy code, lack of coffee that day, and so on.  If you've never been unfortunate enough to end up on a project like that, it's because you're lucky, not because OO is somehow perfect.
 
 Now back to Worse being Better; if OO blows because it mitigates the effect of sloppy work, is that really that bad?  Consider that you can have just one or two sloppy bits in a large system, but because they're isolated, the system as a whole can function perfectly well.  Other paradigms don't tend to isolate bad effects quite as efficiently.  Sounds like a strength now.  In all seriousness, that set of links on Worse is Better is really an informative read for OO in general.
 
@@ -330,12 +330,12 @@ Finally, I'd say that if someone **doesn't** know why OO (or Prolog or Fortran o
 ----
 Boy, I never thought that when I made the comment Java blows, way back when, that it would be turned into this.
 
-*I was the one who joined the two words together. It's an interesting experiment to see how a wiki can work from such a simple thing. See http://c2.com/cgi/wiki?General/PromptingStatement --General/StevenNewton *
+*I was the one who joined the two words together. It's an interesting experiment to see how a wiki can work from such a simple thing. See http://c2.com/cgi/wiki?PromptingStatement --StevenNewton *
 
 ----
 
-I find it easy to think in terms of tradeoff curves - you can trade performance for flexibility, speed for memory, etc. Just a case of visualizing that curve and working out where you want to be on it. These days I don't really mind trading performance because computers today are so damn fast and because I don't really need the performance. If I were to start writing games then I would probably be more inclined to write more code if it made things smoother. There are lots of dimensions other than performance and succinctness to these curves, like portability, maintainability, readability, etc. -- General/MikeAmy
+I find it easy to think in terms of tradeoff curves - you can trade performance for flexibility, speed for memory, etc. Just a case of visualizing that curve and working out where you want to be on it. These days I don't really mind trading performance because computers today are so damn fast and because I don't really need the performance. If I were to start writing games then I would probably be more inclined to write more code if it made things smoother. There are lots of dimensions other than performance and succinctness to these curves, like portability, maintainability, readability, etc. -- MikeAmy
 
 ----
 
-*Even the best tool cannot compensate for an inept user. Even if all they have to do is push a button, chances are they'll figure out a way to push it counter-productively.* � General/BrentGulanowski
+*Even the best tool cannot compensate for an inept user. Even if all they have to do is push a button, chances are they'll figure out a way to push it counter-productively.* � BrentGulanowski

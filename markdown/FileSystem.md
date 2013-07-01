@@ -12,6 +12,6 @@ HFS+ - recommended for general use, and for all Mac OS X root partitions.  Case 
 
 HFS - a throwback to the old Mac days.  Limited to 2 gigs total.   Case insensitive, case preserving.
 
-UFS (General/UFSFileSystem) - throwback to the General/NeXT days.  Case sensitive. 
+UFS (UFSFileSystem) - throwback to the NeXT days.  Case sensitive. 
 
-MSDOS (General/MSDOSFileSystem) - a windows/msdos partition, either FAT16 or FAT32.   Case insensitive, case preserving, sometimes.
+MSDOS (MSDOSFileSystem) - a windows/msdos partition, either FAT16 or FAT32.   Case insensitive, case preserving, sometimes.

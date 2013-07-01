@@ -1,11 +1,11 @@
 
 
-What is a good way to close an General/NSWindow which has an General/NSDrawer attached, so that the drawer is in the same state when the window reopens?
+What is a good way to close an NSWindow which has an NSDrawer attached, so that the drawer is in the same state when the window reopens?
 
-Context: I am a Cocoa newbie; I am trying to make a few adjustments to the nntp client General/OSXnews [http://osxnews.sourceforge.net/], partly privately for self-teaching purposes and partly to contribute to the project itself.  Its interface is based on Mail's, with a drawer listing news servers and the respective subscribed groups in an General/NSOutlineView, and the main window split, displaying the list of messages in the selected group in the top half and displaying the selected message in the bottom half.  Now, this window can be closed, and the current implementation in the delegate is roughly:
+Context: I am a Cocoa newbie; I am trying to make a few adjustments to the nntp client OSXnews [http://osxnews.sourceforge.net/], partly privately for self-teaching purposes and partly to contribute to the project itself.  Its interface is based on Mail's, with a drawer listing news servers and the respective subscribed groups in an NSOutlineView, and the main window split, displaying the list of messages in the selected group in the top half and displaying the selected message in the bottom half.  Now, this window can be closed, and the current implementation in the delegate is roughly:
     
 -(BOOL) windowShouldClose:(id)sender {
-    if ([drawer state] == General/NSDrawerOpenState) {
+    if ([drawer state] == NSDrawerOpenState) {
         drawerWasOpen = YES;
         [drawer close];
     } else {
@@ -28,11 +28,11 @@ The window is set *not* to be released on close, so I thought deleting all of th
 
 Any ideas?  Also please tell me if this seems way too long for a "Discussions" post!
 
-Thanks  --  General/MichaelBannister
+Thanks  --  MichaelBannister
 
 ----
 
-Drawers suck - you'd be better off mimicking the new Mail interface (though you could allow side-swapping). That said, I'm pretty sure there's an General/NSDrawer category out there that adds the methods you're looking for.
+Drawers suck - you'd be better off mimicking the new Mail interface (though you could allow side-swapping). That said, I'm pretty sure there's an NSDrawer category out there that adds the methods you're looking for.
 
 ----
 
@@ -49,13 +49,13 @@ But hey, don't listen to me - I took an app that had a split-view like that and 
 ----
 
 OK, so is there anyone who knows lots about Quartz (or whatever is used as the window manager) who can advise me further?  I should clarify that since I am not the designer/creator of this particular application, I do not feel it is my place to tear up his work; I merely wish to improve things in place, for the moment.
-Thanks.  --  General/MichaelBannister
+Thanks.  --  MichaelBannister
 
 ----
-You can get the private General/NSWindow subclass that the drawer uses with a category like this (from memory, compiled here)..
+You can get the private NSWindow subclass that the drawer uses with a category like this (from memory, compiled here)..
 
     
-@implementation General/NSDrawer (General/IWantThePrivateDrawerWindow)
+@implementation NSDrawer (IWantThePrivateDrawerWindow)
 - (id)drawerWindow { return _drawerWindow; }
 @end
 

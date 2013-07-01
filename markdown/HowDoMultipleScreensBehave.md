@@ -6,7 +6,7 @@ Is the Dock, when positioned on the left, always on the far left screen, even if
 Thanks!
 
 ----
-The (0,0) point is always at the lower left corner of the screen with the menu bar, and all other screens get coordinates relative to that. (For General/CoreGraphics work, the (0,0) point is at the upper left corner of this same screen, with the Y axis extending down.)
+The (0,0) point is always at the lower left corner of the screen with the menu bar, and all other screens get coordinates relative to that. (For CoreGraphics work, the (0,0) point is at the upper left corner of this same screen, with the Y axis extending down.)
 
 ----
 Is the Dock, when positioned on the bottom, always on the monitor with the menu bar?
@@ -21,7 +21,7 @@ The screen at Index: 0 (the screen with the menu bar) has a frame of (0,0,1024,7
 ----
 The global coordinate space is one continuous coordinate space. Your example frame is one possibility, but there is nothing which says that the Y coordinate at the origin has to be 0, since you can position other monitors so that they don't line up perfectly. The origin of the main screen is always (0,0) and the origin of the others always reflects their position relative to the main screen.
 ----
-Alright, thanks. That wraps it up. When you say "main screen", do you mean General/[NSScreen mainScreen] (the screen with the active window) or General/[[NSScreen screens] objectAtIndex:0] (the screen with the menu bar)?
+Alright, thanks. That wraps it up. When you say "main screen", do you mean [NSScreen mainScreen] (the screen with the active window) or [[NSScreen screens] objectAtIndex:0] (the screen with the menu bar)?
 
 ----
 The latter. The coordinate system obviously does not change around just because the user clicked on a different window.

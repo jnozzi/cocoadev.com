@@ -1,6 +1,6 @@
 Hello everyone.
 
-It would be awesome if we could process images using the new Quartz Filters under the General/ColorSync pane in the print panel in Panther, but there doesn't seem to be any documentation on it. Does anyone know how to access this functionality programmatically? I would like to provide these filters in a graphics application I am writing.
+It would be awesome if we could process images using the new Quartz Filters under the ColorSync pane in the print panel in Panther, but there doesn't seem to be any documentation on it. Does anyone know how to access this functionality programmatically? I would like to provide these filters in a graphics application I am writing.
 
 Thanks,
 -- Eliot Simcoe

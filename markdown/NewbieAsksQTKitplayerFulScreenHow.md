@@ -6,8 +6,8 @@ If you are not up to speed with Cocoa frameworks and C programming, perhaps you 
 
 Pardon me for asking the obvious, but you are begging somebody to flesh out existing tutorials, and you simply say is that you found it all over your head. I'm not sure what you expect here: A step by step tutorial, beginning with the first thing you don't understand? We don't know what that first thing is. If you want a link to another tutorial, are you going to come back and complain that it, too, is over your head?
 
-My advice is to take a break from your quicktime player project and see if you can develop an app that just displays a full screen window. It's really not rocket science. Check out General/ImplementingFullScreen. Check out General/BorderlessWindow. Above all, check out General/HowToAskQuestions. You're solidly in General/MailingListMode here, and a wiki is not the same thing as a mailing list. General/CocoaDev has worked hard to make itself a place where you can do your own research and take some responsibility for your own education.
+My advice is to take a break from your quicktime player project and see if you can develop an app that just displays a full screen window. It's really not rocket science. Check out ImplementingFullScreen. Check out BorderlessWindow. Above all, check out HowToAskQuestions. You're solidly in MailingListMode here, and a wiki is not the same thing as a mailing list. CocoaDev has worked hard to make itself a place where you can do your own research and take some responsibility for your own education.
 
 ----
 
-It sounds like he did the General/QTKit Player example, which doesn't really teach much Cocoa coding; only how to use the pallettes and IB. It sounds like we need to show him where to start from square one.
+It sounds like he did the QTKit Player example, which doesn't really teach much Cocoa coding; only how to use the pallettes and IB. It sounds like we need to show him where to start from square one.

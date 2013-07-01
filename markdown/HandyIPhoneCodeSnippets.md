@@ -9,18 +9,18 @@ slerp has a whole mess of handy snippets: http://phonedev.tumblr.com
 Thanks to Erica Sadun, I believe.
 
     
-@implementation General/UIView (Snapshot)
+@implementation UIView (Snapshot)
 
 - (void)saveSnapshot
 {
-	General/CGRect bounds;
+	CGRect bounds;
 	int err = 0, i;
-	General/CGImageRef image = nil;
+	CGImageRef image = nil;
 	char path[ 32 ];
-	General/CGContextRef pdfContext = nil;
+	CGContextRef pdfContext = nil;
 	struct stat sb;
-	General/CFStringRef string = nil;
-	General/CFURLRef url = nil;
+	CFStringRef string = nil;
+	CFURLRef url = nil;
 	
 	bounds = [self bounds];
 	
@@ -30,22 +30,22 @@ Thanks to Erica Sadun, I believe.
 		if ( stat( path, &sb ) == -1 ) break;
 	}
 	
-	if ( ! ( string = General/CFStringCreateWithCString( nil, path, kCFStringEncodingASCII ) ) ) err = 1;
+	if ( ! ( string = CFStringCreateWithCString( nil, path, kCFStringEncodingASCII ) ) ) err = 1;
 	if ( ! err && ! ( image = [self createSnapshotWithRect: bounds] ) ) err = 1;
-	if ( ! err && ! ( url = General/CFURLCreateWithFileSystemPath( nil, string, kCFURLPOSIXPathStyle, 0 ) ) ) err = 1;
-	if ( ! err && ! ( pdfContext = General/CGPDFContextCreateWithURL( url, &bounds, nil ) ) ) err = 1;
+	if ( ! err && ! ( url = CFURLCreateWithFileSystemPath( nil, string, kCFURLPOSIXPathStyle, 0 ) ) ) err = 1;
+	if ( ! err && ! ( pdfContext = CGPDFContextCreateWithURL( url, &bounds, nil ) ) ) err = 1;
 
 	if ( ! err ) {
-		General/CGContextBeginPage( pdfContext, &bounds );
-		General/CGContextDrawImage( pdfContext, bounds, image );
-		General/CGContextEndPage( pdfContext );
-		General/CGContextFlush( pdfContext );
+		CGContextBeginPage( pdfContext, &bounds );
+		CGContextDrawImage( pdfContext, bounds, image );
+		CGContextEndPage( pdfContext );
+		CGContextFlush( pdfContext );
 	}
 	
-	if ( pdfContext ) General/CGContextRelease( pdfContext );
-	if ( url ) General/CFRelease( url );
-	if ( image ) General/CGImageRelease( image );
-	if ( string ) General/CFRelease( string );
+	if ( pdfContext ) CGContextRelease( pdfContext );
+	if ( url ) CFRelease( url );
+	if ( image ) CGImageRelease( image );
+	if ( string ) CFRelease( string );
 }
 
 @end
@@ -53,26 +53,26 @@ Thanks to Erica Sadun, I believe.
 
 ----
 
-**Subclassing General/UIKit**
+**Subclassing UIKit**
 
-To see what the rest of General/UIKit is expecting from your subclass, you can log calls to respondsToSelector: and the like.
+To see what the rest of UIKit is expecting from your subclass, you can log calls to respondsToSelector: and the like.
 
     
 - (BOOL)respondsToSelector:(SEL)selector
 {
-  General/NSLog(@"respondsToSelector: %s", selector);
+  NSLog(@"respondsToSelector: %s", selector);
   return [super respondsToSelector:aSelector];
 }
 
-- (General/NSMethodSignature*)methodSignatureForSelector:(SEL)selector
+- (NSMethodSignature*)methodSignatureForSelector:(SEL)selector
 {
-  General/NSLog(@"methodSignatureForSelector: %s", selector);
+  NSLog(@"methodSignatureForSelector: %s", selector);
   return [super methodSignatureForSelector:selector];
 }
 
-- (void)forwardInvocation:(General/NSInvocation*)invocation
+- (void)forwardInvocation:(NSInvocation*)invocation
 {
-  General/NSLog(@"forwardInvocation: %s", [invocation selector]);
+  NSLog(@"forwardInvocation: %s", [invocation selector]);
   [super forwardInvocation:anInvocation];
 }
 

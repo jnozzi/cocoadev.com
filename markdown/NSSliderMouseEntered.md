@@ -1,6 +1,6 @@
 
 
-I need to be able to capture Mouse Entered and Mouse Exited events for an General/NSSlider.  I'm already subclassing the slider to figure out when the user starts and stops dragging by capturing the General/MouseDown event.  However, it looks like non of the other mouse events get sent.  Does anyone have some sample code that will do this?  Thanks!
+I need to be able to capture Mouse Entered and Mouse Exited events for an NSSlider.  I'm already subclassing the slider to figure out when the user starts and stops dragging by capturing the MouseDown event.  However, it looks like non of the other mouse events get sent.  Does anyone have some sample code that will do this?  Thanks!
 
 ----
 

@@ -1,4 +1,4 @@
-I had gotten my hopes up about using General/NSWorkspace's slideImage:from:to: method to provide visual feedback to a user when they click a button to add an object to a list, rather than drag it. I wanted to use the same image as the one I compose as my drag image. Basically, I want to slide the drag image from tableViewA to tableViewB without General/DnD when a button is pressed.
+I had gotten my hopes up about using NSWorkspace's slideImage:from:to: method to provide visual feedback to a user when they click a button to add an object to a list, rather than drag it. I wanted to use the same image as the one I compose as my drag image. Basically, I want to slide the drag image from tableViewA to tableViewB without DnD when a button is pressed.
 
 Unfortunately, the devil is in the details. The last line in the docs said "Currently has no effect." Sure enough, the docs are accurate. ;-)
 
@@ -19,7 +19,7 @@ For the purists among you, yes, I fully intend to make this gratuitous flying ic
 
 Thanks!
 
- - General/JNozzi
+ - JNozzi
 
 ----
 Just create a window and slide that...
@@ -47,24 +47,24 @@ bRect ...
 }
 
 
-- (void)windowDidMove:(General/NSNotification *)aNotification
+- (void)windowDidMove:(NSNotification *)aNotification
 {
-General/NSRect sRect = [slidingWindow frame];
+NSRect sRect = [slidingWindow frame];
 
-  if (General/NSEqualRects(sRect, bRect)) [slidingWindow orderOut:nil];
+  if (NSEqualRects(sRect, bRect)) [slidingWindow orderOut:nil];
 }
 
 
-Taking this basic idea you could write a General/NSWindow subclass that does most of this for you kind of like the General/ToolTip classes.
+Taking this basic idea you could write a NSWindow subclass that does most of this for you kind of like the ToolTip classes.
 
 ----
 
-Sounds like a job for General/NSViewAnimation! This tutorial might help: http://andymatuschak.org/articles/2005/12/12/nsanimation-for-fun-and-profit
+Sounds like a job for NSViewAnimation! This tutorial might help: http://andymatuschak.org/articles/2005/12/12/nsanimation-for-fun-and-profit
 
 -- Andy Matuschak
 
 ----
-General/NSViewAnimation is more flexible but requires Tiger+. A window based solution should be good all the way back. I'd personally go with General/NSViewAnimation but I've got no market constraints...being a hobbyist has its advantages, though they aren't monetary.
+NSViewAnimation is more flexible but requires Tiger+. A window based solution should be good all the way back. I'd personally go with NSViewAnimation but I've got no market constraints...being a hobbyist has its advantages, though they aren't monetary.
 
 ----
-It would be a neat project to reimplement NS[View]Animation's interfaces in Panther-compatible code. Maybe I'll do that sometime. -- General/AndyMatuschak
+It would be a neat project to reimplement NS[View]Animation's interfaces in Panther-compatible code. Maybe I'll do that sometime. -- AndyMatuschak

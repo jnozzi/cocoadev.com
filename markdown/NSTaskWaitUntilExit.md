@@ -1,4 +1,4 @@
-I've got an General/NSTask which is doing some simple Perl regex on an string. I thought I should call     waitUntilExit to make sure it was completely done before using the output of the task, but that method is causing the app to "freeze" (sorta). It's getting called from a framework and it takes over the UI so I just have to force quit. Any one know why this is happening? The Perl is just a few lines that read in all <STDIN> and then do a regex replace on it. If I remove     waitUntilExit it works fine. But I thought I had to have it... --General/KevinWojniak
+I've got an NSTask which is doing some simple Perl regex on an string. I thought I should call     waitUntilExit to make sure it was completely done before using the output of the task, but that method is causing the app to "freeze" (sorta). It's getting called from a framework and it takes over the UI so I just have to force quit. Any one know why this is happening? The Perl is just a few lines that read in all <STDIN> and then do a regex replace on it. If I remove     waitUntilExit it works fine. But I thought I had to have it... --KevinWojniak
 
 Found the problem. When you use     waitUntilExit you have to read in the data before that is called or else the pipe gets filled up (see http://cocoa.mamasam.com/COCOADEV/2003/10/1/73890.php ). So I had this:
     
@@ -20,7 +20,7 @@ readData = [outHandle readDataToEndOfFile];
 
 
 ----
-I'd like to suggest to use General/NSFileHandle's readInBackgroundAndNotify and General/NSTaskDidTerminateNotification
+I'd like to suggest to use NSFileHandle's readInBackgroundAndNotify and NSTaskDidTerminateNotification
 in order to prevent the UI freeze.
 
 ----
@@ -29,23 +29,23 @@ in order to prevent the UI freeze.
 
 ----
 
-I agree, I originally imagined commands like General/TeX or General/ImageMagick.
+I agree, I originally imagined commands like TeX or ImageMagick.
 
 ----
 
-**Be careful when using General/NSTaskWaitUntilExit**
+**Be careful when using NSTaskWaitUntilExit**
 
 *Editor's Note: Moved from T**'erminateNSTaskWithWaitUntilExit*
 
-I launch an General/NSTask as follows:
+I launch an NSTask as follows:
 
     
-    General/NSTask *curlTask = General/[[NSTask alloc] init];
-    General/NSPipe *curlPipe = General/[[NSPipe alloc] init];
-    General/NSString *curlHTML;
+    NSTask *curlTask = [[NSTask alloc] init];
+    NSPipe *curlPipe = [[NSPipe alloc] init];
+    NSString *curlHTML;
     
     [curlTask setLaunchPath:@"/sw/bin/curl"];
-    [curlTask setArguments:General/[NSArray arrayWithObject:@"http://www.mywebsite.com"]];
+    [curlTask setArguments:[NSArray arrayWithObject:@"http://www.mywebsite.com"]];
     [curlTask setStandardOutput:curlPipe];
     [curlTask launch];
     [curlTask waitUntilExit];
@@ -55,28 +55,28 @@ Funny thing is the thread hangs, but  I can plainly see curl being done -- stdEr
 
 ----
 
-    /usr/bin/curl works so it could be fink's version of curl that is causing the problem. You might have to read the pipe first (with an General/NSFileHandle object) and then close the handle before the task will exit.
+    /usr/bin/curl works so it could be fink's version of curl that is causing the problem. You might have to read the pipe first (with an NSFileHandle object) and then close the handle before the task will exit.
 
     
-    General/NSTask *curlTask = General/[[NSTask alloc] init];
-    General/NSPipe *curlPipe = General/[[NSPipe alloc] init];
-    General/NSFileHandle *outputHandle = [curlPipe fileHandleForReading];
-    General/NSString *curlHTML;
+    NSTask *curlTask = [[NSTask alloc] init];
+    NSPipe *curlPipe = [[NSPipe alloc] init];
+    NSFileHandle *outputHandle = [curlPipe fileHandleForReading];
+    NSString *curlHTML;
     [curlTask setLaunchPath:@"/sw/bin/curl"];
-    [curlTask setArguments:General/[NSArray arrayWithObject:@"http://www.mywebsite.com"]];
+    [curlTask setArguments:[NSArray arrayWithObject:@"http://www.mywebsite.com"]];
     [curlTask setStandardOutput:curlPipe];
     [curlTask launch];
-    General/NSData *outputData = [outputHandle availableData];
+    NSData *outputData = [outputHandle availableData];
     [outputHandle closeFile];
     [curlTask waitUntilExit];
 
 
 
-as a side note, General/NSFileHandle can read in background and notify you of available data to allow your app to do other things (    readInBackgroundAndNotify). 
+as a side note, NSFileHandle can read in background and notify you of available data to allow your app to do other things (    readInBackgroundAndNotify). 
 
 ----
 
-If you're having trouble getting your General/NSTask to exit (quitting the app), have a read of General/TerminateOrStopGood.
+If you're having trouble getting your NSTask to exit (quitting the app), have a read of TerminateOrStopGood.
 
 ----
 
@@ -84,4 +84,4 @@ Note that you should *never* do a     waitUntilExit without first emptying out t
 
 ----
 
-We've observed a situation which can cause     waitUntilExit to hang that's a little different than above.  If the thread which called     launch no longer exists when the General/NSTask ends (for whatever reason), then the General/NSTaskDidTerminateNotification can't be posted, which causes bad behavior from     waitUntilExit.  On Tiger we've seen it actually generate a signal and cause the application to 'vanish', whereas on Leopard it seems to just cause a deadlock.
+We've observed a situation which can cause     waitUntilExit to hang that's a little different than above.  If the thread which called     launch no longer exists when the NSTask ends (for whatever reason), then the NSTaskDidTerminateNotification can't be posted, which causes bad behavior from     waitUntilExit.  On Tiger we've seen it actually generate a signal and cause the application to 'vanish', whereas on Leopard it seems to just cause a deadlock.

@@ -7,16 +7,16 @@ The left icon has a small white glitch in the bottom left corner. The right icon
 I'm creating these icons by loading an image file. And then drawing 25% black over the icon. My code looks like this:
 
     
-	General/NSImage *fileIcon = General/[NSImage imageNamed:@"file"];
-	General/NSImage *darkenedFileIcon = nil;
-	General/NSSize size = [baseImage size];
-	General/NSRect imageRect = {General/NSZeroPoint, size};
+	NSImage *fileIcon = [NSImage imageNamed:@"file"];
+	NSImage *darkenedFileIcon = nil;
+	NSSize size = [baseImage size];
+	NSRect imageRect = {NSZeroPoint, size};
 	
-	darkenedFileIcon = General/fileIcon copy] autorelease];
+	darkenedFileIcon = fileIcon copy] autorelease];
 
 	[darkenedFileIcon lockFocus];
 	[[[[[NSColor blackColor] colorWithAlphaComponent:0.25] set];
-	General/NSRectFillUsingOperation(imageRect, General/NSCompositeSourceAtop);
+	NSRectFillUsingOperation(imageRect, NSCompositeSourceAtop);
 	[darkenedFileIcon unlockFocus];
 
 	return darkenedFileIcon;
@@ -25,7 +25,7 @@ I'm creating these icons by loading an image file. And then drawing 25% black ov
 Behind the scenes I'm also caching these icons in a dictionary so I only need to create a darkened version of each icon once. The catching code looks like this. I'm not showing all the code, but I'm pretty sure that retain counts are proper, I'm not experiencing any crashes in any of these cases.
 
     
-	General/NSValue *lookupKey = General/[NSValue valueWithPointer:originalImage];
+	NSValue *lookupKey = [NSValue valueWithPointer:originalImage];
 	[darkenedImageCache setObject:lookupKey forKey:darkenedImage];
 
 

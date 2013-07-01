@@ -2,7 +2,7 @@ I want to release the superclass of a class. And then from one of the subclass's
 
     
 
-@interface A : General/NSObject
+@interface A : NSObject
 {
    int value;
 }
@@ -20,7 +20,7 @@ I want to release the superclass of a class. And then from one of the subclass's
 - (void) setValue:(int)aValue
 {
     [super release];
-    super = General/A alloc] initWithValue:aValue];
+    super = A alloc] initWithValue:aValue];
 }
 @end
 
@@ -42,10 +42,10 @@ This does not make any sense whatsoever, I'm afraid.     super is not a separate
 If you are going to create this along this design, then you will probably need to make it a has-a relationship rather than an is-a relationship, so have A as an ivar instead of as your superclass.
 
 ----
-Yes; going off of what the previous poster said, you might as well have A as an instance variable...but also, if A is something like [[NSNumber, you can cheat a bit by subclassing it and passing along messages to an actual value instance variable. --General/JediKnil
+Yes; going off of what the previous poster said, you might as well have A as an instance variable...but also, if A is something like [[NSNumber, you can cheat a bit by subclassing it and passing along messages to an actual value instance variable. --JediKnil
     
-@interface General/MutableNumber : General/NSNumber {
-    General/NSNumber *value;
+@interface MutableNumber : NSNumber {
+    NSNumber *value;
 }
 // Implement forwardInvocation: and methodSignatureForSelector:
 // to forward messages to value

@@ -9,4 +9,4 @@ cocoadevcom@cliffpruitt.com
 
 ----
 
-*Hello! -- General/KritTer*
+*Hello! -- KritTer*

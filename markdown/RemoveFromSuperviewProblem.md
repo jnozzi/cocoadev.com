@@ -1,14 +1,14 @@
 
 Can somebody explain me why this code :
     
-- (void)mouseDown:(General/NSEvent *)event
+- (void)mouseDown:(NSEvent *)event
 {
-	General/NSView *sub = [subviews objectAtIndex: n];
+	NSView *sub = [subviews objectAtIndex: n];
 	[sub removeFromSuperview];	
 }
 
 Is working fine when n is 0 or 1, but crash when n>1???
-([subviews count] is returning 4). - General/StephaneDassieu.
+([subviews count] is returning 4). - StephaneDassieu.
 
 ----
 
@@ -27,33 +27,33 @@ Don't forget to tell us *where* it crashes, too. Telling us that it crashes is n
 *Ok sorry, will update my post asap!* -> done :
 
     
-- (void)mouseDown:(General/NSEvent *)event
+- (void)mouseDown:(NSEvent *)event
 {
 	int idx = 2; //[self clickedBox: [event locationInWindow]];
 	if (idx != -1) {
-		//General/NSView *subViewToBeRemoved = [subviews objectAtIndex: idx];
-		General/NSLog(@"removing box index %i/%i",index,[subviews count]);
-		General/NSView *sub = [subviews objectAtIndex: idx];
+		//NSView *subViewToBeRemoved = [subviews objectAtIndex: idx];
+		NSLog(@"removing box index %i/%i",index,[subviews count]);
+		NSView *sub = [subviews objectAtIndex: idx];
 		[sub removeFromSuperview];
 	}
 }
 
-- (void)drawRect:(General/NSRect)rect
+- (void)drawRect:(NSRect)rect
 {	
-	General/NSRect r = rect;
-	General/[[NSColor whiteColor] set];
-	General/[NSBezierPath fillRect: r];
-	General/NSRect bounds = [self bounds];
+	NSRect r = rect;
+	[[NSColor whiteColor] set];
+	[NSBezierPath fillRect: r];
+	NSRect bounds = [self bounds];
 	subviews = [self subviews];
 }
 
 
-As i said, it works for idx=0 and idx=1. When idx= 2 it crash with this message : "2005-04-07 09:32:16.098 General/TestView[495] removing box index 2/4
-Executable �General/TestView� has exited due to signal 11 (SIGSEGV)." It crash even if there is more subviews (�removing box index 2/7
-Executable �General/TestView� has exited�)
+As i said, it works for idx=0 and idx=1. When idx= 2 it crash with this message : "2005-04-07 09:32:16.098 TestView[495] removing box index 2/4
+Executable �TestView� has exited due to signal 11 (SIGSEGV)." It crash even if there is more subviews (�removing box index 2/7
+Executable �TestView� has exited�)
 
 And When idx>2 (i can add superviews so it can be higher than 4) it works too now!! I'm lost.
-It only crash with '2', really weird. - General/StephaneDassieu
+It only crash with '2', really weird. - StephaneDassieu
 
 ----
 
@@ -64,7 +64,7 @@ Really, though, you don't need this value at all. Just replace all uses of     s
 
 ----
 
-You'd be better off keeping track of when your view's bounds changes with General/NSViewBoundsDidChangeNotification instead of resetting it every time through drawRect.
+You'd be better off keeping track of when your view's bounds changes with NSViewBoundsDidChangeNotification instead of resetting it every time through drawRect.
 
 ----
 
@@ -72,6 +72,6 @@ The verdict: This is all-around bad design - one you should re-think from the gr
 
 ----
 *remove self on mouse down* -> I first did this.. but as i wanted my superview to know what was happening, i tried this way..
-but whatever, i found what mades the app crash : i had a dealloc full of [var release]; i shouldn't had.. in other words, i was destroying objects prematurely. - General/StephaneDassieu.
+but whatever, i found what mades the app crash : i had a dealloc full of [var release]; i shouldn't had.. in other words, i was destroying objects prematurely. - StephaneDassieu.
 
 *If the superview is a custom class you could override     willRemoveSubview:.* --> *very good idea, will try it*

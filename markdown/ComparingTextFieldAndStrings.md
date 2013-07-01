@@ -1,8 +1,8 @@
 
 
-    if( [nameField stringValue] == General/[NSString stringWithString:@"name"] )...
+    if( [nameField stringValue] == [NSString stringWithString:@"name"] )...
 
-I'm trying to check if the General/NSTextField contains the string "Name", and this doesnt work.  what am i doing wrong?
+I'm trying to check if the NSTextField contains the string "Name", and this doesnt work.  what am i doing wrong?
 
 ----
 

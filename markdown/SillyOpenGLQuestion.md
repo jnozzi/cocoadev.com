@@ -7,7 +7,7 @@ The antialiasing works great, but I can't turn it off! I set it up to be a confi
 First off, here's my initialization:
 
     
-- (id) initWithFrame: (General/NSRect) frame
+- (id) initWithFrame: (NSRect) frame
 {
 	movieImageBuf = NULL; //c-ptr
 	
@@ -18,24 +18,24 @@ First off, here's my initialization:
 	period = averagePeriod = currentFrame = movieFrame = 0;
 	recording = antialias = NO;	
 
-	General/GLuint attribs[] = 
+	GLuint attribs[] = 
 	{
-		General/NSOpenGLPFANoRecovery,
-		General/NSOpenGLPFAWindow,
-		General/NSOpenGLPFAAccelerated,
-		General/NSOpenGLPFADoubleBuffer,
-		General/NSOpenGLPFAColorSize, 24,
-		General/NSOpenGLPFAAlphaSize, 8,
-		General/NSOpenGLPFADepthSize, 24,
-		General/NSOpenGLPFAStencilSize, 8,
-		General/NSOpenGLPFAAccumSize, 0,
-		General/NSOpenGLPFASampleBuffers, 1,
-		General/NSOpenGLPFASamples,4,
+		NSOpenGLPFANoRecovery,
+		NSOpenGLPFAWindow,
+		NSOpenGLPFAAccelerated,
+		NSOpenGLPFADoubleBuffer,
+		NSOpenGLPFAColorSize, 24,
+		NSOpenGLPFAAlphaSize, 8,
+		NSOpenGLPFADepthSize, 24,
+		NSOpenGLPFAStencilSize, 8,
+		NSOpenGLPFAAccumSize, 0,
+		NSOpenGLPFASampleBuffers, 1,
+		NSOpenGLPFASamples,4,
 		0,0
 	};
 
-	General/NSOpenGLPixelFormat* fmt = 
-		General/[[NSOpenGLPixelFormat alloc] initWithAttributes: (General/NSOpenGLPixelFormatAttribute*) attribs]; 
+	NSOpenGLPixelFormat* fmt = 
+		[[NSOpenGLPixelFormat alloc] initWithAttributes: (NSOpenGLPixelFormatAttribute*) attribs]; 
 		
 	return self = [super initWithFrame:frame pixelFormat: [fmt autorelease]];
 }
@@ -54,24 +54,24 @@ And here's my toggler:
 
 
 
-Now, I know my toggle's being called ( the controller has the General/IBOutlet and forwards the message to the above method ). 
+Now, I know my toggle's being called ( the controller has the IBOutlet and forwards the message to the above method ). 
 
 Thinking that I might need to try a different GL_MULTISAMPLE_XXX I grepped the headers and found that the glext.h header defines GL_MULTISAMPLE in various flavors, but all are #defines of the same constant. I also found that there aren't any other multisample constants, so there's nothing else to try.
 
-What am I missing here? Do I need to kill the context and create a new one? The General/NeHE sample code just used glEnable/glDisable calls like I did above.
+What am I missing here? Do I need to kill the context and create a new one? The NeHE sample code just used glEnable/glDisable calls like I did above.
 
---General/ShamylZakariya
+--ShamylZakariya
 
 Where is the toggle being called from?  Usually, it is registered as a callback with one of the main routines.
 Connecting to a Cocoa control may not be the same.
 
 Bruce
 
-I'm not a Cocoa noob ;) I know it's being called ( The oulet's called from the menu, does some logic to turn on/off a checkmark in that menu, and then calls this method. I also General/NSLog'd the above method call earlier, and I know it's being called ) -- the problem is the glEnable/glDisable don't do what they're supposed to do.
+I'm not a Cocoa noob ;) I know it's being called ( The oulet's called from the menu, does some logic to turn on/off a checkmark in that menu, and then calls this method. I also NSLog'd the above method call earlier, and I know it's being called ) -- the problem is the glEnable/glDisable don't do what they're supposed to do.
 
 Yes, not technically a Cocoa question, but it seems to be an OS X question, since this code works on other platforms, supposedly.
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
@@ -85,19 +85,19 @@ Note the following two observations:
 
 Any questions?
 
--- General/MikeTrent
+-- MikeTrent
 
-I think you might have misread me Mike, I couldn't turn AA *off* -- e.g., it was always on. * ("leaving it enabled in all cases." -- General/MikeTrent) *
+I think you might have misread me Mike, I couldn't turn AA *off* -- e.g., it was always on. * ("leaving it enabled in all cases." -- MikeTrent) *
 
 Anyway, I've figured it out. What you have to do is instead of glEnable/glDisable, you have to create a new pixel format, then a new context using it. You then have to make the view take the new context and make the new context take the view -- then you have to make it the current context and redraw.
 
 My warning, to anybody who wants to make this happen, is that when you make a new context, you'll automatically lose your display lists and texture maps, so if you want to keep them you'll have to make the two contexts share eachother ( which is done through the initializer ).
 
---General/ShamylZakariya
+--ShamylZakariya
 
  * ("leaving it enabled in all cases.") *
 
-Hmmm.... I did see that, just I've got an NVIDIA card so I disregarded it. Anyway, my code's got fallbacks for cards which don't support multisample, and it's tested well, so as far as I can tell, problem's solved. --General/ShamylZakariya
+Hmmm.... I did see that, just I've got an NVIDIA card so I disregarded it. Anyway, my code's got fallbacks for cards which don't support multisample, and it's tested well, so as far as I can tell, problem's solved. --ShamylZakariya
 
 Hi,
 

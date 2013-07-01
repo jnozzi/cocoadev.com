@@ -22,9 +22,9 @@ http://www.assignmentplanner.com/
 
 NNW Unread Menu
 
-menu bar display of number of unread items in General/NetNewsWire
+menu bar display of number of unread items in NetNewsWire
 
-http://www.burgundylogan.com/General/NNWUnreadMenu/
+http://www.burgundylogan.com/NNWUnreadMenu/
 
 ----
 
@@ -32,4 +32,4 @@ Mail Unread Menu
 
 menu bar display of number of unread items in Mail.app
 
-http://www.burgundylogan.com/General/MailUnreadMenu/
+http://www.burgundylogan.com/MailUnreadMenu/

@@ -19,7 +19,7 @@ n234: fud
 
 But the en-space in the font I am using is off by one pixel or so � so maybe my assertion is wrong?!?
 
-P.S. I do know that I could change the strings to General/NSAttributedStrings and insert a right-alignment tab-stop and use tabs in the strings, but that's a lot of work I'd prefer to avoid :)
+P.S. I do know that I could change the strings to NSAttributedStrings and insert a right-alignment tab-stop and use tabs in the strings, but that's a lot of work I'd prefer to avoid :)
 
 ----
 

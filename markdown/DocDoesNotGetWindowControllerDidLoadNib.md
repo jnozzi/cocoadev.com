@@ -1,12 +1,12 @@
-...automatically, unless you call it explicitly, except under the simplest of circumstances (i.e., no subclassing of General/NSWindowController)
+...automatically, unless you call it explicitly, except under the simplest of circumstances (i.e., no subclassing of NSWindowController)
 
-I have subclassed both General/NSDocument and General/NSWindowController. My document does not get a windowControllerDidLoadNib message when a new document is created or an old one is loaded.
+I have subclassed both NSDocument and NSWindowController. My document does not get a windowControllerDidLoadNib message when a new document is created or an old one is loaded.
 
 What object is supposed to send that message, and when?
 
 ----
 
-Hmmm ... *windowController*General/DidLoadNib?  My guess would be the WINDOW CONTROLLER ... ;-) If you subclassed General/NSWindowController, that's where your problem is.
+Hmmm ... *windowController*DidLoadNib?  My guess would be the WINDOW CONTROLLER ... ;-) If you subclassed NSWindowController, that's where your problem is.
 
 ----
 
@@ -18,7 +18,7 @@ The document opens just fine. I wanted to make sure I had a reference to another
 
 are you overriding a nib-loading method and not calling super?
 
-*There is most definitely a bug in your code. The General/NSDocument and General/NSWindowController classes work very closely together. Check *every* method you've overridden in both classes and make absolute certain you are calling the super methods at the appropriate times (some are better in the beginning of your overridden method, some are better at the end - depending on your intentions and the way that particular method functions). The documentation is the only way to determine this for each method.*
+*There is most definitely a bug in your code. The NSDocument and NSWindowController classes work very closely together. Check *every* method you've overridden in both classes and make absolute certain you are calling the super methods at the appropriate times (some are better in the beginning of your overridden method, some are better at the end - depending on your intentions and the way that particular method functions). The documentation is the only way to determine this for each method.*
 
 ----
 
@@ -50,7 +50,7 @@ Of course, when I call the method explicitly (say, in the main window controller
 I just assumed from the method name that it is called automatically by some delegate that is set up by the document architecture.
 But then again, I don't know how I would identify which object that might be. I guess I just assumed it would be the window controller.
 
-But now I see that the documentation for General/NSDocument does not list this method as a delegate method. So I feel like a minor idiot for raising this issue.
+But now I see that the documentation for NSDocument does not list this method as a delegate method. So I feel like a minor idiot for raising this issue.
 
 Sorry if I have wasted your time.
 
@@ -64,11 +64,11 @@ It should definitely be called automatically.  Are you calling     [self addWind
 
 (OP again) Bo, why do you assert that it should be called automatically? That was, in fact, what I assumed would be done, but is not the case.
 
-POI: Yes, I do add the window controller to my list of General/WCs for the doc
+POI: Yes, I do add the window controller to my list of WCs for the doc
 
 ----
 
-Both the docs and my personal experience tell me that's what happens.  As a test, I just made a pristine 'Cocoa Document-based Application' project and added the line     General/NSLog(@"windowControllerDidLoadNib: called"); to the -windowControllerDidLoadNib: method.  The text printed out in the run log every time I made a new document with absolutely no other modifications.  In the stack trace, it was being called from the General/NSWindowController's -_showWindow method, a private General/AppKit method.  Perhaps if you posted the relevant source code from your subclasses, we could figure out what the problem is better.  Until then, I can only offer guesses. -- Bo
+Both the docs and my personal experience tell me that's what happens.  As a test, I just made a pristine 'Cocoa Document-based Application' project and added the line     NSLog(@"windowControllerDidLoadNib: called"); to the -windowControllerDidLoadNib: method.  The text printed out in the run log every time I made a new document with absolutely no other modifications.  In the stack trace, it was being called from the NSWindowController's -_showWindow method, a private AppKit method.  Perhaps if you posted the relevant source code from your subclasses, we could figure out what the problem is better.  Until then, I can only offer guesses. -- Bo
 
 PS  Whoops, nevermind.  I just realized what the problem almost surely is.  The window controller won't call windowControllerDidLoadNib: if the document is not set as the owner of the nib file.  Since the WC is almost always the owner when you use a custom WC subclass, it won't call the method.
 

@@ -6,20 +6,20 @@ ugly in a hurry. The text wrapped over several lines and drew stuff outside the 
 Even after I canceled the search, the wayward drawing artifacts were left over on my window. Unacceptable.
 
 The search field is added programmatically to the toolbar for the main window.
-Thereupon I have set its maximum and minimum size using the setSize: method of General/NSToolbarItem.
+Thereupon I have set its maximum and minimum size using the setSize: method of NSToolbarItem.
 
 When I pasted the contents of the same pasteboard into the search field of Xcode or Safari, for example, it did not wrap
 and scrolls across nicely.
 
 ----
 
-In my original post General/SearchFieldWrapsTextUgly, one respondent asked me a question I could not answer coherently
+In my original post SearchFieldWrapsTextUgly, one respondent asked me a question I could not answer coherently
 
 *Why are you using \r characters to cut and paste rows from a table view? Wouldn't it be easier to just use your own pasteboard type, instead of the text-specific one?*
 
 To which I replied:
 
-**My pasteboard methods, including my custom pasteboard type, return General/NSString objects containing the offending \r characters. This is not the problem. Those strings returned by my pasteboard methods paste just fine into the Search Fields supplied by
+**My pasteboard methods, including my custom pasteboard type, return NSString objects containing the offending \r characters. This is not the problem. Those strings returned by my pasteboard methods paste just fine into the Search Fields supplied by
 apps such as Xcode and Safari. What I am inquiring about is how to condition my Search field to accept such strings of characters.
 
 I have tried lots of other things besides \r or similar codes. If I don't use it, the table does not properly accept pasting of table view rows
@@ -32,18 +32,18 @@ I rejoined:
 
 **Yes I tried \n. It did not result in proper pasting into the app's table view internally.
 To elaborate: this character is the
-record separator in the paste operation to the table. Think about the "componentsSeparatedByString" method of General/NSString.
+record separator in the paste operation to the table. Think about the "componentsSeparatedByString" method of NSString.
 **
 
 ----
 
-The answer (of course) was to write an General/NSFormatter subclass for the search field that removed the \r characters and replaced them by spaces,
+The answer (of course) was to write an NSFormatter subclass for the search field that removed the \r characters and replaced them by spaces,
 and sending a setWraps: NO and setScrolling: YES to the search field at the time I assign it its formatter.
 But <BOO HOO> none of you fine folks saw fit to point me in that direction. Cost me 24 hours <SNIF> which I put to good use in woolgathering.
 
-Note that the default behavior of General/NSTextField does not cause it to go ballistic when you paste a multi-line string.
+Note that the default behavior of NSTextField does not cause it to go ballistic when you paste a multi-line string.
 
-*It's not General/NSSearchField's default behavior either, which I very briefly verified using Interface Builder. You must have been doing something strange.*
+*It's not NSSearchField's default behavior either, which I very briefly verified using Interface Builder. You must have been doing something strange.*
 
 ----
 
@@ -53,7 +53,7 @@ Something strange? You mean, like instantiating a search field programmatically?
 
 Interesting. After installing the formatter, I only had to set the wrapping and scrolling programmatically. What else might there be that is undreamt of in my philosophy?
 
-*I don't know. Why don't you drag an General/NSSearchField into a custom view in IB and find out?*
+*I don't know. Why don't you drag an NSSearchField into a custom view in IB and find out?*
 
 Because that wouldn't adequately explain why a search field instantiated in code does not behave the same way but only provide another somewhat Rubegoldbergian way to put the search field into the toolbar in IB while being (potentially) less Rubegoldbergian in not forcing one to write the formatter. Sounds like another case of "you pays yer pittance and picks yer poison".
 

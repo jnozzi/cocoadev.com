@@ -2,21 +2,21 @@ These programs allow for parsing of XML data with specific tags, designed to dis
 
 See more info in the wikipedia article: http://en.wikipedia.org/wiki/News_aggregator
 
-For an example of a feed you could check out in your aggregator, see General/CocoaDevRSSFeed.
+For an example of a feed you could check out in your aggregator, see CocoaDevRSSFeed.
 
 Here is a list of the more popular readers, made in Cocoa on the Mac, so far:
 
 Vienna, open source, Cocoa: http://sourceforge.net/projects/vienna-rss
 
-General/NetNewsWire
+NetNewsWire
 
-General/NewsFire
+NewsFire
 
-General/NewsMac
+NewsMac
 
 Postino ( http://www.coladia.com/postino )
 
-General/PulpFiction
+PulpFiction
 
 ... and here is an interview with the authors of these apps: http://www.drunkenblog.com/drunkenblog-archives/000337.html
 
@@ -26,4 +26,4 @@ An article (though rather old) on O'Reilly also covers some of these: http://www
 
 ----
 
-General/MiNews is also another (free) RSS Reader (http://www.js8media.com )
+MiNews is also another (free) RSS Reader (http://www.js8media.com )

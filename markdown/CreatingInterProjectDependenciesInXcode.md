@@ -1,7 +1,7 @@
 
 
-Here's a nice General/QuickTime movie that talks about how to create embedded frameworks. 
+Here's a nice QuickTime movie that talks about how to create embedded frameworks. 
 
 http://rentzsch.com/cocoa/embeddedFrameworks
 
-This does a nice job of explaining the steps needed to link embedded frameworks to an application. It also shows how to create interproject dependencies. This feature is great if you are working with frameworks that exists in a separate project. This feature is also nice when you are working on multiple projects and find yourself switching between them often (see General/FastSwitchingBetweenProjects for more info).
+This does a nice job of explaining the steps needed to link embedded frameworks to an application. It also shows how to create interproject dependencies. This feature is great if you are working with frameworks that exists in a separate project. This feature is also nice when you are working on multiple projects and find yourself switching between them often (see FastSwitchingBetweenProjects for more info).

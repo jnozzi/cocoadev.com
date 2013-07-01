@@ -1,14 +1,14 @@
 http://sigpipe.macromates.com/2004/09/13/iterating-an-array/
 
-By General/AllanOdgaard. Relies on C99 mode, but lets you use forall(array, item) { ... }, which I know we all want to do.
+By AllanOdgaard. Relies on C99 mode, but lets you use forall(array, item) { ... }, which I know we all want to do.
 
-Stick it in your precompiled project header and enjoy! -- General/RobRix (Just updated the link again. As pointed out below, nested uses will work just fine since shadowed variables will automatically unshadow and no one's toes will be stepped on.)
+Stick it in your precompiled project header and enjoy! -- RobRix (Just updated the link again. As pointed out below, nested uses will work just fine since shadowed variables will automatically unshadow and no one's toes will be stepped on.)
 
 ----
 
 When I saw this, I was conflicted between "cool" and "argh!", but I passed it around the office and the consensus was "cool". Thanks!
 
-*You're very welcome! Out of curiosity, may I ask whence the argh? Could it be less argh? (: -- General/RobRix*
+*You're very welcome! Out of curiosity, may I ask whence the argh? Could it be less argh? (: -- RobRix*
 
 The argh is just a general fear/cautiousness thing with C macros, particularly C macros that pretend to be real syntax elements, since something invariably goes wrong in ugly ways with them. But it looks like this particular one doesn't fall victim to that, so good job!
 
@@ -64,13 +64,13 @@ My take on the matter:
 
 Does anybody have a genius idea as to how to allow static typing in the     forall statement? I'd like to be able to write things like this:
     
-forall(General/NSFoo *foo, fooArray) { ... }
+forall(NSFoo *foo, fooArray) { ... }
 
 Using the declaration from the     element is fairly easy, but it messes up the symbol munging used for the internal enumerator variable. Is there a clever way to make this work?
 
 ----
 
-My best shot: forall(General/NSFoo, foo, fooArray) { ... }
+My best shot: forall(NSFoo, foo, fooArray) { ... }
 
     
 
@@ -85,11 +85,11 @@ My best shot: forall(General/NSFoo, foo, fooArray) { ... }
 
 ----
 
-It helps, but I still can't get past the problem in the     element = [enumerator nextObject] part. If you let element be     General/NSObject *element it expands to     General/NSString *element = [enumerator nextObject], which won't even compile.
+It helps, but I still can't get past the problem in the     element = [enumerator nextObject] part. If you let element be     NSObject *element it expands to     NSString *element = [enumerator nextObject], which won't even compile.
 
 ----
 
-Alright, I came up with a workable solution for the     foreach (General/NSFoo *foo, fooArray) { ... } form:
+Alright, I came up with a workable solution for the     foreach (NSFoo *foo, fooArray) { ... } form:
 
     
 
@@ -120,7 +120,7 @@ That should work for both break and continue.
 
 ----
 
-On second thought, I do see a problem.     foreach(General/NSString *string, [dictionary allKeys]) would not work for example. I really do like the intention of the macro, if only there was a way to generate unique variable names without using any of the macro's arguments all would be well.
+On second thought, I do see a problem.     foreach(NSString *string, [dictionary allKeys]) would not work for example. I really do like the intention of the macro, if only there was a way to generate unique variable names without using any of the macro's arguments all would be well.
 
 /Mr. Fisk
 
@@ -143,12 +143,12 @@ for (element = foreach_macro_element; foreach_macro_element; foreach_macro_eleme
 
 Infact, it doesn't always work, since the c preprocessor doesn't understand objective-c's message syntax.
 
-The following code will fail, since the preprocess thinks that the arguments passed to +General/[NSArray arrayWithObjects:] should be passed to the macro.
+The following code will fail, since the preprocess thinks that the arguments passed to +[NSArray arrayWithObjects:] should be passed to the macro.
 
     
 
-foreach (General/NSString *string, General/[NSArray arrayWithObjects:@"string1", @"string2", nil]) {
-    General/NSLog(string);
+foreach (NSString *string, [NSArray arrayWithObjects:@"string1", @"string2", nil]) {
+    NSLog(string);
 }
 
 
@@ -189,7 +189,7 @@ I was inspired by this  GCC bug report: http://gcc.gnu.org/bugzilla/show_bug.cgi
 
 #define CONCAT(a, b) CONCAT_(a, b)
 
-#define FOREACH(item, array) General/NSEnumerator *CONCAT(__u_enum, __LINE__) = [array objectEnumerator]; while ((item = [CONCAT(__u_enum, __LINE__) nextObject]))
+#define FOREACH(item, array) NSEnumerator *CONCAT(__u_enum, __LINE__) = [array objectEnumerator]; while ((item = [CONCAT(__u_enum, __LINE__) nextObject]))
 
 
 
@@ -213,7 +213,7 @@ Whereas if you used     for or     while instead, that would work.
 Here's my implementation. It solves all the problems identified previously, as well as intrinsically allowing you to specify any enumerator accessor on an object. It is also a little more verbose than other implementations *by design*--kind of like method dispatches are more verbose than function calls. It requires you compile as C99.
 
     
-static __attribute__((__always_inline__, __unused__)) General/NSEnumerator *gt_getEnumerator(SEL selector, id object) {
+static __attribute__((__always_inline__, __unused__)) NSEnumerator *gt_getEnumerator(SEL selector, id object) {
 	return objc_msgSend(object, selector);
 }
 
@@ -235,16 +235,16 @@ You use it as follows (note that embedding and static typing are both available)
 
     
 /* Yes, I keep changing this. I don't like the examples I keep coming up with! */
-for each (object) within (General/[NSApp windows]) as (General/NSWindow *window) {
-	General/NSLog(@"path components for %@'s file:", window);
-	General/NSArray *components = General/window representedFilename] pathComponents];
+for each (object) within ([NSApp windows]) as (NSWindow *window) {
+	NSLog(@"path components for %@'s file:", window);
+	NSArray *components = window representedFilename] pathComponents];
 	for each (reverseObject) within (components) as ([[NSString *component)
-		General/NSLog(@"\t%@", component);
+		NSLog(@"\t%@", component);
 }
 
 
 ----
 
-I'm still (after three or more years!) amazed at the many different efforts people have made at this. Well done! That said, I'm not entirely sure what deficiencies of the very simple original are being addressed by these, and so I'd like to see some discussion of that. What do you think? -- General/RobRix
+I'm still (after three or more years!) amazed at the many different efforts people have made at this. Well done! That said, I'm not entirely sure what deficiencies of the very simple original are being addressed by these, and so I'd like to see some discussion of that. What do you think? -- RobRix
 ----
-This seems so absolutely pointless to me. (Allan's original idea was a nice shorthand though)  -- General/FjolnirAsgeirsson
+This seems so absolutely pointless to me. (Allan's original idea was a nice shorthand though)  -- FjolnirAsgeirsson

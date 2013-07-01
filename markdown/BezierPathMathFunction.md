@@ -15,7 +15,7 @@ Arcs are actually converted into cubic curves.
 
 I want to locate any possible coordinates along the curve with a defined resolution?
 
-It looks like that you just need to flatten your curve/path. And change the flatness value in order to change the 'resolution'. (General/NSBezierPath has methods for both operations).
+It looks like that you just need to flatten your curve/path. And change the flatness value in order to change the 'resolution'. (NSBezierPath has methods for both operations).
 
 -- JP
 
@@ -23,7 +23,7 @@ It looks like that you just need to flatten your curve/path. And change the flat
 
 Here are two of my C++ 2d bezier path functions, a recursive one and a quadratic one. 
 
-Note that General/PointList is a templated list of points, but could easily be replaced with something like std::vector or std::list. And the point class was just your standard Point2D C++ class with overloaded operators. For reference, this came from an old 2d subpixel precise graphics API I worked on several years ago for General/BeOS... coming to OS X, Quartz obviated any use for this, for me.
+Note that PointList is a templated list of points, but could easily be replaced with something like std::vector or std::list. And the point class was just your standard Point2D C++ class with overloaded operators. For reference, this came from an old 2d subpixel precise graphics API I worked on several years ago for BeOS... coming to OS X, Quartz obviated any use for this, for me.
 
     
 
@@ -31,7 +31,7 @@ Note that General/PointList is a templated list of points, but could easily be r
 
 /****************************************
 	The Quadratic functions will add points into
-	the General/PointList in order, from
+	the PointList in order, from
 	p to q. This is requisite if the resulting point list
 	needs to be in order (as is the case for determining
 	if a point lies within polygon geometry) but not
@@ -42,7 +42,7 @@ Note that General/PointList is a templated list of points, but could easily be r
 
 ****************************************/
 
-void g_buildBezierCurveQuadratic(General/PointList *list, Point2D p, 
+void g_buildBezierCurveQuadratic(PointList *list, Point2D p, 
 	Point2D pa, Point2D qa, Point2D q)
 {
 	double maxSegments = 100; //an arbitrarily high number
@@ -102,7 +102,7 @@ void g_buildBezierCurveQuadratic(General/PointList *list, Point2D p,
 	}
 }
 
-void g_buildBezierCurveQuadraticFast(General/PointList *list, Point2D p, 
+void g_buildBezierCurveQuadraticFast(PointList *list, Point2D p, 
 	Point2D pa, Point2D qa, Point2D q)
 {
 	double maxSegments = 30; //an arbitrarily low number
@@ -148,7 +148,7 @@ void g_buildBezierCurveQuadraticFast(General/PointList *list, Point2D p,
 }
 
 
-void g_buildBezierCurveRecursive(General/PointList *list, Point2D p, Point2D pa, Point2D qa, 
+void g_buildBezierCurveRecursive(PointList *list, Point2D p, Point2D pa, Point2D qa, 
 	Point2D q, double segLength2)
 {
 	if (p.distance2(q) < segLength2)
@@ -204,7 +204,7 @@ Point2D g_pointOnLine(Point2D a, Point2D b, double unitsFromAToB)
 	If the curve isn't closed, and 'unitsFromStartToStop' passes the endpoint, this
 	function returns false. Otherwise, it returns true.
 */
-bool g_pointOnLineSequence(General/PointList *sequence, double unitsFromStartToStop, Point2D *pols, 
+bool g_pointOnLineSequence(PointList *sequence, double unitsFromStartToStop, Point2D *pols, 
 	Sint32 *lineSegIndex, bool closed)
 {
 	//sanity check.
@@ -272,4 +272,4 @@ I used these functions (and many, many, many others) to handle stroking, corner 
 
 If you're interested in calculating the actual intersection points of arbitrary paths, I have some code that will do that too... I had a while back revived this API to explore writing an Out Of This World style 2d vector graphic game in SDL with my own raster code. It didn't make it very far ;)
 
---General/ShamylZakariya
+--ShamylZakariya

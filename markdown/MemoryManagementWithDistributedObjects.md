@@ -10,15 +10,15 @@ This is my method, wich is called from other application:
     
 -(void)awakeFromNib
 {
-    General/NSString *serviceName = General/[NSString stringWithFormat:@"test1"];
-    General/NSConnection *serverConnection=General/[NSConnection defaultConnection];
+    NSString *serviceName = [NSString stringWithFormat:@"test1"];
+    NSConnection *serverConnection=[NSConnection defaultConnection];
     [serverConnection setRootObject:self];
     [serverConnection registerName:serviceName];
 }
 
-- (General/NSData *) test
+- (NSData *) test
 {
-	General/NSData *archive = General/[NSArchiver archivedDataWithRootObject:objects]; // objects is HUGE. say, 100MB.
+	NSData *archive = [NSArchiver archivedDataWithRootObject:objects]; // objects is HUGE. say, 100MB.
 	[objects release];
 	return archive;
 }
@@ -32,7 +32,7 @@ What and where is the code calling the method 'test'?
 
 ----
 
-Simple setup of General/NSProxy object with General/NSConnection, and next call of method.
+Simple setup of NSProxy object with NSConnection, and next call of method.
 
 ----
 

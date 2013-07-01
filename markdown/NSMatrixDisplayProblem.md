@@ -1,21 +1,21 @@
-I'm working on an General/NSMatrix that is enclosed by an General/NSScrollView. The matrix will automatically reconfigure the number of colums to fit as many cells with a minimum width across the width of the scroll view. All of this works fine, but. When you ask the matrix to renew itself     renewRows:columns: when the number of rows and/or columns changes, the current selection will be cleared. If the matrix had multiple selections, these selections will be erased and the default list mode cell in the first row and first column (r,c {0, 0}) will be selected.
+I'm working on an NSMatrix that is enclosed by an NSScrollView. The matrix will automatically reconfigure the number of colums to fit as many cells with a minimum width across the width of the scroll view. All of this works fine, but. When you ask the matrix to renew itself     renewRows:columns: when the number of rows and/or columns changes, the current selection will be cleared. If the matrix had multiple selections, these selections will be erased and the default list mode cell in the first row and first column (r,c {0, 0}) will be selected.
 
 I do the following to preserve the mutiple selection:
 
     
-    General/NSSize size = General/[NSScrollView contentSizeForFrameSize:[scrollView frame].size 
+    NSSize size = [NSScrollView contentSizeForFrameSize:[scrollView frame].size 
                                 hasHorizontalScroller:NO
                                 hasVerticalScroller:YES
                                 borderType:[scrollView borderType]];
 
     // get selected cells before the matrix erases the selection with     renewRows:columns:
-    General/NSArray *selectedCells = [matrix selectedCells];               
+    NSArray *selectedCells = [matrix selectedCells];               
 
     // this custom method will renew row and column counts after calculating these 
     // values using the new scroll view's content size width
     [matrix recalculateNumberOfRowsAndColumsForVisibleWidth:size.width];     
     
-    // reset the selected cells to be highlighted (I'm assuming that an General/NSMatrix uses this
+    // reset the selected cells to be highlighted (I'm assuming that an NSMatrix uses this
     // cell parameter as the value that dictates the state of being selected)
     int count = [selectedCells count];
     while (count--) [[selectedCells objectAtIndex:count] setHighlighted:YES];

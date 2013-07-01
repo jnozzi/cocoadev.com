@@ -1,12 +1,12 @@
 Here is a function to parse .DS_Store files, for those who want to dig into the internals of the Finder. It's written entirely based on observation of .DS_Store files, and as such is really just guesswork. However, it does seem to parse all the .DS_Store files I've found.
 
-It returns a dictionary with filenames as keys, and further dictionaries as values. These dictionaries have four-character General/OStype strings as keys, and various kinds of values: General/NSNumber, General/NSString and General/NSData, depending on the type of the data.
+It returns a dictionary with filenames as keys, and further dictionaries as values. These dictionaries have four-character OStype strings as keys, and various kinds of values: NSNumber, NSString and NSData, depending on the type of the data.
 
 I have not yet begun to work out what the different attributes actually mean. If anyone wants to contribute some information on that, feel free.
 
--General/WAHa
+-WAHa
 
-(Update on December 8, 2006: Fixed some minor bugs. - General/WAHa)
+(Update on December 8, 2006: Fixed some minor bugs. - WAHa)
 
     
 
@@ -15,9 +15,9 @@ static inline uint32_t CSGetUInt32(const uint8_t *b) { return ((uint32_t)b[0]<<2
 static inline int16_t CSGetInt16(const uint8_t *b) { return ((int16_t)b[0]<<8)|(int16_t)b[1]; }
 static inline int32_t CSGetInt32(const uint8_t *b) { return ((int32_t)b[0]<<24)|((int32_t)b[1]<<16)|((int32_t)b[2]<<8)|(int32_t)b[3]; }
 
-General/NSDictionary *General/CSParseDSStore(General/NSString *filename)
+NSDictionary *CSParseDSStore(NSString *filename)
 {
-	General/NSData *data=General/[NSData dataWithContentsOfFile:filename];
+	NSData *data=[NSData dataWithContentsOfFile:filename];
 	if(!data) return nil;
 
 	const unsigned char *bytes=[data bytes];
@@ -30,7 +30,7 @@ General/NSDictionary *General/CSParseDSStore(General/NSString *filename)
 	int type=CSGetUInt32(bytes+4);
 	if(type!='Bud1') return nil; // Unsupported filetype.
 
-	General/NSMutableDictionary *dict=General/[NSMutableDictionary dictionary];
+	NSMutableDictionary *dict=[NSMutableDictionary dictionary];
 
 	for(int n=0;;n++)
 	{
@@ -57,11 +57,11 @@ General/NSDictionary *General/CSParseDSStore(General/NSString *filename)
 			int namelen=CSGetUInt32(bytes+chunk);
 			if(length<chunk+12+namelen*2) goto end; // Truncated file.
 
-			General/NSString *filename=General/[[[NSString alloc] initWithBytes:bytes+chunk+4 length:namelen*2
-			encoding:General/CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF16BE)] autorelease];
+			NSString *filename=[[[NSString alloc] initWithBytes:bytes+chunk+4 length:namelen*2
+			encoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF16BE)] autorelease];
 			chunk+=4+namelen*2;
 
-			General/NSString *attrname=General/[[[NSString alloc] initWithBytes:bytes+chunk length:4
+			NSString *attrname=[[[NSString alloc] initWithBytes:bytes+chunk length:4
 			encoding:NSISOLatin1StringEncoding] autorelease];
 			uint32_t type=CSGetUInt32(bytes+chunk+4);
 			chunk+=8;
@@ -71,14 +71,14 @@ General/NSDictionary *General/CSParseDSStore(General/NSString *filename)
 			{
 				case 'bool': // One-byte boolean.
 					if(length<chunk+1) goto end; // Truncated file.
-					value=General/[NSNumber numberWithBool:bytes[chunk]];
+					value=[NSNumber numberWithBool:bytes[chunk]];
 					chunk+=1;
 				break;
 
 				case 'long': // Four-byte long.
 				case 'shor': // Shorts seem to be 4 bytes too.
 					if(length<chunk+4) goto end; // Truncated file.
-					value=General/[NSNumber numberWithLong:CSGetInt32(bytes+chunk)];
+					value=[NSNumber numberWithLong:CSGetInt32(bytes+chunk)];
 					chunk+=4;
 				break;
 
@@ -87,7 +87,7 @@ General/NSDictionary *General/CSParseDSStore(General/NSString *filename)
 					if(length<chunk+4) goto end; // Truncated file.
 					int len=CSGetUInt32(bytes+chunk);
 					if(length<chunk+4+len) goto end; // Truncated file.
-					value=General/[NSData dataWithBytes:bytes+chunk+4 length:len];
+					value=[NSData dataWithBytes:bytes+chunk+4 length:len];
 					chunk+=4+len;
 				}
 				break;
@@ -97,8 +97,8 @@ General/NSDictionary *General/CSParseDSStore(General/NSString *filename)
 					if(length<chunk+4) goto end; // Truncated file.
 					int len=CSGetUInt32(bytes+chunk);
 					if(length<chunk+4+len*2) goto end; // Truncated file.
-					value=General/[[[NSString alloc] initWithBytes:bytes+chunk+2 length:len*2
-					encoding:General/CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF16BE)] autorelease];
+					value=[[[NSString alloc] initWithBytes:bytes+chunk+2 length:len*2
+					encoding:CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF16BE)] autorelease];
 					chunk+=4+len*2;
 				}
 				break;
@@ -106,10 +106,10 @@ General/NSDictionary *General/CSParseDSStore(General/NSString *filename)
 				default: goto end; // Unknown chunk type, give up.
 			}
 
-			General/NSMutableDictionary *filedict=[dict objectForKey:filename];
+			NSMutableDictionary *filedict=[dict objectForKey:filename];
 			if(!filedict)
 			{
-				filedict=General/[NSMutableDictionary dictionary];
+				filedict=[NSMutableDictionary dictionary];
 				[dict setObject:filedict forKey:filename];
 			}
 
@@ -123,8 +123,8 @@ General/NSDictionary *General/CSParseDSStore(General/NSString *filename)
 ----
 
 Interesting...
-In term of what some of the attributes are see http://developer.apple.com/documentation/Carbon/Reference/Finder_Interface/Reference/reference.html  -- General/RbrtPntn
+In term of what some of the attributes are see http://developer.apple.com/documentation/Carbon/Reference/Finder_Interface/Reference/reference.html  -- RbrtPntn
 
 ----
 
-The General/OStypes I'm seeing don't really match anything listed on that page, so I don't think that's quite it... Although a lot of this is very obvious, or should become obvious with a little bit of experimentation. - General/WAHa
+The OStypes I'm seeing don't really match anything listed on that page, so I don't think that's quite it... Although a lot of this is very obvious, or should become obvious with a little bit of experimentation. - WAHa

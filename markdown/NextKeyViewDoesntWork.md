@@ -1,18 +1,18 @@
-I have an General/NSDrawer with a ton of text fields (or, I suppose more properly, a General/NSDrawer's content view), organized in two columns. I've tried to set the tab order to go down each column by connecting each General/NSTextField via its nextKeyView outlet, but it's ignoring this tab order and going between columns with each tab stroke. Does nextKeyView not work in General/NSDrawer or something?
+I have an NSDrawer with a ton of text fields (or, I suppose more properly, a NSDrawer's content view), organized in two columns. I've tried to set the tab order to go down each column by connecting each NSTextField via its nextKeyView outlet, but it's ignoring this tab order and going between columns with each tab stroke. Does nextKeyView not work in NSDrawer or something?
 
 ----
 
-What happens if you programmatically set things up by calling     setNextKeyView:(General/NSView *)aView on the text fields in the drawer?
+What happens if you programmatically set things up by calling     setNextKeyView:(NSView *)aView on the text fields in the drawer?
 
 ----
 
-Nothing, unfortunately. I just tried it with a couple of the General/NSTextField instances via their IB outlets, attempting to make a closed loop tab order where one would tab to the other. The app ignored me, though I get no errors in the run console. It still always tabs across columns, rather than down them. Am I missing something obvious? It should be as easy as connecting the nextKeyView outlets in IB or doing it programatically, right? No setting a flag somewhere to accept tab order or tab events?
+Nothing, unfortunately. I just tried it with a couple of the NSTextField instances via their IB outlets, attempting to make a closed loop tab order where one would tab to the other. The app ignored me, though I get no errors in the run console. It still always tabs across columns, rather than down them. Am I missing something obvious? It should be as easy as connecting the nextKeyView outlets in IB or doing it programatically, right? No setting a flag somewhere to accept tab order or tab events?
 
 ----
 
 I also have seen similar problems.  I'm wondering if it's related to the way I'm hi-lighting the first text field in the view?  There seems to be a number of ways to do this.  Which is the correct magic incantation?
 
-General/textField window] makeFirstResponder: textField];
+textField window] makeFirstResponder: textField];
 
 ----
 
@@ -37,9 +37,9 @@ Nor, I should more clearly state, does it seem to be listening for same.
 I wonder if this is related to the problem I am having getting a button in a drawer to respond to <Return>.
 The drawer is in some ways like a sheet, except that it does not run modally. Not news to most folks here.
 
-In the drawer I am using, I have a similar configuration to the original question in General/NextKeyViewDoesntWork, with an General/NSForm for data entry to a table in the main window. The button is not getting the keystroke (its appearance reflects the fact that it is not a responder for keystrokes - not blue and pulsating in the interface) even though I set its key equivalent to <Return> when defining properties for the button in IB.
+In the drawer I am using, I have a similar configuration to the original question in NextKeyViewDoesntWork, with an NSForm for data entry to a table in the main window. The button is not getting the keystroke (its appearance reflects the fact that it is not a responder for keystrokes - not blue and pulsating in the interface) even though I set its key equivalent to <Return> when defining properties for the button in IB.
 
-I tried setting the     nextKeyView outlet of the General/NSForm. Of course, that didn't work - the form wants to trap tab keystrokes in circular fashion from the
+I tried setting the     nextKeyView outlet of the NSForm. Of course, that didn't work - the form wants to trap tab keystrokes in circular fashion from the
 end back to the beginning. That is, once I select one of the text fields in the form, the drawer is happy to respond to keystrokes and tabs from field to field in the form without problems. It would be nice if the button would respond to <Return> and use its action to write the data to the table.
 
 I'm guessing this is because the drawer's content view returns     NO for     - ( BOOL ) acceptsFirstResponder - the default, is it not?
@@ -59,9 +59,9 @@ When you open the drawer, try sending     setDefaultButtonCell: to the drawer's 
 For example:
 
     
-- (General/IBAction)openDrawer:(id)sender
+- (IBAction)openDrawer:(id)sender
 {
     // ...open the drawer...
 
-    General/myDrawer parentWindow] setDefaultButtonCell:[myButton cell;
+    myDrawer parentWindow] setDefaultButtonCell:[myButton cell;
 }

@@ -1,4 +1,4 @@
-This page is for documenting some of the behavior notes for the General/CoreData framework that are not otherwise mentioned in the documentation.
+This page is for documenting some of the behavior notes for the CoreData framework that are not otherwise mentioned in the documentation.
 
 ----
 

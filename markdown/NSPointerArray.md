@@ -1,3 +1,3 @@
-A new Leopard class which allows for a General/NSMutableArray-like object that holds arbitrary pointers (much like a General/CFMutableArray can do with custom retain/release callbacks in General/CoreFoundation). Supports most operations (ie enumeration, mutation, dynamic growing...) but does not inherit from General/NSArray.
+A new Leopard class which allows for a NSMutableArray-like object that holds arbitrary pointers (much like a CFMutableArray can do with custom retain/release callbacks in CoreFoundation). Supports most operations (ie enumeration, mutation, dynamic growing...) but does not inherit from NSArray.
 
-A key difference from General/NSMutableArray is that it can hold weak pointers under General/GarbageCollection and nil is an allowed value. Weak pointers to objects which are collected turn into nil automatically.
+A key difference from NSMutableArray is that it can hold weak pointers under GarbageCollection and nil is an allowed value. Weak pointers to objects which are collected turn into nil automatically.

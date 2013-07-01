@@ -1,26 +1,26 @@
 
 
-Could someone explain to me how to use cocoa bindings to bind a set of General/NSTextFields to individual Elements of an General/NSArray? 
+Could someone explain to me how to use cocoa bindings to bind a set of NSTextFields to individual Elements of an NSArray? 
 Ive tried a few ways with no luck.
 
 Thanks
 
 ----
 
-What do you mean by "a set of General/NSTextFields" ?  If it's just a nib with multiple text fields, no can do.  The General/NSTextField's value binding needs a General/NSString.
+What do you mean by "a set of NSTextFields" ?  If it's just a nib with multiple text fields, no can do.  The NSTextField's value binding needs a NSString.
 
-This is simple if you can bind against a General/NSDictionary instead.
+This is simple if you can bind against a NSDictionary instead.
 
 
 ----
 
-Yeh, it was set of text fields in a nib, how would you do this with an General/NSDictionary? Which controller should I Use and what would be the method of binding to one object in the dictionary (keypath?).
+Yeh, it was set of text fields in a nib, how would you do this with an NSDictionary? Which controller should I Use and what would be the method of binding to one object in the dictionary (keypath?).
 Cheers for your help. 
 
 
 ----
 
-Use the General/NSObjectController and bind to the General/NSTextField's value binding.  Yes, you'd use the keypath to differentiate between objects in the dictionary.
+Use the NSObjectController and bind to the NSTextField's value binding.  Yes, you'd use the keypath to differentiate between objects in the dictionary.
 
 Also, check this out if you haven't already:
 http://www.cocoadevcentral.com/articles/000080.php
@@ -35,7 +35,7 @@ I have tried the following:
 
 [array1 didChangeValueForKey:key];
 
-I then have a For loop over General/NSLog to print out the values in the General/NSDictionary and they have changed correctly but the Nib will not update.
+I then have a For loop over NSLog to print out the values in the NSDictionary and they have changed correctly but the Nib will not update.
 Have also just tried [will/didchangeValueForKey:keyPath], no luck.
 
 ----
@@ -43,7 +43,7 @@ Are you storing your data in an array or in a dictionary? The above seems incons
 
 Is your container (array or dictionary) mutable? That'd be important, since you seem to want to change it.
 
-What sort of controller do you have bound to the container? In other words, when you call willChangeValueForKey: and didChangeValueForKey:, you're telling any object that's observing that object that something is about to change/has just changed. But that doesn't do any good if nobody is observing the object, right? You'll want to have an General/NSObjectController or General/NSArrayController (depending on the container) set to use your container as its content. Then you'll bind your text fields to that controller.
+What sort of controller do you have bound to the container? In other words, when you call willChangeValueForKey: and didChangeValueForKey:, you're telling any object that's observing that object that something is about to change/has just changed. But that doesn't do any good if nobody is observing the object, right? You'll want to have an NSObjectController or NSArrayController (depending on the container) set to use your container as its content. Then you'll bind your text fields to that controller.
 
 When you say "[self setValue:inum forKeyPath:keypath]", what object is "self"?
 
@@ -52,43 +52,43 @@ There's much here that's unclear. Rather than keeping us guessing, perhaps you c
 ----
 
 OK,
-My data is in a General/NSMutableDcitionary.
-I am using a General/NSObjectController instance in my Nib, linked to my custom subclass of General/NSObject I created to handle the interface (which is the "self" object). Controller key is selction and model keypath is: array1.cell1
+My data is in a NSMutableDcitionary.
+I am using a NSObjectController instance in my Nib, linked to my custom subclass of NSObject I created to handle the interface (which is the "self" object). Controller key is selction and model keypath is: array1.cell1
 
-array1 is what my dictionary is called and cell1 is an General/NSNumber object within it. 
+array1 is what my dictionary is called and cell1 is an NSNumber object within it. 
 This is the code from my custom object: (yes i know its full of memeory leaks and is rather clumsy)
 #       
 
-#import "General/BindingTestObj.h"
+#import "BindingTestObj.h"
 
-@implementation General/BindingTestObj
+@implementation BindingTestObj
 -(void)awakeFromNib
 {
-	array1 = General/[[NSMutableDictionary alloc] init];
-	General/NSLog(@"Awake From Nib Called");
-	General/NSNumber *itemstring;
+	array1 = [[NSMutableDictionary alloc] init];
+	NSLog(@"Awake From Nib Called");
+	NSNumber *itemstring;
 	
 	int i;
 	for (i=0; i<=1; i++) {
-		General/NSNumber *inum = General/[NSNumber numberWithInt:i];
-		General/NSString *key = [self returnCellNameForIndex:inum];
-		General/NSLog(@"itteration %@",General/[NSNumber numberWithInt:i]);
-		itemstring = General/[NSNumber init];
+		NSNumber *inum = [NSNumber numberWithInt:i];
+		NSString *key = [self returnCellNameForIndex:inum];
+		NSLog(@"itteration %@",[NSNumber numberWithInt:i]);
+		itemstring = [NSNumber init];
 		[array1 setObject:itemstring forKey:key];
 		//[array1 setValue:inum forKey:key];
-		General/NSString *keypath = @"array1.";
+		NSString *keypath = @"array1.";
 		[self willChangeValueForKey:[keypath stringByAppendingString:key]];
 		[self setValue:inum forKeyPath:[keypath stringByAppendingString:key]];
 		[self didChangeValueForKey:[keypath stringByAppendingString:key]];
 		
-		General/NSLog(@"item at keypath %@ is %@",key,[array1 objectForKey:key]);
+		NSLog(@"item at keypath %@ is %@",key,[array1 objectForKey:key]);
 	}
 }
 
--(General/NSString*)returnCellNameForIndex:(General/NSNumber*)index
+-(NSString*)returnCellNameForIndex:(NSNumber*)index
 {
-	General/NSNumber *inum = index;
-	General/NSMutableString *cellName = General/[[NSMutableString alloc] initWithString:@"cell"];
+	NSNumber *inum = index;
+	NSMutableString *cellName = [[NSMutableString alloc] initWithString:@"cell"];
 
 	[cellName appendString:[inum stringValue]];
 	
@@ -100,9 +100,9 @@ This is the code from my custom object: (yes i know its full of memeory leaks an
 	int i;
 	for (i=0; i<=1; i++) {
 		
-		General/NSNumber *inum = General/[NSNumber numberWithInt:i];
-		General/NSString *key = [self returnCellNameForIndex:inum];
-		General/NSLog(@"item at keypath %@ is %@",key,[array1 objectForKey:key]);
+		NSNumber *inum = [NSNumber numberWithInt:i];
+		NSString *key = [self returnCellNameForIndex:inum];
+		NSLog(@"item at keypath %@ is %@",key,[array1 objectForKey:key]);
 		
 	}
 	 

@@ -6,11 +6,11 @@ Will evaluation stop on A being true, and is there any guarantee that A will be 
 
 ----
 
-On GCC v3.3 it appears the evaluation **does** stop on A being true; and A is evaluated before B. However, I would strongly advise against making your code rely on these two "facts." -- General/RyanBates
+On GCC v3.3 it appears the evaluation **does** stop on A being true; and A is evaluated before B. However, I would strongly advise against making your code rely on these two "facts." -- RyanBates
 
 For sure -- I wasn't going to **rely** on any specific behavior from GCC; this was an optimization question.  Meaning, should I have two separate ifs, if one of the conditions is almost always true and the other takes a long time to evaluate.  A little bit of lazy evaluation could really speed things up for me.
 
-*My apologies for the wrong advice. I don't know what I was thinking when I posted the above. Those below are right, it is guaranteed to always work this way. -- General/RyanBates*
+*My apologies for the wrong advice. I don't know what I was thinking when I posted the above. Those below are right, it is guaranteed to always work this way. -- RyanBates*
 
 ----
 
@@ -34,11 +34,11 @@ Ehm... and even if we remove the minus operator, we almost have a minus operator
 
 ----
 
-Really, you don't need much more than NOR and NOT to be able to do any logic (if my memory serves me right). Syntax sugar is bliss, without it we would program in languages such as Brainf**k (which has eight operators, and no variables, just a stack). --General/TheoHultberg/Iconara
+Really, you don't need much more than NOR and NOT to be able to do any logic (if my memory serves me right). Syntax sugar is bliss, without it we would program in languages such as Brainf**k (which has eight operators, and no variables, just a stack). --TheoHultberg/Iconara
 
 ----
 
-Apple has used an example like this in the documentation for General/NSFileManager since OS X beta. 
+Apple has used an example like this in the documentation for NSFileManager since OS X beta. 
 
     
  NSArray *subpaths;
@@ -82,7 +82,7 @@ So I'd always write:
 
 Over 3 nested if's.
 
---General/AllanOdgaard
+--AllanOdgaard
 
 *Hmmm... I like symmetry personally... so I would either do two, or four, and for any other number nest... unless I'm doing bool vars only, and then a list is cool.  Any other opinions on the matter?  (This is a readability question, not a design question)*
 
@@ -100,4 +100,4 @@ But I'm not really to happy with this, though it's better than nesting if's IMHO
     ...
 
 
---General/AllanOdgaard
+--AllanOdgaard

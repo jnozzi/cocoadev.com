@@ -2,7 +2,7 @@ Does anyone know of an easy way to get the value for the amount of installed mem
 
 ----
 
-The sysctl() function can give you that info (and a whole lot more too), but it's usage can be a little tricky at first.  I'd advise checking out it's man page (    man 3 sysctl), the header (at     /usr/include/sys/sysctl.h) and this page which has a code snippet using it to check the number of cpus (General/CheckNumberOfCPUs).  -- Bo
+The sysctl() function can give you that info (and a whole lot more too), but it's usage can be a little tricky at first.  I'd advise checking out it's man page (    man 3 sysctl), the header (at     /usr/include/sys/sysctl.h) and this page which has a code snippet using it to check the number of cpus (CheckNumberOfCPUs).  -- Bo
 
 ----
 
@@ -13,7 +13,7 @@ Here's the code that worked for me:
     
 #import <sys/sysctl.h>
 
-static int General/MegabytesOfPhysicalMemory() {
+static int MegabytesOfPhysicalMemory() {
 
     int mib[] = {CTL_HW, HW_PHYSMEM};
     size_t len = sizeof(int);
@@ -42,7 +42,7 @@ this:
     sysctl(mib, 2, eightBytes, &len, NULL, 0);
     unsigned long long int *longlongintPtr = (unsigned long long int *)eightBytes;
     int *intPtr = (int *)eightBytes;
-    General/NSLog(@"%i %qu", *intPtr, *longlongintPtr);
+    NSLog(@"%i %qu", *intPtr, *longlongintPtr);
 
 
 outputs this:
@@ -58,7 +58,7 @@ BTW I'm running 768 MB of physical memory (i.e. 805306368 bytes)
 Note that sysctl returns an error value that should be checked. Otherwise, the result number that you are looking at is as good as nonsense. In addition, a quick browse through the man page says { CTL_HW, HW_PHYSMEM } is an integer. This also reveals that sysctl does not like a 64 bit value for this property name.
 
     
-unsigned long General/MegabytesOfPhysicalMemory() {
+unsigned long MegabytesOfPhysicalMemory() {
     int mib[] = {CTL_HW, HW_PHYSMEM};
     unsigned long physmem;
     size_t len = sizeof(physmem);

@@ -10,15 +10,15 @@ If it's the second scenario, it's easy:
 
     #import <B/B.h> // (where B is the name of your subsidiary framework, obviously.
 
-**Runtime:** If Framework B is part of the General/MacOS, then the required dynamic linking should happen anyway, whenever the application is launched. If both A and B are frameworks you have written, embed Framework B in Framework A (see General/EmbeddingFrameworksInApplications for details).
+**Runtime:** If Framework B is part of the MacOS, then the required dynamic linking should happen anyway, whenever the application is launched. If both A and B are frameworks you have written, embed Framework B in Framework A (see EmbeddingFrameworksInApplications for details).
 
---General/ToM
+--ToM
 
 You can also load frameworks dynamically at runtime, just as you load other bundles. You can have your framework A load framework B at runtime. If framework B contains classes that are subclasses or conform to protocols in framework A or your application, then your application will never know that they came from somewhere else, and you wouldn't have to include the headers at compile time.
 
---General/TheoHultberg/Iconara
+--TheoHultberg/Iconara
 
-Actually I wanted to know the details of how to do it. I'm writting a framework, A, which uses the General/OpenGl framework. However, when I use  framework A in my application, I get an error message like this: _glBegin defined in indirectly referenced dynamic library. So, after all, I need to include General/OpenGl framework to my app project. Doesn't frameworks allow to include automatically other frameworks?!? (Sorry about the recursive word.... I knew it wasn't the right one but couldn't think of a better choice ;)
+Actually I wanted to know the details of how to do it. I'm writting a framework, A, which uses the OpenGl framework. However, when I use  framework A in my application, I get an error message like this: _glBegin defined in indirectly referenced dynamic library. So, after all, I need to include OpenGl framework to my app project. Doesn't frameworks allow to include automatically other frameworks?!? (Sorry about the recursive word.... I knew it wasn't the right one but couldn't think of a better choice ;)
 
 --Jose 
 

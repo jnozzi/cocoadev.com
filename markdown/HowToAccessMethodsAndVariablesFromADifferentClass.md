@@ -1,6 +1,6 @@
 To use functions from one class (myFirstClass) in another class (mySecondClass), create an outlet from mySecondClass to myFirstClass.  Here you use Project Builder and go into the code of mySecondClass.h.  You add the following declaration.
     
-	General/IBOutlet myFirstClass *myFirstClass;
+	IBOutlet myFirstClass *myFirstClass;
 
 
 Connect this outlet in Interface Builder
@@ -41,14 +41,14 @@ You can also set x to a different value by doing this
 
 
 
-Go back to General/HowToProgramInOSX
+Go back to HowToProgramInOSX
 
 A newbie's annotation: Some information about @property and the dot syntax wouldn't be bad here either. This puzzles my as newbie at the moment..
 
 ----
 Some of this is fairly misleading, starting with the title. Here's a short list of things to change:
 
-*The title is General/HowToAccessMethodsAndVariablesFromADifferentClass, but it should really be General/HowToAccessMethodsAndVariablesFromADifferentObject. Generally speaking, you send messages to objects, not classes. A class is a kind of object and can receive messages, but that's not what's shown in the text.
+*The title is HowToAccessMethodsAndVariablesFromADifferentClass, but it should really be HowToAccessMethodsAndVariablesFromADifferentObject. Generally speaking, you send messages to objects, not classes. A class is a kind of object and can receive messages, but that's not what's shown in the text.
 *You can send a message to any object to which you have a valid reference. Getting that reference via an outlet is one way to do it, but there are lots of other ways too.
 *The text indicates that you can't access another object's variables directly, but that's only kinda-sorta true. There should be some reference to the different protections classes can declare for their variables (@public, @protected, @private, @package). The @protected state is perhaps the most confusing for newbies, and it's the default, so it should certainly be explained.
 

@@ -1,8 +1,8 @@
 
 
-An implementation file is the file containing the General/ClassMethod and General/InstanceMethod definitions for a class.
+An implementation file is the file containing the ClassMethod and InstanceMethod definitions for a class.
 
 ----
-See also: General/InterfaceFile
+See also: InterfaceFile
 
-And: General/AnatomyOfADotMFile
+And: AnatomyOfADotMFile

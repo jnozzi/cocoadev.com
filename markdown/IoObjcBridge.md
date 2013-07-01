@@ -1,11 +1,11 @@
     
 #!/usr/local/bin/ioDesktop
 
-General/ObjcBridge autoLookupClassNamesOn
+ObjcBridge autoLookupClassNamesOn
 
-array := (General/NSMutableArray array) 
+array := (NSMutableArray array) 
 
-array addObject:(General/NSNumber numberWithInt:(0))
+array addObject:(NSNumber numberWithInt:(0))
 array addObject:("Test")
 
 writeln (array count)

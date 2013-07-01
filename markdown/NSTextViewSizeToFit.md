@@ -1,24 +1,24 @@
-Here is a category for General/NSTextView that allows you to easily size a text view to fit its contents:
+Here is a category for NSTextView that allows you to easily size a text view to fit its contents:
 
     
-@interface General/NSTextView (General/SizeToFit)
+@interface NSTextView (SizeToFit)
 
-- (General/NSSize)minSizeForContent;
+- (NSSize)minSizeForContent;
 
 @end
 
-@implementation General/NSTextView (General/SizeToFit)
+@implementation NSTextView (SizeToFit)
 
-- (General/NSSize)minSizeForContent
+- (NSSize)minSizeForContent
 {
-	General/NSLayoutManager *layoutManager = [self layoutManager];
-	General/NSTextContainer *textContainer = [self textContainer];
+	NSLayoutManager *layoutManager = [self layoutManager];
+	NSTextContainer *textContainer = [self textContainer];
 	
-	[layoutManager boundingRectForGlyphRange:General/NSMakeRange(0, [layoutManager numberOfGlyphs]) inTextContainer:textContainer]; // dummy call to force layout
-	General/NSRect usedRect = [layoutManager usedRectForTextContainer:textContainer];
-	General/NSSize inset = [self textContainerInset];
+	[layoutManager boundingRectForGlyphRange:NSMakeRange(0, [layoutManager numberOfGlyphs]) inTextContainer:textContainer]; // dummy call to force layout
+	NSRect usedRect = [layoutManager usedRectForTextContainer:textContainer];
+	NSSize inset = [self textContainerInset];
 	
-	return General/NSInsetRect(usedRect, -inset.width * 2, -inset.height * 2).size;
+	return NSInsetRect(usedRect, -inset.width * 2, -inset.height * 2).size;
 }
 
 @end

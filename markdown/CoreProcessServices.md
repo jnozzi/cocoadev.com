@@ -19,13 +19,13 @@ extern "C" {
 #endif
 
 
-struct General/CPSProcessSerNum
+struct CPSProcessSerNum
 {
 	UInt32		lo;
 	UInt32		hi;
 };
 
-typedef struct General/CPSProcessSerNum	General/CPSProcessSerNum;
+typedef struct CPSProcessSerNum	CPSProcessSerNum;
 
 enum
 {
@@ -41,7 +41,7 @@ enum
 	bfCPSDeathBySignal	=	2
 };
 
-typedef UInt16	General/CPSEventFlags;
+typedef UInt16	CPSEventFlags;
 
 
 enum
@@ -53,7 +53,7 @@ enum
 	kCPSUnknownApp	=	4
 };
 
-typedef UInt32	General/CPSAppFlavour;
+typedef UInt32	CPSAppFlavour;
 
 
 enum
@@ -68,21 +68,21 @@ enum
         kCPSMenuBarHiddenAttr	=	805306368
 };
 
-typedef UInt32	General/CPSProcAttributes;
+typedef UInt32	CPSProcAttributes;
 
 
-struct General/CPSProcessInfoRec
+struct CPSProcessInfoRec
 {
-	General/CPSProcessSerNum 	Parent;
-	UInt64			General/LaunchDate;
-	General/CPSAppFlavour		Flavour;
-	General/CPSProcAttributes	Attributes;
-	UInt32			General/ExecFileType;
-	UInt32			General/ExecFileCreator;
-	UInt32			General/UnixPID;
+	CPSProcessSerNum 	Parent;
+	UInt64			LaunchDate;
+	CPSAppFlavour		Flavour;
+	CPSProcAttributes	Attributes;
+	UInt32			ExecFileType;
+	UInt32			ExecFileCreator;
+	UInt32			UnixPID;
 };
 
-typedef struct General/CPSProcessInfoRec	General/CPSProcessInfoRec;
+typedef struct CPSProcessInfoRec	CPSProcessInfoRec;
 
 
 enum
@@ -103,7 +103,7 @@ enum
 	kCPSNotifyLostKeyFocus	=	4096
 };
 
-typedef UInt32	General/CPSNotificationCodes;
+typedef UInt32	CPSNotificationCodes;
 
 
 enum
@@ -119,13 +119,13 @@ enum
 	bfCPSLaunchAndHideOthers	=	2097152
 };
 
-typedef UInt32	General/CPSLaunchOptions;
+typedef UInt32	CPSLaunchOptions;
 
 
-typedef	UInt8	*General/CPSLaunchRefcon;
+typedef	UInt8	*CPSLaunchRefcon;
 
 
-typedef	UInt8	*General/CPSLaunchData;
+typedef	UInt8	*CPSLaunchData;
 
 
 enum
@@ -135,22 +135,22 @@ enum
 	bfCPSExtLaunchAsUidGid	=	8
 };
 
-typedef UInt32	General/CPSLaunchPBFields;
+typedef UInt32	CPSLaunchPBFields;
 
 
-struct General/CPSLaunchPB
+struct CPSLaunchPB
 {
-	General/CPSLaunchPBFields	Contents;
-	General/CPSLaunchData		pData;
-	UInt32			General/DataLen;
-	UInt32			General/DataTag;
-	UInt32			General/RefCon;
-	General/CPSProcessSerNum	Parent;
-	UInt32			General/ChildUID;
-	UInt32			General/ChildGID;
+	CPSLaunchPBFields	Contents;
+	CPSLaunchData		pData;
+	UInt32			DataLen;
+	UInt32			DataTag;
+	UInt32			RefCon;
+	CPSProcessSerNum	Parent;
+	UInt32			ChildUID;
+	UInt32			ChildGID;
 };
 
-typedef struct General/CPSLaunchPB	General/CPSLaunchPB;
+typedef struct CPSLaunchPB	CPSLaunchPB;
 
 
 enum
@@ -159,7 +159,7 @@ enum
 	bfCPSKillAllClassicApps	=	2
 };
 
-typedef UInt32	General/CPSKillOptions;
+typedef UInt32	CPSKillOptions;
 
 
 enum
@@ -172,77 +172,77 @@ enum
 	kCPSExtDeathNoteService	=	5
 };
 
-typedef UInt32	General/CPSServiceReqType;
+typedef UInt32	CPSServiceReqType;
 
 
-struct General/CPSLaunchRequest
+struct CPSLaunchRequest
 {
-	General/CPSProcessSerNum	General/TargetPSN;
-	General/CPSLaunchOptions 	Options;
-	General/CPSProcAttributes 	General/ProcAttributes;
+	CPSProcessSerNum	TargetPSN;
+	CPSLaunchOptions 	Options;
+	CPSProcAttributes 	ProcAttributes;
 	UInt8			*pUTF8TargetPath;
-	UInt32			General/PathLen;
+	UInt32			PathLen;
 };
 
-typedef struct General/CPSLaunchRequest	General/CPSLaunchRequest;
+typedef struct CPSLaunchRequest	CPSLaunchRequest;
 
 
-struct General/CPSKillRequest
+struct CPSKillRequest
 {
-	General/CPSProcessSerNum	General/TargetPSN;
-	General/CPSKillOptions		Options;
+	CPSProcessSerNum	TargetPSN;
+	CPSKillOptions		Options;
 };
 
-typedef struct General/CPSKillRequest	General/CPSKillRequest;
+typedef struct CPSKillRequest	CPSKillRequest;
 
 
-struct General/CPSHideRequest
+struct CPSHideRequest
 {
-	General/CPSProcessSerNum 	General/TargetPSN;
+	CPSProcessSerNum 	TargetPSN;
 };
 
-typedef struct General/CPSHideRequest	General/CPSHideRequest;
+typedef struct CPSHideRequest	CPSHideRequest;
 
 
-struct General/CPSShowRequest
+struct CPSShowRequest
 {
-	General/CPSProcessSerNum 	General/TargetPSN;
+	CPSProcessSerNum 	TargetPSN;
 };
 
-typedef struct General/CPSShowRequest	General/CPSShowRequest;
+typedef struct CPSShowRequest	CPSShowRequest;
 
 
-struct General/CPSExtDeathNotice
+struct CPSExtDeathNotice
 {
-	General/CPSProcessSerNum 	General/DeadPSN;
+	CPSProcessSerNum 	DeadPSN;
 	UInt32			Flags;
 	UInt8			*pUTF8AppPath;
-	UInt32			General/PathLen;
+	UInt32			PathLen;
 };
 
-typedef struct General/CPSExtDeathNotice	General/CPSExtDeathNotice;
+typedef struct CPSExtDeathNotice	CPSExtDeathNotice;
 
 
-union General/CPSRequestDetails
+union CPSRequestDetails
 {
-	General/CPSLaunchRequest 	General/LaunchReq;
-	General/CPSKillRequest 		General/KillReq;
-	General/CPSHideRequest 		General/HideReq;
-	General/CPSShowRequest 		General/ShowReq;
-	General/CPSExtDeathNotice 	General/DeathNotice;
+	CPSLaunchRequest 	LaunchReq;
+	CPSKillRequest 		KillReq;
+	CPSHideRequest 		HideReq;
+	CPSShowRequest 		ShowReq;
+	CPSExtDeathNotice 	DeathNotice;
 };
 
-typedef union General/CPSRequestDetails	General/CPSRequestDetails;
+typedef union CPSRequestDetails	CPSRequestDetails;
 
 
-struct General/CPSServiceRequest
+struct CPSServiceRequest
 {
-	General/CPSServiceReqType 	Type;
+	CPSServiceReqType 	Type;
 	SInt32			ID;
-	General/CPSRequestDetails 	Details;
+	CPSRequestDetails 	Details;
 };
 
-typedef struct General/CPSServiceRequest	General/CPSServiceRequest;
+typedef struct CPSServiceRequest	CPSServiceRequest;
 
 
 enum
@@ -256,36 +256,36 @@ enum
 	kCPSSpecialKeyCount	=	6
 };
 
-typedef SInt32	General/CPSSpecialKeyID;
+typedef SInt32	CPSSpecialKeyID;
 
 
-extern Boolean	General/CPSEqualProcess( General/CPSProcessSerNum *psn1, General/CPSProcessSerNum *psn2);
+extern Boolean	CPSEqualProcess( CPSProcessSerNum *psn1, CPSProcessSerNum *psn2);
 
-extern General/OSErr	General/CPSGetCurrentProcess( General/CPSProcessSerNum *psn);
+extern OSErr	CPSGetCurrentProcess( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSGetFrontProcess( General/CPSProcessSerNum *psn);
+extern OSErr	CPSGetFrontProcess( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSGetNextProcess( General/CPSProcessSerNum *psn);
+extern OSErr	CPSGetNextProcess( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSGetNextToFrontProcess( General/CPSProcessSerNum *psn);
+extern OSErr	CPSGetNextToFrontProcess( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSGetProcessInfo( General/CPSProcessSerNum *psn, General/CPSProcessInfoRec *info, char *path, int maxPathLen, int *len, char *name, int maxNameLen);
+extern OSErr	CPSGetProcessInfo( CPSProcessSerNum *psn, CPSProcessInfoRec *info, char *path, int maxPathLen, int *len, char *name, int maxNameLen);
 
-extern General/OSErr	General/CPSPostHideMostReq( General/CPSProcessSerNum *psn);
+extern OSErr	CPSPostHideMostReq( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSPostHideReq( General/CPSProcessSerNum *psn);
+extern OSErr	CPSPostHideReq( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSPostKillRequest( General/CPSProcessSerNum *psn, General/CPSKillOptions options);
+extern OSErr	CPSPostKillRequest( CPSProcessSerNum *psn, CPSKillOptions options);
 
-extern General/OSErr	General/CPSPostShowAllReq( General/CPSProcessSerNum *psn);
+extern OSErr	CPSPostShowAllReq( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSPostShowReq( General/CPSProcessSerNum *psn);
+extern OSErr	CPSPostShowReq( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSSetFrontProcess( General/CPSProcessSerNum *psn);
+extern OSErr	CPSSetFrontProcess( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSReleaseKeyFocus( General/CPSProcessSerNum *psn);
+extern OSErr	CPSReleaseKeyFocus( CPSProcessSerNum *psn);
 
-extern General/OSErr	General/CPSStealKeyFocus( General/CPSProcessSerNum *psn);
+extern OSErr	CPSStealKeyFocus( CPSProcessSerNum *psn);
 
 
 #if PRAGMA_STRUCT_ALIGN

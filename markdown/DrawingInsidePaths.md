@@ -1,6 +1,6 @@
-If I have created a closed loop path with General/NSBezierPath, how can I limit drawing to inside that loop -- for instance, if I want to make a call to CG and I want to make sure CG only draws inside that space and clips everything else, what do I do?  Help!!
+If I have created a closed loop path with NSBezierPath, how can I limit drawing to inside that loop -- for instance, if I want to make a call to CG and I want to make sure CG only draws inside that space and clips everything else, what do I do?  Help!!
 ----
-General/NSBezierPath has this method:
+NSBezierPath has this method:
     
 - (void)addClip
 

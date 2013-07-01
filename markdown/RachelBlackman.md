@@ -10,12 +10,12 @@ I live in the Fremont area of Seattle, reknowned for our cement troll lurking un
 
 My first computer related paycheck was at Microsoft, I'm afraid to admit, and working support for the Windows 9x team, no less.  I've also been a multimedia engineer, a database engineer, a video game programmer and designer (for three years!), a security programmer, and written a compiler/assembler and silicon simulator for an adaptive microchip.  These days, I work at a company called Cerulean Studios on an instant messaging package for Windows called Trillian -- http://www.ceruleanstudios.com/ -- and so still exist on my Windows box during day-to-day life.
 
-I take some small pride in the fact that I have converted both my two best friends and my mother to General/MacOS X users -- leading both to purchase Macs -- by allowing them to play with my Powerbook G4.  Muahah.
+I take some small pride in the fact that I have converted both my two best friends and my mother to MacOS X users -- leading both to purchase Macs -- by allowing them to play with my Powerbook G4.  Muahah.
 
 **WHAT ARE MY PROJECTS?**
 
-I've tinkered with various little software projects, though I'm getting the feel of Cocoa still.  The main project I'm working on is **Atlantis**, a client for General/MacOS X designed to connect to various text-based interactive environments (such as General/MUSHes, General/MUXes, General/MUCKs, General/MOOs and so on).  Atlantis is still in the fairly early stages, in part because I keep deciding there's a better way to do things and ripping out what I had so far!
+I've tinkered with various little software projects, though I'm getting the feel of Cocoa still.  The main project I'm working on is **Atlantis**, a client for MacOS X designed to connect to various text-based interactive environments (such as MUSHes, MUXes, MUCKs, MOOs and so on).  Atlantis is still in the fairly early stages, in part because I keep deciding there's a better way to do things and ripping out what I had so far!
 
 I've also written several frameworks to make my own life easier, and should get around to documenting and releasing a few of them at some point, no doubt.
 
-I also have hacked together a few Perl and shell scripts to make my Mac experience happy, the most notable to other developers being the hack found at General/XcodeAndNibFilesWithPerforce here on the General/CocoaDev General/WikiWikiWeb.
+I also have hacked together a few Perl and shell scripts to make my Mac experience happy, the most notable to other developers being the hack found at XcodeAndNibFilesWithPerforce here on the CocoaDev WikiWikiWeb.

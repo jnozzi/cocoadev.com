@@ -2,9 +2,9 @@ How would i go about making my app work like the finder find system, with the ad
 
 ----
 
-You'd have to handle it all manually, creating views programmatically and other such fun. -- General/FinlayDobbie
+You'd have to handle it all manually, creating views programmatically and other such fun. -- FinlayDobbie
 
-That said, that's not much harder than making a .nib with your view in it, and then loading repeated copies of the view. -- General/RobRix
+That said, that's not much harder than making a .nib with your view in it, and then loading repeated copies of the view. -- RobRix
 
 ----
 
@@ -12,11 +12,11 @@ any tips on where to start?
 
 ----
 
-Well, like I said... make a view in your .nib file and place your search widgets in it. This will be the criteria view. So you'll probably want a little General/NSTextField and maybe a pop-up menu. Set the file's owner to some class, General/MySearchController, or something, and wire the "add constraint" button you'll make for adding another criteria to an action on the file's owner, -addConstraint: or something.
+Well, like I said... make a view in your .nib file and place your search widgets in it. This will be the criteria view. So you'll probably want a little NSTextField and maybe a pop-up menu. Set the file's owner to some class, MySearchController, or something, and wire the "add constraint" button you'll make for adding another criteria to an action on the file's owner, -addConstraint: or something.
 
 Now you just make -addConstraint: load in the .nib again (there might be a better way than this, but this is simple enough), add the view to the window (if you could use a matrix, that would be nice, but matrices work with cells, not views, so I think you're stuck with just views), and change the window's size to fit.
 
--- General/RobRix
+-- RobRix
 
 ----
 
@@ -28,11 +28,11 @@ i am trying to get it working with the criteria, with the + and - buttons btw, w
 
 I don't quite understand what you are trying to do, but you might look at:
 
-General/SearchTextFieldCell
+SearchTextFieldCell
 
 That page has links to code that creates a Mail.app like search field.
 
--- General/JesseGrosjean
+-- JesseGrosjean
 
 ----
 
@@ -46,7 +46,7 @@ how can i do this? adding something preset to the window and resizing the window
 
 ----
 
-**Have the "-" button wired up to a method you'll make like -removeCriteria: on your controller object. The controller can get the "-" button's superview, and remove it from the window. Then it can move any criteria it needs to up, and resize the window to fit. Sound good? -- General/RobRix**
+**Have the "-" button wired up to a method you'll make like -removeCriteria: on your controller object. The controller can get the "-" button's superview, and remove it from the window. Then it can move any criteria it needs to up, and resize the window to fit. Sound good? -- RobRix**
 
 ----
 

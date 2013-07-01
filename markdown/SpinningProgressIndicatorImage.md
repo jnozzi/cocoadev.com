@@ -9,4 +9,4 @@ Jacob
 
 ----
 
-Well, it'll probably be in General/HIToolbox.rsrc, but that's an implementation detail and may change in a future release of the operating system. What is your real goal? Depending on what you're trying to do, you might be able to draw it into a General/CGContext using General/HIThemeDrawChasingArrows. --General/FinlayDobbie
+Well, it'll probably be in HIToolbox.rsrc, but that's an implementation detail and may change in a future release of the operating system. What is your real goal? Depending on what you're trying to do, you might be able to draw it into a CGContext using HIThemeDrawChasingArrows. --FinlayDobbie

@@ -1,4 +1,4 @@
-Is there a nicer split button than General/NSSegmentedControl?
+Is there a nicer split button than NSSegmentedControl?
 
 Like in iCal, it's:
 
@@ -6,7 +6,7 @@ http://www.wildoctagon.com/icalsplitview.jpg
 
 instead of
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/SegmentedControl/Art/ical-alike.gif
+http://developer.apple.com/documentation/Cocoa/Conceptual/SegmentedControl/Art/ical-alike.gif
 
 
 It also has that in Safari and iPhoto and Finder and probably other stuff?
@@ -21,9 +21,9 @@ Is there a way to do it without custom images? Can I easily implement this in my
 
 ----
 
-This button style is known as "plastic", and you can make your segmentview look like that two ways: Either make the window containing the segmentview brushed, or put the segmentview into a unified toolbar. Viola! Plastic-themed General/NSSegmentView. I've posted screenshots of this below:
+This button style is known as "plastic", and you can make your segmentview look like that two ways: Either make the window containing the segmentview brushed, or put the segmentview into a unified toolbar. Viola! Plastic-themed NSSegmentView. I've posted screenshots of this below:
 
 http://iindigo3d.com/segmentaqua.png
 http://iindigo3d.com/segmentbrushed.png
 
-Hope this helps! --General/JohnWells
+Hope this helps! --JohnWells

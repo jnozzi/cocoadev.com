@@ -5,7 +5,7 @@ Here's some of the things I've uncovered while building exporter .
 
     
 
-General/ExportPluginProtocol methods
+ExportPluginProtocol methods
 
 /* This method is called by the exportManager to update the export status sheet.
  * Allocate an exportProgress struct (see below) and supply the proper values to 
@@ -34,12 +34,12 @@ General/ExportPluginProtocol methods
  */
 - (void)cancelExport; 
 
-Anonymous Structs (add these to your General/ExportPluginProtocol.h)
+Anonymous Structs (add these to your ExportPluginProtocol.h)
 
 typedef struct {
     unsigned long progressCount;	//progressbar current
     unsigned long progressTotal;	//progressbar total
-    General/NSString* progressString;		//progress message
+    NSString* progressString;		//progress message
     BOOL indeterminant;			//progressbar type
 //locks the progress; will cause -lockProgress; (I don't know what this is supposed to do)
     BOOL lockProgress;		
@@ -49,4 +49,4 @@ typedef struct {
 
 
 
---- General/KelvinNishikawa --
+--- KelvinNishikawa --

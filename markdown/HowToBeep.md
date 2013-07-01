@@ -2,8 +2,8 @@ Sound is a useful way to communicate with the user.  But, of course, it can be o
 
 To programmatically sound a system beep, type...
     
-General/NSBeep();
+NSBeep();
 
 In Interface Builder, you can also assign a slew of system beeps to buttons and actions.  Check it out.
 
-Back to General/HowToProgramInOSX
+Back to HowToProgramInOSX

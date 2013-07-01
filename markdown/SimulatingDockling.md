@@ -10,17 +10,17 @@ Maybe you can make it not confusing.... show the user a preference pane or some 
 
 ----
 
-If the user will only be accessing the application through the menu, wouldn't it make more sense to use an General/NSStatusItem and have the application run in the background? Anyone have any input on using this as an alternative to docklings? Also see: General/NSStatusBar and General/NSMenuExtra
+If the user will only be accessing the application through the menu, wouldn't it make more sense to use an NSStatusItem and have the application run in the background? Anyone have any input on using this as an alternative to docklings? Also see: NSStatusBar and NSMenuExtra
 
 ----
 
-I originally was going to do that, but I've all but decided against it now.  I just don't think it's good developer practice.  On my 12" iBook, with the number of other ones I have on my menubar, often my menuextra did not even show up (in something like Word or General/XCode which has a lot of menus).  So I'd definitely, at the very least, have to have an alternative interface for my program, since it simply won't work all the time to put it in the menubar.
+I originally was going to do that, but I've all but decided against it now.  I just don't think it's good developer practice.  On my 12" iBook, with the number of other ones I have on my menubar, often my menuextra did not even show up (in something like Word or XCode which has a lot of menus).  So I'd definitely, at the very least, have to have an alternative interface for my program, since it simply won't work all the time to put it in the menubar.
 
 ----
 
-Well, you could hide the app every time your application delegate receives an     applicationDidBecomeActive: message, but I think this is a **very bad idea** and violates the way Mac applications work. Users expect something to happen when they click an icon in the dock - even the trash does something. I suggest creating a window that has the exact same functionality as the dock menu. Even if it is a bunch of buttons, it is better than nothing. You could then have the window come up every time you click the app. You could even make it an General/NSPanel that is only visible when it is the current application. With this way the user has the choice of using the menu or the window. -- General/RyanBates
+Well, you could hide the app every time your application delegate receives an     applicationDidBecomeActive: message, but I think this is a **very bad idea** and violates the way Mac applications work. Users expect something to happen when they click an icon in the dock - even the trash does something. I suggest creating a window that has the exact same functionality as the dock menu. Even if it is a bunch of buttons, it is better than nothing. You could then have the window come up every time you click the app. You could even make it an NSPanel that is only visible when it is the current application. With this way the user has the choice of using the menu or the window. -- RyanBates
 
 
 ----
 
-Thanks for the advice.  I think this what I'm going to end up doing.  And I'll look into the General/NSPanel thing...I didn't know about this.
+Thanks for the advice.  I think this what I'm going to end up doing.  And I'll look into the NSPanel thing...I didn't know about this.

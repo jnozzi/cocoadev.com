@@ -23,14 +23,14 @@ Better yet, from Andy Ihnatko himself:
 
 "This is a great time to be a Macintosh programmer. Sure, software developers have always been lionized as the true heroes of society ? their movements obsessively tracked in gossip magazines, their achievements recognized in almost obscenely extravagant red-carpet awards telecasts.
 
-"But Apple's own Xcode gives today's programmers unprecedented advantages. Xcode does it all. The system that allows a curious newbie to add a few buttons and menus to an existing General/AppleScript is the exact same one that Apple uses to build the next version of the Macintosh operating system. **Today, we're all playing in either the deep or the shallow end of the same pool. Awesome, isn't it**?"
+"But Apple's own Xcode gives today's programmers unprecedented advantages. Xcode does it all. The system that allows a curious newbie to add a few buttons and menus to an existing AppleScript is the exact same one that Apple uses to build the next version of the Macintosh operating system. **Today, we're all playing in either the deep or the shallow end of the same pool. Awesome, isn't it**?"
 �Andy Ihnatko
 ----
 
 ***Amazon Link:**
 http://www.amazon.com/exec/obidos/ASIN/0764584111/102-7243604-9311315
 ***Publisher Link**
-http://www.wiley.com/General/WileyCDA/General/WileyTitle/productCd-0764584111.html
+http://www.wiley.com/WileyCDA/WileyTitle/productCd-0764584111.html
 ***Authors' Link**
 http://www.digitalmedievalist.com/xcode/
 
@@ -40,10 +40,10 @@ http://www.digitalmedievalist.com/xcode/
 
 *Yes indeedy. Read the first chapter (available online at the Wiley url above). Maybe a first: a book for computer geeks written by people who know both how to code and how to use the English language. Beats the cr%p out of those lugubrious how-to tomes churned out at O'Roughly by the truckload. Imagine: the Cohen brothers (no relation to the auteurs of such great films as *Fargo* and *Blood Simple*) actually trust and know how to use irony to make the sometimes odious task of learning a big software system almost pleasurable. The book is, oh, two to five percent longer than it might otherwise be, so sprinkled as it is with wry witticisms, but it's gonna be worth it.
 
-*Who here is beyond newbie / beginner status and owns this book? I've been developing Cocoa apps for nearly two years, but am frequently lost in General/XCode's innards and would like a much deeper understanding (because I know there are features there I could benefit from and haven't been able to figure out yet). Is this a good book for the more experienced among us? If so, I'll order a copy today.
+*Who here is beyond newbie / beginner status and owns this book? I've been developing Cocoa apps for nearly two years, but am frequently lost in XCode's innards and would like a much deeper understanding (because I know there are features there I could benefit from and haven't been able to figure out yet). Is this a good book for the more experienced among us? If so, I'll order a copy today.
 
 This book isn't about Cocoa, or Carbon, it's just about Xcode 2. Why not take a look at the Amazon page, which has the Search Inside This book feature, and take a quick browse? (Medievalist/LLS)
-**Didn't say it was. ;-) But if you're going to develop Cocoa apps, you're going to use General/XCode. What I meant was, is there anything in there an intermediate General/XCode user could read to become an advanced General/XCode user. Even Amazon's information doesn't really show this either way.*
+**Didn't say it was. ;-) But if you're going to develop Cocoa apps, you're going to use XCode. What I meant was, is there anything in there an intermediate XCode user could read to become an advanced XCode user. Even Amazon's information doesn't really show this either way.*
 
 *I figured you'd go to Amazon's page for the book, look at the Index, pick a few key terms, and use the Search Inside This book to check coverage. (Medievalist/LLS)
 *Dennis and Michael Cohen's The Mac Xcode 2 Book does go into some detail about Subversion and some of the debugging tools, but really, I think the book you're looking for is Mark Szymczyk�s new book Xcode Tools Sensei. You can read about it here: http://www.meandmark.com/xcodebook.html (Medievalist/LLS)
@@ -77,4 +77,4 @@ The red WROX book is better at getting you what you need to know as a reference!
 If you are really a beginner and didn't read anything else about xcode then it will be a good starter. Nothing more. In my feelings, they will have more succes when they enhanced the book for the pro's
 ----
 * I agree, this book is useless. The authors surely had a lot of fun writing it but there it ends.  Even the list of contents is extremely bad and will not help you find the page you are looking for.
-Don't waste your money on this one! It will not help you getting to know General/XCode.
+Don't waste your money on this one! It will not help you getting to know XCode.

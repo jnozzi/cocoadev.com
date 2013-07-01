@@ -1,8 +1,8 @@
-I'm not really sure what to call this title.  This might be a retain count problem I'm dealing with.  I'll try to describe the problem.  Here is a section of code that calls the method "findLongestRoad:throughIntersection:" twice.  I pass a General/NSMutableArray object both times.  (POSITIVE and NEGATIVE are just two integer #define tags and aren't relevant)
+I'm not really sure what to call this title.  This might be a retain count problem I'm dealing with.  I'll try to describe the problem.  Here is a section of code that calls the method "findLongestRoad:throughIntersection:" twice.  I pass a NSMutableArray object both times.  (POSITIVE and NEGATIVE are just two integer #define tags and aren't relevant)
 
     
 
-	path = General/[[NSMutableArray alloc] init];
+	path = [[NSMutableArray alloc] init];
 	[r findLongestRoad:path throughIntersection:POSITIVE];
 	[path removeObject:r];
 	[r findLongestRoad:path throughIntersection:NEGATIVE];
@@ -15,13 +15,13 @@ The implementation of method "findLongestRoad" is below.  At issue is confusion 
 
     
 
-- (void)findLongestRoad:(General/NSMutableArray *)path throughIntersection:(int)i
+- (void)findLongestRoad:(NSMutableArray *)path throughIntersection:(int)i
 {
 	int				loop;
-	General/NSMutableArray  *paths[3];
+	NSMutableArray  *paths[3];
 	Intersection	*section;
-	General/NSPoint			pathPoint;
-	General/NSPoint			roadPoint1, roadPoint2;
+	NSPoint			pathPoint;
+	NSPoint			roadPoint1, roadPoint2;
 	int				direction;
 
 	if ([path containsObject:self])
@@ -35,9 +35,9 @@ The implementation of method "findLongestRoad" is below.  At issue is confusion 
 		section = negative;
 
 	for (loop = 0; loop < 3; loop++)
-		paths[loop] = General/[NSMutableArray arrayWithArray:path];
+		paths[loop] = [NSMutableArray arrayWithArray:path];
 
-	if ((General/section roadLeft] player] == player) && ([section roadLeft] != self))
+	if ((section roadLeft] player] == player) && ([section roadLeft] != self))
 		[[section roadLeft] findLongestRoad:paths[0] throughIntersection:NEGATIVE];
 	if (([[section roadRight] player] == player) && ([section roadRight] != self))
 		[[section roadRight] findLongestRoad:paths[1] throughIntersection:POSITIVE];
@@ -70,8 +70,8 @@ When initially allocated in the debugger, path is 0x514940.  The first time I ca
 
 Can someone explain why it performs differently on two different calls?
 
--- General/JohnathanSteere
+-- JohnathanSteere
 ----
-The pointer parameter *path* is passed by value and thus treated like any other local variable, the scope of the reassignment is local to the method. A solution to the problem would be to pass a pointer to the array (      General/NSMutableArray **path  ), but considering that it looks like it is coming in pre-assigned that might not be a good idea and it would not be a good design decision for a method to release something it does not own. Another solution would be to empty the passed array and re-populate the existing object. A third approach would just return the result array (as a return value) in the case where no reassignment was needed, i.e. retain/autorelease the passed array, otherwise just return a newly created auto-released array.
+The pointer parameter *path* is passed by value and thus treated like any other local variable, the scope of the reassignment is local to the method. A solution to the problem would be to pass a pointer to the array (      NSMutableArray **path  ), but considering that it looks like it is coming in pre-assigned that might not be a good idea and it would not be a good design decision for a method to release something it does not own. Another solution would be to empty the passed array and re-populate the existing object. A third approach would just return the result array (as a return value) in the case where no reassignment was needed, i.e. retain/autorelease the passed array, otherwise just return a newly created auto-released array.
 
 Regards

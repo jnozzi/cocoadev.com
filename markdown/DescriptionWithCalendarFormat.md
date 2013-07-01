@@ -1,4 +1,4 @@
-The following is a list of standard formatters for use with General/NSCalendarDate's     -descriptionWithCalendarFormat: method.
+The following is a list of standard formatters for use with NSCalendarDate's     -descriptionWithCalendarFormat: method.
 
 
 * %%    - A '%' character
@@ -30,12 +30,12 @@ The following is a list of standard formatters for use with General/NSCalendarDa
 
 **Example**
 
-(From General/NSCalendarDate documentation)
+(From NSCalendarDate documentation)
 
 *This code:*
     
-General/NSCalendarDate *now = General/[NSCalendarDate calendarDate];
-General/NSLog(@"Date: %@", [now descriptionWithCalendarFormat:@"%a %m/%d/%y %I:%M %p"]);
+NSCalendarDate *now = [NSCalendarDate calendarDate];
+NSLog(@"Date: %@", [now descriptionWithCalendarFormat:@"%a %m/%d/%y %I:%M %p"]);
 
 
 *Produces this result:*

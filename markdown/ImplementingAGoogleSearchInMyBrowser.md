@@ -1,16 +1,16 @@
-I'm a Cocoa and Obj-C newbie and I've been following the "BYOB: Build Your Own Browser" tutorial series over at General/MacDevCenter to try to learn some Obj-C and Cocoa. I have a basic browser built now, but I can't for the life of me figure out how to put in a functional Google search field. I done everything needed, such as add an outlet and connect it, define the outlets and actions in the .h file, and code the actual implementation in .m file. The code in the implementation is identical to the connectURL's implementation at the moment, because when I modify it, it causes errors. Here's the code I thought was logical to use:
+I'm a Cocoa and Obj-C newbie and I've been following the "BYOB: Build Your Own Browser" tutorial series over at MacDevCenter to try to learn some Obj-C and Cocoa. I have a basic browser built now, but I can't for the life of me figure out how to put in a functional Google search field. I done everything needed, such as add an outlet and connect it, define the outlets and actions in the .h file, and code the actual implementation in .m file. The code in the implementation is identical to the connectURL's implementation at the moment, because when I modify it, it causes errors. Here's the code I thought was logical to use:
 
     
 //This is at the top of the .m file:
-static General/NSString *googleURL =@"http://www.google.com/search?q=";
+static NSString *googleURL =@"http://www.google.com/search?q=";
 
 
 //This is at the of the .m file, right before @end:
-- (General/IBAction)googleSearch:(id)sender{
+- (IBAction)googleSearch:(id)sender{
     [googleField setStringValue:[sender stringValue]];
-    General/webView mainFrame] loadRequest:
+    webView mainFrame] loadRequest:
         [[[NSURLRequest requestWithURL:
-            [NSURL General/URLWithString:
+            [NSURL URLWithString:
 				googleSearch+[sender stringValue]]]];
 }
 
@@ -18,7 +18,7 @@ But it doesn't work - It just gives a parsing error. What's wrong?
 
 ----
 
-General/ObjectiveC doesn't support support concatenation using the + operator.  Try using the     -stringByAppendingString: method instead.  You'll have to do quite a bit more preprocessing on your query string in the long run (i.e. replacing spaces with + signs, %-encoding non-alphanumerics, etc.), but that should get you started.-- Bo
+ObjectiveC doesn't support support concatenation using the + operator.  Try using the     -stringByAppendingString: method instead.  You'll have to do quite a bit more preprocessing on your query string in the long run (i.e. replacing spaces with + signs, %-encoding non-alphanumerics, etc.), but that should get you started.-- Bo
 
 ----
 

@@ -2,4 +2,4 @@ Could anyone point me to where I should look if I want to do some kind of simple
 
 ----
 
-see General/StartingWithGraphics and pages referenced therein
+see StartingWithGraphics and pages referenced therein

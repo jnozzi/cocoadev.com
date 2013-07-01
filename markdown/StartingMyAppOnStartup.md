@@ -13,13 +13,13 @@ Over the years, many developers have wanted their apps to run at login.  For a l
 
 
 
-*For 10.5 or later use the General/APIs in General/LaunchServices/General/LSSharedFileList.h.  
+*For 10.5 or later use the APIs in LaunchServices/LSSharedFileList.h.  
 
-*For 10.2 or later use Apple's General/LoginItemsAE sample code (<http://developer.apple.com/samplecode/General/LoginItemsAE/index.html>) or General/UliKusterer's Cocoa wrapper General/UKLoginItemRegistry (<http://www.zathras.de/angelweb/sourcecode.htm#General/UKLoginItemRegistry>)
+*For 10.2 or later use Apple's LoginItemsAE sample code (<http://developer.apple.com/samplecode/LoginItemsAE/index.html>) or UliKusterer's Cocoa wrapper UKLoginItemRegistry (<http://www.zathras.de/angelweb/sourcecode.htm#UKLoginItemRegistry>)
 
 
 
 Apple's documentation also details a great number of different ways to execute code at login and logout. Note that although this page doesn't say so, launchd user agents are completely broken on 10.4 and should be avoided:
-<http://developer.apple.com/documentation/General/MacOSX/Conceptual/General/BPSystemStartup/Articles/General/CustomLogin.html>
+<http://developer.apple.com/documentation/MacOSX/Conceptual/BPSystemStartup/Articles/CustomLogin.html>
 
-If you want to programatically determine at runtime if your app was launched because it is a login item, see General/KnowingIfAppWasLaunchedFromLoginItems.
+If you want to programatically determine at runtime if your app was launched because it is a login item, see KnowingIfAppWasLaunchedFromLoginItems.

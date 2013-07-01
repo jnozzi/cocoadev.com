@@ -1,6 +1,6 @@
 
 
-I have a model class with exactly five General/NSNumber keys plus an optional label key for a row of data, to be displayed in a table.
+I have a model class with exactly five NSNumber keys plus an optional label key for a row of data, to be displayed in a table.
 
 A method in my window controller parses tab-separated text data line-by-line into arrays of strings and passes each array to
 an initializer for the model class. It is possible that the label (non-numeric data) may appear anywhere in a tabbed line
@@ -17,13 +17,13 @@ should you decide to use it.
 My implementation for the initializer of the model class is as follows:
 
     
-- ( id ) initWithStrings: ( General/NSArray * ) strings
+- ( id ) initWithStrings: ( NSArray * ) strings
 {
-	General/NSEnumerator *se = [ strings objectEnumerator ];
-	General/NSString *item;
+	NSEnumerator *se = [ strings objectEnumerator ];
+	NSString *item;
 	char c;
 	BOOL isaNumber = TRUE;
-	General/NSMutableArray *nums = [ General/NSMutableArray arrayWithCapacity: [ strings count ] ];    // It's NOT a rectangular matrix.
+	NSMutableArray *nums = [ NSMutableArray arrayWithCapacity: [ strings count ] ];    // It's NOT a rectangular matrix.
 	
 	if ( self = [ super init ] )
 	{
@@ -47,13 +47,13 @@ My implementation for the initializer of the model class is as follows:
 			{
                              // 0 length implies an empty field within the row of data that will otherwise be parsed to 0.0
 				if ( [ item length ] == 0 )
-					//[ nums addObject: [ General/NSNumber numberWithFloat: 1.0/0.0 ] ];   // General/NSNumber will parse empty value to 0.0
-                                  [ nums addObject: [ General/NSNumber numberWithFloat: -999.999 ] ];     // I need some marker to indicate missing data
+					//[ nums addObject: [ NSNumber numberWithFloat: 1.0/0.0 ] ];   // NSNumber will parse empty value to 0.0
+                                  [ nums addObject: [ NSNumber numberWithFloat: -999.999 ] ];     // I need some marker to indicate missing data
 				else
-					[ nums addObject: [ General/NSNumber numberWithFloat: [ item floatValue ] ] ];
+					[ nums addObject: [ NSNumber numberWithFloat: [ item floatValue ] ] ];
  			}
 			else
-				label = [ General/NSMutableString stringWithString: item ];
+				label = [ NSMutableString stringWithString: item ];
 			
 			isaNumber = TRUE;
 		}
@@ -80,7 +80,7 @@ My implementation for the initializer of the model class is as follows:
 
 Your code contains a division by zero (which is defined as 0 on ppc, but will throw an exception on x86, and is mathematically undefined).
 
-**Actually what I was seeing in the table view was General/NaN**
+**Actually what I was seeing in the table view was NaN**
 
 You iterate     strings with an enumerator, and yet     utf8rep is taken as the first object in the     strings array.  *Oops. My bad. See below.*
 
@@ -89,7 +89,7 @@ From a design point-of-view your code is rather bad. You don't pass around array
 
 **Update:** I didn't read your code thoroughly, and see that your last stuff actually does initialize member data (so strike my first comment). That's what happens when you write >50 to receive a label and array of integers :)      *Yup, I *have* written some excess code, no doubt*
 
-Did you consider just using an General/NSDictionary as your model class?
+Did you consider just using an NSDictionary as your model class?
 *I guess then I would use something like myDict.dataItem1 when binding the model key*
 
 ----

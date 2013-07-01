@@ -1,6 +1,6 @@
     
-	General/NSWindow *myWindow = General/[[NSWindow alloc] initWithContentRect: General/NSMakeRect(10,10,50,50) styleMask: General/NSBorderlessWindowMask backing: General/NSBackingStoreRetained defer: NO];
-	[myWindow setBackgroundColor: General/[NSColor clearColor]];
+	NSWindow *myWindow = [[NSWindow alloc] initWithContentRect: NSMakeRect(10,10,50,50) styleMask: NSBorderlessWindowMask backing: NSBackingStoreRetained defer: NO];
+	[myWindow setBackgroundColor: [NSColor clearColor]];
 	[myWindow setHasShadow: NO];
 	[myWindow setOpaque: NO];
 	[myWindow retain];
@@ -20,4 +20,4 @@ It's not showing your window because you're making a completely transparent, sha
 
 On a completely unrelated note, the retain is redundant (and will in fact cause a leak), because you already alloc'd the window.
 
-One other thing, you really should use     General/NSBackingStoreBuffered instead of     General/NSBackingStoreRetained. The latter will disable the double-buffering which makes OS X's windowing system so nice to use.
+One other thing, you really should use     NSBackingStoreBuffered instead of     NSBackingStoreRetained. The latter will disable the double-buffering which makes OS X's windowing system so nice to use.

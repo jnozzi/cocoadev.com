@@ -6,24 +6,24 @@ The mouseDown: code is as follows:
 
     
 
-- (void)mouseDown:(General/NSEvent *)event
+- (void)mouseDown:(NSEvent *)event
 {
     BOOL keepOn = YES;
 	BOOL isInside = YES;
-    General/NSPoint mouseLoc;
-	General/NSRect rect;
+    NSPoint mouseLoc;
+	NSRect rect;
     while (keepOn)
 	{
-        event = General/self window] nextEventMatchingMask:[[NSLeftMouseUpMask | General/NSLeftMouseDraggedMask];
+        event = self window] nextEventMatchingMask:[[NSLeftMouseUpMask | NSLeftMouseDraggedMask];
         mouseLoc = [self convertPoint:[event locationInWindow] fromView:nil];
 		isInside = [self mouse:mouseLoc inRect:GRIPRECT];
 		
 		switch ([event type]) {
-			case General/NSLeftMouseDragged:
+			case NSLeftMouseDragged:
 				rect = [self frame];
 				rect.size.width += [event deltaX];
 				[self setFrame:rect];
-				General/self superview] display];
+				self superview] display];
 				break;
 			case [[NSLeftMouseUp:
 				keepOn = NO;
@@ -40,22 +40,22 @@ The mouseDown: code is as follows:
 "GRIPRECT" is defined as follows:
 
     
-#define GRIPRECT     General/NSMakeRect(General/NSWidth([self frame]) - 17, 0, 17, BOTTOM_BAR_HEIGHT)
+#define GRIPRECT     NSMakeRect(NSWidth([self frame]) - 17, 0, 17, BOTTOM_BAR_HEIGHT)
 
 
-If I modify the     case General/NSLeftMouseDragged: block to only execute if     isInside == YES, if you drag too fast, the resize doesn't keep up and the drag ends because it's no longer "    isInside". What's wrong with my assumptions? ;-)
+If I modify the     case NSLeftMouseDragged: block to only execute if     isInside == YES, if you drag too fast, the resize doesn't keep up and the drag ends because it's no longer "    isInside". What's wrong with my assumptions? ;-)
 
 ----
 
 Never mind ... ;-) I found it. I had to account for the initial mouseDown: event and react accordingly. The following seems to work.
 
     
-- (void)mouseDown:(General/NSEvent *)event
+- (void)mouseDown:(NSEvent *)event
 {
-    General/NSPoint mouseLoc = [self convertPoint:[event locationInWindow] fromView:nil];
+    NSPoint mouseLoc = [self convertPoint:[event locationInWindow] fromView:nil];
 	BOOL isInside = [self mouse:mouseLoc inRect:GRIPRECT];;
     BOOL keepOn = isInside;
-	General/NSRect rect;
+	NSRect rect;
 	
 	if (!keepOn)
 	{
@@ -65,16 +65,16 @@ Never mind ... ;-) I found it. I had to account for the initial mouseDown: event
 	
     while (keepOn)
 	{
-        event = General/self window] nextEventMatchingMask:[[NSLeftMouseUpMask | General/NSLeftMouseDraggedMask];
+        event = self window] nextEventMatchingMask:[[NSLeftMouseUpMask | NSLeftMouseDraggedMask];
         mouseLoc = [self convertPoint:[event locationInWindow] fromView:nil];
 		isInside = [self mouse:mouseLoc inRect:GRIPRECT];
 		
 		switch ([event type]) {
-			case General/NSLeftMouseDragged:
+			case NSLeftMouseDragged:
 				rect = [self frame];
 				rect.size.width += [event deltaX];
 				[self setFrame:rect];
-				General/self superview] display];
+				self superview] display];
 				break;
 			case [[NSLeftMouseUp:
 				keepOn = NO;

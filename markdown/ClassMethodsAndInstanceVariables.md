@@ -11,8 +11,8 @@ Many thanks :)
 ----
 
 Trying to use an instance variable in a class method means something is wrong in your design. (Sorry to be so blunt!). You will need to think it through again. If you need the instance variable, it means the result from the "class method" can be different depending on its value; how can it be a class method, then? Maybe all your instances are supposed to have the same value for this instance variable, in which case you have a "class variable", and you would need to use a static variable with class-wide access.
-Now, to access methods in different parts of the application, you can use General/NSNotifications, but they also apply to instance methods, so you will need to instantiate one instance of your class.
-Maybe, you need also to think about the General/SingletonDesignPattern. --General/CharlesParnot
+Now, to access methods in different parts of the application, you can use NSNotifications, but they also apply to instance methods, so you will need to instantiate one instance of your class.
+Maybe, you need also to think about the SingletonDesignPattern. --CharlesParnot
 
 ----
 
@@ -29,33 +29,33 @@ The instance variable is a reference to an object in Interface Builder, if that 
 You might want to think about the design of your classes/instances, ensuring it follows the general principals of objective-c and cocoa.
 Generally, we instantiate one instance of a class, and then call the method eg.
 
-General/MyUploader *uploader = General/[[MyUploader alloc] init];
+MyUploader *uploader = [[MyUploader alloc] init];
 
 [uploader putFile:@"~/desktop/myfile.txt"];
 
-(General/MyUploader being your class, 'putFile' being your method)
+(MyUploader being your class, 'putFile' being your method)
 
 ----
 
-This is one of the hardest things to understand when you are starting cocoa programming and one many still don't really grasp so don't worry - you arent the only one!  Singleton Pattern is one way to do this if what you need is to access a method in another class - this means that you insure through a custom init call that there is never more than one instance of that singleton object.  Without the singleton declaration you get a different instance each time and this messes up things like UI calls that may be managed by that object that you now have numerous instances of.  If you just need variables then you can use accessor methods or use a bridge such as Notifications or General/StandardUserDefaults to pass the variables around.
+This is one of the hardest things to understand when you are starting cocoa programming and one many still don't really grasp so don't worry - you arent the only one!  Singleton Pattern is one way to do this if what you need is to access a method in another class - this means that you insure through a custom init call that there is never more than one instance of that singleton object.  Without the singleton declaration you get a different instance each time and this messes up things like UI calls that may be managed by that object that you now have numerous instances of.  If you just need variables then you can use accessor methods or use a bridge such as Notifications or StandardUserDefaults to pass the variables around.
 
-General/EcumeDesJours
-
-----
-
-Thanks, General/EcumeDesJours - yeah, I was raised on BASIC, General/RealBASIC... and Visual Basic (your queue **(cue? or are you trying to make a pun?)** to look aghast)! I've heard that Visual Basic teaches you some awful stuff that you have to unlearn before moving on to a competent language, especially an OO language, and I believe it ;-). But what I've done in Cocoa with minimal instruction (just basic General/ObjC syntax and General/AppKit header files) in a couple hours would have taken quite a bit longer in BASIC, so I'm lovin' it already.
-
-I've ordered the second edition of the General/BigNerdRanch book on Cocoa, Cocoa Programming for Mac OS X, and it should be arriving... some day. Until it arrives and I can read it with some depth, I'll be content with my partially-functional app to get tide info ;-) it still beats the website... or Mr Tides! bah!
+EcumeDesJours
 
 ----
 
-I'm just writing my first program too. I've solved this problem by creating those instance variables (which refer to the IB objects that I'll need in differing parts of the app) in the General/NSObject I've used to connect the Main Menu actions to. Since all my other objects are created by user action on the Main Menu (or by user action in a window which was created by Main Menu), then the Main Menu object, when creating an instance, simply needs to pass an instance variable in a custom -initWithMainMenuHandler:(id)instanceOfMainMenu method. The created object can then interrogate the Main Menu object which has a method for each instance variable which will be needed. Probably not the most elegant way of going about things though.
+Thanks, EcumeDesJours - yeah, I was raised on BASIC, RealBASIC... and Visual Basic (your queue **(cue? or are you trying to make a pun?)** to look aghast)! I've heard that Visual Basic teaches you some awful stuff that you have to unlearn before moving on to a competent language, especially an OO language, and I believe it ;-). But what I've done in Cocoa with minimal instruction (just basic ObjC syntax and AppKit header files) in a couple hours would have taken quite a bit longer in BASIC, so I'm lovin' it already.
 
-General/ArthurPeake
+I've ordered the second edition of the BigNerdRanch book on Cocoa, Cocoa Programming for Mac OS X, and it should be arriving... some day. Until it arrives and I can read it with some depth, I'll be content with my partially-functional app to get tide info ;-) it still beats the website... or Mr Tides! bah!
+
+----
+
+I'm just writing my first program too. I've solved this problem by creating those instance variables (which refer to the IB objects that I'll need in differing parts of the app) in the NSObject I've used to connect the Main Menu actions to. Since all my other objects are created by user action on the Main Menu (or by user action in a window which was created by Main Menu), then the Main Menu object, when creating an instance, simply needs to pass an instance variable in a custom -initWithMainMenuHandler:(id)instanceOfMainMenu method. The created object can then interrogate the Main Menu object which has a method for each instance variable which will be needed. Probably not the most elegant way of going about things though.
+
+ArthurPeake
 
 ----
 
 Other recent discussions of this issue:
 
-General/UsingAccessorMethodsWithIBOutlets
-General/HowToTransmitDataBetweenClasses
+UsingAccessorMethodsWithIBOutlets
+HowToTransmitDataBetweenClasses

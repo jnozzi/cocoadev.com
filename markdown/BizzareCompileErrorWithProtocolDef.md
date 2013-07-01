@@ -1,10 +1,10 @@
 I've moved some method declarations out of the @interface block into a @protocol block for Objective-C++ issues (long story).  I have a file with just
 
     
-@protocol General/WrapperProtocol
+@protocol WrapperProtocol
 
 ... some method declarations ...
-- (float*)descriptorOfPixels:(unsigned char *)I withHeight:(int)H andWidth:(int)W numChannels:(int)numChan atPoint:(General/NSPoint)P;
+- (float*)descriptorOfPixels:(unsigned char *)I withHeight:(int)H andWidth:(int)W numChannels:(int)numChan atPoint:(NSPoint)P;
 
 @end
 
@@ -14,10 +14,10 @@ When compiling this I get  "error: parse error before '(' token".  This never ha
 i.e. 
 
     
-@protocol General/WrapperProtocol
+@protocol WrapperProtocol
 
 ... some method declarations ...
-- (float*)descriptorOfPixels:(unsigned char *)notI withHeight:(int)H andWidth:(int)W numChannels:(int)numChan atPoint:(General/NSPoint)P;
+- (float*)descriptorOfPixels:(unsigned char *)notI withHeight:(int)H andWidth:(int)W numChannels:(int)numChan atPoint:(NSPoint)P;
 
 @end
 

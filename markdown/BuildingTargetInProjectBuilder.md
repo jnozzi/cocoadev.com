@@ -7,7 +7,7 @@ Milke.
 
 ----
 
-This is a known problem with General/ProjectBuilder; to fix it, go to the GCC Compiler Settings section in the project's target settings and put quotes (") around the filename shown in the Prefix Header field (for example, replace Vermont Recipes_Prefix.h with "Vermont Recipes_Prefix.h").  If you've deleted the file, you'll probably want to copy it in from another project as pre-compiled prefix headers speed up compile times significantly. -- Bo 
+This is a known problem with ProjectBuilder; to fix it, go to the GCC Compiler Settings section in the project's target settings and put quotes (") around the filename shown in the Prefix Header field (for example, replace Vermont Recipes_Prefix.h with "Vermont Recipes_Prefix.h").  If you've deleted the file, you'll probably want to copy it in from another project as pre-compiled prefix headers speed up compile times significantly. -- Bo 
 
 ----
 

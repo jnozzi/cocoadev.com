@@ -1,7 +1,7 @@
-Just a class for convenience, see General/PoseAsAspects and General/LookupAspects for more info
+Just a class for convenience, see PoseAsAspects and LookupAspects for more info
 
 
-**General/ACMethodIterator.h**
+**ACMethodIterator.h**
 
     
  #import <Foundation/Foundation.h>
@@ -25,7 +25,7 @@ Just a class for convenience, see General/PoseAsAspects and General/LookupAspect
 
 
 
-**General/ACMethodIterator.m**
+**ACMethodIterator.m**
 
     
  #import "ACMethodIterator.h"

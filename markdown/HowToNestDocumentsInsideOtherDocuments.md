@@ -9,15 +9,15 @@ Hey Everyone,
 
 See the "Application Description" section at the bottom of this post for details on what I'm trying to do.
 
-So far the General/MyDocument class in my app uses two classes for managing the song library.
+So far the MyDocument class in my app uses two classes for managing the song library.
 
-General/CPSongLibrary - Class for holding the contents of the song library and groups (similar to iTunes 'Playlists') of songs.
-General/CPSongContainer - Class for holding information about the song itself and links to files (.pdf, .doc, .txt, etc...) for the song
+CPSongLibrary - Class for holding the contents of the song library and groups (similar to iTunes 'Playlists') of songs.
+CPSongContainer - Class for holding information about the song itself and links to files (.pdf, .doc, .txt, etc...) for the song
 
 
 So far so good, I've got methods working for adding songs, getting the song count, etc, but now that I'm starting to work on the groups I'm running into an unexpected bump as it relates to another feature I want the app to have.
 
-Normally I would think to just use an instance of General/NSMutableArray for each group, and let each group retain a reference to a General/CPSongContainer object.  The problem is this:
+Normally I would think to just use an instance of NSMutableArray for each group, and let each group retain a reference to a CPSongContainer object.  The problem is this:
 I would like to have the abilty for documents in my application to "link" to other documents of the same type and display the linked data as if it were its own. I don't want to import the data since I would like changes in any of the "child documents" to be reflected when the parent document is opened.  How can I have a group list in one document accurately "point" to a song object in a different document?  Wouldn't it be archived as its own document data when the parent document is saved?  Is there any way I can create some kind of intermediate class to use as a bridge between documents?  Has anyone ever tried this (successfully or otherwise?)
 
 I'm sure this is a little hard to understand and I hope its clear what I'm trying to do.  It would be almost like taking iTunes and making it a document based app, where any one document had the ability to display the contents of any number of other document's libraries (including playlists) as if it were part of its own library, and use songs from an external (linked) library in its own playlists.
@@ -28,7 +28,7 @@ I'm wondering if anyone has any thoughts on how to structure my classes so that 
 
 Thanks so much for any insight that might help out a newbie...
 
-General/CliffPruitt
+CliffPruitt
  
  
  
@@ -67,11 +67,11 @@ There are a lot of complex cases you'll want to think about before actually impl
 
 ----
 
-Hmmm...  rather complex isn't it? Any chance Apple is planning on adding General/NSSolveAllMyProblems to the Cocoa frameworks?
+Hmmm...  rather complex isn't it? Any chance Apple is planning on adding NSSolveAllMyProblems to the Cocoa frameworks?
 
 Is there any merrit to the idea that I could save, not actual object data, but psudo URL's?  For example save a pair of strings that are something like:
 
-'~/Documents/General/SongDocs/doc1.ext', 'Song Identifier'
+'~/Documents/SongDocs/doc1.ext', 'Song Identifier'
 
 I guess in that case I'd have to have a way of giving each song a unique ID to reference.  I'm more used to working with relational databases than with archiving objects so inter-document data sharing is a whole new ball of wax for me. I'm used to it all being in one big data heap.
 
@@ -79,13 +79,13 @@ I noticed Apple uses an XML format for their library.  Any chance XML might some
 
 Thanks for the thoughts!
 
-General/CliffPruitt
+CliffPruitt
 
 ----
 
 If I understand you correctly, I'm not sure saving just the UID would be a good idea-- going back to one of the examples above, if someone made a change to the item with the UID on a second computer, transfered the document file back to their first computer, the change would not be transfered over. The user would expect that the item is unique, and since he just edited it on the second computer, it would be confusing for him to see the same item on the first computer, without any of his changes. On the other hand, if you think this might be a reasonable behavior for the data you're working with, feel free to do it just like that.
 
-Coming up with a globally unique string is simple, take a look at General/UniqueFileName. After that, just remember what you're dealing with when you're conceptually thinking of objects. Sometimes you'll be comparing pointers to an object, sometimes you'll be comparing unique strings in an object. Once you're used to thinking in this mindset, everything should start to fall into place. 
+Coming up with a globally unique string is simple, take a look at UniqueFileName. After that, just remember what you're dealing with when you're conceptually thinking of objects. Sometimes you'll be comparing pointers to an object, sometimes you'll be comparing unique strings in an object. Once you're used to thinking in this mindset, everything should start to fall into place. 
 
 As far as XML, well, that's just how you'll be saving the data. Reading and writing to disk is the easy part, it's only when you load the objects into memory that it starts to get complex. :)
 
@@ -142,13 +142,13 @@ As of now I'm just making it a document based app but skipping the doc linking f
 
 :-)
 
-General/CliffPruitt
+CliffPruitt
 
 ----
 
-It sounds like you're on the right track. In my posts above, I was still thinking along the lines of my original example, where the shared data is stored in a single file instead of linked between all the documents, but if you feel the way you're describing is better for your design, then you should definitely follow that. For the actual implementation, look at the page I mentioned above for code to generate a globally unique string that will work great for a UID. An General/NSDictionary would be a good place to store objects if you're going to look them up by referencing the UID as a key. Create a basic subclass of General/NSObject, so you can inherit the UID accessors and isEquals (if you need it) in each object you need to make unique.
+It sounds like you're on the right track. In my posts above, I was still thinking along the lines of my original example, where the shared data is stored in a single file instead of linked between all the documents, but if you feel the way you're describing is better for your design, then you should definitely follow that. For the actual implementation, look at the page I mentioned above for code to generate a globally unique string that will work great for a UID. An NSDictionary would be a good place to store objects if you're going to look them up by referencing the UID as a key. Create a basic subclass of NSObject, so you can inherit the UID accessors and isEquals (if you need it) in each object you need to make unique.
 
-For keeping track of documents, I would start by  subclassing General/NSDocumentController, so that you can override the methods it calls to keep the "Recent Documents" menu updated to find and track new documents. You'll still have to do some of the work yourself, but it's definitely a good place to start.
+For keeping track of documents, I would start by  subclassing NSDocumentController, so that you can override the methods it calls to keep the "Recent Documents" menu updated to find and track new documents. You'll still have to do some of the work yourself, but it's definitely a good place to start.
 
 ----
 
@@ -160,7 +160,7 @@ the second hit gives you a code sample, that with a few minor changes works grea
 
 ----
 
-Great info.  Thanks.  As of now I'm still struggling to get the UI to do what I want it to do, (can General/NSSplitView be any more useless?) but I'm making great headway. I'm really excited about this app.
+Great info.  Thanks.  As of now I'm still struggling to get the UI to do what I want it to do, (can NSSplitView be any more useless?) but I'm making great headway. I'm really excited about this app.
 
 Thanks for all the help & insight!
 

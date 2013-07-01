@@ -19,15 +19,15 @@ The downside of this system is that you will get a lot of customers contacting y
 
 
 ----
-This actually reminds me of a problem I was working on a while ago.  After a lot of poking around in headers I determined that most of the General/ObjectiveC runtime is in fact composed of structs.  Hence a lot of tedious manipulation of structs and a lot of debugging could allow one to create General/ObjectiveC elements in memory without declaration in code.  I never really pursued it beyond that though, as I thought it wasn't worth the effort.
+This actually reminds me of a problem I was working on a while ago.  After a lot of poking around in headers I determined that most of the ObjectiveC runtime is in fact composed of structs.  Hence a lot of tedious manipulation of structs and a lot of debugging could allow one to create ObjectiveC elements in memory without declaration in code.  I never really pursued it beyond that though, as I thought it wasn't worth the effort.
 
 ----
 
-I've tried something that works for me. I put a list of all of the serials that I've given out on my webserver, using General/MySQL. The app requires that the user be connected the first time they use the app, in order for it to check (this is after the obvious 30 day trial). This is done after I'm sure that the computer's hosts file hasn't been tweaked with to get around this check. The app will only communicate with what it knows is my server. If it can't get a response, it will simply tell the user to try again later or update to a new version (if the server has changed). After it looks and compares, the server checks to see how many machines have been registered (via ethernet id), and if the number of machines is greater than 3 or 5 (depending on licence), then it says NO. It also writes to a hidden file on the user's computer that they have attempted piracy. Every time they enter another serial, I do this check. If they try to use many more known pirated numbers, then they go on report, and if I'm in a cranky mood, I lock the app up. Pirates have no rights. -- General/JasonTerhorst
+I've tried something that works for me. I put a list of all of the serials that I've given out on my webserver, using MySQL. The app requires that the user be connected the first time they use the app, in order for it to check (this is after the obvious 30 day trial). This is done after I'm sure that the computer's hosts file hasn't been tweaked with to get around this check. The app will only communicate with what it knows is my server. If it can't get a response, it will simply tell the user to try again later or update to a new version (if the server has changed). After it looks and compares, the server checks to see how many machines have been registered (via ethernet id), and if the number of machines is greater than 3 or 5 (depending on licence), then it says NO. It also writes to a hidden file on the user's computer that they have attempted piracy. Every time they enter another serial, I do this check. If they try to use many more known pirated numbers, then they go on report, and if I'm in a cranky mood, I lock the app up. Pirates have no rights. -- JasonTerhorst
 
 ----
 
-Bravo. This last could productively go into a subtopic within General/ProductSecurityStrategies entitled General/BlacklistChecking.
+Bravo. This last could productively go into a subtopic within ProductSecurityStrategies entitled BlacklistChecking.
 
 What I am trying to do is separate emotion from strategy in this discussion. One's feelings about piracy are not
 exactly productive when trying to develop strategies for optimizing the returns on the work one does.
@@ -50,7 +50,7 @@ I recommend reading http://wilshipley.com/blog/2005/06/piracy.html
 
 ----
 
-The **best** way to protect your software is, currently, a serial code + activation mechanism, plus blacklist, plus asymmetrical cryptography (i.e. I have a public key in the bundle, you have a private key on the activation server). This would effectively remove weak points in the registration process, removing the number 1 pitfall for Mac shareware apps -- the ability to steal an app by the means of copying and pasting a simple serial number. This kills most of the piracy, believe it or not -- not enough users are savvy enough to apply cracks, even cracks as easy to produce as General/InputManager<nowiki/>s. -- General/EmanueleVulcano aka l0ne
+The **best** way to protect your software is, currently, a serial code + activation mechanism, plus blacklist, plus asymmetrical cryptography (i.e. I have a public key in the bundle, you have a private key on the activation server). This would effectively remove weak points in the registration process, removing the number 1 pitfall for Mac shareware apps -- the ability to steal an app by the means of copying and pasting a simple serial number. This kills most of the piracy, believe it or not -- not enough users are savvy enough to apply cracks, even cracks as easy to produce as InputManager<nowiki/>s. -- EmanueleVulcano aka l0ne
 
 *100% AGREED. This is a VERY effective method. Yes, a knowledgeable individual would have little trouble bypassing it, but the truth seems to be (even for popular apps) that there simply aren't enough sufficiently-knowledgeable individuals out there. My app has not shown up on warez lists, crack sites, etc. since the version prior to implementing this approach. It is **effective**. *
 

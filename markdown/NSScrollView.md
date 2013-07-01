@@ -6,7 +6,7 @@
 
 Hello All,
 
-I am wanting to make a list of files and folders, using the arrows for next folder as the finder does. Must this be one using a General/NSScrollView or can i do it with a General/NSTableView?
+I am wanting to make a list of files and folders, using the arrows for next folder as the finder does. Must this be one using a NSScrollView or can i do it with a NSTableView?
 
 Anyway, how can i take an array, and then add a new arrow and sublist for a folder?
 
@@ -14,23 +14,23 @@ Thanks...
 
 ----
 
-You'll want to use an General/NSOutlineView to get results like the Finder.
+You'll want to use an NSOutlineView to get results like the Finder.
 
-Check out the example Apple provides at: file:///Developer/Examples/General/AppKit/General/DragNDropOutlineView
+Check out the example Apple provides at: file:///Developer/Examples/AppKit/DragNDropOutlineView
 
--- General/JacobHazelgrove
-
-----
-
-Thanks, found file:///Developer/Examples/General/AppKit/General/OutlineView/ most use. now just got to work out how to transfer all the file names from the array into it, making the folders parents...hrm
+-- JacobHazelgrove
 
 ----
 
-It wasn't immediately obvious to me just how you go about making an General/NSScrollView with something inside of it. As it turns out, in General/InterfaceBuilder you can simply select any item and from the menus select:
+Thanks, found file:///Developer/Examples/AppKit/OutlineView/ most use. now just got to work out how to transfer all the file names from the array into it, making the folders parents...hrm
+
+----
+
+It wasn't immediately obvious to me just how you go about making an NSScrollView with something inside of it. As it turns out, in InterfaceBuilder you can simply select any item and from the menus select:
 
     Layout->Make subviews of->Scroll View
 
-This will create an General/NSScrollView that contains the item you had selected when you chose the menu item.
+This will create an NSScrollView that contains the item you had selected when you chose the menu item.
 
 ----
 
@@ -43,7 +43,7 @@ I have a custom "navigation" view on the side of my window (a la Mail 2.0) which
 My solution to a similar problem was to resize the view as you have done and to also move the origin up accordingly.  Once you have the height you want, just use:
 
     
-	General/NSRect newFrame = [self frame];
+	NSRect newFrame = [self frame];
 	newFrame.origin.y += minFrame.size.height - newHeight;
 	newFrame.size.height = newHeight;
 	[self setFrame:newFrame];
@@ -53,19 +53,19 @@ My solution to a similar problem was to resize the view as you have done and to 
 
 My solution for keeping a scroll view's document view anchored to the top:
     
-@interface General/TopAnchoredView : General/NSView {
+@interface TopAnchoredView : NSView {
 	float startHeight;
 }
 @end
-@implementation General/TopAnchoredView
-- (id)initWithFrame:(General/NSRect)frame {
+@implementation TopAnchoredView
+- (id)initWithFrame:(NSRect)frame {
 	if ([super initWithFrame:frame]) {
-		startHeight = General/NSHeight(frame);
+		startHeight = NSHeight(frame);
 	}
 	return self;
 }
-- (void)setFrame:(General/NSRect)frame {
-	frame.size.height = MAX(General/[self enclosingScrollView] contentView] frame].size.height, startHeight);
+- (void)setFrame:(NSRect)frame {
+	frame.size.height = MAX([self enclosingScrollView] contentView] frame].size.height, startHeight);
 	[super setFrame:frame];
 }
 @end
@@ -75,18 +75,18 @@ Your document view should be a subclass of [[TopAnchoredView. It will then fill 
 
 ----
 
-Concerning the problem to top-anchor the document of an <code>General/NSScrollView</code> � This is what worked for me:
+Concerning the problem to top-anchor the document of an <code>NSScrollView</code> � This is what worked for me:
 
-*Creating a category on <code>General/NSClipView</code> (the class of the scrollview�s content view) with <code>-(BOOL)isFlipped</code> implemented and returning YES (and thus hiding and replacing the original method <code>isFlipped</code>)
-*Overriding the document view�s (a subclass of <code>General/NSView</code>) <code>-(void)setFrame:(General/NSRect)frameRect</code> with one calling <code>[super setFrame:]</code>, but with an <code>General/NSRect</code> containing <code>General/NSZeroPoint</code> as origin, regardless of which origin was intended to set
+*Creating a category on <code>NSClipView</code> (the class of the scrollview�s content view) with <code>-(BOOL)isFlipped</code> implemented and returning YES (and thus hiding and replacing the original method <code>isFlipped</code>)
+*Overriding the document view�s (a subclass of <code>NSView</code>) <code>-(void)setFrame:(NSRect)frameRect</code> with one calling <code>[super setFrame:]</code>, but with an <code>NSRect</code> containing <code>NSZeroPoint</code> as origin, regardless of which origin was intended to set
 
 For example NSC<nowiki/>lipView+M<nowiki/>yAdditions.h
     
 #import <Cocoa/Cocoa.h>
-#import "General/MyDocumentView.h"
+#import "MyDocumentView.h"
 
 
-@interface General/NSClipView (General/MyAdditions)
+@interface NSClipView (MyAdditions)
 
 - (BOOL)isFlipped;
 
@@ -94,13 +94,13 @@ For example NSC<nowiki/>lipView+M<nowiki/>yAdditions.h
 
 and NSC<nowiki/>lipView+M<nowiki/>yAdditions.m
     
-#import "General/NSClipView+General/MyAdditions.h"
+#import "NSClipView+MyAdditions.h"
 
-@implementation General/NSClipView (General/MyAdditions)
+@implementation NSClipView (MyAdditions)
 
 - (BOOL)isFlipped
 {
-	return General/self documentView] isKindOfClass:[[[MyDocumentView class]];
+	return self documentView] isKindOfClass:[[[MyDocumentView class]];
 }
 
 @end
@@ -111,19 +111,19 @@ And then the <code>setFrame:</code>-implementation of your custom document view:
 M<nowiki/>yDocumentView.m
     
 // ...
-- (void)setFrame:(General/NSRect)frameRect
+- (void)setFrame:(NSRect)frameRect
 {
 	/* let self (= document view of the scroll view) always stay
 	 at zero/zero position within the content view�s coordinate system;
 	 the scrolling is done anyway just by moving the content view�s bounds */
-	frameRect.origin = General/NSZeroPoint;
+	frameRect.origin = NSZeroPoint;
 	[super setFrame:frameRect];
 }
 // ...
 
 
 
-For better understanding: The scrollview usually (unless you use rulers) contains three subviews, the two scrollers and the content view (an instance of <code>General/NSClipView</code>), which itself then contains the document view (an instance of a subclass of <code>General/NSView</code>).
+For better understanding: The scrollview usually (unless you use rulers) contains three subviews, the two scrollers and the content view (an instance of <code>NSClipView</code>), which itself then contains the document view (an instance of a subclass of <code>NSView</code>).
 
 For some (to me not clear) reasons the scrollview�s mechanisms set the document view�s frame origin to a negative y-coordinate (in some way but not easily predictably related to the scrollview�s size) and then achieves scrolling by setting the content view�s bounds origin to some value between the document view�s frame origin and higher.
 
@@ -131,7 +131,7 @@ If you just set the flipped of the content view, the scrollbars would stay botto
 However, if you (as I did above) prevent the document view from having a frame y-coordinate other than zero, the scrollview accepts everything and the document stays top-anchored as the scroll view�s size is decreased. 
 
 
-For more information on the relation between a view�s frame and it�s bounds see http://developer.apple.com/mac/library/documentation/Cocoa/Conceptual/General/CocoaViewsGuide/Coordinates/Coordinates.html .
+For more information on the relation between a view�s frame and it�s bounds see http://developer.apple.com/mac/library/documentation/Cocoa/Conceptual/CocoaViewsGuide/Coordinates/Coordinates.html .
 
 By the way, when digging deeper into the magic of scrollviews consider that the scrollview itself already uses flipped coordinates by default.
 
@@ -140,7 +140,7 @@ By the way, when digging deeper into the magic of scrollviews consider that the 
 
 ----
 
-Useful to for adding headers/corners to General/NSScrollView's.
+Useful to for adding headers/corners to NSScrollView's.
 
 http://codehackers.net/blog/?p=10
 

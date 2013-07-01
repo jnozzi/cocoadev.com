@@ -5,44 +5,44 @@ Nobody helped me (see the Original Post below). Snif. But I figured it out by my
 
 Of course, I still put the code here with links to where I found the code (see The Solution below). Please feel free to add more in the code section...  
 
---General/CharlesParnot
+--CharlesParnot
 
 ----
 **Original post - nobody helped me  )`:**
 
-I am trying to get some basic profile of the machine running my Cocoa program, in particular: http://goo.gl/General/OeSCu
+I am trying to get some basic profile of the machine running my Cocoa program, in particular: http://goo.gl/OeSCu
 
 * the  number of processors
 * the clock speed of the processor(s)
 * the CPU type
 * the hostname and or ip address
-* the General/RendezVous name (as set in the Sharing pref pane)
+* the RendezVous name (as set in the Sharing pref pane)
 
 
 So I want something like a light system profile.
-I have found some info out there and have some working code for the number of processors, and the type of processor (see General/GettingTheProcessor). I can get the hostnames through General/NSHost. The rest, I don't know! I looked hard, and could not find anything obvious. Even the General/RendezVous thing is quite obscure It seems General/IOKit / General/IORegistry could help for some of that. Useful links eith some tutorials/example would also help. Maybe somebody has written some Cocoa wrapper for all that stuff.
+I have found some info out there and have some working code for the number of processors, and the type of processor (see GettingTheProcessor). I can get the hostnames through NSHost. The rest, I don't know! I looked hard, and could not find anything obvious. Even the RendezVous thing is quite obscure It seems IOKit / IORegistry could help for some of that. Useful links eith some tutorials/example would also help. Maybe somebody has written some Cocoa wrapper for all that stuff.
 
 Thanks for any help you can provide. I will put all the code I can get to work back here, of course.
 
-General/CharlesParnot
+CharlesParnot
 
 ----
 **The Solution**
 
-Dont' forget in Xcode: it seems you have to link against the Carbon, General/SystemConfiguration and General/IOKit frameworks. 
+Dont' forget in Xcode: it seems you have to link against the Carbon, SystemConfiguration and IOKit frameworks. 
 
     
 
-**General/CPSystemInformation.h**
+**CPSystemInformation.h**
 
- @interface General/CPSystemInformation : General/NSObject {}
+ @interface CPSystemInformation : NSObject {}
   
  //all the info at once!
- + (General/NSDictionary *)miniSystemProfile;
+ + (NSDictionary *)miniSystemProfile;
   
- + (General/NSString *)machineType;
- + (General/NSString *)humanMachineType;
- + (General/NSString *)humanMachineTypeAlternate;
+ + (NSString *)machineType;
+ + (NSString *)humanMachineType;
+ + (NSString *)humanMachineTypeAlternate;
   
  + (long)processorClockSpeed;
  + (long)processorClockSpeedInMHz;
@@ -51,46 +51,46 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  + (BOOL) isG3;
  + (BOOL) isG4;
  + (BOOL) isG5;
- + (General/NSString *)powerPCTypeString;
+ + (NSString *)powerPCTypeString;
   
- + (General/NSString *)computerName;
- + (General/NSString *)computerSerialNumber;
+ + (NSString *)computerName;
+ + (NSString *)computerSerialNumber;
   
- + (General/NSString *)operatingSystemString;
- + (General/NSString *)systemVersionString;
+ + (NSString *)operatingSystemString;
+ + (NSString *)systemVersionString;
   
 
 
     
 
-**General/CPSystemInformation.m**
+**CPSystemInformation.m**
 
- #import "General/CPSystemInformation.h"
+ #import "CPSystemInformation.h"
  
  #import <Carbon/Carbon.h>
- #import <General/SystemConfiguration/General/SystemConfiguration.h>
+ #import <SystemConfiguration/SystemConfiguration.h>
  
- @implementation General/CPSystemInformation
+ @implementation CPSystemInformation
  
  //get everything!
- + (General/NSDictionary *)miniSystemProfile
+ + (NSDictionary *)miniSystemProfile
  {
- 	return General/[NSDictionary dictionaryWithObjectsAndKeys:
- 		[self machineType],@"General/MachineType",
- 		[self humanMachineType],@"General/HumanMachineType",
- 		[self powerPCTypeString],@"General/ProcessorType",
- 		General/[NSNumber numberWithLong:
+ 	return [NSDictionary dictionaryWithObjectsAndKeys:
+ 		[self machineType],@"MachineType",
+ 		[self humanMachineType],@"HumanMachineType",
+ 		[self powerPCTypeString],@"ProcessorType",
+ 		[NSNumber numberWithLong:
                          [self processorClockSpeed]],
-                             @"General/ProcessorClockSpeed",
- 		General/[NSNumber numberWithLong:
+                             @"ProcessorClockSpeed",
+ 		[NSNumber numberWithLong:
                          [self processorClockSpeedInMHz]],
-                             @"General/ProcessorClockSpeedInMHz",
- 		General/[NSNumber numberWithInt:[self countProcessors]],
-                         @"General/CountProcessors",
- 		[self computerName],@"General/ComputerName",
- 		[self computerSerialNumber],@"General/ComputerSerialNumber",
- 		[self operatingSystemString],@"General/OperatingSystem",
- 		[self systemVersionString],@"General/SystemVersion",		
+                             @"ProcessorClockSpeedInMHz",
+ 		[NSNumber numberWithInt:[self countProcessors]],
+                         @"CountProcessors",
+ 		[self computerName],@"ComputerName",
+ 		[self computerSerialNumber],@"ComputerSerialNumber",
+ 		[self operatingSystemString],@"OperatingSystem",
+ 		[self systemVersionString],@"SystemVersion",		
  		nil];
  }
  
@@ -102,89 +102,89 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  /*this code used a dictionary insted - see 'translationDictionary()' below */
  
  //non-human readable machine type/model
- + (General/NSString *)machineType
+ + (NSString *)machineType
  {
- 	General/OSErr err;
+ 	OSErr err;
  	char *machineName=NULL;    // This is really a Pascal-string with a length byte.
          //gestaltUserVisibleMachineName = 'mnam'
  	err = Gestalt(gestaltUserVisibleMachineName, (long*) &machineName);
  	if( err== noErr )
- 		return General/[NSString stringWithCString: machineName +1 length: machineName[0]];
+ 		return [NSString stringWithCString: machineName +1 length: machineName[0]];
  	else
  		return @"machineType: machine name cannot be determined";
  }
  
  //dictionary used to make the machine type human-readable
- static General/NSDictionary *translationDictionary=nil;
- + (General/NSDictionary *)translationDictionary
+ static NSDictionary *translationDictionary=nil;
+ + (NSDictionary *)translationDictionary
  {
  	if (translationDictionary==nil)
- 		translationDictionary=General/[[NSDictionary alloc] initWithObjectsAndKeys:
- 			@"General/PowerMac 8500/8600",@"AAPL,8500",
- 			@"General/PowerMac 9500/9600",@"AAPL,9500",
- 			@"General/PowerMac 7200",@"AAPL,7200",
- 			@"General/PowerMac 7200/7300",@"AAPL,7300",
- 			@"General/PowerMac 7500",@"AAPL,7500",
- 			@"Apple Network Server",@"AAPL,General/ShinerESB",
+ 		translationDictionary=[[NSDictionary alloc] initWithObjectsAndKeys:
+ 			@"PowerMac 8500/8600",@"AAPL,8500",
+ 			@"PowerMac 9500/9600",@"AAPL,9500",
+ 			@"PowerMac 7200",@"AAPL,7200",
+ 			@"PowerMac 7200/7300",@"AAPL,7300",
+ 			@"PowerMac 7500",@"AAPL,7500",
+ 			@"Apple Network Server",@"AAPL,ShinerESB",
  			@"Alchemy(Performa 6400 logic-board design)",@"AAPL,e407",
  			@"Gazelle(5500)",@"AAPL,e411",
- 			@"General/PowerBook 3400",@"AAPL,3400/2400",
- 			@"General/PowerBook 3500",@"AAPL,3500",
- 			@"General/PowerMac G3 (Gossamer)",@"AAPL,Gossamer",
- 			@"General/PowerMac G3 (Silk)",@"AAPL,General/PowerMac G3",
- 			@"General/PowerBook G3 (Wallstreet)",@"AAPL,PowerBook1998",
+ 			@"PowerBook 3400",@"AAPL,3400/2400",
+ 			@"PowerBook 3500",@"AAPL,3500",
+ 			@"PowerMac G3 (Gossamer)",@"AAPL,Gossamer",
+ 			@"PowerMac G3 (Silk)",@"AAPL,PowerMac G3",
+ 			@"PowerBook G3 (Wallstreet)",@"AAPL,PowerBook1998",
  			@"Yikes! Old machine - unknown model",@"AAPL",
  			
  			@"iMac (first generation)",@"iMac,1",
  			@"iMac (first generation) - unknown model",@"iMac",
  			
- 			@"General/PowerBook G3 (Lombard)",@"PowerBook1,1",
+ 			@"PowerBook G3 (Lombard)",@"PowerBook1,1",
  			@"iBook (clamshell)",@"PowerBook2,1",
- 			@"iBook General/FireWire (clamshell)",@"PowerBook2,2",
- 			@"General/PowerBook G3 (Pismo)",@"PowerBook3,1",
- 			@"General/PowerBook G4 (Titanium)",@"PowerBook3,2",
- 			@"General/PowerBook G4 (Titanium w/ Gigabit Ethernet)",
+ 			@"iBook FireWire (clamshell)",@"PowerBook2,2",
+ 			@"PowerBook G3 (Pismo)",@"PowerBook3,1",
+ 			@"PowerBook G4 (Titanium)",@"PowerBook3,2",
+ 			@"PowerBook G4 (Titanium w/ Gigabit Ethernet)",
  						@"PowerBook3,3",
- 			@"General/PowerBook G4 (Titanium w/ DVI)",@"PowerBook3,4",
- 			@"General/PowerBook G4 (Titanium 1GHZ)",@"PowerBook3,5",
+ 			@"PowerBook G4 (Titanium w/ DVI)",@"PowerBook3,4",
+ 			@"PowerBook G4 (Titanium 1GHZ)",@"PowerBook3,5",
  			@"iBook (12in May 2001)",@"PowerBook4,1",
  			@"iBook (May 2002)",@"PowerBook4,2",
  			@"iBook 2 rev. 2 (w/ or w/o 14in LCD) (Nov 2002)",
  						@"PowerBook4,3",
  			@"iBook 2 (w/ or w/o 14in LDC)",@"PowerBook4,4",
- 			@"General/PowerBook G4 (Aluminum 17in)",@"PowerBook5,1",
- 			@"General/PowerBook G4 (Aluminum 15in)",@"PowerBook5,2",
- 			@"General/PowerBook G4 (Aluminum 17in rev. 2)",@"PowerBook5,3",
- 			@"General/PowerBook G4 (Aluminum 12in)",@"PowerBook6,1",
- 			@"General/PowerBook G4 (Aluminum 12in)",@"PowerBook6,2",
+ 			@"PowerBook G4 (Aluminum 17in)",@"PowerBook5,1",
+ 			@"PowerBook G4 (Aluminum 15in)",@"PowerBook5,2",
+ 			@"PowerBook G4 (Aluminum 17in rev. 2)",@"PowerBook5,3",
+ 			@"PowerBook G4 (Aluminum 12in)",@"PowerBook6,1",
+ 			@"PowerBook G4 (Aluminum 12in)",@"PowerBook6,2",
  			@"iBook G4",@"PowerBook6,3",
- 			@"General/PowerBook or iBook - unknown model",@"General/PowerBook",
+ 			@"PowerBook or iBook - unknown model",@"PowerBook",
  			
  			@"Blue & White G3",@"PowerMac1,1",
- 			@"General/PowerMac G4 PCI Graphics",@"PowerMac1,2",
- 			@"iMac General/FireWire (CRT)",@"PowerMac2,1",
- 			@"iMac General/FireWire (CRT)",@"PowerMac2,2",
- 			@"General/PowerMac G4 AGP Graphics",@"PowerMac3,1",
- 			@"General/PowerMac G4 AGP Graphics",@"PowerMac3,2",
- 			@"General/PowerMac G4 AGP Graphics",@"PowerMac3,3",
- 			@"General/PowerMac G4 (General/QuickSilver)",@"PowerMac3,4",
- 			@"General/PowerMac G4 (General/QuickSilver)",@"PowerMac3,5",
- 			@"General/PowerMac G4 (MDD/Windtunnel)",@"PowerMac3,6",
+ 			@"PowerMac G4 PCI Graphics",@"PowerMac1,2",
+ 			@"iMac FireWire (CRT)",@"PowerMac2,1",
+ 			@"iMac FireWire (CRT)",@"PowerMac2,2",
+ 			@"PowerMac G4 AGP Graphics",@"PowerMac3,1",
+ 			@"PowerMac G4 AGP Graphics",@"PowerMac3,2",
+ 			@"PowerMac G4 AGP Graphics",@"PowerMac3,3",
+ 			@"PowerMac G4 (QuickSilver)",@"PowerMac3,4",
+ 			@"PowerMac G4 (QuickSilver)",@"PowerMac3,5",
+ 			@"PowerMac G4 (MDD/Windtunnel)",@"PowerMac3,6",
  			@"iMac (Flower Power)",@"PowerMac4,1",
  			@"iMac (Flat Panel 15in)",@"PowerMac4,2",
  			@"eMac",@"PowerMac4,4",
  			@"iMac (Flat Panel 17in)",@"PowerMac4,5",
- 			@"General/PowerMac G4 Cube",@"PowerMac5,1",
- 			@"General/PowerMac G4 Cube",@"PowerMac5,2",
+ 			@"PowerMac G4 Cube",@"PowerMac5,1",
+ 			@"PowerMac G4 Cube",@"PowerMac5,2",
  			@"iMac (Flat Panel 17in)",@"PowerMac6,1",
- 			@"General/PowerMac G5",@"PowerMac7,2",
- 			@"General/PowerMac G5",@"PowerMac7,3",
- 			@"General/PowerMac - unknown model",@"General/PowerMac",
+ 			@"PowerMac G5",@"PowerMac7,2",
+ 			@"PowerMac G5",@"PowerMac7,3",
+ 			@"PowerMac - unknown model",@"PowerMac",
  			
- 			@"General/XServe",@"RackMac1,1",
- 			@"General/XServe rev. 2",@"RackMac1,2",
- 			@"General/XServe G5",@"RackMac3,1",
- 			@"General/XServe - unknown model",@"General/RackMac",
+ 			@"XServe",@"RackMac1,1",
+ 			@"XServe rev. 2",@"RackMac1,2",
+ 			@"XServe G5",@"RackMac3,1",
+ 			@"XServe - unknown model",@"RackMac",
  			
  			@"Mac Mini",@"Macmini1,1",	// Seen on a 1st gen. Core Duo, but may also be on others...?
  			@"Mac Mini - unknown model",@"Macmini",
@@ -193,24 +193,24 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  	return translationDictionary;
  }
  
- + (General/NSString *)humanMachineType
+ + (NSString *)humanMachineType
  {
- 	General/NSString *human=nil;
- 	General/NSString *machineType;
+ 	NSString *human=nil;
+ 	NSString *machineType;
  
  	machineType=[self machineType];
  	
- 	//return the corresponding entry in the General/NSDictionary
- 	General/NSDictionary *translation=[self translationDictionary];
- 	General/NSString *aKey;
+ 	//return the corresponding entry in the NSDictionary
+ 	NSDictionary *translation=[self translationDictionary];
+ 	NSString *aKey;
  	//keys should be sorted to distinguish 'generic' from 'specific' names
- 	General/NSEnumerator *e=General/[translation allKeys]
+ 	NSEnumerator *e=[translation allKeys]
  					sortedArrayUsingSelector:@selector(compare:)]
  						objectEnumerator];
  	[[NSRange r;
  	while (aKey=[e nextObject]) {
  		r=[machineType rangeOfString:aKey];
- 		if (r.location!=General/NSNotFound)
+ 		if (r.location!=NSNotFound)
  			//continue searching : the first hit will be the generic name
  			human=[translation objectForKey:aKey];
  	}
@@ -222,15 +222,15 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  
  //for some reason, this does not work
  //probably old stuff still around
- + (General/NSString *)humanMachineTypeAlternate
+ + (NSString *)humanMachineTypeAlternate
  {
- 	General/OSErr err;
+ 	OSErr err;
  	long result;
  	Str255 name;
  	err=Gestalt('mach',&result); //gestaltMachineType = 'mach'
  	if (err==nil) {
- 		General/GetIndString(name,kMachineNameStrID,(short)result);
- 		return General/[NSString stringWithCString:name];
+ 		GetIndString(name,kMachineNameStrID,(short)result);
+ 		return [NSString stringWithCString:name];
  	} else
  		return @"humanMachineTypeAlternate: machine name cannot be determined";
  }
@@ -240,7 +240,7 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  
  + (long)processorClockSpeed
  {
- 	General/OSErr err;
+ 	OSErr err;
  	long result;
  	err=Gestalt(gestaltProcClkSpeed,&result);
  	if (err!=nil)
@@ -275,7 +275,7 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  
  // the following methods were more or less copied from
  //	http://developer.apple.com/technotes/tn/tn2086.html
- //	http://www.cocoadev.com/index.pl?General/GettingTheProcessor
+ //	http://www.cocoadev.com/index.pl?GettingTheProcessor
  //	and can be better understood with a look at
  //	file:///usr/include/mach/machine.h
  
@@ -338,7 +338,7 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  			 (hostInfo.cpu_subtype == CPU_SUBTYPE_POWERPC_970));
  }	
  
- + (General/NSString *)powerPCTypeString
+ + (NSString *)powerPCTypeString
  {
  	if ([self isG3])
  		return @"G3";
@@ -347,9 +347,9 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  	else if ([self isG5])
  		return @"G5";
  	else if ([self isPowerPC])
- 		return @"General/PowerPC pre-G3";
+ 		return @"PowerPC pre-G3";
  	else
- 		return @"Non-General/PowerPC";
+ 		return @"Non-PowerPC";
  
  }
  
@@ -358,51 +358,51 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  //this used to be called 'Rendezvous name' (X.2), now just 'Computer name' (X.3)
  //see here for why: http://developer.apple.com/qa/qa2001/qa1228.html
  //this is the name set in the Sharing pref pane
- + (General/NSString *)computerName
+ + (NSString *)computerName
  {
- 	General/CFStringRef name;
- 	General/NSString *computerName;
- 	name=General/SCDynamicStoreCopyComputerName(NULL,NULL);
- 	computerName=General/[NSString stringWithString:(General/NSString *)name];
- 	General/CFRelease(name);
+ 	CFStringRef name;
+ 	NSString *computerName;
+ 	name=SCDynamicStoreCopyComputerName(NULL,NULL);
+ 	computerName=[NSString stringWithString:(NSString *)name];
+ 	CFRelease(name);
  	return computerName;
  }
  
  /* copied from http://cocoa.mamasam.com/COCOADEV/2003/07/1/68334.php */
  /* and modified by http://nilzero.com/cgi-bin/mt-comments.cgi?entry_id=1300 */
  /* and by http://cocoa.mamasam.com/COCOADEV/2003/07/1/68337.php/ */
- + (General/NSString *)computerSerialNumber
+ + (NSString *)computerSerialNumber
  {
- 	General/NSString         *result = @"";
+ 	NSString         *result = @"";
  	mach_port_t       masterPort;
  	kern_return_t      kr = noErr;
  	io_registry_entry_t  entry;    
- 	General/CFDataRef         propData;
- 	General/CFTypeRef         prop;
- 	General/CFTypeID         propID=NULL;
+ 	CFDataRef         propData;
+ 	CFTypeRef         prop;
+ 	CFTypeID         propID=NULL;
  	UInt8           *data;
  	unsigned int        i, bufSize;
  	char            *s, *t;
  	char            firstPart[64], secondPart[64];
  	
- 	kr = General/IOMasterPort(MACH_PORT_NULL, &masterPort);        
+ 	kr = IOMasterPort(MACH_PORT_NULL, &masterPort);        
  	if (kr == noErr) {
- 		entry = General/IORegistryGetRootEntry(masterPort);
+ 		entry = IORegistryGetRootEntry(masterPort);
  		if (entry != MACH_PORT_NULL) {
- 			prop = General/IORegistryEntrySearchCFProperty(entry,
+ 			prop = IORegistryEntrySearchCFProperty(entry,
  						kIODeviceTreePlane,
  						CFSTR("serial-number"),
                                          nil, kIORegistryIterateRecursively);
  			if (prop == nil) {
  				result = @"null";
  			} else {
- 				propID = General/CFGetTypeID(prop);
+ 				propID = CFGetTypeID(prop);
  			}
- 			if (propID == General/CFDataGetTypeID()) {
- 				propData = (General/CFDataRef)prop;
- 				bufSize = General/CFDataGetLength(propData);
+ 			if (propID == CFDataGetTypeID()) {
+ 				propData = (CFDataRef)prop;
+ 				bufSize = CFDataGetLength(propData);
  				if (bufSize > 0) {
- 					data = General/CFDataGetBytePtr(propData);
+ 					data = CFDataGetBytePtr(propData);
  					if (data) {
  						i = 0;
  						s = data;
@@ -433,7 +433,7 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  						}
  						*t = '\0';
  						result =
- 						General/[NSString stringWithFormat:
+ 						[NSString stringWithFormat:
  						 @"%s%s",secondPart,firstPart];
  					}
  				}
@@ -446,15 +446,15 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
  
  #pragma mark *** System version ***
  
- + (General/NSString *)operatingSystemString
+ + (NSString *)operatingSystemString
  {
- 	General/NSProcessInfo *procInfo = General/[NSProcessInfo processInfo];
+ 	NSProcessInfo *procInfo = [NSProcessInfo processInfo];
  	return [procInfo operatingSystemName];
  }
  
- + (General/NSString *)systemVersionString
+ + (NSString *)systemVersionString
  {
- 	General/NSProcessInfo *procInfo = General/[NSProcessInfo processInfo];
+ 	NSProcessInfo *procInfo = [NSProcessInfo processInfo];
  	return [procInfo operatingSystemVersionString];
  }
  
@@ -466,11 +466,11 @@ Dont' forget in Xcode: it seems you have to link against the Carbon, General/Sys
 
 Some more code from when this topic came up on Cocoa-Dev:
 
-The first gets you the physical RAM size in General/MBs. You could also get it in bytes, but since Gestalt returns a signed 32-bit number, this would not be able to return any RAM above 2GB, which is an amount that increasingly more and more Macs these days seem to have.
+The first gets you the physical RAM size in MBs. You could also get it in bytes, but since Gestalt returns a signed 32-bit number, this would not be able to return any RAM above 2GB, which is an amount that increasingly more and more Macs these days seem to have.
 
     
 
-unsigned	General/UKPhysicalRAMSize()	// In General/MBs.
+unsigned	UKPhysicalRAMSize()	// In MBs.
 {
 	long		ramSize;
 
@@ -486,7 +486,7 @@ And here's another approach to get the system version:
 
     
 
-General/NSString*	General/UKSystemVersion()
+NSString*	UKSystemVersion()
 {
 	long		sysVersion;
 
@@ -501,9 +501,9 @@ General/NSString*	General/UKSystemVersion()
 	bugNib = sysVersion & 0x0000000F;
 
 	if( majorHiNib == 0 )
-		return General/[NSString stringWithFormat: @"%ld.%ld.%ld", majorLoNib, minorNib, bugNib];
+		return [NSString stringWithFormat: @"%ld.%ld.%ld", majorLoNib, minorNib, bugNib];
 	else
-		return General/[NSString stringWithFormat: @"%ld%ld.%ld.%ld", majorHiNib, majorLoNib, minorNib, bugNib];
+		return [NSString stringWithFormat: @"%ld%ld.%ld.%ld", majorHiNib, majorLoNib, minorNib, bugNib];
 }
 
 
@@ -514,35 +514,35 @@ Oh, and finally, here's a variation of the serial number getting code. I think m
 
     
 
-General/NSString*	General/UKSystemSerialNumber()
+NSString*	UKSystemSerialNumber()
 {
 	mach_port_t				masterPort;
 	kern_return_t			kr = noErr;
 	io_registry_entry_t		entry;
-	General/CFTypeRef				prop;
-	General/CFTypeID				propID;
-	General/NSString*				str = nil;
+	CFTypeRef				prop;
+	CFTypeID				propID;
+	NSString*				str = nil;
 
-	kr = General/IOMasterPort(MACH_PORT_NULL, &masterPort);
+	kr = IOMasterPort(MACH_PORT_NULL, &masterPort);
 	if( kr != noErr )
 		goto cleanup;
-	entry = General/IORegistryGetRootEntry( masterPort );
+	entry = IORegistryGetRootEntry( masterPort );
 	if( entry == MACH_PORT_NULL )
 		goto cleanup;
-	prop = General/IORegistryEntrySearchCFProperty(entry, kIODeviceTreePlane, CFSTR("serial-number"), nil, kIORegistryIterateRecursively);
+	prop = IORegistryEntrySearchCFProperty(entry, kIODeviceTreePlane, CFSTR("serial-number"), nil, kIORegistryIterateRecursively);
 	if( prop == nil )
 		goto cleanup;
-	propID = General/CFGetTypeID( prop );
-	if( propID != General/CFDataGetTypeID() )
+	propID = CFGetTypeID( prop );
+	if( propID != CFDataGetTypeID() )
 		goto cleanup;
 	
-	const char*	buf = [(General/NSData*)prop bytes];
-	int			len = [(General/NSData*)prop length],
+	const char*	buf = [(NSData*)prop bytes];
+	int			len = [(NSData*)prop length],
 				 x;
 	
 	char	secondPart[256];
 	char	firstPart[256];
-	char*	currStr = secondPart; // Version number starts with second part, then General/NULLs, then first part.
+	char*	currStr = secondPart; // Version number starts with second part, then NULLs, then first part.
 	int		y = 0;
 	
 	for( x = 0; x < len; x++ )
@@ -558,7 +558,7 @@ General/NSString*	General/UKSystemSerialNumber()
 	}
 	currStr[y] = 0;	// Terminate string.
 	
-	str = General/[NSString stringWithFormat: @"%s%s", firstPart, secondPart];
+	str = [NSString stringWithFormat: @"%s%s", firstPart, secondPart];
 	
 cleanup:
 	mach_port_deallocate( mach_task_self(), masterPort );
@@ -570,13 +570,13 @@ cleanup:
 
 ----
 
-The above serial number code produced incorrect results on my new General/MacBook, so I did some searching.
-Starting with Panther, the serial number is available in the General/IOPlatformSerialNumber property of the the General/IOPlatformExpertDevice node in the I/O registry.
+The above serial number code produced incorrect results on my new MacBook, so I did some searching.
+Starting with Panther, the serial number is available in the IOPlatformSerialNumber property of the the IOPlatformExpertDevice node in the I/O registry.
 See:    http://developer.apple.com/technotes/tn/tn1103.html
-  -General/DanTreiman
+  -DanTreiman
 
 Do you know <sys/sysctl.h> ? It has some features to get various informations about the installed hardware and is (afaik) portable (runs not only on Darwin).
-For an example see the manpage by Apple:  http://developer.apple.com/documentation/Darwin/Reference/General/ManPages/man3/sysctlbyname.3.html
+For an example see the manpage by Apple:  http://developer.apple.com/documentation/Darwin/Reference/ManPages/man3/sysctlbyname.3.html
 Another example shows, how to get the physical RAM of your machine:
 
     
@@ -597,15 +597,15 @@ error = sysctl(selection, 2, &value, &length, NULL, 0) ;
 
 if ( error == 0 )
 {
-   General/NSLog(@"Your machine has %i Bytes of RAM (%f GB)", value, (value / GB)) ;
+   NSLog(@"Your machine has %i Bytes of RAM (%f GB)", value, (value / GB)) ;
 }
-else General/NSLog(@"sysctl error occured!") ;
+else NSLog(@"sysctl error occured!") ;
 
 
 
 
 
-General/LorenzHipp
+LorenzHipp
 
 ----
 
@@ -619,11 +619,11 @@ getmntinfo(3), getfsstat(2) and statfs(2) will give you information about mounte
 
 I had to fix the +machineType method. It was buggy. For one, gestaltUserVisibleMachineName returns a Pascal string, so it may not be zero-terminated, and there's a length byte at the start. I'm surprised the original code even worked, because the dictionary couldn't possibly match on the string with the length byte at the start.
 
-Also, the code was comparing an General/OSErr against NIL, which isn't good style, so I changed that to noErr for correctness' sake.
+Also, the code was comparing an OSErr against NIL, which isn't good style, so I changed that to noErr for correctness' sake.
 
 Finally, I added the Mac Mini, because that's what I'm running on. Anyone have other Mac names? This seems to be missing a huge bunch of the Intel Macs...
 
--- General/UliKusterer
+-- UliKusterer
 
 ----
 
@@ -639,7 +639,7 @@ if (0 == sysctlbyname("hw.model", modelBuffer, &sz, NULL, 0)) {
 }
 
 
-*A (slightly) more orderly and up-to-date list of Mac names is found at General/MacintoshModels.*
+*A (slightly) more orderly and up-to-date list of Mac names is found at MacintoshModels.*
 
 ----
 Same solution as previous, but avoiding a fixed buffer.
@@ -648,10 +648,10 @@ Same solution as previous, but avoiding a fixed buffer.
 // e.g., "MacBookPro5,5", or nil if we were unable to determine the model
 // name.
 
-General/NSString *
-General/GetModelString()
+NSString *
+GetModelString()
 {
-    General/NSString * modelString  = nil;
+    NSString * modelString  = nil;
     int        modelInfo[2] = { CTL_HW, HW_MODEL };
     size_t     modelSize;
 
@@ -671,7 +671,7 @@ General/GetModelString()
                        &modelSize,
                        NULL, 0) == 0)
             {
-                modelString = General/[NSString stringWithUTF8String:modelData];
+                modelString = [NSString stringWithUTF8String:modelData];
             }
             
             free(modelData);
@@ -686,14 +686,14 @@ General/GetModelString()
 ----
 In order to get the machine name I use this format:
     
-    General/OSErr err;
-	General/StringPtr machineNamePascal = NULL;
+    OSErr err;
+	StringPtr machineNamePascal = NULL;
 	err = Gestalt(gestaltUserVisibleMachineName, (SInt32 *)&machineNamePascal);
-    General/NSString *machineName;
+    NSString *machineName;
 	if(err == noErr)
-        machineName = [(General/NSString *)General/CFStringCreateWithPascalString(NULL,
+        machineName = [(NSString *)CFStringCreateWithPascalString(NULL,
                                                                   machineNamePascal,
-                                                                  General/NSMacOSRomanStringEncoding)
+                                                                  NSMacOSRomanStringEncoding)
                        autorelease];
   
 
@@ -719,7 +719,7 @@ http://forums.macrumors.com/showthread.php?t=718118
 compile with:
 
 gcc -Wall -O3 -x objective-c -fobjc-exceptions -fnested-functions -framework Foundation \
-    -framework General/CoreFoundation -framework General/IOKit -o machardwareinfo machardwareinfo.c
+    -framework CoreFoundation -framework IOKit -o machardwareinfo machardwareinfo.c
 
 ./machardwareinfo
 
@@ -732,15 +732,15 @@ ioreg -l -w0 | grep 'device_type' | grep -E -i 'cpu|processor'
 
 See also:
 
-- http://www.cocoadev.com/index.pl?General/IOKit (get MAC address snippets)
-- http://www.cocoadev.com/index.pl?General/GettingTheUsersSerialNumber
-- http://www.cocoadev.com/index.pl?General/HowToGetHardwareAndNetworkInfo
+- http://www.cocoadev.com/index.pl?IOKit (get MAC address snippets)
+- http://www.cocoadev.com/index.pl?GettingTheUsersSerialNumber
+- http://www.cocoadev.com/index.pl?HowToGetHardwareAndNetworkInfo
 - http://wranglingmacs.blogspot.com/2009/04/getting-byhost-string.html
 
 */
 
 #import <Foundation/Foundation.h>
-#import <General/IOKit/General/IOKitLib.h>
+#import <IOKit/IOKitLib.h>
 
 #include <sys/sysctl.h>
 #include <sys/resource.h>
@@ -766,19 +766,19 @@ See also:
 #endif
 
 
-static void objc_println( General/NSString* format, ... );
+static void objc_println( NSString* format, ... );
 static void printSysctlInfo( void );
-static General/NSDictionary* getCpuIds( void );
-static General/NSString* getPlatformSerialNumber( void );
+static NSDictionary* getCpuIds( void );
+static NSString* getPlatformSerialNumber( void );
 
 int main (int argc, const char * argv[]) {
-  General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+  NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
   
   objc_println(@"Beginning system data collection...");
   
-  General/NSProcessInfo* pinfo = General/[NSProcessInfo processInfo];
+  NSProcessInfo* pinfo = [NSProcessInfo processInfo];
   
-  objc_println( @"General/NSProcessInfo:" );
+  objc_println( @"NSProcessInfo:" );
   objc_println( @"\tProcess Name: %@", [pinfo processName] );
   objc_println( @"\tPID: %d", [pinfo processIdentifier] );
   objc_println( @"\tProcess GUID: %@", [pinfo globallyUniqueString] );
@@ -796,9 +796,9 @@ int main (int argc, const char * argv[]) {
   
   printSysctlInfo();
   
-  objc_println( @"General/IOKit:" );
-  General/NSDictionary *cpuInfo = getCpuIds();
-  General/NSArray* keys = General/cpuInfo allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+  objc_println( @"IOKit:" );
+  NSDictionary *cpuInfo = getCpuIds();
+  NSArray* keys = cpuInfo allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
  
 /* 
   for( id key in keys ) {
@@ -813,8 +813,8 @@ int main (int argc, const char * argv[]) {
   for (i = 0; i < num; i++) 
   {
      objc_println( @"\t%@ has CPU ID:\n\tdec: %d\n\thex: 0x%8.8x", [keys objectAtIndex: i], \
-        [(General/NSNumber*)[cpuInfo objectForKey: [keys objectAtIndex: i]] unsignedIntValue],
-        [(General/NSNumber*)[cpuInfo objectForKey: [keys objectAtIndex: i]] unsignedIntValue] );
+        [(NSNumber*)[cpuInfo objectForKey: [keys objectAtIndex: i]] unsignedIntValue],
+        [(NSNumber*)[cpuInfo objectForKey: [keys objectAtIndex: i]] unsignedIntValue] );
   }
 
   objc_println( @"\tSerial Number: %@", getPlatformSerialNumber() );
@@ -825,7 +825,7 @@ int main (int argc, const char * argv[]) {
   return 0;
 }
 
-static void objc_println( General/NSString* format, ... ) {
+static void objc_println( NSString* format, ... ) {
   va_list args;
 
   if (![format hasSuffix: @"\n"]) {
@@ -833,7 +833,7 @@ static void objc_println( General/NSString* format, ... ) {
   }
 	
   va_start (args, format);
-  General/NSString *body =  General/[[NSString alloc] initWithFormat: format
+  NSString *body =  [[NSString alloc] initWithFormat: format
                                            arguments: args];
   va_end (args);
 	
@@ -909,70 +909,70 @@ static void printSysctlInfo( void ) {
   objc_println( @"\thw.cpufrequency: %u", rint );
 }
 
-static General/NSString* getPlatformSerialNumber( void ) {
-  io_registry_entry_t     rootEntry = General/IORegistryEntryFromPath( kIOMasterPortDefault, "General/IOService:/" );
-  General/CFTypeRef serialAsCFString = NULL;
+static NSString* getPlatformSerialNumber( void ) {
+  io_registry_entry_t     rootEntry = IORegistryEntryFromPath( kIOMasterPortDefault, "IOService:/" );
+  CFTypeRef serialAsCFString = NULL;
   
-  serialAsCFString = General/IORegistryEntryCreateCFProperty( rootEntry,
+  serialAsCFString = IORegistryEntryCreateCFProperty( rootEntry,
                                                      CFSTR(kIOPlatformSerialNumberKey),
                                                      kCFAllocatorDefault,
                                                      0);
 
-  General/IOObjectRelease( rootEntry );
-  return (NULL != serialAsCFString) ? [(General/NSString*)serialAsCFString autorelease] : nil;
+  IOObjectRelease( rootEntry );
+  return (NULL != serialAsCFString) ? [(NSString*)serialAsCFString autorelease] : nil;
 }
 
-static General/NSDictionary* getCpuIds( void ) {
-  General/NSMutableDictionary*    cpuInfo = General/[[NSMutableDictionary alloc] init];
-  General/CFMutableDictionaryRef  matchClasses = NULL;
+static NSDictionary* getCpuIds( void ) {
+  NSMutableDictionary*    cpuInfo = [[NSMutableDictionary alloc] init];
+  CFMutableDictionaryRef  matchClasses = NULL;
   kern_return_t           kernResult = KERN_FAILURE;
   mach_port_t             machPort;
   io_iterator_t           serviceIterator;
   
   io_object_t             cpuService;
   
-  kernResult = General/IOMasterPort( MACH_PORT_NULL, &machPort );
+  kernResult = IOMasterPort( MACH_PORT_NULL, &machPort );
   if( KERN_SUCCESS != kernResult ) {
-    printf( "General/IOMasterPort failed: %d\n", kernResult );
+    printf( "IOMasterPort failed: %d\n", kernResult );
   }
   
 
   /* ADDED !!! */
-  matchClasses = General/IOServiceNameMatching( MATCHSTR );
-  /* matchClasses = General/IOServiceNameMatching( "processor" ); */
+  matchClasses = IOServiceNameMatching( MATCHSTR );
+  /* matchClasses = IOServiceNameMatching( "processor" ); */
 
 
   if( NULL == matchClasses ) {
-    printf( "General/IOServiceMatching returned a NULL dictionary" );
+    printf( "IOServiceMatching returned a NULL dictionary" );
   }
   
-  kernResult = General/IOServiceGetMatchingServices( machPort, matchClasses, &serviceIterator );
+  kernResult = IOServiceGetMatchingServices( machPort, matchClasses, &serviceIterator );
   if( KERN_SUCCESS != kernResult ) {
-    printf( "General/IOServiceGetMatchingServices failed: %d\n", kernResult );
+    printf( "IOServiceGetMatchingServices failed: %d\n", kernResult );
   }
   
-  while( (cpuService = General/IOIteratorNext( serviceIterator )) ) {
-    General/CFTypeRef General/CPUIDAsCFNumber = NULL;
+  while( (cpuService = IOIteratorNext( serviceIterator )) ) {
+    CFTypeRef CPUIDAsCFNumber = NULL;
     io_name_t nameString;      
-    General/IORegistryEntryGetNameInPlane( cpuService, kIOServicePlane, nameString );
+    IORegistryEntryGetNameInPlane( cpuService, kIOServicePlane, nameString );
     
-    General/CPUIDAsCFNumber = General/IORegistryEntrySearchCFProperty( cpuService, 
+    CPUIDAsCFNumber = IORegistryEntrySearchCFProperty( cpuService, 
                                                       kIOServicePlane,
                                                       CFSTR( "IOCPUID" ), 
                                                       kCFAllocatorDefault,
                                                       kIORegistryIterateRecursively);
     
-    if( NULL != General/CPUIDAsCFNumber ) {
-      General/NSString* cpuName = General/[NSString stringWithCString:nameString];
-      [cpuInfo setObject:(General/NSNumber*)General/CPUIDAsCFNumber forKey:cpuName];
+    if( NULL != CPUIDAsCFNumber ) {
+      NSString* cpuName = [NSString stringWithCString:nameString];
+      [cpuInfo setObject:(NSNumber*)CPUIDAsCFNumber forKey:cpuName];
     }
     
-    if( NULL != General/CPUIDAsCFNumber ) {
-      General/CFRelease( General/CPUIDAsCFNumber );
+    if( NULL != CPUIDAsCFNumber ) {
+      CFRelease( CPUIDAsCFNumber );
     }
   }
   
-  General/IOObjectRelease( serviceIterator );
+  IOObjectRelease( serviceIterator );
   
   return [cpuInfo autorelease];
 }
@@ -984,7 +984,7 @@ static General/NSDictionary* getCpuIds( void ) {
 Note that you can make use of the **system_profiler** command line to gather full information about the system. Its **-xml** option generates a plist file that can be used easily in any Cocoa application:
 
     
-     system_profiler reports on the hardware and software configuration of the system.  It can generate plain text reports or XML reports which can be opened with General/SystemProfiler.app
+     system_profiler reports on the hardware and software configuration of the system.  It can generate plain text reports or XML reports which can be opened with SystemProfiler.app
 
      -xml                Generates a report in XML format.  If the XML report is redirected to a file with a ".spx" suffix that file can be opened with System Profiler.app.
 

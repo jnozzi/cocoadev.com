@@ -1,4 +1,4 @@
-I have an General/NSView which contains a variable number of subviews. Is there any way to have the view resize to fit all of its contents?
+I have an NSView which contains a variable number of subviews. Is there any way to have the view resize to fit all of its contents?
 
 ----
 
@@ -14,11 +14,11 @@ You could try something like this, but you are doing things backwards. Your subv
 
     
 - (void)fitSubviews {
-	General/NSArray *subviews = [self subviews];
-	General/NSRect rect = General/NSZeroRect;
+	NSArray *subviews = [self subviews];
+	NSRect rect = NSZeroRect;
 	unsigned int i, count = [subviews count];
 	for (i = 0; i < count; i++) {
-		rect = General/NSUnionRect(rect, General/subviews objectAtIndex:i] frame]);
+		rect = NSUnionRect(rect, subviews objectAtIndex:i] frame]);
 	}
 	rect = [self convertRect:rect toView:[self superview;
 	[self setFrame:rect];
@@ -29,4 +29,4 @@ Thanks, I got it. The reason I have to do it this way (I think) is because each 
 
 ----
 
-If you want the window to resize smoothly (e.g. user preferences), use the     setFrame:display:animate: instead. -- General/BenoitMarchal
+If you want the window to resize smoothly (e.g. user preferences), use the     setFrame:display:animate: instead. -- BenoitMarchal

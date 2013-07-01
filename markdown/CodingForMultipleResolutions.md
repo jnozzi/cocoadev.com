@@ -11,10 +11,10 @@ How do you lay out objects in interface builder based on the bounding rectangle 
     
 - (void)awakeFromNib
 {
-	General/NSRect  screenRect;
-	General/NSRect  windowRect;
+	NSRect  screenRect;
+	NSRect  windowRect;
 
-	screenRect = General/[[NSScreen mainScreen] frame];
+	screenRect = [[NSScreen mainScreen] frame];
 	windowRect.origin.x = 0;
 	windowRect.origin.y = (screenRect.size.height * 0.428);
 	windowRect.size.width = (screenRect.size.width * 0.3);
@@ -32,7 +32,7 @@ http://developer.apple.com/samplecode/Sproing/Sproing.html
 
 Here's the basics: the outer springs determine the position of the view in the window. The inner springs determine the size. If the inner springs are set, the view will resize with the window, if not, it will stay the same size. If a line is set on one of the outer springs, the view will lock itself to that edge of the window. So, if you want the view to lock itself to the top right of the window, set a line to the top and right, and set a spring to the bottom and left. Hope that helps.
 
--- General/RyanBates
+-- RyanBates
 
 ----
 
@@ -40,33 +40,33 @@ Okay, I understand that.  But what about the system fonts in the dialog.  As the
 
 ----
 
-Generally, I would say changing the font size depending upon the user's screen resolution is a bad choice. However, if this is a game, it might be acceptable. A font at 10-12 points should be plenty readable on the higher resolutions - but it ultimately depends on the size and quality of the user's monitor. If the text doesn't fit on a small window at 11 points, then you may want to re-think the UI design or shorten the text. -- General/RyanBates
+Generally, I would say changing the font size depending upon the user's screen resolution is a bad choice. However, if this is a game, it might be acceptable. A font at 10-12 points should be plenty readable on the higher resolutions - but it ultimately depends on the size and quality of the user's monitor. If the text doesn't fit on a small window at 11 points, then you may want to re-think the UI design or shorten the text. -- RyanBates
 
 ----
 
-I did some more research and came up with a solution to my problem that looks like it will work quite well.  I made 3 copies of the General/MainMenu.nib file, and loaded them into my project.  I will alter them as necessary to look good enough in the required resolutions.  I removed the above code in awakeFromNib since it won't be necessary anymore and altered main.m to look like this:
+I did some more research and came up with a solution to my problem that looks like it will work quite well.  I made 3 copies of the MainMenu.nib file, and loaded them into my project.  I will alter them as necessary to look good enough in the required resolutions.  I removed the above code in awakeFromNib since it won't be necessary anymore and altered main.m to look like this:
 
     
 int main(int argc, const char *argv[])
 {
-	General/NSRect  screenRect;
+	NSRect  screenRect;
 
-	screenRect = General/[[NSScreen mainScreen] frame];
+	screenRect = [[NSScreen mainScreen] frame];
 
-	General/NSApp = General/[NSApplication sharedApplication];
+	NSApp = [NSApplication sharedApplication];
 
 	if (screenRect.size.width < 1000)
-		General/[NSBundle loadNibNamed:@"Main800" owner:General/NSApp];
+		[NSBundle loadNibNamed:@"Main800" owner:NSApp];
 	else if (screenRect.size.width < 1200)
-		General/[NSBundle loadNibNamed:@"Main1024" owner:General/NSApp];
+		[NSBundle loadNibNamed:@"Main1024" owner:NSApp];
 	else if (screenRect.size.width < 1600)
-		General/[NSBundle loadNibNamed:@"General/MainMenu" owner:General/NSApp];
+		[NSBundle loadNibNamed:@"MainMenu" owner:NSApp];
 	else
-		General/[NSBundle loadNibNamed:@"Main1600" owner:General/NSApp];
+		[NSBundle loadNibNamed:@"Main1600" owner:NSApp];
 
-	General/[NSApp run];
+	[NSApp run];
 	return 0;
-//  return General/NSApplicationMain(argc, argv);
+//  return NSApplicationMain(argc, argv);
 }
 
 

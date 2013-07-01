@@ -2,7 +2,7 @@ To open a sheet you need to have two things, the window the sheet will be attach
 
 To open the sheet:
     
-General/[NSApp beginSheet:aSheet
+[NSApp beginSheet:aSheet
          modalForWindow:aWindow
          modalDelegate:aWindow
          didEndSelector:nil
@@ -13,7 +13,7 @@ Where aSheet is the sheet you want to display and aWindow is the window it will 
 
 To close the sheet:
     
-General/[NSApp endSheet:aSheet];
+[NSApp endSheet:aSheet];
 [aSheet orderOut:nil];
 
 
@@ -21,4 +21,4 @@ Where aSheet is the sheet.
 
 The usage of sheets is described in Mac OS X Human Interface Guidelines.
 
--- General/MatPeterson
+-- MatPeterson

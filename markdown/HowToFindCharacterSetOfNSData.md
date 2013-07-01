@@ -1,8 +1,8 @@
 
 
-I am working on a small project which has multiple user interfaces (web/cocoa). This is a project across different global zones - America, General/AsiaPac, Euro. One of the screens has interface for user to upload files. The WO engine for web-objects provides General/NSData of the file being uploaded which is saved into the database.
+I am working on a small project which has multiple user interfaces (web/cocoa). This is a project across different global zones - America, AsiaPac, Euro. One of the screens has interface for user to upload files. The WO engine for web-objects provides NSData of the file being uploaded which is saved into the database.
 
-When one of my Cocoa programs retrieves this General/NSData object, I want to be able to identify what is the character set of this General/NSData object. The character sets are all standard ones as in unicode.org. Is there any API to get this ? Is it possible to identify  "this General/NSData object has UTF8 character set" ?
+When one of my Cocoa programs retrieves this NSData object, I want to be able to identify what is the character set of this NSData object. The character sets are all standard ones as in unicode.org. Is there any API to get this ? Is it possible to identify  "this NSData object has UTF8 character set" ?
 
 Thanks,
 Amit
@@ -19,4 +19,4 @@ The Mozilla project has a page on their character set guesser, chardet.  http://
 
 I haven't looked at it myself, but it seems like an interesting problem.  I don't know about Mozilla, but I've read about how impressive IE is at char set guessing.
 
-see also General/NSStringToNSData
+see also NSStringToNSData

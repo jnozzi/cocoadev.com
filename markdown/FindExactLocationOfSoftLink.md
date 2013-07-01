@@ -6,6 +6,6 @@ ln -s /folder /target
 
 ----
 
-General/NSFileManager is a way to go:     General/[[NSFileManager defaultManager] pathContentOfSymbolicLinkAtPath:@"/path/to/link"]
+NSFileManager is a way to go:     [[NSFileManager defaultManager] pathContentOfSymbolicLinkAtPath:@"/path/to/link"]
 
--- General/DenisGryzlov
+-- DenisGryzlov

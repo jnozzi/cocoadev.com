@@ -6,7 +6,7 @@
 
 **Technologies:**
 
-*General/ObjC
+*ObjC
 *C
 *C++
 *x86/PPC Asm

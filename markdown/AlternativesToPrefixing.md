@@ -2,15 +2,15 @@ While 2-letter prefixes were a good idea in the late eighties, nowadays there's 
 
 There are those who suggest 4-letter suffixes for their library prefixes.
 
-General/OpenGL uses 2-letter ('gl'), 3-letter ('glu'), and 4-letter prefixes ('glut') as enumerated in the General/BlueBook.
+OpenGL uses 2-letter ('gl'), 3-letter ('glu'), and 4-letter prefixes ('glut') as enumerated in the BlueBook.
 
-Apple's General/ScreenSaver framework has an 11-letter prefix for all of its public symbols: "General/ScreenSaver". 
+Apple's ScreenSaver framework has an 11-letter prefix for all of its public symbols: "ScreenSaver". 
 
-Some folks recommend deriving symbol prefixes from reverse domain naming conventions, to further reduce collision risk: "General/ComMacSteve". Another advantage of using this technique is: no registration page required. There are downsides, of course.
+Some folks recommend deriving symbol prefixes from reverse domain naming conventions, to further reduce collision risk: "ComMacSteve". Another advantage of using this technique is: no registration page required. There are downsides, of course.
 
 Hmmm ... I can't quite come up with a clever conclusion to this note. Meditate on this for a while.
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
@@ -18,14 +18,14 @@ A solution is to use really long names, and then when you don't want to use the 
 
 ----
 
-Up until now, I've been ignoring prefixing and namespaces in Cocoa (except for Java packages, which I like). But now I'm in the process of writing an application that accesses class information defined by the user. This creates a possible collision. So my current solution (until if-when Apple adds namespace/package support to General/ObjectiveC) is to use the following code:
+Up until now, I've been ignoring prefixing and namespaces in Cocoa (except for Java packages, which I like). But now I'm in the process of writing an application that accesses class information defined by the user. This creates a possible collision. So my current solution (until if-when Apple adds namespace/package support to ObjectiveC) is to use the following code:
     
  #define MyClass ComMyWebsitePackageName_MyClass
  ...
  @interface MyClass ...
 
 My only immediate problem is that I have to go change it manually in Interface Builder, and this doesn't solve anything if I accidentally include someone else's (or even my own) header that already has a     #define MyClass. But for now I think it's better than nothing, and easier than writing out the full name all the time. This could also be used with prefixing, so that you would abbreviate your package name to a prefix. This would reduce #define collisions as well.
--- General/JediKnil
+-- JediKnil
 
 ----
 
@@ -39,7 +39,7 @@ Anyone else have thoughts?
  @compatibility_alias MyClass NetIconaraStupidLibraryMyClass;
 
 
-Hey ho,     MyClass and NetIconaraStupidLibraryMyClass are now two names for the same class. More General/ObjC than #defines, but can't undef it though.  --General/TheoHultberg
+Hey ho,     MyClass and NetIconaraStupidLibraryMyClass are now two names for the same class. More ObjC than #defines, but can't undef it though.  --TheoHultberg
 
 *I moved Theo's comment from the bottom of the page to here - because I believe it's extremely relevant and deserves a bit more visibility. A link on RedHat's site (below) claims that this keyword was "completely forgotten about"*
 
@@ -58,7 +58,7 @@ This is how to use the directive     @compatibility_alias as an import directive
  // now I can refer to MyClass instead of NetIconaraStupidLibraryMyClass, namespace problem sorted.
 
 
-Although I dislike this idea on aestethical grounds, it works quite like proper namespaces. If you want to "import" a whole library, you can prepare a header file with all the     @compatibility_alias directives, and import that header. --General/TheoHultberg
+Although I dislike this idea on aestethical grounds, it works quite like proper namespaces. If you want to "import" a whole library, you can prepare a header file with all the     @compatibility_alias directives, and import that header. --TheoHultberg
 
 ----
 
@@ -67,16 +67,16 @@ I believe this to be a problem that Apple should fix; we the developers are unfo
 The problem is pretty simple:
 
 * We the developers need good namespaces to avoid collisions, but
-* We the developers don't want to write out General/ComMyDomainCollectionMap a hundred thousand times.
+* We the developers don't want to write out ComMyDomainCollectionMap a hundred thousand times.
 
 Beyond being very silly, that is very, very unreadable. So,
 
 * We the developers might like a solution intrinsic to the language. By "might like" I mean "probably need." Or maybe even "must have."
 
 
-Java's com.domain.packaging.thingy seems to work pretty well. Anybody think it could be adapted (without the above General/ComMyDomainCollectionMap silliness) to General/ObjC?
+Java's com.domain.packaging.thingy seems to work pretty well. Anybody think it could be adapted (without the above ComMyDomainCollectionMap silliness) to ObjC?
 
--- General/RobRix
+-- RobRix
 
 ----
 
@@ -108,7 +108,7 @@ Referencing fully qualified objects could be something like...
 **
 How would you propose dealing with code that uses objects from multiple name spaces? Namely using any Cocoa class with your name space.
 
-And if those two namespaces both have classes named General/CoolWidget. *(Extreme I know.)* --General/TimothyHatcher
+And if those two namespaces both have classes named CoolWidget. *(Extreme I know.)* --TimothyHatcher
 **
 
 which can specify a namespace name or a fully qualified type name. This could appear either at global (compilation unit), class, or method scope.
@@ -129,7 +129,7 @@ PS you can do something like javas com.packaging.thingy already in cocoa:
 
 then you do: 
 
-    General/[Cocoa com] packaging] thingyClass]
+    [Cocoa com] packaging] thingyClass]
 
 to get your class. Not too hard methinks, doesn't involve any language extensions. Don't know why nobody does this already. :-) 
 Perhaps even using CCD is unnecessary. -- [[MikeAmy
@@ -143,12 +143,12 @@ It also has s second serious flaw: it has no point. The point behind namespaces 
 It'd be nice if
     
  Class List = [ComDustinVossList class];
- List *aList = General/List alloc] init];
+ List *aList = List alloc] init];
  worked, but it doesn't.
 
 No, the real solution is language-level namespaces. I'm sure the [[ObjectiveC language nebbishes are already hard at work. When they've get it specced out, it can go in GCC.
 
---General/DustinVoss
+--DustinVoss
 
 *Err, that doesn't work? I've written code which messages Class variables and ivars... why would this particular case not work?*
 
@@ -162,12 +162,12 @@ although I'm sure I screwed up the syntax somewhere. And this implementation is 
 
 ----
 
-Yeah, sorry guys, sometimes I pick up the wrong idea and run with it. Must be something I ate. But maybe think about this a little more. Who are the General/ObjectiveC nebbishes? Apple? Is anyone working on this? Where is the real discussion if not here?
+Yeah, sorry guys, sometimes I pick up the wrong idea and run with it. Must be something I ate. But maybe think about this a little more. Who are the ObjectiveC nebbishes? Apple? Is anyone working on this? Where is the real discussion if not here?
 
-Using Cocoa classes as an example, General/NSArray would be     General/NextStep foundation] array] or maybe just     [NextStep array], [[NSView would be     General/NextStep responder] view] or     [NextStep view]. - which demands more runtime processing but is also more dynamic - eg you could load a category of [[NextStep and change the class that is returned.
+Using Cocoa classes as an example, NSArray would be     NextStep foundation] array] or maybe just     [NextStep array], [[NSView would be     NextStep responder] view] or     [NextStep view]. - which demands more runtime processing but is also more dynamic - eg you could load a category of [[NextStep and change the class that is returned.
 Also you don't have to put up with     [NSArray class] anymore just     [NextStep array]. You'd always get classes in the same way.
 
-But the other way is     NextStep.Array - which is shorter, compile time and demands an extension to the language. Pros and cons to both but I think General/ObjectiveC benefits from being dynamic - why stop at classes? So I'd think twice before dismissing this idea. -- General/MikeAmy
+But the other way is     NextStep.Array - which is shorter, compile time and demands an extension to the language. Pros and cons to both but I think ObjectiveC benefits from being dynamic - why stop at classes? So I'd think twice before dismissing this idea. -- MikeAmy
 
 ----
 
@@ -176,7 +176,7 @@ Ok, I'm making a possibly wrong assumption of designing in terms of protocols ra
  Class List = [SomeListImplementation class]; // for namespace 
  .
  .
- id <List> aList = General/List alloc] init]; // we know what it does but not exactly what it is - decoupling
+ id <List> aList = List alloc] init]; // we know what it does but not exactly what it is - decoupling
 
 
 or even:
@@ -218,21 +218,21 @@ You've just moved from having to make sure your classes have unique names to hav
 
 *Yep, easier innit?*
 
-Ha ha ha! Now explain how I can "check the bundle you are importing for namespace conflicts" (hmm ... solve all three conflict spaces: classes, protocols, and class/category pairs) without actually loading the bundle (and conflicting) and you'll win a special prize. -- General/MikeTrent
+Ha ha ha! Now explain how I can "check the bundle you are importing for namespace conflicts" (hmm ... solve all three conflict spaces: classes, protocols, and class/category pairs) without actually loading the bundle (and conflicting) and you'll win a special prize. -- MikeTrent
 
 Ulp - I lose!? The only ways I could think of were 
 *using: 
     CFBundleGetDataPointerForName([bundleToTest _cfBundle],className);
-to  test existence of each class, which might not even work on a yet-to-be-loaded General/CFBundle and gives: 
+to  test existence of each class, which might not even work on a yet-to-be-loaded CFBundle and gives: 
 
     *** Uncaught exception: <NSInvalidArgumentException> *** -[NSCFType absoluteURL]: selector not recognized for loaded bundles. Stab in the dark.
 
 *Parse the bundle headers looking for classes, protocols, categories (which can be done), except this will only let you *prevent* a namespace conflict and depends on headers being there and you having a parser.
 *If loaded executable code doesn't get lost, which I suspect it doesn't, then you could initially save all your classes or the classes returned by objc_getClassList(). You could then access your own classes through some class packaging object rather than through the runtime. But what would this interfere with? Certainly any code that uses objc_getClass(char *classname). So you wouldn't use objc_getClass() in your app. And this wouldn't stop bundles interfering with each other unless they knew about it too. I haven't tested this idea yet. Probably dyld will stop it working.
 
-Anything else seems grisly. I guess I don't win the special prize huh? -- General/MikeAmy
+Anything else seems grisly. I guess I don't win the special prize huh? -- MikeAmy
 
-Start a separate process to load the bundle and check it?  --General/CharlesParnot
+Start a separate process to load the bundle and check it?  --CharlesParnot
 
 ----
 I haven't done any real tests but I noticed a speed difference between 2-letter prefix and no-prefix back when I didn't understand how to thread properly - the no-prefix version was faster enough to hide a crash. Wonder how big a difference it really makes though.
@@ -243,7 +243,7 @@ I tested that monster a lot. That crash was a pain to get rid of and was consist
 
     
  int main (int argc, const char * argv[]) {
-     NSAutoreleasePool * pool = General/NSAutoreleasePool alloc] init];
+     NSAutoreleasePool * pool = NSAutoreleasePool alloc] init];
  
  		int i=0;
  			for(;i<10000;i++) {
@@ -272,11 +272,11 @@ I tested that monster a lot. That crash was a pain to get rid of and was consist
 
 Whether that's something you'd notice in the real world, I dunno. But it is slower with the longer prefix, that much is clear.
 
-*Impossible. The names of the classes are irrelevant to the runtime, as far as I know. They are just symbols. Had the code used somethink like [[NSClassFromString I could have believed it, but otherwise, no way. --General/TheoHultberg*
+*Impossible. The names of the classes are irrelevant to the runtime, as far as I know. They are just symbols. Had the code used somethink like [[NSClassFromString I could have believed it, but otherwise, no way. --TheoHultberg*
 
 ----
 
-I can just barely believe the the length of the class name might make a difference for alloc messages, but not for anything else.  There has to be a lookup into a class table for an alloc, otherwise class posing wouldn't work *(Edit: or classnames could just be symbols, sort of like global variables.  Now I get what Theo was saying.. :-)*.  So, if anything you're picking up the cost of hashing a longer string, and that cost would not increase (much) after the classname reached 16 characters (according to Mulle's General/ObjC hashing article).  Or, maybe you're just getting a hash collision between your prefixed class name and some other class name in your system.  For messages other than alloc the runtime can just follow the isa pointer to get at the class, so I can't see that the length of the class name would make any difference.  And here's my testing result:
+I can just barely believe the the length of the class name might make a difference for alloc messages, but not for anything else.  There has to be a lookup into a class table for an alloc, otherwise class posing wouldn't work *(Edit: or classnames could just be symbols, sort of like global variables.  Now I get what Theo was saying.. :-)*.  So, if anything you're picking up the cost of hashing a longer string, and that cost would not increase (much) after the classname reached 16 characters (according to Mulle's ObjC hashing article).  Or, maybe you're just getting a hash collision between your prefixed class name and some other class name in your system.  For messages other than alloc the runtime can just follow the isa pointer to get at the class, so I can't see that the length of the class name would make any difference.  And here's my testing result:
 
 Everything clocks in the same to within random fluctuations .
 
@@ -295,7 +295,7 @@ Here's snippets of the code that generated the above:
  startTime = mach_absolute_time();
  for (i = 0; i < 1000000; i++)
  {
-     obj = General/MyClass alloc] init];
+     obj = MyClass alloc] init];
      [obj foo];
      [obj release];
  }
@@ -329,6 +329,6 @@ Also, I found that whichever class I timed first ran longer than the others, so 
 *Ah, good that you've done this, I was thinking of doing it myself just to finally disspell that old myth that code runs faster if your variable names are shorter (which this is a variant of). I figured that you would get different result depending on which class you tested first, and it's good that you have accounted for that. Dunno why it would, but somehow I had a feeling that the runtime would behave that way =). --Theo*
 
 ----
-Everyone wants Apple to "fix" this. Is Objective-C Apple's own baby? I'm not sure they "own" it. There are the GCC and General/GNUstep projects which would allow the Open Source community make such changes. Consider that Apple uses GCC, and that might lead this conversation elsewhere.
+Everyone wants Apple to "fix" this. Is Objective-C Apple's own baby? I'm not sure they "own" it. There are the GCC and GNUstep projects which would allow the Open Source community make such changes. Consider that Apple uses GCC, and that might lead this conversation elsewhere.
 
-Anyway, my opinion is that @compatibility_alias is the way to go until the community agrees on a method of "fixing" Objective-C. --General/SigmaD
+Anyway, my opinion is that @compatibility_alias is the way to go until the community agrees on a method of "fixing" Objective-C. --SigmaD

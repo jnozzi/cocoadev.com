@@ -4,23 +4,23 @@ Run Loop conceptual docs: http://developer.apple.com/documentation/CoreFoundatio
 
 Class documentation http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSRunLoop_Class/index.html
 
-The General/RunLoop is what keeps your app running until it should quit. It handles events, et cetera.
+The RunLoop is what keeps your app running until it should quit. It handles events, et cetera.
 
-If your application is made with the General/AppKit (and therefore uses General/NSApplication), you don't generally need to mess around with this, but if you are building, for instance, a Foundation Tool, you will need to set this up yourself if you need it. Foundation tools commonly need run loops in order to process networking events through a standard event mechanism, including using General/DistributedObjects with General/MachMessages or TCP/IP.
+If your application is made with the AppKit (and therefore uses NSApplication), you don't generally need to mess around with this, but if you are building, for instance, a Foundation Tool, you will need to set this up yourself if you need it. Foundation tools commonly need run loops in order to process networking events through a standard event mechanism, including using DistributedObjects with MachMessages or TCP/IP.
 
-Look at the documentation for General/NSRunLoop, specifically the -currentRunLoop and -run methods.
+Look at the documentation for NSRunLoop, specifically the -currentRunLoop and -run methods.
 
-According to Aaron Hillegass, you can use the General/NSRunLoop in some cases instead of having to use threads or something else more complicated. Run loops are relatively simpler when it comes to doing things with General/NSTimers and whatnot. I found a benefit when it solved a problem I was having with General/NSTimer. See General/NSTimerDoesntRunWhenMenuClicked.
+According to Aaron Hillegass, you can use the NSRunLoop in some cases instead of having to use threads or something else more complicated. Run loops are relatively simpler when it comes to doing things with NSTimers and whatnot. I found a benefit when it solved a problem I was having with NSTimer. See NSTimerDoesntRunWhenMenuClicked.
 
 ----
 
 All known run loop modes:
 
 
-*General/NSDefaultRunLoopMode
-*General/NSEventTrackingRunLoopMode
-*General/NSModalPanelRunLoopMode
-*General/NSConnectionReplyMode
+*NSDefaultRunLoopMode
+*NSEventTrackingRunLoopMode
+*NSModalPanelRunLoopMode
+*NSConnectionReplyMode
 
 
 ----
@@ -31,11 +31,11 @@ I've noticed that apps sometimes create additional runloops.  Why would I need m
 
 I've only created additional runloops when spawning additional worker threads. When worker threads want to respond to events (again, like DO notifications, timers, or other notifications) they need to have a runloop running on that thread. 
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
-The documentation says a run-loop will exit when all input sources have been removed. Good luck getting that to happen. The best way to terminate a run-loop on demand is to run it for a brief time only with **runUntilDate:** and then check a flag. --General/DustinVoss
+The documentation says a run-loop will exit when all input sources have been removed. Good luck getting that to happen. The best way to terminate a run-loop on demand is to run it for a brief time only with **runUntilDate:** and then check a flag. --DustinVoss
 
 ----
 
@@ -50,16 +50,16 @@ Instead you should run the loop unconditionally with     CFRunLoopRun(). You the
 
 If you eliminate the polling your thread is free to sleep in a system trap.
 
---General/KeithDuncan
+--KeithDuncan
 
 ----
 I've tested this and it is correct that using     CFRunLoopRun() is much more efficient than a while loop like this:
 
     
- while (shouldKeepRunning && General/NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture);
+ while (shouldKeepRunning && NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture);
 
 
-It is very odd that the Apple General/NSRunLoop Class Reference documentation suggests the latter as that causes very high CPU utilization.
+It is very odd that the Apple NSRunLoop Class Reference documentation suggests the latter as that causes very high CPU utilization.
 
 -RH
 ----
@@ -68,7 +68,7 @@ RH: This does not cause a problem because the -runMode:beforeDate: method has to
 -SF
 ----
 
-My documentation says: *The current thread's run loop runs in the default mode until the run loop is stopped with General/CFRunLoopStop or all the sources and timers are removed from the default run loop mode.* But it does not seem to be true.
+My documentation says: *The current thread's run loop runs in the default mode until the run loop is stopped with CFRunLoopStop or all the sources and timers are removed from the default run loop mode.* But it does not seem to be true.
 
 Does anyone know any way to terminate a running/waiting run loop?
 
@@ -78,9 +78,9 @@ Well, if you are managing the top-level of the loop yourself, you can use the *r
 
 ----
 
-I don't see such function neither for General/NSRunLoop or General/CFRunLoop. Maybe you're thinking of     nextEventMatchingMask:untilDate:inMode:dequeue:?
+I don't see such function neither for NSRunLoop or CFRunLoop. Maybe you're thinking of     nextEventMatchingMask:untilDate:inMode:dequeue:?
 
-*CFRunLoopRunInMode( kCFRunLoopDefaultMode, 0.0, YES ) would be analogous to General/NSRunLoop currentRunLoop] runOnce], if it existed.*
+*CFRunLoopRunInMode( kCFRunLoopDefaultMode, 0.0, YES ) would be analogous to NSRunLoop currentRunLoop] runOnce], if it existed.*
 
 ----
 
@@ -122,11 +122,11 @@ If there is an API that lets you avoid polling, it's almost always better to use
 Oh no, I read nothing hostile into anything. One should always remember that many "X is bad" statements are domain-specific. Here, the domain is programming for modern UNIX-alikes. When you get into vastly different environments, the proper techniques change, no doubt.
 
 "Okay, I don't have 'anecdotal evidence', but have written two different real time kernels for microprocessors. First, polling was not used in EITHER of them. The person who said that polling is at the heart of the kernel is a) ignorant of what they are talking about or b) has been listening to others who are ignorant about what they are talking about. These kernels had locks, queues, mutexes, and NONE sat in a polling loop - I couldn't. One was a robotics system that had to respond quickly to events. Not sit around waiting for a loop to poll. The reality is (sorry to burst folks bubble) but an operating system that is written well will BLOCK (no polls, it stops execution) until something happens. This is how you block - you put the process on what is called an idle list. Then you indicate in its process block it is blocking on XYZ item. This allows some OTHER thread to run. Since it is in the idle list, IT NEVER RUNS. This is the important part. Later, another thread will change XYZ (whether it is a queue, a message box, a pipe, you name it) and the act of doing this TAKES the process off of the idle list and puts it back in the run list. Next time there is a context switch (when you switch which process is running) the now UNBLOCKED process will run. Bottom line: polling bad, blocking good. There is a BIG HOWEVER in all of this. HOWEVER there are times when you don't need blocking (it is an expensive operation for VERY short time periods). As for X11 and the whole mutex arguement... whatever. I've seen folks who didn't understand blocking screw it up badly (trust me, its easy). If X11 uses TONS of shared variables, yes, mutexes can make it run slowly - you can't just 'add stuff'. That's like saying 'I wrote something on Windows, tuned it and it worked perfect, but the port to OS X didn't work so well, therefore OS X is lousy'. Understand? "
---General/LloydSargent
+--LloydSargent
 
 *Traditionally, many DSP developers have structured their software applications around sequential processing loops and state machines.* - from the Texas Instruments DSP Design page. Is that polling?
 
-As far as I understand the terminology, polling doesn't mean you have to use 100% CPU time to wait for a status change. You can very well relinquish control by yielding or adding a short delay after every status check. The technique that consumes all system resources is called spinlocking, and even that can make sense sometimes, as stated above. -General/GregorRiepl
+As far as I understand the terminology, polling doesn't mean you have to use 100% CPU time to wait for a status change. You can very well relinquish control by yielding or adding a short delay after every status check. The technique that consumes all system resources is called spinlocking, and even that can make sense sometimes, as stated above. -GregorRiepl
 
 ----
 
@@ -134,7 +134,7 @@ If you are only blocking for a short period of time, an OS semaphore (or anythin
 
 That said, this is not spinning.  Running the loop once means *block for one event*.  So, this approach is reasonable and is just like decoding the event which is what runloop does, as well.  It is essentially just manually adding an *event* which the loop should behave like it implements.
 
-"I find many people HIGHLY over-rate there piece of code and vastly under-rate everyone elses. Many times you can block those 'short periods of time' with little or no ill consequence - context switching is a lot faster than it was 20 years ago. Folks, like me, who write that that level are rare. For an app writer to say 'context switches are expensive' are quoting an old paradigm. It has shifted. Heck, if time is of consequence to you, bail out on Objective C - that sucker eats it on EVERY object!" -- General/LloydSargent
+"I find many people HIGHLY over-rate there piece of code and vastly under-rate everyone elses. Many times you can block those 'short periods of time' with little or no ill consequence - context switching is a lot faster than it was 20 years ago. Folks, like me, who write that that level are rare. For an app writer to say 'context switches are expensive' are quoting an old paradigm. It has shifted. Heck, if time is of consequence to you, bail out on Objective C - that sucker eats it on EVERY object!" -- LloydSargent
 
 ----
 
@@ -150,7 +150,7 @@ Then later called
 
 And it indeed returns control to the code that started the run loop.  The following, however, does not work for me:
 
-     General/NSRunLoop currentRunLoop] run]
+     NSRunLoop currentRunLoop] run]
 
 Then later calling
 
@@ -164,7 +164,7 @@ This is the code I have always used when starting and stopping run loops in back
 
     
  -(void)backgroundThreadStarted {
-   NSAutoreleasePool* thePool = General/NSAutoreleasePool alloc] init];
+   NSAutoreleasePool* thePool = NSAutoreleasePool alloc] init];
  
    // create a scheduled timer
    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(backgroundThreadFire:) userInfo:nil repeats:YES];

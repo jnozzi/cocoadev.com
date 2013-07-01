@@ -10,11 +10,11 @@ Paul
 
 {
 
-	General/NSPrintInfo  *printInfo = [self printInfo];
+	NSPrintInfo  *printInfo = [self printInfo];
 	
-	General/NSPrintOperation *printOp;
+	NSPrintOperation *printOp;
 	
-	printOp = General/[NSPrintOperation printOperationWithView:tableView printInfo:printInfo];
+	printOp = [NSPrintOperation printOperationWithView:tableView printInfo:printInfo];
 
 	[printOp setShowPanels:flag];
 	
@@ -33,16 +33,16 @@ The problem is that it doesn't print the headers. The table needs several pages 
 
 ----
 
-As far as I know, the header problem isn't too easy to surmount, as General/NSTableView is actually made up of two main views, the table itself, and the header view. Priniting only automatically supports printing from the table part. Someone else may be able to shed light on hacking something together that works though.
+As far as I know, the header problem isn't too easy to surmount, as NSTableView is actually made up of two main views, the table itself, and the header view. Priniting only automatically supports printing from the table part. Someone else may be able to shed light on hacking something together that works though.
 
 Good luck.
 
 ----
 
-I haven't tried 'cause I don't have a printer, but what about connecting a button's or menu item's action to the print: action of the tableview's surrounding General/NSScrollView?
+I haven't tried 'cause I don't have a printer, but what about connecting a button's or menu item's action to the print: action of the tableview's surrounding NSScrollView?
 
 You could just go to Print an the view the preview if you dont have a printer.
 
 ----
 
-Calling     print: on General/NSScrollView will print the headers, but it will also print the scroll bars and only the visible area of the table (which is probably not what you want). I would suggest creating an General/NSView subclass for printing the contents. It's a bit more work, but that way you have complete control as to how it will look. -- General/RyanBates
+Calling     print: on NSScrollView will print the headers, but it will also print the scroll bars and only the visible area of the table (which is probably not what you want). I would suggest creating an NSView subclass for printing the contents. It's a bit more work, but that way you have complete control as to how it will look. -- RyanBates

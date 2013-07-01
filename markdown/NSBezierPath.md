@@ -1,22 +1,22 @@
 
 
-http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/Classes/NSBezierPath_Class/index.html#//apple_ref/doc/uid/TP40004008
+http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBezierPath_Class/index.html#//apple_ref/doc/uid/TP40004008
 
-also see: http://developer.apple.com/documentation/Cocoa/Conceptual/General/DrawBasic/index.html
+also see: http://developer.apple.com/documentation/Cocoa/Conceptual/DrawBasic/index.html
 
 ----
 
-An General/NSBezierPath object allows you to create paths using General/PostScript-style commands. Paths consist of straight and curved line segments joined together. Paths can form recognizable shapes such as rectangles, ovals, arcs, and glyphs; they can also form complex polygons using either straight or curved line segments. A single path can be closed by connecting its two endpoints or it can be left open. 
+An NSBezierPath object allows you to create paths using PostScript-style commands. Paths consist of straight and curved line segments joined together. Paths can form recognizable shapes such as rectangles, ovals, arcs, and glyphs; they can also form complex polygons using either straight or curved line segments. A single path can be closed by connecting its two endpoints or it can be left open. 
 
 ----
 [Topic]
 ----
 
-Is it possible to somehow turn off antialiasing when using General/NSBezierPath objects?
+Is it possible to somehow turn off antialiasing when using NSBezierPath objects?
 
 ----
 
-Yep, just use General/[[NSGraphicsContext currentContext] setShouldAntialias:NO]
+Yep, just use [[NSGraphicsContext currentContext] setShouldAntialias:NO]
 before drawing a path to turn antialiasing off and the same call with YES after drawing to turn it back on (if you want).
 
 ----
@@ -25,11 +25,11 @@ Apple might have spent a lot of time making their antialiasing algorithm, but th
 
 ----
 
-Well, I tried General/[[NSGraphicsContext currentContext] setShouldAntialias:NO], and even General/[NSBezierPath setLineWidth:0.0], no satisfying result. I still get rectangles with two pixels wide borders.
+Well, I tried [[NSGraphicsContext currentContext] setShouldAntialias:NO], and even [NSBezierPath setLineWidth:0.0], no satisfying result. I still get rectangles with two pixels wide borders.
 
 ----
 
-You need to move your rect over 0.5 pixels.  Use     General/NSOffsetRect(myRect, 0.5, 0.5) to move it over before drawing it.  You can use an General/NSAffineTransform to translate an General/NSBezierPath. -- Bo
+You need to move your rect over 0.5 pixels.  Use     NSOffsetRect(myRect, 0.5, 0.5) to move it over before drawing it.  You can use an NSAffineTransform to translate an NSBezierPath. -- Bo
 
 ----
 
@@ -44,21 +44,21 @@ Here is a little method I ran into once for this.
 -- Johan Kool
 
     
-- (General/NSBezierPath *) bobify
+- (NSBezierPath *) bobify
 {
-    General/NSPoint *pts = malloc(3*sizeof(General/NSPoint));
-    General/NSBezierPathElement elem;
+    NSPoint *pts = malloc(3*sizeof(NSPoint));
+    NSBezierPathElement elem;
     int i,j;
     for (i=0;i<[self elementCount];i++) {
         elem=[self elementAtIndex:i associatedPoints:pts];
         switch (elem) {
-            case General/NSMoveToBezierPathElement:
-            case General/NSLineToBezierPathElement:
+            case NSMoveToBezierPathElement:
+            case NSLineToBezierPathElement:
                 //single point per element
                 pts->x = roundf(pts->x)-0.5; //JK Changed +0.5 to -0.5 
                 pts->y = roundf(pts->y)-0.5;  //JK Changed +0.5 to -0.5 
                 [self setAssociatedPoints:pts atIndex:i];
-            case General/NSCurveToBezierPathElement:
+            case NSCurveToBezierPathElement:
                 //control point 1, control point 2, end point
                 for(j=0;j<3;j++){
                     (pts+j)->x = roundf((pts+j)->x)-0.5; //JK Changed +0.5 to -0.5 
@@ -75,21 +75,21 @@ Here is a little method I ran into once for this.
 
 
 ----
-I'm working on a program that needs to trace the paths taken by objects on screen. Currently I have it set up so that each object has a bezier path, and calls [path lineToPoint:[self location]]; once per frame, and [path stroke]; once per frame. This gets VERY slow after a few minutes (several thousand segments being stroked every frame, plus some being added every frame). Can anyone think of a way of speeding this up? I would do something like draw the path into an General/NSImage so that I didn't need to redraw all the time, but the path can be arbitrarily long, so an image big enough to fit any path would be arbitrarily large.
+I'm working on a program that needs to trace the paths taken by objects on screen. Currently I have it set up so that each object has a bezier path, and calls [path lineToPoint:[self location]]; once per frame, and [path stroke]; once per frame. This gets VERY slow after a few minutes (several thousand segments being stroked every frame, plus some being added every frame). Can anyone think of a way of speeding this up? I would do something like draw the path into an NSImage so that I didn't need to redraw all the time, but the path can be arbitrarily long, so an image big enough to fit any path would be arbitrarily large.
 
 *Could you not limit the image to screen resolution?*
 
 I could, but I'd be losing some major functionality of my program. I think I'd prefer to limit trail length rather than working area (which is what I'll do if I can't think of something better)
 
 ----
-Why is General/NSBezierPath so slow?  Why do plotting, clipping, stroking, and filling all take so long?  Am I doing something wrong?
+Why is NSBezierPath so slow?  Why do plotting, clipping, stroking, and filling all take so long?  Am I doing something wrong?
 ----
 It seems to me that you are drawing the WHOLE path for each object at each frame. Why don't you just draw the last line with something like:
 
-    General/[NSBezierPath strokeLineFromPoint:[self previousLocation] toPoint:[self location]]
+    [NSBezierPath strokeLineFromPoint:[self previousLocation] toPoint:[self location]]
 
-I may be missing something in what you are doing but at least, I tried ;-) --General/CharlesParnot
+I may be missing something in what you are doing but at least, I tried ;-) --CharlesParnot
 
 ----
 
-General/NSBezierPath / Quartz are slow with paths that self-intersect, since it has to handle the intersections specially (antialiasing, not making the overlaps draw darker with transparent, etc).  Sometimes you can get a speedup by have a bunch of little paths rather than a single big honkin' path
+NSBezierPath / Quartz are slow with paths that self-intersect, since it has to handle the intersections specially (antialiasing, not making the overlaps draw darker with transparent, etc).  Sometimes you can get a speedup by have a bunch of little paths rather than a single big honkin' path

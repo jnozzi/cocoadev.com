@@ -16,11 +16,11 @@ Overriding global key commands is one of the easiest ways to infuriate your user
 
 There are times when it is necessary to override certain 'expected' actions with others (Apple's own apps do this from time to time with the interface in general). This is one of them.
 
-At any rate, the answer was rather simple - I subclassed General/NSWindow and overrode     -performKeyEquivalent: to intercept Cmd-space combos, ignoring the rest. Of course, this could be a user option ... but I'm 90% sure most users would rather have the more convenient Cmd-Space combo for start/stop actions while typing text. It's quicker and requires no *fingrobatics* to operate. Typing speed is the key here. Heeding the warnings I've read here and other places about the International switching global (cmd-space), I will allow an option in prefs to watch for  cmd-opt-space instead.
+At any rate, the answer was rather simple - I subclassed NSWindow and overrode     -performKeyEquivalent: to intercept Cmd-space combos, ignoring the rest. Of course, this could be a user option ... but I'm 90% sure most users would rather have the more convenient Cmd-Space combo for start/stop actions while typing text. It's quicker and requires no *fingrobatics* to operate. Typing speed is the key here. Heeding the warnings I've read here and other places about the International switching global (cmd-space), I will allow an option in prefs to watch for  cmd-opt-space instead.
 
 ----
 
-Don't use Cmd-Space. It will be the default key combination to bring Spotlight to the front in Tiger. -- l0ne aka General/EmanueleVulcano
+Don't use Cmd-Space. It will be the default key combination to bring Spotlight to the front in Tiger. -- l0ne aka EmanueleVulcano
 
 ----
 
@@ -35,4 +35,4 @@ Back to the whole best practice discussion (without the attitude, please), packa
 ----
 For photoshop, the problem is probably that the keyboard equivalents were all set up back in Mac OS 9.  In Mac OS X Adobe had a problem: Hack off old-school photoshoppers by changing shortcuts, or hack off new users by using standard shortcuts for non-standard tasks?
 
-General/BBEdit has the same problem, but the first time you use one of the collision shortcuts (e.g. cmd-T) it pops up a dialog and asks how you'd like to bind the key.  (Incidentally, as an old-school General/BBEdit'er, cmd-T for replace-and-find-next is ingrained in my fingers.  I chose the non-standard shortcut.)
+BBEdit has the same problem, but the first time you use one of the collision shortcuts (e.g. cmd-T) it pops up a dialog and asks how you'd like to bind the key.  (Incidentally, as an old-school BBEdit'er, cmd-T for replace-and-find-next is ingrained in my fingers.  I chose the non-standard shortcut.)

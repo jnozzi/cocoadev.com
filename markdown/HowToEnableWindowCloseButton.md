@@ -1,4 +1,4 @@
-Describe General/HowToEnableWindowCloseButton here.
+Describe HowToEnableWindowCloseButton here.
 
 How to disable and enable the window close button?
 
@@ -6,6 +6,6 @@ Thanks in advance.
 
 ----
 
-General/HowToUseThisSite?
+HowToUseThisSite?
 
 Thanks in advance.

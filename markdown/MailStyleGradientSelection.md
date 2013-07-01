@@ -1,12 +1,12 @@
 Hello,
 
-I know this has been amply discussed elsewhere and there are various solutions, but thought this might be useful to somebody else out there. I wanted Mail 2.0/iTunes-style gradient selections in the General/NSOutlineView in my app. Thanks to others who have posted here and elsewhere, this wasn't too difficult. My implementation doesn't use an external image, and allows you to specify whether the gradient is contiguous across multiple selected rows, whether to have a one pixel gap between selected rows, and whether - like in Mail - the outline view (or table view) should only ever show the disabled/unfocused grey gradient colour and never turn blue even when you click on a row.
+I know this has been amply discussed elsewhere and there are various solutions, but thought this might be useful to somebody else out there. I wanted Mail 2.0/iTunes-style gradient selections in the NSOutlineView in my app. Thanks to others who have posted here and elsewhere, this wasn't too difficult. My implementation doesn't use an external image, and allows you to specify whether the gradient is contiguous across multiple selected rows, whether to have a one pixel gap between selected rows, and whether - like in Mail - the outline view (or table view) should only ever show the disabled/unfocused grey gradient colour and never turn blue even when you click on a row.
 
-Note that you will need NSBezierPath_AMShading.h and NSBezierPath_AMShading.m (a category of General/NSBezierPath that makes it easy to do gradient fills) by Andreas Mayer from http://www.harmless.de/cocoa.html (these files are contained in the General/AMRolloverButton example code).
+Note that you will need NSBezierPath_AMShading.h and NSBezierPath_AMShading.m (a category of NSBezierPath that makes it easy to do gradient fills) by Andreas Mayer from http://www.harmless.de/cocoa.html (these files are contained in the AMRolloverButton example code).
 
 This code was particularly helped by the information given by one of the Omni guys here: http://wilshipley.com/blog/2005/07/pimp-my-code-part-3-gradient.html
 
-Here is my subclass of General/NSOutlineView:
+Here is my subclass of NSOutlineView:
 
 Interface file:
 
@@ -14,9 +14,9 @@ Interface file:
 
 #import <Cocoa/Cocoa.h>
 
-@interface General/KBGradientOutlineView : General/NSOutlineView
+@interface KBGradientOutlineView : NSOutlineView
 {
-	General/NSIndexSet *draggedRows;
+	NSIndexSet *draggedRows;
 	
 	BOOL usesGradientSelection;
 	BOOL selectionGradientIsContiguous;
@@ -25,7 +25,7 @@ Interface file:
 }
 
 /* Useful for delegate when deciding how to colour text */
-- (General/NSIndexSet *)draggedRows;
+- (NSIndexSet *)draggedRows;
 
 // Gradient selection methods
 /* Sets whether the outline view should use gradient selection bars. */
@@ -55,48 +55,48 @@ Implementation file:
 
     
 
-#import "General/KBGradientOutlineView.h"
+#import "KBGradientOutlineView.h"
 #import "NSBezierPath_AMShading.h"	// For gradient highlighting
 
 
-// We override (and may call) an undocumented private General/NSTableView method,
+// We override (and may call) an undocumented private NSTableView method,
 // so we need to declare that here
-@interface General/NSObject (General/NSTableViewPrivateMethods)
-- (id)_highlightColorForCell:(General/NSCell *)cell;
+@interface NSObject (NSTableViewPrivateMethods)
+- (id)_highlightColorForCell:(NSCell *)cell;
 @end
 
 
-@implementation General/KBGradientOutlineView
+@implementation KBGradientOutlineView
 
-- (void)viewWillMoveToWindow:(General/NSWindow *)newWindow
+- (void)viewWillMoveToWindow:(NSWindow *)newWindow
 {
-	General/NSNotificationCenter *nc = General/[NSNotificationCenter defaultCenter];
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	
-	[nc removeObserver:self name:General/NSWindowDidResignKeyNotification object:nil];
+	[nc removeObserver:self name:NSWindowDidResignKeyNotification object:nil];
 	[nc addObserver:self
 		   selector:@selector(windowDidChangeKeyNotification:)
-			   name:General/NSWindowDidResignKeyNotification
+			   name:NSWindowDidResignKeyNotification
 			 object:newWindow];
 	
-	[nc removeObserver:self name:General/NSWindowDidBecomeKeyNotification object:nil];
+	[nc removeObserver:self name:NSWindowDidBecomeKeyNotification object:nil];
 	[nc addObserver:self
 		   selector:@selector(windowDidChangeKeyNotification:)
-			   name:General/NSWindowDidBecomeKeyNotification
+			   name:NSWindowDidBecomeKeyNotification
 			 object:newWindow];
 }
 
 - (void)dealloc
 {
-	General/[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[super dealloc];
 }
 
-- (void)windowDidChangeKeyNotification:(General/NSNotification *)notification
+- (void)windowDidChangeKeyNotification:(NSNotification *)notification
 {
 	[self setNeedsDisplay:YES];
 }
 
-- (void)highlightSelectionInClipRect:(General/NSRect)clipRect
+- (void)highlightSelectionInClipRect:(NSRect)clipRect
 {
 	if (!usesGradientSelection)
 	{
@@ -104,34 +104,34 @@ Implementation file:
 		return;
 	}
 	
-	General/NSColor *topLineColor, *bottomLineColor, *gradientStartColor, *gradientEndColor;
+	NSColor *topLineColor, *bottomLineColor, *gradientStartColor, *gradientEndColor;
 	
 	// Color will depend on whether or not we are the first responder
-	General/NSResponder *firstResponder = General/self window] firstResponder];
+	NSResponder *firstResponder = self window] firstResponder];
 	if ( (![firstResponder isKindOfClass:[[[NSView class]]) ||
-		 (![(General/NSView *)firstResponder isDescendantOf:self]) ||
-		 (!General/self window] isKeyWindow]) ||
+		 (![(NSView *)firstResponder isDescendantOf:self]) ||
+		 (!self window] isKeyWindow]) ||
 		 ([self usesDisabledGradientSelectionOnly]) )
 	{
 		topLineColor = [[[NSColor colorWithDeviceRed:(173.0/255.0) green:(187.0/255.0) blue:(209.0/255.0) alpha:1.0];
-		bottomLineColor = General/[NSColor colorWithDeviceRed:(150.0/255.0) green:(161.0/255.0) blue:(183.0/255.0) alpha:1.0];
-		gradientStartColor = General/[NSColor colorWithDeviceRed:(168.0/255.0) green:(183.0/255.0) blue:(205.0/255.0) alpha:1.0];
-		gradientEndColor = General/[NSColor colorWithDeviceRed:(157.0/255.0) green:(174.0/255.0) blue:(199.0/255.0) alpha:1.0];
+		bottomLineColor = [NSColor colorWithDeviceRed:(150.0/255.0) green:(161.0/255.0) blue:(183.0/255.0) alpha:1.0];
+		gradientStartColor = [NSColor colorWithDeviceRed:(168.0/255.0) green:(183.0/255.0) blue:(205.0/255.0) alpha:1.0];
+		gradientEndColor = [NSColor colorWithDeviceRed:(157.0/255.0) green:(174.0/255.0) blue:(199.0/255.0) alpha:1.0];
 	}
 	else
 	{
-		topLineColor = General/[NSColor colorWithCalibratedRed:(61.0/255.0) green:(123.0/255.0) blue:(218.0/255.0) alpha:1.0];
-		bottomLineColor = General/[NSColor colorWithCalibratedRed:(31.0/255.0) green:(92.0/255.0) blue:(207.0/255.0) alpha:1.0];
-		gradientStartColor = General/[NSColor colorWithCalibratedRed:(89.0/255.0) green:(153.0/255.0) blue:(209.0/255.0) alpha:1.0];
-		gradientEndColor = General/[NSColor colorWithCalibratedRed:(33.0/255.0) green:(94.0/255.0) blue:(208.0/255.0) alpha:1.0];
+		topLineColor = [NSColor colorWithCalibratedRed:(61.0/255.0) green:(123.0/255.0) blue:(218.0/255.0) alpha:1.0];
+		bottomLineColor = [NSColor colorWithCalibratedRed:(31.0/255.0) green:(92.0/255.0) blue:(207.0/255.0) alpha:1.0];
+		gradientStartColor = [NSColor colorWithCalibratedRed:(89.0/255.0) green:(153.0/255.0) blue:(209.0/255.0) alpha:1.0];
+		gradientEndColor = [NSColor colorWithCalibratedRed:(33.0/255.0) green:(94.0/255.0) blue:(208.0/255.0) alpha:1.0];
 	}
 	
-	General/NSIndexSet *selRows = [self selectedRowIndexes];
+	NSIndexSet *selRows = [self selectedRowIndexes];
 	int rowIndex = [selRows firstIndex];
 	int endOfCurrentRunRowIndex, newRowIndex;
-	General/NSRect highlightRect;
+	NSRect highlightRect;
 	
-	while (rowIndex != General/NSNotFound)
+	while (rowIndex != NSNotFound)
 	{
 		if ([self selectionGradientIsContiguous])
 		{
@@ -141,7 +141,7 @@ Implementation file:
 				newRowIndex = [selRows indexGreaterThanIndex:endOfCurrentRunRowIndex];
 			} while (newRowIndex == endOfCurrentRunRowIndex + 1);
 			
-			highlightRect = General/NSUnionRect([self rectOfRow:rowIndex],[self rectOfRow:endOfCurrentRunRowIndex]);
+			highlightRect = NSUnionRect([self rectOfRow:rowIndex],[self rectOfRow:endOfCurrentRunRowIndex]);
 		}
 		else
 		{
@@ -153,23 +153,23 @@ Implementation file:
 			highlightRect.size.height -= 1.0;
 		
 		[topLineColor set];
-		General/NSRectFill(highlightRect);
+		NSRectFill(highlightRect);
 		
 		highlightRect.origin.y += 1.0;
 		highlightRect.size.height-=1.0;
 		[bottomLineColor set];
-		General/NSRectFill(highlightRect);
+		NSRectFill(highlightRect);
 		
 		highlightRect.size.height -= 1.0;
 			
-		General/[[NSBezierPath bezierPathWithRect:highlightRect] linearGradientFillWithStartColor:gradientStartColor
+		[[NSBezierPath bezierPathWithRect:highlightRect] linearGradientFillWithStartColor:gradientStartColor
 																				 endColor:gradientEndColor];
 		
 		rowIndex = newRowIndex;
 	}
 }
 
-- (id)_highlightColorForCell:(General/NSCell *)cell
+- (id)_highlightColorForCell:(NSCell *)cell
 {
 	if (!usesGradientSelection)
 		return [super _highlightColorForCell:cell];
@@ -186,7 +186,7 @@ Implementation file:
 		[self setNeedsDisplay:YES];
 }
 
-- (void)selectRowIndexes:(General/NSIndexSet *)rowIndexes byExtendingSelection:(BOOL)extend
+- (void)selectRowIndexes:(NSIndexSet *)rowIndexes byExtendingSelection:(BOOL)extend
 {
 	[super selectRowIndexes:rowIndexes byExtendingSelection:extend];
 	
@@ -206,22 +206,22 @@ Implementation file:
 		[self setNeedsDisplay:YES];
 }
 
-- (General/NSImage *)dragImageForRowsWithIndexes:(General/NSIndexSet *)dragRows tableColumns:(General/NSArray *)tableColumns 
-								   event:(General/NSEvent*)dragEvent offset:(General/NSPointPointer)dragImageOffset
+- (NSImage *)dragImageForRowsWithIndexes:(NSIndexSet *)dragRows tableColumns:(NSArray *)tableColumns 
+								   event:(NSEvent*)dragEvent offset:(NSPointPointer)dragImageOffset
 {
 	// We need to save the dragged row indexes so that the delegate can choose how to colour the
 	// text depending on whether it is being used for a drag image or not (eg. selected row may
 	// have white text, but we still want to colour it black when drawing the drag image)
 	draggedRows = dragRows;
 	
-	General/NSImage *image = [super dragImageForRowsWithIndexes:dragRows tableColumns:tableColumns
+	NSImage *image = [super dragImageForRowsWithIndexes:dragRows tableColumns:tableColumns
 										event:dragEvent offset:dragImageOffset];
 	
 	draggedRows = nil;
 	return image;
 }
 
-- (General/NSIndexSet *)draggedRows
+- (NSIndexSet *)draggedRows
 {
 	return draggedRows;
 }
@@ -277,32 +277,32 @@ Implementation file:
 A side effect of overriding these methods is that the text will remain black even when selected, which is annoying (I guess this is because drawRow:clipRect: checks that the selection colour is blue to determine whether or not to use white text). This can be fixed in the outline view's delegate, as follows:
 
     
-- (void)outlineView:(General/NSOutlineView *)olv willDisplayCell:(id)cell forTableColumn:(General/NSTableColumn *)tableColumn item:(id)item
+- (void)outlineView:(NSOutlineView *)olv willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item
 {	
 	// If the row is selected but isn't being edited and the current drawing isn't being used to create a drag image,
 	// colour the text white; otherwise, colour it black
 	int rowIndex = [olv rowForItem:item];
-	General/NSColor *fontColor = ( General/olv selectedRowIndexes] containsIndex:rowIndex] && ([olv editedRow] != rowIndex) && (![[([[KBOutlineView *)olv draggedRows] containsIndex:rowIndex]) ) ?
-		General/[NSColor whiteColor] : General/[NSColor blackColor];
+	NSColor *fontColor = ( olv selectedRowIndexes] containsIndex:rowIndex] && ([olv editedRow] != rowIndex) && (![[([[KBOutlineView *)olv draggedRows] containsIndex:rowIndex]) ) ?
+		[NSColor whiteColor] : [NSColor blackColor];
 	[cell setTextColor:fontColor];
 }
 
 
 Finally, if you also want a nice blue background like in Mail or iTunes, the color is:
 
-General/[NSColor colorWithDeviceRed:(231.0/255.0) green:(237.0/255.0) blue:(248.0/255.0) alpha:1.0]
+[NSColor colorWithDeviceRed:(231.0/255.0) green:(237.0/255.0) blue:(248.0/255.0) alpha:1.0]
 
 Some grabs:
 
-http://www.rumramruf.com/General/ScrivenerBeta/ScrivenerGradient1.jpg
+http://www.rumramruf.com/ScrivenerBeta/ScrivenerGradient1.jpg
 
-http://www.rumramruf.com/General/ScrivenerBeta/ScrivenerGradient2.jpg
+http://www.rumramruf.com/ScrivenerBeta/ScrivenerGradient2.jpg
 
-http://www.rumramruf.com/General/ScrivenerBeta/ScrivenerGradient3.jpg
+http://www.rumramruf.com/ScrivenerBeta/ScrivenerGradient3.jpg
 
-http://www.rumramruf.com/General/ScrivenerBeta/ScrivenerGradient4.jpg
+http://www.rumramruf.com/ScrivenerBeta/ScrivenerGradient4.jpg
 
-http://www.rumramruf.com/General/ScrivenerBeta/ScrivenerGradient5.jpg
+http://www.rumramruf.com/ScrivenerBeta/ScrivenerGradient5.jpg
 
 Hope that is useful to someone,
 KB
@@ -312,7 +312,7 @@ Very cool!
 
 Another (simple, featureless) solution that just came to me..
     
-- (id)_highlightColorForCell:(General/NSCell *)cell { return General/[NSColor colorWithPatternImage:theGradientImage]; }
+- (id)_highlightColorForCell:(NSCell *)cell { return [NSColor colorWithPatternImage:theGradientImage]; }
 
 
 Not nearly as cool or flexible but it seemed to work well enough in my tests.
@@ -333,7 +333,7 @@ I should've known that already. *smacking forehead* Thanks for the clarification
 
 ----
 
-Updated 15/12/05: Just got rid of the General/NSIntersectionRect(highlightRect,clipRect) stuff, as this causes drawing problems when scrolling because the gradient can get drawn in the wrong place. It means drawing more than strictly necessary, but that's not too heavy. KB
+Updated 15/12/05: Just got rid of the NSIntersectionRect(highlightRect,clipRect) stuff, as this causes drawing problems when scrolling because the gradient can get drawn in the wrong place. It means drawing more than strictly necessary, but that's not too heavy. KB
 
 ----
 
@@ -341,16 +341,16 @@ Instead of using a delegate, you can do the following (it doesn't break bindings
 
     
 
-- (void) drawRow: (int) rowIndex clipRect: (General/NSRect) clipRect
+- (void) drawRow: (int) rowIndex clipRect: (NSRect) clipRect
 {
-	General/NSColor *theColor;
+	NSColor *theColor;
 
-	if (General/self window] firstResponder] == self && [[self selectedRowIndexes] containsIndex:rowIndex] && ([self editedRow] != rowIndex))
+	if (self window] firstResponder] == self && [[self selectedRowIndexes] containsIndex:rowIndex] && ([self editedRow] != rowIndex))
 		theColor = [[[NSColor whiteColor];
 	else
-		theColor = General/[NSColor blackColor];
+		theColor = [NSColor blackColor];
 				
-	General/NSEnumerator *enu = General/self tableColumns] objectEnumerator];
+	NSEnumerator *enu = self tableColumns] objectEnumerator];
 	[[NSTableColumn *col;
 	
 	while (col = [enu nextObject])

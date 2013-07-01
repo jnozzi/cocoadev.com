@@ -1,19 +1,19 @@
-Describe General/FinddevPathForUSB here.
+Describe FinddevPathForUSB here.
 
 
 Hi,
 
 I am currently trying to use the POSIX API to read a 3D tracker that uses USB.  I am using the following code to
-find the /dev path of the device (most of it is from General/USBPrivateDataSample.c):
+find the /dev path of the device (most of it is from USBPrivateDataSample.c):
 
     
 //
 int main (int argc, const char *argv[])
 {
     mach_port_t 		masterPort;
-    General/CFMutableDictionaryRef 	matchingDict;
-    General/CFRunLoopSourceRef		runLoopSource;
-    General/CFNumberRef			numberRef;
+    CFMutableDictionaryRef 	matchingDict;
+    CFRunLoopSourceRef		runLoopSource;
+    CFNumberRef			numberRef;
     kern_return_t		kr;
     long			usbVendor = kMyVendorID;
     long			usbProduct = kMyProductID;
@@ -27,15 +27,15 @@ int main (int argc, const char *argv[])
 
     // Set up a signal handler so we can clean up when we're interrupted from the command line
     // Otherwise we stay in our run loop forever.
-    oldHandler = signal(SIGINT, General/SignalHandler);
+    oldHandler = signal(SIGINT, SignalHandler);
     if (oldHandler == SIG_ERR)
         printf("Could not establish new signal handler");
         
     // First create a master_port for my task
-    kr = General/IOMasterPort(MACH_PORT_NULL, &masterPort);
+    kr = IOMasterPort(MACH_PORT_NULL, &masterPort);
     if (kr || !masterPort)
     {
-        printf("ERR: Couldn't create a master General/IOKit port(%08x)\n", kr);
+        printf("ERR: Couldn't create a master IOKit port(%08x)\n", kr);
         return -1;
     }
 
@@ -45,11 +45,11 @@ int main (int argc, const char *argv[])
     // the same rules as kernel drivers: mainly it needs to follow the USB Common Class Specification, pp. 6-7.
     // See also <http://developer.apple.com/qa/qa2001/qa1076.html>.
     // One exception is that you can use the matching dictionary "as is", i.e. without adding any matching 
-    // criteria to it and it will match every General/IOUSBDevice in the system. General/IOServiceAddMatchingNotification will 
+    // criteria to it and it will match every IOUSBDevice in the system. IOServiceAddMatchingNotification will 
     // consume this dictionary reference, so there is no need to release it later on.
     
-    matchingDict = General/IOServiceMatching(kIOUSBDeviceClassName);	// Interested in instances of class
-                                                                // General/IOUSBDevice and its subclasses
+    matchingDict = IOServiceMatching(kIOUSBDeviceClassName);	// Interested in instances of class
+                                                                // IOUSBDevice and its subclasses
     if (!matchingDict)
     {
         printf("Can't create a USB matching dictionary\n");
@@ -61,39 +61,39 @@ int main (int argc, const char *argv[])
     // We are interested in all USB Devices (as opposed to USB interfaces).  The Common Class Specification
     // tells us that we need to specify the idVendor, idProduct, and bcdDevice fields, or, if we're not interested
     // in particular bcdDevices, just the idVendor and idProduct.  Note that if we were trying to match an 
-    // General/IOUSBInterface, we would need to set more values in the matching dictionary (e.g. idVendor, idProduct, 
+    // IOUSBInterface, we would need to set more values in the matching dictionary (e.g. idVendor, idProduct, 
     // bInterfaceNumber and bConfigurationValue.
     //    
     
-    // Create a General/CFNumber for the idVendor and set the value in the dictionary
-    numberRef = General/CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &usbVendor);
-    General/CFDictionarySetValue(matchingDict, 
+    // Create a CFNumber for the idVendor and set the value in the dictionary
+    numberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &usbVendor);
+    CFDictionarySetValue(matchingDict, 
                          CFSTR(kUSBVendorID), 
                          numberRef);
-    General/CFRelease(numberRef);
+    CFRelease(numberRef);
     
-    //Create a General/CFNumber for the idProduct and set the value in the dictionary
-    numberRef = General/CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &usbProduct);
-    General/CFDictionarySetValue(matchingDict, 
+    //Create a CFNumber for the idProduct and set the value in the dictionary
+    numberRef = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &usbProduct);
+    CFDictionarySetValue(matchingDict, 
                          CFSTR(kUSBProductID), 
                          numberRef);
-    General/CFRelease(numberRef);
+    CFRelease(numberRef);
     numberRef = 0;
 
     // Create a notification port and add its run loop event source to our run loop
     // This is how async notifications get set up.
     
-    gNotifyPort = General/IONotificationPortCreate(masterPort);
-    runLoopSource = General/IONotificationPortGetRunLoopSource(gNotifyPort);
+    gNotifyPort = IONotificationPortCreate(masterPort);
+    runLoopSource = IONotificationPortGetRunLoopSource(gNotifyPort);
     
-    gRunLoop = General/CFRunLoopGetCurrent();
-    General/CFRunLoopAddSource(gRunLoop, runLoopSource, kCFRunLoopDefaultMode);
+    gRunLoop = CFRunLoopGetCurrent();
+    CFRunLoopAddSource(gRunLoop, runLoopSource, kCFRunLoopDefaultMode);
     
     // Now set up a notification to be called when a device is first matched by I/O Kit.
-    kr = General/IOServiceAddMatchingNotification(gNotifyPort,			// notifyPort
+    kr = IOServiceAddMatchingNotification(gNotifyPort,			// notifyPort
                                           kIOFirstMatchNotification,	// notificationType
                                           matchingDict,			// matching
-                                          General/DeviceAdded,			// callback
+                                          DeviceAdded,			// callback
                                           NULL,				// refCon
                                           &gAddedIter			// notification
                                           );		
@@ -101,7 +101,7 @@ int main (int argc, const char *argv[])
     // Iterate once to get already-present devices and arm the notification    
 	//readData(gAddedIter);
 	//getFilePath(NULL, gAddedIter);
-	General/DeviceAdded(NULL, gAddedIter);	
+	DeviceAdded(NULL, gAddedIter);	
 
     // Now done with the master_port
     mach_port_deallocate(mach_task_self(), masterPort);
@@ -110,31 +110,31 @@ int main (int argc, const char *argv[])
     // Start the run loop. Now we'll receive notifications.
 	
     printf("Starting run loop.\n");
-    General/CFRunLoopRun();
+    CFRunLoopRun();
         
     // We should never get here
-    printf("Unexpectedly back from General/CFRunLoopRun()!\n");
+    printf("Unexpectedly back from CFRunLoopRun()!\n");
     return 0;
 }
 
 
 
 
-void General/DeviceAdded(void *refCon, io_iterator_t iterator)
+void DeviceAdded(void *refCon, io_iterator_t iterator)
 {
     kern_return_t		kr;
     io_service_t		usbDevice;
-    General/IOCFPlugInInterface 	**plugInInterface=NULL;
+    IOCFPlugInInterface 	**plugInInterface=NULL;
     SInt32 			score;
     HRESULT 			res;
     
-    while (usbDevice = General/IOIteratorNext(iterator))
+    while (usbDevice = IOIteratorNext(iterator))
     {
         io_name_t		deviceName;
 		char *deviceFilePath;
-        General/CFStringRef		deviceNameAsCFString;	
-		General/CFTypeRef deviceNameAsCFString2;
-        General/MyPrivateData		*privateDataRef = NULL;
+        CFStringRef		deviceNameAsCFString;	
+		CFTypeRef deviceNameAsCFString2;
+        MyPrivateData		*privateDataRef = NULL;
         UInt32			locationID;
 
         printf("Device 0x%08x added.\n", usbDevice);
@@ -144,20 +144,20 @@ void General/DeviceAdded(void *refCon, io_iterator_t iterator)
         
 		//NEW CODE--------------------------------------------------
 		
-		deviceNameAsCFString2 = General/IORegistryEntryCreateCFProperty(usbDevice, CFSTR(kIOCalloutDeviceKey),
+		deviceNameAsCFString2 = IORegistryEntryCreateCFProperty(usbDevice, CFSTR(kIOCalloutDeviceKey),
 																		kCFAllocatorDefault,0);
 		if (deviceNameAsCFString2)
         {
             Boolean result;
  
-        // Convert the path from a General/CFString to a NULL-terminated C string 
+        // Convert the path from a CFString to a NULL-terminated C string 
         // for use with the POSIX open() call.
  
-        result = General/CFStringGetCString(deviceNameAsCFString2,
+        result = CFStringGetCString(deviceNameAsCFString2,
                                         deviceFilePath,
 										MAXPATHLEN, 
                                         kCFStringEncodingASCII);
-            General/CFRelease(deviceNameAsCFString2);
+            CFRelease(deviceNameAsCFString2);
  
             if (result)
             {
@@ -176,5 +176,5 @@ Are you sure the device you're looking for has a driver that makes a /dev interf
 
 ----
 
-I honestly don't know, I thought itd be using the default Mac one since it is detected in the General/IOregistry, how can I be sure if a /dev is created or not?
+I honestly don't know, I thought itd be using the default Mac one since it is detected in the IOregistry, how can I be sure if a /dev is created or not?
 thanks in advance.

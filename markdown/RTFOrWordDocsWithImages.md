@@ -2,7 +2,7 @@ Hi,
 
 Does anybody know of any code out there that would allow me to export to RTF or .doc format from a text view/attributed string in such a way that images, tables and attachments are preserved?
 
-Currently, -docFormatFromRange:documentAttributes:, -General/RTFFromRange:documentAttributes, and Tiger's new -dataFromRange:documentAttributes:error all cause the loss of images etc on export.
+Currently, -docFormatFromRange:documentAttributes:, -RTFFromRange:documentAttributes, and Tiger's new -dataFromRange:documentAttributes:error all cause the loss of images etc on export.
 
 Yes, I know that I can always export to RTFD, but my program really needs to export to a format that Microsoft Word recognises (because users will most likely be sending exported files to Windows users), and sadly, MS Word - even on OS X - does not recognise RTFD files.
 
@@ -15,7 +15,7 @@ KB
 
 ----
 
-How about HTML? As of 10.4, General/NSAttributedString can write HTML (using the     dataFromRange:... or     fileWrapperFromRange:... methods). If you use the file wrapper method, it *might* be smart enough to save the embedded images as separate files in the file wrapper, with relative paths from the actual document. When you writet he file wrapper to disk, you'd get a directory and all of the appropriate files inside. I don't know if it really will save the images, but it's worth a try.
+How about HTML? As of 10.4, NSAttributedString can write HTML (using the     dataFromRange:... or     fileWrapperFromRange:... methods). If you use the file wrapper method, it *might* be smart enough to save the embedded images as separate files in the file wrapper, with relative paths from the actual document. When you writet he file wrapper to disk, you'd get a directory and all of the appropriate files inside. I don't know if it really will save the images, but it's worth a try.
 
 ----
 
@@ -23,19 +23,19 @@ Thanks for the reply. I tried this, but it didn't work either. However (he says,
 
 http://www.biblioscape.com/rtf15_spec.htm
 
-(The relevant part is the "Pictures" section, obviously.) I also had a look inside a General/NIsus RTF file in General/BBEdit (because Nisus General/RTFs do support images). I finally figured out that the way to do it was simply insert the relevant RTF formatting code into a saved RTF myself, like this:
+(The relevant part is the "Pictures" section, obviously.) I also had a look inside a NIsus RTF file in BBEdit (because Nisus RTFs do support images). I finally figured out that the way to do it was simply insert the relevant RTF formatting code into a saved RTF myself, like this:
 
 
 * Make a mutable copy of the text storage and parse through it looking for image attachments. Whenever you find one, save it in a dictionary with a unique key string and replace the image attachment in the text with this unique key string.
-* Once you've removed all images from the text and stored them in your dictionary, turn the text into RTF data as normal, using -General/RTFFromRange:documentAttributes:.
-* Load the RTF data into a normal General/NSString using General/NSASCIIStringEncoding, so that you get all of the RTF tags and everything in there.
-* Parse through that string looking for the unique key strings you inserted. When you come across one, use it to get the image from your dictionary. You need to convert the image to a hexadecimal string in either PNG, JPG or BMP format. Some nice person has already posted code for an General/NSData extension with a hexadecimalRepresentation method on General/CocoaDev (see the General/MDFive page), so all you need to do is convert your image to data and then call this.
+* Once you've removed all images from the text and stored them in your dictionary, turn the text into RTF data as normal, using -RTFFromRange:documentAttributes:.
+* Load the RTF data into a normal NSString using NSASCIIStringEncoding, so that you get all of the RTF tags and everything in there.
+* Parse through that string looking for the unique key strings you inserted. When you come across one, use it to get the image from your dictionary. You need to convert the image to a hexadecimal string in either PNG, JPG or BMP format. Some nice person has already posted code for an NSData extension with a hexadecimalRepresentation method on CocoaDev (see the MDFive page), so all you need to do is convert your image to data and then call this.
 * Replace the key string in the RTF string with:
 
 
     
 
-General/[NSString stringWithFormat:@"{\\*\\shppict {\\pict \\jpegblip %@}}", hexString]
+[NSString stringWithFormat:@"{\\*\\shppict {\\pict \\jpegblip %@}}", hexString]
 
 
 
@@ -44,7 +44,7 @@ General/[NSString stringWithFormat:@"{\\*\\shppict {\\pict \\jpegblip %@}}", hex
 * Finally, save the string to file as RTF (again using ASCII encoding).
 
 
-The RTF file will then open in Word, Nisus or Mellel with images intact. Frankly, I have no idea why Apple haven't already added this to their existing RTF methods... Anyway, when I've got all my code tidied up, I will hopefully post an General/NSAttributedString category here that does all this for anyone who cares. :)
+The RTF file will then open in Word, Nisus or Mellel with images intact. Frankly, I have no idea why Apple haven't already added this to their existing RTF methods... Anyway, when I've got all my code tidied up, I will hopefully post an NSAttributedString category here that does all this for anyone who cares. :)
 KB
 
 ----
@@ -52,44 +52,44 @@ Thanks for the psudo code KB, very helpful. I wrote up the function for a catego
 
 BW
     
-- (General/NSString *)encodeRTFwithPictures
+- (NSString *)encodeRTFwithPictures
 {
-	General/NSMutableDictionary *attachmentDictionary = General/[NSMutableDictionary dictionaryWithCapacity:5];
-	General/NSMutableAttributedString *stringToEncode = General/[[NSMutableAttributedString alloc] initWithAttributedString:self];
+	NSMutableDictionary *attachmentDictionary = [NSMutableDictionary dictionaryWithCapacity:5];
+	NSMutableAttributedString *stringToEncode = [[NSMutableAttributedString alloc] initWithAttributedString:self];
 	
-	General/NSRange strRange = General/NSMakeRange(0, [stringToEncode length]);
+	NSRange strRange = NSMakeRange(0, [stringToEncode length]);
 	while (strRange.length > 0) {
-		General/NSRange effectiveRange;
-		id attr = [stringToEncode attribute:General/NSAttachmentAttributeName atIndex:strRange.location effectiveRange:&effectiveRange];
-		strRange = General/NSMakeRange(General/NSMaxRange(effectiveRange), General/NSMaxRange(strRange) - General/NSMaxRange(effectiveRange));
+		NSRange effectiveRange;
+		id attr = [stringToEncode attribute:NSAttachmentAttributeName atIndex:strRange.location effectiveRange:&effectiveRange];
+		strRange = NSMakeRange(NSMaxRange(effectiveRange), NSMaxRange(strRange) - NSMaxRange(effectiveRange));
 		
 		if(attr){
 			//if we find a text attachment, check to see if it's one of ours
-			General/NSTextAttachment *attachment = (General/NSTextAttachment *)attr;
-			General/NSFileWrapper *fileWrapper = [attachment fileWrapper];
-			General/NSImage *image = General/[[[NSImage alloc] initWithData:[fileWrapper regularFileContents]] autorelease];
+			NSTextAttachment *attachment = (NSTextAttachment *)attr;
+			NSFileWrapper *fileWrapper = [attachment fileWrapper];
+			NSImage *image = [[[NSImage alloc] initWithData:[fileWrapper regularFileContents]] autorelease];
 			
-			General/NSString *imageKey = General/[NSString stringWithFormat:@"Image#%i",[image hash]];
+			NSString *imageKey = [NSString stringWithFormat:@"Image#%i",[image hash]];
 			[attachmentDictionary setObject:image forKey:imageKey];
-			[stringToEncode removeAttribute:General/NSAttachmentAttributeName range:effectiveRange];
+			[stringToEncode removeAttribute:NSAttachmentAttributeName range:effectiveRange];
 			[stringToEncode replaceCharactersInRange:effectiveRange withString:imageKey];
 			strRange.length+=[imageKey length]-1;
 		}
 	}
 	
-	General/NSData *rtfData = [stringToEncode General/RTFFromRange:General/NSMakeRange(0,[stringToEncode length]) documentAttributes:nil];
-	General/NSMutableString *rtfString = General/[[NSMutableString alloc] initWithData:rtfData encoding:General/NSASCIIStringEncoding];
+	NSData *rtfData = [stringToEncode RTFFromRange:NSMakeRange(0,[stringToEncode length]) documentAttributes:nil];
+	NSMutableString *rtfString = [[NSMutableString alloc] initWithData:rtfData encoding:NSASCIIStringEncoding];
 	
-	General/NSEnumerator *imageKeyEnum = [attachmentDictionary keyEnumerator];
-	General/NSString *key;
+	NSEnumerator *imageKeyEnum = [attachmentDictionary keyEnumerator];
+	NSString *key;
 	while(key = [imageKeyEnum nextObject]){
-		General/NSRange keyRange = [rtfString rangeOfString:key];
-		if(keyRange.location!=General/NSNotFound){
-			General/NSImage *img = [attachmentDictionary objectForKey:key];
-			General/NSBitmapImageRep *bitmap = General/[[NSBitmapImageRep alloc] initWithData:[img General/TIFFRepresentation]];
-			General/NSString *hexString = [self hexadecimalRepresentation:[bitmap representationUsingType:General/NSPNGFileType properties:nil]];
+		NSRange keyRange = [rtfString rangeOfString:key];
+		if(keyRange.location!=NSNotFound){
+			NSImage *img = [attachmentDictionary objectForKey:key];
+			NSBitmapImageRep *bitmap = [[NSBitmapImageRep alloc] initWithData:[img TIFFRepresentation]];
+			NSString *hexString = [self hexadecimalRepresentation:[bitmap representationUsingType:NSPNGFileType properties:nil]];
 			//pngblip or jpegblip depending
-			General/NSString *encodedImage = General/[NSString stringWithFormat:@"{\\*\\shppict {\\pict \\pngblip %@}}", hexString];
+			NSString *encodedImage = [NSString stringWithFormat:@"{\\*\\shppict {\\pict \\pngblip %@}}", hexString];
 			[rtfString replaceCharactersInRange:keyRange withString:encodedImage];
 		}
 	}
@@ -99,12 +99,12 @@ BW
 
 static const char *const digits = "0123456789abcdef";
 
-- (General/NSString*)hexadecimalRepresentation:(General/NSData *)data
+- (NSString*)hexadecimalRepresentation:(NSData *)data
 {
-	General/NSString *result = nil;
+	NSString *result = nil;
 	size_t length = [data length];
 	if (0 != length) {
-		General/NSMutableData *temp = General/[NSMutableData dataWithLength:(length << 1)];
+		NSMutableData *temp = [NSMutableData dataWithLength:(length << 1)];
 		if (temp) {
 			const unsigned char *src = [data bytes];
 			unsigned char *dst = [temp mutableBytes];
@@ -113,7 +113,7 @@ static const char *const digits = "0123456789abcdef";
 					*dst++ = digits[(*src >> 4) & 0x0f];
 					*dst++ = digits[(*src++ & 0x0f)];
 				}
-				result = General/[[NSString alloc] initWithData:temp encoding:General/NSASCIIStringEncoding];
+				result = [[NSString alloc] initWithData:temp encoding:NSASCIIStringEncoding];
 			}
 		}
 	}

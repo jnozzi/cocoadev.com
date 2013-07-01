@@ -22,13 +22,13 @@ Should not this page really be titled E**'scapeSequences ??
 
 They're part of ANSI C, and some of them (like \a) probably aren't applicable to Cocoa.
 
-*Or did you mean the NS*Key constants here:* [http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSEvent.html]
+*Or did you mean the NS*Key constants here:* [http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSEvent.html]
 
 ----
 
-How do I make an General/NSString just be one speech mark? E.g. @""" ?
+How do I make an NSString just be one speech mark? E.g. @""" ?
 
-The above doesn't work obviously, so what's the substitution for a speech mark in an General/NSString, have searched a lot of developer documents but no help.
+The above doesn't work obviously, so what's the substitution for a speech mark in an NSString, have searched a lot of developer documents but no help.
 
 ----
 

@@ -1,4 +1,4 @@
-My application needs to create General/EPSFs and I have a problem with including fonts in the file. There must be system calls to get a font and convert it to postscript, as dataWithEPSInsideRect: in General/NSView must use it, alternatively there must be a way to get the outlines that make up a specific character and use that as part of the file.
+My application needs to create EPSFs and I have a problem with including fonts in the file. There must be system calls to get a font and convert it to postscript, as dataWithEPSInsideRect: in NSView must use it, alternatively there must be a way to get the outlines that make up a specific character and use that as part of the file.
 
 Using dataWithEPSInsideRect: is not an option as it doesn't include colour information in a way that is needed for separations, unless anyone knows differently?
 
@@ -10,7 +10,7 @@ Douglas
 
 ----
 
-General/AppleTypeServices provide this sort of functionality. You'll probably want to look for ATSUI. Try http://developer.apple.com/documentation/General/TextFonts/General/TextFonts.html.
+AppleTypeServices provide this sort of functionality. You'll probably want to look for ATSUI. Try http://developer.apple.com/documentation/TextFonts/TextFonts.html.
 
 ----
 
@@ -22,8 +22,8 @@ In the .m file where you call the glyphing function from put the next two lines
 
     
 
-@interface General/NSFont(Exposing_Private_AppKit_Methods)
-- (General/NSGlyph)_defaultGlyphForChar:(unichar)theChar;
+@interface NSFont(Exposing_Private_AppKit_Methods)
+- (NSGlyph)_defaultGlyphForChar:(unichar)theChar;
 @end
 
 
@@ -36,18 +36,18 @@ then at some point add the two routines.
 
 {
 	short i;
-	General/NSString *tempString;
-	General/NSBezierPath *path;
-	General/NSGlyph *glyphArray;
+	NSString *tempString;
+	NSBezierPath *path;
+	NSGlyph *glyphArray;
 	int glyphArrayLength;
 
-	tempString = General/[NSString stringWithCString:pString];
+	tempString = [NSString stringWithCString:pString];
 
 //	get the length of the string
 	glyphArrayLength = [tempString length];
 
 //	Get a buffer for the glyph data
-	glyphArray = malloc(sizeof(General/NSGlyph) * glyphArrayLength);
+	glyphArray = malloc(sizeof(NSGlyph) * glyphArrayLength);
 
 //	for each glyph store it in the array
 	for (i=0; i<glyphArrayLength; i++) {
@@ -55,10 +55,10 @@ then at some point add the two routines.
 	}
 
 //	Create a Bezier path
-	path = General/[NSBezierPath alloc];
+	path = [NSBezierPath alloc];
 
 //	Path always starts with a moveto
-	[path moveToPoint:General/NSMakePoint(pHoriz,pVert)];
+	[path moveToPoint:NSMakePoint(pHoriz,pVert)];
 
 //	Add the glyphs of the text to the path
 	[path appendBezierPathWithGlyphs:glyphArray count:glyphArrayLength inFont:theFont];
@@ -69,13 +69,13 @@ then at some point add the two routines.
 	free(glyphArray);
 }
 
-- (void) pathDisplay:(General/NSBezierPath *) path
+- (void) pathDisplay:(NSBezierPath *) path
 
 {
 	int i;
 	int numElements;
-	General/NSBezierPathElement pathElement;
-	General/NSPoint pointList[5];
+	NSBezierPathElement pathElement;
+	NSPoint pointList[5];
 	char tempStr[256];
 
 	numElements = [path elementCount];
@@ -84,19 +84,19 @@ then at some point add the two routines.
 		pathElement = [path elementAtIndex:i associatedPoints:pointList];
 
 		switch(pathElement){
-		case General/NSMoveToBezierPathElement:
+		case NSMoveToBezierPathElement:
 			sprintf(tempStr,"%.3f %.3f moveto\r", pointList[0].x, pointList[0].y);
 			break;
 
-		case General/NSLineToBezierPathElement:
+		case NSLineToBezierPathElement:
 			sprintf(tempStr,"%.3f %.3f lineto\r", pointList[0].x, pointList[0].y);
 			break;
 
-		case General/NSCurveToBezierPathElement:
+		case NSCurveToBezierPathElement:
 			sprintf(tempStr,"%.3f %.3f %.3f %.3f %.3f %.3f curveto\r",pointList[0].x,pointList[0].y,pointList[1].x,pointList[1].y,pointList[2].x,pointList[2].y);
 			break;
 
-		case General/NSClosePathBezierPathElement:
+		case NSClosePathBezierPathElement:
 			sprintf(tempStr,"closepath fill\r");
 			break;
 

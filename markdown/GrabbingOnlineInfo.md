@@ -10,11 +10,11 @@ Using someone's copyrighted material without their permission is obviously illeg
 
 If you are not wanting to access search engines and want something like stock prices or other related things, use SOAP calls to get the information.
 
--- General/MatPeterson
+-- MatPeterson
 
 ----
 
 Usually commercial sites have a policy that they don't allow screen readers.  This hurts their add revenue and band width.  Try to stick to noncommercial / government sites.  For example, my forecast script uses Environment Canada which specifically allows this sort of thing.  Another one of my apps uses amazon.com's XML API.  Both google and amazon offer this sort of thing though you'll need a "developer token" (free).
 * amazon's dev kit - http://associates.amazon.com/exec/panama/associates/ntg/browse/-/1067662/102-3408071-2874513
 * google's dev kit - http://www.google.com/apis/
--- General/SaileshAgrawal
+-- SaileshAgrawal

@@ -1,7 +1,7 @@
 
 
 
-I'd need to have a mean to unarchive an object using another class when initial class is not available. + General/[NSObject classFallbacksForKeyedArchiver] seems to be the solution, but it does not work for me.
+I'd need to have a mean to unarchive an object using another class when initial class is not available. + [NSObject classFallbacksForKeyedArchiver] seems to be the solution, but it does not work for me.
 
 Here is a sample code
 
@@ -13,8 +13,8 @@ Main.m
 #include "Create.h"
 
 int main (int argc, const char * argv[]) {
-    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
-	Create * obj = General/Create alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	Create * obj = Create alloc] init];
 	[obj setStringValue:@"Hello World"];
     [[[NSKeyedArchiver archiveRootObject:obj toFile:@"/tmp/test"];
     [pool release];
@@ -28,11 +28,11 @@ Create.h
 #import <Cocoa/Cocoa.h>
 
 
-@interface Create : General/NSObject {
-	General/NSString * stringValue;
+@interface Create : NSObject {
+	NSString * stringValue;
 }
-- (General/NSString *)stringValue;
-- (void)setStringValue:(General/NSString *)value;
+- (NSString *)stringValue;
+- (void)setStringValue:(NSString *)value;
 
 
 @end
@@ -44,13 +44,13 @@ Create.m
 
 
 @implementation Create
-+ (General/NSArray *)classFallbacksForKeyedArchiver
++ (NSArray *)classFallbacksForKeyedArchiver
 {
-	return General/[NSArray arrayWithObject:@"Restore"];
+	return [NSArray arrayWithObject:@"Restore"];
 }
 
-- (General/NSString *)stringValue {
-    return General/stringValue retain] autorelease];
+- (NSString *)stringValue {
+    return stringValue retain] autorelease];
 }
 
 - (void)setStringValue:([[NSString *)value {
@@ -63,12 +63,12 @@ Create.m
 #pragma mark -
 #pragma mark archiving
 
-- (void)encodeWithCoder:(General/NSCoder *)coder 
+- (void)encodeWithCoder:(NSCoder *)coder 
 {
     [coder encodeObject:[self stringValue] forKey:@"stringValue"];
 }
 
-- (id)initWithCoder:(General/NSCoder *)coder 
+- (id)initWithCoder:(NSCoder *)coder 
 {
     if (self = [self init]) {
         [self setStringValue:[coder decodeObjectForKey:@"stringValue"]];
@@ -85,11 +85,11 @@ Main.m
 #import <Foundation/Foundation.h>
 
 int main (int argc, const char * argv[]) {
-    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
     // insert code here...
-	id restore = General/[NSKeyedUnarchiver unarchiveObjectWithFile:@"/tmp/test"];
-    General/NSLog([restore stringValue]);
+	id restore = [NSKeyedUnarchiver unarchiveObjectWithFile:@"/tmp/test"];
+    NSLog([restore stringValue]);
     [pool release];
     return 0;
 }
@@ -101,11 +101,11 @@ Restore.h
 #import <Cocoa/Cocoa.h>
 
 
-@interface Restore : General/NSObject {
-	General/NSString * stringValue;
+@interface Restore : NSObject {
+	NSString * stringValue;
 }
-- (General/NSString *)stringValue;
-- (void)setStringValue:(General/NSString *)value;
+- (NSString *)stringValue;
+- (void)setStringValue:(NSString *)value;
 
 
 @end
@@ -117,8 +117,8 @@ Restore.m
 
 
 @implementation Restore
-- (General/NSString *)stringValue {
-    return General/stringValue retain] autorelease];
+- (NSString *)stringValue {
+    return stringValue retain] autorelease];
 }
 
 - (void)setStringValue:([[NSString *)value {
@@ -131,12 +131,12 @@ Restore.m
 #pragma mark -
 #pragma mark archiving
 
-- (void)encodeWithCoder:(General/NSCoder *)coder 
+- (void)encodeWithCoder:(NSCoder *)coder 
 {
     [coder encodeObject:[self stringValue] forKey:@"stringValue"];
 }
 
-- (id)initWithCoder:(General/NSCoder *)coder 
+- (id)initWithCoder:(NSCoder *)coder 
 {
     if (self = [super init]) {
         [self setStringValue:[coder decodeObjectForKey:@"stringValue"]];
@@ -165,6 +165,6 @@ You didn't say how it doesn't work. classFallbacksForKeyedArchiver is called dur
 
 ----
 
-Note that General/NSKeyedUnarchiver can have a delegate. The delegate can implement - (Class)	unarchiver:(General/NSKeyedUnarchiver*) unarchiver cannotDecodeObjectOfClassName:(General/NSString*) name originalClasses:(General/NSArray*) classNames
+Note that NSKeyedUnarchiver can have a delegate. The delegate can implement - (Class)	unarchiver:(NSKeyedUnarchiver*) unarchiver cannotDecodeObjectOfClassName:(NSString*) name originalClasses:(NSArray*) classNames
 
-This allows you to substitute one class for another during unarchiving. For example it comes in handy if you change the name of a class but have old files containing the old name. General/GrahamCox.
+This allows you to substitute one class for another during unarchiving. For example it comes in handy if you change the name of a class but have old files containing the old name. GrahamCox.

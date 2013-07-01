@@ -37,7 +37,7 @@ The reason for the pb_enter is that Project Builder depicts the enter key with a
 
 Please add code points as you see fit!
 
---General/AllanOdgaard
+--AllanOdgaard
 
 ----
 
@@ -60,4 +60,4 @@ Which for Cocoa programmers would be something like:
  [attributedStr addAttributes:attr range:rangeOfF1Substring];
 
 
---General/AllanOdgaard
+--AllanOdgaard

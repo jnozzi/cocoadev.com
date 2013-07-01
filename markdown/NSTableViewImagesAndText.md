@@ -1,19 +1,19 @@
-I've found this code from Apple's General/DragAndDropOutlineView example:
+I've found this code from Apple's DragAndDropOutlineView example:
 
 (newbie question at bottom) :-)
     
 #import <Cocoa/Cocoa.h>
 
-@interface General/ImageAndTextCell : General/NSTextFieldCell {
+@interface ImageAndTextCell : NSTextFieldCell {
 @private
-    General/NSImage	*image;
+    NSImage	*image;
 }
 
-- (void)setImage:(General/NSImage *)anImage;
-- (General/NSImage *)image;
+- (void)setImage:(NSImage *)anImage;
+- (NSImage *)image;
 
-- (void)drawWithFrame:(General/NSRect)cellFrame inView:(General/NSView *)controlView;
-- (General/NSSize)cellSize;
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView;
+- (NSSize)cellSize;
 
 @end
 
@@ -21,7 +21,7 @@ I've found this code from Apple's General/DragAndDropOutlineView example:
 and:
 
     
-@implementation General/ImageAndTextCell
+@implementation ImageAndTextCell
 
 - (void)dealloc {
     [image release];
@@ -29,26 +29,26 @@ and:
     [super dealloc];
 }
 
-- copyWithZone:(General/NSZone *)zone {
-    General/ImageAndTextCell *cell = (General/ImageAndTextCell *)[super copyWithZone:zone];
+- copyWithZone:(NSZone *)zone {
+    ImageAndTextCell *cell = (ImageAndTextCell *)[super copyWithZone:zone];
     cell->image = [image retain];
     return cell;
 }
 
-- (void)setImage:(General/NSImage *)anImage {
+- (void)setImage:(NSImage *)anImage {
     if (anImage != image) {
         [image release];
         image = [anImage retain];
     }
 }
 
-- (General/NSImage *)image {
+- (NSImage *)image {
     return image;
 }
 
-- (General/NSRect)imageFrameForCellFrame:(General/NSRect)cellFrame {
+- (NSRect)imageFrameForCellFrame:(NSRect)cellFrame {
     if (image != nil) {
-        General/NSRect imageFrame;
+        NSRect imageFrame;
         imageFrame.size = [image size];
         imageFrame.origin = cellFrame.origin;
         imageFrame.origin.x += 3;
@@ -56,30 +56,30 @@ and:
         return imageFrame;
     }
     else
-        return General/NSZeroRect;
+        return NSZeroRect;
 }
 
-- (void)editWithFrame:(General/NSRect)aRect inView:(General/NSView *)controlView editor:(General/NSText *)textObj delegate:(id)anObject event:(General/NSEvent *)theEvent {
-    General/NSRect textFrame, imageFrame;
-    General/NSDivideRect (aRect, &imageFrame, &textFrame, 3 + [image size].width, General/NSMinXEdge);
+- (void)editWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject event:(NSEvent *)theEvent {
+    NSRect textFrame, imageFrame;
+    NSDivideRect (aRect, &imageFrame, &textFrame, 3 + [image size].width, NSMinXEdge);
     [super editWithFrame: textFrame inView: controlView editor:textObj delegate:anObject event: theEvent];
 }
 
-- (void)selectWithFrame:(General/NSRect)aRect inView:(General/NSView *)controlView editor:(General/NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength {
-    General/NSRect textFrame, imageFrame;
-    General/NSDivideRect (aRect, &imageFrame, &textFrame, 3 + [image size].width, General/NSMinXEdge);
+- (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength {
+    NSRect textFrame, imageFrame;
+    NSDivideRect (aRect, &imageFrame, &textFrame, 3 + [image size].width, NSMinXEdge);
     [super selectWithFrame: textFrame inView: controlView editor:textObj delegate:anObject start:selStart length:selLength];
 }
 
-- (void)drawWithFrame:(General/NSRect)cellFrame inView:(General/NSView *)controlView {
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
     if (image != nil) {
-        General/NSSize	imageSize;
-        General/NSRect	imageFrame;
+        NSSize	imageSize;
+        NSRect	imageFrame;
 
         imageSize = [image size];
-        General/NSDivideRect(cellFrame, &imageFrame, &cellFrame, 3 + imageSize.width, General/NSMinXEdge);
+        NSDivideRect(cellFrame, &imageFrame, &cellFrame, 3 + imageSize.width, NSMinXEdge);
         if ([self drawsBackground]) {
-            General/self backgroundColor] set];
+            self backgroundColor] set];
             [[NSRectFill(imageFrame);
         }
         imageFrame.origin.x += 3;
@@ -90,13 +90,13 @@ and:
         else
             imageFrame.origin.y += ceil((cellFrame.size.height - imageFrame.size.height) / 2);
 
-        [image compositeToPoint:imageFrame.origin operation:General/NSCompositeSourceOver];
+        [image compositeToPoint:imageFrame.origin operation:NSCompositeSourceOver];
     }
     [super drawWithFrame:cellFrame inView:controlView];
 }
 
-- (General/NSSize)cellSize {
-    General/NSSize cellSize = [super cellSize];
+- (NSSize)cellSize {
+    NSSize cellSize = [super cellSize];
     cellSize.width += (image ? [image size].width : 0) + 3;
     return cellSize;
 }
@@ -114,18 +114,18 @@ I'm going to answer my own question... But, feel free to critique what I've got 
 Anyways, all you really need to do, is implement these 2 sets of code:
     
 // add this to your - (void) awakFromNib method
-General/NSTableColumn *col = [self tableColumnWithIdentifier:@"whatever"]; 
-[col setDataCell:General/[[[ImageAndTextCell alloc] init] autorelease]]; 
+NSTableColumn *col = [self tableColumnWithIdentifier:@"whatever"]; 
+[col setDataCell:[[[ImageAndTextCell alloc] init] autorelease]]; 
 
     
 id cell; // implement this in your datasource 
 cell = [aTableColumn dataCell];
-[cell setImage:General/[NSImage imageNamed:@"General/OAHelpIcon.tiff"]];
+[cell setImage:[NSImage imageNamed:@"OAHelpIcon.tiff"]];
 
 
 But, make sure you import the previous code too...
 
-- General/JohnDevor
+- JohnDevor
 
 ----
 
@@ -138,9 +138,9 @@ ideas ?
 - moore
 ----
 
-I was recently playing around on my own with this, and the way I did it was slightly different.  I similarly made the Image<nowiki/>And<nowiki/>Text<nowiki/>Cell subclass, but instead of having my own setImage, I made an Image<nowiki/>And<nowiki/>Text<nowiki/>Info class (as a subclass of General/NSObject), which encapsulates an image and a title.  That way, i can just return an Image<nowiki/>And<nowiki/>Text<nowiki/>Info instance in my data source -tableView:objectValueForTableColumn:row: like normal and have my cell access it by General/self objectValue] image] or [[self objectValue] title].  I also overrode the [[NSCell<nowiki/>s -image and -title accessors to return those values. It simplifies things a bit in my opinion.
+I was recently playing around on my own with this, and the way I did it was slightly different.  I similarly made the Image<nowiki/>And<nowiki/>Text<nowiki/>Cell subclass, but instead of having my own setImage, I made an Image<nowiki/>And<nowiki/>Text<nowiki/>Info class (as a subclass of NSObject), which encapsulates an image and a title.  That way, i can just return an Image<nowiki/>And<nowiki/>Text<nowiki/>Info instance in my data source -tableView:objectValueForTableColumn:row: like normal and have my cell access it by self objectValue] image] or [[self objectValue] title].  I also overrode the [[NSCell<nowiki/>s -image and -title accessors to return those values. It simplifies things a bit in my opinion.
 
--- General/BrianMoore
+-- BrianMoore
 
 ----
 Have a little example ?

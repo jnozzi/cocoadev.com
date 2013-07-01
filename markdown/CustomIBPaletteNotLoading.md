@@ -1,13 +1,13 @@
 Greetings, Everyone!
 
 It's a beautiful day in central NY. All of the clouds have gathered in my office...
-Anyway, I am writing a custom IB palette for a General/CoreImageUI framework and recently IB began logging "unable to find class General/CIControlsPalette" when trying to load the palette. The palette's icon is correctly displayed in the palettes toolbar in IB, but when you click on the icon nothing happens. Has anyone seen this error before?
+Anyway, I am writing a custom IB palette for a CoreImageUI framework and recently IB began logging "unable to find class CIControlsPalette" when trying to load the palette. The palette's icon is correctly displayed in the palettes toolbar in IB, but when you click on the icon nothing happens. Has anyone seen this error before?
 
 Right now my code is more or less bare bones... so it is boggling my mind what could be the issue.
 Any advice will be greatly appreciated.
 Thanks everyone,
 
---General/EliotSimcoe
+--EliotSimcoe
 
 ----
 

@@ -41,6 +41,6 @@ Parts of the output (with character postitions, useful for cut)
 
 Some good resources on fs_usage are: 
 
-*http://developer.apple.com/documentation/Darwin/Reference/General/ManPages/man1/fs_usage.1.html
+*http://developer.apple.com/documentation/Darwin/Reference/ManPages/man1/fs_usage.1.html
 *http://rentzsch.com/macosx/fs_usageIntro
 *http://www.macworld.com/weblogs/macosxhints/2005/08/filesystemusage/index.php?lsrc=mwrss

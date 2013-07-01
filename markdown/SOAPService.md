@@ -2,7 +2,7 @@
 
 **Background:** I'm given some Java code that sends/receives a SOAP envelope (XML data) to a server:
 
-** Goal: **To *mimic*  the Java version in General/ObjC: exchange SOAP envelope (XML data) between General/ObjC client and a Server (black box).
+** Goal: **To *mimic*  the Java version in ObjC: exchange SOAP envelope (XML data) between ObjC client and a Server (black box).
 
 **Java Code:**
     
@@ -16,10 +16,10 @@
     private String soapReqHeader() {
         String header = ""; 
         header = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\r\n"
-        + "<tns:Envelope xmlns:tns=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"http://premconn.premiereconnect.com/2007/02\" xmlns:xsi=\"http://www.w3.org/2001/General/XMLSchema-instance\" >\r\n"
+        + "<tns:Envelope xmlns:tns=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ns1=\"http://premconn.premiereconnect.com/2007/02\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" >\r\n"
         + "<tns:Header>\r\n"
         + "<ns1:Request tns:actor=\"http://schemas.xmlsoap.org/soap/actor/next\" tns:mustUnderstand=\"0\">\r\n"
-        + "<ns1:General/ReceiverKey>http://xoa.xpedite.com/soap/sync</ns1:General/ReceiverKey>\r\n";
+        + "<ns1:ReceiverKey>http://xoa.xpedite.com/soap/sync</ns1:ReceiverKey>\r\n";
         return header;      
     } // end soapReqHeader()
     
@@ -27,10 +27,10 @@
     // 2) Function soapAuthenticate : Returns the SOAP authentication string    
     private String soapAuthenticate() {
         String authstr = "<ns1:Authentication>\r\n"
-        + "<ns1:General/XDDSAuth>\r\n"
-        + "<ns1:General/RequesterID>M2F" + " " + userName + "</ns1:General/RequesterID>\r\n" 
+        + "<ns1:XDDSAuth>\r\n"
+        + "<ns1:RequesterID>M2F" + " " + userName + "</ns1:RequesterID>\r\n" 
         + "<ns1:Password>" + passWord + "</ns1:Password>\r\n"
-        + "</ns1:General/XDDSAuth>\r\n"
+        + "</ns1:XDDSAuth>\r\n"
         + "</ns1:Authentication>\r\n";
         return authstr;
     } // end soapAuthenticate()
@@ -42,13 +42,13 @@
         String jlreq = "</ns1:Request>\r\n"
         + "</tns:Header>\r\n"
         + "<tns:Body>\r\n"
-        + "<ns1:General/JobListRequest>\r\n"
-        + "<ns1:General/JobListRequestFilters>\r\n" 
-        + "<ns1:General/JobEntryWindow>\r\n"
+        + "<ns1:JobListRequest>\r\n"
+        + "<ns1:JobListRequestFilters>\r\n" 
+        + "<ns1:JobEntryWindow>\r\n"
         + "<ns1:Minutes>" + faxMinutes + "</ns1:Minutes>\r\n"
-        + "</ns1:General/JobEntryWindow>\r\n"
-        + "</ns1:General/JobListRequestFilters>\r\n"
-        + "</ns1:General/JobListRequest>\r\n"
+        + "</ns1:JobEntryWindow>\r\n"
+        + "</ns1:JobListRequestFilters>\r\n"
+        + "</ns1:JobListRequest>\r\n"
         + "</tns:Body>\r\n";
         return jlreq;
     }  // end soapReqForJobList()
@@ -59,12 +59,12 @@
         String jsreq = "</ns1:Request>\r\n"
         + "</tns:Header>\r\n"
         + "<tns:Body>\r\n"
-        + "<ns1:General/JobSummaryRequest>\r\n"
-        + "<ns1:General/JobId>\r\n"
+        + "<ns1:JobSummaryRequest>\r\n"
+        + "<ns1:JobId>\r\n"
         + "<ns1:XDN>" + faxDomain + "</ns1:XDN>\r\n"
         + "<ns1:MRN>" + jobID + "</ns1:MRN>\r\n"
-        + "</ns1:General/JobId>\r\n"
-        + "</ns1:General/JobSummaryRequest>\r\n"
+        + "</ns1:JobId>\r\n"
+        + "</ns1:JobSummaryRequest>\r\n"
         + "</tns:Body>\r\n";
         return jsreq;
     }  // end soapReqForJobSummary()
@@ -75,12 +75,12 @@
         String jsubreq = "</ns1:Request>\r\n"
         + "</tns:Header>\r\n"
         + "<tns:Body>\r\n"
-        + "<ns1:General/JobDeliveryStatusRequest>\r\n"
-        + "<ns1:General/JobId>\r\n"
+        + "<ns1:JobDeliveryStatusRequest>\r\n"
+        + "<ns1:JobId>\r\n"
         + "<ns1:XDN>" + faxDomain + "</ns1:XDN>\r\n"
         + "<ns1:MRN>" + jobID + "</ns1:MRN>\r\n"
-        + "</ns1:General/JobId>\r\n"
-        + "</ns1:General/JobDeliveryStatusRequest>\r\n"
+        + "</ns1:JobId>\r\n"
+        + "</ns1:JobDeliveryStatusRequest>\r\n"
         + "</tns:Body>\r\n";
         return jsubreq;
     }  // end soapReqForJobDelivery()
@@ -92,16 +92,16 @@
         String jresend = "</ns1:Request>\r\n"
         + "</tns:Header>\r\n"
         + "<tns:Body>\r\n"
-        + "<ns1:General/ResendRequest xmlns=\"http://premconn.premiereconnect.com/2007/02\">\r\n"
+        + "<ns1:ResendRequest xmlns=\"http://premconn.premiereconnect.com/2007/02\">\r\n"
         + "<ns1:Resend>\r\n"
-        + "<ns1:General/JobId>\r\n"
+        + "<ns1:JobId>\r\n"
         + "<ns1:XDN>" + faxDomain + "</ns1:XDN>\r\n"
         + "<ns1:MRN>" + jobID + "</ns1:MRN>\r\n"
-        + "</ns1:General/JobId>\r\n"
+        + "</ns1:JobId>\r\n"
         + "<ns1:Schedule>express</ns1:Schedule>\r\n"
-        + "<ns1:General/ResendSpec><ns1:General/ItemSpec xqn=\"1\"></ns1:General/ItemSpec></ns1:General/ResendSpec>\r\n"
+        + "<ns1:ResendSpec><ns1:ItemSpec xqn=\"1\"></ns1:ItemSpec></ns1:ResendSpec>\r\n"
         + "</ns1:Resend>\r\n"
-        + "</ns1:General/ResendRequest>\r\n"
+        + "</ns1:ResendRequest>\r\n"
         + "</tns:Body>\r\n";
         return jresend;
     } // end soapReqForJobResend()
@@ -112,14 +112,14 @@
         String jcancel = "</ns1:Request>\r\n"
         + "</tns:Header>\r\n"
         + "<tns:Body>\r\n"
-        + "<ns1:General/JobCancelRequest>\r\n"
-        + "<ns1:General/CancelItem>\r\n"
-        + "<ns1:General/JobId>\r\n"
+        + "<ns1:JobCancelRequest>\r\n"
+        + "<ns1:CancelItem>\r\n"
+        + "<ns1:JobId>\r\n"
         + "<ns1:XDN>" + faxDomain + "</ns1:XDN>\r\n"
         + "<ns1:MRN>" + jobID + "</ns1:MRN>\r\n"
-        + "</ns1:General/JobId>\r\n"
-        + "</ns1:General/CancelItem>\r\n"
-        + "</ns1:General/JobCancelRequest>\r\n"
+        + "</ns1:JobId>\r\n"
+        + "</ns1:CancelItem>\r\n"
+        + "</ns1:JobCancelRequest>\r\n"
         + "</tns:Body>";
         return jcancel;
     } // end soapReqForJobCancel()
@@ -139,9 +139,9 @@
         String xmlreq = ""; 
         String xmlhdr = "";
         String xmldata = "";  
-        General/StreamConnection xmlstream = null;
-        General/HttpConnection connection = null;
-        General/StringBuffer buffer = new General/StringBuffer();
+        StreamConnection xmlstream = null;
+        HttpConnection connection = null;
+        StringBuffer buffer = new StringBuffer();
         
 
 
@@ -152,19 +152,19 @@
         String xmlreq = ""; 
         String xmlhdr = "";
         String xmldata = "";  
-        General/StreamConnection xmlstream = null;
-        General/HttpConnection connection = null;
-        General/StringBuffer buffer = new General/StringBuffer();
+        StreamConnection xmlstream = null;
+        HttpConnection connection = null;
+        StringBuffer buffer = new StringBuffer();
         
         synchronized (this) {      
             try {    
                 // Using BES
-                xmlstream = (General/StreamConnection)Connector.open(SOAP_SERVER_URL + ";deviceside=false",Connector.READ_WRITE,true);
+                xmlstream = (StreamConnection)Connector.open(SOAP_SERVER_URL + ";deviceside=false",Connector.READ_WRITE,true);
                 
-                connection = (General/HttpConnection)xmlstream;
-                connection.setRequestMethod(General/HttpConnection.POST);
+                connection = (HttpConnection)xmlstream;
+                connection.setRequestMethod(HttpConnection.POST);
                 connection.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
-                connection.setRequestProperty("General/SOAPAction",SOAP_ACTION);
+                connection.setRequestProperty("SOAPAction",SOAP_ACTION);
                 
                 //  Build the Header: 
                 //                          (1)                                  (2)
@@ -186,7 +186,7 @@
                 xmlreq = xmlreq + soapReqFooter();   // (8)
                 
                 // -------------------------------- Send Request -------------------------------
-               General/OutputStream out = connection.openOutputStream();
+               OutputStream out = connection.openOutputStream();
                 out.write(xmlreq.getBytes()); // Note: 'xmlreq' is type String.
                 out.flush();
                 out.close();
@@ -194,11 +194,11 @@
                 // -------------------------------- Get Response -------------------------------
                 // Get the connection status
                 status = connection.getResponseCode();
-                if (General/HttpConnection.HTTP_OK != status) {
+                if (HttpConnection.HTTP_OK != status) {
                     xmldata = "";  
                 } else {
                     // Open an input stream to receive the server response
-                    final General/InputStream instream = connection.openInputStream();
+                    final InputStream instream = connection.openInputStream();
                     ...
                 }
                 ...
@@ -209,9 +209,9 @@
 
 1) The Java version allows you to set the connection method via:
     
- connection.setRequestMethod(General/HttpConnection.POST);
+ connection.setRequestMethod(HttpConnection.POST);
  connection.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
- connection.setRequestProperty("General/SOAPAction",SOAP_ACTION);
+ connection.setRequestProperty("SOAPAction",SOAP_ACTION);
 
 
 2) Behaviors/Characteristics & Authentication are set within the SOAP envelope as shown in the sample code above.
@@ -225,7 +225,7 @@
     private final String SOAP_ACTION = "http://myconnn.myconnect.com/2007/02";  // <-- action
 
 
-4) I've created General/ObjC stubs via Apple's General/WSMakeStub using a * local copy * of the .WSDL file.  The code isn't pretty.
+4) I've created ObjC stubs via Apple's WSMakeStub using a * local copy * of the .WSDL file.  The code isn't pretty.
 
 
 **Question #1:** Can I use the stubs and point the link to SOAP_SERVER_URL?
@@ -241,14 +241,14 @@ Here's a piece of the SOAP message sent to the server:
         String jcancel = "</ns1:Request>\r\n"
         + "</tns:Header>\r\n"
         + "<tns:Body>\r\n"
-        + "<ns1:General/JobCancelRequest>\r\n"
-        + "<ns1:General/CancelItem>\r\n"
-        + "<ns1:General/JobId>\r\n"
+        + "<ns1:JobCancelRequest>\r\n"
+        + "<ns1:CancelItem>\r\n"
+        + "<ns1:JobId>\r\n"
         + "<ns1:XDN>" + faxDomain + "</ns1:XDN>\r\n"
         + "<ns1:MRN>" + jobID + "</ns1:MRN>\r\n"
-        + "</ns1:General/JobId>\r\n"
-        + "</ns1:General/CancelItem>\r\n"
-        + "</ns1:General/JobCancelRequest>\r\n"
+        + "</ns1:JobId>\r\n"
+        + "</ns1:CancelItem>\r\n"
+        + "</ns1:JobCancelRequest>\r\n"
         + "</tns:Body>";
         return jcancel;
     } 
@@ -256,12 +256,12 @@ Here's a piece of the SOAP message sent to the server:
 
 ...apparently reflects the following stub:
     
-+ (id) General/JobCancel:(General/CFTypeRef /* Complex type http://xoa.xpedite.com/2004/11/xoa|General/JobCancelRequest */) in_parameter in_request_header:(General/CFTypeRef /* Complex type http://xoa.xpedite.com/2004/11/xoa|Request */) in_request_header
++ (id) JobCancel:(CFTypeRef /* Complex type http://xoa.xpedite.com/2004/11/xoa|JobCancelRequest */) in_parameter in_request_header:(CFTypeRef /* Complex type http://xoa.xpedite.com/2004/11/xoa|Request */) in_request_header
 {
     id result = NULL;    
-    General/JobCancel* _invocation = General/[[JobCancel alloc] init];    
+    JobCancel* _invocation = [[JobCancel alloc] init];    
     [_invocation setParameters: in_parameter in_request_header:in_request_header];    
-    result = General/_invocation resultValue] retain];    
+    result = _invocation resultValue] retain];    
     [_invocation release];    
     return result;    
 }
@@ -270,7 +270,7 @@ Here's a piece of the SOAP message sent to the server:
 **
 Question 3:
 **
-So, do I work with the [[ObjC stubs and keep the XML Envelope as was generated in the Java version?  Or must I remove the respective XML control statements from the SOAP and go for the General/ObjC stubs?
+So, do I work with the [[ObjC stubs and keep the XML Envelope as was generated in the Java version?  Or must I remove the respective XML control statements from the SOAP and go for the ObjC stubs?
 
 **
 Question 4:

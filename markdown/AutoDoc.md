@@ -4,11 +4,11 @@ Utility that generates Documentation in RTF and HTML from Objective-C Class and 
 
 ----
 
-*Is General/AutoDoc dead? Its last update was almost a year ago. (It is now 5/1/02) --General/MichaelMcCracken*
+*Is AutoDoc dead? Its last update was almost a year ago. (It is now 5/1/02) --MichaelMcCracken*
 
 ----
 
-See General/DocoaBrowser; It is possible that the latest version is 2.0b8 per (the URL at the head of this page seems to be 404).. 
+See DocoaBrowser; It is possible that the latest version is 2.0b8 per (the URL at the head of this page seems to be 404).. 
 
 
 == Hipnoterapi Surabaya ==

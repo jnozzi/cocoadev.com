@@ -1,27 +1,27 @@
-see also General/DetermineSizeOfDrawnString
+see also DetermineSizeOfDrawnString
 
-I came up with some code I thought was neat and thought I'd share...  I have a custom General/NSView subclass that I want to display a string (myText) that as I resize the view (say by anchoring it to the window and changing window size) tries to make sure the text stays vertically/horizontally centered and all visible by scaling the font down if the view gets too small... I'll just show the over-ridden drawRect: method (to change default/minimum font sizes adjust fontMax/fontMin)... This code has been reformatted for your viewing pleasure ;P (update August 2, 2004.. adjustment for a single word that is longer than the width of the view to help it scale without wrapping.
+I came up with some code I thought was neat and thought I'd share...  I have a custom NSView subclass that I want to display a string (myText) that as I resize the view (say by anchoring it to the window and changing window size) tries to make sure the text stays vertically/horizontally centered and all visible by scaling the font down if the view gets too small... I'll just show the over-ridden drawRect: method (to change default/minimum font sizes adjust fontMax/fontMin)... This code has been reformatted for your viewing pleasure ;P (update August 2, 2004.. adjustment for a single word that is longer than the width of the view to help it scale without wrapping.
 
     
--(void)drawRect:(General/NSRect)rect
+-(void)drawRect:(NSRect)rect
 {
 	[self lockFocus];
 	
-	General/NSMutableDictionary* textAttributes =  
-		General/[NSMutableDictionary dictionary];
-	General/NSMutableParagraphStyle* paraStyle = 
-		General/[[NSMutableParagraphStyle alloc] init];
-	[paraStyle setAlignment:General/NSCenterTextAlignment];
-	[textAttributes setObject:paraStyle forKey:General/NSParagraphStyleAttributeName];
+	NSMutableDictionary* textAttributes =  
+		[NSMutableDictionary dictionary];
+	NSMutableParagraphStyle* paraStyle = 
+		[[NSMutableParagraphStyle alloc] init];
+	[paraStyle setAlignment:NSCenterTextAlignment];
+	[textAttributes setObject:paraStyle forKey:NSParagraphStyleAttributeName];
 
 	float fontMax = 16.0, fontMin = 8.0;
 	
 	// calculate font size
-	General/NSFont* theFont = General/[NSFont userFontOfSize:fontMax];
+	NSFont* theFont = [NSFont userFontOfSize:fontMax];
 	while( 
 		// the font size won't fit in the view 
 		// and font size is more than the minimum
-			  (General/text componentsSeperatedByString:@" "] count] == 1) 
+			  (text componentsSeperatedByString:@" "] count] == 1) 
 			  ? (
 			   [font widthOfString:text]
 			   > rect.size.width
@@ -41,10 +41,10 @@ I came up with some code I thought was neat and thought I'd share...  I have a c
 	}
 	
 	// set text rectangle
-	[textAttributes setObject:theFont forKey:General/NSFontAttributeName];
-	General/NSSize textSize = [myText sizeWithAttributes:textAttributes];
-	General/NSPoint textOffset;
-	General/NSRect textRect;
+	[textAttributes setObject:theFont forKey:NSFontAttributeName];
+	NSSize textSize = [myText sizeWithAttributes:textAttributes];
+	NSPoint textOffset;
+	NSRect textRect;
 
 	if(textSize.width > rect.size.width) {
 		// it's too wide to fit on one line

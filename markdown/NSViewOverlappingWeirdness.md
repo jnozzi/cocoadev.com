@@ -1,10 +1,10 @@
 
 
-I have a custom General/NSView where I draw several objects. I add to the General/NSView 2 standard buttons. Everything draws perfectly, but when I click on the buttons, and subsequent mouse moves on them, the view appears to be drawing objects repeatedly without clearing it. Here is an example of how text is supposed to be drawn, and then how it gets all funky:
+I have a custom NSView where I draw several objects. I add to the NSView 2 standard buttons. Everything draws perfectly, but when I click on the buttons, and subsequent mouse moves on them, the view appears to be drawing objects repeatedly without clearing it. Here is an example of how text is supposed to be drawn, and then how it gets all funky:
 
 http://img291.imageshack.us/img291/9121/untitled1hs8.jpg
 
-I tried using General/NSRectFill() to clear the view with white, but that doesn't help. Is there something I need to be doing with the General/NSButton in order for its superview to draw correctly? Thanks.
+I tried using NSRectFill() to clear the view with white, but that doesn't help. Is there something I need to be doing with the NSButton in order for its superview to draw correctly? Thanks.
 
 ----
 
@@ -19,7 +19,7 @@ Well in my case, the area around the buttons doesn't need to be redrawn. I know 
 
 ----
 
-Time to General/PostYourCode, I think.
+Time to PostYourCode, I think.
 
 ----
 

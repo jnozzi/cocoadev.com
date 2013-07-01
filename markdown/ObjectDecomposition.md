@@ -1,4 +1,4 @@
-General/ObjectDecomposition is used to break a problem into its components and relationships. Solving problems using General/ObjectDecomposition is a fundamental piece of the General/ObjectOrientedProgramming and General/ObjectOrientedDesign paradigms.
+ObjectDecomposition is used to break a problem into its components and relationships. Solving problems using ObjectDecomposition is a fundamental piece of the ObjectOrientedProgramming and ObjectOrientedDesign paradigms.
 
 An example -- given the following algorithm:
     
@@ -23,22 +23,22 @@ A Heater_Control object with a run() method that performs the algorithm and abst
 
 Another approach might be to utilize events and messages, interfaces or protocols, or other mechanisms to describe a heater and data acquisition.
 
-Question: Is this the same as General/ObjectOrientedAnalysis?
+Question: Is this the same as ObjectOrientedAnalysis?
 
-*It sure isn't General/ObjectDecomposition anyway, since the described system is more or less procedural. The example is a bad one, unfortunately, it's an algorithm, and it's too simple. The Heater_Control object is essentialy just a global scope with the procedures run, start_heater, and so on. To have an example of a object oriented system, there would have to be some more entities that can interrelate. Having an object doesn't make something object oriented.*
+*It sure isn't ObjectDecomposition anyway, since the described system is more or less procedural. The example is a bad one, unfortunately, it's an algorithm, and it's too simple. The Heater_Control object is essentialy just a global scope with the procedures run, start_heater, and so on. To have an example of a object oriented system, there would have to be some more entities that can interrelate. Having an object doesn't make something object oriented.*
 
 *One good way of decomposing a problem description into classes is to use all the nouns from the description, the majority will be good candidates for becoming classes in the the system. For example: "The spaceship must have engines capable of light speed". Possible classes: "Spaceship" and "Engine", and we can also put a relation between them, the spaceship **has an** engine. We've also got "Speed", which knows about the direction and velocity, and possibly a subclass of Speed called "Light<nowiki/>Speed", a relation called **is a**.*
 
--- General/TheoHultberg/Iconara
+-- TheoHultberg/Iconara
 
 ----
 
 I think OOA is more when you look at object hierarchies, cooperation between objects and responsibilities. E.g. if we wish to create a ray tracer, then we probably need at least these objects:
 
-*Figure -- with subclasses like Sphere, Box, Plane, General/BezierSomething, ...
+*Figure -- with subclasses like Sphere, Box, Plane, BezierSomething, ...
 *Scene -- knows the 3D placement of all figures in this scene
 *Camera -- the angle from which the scene should be seen/rendered
-*General/MathUtility -- general methods to calculate dot product, line intersections etc.
+*MathUtility -- general methods to calculate dot product, line intersections etc.
 *...
 
 

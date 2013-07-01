@@ -11,11 +11,11 @@ How do I change a window's brushed/aqua state programmatically? I'd like to offe
 
 
 Thanks!
-General/JohnWells
+JohnWells
 
 ----
 
-AFAIK there's no way to do this 'on the fly'. You need to create a new window with General/NSTexturedBackgroundWindowMask
+AFAIK there's no way to do this 'on the fly'. You need to create a new window with NSTexturedBackgroundWindowMask
 
 ----
 
@@ -24,12 +24,12 @@ What other applications do is store the value the user enters into the prefs, an
 Dan Wood of Watson fame posted this that may be of some help:
 http://weblog.karelia.com/Cocoa/Class_Posing_is_Cool.html
 
-*I think there is a private method -setTextured: in General/NSWindow* 
+*I think there is a private method -setTextured: in NSWindow* 
 ----
 
 I used something like
     
-	BOOL canWeChangeTextureOnTheFly = General/theWindowController window] respondsToSelector:@selector(_setTexturedBackground:)];
+	BOOL canWeChangeTextureOnTheFly = theWindowController window] respondsToSelector:@selector(_setTexturedBackground:)];
 	if (!canWeChangeTextureOnTheFly) return;
 	[[theWindowController window]  _setTexturedBackground:defaultTextured]; //or whatever,  undocumented !!
 

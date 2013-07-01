@@ -1,4 +1,4 @@
-Describe General/IncludeLibExifInApp here.
+Describe IncludeLibExifInApp here.
 
 
 Hi all,

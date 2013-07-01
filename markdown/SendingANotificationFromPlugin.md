@@ -1,9 +1,9 @@
 
 
 Hi,
-After reading documentation I'm a bit confused about different types of notifications. I have an app with some plugins installed in its bundle (General/PlugIns directory) or in Applications Support (/myapp/Plug-Ins). It works fine, but what I need now is to send a notification from plugin and catch it in the main app itself. Can I use plain simple General/NSNotification for this     General/[NSNotificationCenter defaultCenter] postNotificationName:@"name" object:self]; or should I use General/NSDistributedNotificationCenter?
+After reading documentation I'm a bit confused about different types of notifications. I have an app with some plugins installed in its bundle (PlugIns directory) or in Applications Support (/myapp/Plug-Ins). It works fine, but what I need now is to send a notification from plugin and catch it in the main app itself. Can I use plain simple NSNotification for this     [NSNotificationCenter defaultCenter] postNotificationName:@"name" object:self]; or should I use NSDistributedNotificationCenter?
 
-I did a test with General/NSNotification, and it  works, but I'm not sure if it's a correct way to do such things.
+I did a test with NSNotification, and it  works, but I'm not sure if it's a correct way to do such things.
 And if this makes any difference I'm also running a plugin in another thread, not in the main one.
 
 ----

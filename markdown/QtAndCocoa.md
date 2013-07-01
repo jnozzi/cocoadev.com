@@ -2,7 +2,7 @@
 
 Hi, folks, sorry my english.. I anybody know Qt? I'l try to discribe th problem...
 
-Well, i have an app on Qt and it is only for the gui. And i have an app on Cocoa, that capturing video from web camera. As you know (?) actions (buttons) in Qt connect as General/SLOTs (c++ funtions). And one thing, I can't change Qt class. Also i have as you can see Cocoa class, that capturing something... So the sample
+Well, i have an app on Qt and it is only for the gui. And i have an app on Cocoa, that capturing video from web camera. As you know (?) actions (buttons) in Qt connect as SLOTs (c++ funtions). And one thing, I can't change Qt class. Also i have as you can see Cocoa class, that capturing something... So the sample
 
 I have  xCodeObjClass class for example in Cocoa, and a function in it func1()
 And i have an c++ class in Qt for example qtClass and a SLOT (function) func2() in it..
@@ -37,15 +37,15 @@ So the question is, how do i run Cocoa function from C++ function (classes)?.. c
 thanks..
 
 ----
-The symbol *self* is not usually defined in ordinary C/C++ functions just like the C++ symbol *this* is not defined in regular C functions.  *self*  is roughly speaking the Objective-C equivalent of C++ *this* .  *self* is only available in Objective-C methods.  For background, every Objective-C method has two hidden parameters, *self*  and *_cmd* .  *self*  is the object that received the message that caused the method to be executed.  *_cmd* identifies the message that caused the method to be executed.  See http://developer.apple.com/documentation/Cocoa/Conceptual/General/ObjectiveC/index.html and http://developer.apple.com/referencelibrary/General/GettingStarted/GS_Cocoa/index.html
+The symbol *self* is not usually defined in ordinary C/C++ functions just like the C++ symbol *this* is not defined in regular C functions.  *self*  is roughly speaking the Objective-C equivalent of C++ *this* .  *self* is only available in Objective-C methods.  For background, every Objective-C method has two hidden parameters, *self*  and *_cmd* .  *self*  is the object that received the message that caused the method to be executed.  *_cmd* identifies the message that caused the method to be executed.  See http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/index.html and http://developer.apple.com/referencelibrary/GettingStarted/GS_Cocoa/index.html
 
 You are attempting to use *self*  in a regular C/C++ function.  Instead, store a pointer to an instance of the relevant Objective-C object somewhere.  In your C/C++ function, use the pointer to identify the object that should receive the Objective-C messages you send:
 
     
 // Somewhere in your code you must create an instance of the Objective-C object
-// Normally, Objective-C class names start with a capital letter like General/XCodeObjCClass
+// Normally, Objective-C class names start with a capital letter like XCodeObjCClass
 // The specific initializer used for the Objective-C object will obviuously depend on the class of the object
-xCodeObjClass       *myObjectPtr = General/xCodeObjClass alloc] init];  // Objective-C objects must be allocated and initialized
+xCodeObjClass       *myObjectPtr = xCodeObjClass alloc] init];  // Objective-C objects must be allocated and initialized
 
 // In func2(), send messages to the object pointed to by myObjectPtr 
 void func2()
@@ -75,16 +75,16 @@ Objective-C method declarations that start with + are "class" methods aor someti
 [[[NSObject alloc];
 
 
-By convention in Cocoa, +alloc is a class method that returns a newly allocated instance of the class that receives the message.  In the following code, the "alloc" message is sent to the General/NSObject class.  Then the "init" message is sent to the General/NSObject instance that was returned.
+By convention in Cocoa, +alloc is a class method that returns a newly allocated instance of the class that receives the message.  In the following code, the "alloc" message is sent to the NSObject class.  Then the "init" message is sent to the NSObject instance that was returned.
     
-General/[[NSObject alloc] init];
+[[NSObject alloc] init];
 
 
 Objective-C class methods are similar to C++ "static" member functions.  However, in Objective-C, class methods have a self variable that represents the class itself.  C++ static member functions do not have a corresponding this variable.  Objective-C class methods are fully polymorphic, and C++ static member functions are not.
 
 ----
 
-Ok, thanks a lot, it's solved. I'v set General/[myCocoaClass alloc] init] func1]; and i works.. i think so..
+Ok, thanks a lot, it's solved. I'v set [myCocoaClass alloc] init] func1]; and i works.. i think so..
 
 ----
 Don't forget your [[NSAutoreleasePools.

@@ -8,4 +8,4 @@ Hope you can decipher what I�m asking and sorry if this is a really obvious qu
 
 ----
 
-When you use bindings, the technology that causes your view to update when the model changes is General/KeyValueObserving.  It happens automatically when you change your model data using your KVC (General/KeyValueCoding) compliant accessor methods.  If your object needs to manually notify observers of a change then it can invoke willChangeValueForKey: and didChangeValueForKey:  Normally you won't have to use those methods.
+When you use bindings, the technology that causes your view to update when the model changes is KeyValueObserving.  It happens automatically when you change your model data using your KVC (KeyValueCoding) compliant accessor methods.  If your object needs to manually notify observers of a change then it can invoke willChangeValueForKey: and didChangeValueForKey:  Normally you won't have to use those methods.

@@ -1,6 +1,6 @@
 Document Xcode bugs and work arounds.
 
-Anyone know what to do with Xcode not clearing the warnings and errors out of the file gutters on rebuild? *Have you fixed them? Otherwise it's not supposed to - the warnings & errors in the gutters and General/SmartGroup represent the state of your code, and persist across builds. There was a long post on the subject on the xcode-users list by Chris Espinosa on 17 August. I don't know if that list is archived anywhere though.*
+Anyone know what to do with Xcode not clearing the warnings and errors out of the file gutters on rebuild? *Have you fixed them? Otherwise it's not supposed to - the warnings & errors in the gutters and SmartGroup represent the state of your code, and persist across builds. There was a long post on the subject on the xcode-users list by Chris Espinosa on 17 August. I don't know if that list is archived anywhere though.*
 
 Yes, of course I've fixed them :P , and it says build succeeded, but a VERY long list of errors say stays in the gutter and error window... which is a pain, b/c if you've fixed SOME of your errors you don't know which ones are still active... :( I wish I had seen that xcode-users list.  What was the gist?
 

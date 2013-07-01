@@ -1,57 +1,57 @@
-Seeking a bit of advice: I'm just diving into the General/NSTextView and I'd like to write a small wiki type system (very similar to General/VoodooPad actually but with a few twists).  I believe I get how I'd actually convert all Wiki Names to links, but I'm not real sure where in the pipeline to place this code.  I'm assuming for efficiency this should really by done by watching text as it's typed and adding the link attributes as needed.  Which delegate would be appropriate for basically watching the text as it is typed?  Or, is there a better way?
+Seeking a bit of advice: I'm just diving into the NSTextView and I'd like to write a small wiki type system (very similar to VoodooPad actually but with a few twists).  I believe I get how I'd actually convert all Wiki Names to links, but I'm not real sure where in the pipeline to place this code.  I'm assuming for efficiency this should really by done by watching text as it's typed and adding the link attributes as needed.  Which delegate would be appropriate for basically watching the text as it is typed?  Or, is there a better way?
 
 Thanks,
 
-General/EricFreeman
+EricFreeman
 
 ----
 
-I'll let the code speak for itself... (PS General/WikiController is the delegate of it's wikiTextView and wikiWindow, also the data source of it's wikiLocation combo box)
+I'll let the code speak for itself... (PS WikiController is the delegate of it's wikiTextView and wikiWindow, also the data source of it's wikiLocation combo box)
 
     
-/* General/WikiController */
+/* WikiController */
 
 #import <Cocoa/Cocoa.h>
-#import "General/WikiManager.h"
+#import "WikiManager.h"
 
-@interface General/WikiController : General/NSObject
+@interface WikiController : NSObject
 {
-    General/IBOutlet General/WikiManager *wikiManager;
-    General/IBOutlet General/NSWindow *wikiWindow;
-	General/IBOutlet General/NSComboBox* wikiLocation;
-	General/IBOutlet General/NSTextView *wikiTextView;
+    IBOutlet WikiManager *wikiManager;
+    IBOutlet NSWindow *wikiWindow;
+	IBOutlet NSComboBox* wikiLocation;
+	IBOutlet NSTextView *wikiTextView;
 }
-- (General/IBAction)changeWikiLocation:(id)sender;
-- (General/IBAction)removeCurrentNode:(id)sender;
+- (IBAction)changeWikiLocation:(id)sender;
+- (IBAction)removeCurrentNode:(id)sender;
 -(void)scanForWikiWords;
 @end
 
-@interface General/WikiController (General/NSTextViewDelegate)
--(void)textDidChange:(General/NSNotification*)aNotification;
-- (BOOL)textView:(General/NSTextView *)aTextView 
+@interface WikiController (NSTextViewDelegate)
+-(void)textDidChange:(NSNotification*)aNotification;
+- (BOOL)textView:(NSTextView *)aTextView 
     clickedOnLink:(id)link 
     atIndex:(unsigned)charIndex;
 @end
 
-@interface General/WikiController (General/NSComboBoxDataSource)
--(int)numberOfItemsInComboBox:(General/NSComboBox*)aComboBox;
--(id)comboBox:(General/NSComboBox*)aComboBox 
+@interface WikiController (NSComboBoxDataSource)
+-(int)numberOfItemsInComboBox:(NSComboBox*)aComboBox;
+-(id)comboBox:(NSComboBox*)aComboBox 
     objectValueForItemAtIndex:(int)index;
 @end
 
-@interface General/WikiController (General/NSWindowDelegate)
--(void)windowWillClose:(General/NSNotification *)aNotification;
+@interface WikiController (NSWindowDelegate)
+-(void)windowWillClose:(NSNotification *)aNotification;
 @end
 
-//General/WikiController.m
-#import "General/WikiController.h"
+//WikiController.m
+#import "WikiController.h"
 
-@implementation General/WikiController
+@implementation WikiController
 
-- (General/IBAction)changeWikiLocation:(id)sender
+- (IBAction)changeWikiLocation:(id)sender
 {
-	General/NSString* wikiKey  = [wikiLocation stringValue]; 
-	General/NSString* wikiText = nil;
+	NSString* wikiKey  = [wikiLocation stringValue]; 
+	NSString* wikiText = nil;
 	
 	if([wikiManager isValidWikiKey:wikiKey]) {
 		wikiText = [wikiManager wikiTextForWikiKey:wikiKey];
@@ -64,11 +64,11 @@ I'll let the code speak for itself... (PS General/WikiController is the delegate
 	}
 }
 
-- (General/IBAction)removeCurrentNode:(id)sender
+- (IBAction)removeCurrentNode:(id)sender
 {
-	General/NSString* wikiKey  = [wikiLocation stringValue];
+	NSString* wikiKey  = [wikiLocation stringValue];
 	
-	[wikiLocation setStringValue:@"General/SandBox"];
+	[wikiLocation setStringValue:@"SandBox"];
 	[self changeWikiLocation:self];
 	[wikiManager removeWikiKey:wikiKey];
 	[wikiLocation noteNumberOfItemsChanged];
@@ -77,16 +77,16 @@ I'll let the code speak for itself... (PS General/WikiController is the delegate
 
 -(void)scanForWikiWords
 {
-	General/NSString*  wikiText = [wikiTextView string];
-	General/NSScanner* wikiScan = General/[[NSScanner alloc] initWithString:wikiText];
-	General/NSString*  currentWord = nil;
-	General/NSRange    currentRange;
-	General/NSTextStorage* wikiStorage = [wikiTextView textStorage];
+	NSString*  wikiText = [wikiTextView string];
+	NSScanner* wikiScan = [[NSScanner alloc] initWithString:wikiText];
+	NSString*  currentWord = nil;
+	NSRange    currentRange;
+	NSTextStorage* wikiStorage = [wikiTextView textStorage];
 	
-	[wikiStorage removeAttribute:General/NSLinkAttributeName 
-                             range:General/NSMakeRange(0,[wikiText length])];
+	[wikiStorage removeAttribute:NSLinkAttributeName 
+                             range:NSMakeRange(0,[wikiText length])];
 	
-	General/NSCharacterSet* alphaChars = General/[NSCharacterSet alphanumericCharacterSet];
+	NSCharacterSet* alphaChars = [NSCharacterSet alphanumericCharacterSet];
 	
 	[wikiScan scanUpToCharactersFromSet:alphaChars intoString:nil];
 	while(![wikiScan isAtEnd]) {
@@ -96,8 +96,8 @@ I'll let the code speak for itself... (PS General/WikiController is the delegate
 			currentRange.location = [wikiScan scanLocation] - [currentWord length];
 			currentRange.length   = [currentWord length];
 
-			[wikiStorage setAttributes: // on link clicked pass the General/WikiWord
-                              General/[NSDictionary dictionaryWithObject:currentWord forKey:General/NSLinkAttributeName] 
+			[wikiStorage setAttributes: // on link clicked pass the WikiWord
+                              [NSDictionary dictionaryWithObject:currentWord forKey:NSLinkAttributeName] 
                         range:currentRange];
 			
 		}
@@ -107,19 +107,19 @@ I'll let the code speak for itself... (PS General/WikiController is the delegate
 }
 @end
 
-@implementation General/WikiController (General/NSTextViewDelegate)
--(void)textDidChange:(General/NSNotification*)aNotification
+@implementation WikiController (NSTextViewDelegate)
+-(void)textDidChange:(NSNotification*)aNotification
 {
 	//optimize by only checking the words at the index of the change
 	
 	[self scanForWikiWords];
-	General/NSString* wikiKey = [wikiLocation stringValue];
-	General/NSString* wikiText = [wikiTextView string];
+	NSString* wikiKey = [wikiLocation stringValue];
+	NSString* wikiText = [wikiTextView string];
 	
 	[wikiManager setWikiText:wikiText forWikiKey:wikiKey];
 	[wikiLocation noteNumberOfItemsChanged];
 }
-- (BOOL)textView:(General/NSTextView *)aTextView clickedOnLink:(id)link atIndex:(unsigned)charIndex
+- (BOOL)textView:(NSTextView *)aTextView clickedOnLink:(id)link atIndex:(unsigned)charIndex
 {
 	[wikiLocation setStringValue:link];
 	[self changeWikiLocation:self];
@@ -127,135 +127,135 @@ I'll let the code speak for itself... (PS General/WikiController is the delegate
 }
 @end
 
-@implementation General/WikiController (General/NSComboBoxDataSource)
--(int)numberOfItemsInComboBox:(General/NSComboBox*)aComboBox
+@implementation WikiController (NSComboBoxDataSource)
+-(int)numberOfItemsInComboBox:(NSComboBox*)aComboBox
 {
-	General/NSArray* wikiKeys = [wikiManager wikiKeys];
+	NSArray* wikiKeys = [wikiManager wikiKeys];
 	return [wikiKeys count];
 }
 
--(id)comboBox:(General/NSComboBox*)aComboBox objectValueForItemAtIndex:(int)index
+-(id)comboBox:(NSComboBox*)aComboBox objectValueForItemAtIndex:(int)index
 {
-	General/NSArray* wikiKeys = [wikiManager wikiKeys];
+	NSArray* wikiKeys = [wikiManager wikiKeys];
 	return [wikiKeys objectAtIndex:index];
 }
 @end
 
-@implementation General/WikiController (General/NSWindowDelegate)
--(void)windowWillClose:(General/NSNotification *)aNotification
+@implementation WikiController (NSWindowDelegate)
+-(void)windowWillClose:(NSNotification *)aNotification
 {
-	General/[NSApp terminate:self];
+	[NSApp terminate:self];
 }
 @end
 
-/* General/WikiManager.h */
+/* WikiManager.h */
 
 #import <Cocoa/Cocoa.h>
 
-@interface General/WikiManager : General/NSObject
+@interface WikiManager : NSObject
 {
 }
--(General/NSArray*)wikiKeys;
--(General/NSString*)wikiTextForWikiKey:(General/NSString*)aWikiKey;
--(void)setWikiText:(General/NSString*) newText forWikiKey:(General/NSString*)aWikiKey;
--(BOOL)isValidWikiKey:(General/NSString*)aWikiKey;
--(void)removeWikiKey:(General/NSString*)aWikiKey;
+-(NSArray*)wikiKeys;
+-(NSString*)wikiTextForWikiKey:(NSString*)aWikiKey;
+-(void)setWikiText:(NSString*) newText forWikiKey:(NSString*)aWikiKey;
+-(BOOL)isValidWikiKey:(NSString*)aWikiKey;
+-(void)removeWikiKey:(NSString*)aWikiKey;
 @end
 
-@interface General/WikiManager (General/WikiData)
--(General/NSDictionary*)wikiData;
--(void)setWikiData:(General/NSDictionary*)newWikiData;
+@interface WikiManager (WikiData)
+-(NSDictionary*)wikiData;
+-(void)setWikiData:(NSDictionary*)newWikiData;
 @end
 
-@interface General/NSString (General/McWordAtIndex)
--(General/NSString*)wordAtIndex:(int)anIndex;
+@interface NSString (McWordAtIndex)
+-(NSString*)wordAtIndex:(int)anIndex;
 @end
 
-//General/WikiManager.m
-#import "General/WikiManager.h"
+//WikiManager.m
+#import "WikiManager.h"
 
-@implementation General/WikiManager
--(General/NSArray*)wikiKeys
+@implementation WikiManager
+-(NSArray*)wikiKeys
 {
-	General/NSDictionary * wikiData = [self wikiData];
+	NSDictionary * wikiData = [self wikiData];
 	return [wikiData allKeys];
 }
 
--(General/NSString*)wikiTextForWikiKey:(General/NSString*)aWikiKey
+-(NSString*)wikiTextForWikiKey:(NSString*)aWikiKey
 {
-	General/NSDictionary * wikiData = [self wikiData];
+	NSDictionary * wikiData = [self wikiData];
 	return [wikiData objectForKey:aWikiKey];
 }
 
--(void)setWikiText:(General/NSString*) newText forWikiKey:(General/NSString*)aWikiKey
+-(void)setWikiText:(NSString*) newText forWikiKey:(NSString*)aWikiKey
 {
-	General/NSDictionary * wikiData = [self wikiData];
-	General/NSMutableDictionary* mutableWikiData = 
-                 General/[NSMutableDictionary dictionaryWithDictionary:wikiData];
+	NSDictionary * wikiData = [self wikiData];
+	NSMutableDictionary* mutableWikiData = 
+                 [NSMutableDictionary dictionaryWithDictionary:wikiData];
 	[mutableWikiData setObject:newText forKey:aWikiKey];
 	[self setWikiData:mutableWikiData];
 	return;
 }
 
--(BOOL)isValidWikiKey:(General/NSString*)aWikiKey
+-(BOOL)isValidWikiKey:(NSString*)aWikiKey
 {
 	if(!aWikiKey) return NO;
 	if([aWikiKey length] < 2) return NO;
 	//check for no illegal characters (whitespace, punctuation...) initial caps
-	BOOL noIllegalChars = General/aWikiKey wordAtIndex:0] isEqual:aWikiKey];
+	BOOL noIllegalChars = aWikiKey wordAtIndex:0] isEqual:aWikiKey];
 	BOOL initialCaps = [[[[NSCharacterSet uppercaseLetterCharacterSet] 
 			characterIsMember:[aWikiKey characterAtIndex:0]];
 	//check for at least one more capital
-	General/NSScanner* wikiScan = General/[[NSScanner alloc] initWithString:aWikiKey];
+	NSScanner* wikiScan = [[NSScanner alloc] initWithString:aWikiKey];
 	[wikiScan setScanLocation:1];
 	[wikiScan scanUpToCharactersFromSet:
-                 General/[NSCharacterSet uppercaseLetterCharacterSet] 
+                 [NSCharacterSet uppercaseLetterCharacterSet] 
         intoString:nil];
 	BOOL secondCaps = ![wikiScan isAtEnd];
 	return noIllegalChars && initialCaps && secondCaps;
 }
 
--(void)removeWikiKey:(General/NSString*)aWikiKey
+-(void)removeWikiKey:(NSString*)aWikiKey
 {
-	General/NSDictionary* wikiData = [self wikiData];
-	General/NSMutableDictionary* mutableWikiData = 
-                 General/[NSMutableDictionary dictionaryWithDictionary:wikiData];
+	NSDictionary* wikiData = [self wikiData];
+	NSMutableDictionary* mutableWikiData = 
+                 [NSMutableDictionary dictionaryWithDictionary:wikiData];
 	[mutableWikiData removeObjectForKey:aWikiKey];
 	[self setWikiData:mutableWikiData];
 }
 
 @end
 
-@implementation General/WikiManager (General/WikiData)
--(General/NSDictionary*)wikiData
+@implementation WikiManager (WikiData)
+-(NSDictionary*)wikiData
 {
-	General/NSDictionary* wikiData = 
-                General/[[NSUserDefaults standardUserDefaults] 
-                              objectForKey:@"General/WikiData"];
+	NSDictionary* wikiData = 
+                [[NSUserDefaults standardUserDefaults] 
+                              objectForKey:@"WikiData"];
 	if(!wikiData) {
-		wikiData = General/[[NSDictionary alloc] init];
+		wikiData = [[NSDictionary alloc] init];
 		[self setWikiData:wikiData];
 	}
 	return wikiData;
 }
 
--(void)setWikiData:(General/NSDictionary*)newWikiData
+-(void)setWikiData:(NSDictionary*)newWikiData
 {
-	General/[[NSUserDefaults standardUserDefaults] 
-                 setObject:newWikiData forKey:@"General/WikiData"];
+	[[NSUserDefaults standardUserDefaults] 
+                 setObject:newWikiData forKey:@"WikiData"];
 	return;
 }
 @end
 
-@implementation General/NSString (General/McWordAtIndex)
--(General/NSString*)wordAtIndex:(int)anIndex
+@implementation NSString (McWordAtIndex)
+-(NSString*)wordAtIndex:(int)anIndex
 {
-	General/NSString * result = nil;
-	General/NSCharacterSet* goodChars = General/[NSCharacterSet alphanumericCharacterSet];
+	NSString * result = nil;
+	NSCharacterSet* goodChars = [NSCharacterSet alphanumericCharacterSet];
 	
 	if([goodChars characterIsMember:[self characterAtIndex:anIndex]])
 	{
-		General/NSRange resultRange;
+		NSRange resultRange;
 		resultRange.location = anIndex;
 		while(
                         resultRange.location-- != 0 && 

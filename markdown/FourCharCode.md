@@ -1,8 +1,8 @@
 A datatype used to hold four bytes like a creator code.
 
-They are used like:     General/FourCharCode myApp = 'myAp'
+They are used like:     FourCharCode myApp = 'myAp'
 
-Cocoa General/APIs don't use four-char codes like the Carbon General/APIs do. When you want to supply a four-char code to a Cocoa method, you wrap it in an General/NSString like so:     [foo methodWithFourCharCode: @"'General/MyAp'"]
+Cocoa APIs don't use four-char codes like the Carbon APIs do. When you want to supply a four-char code to a Cocoa method, you wrap it in an NSString like so:     [foo methodWithFourCharCode: @"'MyAp'"]
 
 ----
 I was under the impression that this was not allowed by the C standard, because e.g. of endian-ness.
@@ -21,14 +21,14 @@ But I cannot find a function/macro to do that in Apple's headers.
 int abc = 'abc ';
 char *fourCharacterCode = (char *)&abc;
 fourCharacterCode[3] = 0;
-General/NSLog(@"fourCharacterCode: %s", fourCharacterCode);
+NSLog(@"fourCharacterCode: %s", fourCharacterCode);
 
 
 basically you can assign a four character code by using single quotes. I'm not sure how long GCC will support this though.
 
 ----
 
-A four-char code is just an int. The character array in the example above is just to print out the code in ASCII instead of numeric form. Basically, GCC supports putting 'General/MyAp' in an integer like it supports putting 53 in an integer.
+A four-char code is just an int. The character array in the example above is just to print out the code in ASCII instead of numeric form. Basically, GCC supports putting 'MyAp' in an integer like it supports putting 53 in an integer.
 
 ----
 
@@ -49,4 +49,4 @@ BTW, IMO, I don't think we will be changing to x86 anytime in the near future, I
 
 ----
 
-The easiest way to convert a General/FourCharCode to a General/NSString is to use the function General/NSFileTypeForHFSTypeCode
+The easiest way to convert a FourCharCode to a NSString is to use the function NSFileTypeForHFSTypeCode

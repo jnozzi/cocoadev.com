@@ -12,7 +12,7 @@ As far as I know, there are none. However, it's a complex question and I'm not s
 * Latency: how long does it take to get a response for a single short message?
 * Bandwidth: how much can you squeeze through the pipe when sending large amounts of data in bulk? Another way to put this is, how much encoding overhead does DO have?
 * Ability to queue requests: you can send multiple requests over DO using oneway void messages, but then it's a pain to get the responses back. This helps eliminate some of the latency problems.
-* Encoding overhead: if you're sending complex objects over the wire, how much CPU time is spent encoding them with General/NSPortConder versus how much you spend encoding them with whatever custom code you would use?
+* Encoding overhead: if you're sending complex objects over the wire, how much CPU time is spent encoding them with NSPortConder versus how much you spend encoding them with whatever custom code you would use?
 
 
 Overall I would consider DO to be a poor choice for distributed computing unless it was an embarrassingly parallel problem that doesn't require much communication, such as Folding@Home and SETI@Home do. However, I have not tested it and it would be interesting to see numbers.

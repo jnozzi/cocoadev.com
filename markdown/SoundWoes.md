@@ -1,18 +1,18 @@
-I have created a program that uses sound, After analyzing it with the General/MallocDebug program it seems I'm getting memory leaks from these sounds.
+I have created a program that uses sound, After analyzing it with the MallocDebug program it seems I'm getting memory leaks from these sounds.
 
 Can someone tell me if the following code would be required to be freed from memory, and if so, how would it be done?
 
-General/NSSound *tink = General/[NSSound soundNamed:@"Tink.aiff"];
+NSSound *tink = [NSSound soundNamed:@"Tink.aiff"];
         [tink play];
 
 Thanks
 
 ----
 
-I created a very simple application consisting of only a timer and the tink sound file. I set it up to play the tink sound once per second and booted it through the Malloc Debug application. After about 2 hours, memory usage was up to about 600 MB.  Leakage related to the General/NSSound class has caused some customers of mine to experience kernel panics within a couple minutes of starting my program. All who have experienced problems are running g4's with 10.3.3. I also have customers running g4s with 10.3.3 without any problem. I have sent a bug report to apple, but because my powerbook is somewhat tolerant of this, I was unable to send a crash log or a kernel panic log. If someone out there is running a g4 with 10.3.3 and can produce this problem, please file a bug report to apple with crash and kernel panic logs. thanks!!
+I created a very simple application consisting of only a timer and the tink sound file. I set it up to play the tink sound once per second and booted it through the Malloc Debug application. After about 2 hours, memory usage was up to about 600 MB.  Leakage related to the NSSound class has caused some customers of mine to experience kernel panics within a couple minutes of starting my program. All who have experienced problems are running g4's with 10.3.3. I also have customers running g4s with 10.3.3 without any problem. I have sent a bug report to apple, but because my powerbook is somewhat tolerant of this, I was unable to send a crash log or a kernel panic log. If someone out there is running a g4 with 10.3.3 and can produce this problem, please file a bug report to apple with crash and kernel panic logs. thanks!!
 
 ----
-I haven't tested your setup, but my guess is that your app will not unload a resource once it has been loaded.  Provided you don't get additional memory consumption every time you call      General/NSSound *tink = General/[NSSound soundNamed:@"Tink.aiff"];
+I haven't tested your setup, but my guess is that your app will not unload a resource once it has been loaded.  Provided you don't get additional memory consumption every time you call      NSSound *tink = [NSSound soundNamed:@"Tink.aiff"];
         [tink play];
   you should be fine.  
 
@@ -22,19 +22,19 @@ You should not call     release since you did not allocate the object! Interesti
 
     
 // main.mm
-#import <General/AppKit/General/AppKit.h>
+#import <AppKit/AppKit.h>
 
 int main ()
 {
-   General/[NSAutoreleasePool new];
+   [NSAutoreleasePool new];
    for(size_t i = 0; i < 5; i++)
-      General/NSLog(@"%p", General/[NSSound soundNamed:@"Short Whistle"]);
+      NSLog(@"%p", [NSSound soundNamed:@"Short Whistle"]);
    return 0;
 }
 
 Outputs:
     
-[3:52][/tmp]> g++ main.mm -framework General/AppKit
+[3:52][/tmp]> g++ main.mm -framework AppKit
 [3:52][/tmp]> ./a.out
 2004-03-23 03:52:26.749 a.out[616] 0x529540
 2004-03-23 03:52:26.752 a.out[616] 0x529540
@@ -46,7 +46,7 @@ So the system is caching the object, and if memory goes up on each call then I t
 
 ----
 
-Yes, you may call it caching. General/NSSound class maintains a list of loaded sounds, I suppose, not to load one sound twice. Its public interface, however, lacks a means to unload its instances. Indeed, you should not send     release to General/NSSound objects because from my personal experience they are released and deallocated automatically in Panther. I just could not figure out when. --General/KonstantinAnoshkin.
+Yes, you may call it caching. NSSound class maintains a list of loaded sounds, I suppose, not to load one sound twice. Its public interface, however, lacks a means to unload its instances. Indeed, you should not send     release to NSSound objects because from my personal experience they are released and deallocated automatically in Panther. I just could not figure out when. --KonstantinAnoshkin.
 
 ----
 

@@ -1,14 +1,14 @@
 Hi,
 
-I have an app which uses an General/NSAlert as a sheet, which I understand is quite a standard Cocoa thing., here is the code...
+I have an app which uses an NSAlert as a sheet, which I understand is quite a standard Cocoa thing., here is the code...
 
     
-General/NSAlert *alert = General/[[[NSAlert alloc] init] autorelease];
+NSAlert *alert = [[[NSAlert alloc] init] autorelease];
 			[alert addButtonWithTitle:@"Switch"];
 			[alert addButtonWithTitle:@"Cancel"];
 			[alert setMessageText:@"Switch tasks?"];
 			[alert setInformativeText:@"You are currently working on another project, switching projects will end that work session, are you sure you want to switch?"];
-			[alert setAlertStyle:General/NSWarningAlertStyle];
+			[alert setAlertStyle:NSWarningAlertStyle];
 			
 			[alert beginSheetModalForWindow:window modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
 
@@ -16,10 +16,10 @@ General/NSAlert *alert = General/[[[NSAlert alloc] init] autorelease];
 This displays the alert just fine, no problems here at all, when the user dismisses the alert with their answer ('yes switch' or 'cancel') the following method is called (by the 'didEndSelector' seen above):
 
     
-- (void)alertDidEnd:(General/NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo 
+- (void)alertDidEnd:(NSAlert *)alert returnCode:(int)returnCode contextInfo:(void *)contextInfo 
 {
 	//an alert has ended...
-	if (returnCode == General/NSAlertFirstButtonReturn) 
+	if (returnCode == NSAlertFirstButtonReturn) 
 		{ 
 		[taskWindowController doSomething];
 		}

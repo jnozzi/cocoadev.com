@@ -10,7 +10,7 @@ Is this a bug in Cocoa, or something I do not understand about key view chains?
 
 That sounds truly weird ... Make sure your nib file designates one of the text fields as the initialFirstResponder (ctrl drag from the window to the first text field and select initialFirstResponder). Also make sure your fields' nextKeyView values are set correctly, just for completeness. If the bug persists, then it would help to see some code ... 
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
@@ -20,7 +20,7 @@ So to reproduce:
 
 
 * make a new Cocoa application in Interface Builder,
-* add two General/NSComboBox gadgets to the window (actually the second gadget doesn't need to be an General/NSComboBox, but it need to be able to be first responder),
+* add two NSComboBox gadgets to the window (actually the second gadget doesn't need to be an NSComboBox, but it need to be able to be first responder),
 * connect the 'New'-menu item to makeKeyAndOrderFront: of the window
 
 

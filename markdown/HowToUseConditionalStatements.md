@@ -50,4 +50,4 @@ switch()
 }
 
 
-Go back to General/HowToProgramInOSX
+Go back to HowToProgramInOSX

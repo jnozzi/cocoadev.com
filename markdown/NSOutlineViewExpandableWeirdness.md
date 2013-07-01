@@ -1,4 +1,4 @@
-I have an General/NSOutlineView with multiple "roots".  Assume I have each top-level item *unexpanded*.  Then, as soon as I click the arrow to expand a single item, the column width changes.  Then, if you unexpand it, it changes back.  It seems to be the first column that actually gets resized.  When one or more root item is expanded, then the first column width gets bigger.  Any ideas as to why this is occuring?  I am able to prevent this behavior if I make each column non-resizable in Interface Builder.
+I have an NSOutlineView with multiple "roots".  Assume I have each top-level item *unexpanded*.  Then, as soon as I click the arrow to expand a single item, the column width changes.  Then, if you unexpand it, it changes back.  It seems to be the first column that actually gets resized.  When one or more root item is expanded, then the first column width gets bigger.  Any ideas as to why this is occuring?  I am able to prevent this behavior if I make each column non-resizable in Interface Builder.
 
 ----
 

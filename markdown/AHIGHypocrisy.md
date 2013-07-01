@@ -1,14 +1,14 @@
-Do read the Apple Human Interface Guidelines found at http://developer.apple.com/documentation/General/UserExperience/Conceptual/General/OSXHIGuidelines/index.html
+Do read the Apple Human Interface Guidelines found at http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/index.html
 
 After doing so, you might be a little frustrated that Apple do on occasion fail to honor these guidelines. This is no excuse for you to do the same, but this page serves as an outlet to document Apple's apparent lack of respect toward their own guidelines.
 
 **Once a menu is opened, it remains open until another action forces it to close. Such actions include: [...] A click outside the menu* � with Panther, a right click outside the menu will actually fall thru to the application.
 
-**a standard document window has the following attributes [...] A proxy icon* � Apple generally forgets about this attribute (General/QuickTime, iTunes, ...).
+**a standard document window has the following attributes [...] A proxy icon* � Apple generally forgets about this attribute (QuickTime, iTunes, ...).
 
 ----
 
-*iTunes is not a document-based application, and neither is General/QuickTime Player if you have the 'open movies in same window' preference checked.*
+*iTunes is not a document-based application, and neither is QuickTime Player if you have the 'open movies in same window' preference checked.*
 
 **I agree that iTunes is not really document based, but it could gain from treating the currently selected file as its document, just like Xcode does.**
 
@@ -16,17 +16,17 @@ After doing so, you might be a little frustrated that Apple do on occasion fail 
 
 The currently playing or currently selected sound file would be equally appropriate. In other words, iTunes is not really a document-based application.
 
-**General/QuickTime OTOH really is document based (from the users point of view), even though you can set it to open new documents in the same window, this does not take away the ability to have many documents open, create new untitled documents (where the first one is sadly named "Untitled 1", which is also depicted in AHIG as wrong), manipulate and save individual documents or parts of same etc.**
+**QuickTime OTOH really is document based (from the users point of view), even though you can set it to open new documents in the same window, this does not take away the ability to have many documents open, create new untitled documents (where the first one is sadly named "Untitled 1", which is also depicted in AHIG as wrong), manipulate and save individual documents or parts of same etc.**
 
-Beginning with Mac OS X 10.4 Tiger, General/QuickTime player windows have a proxy icon. -- l0ne
-
-----
-
-**Don�t use the brushed metal look indiscriminately [...] For example [...] it does not work very well for the General/TextEdit document window* � how does General/TextEdit really differ from e.g. Safari? both are document based applications which mainly show one big textual document...
+Beginning with Mac OS X 10.4 Tiger, QuickTime player windows have a proxy icon. -- l0ne
 
 ----
 
-*You can edit and save General/TextEdit's documents, for one. And I wouldn't really consider Safari document-based - it's an information browser, like Finder in its metal-window mode. Although I agree, HIG is fairly messed up when it comes to metal windows.*
+**Don�t use the brushed metal look indiscriminately [...] For example [...] it does not work very well for the TextEdit document window* � how does TextEdit really differ from e.g. Safari? both are document based applications which mainly show one big textual document...
+
+----
+
+*You can edit and save TextEdit's documents, for one. And I wouldn't really consider Safari document-based - it's an information browser, like Finder in its metal-window mode. Although I agree, HIG is fairly messed up when it comes to metal windows.*
 
 **So if Safari could also edit the HTML (which wouldn't be far fetched), nothing visually would change, but then the metal look wouldn't work? and Safari really is document based, it just only has view capabilities, but double click 10 HTML documents, and they open in 10 new Safari windows, each with their own path, each allowing you to save it, each representing a document etc.**
 
@@ -49,20 +49,20 @@ The thing about that is that you have to use some common sense when interperting
 
 ----
 
-**Name a new document window �untitled�; leaving it lowercase* � unfortunately General/NSDocument returns a titlecase version (which is even depicted as **wrong** in the AHIG).
+**Name a new document window �untitled�; leaving it lowercase* � unfortunately NSDocument returns a titlecase version (which is even depicted as **wrong** in the AHIG).
 
-*see General/HowToLowerCaseNewDocUntitledTitle for a solution, if this keeps you awake at night*
+*see HowToLowerCaseNewDocUntitledTitle for a solution, if this keeps you awake at night*
 
 *[drag and drop] *When the destination can accept all of the dragged items, the destination should accept them in the order specified by the source. The source application should organize the dragged items in the order in which they were selected, except in two cases. If the dragged items come from ordered views (such as View by Date or an alphabetized list), that view�s ordering takes precedence over the selection order* � unfortunately the Finder places items on the dragging pasteboard in what seems to be an arbitrary order.
 
-*[Menus] *A bullet indicates that the document has unsaved changes* � unfortunately Cocoa doesn't allow for this, nor does General/NSDocumentController take care of it (as the AHIG says).
+*[Menus] *A bullet indicates that the document has unsaved changes* � unfortunately Cocoa doesn't allow for this, nor does NSDocumentController take care of it (as the AHIG says).
 
 
 ----
 
 *Make sure you bring these issues to Apple's attention via* http://bugreport.apple.com/
 
-Can anyone report any success with the bug reporter? I have around 20 bugs still as Open/Analyze, and they are serious stuff, such as GCC producing broken code, crashes in the Cocoa frameworks under certain conditions, which are not directly avoidable by the application programmer and so on. But sending an inquiry to General/DevBugs@Apple.Com just returns a "standard" reply about their engineering team being busy :-\ so such style guide violations which Apple is infamous of, probably have even lower priority.
+Can anyone report any success with the bug reporter? I have around 20 bugs still as Open/Analyze, and they are serious stuff, such as GCC producing broken code, crashes in the Cocoa frameworks under certain conditions, which are not directly avoidable by the application programmer and so on. But sending an inquiry to DevBugs@Apple.Com just returns a "standard" reply about their engineering team being busy :-\ so such style guide violations which Apple is infamous of, probably have even lower priority.
 
 (For the sake of comparison, check out the MSDN Product Feedback Center for Visual Studio 2005: http://lab.msdn.microsoft.com/productfeedback/)
 

@@ -2,9 +2,9 @@ Is there any way that I can check and see if a user has email accounts set up in
 
 ----
 
-This is a fragile way to go about doing it, but I imagine you could open com.apple.mail.plist and check in there. For syntax, just open up that file in the General/PropertyListEditor -- the accounts are listed by number, e.g., 0, 1, 2 and so on. I wouldn't do that, though. Probabably a more robust approach would be to see if there's an applescript way. 
+This is a fragile way to go about doing it, but I imagine you could open com.apple.mail.plist and check in there. For syntax, just open up that file in the PropertyListEditor -- the accounts are listed by number, e.g., 0, 1, 2 and so on. I wouldn't do that, though. Probabably a more robust approach would be to see if there's an applescript way. 
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
@@ -37,7 +37,7 @@ or even:
 
 
 Of course these assume that your user is using Apple's Mail App.
---General/DiggoryLaycock
+--DiggoryLaycock
 
 ----
 You could also add Message.framework to your project and use     + (BOOL)hasDeliveryClassBeenConfigured;
@@ -49,8 +49,8 @@ Is there a bug in the code or a bug in the comment? "Returns YES if delivery acc
 
 ----
 
-Well, I'm going to go out on a limb and assume that that's nothing but a bit of normal english language vagary. I think the *meaning* is that the message returns YES iff accounts have been configured. Otherwise, NO. --General/ShamylZakariya
+Well, I'm going to go out on a limb and assume that that's nothing but a bit of normal english language vagary. I think the *meaning* is that the message returns YES iff accounts have been configured. Otherwise, NO. --ShamylZakariya
 
 ----
 
-Depending on what needs to be done, Message.framework could be used to send the mail as well. General/EDFrameworks also have a mail delivery class.
+Depending on what needs to be done, Message.framework could be used to send the mail as well. EDFrameworks also have a mail delivery class.

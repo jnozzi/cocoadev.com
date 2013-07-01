@@ -13,7 +13,7 @@ Is there any way to just commit the changes to entity A to disk and leave the on
 
 Any help appreciated,
 
-General/BenBarnett
+BenBarnett
 
 ----
 
@@ -28,6 +28,6 @@ OK, thanks for helping there. I found someone else who was trying to achieve a s
 http://lists.apple.com/archives/cocoa-dev/2005/Apr/msg02231.html
 
 
-I've got it working with a single General/NSPersistentStoreCoordinator in the app delegate, then multiple General/NSManagedObjectContext objects (one per window).
+I've got it working with a single NSPersistentStoreCoordinator in the app delegate, then multiple NSManagedObjectContext objects (one per window).
 
-It's worth noting that this doesn't work properly with General/NSXMLStoreType. Committing changes from one an then another managed object context ends up with the first overwriting the second. It works OK with General/NSSQLiteStoreType though.
+It's worth noting that this doesn't work properly with NSXMLStoreType. Committing changes from one an then another managed object context ends up with the first overwriting the second. It works OK with NSSQLiteStoreType though.

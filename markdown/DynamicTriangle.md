@@ -1,21 +1,21 @@
-I am posting this program I wrote sometime back, which makes a triangle using General/OpenGl. There are three text boxes, where the user can enter the initial velocities for each of the three triangle nodes. Then I specify the number of time steps this triangle should redraw itself doing what I ask it to do in the program (which normally is to change its angle randomly and move eaach node). I am using a button to start this process after I specify the velocities and the timesteps. This button is a "toggle" type General/NSButton which has its alternate title set to Pause. however once I start the program and once the program start redrawing the triangle, I cannot stop it in between. I am looking for ways in which I might be able to discontinue this operation/program by pressing the button again when it displays the "pause" state
+I am posting this program I wrote sometime back, which makes a triangle using OpenGl. There are three text boxes, where the user can enter the initial velocities for each of the three triangle nodes. Then I specify the number of time steps this triangle should redraw itself doing what I ask it to do in the program (which normally is to change its angle randomly and move eaach node). I am using a button to start this process after I specify the velocities and the timesteps. This button is a "toggle" type NSButton which has its alternate title set to Pause. however once I start the program and once the program start redrawing the triangle, I cannot stop it in between. I am looking for ways in which I might be able to discontinue this operation/program by pressing the button again when it displays the "pause" state
 
     #import "Triangle.h"
 #include <stdlib.h>
 #include <time.h>
-#include <General/OpenGL/gl.h>
+#include <OpenGL/gl.h>
 
 
 @implementation Triangle
 
-- (id) initWithCoder: (General/NSCoder *) coder
+- (id) initWithCoder: (NSCoder *) coder
 {
-	 General/NSOpenGLPixelFormatAttribute attrs[] = 
+	 NSOpenGLPixelFormatAttribute attrs[] = 
     {
-        General/NSOpenGLPFADoubleBuffer, nil
+        NSOpenGLPFADoubleBuffer, nil
     };
 	
-    General/NSOpenGLPixelFormat* pixFmt ;
+    NSOpenGLPixelFormat* pixFmt ;
     long swapInterval ;
     
 	self = [super initWithCoder: coder] ;
@@ -40,10 +40,10 @@ I am posting this program I wrote sometime back, which makes a triangle using Ge
 
 
 	
-	pixFmt = General/[[NSOpenGLPixelFormat alloc] initWithAttributes: attrs] ;
+	pixFmt = [[NSOpenGLPixelFormat alloc] initWithAttributes: attrs] ;
     [self setPixelFormat: pixFmt] ;
     swapInterval = 1 ;
-    General/self openGLContext] setValues: &swapInterval forParameter: [[NSOpenGLCPSwapInterval ] ;
+    self openGLContext] setValues: &swapInterval forParameter: [[NSOpenGLCPSwapInterval ] ;
 	return self ;
 }
 
@@ -71,9 +71,9 @@ I am posting this program I wrote sometime back, which makes a triangle using Ge
 	}
 
 
--(General/NSPoint)boundaryCondition:(General/NSPoint)var
+-(NSPoint)boundaryCondition:(NSPoint)var
 {
-	General/NSPoint tempPoint;
+	NSPoint tempPoint;
 	tempPoint.x = var.x;
 	tempPoint.y = var.y;
 	
@@ -94,7 +94,7 @@ I am posting this program I wrote sometime back, which makes a triangle using Ge
 	return tempPoint;	
 }
 
-- (General/IBAction)move:(id)sender
+- (IBAction)move:(id)sender
 {
 vel1 = [velocity1 floatValue];
 vel2 = [velocity2 floatValue];
@@ -108,7 +108,7 @@ for (t=0; t<=steps; t++)
 	flipped = NO;
 	interval =0.005;
 
-	General/NSLog(@"Time Step %d", t);
+	NSLog(@"Time Step %d", t);
 	
 	angle1 += [self generateNumber]*0.01;
 	ver1.x = ver1.x + interval*vel1*cos(angle1);
@@ -131,7 +131,7 @@ for (t=0; t<=steps; t++)
 	}
 }
 
--(void)drawRect:(General/NSRect)rect
+-(void)drawRect:(NSRect)rect
 {
 	if (flipped == YES) {
 	r = [self generateNumber];

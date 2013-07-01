@@ -9,29 +9,29 @@ I've looked at the formula I'm using and I can't for the life of me see how it c
 If you want to see for yourself, create a window with a text box and a colorwell. Link the colorwell to an action named **doIt** and make the text box an outlet named **textBox**. The following code should then work:
 
     
-/* General/MyTest.h */
+/* MyTest.h */
 
 #import <Cocoa/Cocoa.h>
 
-@interface General/MyTest : General/NSObject
+@interface MyTest : NSObject
 {
-    General/IBOutlet General/NSTextField *textBox;
+    IBOutlet NSTextField *textBox;
 }
-- (General/IBAction)doIt:(id)sender;
+- (IBAction)doIt:(id)sender;
 @end
 
 
     
-/* General/MyTest.m */
-#import "General/MyTest.h"
+/* MyTest.m */
+#import "MyTest.h"
 
-@implementation General/MyTest
+@implementation MyTest
 
-General/NSColor *c;
+NSColor *c;
 
-- (General/IBAction)doIt:(id)sender; {
+- (IBAction)doIt:(id)sender; {
 	
-	c = General/sender color] colorUsingColorSpaceName:[[NSCalibratedRGBColorSpace];
+	c = sender color] colorUsingColorSpaceName:[[NSCalibratedRGBColorSpace];
 	
 	float r = [c redComponent];
 	float g = [c greenComponent];
@@ -46,7 +46,7 @@ General/NSColor *c;
 	br = -0.06389454610059392f; 
 	bg =  0.28864006960254680f;
 
-General/NSLog(@"(r-g)*rg=%f, (r-b)*rb=%f, (g-r)*gr=%f (g-b)*gb=%f, (b-r)*br=%f, (b-g)*bg=%f",
+NSLog(@"(r-g)*rg=%f, (r-b)*rb=%f, (g-r)*gr=%f (g-b)*gb=%f, (b-r)*br=%f, (b-g)*bg=%f",
         (r-g)*rg,    (r-b)*rb,    (g-r)*gr,   (g-b)*gb,    (b-r)*br,    (b-g)*bg);	
 
   cl = ((r-g)*rg + (r-b)*rb) + ((g-r)*gr + (g-b)*gb) + ((b-r)*br + (b-g)*bg);
@@ -62,14 +62,14 @@ When you've got it running, click on the colorwell and use the color panel to ch
 Here's an example of the log output (with the line wrapped). If you add all of the numbers up, you get 0.
 
     
-2004-10-05 23:39:00.611 General/MyTest[1452] (r-g)*rg=0.018392, (r-b)*rb=-0.016721, 
+2004-10-05 23:39:00.611 MyTest[1452] (r-g)*rg=0.018392, (r-b)*rb=-0.016721, 
                                      (g-r)*gr=-0.002513 (g-b)*gb=0.001463, 
                                      (b-r)*br=-0.002072, (b-g)*bg=0.001451
 
 
 Anybody have any ideas? Have I done something dumb and just can't see it?
 
---General/PaulPomeroy
+--PaulPomeroy
 
 ----
 
@@ -81,7 +81,7 @@ cl = (rb + rg - br - gr)*r + (br + bg - rb - gb)*b + (gr + gb - rg - bg)*g
 
 The parameters seem to have been chosen such that each of the parenthesized expressions is zero, so the values of     r,     b and     g don't matter.
 
-�General/KenFerry
+�KenFerry
 
 ----
 
@@ -93,4 +93,4 @@ It was a big mystery until someone happened to notice that in the first set of p
 
 There's probably some moral to that story ... 
 
---General/PaulPomeroy
+--PaulPomeroy

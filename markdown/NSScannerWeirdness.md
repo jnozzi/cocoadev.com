@@ -2,29 +2,29 @@
 
 if I have an
 
-General/NSString * myString = @"blah : blah"
+NSString * myString = @"blah : blah"
 
 why does
 
-General/[[NSScanner scannerWithString:myString] scanUpToString:@":" intoString:&myResult];
+[[NSScanner scannerWithString:myString] scanUpToString:@":" intoString:&myResult];
 
 not give me "blah" for myResult?
 
-I have scoured documentation for General/NSScanner and can't get it to recognize symbol characters such as : and ' 
+I have scoured documentation for NSScanner and can't get it to recognize symbol characters such as : and ' 
 What am I missing?
 
 ----
 
-Your code should work. "myResult" is an General/NSString pointer right?
+Your code should work. "myResult" is an NSString pointer right?
 
 source:
 
     
 
-    General/NSString *myResult = nil;
-    General/NSString *myString = @"blah : blah";
-    General/[[NSScanner scannerWithString:myString] scanUpToString:@":" intoString:&myResult];
-    General/NSLog(@"myResult: <%@> myString: <%@>", myResult, myString);
+    NSString *myResult = nil;
+    NSString *myString = @"blah : blah";
+    [[NSScanner scannerWithString:myString] scanUpToString:@":" intoString:&myResult];
+    NSLog(@"myResult: <%@> myString: <%@>", myResult, myString);
 
 
 

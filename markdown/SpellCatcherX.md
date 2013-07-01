@@ -6,5 +6,5 @@ Now sold & supported by its developers, Rainmaker Research Inc.
 
 http://www.rainmakerinc.com
 
-Spell Catcher X 10.3's new General/DirectCorrect? feature has tools to help developers with their text-related accessibility and General/NSTextInput? / TSM General/CarbonEvent? implementations.
+Spell Catcher X 10.3's new DirectCorrect? feature has tools to help developers with their text-related accessibility and NSTextInput? / TSM CarbonEvent? implementations.
 See more about these tools at http://www.rainmakerinc.com/developer/

@@ -8,7 +8,7 @@ A small (partial) implementation of what follows, under a BSD license, is availa
 
 Installing apps on Mac OS X, be they Cocoa or not, is usually dead-brain-monkey easy (well, OK, there's the initial shock of the new volume popping up on a total newbie's desktop, but that's it).
 
-Uninstalling, not so much. It leaves files behind. So much, in fact, that uninstaller applications exist on Mac OS X (like General/AppZapper).
+Uninstalling, not so much. It leaves files behind. So much, in fact, that uninstaller applications exist on Mac OS X (like AppZapper).
 
 The following is a proposal to end or at least mitigate the madness. Do with it what you will, discuss it or implement it (or ignore it outright, but I think that'd be more harmful than anything else).
 
@@ -16,7 +16,7 @@ In the following:
 
 
 * With *bundle* I mean a bundle as defined by Mac OS X terminology (ie a folder that is treated as a single filesystem object in the Finder) that the user wants to remove. In the following, "bundle" will usually be an application or Installer package, but need not be (ie for preference panes or widgets). Also, I will assume that the bundle implements the provisions below, unless specified otherwise.
-* With *uninstaller* I mean a part of a software program whose purpose is removing an application, as instructed by an user (for example, the aforementioned General/AppZapper, or, one hopes for the future, the Finder move-to-trash code itself).
+* With *uninstaller* I mean a part of a software program whose purpose is removing an application, as instructed by an user (for example, the aforementioned AppZapper, or, one hopes for the future, the Finder move-to-trash code itself).
 
 
 The specification is broken in two parts: one regarding bundles of all kinds, and one regarding Installer packages (which are treated separately). The second part is harder to implement, and the first one (or at least part of it) is the most "urgent" part to implement. It requires no code on the part of the provider of the bundle (ie you, the software developer), but it requires creating or modifying an uninstaller in order to understand it.
@@ -25,9 +25,9 @@ The specification is broken in two parts: one regarding bundles of all kinds, an
 
 *Part one: bundles that are not Installer packages.*
 
-To specify which objects may be created by the bundle without the user's knowledge, that an uninstaller might want to remove, the bundle *lays claim* to those objects by specifying them in its General/InfoPlist file inside an additional key of the info dictionary. When an uninstaller is pointed to a bundle, it looks within the info dictionary to see whether it is compliant (ie has the additional key in its General/InfoPlist). If it is, it then proposes to remove the bundle and **only** any claimed objects (in the form of the files where those objects are stored, if they aren't filesystem objects). If it isn't, it may proceed with empirical methods as it is common for today's uninstallers.
+To specify which objects may be created by the bundle without the user's knowledge, that an uninstaller might want to remove, the bundle *lays claim* to those objects by specifying them in its InfoPlist file inside an additional key of the info dictionary. When an uninstaller is pointed to a bundle, it looks within the info dictionary to see whether it is compliant (ie has the additional key in its InfoPlist). If it is, it then proposes to remove the bundle and **only** any claimed objects (in the form of the files where those objects are stored, if they aren't filesystem objects). If it isn't, it may proceed with empirical methods as it is common for today's uninstallers.
 
-To comply with this proposal, a bundle adds a key named **L0ClaimInformation** to its General/InfoPlist (using my own 'ell-zero' prefix from General/ChooseYourOwnPrefix). The value must be a dictionary whose keys are the following:
+To comply with this proposal, a bundle adds a key named **L0ClaimInformation** to its InfoPlist (using my own 'ell-zero' prefix from ChooseYourOwnPrefix). The value must be a dictionary whose keys are the following:
 
 
 * **L0Claims**: an array that includes one or more claims, dictionaries whose format is specified below.
@@ -40,11 +40,11 @@ The claims array contains dictionaries with a *L0ClaimType* key whose value is a
 **path**: A path claim indicates that the application has a path that the user is unaware of that should be removed along with it. It uses the following keys:
 
 * **L0Domain**: an array of any number of the strings: "system", "local", "network" or "user". Specifies the domain(s) the path may be located in. "system" is used for the System domain (/System), "local" for the local domain (/), "network" for the network domain (/Network) and "user" for all user domains (not just the current user's). Required if a L0SpecialFolder is not indicated.
-* **L0SpecialFolder**: a string, indicating a special folder. It must be a General/FourCC specified in the Apple docs and usable for General/FSFindFolder ( http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html#//apple_ref/c/tdef/General/FolderType ). For example, specify "sdat" for the /Users/Shared folder. L0Domain may be specified along with this key if a specific search domain is required.
+* **L0SpecialFolder**: a string, indicating a special folder. It must be a FourCC specified in the Apple docs and usable for FSFindFolder ( http://developer.apple.com/documentation/Carbon/Reference/Folder_Manager/Reference/reference.html#//apple_ref/c/tdef/FolderType ). For example, specify "sdat" for the /Users/Shared folder. L0Domain may be specified along with this key if a specific search domain is required.
 * **L0Path**: finally, a string, a POSIX path (relative to the domains specified above) that indicates what file, folder or other filesystem object you claim. If it's found in more than one of the domains specified in L0Domain, all the found objects are claimed.
 
 
-An example follows (in General/OpenStep plist format):
+An example follows (in OpenStep plist format):
 
     
 
@@ -77,18 +77,18 @@ An example follows:
 L0Claims = (
 	{
 		L0ClaimType = "bundle";
-		L0Identifier = "com.mysite.General/MyGreatApp.General/SupportAgent";
+		L0Identifier = "com.mysite.MyGreatApp.SupportAgent";
 	},
 	{
 		L0ClaimType = "bundle";
-		L0Identifier = "com.mysite.General/MyGreatApp.General/PreferencePane";
+		L0Identifier = "com.mysite.MyGreatApp.PreferencePane";
 		L0BundleUTI = "com.apple.systempreference.prefpane";
 	}
 );
 
 
 
-**preferences**: A preferences claim indicates that this software uses a preferences (General/NSUserDefaults) domain that should be removed along with it. It uses the following key:
+**preferences**: A preferences claim indicates that this software uses a preferences (NSUserDefaults) domain that should be removed along with it. It uses the following key:
 
 * **L0Identifier**: A string, the identifier used for the preferences (defaults) domain.
 
@@ -97,7 +97,7 @@ An example follows:
 
     
 
-L0Claims = ({ L0ClaimType="preferences"; L0Identifier="com.mysite.General/MyGreatApp.Registration"; });
+L0Claims = ({ L0ClaimType="preferences"; L0Identifier="com.mysite.MyGreatApp.Registration"; });
 
 
 
@@ -125,7 +125,7 @@ L0ClaimsInformation = { L0DoNotIncludeDefaultClaims = NO; };
 L0ClaimInfo = {
 	L0ShouldRemoveInstead = {
 		L0ClaimType = "bundle";
-		L0Identifier = "com.mysite.General/MyGreatApp.General/InstallerPackage";
+		L0Identifier = "com.mysite.MyGreatApp.InstallerPackage";
 		L0BundleUTI = "com.apple.installer-package";
 	};
 };
@@ -140,7 +140,7 @@ You can use path or bundle claims; if you use a path claim to specify a bundle, 
 
 An Installer package (of which we assume we're using the receipt copy left by Installer in {~,}/Library/Receipts) may have any number of claims in its Info.plist file, as described above, for files it did not install; it also claims all files in its bill of materials (installed by Installer).
 
-In addition, an Installer package may have two scripts named "preremove" and "postremove" in its Resources folder. The uninstaller should execute them respectively before and after removal with the authorization used for the original installation (specified in the General/InfoPlist file for the package) with the arguments and environment variables specified for install scripts in "http://developer.apple.com/documentation/General/DeveloperTools/Conceptual/General/SoftwareDistribution/index.html", except $2 and $3 are equal to the empty string "". The uninstaller is responsible for creating the directories for those variables, if not yet existing. (For removal scripts only, $RECEIPT_PATH might not be a subdirectory of $INSTALLER_TEMP).
+In addition, an Installer package may have two scripts named "preremove" and "postremove" in its Resources folder. The uninstaller should execute them respectively before and after removal with the authorization used for the original installation (specified in the InfoPlist file for the package) with the arguments and environment variables specified for install scripts in "http://developer.apple.com/documentation/DeveloperTools/Conceptual/SoftwareDistribution/index.html", except $2 and $3 are equal to the empty string "". The uninstaller is responsible for creating the directories for those variables, if not yet existing. (For removal scripts only, $RECEIPT_PATH might not be a subdirectory of $INSTALLER_TEMP).
 
 ----
 
@@ -196,7 +196,7 @@ For a slightly more complex example, the following would have been used in Afloa
 </dict>
 
 
- -- General/EmanueleVulcano aka millenomi
+ -- EmanueleVulcano aka millenomi
 
 ----
 
@@ -210,4 +210,4 @@ Of course, if the app claims it had installed any setuid-root files or whatever,
 
 One thing I haven't seen mentioned here at all: What happens when an application is deleted that several users on the computer worked with? Will it authenticate for each user and delete the files there, too?
 
--- General/UliKusterer
+-- UliKusterer

@@ -1,54 +1,54 @@
-I had a problem where I was using performSelectorOnMainThread:... to update UI but was getting exceptions when an update occurred whilst the mouse was down for a user. Using the modes parameter of performSelectorOnMainThread:... doesn't work since even though General/NSTextView's mouseDown function runs the event loop in General/NSEventTrackingRunLoopMode, the queuePeriodicEvent framework function gets called which runs the loop in General/NSDefaultRunLoopMode.
+I had a problem where I was using performSelectorOnMainThread:... to update UI but was getting exceptions when an update occurred whilst the mouse was down for a user. Using the modes parameter of performSelectorOnMainThread:... doesn't work since even though NSTextView's mouseDown function runs the event loop in NSEventTrackingRunLoopMode, the queuePeriodicEvent framework function gets called which runs the loop in NSDefaultRunLoopMode.
 
-To workaround the problem, I've used the following code, i.e. basically sub-classed General/NSApplication and overridden sendEvent.
+To workaround the problem, I've used the following code, i.e. basically sub-classed NSApplication and overridden sendEvent.
 
     
-@interface General/NSObject (General/CSSafePerform)
+@interface NSObject (CSSafePerform)
 - (void)safelyPerformSelectorOnMainThread:(SEL)selector
 			       withObject:(id)arg;
 @end
 
-@interface General/NSApplication (General/CSSafePerform)
+@interface NSApplication (CSSafePerform)
 - (void)safelyPerformSelectorOnMainThread:(SEL)selector 
 				   target:(id)self
 			       withObject:(id)arg;
 @end
 
-@interface General/CSApplication : General/NSApplication {
+@interface CSApplication : NSApplication {
   BOOL processingEvent;
-  General/NSMutableArray *performQueue;
+  NSMutableArray *performQueue;
 }
 @end
 
-@implementation General/NSObject (General/CSSafePerform)
+@implementation NSObject (CSSafePerform)
 - (void)safelyPerformSelectorOnMainThread:(SEL)selector
 			       withObject:(id)arg
 {
-  General/NSAssert (General/[NSApp isKindOfClass:General/[CSApplication class]],
+  NSAssert ([NSApp isKindOfClass:[CSApplication class]],
 	    @"safelyPerformSelectorOnMainThread not supported");
   
-  General/[NSApp safelyPerformSelectorOnMainThread:selector 
+  [NSApp safelyPerformSelectorOnMainThread:selector 
  				    target:self
 				withObject:arg];
 }
 @end
 
-@implementation General/CSApplication
+@implementation CSApplication
 
 typedef struct {
   SEL selector;
   id  target;
   id  arg;
-} General/PerformInfo;
+} PerformInfo;
 
-- (void)performOnMainThread:(General/NSValue *)info
+- (void)performOnMainThread:(NSValue *)info
 {
   if (processingEvent) {
     if (!performQueue)
-      performQueue = General/[[NSMutableArray alloc] init];
+      performQueue = [[NSMutableArray alloc] init];
     [performQueue addObject:info];
   } else {
-    General/PerformInfo pi;
+    PerformInfo pi;
     
     [info getValue:&pi];
     
@@ -63,19 +63,19 @@ typedef struct {
 				   target:(id)target
 			       withObject:(id)arg
 {
-  General/PerformInfo pi = (General/PerformInfo) { selector, 
+  PerformInfo pi = (PerformInfo) { selector, 
 				   [target retain], 
 				   [arg retain] };
   
-  General/NSValue *v = General/[NSValue valueWithBytes:&pi 
-			      objCType:@encode (General/PerformInfo)];
+  NSValue *v = [NSValue valueWithBytes:&pi 
+			      objCType:@encode (PerformInfo)];
   
   [self performSelectorOnMainThread:@selector (performOnMainThread:)
 			 withObject:v
 		      waitUntilDone:NO];
 }
 
-- (void)sendEvent:(General/NSEvent *)anEvent
+- (void)sendEvent:(NSEvent *)anEvent
 {
   BOOL oldProcessingEvent = processingEvent;
   
@@ -86,8 +86,8 @@ typedef struct {
     if (!oldProcessingEvent) {
       processingEvent = NO;
       if (performQueue) {
-	General/NSEnumerator *e = [performQueue objectEnumerator];
-	General/NSValue *v;
+	NSEnumerator *e = [performQueue objectEnumerator];
+	NSValue *v;
 	
 	[performQueue release];
 	performQueue = nil;

@@ -4,12 +4,12 @@ Sure looks bare up here with no comments.
 
 OK, here's one:
 
-**19 March 2009** - Added     moveObject: toIndex: (Just to keep things alive!) -- *this had a bug in it, now fixed --General/JediKnil*
+**19 March 2009** - Added     moveObject: toIndex: (Just to keep things alive!) -- *this had a bug in it, now fixed --JediKnil*
 
 **4 June 2010** -     moveObject: toIndex: (Fixed yet again!)
 
 ----
-Source for General/NSMutableArray +General/CocoaDevUsersAdditions.h :
+Source for NSMutableArray +CocoaDevUsersAdditions.h :
     
  #import <Foundation/Foundation.h>
  
@@ -31,7 +31,7 @@ Source for General/NSMutableArray +General/CocoaDevUsersAdditions.h :
  @end
 
 ----
-Source for General/NSMutableArray+General/CocoaDevUsersAdditions.m :
+Source for NSMutableArray+CocoaDevUsersAdditions.m :
     
  #import "NSMutableArray+CocoaDevUsersAdditions.h"
  
@@ -48,7 +48,7 @@ Source for General/NSMutableArray+General/CocoaDevUsersAdditions.m :
    {
      return nil;
    }
-   res = General/[self lastObject] retain] autorelease];
+   res = [self lastObject] retain] autorelease];
    [self removeLastObject];
    return res;
  }
@@ -105,12 +105,12 @@ Source for General/NSMutableArray+General/CocoaDevUsersAdditions.m :
  
  + (NSMutableArray *)arrayWithData:(NSData *)data
  {
-   NSString *sData = General/[NSString allocWithZone:[self zone initWithData:data encoding:NSUTF8StringEncoding] autorelease] ;
+   NSString *sData = [NSString allocWithZone:[self zone initWithData:data encoding:NSUTF8StringEncoding] autorelease] ;
    if (sData != nil)
    {
      NSArray *thePropertyList = [sData propertyList];
      if (thePropertyList != nil)
-       return General/thePropertyList mutableCopy] autorelease];
+       return thePropertyList mutableCopy] autorelease];
    }
    return nil;
  }

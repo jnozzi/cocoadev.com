@@ -10,7 +10,7 @@ How do you get the location that your application is running from?
 
 ----
 
-General/[[NSBundle mainBundle] bundlePath]
+[[NSBundle mainBundle] bundlePath]
 
 Read: 
 
@@ -18,13 +18,13 @@ http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSBu
 
 ----
 
-If your app isn't bundled for some reason (CLI app, say) then I think you can use General/NSProcessInfo to get the app's location.
+If your app isn't bundled for some reason (CLI app, say) then I think you can use NSProcessInfo to get the app's location.
 
 ----
 I don't see any way to do that. If you're referring to the     -arguments method, be aware that     argv[0] is *not* a reliable way to find out where your binary is located.
 
-However, General/NSBundle will still work to find the executable even in an unbundled application, strange as that may be.
+However, NSBundle will still work to find the executable even in an unbundled application, strange as that may be.
 
 ----
 
-In an unbundled application, General/NSBundle assumes the parent directory of the executable to be the bundle.
+In an unbundled application, NSBundle assumes the parent directory of the executable to be the bundle.

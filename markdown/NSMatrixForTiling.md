@@ -1,48 +1,48 @@
 
 
-**General/TileView.h**
+**TileView.h**
     
 #import <Cocoa/Cocoa.h>
 
-@interface General/TileView : General/NSMatrix {
-	General/NSSize minSize;
-	General/NSImage *image;
+@interface TileView : NSMatrix {
+	NSSize minSize;
+	NSImage *image;
 }
-- (void)setMinSize:(General/NSSize)size;
+- (void)setMinSize:(NSSize)size;
 @end
 
-@interface Tile : General/NSActionCell 
+@interface Tile : NSActionCell 
 @end
 
 
-**General/TileView.m**
+**TileView.m**
     
-#import "General/TileView.h"
+#import "TileView.h"
 
-static unsigned General/TileCount(float dim, float min, float gap, float *cellDim) {
+static unsigned TileCount(float dim, float min, float gap, float *cellDim) {
 	unsigned cnt = (unsigned)(dim / (min + gap));
 	if (!cnt) cnt++;
 	*cellDim = (dim / (float)cnt) - gap;
 	return cnt;
 }
 
-@implementation General/TileView // General/NSMatrix
+@implementation TileView // NSMatrix
 
 - (void)retile {
-	General/NSSize sz = [self frame].size;
-	General/NSSize newCellSize, spacing = [self intercellSpacing];
-	[self renewRows:General/TileCount(sz.height, minSize.height, spacing.height, &newCellSize.height)
-			columns:General/TileCount(sz.width, minSize.width, spacing.width, &newCellSize.width)];
+	NSSize sz = [self frame].size;
+	NSSize newCellSize, spacing = [self intercellSpacing];
+	[self renewRows:TileCount(sz.height, minSize.height, spacing.height, &newCellSize.height)
+			columns:TileCount(sz.width, minSize.width, spacing.width, &newCellSize.width)];
 	[self setCellSize:newCellSize];
-	if (image) General/self cells] makeObjectsPerformSelector:@selector(setImage:) withObject:image];
+	if (image) self cells] makeObjectsPerformSelector:@selector(setImage:) withObject:image];
 	[self setNeedsDisplay:YES];
 }
 - (void)setFrame:([[NSRect)frame {
 	[super setFrame:frame];
 	[self retile];
 }
-- (void)setMinSize:(General/NSSize)size {minSize = size;}
-- (void)setImage:(General/NSImage *)img {
+- (void)setMinSize:(NSSize)size {minSize = size;}
+- (void)setImage:(NSImage *)img {
 	[img retain];
 	[image release];
 	[(image = img) setFlipped:YES];
@@ -55,45 +55,45 @@ static unsigned General/TileCount(float dim, float min, float gap, float *cellDi
 
 - (void)awakeFromNib {
 	[self setCellClass:[Tile class]];
-	[self setMinSize:General/NSMakeSize(128.0f, 128.0f)];
-	[self setBackgroundColor:General/[NSColor blackColor]];
+	[self setMinSize:NSMakeSize(128.0f, 128.0f)];
+	[self setBackgroundColor:[NSColor blackColor]];
 	[self setDrawsBackground:YES];
-	[self setIntercellSpacing:General/NSMakeSize(32.0f, 32.0f)];
-	[self setImage:General/[[[NSImage alloc] initWithContentsOfFile:@"/tmp/test.jpg"] autorelease]];	
+	[self setIntercellSpacing:NSMakeSize(32.0f, 32.0f)];
+	[self setImage:[[[NSImage alloc] initWithContentsOfFile:@"/tmp/test.jpg"] autorelease]];	
 	[self retile];	
 
 }
 
-- (void)drawRect:(General/NSRect)rect {
+- (void)drawRect:(NSRect)rect {
 
 	// asking super to drawRect here will tile the background with the image
 	[super drawRect:rect];	
 	
 	// your custom drawing code here	
-	General/[[NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.5f] set];
-	General/NSRect greenRect = General/NSInsetRect(rect, General/NSWidth(rect) / 4.0f, General/NSHeight(rect) / 4.0f);
-	General/NSRectFillListUsingOperation(&greenRect, 1, General/NSCompositeSourceOver);
+	[[NSColor colorWithCalibratedRed:0.0f green:1.0f blue:0.0f alpha:0.5f] set];
+	NSRect greenRect = NSInsetRect(rect, NSWidth(rect) / 4.0f, NSHeight(rect) / 4.0f);
+	NSRectFillListUsingOperation(&greenRect, 1, NSCompositeSourceOver);
 }
 
-- (General/NSRect)boundsForFrame:(General/NSRect)fr size:(General/NSSize)size {
-	General/NSSize spacing = [self intercellSpacing];
+- (NSRect)boundsForFrame:(NSRect)fr size:(NSSize)size {
+	NSSize spacing = [self intercellSpacing];
 	float srcRatio = size.width / size.height;
-	General/NSRect bounds = (srcRatio > General/NSWidth(fr) / General/NSHeight(fr)) 
-						? General/NSInsetRect(fr, 0.0f, (General/NSHeight(fr) - General/NSWidth(fr) / srcRatio) / 2.0f)
-						: General/NSInsetRect(fr, (General/NSWidth(fr) - General/NSHeight(fr) * srcRatio) / 2.0f, 0.0f);
-	return General/NSOffsetRect(bounds, spacing.width / 2.0f, spacing.height / 2.0f);
+	NSRect bounds = (srcRatio > NSWidth(fr) / NSHeight(fr)) 
+						? NSInsetRect(fr, 0.0f, (NSHeight(fr) - NSWidth(fr) / srcRatio) / 2.0f)
+						: NSInsetRect(fr, (NSWidth(fr) - NSHeight(fr) * srcRatio) / 2.0f, 0.0f);
+	return NSOffsetRect(bounds, spacing.width / 2.0f, spacing.height / 2.0f);
 }
 
 @end
 
 @implementation Tile
-- (void)drawWithFrame:(General/NSRect)frame inView:(General/NSView *)view {
-	General/NSImage *img = [self image];
-	General/NSRect srcRect = General/NSZeroRect;
+- (void)drawWithFrame:(NSRect)frame inView:(NSView *)view {
+	NSImage *img = [self image];
+	NSRect srcRect = NSZeroRect;
 	srcRect.size = [img size];
-	General/self image] drawInRect:[([[TileView *)view boundsForFrame:frame size:srcRect.size]
+	self image] drawInRect:[([[TileView *)view boundsForFrame:frame size:srcRect.size]
 					fromRect:srcRect
-					operation:General/NSCompositeSourceOver 
+					operation:NSCompositeSourceOver 
 					fraction:1.0f];	
 }
   
@@ -104,8 +104,8 @@ static unsigned General/TileCount(float dim, float min, float gap, float *cellDi
 
 ----
 
-I haven't tried it, but wouldn't this be a lot easier by using     + (General/NSColor *)colorWithPatternImage:(General/NSImage*)image;
- and then just filling the whole view, forgetting about General/NSMatrix?
+I haven't tried it, but wouldn't this be a lot easier by using     + (NSColor *)colorWithPatternImage:(NSImage*)image;
+ and then just filling the whole view, forgetting about NSMatrix?
 
 ----
 
@@ -115,4 +115,4 @@ Hey that's pretty cool. Never noticed that method before. You can draw different
 
 Interesting point about starting in the corner of the window, I guess it wouldn't work too well for this view, then.
 
-You can constrain any arbitrary drawing to fill a shape by doing [shape addClip] before drawing, assuming shape is an General/NSBezierPath. This will clip all future drawing to be inside the given path, which comes in handy sometimes.
+You can constrain any arbitrary drawing to fill a shape by doing [shape addClip] before drawing, assuming shape is an NSBezierPath. This will clip all future drawing to be inside the given path, which comes in handy sometimes.

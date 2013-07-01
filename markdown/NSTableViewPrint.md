@@ -3,8 +3,8 @@ I'm working on an document based applicaton that requires the tableView to be pr
 
 -(void)printShowingPrintPanel:(BOOL)flag
 {
-	General/NSPrintInfo *printInfo = [self printInfo];
-	General/NSPrintOperation *printOp;
+	NSPrintInfo *printInfo = [self printInfo];
+	NSPrintOperation *printOp;
 	
 	[printInfo setTopMargin:36.0];
 	[printInfo setLeftMargin:36.0];
@@ -12,9 +12,9 @@ I'm working on an document based applicaton that requires the tableView to be pr
 	[printInfo setBottomMargin:36.0];
 	[printInfo setHorizontallyCentered:NO];
 	[printInfo setVerticallyCentered:NO];
-	[printInfo setOrientation:General/NSLandscapeOrientation];
+	[printInfo setOrientation:NSLandscapeOrientation];
 		
-	printOp = General/[NSPrintOperation printOperationWithView:tableViewPrint printInfo:printInfo];
+	printOp = [NSPrintOperation printOperationWithView:tableViewPrint printInfo:printInfo];
 	[printOp runOperation];
 
 }

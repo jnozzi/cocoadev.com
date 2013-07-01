@@ -4,7 +4,7 @@ This sample code shows how to upload a file from a Cocoa application using HTTP 
 * Enable PHP on your server.
 * Write a small PHP program to receive your files.
 
-Each step will be described in detail below.  --General/SaileshAgrawal
+Each step will be described in detail below.  --SaileshAgrawal
 
 ----
 
@@ -13,10 +13,10 @@ Each step will be described in detail below.  --General/SaileshAgrawal
 Add the code below to your application. The uploader class compresses the file before uploading it so you will have to add libz.dylib to your project.  You can find libz.dylib in /usr/lib.
 
     
-@interface Uploader : General/NSObject
+@interface Uploader : NSObject
 {
    NSURL *serverURL;
-   General/NSString *filePath;
+   NSString *filePath;
    id delegate;
    SEL doneSelector;
    SEL errorSelector;
@@ -25,12 +25,12 @@ Add the code below to your application. The uploader class compresses the file b
 }
 
 - (id)initWithURL: (NSURL *)serverURL
-         filePath: (General/NSString *)filePath
+         filePath: (NSString *)filePath
          delegate: (id)delegate
      doneSelector: (SEL)doneSelector
     errorSelector: (SEL)errorSelector;
 
-- (General/NSString *)filePath;
+- (NSString *)filePath;
 
 @end
  
@@ -39,21 +39,21 @@ Add the code below to your application. The uploader class compresses the file b
 #import "Uploader.h"
 #import "zlib.h"
 
-static General/NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
-static General/NSString * const FORM_FLE_INPUT = @"uploaded";
+static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
+static NSString * const FORM_FLE_INPUT = @"uploaded";
 
-#define ASSERT(x) General/NSAsert(x, @"")
+#define ASSERT(x) NSAsert(x, @"")
 #define Log(x,y)
 
 @interface Uploader (Private)
 
 - (void)upload;
-- (General/NSURLRequest *)postRequestWithURL: (NSURL *)url
-                             boundry: (General/NSString *)boundry
-                                data: (General/NSData *)data;
-- (General/NSData *)compress: (General/NSData *)data;
+- (NSURLRequest *)postRequestWithURL: (NSURL *)url
+                             boundry: (NSString *)boundry
+                                data: (NSData *)data;
+- (NSData *)compress: (NSData *)data;
 - (void)uploadSucceeded: (BOOL)success;
-- (void)connectionDidFinishLoading:(General/NSURLConnection *)connection;
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
 
 @end
 
@@ -79,7 +79,7 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
  */
 
 - (id)initWithURL: (NSURL *)aServerURL   // IN
-         filePath: (General/NSString *)aFilePath // IN
+         filePath: (NSString *)aFilePath // IN
          delegate: (id)aDelegate         // IN
      doneSelector: (SEL)aDoneSelector    // IN
     errorSelector: (SEL)anErrorSelector  // IN
@@ -150,7 +150,7 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
  *-----------------------------------------------------------------------------
  */
 
-- (General/NSString *)filePath
+- (NSString *)filePath
 {
    return filePath;
 }
@@ -181,7 +181,7 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
 
 - (void)upload
 {
-   General/NSData *data = General/[NSData dataWithContentsOfFile:filePath];
+   NSData *data = [NSData dataWithContentsOfFile:filePath];
    ASSERT(data);
    if (!data) {
       [self uploadSucceeded:NO];
@@ -193,14 +193,14 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
       return;
    }
 
-   General/NSData *compressedData = [self compress:data];
+   NSData *compressedData = [self compress:data];
    ASSERT(compressedData && [compressedData length] != 0);
    if (!compressedData || [compressedData length] == 0) {
       [self uploadSucceeded:NO];
       return;
    }
 
-   General/NSURLRequest *urlRequest = [self postRequestWithURL:serverURL
+   NSURLRequest *urlRequest = [self postRequestWithURL:serverURL
                                                boundry:BOUNDRY
                                                   data:compressedData];
    if (!urlRequest) {
@@ -208,8 +208,8 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
       return;
    }
 
-   General/NSURLConnection * connection =
-      General/[[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+   NSURLConnection * connection =
+      [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
    if (!connection) {
       [self uploadSucceeded:NO];
    }
@@ -234,29 +234,29 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
  *-----------------------------------------------------------------------------
  */
 
-- (General/NSURLRequest *)postRequestWithURL: (NSURL *)url        // IN
-                             boundry: (General/NSString *)boundry // IN
-                                data: (General/NSData *)data      // IN
+- (NSURLRequest *)postRequestWithURL: (NSURL *)url        // IN
+                             boundry: (NSString *)boundry // IN
+                                data: (NSData *)data      // IN
 {
-   // from http://www.cocoadev.com/index.pl?General/HTTPFileUpload
-   General/NSMutableURLRequest *urlRequest =
-      General/[NSMutableURLRequest requestWithURL:url];
+   // from http://www.cocoadev.com/index.pl?HTTPFileUpload
+   NSMutableURLRequest *urlRequest =
+      [NSMutableURLRequest requestWithURL:url];
    [urlRequest setHTTPMethod:@"POST"];
    [urlRequest setValue:
-      General/[NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundry]
+      [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundry]
       forHTTPHeaderField:@"Content-Type"];
 
-   General/NSMutableData *postData =
-      General/[NSMutableData dataWithCapacity:[data length] + 512];
+   NSMutableData *postData =
+      [NSMutableData dataWithCapacity:[data length] + 512];
    [postData appendData:
-      General/[[NSString stringWithFormat:@"--%@\r\n", boundry] dataUsingEncoding:NSUTF8StringEncoding]];
+      [[NSString stringWithFormat:@"--%@\r\n", boundry] dataUsingEncoding:NSUTF8StringEncoding]];
    [postData appendData:
-      General/[[NSString stringWithFormat:
+      [[NSString stringWithFormat:
         @"Content-Disposition: form-data; name=\"%@\"; filename=\"test.bin\"\r\n\r\n", FORM_FLE_INPUT]
        dataUsingEncoding:NSUTF8StringEncoding]];
    [postData appendData:data];
    [postData appendData:
-      General/[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundry] dataUsingEncoding:NSUTF8StringEncoding]];
+      [[NSString stringWithFormat:@"\r\n--%@--\r\n", boundry] dataUsingEncoding:NSUTF8StringEncoding]];
 
    [urlRequest setHTTPBody:postData];
    return urlRequest;
@@ -270,7 +270,7 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
  *      Uses zlib to compress the given data.
  *
  * Results:
- *      The compressed data as a General/NSData object.
+ *      The compressed data as a NSData object.
  *
  * Side effects:
  *      None
@@ -278,14 +278,14 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
  *-----------------------------------------------------------------------------
  */
 
-- (General/NSData *)compress: (General/NSData *)data // IN
+- (NSData *)compress: (NSData *)data // IN
 {
    if (!data || [data length] == 0)
       return nil;
 
    // zlib compress doc says destSize must be 1% + 12 bytes greater than source.
    uLong destSize = [data length] * 1.001 + 12;
-   General/NSMutableData *destData = General/[NSMutableData dataWithLength:destSize];
+   NSMutableData *destData = [NSMutableData dataWithLength:destSize];
 
    int error = compress([destData mutableBytes],
                         &destSize,
@@ -342,7 +342,7 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
  *-----------------------------------------------------------------------------
  */
 
-- (void)connectionDidFinishLoading:(General/NSURLConnection *)connection // IN
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection // IN
 {
    LOG(6, ("%s: self:0x%p\n", __func__, self));
    [connection release];
@@ -367,11 +367,11 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
  *-----------------------------------------------------------------------------
  */
 
-- (void)connection:(General/NSURLConnection *)connection // IN
-  didFailWithError:(General/NSError *)error              // IN
+- (void)connection:(NSURLConnection *)connection // IN
+  didFailWithError:(NSError *)error              // IN
 {
    LOG(1, ("%s: self:0x%p, connection error:%s\n",
-           __func__, self, General/error description] UTF8String]));
+           __func__, self, error description] UTF8String]));
    [connection release];
    [self uploadSucceeded:NO];
 }
@@ -394,7 +394,7 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
  */
 
 -(void)       connection:([[NSURLConnection *)connection // IN
-      didReceiveResponse:(General/NSURLResponse *)response     // IN
+      didReceiveResponse:(NSURLResponse *)response     // IN
 {
    LOG(6, ("%s: self:0x%p\n", __func__, self));
 }
@@ -417,12 +417,12 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
  *-----------------------------------------------------------------------------
  */
 
-- (void)connection:(General/NSURLConnection *)connection // IN
-    didReceiveData:(General/NSData *)data                // IN
+- (void)connection:(NSURLConnection *)connection // IN
+    didReceiveData:(NSData *)data                // IN
 {
    LOG(10, ("%s: self:0x%p\n", __func__, self));
 
-   General/NSString *reply = General/[[[NSString alloc] initWithData:data
+   NSString *reply = [[[NSString alloc] initWithData:data
                                             encoding:NSUTF8StringEncoding]
                       autorelease];
    LOG(10, ("%s: data: %s\n", __func__, [reply UTF8String]));
@@ -438,7 +438,7 @@ static General/NSString * const FORM_FLE_INPUT = @"uploaded";
 
 You can now upload a file using the following syntax:
     
-      General/Uploader alloc] initWithURL:[NSURL [[URLWithString:@"http://my-server.com/uploader.php"
+      Uploader alloc] initWithURL:[NSURL [[URLWithString:@"http://my-server.com/uploader.php"
                               filePath:@"/Users/someone/foo.jpg"
                               delegate:self
                           doneSelector:@selector(onUploadDone:)
@@ -457,7 +457,7 @@ cd /etc/httpd
 sudo pico httpd.conf
 
 
-Search for General/LoadModule php and remove the number sign (#) at the beginning of the line. Next, for Tiger only, search for General/AddModule php and remove the number sign at the beginning of the line too.
+Search for LoadModule php and remove the number sign (#) at the beginning of the line. Next, for Tiger only, search for AddModule php and remove the number sign at the beginning of the line too.
 
 Start your http server by going to System Preferences and enabling Web Sharing in the Sharing pane.
 
@@ -500,10 +500,10 @@ At this point you should be able to upload arbitrary data to your webserer. Note
 
 ----
 
-I just used your sample to great success, thankyou very much. However I needed to make a few tweaks to make it compile. The ASSET and LOG functions weren't working, so I commented them all out, and the #define markings you made for them. I'm not sure why they weren't but the code would compile and run fine afterwards. You might also want to add a bool flag to the General/UELUploader initWithURL: method to signal for compression - just for convenience. It is also authentication compatible, just add the name:password to the URL.
+I just used your sample to great success, thankyou very much. However I needed to make a few tweaks to make it compile. The ASSET and LOG functions weren't working, so I commented them all out, and the #define markings you made for them. I'm not sure why they weren't but the code would compile and run fine afterwards. You might also want to add a bool flag to the UELUploader initWithURL: method to signal for compression - just for convenience. It is also authentication compatible, just add the name:password to the URL.
 
     
-General/Uploader alloc] initWithURL:[NSURL [[URLWithString:@"http://name:password@my-server.com/uploader.php" ...
+Uploader alloc] initWithURL:[NSURL [[URLWithString:@"http://name:password@my-server.com/uploader.php" ...
 
 
 ----

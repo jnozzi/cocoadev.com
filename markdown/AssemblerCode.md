@@ -1,41 +1,41 @@
-Taken from the General/AtomicThreadSafety page:
+Taken from the AtomicThreadSafety page:
 
-I believe assembly code is lame because it makes your code less portable. Mac OS X is interesting because its core operating system layer is cross platform: darwin can compile and run on General/PowerPC and Intel systems. Not a few years ago, Cocoa (then called General/YellowBox) was available on Mach for General/PowerPC, Mach for Intel, and Windows (Intel). While now it's available only for General/PowerPC, seeing General/PowerPC-specific coding tips presented as a general purpose Cocoa programming tips seem even more lame. 
+I believe assembly code is lame because it makes your code less portable. Mac OS X is interesting because its core operating system layer is cross platform: darwin can compile and run on PowerPC and Intel systems. Not a few years ago, Cocoa (then called YellowBox) was available on Mach for PowerPC, Mach for Intel, and Windows (Intel). While now it's available only for PowerPC, seeing PowerPC-specific coding tips presented as a general purpose Cocoa programming tips seem even more lame. 
 
 I make sure all of my low-level tools (command line tools, library code, etc.) will build on all platforms supported by Apple's compiler (at least in theory). This means, among other things, **no asm**.
 
-I understand that this point of view is not for everyone. Mac OS X's interesting bits, Cocoa included, are all available only for General/PowerPC only. People are free to use whatever techniques they like to solve whatever problems. But I hope we can limit General/PowerPC-specific techniques to interesting optimizations and clever hacks in the future.
+I understand that this point of view is not for everyone. Mac OS X's interesting bits, Cocoa included, are all available only for PowerPC only. People are free to use whatever techniques they like to solve whatever problems. But I hope we can limit PowerPC-specific techniques to interesting optimizations and clever hacks in the future.
 
--- General/MikeTrent
+-- MikeTrent
 
-One can have compile time checks to determine the environment and exchange asm for c code. Do you have the same objections towards use of General/AltiVec?
+One can have compile time checks to determine the environment and exchange asm for c code. Do you have the same objections towards use of AltiVec?
 
--- General/DavidRemahl
+-- DavidRemahl
 
-Well, he did say "interesting optimizations"... just the same, I'd rather do the compile-time checks, because we don't have Cocoa on other platforms and it doesn't look (IMHO) like we're going to get it on other platforms. If we do get Cocoa/Wintel, it would make sense to reimplement the General/AtomicSwap() function then and not worry about it before then. I think code should be kept as portable as possible, but I don't think it makes sense to worry about it for one function. -- General/RobRix
+Well, he did say "interesting optimizations"... just the same, I'd rather do the compile-time checks, because we don't have Cocoa on other platforms and it doesn't look (IMHO) like we're going to get it on other platforms. If we do get Cocoa/Wintel, it would make sense to reimplement the AtomicSwap() function then and not worry about it before then. I think code should be kept as portable as possible, but I don't think it makes sense to worry about it for one function. -- RobRix
 
-There are various #defines you can check for at build time. You can fall back to C code if you're not building on the right processor, or you can include asm routines for all processors you're interested in. Your choice. My choice is to never use asm, except when I simply must have it (such as in the case of General/AltiVec).
+There are various #defines you can check for at build time. You can fall back to C code if you're not building on the right processor, or you can include asm routines for all processors you're interested in. Your choice. My choice is to never use asm, except when I simply must have it (such as in the case of AltiVec).
 
-I object to General/AltiVec in general practice since General/AltiVec code crashes on my G3s! Functions that contain General/AltiVec instructions (the entire functions) should be isolated by
+I object to AltiVec in general practice since AltiVec code crashes on my G3s! Functions that contain AltiVec instructions (the entire functions) should be isolated by
 
 * ifdef'ing the code with the proper architectural flags (__ppc__ and __VEC__ as appropriate)
-* checking for General/AltiVec at runtime and calling that function only once you're sure a vector unit is present (I use sysctl for this)
+* checking for AltiVec at runtime and calling that function only once you're sure a vector unit is present (I use sysctl for this)
 
-Skipping the first item will mean your code won't build if someone tries to compile w/o the General/AltiVec code generation turned on (no surprise, I guess), even on General/PowerPC processors. You'll also have trouble building for Intel (still no surprise). Skipping the second item will mean your code will **crash and burn** on G3s.
+Skipping the first item will mean your code won't build if someone tries to compile w/o the AltiVec code generation turned on (no surprise, I guess), even on PowerPC processors. You'll also have trouble building for Intel (still no surprise). Skipping the second item will mean your code will **crash and burn** on G3s.
 
-I have no objection to using General/AltiVec as an optimization. Check out the Flurry-1.4 screen saver module for a good example of software that will compile on various platforms, will run General/AltiVec code on General/GeeFour systems, and run normally on G3 systems. 
+I have no objection to using AltiVec as an optimization. Check out the Flurry-1.4 screen saver module for a good example of software that will compile on various platforms, will run AltiVec code on GeeFour systems, and run normally on G3 systems. 
 
--- General/MikeTrent
+-- MikeTrent
 
 Well, personally I view reducing the time spent acquiring a lock by an order of magnitude an interesting optimization. Coding all this on x86 chips is even easier - one asm instruction to swap-and-lock, instead of the several my method above needs - so portability is hardly a major setback.
 
--- General/KritTer
+-- KritTer
 
 ----
 
 What do people think? Is assembler acceptable, or should we remove all taint of it from our Cocoa code? If it is acceptable, should we confine its use to small, well-documented functions or can it be used more extensively (still with hefty documentation to aid porting)?
 
-(See General/CodingAnEfficientProxyObject for a reason one might want heavy assembler-use.)
+(See CodingAnEfficientProxyObject for a reason one might want heavy assembler-use.)
 
 ----
 
@@ -43,25 +43,25 @@ A bit off-topic one could argue that it is not very nice to use asm at all, if w
 
 If we're talking efficient code, there is little point in using Cocoa... but the world is not black and white, sometimes (ehm, mostly, actually) one wants to optimize small blocks and not the whole app.
 
--- General/TheoHultberg/Iconara
+-- TheoHultberg/Iconara
 
 
-I'll believe your first statement when you show me how to add 2 and 2 using just Cocoa as it currently stands. I'd need to use ints. (I assume by "no pointers", you are not referring to the pointers General/ObjC has to use to reference objects, but pointer usage that C can understand.)
+I'll believe your first statement when you show me how to add 2 and 2 using just Cocoa as it currently stands. I'd need to use ints. (I assume by "no pointers", you are not referring to the pointers ObjC has to use to reference objects, but pointer usage that C can understand.)
 
--- General/KritTer
+-- KritTer
 
 
-Well, pointers would be C-style pointers (char*) and references would be object General/ObjC-object-references (id or General/NSString*). They are actually the same thing, but in the context of the languages they are not. Pointers could actually be allowed in an object-oriented environment, but the everything-is-a-reference is much nicer. 
+Well, pointers would be C-style pointers (char*) and references would be object ObjC-object-references (id or NSString*). They are actually the same thing, but in the context of the languages they are not. Pointers could actually be allowed in an object-oriented environment, but the everything-is-a-reference is much nicer. 
 
-General/NSNumber is a silly class. Had it defined add, multiply, divide and a few other methods, Cococa could become purely object-oriented. Now one has to resort to ints and doubles, bummer. True, somewhere you'd have to resort to ints anyway, to be able to write the class dealing with arithmetic, but the code you wrote that used that class would be object-oriented, and that's what matters. Object-orientedness is just a giant overhead, anyway.
+NSNumber is a silly class. Had it defined add, multiply, divide and a few other methods, Cococa could become purely object-oriented. Now one has to resort to ints and doubles, bummer. True, somewhere you'd have to resort to ints anyway, to be able to write the class dealing with arithmetic, but the code you wrote that used that class would be object-oriented, and that's what matters. Object-orientedness is just a giant overhead, anyway.
 
--- General/TheoHultberg/Iconara
+-- TheoHultberg/Iconara
 
 ----
 Just out of curiosity does anyone know where I can find a good tutorial or refrence about assembly and os x.
 
-*For assembly on the General/PowerPC: http://usgibm.nersc.gov/alangref/toc.htm is a good review of all the assembler codes, while http://the.wall.riscom.net/books/proc/ppc/cwg/cwg_toc.html provides a lot of extra information you'll probably need.*
-**Is it just me, or do neither of these two links work anymore? Anyone care to try and find these reposted somewhere else? I googled but came up short. --General/KevinPerry**
+*For assembly on the PowerPC: http://usgibm.nersc.gov/alangref/toc.htm is a good review of all the assembler codes, while http://the.wall.riscom.net/books/proc/ppc/cwg/cwg_toc.html provides a lot of extra information you'll probably need.*
+**Is it just me, or do neither of these two links work anymore? Anyone care to try and find these reposted somewhere else? I googled but came up short. --KevinPerry**
 *
 Also check this:
 http://www.lightsoft.co.uk/Fantasm/Beginners/begin1.html
@@ -71,35 +71,35 @@ http://www.lightsoft.co.uk/Fantasm/Beginners/begin1.html
 
 WRT: "Coding all this on x86 chips is even easier..." So why not include that on your discussion so that Intel darwin-heads can benefit? :-)
 
--- General/MikeTrent
+-- MikeTrent
 
 Just because I know it's easy doesn't mean I know how to do it. Besides, how could I debug my code? :)
 
--- General/KritTer
+-- KritTer
 
-Now you understand why ASM means "not portable.' -- General/MikeTrent
+Now you understand why ASM means "not portable.' -- MikeTrent
 
 ----
 
 OK, I can't figure it out.  Could someone provide a simple example on how someone would do something like setting a C variable to a register value inside an asm call?
 
--- General/BrianMoore
+-- BrianMoore
 
 Off the top of my head,
     
 asm volatile ("addi %0,r10,0" : "=r"(c_variable) : : "cr0", "memory");
 
-There are typically no simple instructions for the General/PowerPC, like move or whatever. Instead, one needs to coopt other functions. In this case, I used addi (add immediate) to sum the contents of register 10 with the 16-bit integer 0, placing the result in c_variable, which should be a 32-bit integer. In other words, place r10 into c_variable. This kind of shenannigans is why we call it a Reduced Instruction-Set Chip.
+There are typically no simple instructions for the PowerPC, like move or whatever. Instead, one needs to coopt other functions. In this case, I used addi (add immediate) to sum the contents of register 10 with the 16-bit integer 0, placing the result in c_variable, which should be a 32-bit integer. In other words, place r10 into c_variable. This kind of shenannigans is why we call it a Reduced Instruction-Set Chip.
 
 (Sorry for the delay in replying.)
 
--- General/KritTer
+-- KritTer
 
-Keep in mind you might be better off with C. Remember, C combines all the power and elegance of assembly code with all the readability and portability of assembly code ;) -- General/RobRix
+Keep in mind you might be better off with C. Remember, C combines all the power and elegance of assembly code with all the readability and portability of assembly code ;) -- RobRix
 
-*"All" I would disagree with. At least as far as "power" goes. -- General/KritTer*
+*"All" I would disagree with. At least as far as "power" goes. -- KritTer*
 
-So would I. It's still funny, though! -- General/RobRix
+So would I. It's still funny, though! -- RobRix
 
 In the same vein:
 
@@ -111,12 +111,12 @@ Except that perl is actually updated pretty frequently, at least in minor ways. 
 
 ----
 
-Does anyone know of somewhere I can learn to program ASM for Mac OS X?  The only tutorial that seems to still be live is the Fantasm one, which is not Carbonized.  Any chance of getting some information that might be useful? --General/OwenAnderson
+Does anyone know of somewhere I can learn to program ASM for Mac OS X?  The only tutorial that seems to still be live is the Fantasm one, which is not Carbonized.  Any chance of getting some information that might be useful? --OwenAnderson
 
 ----
 
-General/GccThreePointThree can use General/CodeWarrior style inline assembler blocks, which are much easier to use than older Gcc's undocumented thingies.
--- General/AlexanderStrange
+GccThreePointThree can use CodeWarrior style inline assembler blocks, which are much easier to use than older Gcc's undocumented thingies.
+-- AlexanderStrange
 
 ----
 
@@ -140,33 +140,33 @@ I don't know if the syntax here translates directly to the PPC.
 
 ----
 
-General/KritTer, your example is wrong.
+KritTer, your example is wrong.
     
 asm volatile ("mr %0,r10" : "=r"(c_variable))
 
 is correct, I think. An addi from r10 to the register with c_variable certainly doesn't touch memory or any condition registers!
--- General/AlexanderStrange
+-- AlexanderStrange
 
-You could be right. I'm unfamiliar with the "mr" instruction, though - you are sure it's PPC not 68k? (There are so many abbreviated forms for programmer convenience...) -- General/KritTer
+You could be right. I'm unfamiliar with the "mr" instruction, though - you are sure it's PPC not 68k? (There are so many abbreviated forms for programmer convenience...) -- KritTer
 
-"mr x,y" is shorthand for "ori x, y, 0", if I'm not mistaken. -- General/ChrisT
-
-----
-
-Alright, if GCC 3.3 supports this snappy General/CodeWarrior-style inline assembler, where can us mere mortals who don't use General/CodeWarrior find documentation on it?  I pulled out my old copy of General/CodeWarrior 4, but wasn't able to find anything in the manuals about inline assembler. --General/OwenAnderson
-
-"asm volatile" is not snappy General/CodeWarrior, it's clunky and horrible GCC. Bleuch. I'd far rather General/CodeWarrior's nice pure-assembler functions any day. <edit> Oh, lost the thread there. Nevva mind. -- General/KritTer
+"mr x,y" is shorthand for "ori x, y, 0", if I'm not mistaken. -- ChrisT
 
 ----
 
-The General/XCode debugger now supports disassembly. FYI, since I just happened to be on this page.
+Alright, if GCC 3.3 supports this snappy CodeWarrior-style inline assembler, where can us mere mortals who don't use CodeWarrior find documentation on it?  I pulled out my old copy of CodeWarrior 4, but wasn't able to find anything in the manuals about inline assembler. --OwenAnderson
+
+"asm volatile" is not snappy CodeWarrior, it's clunky and horrible GCC. Bleuch. I'd far rather CodeWarrior's nice pure-assembler functions any day. <edit> Oh, lost the thread there. Nevva mind. -- KritTer
+
+----
+
+The XCode debugger now supports disassembly. FYI, since I just happened to be on this page.
 
 ----
 
 Does anyone have an idea what is wrong with this code?
 
     
-void General/PutPixel(int x,int y,char color) {
+void PutPixel(int x,int y,char color) {
  int offset;
  if (x > 319)
  {
@@ -191,7 +191,7 @@ int main () {
 int i = 0;
 while (i < 320)
 {
-    General/PutPixel(i,i,(char)0001);
+    PutPixel(i,i,(char)0001);
     i++;
 }
 }
@@ -201,7 +201,7 @@ Theoretically it draws a line a cross the monitor. No such luck yet, though. (It
 
 ----
 
-Well, that is x86 asm which bears nearly no resemblance to PPC asm so you will have to re-write every asm line.  Additionally, code such as this assumes that you are working in real-mode on an x86 which has the VGA memory mapped in at segment 0xA000.  This code looks as though it was written to run in DOS only.  If you want to work on OS X, you will need to use the normal graphics API.  You could re-write the General/PutPixel method you have to just use these calls so you don't have to modify your existing code, if you wanted a quick way through it.
+Well, that is x86 asm which bears nearly no resemblance to PPC asm so you will have to re-write every asm line.  Additionally, code such as this assumes that you are working in real-mode on an x86 which has the VGA memory mapped in at segment 0xA000.  This code looks as though it was written to run in DOS only.  If you want to work on OS X, you will need to use the normal graphics API.  You could re-write the PutPixel method you have to just use these calls so you don't have to modify your existing code, if you wanted a quick way through it.
 
 ----
 
@@ -211,10 +211,10 @@ Edit: Actually, I was hoping to be able to draw without an OS installed.
 
 *Quick answer: don't want that :)*
 
-**Much longer answer: figure out General/OpenFirmware, see if you can get it from in there; if not, figure out how to write a kernel that you can load using one of the many bootloaders, and have *that* draw. Prolly still outta luck.** *I'd love to see how user-friendly the setup of that product turns out to be... ;)*
+**Much longer answer: figure out OpenFirmware, see if you can get it from in there; if not, figure out how to write a kernel that you can load using one of the many bootloaders, and have *that* draw. Prolly still outta luck.** *I'd love to see how user-friendly the setup of that product turns out to be... ;)*
 
 ----
 
 Interesting question: Will the above x86 asm code work on the Mactels? Or are those asm calls DOS-related (I learned some DOS-specific asm a few semesters back, so I'm thinking this may be the case).
 
-*As implied above, the ASM there is made to be run on a x86 system running in real mode, which usually means DOS. Other, more advanced operating systems require you to use their own calls to draw on the screen, so that they can pass the call through their own video card drivers. If you need for some reason to draw straight to the screen, you will have to resort to using direct-to-screen General/APIs offered by the system, such as General/DirectX's screen section on Windows (or General/OpenGL (?) on the Mac?).*
+*As implied above, the ASM there is made to be run on a x86 system running in real mode, which usually means DOS. Other, more advanced operating systems require you to use their own calls to draw on the screen, so that they can pass the call through their own video card drivers. If you need for some reason to draw straight to the screen, you will have to resort to using direct-to-screen APIs offered by the system, such as DirectX's screen section on Windows (or OpenGL (?) on the Mac?).*

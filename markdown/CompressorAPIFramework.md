@@ -13,7 +13,7 @@ you add so I can roll it back into this framework and provide to everyone.
 
 Download it here:
 
-http://mutablelogic.com/cocoa/General/CompressorAPIFramework.zip (64K)
+http://mutablelogic.com/cocoa/CompressorAPIFramework.zip (64K)
 
 
 ----
@@ -23,7 +23,7 @@ REQUIREMENTS
 This framework is tested on
 
  
-  * Macintosh G5 General/PowerPC
+  * Macintosh G5 PowerPC
   * Mac OS X Tiger 10.4.7
   * Compressor 2.1
  
@@ -37,10 +37,10 @@ You should create an instance of the "Compressor" class, passing thorugh the
 locations of the Compressor and Batch Monitor command-line executables:
 
     
-  General/NSString* theCompressorExecutable = 
-    @"/Applications/Compressor.app/Contents/General/MacOS/Compressor";
-  General/NSString* theBatchMonitorExecutable = 
-    @"/Applications/Utilities/Batch Monitor.app/Contents/General/MacOS/Batch Monitor";
+  NSString* theCompressorExecutable = 
+    @"/Applications/Compressor.app/Contents/MacOS/Compressor";
+  NSString* theBatchMonitorExecutable = 
+    @"/Applications/Utilities/Batch Monitor.app/Contents/MacOS/Batch Monitor";
 
   Compressor* theCompressor = 
     [Compressor compressorWithExecutable:theCompressorExecutable 
@@ -52,10 +52,10 @@ COMPRESSOR CLUSTERS
 
 The Compressor instance will discover compression clusters in a background 
 thread. You can at any time retrieve the current set of clusters as an array
-of dictionary items (later, I may add a new class called General/CompressorCluster):
+of dictionary items (later, I may add a new class called CompressorCluster):
 
     
-  General/NSArray* theClusters = [theCompressor clusters];
+  NSArray* theClusters = [theCompressor clusters];
  
 
 Initially there will be no clusters and it may take a few seconds for any 
@@ -72,7 +72,7 @@ extension of ".setting". To submit jobs to Compressor, you will need to register
 a preset file with the Compressor class:
 
     
-  General/CompressorSetting* thePreset = [Compressor settingFromFile:thePresetFile];
+  CompressorSetting* thePreset = [Compressor settingFromFile:thePresetFile];
 
 
 ----
@@ -90,15 +90,15 @@ To submit a compressor job, you will need to know:
 Here is how a job is submitted programmatically:
 
     
-  General/NSError* theError = nil;  
-  General/CompressorJob* theJob =
+  NSError* theError = nil;  
+  CompressorJob* theJob =
     [theCompressor submitJobToCluster:theClusterAddress 
                             withMedia:theFilename 
                           withSetting:thePreset 
                     toDestinationPath:thePath 
                                 error:&theError];
   if(theError) {
-     General/NSLog(@"Error submitting job = %@",theError);
+     NSLog(@"Error submitting job = %@",theError);
   }
 
 
@@ -109,23 +109,23 @@ want to submit the job in the background, not in the main thread.
 COMPRESSOR JOBS
 
 You can then monitor the compressor job using the following methods of 
-General/CompressorJob:
+CompressorJob:
 
     
-  -(General/NSDate* )submissionTime;
-  -(General/NSString* )sentBy;
-  -(General/NSString* )jobType;
-  -(General/NSString* )priority;
-  -(General/NSString* )timeElapsed;
-  -(General/NSString* )timeRemaining;
+  -(NSDate* )submissionTime;
+  -(NSString* )sentBy;
+  -(NSString* )jobType;
+  -(NSString* )priority;
+  -(NSString* )timeElapsed;
+  -(NSString* )timeRemaining;
   -(float)percentComplete;
-  -(General/NSString* )status;
+  -(NSString* )status;
 
 
 You can also get an array of current jobs:
 
     
-  General/NSArray* theJobs = [theCompressor jobs];
+  NSArray* theJobs = [theCompressor jobs];
  
  
 A delegate message tells you information about when jobs are started, 
@@ -146,23 +146,23 @@ sent to the controller as the delegate are as follows:
    
 * <code>-(void)jobDidStart:(id)sender;</code>
     This message is sent when a compressor job is starting to process. The 
-    'sender' argument is the General/CompressorJob instance which has changed.
+    'sender' argument is the CompressorJob instance which has changed.
     
 * <code>-(void)jobDidUpdate:(id)sender;</code>
     This message is sent when a compressor job has updated. The 
-    'sender' argument is the General/CompressorJob instance which has changed.
+    'sender' argument is the CompressorJob instance which has changed.
 
 * <code>-(void)jobDidTerminate:(id)sender;</code>
     This message is sent when a compressor job has terminated. The 
-    'sender' argument is the General/CompressorJob instance which has changed.
+    'sender' argument is the CompressorJob instance which has changed.
 
 
 
 ----
 EXAMPLE CODE
 
-The General/XCode project which you can download from the link above contains an example Cocoa application which is like a 
+The XCode project which you can download from the link above contains an example Cocoa application which is like a 
 mini-"Compressor" application without the fancy Apple stuff.
 
 
--General/DavidThorpe, 7th September 2006
+-DavidThorpe, 7th September 2006

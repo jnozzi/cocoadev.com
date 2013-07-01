@@ -1,22 +1,22 @@
-My application is powered by General/SQLLite in the backend so handling millions of objects should not be a problem, however apparently General/NSTableViews do have such a limit.
+My application is powered by SQLLite in the backend so handling millions of objects should not be a problem, however apparently NSTableViews do have such a limit.
 
-Does anyone here know the exact limit of items in an General/NSTableView so that I may if at all possible notify the user when some of the items will have to be removed (Thank god for the search function)?
-
-----
-
-Well, since General/NSTableView's delegate method     numberOfRowsInTableView: returns an int, I'd imagine it would be the maximum amount of an int or unsigned int.
-
-Also, since you might *need* a large database, you could notify the user that some items "cannot be displayed" and have buttons to scroll through the next four billion items (touch of sarcasm there :). The highest value for     unsigned int is 2^32 - 1 (4,294,967,295), and the highest value for a normal (    signed)     int is 2^31 - 1 (2,147,483,647), with one "sign bit" reserved. On a side note, the *lowest* value for a     signed int is negative 2^31 (no "minus one"), to avoid having a different integer value for "negative zero." Also note that these values are only true with 32-bit integer types -- if you use a platform with 64-bit     ints, like the G5 (I think), the maximum values are *much* larger. --General/JediKnil
+Does anyone here know the exact limit of items in an NSTableView so that I may if at all possible notify the user when some of the items will have to be removed (Thank god for the search function)?
 
 ----
 
-I would be really surprised if General/NSTableView could handle anywhere near INT_MAX items.
+Well, since NSTableView's delegate method     numberOfRowsInTableView: returns an int, I'd imagine it would be the maximum amount of an int or unsigned int.
 
-One limit will be the Cocoa coordinate system. An General/NSTableView is implemented as a subview of an General/NSScrollView, and so its max Y coordinate will increase with the number of items in the table. The Cocoa coordinate system is built on floats, and things will probably stop working nicely once the magnitude gets large enough that a float cannot represent individual pixels. A float's fraction section is 23 bits long, so coordinates above 8388608 will break. With a row height of 12, you get 699050 items before you go over.
+Also, since you might *need* a large database, you could notify the user that some items "cannot be displayed" and have buttons to scroll through the next four billion items (touch of sarcasm there :). The highest value for     unsigned int is 2^32 - 1 (4,294,967,295), and the highest value for a normal (    signed)     int is 2^31 - 1 (2,147,483,647), with one "sign bit" reserved. On a side note, the *lowest* value for a     signed int is negative 2^31 (no "minus one"), to avoid having a different integer value for "negative zero." Also note that these values are only true with 32-bit integer types -- if you use a platform with 64-bit     ints, like the G5 (I think), the maximum values are *much* larger. --JediKnil
 
 ----
 
-Additionally, an General/NSTableView becomes completely unusable long before any hard limit is reached.  Think about scrolling with a large number of elements:  The scroll bar only allows gross movements.  Page-up and page-down only move a screen's worth at a time.  Without anything in the middle, scrolling is pretty much impossible.
+I would be really surprised if NSTableView could handle anywhere near INT_MAX items.
+
+One limit will be the Cocoa coordinate system. An NSTableView is implemented as a subview of an NSScrollView, and so its max Y coordinate will increase with the number of items in the table. The Cocoa coordinate system is built on floats, and things will probably stop working nicely once the magnitude gets large enough that a float cannot represent individual pixels. A float's fraction section is 23 bits long, so coordinates above 8388608 will break. With a row height of 12, you get 699050 items before you go over.
+
+----
+
+Additionally, an NSTableView becomes completely unusable long before any hard limit is reached.  Think about scrolling with a large number of elements:  The scroll bar only allows gross movements.  Page-up and page-down only move a screen's worth at a time.  Without anything in the middle, scrolling is pretty much impossible.
 
 ----
 

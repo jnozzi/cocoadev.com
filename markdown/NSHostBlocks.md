@@ -1,12 +1,12 @@
 
 
-Anyone know why General/NSHost would block, especially when looking up the local host name or trying to get the currentHost addresses? Any way around it? Its causing my app to beachball everytime a lookup takes forever (only on certain network configurations).
+Anyone know why NSHost would block, especially when looking up the local host name or trying to get the currentHost addresses? Any way around it? Its causing my app to beachball everytime a lookup takes forever (only on certain network configurations).
 
 ----
-Sounds like a DNS server isn't responding (or is misconfigured to an IP address that doesn't respond). In general it is bad to make synchronous calls to any networking from the main thread, because there's always the possibility that you will have delays. Try spinning your General/NSHost stuff into a secondary thread instead.
+Sounds like a DNS server isn't responding (or is misconfigured to an IP address that doesn't respond). In general it is bad to make synchronous calls to any networking from the main thread, because there's always the possibility that you will have delays. Try spinning your NSHost stuff into a secondary thread instead.
 
 ----
-I think General/CFHost provides support for asynchronous address resolution.
+I think CFHost provides support for asynchronous address resolution.
 
 
 ----
@@ -16,14 +16,14 @@ But its a server, I need to look it up unfortunately,  its not in the main threa
 ----
 If you need the answer right away, then you're just screwed. DNS resolution can be slow, this is just a fact of networked life. If you actually need that response before you can continue, then you have no choice but to wait for it, however long it takes. This shows up in all kinds of real-world production servers; just try to ssh into a Mac OS X box with a fubared DNS configuration, and watch it time out on you.
 
-If you don't need the answer right away, then the above advice still applies. Spin off another thread or look into General/CFHost.
+If you don't need the answer right away, then the above advice still applies. Spin off another thread or look into CFHost.
 
 ----
 
 Remember, I am only trying to look up the local host / currentHost, not some remote site. Anyway, I've found a workaround using BSD getifaddrs().
 
 ----
-Instead of using ifaddrs you can also use the General/SystemConfiguration.framework API's to lookup the primary interface on the machine, and then use that to get the local IP address for that interface.  Or if you know the explicit interface you're interested in, you can just look that up.  The information in SC is cached, and you can also setup callbacks for when that data changes.  So if you're always looking up the same interface, you can just cache the results, and only change when the interface state changes.  Should be nice and fast....  :)
+Instead of using ifaddrs you can also use the SystemConfiguration.framework API's to lookup the primary interface on the machine, and then use that to get the local IP address for that interface.  Or if you know the explicit interface you're interested in, you can just look that up.  The information in SC is cached, and you can also setup callbacks for when that data changes.  So if you're always looking up the same interface, you can just cache the results, and only change when the interface state changes.  Should be nice and fast....  :)
 
 ----
 Do you have parallels installed? Try turning off the Parallels Host-Guest network port in Preferences.app

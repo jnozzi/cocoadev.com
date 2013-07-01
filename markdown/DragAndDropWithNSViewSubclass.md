@@ -4,10 +4,10 @@ Here's a simple drag and drop example for filenames dragged from the finder --zo
 
 **Header**
     
-#import <General/AppKit/General/AppKit.h>
+#import <AppKit/AppKit.h>
 
-@interface General/TestDragAndDropView : General/NSView {
-    General/NSColor *backgroundColor, *blueColor, *greenColor;
+@interface TestDragAndDropView : NSView {
+    NSColor *backgroundColor, *blueColor, *greenColor;
 }
 
 @end
@@ -16,14 +16,14 @@ Here's a simple drag and drop example for filenames dragged from the finder --zo
 **Source**
 
     
-#import "General/TestDragAndDropView.h"
+#import "TestDragAndDropView.h"
 
-@implementation General/TestDragAndDropView
+@implementation TestDragAndDropView
 
-- (id)initWithFrame:(General/NSRect)frame {
+- (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        General/NSArray *draggedTypeArray = General/[NSArray arrayWithObjects:General/NSFilenamesPboardType, nil];
+        NSArray *draggedTypeArray = [NSArray arrayWithObjects:NSFilenamesPboardType, nil];
         [self registerForDraggedTypes:draggedTypeArray];
         
         /*
@@ -35,8 +35,8 @@ Here's a simple drag and drop example for filenames dragged from the finder --zo
         */
         
         
-        blueColor = backgroundColor = General/[[NSColor blueColor] retain];
-        greenColor = General/[[NSColor greenColor] retain]; 
+        blueColor = backgroundColor = [[NSColor blueColor] retain];
+        greenColor = [[NSColor greenColor] retain]; 
     }
     return self;
 }
@@ -50,60 +50,60 @@ Here's a simple drag and drop example for filenames dragged from the finder --zo
     [super dealloc];
 }
 
-- (void)drawRect:(General/NSRect)rect {
+- (void)drawRect:(NSRect)rect {
     [backgroundColor set];
-    General/NSRectFill([self visibleRect]);
+    NSRectFill([self visibleRect]);
 }
 
-- (General/NSDragOperation)draggingEntered:(id <General/NSDraggingInfo>)sender {
-    General/NSPasteboard *pboard = [sender draggingPasteboard];
-    General/NSArray *filenames = [pboard propertyListForType:General/NSFilenamesPboardType];
-    General/NSLog(@"draggingEntered: filenames: %@", [filenames description]);
-    General/NSArray *supportedFiletypes = General/[NSArray arrayWithObjects:@"txt", @"rtf", @"html", 
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo>)sender {
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    NSArray *filenames = [pboard propertyListForType:NSFilenamesPboardType];
+    NSLog(@"draggingEntered: filenames: %@", [filenames description]);
+    NSArray *supportedFiletypes = [NSArray arrayWithObjects:@"txt", @"rtf", @"html", 
                                                             @"htm", @"pdf", nil];
-    int dragOperation = General/NSDragOperationNone;
+    int dragOperation = NSDragOperationNone;
     if ([filenames count]) {
     
         /*
             Decide here if you accept the filenames that are dragged into the view.
             If you do accept the dragged filenames then set dragOperation to 
-            General/NSDragOperationCopy:
+            NSDragOperationCopy:
             
-                dragOperation = General/NSDragOperationCopy;
+                dragOperation = NSDragOperationCopy;
                 
             Here is where you can give some user feedback if the filenames
             are valid files (e.g. change a boarder color or the background color of the view)
                 
         */
         
-        General/NSEnumerator *filenameEnum = [filenames objectEnumerator]; 
-        General/NSString *filename;
-        dragOperation = General/NSDragOperationCopy;
+        NSEnumerator *filenameEnum = [filenames objectEnumerator]; 
+        NSString *filename;
+        dragOperation = NSDragOperationCopy;
         while (filename = [filenameEnum nextObject]) {
             if (![supportedFiletypes containsObject:[filename pathExtension]]) {
-                dragOperation = General/NSDragOperationNone;
+                dragOperation = NSDragOperationNone;
                 break;
             }
         }
-        if (dragOperation == General/NSDragOperationCopy) backgroundColor = greenColor;
+        if (dragOperation == NSDragOperationCopy) backgroundColor = greenColor;
     }       
     [self setNeedsDisplay:YES];
     return dragOperation;
 }
 
--(void)draggingExited:(id <General/NSDraggingInfo>)sender {
-    General/NSPasteboard *pboard = [sender draggingPasteboard];
-    General/NSArray *filenames = [pboard propertyListForType:General/NSFilenamesPboardType];
+-(void)draggingExited:(id <NSDraggingInfo>)sender {
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    NSArray *filenames = [pboard propertyListForType:NSFilenamesPboardType];
     backgroundColor = blueColor;
     [self setNeedsDisplay:YES];
-    General/NSLog(@"draggingExited: filenames: %@", [filenames description]);
+    NSLog(@"draggingExited: filenames: %@", [filenames description]);
 }
 
-- (BOOL)performDragOperation:(id <General/NSDraggingInfo>)sender {
-    General/NSPasteboard *pboard = [sender draggingPasteboard];
-    General/NSArray *filenames = [pboard propertyListForType:General/NSFilenamesPboardType];
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    NSArray *filenames = [pboard propertyListForType:NSFilenamesPboardType];
     BOOL didPerformDragOperation = NO;
-    General/NSLog(@"performDragOperation: filenames: %@", [filenames description]);
+    NSLog(@"performDragOperation: filenames: %@", [filenames description]);
     if ([filenames count]) {
         
         /*
@@ -123,7 +123,7 @@ Here's a simple drag and drop example for filenames dragged from the finder --zo
     return didPerformDragOperation;
 }
 
--(void)concludeDragOperation:(id <General/NSDraggingInfo>)sender {
+-(void)concludeDragOperation:(id <NSDraggingInfo>)sender {
     
     /*
         This method gives you the chance to change any state variables that
@@ -131,7 +131,7 @@ Here's a simple drag and drop example for filenames dragged from the finder --zo
 
     */
 
-    General/NSLog(@"concludeDragOperation:");
+    NSLog(@"concludeDragOperation:");
 }
 
 @end

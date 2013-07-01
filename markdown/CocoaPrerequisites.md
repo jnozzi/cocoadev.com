@@ -1,6 +1,6 @@
-Go back to General/CocoaIntroduction
+Go back to CocoaIntroduction
 
-Skip to General/CocoaStepOne
+Skip to CocoaStepOne
 
 Cocoa is a large and technically advanced collection of reusable software.  Most of the software is provided in the form of objects.  However much many of us would like Cocoa to be accessible by very novice programmers, the unavoidable reality for the time being is that programmers need to be fairly advanced to benefit from using Cocoa.
 
@@ -38,4 +38,4 @@ Introductory programming topics include the following:
 
 ** You must keep an open mind ** - There are an infinite number of different ways to solve every programming problem.  Many programming languages and reusable software libraries use different approaches to solve common problems.  There is a good chance that Objective-C and Cocoa use a substantially different approach from other languages and frameworks you may have used.  That doesn't make either approach better or worse automatically.  Every commercial software development technology has advantages in at least some cases or the technology would not exist.  Cocoa is renowned for enabling very high programmer productivity without constraining the set of problems that can be solved, but programmer's opinions will always vary and software development environments are subject to aesthetic judgments irrespective of abstract technical merit.  Many programmers are enthralled by Objective-C and Cocoa. You might be enthralled too. Or, you may never like Objective-C and Cocoa from an aesthetic standpoint, and there isn't really anything anyone can do to change that without affecting the aesthetics for others.
 
-Next General/CocoaStepOne
+Next CocoaStepOne

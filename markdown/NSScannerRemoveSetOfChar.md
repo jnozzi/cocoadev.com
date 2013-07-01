@@ -1,11 +1,11 @@
-I want to remove all is not Decimal on my General/NSString @"v2.4.2"
+I want to remove all is not Decimal on my NSString @"v2.4.2"
 
-I try with General/NScanner some thing like this :
+I try with NScanner some thing like this :
 
     
 UInt16	currentVersionInt = -1;
-General/NSScanner *scanVersion = General/[NSScanner scannerWithString:General/[[[NSBundle mainBundle] infoDictionary] objectForKey:@"General/CFBundleVersion"]];	
-[scanVersion setCharactersToBeSkipped:General/[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];	
+NSScanner *scanVersion = [NSScanner scannerWithString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]];	
+[scanVersion setCharactersToBeSkipped:[[NSCharacterSet decimalDigitCharacterSet] invertedSet]];	
 [scanVersion scanInt:&currentVersionInt];
 
 but it's not work ... why ?
@@ -13,42 +13,42 @@ but it's not work ... why ?
 thanks for your help.
 
 ----
-I make a category of General/NSString like this...
+I make a category of NSString like this...
 
-General/NSString+Filter.h:
+NSString+Filter.h:
     
 #import <Cocoa/Cocoa.h>
 
-/* Filter category for General/NSString: make a General/NSString with only set of characters you want.
+/* Filter category for NSString: make a NSString with only set of characters you want.
 
 	sample to extract '204' of current app version 'v2.0.4'  :
-	General/NSString *currentVersionString = General/[NSString stringWithString:General/[[[NSBundle mainBundle] infoDictionary] objectForKey:@"General/CFBundleVersion"]
-													  andFilter:General/[NSCharacterSet decimalDigitCharacterSet]];
+	NSString *currentVersionString = [NSString stringWithString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+													  andFilter:[NSCharacterSet decimalDigitCharacterSet]];
 
  */
 
-@interface General/NSString (Filter)
-+ (General/NSString *) stringWithString:(General/NSString *)string andFilter:(General/NSCharacterSet *)set;
+@interface NSString (Filter)
++ (NSString *) stringWithString:(NSString *)string andFilter:(NSCharacterSet *)set;
 @end
 
 
 
 
-General/NSString+Filter.m:
+NSString+Filter.m:
     
 #import <Cocoa/Cocoa.h>
-#import "General/NSString+Filter.h"
+#import "NSString+Filter.h"
 
-@implementation General/NSString (Filter)
-+ (General/NSString *) stringWithString:(General/NSString *)string andFilter:(General/NSCharacterSet *)set
+@implementation NSString (Filter)
++ (NSString *) stringWithString:(NSString *)string andFilter:(NSCharacterSet *)set
 {
 	//---- result in autorelease...
-	General/NSMutableString *result = General/[NSMutableString stringWithString:@""];
+	NSMutableString *result = [NSMutableString stringWithString:@""];
 
-	General/NSScanner *scanner = General/[NSScanner scannerWithString:string];
+	NSScanner *scanner = [NSScanner scannerWithString:string];
 	while(NO == [scanner isAtEnd]) {
 		unsigned position;
-		General/NSString *goodString;
+		NSString *goodString;
 		
 		//---- search for good string
 		if([scanner scanCharactersFromSet:set
@@ -63,7 +63,7 @@ General/NSString+Filter.m:
 		}
 	}
 	
-	return (General/NSString *)result;
+	return (NSString *)result;
 }
 
 @end
@@ -82,4 +82,4 @@ This is something that I've seen asserted repeatedly, but never saw any proof. W
 
 *It is commonly believed by non-lawyers that it is impossible to put a work into the public domain. Although copyright law generally does not provide any statutory means to "abandon" copyright so that a work can enter the public domain, this does not mean that it is impossible or even difficult, only that the law is somewhat unclear. Congress may not have felt it necessary to codify this part of the law, because abandoning property (like a tract of land) to the public domain has traditionally been a matter of judge-made law, rather than statute.*
 
-If you have some actual evidence to the contrary, then I'd like to see it. But I find the idea that you have to use an *explicit* license, and that saying "you can use this for whatever you want" (which is what "this is in the public domain" means) doesn't actually work to be extremely silly. -- General/PrimeOperator
+If you have some actual evidence to the contrary, then I'd like to see it. But I find the idea that you have to use an *explicit* license, and that saying "you can use this for whatever you want" (which is what "this is in the public domain" means) doesn't actually work to be extremely silly. -- PrimeOperator

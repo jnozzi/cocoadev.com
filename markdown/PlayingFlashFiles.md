@@ -10,7 +10,7 @@ Thanks for any help anyone can give.  I do appreciate it.
 
 ----
 
-UPDATE:  I fixed this problem.  All you have to do is subclass General/NSMovieView.  Then, put this in the file
+UPDATE:  I fixed this problem.  All you have to do is subclass NSMovieView.  Then, put this in the file
 
     
 -(BOOL)isPlaying
@@ -21,10 +21,10 @@ UPDATE:  I fixed this problem.  All you have to do is subclass General/NSMovieVi
 
 This will constantly say that it is not playing, through polymorphism, and this fixes the flash file problem.  However, this creates some other problems.  Therefore, you should add a BOOL to the header file, and make a method to set the bool.  Then, let the isPlaying return the bool, and control it manually.
 
--General/CharlieMiller
+-CharlieMiller
 
 ----
-So I just tried to use QT to watch a .flv I had saved from the internet and it doesn't work.  Does anyone know if there are any cocoa tools for embedding flash content in your app?  It seems the latest version doesn't play in General/QTKit, that I can find.  I was also reading General/WebKitToDisplayFlash and there is a suggestion there to embed it in HTML, then view it in General/WebKit, since that uses the flash plugin from Macromedia, but I don't know how to write HTML... could anyone give a simple template here for a blank HTML page with one embedded .flv file?  Of course, I would prefer a way to watch it with General/QTKit if it exists... thanks
+So I just tried to use QT to watch a .flv I had saved from the internet and it doesn't work.  Does anyone know if there are any cocoa tools for embedding flash content in your app?  It seems the latest version doesn't play in QTKit, that I can find.  I was also reading WebKitToDisplayFlash and there is a suggestion there to embed it in HTML, then view it in WebKit, since that uses the flash plugin from Macromedia, but I don't know how to write HTML... could anyone give a simple template here for a blank HTML page with one embedded .flv file?  Of course, I would prefer a way to watch it with QTKit if it exists... thanks
 
 ----
 well, a simple embedded flash file (stripped from youtube) would look like 

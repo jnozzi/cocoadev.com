@@ -1,6 +1,6 @@
-Has anyone implemented an General/NSColorPicker subclass using General/NSColorPickingCustom?
+Has anyone implemented an NSColorPicker subclass using NSColorPickingCustom?
 
-I'm in the process, reviewing documentation here: file://localhost/Developer/Documentation/Cocoa/General/TasksAndConcepts/General/ProgrammingTopics/General/DrawColor/Tasks/General/AddingColorPickers.html
+I'm in the process, reviewing documentation here: file://localhost/Developer/Documentation/Cocoa/TasksAndConcepts/ProgrammingTopics/DrawColor/Tasks/AddingColorPickers.html
 
 I am currently noticing the following odd behaviour with my color picker:
 
@@ -12,4 +12,4 @@ I am currently noticing the following odd behaviour with my color picker:
 
 It's getting there...
 
-- General/JoeZobkiw
+- JoeZobkiw

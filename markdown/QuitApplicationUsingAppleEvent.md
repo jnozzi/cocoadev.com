@@ -1,23 +1,23 @@
 Code to quit an application, identified by a bundle ID, by sending it a Quit Apple Event.
 
-Sending a Quit Apple Event is the "friendly" way to quit an application.  In response, an application may display some UI to the user such as asking him to save unsaved documents.  This code executes much faster than using either General/NSAppleScript or General/NSTask to quit an application.  It requires 10.3 or later.
+Sending a Quit Apple Event is the "friendly" way to quit an application.  In response, an application may display some UI to the user such as asking him to save unsaved documents.  This code executes much faster than using either NSAppleScript or NSTask to quit an application.  It requires 10.3 or later.
 
     
--(General/OSStatus)quitApplicationWithBundleID:(General/NSString *)bundleID {
-    General/OSStatus err;
-    General/AppleEvent event, reply;
+-(OSStatus)quitApplicationWithBundleID:(NSString *)bundleID {
+    OSStatus err;
+    AppleEvent event, reply;
 
     const char *bundleIDString = [bundleID UTF8String];
 
-    err = General/AEBuildAppleEvent(kCoreEventClass, kAEQuitApplication,
+    err = AEBuildAppleEvent(kCoreEventClass, kAEQuitApplication,
                             typeApplicationBundleID, 
                             bundleIDString, strlen(bundleIDString),
                             kAutoGenerateReturnID, kAnyTransactionID,
                             &event, NULL, "");
 
     if (err == noErr) {
-        err = General/AESendMessage(&event, &reply, kAENoReply, kAEDefaultTimeout);
-        (void)General/AEDisposeDesc(&event);
+        err = AESendMessage(&event, &reply, kAENoReply, kAEDefaultTimeout);
+        (void)AEDisposeDesc(&event);
     }
     return err;
 }
@@ -25,20 +25,20 @@ Sending a Quit Apple Event is the "friendly" way to quit an application.  In res
 
 If you're actually interested in whether you successfully quit the app or not, change the kAENoReply flag to kAEWaitReply, set a saner timeout (it's in ticks, 1 tick = 1/60 second), and check if the return value is noErr or not.
 
-If you want to force kill a process without the user having any chance to save his work, you can use the Carbon General/KillProcess() or POSIX kill() General/APIs.
+If you want to force kill a process without the user having any chance to save his work, you can use the Carbon KillProcess() or POSIX kill() APIs.
 
 Lastly, note that it is possible for there to be more than one application running with the same bundle id.  I'm not sure what happens then.
 
--- Please keep this article encyclopedic not in General/MailingListMode.
+-- Please keep this article encyclopedic not in MailingListMode.
 
-In the interests of completeness here is a new implementation which uses 10.6 or later General/APIs:
+In the interests of completeness here is a new implementation which uses 10.6 or later APIs:
 
     
--(BOOL)quitApplicationWithBundleIdentifier:(General/NSString *)bundleID
+-(BOOL)quitApplicationWithBundleIdentifier:(NSString *)bundleID
 {
 	BOOL	result = NO;
 
-	for ( General/NSRunningApplication* app in General/[[NSWorkspace sharedWorkspace] runningApplications] ) {
+	for ( NSRunningApplication* app in [[NSWorkspace sharedWorkspace] runningApplications] ) {
 		if ( [bundleID isEqualToString:[app bundleIdentifier]] == YES ) {
 			[app terminate];
 			result = YES;

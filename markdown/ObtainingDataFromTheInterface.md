@@ -5,13 +5,13 @@ My program will store what a user inputs in a text box into a variable after the
     
 - (void)textFieldChanged:(id)sender
 {
-    General/NSString *string = [sender stringValue];
+    NSString *string = [sender stringValue];
 }
 
 
 Note that you named "textFieldChanged:" in your nib file. it could just as easily been called "superInsanity_KILL_KILL_KILL:", or whatever.
 
--- General/MikeTrent 
+-- MikeTrent 
 
 ----
 
@@ -19,4 +19,4 @@ There's a little mumbo-jumbo to be managed in Interface Builder in order to set 
 
 ----
 
-For an introduction to accessor method, try General/AccessorMethods or General/HowToTransmitDataBetweenClasses
+For an introduction to accessor method, try AccessorMethods or HowToTransmitDataBetweenClasses

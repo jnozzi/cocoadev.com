@@ -1,4 +1,4 @@
-Hi, trying to create a Custom General/NSButton which shows a custom image when disabled instead of just dimming the image.  The problem I'm having is      General/myButton cell] setImageDimsWhenDisabled:FALSE];   doesn't seem to have any effect.
+Hi, trying to create a Custom NSButton which shows a custom image when disabled instead of just dimming the image.  The problem I'm having is      myButton cell] setImageDimsWhenDisabled:FALSE];   doesn't seem to have any effect.
 
 Thoughts, hints?
 Thanks -[[HuaYingLing
@@ -15,4 +15,4 @@ Yes, is there an alternative?
 
 ----
 
-Perhaps an approach is suggested in General/CustomNSButton
+Perhaps an approach is suggested in CustomNSButton

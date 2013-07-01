@@ -4,25 +4,25 @@ The current method I have "works" to resize them, but not really. So far I've go
 
 I've done a fair amount of browsing this site and many others, and made lots of modifications to this function, so forgive me if it's a little messy, I plan on cleaning it up once I get it working.
 
-I've tried using General/NSImage and General/NSBitmapImageRep, and get similar results with each one.
+I've tried using NSImage and NSBitmapImageRep, and get similar results with each one.
 
 Is there a way to resize an image without having it get converted to 72 DPI. I want to leave that at the value of the image and just change the pixels height and width, without mucking everything else up.
     
-- (General/IBAction)resizeAllImages:(id)sender
+- (IBAction)resizeAllImages:(id)sender
 {
 	int i;
 	int fcnt = [fileNameList count]; //Number of files currently open
-	General/NSString * currentFile;
-	General/NSBitmapImageRep * theImageRep;
-	General/NSSize imageSize;
+	NSString * currentFile;
+	NSBitmapImageRep * theImageRep;
+	NSSize imageSize;
 	float wRes, hRes, widthInches, heightInches, newWidth, newHeight, pixelsWide, pixelsHigh;
 
-	General/NSData *bitmapData;
-	General/NSDictionary *imageProps = General/[NSDictionary dictionaryWithObject:General/[NSNumber numberWithFloat:0.8] forKey:General/NSImageCompressionFactor];
+	NSData *bitmapData;
+	NSDictionary *imageProps = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:0.8] forKey:NSImageCompressionFactor];
 	
     for(i=0; i < fcnt ; i++) 
     {
-		currentFile = General/fileNameList objectAtIndex:i] fileName]; //Current file to be worked with (resized if needed)		theImageRep = [[[NSBitmapImageRep imageRepWithContentsOfFile:currentFile];
+		currentFile = fileNameList objectAtIndex:i] fileName]; //Current file to be worked with (resized if needed)		theImageRep = [[[NSBitmapImageRep imageRepWithContentsOfFile:currentFile];
 		imageSize = [theImageRep size];
 		pixelsWide = (float)[theImageRep pixelsWide];
 		pixelsHigh = (float)[theImageRep pixelsHigh];
@@ -32,7 +32,7 @@ Is there a way to resize an image without having it get converted to 72 DPI. I w
 		heightInches = pixelsHigh / hRes;
 		if( (widthInches <= 10.0) && (heightInches <= 10.0) )
 		{
-			General/NSLog(@"%i: skipped: w:%f,h:%f", i,widthInches,heightInches);
+			NSLog(@"%i: skipped: w:%f,h:%f", i,widthInches,heightInches);
 		}
 		else 
 		{
@@ -56,7 +56,7 @@ Is there a way to resize an image without having it get converted to 72 DPI. I w
 			
 			[theImageRep setSize:imageSize];
 			
-			bitmapData = [theImageRep representationUsingType:General/NSJPEGFileType properties:imageProps];
+			bitmapData = [theImageRep representationUsingType:NSJPEGFileType properties:imageProps];
 			[bitmapData writeToFile:currentFile atomically:NO];
 			[self writeIPTCDataWithFileName:currentFile withIndex:i]; //Write the IPTC data back to file after we obviously deleted it in the resize.
 		}
@@ -67,9 +67,9 @@ Is there a way to resize an image without having it get converted to 72 DPI. I w
 
 ----
 
-I am not exactly sure, what you intend to do. Maybe I got you wrong, but if you plan to change the actual "inch-size" of any given image without altering the pixels, you naturally end up with an image of a different resolution (resolution as in dpi)- e.g. with a 20x30 inch image at 300 dpi you d go down to 10x15 inch at 600 dpi. If you want to maintain the original resolution (in this example 300 dpi), you need to re-calculate the image as you will decrease its actual pixel number. There is no such functionality to General/NSBitmapImageRep (as far as I know). However, General/NSImage does scale images, look into the General/NSImage method setScalesWhenResized:. You could then create a new General/NSBitmapImageRep by initWithFocusedViewRect: I think to recall.
+I am not exactly sure, what you intend to do. Maybe I got you wrong, but if you plan to change the actual "inch-size" of any given image without altering the pixels, you naturally end up with an image of a different resolution (resolution as in dpi)- e.g. with a 20x30 inch image at 300 dpi you d go down to 10x15 inch at 600 dpi. If you want to maintain the original resolution (in this example 300 dpi), you need to re-calculate the image as you will decrease its actual pixel number. There is no such functionality to NSBitmapImageRep (as far as I know). However, NSImage does scale images, look into the NSImage method setScalesWhenResized:. You could then create a new NSBitmapImageRep by initWithFocusedViewRect: I think to recall.
 
-One more thing- it's been a while since I last played with General/NSBitmapImageRep, but I think there (could have been Jaguar or so, not sure) was a problem I had with General/NSJPEGRepresentation in that it never reflected the resolution that I gave it (i.e. the actual pixels were correct, just the res was always 72 dpi), not so for General/TIFFs, they worked fine. I never looked into that, not even checked whether the JPEG format per se even can specify a resolution or not.
+One more thing- it's been a while since I last played with NSBitmapImageRep, but I think there (could have been Jaguar or so, not sure) was a problem I had with NSJPEGRepresentation in that it never reflected the resolution that I gave it (i.e. the actual pixels were correct, just the res was always 72 dpi), not so for TIFFs, they worked fine. I never looked into that, not even checked whether the JPEG format per se even can specify a resolution or not.
 
 Maybe I should add, that I could be completely wrong in all I said, as I did not look up anything of it to make sure...
 
@@ -81,28 +81,28 @@ Maybe I should add, that I could be completely wrong in all I said, as I did not
 I guess what I mean to do, more simply put is: Read in a JPEG file. Resize it to 10 inches on the longest side, resave it, preserving resolution, save it back as a JPEG. So if it is say 1728x1295 pixels @ 144 DPI. 12" x 8.993", so then to make it 10" on the longest side I'd want it to change it to: 1440x1079 pixels @ 144DPI, 10" x 7.494". How do I do this with Cocoa? It seems like such an easy concept, and it's got me baffled.
 
 ----
-As I said, even if the concept is easy, the actual work is NOT, as all pixels need to be recalculated based on any one of the interpolation algorithms out there. However, you can (ab)use General/NSImage to do the re-scaling, extract the imageRep and there you go. A coupe of years back, when I still had time and was kind of active on the cocoadev
-mailinglist, I put up some sample code to demonstrate working with General/NSBitmapImageReps because some ppl on the list had similar trouble as you. You can access my posting with the links to the sample projects (still valid) at: http://www.omnigroup.com/mailman/archive/macosx-dev/2003-June/046807.html
+As I said, even if the concept is easy, the actual work is NOT, as all pixels need to be recalculated based on any one of the interpolation algorithms out there. However, you can (ab)use NSImage to do the re-scaling, extract the imageRep and there you go. A coupe of years back, when I still had time and was kind of active on the cocoadev
+mailinglist, I put up some sample code to demonstrate working with NSBitmapImageReps because some ppl on the list had similar trouble as you. You can access my posting with the links to the sample projects (still valid) at: http://www.omnigroup.com/mailman/archive/macosx-dev/2003-June/046807.html
 
-Another, more modern and flexible way of dealing with all kinds of image manipulatins is using Core Image. For a very helpful sample, in which they use a General/CIFilter to scale an image (General/CILanczosScaleTransform), see Apple's "Reducer" project that you can find at: http://developer.apple.com/samplecode/Reducer/ 
+Another, more modern and flexible way of dealing with all kinds of image manipulatins is using Core Image. For a very helpful sample, in which they use a CIFilter to scale an image (CILanczosScaleTransform), see Apple's "Reducer" project that you can find at: http://developer.apple.com/samplecode/Reducer/ 
 
-Finally, so that people don't say I'm not helpful to other readers of this site as I don't give concrete solutions, here is a snippet of code from one of my mentioned sample projects. The code comes from a category on General/NSImageRep, so "self" refers to the imageRep that you want to scale:
+Finally, so that people don't say I'm not helpful to other readers of this site as I don't give concrete solutions, here is a snippet of code from one of my mentioned sample projects. The code comes from a category on NSImageRep, so "self" refers to the imageRep that you want to scale:
 
     
-        if ([self isKindOfClass:General/[NSBitmapImageRep class]]) {
-            General/NSImage *tempImage = General/[[NSImage alloc] init];
+        if ([self isKindOfClass:[NSBitmapImageRep class]]) {
+            NSImage *tempImage = [[NSImage alloc] init];
 
             [tempImage addRepresentation:self];
-            auxImage = General/[[NSImage alloc] initWithSize: General/NSMakeSize(_pixelsWide*resolutionFactor,_pixelsHigh*resolutionFactor)];
+            auxImage = [[NSImage alloc] initWithSize: NSMakeSize(_pixelsWide*resolutionFactor,_pixelsHigh*resolutionFactor)];
 
             [auxImage lockFocus]; 
 
-            [tempImage drawInRect:General/NSMakeRect(0,0,_pixelsWide*resolutionFactor,_pixelsHigh*resolutionFactor) fromRect:General/NSZeroRect operation:General/NSCompositeSourceOver fraction:1.0];
+            [tempImage drawInRect:NSMakeRect(0,0,_pixelsWide*resolutionFactor,_pixelsHigh*resolutionFactor) fromRect:NSZeroRect operation:NSCompositeSourceOver fraction:1.0];
 
             [auxImage unlockFocus];
             [tempImage release];
             
-            General/NSBitmapImageRep* scaledImageRep = General/[[NSBitmapImageRep alloc] initWithData:[auxImage General/TIFFRepresentation]];
+            NSBitmapImageRep* scaledImageRep = [[NSBitmapImageRep alloc] initWithData:[auxImage TIFFRepresentation]];
         }
 
 

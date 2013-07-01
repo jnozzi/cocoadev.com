@@ -1,18 +1,18 @@
 
 
-Is it possible as in General/CPlusPlus to overload operators in classes?
+Is it possible as in CPlusPlus to overload operators in classes?
 
-For example the + operator, so you could do A + B where A and B are both General/NSNumbers.
-
-----
-
-*No. General/ObjectiveC is basically C with a preprocessor.*
-
-You might be able to use General/ObjectiveCPlusPlus and implement     operator+ for the class as a standalone function.
+For example the + operator, so you could do A + B where A and B are both NSNumbers.
 
 ----
 
-The problem is that operator functions must have either a class (as in a General/CPlusPlus class) or an enumerated type as one of its arguments.  The only way to really get overloaded operators to work with General/ObjectiveCPlusPlus is to wrap the General/ObjC class in a General/CPlusPlus class.  Here is a rather crude example:
+*No. ObjectiveC is basically C with a preprocessor.*
+
+You might be able to use ObjectiveCPlusPlus and implement     operator+ for the class as a standalone function.
+
+----
+
+The problem is that operator functions must have either a class (as in a CPlusPlus class) or an enumerated type as one of its arguments.  The only way to really get overloaded operators to work with ObjectiveCPlusPlus is to wrap the ObjC class in a CPlusPlus class.  Here is a rather crude example:
  #import <Foundation/Foundation.h>
  
  #include <iostream>
@@ -30,7 +30,7 @@ The problem is that operator functions must have either a class (as in a General
  
  Number::Number (int intVal)
  {
- 	val = General/NSNumber alloc] initWithInt: intVal];
+ 	val = NSNumber alloc] initWithInt: intVal];
  }
  
  Number::~Number ()
@@ -61,13 +61,13 @@ This will compile with "g++ -[[ObjC++ -framework Foundation filename.mm".
 
 ----
 
-*The discussion below was moved from the General/CPlusPlusInCocoa page to here, where it is more relevant and helpful*
+*The discussion below was moved from the CPlusPlusInCocoa page to here, where it is more relevant and helpful*
 
-How can General/ObjectiveCPlusPlus be used for General/OperatorOverloading of either General/CPlusPlus classes or General/ObjectiveC classes?
+How can ObjectiveCPlusPlus be used for OperatorOverloading of either CPlusPlus classes or ObjectiveC classes?
 
 ----
 
-It works the same way as regular C++. In C++ one tends to work with objects, not pointers to objects. General/ObjectiveC requires pointers to objects. 
+It works the same way as regular C++. In C++ one tends to work with objects, not pointers to objects. ObjectiveC requires pointers to objects. 
 
 As someone else has said, you can't mix the definitions of C++ and Objective-C classes. But you can use pure C++ inside an Objective-C method.
 
@@ -100,4 +100,4 @@ Here is an example. If this looks good to you, (as it does to me) you should use
 
 ----
 
-In that case, it would make sense, if one was doing heavy logic calculations, to do them in pure General/CPlusPlus that acts on input from normal General/ObjectiveC and that sends output to General/ObjectiveC.
+In that case, it would make sense, if one was doing heavy logic calculations, to do them in pure CPlusPlus that acts on input from normal ObjectiveC and that sends output to ObjectiveC.

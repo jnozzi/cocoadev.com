@@ -2,7 +2,7 @@
 
 **Goal**
 
-I'm trying to extract raw PCM audio from any given General/QuickTime-compatible media for later waveform plotting. Specifically, I need the number of samples to be equal to the width (in pixels/points) of my waveform view. This requires dividing the total samples by the number of pixels, then averaging the values of each "slice", storing the average in a buffer for drawing.
+I'm trying to extract raw PCM audio from any given QuickTime-compatible media for later waveform plotting. Specifically, I need the number of samples to be equal to the width (in pixels/points) of my waveform view. This requires dividing the total samples by the number of pixels, then averaging the values of each "slice", storing the average in a buffer for drawing.
 
 The overall intent is to only resample the file if the view's width is changed (not likely to happen often in the interface in this particular app), and to cut down on the buffer size requirements dramatically. The data can/should be down-sampled to a low quality, using mono only since that's all that's needed for a simple waveform plot used only for identifying sound in a large, mostly-quiet media clip, the track view of which cannot be zoomed. Precision nor high quality are required or desired.
 
@@ -12,9 +12,9 @@ The overall intent is to only resample the file if the view's width is changed (
 
 I have a "working" version of this that takes its cues from some random examples I've found online, but the trouble with this is that it allocates a buffer sized for all samples in the entire file. It stores all samples and redraws the waveform without This is fine for a minute or so of audio, but for hour-long home movies, etc. ... ouch! It is truly a resource hog.
 
-Apple's General/SimpleAudioExtraction sample code seems to do a better job. It takes smaller "slices" of audio and scheduling them for playback, which keeps the buffer requirements down to a minimum:
+Apple's SimpleAudioExtraction sample code seems to do a better job. It takes smaller "slices" of audio and scheduling them for playback, which keeps the buffer requirements down to a minimum:
 
-http://developer.apple.com/samplecode/General/SimpleAudioExtraction/index.html
+http://developer.apple.com/samplecode/SimpleAudioExtraction/index.html
 
 
 
@@ -38,7 +38,7 @@ b9f
 f samples for shorter files. Then just do it. Incrementally get data, do the calculations, and record resulting 'peak' data in a buffer, desk, etc., then use the data to draw. I think quicktime can handle itself, ie. it would not complain of odd sample count requests. If quicktime does complain (I really don't know quicktime at all), you need to add a bit of buffering yourself, but the principle remains the same. 
 
 I hope this helps, but perhaps you could rephrase the question?
--General/JeremyJurksztowicz
+-JeremyJurksztowicz
 
 ----
 
@@ -48,7 +48,7 @@ It's the actual mechanism for slicing down the media piece by piece and moving t
 
 ----
 
-If I've followed you correctly, what you want to know is how to downsample one buffer into another. Whether the src buffer is audio and the dest buffer represents pixels is not all that relevant, I think. So here's a stab at some code that should do it. It's untested and may not be correct, but the gist of it will hopefully help you (others or yourself may care to amend it to fix any bugs that you find!). I've commented it so that you should be able to follow the intention of the logic, even if it doesn't work right off the bat. I'm assuming the buffers contain float values but it's easy to change for any data type.  --General/GrahamCox
+If I've followed you correctly, what you want to know is how to downsample one buffer into another. Whether the src buffer is audio and the dest buffer represents pixels is not all that relevant, I think. So here's a stab at some code that should do it. It's untested and may not be correct, but the gist of it will hopefully help you (others or yourself may care to amend it to fix any bugs that you find!). I've commented it so that you should be able to follow the intention of the logic, even if it doesn't work right off the bat. I'm assuming the buffers contain float values but it's easy to change for any data type.  --GrahamCox
 
     
 
@@ -83,7 +83,7 @@ void		downsample( const float* srcBuffer, float* destBuffer, const unsigned srcL
 
 
 
-Update: posted an improved (and tested!) version which actually works. Hope this helps! Another thought - you might find that using every sample in the original buffer is overkill. For performance you might consider taking only every fourth (say) instead, which would involve a small mod to the code above to accomplish. Then again, I just measured this for a src buffer of 3MB, and it takes about 12mS on a 2GHz General/MacBook, so I'd say it was pretty fast.   - --GC
+Update: posted an improved (and tested!) version which actually works. Hope this helps! Another thought - you might find that using every sample in the original buffer is overkill. For performance you might consider taking only every fourth (say) instead, which would involve a small mod to the code above to accomplish. Then again, I just measured this for a src buffer of 3MB, and it takes about 12mS on a 2GHz MacBook, so I'd say it was pretty fast.   - --GC
 
 ----
 Be wary of optimizations such as taking only every Nth sample. Audio data can be highly regular at the small scale and you can end up with very strange sampling artifacts which will tend to emphasize or de-emphasize frequencies which are the "right" harmonic of your sampling interval. This should be left as an absolutely last resort if all other measures to obtain needed speed fail. On a modern computer the cost of such averaging is pretty light, and the benefit gained from skipping small pieces of a stream is almost nil given how the memory systems work, so it's probably not worth it. Not meant to be a criticism, just some further light to shed on the subject.
@@ -94,13 +94,13 @@ Be wary of optimizations such as taking only every Nth sample. Audio data can be
 If you're concerned about performance vs. accuracy, why not start at both ends and perform M averages?  I could see this being done as a weighted average that would have efficiency around O(M^2) for M = f(N) | O(f) < O(N).
 
 ----
-3MB of raw float-based audio is not a lot; for stereo 44.1kHz data it's about nine seconds. You're outrunning playback by a factor of about a thousand, and it's pretty easy to come up with audio files which will result in a significant delay. (I have seen people edit 60-hour audio files, prepare for the worst.) In addition, apps often do more complicated things with the data, such as computing min/max values and RMS averages, which may slow it down more. But still, General/OptimizeLater, and add support for incremental waveform display if the delay is unacceptable rather than trying tricks like a small stride. My uninformed guess is that this technique is going to be primarily constrained by memory bandwidth, and small strides won't help out at all with that.
+3MB of raw float-based audio is not a lot; for stereo 44.1kHz data it's about nine seconds. You're outrunning playback by a factor of about a thousand, and it's pretty easy to come up with audio files which will result in a significant delay. (I have seen people edit 60-hour audio files, prepare for the worst.) In addition, apps often do more complicated things with the data, such as computing min/max values and RMS averages, which may slow it down more. But still, OptimizeLater, and add support for incremental waveform display if the delay is unacceptable rather than trying tricks like a small stride. My uninformed guess is that this technique is going to be primarily constrained by memory bandwidth, and small strides won't help out at all with that.
 
 ----
-So what *is* the solution for the original problem? Allocating a huge float buffer for an hour-long media clip at 44.1kHz is - hands down - the bottleneck, not the extraction itself. In a previous post, someone said General/OptimizeLater and the OP said, "it *is* later." I'm in exactly this position. As I said, I have a working solution, it's just unusably slow for the average media clip this app is likely to handle. It's time to General/OptimizeNow ...
+So what *is* the solution for the original problem? Allocating a huge float buffer for an hour-long media clip at 44.1kHz is - hands down - the bottleneck, not the extraction itself. In a previous post, someone said OptimizeLater and the OP said, "it *is* later." I'm in exactly this position. As I said, I have a working solution, it's just unusably slow for the average media clip this app is likely to handle. It's time to OptimizeNow ...
 
 ----
-Something like a mipmap in General/OpenGL should allow you to do most of the calculation just one time, then allow for quick rendering once it's been calculated.
+Something like a mipmap in OpenGL should allow you to do most of the calculation just one time, then allow for quick rendering once it's been calculated.
 
 ----
 With respect, that seems like swatting a fly with an ICBM. Averaging (or peaking if that's indeed the better approach) the samples at (total-samples / view-width) at a time and storing only those averaged (downsampled, thanks GC) floats in memory seems like a perfectly reasonable approach and I haven't really seen anything that has convinced me that's a bad path. Of course, I may be misunderstanding what I'm reading above, and if so, please clarify. The time-sink, after using the profiling tools, is allocating several million floats to hold all the samples in memory. IMO, that's completely unnecessary when I'm only ever going to be drawing, say, 400 lines unless the window is resized, at which point a new extraction / downsampling would take place when the resize is complete. All I'm interested in is a way to hold the bare minimum in memory that I need to plot a reasonable waveform. Believe me, in a 400-pixel-wide, non-zoomable view, an hours worth of audio isn't going to look exact anyway. ;-) That's **perfectly okay**. Consider iMovie's audio tracks and their waveforms, but non-zoomable. That's all I need.
@@ -146,4 +146,4 @@ for(unsigned i = 0, j = 0; i  < sampleCount && j != viewWidth; ++j)
 }
 
 
-Obviously I left out a lot of detail. If you want to load big sounds smoothly, you can do one loop iteration, update the 'peak' buffer, and update the display, before you go on to the next loop iteration. This way the wave will slowly be drawn on screen, while not stalling the main thread. Just writing this sorta-code fragment made my head spin a little, so I understand the frustration of juggling all these variables, especially when dealing with multiple threads and all. Good luck! -General/JeremyJurksztowicz
+Obviously I left out a lot of detail. If you want to load big sounds smoothly, you can do one loop iteration, update the 'peak' buffer, and update the display, before you go on to the next loop iteration. This way the wave will slowly be drawn on screen, while not stalling the main thread. Just writing this sorta-code fragment made my head spin a little, so I understand the frustration of juggling all these variables, especially when dealing with multiple threads and all. Good luck! -JeremyJurksztowicz

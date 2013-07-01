@@ -1,16 +1,16 @@
-I have a Core Data based application I created for myself that has an General/NSPopUpButton populated via bindings.  The General/NSPopUpButton contains the names of all the courses I am taking this fall (the app is an assignment book).  I'd like to add have at the top of my listing an "Overview" item and then a separater item.  Below that would be the bound course listing from my data file.
+I have a Core Data based application I created for myself that has an NSPopUpButton populated via bindings.  The NSPopUpButton contains the names of all the courses I am taking this fall (the app is an assignment book).  I'd like to add have at the top of my listing an "Overview" item and then a separater item.  Below that would be the bound course listing from my data file.
 
 mmalc has a description on his bindings homepage, but it doesn't seem to make much sense to me.  Has anyone done something similar and can offer me some more guidance?
 
 Thanks.
 
-- General/JustinWilliams
+- JustinWilliams
 
-Taken from: http://homepage.mac.com/mmalc/General/CocoaExamples/controllers.html
+Taken from: http://homepage.mac.com/mmalc/CocoaExamples/controllers.html
 
 **Mixed static and dynamic content**
 
-It is possible to have a popup button mixed with static and dynamic items using bindings. Assuming the content is managed by an General/NSArrayController, set the array controller's contentArray to be a variable provided by indexed accessor methods. In the indexed accessor methods you can "fake" the return values to return
+It is possible to have a popup button mixed with static and dynamic items using bindings. Assuming the content is managed by an NSArrayController, set the array controller's contentArray to be a variable provided by indexed accessor methods. In the indexed accessor methods you can "fake" the return values to return
 
 You'll want to do something like this
 
@@ -38,6 +38,6 @@ You'll want to do something like this
 }
 
 
-This assumes that you're binding the popup to "General/MenuItems" and dynamicItems is bound to the stored courses.
+This assumes that you're binding the popup to "MenuItems" and dynamicItems is bound to the stored courses.
 
-- General/JimClause
+- JimClause

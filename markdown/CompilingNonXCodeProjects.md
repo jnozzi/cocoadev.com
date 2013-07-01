@@ -1,6 +1,6 @@
 
 
-Hey, guys, This is a total newbie question but I'm trying to get a binary of the LAME MP3 encoder on my system.  Source Forge just offers the source (as far as I can tell, but the site kind of confuses me). I managed to do it somehow on another system, but I had a pretty decent tutorial in front of me at the time.  I have an General/AppleScriptStudio project that uses the Lame binary (via the General/DoShellScript command).  I believe the General/AppleScript part should compile on this new system fine but I dont have the Lame binary anymore.
+Hey, guys, This is a total newbie question but I'm trying to get a binary of the LAME MP3 encoder on my system.  Source Forge just offers the source (as far as I can tell, but the site kind of confuses me). I managed to do it somehow on another system, but I had a pretty decent tutorial in front of me at the time.  I have an AppleScriptStudio project that uses the Lame binary (via the DoShellScript command).  I believe the AppleScript part should compile on this new system fine but I dont have the Lame binary anymore.
 
 Can you guys point me to a page somwehere or maybe a section in the documentation that explains compiling non X Code stuff?  Either using GCC through the command line or importing the source into an Xcode project?
 
@@ -9,7 +9,7 @@ One caviat is that I'm not really terminal savy so I'm looking for a way to do i
 Tiger / Xcode 2 if it makes a diference.
 
 Thanks,
-General/CliffPruitt
+CliffPruitt
 
 ----
 
@@ -38,7 +38,7 @@ Maks sure to chmod it +x.
 I'll try adding the path.  Am I wrong however, in understanding that if you're in the directory containing the executable & you type the executable name, that it should be run?  I'd tried running with "sudo" in case permissions are wrong but that doesn't work either.  I'm just wondering if I needed to do something different with the compile.
 
 ----
-Yeah, unfortunately you are wrong. To run a program in the current folder, type "    ./*executable*" (without the quotes). Also,     /usr/local/bin should already be in your     $PATH, but it's a good thing to add if it isn't. --General/JediKnil
+Yeah, unfortunately you are wrong. To run a program in the current folder, type "    ./*executable*" (without the quotes). Also,     /usr/local/bin should already be in your     $PATH, but it's a good thing to add if it isn't. --JediKnil
 
 *    /usr/local/bin doesn't even exist on a default install of OSX, so it's not in the default path.*
 
@@ -86,11 +86,11 @@ so basically is the $PATH variable what is responsable for defining terminal com
 
 The $PATH variable is responsible for defining the *location* to look for commands entered in the terminal.
 ----
-Gah, General/MultipleEditSyndrome.
+Gah, MultipleEditSyndrome.
 
 The dot means "current directory" in all Unix-based systems (afaik), just as two dots means "parent directory." So when you type in a command name, the terminal looks in the directories (as you said) for an executable. But for *any other executable,* you need to type in a path.     /bin/bash is a valid command (assuming, of course, that     bash lives in the     bin folder), as is     ./bash if you are in the same folder as the executable. In fact, any path can be considered a valid command (relative or absolute) provided that an executable lives at the location referenced. However, a name on its own will be looked for in each of the     $PATH directories. To look for commands in the current directory, just add a colon and a dot to the end of your "    PATH=" line (though as the above poster said, it's not necessarily a great idea for security).
 
-Sorry about the     /usr/local/bin thing...the anonymous poster above was right. --General/JediKnil
+Sorry about the     /usr/local/bin thing...the anonymous poster above was right. --JediKnil
 
 ----
 
@@ -99,6 +99,6 @@ All good information, thanks.
 I guess I was thinking in terms of when you use the "ls" command it just assumes that you mean "current directory" as an argument whereas typing an executable name seems to require a path, even if the path is "./".  But I do see the difference between an argument passed into a command and calling a command itself so I suppose it all makes sense.
 
 Thanks again, you guys have all been quite helpful.
-General/CliffPruitt
+CliffPruitt
 
-And by the way, my General/AppleScriptStudio app is up & working on the new system wonderfully.  Thanks!  If I can figure out how to do the same thing with Obj-C I may try & convert it before too long.
+And by the way, my AppleScriptStudio app is up & working on the new system wonderfully.  Thanks!  If I can figure out how to do the same thing with Obj-C I may try & convert it before too long.

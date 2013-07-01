@@ -2,18 +2,18 @@
 
 Core data appears to be orphaning detail records on a very simple Master->Detail type of data application. To verify what I was seeing, I built a very small, simple application as a Core Data Document based application. The model is simple:
 
-Vehicle Object (year, make, model, nickname, etc) has a one-to-many relationship to the General/VehiclePicture object (picture name, imageData, sequence).
+Vehicle Object (year, make, model, nickname, etc) has a one-to-many relationship to the VehiclePicture object (picture name, imageData, sequence).
 
-I set up the data model accordingly, including a cascading one-to-many from Vehicle to General/VehiclePicture, and an appropriate inverse relationship. ( by the way, this sample is only slightly more advanced than the one in the tutorial at http://developer.apple.com/cocoa/coredatatutorial/index.html )
+I set up the data model accordingly, including a cascading one-to-many from Vehicle to VehiclePicture, and an appropriate inverse relationship. ( by the way, this sample is only slightly more advanced than the one in the tutorial at http://developer.apple.com/cocoa/coredatatutorial/index.html )
 
-When I run the application, and add a vehicle, then add General/VehiclePicture records, the records add to the data set just fine. However, when deleting the General/VehiclePicture objects, the only thing that appears to be happening is that the references in the Vehicle object to the General/VehiclePictures objects are removed. The General/VehiclePictures objects are remaining in the data file. 
+When I run the application, and add a vehicle, then add VehiclePicture records, the records add to the data set just fine. However, when deleting the VehiclePicture objects, the only thing that appears to be happening is that the references in the Vehicle object to the VehiclePictures objects are removed. The VehiclePictures objects are remaining in the data file. 
 
 Is this a known behavior, or have I possibly set something up wrong? Copies of my data files follow:
 
 Original file:
     
 <?xml version="1.0"?>
-<!DOCTYPE database SYSTEM "file:///System/Library/General/DTDs/General/CoreData.dtd">
+<!DOCTYPE database SYSTEM "file:///System/Library/DTDs/CoreData.dtd">
 
 <database>
     <databaseInfo>
@@ -36,7 +36,7 @@ Original file:
 File with a few pictures added:
     
 <?xml version="1.0"?>
-<!DOCTYPE database SYSTEM "file:///System/Library/General/DTDs/General/CoreData.dtd">
+<!DOCTYPE database SYSTEM "file:///System/Library/DTDs/CoreData.dtd">
 
 <database>
     <databaseInfo>
@@ -69,7 +69,7 @@ File with a few pictures added:
 Data file after deleting the pictures:
     
 <?xml version="1.0"?>
-<!DOCTYPE database SYSTEM "file:///System/Library/General/DTDs/General/CoreData.dtd">
+<!DOCTYPE database SYSTEM "file:///System/Library/DTDs/CoreData.dtd">
 
 <database>
     <databaseInfo>
@@ -112,10 +112,10 @@ Search the documentation for "delete rule". Your relationship's delete rule is m
 
 ----
 
-It is set to Cascade for the Vehicle -> General/VehiclePIcture direction. Setting the inverse relationship (Picture -> Vehicle) to nullify or cascade appears to cause no difference in behavior. Having it cascade in child->parent direction doesn't seem to make sense any way. I gotta believe I'm just missing something stupid somewhere along the line.
+It is set to Cascade for the Vehicle -> VehiclePIcture direction. Setting the inverse relationship (Picture -> Vehicle) to nullify or cascade appears to cause no difference in behavior. Having it cascade in child->parent direction doesn't seem to make sense any way. I gotta believe I'm just missing something stupid somewhere along the line.
 
 ----
 
-Well, yep... I was overlooking something. I felt like it had something to do with Interface Builder, and sure enough... in the Binding (apple-4) dialog under the General/ContentSet section, the "Deletes Objects on Remove" behavior check box was NOT clicked. Clicking this then rerunning all my tests showed proper activity. Thing is... I'm not sure why that isn't ON by default. Ah well, another mystery solved, and another hours of research, testing and fooling around with it can now be put to bed. Sheesh!
+Well, yep... I was overlooking something. I felt like it had something to do with Interface Builder, and sure enough... in the Binding (apple-4) dialog under the ContentSet section, the "Deletes Objects on Remove" behavior check box was NOT clicked. Clicking this then rerunning all my tests showed proper activity. Thing is... I'm not sure why that isn't ON by default. Ah well, another mystery solved, and another hours of research, testing and fooling around with it can now be put to bed. Sheesh!
 
 Thanks again.

@@ -22,14 +22,14 @@ In **notify** uncomment the last line (The file even has rudimentary documentati
 CVS will say that it has rebuild the administration database and from now on will happily send you email when someone committed a file.
 Note, however, that CVS will not notify you, if you committed the file yourself, i.e. you will never receive notifications about your own deeds.
 
---General/KayRoepke
+--KayRoepke
 
 
-Aaah, one more thing: On General/MacOSX the mail notification will probably not work out of the box, because of the drunken sendmail configuration. If you don't get any mails from CVS go and look into /var/log/mail.log for more information. There you should at least see the recipients and the subject 'CVS Notification'.
+Aaah, one more thing: On MacOSX the mail notification will probably not work out of the box, because of the drunken sendmail configuration. If you don't get any mails from CVS go and look into /var/log/mail.log for more information. There you should at least see the recipients and the subject 'CVS Notification'.
 As I'm no expert (at least not right now ;-)) on sendmail config I cannot offer any insight on this.
 You might want to look in /etc/mail/README and Apple's documentation for a solution on this.
 
---General/KayRoepke
+--KayRoepke
 
 Now to your question ;-)
 
@@ -40,17 +40,17 @@ cvs watchers
 </code>
 on all sandboxes you have.
 
---General/KayRoepke
+--KayRoepke
 
 ----
 
 Oh Poop!  I get the following error: when doing a CVS commit and trying to notify by mail
 
-WARNING: General/RunAsGid for MSP ignored, check group ids (egid=20, want=25)
+WARNING: RunAsGid for MSP ignored, check group ids (egid=20, want=25)
 can not chdir(/var/spool/clientmqueue/): Permission denied
-Program mode requires special privileges, e.g., root or General/TrustedUser.
-WARNING: General/RunAsGid for MSP ignored, check group ids (egid=20, want=25)
+Program mode requires special privileges, e.g., root or TrustedUser.
+WARNING: RunAsGid for MSP ignored, check group ids (egid=20, want=25)
 can not chdir(/var/spool/clientmqueue/): Permission denied
-Program mode requires special privileges, e.g., root or General/TrustedUser.
+Program mode requires special privileges, e.g., root or TrustedUser.
 
 Does anybody know how to fix this!?  Help!!!  PLEASE! Thanks!

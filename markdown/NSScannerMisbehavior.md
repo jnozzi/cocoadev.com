@@ -1,6 +1,6 @@
 
 
-I cannot get General/NSScanner to properly scan data into my application.  The data is in the form of an ASCII file with each datum on a separate line.  Additionally, the data can be empty, and thus just an empty line.  So the data file looks something like this...
+I cannot get NSScanner to properly scan data into my application.  The data is in the form of an ASCII file with each datum on a separate line.  Additionally, the data can be empty, and thus just an empty line.  So the data file looks something like this...
     19.250
 25.062
 21.250
@@ -23,18 +23,18 @@ I cannot get General/NSScanner to properly scan data into my application.  The d
 
 The code that I am using to load this is
     float value;
-General/NSString *key;
+NSString *key;
 id myObject;
-General/NSArray *arrayOfKeys = General/[NSArray arrayWithObjects:@"foo1", @"foo2", @"foo3", nil]
-General/NSEnumerator *e = [arrayOfKeys objectEnumerator];
+NSArray *arrayOfKeys = [NSArray arrayWithObjects:@"foo1", @"foo2", @"foo3", nil]
+NSEnumerator *e = [arrayOfKeys objectEnumerator];
         
-General/NSString *aString = General/[NSString stringWithCString:[data bytes] length:[data length]];
+NSString *aString = [NSString stringWithCString:[data bytes] length:[data length]];
 // The data is the file as passed into -loadDataRepresentation: ofType
 
-General/NSScanner *aScanner = General/[NSScanner scannerWithString:aString];
-[aScanner setCharactersToBeSkipped:General/[NSCharacterSet whitespaceCharacterSet]];
+NSScanner *aScanner = [NSScanner scannerWithString:aString];
+[aScanner setCharactersToBeSkipped:[NSCharacterSet whitespaceCharacterSet]];
 
-myObject = General/Object alloc] init];
+myObject = Object alloc] init];
 
 while ( key = [e nextObject])
 {
@@ -61,39 +61,39 @@ Here is a variation that does what you wish. I changed the code slightly to make
 #import <Foundation/Foundation.h>
 
 int main (int argc, const char * argv[]) {
-    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-	General/NSCharacterSet *newlineCharacterSet = General/[NSCharacterSet characterSetWithCharactersInString:@"\n"];
+	NSCharacterSet *newlineCharacterSet = [NSCharacterSet characterSetWithCharactersInString:@"\n"];
 	float value;
-	General/NSString *key;
+	NSString *key;
 	id myObject;
-	General/NSArray *arrayOfKeys = General/[NSArray arrayWithObjects:@"foo1", @"foo2", @"foo3", nil];
-	General/NSEnumerator *e = [arrayOfKeys objectEnumerator];
+	NSArray *arrayOfKeys = [NSArray arrayWithObjects:@"foo1", @"foo2", @"foo3", nil];
+	NSEnumerator *e = [arrayOfKeys objectEnumerator];
 	
-	General/NSData *data = General/[NSData dataWithContentsOfFile:@"/Users/General/AUser/Projects/General/ScannerMalfunction/General/TheData.txt"];
-	General/NSString *aString = General/[NSString stringWithCString:[data bytes] length:[data length]];
+	NSData *data = [NSData dataWithContentsOfFile:@"/Users/AUser/Projects/ScannerMalfunction/TheData.txt"];
+	NSString *aString = [NSString stringWithCString:[data bytes] length:[data length]];
 	
-	General/NSScanner *aScanner = General/[NSScanner scannerWithString:aString];
-	[aScanner setCharactersToBeSkipped:General/[NSCharacterSet whitespaceCharacterSet]];
+	NSScanner *aScanner = [NSScanner scannerWithString:aString];
+	[aScanner setCharactersToBeSkipped:[NSCharacterSet whitespaceCharacterSet]];
 	
-	myObject = General/[[NSMutableDictionary alloc] init];
+	myObject = [[NSMutableDictionary alloc] init];
 	
 	while ( key = [e nextObject])
 	{
 		if ([aScanner scanFloat:&value])
 		{
-			[myObject takeValue:General/[NSNumber numberWithFloat:value] forKey:key];
+			[myObject takeValue:[NSNumber numberWithFloat:value] forKey:key];
 		}
 		else
 		{
-			[myObject takeValue:General/[NSNull null] forKey:key];
+			[myObject takeValue:[NSNull null] forKey:key];
 		}
 
 		[aScanner scanUpToCharactersFromSet:newlineCharacterSet intoString:nil];  // Find the newline
 		[aScanner setScanLocation:([aScanner scanLocation] + 1) ];   // Skip the newline
 	}
     
-	General/NSLog(@"%@", myObject);
+	NSLog(@"%@", myObject);
 	
 	[pool release];
     return 0;

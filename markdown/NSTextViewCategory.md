@@ -1,6 +1,6 @@
 
 
-**General/NSTextView+General/CocoaDevUsersAdditions.h**
+**NSTextView+CocoaDevUsersAdditions.h**
     
  @interface NSTextView (CocoaDevUsersAdditions)
  
@@ -12,7 +12,7 @@
  
  - (void) appendString: (NSString *)str;
  // How could they leave this one out??
- // See General/BookBuildingCocoaApplications p.341
+ // See BookBuildingCocoaApplications p.341
  
  @end
  
@@ -33,7 +33,7 @@
  
  - (void) appendString: (NSString *) str
  {
-     int len = General/self textStorage] length];
+     int len = self textStorage] length];
      [self replaceCharactersInRange:NSMakeRange(len, 0) withString:str];
  }
  
@@ -44,7 +44,7 @@
 
 I rather doubt that it is more complex algorithmically. In fact, the two different methods will probably end up invoking the exact same core method to do the actual work.
 
-*True, but JK's method is easier to grok. Someone make sure it works and change the code snippet, plz k thx! General/DustinVoss*
+*True, but JK's method is easier to grok. Someone make sure it works and change the code snippet, plz k thx! DustinVoss*
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

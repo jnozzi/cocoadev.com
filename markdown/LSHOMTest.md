@@ -1,22 +1,22 @@
 
 
-A test function for General/LSTrampoline.
+A test function for LSTrampoline.
 
     
-void General/LSHOMTest(void)
+void LSHOMTest(void)
 {
-	General/NSArray *one = [@"one two three four five six seven eight nine ten" componentsSeparatedByString:@" "];
-	General/NSArray *two = General/one select] hasPrefix:@"t"];
-	[[NSArray *three = General/two reject] hasSuffix:@"e"];
-	[[NSArray *four = General/three collect] stringByAppendingString:@" potato"];
-	[[NSArray *five = General/one collect] mutableCopy];
+	NSArray *one = [@"one two three four five six seven eight nine ten" componentsSeparatedByString:@" "];
+	NSArray *two = one select] hasPrefix:@"t"];
+	[[NSArray *three = two reject] hasSuffix:@"e"];
+	[[NSArray *four = three collect] stringByAppendingString:@" potato"];
+	[[NSArray *five = one collect] mutableCopy];
 	[[five do] appendString:@"_vegetable"];
 	
 	[[NSLog(@"%@", one);
-	General/NSLog(@"%@", two);
-	General/NSLog(@"%@", three);
-	General/NSLog(@"%@", four);
-	General/NSLog(@"%@", five);
+	NSLog(@"%@", two);
+	NSLog(@"%@", three);
+	NSLog(@"%@", four);
+	NSLog(@"%@", five);
 }
 
 
@@ -41,4 +41,4 @@ I ran this just now, and here is the output:
 )
 
 
--- General/RobRix
+-- RobRix

@@ -4,53 +4,53 @@ One day I wanted to find out how many lines i wrote in a project, so I wrote thi
 #import <Cocoa/Cocoa.h>
 
 
-@interface General/LineCountController : General/NSObject {
+@interface LineCountController : NSObject {
 	id resultField;
 }
-- (General/IBAction)chooseDirectoryAndCountLines:(id)sender;
+- (IBAction)chooseDirectoryAndCountLines:(id)sender;
 @end
 
-#import "General/LineCountController.h"
+#import "LineCountController.h"
 
 
-@implementation General/LineCountController
+@implementation LineCountController
 
-- (General/IBAction)chooseDirectoryAndCountLines:(id)sender
+- (IBAction)chooseDirectoryAndCountLines:(id)sender
 {
-	General/NSOpenPanel * panel = General/[NSOpenPanel openPanel];
+	NSOpenPanel * panel = [NSOpenPanel openPanel];
 	[panel setCanChooseFiles:NO];
 	[panel setCanChooseDirectories:YES];
 	[panel runModalForTypes:nil];
 	
-	General/NSArray * selectedFiles = [panel filenames];
+	NSArray * selectedFiles = [panel filenames];
 	
 	int linecount = 0;
 	
 	int i;
 	for (i=0; i<[selectedFiles count]; i++)
 	{
-		General/NSFileManager * manager = General/[NSFileManager defaultManager];
-		General/NSDirectoryEnumerator * directoryFiles = [manager enumeratorAtPath:[selectedFiles objectAtIndex:i]];
+		NSFileManager * manager = [NSFileManager defaultManager];
+		NSDirectoryEnumerator * directoryFiles = [manager enumeratorAtPath:[selectedFiles objectAtIndex:i]];
 		
-		General/NSString * file;
+		NSString * file;
 		while (file = [directoryFiles nextObject]) {
-			if (General/file pathExtension] isEqualToString:@"m"] ||
+			if (file pathExtension] isEqualToString:@"m"] ||
 				[[file pathExtension] isEqualToString:@"h"] ||
 				[[file pathExtension] isEqualToString:@"c"]) {
-				[[NSLog(General/selectedFiles objectAtIndex:i] stringByAppendingPathComponent:file]);
-				[[NSString * contents = General/[NSString stringWithContentsOfFile:General/selectedFiles objectAtIndex:i] stringByAppendingPathComponent:file;
-				General/NSArray * separated = [contents componentsSeparatedByString:@"\n"];
+				[[NSLog(selectedFiles objectAtIndex:i] stringByAppendingPathComponent:file]);
+				[[NSString * contents = [NSString stringWithContentsOfFile:selectedFiles objectAtIndex:i] stringByAppendingPathComponent:file;
+				NSArray * separated = [contents componentsSeparatedByString:@"\n"];
 				
-				General/NSLog(@"Count: %i",[separated count]);
+				NSLog(@"Count: %i",[separated count]);
 				linecount += [separated count];
 			}
 			
 		}
 	}
 	
-	General/NSLog(@"Count: %i",linecount);
+	NSLog(@"Count: %i",linecount);
 	
-	[resultField setStringValue:General/[NSString stringWithFormat:@"%i",linecount]];
+	[resultField setStringValue:[NSString stringWithFormat:@"%i",linecount]];
 }
 
 @end
@@ -66,7 +66,7 @@ Wouldn't it be easier to open a terminal window and type this? Or save it as a s
 wc -l `find <myProjectDir> -type f -name "*.m" -or -name "*.h" -or -name "*.c"`
 </code>
 
---General/TimHart
+--TimHart
 
 ----
 
@@ -79,12 +79,12 @@ If every source file is at the top-level, a "wc -l *.[hm]" will do the job.
 some constructive criticisms:
 
 
-* General/NSDirectoryEnumerator is recursive, so your app is recursive.
+* NSDirectoryEnumerator is recursive, so your app is recursive.
 * objectAtIndex: takes an unsigned (int), not an (signed) int.
-* I usually use General/NSEnumerator rather than General/NSArray's obj<nowiki/>ectAtIndex:. even though I don't normally use this feature, polymorphism is my friend.
+* I usually use NSEnumerator rather than NSArray's obj<nowiki/>ectAtIndex:. even though I don't normally use this feature, polymorphism is my friend.
 * even if you do decide to stay with objectAtIndex:, you don't need to call it more than once (and shouldn't anyway, especially in the case of mutable arrays). assign it to a variable and use that.
-* General/NSArray's count method returns an unsigned (int), not an (signed) int. thus, the correct printf/initWithFormat/General/NSLog format is %u.
-* I would use an General/NSSet containing the three pathname extensions. this has three advantages:
+* NSArray's count method returns an unsigned (int), not an (signed) int. thus, the correct printf/initWithFormat/NSLog format is %u.
+* I would use an NSSet containing the three pathname extensions. this has three advantages:
 
 * only one call to test membership
 * only one call to extract the pathname extension (not a cheap operation - it creates a string, and you're doing that three times)
@@ -94,36 +94,36 @@ some constructive criticisms:
 
 *--boredzo*
 
-Of course, the extracting the pathname extensions (and the other performance nits listed above) are totally drawfed by having an General/NSString object being created for every line in the file.  It'd be hugely faster to just spin through the string, use characterAtIndex: and count the newlines.
+Of course, the extracting the pathname extensions (and the other performance nits listed above) are totally drawfed by having an NSString object being created for every line in the file.  It'd be hugely faster to just spin through the string, use characterAtIndex: and count the newlines.
 
 ----
 
 Very interesting. A while ago I had written my own function to do this exact same thing. Our code is quite similar:
     
-int totalLines(General/NSString *path)
+int totalLines(NSString *path)
 {
-	General/NSFileManager *fileManager = General/[NSFileManager defaultManager];
-	General/NSString *newPath = [path stringByStandardizingPath];
-	General/NSArray *files = [fileManager subpathsAtPath:newPath];
-	General/NSEnumerator *e = [files objectEnumerator];
-	General/NSString *file;
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSString *newPath = [path stringByStandardizingPath];
+	NSArray *files = [fileManager subpathsAtPath:newPath];
+	NSEnumerator *e = [files objectEnumerator];
+	NSString *file;
 	int c = 0;
 	
 	while (file = [e nextObject])
 	{
-		General/NSString *filePath = [newPath stringByAppendingPathComponent:file];
+		NSString *filePath = [newPath stringByAppendingPathComponent:file];
 		BOOL isDir;
 
 		if ([fileManager fileExistsAtPath:filePath isDirectory:&isDir] && !isDir)
 		{
 			if (
-				General/file pathExtension] isEqualToString:@"h"] ||
+				file pathExtension] isEqualToString:@"h"] ||
 				[[file pathExtension] isEqualToString:@"m"] ||
 				[[file pathExtension] isEqualToString:@"pl"]
 				)
 			{
-				[[NSString *str = General/[NSString stringWithContentsOfFile:filePath];
-				General/NSArray *lines = [str componentsSeparatedByString:@"\n"];
+				[[NSString *str = [NSString stringWithContentsOfFile:filePath];
+				NSArray *lines = [str componentsSeparatedByString:@"\n"];
 				c += [lines count];
 			}
 		}
@@ -159,4 +159,4 @@ find . -type f -name "*.[cmh]*" -exec egrep '[;{]' {} \; | wc -l
  
 ----
 
-Maybe General/SLOCCount may be the tool for you. http://www.dwheeler.com/sloccount/
+Maybe SLOCCount may be the tool for you. http://www.dwheeler.com/sloccount/

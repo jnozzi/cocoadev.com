@@ -10,7 +10,7 @@ Yes that's exactly what I mean.  How would you go about authenticating a user to
 
 ----
 
-Ah. In that case, you want the General/SecurityFramework and General/SecurityInterface. You basically request permission to do something using the security framework (by displaying the authentication dialog) and use that elevated privilege to do something (like save to a file your user would otherwise not be able to access. Check out those two topics. There's a wealth of info out there to help you.
+Ah. In that case, you want the SecurityFramework and SecurityInterface. You basically request permission to do something using the security framework (by displaying the authentication dialog) and use that elevated privilege to do something (like save to a file your user would otherwise not be able to access. Check out those two topics. There's a wealth of info out there to help you.
 
 ----
 
@@ -18,13 +18,13 @@ I'll post some code here but I don't know how good it is.  It merely worked for 
 
     
 //Write out string
-General/NSString *path = @"path/to/writable/location"; // try writing to a temporary directory
+NSString *path = @"path/to/writable/location"; // try writing to a temporary directory
 [myString writeToFile:path atomically:YES];
 
 //Set up simple rights
-General/AuthorizationRef myAuthorizationRef;
-General/OSStatus myStatus;
-myStatus = General/AuthorizationCreate (NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &myAuthorizationRef);
+AuthorizationRef myAuthorizationRef;
+OSStatus myStatus;
+myStatus = AuthorizationCreate (NULL, kAuthorizationEmptyEnvironment, kAuthorizationFlagDefaults, &myAuthorizationRef);
 
 /* 
 Apple recommends breaking the part of your app that needs the authorization off into a command line tool.
@@ -41,12 +41,12 @@ if (myStatus == noErr)
     args[2] = "/Library/"; // location to move to
     args[3] = NULL; // terminate the args
 
-    myStatus = General/AuthorizationExecuteWithPrivileges(myAuthorizationRef, "/bin/mv", 0, args, NULL);
+    myStatus = AuthorizationExecuteWithPrivileges(myAuthorizationRef, "/bin/mv", 0, args, NULL);
 
     if (myStatus != noErr)
-        General/NSLog(@"Error moving file");
+        NSLog(@"Error moving file");
     else
-        General/NSLog(@"Success!");
+        NSLog(@"Success!");
 }
 
 

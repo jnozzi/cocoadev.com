@@ -2,7 +2,7 @@
 
 lets say i have a file like this
     
-set General/UserName <User>
+set UserName <User>
 set Server <localhost>
 set Port <5154>
 set Email <myself@myserver.com>
@@ -12,44 +12,44 @@ and from the array split the words so i can get the string within <>?
 
 ----
 
-You can use the General/NSString functions stringWithContentsOfFile and componentsSeperatedByString to generate an General/NSArray containing each string on it's own line, like so:
+You can use the NSString functions stringWithContentsOfFile and componentsSeperatedByString to generate an NSArray containing each string on it's own line, like so:
 
     
-    General/NSString *tmp;
-    General/NSArray *lines;
-    lines = General/[[NSString stringWithContentsOfFile:@"testFileReadLines.txt"] 
+    NSString *tmp;
+    NSArray *lines;
+    lines = [[NSString stringWithContentsOfFile:@"testFileReadLines.txt"] 
                        componentsSeparatedByString:@"\n"];
     
-    General/NSEnumerator *nse = [lines objectEnumerator];
+    NSEnumerator *nse = [lines objectEnumerator];
     
     while(tmp = [nse nextObject]) {
-        General/NSLog(@"%@", tmp);
+        NSLog(@"%@", tmp);
     }
 
 
-General/DaveGiffin http://www.davtri.com
+DaveGiffin http://www.davtri.com
 
 ----
 
-Then use General/NSScanner to get the string between the <>s:
+Then use NSScanner to get the string between the <>s:
 
     
-    General/NSString *tmp;
-    General/NSArray *lines;
-    lines = General/[[[NSString stringWithContentsOfFile:filePath] 
+    NSString *tmp;
+    NSArray *lines;
+    lines = [[[NSString stringWithContentsOfFile:filePath] 
                         stringByStandardizingPath] 
                         componentsSeparatedByString:@"\n"];
     
-    General/NSEnumerator *nse = [lines objectEnumerator];
+    NSEnumerator *nse = [lines objectEnumerator];
     
     while(tmp = [nse nextObject]) {
-        General/NSString *stringBetweenBrackets = nil;
-        General/NSScanner *scanner = General/[NSScanner scannerWithString:tmp];
+        NSString *stringBetweenBrackets = nil;
+        NSScanner *scanner = [NSScanner scannerWithString:tmp];
         [scanner scanUpToString:@"<" intoString:nil];
         [scanner scanString:@"<" intoString:nil];
         [scanner scanUpToString:@">" intoString:&stringBetweenBrackets];
 
-        General/NSLog(@"%@", stringBetweenBrackets);
+        NSLog(@"%@", stringBetweenBrackets);
     }
 
 
@@ -57,14 +57,14 @@ Then use General/NSScanner to get the string between the <>s:
  The code just ouput the last configuration in the file, in this case the email.
 How do i turn all the String Between the Brackets into an array?
 
-*Add them to a General/NSMutableArray in the while loop*
+*Add them to a NSMutableArray in the while loop*
 
 i also have problems reading the file
     
-//General/NSArray *lines = General/[[NSString stringWithContentsOfFile:filePath] 
+//NSArray *lines = [[NSString stringWithContentsOfFile:filePath] 
 //                            componentsSeparatedByString:@"\n"];
 
-General/NSArray *lines = General/[NSArray arrayWithObjects: @"set General/UserName <Username>", 
+NSArray *lines = [NSArray arrayWithObjects: @"set UserName <Username>", 
                                             @"set Server <localhost>", 
                                             @"set Port <5154>", 
                                             @"set Email <myemail@myserver.com>", 
@@ -79,40 +79,40 @@ Thanks
 
 ----
 
-Is this your format? Wouldn't it be easier to use a General/PropertyList?
+Is this your format? Wouldn't it be easier to use a PropertyList?
 
 ----
 The file still dont work
     
 - (void)awakeFromNib
 {
-	General/NSString *stringBetweenBrackets = nil;
-	General/NSString *tmp;
+	NSString *stringBetweenBrackets = nil;
+	NSString *tmp;
 	
-	General/NSArray *lines = General/[[NSString stringWithContentsOfFile:@"~/Library/Application Support/myApp/config.txt"]
+	NSArray *lines = [[NSString stringWithContentsOfFile:@"~/Library/Application Support/myApp/config.txt"]
 									componentsSeparatedByString:@"\n"];
 
-	General/NSEnumerator *nse = [lines objectEnumerator];
-	General/NSMutableArray *values = General/[NSMutableArray new];
+	NSEnumerator *nse = [lines objectEnumerator];
+	NSMutableArray *values = [NSMutableArray new];
 	
 	while(tmp = [nse nextObject])
 	{
-		General/NSScanner *scanner = General/[NSScanner scannerWithString:tmp];
+		NSScanner *scanner = [NSScanner scannerWithString:tmp];
         [scanner scanUpToString:@"<" intoString:nil];
         [scanner scanString:@"<" intoString:nil];
         [scanner scanUpToString:@">" intoString:&stringBetweenBrackets];
 		[values addObject:stringBetweenBrackets];
     }
 	
-	[userField setStringValue:General/values objectAtIndex:0] retain;
-	[serverField setStringValue:General/values objectAtIndex:1] retain;
-	[portField setStringValue:General/values objectAtIndex:2] retain;
-	[emailField setStringValue:General/values objectAtIndex:3] retain;
+	[userField setStringValue:values objectAtIndex:0] retain;
+	[serverField setStringValue:values objectAtIndex:1] retain;
+	[portField setStringValue:values objectAtIndex:2] retain;
+	[emailField setStringValue:values objectAtIndex:3] retain;
 }
 
 I use this code for this file
     
-set General/UserName <User>
+set UserName <User>
 set Server <localhost>
 set Port <5154>
 set Email <myself@myserver.com>
@@ -122,39 +122,39 @@ whats is wrong?
 
 ----
 
-1. Read General/RetainingAndReleasing.
+1. Read RetainingAndReleasing.
 2. This is apparently a config file for your app. Use a plist and you won't have to do any of this.
 
 ----
 
-I put this into a foundation tool, changing the userField, etc. into General/NSString objects. Here is the code
+I put this into a foundation tool, changing the userField, etc. into NSString objects. Here is the code
     
 #import <Foundation/Foundation.h>
 
-General/NSString *userField;
-General/NSString *serverField;
-General/NSString *portField;
-General/NSString *emailField;
+NSString *userField;
+NSString *serverField;
+NSString *portField;
+NSString *emailField;
 
 void doit() {
-    General/NSString *stringBetweenBrackets = nil;
-    General/NSString *tmp;
+    NSString *stringBetweenBrackets = nil;
+    NSString *tmp;
     
-    General/NSArray *lines = General/[[NSString stringWithContentsOfFile:@"testFileReadLines.txt"] componentsSeparatedByString:@"\n"];
+    NSArray *lines = [[NSString stringWithContentsOfFile:@"testFileReadLines.txt"] componentsSeparatedByString:@"\n"];
 
-    General/NSEnumerator *nse = [lines objectEnumerator];
-    General/NSMutableArray *values = General/[NSMutableArray new];
+    NSEnumerator *nse = [lines objectEnumerator];
+    NSMutableArray *values = [NSMutableArray new];
     
     while(tmp = [nse nextObject])
     {
-        General/NSScanner *scanner = General/[NSScanner scannerWithString:tmp];
+        NSScanner *scanner = [NSScanner scannerWithString:tmp];
         [scanner scanUpToString:@"<" intoString:nil];
         [scanner scanString:@"<" intoString:nil];
         [scanner scanUpToString:@">" intoString:&stringBetweenBrackets];
         [values addObject:stringBetweenBrackets];
     }
     
-    userField = General/values objectAtIndex:0] retain];
+    userField = values objectAtIndex:0] retain];
     serverField = [[values objectAtIndex:1] retain];
     portField = [[values objectAtIndex:2] retain];
     emailField = [[values objectAtIndex:3] retain];
@@ -163,19 +163,19 @@ void doit() {
 }
 
 int main (int argc, const char * argv[]) {
-    General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-    General/NSString *tmp;
-    General/NSArray *lines;
-    lines = General/[[NSString stringWithContentsOfFile:@"/Users/remster/testFileReadLines.txt"] componentsSeparatedByString:@"\n"];
+    NSString *tmp;
+    NSArray *lines;
+    lines = [[NSString stringWithContentsOfFile:@"/Users/remster/testFileReadLines.txt"] componentsSeparatedByString:@"\n"];
     
-    General/NSEnumerator *nse = [lines objectEnumerator];
+    NSEnumerator *nse = [lines objectEnumerator];
     
     while(tmp = [nse nextObject]) {
-        General/NSLog(@"%@", tmp);
+        NSLog(@"%@", tmp);
     }
 
-    General/NSLog(@"\n\n");
+    NSLog(@"\n\n");
     doit();
     
     [pool release];
@@ -186,23 +186,23 @@ int main (int argc, const char * argv[]) {
 
 I hope this helps.
 
-By the way, I agree with the above... Use a plist and your life would be so much easier. Or even better, just use General/[NSUserDefaults standardUserDefaults].
+By the way, I agree with the above... Use a plist and your life would be so much easier. Or even better, just use [NSUserDefaults standardUserDefaults].
 
-General/DaveGiffin http://www.davtri.com
+DaveGiffin http://www.davtri.com
 
 ----
 
 I also just noticed you're using a tilde (~) in your path, but not standardizing your path, which might be why on your tests, when it wasn't crashing, it wasn't outputting any data. You need to do something like this:
 
     
-General/NSString *path;
+NSString *path;
 path = [@"~/Library/Application Support/myApp/config.txt" stringByStandardizingPath];
 
 
 this way your @"~/Library/Application Support/myApp/config.txt" will be transformed into @"/Users/currentUserName/Library/Application Support/myApp/config.txt"
 
 
-General/DaveGiffin http://www.davtri.com
+DaveGiffin http://www.davtri.com
 
 ----
 Ah thanks alot now it work, it was the tilde.
@@ -213,29 +213,29 @@ No problem, glad I could help :-)
 
 ----
 
-Of course, the code is pointless, since reading/writing a General/PropertyList is a one-liner.
+Of course, the code is pointless, since reading/writing a PropertyList is a one-liner.
 
-*I shall look into General/PropertyList, i just needed this first so i can choose*
+*I shall look into PropertyList, i just needed this first so i can choose*
 
 ----
 
 Yep, like I said above, a property list is much, much easier to deal with, not to mention you don't have to worry about typos in your config files (unless you're manually editing them).
 
-General/DaveGiffin
+DaveGiffin
 
 ----
 
-Instead of just writing a General/PropertyList at some random location in the filesystem, why not use General/NSUserDefaults? This is Cocoa. Doing all the usual busywork just to get standard behavior out of your app is rarely necessary.
+Instead of just writing a PropertyList at some random location in the filesystem, why not use NSUserDefaults? This is Cocoa. Doing all the usual busywork just to get standard behavior out of your app is rarely necessary.
 
 ----
 
 While working with a plist is so much easier than reading from a data file, there are times when a plist just isn't available. For example, in most scientific and engineering work, you will have a large, possibly unencoded text file for your data. A good example of this is the space business where you have the same chance of finding the Holy Grail as finding a file of keplerian elements for satellites formatted as a plist. 
 
-Apple's documentation, and suggestions I've found on the web, have been of limited help in writing a scanner to read a varied data file. For my part, Apple documentation for General/NSScanner is oblique. As is somewhat common throughout, the documentation for General/NSScanner is overly simplisting and frustratingly brief. I would, and I believe I'm not the only one here to feel this way, like Apple to offer up more example code in its documentation and even go so far as to have 1-2 example programs available to show working solutions for Class references such as General/NSScanner, General/NSNumber, General/NSCalendarDate, General/NSDecimalNumber, and so on. The General/SciTech programming community's needs have not been forcefully met by Apple, forcing those of us in this industry to either figure it out ourselves, which is I guess what we are paid for, or to revert to C, which isn't why I learned Cocoa. There are people such as Malcolm Crawford who patrol through Apple's Cocoa Dev mailing list to put out fires. All of us can be thankful for Apple-people like Malcolm.
+Apple's documentation, and suggestions I've found on the web, have been of limited help in writing a scanner to read a varied data file. For my part, Apple documentation for NSScanner is oblique. As is somewhat common throughout, the documentation for NSScanner is overly simplisting and frustratingly brief. I would, and I believe I'm not the only one here to feel this way, like Apple to offer up more example code in its documentation and even go so far as to have 1-2 example programs available to show working solutions for Class references such as NSScanner, NSNumber, NSCalendarDate, NSDecimalNumber, and so on. The SciTech programming community's needs have not been forcefully met by Apple, forcing those of us in this industry to either figure it out ourselves, which is I guess what we are paid for, or to revert to C, which isn't why I learned Cocoa. There are people such as Malcolm Crawford who patrol through Apple's Cocoa Dev mailing list to put out fires. All of us can be thankful for Apple-people like Malcolm.
 
 Speaking of whom, a much more elegant solution than my original posting was proposed by mmalc. In light of lessons learned form Malcolm, I nuked my original code and adopted his suggested code. Thanks Malcolm and sorry if the things I write hit a sore spot. Like most here, I'm just trying to make the experience for the uninitiated (untortured?) less...well, tortuous.
 
-So, compliments of General/OrbitCode and yours truly Jim Hillhouse, as well as Malcolm Crawford and Adam Maxwell, here you go:
+So, compliments of OrbitCode and yours truly Jim Hillhouse, as well as Malcolm Crawford and Adam Maxwell, here you go:
 
     
 <code>
@@ -251,31 +251,31 @@ Earth   6378.1363   398600.4    0.016708617
 - (void)readDataFileAndStore 
 {
     
-    General/NSString *bodyName;
-    General/NSNumber *meanRadius;
-    General/NSNumber *gravParameter;
-    General/NSNumber *eccentricity;
+    NSString *bodyName;
+    NSNumber *meanRadius;
+    NSNumber *gravParameter;
+    NSNumber *eccentricity;
     
     
     float   mR;
     float   gP;
     float   ecc;
     
-    General/NSString *dataFilePath;
-    dataFilePath = General/[[NSBundle mainBundle] pathForResource:@"General/PlanetaryData" 
+    NSString *dataFilePath;
+    dataFilePath = [[NSBundle mainBundle] pathForResource:@"PlanetaryData" 
                                                    ofType:@"txt"];  
-    General/NSError *error;
+    NSError *error;
     
-    General/NSString *dataSource = General/[NSString stringWithContentsOfFile:dataFilePath encoding:NSUTF8StringEncoding error:&error];
+    NSString *dataSource = [NSString stringWithContentsOfFile:dataFilePath encoding:NSUTF8StringEncoding error:&error];
     
     if (dataSource == nil) 
     {
-        General/NSLog(@"There a problem with the data...it's not there!");
+        NSLog(@"There a problem with the data...it's not there!");
     }
     
-    General/NSScanner *scanner = General/[[NSScanner alloc] initWithString:dataSource];
+    NSScanner *scanner = [[NSScanner alloc] initWithString:dataSource];
     
-    General/NSCharacterSet *letterCharacterSet = General/[NSCharacterSet letterCharacterSet];
+    NSCharacterSet *letterCharacterSet = [NSCharacterSet letterCharacterSet];
     
     while ([scanner isAtEnd] == NO)
     {
@@ -285,19 +285,19 @@ Earth   6378.1363   398600.4    0.016708617
             [scanner scanFloat:&gP] &&
             [scanner scanFloat:&ecc]
             )
-        General/NSLog(@"Output:");
-        General/NSLog(@"%@: %1.2f, %1.2f, %1.2f", bodyName, mR, gP, ecc);
+        NSLog(@"Output:");
+        NSLog(@"%@: %1.2f, %1.2f, %1.2f", bodyName, mR, gP, ecc);
         
         [planetaryArray addObject:bodyName];
-        [planetaryArray addObject:General/[NSNumber numberWithFloat:mR]];
-        [planetaryArray addObject:General/[NSNumber numberWithFloat:gP]];
-        [planetaryArray addObject:General/[NSNumber numberWithFloat:ecc]];
+        [planetaryArray addObject:[NSNumber numberWithFloat:mR]];
+        [planetaryArray addObject:[NSNumber numberWithFloat:gP]];
+        [planetaryArray addObject:[NSNumber numberWithFloat:ecc]];
         
         // Put these buggars into Planet
         
     }
 
-    bodyName        = General/planetaryArray objectAtIndex:0] retain];
+    bodyName        = planetaryArray objectAtIndex:0] retain];
     meanRadius      = [[planetaryArray objectAtIndex:1] retain];
     gravParameter   = [[planetaryArray objectAtIndex:2] retain];
     eccentricity    = [[planetaryArray objectAtIndex:3] retain];
@@ -314,40 +314,40 @@ Here's the caveat--if reading a large file, Adam Maxwell has found that it's pos
 - (void)readDataFileAndStore 
 {
     
-    General/NSString *bodyName;
-    General/NSNumber *meanRadius;
-    General/NSNumber *gravParameter;
-    General/NSNumber *eccentricity;
+    NSString *bodyName;
+    NSNumber *meanRadius;
+    NSNumber *gravParameter;
+    NSNumber *eccentricity;
     
     
     float   mR;
     float   gP;
     float   ecc;
     
-    General/NSString *dataFilePath;
-    dataFilePath = General/[[NSBundle mainBundle] pathForResource:@"General/PlanetaryData" 
+    NSString *dataFilePath;
+    dataFilePath = [[NSBundle mainBundle] pathForResource:@"PlanetaryData" 
                                                    ofType:@"txt"];  
-    General/NSError *error;
+    NSError *error;
     
-    General/NSString *dataSource = General/[NSString stringWithContentsOfFile:dataFilePath encoding:NSUTF8StringEncoding error:&error];
+    NSString *dataSource = [NSString stringWithContentsOfFile:dataFilePath encoding:NSUTF8StringEncoding error:&error];
     
     // Need to be careful here as not all files end with \n, but could also end with \r, etc.
-    General/NSArray *lines = General/[[NSString stringWithContentsOfFile:dataSource] componentsSeperatedByString:@"\n"];
+    NSArray *lines = [[NSString stringWithContentsOfFile:dataSource] componentsSeperatedByString:@"\n"];
 
-    General/NSNumberator *nse = [lines objectEnumerator];
+    NSNumberator *nse = [lines objectEnumerator];
     
     if (dataSource == nil) 
     {
-        General/NSLog(@"There a problem with the data...it's not there!");
+        NSLog(@"There a problem with the data...it's not there!");
     }
     
-    General/NSScanner *scanner = General/[[NSScanner alloc] initWithString:dataSource];
+    NSScanner *scanner = [[NSScanner alloc] initWithString:dataSource];
     
-    General/NSCharacterSet *letterCharacterSet = General/[NSCharacterSet letterCharacterSet];
+    NSCharacterSet *letterCharacterSet = [NSCharacterSet letterCharacterSet];
     
     while (temp = [nse nextObject])
     {
-        General/NSScanner *theScanner = General/[[NSScanner alloc] initWithString:source];  // I'll release this below.
+        NSScanner *theScanner = [[NSScanner alloc] initWithString:source];  // I'll release this below.
         
         if (
             [scanner scanCharactersFromSet:letterCharacterSet intoString:&bodyName] &&
@@ -355,13 +355,13 @@ Here's the caveat--if reading a large file, Adam Maxwell has found that it's pos
             [scanner scanFloat:&gP] &&
             [scanner scanFloat:&ecc]
             )
-        General/NSLog(@"Output:");
-        General/NSLog(@"%@: %1.2f, %1.2f, %1.2f", bodyName, mR, gP, ecc);
+        NSLog(@"Output:");
+        NSLog(@"%@: %1.2f, %1.2f, %1.2f", bodyName, mR, gP, ecc);
         
         [planetaryArray addObject:bodyName];
-        [planetaryArray addObject:General/[NSNumber numberWithFloat:mR]];
-        [planetaryArray addObject:General/[NSNumber numberWithFloat:gP]];
-        [planetaryArray addObject:General/[NSNumber numberWithFloat:ecc]];
+        [planetaryArray addObject:[NSNumber numberWithFloat:mR]];
+        [planetaryArray addObject:[NSNumber numberWithFloat:gP]];
+        [planetaryArray addObject:[NSNumber numberWithFloat:ecc]];
         
         // Put these buggars into Planet
         
@@ -370,7 +370,7 @@ Here's the caveat--if reading a large file, Adam Maxwell has found that it's pos
     [scanner release]; // To keep from overwhelming the autorelease pool.
             
 
-    bodyName        = General/planetaryArray objectAtIndex:0] retain];
+    bodyName        = planetaryArray objectAtIndex:0] retain];
     meanRadius      = [[planetaryArray objectAtIndex:1] retain];
     gravParameter   = [[planetaryArray objectAtIndex:2] retain];
     eccentricity    = [[planetaryArray objectAtIndex:3] retain];
@@ -383,20 +383,20 @@ Here's the caveat--if reading a large file, Adam Maxwell has found that it's pos
 
 ----
 
-Yup, sometimes you just have to deal with these types of files. I had been working on an app that, sometimes (phase of the moon), the input file would have a mix of \n and \r. From line to line it could change and why I don't know. A simple guard against that is to replace one with the other via     replaceOccurrencesOfString:withString: (etc) before you make your General/NSArray. Defense.
+Yup, sometimes you just have to deal with these types of files. I had been working on an app that, sometimes (phase of the moon), the input file would have a mix of \n and \r. From line to line it could change and why I don't know. A simple guard against that is to replace one with the other via     replaceOccurrencesOfString:withString: (etc) before you make your NSArray. Defense.
 
 
 Excellent suggestion! Thanks.
 
 ----
-Unrelated to my first post there ^ but given a string/line like the OP's: set General/UserName <User>
+Unrelated to my first post there ^ but given a string/line like the OP's: set UserName <User>
 
-You can skip using General/NSScanner and do it sort of like this too..
+You can skip using NSScanner and do it sort of like this too..
     
-General/NSRange range = [theString rangeOfString:@"<"];
-General/NSString *result = [theString substringWithRange:General/NSMakeRange(range.location+range.length, [theString length]-range.location-range.length-1)];
+NSRange range = [theString rangeOfString:@"<"];
+NSString *result = [theString substringWithRange:NSMakeRange(range.location+range.length, [theString length]-range.location-range.length-1)];
 
-General/NSLog(@"result: %@", result);
+NSLog(@"result: %@", result);
 
 
 Not really all that different but shorter..though not after you add sanity checking, I guess. Carry on.

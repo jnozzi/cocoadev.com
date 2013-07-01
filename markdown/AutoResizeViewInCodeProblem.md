@@ -13,14 +13,14 @@ when the window resizes, so does my view and its subViews.
 but I NEED to set this in code.
 
 so 
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/DrawViews/Tasks/General/MovingResizingViews.html#//apple_ref/doc/uid/20000910/BBCFFIJE
+http://developer.apple.com/documentation/Cocoa/Conceptual/DrawViews/Tasks/MovingResizingViews.html#//apple_ref/doc/uid/20000910/BBCFFIJE
 
 says to use 
 setAutoresizingMask:
 
 I built my code thusly,
         when i add a new subview to my view, the view sends it this message:
-	[newChild setAutoresizingMask:General/NSViewMinYMargin];
+	[newChild setAutoresizingMask:NSViewMinYMargin];
 
 it has literally NO effect.  
 when I compile and run, there are no Auto resizing in my subviews.  
@@ -34,7 +34,7 @@ Try calling     resizeSubviewsWithOldSize: on your (top-level) view. Also, you r
 this is already supposed to be called by the top level view, during resizing... according to the docs.  as far as the reference is concerned, all you "should" have to do is tell the subviews how they auto resize, and the default behavior is that they then Just do it.
 
 here right from the docs:
-"Autoresizing is accomplished using two methods. resizeSubviewsWithOldSize: is invoked automatically by an General/NSView whenever its frame size changes."
+"Autoresizing is accomplished using two methods. resizeSubviewsWithOldSize: is invoked automatically by an NSView whenever its frame size changes."
 
 as of right this minute, that is not happening, so either I hit a bug, I have my code snippet wrong, or the docs are not correct. I've already put in a bug report, but as my first bug report is about 4 months old and nobody has acknowledged it yet, I have low faith in the process at this moment. I think apple thinks it can outrun some of these bugs.
 

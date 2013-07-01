@@ -2,13 +2,13 @@ Hi,
 
 I'm an absolute beginner to Cocoa and I've done some of the basic Core Data tutorials on the web and wish to extend the experience.
 
-I have made a simple example which adds employees & departments to General/NSTableView tables with a + button.
+I have made a simple example which adds employees & departments to NSTableView tables with a + button.
 
 Is it possible to do filtering without having to write a line of code.
 
 For example, I would want to click on a Department to show only the Employees in that department.
 
-My example only uses 2 General/NSTableView tables to display the data.
+My example only uses 2 NSTableView tables to display the data.
 
 I believe I need to use a Fetch Request but I'm really not 100% sure.
 
@@ -22,7 +22,7 @@ Matt
 
 ----
 
-What I would recommend to you, Matt, is that you learn the conventional ways of getting data in and out of interfaces. Learn about outlets and accessors, actions and delegates. Learn about General/ModelViewController. I know that things like General/CocoaBindings and General/CoreData make it much easier for experienced programmers to accomplish many of these tasks, but if you dive in like this, using techniques that make "programming so easy, even an idiot could do it" then you will be writing progams that only an idiot could write (namely, you will be producing the applications that the tutorials lay out for you). Just my humble opinion, but I think you are in a wee bit too much of a hurry.
+What I would recommend to you, Matt, is that you learn the conventional ways of getting data in and out of interfaces. Learn about outlets and accessors, actions and delegates. Learn about ModelViewController. I know that things like CocoaBindings and CoreData make it much easier for experienced programmers to accomplish many of these tasks, but if you dive in like this, using techniques that make "programming so easy, even an idiot could do it" then you will be writing progams that only an idiot could write (namely, you will be producing the applications that the tutorials lay out for you). Just my humble opinion, but I think you are in a wee bit too much of a hurry.
 
 ----
 
@@ -43,7 +43,7 @@ Conversely, there are a number of sites and tutorials expounding the virtues of 
 
 The Core Data Programming Guide has a revealing topic, What Core Data Is Not, that says "Core Data is not an entry-level technology...." It says you've got to master the underlying technologies and techniques like memory management, KVC/KVO, etc.
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/CoreData/Articles/cdBasics.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/CoreData/Articles/cdBasics.html
 
 Alas, Core Data just isn't that newbie-friendly system to learn Cocoa. But Cocoa itself is a vast and wonderful world, so welcome, dig in, explore, and enjoy.
 
@@ -51,7 +51,7 @@ Alas, Core Data just isn't that newbie-friendly system to learn Cocoa. But Cocoa
 
 Is there any single web tutorial that you might recommend that really hits the spot?
 
-What about this: http://www.cocoadev.com/index.pl?General/HowToProgramInOSX
+What about this: http://www.cocoadev.com/index.pl?HowToProgramInOSX
 
 best
 

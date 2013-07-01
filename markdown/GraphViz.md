@@ -1,8 +1,8 @@
 Graphviz (also known as dotty) is a command line tool which takes a simple textual description of a graph and calculates the layout, which can be saved in many different formats (pdf, ps, png, ...).
 
-So basically it is General/GnuPlot for graphs (and trees).
+So basically it is GnuPlot for graphs (and trees).
 
-A Mac version with a GUI is available from General/PixelGlow http://www.pixelglow.com/graphviz/
+A Mac version with a GUI is available from PixelGlow http://www.pixelglow.com/graphviz/
 
 ----
 

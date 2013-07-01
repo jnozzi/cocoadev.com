@@ -1,8 +1,8 @@
 
 
-I have finished my Cocoa app (not General/NSDocument based), and now wish to set up the document icons etc. and have my app launch when its documents are clicked etc. 
+I have finished my Cocoa app (not NSDocument based), and now wish to set up the document icons etc. and have my app launch when its documents are clicked etc. 
 
-I have been trying to get this to work in General/XCode by clicking the output target and going to Project>Get Info
+I have been trying to get this to work in XCode by clicking the output target and going to Project>Get Info
 
 The Icon File for the Application itself works fine, I have the 'Executable' and 'Identifier' down as the same thing, the name of my App.
 
@@ -10,7 +10,7 @@ Type is APPL (this is Application right?)
 
 Creator... well I don't know what this is. At first it was ???? and things didn;t work so I changed it to 4 letters to see if this was any better... but no.
 
-I have 1 document type, I have given it a name "General/MyApp Document"
+I have 1 document type, I have given it a name "MyApp Document"
 
 Class I have left blank
 
@@ -52,4 +52,4 @@ Similarly for OS Type, just that you don't register those anymore (though be car
 
 ----
 
-If you're still having problems, see General/MakingIconsAppearInFinder.
+If you're still having problems, see MakingIconsAppearInFinder.

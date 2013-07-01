@@ -1,40 +1,40 @@
     
-General/NSAlertPanel.beginAlertSheet(
+NSAlertPanel.beginAlertSheet(
 	String title, 
 	String defaultButton, 
 	String alternateButton, 
 	String otherButton, 
-	General/NSWindow docWindow, 
+	NSWindow docWindow, 
 	Object modalDelegate, 
-	General/NSSelector willEndSelector, 
-	General/NSSelector didEndSelector, 
+	NSSelector willEndSelector, 
+	NSSelector didEndSelector, 
 	Object contextInfo, 
 	String msg);
 
 The two selectors must have the following signature:
     
-public void willEndAlert(General/NSWindow sheet, int returnCode, Object contextInfo)
-public void didEndAlert(General/NSWindow sheet, int returnCode, Object contextInfo)
+public void willEndAlert(NSWindow sheet, int returnCode, Object contextInfo)
+public void didEndAlert(NSWindow sheet, int returnCode, Object contextInfo)
 
-Return codes are statics in General/NSAlertPanel
+Return codes are statics in NSAlertPanel
     
-    public static final int General/DefaultReturn = 1;
-    public static final int General/AlternateReturn = 0;
-    public static final int General/OtherReturn = -1;
-    public static final int General/ErrorReturn = -2;
+    public static final int DefaultReturn = 1;
+    public static final int AlternateReturn = 0;
+    public static final int OtherReturn = -1;
+    public static final int ErrorReturn = -2;
 
 
 Example:
     
-public void willEndAlert(General/NSWindow sheet, int returnCode, Object contextInfo) {
+public void willEndAlert(NSWindow sheet, int returnCode, Object contextInfo) {
 	switch (returnCode) {
-	case General/NSAlertPanel.General/DefaultReturn:
+	case NSAlertPanel.DefaultReturn:
 		System.out.println("modalDelegate.willEndAlert() Save");
 		break;
-	case General/NSAlertPanel.General/AlternateReturn:
+	case NSAlertPanel.AlternateReturn:
 		System.out.println("modalDelegate.willEndAlert() Don't Save");
 		break;
-	case General/NSAlertPanel.General/OtherReturn:
+	case NSAlertPanel.OtherReturn:
 		System.out.println("modalDelegate.willEndAlert() Cancel");
 		break;
 	default:
@@ -43,4 +43,4 @@ public void willEndAlert(General/NSWindow sheet, int returnCode, Object contextI
 }
 
 
-General/FrancoisFrisch
+FrancoisFrisch

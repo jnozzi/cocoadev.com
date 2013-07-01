@@ -1,16 +1,16 @@
-There was a long thread on the cocoa list on how to "fix" General/NSDocument's untitled document name, which it returns (in English) as "Untitled". Now, the HIG say the first letter should be uncapitalized. One person (m) suggested some code to fix the problem in a subclass, and special cased German:
+There was a long thread on the cocoa list on how to "fix" NSDocument's untitled document name, which it returns (in English) as "Untitled". Now, the HIG say the first letter should be uncapitalized. One person (m) suggested some code to fix the problem in a subclass, and special cased German:
 
     
-- (General/NSString *)displayName
+- (NSString *)displayName
 {
-	General/NSString	*fixedName;
-	General/NSString	*displayName = [super displayName];
+	NSString	*fixedName;
+	NSString	*displayName = [super displayName];
 	BOOL neverSaved = NO;
 
 	// Determine if this document was never saved.
 	// We do this by checking if the document has a file path. This is
-	// complicated (slightly) by the fact that General/NSDocument's fileURL method
-	// is new in Tiger, and General/NSDocument's filePath is deprecated in Tiger.
+	// complicated (slightly) by the fact that NSDocument's fileURL method
+	// is new in Tiger, and NSDocument's filePath is deprecated in Tiger.
 
 	neverSaved = [self fileURL] == nil;
 	if ([self methodForSelector:@selector(fileURL)])
@@ -21,19 +21,19 @@ There was a long thread on the cocoa list on how to "fix" General/NSDocument's u
 	{
 		neverSaved = [self fileName] == nil;
 	}
-	if (neverSaved) // General/NSString
+	if (neverSaved) // NSString
 	{
 		//    Special case for German.
 		//    German is the only language in the world that capitalizes
 		//    all nouns, so our strategy of lowercasing would produce the
 		//    wrong result.
 
-		General/NSDictionary* userDefaults = General/[[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
-		General/NSArray* myLocalizations = General/[[NSBundle mainBundle] localizations];
-		General/NSArray* preferredLocalizations = General/[NSBundle preferredLocalizationsFromArray:myLocalizations 
-			forPreferences: [userDefaults objectForKey:@"General/NSLanguages"]];
+		NSDictionary* userDefaults = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+		NSArray* myLocalizations = [[NSBundle mainBundle] localizations];
+		NSArray* preferredLocalizations = [NSBundle preferredLocalizationsFromArray:myLocalizations 
+			forPreferences: [userDefaults objectForKey:@"NSLanguages"]];
 
-		General/NSString* currentLanguage = [preferredLocalizations objectAtIndex:0];
+		NSString* currentLanguage = [preferredLocalizations objectAtIndex:0];
 
 		if (![currentLanguage isEqualTo:@"German"])
 		{
@@ -54,14 +54,14 @@ Now, this seems more complicated than it needs to be. From what I have heard, it
 Thus, I believe the above code does in fact "fix" the problem for most countries, if not all:
 
     
-- (General/NSString *)displayName
+- (NSString *)displayName
 {
-	General/NSString	*fixedName;
-	General/NSString	*displayName = [super displayName];
+	NSString	*fixedName;
+	NSString	*displayName = [super displayName];
 	
-	if ([self fileURL] == nil) // General/NSString
+	if ([self fileURL] == nil) // NSString
 	{
-		fixedName = General/[displayName substringToIndex:1] lowercaseString]
+		fixedName = [displayName substringToIndex:1] lowercaseString]
 			stringByAppendingString:[displayName substringFromIndex:1;
 	} else {
 		fixedName = displayName;

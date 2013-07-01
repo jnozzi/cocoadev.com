@@ -1,3 +1,3 @@
-Part of General/OmniFoundation.  Enumerates matches returned by General/OFRegularExpression objects.
+Part of OmniFoundation.  Enumerates matches returned by OFRegularExpression objects.
 
-For more information, see General/OFRegularExpression.
+For more information, see OFRegularExpression.

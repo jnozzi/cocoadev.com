@@ -1,39 +1,39 @@
 Hi All,
-       I've been recently working with Plists and I have a General/NSMatrix (2 radio buttons) and i was wondering how to set in my Plist which is the selected cell/General/RadioButton??
+       I've been recently working with Plists and I have a NSMatrix (2 radio buttons) and i was wondering how to set in my Plist which is the selected cell/RadioButton??
 
 ----
 
 I'm assuming your plist is a dictionary.
     
 // Assume these are initialized elsewhere
-General/NSDictionary *myPlist;
-General/NSMatrix *myMatrix;
+NSDictionary *myPlist;
+NSMatrix *myMatrix;
 
 
 If your matrix is horizontal, do this:
     
-General/NSNumber *selectedRow;
-selectedRow = General/[NSNumber numberWithInt:[myMatrix selectedRow]];
+NSNumber *selectedRow;
+selectedRow = [NSNumber numberWithInt:[myMatrix selectedRow]];
 
-[myPlist setObject:selectedRow forKey:@"General/SelectedRow"];
+[myPlist setObject:selectedRow forKey:@"SelectedRow"];
 
 
 or if it's vertical:
     
-General/NSNumber * selectedColumn;
-selectedColumn = General/[NSNumber numberWithInt:[myMatrix selectedColumn]];
+NSNumber * selectedColumn;
+selectedColumn = [NSNumber numberWithInt:[myMatrix selectedColumn]];
 
-[myPlist setObject:selectedColumn forKey:@"General/SelectedColumn"];
+[myPlist setObject:selectedColumn forKey:@"SelectedColumn"];
 
 
 -- Ibson
 
 ----
 
-My General/NSMatrix is horizontal and the above code worked. Thanks alot... Now after reading from the plist file how do i assign the value? I ahave tried this but does not work..
+My NSMatrix is horizontal and the above code worked. Thanks alot... Now after reading from the plist file how do i assign the value? I ahave tried this but does not work..
 
     
-[myMatrix selectCellWithTag:(int)[prefs objectForKey:@"General/SelectedRow"]];
+[myMatrix selectCellWithTag:(int)[prefs objectForKey:@"SelectedRow"]];
 
 
 --Syphor

@@ -18,7 +18,7 @@ $9.95
 ----
 
 *All I can say is that Obj-C becomes terribly easy to "get" after flipping through this handy guide.
-*General/JoshaChapmanDodson -  I just bought the book on my monthly trip to Portland, OR, and it was worth the trip.
+*JoshaChapmanDodson -  I just bought the book on my monthly trip to Portland, OR, and it was worth the trip.
 *Its a nice addition to my library. Helps a lot from not knowing anything about Objective-C (or at least I didn't before reading).
 *Just got this today and intended to just glance through it, ended up spending the past 2 hours reading it from cover to cover. It really makes it clear 
 *why* things work the way they do at the framework level. It's more of an introductory guide than a reference though - something to read in bed rather than keep stacked next to your monitor.

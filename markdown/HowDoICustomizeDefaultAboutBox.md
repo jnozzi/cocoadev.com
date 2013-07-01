@@ -2,15 +2,15 @@ Hi again! I have Xcode 2.4, and I noticed that it places a default About box in 
 
 ----
 
-Edit the General/InfoPlist.strings file in your Xcode project. This also allows you to localize the copyright string.
+Edit the InfoPlist.strings file in your Xcode project. This also allows you to localize the copyright string.
 
 ----
 
-Thanks! The About box displays the right text. I was wondering, will editing General/NSHumanReadableCopyright be enough, or do I need to edit more to further mark my app as copyrighted or by my company? Also, is General/NSHumanReadableCopyright a localized string or is it set to a fixed language?
+Thanks! The About box displays the right text. I was wondering, will editing NSHumanReadableCopyright be enough, or do I need to edit more to further mark my app as copyrighted or by my company? Also, is NSHumanReadableCopyright a localized string or is it set to a fixed language?
 
 ----
 
-Depending on the country where you live, copyright may require specific attributions, or may be bestowed as soon as a work is created. Mac OS X doesn't care--the only place it displays a copyright notice is in General/NSHumanReadableCopyright. As for localization, just localize General/InfoPlist.strings like you would for any other resource in your project.
+Depending on the country where you live, copyright may require specific attributions, or may be bestowed as soon as a work is created. Mac OS X doesn't care--the only place it displays a copyright notice is in NSHumanReadableCopyright. As for localization, just localize InfoPlist.strings like you would for any other resource in your project.
 
 ----
 

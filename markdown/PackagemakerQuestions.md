@@ -7,13 +7,13 @@ I have an director application that I need to build an installer for.  After wha
 
 So my other thought is the simple (what seems to be the mac way of doing things) drag this folder to your drive, but the partial/full concerns a large number of quicktime movies, and can't think of a way to organize it on the CD without doubling up on a lot of the files... and take into account I'm also sharing this cd with a PC side - which needs a certain stucture to it.... I am sharing the movie files (which are needed for the partial install) to save space, but the the pc need a certain structure to it.
 
-Yet another thought, I saw the new 'applescript studio' which looks pretty neat (General/XCode-the visual studio for the mac, and free??), and maybe would not be that hard to build an application that would pretty closely resemble the OSX look --with the inteface builder, tied to applescript? I haven't written any real applescript for 5 years, but that's pretty simple stuff...Especially just copying some files(If I can tie it to interface buider)  So if there is there is another way I could do this with General/XCode, I'd be up for that too... I have experience on the PC and AS/400 more recently... but if basic C++ isn't much different, and it looks like there is a compiler in there (forgive me, I just haven't spent much time on a mac for a long while) and I don't need to purchase much......
+Yet another thought, I saw the new 'applescript studio' which looks pretty neat (XCode-the visual studio for the mac, and free??), and maybe would not be that hard to build an application that would pretty closely resemble the OSX look --with the inteface builder, tied to applescript? I haven't written any real applescript for 5 years, but that's pretty simple stuff...Especially just copying some files(If I can tie it to interface buider)  So if there is there is another way I could do this with XCode, I'd be up for that too... I have experience on the PC and AS/400 more recently... but if basic C++ isn't much different, and it looks like there is a compiler in there (forgive me, I just haven't spent much time on a mac for a long while) and I don't need to purchase much......
 
 So, if this makes any sense to anyone, please point me in the right direction.  I'll be having more and more project I'll be needing to build stuff for Mac on in the coming year....
 Thank for any response,
 Jason
 
-jreynoldsXX@General/XXupwritepress.com  (remove the X's to reply to my email)
+jreynoldsXX@XXupwritepress.com  (remove the X's to reply to my email)
 
 -----
 

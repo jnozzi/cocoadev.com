@@ -1,6 +1,6 @@
-Example code for server and client threads communication using General/DistributedObjects. 
+Example code for server and client threads communication using DistributedObjects. 
 
-The code is based on Apple article (http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/articles/General/CocoaDOComm.html) and General/DistributedObjectsForInterThreadCommsCrash.
+The code is based on Apple article (http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/articles/CocoaDOComm.html) and DistributedObjectsForInterThreadCommsCrash.
 
 Notes:
 
@@ -55,16 +55,16 @@ Client call [server terminate], then release the server as usual.
 @end
 
 
-@interface Server : General/NSObject <Server>
+@interface Server : NSObject <Server>
 {
     BOOL running;
 }
 
 // Create new thread and get back a connection the thread
-+ (General/NSConnection *)connectionToServerThreadForClient:(id <Client>)client
++ (NSConnection *)connectionToServerThreadForClient:(id <Client>)client
 
 // Private method used only by the Server class to connect to a new created thread
-+ (void)connectWithPorts:(General/NSArray *)portArray;
++ (void)connectWithPorts:(NSArray *)portArray;
 
 - (BOOL)isRunning;
 
@@ -74,32 +74,32 @@ Client call [server terminate], then release the server as usual.
 
 @implementation Server
 
-+ (General/NSConnection *)connectionToServerThreadForClient:(id <Client>)client
++ (NSConnection *)connectionToServerThreadForClient:(id <Client>)client
 {
-    General/NSPort *port1 = General/[NSPort port];
-    General/NSPort *port2 = General/[NSPort port];
+    NSPort *port1 = [NSPort port];
+    NSPort *port2 = [NSPort port];
     
-    General/NSConnection *connection = General/[NSConnection connectionWithReceivePort:port1
+    NSConnection *connection = [NSConnection connectionWithReceivePort:port1
                                                               sendPort:port2];
     [connection setRootObject:client];
  
     // Ports switched here
-    General/NSArray *portArray = General/[NSArray arrayWithObjects:port2, port1, nil];
+    NSArray *portArray = [NSArray arrayWithObjects:port2, port1, nil];
  
-    General/[NSThread detachNewThreadSelector:@selector(connectWithPorts:)
+    [NSThread detachNewThreadSelector:@selector(connectWithPorts:)
                              toTarget:[self class] 
                            withObject:portArray];
     return connection;
 }
 
 
-+ (void)connectWithPorts:(General/NSArray *)portArray
++ (void)connectWithPorts:(NSArray *)portArray
 {
-    General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
-    Server *instance = General/self alloc] init];
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    Server *instance = self alloc] init];
 
     [[NSConnection *connection =
-        General/[[NSConnection alloc] initWithReceivePort:[portArray objectAtIndex:0]
+        [[NSConnection alloc] initWithReceivePort:[portArray objectAtIndex:0]
                                          sendPort:[portArray objectAtIndex:1]];
     [connection setRootObject:instance];
 
@@ -108,12 +108,12 @@ Client call [server terminate], then release the server as usual.
 
     // Run until termination
     do {
-        General/[[NSRunLoop currentRunLoop] runMode:General/NSDefaultRunLoopMode
-                                 beforeDate:General/[NSDate distantFuture]];
+        [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                 beforeDate:[NSDate distantFuture]];
     } while ([instance isRunning]);
 
     // If not invalidated, the ports leak and instance is never released
-    General/connection receivePort] invalidate];
+    connection receivePort] invalidate];
     [[connection sendPort] invalidate];
 
     [connection release];
@@ -143,7 +143,7 @@ Client call [server terminate], then release the server as usual.
 @interface Client : [[NSObject <Client>
 {
     id <Server> server;
-    General/NSConnection *serverConnection;
+    NSConnection *serverConnection;
 }
 @end
 
@@ -166,4 +166,4 @@ Client call [server terminate], then release the server as usual.
 
 
 
---General/NirSoffer
+--NirSoffer

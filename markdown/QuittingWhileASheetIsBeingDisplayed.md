@@ -1,4 +1,4 @@
-see also General/DisplayingSheets
+see also DisplayingSheets
 
 When a sheet is displayed, you can�t quit. Why isn�t the Quit menu item disabled, then??
 
@@ -42,18 +42,18 @@ The example I am checking in my own app is a modal sheet opened from a menu comm
 In the action, the sheet opens with:
 
     
-	[ General/NSApp beginSheet: controlsPanel 
+	[ NSApp beginSheet: controlsPanel 
 		modalForWindow: mainWindow modalDelegate: nil
                 didEndSelector: nil contextInfo: nil ];
-	[ General/NSApp runModalForWindow: controlsPanel ];
-	[ General/NSApp endSheet: controlsPanel ];
+	[ NSApp runModalForWindow: controlsPanel ];
+	[ NSApp endSheet: controlsPanel ];
 	[ controlsPanel orderOut: self ];
 
 
 There is a button in the sheet to put it away. The button triggers another action:
 
     
-	[ General/NSApp stopModal ];
+	[ NSApp stopModal ];
 
 
 This is all the code that is required to handle opening and closing my sheet. All it needs is an outlet in IB to the panel that is used to
@@ -68,21 +68,21 @@ somebody smarter than I am can figure out what is wrong.  I hope you find this h
 OK, thank you, that�s helpful! Here�s the code I have written:
 
     
--(General/IBAction)beginPrefsSheet:(id)sender {
-    General/[NSApp beginSheet:prefsWin 
+-(IBAction)beginPrefsSheet:(id)sender {
+    [NSApp beginSheet:prefsWin 
        modalForWindow:mainWin 
 	modalDelegate:self 
        didEndSelector:nil
 	  contextInfo:nil];   
 }
 
--(General/IBAction)endPrefsSheet:(id)sender {
+-(IBAction)endPrefsSheet:(id)sender {
     [prefsWin orderOut:sender];
-    General/[NSApp endSheet:prefsWin];
+    [NSApp endSheet:prefsWin];
 }
 
 
-So I guess I�ve got to set the modal delegate to nil. But I don�t understand why there are [ General/NSApp endSheet: controlsPanel ]; and [ controlsPanel orderOut: self ]; in your beginSheet action. Is it that the modal thing and its end are set up at once, and then the stopModal function is enough to end the sheet?
+So I guess I�ve got to set the modal delegate to nil. But I don�t understand why there are [ NSApp endSheet: controlsPanel ]; and [ controlsPanel orderOut: self ]; in your beginSheet action. Is it that the modal thing and its end are set up at once, and then the stopModal function is enough to end the sheet?
 
 I tried your way and it works!
 
@@ -126,13 +126,13 @@ Step 1) Create a Cocoa document based application.
 
 Step 2) Implement code to display a sheet on each newly created document window.
 
-   Add an action like - (General/IBAction)closeMyCustomSheet:(id)sender; to close the sheet.
-   See http://developer.apple.com/documentation/Cocoa/Conceptual/Sheets/Tasks/General/UsingCustomSheets.html
+   Add an action like - (IBAction)closeMyCustomSheet:(id)sender; to close the sheet.
+   See http://developer.apple.com/documentation/Cocoa/Conceptual/Sheets/Tasks/UsingCustomSheets.html
 
 
 Step 3) Enable Quit while sheets are displayed.
 
-   By default, the Quit General/NewApplication menu item sends the terminate: action message to the File's Owner in the main Interface Builder file.  The File's Owner in the main Interface Builder file is always an instance of General/NSApplication (or a subclass).
+   By default, the Quit NewApplication menu item sends the terminate: action message to the File's Owner in the main Interface Builder file.  The File's Owner in the main Interface Builder file is always an instance of NSApplication (or a subclass).
 
    Disconnect the Quit menu item's action from File's Owner terminate: and connect it instead to First Responder which convenienetly already has a terminate: action.
 
@@ -140,14 +140,14 @@ Step 3) Enable Quit while sheets are displayed.
 Step 4) Add the following code to your document class:
 
     
-- (General/IBAction)terminate:(id)dummy
+- (IBAction)terminate:(id)dummy
 {
-   General/[[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(closeMyCustomSheet:) withObject:nil];
-   General/[NSApp terminate:dummy];
+   [[NSApp orderedDocuments] makeObjectsPerformSelector:@selector(closeMyCustomSheet:) withObject:nil];
+   [NSApp terminate:dummy];
 }
 
 
-   This implementation of -terminate: closes all instances of your custom sheet that may be currently displayed and then sends the terminate: message to the application's single General/NSApplication instance just like the Quit menu item used to do before you rewired it.
+   This implementation of -terminate: closes all instances of your custom sheet that may be currently displayed and then sends the terminate: message to the application's single NSApplication instance just like the Quit menu item used to do before you rewired it.
 
    Now, when you quit the application, any visible custom sheets are automatically closed.  The application then prompts you to save any unsaved documents.
 

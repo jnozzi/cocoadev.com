@@ -5,12 +5,12 @@ Homepage: http://www.dasgenie.com/
 
 
 
-Group: General/TheCodingMonkeys http://www.codingmonkeys.de/
+Group: TheCodingMonkeys http://www.codingmonkeys.de/
 
 
 Products: 
 
-General/SubEthaEdit http://www.subethaedit.net/
+SubEthaEdit http://www.subethaedit.net/
 
 Port Map http://www.codingmonkeys.de/portmap/
 
@@ -20,6 +20,6 @@ Stereoscope Simulator http://www.codingmonkeys.de/
 
 Big Clock http://www.codingmonkeys.de/
 
-General/BoinxTV http://boinx.com/boinxtv
+BoinxTV http://boinx.com/boinxtv
 
 AIM: dasgeniedotcom

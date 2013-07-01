@@ -1,3 +1,3 @@
 
 
-The General/JavaVirtualMachine is what makes Java General/CrossPlatform. And that's the extent of my knowledge.
+The JavaVirtualMachine is what makes Java CrossPlatform. And that's the extent of my knowledge.

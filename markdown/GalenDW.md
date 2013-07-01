@@ -8,12 +8,12 @@ Languages I Know:
 
 *HTML
 *CSS
-*General/JavaScript
+*JavaScript
 *PHP
 *Some of Ruby (esp. on Rails)
-*General/AppleScript (Though not as well as I'd like)
+*AppleScript (Though not as well as I'd like)
 *Java
-*General/CPlusPlus / C
+*CPlusPlus / C
 
 
 Obviously, I'm also learning Objective-C... but I shouldn't have to say that.

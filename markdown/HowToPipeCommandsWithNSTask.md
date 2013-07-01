@@ -1,27 +1,27 @@
 
 
-How can I use General/NSTask for a command with a pipe?
+How can I use NSTask for a command with a pipe?
 
 For Example
 netstat -rn | grep default
 
 I tried this code:
     
-General/NSTask *proc;
-	General/NSPipe *output;
-	General/NSData *data;
-	General/NSString *buffer;
+NSTask *proc;
+	NSPipe *output;
+	NSData *data;
+	NSString *buffer;
 	
-	proc = General/[[NSTask alloc] init];
-	output = General/[[NSPipe alloc] init];
+	proc = [[NSTask alloc] init];
+	output = [[NSPipe alloc] init];
 	
 	[proc setLaunchPath:@"/usr/sbin/netstat"];
-	[proc setArguments:General/[NSArray arrayWithObjects: @"-rn", @"|", @"/usr/bin/grep", @"default", nil]];
+	[proc setArguments:[NSArray arrayWithObjects: @"-rn", @"|", @"/usr/bin/grep", @"default", nil]];
 	[proc setStandardOutput:output];
 	[proc launch];
 	
-	data = General/output fileHandleForReading] readDataToEndOfFile];
-	buffer = [[[[NSString alloc] initWithData:data encoding:General/NSASCIIStringEncoding];
+	data = output fileHandleForReading] readDataToEndOfFile];
+	buffer = [[[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 
 ...but that does not work. 
 Does someone have a hint for me ?
@@ -41,14 +41,14 @@ There is no shell in your example. You're doing the equivalent of this command:
 /usr/sbin/netstat -rn "|" /usr/bin/grep default
 
 
-To do what you need, you have several choices. One, you could use     /bin/sh as the command, with     -c as one argument, and the entire command as the second argument. Two, you could create two General/NSTask<nowiki/>s, one for     netstat and one for     grep, hooking them together with your own General/NSPipe. Three, you could only execute     netstat, then do the search for     "default" in your own code.
+To do what you need, you have several choices. One, you could use     /bin/sh as the command, with     -c as one argument, and the entire command as the second argument. Two, you could create two NSTask<nowiki/>s, one for     netstat and one for     grep, hooking them together with your own NSPipe. Three, you could only execute     netstat, then do the search for     "default" in your own code.
 
 ----
 
 I did this:
     
 [proc setLaunchPath:@"/bin/bash"];
-[proc setArguments:General/[NSArray arrayWithObjects: @"-c", @"\"/usr/sbin/netstat -rn | /usr/bin/grep default\"", nil]];
+[proc setArguments:[NSArray arrayWithObjects: @"-c", @"\"/usr/sbin/netstat -rn | /usr/bin/grep default\"", nil]];
 
 
 the Result is:
@@ -59,7 +59,7 @@ the Result is:
 And I did this: 
     
 [proc setLaunchPath:@"/bin/bash"];
-[proc setArguments:General/[NSArray arrayWithObjects: @"-c \"/usr/sbin/netstat -rn | /usr/bin/grep default\"", nil]];
+[proc setArguments:[NSArray arrayWithObjects: @"-c \"/usr/sbin/netstat -rn | /usr/bin/grep default\"", nil]];
 
 
 with this Result:
@@ -93,7 +93,7 @@ If I open a terminal and type in this:
     
 /bin/bash -c "/usr/sbin/netstat -rn | /usr/bin/grep default"
 
-it works. Why does General/NSTask mess up with it?
+it works. Why does NSTask mess up with it?
 
 ----
 You clearly have very little idea of what gets interpreted by the shell and what doesn't. Some reading would be in order here. Your code and your shell command are *not* equivalent. Your code is equivalent to this:
@@ -108,38 +108,38 @@ In other words, the quotes in your string are being passed as part of the argume
 I presume that the previous reply was not intended to be as belittling as it sounds. A more polite answer would have simply been to show the correct code:
     
 [proc setLaunchPath:@"/bin/bash"];
-[proc setArguments:General/[NSArray arrayWithObjects: @"-c", @"/usr/sbin/netstat -rn | /usr/bin/grep default", nil]];
+[proc setArguments:[NSArray arrayWithObjects: @"-c", @"/usr/sbin/netstat -rn | /usr/bin/grep default", nil]];
 
 
 ----
-Alternatively, you can use General/NSTask with General/NSPipe to achieve the same result without a shell:
+Alternatively, you can use NSTask with NSPipe to achieve the same result without a shell:
     
-General/NSTask *netstat = General/[[NSTask alloc] init];
-General/NSTask *grep   =  General/[[NSTask alloc] init];
+NSTask *netstat = [[NSTask alloc] init];
+NSTask *grep   =  [[NSTask alloc] init];
 
 [netstat setLaunchPath:@"/usr/sbin/netstat"];
-[netstat setArguments:General/[NSArray arrayWithObject:@"-rn"]];
+[netstat setArguments:[NSArray arrayWithObject:@"-rn"]];
 
 [grep setLaunchPath:@"/usr/bin/grep"];
-[grep setArguments:General/[NSArray arrayWithObject:@"default"]];
+[grep setArguments:[NSArray arrayWithObject:@"default"]];
 
-General/NSPipe *pipe = General/[[NSPipe alloc] init];
+NSPipe *pipe = [[NSPipe alloc] init];
 
-[netstat setStandardError:General/[NSFileHandle fileHandleWithNullDevice]];
-[grep setStandardError:General/[NSFileHandle fileHandleWithNullDevice]];
+[netstat setStandardError:[NSFileHandle fileHandleWithNullDevice]];
+[grep setStandardError:[NSFileHandle fileHandleWithNullDevice]];
 
 [netstat setStandardOutput:pipe];
 [grep setStandardInput:pipe];
 
-pipe = General/[[NSPipe alloc] init];
+pipe = [[NSPipe alloc] init];
 
 [grep setStandardOutput:pipe];
 
 [netstat launch];
 [grep launch];
 
-General/NSData *data = General/[grep standardOutput] fileHandleForReading] readDataToEndOfFile];
-[[NSString *string = General/[[NSString alloc] initWithData:data encoding:General/NSASCIIStringEncoding];
+NSData *data = [grep standardOutput] fileHandleForReading] readDataToEndOfFile];
+[[NSString *string = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 
 
 ----
@@ -178,7 +178,7 @@ Well, let's end that discussion peaceful. I did try lots of combinations with or
 
     
 [proc setLaunchPath:@"/bin/bash"];
-[proc setArguments:General/[NSArray arrayWithObjects: @"-c", @"/usr/sbin/netstat -rn | /usr/bin/grep default", nil]];
+[proc setArguments:[NSArray arrayWithObjects: @"-c", @"/usr/sbin/netstat -rn | /usr/bin/grep default", nil]];
 
 
 However, I felt pissed-off by the second answer ("You clearly have very little idea ...") - even if you are right. I don't believe that this page if for telling people they should rtfm. But, again, ok now. End of discussion, thanks for the help :-) -- Ben

@@ -1,44 +1,44 @@
 
 
-General/OCUnit, one of the first testing unit frameworks for any language is available at http://www.sente.ch/software/ocunit
+OCUnit, one of the first testing unit frameworks for any language is available at http://www.sente.ch/software/ocunit
 
-A tutorial, "Unit Testing for Objective-C using General/ProjectBuilder and General/OCUnit" is available on Stepwise at http://www.stepwise.com/Articles/Technical/2002-06-17.01.html
+A tutorial, "Unit Testing for Objective-C using ProjectBuilder and OCUnit" is available on Stepwise at http://www.stepwise.com/Articles/Technical/2002-06-17.01.html
 
-see also General/SenTestingKit
+see also SenTestingKit
 
 **Note:**
 
 The tutorial at Stepwise is **very old and uses deprecated macros**. Instead, you should use these macros
 
-    General/STAssertNil(a1, description, ...)
-General/STAssertNotNil(a1, description, ...)
-General/STAssertTrue(expression, description, ...)
-General/STAssertFalse(expression, description, ...)
-General/STAssertEqualObjects(a1, a2, description, ...)
-General/STAssertEquals(a1, a2, description, ...)
-General/STAssertEqualsWithAccuracy(left, right, accuracy, description, ...)
-General/STAssertThrows(expression, description, ...)
-General/STAssertThrowsSpecific(expression, specificException, description, ...)
-General/STAssertThrowsSpecificNamed(expr, specificException, aName, description, ...)
-General/STAssertNoThrow(expression, description, ...)
-General/STAssertNoThrowSpecific(expression, specificException, description, ...)
-General/STAssertNoThrowSpecificNamed(expr, specificException, aName, description, ...)
-General/STFail(description, ...)
-General/STAssertTrueNoThrow(expression, description, ...)
-General/STAssertFalseNoThrow(expression, description, ...)
+    STAssertNil(a1, description, ...)
+STAssertNotNil(a1, description, ...)
+STAssertTrue(expression, description, ...)
+STAssertFalse(expression, description, ...)
+STAssertEqualObjects(a1, a2, description, ...)
+STAssertEquals(a1, a2, description, ...)
+STAssertEqualsWithAccuracy(left, right, accuracy, description, ...)
+STAssertThrows(expression, description, ...)
+STAssertThrowsSpecific(expression, specificException, description, ...)
+STAssertThrowsSpecificNamed(expr, specificException, aName, description, ...)
+STAssertNoThrow(expression, description, ...)
+STAssertNoThrowSpecific(expression, specificException, description, ...)
+STAssertNoThrowSpecificNamed(expr, specificException, aName, description, ...)
+STFail(description, ...)
+STAssertTrueNoThrow(expression, description, ...)
+STAssertFalseNoThrow(expression, description, ...)
 
 
-These are all listed with comments in /System/Library/Frameworks/General/SenTestingKit.framework/Versions/A/Headers/SenTestCase_Macros.h
+These are all listed with comments in /System/Library/Frameworks/SenTestingKit.framework/Versions/A/Headers/SenTestCase_Macros.h
 
 The code from the tutorial should look like this with the new macros:
 
-    #import "General/TestPerson.h"
+    #import "TestPerson.h"
 #import "Person.h"
 
-@implementation General/TestPerson
+@implementation TestPerson
 - (void) testFullName
 {
-    Person *person = General/Person alloc] init];     
+    Person *person = Person alloc] init];     
     [person setFirstName:@"Pablo"];
     [person setLastName:@"Picasso"];
     [[STAssertEqualObjects([person fullName], @"Pablo Picasso", nil);
@@ -47,7 +47,7 @@ The code from the tutorial should look like this with the new macros:
 
 - (void) testEmptyFirstName
 {
-    Person *person = General/Person alloc] init];    
+    Person *person = Person alloc] init];    
     [person setFirstName:@""];
     [person setLastName:@"Picasso"];
     [[STAssertEqualObjects([person fullName], [person lastName], nil);
@@ -56,7 +56,7 @@ The code from the tutorial should look like this with the new macros:
 
 - (void) testNilFirstName
 {
-    Person *person = General/Person alloc] init];    
+    Person *person = Person alloc] init];    
     [person setFirstName:nil];
     [person setLastName:@"Picasso"];
     [[STAssertEqualObjects([person fullName], [person lastName], nil);

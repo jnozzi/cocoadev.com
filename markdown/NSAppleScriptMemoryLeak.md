@@ -1,11 +1,11 @@
 
 
-Lately I seem to be getting a memory leak whenever i use General/NSAppleScript.
+Lately I seem to be getting a memory leak whenever i use NSAppleScript.
 
 The code is very simple and it is as follows;
 
     
-	General/[[[[NSAppleScript alloc] initWithSource:@"tell application \"iTunes\" to next track"] autorelease] executeAndReturnError:nil];
+	[[[[NSAppleScript alloc] initWithSource:@"tell application \"iTunes\" to next track"] autorelease] executeAndReturnError:nil];
 
 
 As you can see the applescript is autoreleased so this shouldn't be a problem, however whenever I run it, it leaks the following (And leaks again if ran again):
@@ -30,4 +30,4 @@ Leak: 0x0038f7f0  size=16       string 'ktxt'
 Anyone have any ideas?
 
 ----
-General/AppleScript leaks no matter what you're doing.  Even a simple compiled General/AppleScript Studio application will have around 3 leaks.  This is a known problem with the current version and implementation of General/AppleScript.  I'm not completely up-to-date on Apple's plans, but I do know they're working on fixing a number of such problems.  So, it's nothing new.  You can run "leaks" on any General/AppleScript Studio or General/ObjectiveC application with General/AppleScript and will likely find leaks in every single one.
+AppleScript leaks no matter what you're doing.  Even a simple compiled AppleScript Studio application will have around 3 leaks.  This is a known problem with the current version and implementation of AppleScript.  I'm not completely up-to-date on Apple's plans, but I do know they're working on fixing a number of such problems.  So, it's nothing new.  You can run "leaks" on any AppleScript Studio or ObjectiveC application with AppleScript and will likely find leaks in every single one.

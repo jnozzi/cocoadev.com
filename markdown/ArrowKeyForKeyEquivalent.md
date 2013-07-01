@@ -1,4 +1,4 @@
-I had been trying to make Cocoa use an arrow key for a key command when building menus dynamically. (Using General/NSMenu) 
+I had been trying to make Cocoa use an arrow key for a key command when building menus dynamically. (Using NSMenu) 
 I figured out how and thought I'd share it here in case anyone else ever tries this.
 
 I tried the old arrow key ASCII codes from OS 9. No Luck.
@@ -24,7 +24,7 @@ So I guess the morals of the story are:
 - If you want to do something weird, see how Apple does it.
 - The @"" shortcut doesn't work correctly with UTF-8.
 
-- General/KenAspeslagh
+- KenAspeslagh
 
 Hmm, the Japanese characters just look like a ? in my post. If you need the actual character, just look in Preview.app like I did.
 

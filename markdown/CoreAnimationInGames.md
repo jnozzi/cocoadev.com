@@ -32,22 +32,22 @@ Just a question, he gave the best answer I can think of; fun. And yes, games ARE
 ----
 Why are games more port-worthy, is it just because people's expectations are lowered as far as user interface and taking advantage of the platform when it comes to games?
 
-I remember a lot of very old Mac games had nice Mac-like interfaces with windows and menu bars and scroll bars and the whole works. You'd have a strategy game that put its map in a normal Mac window, with normal Mac scroll bars to look around. Now games insist on using their own junky GUI widgets and taking over the entire screen. I'm sure this makes them easier to port if you use cross-platform graphics libraries like General/OpenGL.
+I remember a lot of very old Mac games had nice Mac-like interfaces with windows and menu bars and scroll bars and the whole works. You'd have a strategy game that put its map in a normal Mac window, with normal Mac scroll bars to look around. Now games insist on using their own junky GUI widgets and taking over the entire screen. I'm sure this makes them easier to port if you use cross-platform graphics libraries like OpenGL.
 
-However, considering how many PC games use General/DirectX and then get ported to the Mac, this can't be a huge concern.
+However, considering how many PC games use DirectX and then get ported to the Mac, this can't be a huge concern.
 
 ----
 
-Oh yeah, I remember those types of games. The General/MacVenture series was a great favorite when I was kid:
+Oh yeah, I remember those types of games. The MacVenture series was a great favorite when I was kid:
 
 http://en.wikipedia.org/wiki/Uninvited_%28game%29
 
-http://en.wikipedia.org/wiki/General/MacVenture
+http://en.wikipedia.org/wiki/MacVenture
 
 ----
-I guess it could be great for 2D-scrolling jump and run games like super mario or supertux, for that matter. But what do I know? --General/MatthiasGansrigler
+I guess it could be great for 2D-scrolling jump and run games like super mario or supertux, for that matter. But what do I know? --MatthiasGansrigler
 
 ----
-Having played a fair amount with Core Animation, I believe it would be very difficult to implement a lot of the things necessary for even a simple game. The purpose and beauty of Core Animation is that it provides implicit (or simple to configure explicit) animations for user interfaces, where it was previously very difficult to do such a thing without using some other package such as General/OpenGL, or trying to do it yourself.
+Having played a fair amount with Core Animation, I believe it would be very difficult to implement a lot of the things necessary for even a simple game. The purpose and beauty of Core Animation is that it provides implicit (or simple to configure explicit) animations for user interfaces, where it was previously very difficult to do such a thing without using some other package such as OpenGL, or trying to do it yourself.
 
 I can imagine that it might be possible for someone with a lot of brains and copious free time to encapsulate Core Animation and extend it with the features you need for games, but it would lose a lot of its simplicity, which is really tuned for user interfaces and not intended for games at all.

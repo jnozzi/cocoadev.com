@@ -2,7 +2,7 @@
 
 ----
 Visit my personal web site http://users.iol.it/filippo_pascolo
-or my General/MacOSX related web site http://users.iol.it/filippo_pascolo/xcorner
+or my MacOSX related web site http://users.iol.it/filippo_pascolo/xcorner
 
 Thanks.
 
@@ -10,4 +10,4 @@ Thanks.
 
 ----
 
-General/[CocoaDevUsers]General/[ItalianCocoaCommunity]
+[CocoaDevUsers][ItalianCocoaCommunity]

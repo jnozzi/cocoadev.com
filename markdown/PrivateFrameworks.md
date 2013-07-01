@@ -1,10 +1,10 @@
-The ultimate     Description forthcoming. These live in /System/Library/General/PrivateFrameworks. Use them at your own risk, because Apple will feel free to pull the rug completely out from under your feet.
+The ultimate     Description forthcoming. These live in /System/Library/PrivateFrameworks. Use them at your own risk, because Apple will feel free to pull the rug completely out from under your feet.
 
-Private frameworks are a frequent topic on General/UndocumentedGoodness pages
+Private frameworks are a frequent topic on UndocumentedGoodness pages
 
 ----
 
-If you use a General/PrivateFramework, such as General/CALCore, in your program, is that legal?  *Yes.* And second, if Apple removes that framework from OS, is it illegal to bundle it in your application? *Heck no! This isn't that different from distributing anything of Apple's, like say, OS 10.3.*
+If you use a PrivateFramework, such as CALCore, in your program, is that legal?  *Yes.* And second, if Apple removes that framework from OS, is it illegal to bundle it in your application? *Heck no! This isn't that different from distributing anything of Apple's, like say, OS 10.3.*
 
 ----
 

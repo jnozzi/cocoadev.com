@@ -30,8 +30,8 @@ That translates pretty directly into code.
 
 On the off chance that someone else might need to do a 3x3 matrix inversion, here's the code I ended up with:
     
-- (General/IBAction)invertMatrix:(id)sender {
-	General/NSArray *mIn = General/[NSArray arrayWithArray:[matrixIn cells]];
+- (IBAction)invertMatrix:(id)sender {
+	NSArray *mIn = [NSArray arrayWithArray:[matrixIn cells]];
 	
 	int index, row, col;
 	float a[3][3];
@@ -41,7 +41,7 @@ On the off chance that someone else might need to do a 3x3 matrix inversion, her
 	index = 0;
 	for(row = 0; row < 3; row++) {
 		for(col = 0; col < 3; col++) {
-			a[row][col] = General/mIn objectAtIndex:index++] floatValue];
+			a[row][col] = mIn objectAtIndex:index++] floatValue];
 		}
 	}
 	
@@ -65,23 +65,23 @@ On the off chance that someone else might need to do a 3x3 matrix inversion, her
 	for(row = 0; row < 3; row++) {
 		for(col = 0; col < 3; col++) {
 			[[mIn objectAtIndex:index++] setFloatValue:aInverted[row][col;
-   // General/NSLog(@"Row %i, Col %i set to: %f",row,col,aInverted[row][col]);
+   // NSLog(@"Row %i, Col %i set to: %f",row,col,aInverted[row][col]);
 		}
 	}
 }
 
-This is set up to work with a GUI that has a 3x3 General/NSMatrix of text fields (matrixIn) and a button to initiate the inversion. Your .h file would therefore look something like:
+This is set up to work with a GUI that has a 3x3 NSMatrix of text fields (matrixIn) and a button to initiate the inversion. Your .h file would therefore look something like:
     
 #import <Cocoa/Cocoa.h>
 
-@interface Inverter : General/NSObject
+@interface Inverter : NSObject
 {
-    General/IBOutlet General/NSMatrix *matrixIn;
+    IBOutlet NSMatrix *matrixIn;
 }
-- (General/IBAction)invertMatrix:(id)sender;
+- (IBAction)invertMatrix:(id)sender;
 @end
 
 
 The code writes the inverted matrix back out to the GUI. Clicking the "invert" button again will get you back to your original entries. Note, though, that it's using floating point (and, in particular, dividing by a floating point) so the usual accuracy issues are evident when you repeatedly click the button. This wasn't an issue for what I needed but you may need to use a more accurate method.
 
---General/PaulPomeroy
+--PaulPomeroy

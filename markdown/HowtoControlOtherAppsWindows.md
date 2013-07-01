@@ -6,17 +6,17 @@ I've searched through all Apple's documentation, but I can't seem to find the ri
 
 ----
 
-So...something like Space.app (check General/SourceForge)?
+So...something like Space.app (check SourceForge)?
 
 I have no idea how to do this, but you might consider adding to Space.app's code instead of rewriting. Oh wait, I think it's Space.dock now...
 
--- General/RobRix
+-- RobRix
 
 ----
 
-Space.dock doesn't really do this - it just hides / shows certain sets of applications via General/AppleEvents, so I doubt its code will help much.
+Space.dock doesn't really do this - it just hides / shows certain sets of applications via AppleEvents, so I doubt its code will help much.
 
--- General/JensBaumeister
+-- JensBaumeister
 
 ----
 
@@ -30,80 +30,80 @@ Chris - cmason@unixzone.com
 
 Ah, okay, I wasn't aware of that limitation of Space.dock (it's been a while since I've used it). Well, I'm not sure what to suggest...how about you, Finlay? You've got the every private API in Mac OS X memorized by now, don't you? :D
 
--- General/RobRix
+-- RobRix
 
 ----
 
 I think that this would have been possible using a rootified app before Apple's Security Update... There was a time when root had unlimited privs in the windowserver, I think (not really sure, I never thought about it at the time, might be interesting to investigate, but not really all that useful these days).
 
-I was interested in doing this at some time, and Apple was extremely unhelpful. There is only one General/CGSConnection (CGS is General/CoreGraphics Services, the General/WindowServer SPI) that can manipulate any window's properties, and it belongs to the Dock. I'm not sure how the Dock sets itself up with this privilege, and Apple is not willing to disclose how it is achieved.
+I was interested in doing this at some time, and Apple was extremely unhelpful. There is only one CGSConnection (CGS is CoreGraphics Services, the WindowServer SPI) that can manipulate any window's properties, and it belongs to the Dock. I'm not sure how the Dock sets itself up with this privilege, and Apple is not willing to disclose how it is achieved.
 
-The only thing I can suggest is filing a bug with General/BugReporter asking for Apple to implement a way of doing this and open up the windowserver API. You might also like to use otool on the General/CoreGraphics framework somewhat, if you know PPC assembly and some time on your hands (people have figured a few things out).
+The only thing I can suggest is filing a bug with BugReporter asking for Apple to implement a way of doing this and open up the windowserver API. You might also like to use otool on the CoreGraphics framework somewhat, if you know PPC assembly and some time on your hands (people have figured a few things out).
 
-There is a function to list all the windows in the system and access their properties, as accomplished by the Quartz Debug application, poke around with General/CoreGraphics if you have the skillz (I certainly don't). /System/Library/Frameworks/General/ApplicationServices.framework/Versions/A/Frameworks/General/CoreGraphics.framework/General/CoreGraphics
+There is a function to list all the windows in the system and access their properties, as accomplished by the Quartz Debug application, poke around with CoreGraphics if you have the skillz (I certainly don't). /System/Library/Frameworks/ApplicationServices.framework/Versions/A/Frameworks/CoreGraphics.framework/CoreGraphics
 
--- General/FinlayDobbie
+-- FinlayDobbie
 
 ----
 
-With regard to modifications of graphical elements not restricted to an application's window, could anyone enlighten the crowd on how General/ShadowKiller is implemented? Could the author, General/SlavaKarpenko, be kind enough to explain the implementation of the app, or even release the source code and become the true mentor of OS X interface hacking? 
+With regard to modifications of graphical elements not restricted to an application's window, could anyone enlighten the crowd on how ShadowKiller is implemented? Could the author, SlavaKarpenko, be kind enough to explain the implementation of the app, or even release the source code and become the true mentor of OS X interface hacking? 
 
-Ehh... Deducing from observations when certain apps crash, the border shadows displayed around all the windows on screen, the dock and the menu bar seem to be one system-wide process.. General/ShadowKiller seems to simply disable (== temporarily kill) this process while 'doing its stuff'. Don't put me down on this tho. 
+Ehh... Deducing from observations when certain apps crash, the border shadows displayed around all the windows on screen, the dock and the menu bar seem to be one system-wide process.. ShadowKiller seems to simply disable (== temporarily kill) this process while 'doing its stuff'. Don't put me down on this tho. 
 
 So, still no clue as of how my app might interact with different windows managed by the windowserver, windows managed by another app, or on anything that is 'inter-application'-like, excluding Applescript. I'd just give up, if only the mechanics of Quartz Debug were not so luring...
 
-General/IloPark
+IloPark
 
 ----
 
-I'm the developer of General/SpaceDotApp. As Rob mentions, the source of the program is open, and I would welcome assistance in developing any of the features expected in a virtual workspace program. The current schema of hiding/unhiding apps is the child of necessity given that much of the relevant API remains unpublished, and not my idea of how things really should work. I am currently working on ferreting out the General/HotKey API. Any pointers would be appreciated.
+I'm the developer of SpaceDotApp. As Rob mentions, the source of the program is open, and I would welcome assistance in developing any of the features expected in a virtual workspace program. The current schema of hiding/unhiding apps is the child of necessity given that much of the relevant API remains unpublished, and not my idea of how things really should work. I am currently working on ferreting out the HotKey API. Any pointers would be appreciated.
 
-General/RileyLynch, riley@codeclever.com
+RileyLynch, riley@codeclever.com
 
 ----
 
-General/IloPark: no, General/ShadowKiller doesnt kills any processes. It uses an undocumented call to CG Server that disables shadows.
+IloPark: no, ShadowKiller doesnt kills any processes. It uses an undocumented call to CG Server that disables shadows.
 
 You cannot control an another app's windows from a user-level process, unfortunately.
 
 You _can_ get a list of all windows, but if you ask CGS to do something with them, you'll get a persistent "no". =)
 
--General/SlavaKarpenko
+-SlavaKarpenko
 
 ----
 
-You can, Slava, you just need to register as the Dock. It might be possible to temporarily register as the dock and then register the dock as the dock again immediately afterwards, not sure. I think the call you'd be wanting to investigate as General/CoreDockRegisterDockOwner in General/HIServices.framework.
+You can, Slava, you just need to register as the Dock. It might be possible to temporarily register as the dock and then register the dock as the dock again immediately afterwards, not sure. I think the call you'd be wanting to investigate as CoreDockRegisterDockOwner in HIServices.framework.
 
--- General/FinlayDobbie
+-- FinlayDobbie
 
 ----
-I know nothing about how to implement this, but I know that I am just now trying out a commercial app offering just this; managing several workspaces with windows from the same app spread all over.. Look att General/CodeTek's General/VirualDesktop. http://www.codetek.com/php/virtual.php
--- General/EnglaBenny
+I know nothing about how to implement this, but I know that I am just now trying out a commercial app offering just this; managing several workspaces with windows from the same app spread all over.. Look att CodeTek's VirualDesktop. http://www.codetek.com/php/virtual.php
+-- EnglaBenny
 
 ----
 
 As of Mac OS X 10.2 there's a sanctioned method for this and more:  
-the assistive API -  http://developer.apple.com/documentation/General/ReleaseNotes/General/AssistiveAPI.html
+the assistive API -  http://developer.apple.com/documentation/ReleaseNotes/AssistiveAPI.html
 
 (or from apple script the UI scripting beta - http://www.apple.com/applescript/GUI/)
 
-- General/KenFerry
+- KenFerry
 
 Does that require the user to explicitly enable the accessability API?  If so, it's not on by default, and some users may balk and turnign it on, and/or you'll need to be prepared for the support burden of users not having it turned on and thinking your software is broken.
 
 ----
 
-It does, but it is easy enough to check if it is off and redirect users to the preference pane to turn it on if it is. Even Apple does this, for instance for some of the speech recognition features. You could also use APE or similar to do control the windows, or (as mentioned above) register as the Dock (look for the private General/APIs with Universal Connection in their name). Has anyone found a polite way of getting the Dock to give up its universal connection? The only way I can find is to force quit the Dock and grab the universal connection when it's not looking (which prevents the dock reloading).
+It does, but it is easy enough to check if it is off and redirect users to the preference pane to turn it on if it is. Even Apple does this, for instance for some of the speech recognition features. You could also use APE or similar to do control the windows, or (as mentioned above) register as the Dock (look for the private APIs with Universal Connection in their name). Has anyone found a polite way of getting the Dock to give up its universal connection? The only way I can find is to force quit the Dock and grab the universal connection when it's not looking (which prevents the dock reloading).
 
-General/SamTaylor
+SamTaylor
 
 ----
 
 There's an open source project up on sourceforge.net that looks much more like the window managers I've used on Unix boxes than Space.app (or Space.dock): http://wsmanager.sourceforge.net/
 
-I looked at it briefly; it's a mess of General/CoreGraphics calls, unsurprisingly, and well beyond my ken as a beginning Cocoa developer, but you should be able to see how it actually works and decide if you want to try it yourself.
+I looked at it briefly; it's a mess of CoreGraphics calls, unsurprisingly, and well beyond my ken as a beginning Cocoa developer, but you should be able to see how it actually works and decide if you want to try it yourself.
 
-General/SteveCook
+SteveCook
 
 ----
 
@@ -115,11 +115,11 @@ Joakim Arfvidsson
 
 ----
 
-Just in case anyone is curious, there is a (partial) header for General/CoreGraphics Services floating around - General/CGSPrivate.h 
+Just in case anyone is curious, there is a (partial) header for CoreGraphics Services floating around - CGSPrivate.h 
 
 While it's incomplete, much useful information is to be found in there, such as the "Universal Owner" mechanism by which the Dock is allowed to make privileged calls to the Windowserver. You can do some funky stuff, like disable Expos�.
 
-General/SimonParsons
+SimonParsons
 
 ----
 
@@ -127,14 +127,14 @@ Does anyone have a link to this?
 
 ----
 
-General/CGSPrivate.h is in the source of General/DesktopManager (at least the version I have which was General/DLed a while back).  The URL again is http://wsmanager.sourceforge.net/
-It might just contain stuff that General/DesktopManager uses though.  All of the transition effect calls are in there.  Nothing cooler then the General/CGSTransitionType enum. :)
+CGSPrivate.h is in the source of DesktopManager (at least the version I have which was DLed a while back).  The URL again is http://wsmanager.sourceforge.net/
+It might just contain stuff that DesktopManager uses though.  All of the transition effect calls are in there.  Nothing cooler then the CGSTransitionType enum. :)
 
-Doug General/McInnes
+Doug McInnes
 
 ----
 
-I'm playing around with Cocoa (extremely new to programming on OS X!). I'm wondering if there's some way for one app (call it General/BounceWindows) to get and set the position of windows owned by other apps. The idea being that this app could open, and shift other windows around the screen randomly, and bounce them off the edges of the screen, and off each other if they make contact.
+I'm playing around with Cocoa (extremely new to programming on OS X!). I'm wondering if there's some way for one app (call it BounceWindows) to get and set the position of windows owned by other apps. The idea being that this app could open, and shift other windows around the screen randomly, and bounce them off the edges of the screen, and off each other if they make contact.
 
 I've done similar things in Windows, but is this possible using Cocoa (or some other OS X framework?)
 
@@ -142,7 +142,7 @@ I've done similar things in Windows, but is this possible using Cocoa (or some o
 
 You might want to check out the assistive device api, it lets you access the frames of all windows, and it will happily notify you whenever a window's frame changes.
 
-Check out http://developer.apple.com/General/ReleaseNotes/Accessibility/General/AssistiveAPI.html
+Check out http://developer.apple.com/ReleaseNotes/Accessibility/AssistiveAPI.html
 
 *However, be aware that support for assistive devices must be turned on in the Accessibility preferences pane and, last I checked, there's no way to enable it programatically. You'd have to tell your users to 'turn this on'. That's kind of clunky in my opinion.*
 
@@ -159,30 +159,30 @@ Okay... but how can you get that list? All I really need access to is which scre
 
 ----
 
-Quoting General/FinlayDobbie:
+Quoting FinlayDobbie:
 
-"I think the call you'd be wanting to investigate as General/CoreDockRegisterDockOwner in General/HIServices.framework."
+"I think the call you'd be wanting to investigate as CoreDockRegisterDockOwner in HIServices.framework."
 
-where is General/CoreDockRegisterDockOwner defined exactly, or what's its prototype? Is it Leopard specific? I am not able to find it anywhere. 
+where is CoreDockRegisterDockOwner defined exactly, or what's its prototype? Is it Leopard specific? I am not able to find it anywhere. 
 
--- General/EttorePasquini
+-- EttorePasquini
 
 ----
 
 // Get on-screen window counts and lists.
-extern General/OSStatus General/CGSGetWindowCount(const General/CGSConnection cid, General/CGSConnection targetCID, int* outCount); 
-extern General/OSStatus General/CGSGetWindowList(const General/CGSConnection cid, General/CGSConnection targetCID, int listSize, int* list, int* numberOfWindows);
+extern OSStatus CGSGetWindowCount(const CGSConnection cid, CGSConnection targetCID, int* outCount); 
+extern OSStatus CGSGetWindowList(const CGSConnection cid, CGSConnection targetCID, int listSize, int* list, int* numberOfWindows);
 
 // Get on-screen window counts and lists.
-extern General/OSStatus General/CGSGetOnScreenWindowCount(const General/CGSConnection cid, General/CGSConnection targetCID, int* outCount); 
-extern General/OSStatus General/CGSGetOnScreenWindowList(const General/CGSConnection cid, General/CGSConnection targetCID, int count, int* list, int* outCount);
+extern OSStatus CGSGetOnScreenWindowCount(const CGSConnection cid, CGSConnection targetCID, int* outCount); 
+extern OSStatus CGSGetOnScreenWindowList(const CGSConnection cid, CGSConnection targetCID, int count, int* list, int* outCount);
 
-You could then follow that up with a General/CGSGetWindowBounds() once you've found the window you are searching for, or a General/CGSGetScreenRectForWindow() to figure out more about the screen.
+You could then follow that up with a CGSGetWindowBounds() once you've found the window you are searching for, or a CGSGetScreenRectForWindow() to figure out more about the screen.
 
-These functions are all private; you can see more about them at General/CoreGraphicsPrivate
+These functions are all private; you can see more about them at CoreGraphicsPrivate
 
 ----
-Hey, I'm looking to perform a slightly different scheme. I have two apps communicating through IPC. One of the apps needs to display a window in the other app. So a message is sent to the other app, which then wants to take focus from the first app and display its window. Can one app relinquish the focus and give it to a specific app? As far as I can tell, you can hide other applications with General/NSWorkspace calls, but this seems a bit overkill. Any advice? -General/JeremyJurksztowicz
+Hey, I'm looking to perform a slightly different scheme. I have two apps communicating through IPC. One of the apps needs to display a window in the other app. So a message is sent to the other app, which then wants to take focus from the first app and display its window. Can one app relinquish the focus and give it to a specific app? As far as I can tell, you can hide other applications with NSWorkspace calls, but this seems a bit overkill. Any advice? -JeremyJurksztowicz
 
 ----
 
@@ -190,11 +190,11 @@ The two different apps have their own protected memory spaces, etc. There's no w
 
 ----
 
-You can do this with     General/[NSApp activateIgnoringOtherApps:YES]. However, the second application will become the foreground application in all respects, and so it will not seamlessly appear to be part of the first application.
+You can do this with     [NSApp activateIgnoringOtherApps:YES]. However, the second application will become the foreground application in all respects, and so it will not seamlessly appear to be part of the first application.
 
 ----
 
 All that's going to do is make his application the foreground application.
 
 ----
-Sorry, I think I wrote that wrong. Your solution is exactly what I was looking for. I did not want to literally move a window from one app to the other, but rather just wanted to have app1 relinquish focus so that app2 can display a window selected by app1. Perfect. You gurus just made my day :). General/JeremyJurksztowicz
+Sorry, I think I wrote that wrong. Your solution is exactly what I was looking for. I did not want to literally move a window from one app to the other, but rather just wanted to have app1 relinquish focus so that app2 can display a window selected by app1. Perfect. You gurus just made my day :). JeremyJurksztowicz

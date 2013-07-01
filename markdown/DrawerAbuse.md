@@ -1,4 +1,4 @@
-<sputter> Dear God No!!! Drawer Abuse Stops Here! I am utterly tired of seeing shareware apps w/ scads of controls all buried in layers of control drawers! For example, check out Starfish 2.0 on General/VersionTracker. If this isn't the definition of Bad UI, then i don't know what is!
+<sputter> Dear God No!!! Drawer Abuse Stops Here! I am utterly tired of seeing shareware apps w/ scads of controls all buried in layers of control drawers! For example, check out Starfish 2.0 on VersionTracker. If this isn't the definition of Bad UI, then i don't know what is!
 
 For that matter -- look at how Apple is using Drawers! Look at Mail. Are auxilliary controls hidden there? No, the drawer holds the mail list, which is essentially the main window's (Mailbox Viewer's) parent interface (Mailbox List). 
 
@@ -10,13 +10,13 @@ Sure, Xcode buries GDB in a drawer. But Xcode seems to be moving away from that 
 
 The next time you consider using a Drawer, stop and think about it. If you're just trying to create more space for your clutter, like that junk drawer in the kitchen, find a different way to organize your UI. If they're just controls, use a tab view or a button bar. Or use smaller controls, menu items, customized widgets, etc. Use drawers for what they're intended for -- a way to organize lists of data that's directly related to the main content viewer.
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
 Thanks for the feedback, Mike. I cleaned out the suggestion about using drawers in the other discussion.
 
-This forces me reconsider the way I am designing a couple of my own General/UIs.
+This forces me reconsider the way I am designing a couple of my own UIs.
 
 One of them is a visual app (not document-based) that draws in the entirety of the window's content area. The (somewhat mathematical) drawing routine requires a healthy set of parameters entered from text fields, which I have tucked away in a (now severely-deprecated, but solitary) drawer.
 Fortunately for the shareware community, I have not inflicted this on the public as yet.
@@ -28,29 +28,29 @@ Don't know why I got fixated on drawers for controls. At the beginning, it was j
 
 But please stop sputtering. That is so unlike the Cocoa equivalent of a Zen master that you normally appear to be.
 
-*Zen master? -- General/MikeTrent *
+*Zen master? -- MikeTrent *
 
 ----
 
 While I generally agree that drawers are **way** overused, I think having controls in drawers is acceptable for non-essential controls in one-and-only-one window apps (like Starfish - I agree its UI could be better, but I don't think it's due to the drawers.) If having controls in drawers is the alternative to having a separate inspector window to contain them, I'll take the drawer.
 
-*Starfish used to have a most-excellent tabbed UI. Things were organized cleanly, even if you couldn't see everything at once. The new setup, you can see everything at once, if you open the gull-wing drawers. If I position the window against one side or another of my screen, I can't see the drawers; that's a problem. Also, the drawers (IIRC) were visible only by selecting a special menu item (or control? haven't looked in a while) so they were less discoverable than a tabbed interface. So, I think Starfish 2.0's problem is entirely because of its drawers. -- General/MikeTrent*
+*Starfish used to have a most-excellent tabbed UI. Things were organized cleanly, even if you couldn't see everything at once. The new setup, you can see everything at once, if you open the gull-wing drawers. If I position the window against one side or another of my screen, I can't see the drawers; that's a problem. Also, the drawers (IIRC) were visible only by selecting a special menu item (or control? haven't looked in a while) so they were less discoverable than a tabbed interface. So, I think Starfish 2.0's problem is entirely because of its drawers. -- MikeTrent*
 
-Another solution to General/DrawerMadness is to have a disclosure triangle to hide/show the controls, just like in the System 7 days.
+Another solution to DrawerMadness is to have a disclosure triangle to hide/show the controls, just like in the System 7 days.
 
-*I can see this conversation is just headed in the wrong direction ... -- General/MikeTrent *
+*I can see this conversation is just headed in the wrong direction ... -- MikeTrent *
 
 ----
 
-Could somebody point me to some rules of thumb regarding Drawers? I recently began to refactor the Gui of my app, and as of this morning I have auxillary controls in a side-drawer for changing input parameters of my agents at runtime. It seemed a better place than they were before ( See General/OverComplexGuiSimplification ), though admittedly they're not visible in the screenshot on that page. I made it a drawer because I had too many panels, and the panel this resided in had too many states to show depending on the hilighted item in the outline view. here's the old setup:
-http://www.home.earthlink.net/~zakariya/files/General/ComplexPanel.png
+Could somebody point me to some rules of thumb regarding Drawers? I recently began to refactor the Gui of my app, and as of this morning I have auxillary controls in a side-drawer for changing input parameters of my agents at runtime. It seemed a better place than they were before ( See OverComplexGuiSimplification ), though admittedly they're not visible in the screenshot on that page. I made it a drawer because I had too many panels, and the panel this resided in had too many states to show depending on the hilighted item in the outline view. here's the old setup:
+http://www.home.earthlink.net/~zakariya/files/ComplexPanel.png
 
 Now, the interface that originally was revealved in the panel when clicking on "Root", is instead always available in a drawer on the main window. It seems like an improvement to me, as sometimes I'd like to inspect aspects of a device in my simulated system at the same time as I'm controlling a behavioral input. 
 
 But you all seem to have both experience and opinions, so I'd like to know if I did The-Wrong-Thing. 
-http://www.home.earthlink.net/~zakariya/files/General/DrawerButIsItMad.png
+http://www.home.earthlink.net/~zakariya/files/DrawerButIsItMad.png
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
@@ -64,21 +64,21 @@ With this approach I assume the panel is an inspector of your graphic view. More
 
 *Now, the interface that originally was revealved in the panel when clicking on "Root", is instead always available in a drawer on the main window.*
 
-This is not appropriate IMO because all you've done is stuck your controls in a junk drawer. One problem with this junk drawer solution is, as you have already discovered, it's not as scalable as you need. You basically have to keep adding junk drawers, and once you've done that you're destined for   the General/PerversionTracker hall of shame.
+This is not appropriate IMO because all you've done is stuck your controls in a junk drawer. One problem with this junk drawer solution is, as you have already discovered, it's not as scalable as you need. You basically have to keep adding junk drawers, and once you've done that you're destined for   the PerversionTracker hall of shame.
 
 Going back in time a little to the **good** things to come from MOSX's past, I think the right way to expose these controls is through an inspector panel. Again, Xcode is one example, but see also Office, Photoshop, Omni*, etc. The inspector would be context sensitive to the front-most document window. If you want, shove your outline view into a drawer as noted above, so people can specify which collection of tools they want to manipulate (again Xcode like). If you really want to allow people to modify two documents at the same time (w/o clicking) you could implement a "Get Info"-like scheme, although personally I doubt that's really necessary.
 
 Keeping the inspector separate has some advantages. People can position it where they want it it just stays there. They can close the window if they like. They don't constantly have to disclose/undisclose anything. You have a large area to work with. The user can easily resize the inspector as if it were a document window (if you choose) allowing for maximum flexibility. You could expose commonly used, recently used, or "overridden" controls on a main pane (again like Xcode) so the user has all of the most helpful stuff at their finger tips.
 
-The General/NSDocument model was designed to accommodate things like multiple window controllers and what not. Your inspector should be no different than a normal window controller -- it's just it's document will change as the user activates other documents, and use the new document to re-initialize the window UI. I do this all the time and it works really well.
+The NSDocument model was designed to accommodate things like multiple window controllers and what not. Your inspector should be no different than a normal window controller -- it's just it's document will change as the user activates other documents, and use the new document to re-initialize the window UI. I do this all the time and it works really well.
 
 IMNSHO
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
-So Mike, you agree that General/MacJournal uses drawers correctly? Personally I think Drawers are a backwards step for Apple in terms of UI, with exceptions. Mail is a perfect example of when _to_ use drawers IMHO. iTunes and iPhoto are also examples where you could use drawers, but for obvious reasons they do not.
+So Mike, you agree that MacJournal uses drawers correctly? Personally I think Drawers are a backwards step for Apple in terms of UI, with exceptions. Mail is a perfect example of when _to_ use drawers IMHO. iTunes and iPhoto are also examples where you could use drawers, but for obvious reasons they do not.
 
 Having auxiliary controls is an absolute no, just as having toolbar items without associated menu items. Both are hideous crimes that seem to be appearing more and more all the time. 
 
@@ -90,41 +90,41 @@ I think most of the issues stems from this. It needs to be reworded to:
 
 *Drawers should contain information relevant to the parent window but not controls that affect the parent window.*
 
-This would make apps like Mail and General/MacJournal correct, while hideous beasts like Starfish and other apps appearing on General/PerversionTracker would need to change their interface. If we look in the Mail drawer, they abide by this. We have information, an add mailbox button and an action button. Perfect. Nothing more needs to be in there. 
+This would make apps like Mail and MacJournal correct, while hideous beasts like Starfish and other apps appearing on PerversionTracker would need to change their interface. If we look in the Mail drawer, they abide by this. We have information, an add mailbox button and an action button. Perfect. Nothing more needs to be in there. 
 
 Then again, Drawers are a sketchy UI element that blend Inspector panels and the main window into a new element. It is definitely confusing after re-reading the HIG as to when you should use drawers, inspectors panels, toolbars or controls in the main window.
 
-My two cents from someone still learning about good UID. -- General/MatPeterson
+My two cents from someone still learning about good UID. -- MatPeterson
 
 ----
 
-On a previous image there was another drawer on that same window [http://home.earthlink.net/~zakariya/files/General/TooComplex.png]. Are you planning to keep the second drawer? I can live with one drawer, but I can't stand two drawers on the same window. Perhaps that is just my dislike for drawers in general. -- General/RyanBates
+On a previous image there was another drawer on that same window [http://home.earthlink.net/~zakariya/files/TooComplex.png]. Are you planning to keep the second drawer? I can live with one drawer, but I can't stand two drawers on the same window. Perhaps that is just my dislike for drawers in general. -- RyanBates
 
 You're right, & I agree. The trouble is, I have a lot of inspectors, and a lot of information that *must* be visible, and not enough screen, since I'm developing on a 12" PB. I wouldn't dream of having two panels on the one window. It's dumb. I was experimenting with having the behavioral inputs be on a side-panel and I wanted to see how it "felt". Probably it makes more sense to put the outline view on the side panel and have the behavioral inputs be in an inspector. I'm not 100% certain. What I do know is that two drawers is unacceptable, so if I do go for a side-drawer approach, the log & console drawer will have to be either made into a floating panel, or be a window-expanding-triangle-thingy.
 
-The good news is, per my discussion in General/OverComplexGuiSimplification, I was able to shrink many elements of my gui a little bit at least; and the worst offender, the Force panel, is now less than half the size vertically and 3/4 size horizontally. That's good, at least.
+The good news is, per my discussion in OverComplexGuiSimplification, I was able to shrink many elements of my gui a little bit at least; and the worst offender, the Force panel, is now less than half the size vertically and 3/4 size horizontally. That's good, at least.
 
-This is very hard for me to figure out. --General/ShamylZakariya
+This is very hard for me to figure out. --ShamylZakariya
 
-*Harder than the complex C++ engine you made? ;) Seriously though, so many people underestimate the importance of good UI design, but you are taking the time to focus on it (which is good!). I have some more ideas to clean up the complicated panels, but let's steer that discussion back to General/OverComplexGuiSimplification. I don't think drawers is the answer, but I'm sure there are others who would disagree. -- General/RyanBates*
+*Harder than the complex C++ engine you made? ;) Seriously though, so many people underestimate the importance of good UI design, but you are taking the time to focus on it (which is good!). I have some more ideas to clean up the complicated panels, but let's steer that discussion back to OverComplexGuiSimplification. I don't think drawers is the answer, but I'm sure there are others who would disagree. -- RyanBates*
 
 ----
 
 The point of a drawer is that you should be able to close it. 
 
-In Mail you really can't, in iChat, if you have more than one group, you can't. You need the information in the drawer. I have yet to see a good example of drawer-usage that could not be solved better. Drawers are not completely useless, the problem is that there are few developers out there who have expertise in General/HumanComputerInteraction and interface design.
+In Mail you really can't, in iChat, if you have more than one group, you can't. You need the information in the drawer. I have yet to see a good example of drawer-usage that could not be solved better. Drawers are not completely useless, the problem is that there are few developers out there who have expertise in HumanComputerInteraction and interface design.
 
-General/OmniWeb features an acceptable use of drawers: for the tabs. I can close it, even though I rarely do since there is nothing else that tells me that the current window has more than one drawer (save for the dot in the close button). When I only have one tab, it is closed, when I have more than one it is open. It is not good, but acceptable. In older versions of General/OmniWeb, the bookmarks were in a drawer, that was good design. I could open it when I needed it, and it didn't have to stay open.
+OmniWeb features an acceptable use of drawers: for the tabs. I can close it, even though I rarely do since there is nothing else that tells me that the current window has more than one drawer (save for the dot in the close button). When I only have one tab, it is closed, when I have more than one it is open. It is not good, but acceptable. In older versions of OmniWeb, the bookmarks were in a drawer, that was good design. I could open it when I needed it, and it didn't have to stay open.
 
--- General/TheoHultberg/Iconara
+-- TheoHultberg/Iconara
 
 ----
 
-I agree completely about not using a drawer for something that the user needs permanent access to (I don't care for Mail's implementation). On the other end, if it is something that only needs to be accessed once very quickly, it should not be placed in a drawer either (such as General/OmniWeb's history drawer). I hated having to open it and close it every time I needed to quickly access the history. So perhaps drawers are better suited for something that will need to be accessed temporarily, but not quickly for only one thing.
+I agree completely about not using a drawer for something that the user needs permanent access to (I don't care for Mail's implementation). On the other end, if it is something that only needs to be accessed once very quickly, it should not be placed in a drawer either (such as OmniWeb's history drawer). I hated having to open it and close it every time I needed to quickly access the history. So perhaps drawers are better suited for something that will need to be accessed temporarily, but not quickly for only one thing.
 
-As for General/OmniWeb's bookmarks drawer, I think it requires too much user interaction. I found it awkward to rename and organize the bookmarks. Drawers should be kept simple, like the tab drawer. But (because I can find something negative in almost everything) I do not think drawers belong on any web browser because it makes it difficult to browse wide web pages at 1024x768 screen resolution.
+As for OmniWeb's bookmarks drawer, I think it requires too much user interaction. I found it awkward to rename and organize the bookmarks. Drawers should be kept simple, like the tab drawer. But (because I can find something negative in almost everything) I do not think drawers belong on any web browser because it makes it difficult to browse wide web pages at 1024x768 screen resolution.
 
-To sum it up, I prefer drawers if they do not take very much user interaction, are simple, and temporary (but not too temporary). -- General/RyanBates
+To sum it up, I prefer drawers if they do not take very much user interaction, are simple, and temporary (but not too temporary). -- RyanBates
 
 ----
 
@@ -147,7 +147,7 @@ One primary difference between drawers and disclosure triangles is a drawer is o
 
 With that in mind, you must not only consider the drawers contents but also how the user will interact with that window. Will the user most likely have more than one drawer-window open at a time? Will the user be constantly switching between other windows while using that one? Will most users keep your application open all the time (such as Mail)? All of these things must be taken into consideration.
 
--- General/RyanBates
+-- RyanBates
 
 ----
 
@@ -185,11 +185,11 @@ Thanks for the input, Ryan. It really got me thinking about this a little more c
 
 *Note added after further study: Now I see that I can have as many sheets as I want, if I just use
 
-    [ General/NSApp beginSheet: dataEntryPanel modalForWindow: win modalDelegate: del didEndSelector: end contextInfo: inf ];
+    [ NSApp beginSheet: dataEntryPanel modalForWindow: win modalDelegate: del didEndSelector: end contextInfo: inf ];
 
 dispensing entirely with the drawer.*
 
 ----
-I hope the drawer bashers are happy.... now (10.4) Mail doesn't have a drawer for mailboxes.   Now we have this.... this... abomination.    Apple has now duplicated the functionality of a drawer in a custom pane.  Compared to the old drawer implementation, I think this new implementation is terrible.    I often spend a lot of time with the mailboxes hidden, and just want to expose them briefly to look for new mail my filters have sorted into other mailboxes.   Drawers were great because you could toggle them, take a peek, toggle them back.  In the new, non-drawer, implementation, when you hide the draw... um... pane... the toolbar icons shift over.  So to simply toggle the drawer, you have to move your mouse around and find the icon.  This feels very strange and wrong to me.   Now, instead of just a  drawer opening and closing, you have the entire contents of the window, controls and all,  shifting back and forth.  General/DancingToolBarControls.    Not an improvement, in my view.    I think the drawer bashers are just wrong in some cases.   Mail is one of them.  Kolmogorov  mailto:oxygenduck@yahoo.com"
+I hope the drawer bashers are happy.... now (10.4) Mail doesn't have a drawer for mailboxes.   Now we have this.... this... abomination.    Apple has now duplicated the functionality of a drawer in a custom pane.  Compared to the old drawer implementation, I think this new implementation is terrible.    I often spend a lot of time with the mailboxes hidden, and just want to expose them briefly to look for new mail my filters have sorted into other mailboxes.   Drawers were great because you could toggle them, take a peek, toggle them back.  In the new, non-drawer, implementation, when you hide the draw... um... pane... the toolbar icons shift over.  So to simply toggle the drawer, you have to move your mouse around and find the icon.  This feels very strange and wrong to me.   Now, instead of just a  drawer opening and closing, you have the entire contents of the window, controls and all,  shifting back and forth.  DancingToolBarControls.    Not an improvement, in my view.    I think the drawer bashers are just wrong in some cases.   Mail is one of them.  Kolmogorov  mailto:oxygenduck@yahoo.com"
 
 *Although this isn't a complete solution, removing the flexible space on the far left side of the toolbar will keep the icons on the left, so they won't bounce around when hiding/showing the mailboxes. You can also replace it with a few fixed-width spaces if you like the space there even when the mailboxes are hidden. Also, command-shift-m will toggle the pane, which might help too.*

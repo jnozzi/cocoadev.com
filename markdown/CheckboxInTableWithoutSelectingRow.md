@@ -1,10 +1,10 @@
 
 ----
 
-Anyone know how to set General/NSTableView (or its delegate) up so that I can flip checkboxes in one of its columns without the row that the checkbox sits in becoming selected? The delegate implements     tableView:shouldSelectRow: but it doesn't tell me which column I'm clicking - for clicks in other columns selection should work normally. --General/GrahamCox
+Anyone know how to set NSTableView (or its delegate) up so that I can flip checkboxes in one of its columns without the row that the checkbox sits in becoming selected? The delegate implements     tableView:shouldSelectRow: but it doesn't tell me which column I'm clicking - for clicks in other columns selection should work normally. --GrahamCox
 
 ----
-Stupid question first: does     tableView:shouldSelectRow: or     tableView:setObjectValue:forTableColumn:row: get called first? If it's     setObject..., you can just remember to ignore the next selection. --General/JediKnil
+Stupid question first: does     tableView:shouldSelectRow: or     tableView:setObjectValue:forTableColumn:row: get called first? If it's     setObject..., you can just remember to ignore the next selection. --JediKnil
 
 ----
 
@@ -20,18 +20,18 @@ OK, I have a solution that works for my requirements, though may not be complete
 
     
 
-@implementation General/GCTableView
+@implementation GCTableView
 
 
-- (void)		mouseDown:(General/NSEvent*) event
+- (void)		mouseDown:(NSEvent*) event
 {
-	General/NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
+	NSPoint p = [self convertPoint:[event locationInWindow] fromView:nil];
 	
 	// which column and cell has been hit?
 	
 	int column = [self columnAtPoint:p];
 	int row = [self rowAtPoint:p];
-	General/NSTableColumn* theColumn = General/self tableColumns] objectAtIndex:column];
+	NSTableColumn* theColumn = self tableColumns] objectAtIndex:column];
 	id dataCell = [theColumn dataCellForRow:row];
 	
 	// if the checkbox column, handle click in checkbox without selecting the row
@@ -40,7 +40,7 @@ OK, I have a solution that works for my requirements, though may not be complete
 	{
 		// no way to get the button type for further testing, so we'll plough on blindly
 		
-		General/NSRect	cellFrame = [self frameOfCellAtColumn:column row:row];
+		NSRect	cellFrame = [self frameOfCellAtColumn:column row:row];
 		
 		// track the button - this keeps control until the mouse goes up. If the mouse was in on release,
 		// it will have changed the button's state and returns YES.
@@ -48,7 +48,7 @@ OK, I have a solution that works for my requirements, though may not be complete
 		if ([dataCell trackMouse:event inRect:cellFrame ofView:self untilMouseUp:YES])
 		{
 			// call the delegate to handle the checkbox state change as normal
-			General/self delegate] tableView:self setObjectValue:dataCell forTableColumn:theColumn row:row];
+			self delegate] tableView:self setObjectValue:dataCell forTableColumn:theColumn row:row];
 		}
 	}
 	else
@@ -63,32 +63,32 @@ OK, I have a solution that works for my requirements, though may not be complete
 @implementation [[GCCheckboxCell
 
 
-- (BOOL)	trackMouse:(General/NSEvent *)theEvent inRect:(General/NSRect)cellFrame ofView:(General/NSView *)controlView untilMouseUp:(BOOL)untilMouseUp
+- (BOOL)	trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(NSView *)controlView untilMouseUp:(BOOL)untilMouseUp
 {
-	General/NSLog(@"tracking in checkbox starting");
+	NSLog(@"tracking in checkbox starting");
 	
 	[self setHighlighted:YES];
 	[controlView setNeedsDisplayInRect:cellFrame];
 
 	// keep control until mouse up
 	
-	General/NSEvent*	evt;
+	NSEvent*	evt;
 	BOOL		loop = YES;
 	BOOL		wasIn, isIn;
-	int			mask = General/NSLeftMouseUpMask | General/NSLeftMouseDraggedMask;
+	int			mask = NSLeftMouseUpMask | NSLeftMouseDraggedMask;
 	
 	wasIn = YES;
 	
 	while( loop )
 	{
-		evt = General/controlView window] nextEventMatchingMask:mask];
+		evt = controlView window] nextEventMatchingMask:mask];
 	
 		switch([evt type])
 		{
 			case [[NSLeftMouseDragged:
 			{
-				General/NSPoint p = [controlView convertPoint:[evt locationInWindow] fromView:nil];
-				isIn = General/NSPointInRect( p, cellFrame );
+				NSPoint p = [controlView convertPoint:[evt locationInWindow] fromView:nil];
+				isIn = NSPointInRect( p, cellFrame );
 				
 				if ( isIn != wasIn )
 				{
@@ -99,7 +99,7 @@ OK, I have a solution that works for my requirements, though may not be complete
 			}
 			break;
 			
-			case General/NSLeftMouseUp:
+			case NSLeftMouseUp:
 				loop = NO;
 				break;
 		
@@ -118,7 +118,7 @@ OK, I have a solution that works for my requirements, though may not be complete
 		
 	[controlView setNeedsDisplayInRect:cellFrame];
 
-	General/NSLog(@"tracking in checkbox ended");
+	NSLog(@"tracking in checkbox ended");
 	
 	return wasIn;
 }
@@ -141,9 +141,9 @@ This isn't exactly what you are trying to do, but it may help find a solution. I
 After lots of fiddling, I found that I could just implement one delegate method, and get the desired behavior:
 
     
--(void)tableViewSelectionIsChanging:(General/NSNotification *)aNotification {
+-(void)tableViewSelectionIsChanging:(NSNotification *)aNotification {
     // Prevent row selection
-    General/aNotification object] deselectAll:self];
+    aNotification object] deselectAll:self];
 }
 
 
@@ -156,26 +156,26 @@ This may help with the other cases above too --- I'm not sure.
 Problem is that will stop the table working in other cases where you want a selection, just not when you click a checkbox. In Leopard there is:
 
     
-- (BOOL) tableView:(General/NSTableView*) tableView shouldTrackCell:(General/NSCell*) cell forTableColumn:(General/NSTableColumn*) tableColumn row:(General/NSInteger) row
+- (BOOL) tableView:(NSTableView*) tableView shouldTrackCell:(NSCell*) cell forTableColumn:(NSTableColumn*) tableColumn row:(NSInteger) row
 
 
 which addresses this - for Tiger you're stuck with a hack (mine or someone else's). -GC
 
 ----
 
-Concerning the clicked column in     tableView:shouldSelectRow:, you can also find it out via     General/aTableView window] currentEvent] by checking if it is indeed a mouse event (also key events like cursor up/down may move the selection) and then calling     columnAtPoint: with the converted     locationInWindow. I've only tried it with an [[NSOutlineView, but it should also be working with the superclass General/NSTableView.
+Concerning the clicked column in     tableView:shouldSelectRow:, you can also find it out via     aTableView window] currentEvent] by checking if it is indeed a mouse event (also key events like cursor up/down may move the selection) and then calling     columnAtPoint: with the converted     locationInWindow. I've only tried it with an [[NSOutlineView, but it should also be working with the superclass NSTableView.
 
     
-- (BOOL)tableView:(General/NSTableView *)aTableView shouldSelectRow:(General/NSInteger)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldSelectRow:(NSInteger)rowIndex
 {
-	General/NSEvent *currentEvent = General/aTableView window] currentEvent];
+	NSEvent *currentEvent = aTableView window] currentEvent];
 	if([currentEvent type] != [[NSLeftMouseDown) return YES;
-	// you may also check for the General/NSLeftMouseDragged event
+	// you may also check for the NSLeftMouseDragged event
 	// (changing the selection by holding down the mouse button and moving the mouse over another row)
 	int columnIndex = [aTableView columnAtPoint:[aTableView convertPoint:[currentEvent locationInWindow] fromView:nil]];
 	// if the mouse moves out e.g. to the right, the column index is equal to the column count,
 	// which means no real column with this index exists
-	if(columnIndex < 0 || columnIndex >= General/aTableView tableColumns] count]) return YES;
+	if(columnIndex < 0 || columnIndex >= aTableView tableColumns] count]) return YES;
 	[[NSTableColumn *column = [[aTableView tableColumns] objectAtIndex:columnIndex];
 	return ![[column identifier] isEqualToString:@"checkbox"];
 }

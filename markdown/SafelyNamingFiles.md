@@ -1,18 +1,18 @@
-Here is a convenience function to make sure you do not overwrite any files: http://goo.gl/General/OeSCu
+Here is a convenience function to make sure you do not overwrite any files: http://goo.gl/OeSCu
 
     
--(General/NSString *)createSafeFilePathFromBase:(General/NSString *)creationPath
+-(NSString *)createSafeFilePathFromBase:(NSString *)creationPath
 {
 int numberWithName = 1;
 BOOL isDir;
-General/NSString *safePath;
+NSString *safePath;
 safePath = [creationPath retain];
 
-while (General/[[NSFileManager defaultManager] fileExistsAtPath:safePath
+while ([[NSFileManager defaultManager] fileExistsAtPath:safePath
                                             isDirectory:&isDir])
     {
         [safePath release];
-        safePath = General/[[NSString alloc] initWithFormat:@"%@ %d.%@",
+        safePath = [[NSString alloc] initWithFormat:@"%@ %d.%@",
             [creationPath stringByDeletingPathExtension],
             numberWithName,[creationPath pathExtension]];
         
@@ -28,26 +28,26 @@ Header:
     
 #import <Foundation/Foundation.h>
 
-@interface General/NSString (General/EXStringExtras)
--(General/NSString *)safeFilePath;
+@interface NSString (EXStringExtras)
+-(NSString *)safeFilePath;
 @end
 
 Source:
     
-#import "General/EXStringExtras.h"
+#import "EXStringExtras.h"
 
-@implementation General/NSString (General/EXStringExtras)
--(General/NSString *)safeFilePath
+@implementation NSString (EXStringExtras)
+-(NSString *)safeFilePath
 {
 int numberWithName = 1;
 BOOL isDir;
-General/NSString *safePath = General/[[NSString alloc] initWithString:self];
+NSString *safePath = [[NSString alloc] initWithString:self];
 
-while (General/[[NSFileManager defaultManager] fileExistsAtPath:safePath
+while ([[NSFileManager defaultManager] fileExistsAtPath:safePath
                                             isDirectory:&isDir])
     {
         [safePath release];
-        safePath = General/[[NSString alloc] initWithFormat:@"%@ %d.%@",
+        safePath = [[NSString alloc] initWithFormat:@"%@ %d.%@",
             [self 	stringByDeletingPathExtension],
             numberWithName,[self pathExtension]];
         
@@ -83,7 +83,7 @@ The mkstemp() function makes the same replacement to the template and
      file's existence and opening it for use.
 
 
-http://developer.apple.com/documentation/Darwin/Reference/General/ManPages/man3/mkstemp.3.html
+http://developer.apple.com/documentation/Darwin/Reference/ManPages/man3/mkstemp.3.html
 
 Note: creation and namig of temporary files can have serious security impacts.
 

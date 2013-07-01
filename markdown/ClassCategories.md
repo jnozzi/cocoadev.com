@@ -8,50 +8,50 @@ In contrast, subclassing creates new classes.
 
 - If you use a category to add a method to a framework class, instances  of that class returned by a framework will have the method.  If you add  a method via a subclass, you may have no way to convince the framework  to return instances of your subclass instead of whatever class the  framework was compiled with.
 
-- Cocoa includes several categories on General/NSObject which effectively add  methods to any object you encounter.  This practice is sometimes called  an informal protocol.  General/InformalProtocols
+- Cocoa includes several categories on NSObject which effectively add  methods to any object you encounter.  This practice is sometimes called  an informal protocol.  InformalProtocols
 
 - Categories are sometimes used just to break the implementation of a  class into multiple files.
 
-- Categories are a handy way to extend class clusters which are tricky to  subclass. General/ClassClusters
+- Categories are a handy way to extend class clusters which are tricky to  subclass. ClassClusters
 
 - Categories may be used to preserve the Model/View/Controller partitioning or other desirable partitioning.  Parts of a single class can be implement in different partitions/subsystems as appropriate.
 
-For example, General/NSString is defined in the Foundation framework where  there is no knowledge of display issues.
+For example, NSString is defined in the Foundation framework where  there is no knowledge of display issues.
 
-The Application Kit framework contains the General/NSStringAdditions category that adds display capabilities to every General/NSString object if and only if  
-the Application Kit framework is linked into your application.  http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSStringAdditions.html
+The Application Kit framework contains the NSStringAdditions category that adds display capabilities to every NSString object if and only if  
+the Application Kit framework is linked into your application.  http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSStringAdditions.html
 
-There is a clear partitioning of functionality and it is possible to  use strings without requiring linkage to the Application Kit, but if  you do link to the Application Kit, you get the extra features  automatically. Categories provide a means of extending a class without having to subclass it. This is very useful if you want a large group of classes to inherit a behavior, including ready-made ones. For instance, if you made a category of General/NSObject, all classes that inherit from General/NSObject would then inherit the additions made in your category.
+There is a clear partitioning of functionality and it is possible to  use strings without requiring linkage to the Application Kit, but if  you do link to the Application Kit, you get the extra features  automatically. Categories provide a means of extending a class without having to subclass it. This is very useful if you want a large group of classes to inherit a behavior, including ready-made ones. For instance, if you made a category of NSObject, all classes that inherit from NSObject would then inherit the additions made in your category.
 
-- You can also use categories to declare "private" object methods. In this case, "private" means API you don't want to publish in your public header file, but you want the compiler to recognize all the same. External clients can always call whatever methods they like, so this isn't private in a C++ sense, but it's still nice to separate expected public API from the creepy internals of your object. See General/KissyFaceView for an example.
+- You can also use categories to declare "private" object methods. In this case, "private" means API you don't want to publish in your public header file, but you want the compiler to recognize all the same. External clients can always call whatever methods they like, so this isn't private in a C++ sense, but it's still nice to separate expected public API from the creepy internals of your object. See KissyFaceView for an example.
 
 ----
 Simulate adding instance variables to an existing class via categories.
 
-Technically, categories can't add instance variables to a class. But this can be simulated. The trick is to use a static General/NSMutableDictionary that maps instances of the base class to dictionaries of new 'instance' variables.
+Technically, categories can't add instance variables to a class. But this can be simulated. The trick is to use a static NSMutableDictionary that maps instances of the base class to dictionaries of new 'instance' variables.
 
-To avoid memory leaks we need to swizzle in a dealloc method.  Go read up on General/MethodSwizzling if you haven't yet.
+To avoid memory leaks we need to swizzle in a dealloc method.  Go read up on MethodSwizzling if you haven't yet.
 
 
     
 
-static General/NSMutableDictionary *instanceIDToIvars = nil;
+static NSMutableDictionary *instanceIDToIvars = nil;
 static BOOL needToSwizzleDealloc = YES;
 
-@implementation General/BaseClass (PRE__MyCategory)
+@implementation BaseClass (PRE__MyCategory)
 
 - (id)PRE__instanceID
 {
-    return General/[NSValue valueWithPointer:self];
+    return [NSValue valueWithPointer:self];
 }
 
-- (General/NSMutableDictionary *)PRE__ivars
+- (NSMutableDictionary *)PRE__ivars
 {
-    General/NSMutableDictionary *ivars;
+    NSMutableDictionary *ivars;
     
     if (needToSwizzleDealloc)
     {
-    	General/MethodSwizzle(General/[BaseClass class], 
+    	MethodSwizzle([BaseClass class], 
     	              @selector(dealloc), 
     	              @selector(PRE__deallocSwizzler));
     	needToSwizzleDealloc = NO;
@@ -59,13 +59,13 @@ static BOOL needToSwizzleDealloc = YES;
 
     if (instanceIDToIvars == nil)
     {
-        instanceIDToIvars = General/[[NSMutableDictionary alloc] init];
+        instanceIDToIvars = [[NSMutableDictionary alloc] init];
     }
     
     ivars = [instanceIDToIvars objectForKey:[self PRE__instanceID]];
     if (ivars == nil)
     {
-        ivars = General/[NSMutableDictionary dictionary];
+        ivars = [NSMutableDictionary dictionary];
         [instanceIDToIvars setObject:ivars forKey:[self PRE__instanceID]];
     }
     
@@ -86,7 +86,7 @@ static BOOL needToSwizzleDealloc = YES;
 
 -(id)myIvarOne
 {
-    return General/self PRE__ivars] objectForKey:@"myIvarOne"];
+    return self PRE__ivars] objectForKey:@"myIvarOne"];
 }
 
 -(void)setMyIvarOne:(id)aValue
@@ -108,9 +108,9 @@ static BOOL needToSwizzleDealloc = YES;
 
 
 
-If you so desire, you can also use categories to make [[InformalProtocols; but please, please read up on General/ProtocolsTooCasualSmell first!
+If you so desire, you can also use categories to make [[InformalProtocols; but please, please read up on ProtocolsTooCasualSmell first!
 
-We have some General/CategorySampleCode available, too.
+We have some CategorySampleCode available, too.
 
 ----
 
@@ -118,13 +118,13 @@ Code above is updated (old code didn't work well).  'could probably use a few pa
 
 ----
 
-See http://www.cocoabuilder.com/archive/message/cocoa/2004/12/4/123013 for Erik Buck's version of things, which is largely the same.  One notable difference is the use of General/NSMapTable instead of General/NSMutableDictionary.  Since I haven't seen General/NSMapTable before, I'm still working out why he prefers it to General/NSMutableDictionary. 
+See http://www.cocoabuilder.com/archive/message/cocoa/2004/12/4/123013 for Erik Buck's version of things, which is largely the same.  One notable difference is the use of NSMapTable instead of NSMutableDictionary.  Since I haven't seen NSMapTable before, I'm still working out why he prefers it to NSMutableDictionary. 
 
 *
 RTFA ;)
 
-"General/NSMapTable is used in the following example because it provides a little more flexibility
-than General/NSDictionary. Dictionaries always copy their keys, but in the following
+"NSMapTable is used in the following example because it provides a little more flexibility
+than NSDictionary. Dictionaries always copy their keys, but in the following
 example it is necessary to store keys without copying or retaining them."
 *
 
@@ -149,7 +149,7 @@ Making alloc allocate more memory than necessary can be done, but it will still 
 As far as +initialize goes, I believe the runtime does The Right Thing regarding category implementations of it, and invokes every implementation of +initialize exactly once, but I can't find anything to back that up. The +load message does do this (it's explicitly stated in TFM) so you could always put it there.
 
 *
-I'm not sure I can find it again, but I explicitly saw that +initialize does *not* do the right thing (an Apple engineer was complaining that he thought it was broken behavior, but was too late to change).  The situation is that +initialize is an inherited method like any other, and can be overridden by subclasses and categories.  It will be called once before the use of a method from a class.  This means that if you use a +initialize in General/BaseClass, and don't override it in General/SubClass, then the method will be called once to initialize General/SubClass and once to initialize General/BaseClass.  If +initialize is overridden by a category, then the new +initialize will replace the old one.  It will *never* be called if the class has already been initialized. 
+I'm not sure I can find it again, but I explicitly saw that +initialize does *not* do the right thing (an Apple engineer was complaining that he thought it was broken behavior, but was too late to change).  The situation is that +initialize is an inherited method like any other, and can be overridden by subclasses and categories.  It will be called once before the use of a method from a class.  This means that if you use a +initialize in BaseClass, and don't override it in SubClass, then the method will be called once to initialize SubClass and once to initialize BaseClass.  If +initialize is overridden by a category, then the new +initialize will replace the old one.  It will *never* be called if the class has already been initialized. 
 
 That's good about load though, I didn't remember what was the case there.
 
@@ -171,7 +171,7 @@ One further problem with using +load : The order that classes/categories load is
 ----
 ----
 
-If your needs are minimal, you can avoid the dealloc-swizzle by using a static C type and encode your instance's pointer and the information you want to save together by General/ANDing it or something. I think that'd work...
+If your needs are minimal, you can avoid the dealloc-swizzle by using a static C type and encode your instance's pointer and the information you want to save together by ANDing it or something. I think that'd work...
 
 ----
 
@@ -184,8 +184,8 @@ Yeah, I guess there is that. It was just a thought I came up with to avoid the d
 Hmm... couldn't you put them in a C array instead?
 ----
 
-That doesn't solve the problem of not leaking memory, and an array is not as useful as a map-type structure like an General/NSDictionary for this purpose.  Why don't you write out an implementation to straighten out some ideas. 
+That doesn't solve the problem of not leaking memory, and an array is not as useful as a map-type structure like an NSDictionary for this purpose.  Why don't you write out an implementation to straighten out some ideas. 
 
-General/ANDing data to encode it is probably not helping you, btw.  Why not just use more than one variable? 
+ANDing data to encode it is probably not helping you, btw.  Why not just use more than one variable? 
 
-*okay, i was talking nonsense. :} General/NSDictionary is the way to go.*
+*okay, i was talking nonsense. :} NSDictionary is the way to go.*

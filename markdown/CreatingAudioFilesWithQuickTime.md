@@ -3,12 +3,12 @@
 
 As a part of the application I am writing, I receieve an audio stream coming to me from a third-party C library. The library has a function call which when called repeatedly provides me with another buffer full of 2-channel 16-bit raw audio. Currently I simply use Core Audio to send this data to the sound device and it works great. The sound plays exactly as expected.
 
-Now I need a way to save this stream to a file. The simple way would, of course, be to simply save the raw sample, but it would be really neat if the user had the ability to choose an encoder such as mp3 or aac and then use it to save the sound. As far as I understand, I should use General/QuickTime to do this but I have been unable to find any simple documentation on how this is done. I would expect that this would be the typical use so I'm suprised there doesn't seem to be any. Could anyone provide some information on how this is done? 
--- General/EliasMartenson
+Now I need a way to save this stream to a file. The simple way would, of course, be to simply save the raw sample, but it would be really neat if the user had the ability to choose an encoder such as mp3 or aac and then use it to save the sound. As far as I understand, I should use QuickTime to do this but I have been unable to find any simple documentation on how this is done. I would expect that this would be the typical use so I'm suprised there doesn't seem to be any. Could anyone provide some information on how this is done? 
+-- EliasMartenson
 
 ----
 
-Using General/QTKit and *not* streaming the data to the disk, this should be pretty easy. You'd collect the data in memory, slap a basic AIFF header on it, then use General/QTMovie's     +movieWithData:error: method to create a movie from the data. From there, you can use     -writeToFile:withAttributes: to export to any format QT can export to.
+Using QTKit and *not* streaming the data to the disk, this should be pretty easy. You'd collect the data in memory, slap a basic AIFF header on it, then use QTMovie's     +movieWithData:error: method to create a movie from the data. From there, you can use     -writeToFile:withAttributes: to export to any format QT can export to.
 
 I'm afraid I have no idea how to do this in a streaming fashion, but I hope that this will at least help you get started.
 
@@ -30,13 +30,13 @@ Of course, writing a 3GB temporary file to the user's hard drive is not ideal ei
 
 ----
 
-Anyone know how the *General/QTMovieExportSettings* attribute is supposed to work for     writeToFile:withAttributes:? The documentation says that its "an object of type General/NSData that contains an atom container of movie export settings". But unfortunately it's not that easy to get custom settings via General/QTAtomContainers.
+Anyone know how the *QTMovieExportSettings* attribute is supposed to work for     writeToFile:withAttributes:? The documentation says that its "an object of type NSData that contains an atom container of movie export settings". But unfortunately it's not that easy to get custom settings via QTAtomContainers.
 
 ----
 
-I've been trying to make this work as well. I have code for getting the General/QTAtomContainer, but my export code still doesn't work. I posted to the Quicktime-API list to see what I'm doing wrong. If I get it fixed, I'll post back here.
+I've been trying to make this work as well. I have code for getting the QTAtomContainer, but my export code still doesn't work. I posted to the Quicktime-API list to see what I'm doing wrong. If I get it fixed, I'll post back here.
 
-Update: two very kind people from Apple got back to me and solved my problem for me. I've put together a complete list of instructions with code on General/QTMovieExportSettings.
+Update: two very kind people from Apple got back to me and solved my problem for me. I've put together a complete list of instructions with code on QTMovieExportSettings.
 
 ----
 
@@ -44,7 +44,7 @@ As other people have realised, I have no idea how long the sample is. In some ca
 
 I'm starting to get the impression that this may actually not be possible. Has anyone suceeded doing anything like this?
 
--- General/EliasMartenson
+-- EliasMartenson
 
 ----
 
@@ -57,14 +57,14 @@ I am getting the sound data in realtime. The sound actually comes out of a C-lib
 
 I am obviously going to buffer the output in case the encoding is slower than the replay, but only to a certain limit. If you have a too slow machine, you'll have to expect that the sound will not be right. However, it is expected that most users will actually turn off replay while encoding the output since most users machines can actually encode faster than real time.
 
--- General/EliasMartenson
+-- EliasMartenson
 
 ----
 
 Check out the play buffered sound file at www.snoize.com. It uses a high priority thread to read from disk, and then uses a ring buffer to pass the data to the coreaudio thread. You can use the same technique in reverse to write to disk. Note that the example is in Cocoa, and uses some sophisticated techniques to change mach thread priorities, and does some weird mach memory mapping, but essentially the algorithm is rather simple, it boils down to (in C++):
 
     
-General/OSStatus coreAudioCallback (General/AudioBufferList * buffs, UInt32 frames, /*all the other stuff*/)
+OSStatus coreAudioCallback (AudioBufferList * buffs, UInt32 frames, /*all the other stuff*/)
 {
     if(ringBuffer.room() >= frames) {
         ringBuffer.copy(buffs, frames);
@@ -96,6 +96,6 @@ This is the jist of it. Just remember to NOT use cocoa anywhere in the coreaudio
 
 ----
 
-Writing a file can be done pretty easily using the General/AudioFile API in the General/AudioToolkit framework, part of General/CoreAudio. Download the General/CoreAudio SDK from ADC and look in the sample code -- there are some examples there that write audio streams to AIFF files. It should take you less than a page of code in all, I think.
+Writing a file can be done pretty easily using the AudioFile API in the AudioToolkit framework, part of CoreAudio. Download the CoreAudio SDK from ADC and look in the sample code -- there are some examples there that write audio streams to AIFF files. It should take you less than a page of code in all, I think.
 
 - Jens Alfke

@@ -1,6 +1,6 @@
-This is just a prettied up version of what's in General/NSTableViewRollover. (Moved from General/CCDSourceTable.)
+This is just a prettied up version of what's in NSTableViewRollover. (Moved from CCDSourceTable.)
 
-Never mind the inaccurate description, see the example: http://homepage.mac.com/ryanstevens/General/SourceList.zip
+Never mind the inaccurate description, see the example: http://homepage.mac.com/ryanstevens/SourceList.zip
     
 // Copyright (c) 2005 Ryan Stevens.
 //
@@ -21,26 +21,26 @@ Never mind the inaccurate description, see the example: http://homepage.mac.com/
 
 #import <Cocoa/Cocoa.h>
 
-@interface General/CCDGradientSelectionTableCell : General/NSTextFieldCell {} @end
+@interface CCDGradientSelectionTableCell : NSTextFieldCell {} @end
 
-@interface General/CCDGradientHeaderView : General/NSTableHeaderView
+@interface CCDGradientHeaderView : NSTableHeaderView
 {
-	General/NSImage *headerGradient;
-	General/NSString *headerTitle;
+	NSImage *headerGradient;
+	NSString *headerTitle;
 }
-- (void)setTitle:(General/NSString *)title;
-- (General/NSString *)title;
+- (void)setTitle:(NSString *)title;
+- (NSString *)title;
 @end
 
-@interface General/CCDGradientSelectionTableView : General/NSTableView
+@interface CCDGradientSelectionTableView : NSTableView
 {
-	General/NSImage *blueGradient;
-	General/NSImage *grayGradient;
-	General/NSRect iRect;
+	NSImage *blueGradient;
+	NSImage *grayGradient;
+	NSRect iRect;
 
 		int mouseOverRow;
 		int lastOverRow;
-		General/NSTrackingRectTag trackingTag;
+		NSTrackingRectTag trackingTag;
                 BOOL mouseInView;
 }
 
@@ -49,15 +49,15 @@ Never mind the inaccurate description, see the example: http://homepage.mac.com/
 
 
     
-#import "General/CCDGradientSelectionTableView.h"
+#import "CCDGradientSelectionTableView.h"
 
 
 // You'll want to do something like this in the class you use as your dataCell.
-@implementation General/CCDGradientSelectionTableCell
+@implementation CCDGradientSelectionTableCell
 
-- (void)drawWithFrame:(General/NSRect)frame inView:(General/NSView *)controlView
+- (void)drawWithFrame:(NSRect)frame inView:(NSView *)controlView
 {
-	if ([controlView isKindOfClass:General/[CCDGradientSelectionTableView class]]) {
+	if ([controlView isKindOfClass:[CCDGradientSelectionTableView class]]) {
 		frame.origin.y += 4;
 		frame.origin.x -= 4;
 	}
@@ -65,9 +65,9 @@ Never mind the inaccurate description, see the example: http://homepage.mac.com/
 }
 
 // This keeps the fieldEditor in check. 
-- (void)selectWithFrame:(General/NSRect)aRect inView:(General/NSView *)controlView editor:(General/NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength
+- (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength
 {
-	if ([controlView isKindOfClass:General/[CCDGradientSelectionTableView class]]) {
+	if ([controlView isKindOfClass:[CCDGradientSelectionTableView class]]) {
 		aRect.size = [self cellSize];
 		aRect.origin.y += 4;
 		aRect.origin.x -= 4;
@@ -80,17 +80,17 @@ Never mind the inaccurate description, see the example: http://homepage.mac.com/
 @end
 
 
-@implementation General/CCDGradientHeaderView
+@implementation CCDGradientHeaderView
 
-static General/NSString *headerImageData = @"<4d4d002a 00000074 fe6afe97 fed2fee8 00e6ffe5 00e4ffe3 fee1fede 02dcdbdc 02d9d8d9 02d6d5d6 02d2d1d2 02cfcecf fecbfec8 fec4fec0 febdfeb9 feb5feb2 00afffae 00abffaa 00a8ffa7 fea402a1 a0a1029e 9d9e029b 9a9b0298 97980295 9495fe92 fe90008e ff8d008c ff8b007c ff7bfe6b 000c0100 00030000 00010001 00000101 00030000 00010024 00000102 00030000 00030000 010a0103 00030000 00018005 00000106 00030000 00010002 00000111 00040000 00010000 00080115 00030000 00010003 00000117 00040000 00010000 006c011a 00050000 00010000 0110011b 00050000 00010000 0118011c 00030000 00010001 00000128 00030000 00010002 00000000 00000008 00080008 000afc80 00002710 000afc80 00002710 >";
+static NSString *headerImageData = @"<4d4d002a 00000074 fe6afe97 fed2fee8 00e6ffe5 00e4ffe3 fee1fede 02dcdbdc 02d9d8d9 02d6d5d6 02d2d1d2 02cfcecf fecbfec8 fec4fec0 febdfeb9 feb5feb2 00afffae 00abffaa 00a8ffa7 fea402a1 a0a1029e 9d9e029b 9a9b0298 97980295 9495fe92 fe90008e ff8d008c ff8b007c ff7bfe6b 000c0100 00030000 00010001 00000101 00030000 00010024 00000102 00030000 00030000 010a0103 00030000 00018005 00000106 00030000 00010002 00000111 00040000 00010000 00080115 00030000 00010003 00000117 00040000 00010000 006c011a 00050000 00010000 0110011b 00050000 00010000 0118011c 00030000 00010001 00000128 00030000 00010002 00000000 00000008 00080008 000afc80 00002710 000afc80 00002710 >";
 
-- (id)initWithFrame:(General/NSRect)frame {
+- (id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-		headerGradient = General/[[NSImage alloc] initWithData:[headerImageData propertyList]];
+		headerGradient = [[NSImage alloc] initWithData:[headerImageData propertyList]];
 			[headerGradient setFlipped:YES];
-			General/[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowChangedKey:) name:General/NSWindowDidResignKeyNotification object:nil];
-			General/[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowChangedKey:) name:General/NSWindowDidBecomeKeyNotification object:nil];
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowChangedKey:) name:NSWindowDidResignKeyNotification object:nil];
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowChangedKey:) name:NSWindowDidBecomeKeyNotification object:nil];
 			headerTitle = nil;
     }
     return self;
@@ -98,50 +98,50 @@ static General/NSString *headerImageData = @"<4d4d002a 00000074 fe6afe97 fed2fee
 
 - (void)dealloc
 {
-	General/[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[headerGradient release];
 	[headerTitle release];
 	[super dealloc];
 }
 
-- (void)setTitle:(General/NSString *)title
+- (void)setTitle:(NSString *)title
 {
 	[headerTitle autorelease];
 	headerTitle = [title retain];
 }
-- (General/NSString *)title
+- (NSString *)title
 {
 	return headerTitle;
 }
 
-- (void)drawRect:(General/NSRect)rect
+- (void)drawRect:(NSRect)rect
 {
-	[headerGradient drawInRect:rect fromRect:General/NSMakeRect(0,0,1,[headerGradient size].height) operation:General/NSCompositeSourceOver fraction:1];
+	[headerGradient drawInRect:rect fromRect:NSMakeRect(0,0,1,[headerGradient size].height) operation:NSCompositeSourceOver fraction:1];
 	
 	if (headerTitle) {
-		float cornerAdjustment = General/NSMidX(General/[self tableView] cornerView] frame]);
-		[[NSDictionary *attributes = General/[NSDictionary dictionaryWithObjectsAndKeys:
-					General/[NSFont fontWithName:@"Lucida Grande" size:11], General/NSFontAttributeName,
-					General/[[NSColor lightGrayColor] highlightWithLevel:0.3], General/NSForegroundColorAttributeName,
+		float cornerAdjustment = NSMidX([self tableView] cornerView] frame]);
+		[[NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+					[NSFont fontWithName:@"Lucida Grande" size:11], NSFontAttributeName,
+					[[NSColor lightGrayColor] highlightWithLevel:0.3], NSForegroundColorAttributeName,
 					nil, nil];
-		General/NSRect textRect;
+		NSRect textRect;
 			textRect.size = [headerTitle sizeWithAttributes:attributes];
-		General/NSPoint point = General/NSMakePoint(cornerAdjustment+General/NSMidX(rect)-General/NSMidX(textRect), 2.5);
+		NSPoint point = NSMakePoint(cornerAdjustment+NSMidX(rect)-NSMidX(textRect), 2.5);
 
 			[headerTitle drawAtPoint:point withAttributes:attributes];
 	
 				point.y = 1;
 		
-			if (General/self window] isKeyWindow]) {
+			if (self window] isKeyWindow]) {
 				attributes = [[[NSDictionary dictionaryWithObjectsAndKeys:
-					General/[NSFont fontWithName:@"Lucida Grande" size:11], General/NSFontAttributeName,
-					General/[NSColor textColor], General/NSForegroundColorAttributeName,
+					[NSFont fontWithName:@"Lucida Grande" size:11], NSFontAttributeName,
+					[NSColor textColor], NSForegroundColorAttributeName,
 					nil, nil];
 				[headerTitle drawAtPoint:point withAttributes:attributes];
 			} else {
-				attributes = General/[NSDictionary dictionaryWithObjectsAndKeys:
-					General/[NSFont fontWithName:@"Lucida Grande" size:11], General/NSFontAttributeName,
-					General/[NSColor disabledControlTextColor], General/NSForegroundColorAttributeName,
+				attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+					[NSFont fontWithName:@"Lucida Grande" size:11], NSFontAttributeName,
+					[NSColor disabledControlTextColor], NSForegroundColorAttributeName,
 					nil, nil];
 				[headerTitle drawAtPoint:point withAttributes:attributes];
 			}
@@ -150,31 +150,31 @@ static General/NSString *headerImageData = @"<4d4d002a 00000074 fe6afe97 fed2fee
 
 - (void)windowChangedKey:(id)note
 {
-	if (General/self tableView] editedRow] != -1)
+	if (self tableView] editedRow] != -1)
 		[[self window] makeFirstResponder:[self tableView; // ends editing
 
 	[self setNeedsDisplay:YES];
 }
 
--(void)mouseDown:(General/NSEvent *)event { General/self window] makeFirstResponder:[self tableView; }
+-(void)mouseDown:(NSEvent *)event { self window] makeFirstResponder:[self tableView; }
 @end
 
 
-@implementation General/CCDGradientSelectionTableView
+@implementation CCDGradientSelectionTableView
 
-static General/NSString *blueImageData = @"<4d4d002a 00000048 800f4f6d a2ca65ca 564b390a 69371941 1ee22622 dc04743b 7c86826e 900fcdb1 d9e5b237 3ab60647 06b0b8d8 d5151a1a 82732348 46616888 4bcd00f9 719f0100 000d0100 00030000 00010001 00000101 00030000 00010012 00000102 00030000 00030000 00ea0103 00030000 00010005 00000106 00030000 00010002 00000111 00040000 00010000 00080115 00030000 00010003 00000116 00040000 00010000 2aaa0117 00040000 00010000 003f011a 00050000 00010000 00f0011b 00050000 00010000 00f8011c 00030000 00010001 00000128 00030000 00010002 00000000 00000008 00080008 000afc80 00002710 000afc80 00002710 >";
-static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 7d7d7de5 7c7c7ce5 7a7a7be5 787778e5 777676e5 747474e5 737373e5 727171e5 706f6fe5 6d6d6ce5 6c6c6be5 6a6a6ae5 696969e5 676767e5 656565e5 636464e5 616161e5 616161e5 606161e5 5f5e5fe5 5e5e5ee5 5d5d5de5 5c5c5ce5 000d0100 00030000 00010001 00000101 00030000 00010019 00000102 00030000 00040000 010e0103 00030000 00010001 00000106 00030000 00010002 00000111 00040000 00010000 00080115 00030000 00010004 00000117 00040000 00010000 0064011a 00050000 00010000 0116011b 00050000 00010000 011e011c 00030000 00010001 00000128 00030000 00010002 00000152 00030000 00010001 00000000 00000008 00080008 0008000a fc800000 2710000a fc800000 2710>";
+static NSString *blueImageData = @"<4d4d002a 00000048 800f4f6d a2ca65ca 564b390a 69371941 1ee22622 dc04743b 7c86826e 900fcdb1 d9e5b237 3ab60647 06b0b8d8 d5151a1a 82732348 46616888 4bcd00f9 719f0100 000d0100 00030000 00010001 00000101 00030000 00010012 00000102 00030000 00030000 00ea0103 00030000 00010005 00000106 00030000 00010002 00000111 00040000 00010000 00080115 00030000 00010003 00000116 00040000 00010000 2aaa0117 00040000 00010000 003f011a 00050000 00010000 00f0011b 00050000 00010000 00f8011c 00030000 00010001 00000128 00030000 00010002 00000000 00000008 00080008 000afc80 00002710 000afc80 00002710 >";
+static NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 7d7d7de5 7c7c7ce5 7a7a7be5 787778e5 777676e5 747474e5 737373e5 727171e5 706f6fe5 6d6d6ce5 6c6c6be5 6a6a6ae5 696969e5 676767e5 656565e5 636464e5 616161e5 616161e5 606161e5 5f5e5fe5 5e5e5ee5 5d5d5de5 5c5c5ce5 000d0100 00030000 00010001 00000101 00030000 00010019 00000102 00030000 00040000 010e0103 00030000 00010001 00000106 00030000 00010002 00000111 00040000 00010000 00080115 00030000 00010004 00000117 00040000 00010000 0064011a 00050000 00010000 0116011b 00050000 00010000 011e011c 00030000 00010001 00000128 00030000 00010002 00000152 00030000 00010001 00000000 00000008 00080008 0008000a fc800000 2710000a fc800000 2710>";
 
 // You'll want to remove this if you use a custom dataCell
-+ (void)initialize { General/[CCDGradientSelectionTableCell poseAsClass:General/[NSTextFieldCell class]]; }
++ (void)initialize { [CCDGradientSelectionTableCell poseAsClass:[NSTextFieldCell class]]; }
 
 - (void)awakeFromNib
 {
-		General/self window] setAcceptsMouseMovedEvents:YES];
+		self window] setAcceptsMouseMovedEvents:YES];
 		
 		blueGradient = [[[[NSImage alloc] initWithData:[blueImageData propertyList]];
-		grayGradient = General/[[NSImage alloc] initWithData:[grayImageData propertyList]];
-		iRect = General/NSMakeRect(0,0,1,[blueGradient size].height);
+		grayGradient = [[NSImage alloc] initWithData:[grayImageData propertyList]];
+		iRect = NSMakeRect(0,0,1,[blueGradient size].height);
 		
                 mouseInView = YES;
 		mouseOverRow = -1;
@@ -182,15 +182,15 @@ static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 
 
 
 		[self setRowHeight:25];
-		General/[[self tableColumns] objectAtIndex:0] dataCell] setFocusRingType:[[NSFocusRingTypeNone]; //!
+		[[self tableColumns] objectAtIndex:0] dataCell] setFocusRingType:[[NSFocusRingTypeNone]; //!
 
 		[self viewDidEndLiveResize];
 
 			{ // Replace the header and corner view...
-			General/NSRect rect = [self frame];
+			NSRect rect = [self frame];
 				rect.size.height = 17;
-			id header = General/[[CCDGradientHeaderView alloc] initWithFrame:rect];
-			id corner = General/[[CCDGradientHeaderView alloc] initWithFrame:General/NSMakeRect(0,0,15,17)];
+			id header = [[CCDGradientHeaderView alloc] initWithFrame:rect];
+			id corner = [[CCDGradientHeaderView alloc] initWithFrame:NSMakeRect(0,0,15,17)];
                                 [header setTitle:@"Source"];
 				[self setHeaderView:header];
 				[self setCornerView:corner];
@@ -204,7 +204,7 @@ static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 
 	[super viewWillStartLiveResize];
 
 	// end editing, as iTunes does...
-	if ([self editedRow] != -1) General/self window] makeFirstResponder:self];
+	if ([self editedRow] != -1) self window] makeFirstResponder:self];
 }
 - (void)viewDidEndLiveResize
 {
@@ -224,7 +224,7 @@ static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 
 - (int)mouseOverRow { return mouseOverRow; }
 - (void)mouseEntered:([[NSEvent*)theEvent { mouseInView = YES; }
 
-- (void)mouseMoved:(General/NSEvent*)theEvent
+- (void)mouseMoved:(NSEvent*)theEvent
 {
 	if (mouseInView) {
 		mouseOverRow = [self rowAtPoint:[self convertPoint:[theEvent locationInWindow] fromView:nil]];
@@ -237,7 +237,7 @@ static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 
 		}
 }
 
-- (void)mouseExited:(General/NSEvent *)theEvent
+- (void)mouseExited:(NSEvent *)theEvent
 {
 		[self setNeedsDisplayInRect:[self rectOfRow:lastOverRow]];
                 mouseInView = NO;
@@ -254,27 +254,27 @@ static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 
 	return [super resignFirstResponder];
 }
 
-- (id)_highlightColorForCell:(General/NSCell *)cell { return nil; }
-- (void)highlightSelectionInClipRect:(General/NSRect)rect
+- (id)_highlightColorForCell:(NSCell *)cell { return nil; }
+- (void)highlightSelectionInClipRect:(NSRect)rect
 {
 	int selectedRow = [self selectedRow];
 	
 			[blueGradient setFlipped:YES];
-			[blueGradient drawInRect:[self rectOfRow:selectedRow] fromRect:iRect operation:General/NSCompositeSourceOver fraction:1];
+			[blueGradient drawInRect:[self rectOfRow:selectedRow] fromRect:iRect operation:NSCompositeSourceOver fraction:1];
 			[blueGradient setFlipped:NO];
 
 		if ([self editedRow] == -1)
-		if (General/self window] firstResponder] != self || ![[self window] isKeyWindow])
+		if (self window] firstResponder] != self || ![[self window] isKeyWindow])
 			[grayGradient drawInRect:[self rectOfRow:selectedRow] fromRect:iRect operation:[[NSCompositeSourceOver fraction:0.9];
 
 		if (mouseInView) 
-			[blueGradient drawInRect:[self rectOfRow:mouseOverRow] fromRect:iRect operation:General/NSCompositeSourceOver fraction:0.4];
+			[blueGradient drawInRect:[self rectOfRow:mouseOverRow] fromRect:iRect operation:NSCompositeSourceOver fraction:0.4];
 
 	if ([self editedRow] != -1)
 		[self performSelector:@selector(prvtResizeTheFieldEditor) withObject:nil afterDelay:0.001];
 }
 
-- (void)textDidChange:(General/NSNotification *)aNotification
+- (void)textDidChange:(NSNotification *)aNotification
 {
 		[super textDidChange:aNotification];
 		[self prvtResizeTheFieldEditor];
@@ -282,15 +282,15 @@ static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 
 
 - (void)prvtResizeTheFieldEditor
 {
-	id editor = General/self window] fieldEditor:YES forObject:self];
-	[[NSRect editRect = General/NSIntersectionRect([self rectOfColumn:[self editedColumn]],[self rectOfRow:[self editedRow]]);
-	General/NSRect frame = General/editor superview] frame];
+	id editor = self window] fieldEditor:YES forObject:self];
+	[[NSRect editRect = NSIntersectionRect([self rectOfColumn:[self editedColumn]],[self rectOfRow:[self editedRow]]);
+	NSRect frame = editor superview] frame];
 	[[NSLayoutManager *layoutManager = [editor layoutManager];
 
-        [layoutManager boundingRectForGlyphRange:General/NSMakeRange(0, [layoutManager numberOfGlyphs]) inTextContainer:[editor textContainer]];
+        [layoutManager boundingRectForGlyphRange:NSMakeRange(0, [layoutManager numberOfGlyphs]) inTextContainer:[editor textContainer]];
         frame.size.width = [layoutManager usedRectForTextContainer:[editor textContainer]].size.width;
 
-		if (editRect.size.width > frame.size.width) General/editor superview] setFrame:frame];
+		if (editRect.size.width > frame.size.width) editor superview] setFrame:frame];
 		else {
 			frame.size.width = editRect.size.width-4;
 			[[editor superview] setFrame:frame];
@@ -306,7 +306,7 @@ static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 
 					editRect.origin.x -= 6;
                                         editRect.size.width += 6;
 			[blueGradient setFlipped:YES];
-			[blueGradient drawInRect:editRect fromRect:iRect operation:General/NSCompositeSourceOver fraction:1];
+			[blueGradient drawInRect:editRect fromRect:iRect operation:NSCompositeSourceOver fraction:1];
 			[blueGradient setFlipped:NO];
 
 			// fix up the borderRect..
@@ -316,8 +316,8 @@ static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 
 			borderRect.size.width += 2;
 			
 		// draw the border...
-		General/[[NSColor blackColor] set];
-		General/NSFrameRect(borderRect);
+		[[NSColor blackColor] set];
+		NSFrameRect(borderRect);
 		
 	[self unlockFocus];
 	}
@@ -326,15 +326,15 @@ static General/NSString *grayImageData = @"<4d4d002a 0000006c 808080e5 7e7e7ee5 
 
 Your delegate should look something like this...
     
-- (void)tableView:(General/NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
  {
-	if ([aCell type] == General/NSTextCellType && [aCell respondsToSelector:@selector(setTextColor:)]) {
+	if ([aCell type] == NSTextCellType && [aCell respondsToSelector:@selector(setTextColor:)]) {
 		
-		if ([aTableView editedRow] == rowIndex) [aCell setTextColor:General/[NSColor blackColor]];
+		if ([aTableView editedRow] == rowIndex) [aCell setTextColor:[NSColor blackColor]];
 		else
-		if ([aTableView selectedRow] == rowIndex) [aCell setTextColor:General/[NSColor whiteColor]];
+		if ([aTableView selectedRow] == rowIndex) [aCell setTextColor:[NSColor whiteColor]];
 		else
-			[aCell setTextColor:General/[NSColor blackColor]];
+			[aCell setTextColor:[NSColor blackColor]];
 
 	}
  }
@@ -352,7 +352,7 @@ Looks great! However theres a pretty decent bug at least on Mac OS X 10.4.2 wher
 
 ----
 
-I, too, am getting that bug, but for my uses, I didn't really like the whole textured header thing anyway, so I just used the regular Aqua header. I never really attempted to chase down the cause. I suspect that if you were to use needsDisplay: on it, when it becomes firstResponder, then that would force it to redraw, and get around the issue, but it may not help figure out the original cause. Someone, please correct me if I'm wrong. -- General/JasonTerhorst
+I, too, am getting that bug, but for my uses, I didn't really like the whole textured header thing anyway, so I just used the regular Aqua header. I never really attempted to chase down the cause. I suspect that if you were to use needsDisplay: on it, when it becomes firstResponder, then that would force it to redraw, and get around the issue, but it may not help figure out the original cause. Someone, please correct me if I'm wrong. -- JasonTerhorst
 
 ----
 Sounds like the header view isn't getting its notifications. *shrug*

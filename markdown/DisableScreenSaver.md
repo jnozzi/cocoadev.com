@@ -4,6 +4,6 @@ Does anyone know how to prevent the screen saver from starting when a key applic
 
 "Q: How can I prevent system sleep while my application is running?
 
-A: Your application can prevent system sleep by calling General/UpdateSystemActivity once every 30 seconds. The following code shows how to create a General/CFRunLoopTimer that calls General/UpdateSystemActivity every 30 seconds."
+A: Your application can prevent system sleep by calling UpdateSystemActivity once every 30 seconds. The following code shows how to create a CFRunLoopTimer that calls UpdateSystemActivity every 30 seconds."
 
 http://developer.apple.com/qa/qa2004/qa1160.html

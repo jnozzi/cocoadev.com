@@ -1,6 +1,6 @@
-General/ABRecord is a child of General/NSObject
+ABRecord is a child of NSObject
 ----
-an General/ABRecord object represents a row in the General/AddressBook database.
+an ABRecord object represents a row in the AddressBook database.
 
 
     - (id)valueForProperty:(NSString *)property;
@@ -29,4 +29,4 @@ an General/ABRecord object represents a row in the General/AddressBook database.
     * Returns YES if the value was removed successfully
 
 
-General/Category:PointlessInformation‏‎
+Category:PointlessInformation‏‎

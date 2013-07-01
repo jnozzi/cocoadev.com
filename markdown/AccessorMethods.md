@@ -25,9 +25,9 @@ If it is the value passed in that you want, not the actual object storing it, yo
 ----
 
 
-In the overwhelming majority of cases, making your accessors individually General/ThreadSafe is a crazy level of granularity: not only are you killing performance, but trying to code anything sensible without having a higher level of locking (and hence negating the point of General/ThreadSafe accessors anyway) will be incredibly hard. You are almost certainly better off removing the simple accessors and writing larger blocks of code, perhaps protected by the new General/SynchronizedDirective.
+In the overwhelming majority of cases, making your accessors individually ThreadSafe is a crazy level of granularity: not only are you killing performance, but trying to code anything sensible without having a higher level of locking (and hence negating the point of ThreadSafe accessors anyway) will be incredibly hard. You are almost certainly better off removing the simple accessors and writing larger blocks of code, perhaps protected by the new SynchronizedDirective.
 
-If you are *sure* want your accessors to be individually General/ThreadSafe in the face of multiple threads accessing and setting indiscriminantly, none of the above code will do, and the following is the standard alternative:
+If you are *sure* want your accessors to be individually ThreadSafe in the face of multiple threads accessing and setting indiscriminantly, none of the above code will do, and the following is the standard alternative:
 
 **Multithreaded setter**     
 - (void)setVar:(id)newValue
@@ -44,7 +44,7 @@ If you are *sure* want your accessors to be individually General/ThreadSafe in t
     [originalValue release];
 }
 
-This one needs an General/NSLock in the class, but stops setters colliding. Locks are very expensive, though, so ideally this one should be avoided if at all possible, perhaps by designing your code to guarantee single-thread access to an object. It needs its own paired getter function, too:     
+This one needs an NSLock in the class, but stops setters colliding. Locks are very expensive, though, so ideally this one should be avoided if at all possible, perhaps by designing your code to guarantee single-thread access to an object. It needs its own paired getter function, too:     
 -(id)var 
 {
    id tmp = nil;
@@ -56,7 +56,7 @@ This one needs an General/NSLock in the class, but stops setters colliding. Lock
 }
 
 
-Alternatively, one could use a     @synchronized block here, and reduce the intellectual overhead of maintaining the lock. See General/LockingAPIs for a discussion of some of the available locking strategies and their various advantages and disadvantages.
+Alternatively, one could use a     @synchronized block here, and reduce the intellectual overhead of maintaining the lock. See LockingAPIs for a discussion of some of the available locking strategies and their various advantages and disadvantages.
 
 ----
 
@@ -66,7 +66,7 @@ it will generate accessors for you from your inst var declarations
 
 Accessorizer will do the same thing. 
 
-... as does General/AndrePang's objc-make-accessors Perl script (which is integrated with Xcode's Scripts menu): 
+... as does AndrePang's objc-make-accessors Perl script (which is integrated with Xcode's Scripts menu): 
 
 ----
 
@@ -76,15 +76,15 @@ A short summary: many getter and setter methods violate encapsulation, which is 
 
 
 
-Allen's description of the evils of get/set are not applicable to General/ObjC. In Java, setX() means "set the instance variable X." In Objective C it may mean this or it may not. It can be abstracted all you like under the covers. It may have a backing instance variable; it may not. All his concerns over your later changing the type of X are exactly why the General/ObjC way does not suffer the problem. Creating accessors does *not* expose internal implementation details in General/ObjC the way it does in Java. You should always create and use getter and setter methods in General/ObjC in order to *protect* encapsulation. The one worthwhile take-away from Allen's article is that you should make your accessors private (declare them inside the .m) whenever they are not needed by external objects. Don't expose your accessors just because you made them. --General/RobNapier
+Allen's description of the evils of get/set are not applicable to ObjC. In Java, setX() means "set the instance variable X." In Objective C it may mean this or it may not. It can be abstracted all you like under the covers. It may have a backing instance variable; it may not. All his concerns over your later changing the type of X are exactly why the ObjC way does not suffer the problem. Creating accessors does *not* expose internal implementation details in ObjC the way it does in Java. You should always create and use getter and setter methods in ObjC in order to *protect* encapsulation. The one worthwhile take-away from Allen's article is that you should make your accessors private (declare them inside the .m) whenever they are not needed by external objects. Don't expose your accessors just because you made them. --RobNapier
 
 ----
 
-When writing a setter for a mutable collection class (eg General/NSMutableArray), is it evil to do this:
+When writing a setter for a mutable collection class (eg NSMutableArray), is it evil to do this:
 
     
 
--(void)setMyArray:(General/NSMutableArray *)newArray
+-(void)setMyArray:(NSMutableArray *)newArray
 {
     if (myArray != newArray)
     {
@@ -97,7 +97,7 @@ instead of
 
 
     
--(void)setMyArray:(General/NSMutableArray *)newArray
+-(void)setMyArray:(NSMutableArray *)newArray
 {
     if (myArray != newArray)
     {
@@ -110,7 +110,7 @@ instead of
 
 *Evil or not, in the first case you will end up with a reference to an array that can be changed from somewhere else, and, most likely you will have a whole bunch of strange bugs because you were sloppy (aren't we all) and forgot that the array was modified somewhere else. --Theo*
 
-yeah that's why i did it that way :o it's just a quick hack to get General/KeyValueCoding compliance until i can clean up the rest of my code.
+yeah that's why i did it that way :o it's just a quick hack to get KeyValueCoding compliance until i can clean up the rest of my code.
 
 ----
 
@@ -122,19 +122,19 @@ So there's a potential problem with mutable objects *in* the array too? --Theo
 
 *i wouldn't call it a problem, more like 'that's the way it's always been**
 ----
-I guess, the best thing to do for a General/NSMutableArray and General/NSMutableDictionary is :
+I guess, the best thing to do for a NSMutableArray and NSMutableDictionary is :
     
--(void)setMyArray:(General/NSMutableArray *)newArray
+-(void)setMyArray:(NSMutableArray *)newArray
 {
     if (myArray != newArray)
     {
-        General/NSArray* arr = myArray;
+        NSArray* arr = myArray;
 	 myArray = [newArray mutableCopy];
         [arr release];
     }
 }
 ----
-Wait, way back in the beginning someone said     setArray: makes one array reference another (or at least be externally modifiable). This isn't true, at least not on Tiger. I just tested it. Does that mean it's safe to do that now instead of copying arrays every time? I can see that creating a new array *may* involve less messaging, but it involves a whole new object being allocated. --General/JediKnil 
+Wait, way back in the beginning someone said     setArray: makes one array reference another (or at least be externally modifiable). This isn't true, at least not on Tiger. I just tested it. Does that mean it's safe to do that now instead of copying arrays every time? I can see that creating a new array *may* involve less messaging, but it involves a whole new object being allocated. --JediKnil 
 
     
              New Array?   Actions
@@ -146,9 +146,9 @@ mutableCopy      Yes      Release old array (and all objects), creates new mutab
 That someone was being nonsensical. The two snippets are equivalent:
 
     
-General/NSMutableArray *a1 = [a2 mutableCopy];
+NSMutableArray *a1 = [a2 mutableCopy];
 
-General/NSMutableArray *a1 = General/[[NSMutableArray alloc] init];
+NSMutableArray *a1 = [[NSMutableArray alloc] init];
 [a1 setArray:a2];
 
 
@@ -160,33 +160,33 @@ One difference is that they are not equivalent if     a2 is nil. Therefore a    
 It's very important to remember that in a method of the form:
 
     
-- (General/NSArray *)myArray
+- (NSArray *)myArray
 {
     return _myArray;
 }
 
 
-that you are actually returning a reference to _myArray.  Just because you are returning an General/NSArray * does NOT prevent the caller from attempting to call General/NSMutableArray * methods on it, and potentially messing up your internal state.  This is analogous to using     reinterpret_cast<> in C++, or     if(obj is someMutableClass) { (obj as someClass).someMutatorMethod() }  in C#.
+that you are actually returning a reference to _myArray.  Just because you are returning an NSArray * does NOT prevent the caller from attempting to call NSMutableArray * methods on it, and potentially messing up your internal state.  This is analogous to using     reinterpret_cast<> in C++, or     if(obj is someMutableClass) { (obj as someClass).someMutatorMethod() }  in C#.
 
 Long story short: if you are using a mutable collection in your class for some reason, and need to provide an accessor method to that data, always do the following, unless you *really* want the caller to be able to mess with the collection your object owns:
 
     
-- (General/NSArray *)myArray
+- (NSArray *)myArray
 {
-    return General/_myArray copy] autorelease];
+    return _myArray copy] autorelease];
 }
 
 
 ----
 
-Or unless you do this sort of thing by contract, i.e. if it says it's an [[NSArray then don't treat it as an General/NSMutableArray. Yes, it's easy to circumvent your contract there, but it's obvious that anybody trying such a thing is going out of their way to break your code, and as such when it breaks it is clearly their own fault. I would say that you shouldn't go the     [_myArray copy] route unless and until you know you need it. -- General/RobRix
+Or unless you do this sort of thing by contract, i.e. if it says it's an [[NSArray then don't treat it as an NSMutableArray. Yes, it's easy to circumvent your contract there, but it's obvious that anybody trying such a thing is going out of their way to break your code, and as such when it breaks it is clearly their own fault. I would say that you shouldn't go the     [_myArray copy] route unless and until you know you need it. -- RobRix
 
 ----
 
-If your caller is going to mess with the objects you give it, then it doesn't really matter whether you return a mutable or immutable array. Calling code can still modify the contents of an General/NSArray object by digging into the guts of its internal General/CFArray. When your code interfaces with other code, you *expect* that other code to uphold contracts, but as long as the other code has access to your address space, you cannot guarantee contract adherence no matter what you do.
+If your caller is going to mess with the objects you give it, then it doesn't really matter whether you return a mutable or immutable array. Calling code can still modify the contents of an NSArray object by digging into the guts of its internal CFArray. When your code interfaces with other code, you *expect* that other code to uphold contracts, but as long as the other code has access to your address space, you cannot guarantee contract adherence no matter what you do.
 ----
 
-Excellent point. Given those circumstances, be reasonable-- clients of your code are unlikely to be your enemy! -- General/RobRix
+Excellent point. Given those circumstances, be reasonable-- clients of your code are unlikely to be your enemy! -- RobRix
 
 ----
 

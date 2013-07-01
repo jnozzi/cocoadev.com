@@ -1,6 +1,6 @@
 
 
-I'm trying to accomplish the following: a uses opens a new document in a document-based application. as soon as the document is loaded it has to show a sheet asking for some initial preferences. When I call the General/[NSApp beginSheet:modalForWIndow:General/ModalDelegate:didEndSelector:contextInfo] method in the windowControllerDidLoadNib method of the document, the sheet gets created, but is detached from the window. then the window is put in front of the sheet.
+I'm trying to accomplish the following: a uses opens a new document in a document-based application. as soon as the document is loaded it has to show a sheet asking for some initial preferences. When I call the [NSApp beginSheet:modalForWIndow:ModalDelegate:didEndSelector:contextInfo] method in the windowControllerDidLoadNib method of the document, the sheet gets created, but is detached from the window. then the window is put in front of the sheet.
 
 I suppose i have to call the beginSheet method somewhere between windowControllerDidLoadNib and the final presentation to the user, but where? which method in my document must I override to time the sheet correctly?
 
@@ -10,26 +10,26 @@ Any thoughts?
 
 Hmm, a hackish way would be to use     performSelector:withObject:afterDelay: and maybe have a delay of a 1/10 of a second, then open the window after this delay.
 
-*If you need it to work across the board you'd use an General/NSTimer instead.*
+*If you need it to work across the board you'd use an NSTimer instead.*
 
 ----
 
 Wow, thanks for a lightning speed reaction, which also works like a charm. Reported this as a performance bug to the fruit company.
 
-*Actually, a delay of 0 will work fine...this means that the selector will fire about as soon as the program idles. --General/JediKnil*
+*Actually, a delay of 0 will work fine...this means that the selector will fire about as soon as the program idles. --JediKnil*
 
 **Only if by "idle" you mean when the current cycle of the run loop finishes.** 
 
 ----
 
-A less-hackish way is to implement an "app controller" class and instantiate it in your General/MainMenu.nib.
+A less-hackish way is to implement an "app controller" class and instantiate it in your MainMenu.nib.
 
 Implement the following action in this controller
 
     
-- ( General/IBAction ) openNewDocument: ( id ) sender
+- ( IBAction ) openNewDocument: ( id ) sender
 {
-	[ [ General/NSApplication sharedApplication ]
+	[ [ NSApplication sharedApplication ]
 		sendAction: @selector( giveUsTheRealSheet ) to: nil from: self ];
 }
 
@@ -47,11 +47,11 @@ Would this "openNewDocument" action also be called when the program is started f
 *You could always implement something like the following -- also in the so-called app controller class*
 
     
-- ( BOOL ) applicationShouldOpenUntitledFile: ( General/NSApplication * ) theApplication
+- ( BOOL ) applicationShouldOpenUntitledFile: ( NSApplication * ) theApplication
 {
-	General/NSUserDefaults *defaults = [ General/NSUserDefaults standardUserDefaults ];
+	NSUserDefaults *defaults = [ NSUserDefaults standardUserDefaults ];
 	
-	if ( [ defaults boolForKey: General/NewDocStateKey ] )
+	if ( [ defaults boolForKey: NewDocStateKey ] )
 		return YES;
 	else
 		return NO;

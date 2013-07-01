@@ -1,19 +1,19 @@
-Part of the iPhone General/UIKit framework.
+Part of the iPhone UIKit framework.
 
-Little is known about the elusive yet omnipresent General/GSEvent, though researchers believe the GS stands for "General/GraphicsServices". One very useful function is
+Little is known about the elusive yet omnipresent GSEvent, though researchers believe the GS stands for "GraphicsServices". One very useful function is
 
-<code>General/CGRect GSE<nowiki/>ventGetLocationInWindow(General/GSEvent* event);</code>
+<code>CGRect GSE<nowiki/>ventGetLocationInWindow(GSEvent* event);</code>
 
 Other known functions are:
 
-<code>int GSE<nowiki/>ventIsChordingHandEvent(General/GSEvent *ev);</code>
+<code>int GSE<nowiki/>ventIsChordingHandEvent(GSEvent *ev);</code>
 
-<code>int GSE<nowiki/>ventGetClickCount(General/GSEvent *ev);</code>
+<code>int GSE<nowiki/>ventGetClickCount(GSEvent *ev);</code>
 
 Maybe worth looking at:
 
-General/GSEventGetDeltaX
+GSEventGetDeltaX
 
-General/GSEventGetDeltaY
+GSEventGetDeltaY
 
-General/GSEventVibrateForDuration
+GSEventVibrateForDuration

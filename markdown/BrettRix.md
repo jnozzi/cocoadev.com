@@ -1,4 +1,4 @@
-Tetris, in the tradition of national birds from disparate continents. By General/AngelaBrett and General/RobRix.
+Tetris, in the tradition of national birds from disparate continents. By AngelaBrett and RobRix.
 
 Officially released now. You can get it here:
 

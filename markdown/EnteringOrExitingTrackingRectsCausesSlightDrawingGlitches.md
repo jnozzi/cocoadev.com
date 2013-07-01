@@ -1,4 +1,4 @@
-I have an General/NSView custom subclass with several subviews of a certain type, they in turn have several subviews of their own, and everything works, except that whenever I mouse enter a tracking rect (all of the aforementioned objects have tracking rects) the other subViews flicker a bit and their stroke outlines (0.5px) become slightly darker.
+I have an NSView custom subclass with several subviews of a certain type, they in turn have several subviews of their own, and everything works, except that whenever I mouse enter a tracking rect (all of the aforementioned objects have tracking rects) the other subViews flicker a bit and their stroke outlines (0.5px) become slightly darker.
 
 I have tried to setNeedsDisplay on everything even after every mouse entered event, but no luck it seems. What's happening is hard to explain clearly.
 
@@ -12,7 +12,7 @@ You might give a shot at something like triggering a redraw for the master root-
 
 For what it's worth, I've experienced this and I solved it by making my views opaque and having the master view have a white background. In my circumstances, a white background made sense. It won't always, however...
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
@@ -24,4 +24,4 @@ Well, if I ever make it there I'll call you out on it ;) Trouble is, I'm not a p
 
 I'm glad to help whenever I can. When I started learning Cocoa ( less than 2 years ago ) this site saved my butt many-a-time, so karmically I have to help in return...
 
---General/ShamylZakariya
+--ShamylZakariya

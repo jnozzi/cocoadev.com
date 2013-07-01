@@ -4,7 +4,7 @@ Has anyone else noticed that after you save a change that Safari doesn't automat
 
 I have had the same problem.
 
--- General/JacobHazelgrove
+-- JacobHazelgrove
 
 ----
 
@@ -14,7 +14,7 @@ I meant to say has anyone noticed this after updating to v1.0. All of the betas 
 
 And I did mean v1.0.
 
--- General/JacobHazelgrove
+-- JacobHazelgrove
 
 ----
 

@@ -1,15 +1,15 @@
-In the project I'm working on, I have to filter an image and change some colors around, then display it in a window. Problem is, the source images I use all have white backgrounds, which are somewhat annoying against the aqua-pinstripe background of the window. Basically, I'm looking for a way to make all the white pixels in an General/NSImage(Rep) transparent. So far I've had no success trying to access the alpha channel while munging through the image, even though General/NSImageRep has a -setAlpha: method. I have the feeling I'm missing something painfully obvious. Any suggestions? 
+In the project I'm working on, I have to filter an image and change some colors around, then display it in a window. Problem is, the source images I use all have white backgrounds, which are somewhat annoying against the aqua-pinstripe background of the window. Basically, I'm looking for a way to make all the white pixels in an NSImage(Rep) transparent. So far I've had no success trying to access the alpha channel while munging through the image, even though NSImageRep has a -setAlpha: method. I have the feeling I'm missing something painfully obvious. Any suggestions? 
 ----
 The description for setAlpha: is 
 
 "- (void)setAlpha:(BOOL)flag
 
 Informs the receiver whether the image has an alpha component. flag should be YES if it does, and NO if it doesn't."
-Doesn't sound like you will be able to **add** an alpha channel to an image rep that way. I think you'll have to create a new image rep with alpha channel and copy the contents over. --General/AndreasMayer
+Doesn't sound like you will be able to **add** an alpha channel to an image rep that way. I think you'll have to create a new image rep with alpha channel and copy the contents over. --AndreasMayer
 
 ----
 
-Yes. More specifically, get an General/NSBitmapImageRep describing your image. Create a new image of the appropriate size, etc. Walk the raw bytes of your input imageRep one pixel at a time; if encounter an all white pixel (0xFF, 0xFF, 0xFF, 0xFF) zero the alpha as you copy (0xFF, 0xFF, 0xFF, 0x0). This technique works great for other kinds of image processing as well, such as RGB filtering, edge detection, pixelization, and so on. -- General/MikeTrent
+Yes. More specifically, get an NSBitmapImageRep describing your image. Create a new image of the appropriate size, etc. Walk the raw bytes of your input imageRep one pixel at a time; if encounter an all white pixel (0xFF, 0xFF, 0xFF, 0xFF) zero the alpha as you copy (0xFF, 0xFF, 0xFF, 0x0). This technique works great for other kinds of image processing as well, such as RGB filtering, edge detection, pixelization, and so on. -- MikeTrent
 
 ----
 
@@ -22,11 +22,11 @@ How does your filter work? Some code, please.
 It's very simple, really. And rather messy.
 
     
--(void) processImageWithColours: (General/ColourPalette *)palette
+-(void) processImageWithColours: (ColourPalette *)palette
 {
-    General/NSBitmapImageRep *bitmap, *new_bitmap;
+    NSBitmapImageRep *bitmap, *new_bitmap;
     unsigned char *bytes, *newbytes;
-    General/NSDictionary *swapcolour;
+    NSDictionary *swapcolour;
     int i, j, row, col, x, y, cell_width, cell_height;
 
     if(pose > 32)
@@ -44,23 +44,23 @@ It's very simple, really. And rather messy.
     y = (row * cell_height);
     
     [image release];
-    image = General/[[NSImage alloc] initWithSize: General/NSMakeSize(cell_width, cell_height)];
+    image = [[NSImage alloc] initWithSize: NSMakeSize(cell_width, cell_height)];
     [image lockFocus];
-    [source compositeToPoint: General/NSMakePoint(0, 0)
-                    fromRect: General/NSMakeRect(x, y, cell_width, cell_height)
-                   operation: General/NSCompositeCopy];
+    [source compositeToPoint: NSMakePoint(0, 0)
+                    fromRect: NSMakeRect(x, y, cell_width, cell_height)
+                   operation: NSCompositeCopy];
     [image unlockFocus];
     
-    bitmap = General/[[[NSBitmapImageRep alloc] initWithData: [image General/TIFFRepresentation]] autorelease];
+    bitmap = [[[NSBitmapImageRep alloc] initWithData: [image TIFFRepresentation]] autorelease];
     bytes = [bitmap bitmapData];
-    new_bitmap = General/[[[NSBitmapImageRep alloc] initWithBitmapDataPlanes: NULL
+    new_bitmap = [[[NSBitmapImageRep alloc] initWithBitmapDataPlanes: NULL
                                                          pixelsWide: cell_width
                                                          pixelsHigh: cell_height
                                                       bitsPerSample: 8
                                                     samplesPerPixel: 4
                                                            hasAlpha: YES
                                                            isPlanar: NO
-                                                     colorSpaceName: General/NSCalibratedRGBColorSpace
+                                                     colorSpaceName: NSCalibratedRGBColorSpace
                                                         bytesPerRow: 0
                                                        bitsPerPixel: 0] autorelease];
     newbytes = [new_bitmap bitmapData];
@@ -80,7 +80,7 @@ It's very simple, really. And rather messy.
         } else {
             swapcolour = [palette swapColoursForR: r G: g B: b];
             if(swapcolour != nil) {
-                *(newbytes + j) = General/swapcolour objectForKey: @"R"] intValue];
+                *(newbytes + j) = swapcolour objectForKey: @"R"] intValue];
                 *(newbytes + j + 1) = [[swapcolour objectForKey: @"G"] intValue];
                 *(newbytes + j + 2) = [[swapcolour objectForKey: @"B"] intValue];
                 *(newbytes + j + 3) = 255;
@@ -135,7 +135,7 @@ Well, I'm not sure why the code you posted wouldn't work with thousands of color
 try something like this:
 
     
-   General/NSEnumerator *enumerator = [image representations];
+   NSEnumerator *enumerator = [image representations];
    id rep;
    while (rep = [enumerator nextObject]) {
       [image removeRepresentation:rep];
@@ -146,10 +146,10 @@ try something like this:
 Also,
 
     
- bitmap = General/[[[NSBitmapImageRep alloc] initWithData: [image General/TIFFRepresentation]] autorelease];
+ bitmap = [[[NSBitmapImageRep alloc] initWithData: [image TIFFRepresentation]] autorelease];
 
 
-why are you creating a new image rep here? Can't you just grab the existing representation? --General/AndreasMayer
+why are you creating a new image rep here? Can't you just grab the existing representation? --AndreasMayer
 
 ----
 
@@ -158,23 +158,23 @@ With the code above (thanks!) I can play with the colors and transparency of an 
 	int i, j, cell_width, cell_height;
 	
 	//old image
-	General/NSImage *image =General/[[NSImage alloc] initWithContentsOfFile:@"testIN.pdf"];
-       General/NSBitmapImageRep *bitmap = General/[[[NSBitmapImageRep alloc] initWithData: [image General/TIFFRepresentation]] autorelease];
+	NSImage *image =[[NSImage alloc] initWithContentsOfFile:@"testIN.pdf"];
+       NSBitmapImageRep *bitmap = [[[NSBitmapImageRep alloc] initWithData: [image TIFFRepresentation]] autorelease];
 	unsigned char *bytes = [bitmap bitmapData];
 	//new image
 	[view1 setImage:image];
 	cell_width = [bitmap pixelsWide];
 	cell_height = [bitmap pixelsHigh];
-	General/NSImage *newImage = General/[[NSImage alloc] initWithSize:General/NSMakeSize(cell_width,cell_height)];
+	NSImage *newImage = [[NSImage alloc] initWithSize:NSMakeSize(cell_width,cell_height)];
 		
-	General/NSBitmapImageRep *new_bitmap = General/[[[NSBitmapImageRep alloc] initWithBitmapDataPlanes: NULL
+	NSBitmapImageRep *new_bitmap = [[[NSBitmapImageRep alloc] initWithBitmapDataPlanes: NULL
 											pixelsWide: cell_width
 											pixelsHigh: cell_height
 										 bitsPerSample: 8
 									   samplesPerPixel: 4
 										  hasAlpha: YES
 										  isPlanar: NO
-								    colorSpaceName: General/NSCalibratedRGBColorSpace
+								    colorSpaceName: NSCalibratedRGBColorSpace
 									   bytesPerRow: 0
 									    bitsPerPixel: 0] autorelease];
 	unsigned char *newbytes = [new_bitmap bitmapData];
@@ -202,6 +202,6 @@ With the code above (thanks!) I can play with the colors and transparency of an 
     [new_bitmap draw];
     [newImage unlockFocus];
 
-    General/NSData *data = [newImage General/TIFFRepresentation];
+    NSData *data = [newImage TIFFRepresentation];
     [data writeToFile: @"testOut.tiff" atomically: NO];
  

@@ -1,13 +1,13 @@
-I am using General/NSTask to pipe data through a command, the code is like this:
+I am using NSTask to pipe data through a command, the code is like this:
     
-@implementation General/NSData (General/AsyncWrite)
-- (void)writeToFilehandle:(General/NSFileHandle *)fh
+@implementation NSData (AsyncWrite)
+- (void)writeToFilehandle:(NSFileHandle *)fh
 {
-   General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 NS_DURING
    [fh writeData:self];
 NS_HANDLER
-   General/NSLog(@"Exception during write");
+   NSLog(@"Exception during write");
 NS_ENDHANDLER
    [fh closeFile];
    [pool release];
@@ -15,23 +15,23 @@ NS_ENDHANDLER
 @end
 
    ...
-   General/NSTask *cmd = General/[[NSTask alloc] init];
-   General/NSPipe *in = General/[NSPipe pipe], *out = General/[NSPipe pipe];
+   NSTask *cmd = [[NSTask alloc] init];
+   NSPipe *in = [NSPipe pipe], *out = [NSPipe pipe];
    [cmd setLaunchPath:@"/bin/tcsh"];
-   [cmd setArguments:General/[NSArray arrayWithObjects:@"-c", command, nil]];
+   [cmd setArguments:[NSArray arrayWithObjects:@"-c", command, nil]];
    [cmd setCurrentDirectoryPath:[@"~/" stringByExpandingTildeInPath]];
    [cmd setStandardInput:in];
    [cmd setStandardOutput:out];
    [cmd launch];
 
    // write to command in separate thread
-   General/[NSThread detachNewThreadSelector:@selector(writeToFilehandle:)
-      toTarget:General/[NSData dataWithBytes:&bytes[0] length:bytes.size()]
+   [NSThread detachNewThreadSelector:@selector(writeToFilehandle:)
+      toTarget:[NSData dataWithBytes:&bytes[0] length:bytes.size()]
       withObject:[in fileHandleForWriting]
    ];
 
    // read result from command
-   General/NSData *res = General/out fileHandleForReading] readDataToEndOfFile];
+   NSData *res = out fileHandleForReading] readDataToEndOfFile];
    ...
 
 
@@ -41,21 +41,21 @@ The code is sort of okay, the problem arise when a command doesn't read from sta
 
 Okay, I have sort of solved the problem -- despite the exception, I also get a SIGPIPE (http://www.wlug.org.nz/SIGPIPE) and it seems the default handler for this signal is 'broken' (in that it makes my app hang), so I install my own handler using:
     
-signal(SIGPIPE, General/BrokenPipeHandler);
+signal(SIGPIPE, BrokenPipeHandler);
 
---General/AllanOdgaard
+--AllanOdgaard
 
 
 ----
 
 why don't you try reading in background?
 
-*Because the code which fails is the code which **write** to the task -- furthermore, it would complicate my program design a great deal, since the program should be "blocked" while waiting for the result of the General/NSTask.*
+*Because the code which fails is the code which **write** to the task -- furthermore, it would complicate my program design a great deal, since the program should be "blocked" while waiting for the result of the NSTask.*
 
     
 
     ...
-    id outputPipe=General/[NSPipe pipe];
+    id outputPipe=[NSPipe pipe];
     taskOutputHandle=[outputPipe fileHandleForReading];  // taskOutputHandle is an instance variable
     [yourTask setStandardOutput:outputPipe];
     [outputHandle readInBackgroundAndNotify];
@@ -69,15 +69,15 @@ why don't you try reading in background?
 
 -(id)init {
     ...
-    General/[[NSNotificationCenter defaultCenter] addObserver:self 
+    [[NSNotificationCenter defaultCenter] addObserver:self 
         selector:@selector(methodThatRespondsToNSFileHandleDataAvailableNotification:)
-        name:General/NSFileHandleDataAvailableNotification
+        name:NSFileHandleDataAvailableNotification
         object:nil];
     ...
 }
 
 -(void)dealloc { 
-    General/[[NSNotificationCenter defaultCenter] removeObserver:self]; 
+    [[NSNotificationCenter defaultCenter] removeObserver:self]; 
     [super dealloc];
 }
 

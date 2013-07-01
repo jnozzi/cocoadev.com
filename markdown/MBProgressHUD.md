@@ -1,19 +1,19 @@
-General/MBProgressHUD is replacement for the undocumented General/UIProgressHUD General/UIKit class with some additional features. 
+MBProgressHUD is replacement for the undocumented UIProgressHUD UIKit class with some additional features. 
 The class displays s translucent HUD with a progress indicator and some optional labels while work is being done in a background thread. 
 The HUD can show both determinate and indeterminate progress. 
 
-More info and download: http://github.com/matej/General/MBProgressHUD and http://www.bukovinski.com
+More info and download: http://github.com/matej/MBProgressHUD and http://www.bukovinski.com
 
     
 
-#import <General/UIKit/General/UIKit.h>
-#import "General/MBProgressHUD.h"
+#import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface General/HudDemoViewController : General/UIViewController <General/MBProgressHUDDelegate> {
-	General/MBProgressHUD *HUD;
+@interface HudDemoViewController : UIViewController <MBProgressHUDDelegate> {
+	MBProgressHUD *HUD;
 }
 
-- (General/IBAction) showWithLabel:(id)sender;
+- (IBAction) showWithLabel:(id)sender;
 
 - (void) myTask;
 
@@ -23,14 +23,14 @@ More info and download: http://github.com/matej/General/MBProgressHUD and http:/
 
     
 
-#import "General/HudDemoViewController.h"
+#import "HudDemoViewController.h"
 
-@implementation General/HudDemoViewController
+@implementation HudDemoViewController
 
-- (General/IBAction) showWithLabel:(id)sender {
+- (IBAction) showWithLabel:(id)sender {
 
 	// Should be initialized with the windows frame so the HUD disables all user input by covering the entire screen
-	HUD = General/[[MBProgressHUD alloc] initWithWindow:General/[UIApplication sharedApplication].keyWindow];
+	HUD = [[MBProgressHUD alloc] initWithWindow:[UIApplication sharedApplication].keyWindow];
 
 	// Add HUD to screen
 	[self.view.window addSubview:HUD];

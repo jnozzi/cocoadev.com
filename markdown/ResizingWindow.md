@@ -1,10 +1,10 @@
-To resize a window, you must send it a     -setFrame: passing a valid General/NSRect using the screen's coordinate system. This is most often accomplished by getting the window's frame first, then modifying it.
+To resize a window, you must send it a     -setFrame: passing a valid NSRect using the screen's coordinate system. This is most often accomplished by getting the window's frame first, then modifying it.
 
     
 - (void)resizeWindowToMyFavoriteSize
 {
     // Get and modify the window's frame
-    General/NSRect frame = [myWindow frame];
+    NSRect frame = [myWindow frame];
     frame.size.width = 200;
     frame.size.height = 200;
 
@@ -13,19 +13,19 @@ To resize a window, you must send it a     -setFrame: passing a valid General/NS
 }
 
 
-You can animate your resizing behavior by using the General/NSWindow method      - (void) setFrame: (General/NSRect) frame display: (BOOL) dflag animate: (BOOL) aflag
+You can animate your resizing behavior by using the NSWindow method      - (void) setFrame: (NSRect) frame display: (BOOL) dflag animate: (BOOL) aflag
 
-For issues related to positioning of subviews when a window is resizing, see General/MovingItemsWhenResizingWindow
+For issues related to positioning of subviews when a window is resizing, see MovingItemsWhenResizingWindow
 
-For advice about how to do resizing with multiple threads, see General/MultiThreadedWindowResizing
+For advice about how to do resizing with multiple threads, see MultiThreadedWindowResizing
 
-There is also a General/WindowPosition page
+There is also a WindowPosition page
 
 ----
 
 **Discussion**
 
-I'm resizing my General/NSWindow like this     setFrame:frame display:YES animate:YES  except that my window exapnds upwards -- the bottom edge stays where it is, the top edge expands upwards.  Is there an easy way to get the opposite effect -- have it expand downwards, without writing my own loop that animates the thing itself -- that would be really wrong if I had to do that.
+I'm resizing my NSWindow like this     setFrame:frame display:YES animate:YES  except that my window exapnds upwards -- the bottom edge stays where it is, the top edge expands upwards.  Is there an easy way to get the opposite effect -- have it expand downwards, without writing my own loop that animates the thing itself -- that would be really wrong if I had to do that.
 
 ----
 

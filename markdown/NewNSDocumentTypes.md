@@ -8,14 +8,14 @@ Option 1 would be fantastic.
 
 On the other hand, if I need to go for option 2, what message would I have to send, and to whom, to signal to create a new document of some type? I'm a little unclear on document-based programming, as quite a bit of it seems to be magic behind the curtain.
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
-There is unfortunately no way to have the New menu populated automatically. Probably it would also rarely be useful, since e.g. General/TextEdit can open Word files, but New should not give you that choice ;)
+There is unfortunately no way to have the New menu populated automatically. Probably it would also rarely be useful, since e.g. TextEdit can open Word files, but New should not give you that choice ;)
 
 To create a document of the desired type, send     openUntitledDocumentOfType:display: to the shared document controller.
 
 By default the document controller will create an instance of the first document type listed in Info.plist
 
-See General/NSDocumentController for more info (but yes, much does seem to be magic).
+See NSDocumentController for more info (but yes, much does seem to be magic).

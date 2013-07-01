@@ -1,6 +1,6 @@
 
 
-Python [http://www.python.org] is a popular General/ScriptingLanguage in the UNIX community and beyond. Python is object-oriented ["multi-paradigm" is the preferred classification] and easy to extend with libraries written in C, which makes it possible to write really fast programs, really fast.
+Python [http://www.python.org] is a popular ScriptingLanguage in the UNIX community and beyond. Python is object-oriented ["multi-paradigm" is the preferred classification] and easy to extend with libraries written in C, which makes it possible to write really fast programs, really fast.
 
 Other commonly cited strengths are:
 
@@ -14,7 +14,7 @@ The current version of Python is 2.5; OS X 10.4 ships with Python 2.4.
 
 ----
 
-You can use Python + General/PyObjC to create Cocoa applications! It's not perfect and YMMV but you can find the bridge here: [http://pyobjc.sourceforge.net/]
+You can use Python + PyObjC to create Cocoa applications! It's not perfect and YMMV but you can find the bridge here: [http://pyobjc.sourceforge.net/]
 
 py2app [http://undefined.org/python/#py2app] converts Python scripts into Mac OS X applications.
 
@@ -22,6 +22,6 @@ There's a very good introductory tutorial by Jonathan Rentzsch on Apple's develo
 
 ----
 
-appscript [http://appscript.sourceforge.net] allows Python to control scriptable applications in place of General/AppleScript.
+appscript [http://appscript.sourceforge.net] allows Python to control scriptable applications in place of AppleScript.
 
-General/MacSoftwareUsingPython [http://www.pythonmac.org/wiki/General/MacSoftwareUsingPython]
+MacSoftwareUsingPython [http://www.pythonmac.org/wiki/MacSoftwareUsingPython]

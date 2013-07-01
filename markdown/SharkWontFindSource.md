@@ -8,4 +8,4 @@ I have used Shark several times before but with smaller projects and it usually 
 
 Does anyone have any insight as to how to force Shark to find sources or at least get it to tell me why it can't find them?
 
----- Are you saying the moving from 'small application" to "small application plus framework" is the likely cause of the problem? Which version of General/XCode and tools? I am fairly sure that I have used shark succcessfully with Camino which has frameworks.
+---- Are you saying the moving from 'small application" to "small application plus framework" is the likely cause of the problem? Which version of XCode and tools? I am fairly sure that I have used shark succcessfully with Camino which has frameworks.

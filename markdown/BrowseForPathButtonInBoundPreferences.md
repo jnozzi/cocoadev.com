@@ -7,12 +7,12 @@ I have a textfield holding a path and want to offer a browse button. The button 
 What's the best way to do it?
 
 ----
-Don't know if this is the best way, but here's what I did. Just put the following code in a custom class, and add an instance of the class to IB. Then bind your text field's content value to a key (I used "template") in user defaults. -General/JediKnil
+Don't know if this is the best way, but here's what I did. Just put the following code in a custom class, and add an instance of the class to IB. Then bind your text field's content value to a key (I used "template") in user defaults. -JediKnil
     
 /** Make this your Browse button's action */
-- (General/IBAction)chooseTemplate:(id)sender
+- (IBAction)chooseTemplate:(id)sender
 {
-    General/NSOpenPanel *openPanel = General/[NSOpenPanel openPanel];
+    NSOpenPanel *openPanel = [NSOpenPanel openPanel];
 	
     [openPanel setCanChooseDirectories:NO];
     [openPanel setCanChooseFiles:YES];
@@ -28,10 +28,10 @@ Don't know if this is the best way, but here's what I did. Just put the followin
     // @"template" is the name of the key you want to store in user defaults (where the object is the filename itself)
 }
 
-/** Called by General/NSOpenPanel */
-- (void)openPanelDidEnd:(General/NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+/** Called by NSOpenPanel */
+- (void)openPanelDidEnd:(NSOpenPanel *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
 {
-    if (returnCode == General/NSOKButton)
+    if (returnCode == NSOKButton)
         [defaults setObject:[sheet filename] forKey:contextInfo];
         // contextInfo contains the key -- this way you can have all your open panels store values in user defaults
 }

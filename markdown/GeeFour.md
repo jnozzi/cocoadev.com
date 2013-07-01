@@ -1,6 +1,6 @@
-A fast processor (G4), now obsolete because of the General/GeeFive (G5).
+A fast processor (G4), now obsolete because of the GeeFive (G5).
 
-Has been used in the General/GeeFourCube, General/GeeFourPowerBook (Titanium and Aluminum incarnations), General/GeeFourPowerMac, General/GeeFourXserve, General/GeeFouriMac, General/GeeFoureMac, and now, the General/GeeFouriBook.
+Has been used in the GeeFourCube, GeeFourPowerBook (Titanium and Aluminum incarnations), GeeFourPowerMac, GeeFourXserve, GeeFouriMac, GeeFoureMac, and now, the GeeFouriBook.
 
 http://a1600.g.akamai.net/7/1600/51/634ec07d933a12/www.apple.com/hardware/powermacg4/images/indextop02022003.jpg
 

@@ -1,4 +1,4 @@
-How do I tell an General/NSArrayController to sort one of its associated General/NSTable columns in descending order without forcing the user to manually click on the column header? I still want the user to be able to sort the data, but at one point of operation in my application I want to rearrange the table for the user. http://goo.gl/General/OeSCu
+How do I tell an NSArrayController to sort one of its associated NSTable columns in descending order without forcing the user to manually click on the column header? I still want the user to be able to sort the data, but at one point of operation in my application I want to rearrange the table for the user. http://goo.gl/OeSCu
 
 Thanks,
 Kent!
@@ -7,9 +7,9 @@ Kent!
 
 It seems that the array controller's     -setSortDescriptors: is what you're looking for.  Some code:
     
-General/NSSortDescriptor* aSortDesc = General/[[NSSortDescriptor alloc] 
+NSSortDescriptor* aSortDesc = [[NSSortDescriptor alloc] 
                                                  initWithKey:[tableColumn identifier] ascending:NO];
-[arrayController setSortDescriptors:General/[NSArray arrayWithObject: aSortDesc]];
+[arrayController setSortDescriptors:[NSArray arrayWithObject: aSortDesc]];
 [aSortDesc release];
 
 Substituting your respective objects for the tableColumn and arrayController variables of course. You may have to call
@@ -19,9 +19,9 @@ Substituting your respective objects for the tableColumn and arrayController var
 
 Slightly related question: is there any way I can get the     rearrangeObjects invoked when the sort descriptor is changed for one of the objects?
 
-My array controller is bound to File's Owner with a key path of     model.events, model being a pointer to the actual model and events being an array of events with a     date key containing an General/NSDate object, and the sort descriptor has     date as the sort key.
+My array controller is bound to File's Owner with a key path of     model.events, model being a pointer to the actual model and events being an array of events with a     date key containing an NSDate object, and the sort descriptor has     date as the sort key.
 
-The model implements the various ...General/InEvents... accessor methods, so the array controller will register itself as an observer of the     events key of the model object, and thus will update the table view when objects are inserted,  removed or even changed � but it will not re-arrange.
+The model implements the various ...InEvents... accessor methods, so the array controller will register itself as an observer of the     events key of the model object, and thus will update the table view when objects are inserted,  removed or even changed � but it will not re-arrange.
 
 Perhaps I should enforce the policy that no-one must change an event object, but only replace it? This just seems like unnecessary overhead?
 
@@ -29,9 +29,9 @@ Perhaps I should enforce the policy that no-one must change an event object, but
 
 It seems that the array controller will re-arrange its objects if I invoke:
     
-[self willChange:General/NSKeyValueChangeSetting valuesAtIndexes:General/[NSIndexSet indexSetWithIndex:i] forKey:@"events"];
+[self willChange:NSKeyValueChangeSetting valuesAtIndexes:[NSIndexSet indexSetWithIndex:i] forKey:@"events"];
 ...
-[self didChange:General/NSKeyValueChangeSetting valuesAtIndexes:General/[NSIndexSet indexSetWithIndex:i] forKey:@"events"];
+[self didChange:NSKeyValueChangeSetting valuesAtIndexes:[NSIndexSet indexSetWithIndex:i] forKey:@"events"];
 
 But these methods are for manual implementation of key-value coding/observation � but they seem not to be invoked by default?
 
@@ -41,14 +41,14 @@ It's a little odd, because the table column does update when I change the date, 
 
 ----
 
-Maybe it would be possible to return a proxy (from the to-many accessor methods) which would issue the proper will/didChange:General/NSKeyValueChangeSetting when an attempt to mutate the object is made. I think this is similar to how the run-time system already handles notifications. I.e. when something adds an observer to an object, the object in question is (run time) "replaced" (somehow) with a proxy which invokes the will/didChangeValueForKey:. But how the runtime actually manages this trick is beyond my knowledge -- anyone has an idea?
+Maybe it would be possible to return a proxy (from the to-many accessor methods) which would issue the proper will/didChange:NSKeyValueChangeSetting when an attempt to mutate the object is made. I think this is similar to how the run-time system already handles notifications. I.e. when something adds an observer to an object, the object in question is (run time) "replaced" (somehow) with a proxy which invokes the will/didChangeValueForKey:. But how the runtime actually manages this trick is beyond my knowledge -- anyone has an idea?
 
 ----
 
-I'm a little confused as to what to use in place of the two variables you've mentioned (I'm new to this Cocoa stuff).  My actual General/NSArrayController object is called "combatantController" so I've done this for line 2:
+I'm a little confused as to what to use in place of the two variables you've mentioned (I'm new to this Cocoa stuff).  My actual NSArrayController object is called "combatantController" so I've done this for line 2:
 
     
-[combatantController setSortDescriptors:General/[NSArray arrayWithObject: aSortDesc]];
+[combatantController setSortDescriptors:[NSArray arrayWithObject: aSortDesc]];
 
 
 
@@ -67,7 +67,7 @@ Kent!
 
 ----
 
-Sorry 'bout that.  I'm still thinking of  the old school technique for binding columns to a data source, not the new controller-based stuff.  What you want     [tableColumn identifier] to be is the key on which you want to sort the objects in your array controller.  So, for example, if the objects in your array each have an 'initiative' variable which you want your array to be sorted in decreasing value of, you'd allocate your sort descriptor like so:     General/[[NSSortDescriptor alloc] initWithKey:@"initiative" ascending:NO];  -- Bo
+Sorry 'bout that.  I'm still thinking of  the old school technique for binding columns to a data source, not the new controller-based stuff.  What you want     [tableColumn identifier] to be is the key on which you want to sort the objects in your array controller.  So, for example, if the objects in your array each have an 'initiative' variable which you want your array to be sorted in decreasing value of, you'd allocate your sort descriptor like so:     [[NSSortDescriptor alloc] initWithKey:@"initiative" ascending:NO];  -- Bo
 
 ----
 
@@ -81,23 +81,23 @@ Kindof hacky, but this is what worked for my app if you want the array controlle
     
 - (void) secretRearrangeObjects {
 	[self _setObjects:[self _sortObjects:[self arrangeObjects:[self objects]]]];
-	General/[YourAwesomeTableReference reloadData];
+	[YourAwesomeTableReference reloadData];
 }
 
 
 And of course your category additions to get rid of compile errors:
     
-@interface General/NSArrayController (General/ASAdditions)
-- (General/NSArray *) objects;
+@interface NSArrayController (ASAdditions)
+- (NSArray *) objects;
 - (id) _sortObjects:(id)objects;
 - (void) _setObjects:(id)objects;
 @end
 
-@implementation General/NSArrayController (General/ASAdditions)
-- (General/NSArray *) objects {
+@implementation NSArrayController (ASAdditions)
+- (NSArray *) objects {
 	return _objects;
 }
 @end
 
 
--General/MichaelBianco
+-MichaelBianco

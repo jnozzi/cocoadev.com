@@ -1,6 +1,6 @@
-Previous General/CocoaStepOne
+Previous CocoaStepOne
 
-Skip to next General/CocoaStepThree
+Skip to next CocoaStepThree
 
 ** How to find Apple's Cocoa documentation and samples **
 
@@ -22,12 +22,12 @@ You can search Apple's documentation with the search built into the top right co
 
 ** Third Party Cocoa Books **
 
-General/CocoaBooks provides a list of books about Cocoa programming along with reader reviews and comments.
+CocoaBooks provides a list of books about Cocoa programming along with reader reviews and comments.
 
 
 ** Other Cocoa Resources **
 
-Many resources are listed at General/CocoaResources.  The following are of particular importance:
+Many resources are listed at CocoaResources.  The following are of particular importance:
 
 
 * Apple's Cocoa Developer Mailing List - http://lists.apple.com/mailman/listinfo/cocoa-dev
@@ -39,7 +39,7 @@ Many resources are listed at General/CocoaResources.  The following are of parti
 
 ** Object Oriented Design Patterns **
 
-Cocoa is a pattern based framework.  Many of the recognized patterns were first identified in Cocoa or its predecessor technologies, Openstep and General/NeXTstep.  Many other patterns even pre-date General/NeXTstep and were first identified in Smalltalk.
+Cocoa is a pattern based framework.  Many of the recognized patterns were first identified in Cocoa or its predecessor technologies, Openstep and NeXTstep.  Many other patterns even pre-date NeXTstep and were first identified in Smalltalk.
 
 The seminal text on Object Oriented Design Patterns is "Design Patterns: Elements of Reusable Object-Oriented Software" (Addison-Wesley Professional Computing Series) " by Erich Gamma (Author), Richard Helm (Author), Ralph Johnson (Author), and John M. Vlissides (Author) 
 Additional pattern resources include 
@@ -52,4 +52,4 @@ Additional pattern resources include
 * Another rehash - http://www.exciton.cs.rice.edu/JavaResources/DesignPatterns/
 
 
-next General/CocoaStepThree?
+next CocoaStepThree?

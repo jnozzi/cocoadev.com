@@ -1,13 +1,13 @@
 
 
-I'm using General/AsyncSocket to do some custom networking in my application.  I want to add support for secure connections via TLS, but can't get it to work.  I was under the impression that all I had to add was the following:
+I'm using AsyncSocket to do some custom networking in my application.  I want to add support for secure connections via TLS, but can't get it to work.  I was under the impression that all I had to add was the following:
 
     
 // This method gets called prior to opening the stream
-- (BOOL)socketWillConnect:(General/AsyncSocket *)sock
+- (BOOL)socketWillConnect:(AsyncSocket *)sock
 {
-	General/CFReadStreamSetProperty([sock getCFReadStream], kCFStreamPropertySocketSecurityLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
-	General/CFWriteStreamSetProperty([sock getCFWriteStream], kCFStreamPropertySocketSecurityLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
+	CFReadStreamSetProperty([sock getCFReadStream], kCFStreamPropertySocketSecurityLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
+	CFWriteStreamSetProperty([sock getCFWriteStream], kCFStreamPropertySocketSecurityLevel, kCFStreamSocketSecurityLevelNegotiatedSSL);
 	
 	return YES;
 }
@@ -31,10 +31,10 @@ The requested resource resides temporarily under a different URI. Since the redi
 *
 
 AFAIK a web client should follow a location header and try and load the URL pointed to by the location field.
-I've no idea how this is handled by General/CFStream.
+I've no idea how this is handled by CFStream.
 
 Hope this helps,
---General/CristianDraghici
+--CristianDraghici
 
 ----
 
@@ -53,7 +53,7 @@ Host: www.paypal.com
 
 ----
 
-Your problem may be that the General/AsyncSocket delegate method is called onSocketWillConnect: and not socketWillConnect:
+Your problem may be that the AsyncSocket delegate method is called onSocketWillConnect: and not socketWillConnect:
 
 :)
 

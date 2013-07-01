@@ -6,21 +6,21 @@ Exception:  EXC_BAD_ACCESS (0x0001)
 Codes:      KERN_PROTECTION_FAILURE (0x0002) at 0x00000009
 
 Thread 0 Crashed:
-0   com.apple.General/HIToolbox     	0x927d11ec General/HIObject::General/GetHIObjectFromRef(void*) + 0
-1   com.apple.General/HIToolbox     	0x927dc138 General/GetMenuItemSystemAttributes(General/MenuData*, unsigned short, unsigned long, unsigned long*) + 0x68
-2   com.apple.General/HIToolbox     	0x927e6270 General/GetMenuItemAttributes(General/MenuData*, unsigned short, unsigned long*) + 0x20
-3   com.apple.General/HIToolbox     	0x9284b878 General/SearchCacheEntries(General/OpaqueCollection*, unsigned long, unsigned long, General/CheckMenuData*, General/MenuResult*, General/MenuData**, unsigned long*) + 0x88
-4   com.apple.General/HIToolbox     	0x92811ec8 General/SearchCache(General/OpaqueCollection*, bool, General/CheckMenuData*, General/MenuResult*) + 0x144
-5   com.apple.General/HIToolbox     	0x9284a008 General/CheckMenuKeyCache(General/MenuData*, General/CheckMenuData*) + 0x150
-6   com.apple.General/HIToolbox     	0x9280c7c4 General/CheckMenusForKeyEvent(General/MenuData*, General/CheckMenuData*) + 0xcc
-7   com.apple.General/HIToolbox     	0x928189b0 General/IsMenuKeyEvent(General/MenuData*, General/OpaqueEventRef*, unsigned long, General/MenuData**, unsigned short*) + 0x228
-8   com.apple.General/HIToolbox     	0x92828a6c General/IsMenuKeyEvent + 0x8c
-9   com.apple.General/AppKit        	0x92e71614 _NSGetMenuItemForCommandKeyEvent + 0x94
-10  com.apple.General/AppKit        	0x92e2e700 _NSHandleCarbonMenuEvent + 0x1f8
-11  com.apple.General/AppKit        	0x92dd25cc _DPSNextEvent + 0x4d0
-12  com.apple.General/AppKit        	0x92de8c24 -General/[NSApplication nextEventMatchingMask:untilDate:inMode:dequeue:] + 0x74
-13  com.apple.General/AppKit        	0x92dfcf8c -General/[NSApplication run] + 0x21c
-14  com.apple.General/AppKit        	0x92eb948c General/NSApplicationMain + 0x1d0
+0   com.apple.HIToolbox     	0x927d11ec HIObject::GetHIObjectFromRef(void*) + 0
+1   com.apple.HIToolbox     	0x927dc138 GetMenuItemSystemAttributes(MenuData*, unsigned short, unsigned long, unsigned long*) + 0x68
+2   com.apple.HIToolbox     	0x927e6270 GetMenuItemAttributes(MenuData*, unsigned short, unsigned long*) + 0x20
+3   com.apple.HIToolbox     	0x9284b878 SearchCacheEntries(OpaqueCollection*, unsigned long, unsigned long, CheckMenuData*, MenuResult*, MenuData**, unsigned long*) + 0x88
+4   com.apple.HIToolbox     	0x92811ec8 SearchCache(OpaqueCollection*, bool, CheckMenuData*, MenuResult*) + 0x144
+5   com.apple.HIToolbox     	0x9284a008 CheckMenuKeyCache(MenuData*, CheckMenuData*) + 0x150
+6   com.apple.HIToolbox     	0x9280c7c4 CheckMenusForKeyEvent(MenuData*, CheckMenuData*) + 0xcc
+7   com.apple.HIToolbox     	0x928189b0 IsMenuKeyEvent(MenuData*, OpaqueEventRef*, unsigned long, MenuData**, unsigned short*) + 0x228
+8   com.apple.HIToolbox     	0x92828a6c IsMenuKeyEvent + 0x8c
+9   com.apple.AppKit        	0x92e71614 _NSGetMenuItemForCommandKeyEvent + 0x94
+10  com.apple.AppKit        	0x92e2e700 _NSHandleCarbonMenuEvent + 0x1f8
+11  com.apple.AppKit        	0x92dd25cc _DPSNextEvent + 0x4d0
+12  com.apple.AppKit        	0x92de8c24 -[NSApplication nextEventMatchingMask:untilDate:inMode:dequeue:] + 0x74
+13  com.apple.AppKit        	0x92dfcf8c -[NSApplication run] + 0x21c
+14  com.apple.AppKit        	0x92eb948c NSApplicationMain + 0x1d0
 
 
 Both users cannot reproduce 100%, and one says the problem is now gone. I really have no idea what's wrong, so if anyone has the slightest clue of what might be the problem here, your help would be much appreciated!

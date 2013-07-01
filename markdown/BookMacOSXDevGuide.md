@@ -28,7 +28,7 @@ http://www.devdepot.com/description.html?pcode=BOSXDG
 ----**Comments**----
 
 
-* General/SteveWainstead: This is not a terrible book, but it's probably overly broad. It's huge and covers everything in a way that seems to suggest the author assumes the reader does not have a computer science degree.
+* SteveWainstead: This is not a terrible book, but it's probably overly broad. It's huge and covers everything in a way that seems to suggest the author assumes the reader does not have a computer science degree.
 ----
 * Most of us don't.
 ----
@@ -36,4 +36,4 @@ http://www.devdepot.com/description.html?pcode=BOSXDG
 ----
 * See [http://cocoa.mamasam.com/COCOADEV/2001/10/2/16495.php] for a discussion of this book. Not very enticing.
 
-* I haven't seen this one, but I have this author's Rhapsody book and while it was useful 4 years ago when the only other docs available were a few recycled General/NeXT General/PDFs from Apple, that doesn't make it a good book. The API reference section was essentially a list of method names without arg or return types, and no description forthcoming. I also spotted a few errors, even back then in my newB state. This book would have to be 5000% better to even be worth borrowing.
+* I haven't seen this one, but I have this author's Rhapsody book and while it was useful 4 years ago when the only other docs available were a few recycled NeXT PDFs from Apple, that doesn't make it a good book. The API reference section was essentially a list of method names without arg or return types, and no description forthcoming. I also spotted a few errors, even back then in my newB state. This book would have to be 5000% better to even be worth borrowing.

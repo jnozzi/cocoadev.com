@@ -76,4 +76,4 @@ void enableCoreDumps ()
 } // enableCoreDumps
 
 
-This is handy if you want to let end-users turn on core dumping (say through a checkbox in the UI) and not have them mucking around in /etc or the terminal) ++General/MarkDalrymple
+This is handy if you want to let end-users turn on core dumping (say through a checkbox in the UI) and not have them mucking around in /etc or the terminal) ++MarkDalrymple

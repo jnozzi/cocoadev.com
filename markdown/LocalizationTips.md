@@ -1,12 +1,12 @@
 
 
-Here is a localization tip. Instead of using hard coded strings in your source files, use the General/NSLocalizedString* macros: 
+Here is a localization tip. Instead of using hard coded strings in your source files, use the NSLocalizedString* macros: 
  
     
-General/NSLocalizedString(key, comment)
-General/NSLocalizedStringFromTable(key, tbl, comment)
-General/NSLocalizedStringFromTableInBundle(key, tbl, bundle, comment)
-General/NSLocalizedStringWithDefaultValue(key, tbl, bundle, value, comment)
+NSLocalizedString(key, comment)
+NSLocalizedStringFromTable(key, tbl, comment)
+NSLocalizedStringFromTableInBundle(key, tbl, bundle, comment)
+NSLocalizedStringWithDefaultValue(key, tbl, bundle, value, comment)
 
 
 
@@ -17,16 +17,16 @@ General/NSLocalizedStringWithDefaultValue(key, tbl, bundle, value, comment)
 *** value** is the localizable value
 
 
-Now for the really useful parts of this tip. Use the command line tool genstrings to automatically create an initial correctly formatted strings file with comments, keys and values. When you create your key for the General/NSLocalizedString*, make the key also be the value then you won't need to alter the value for each key for at least one strings file. http://goo.gl/Cx9sQ
+Now for the really useful parts of this tip. Use the command line tool genstrings to automatically create an initial correctly formatted strings file with comments, keys and values. When you create your key for the NSLocalizedString*, make the key also be the value then you won't need to alter the value for each key for at least one strings file. http://goo.gl/Cx9sQ
 
 type 'genstrings' in Terminal for help.
 
--- General/DaveHenderson (**NOTE:** This also works for the similarly named Core Foundation functions)
+-- DaveHenderson (**NOTE:** This also works for the similarly named Core Foundation functions)
 
 ----
-When you have a string like @"I think this is a long string" somewhere in your source code and you want to localize it using General/NSLocalizedString, you might not want "I think this is a long string" to be the key in the strings file. What I do is this:
+When you have a string like @"I think this is a long string" somewhere in your source code and you want to localize it using NSLocalizedString, you might not want "I think this is a long string" to be the key in the strings file. What I do is this:
     
-    General/NSLocalizedString(@"LONG_STRING", @"I think this is a long string") 
+    NSLocalizedString(@"LONG_STRING", @"I think this is a long string") 
 
 and then I run genstrings over my source and end up with this in the Localizable.strings file:
     
@@ -42,23 +42,23 @@ pyGenstrings coverts such files to look like this:
 
 That might come closer to what you want...
 
--- General/JohannesFahrenkrug
+-- JohannesFahrenkrug
 
-Had you used General/NSLocalizedStringWithDefaultValue(), genstrings would have worked for you.
+Had you used NSLocalizedStringWithDefaultValue(), genstrings would have worked for you.
 
 ----
 
-Once your app is localized, you may find yourself needing to make a change to a localized nib, and contemplating making the exact same change to a bunch of different localized nibs. Fortunately,     nibtool can take care of a lot of the work for you. In order to do this, you need three nibs. First, you need the original non-localized nib, which I'll call O<nowiki/>riginalNonLoc. Then you need the new non-localized nib (so make your changes on a *copy*, or know where you can get the old one out of your General/VersionControl system), which I'll call N<nowiki/>ewNonLoc. Finally, you need the old localized nib, which I'll call O<nowiki/>riginalLoc. You also need to know where you're going to put the new localized nib, which I'll call (you guessed it) N<nowiki/>ewLoc.
+Once your app is localized, you may find yourself needing to make a change to a localized nib, and contemplating making the exact same change to a bunch of different localized nibs. Fortunately,     nibtool can take care of a lot of the work for you. In order to do this, you need three nibs. First, you need the original non-localized nib, which I'll call O<nowiki/>riginalNonLoc. Then you need the new non-localized nib (so make your changes on a *copy*, or know where you can get the old one out of your VersionControl system), which I'll call N<nowiki/>ewNonLoc. Finally, you need the old localized nib, which I'll call O<nowiki/>riginalLoc. You also need to know where you're going to put the new localized nib, which I'll call (you guessed it) N<nowiki/>ewLoc.
 
     nibtool will compare the three nibs you give it, figure out what changes you made between O<nowiki/>riginalNonLoc and N<nowiki/>ewNonLoc, and apply those changes to O<nowiki/>riginalLoc. To do this, run the following command:
 
     
-nibtool -I General/OriginalLoc.nib -p General/OriginalNonLoc.nib -w General/NewLoc.nib -d nonexistent.strings General/NewNonLoc.nib
+nibtool -I OriginalLoc.nib -p OriginalNonLoc.nib -w NewLoc.nib -d nonexistent.strings NewNonLoc.nib
 
 
 Note the     nonexistent.strings file passed in the command. For some reason,     nibtool requires you to specify a .strings file even though it should be optional, and even though it still works fine without it. You don't actually need this file to exist, you just need to pass the     -d flag with the name of a .strings file after it. I don't know why.
 
-If everything went well, you should get a N<nowiki/>ewLoc.nib file with the appropriate changes made.     nibtool doesn't always get it perfectly right, so open the new nib in General/InterfaceBuilder and make sure everything is ok. It's a fair amount of work, but a lot easier than making all of your changes several times.
+If everything went well, you should get a N<nowiki/>ewLoc.nib file with the appropriate changes made.     nibtool doesn't always get it perfectly right, so open the new nib in InterfaceBuilder and make sure everything is ok. It's a fair amount of work, but a lot easier than making all of your changes several times.
 
 ----
 
@@ -84,16 +84,16 @@ See chapter 13 of the second edition of Aaron Hillegass's book. Hillegass just s
 
 ----
 
-I have a General/NSDictionary(read from the web in the form of <file>.xml) which includes several strings, e.g. "Welcome", "This version", etc.
+I have a NSDictionary(read from the web in the form of <file>.xml) which includes several strings, e.g. "Welcome", "This version", etc.
 
-If I would like to have localized strings in this General/NSDictionary and read them out in the language selected as System default.
+If I would like to have localized strings in this NSDictionary and read them out in the language selected as System default.
 Should I create an Array inside named English.lproj, French.lproj, etc. or something completely else?
 
 ----
 
-Why not have an General/NSDictionary enclosing localized General/NSDictionaries?
+Why not have an NSDictionary enclosing localized NSDictionaries?
 
-    General/mydict objectForKey:@"English"] objectForKey:@"Welcome"]
+    mydict objectForKey:@"English"] objectForKey:@"Welcome"]
 
 ----
 
@@ -101,17 +101,17 @@ How do I read the current System language setting then - I must have some langua
 
 ----
 
-You can use General/NSUserDefaults:
+You can use NSUserDefaults:
 
     
-General/[[NSUserDefaults standardUserDefaults] objectForKey:General/AppleLanguages];
+[[NSUserDefaults standardUserDefaults] objectForKey:AppleLanguages];
 
 
-You could also look at the Apple documentation on localization and a few other places), especially General/NSLocalizedStringFromTable(key, filename, comment).
+You could also look at the Apple documentation on localization and a few other places), especially NSLocalizedStringFromTable(key, filename, comment).
 
 ----
 
-I have a relatively popular piece of software called General/AcidSearch. I have done my best to keep the software localizable. There's a .strings file with every single localizable string. When I change it in every release, I am forced to choose between (apparently) two difficult methods of solving the problem:
+I have a relatively popular piece of software called AcidSearch. I have done my best to keep the software localizable. There's a .strings file with every single localizable string. When I change it in every release, I am forced to choose between (apparently) two difficult methods of solving the problem:
 
 *I can modify every existing localized nib file and send these new nibs to the localizers. Mistakes are made and propagated.
 *I can have the localizer contractor localize the nib from scratch with each new version but they may refuse.
@@ -120,19 +120,19 @@ I have a relatively popular piece of software called General/AcidSearch. I have 
 
 (1) man nibtool.  Pay special attention to the sections on incremental localization.
 
-(2) General/AppleGlot.  Free from Apple, hard to automate, spits up lots of xml without deriving any benefit from it. (This is as opposed to the strings files used with nibtool.)
+(2) AppleGlot.  Free from Apple, hard to automate, spits up lots of xml without deriving any benefit from it. (This is as opposed to the strings files used with nibtool.)
 
 (3) Check out third party apps like http://www.blue-tec.com/locsuite/.
 
 Have a look at translationWizard http://www.moewes.net/translationWizard
 
-See also mmalc's writeup for General/StepWise: http://www.stepwise.com/Articles/Technical/2003-04-03.01.html.
+See also mmalc's writeup for StepWise: http://www.stepwise.com/Articles/Technical/2003-04-03.01.html.
 
-Check out General/AppleTrans!  It's probably only useful for nibs when combined with one of the other options above.  http://appletrans.blogspot.com
+Check out AppleTrans!  It's probably only useful for nibs when combined with one of the other options above.  http://appletrans.blogspot.com
 
 ----
 
-I knew about General/AppleGlot, but had heard bad things about it mangling nib files. Somehow I managed to completely overlook nibtool.
+I knew about AppleGlot, but had heard bad things about it mangling nib files. Somehow I managed to completely overlook nibtool.
 
 ----
 
@@ -156,5 +156,5 @@ http://balthamos.blogspot.com/2008/05/introduction-so-you-are-probably-here_01.h
 
 ----
 
-If you're using General/XCode 3.0 (3.1?) and cannot find 'nibtool', it's because it now is called 'ibtool'.
+If you're using XCode 3.0 (3.1?) and cannot find 'nibtool', it's because it now is called 'ibtool'.
 /Aderstedt

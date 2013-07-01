@@ -2,16 +2,16 @@
 
 This class provides a nice generic method for implementing type-ahead selection in any collection of selectable objects. An example is in the Finder, where you can start typing a file's name and it will be highlighted.
 
-To use General/OATypeAheadSelectionHelper, you instantiate one, provide a data source (setDataSource:), and implement the following protocol in that data source:
+To use OATypeAheadSelectionHelper, you instantiate one, provide a data source (setDataSource:), and implement the following protocol in that data source:
 
-    - (General/NSArray *)typeAheadSelectionItems;
-This is where we build the list of possible items which the user can select by typing the first few letters. You should return an array of General/NSStrings.
+    - (NSArray *)typeAheadSelectionItems;
+This is where we build the list of possible items which the user can select by typing the first few letters. You should return an array of NSStrings.
 
-    - (General/NSString *)currentlySelectedItem;
+    - (NSString *)currentlySelectedItem;
 Type-ahead-selection behavior can change if an item is currently selected (especially if the item was selected by type-ahead-selection). Return nil if you have no selection or a multiple selection.
 
     - (void)typeAheadSelectItemAtIndex:(int)itemIndex;
 We call this when a type-ahead-selection match has been made; you should select the item based on its index in the array you provided in -typeAheadSelectionItems.
     
 ----
-Some text is copyright 2001-2003 Omni Development, Inc. See General/OmniSourceLicense.
+Some text is copyright 2001-2003 Omni Development, Inc. See OmniSourceLicense.

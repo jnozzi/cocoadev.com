@@ -9,14 +9,14 @@ Things the game does that may be useful:
 *Creates a window (may be full screen) with an opengl context.
 *Implements a kind of "tile world" with quads and textures.
 *Handles Mouse and Keyboard events.
-*Uses General/NSDate objects to examine frame rates and adapts game physics and speed.
+*Uses NSDate objects to examine frame rates and adapts game physics and speed.
 *Some simple particle effects
-*Uses the Class General/QTSoundFilePlayer by Kurt Revis to play mp3 sound files.
+*Uses the Class QTSoundFilePlayer by Kurt Revis to play mp3 sound files.
 
--General/GeorGe
+-GeorGe
 
 ----
 
 Good initiative!
 
---General/TheoHultberg/Iconara
+--TheoHultberg/Iconara

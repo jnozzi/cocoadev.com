@@ -1,4 +1,4 @@
-General/ACProblemOfVariableTypes - related to General/LookupAspects part of General/AspectCocoa also see General/CodeRefactorChallenge
+ACProblemOfVariableTypes - related to LookupAspects part of AspectCocoa also see CodeRefactorChallenge
 
 Our general approach to implementing aspects has been to replace the IMP pointers of certain method with "replacement" methods.  Originally, we thought we would only have to define a few "replacement" methods something like this...
 
@@ -25,59 +25,59 @@ So, anyway, we decided we needed seperate replacement methods for structs.  We d
 
     
 typedef union {
-    General/NSSize size;
-    General/NSRect rect;
-    General/NSPoint point;
+    NSSize size;
+    NSRect rect;
+    NSPoint point;
     void * voidStar;
     float aFloat;
-}General/UnionOfNSTypes;
+}UnionOfNSTypes;
 
-typedef void * General/ACReturnType;
-typedef General/UnionOfNSTypes General/ACBigReturnType;
-typedef General/UnionOfNSTypes General/ACArgType;
+typedef void * ACReturnType;
+typedef UnionOfNSTypes ACBigReturnType;
+typedef UnionOfNSTypes ACArgType;
 
 
 and use them in "replacement" methods as follows, using the Big return type for methods that return structs and the regular return type for all other types:
 
     
--(General/ACReturnType)replacement: (General/ACArgType)a;
--(General/ACBigReturnType)bigReplacement: (General/ACArgType)a;
+-(ACReturnType)replacement: (ACArgType)a;
+-(ACBigReturnType)bigReplacement: (ACArgType)a;
 
 
-we proceeded with the assumption that this was an adequate solution for quite some time... until we noticed that some floats were getting turned into 0 whenever they passed through out wrapped method.  Even weirder.. they only got mangled in this way if we called General/NSLog before we called the original IMP within the body of the replacement.  The reason for this has yet to be determined, be we knew we needed to be able to call General/NSLog.  and if something like General/NSLog could disrupt out program than other things might be too.  We needed to explicitly cast our "float" type arguments as floats..  but we couldn't use this float type for other arguments.. So the problem becomes that there is a very large combination of method argument types and return types. All different numbers of arguments, and all ordering of them maters greatly.  We experimented with a replament method that took a variable number of argument and then used General/NSMethodSignature to try and decode them properly, but apparently methods with variable number of argumetns and static number of arguments are encoded differently. and this was not possible.  So, we would have to write a program to generate the code for every possible combination of types!!!  Of course we had to place a limit somewhere, so we only support methods with 4 or fewer arguments (plus the implicit self and _cmd). Here's the very poorly written(but working) code from the generator:
+we proceeded with the assumption that this was an adequate solution for quite some time... until we noticed that some floats were getting turned into 0 whenever they passed through out wrapped method.  Even weirder.. they only got mangled in this way if we called NSLog before we called the original IMP within the body of the replacement.  The reason for this has yet to be determined, be we knew we needed to be able to call NSLog.  and if something like NSLog could disrupt out program than other things might be too.  We needed to explicitly cast our "float" type arguments as floats..  but we couldn't use this float type for other arguments.. So the problem becomes that there is a very large combination of method argument types and return types. All different numbers of arguments, and all ordering of them maters greatly.  We experimented with a replament method that took a variable number of argument and then used NSMethodSignature to try and decode them properly, but apparently methods with variable number of argumetns and static number of arguments are encoded differently. and this was not possible.  So, we would have to write a program to generate the code for every possible combination of types!!!  Of course we had to place a limit somewhere, so we only support methods with 4 or fewer arguments (plus the implicit self and _cmd). Here's the very poorly written(but working) code from the generator:
 
-**Still the problem of stucts has not been fully solved:** We will only have support for stucts that are part of the type General/UnionOfNSTypes and thus General/ACStructType. somehow the users of aspects must add the structs they use in their code to our union...  But if the file General/ACDataStucts.h that contains this union has already been defined and compiled with the rest of the General/AspectCocoa framework. can we redefine this union in our own code that uses this framework? I don't see how. any ideas?
+**Still the problem of stucts has not been fully solved:** We will only have support for stucts that are part of the type UnionOfNSTypes and thus ACStructType. somehow the users of aspects must add the structs they use in their code to our union...  But if the file ACDataStucts.h that contains this union has already been defined and compiled with the rest of the AspectCocoa framework. can we redefine this union in our own code that uses this framework? I don't see how. any ideas?
 
-this generator makes code (that must then be gcc compiled) to add thousands of methods (via categories) to the class General/ACLookAspect
+this generator makes code (that must then be gcc compiled) to add thousands of methods (via categories) to the class ACLookAspect
     
 
 
-#import "General/MyDocument.h"
+#import "MyDocument.h"
 
-@implementation General/MyDocument
+@implementation MyDocument
 
-- (void)windowControllerDidLoadNib:(General/NSWindowController *) aController
+- (void)windowControllerDidLoadNib:(NSWindowController *) aController
 {
     [super windowControllerDidLoadNib:aController];
 
-    combinationalArrays = General/[[[NSMutableArray alloc] init] retain];
+    combinationalArrays = [[[NSMutableArray alloc] init] retain];
 
-    General/NSString * outpath1 = @"General/ACAspectReplacements";
-    General/NSString * finalOutput =@"";
+    NSString * outpath1 = @"ACAspectReplacements";
+    NSString * finalOutput =@"";
     int i,j, k, l;
     k = 0;
     l = 1;
     for(i=1; i<6; i++){
-        General/NSArray * array = [self arrayOfArrayOfTypesSize: i];
-        General/NSLog(@"array created %i of 5", i);
+        NSArray * array = [self arrayOfArrayOfTypesSize: i];
+        NSLog(@"array created %i of 5", i);
         for(j=0; j<[array count]; j++){
-            General/NSString * newOutput = [finalOutput stringByAppendingString: 
+            NSString * newOutput = [finalOutput stringByAppendingString: 
                             [self methodHeaderForTypes: [array objectAtIndex: j]]];
             [finalOutput dealloc];
             finalOutput = newOutput;
             k++;
             if(k>500){
-                General/NSString * finalName = General/[NSString stringWithFormat: @"%@%i", outpath1, l];
+                NSString * finalName = [NSString stringWithFormat: @"%@%i", outpath1, l];
                 [self outputHeader: finalOutput as: finalName];
                 [finalOutput dealloc];
                 finalOutput =@"";
@@ -87,24 +87,24 @@ this generator makes code (that must then be gcc compiled) to add thousands of m
         }
     }
     
-    [self outputHeader: finalOutput as: @"General/ACAspectReplacements"];
-    General/NSLog(@"done header");
+    [self outputHeader: finalOutput as: @"ACAspectReplacements"];
+    NSLog(@"done header");
     
-    outpath1 = @"General/ACAspectReplacements";
+    outpath1 = @"ACAspectReplacements";
     finalOutput =@"";
     k = 0;
     l = 1;
     for(i=1; i<6; i++){
-        General/NSArray * array = [self arrayOfArrayOfTypesSize: i];
-        General/NSLog(@"array created %i of 5", i);
+        NSArray * array = [self arrayOfArrayOfTypesSize: i];
+        NSLog(@"array created %i of 5", i);
         for(j=0; j<[array count]; j++){
-            General/NSString * newOutput = [finalOutput stringByAppendingString: 
+            NSString * newOutput = [finalOutput stringByAppendingString: 
                             [self methodBodyForTypes: [array objectAtIndex: j]]];
             [finalOutput dealloc];
             finalOutput = newOutput;
             k++;
             if(k>500){
-                General/NSString * finalName = General/[NSString stringWithFormat: @"%@%i", outpath1, l];
+                NSString * finalName = [NSString stringWithFormat: @"%@%i", outpath1, l];
                 [self outputMethods: finalOutput as: finalName];
                 [finalOutput dealloc];
                 finalOutput =@"";
@@ -114,19 +114,19 @@ this generator makes code (that must then be gcc compiled) to add thousands of m
         }
     }
     
-    [self outputMethods: finalOutput as: @"General/ACAspectReplacements"];
-    General/NSLog(@"done method");
+    [self outputMethods: finalOutput as: @"ACAspectReplacements"];
+    NSLog(@"done method");
 }
 
 
 
--(General/NSString *)methodBodyForTypes:(General/NSArray*)types{
+-(NSString *)methodBodyForTypes:(NSArray*)types{
     int i;
-    General/NSString * type = [types objectAtIndex: 0];
-    General/NSString * toReturn = General/[NSString stringWithFormat: 
+    NSString * type = [types objectAtIndex: 0];
+    NSString * toReturn = [NSString stringWithFormat: 
          @"-(%@)replac%@",[self methodReturnForType: type], type];
     for(i=1; i<[types count]; i++){
-        toReturn = General/[NSString stringWithFormat: @"%@%@: (%@)%@ ", 
+        toReturn = [NSString stringWithFormat: @"%@%@: (%@)%@ ", 
             toReturn, 
             [types objectAtIndex: i], 
             [self methodReturnForType: [types objectAtIndex: i]], 
@@ -135,9 +135,9 @@ this generator makes code (that must then be gcc compiled) to add thousands of m
 
 /*
 
-    General/ACPointerType toReturn;
-    General/ACAdviceList * advice = General/[[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
-    if(advice == nil){ General/NSLog(@"!! error this should never happen! advice list was nil"); }
+    ACPointerType toReturn;
+    ACAdviceList * advice = [[ACAspectManager sharedManager] adviceListForSelector: _cmd onObject: self];
+    if(advice == nil){ NSLog(@"!! error this should never happen! advice list was nil"); }
     [advice invokeBefores:_cmd onObject: self arg1: nil arg2: nil arg3: nil arg4: nil];
     IMP toInvoke = [advice getIMP];
     toReturn = toInvoke(self, _cmd);
@@ -148,18 +148,18 @@ this generator makes code (that must then be gcc compiled) to add thousands of m
 */
     toReturn = [toReturn stringByAppendingString: @"{\n"];
     toReturn = [toReturn stringByAppendingString: 
-        General/[NSString stringWithFormat: 
+        [NSString stringWithFormat: 
         @"    %@ toReturn;\n", [self methodReturnForType: type]]];
     toReturn = [toReturn stringByAppendingString: 
-        @"    General/ACAdviceList * advice = General/[[ACAspectManager sharedManager]
+        @"    ACAdviceList * advice = [[ACAspectManager sharedManager]
  adviceListForSelector: _cmd onObject: self];\n"];
     toReturn = [toReturn stringByAppendingString: 
         @"    if(advice == nil){ 
-General/NSLog(@\"!! error this should never happen! advice list was nil\"); }\n"];
+NSLog(@\"!! error this should never happen! advice list was nil\"); }\n"];
     toReturn = [toReturn stringByAppendingString: 
         [self beforesString: [types count]-1]]; //-1 for the return
     toReturn = [toReturn stringByAppendingString: 
-    General/[NSString stringWithFormat: 
+    [NSString stringWithFormat: 
         @"    %@ toInvoke = (%@)[advice getIMP];\n", 
         [self impForType: type], 
         [self impForType: type]]];     //ACIMP toInvoke = (ACIMP)[advice getIMP];
@@ -173,30 +173,30 @@ General/NSLog(@\"!! error this should never happen! advice list was nil\"); }\n"
     return [toReturn stringByAppendingString: @"}\n\n\n"];
 }
 
--(General/NSString*)impForType:(General/NSString *) type{
+-(NSString*)impForType:(NSString *) type{
     if([type isEqualToString: @"Char"])//int is the same as char
-        return @"General/ACCharIMP";
+        return @"ACCharIMP";
     if([type isEqualToString: @"Short"])
-        return @"General/ACShortIMP";
+        return @"ACShortIMP";
     if([type isEqualToString: @"Long"])
-        return @"General/ACLongIMP";
-    if([type isEqualToString: @"General/LongLong"])
-        return @"General/ACLongLongIMP";
+        return @"ACLongIMP";
+    if([type isEqualToString: @"LongLong"])
+        return @"ACLongLongIMP";
     if([type isEqualToString: @"Double"])
-        return @"General/ACDoubleIMP";
+        return @"ACDoubleIMP";
     if([type isEqualToString: @"Boolean"])
         return @"ACBOOLIMP";
-    if([type isEqualToString: @"General/CharStar"])//a method SEL == char *
-        return @"General/ACCharStarIMP";
+    if([type isEqualToString: @"CharStar"])//a method SEL == char *
+        return @"ACCharStarIMP";
     if([type isEqualToString: @"Class"])
-        return @"General/ACClassIMP";
+        return @"ACClassIMP";
     if([type isEqualToString: @"Struct"] )
-        return @"General/ACStructIMP";
-    return @"General/ACPointerIMP";
+        return @"ACStructIMP";
+    return @"ACPointerIMP";
 }
 
 
--(General/NSString*)beforesString:(int)numberofArgs{
+-(NSString*)beforesString:(int)numberofArgs{
     if(numberofArgs == 0)
         return @"    [advice invokeBefores:_cmd onObject:
  self arg1: nil arg2: nil arg3: nil arg4: nil];\n";
@@ -213,11 +213,11 @@ self arg1: &a arg2: &b arg3: &c arg4: nil];\n";
         return @"    [advice invokeBefores:_cmd onObject:
  self arg1: &a arg2: &b arg3: &c arg4: &d];\n";
     else
-        General/NSLog(@"havn't writen code for that yet");
+        NSLog(@"havn't writen code for that yet");
     return @"    //havn't writen code for that yet\n";
 }
 
--(General/NSString*)toinvokeString:(int)numberofArgs{
+-(NSString*)toinvokeString:(int)numberofArgs{
     if(numberofArgs == 0)
         return @"    toReturn = toInvoke(self, _cmd);\n";
      else if(numberofArgs == 1)
@@ -229,11 +229,11 @@ self arg1: &a arg2: &b arg3: &c arg4: nil];\n";
     else if(numberofArgs == 4)
         return @"    toReturn = toInvoke(self, _cmd, a, b, c, d);\n";
     else
-        General/NSLog(@"havn't writen code for that yet");
+        NSLog(@"havn't writen code for that yet");
     return @"    //havn't writen code for that yet\n";
 }
 
--(General/NSString*)aftersString:(int)numberofArgs{
+-(NSString*)aftersString:(int)numberofArgs{
     if(numberofArgs == 0)
         return @"    [advice invokeAfters:_cmd onObject:
  self returned: &toReturn arg1: nil arg2: nil arg3: nil arg4: nil];\n";
@@ -250,23 +250,23 @@ self arg1: &a arg2: &b arg3: &c arg4: nil];\n";
         return @"    [advice invokeAfters:_cmd onObject:
  self returned: &toReturn arg1: &a arg2: &b arg3: &c arg4: &d];\n";
     else
-        General/NSLog(@"havn't writen code for that yet");
+        NSLog(@"havn't writen code for that yet");
     return @"    //havn't writen code for that yet\n";
 }
 
 
--(void)outputHeader: (General/NSString*)toOutput as: (General/NSString*)outputPath{
-    toOutput = General/[NSString stringWithFormat: @"%@%@%@%@%@", 
+-(void)outputHeader: (NSString*)toOutput as: (NSString*)outputPath{
+    toOutput = [NSString stringWithFormat: @"%@%@%@%@%@", 
 @"
 #import <Foundation/Foundation.h>
-#import \"General/ACDataStructs.h\"
-#import \"General/ACLookAspect.h\"
-#import \"General/ACAdviceList.h\"
-#import \"General/ACMethodIterator.h\"
+#import \"ACDataStructs.h\"
+#import \"ACLookAspect.h\"
+#import \"ACAdviceList.h\"
+#import \"ACMethodIterator.h\"
 #import </usr/include/objc/objc-class.h>
-#import \"General/ACAspectManager.h\"
+#import \"ACAspectManager.h\"
 
-@interface General/ACLookAspect (",outputPath,@")
+@interface ACLookAspect (",outputPath,@")
 
 
 "
@@ -274,17 +274,17 @@ self arg1: &a arg2: &b arg3: &c arg4: nil];\n";
 @"
 @end
 "];
-    outputPath = General/[NSString stringWithFormat: @"/headers/%@.h", outputPath];
+    outputPath = [NSString stringWithFormat: @"/headers/%@.h", outputPath];
     [toOutput writeToFile: outputPath atomically: YES];
 }
 
--(void)outputMethods: (General/NSString*)toOutput as: (General/NSString*)outputPath{
-    toOutput = General/[NSString stringWithFormat: @"%@%@%@%@%@%@%@", 
+-(void)outputMethods: (NSString*)toOutput as: (NSString*)outputPath{
+    toOutput = [NSString stringWithFormat: @"%@%@%@%@%@%@%@", 
 @"
 #import \"",outputPath,@".h\"
 
 
-@implementation General/ACLookAspect (",outputPath,@")
+@implementation ACLookAspect (",outputPath,@")
 
 
 "
@@ -292,54 +292,54 @@ self arg1: &a arg2: &b arg3: &c arg4: nil];\n";
 @"
 @end
 "];
-    outputPath = General/[NSString stringWithFormat: @"/methods/%@.m", outputPath];
+    outputPath = [NSString stringWithFormat: @"/methods/%@.m", outputPath];
     [toOutput writeToFile: outputPath atomically: YES];
 }
 
--(General/NSString *)methodHeaderForTypes:(General/NSArray*)types{
+-(NSString *)methodHeaderForTypes:(NSArray*)types{
     int i;
-    General/NSString * type = [types objectAtIndex: 0];
-    General/NSString * toReturn = General/[NSString stringWithFormat: 
+    NSString * type = [types objectAtIndex: 0];
+    NSString * toReturn = [NSString stringWithFormat: 
          @"-(%@)replac%@",[self methodReturnForType: type], type];
     for(i=1; i<[types count]; i++){
-        toReturn = General/[NSString stringWithFormat: @"%@%@: (%@)%@ ", 
+        toReturn = [NSString stringWithFormat: @"%@%@: (%@)%@ ", 
             toReturn, 
             [types objectAtIndex: i], 
             [self methodReturnForType: [types objectAtIndex: i]], 
             [self varAtIndex: i]];
     }
-//    General/NSLog(toReturn);
+//    NSLog(toReturn);
     return [toReturn stringByAppendingString: @";\n"];
 }
 
--(General/NSMutableArray *)arrayOfArrayOfTypesSize:(int) size{
+-(NSMutableArray *)arrayOfArrayOfTypesSize:(int) size{
     if( [combinationalArrays count] >= size)
         return [combinationalArrays objectAtIndex: size-1];
     //start by solving the problem for size = 1
-    General/NSMutableArray * array1 = General/[[NSMutableArray alloc] init];
-//    [array1 addObject: General/[NSArray arrayWithObject:@"Char"]];
-//    [array1 addObject: General/[NSArray arrayWithObject:@"Short"]]; 
-//    [array1 addObject: General/[NSArray arrayWithObject:@"Long"]];
-//    [array1 addObject: General/[NSArray arrayWithObject:@"General/LongLong"]];
-    [array1 addObject: General/[NSArray arrayWithObject:@"Double"]];
-    [array1 addObject: General/[NSArray arrayWithObject:@"Char"]];
-    [array1 addObject: General/[NSArray arrayWithObject:@"General/CharStar"]]; 
-//    [array1 addObject: General/[NSArray arrayWithObject:@"Class"]];
-    [array1 addObject: General/[NSArray arrayWithObject:@"Struct"]]; 
-    [array1 addObject: General/[NSArray arrayWithObject:@"Point"]];
+    NSMutableArray * array1 = [[NSMutableArray alloc] init];
+//    [array1 addObject: [NSArray arrayWithObject:@"Char"]];
+//    [array1 addObject: [NSArray arrayWithObject:@"Short"]]; 
+//    [array1 addObject: [NSArray arrayWithObject:@"Long"]];
+//    [array1 addObject: [NSArray arrayWithObject:@"LongLong"]];
+    [array1 addObject: [NSArray arrayWithObject:@"Double"]];
+    [array1 addObject: [NSArray arrayWithObject:@"Char"]];
+    [array1 addObject: [NSArray arrayWithObject:@"CharStar"]]; 
+//    [array1 addObject: [NSArray arrayWithObject:@"Class"]];
+    [array1 addObject: [NSArray arrayWithObject:@"Struct"]]; 
+    [array1 addObject: [NSArray arrayWithObject:@"Point"]];
     if(size <= 1){
         [combinationalArrays addObject: array1];
         return array1;
     }
-    General/NSMutableArray * toReturn = General/[[NSMutableArray alloc] init];
+    NSMutableArray * toReturn = [[NSMutableArray alloc] init];
     int i,j;
     for(i=0; i<[array1 count]; i++){
-        General/NSMutableArray * array2 = [self arrayOfArrayOfTypesSize: size-1];
+        NSMutableArray * array2 = [self arrayOfArrayOfTypesSize: size-1];
         for(j=0; j<[array2 count]; j++){
-            General/NSMutableArray * toAdd = General/[[NSMutableArray alloc] init];
+            NSMutableArray * toAdd = [[NSMutableArray alloc] init];
             //new array with the objects in array1 at i and array2 at j
-//            General/NSLog(@"1 at i%@", [array1 objectAtIndex: i]);
-//            General/NSLog(@"2 at j%@", [array2 objectAtIndex: j]);
+//            NSLog(@"1 at i%@", [array1 objectAtIndex: i]);
+//            NSLog(@"2 at j%@", [array2 objectAtIndex: j]);
             [toAdd addObjectsFromArray: [array1 objectAtIndex: i]];
             [toAdd addObjectsFromArray: [array2 objectAtIndex: j]];
             [toReturn addObject: toAdd];
@@ -349,7 +349,7 @@ self arg1: &a arg2: &b arg3: &c arg4: nil];\n";
     return toReturn;
 }
 
--(General/NSString *)varAtIndex:(int)i{
+-(NSString *)varAtIndex:(int)i{
     if( i==0){
         return @"nil";
     }
@@ -373,26 +373,26 @@ self arg1: &a arg2: &b arg3: &c arg4: nil];\n";
     }
 }
 
--(General/NSString *)methodReturnForType: (General/NSString *) type{
+-(NSString *)methodReturnForType: (NSString *) type{
     if([type isEqualToString: @"Char"])//int is the same as char
-        return @"General/ACCharType";
+        return @"ACCharType";
     if([type isEqualToString: @"Short"])
-        return @"General/ACShortType";
+        return @"ACShortType";
     if([type isEqualToString: @"Long"])
-        return @"General/ACLongType";
-    if([type isEqualToString: @"General/LongLong"])
-        return @"General/ACLongLongType";
+        return @"ACLongType";
+    if([type isEqualToString: @"LongLong"])
+        return @"ACLongLongType";
     if([type isEqualToString: @"Double"])
-        return @"General/ACDoubleType";
+        return @"ACDoubleType";
     if([type isEqualToString: @"Boolean"])
-        return @"General/ACBOOLType";
-    if([type isEqualToString: @"General/CharStar"])//a method SEL == char *
-        return @"General/ACCharStarType";
+        return @"ACBOOLType";
+    if([type isEqualToString: @"CharStar"])//a method SEL == char *
+        return @"ACCharStarType";
     if([type isEqualToString: @"Class"])
-        return @"General/ACClassType";
+        return @"ACClassType";
     if([type isEqualToString: @"Struct"] )
-        return @"General/ACStructType";
-    return @"General/ACPointerType";
+        return @"ACStructType";
+    return @"ACPointerType";
 }
 
 

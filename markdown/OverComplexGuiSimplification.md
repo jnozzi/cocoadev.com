@@ -5,7 +5,7 @@ Now, I don't mean to toot my own horn, but the codebase itself is pretty damn ti
 Here's a screenshot of the program running with every inspector panel open -- the only thing not visible is the Console, which is the other tab on the drawer hanging off the bottom of the main window.  I should point out that the panels all represent important functions, so I can't just get rid of them.
 
 I made the screenshot a PNG so this wikki wouldn't inline it, since it's so big it would break up page layout:
-http://home.earthlink.net/~zakariya/files/General/TooComplex.png
+http://home.earthlink.net/~zakariya/files/TooComplex.png
 
 Suffice it to say, it's a fair bit too big to fit with all windows open on my development machine's screen ( A 12" PB ) which is ironic, in a way.
 
@@ -14,11 +14,11 @@ http://www.omnigroup.com/images/newimagestemp/omnigraffle/licky.jpg
 
 Any ideas? I'd appreciate it something fierce.
 
--- General/ShamylZakariya
+-- ShamylZakariya
 
 ----
 
-I don't think you need to go the General/OmniGraffle way of doing things - at least not yet. there are a few large panels, and I think that technique works better when you have a dozen or so small panels. The Force panel can be shrunk down immensely by rearranging the buttons and text fields and using the small control size.
+I don't think you need to go the OmniGraffle way of doing things - at least not yet. there are a few large panels, and I think that technique works better when you have a dozen or so small panels. The Force panel can be shrunk down immensely by rearranging the buttons and text fields and using the small control size.
 
 Could the Variables panel be a tab in the Log/Console section?
 
@@ -28,7 +28,7 @@ Another thing, the split view may not serve the best purpose for the ROM Tree pa
 
 Designing the user interface is all about deciding what the user needs access to quickly. If they don't need to access it frequently, consider taking it off the panel and making it a menu item or something similar.
 
--- General/RyanBates
+-- RyanBates
 
 ----
 
@@ -38,7 +38,7 @@ The Movie Control panel could use a disclosure triangle for the codec/quality se
 
 ----
 
-On a different page (General/DrawerAbuse) you stated that you made some panels smaller. Would you mind showing us a picture of the smaller panels? Is this the one? [http://www.home.earthlink.net/~zakariya/files/General/ComplexPanel.png] If so, I have some suggestions. -- General/RyanBates
+On a different page (DrawerAbuse) you stated that you made some panels smaller. Would you mind showing us a picture of the smaller panels? Is this the one? [http://www.home.earthlink.net/~zakariya/files/ComplexPanel.png] If so, I have some suggestions. -- RyanBates
 
 ----
 That was a pic of the old ROM Tree Panel ( ROM stands for Robot Object Model, and it's the way you can "inspect/control" a servo, a motor, a sensor, or compass or what-have-you ). The trouble there was that in my API, you "deposit" goals for the runtime via the root node of the ROM Tree. The root node is a "special" node and can be thought of as the primary gateway between my AI logic and the hardware. From an API standpoint, it makes sense, but I was being a little too literal I think making the root node of the ROM Tree show you the goal inputs. I've since moved them out of the tree into a separate view and have made the tree rootless.
@@ -61,7 +61,7 @@ The bottom drawer contains the Log and the Console. The console is just like std
 
 Anyway, and suggestions or ( hint hint ) potential mockups would be appreciated ;)
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
@@ -87,13 +87,13 @@ As for the drawer - if it were me, I would prefer a panel, but the contents are 
 +---------------------------------------+
 
 
-If you e-mail me, I can send you the real image. Address is on my page. -- General/RyanBates
+If you e-mail me, I can send you the real image. Address is on my page. -- RyanBates
 
 I like the idea, it does seem probably better than my current vertical-list-in-a-scrollview approach. But, since it would be wide it would have to go in a panel, instead of a drawer. Though that's OK.
 
 I'm sorta liking having them in a drawer just because the panels are for inspection of aspects of the runtime, and the behavior inputs modify what's happing in the engine. It seems logical to me, though I may just be practicing self-justification. 
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
@@ -101,15 +101,15 @@ One thing I neglected to mention, about the behavior inputs, is that they're spe
 
 Because of this, I took the simple route and went for a vertical stack, one element per input. A matrix/grid type layout would make sense but would be slightly harder given the dynamic nature of the inputs.
 
-This of course might make for an interesting experiment. I've written layout managers before, ( for General/BeOS ) and for my vertical stacking I wrote a "sort" of layout-managing stacker subclass of General/NSView. I might want to write some kind of general purpose layout manager to arrange the input views optimally for panel height/width.
+This of course might make for an interesting experiment. I've written layout managers before, ( for BeOS ) and for my vertical stacking I wrote a "sort" of layout-managing stacker subclass of NSView. I might want to write some kind of general purpose layout manager to arrange the input views optimally for panel height/width.
 
-Does anybody know if there are grid-type layout managers for Cocoa? Or am I going to have to roll it myself, like I did for General/BeOS ( which has even worse support for automatic layout than Cocoa ).
+Does anybody know if there are grid-type layout managers for Cocoa? Or am I going to have to roll it myself, like I did for BeOS ( which has even worse support for automatic layout than Cocoa ).
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
-I've just been checking out General/MOKit, and it has a General/MOViewListView class which might be helpful to you (or it might not). It's basically the same as your original General/OmniGraffle idea.
+I've just been checking out MOKit, and it has a MOViewListView class which might be helpful to you (or it might not). It's basically the same as your original OmniGraffle idea.
 
 ----
 
@@ -120,7 +120,7 @@ http://home.earthlink.net/~zakariya/files/TooComplex3.png
 Also, a neat addition I made is a tracing mechanism which you can see here:
 http://home.earthlink.net/~zakariya/files/Trace.png
 
-The trace flows the views in it in a grid, and automatically handles scrollbars. I submitted my layout code as General/FlowLayoutView. It's really keen. I also use it to layout the PANSI inputs, albeit in single-column mode.
+The trace flows the views in it in a grid, and automatically handles scrollbars. I submitted my layout code as FlowLayoutView. It's really keen. I also use it to layout the PANSI inputs, albeit in single-column mode.
 
 But this brings up a question: Perhaps this whole monstrosity warrants a one-window solution? I recently tried out Eclipse, mainly just to see what it offered, but I was *very* impressed at the multi-pane one-window GUI. Now, I admit, Eclipse is designed to be an IDE. But then, this program I'm developing is also a developer tool.
 
@@ -128,6 +128,6 @@ What I mean is, if you look at the screenshot you can see how I've arranged ever
 
 Would this go WAY in the face of Mac style-guidelines?
 
---General/ShamylZakariya
+--ShamylZakariya
 
-*No more than General/ProjectBuilder did. Personally, I find the ability to move windows around wherever is convenient to be quite useful. You might want to implement General/MagneticWindows as a compromise solution.*
+*No more than ProjectBuilder did. Personally, I find the ability to move windows around wherever is convenient to be quite useful. You might want to implement MagneticWindows as a compromise solution.*

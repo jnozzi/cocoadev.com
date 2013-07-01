@@ -1,6 +1,6 @@
 Basic introduction to drawing in Cocoa:
 
-[http://developer.apple.com/documentation/Cocoa/Conceptual/General/DrawViews/index.html] 
+[http://developer.apple.com/documentation/Cocoa/Conceptual/DrawViews/index.html] 
 
 ----
 
@@ -13,24 +13,24 @@ How do I just print my custom view with the print menu?
 
 ----
 
-Does your view accept first responder status? The print menu item just sends a     print: or     printDocument: message to the General/FirstResponder (depending on whether your app is General/NSDocument-based or not). You want that first responder to be your view, not the window.
+Does your view accept first responder status? The print menu item just sends a     print: or     printDocument: message to the FirstResponder (depending on whether your app is NSDocument-based or not). You want that first responder to be your view, not the window.
 
 [http://developer.apple.com/documentation/Cocoa/Conceptual/Printing/]
 
 ----
 
-I was desperately looking for an 'acceptsFirstResponder' method in General/NSView, and it was not there... I looked again after reading this, and it is in fact a method declared in General/NSResponder!! Not the first time I get caught by this issue: not looking in the superclass methods.
+I was desperately looking for an 'acceptsFirstResponder' method in NSView, and it was not there... I looked again after reading this, and it is in fact a method declared in NSResponder!! Not the first time I get caught by this issue: not looking in the superclass methods.
 
 ----
 
 **Here's another example, originally presented under H**'elpWithSimplePrinting**
 
-I was under the impression that a Document Based Cocoa Application came with the functionality needed to print.  I have seen a very simple example that does work.  However, when I create a new document based app, add an General/NSTextView to the General/MyDocument.nib window, compile and select the "print" menu item, nothing happens.
+I was under the impression that a Document Based Cocoa Application came with the functionality needed to print.  I have seen a very simple example that does work.  However, when I create a new document based app, add an NSTextView to the MyDocument.nib window, compile and select the "print" menu item, nothing happens.
 
 ----
 
 <debug 1>
-Have you tested the General/NSTextView interface in IB?,  (Go to IB, File, Test Interface, scribble some words in your view, and then try to print them)
+Have you tested the NSTextView interface in IB?,  (Go to IB, File, Test Interface, scribble some words in your view, and then try to print them)
 </debug 1>
 
 <debug 2>
@@ -38,7 +38,7 @@ Is your text view the first responder when you are trying to print?,
 </debug 2>
 
 <debug 3>
-Is your controller a subclass of General/NSObject?  (It should be, as if it's a sublass of General/NSTextView it may be "catching" some signals on it's own and not passing them on)
+Is your controller a subclass of NSObject?  (It should be, as if it's a sublass of NSTextView it may be "catching" some signals on it's own and not passing them on)
 </debug 3>
 
 ----
@@ -46,13 +46,13 @@ Is your controller a subclass of General/NSObject?  (It should be, as if it's a 
 Turns out that the difference was that the method  that the print menu item was connectd to was "printDocument:" and not "print:".
 I admit that I'm not yet clear on the difference that makes, but it now behaves as I would expect.
 
-Suppose I want to draw a rectangle of a particular color and beneath it, some text.  Can I do this in an General/NSTextView?
+Suppose I want to draw a rectangle of a particular color and beneath it, some text.  Can I do this in an NSTextView?
 
 ----
 
-You could probably subclass General/NSTextView and use     - (void)drawViewBackgroundInRect:(General/NSRect)rect.
+You could probably subclass NSTextView and use     - (void)drawViewBackgroundInRect:(NSRect)rect.
 
-*Called when the text view intends to draw its background. Subclasses can override this method to perform additional drawing behind the text of an General/NSTextView.*
+*Called when the text view intends to draw its background. Subclasses can override this method to perform additional drawing behind the text of an NSTextView.*
 
 ----
 
@@ -64,19 +64,19 @@ This is what I use.
 
     
 
-General/NSTextStorage *textStorage;
-General/NSLayoutManager *layoutManager;
-General/NSTextContainer *textContainer;
+NSTextStorage *textStorage;
+NSLayoutManager *layoutManager;
+NSTextContainer *textContainer;
 
 unsigned int unistrlen = 5;
 
 unichar ch[] = { 0x0068, 0x0065 ,0x006c, 0x006c, 0x006f };
 
-General/NSString *theString = General/[NSString stringWithCharacters:ch length:unistrlen]; 
+NSString *theString = [NSString stringWithCharacters:ch length:unistrlen]; 
 
-textStorage = General/[[NSTextStorage alloc] initWithString:theString];
-layoutManager = General/[[NSLayoutManager alloc] init];
-textContainer = General/[[NSTextContainer alloc] initWithContainerSize:General/NSMakeSize(30*unistrlen,30)];
+textStorage = [[NSTextStorage alloc] initWithString:theString];
+layoutManager = [[NSLayoutManager alloc] init];
+textContainer = [[NSTextContainer alloc] initWithContainerSize:NSMakeSize(30*unistrlen,30)];
 
 [layoutManager addTextContainer:textContainer];
 [textContainer release];
@@ -84,10 +84,10 @@ textContainer = General/[[NSTextContainer alloc] initWithContainerSize:General/N
 [textStorage addLayoutManager:layoutManager];
 [layoutManager release];
 
-General/NSRange glyphRange = [layoutManager glyphRangeForTextContainer:textContainer];
+NSRange glyphRange = [layoutManager glyphRangeForTextContainer:textContainer];
 
 [self lockFocus];
-[layoutManager drawGlyphsForGlyphRange:glyphRange atPoint:General/NSMakePoint(10,10)];
+[layoutManager drawGlyphsForGlyphRange:glyphRange atPoint:NSMakePoint(10,10)];
 [self unlockFocus];
 
 [textStorage release];

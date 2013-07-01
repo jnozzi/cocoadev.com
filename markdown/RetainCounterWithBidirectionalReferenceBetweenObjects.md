@@ -19,7 +19,7 @@ class A
 
 //usage
 {
-   A * a = General/A alloc] init];
+   A * a = A alloc] init];
    B * b = [[B alloc] init];    //at this point ref count of a=1 and ref count of b=1
 
    [a setChild: b]   //at this point ref count of a=2 and ref count of b=2

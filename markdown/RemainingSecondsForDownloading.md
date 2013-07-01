@@ -1,6 +1,6 @@
 
 
-I use a General/NSURLConnection to download files.
+I use a NSURLConnection to download files.
 
 I got stuck on ow to show the remaining seconds for a download, can anybody help me here?
 

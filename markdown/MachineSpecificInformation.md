@@ -1,25 +1,25 @@
-I have been tasked with producing a tool for an IT department which will collect all of our computer systems' Serial Numbers, MAC (ethernet) address General/IDs (the primary/active ones), the computer's subnet, it's IP address, and some other information.
+I have been tasked with producing a tool for an IT department which will collect all of our computer systems' Serial Numbers, MAC (ethernet) address IDs (the primary/active ones), the computer's subnet, it's IP address, and some other information.
 
 I am currently using: 
 
     
-[ipAddress setStringValue:General/[[NSHost currentHost] address]]; 
+[ipAddress setStringValue:[[NSHost currentHost] address]]; 
 
 
 where ipAddress is a text field spitting the current IP from the primary connection into the field.  However, this will return an IPv6 string in Panther, unless IPv6 has been explicitly turned off.  Does anyone know how to ensure an IPv4 address is read?
 
-I am using this following code in order to obtain the MAC (ethernet) address ID.  I'm having trouble dumping it into a text field as opposed to dropping it to an General/NSLog.  Help with this?
+I am using this following code in order to obtain the MAC (ethernet) address ID.  I'm having trouble dumping it into a text field as opposed to dropping it to an NSLog.  Help with this?
 
     
-    General/InetInterfaceInfo myInetInterfaceInfo;
+    InetInterfaceInfo myInetInterfaceInfo;
     int i, adaptorInterface;
-    General/NSString *eNetAddress;
-    General/NSLog(@"Ethernet addresses: ");
+    NSString *eNetAddress;
+    NSLog(@"Ethernet addresses: ");
     adaptorInterface=0;
 
     do
 	{
-	    General/OTInetGetInterfaceInfo(&myInetInterfaceInfo, adaptorInterface);
+	    OTInetGetInterfaceInfo(&myInetInterfaceInfo, adaptorInterface);
 	    if (myInetInterfaceInfo.fHWAddrLen > 0) 
 		{
 		    for(i=0; i<myInetInterfaceInfo.fHWAddrLen; i++)
@@ -27,7 +27,7 @@ I am using this following code in order to obtain the MAC (ethernet) address ID.
 			eNetAddress == (@"%02x ",myInetInterfaceInfo.fHWAddr[i]);
 			[macAddress setStringValue:eNetAddress];
 		    }
-		    //General/NSLog(@"\n");
+		    //NSLog(@"\n");
 		}
 		adaptorInterface++;
 	}
@@ -43,38 +43,38 @@ io_registry_entry_t entry;
 and:
 
     
-kr = General/IOMasterPort(MACH_PORT_NULL, &masterPort);
+kr = IOMasterPort(MACH_PORT_NULL, &masterPort);
 
 
 Here's the full code:
 
     
-	General/NSString *result2 = @"";
+	NSString *result2 = @"";
 	mach_port_t masterPort;
 	kern_return_t kr = noErr;
 	io_registry_entry_t entry;� � �
-	General/CFDataRef propData;
-	General/CFTypeRef prop;
-	General/CFTypeID propID;
+	CFDataRef propData;
+	CFTypeRef prop;
+	CFTypeID propID;
 	UInt8 *data;
 	unsigned int i2, bufSize;
 	char *s, *t;
 	char firstPart[64], secondPart[64];
-	kr = General/IOMasterPort(MACH_PORT_NULL, &masterPort);� �
+	kr = IOMasterPort(MACH_PORT_NULL, &masterPort);� �
 	if (kr == noErr)
 	    {
-		entry = General/IORegistryGetRootEntry(masterPort);
+		entry = IORegistryGetRootEntry(masterPort);
 	    if (entry != MACH_PORT_NULL)
 		{
-		    prop = General/IORegistryEntrySearchCFProperty(entry, kIODeviceTreePlane, CFSTR("serial-number"), NULL, kIORegistryIterateRecursively);
-		    propID = General/CFGetTypeID(prop);
+		    prop = IORegistryEntrySearchCFProperty(entry, kIODeviceTreePlane, CFSTR("serial-number"), NULL, kIORegistryIterateRecursively);
+		    propID = CFGetTypeID(prop);
 		    if (propID == 5)
 		    {
-			propData = (General/CFDataRef)prop;
-			bufSize = General/CFDataGetLength(propData);
+			propData = (CFDataRef)prop;
+			bufSize = CFDataGetLength(propData);
 			if (bufSize > 0)
 			{
-				    data = General/CFDataGetBytePtr(propData);
+				    data = CFDataGetBytePtr(propData);
 				    if (data)
 				    {
 					    i2 = 0;
@@ -112,7 +112,7 @@ Here's the full code:
 						    }
 					    }
 						*t = '\0';
-						result2 = General/[NSString stringWithFormat:@"%s%s", secondPart, firstPart];
+						result2 = [NSString stringWithFormat:@"%s%s", secondPart, firstPart];
 					    }
 				    }
 			    }
@@ -122,13 +122,13 @@ Here's the full code:
 	return(result2);
 
 
-Both breaks are very early on and I have been unable to determine what exactly is wrong.  Hopefully just because I am not as thoroughly versed in the General/IOKit as I wish I was.
+Both breaks are very early on and I have been unable to determine what exactly is wrong.  Hopefully just because I am not as thoroughly versed in the IOKit as I wish I was.
 
 Any help on these, and helping me to find the subnet would be greatly appreciated.  Thanks in advance.
 
-General/ChrisGiddings
+ChrisGiddings
 
 ----
 
-I posted some code a while ago, that I got from somebody else too, and I have since written a little tool called 'minime' that I use on my Xgrid cluster to collect some info, including S/N. Look at General/HowToGetHardwareAndNetworkInfo, and/or send me an email for the minime tool :-)
---General/CharlesParnot
+I posted some code a while ago, that I got from somebody else too, and I have since written a little tool called 'minime' that I use on my Xgrid cluster to collect some info, including S/N. Look at HowToGetHardwareAndNetworkInfo, and/or send me an email for the minime tool :-)
+--CharlesParnot

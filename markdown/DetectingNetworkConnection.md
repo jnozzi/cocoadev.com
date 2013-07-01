@@ -2,7 +2,7 @@ Apple Software Update say: "Checking occurs only when you have a network connect
 
 It is easy to load something in the background:
     
-url = General/NSURL alloc] initWithString:urlString];
+url = NSURL alloc] initWithString:urlString];
 
 // but this will block if the network connection is down!
 [url loadResourceDataNotifyingClient:self usingCache:YES];
@@ -12,7 +12,7 @@ I solved it by forking a new server thread, and running this code from the new t
 
 I tried to use [[NSHost to do a quick check for the network connection, before trying to download:
     
-General/NSHost *host = General/[NSHost hostWithName:[url host]];
+NSHost *host = [NSHost hostWithName:[url host]];
 if ([host address] != nil) {
     // Download code here...
 }

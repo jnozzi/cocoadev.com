@@ -4,18 +4,18 @@ Does anyone here have any experience in this area, I've been reading the docs an
 
 ----
 
-*Search your local copy of the Apple example code (in /Developer/Examples) for "General/ImageAndTextCell" ... I believe this has an example of what you're looking for.*
+*Search your local copy of the Apple example code (in /Developer/Examples) for "ImageAndTextCell" ... I believe this has an example of what you're looking for.*
 
 ----
 
-Indeed, the key methods on General/NSCell are:
+Indeed, the key methods on NSCell are:
 
-- (void)editWithFrame:(General/NSRect)aRect inView:(General/NSView *)controlView editor:(General/NSText *)textObj delegate:(id)anObject event:(General/NSEvent *)theEvent;
+- (void)editWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject event:(NSEvent *)theEvent;
 
 and 
 
-- (void)selectWithFrame:(General/NSRect)aRect inView:(General/NSView *)controlView editor:(General/NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength;
+- (void)selectWithFrame:(NSRect)aRect inView:(NSView *)controlView editor:(NSText *)textObj delegate:(id)anObject start:(int)selStart length:(int)selLength;
 
 The rect that you're passed is the cell rect... If your editable area is some subsection of the whole cell area, then you can override these methods to restrict the text editing to a smaller "aRect" based on the whole cell's area...
 
--- General/MrO
+-- MrO

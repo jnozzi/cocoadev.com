@@ -1,5 +1,5 @@
 When I first started programming in Cocoa I actually printed
-out the documentation for both General/AppKit and Foundation 
+out the documentation for both AppKit and Foundation 
 frameworks. You wouldn't believe how many pages that
 was. The whole deal cost me a small fortune, but it was 
 worth it to me at the time. The main reason I didn't like 
@@ -20,10 +20,10 @@ spent because now I can lookup methods orders of
 magnitude faster than flipping through my printouts. 
 
 I posted an example of what this tool does at the link below.
-The only class you can browse is General/NSMenuItem so when you go to this page
-the only active link you can click on is "General/NSMenuItem"
+The only class you can browse is NSMenuItem so when you go to this page
+the only active link you can click on is "NSMenuItem"
 
-http://www.unifiedmodular.com/cocoa/General/QuickReference/General/AppKit/General/AppKitTOC.html
+http://www.unifiedmodular.com/cocoa/QuickReference/AppKit/AppKitTOC.html
 
 If there is enough interest in viewing Cocoa's documentation
 this way and if people working with small screens dont like
@@ -35,44 +35,44 @@ running at 1920x1440)
 Anyone who wishes to try this tool out just follow the directions below:
 
 
-*1. Make a directory named General/QuickReference (the name doesn't really matter)
-*2. copy /System/Library/Frameworks/General/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic into General/QuickReference 
-and rename the copied directory General/AppKit
-*3. copy /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic into General/QuickReference 
+*1. Make a directory named QuickReference (the name doesn't really matter)
+*2. copy /System/Library/Frameworks/AppKit.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic into QuickReference 
+and rename the copied directory AppKit
+*3. copy /System/Library/Frameworks/Foundation.framework/Versions/C/Resources/English.lproj/Documentation/Reference/ObjC_classic into QuickReference 
 and rename the copied directory Foundation
-*4. Launch General/ProjectBuilder and create a new "Foundation Tool" project called "General/QuickReferenceEdit"
+*4. Launch ProjectBuilder and create a new "Foundation Tool" project called "QuickReferenceEdit"
 *5. erase everything in main.m
 *6. cut and paste the code below into main.m
 
 
 ----
-code moved to General/CodeForSaveTheTrees, so I can read this...
+code moved to CodeForSaveTheTrees, so I can read this...
 ----
 
 
 *7. save and build the tool
-*8. locate the binary for "General/QuickReferenceEdit" (hopefully you already know where PB puts it).
-*9. copy the binary into the folder you named General/QuickReference (you only need to do this if you don't know your way around a shell environment)
+*8. locate the binary for "QuickReferenceEdit" (hopefully you already know where PB puts it).
+*9. copy the binary into the folder you named QuickReference (you only need to do this if you don't know your way around a shell environment)
 *10. Launch Terminal app
-*11. "cd" to "General/QuickReference" (i.e. cd /Users/bob/General/QuickReference)
-*12. type "./General/QuickReferenceEdit"
-*13. Inside the folders you renamed General/AppKit and Foundation you will find General/AppKitTOC.html and 
+*11. "cd" to "QuickReference" (i.e. cd /Users/bob/QuickReference)
+*12. type "./QuickReferenceEdit"
+*13. Inside the folders you renamed AppKit and Foundation you will find AppKitTOC.html and 
 Foundation.html. Click on either of these two files and hopefully the filter did it's thing and you will be 
 able to see quick buttons throughout the Cocoa API documentation. 
 
 
 I know my code style is pretty sloppy and not very self documenting
 so please be kind :-) Part of this is because I wanted to fit all the 
-code into one file and I don't consider this a General/HowTo. 
+code into one file and I don't consider this a HowTo. 
 Normally my code is more readable. 
 
 This tool might have a large memory footprint (not a big deal if
-you have 768M of RAM) You could add an inner General/NSAutoreleasePool 
+you have 768M of RAM) You could add an inner NSAutoreleasePool 
 to fix this:
     
 
-+(void)editClassAtPath:(General/NSString *)file {
-General/NSAutoreleasePool *innerPool=General/[[NSAutoreleasePool alloc] init];
++(void)editClassAtPath:(NSString *)file {
+NSAutoreleasePool *innerPool=[[NSAutoreleasePool alloc] init];
 .
 .
 .
@@ -86,7 +86,7 @@ General/NSAutoreleasePool *innerPool=General/[[NSAutoreleasePool alloc] init];
 
 
 
---General/ZootBobbaLu
+--ZootBobbaLu
 
 
 

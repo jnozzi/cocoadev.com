@@ -1,5 +1,5 @@
-I provide an alternate solution I believe to be much easier at General/GameKeyBoardHandling.
---General/AlainODea
+I provide an alternate solution I believe to be much easier at GameKeyBoardHandling.
+--AlainODea
 ----
 
 I've seen a lot of discussions on how to do proper game-like handling of the keyboard in cocoa apps. Most of the answers involve writing your own app-loop or using some scary Carbon level stuff, involving turning off keyboard repeat and other things which I'd rather not delve into.
@@ -8,7 +8,7 @@ What I've figured out is a way, in cocoa, to make ~90% "Good Enough" game keyboa
 
 The reason I say it's only ~90% complete, is because handling of the Command key isn't quite right. If you hold command and then press and release an arrow key, the keyUp operation is never called. Baffling. As far as I can tell every other combination works ( as in Shift, Ctrl, Opt ) Perhaps somebody can add some code below to fix the problem.
 
-Here's the header for General/GameView, which in your game might better be derived from General/NSOpenGLView or some more appropriate for games.
+Here's the header for GameView, which in your game might better be derived from NSOpenGLView or some more appropriate for games.
 
 *There's a small problem with using this code which arises when the user depresses a key with shift held down, releases the shift key and then releases the held-down key. The key recorded as being pressed and the key recorded as being released differ, leading to your game believing the key has not been released.*
 
@@ -22,7 +22,7 @@ That explains behavioral oddities I had, but didn't consider worth fixing. Care 
 
 *AH - 1/5/2005 - Tiger (Mac OS X 10.4) seems to have broken this by intercepting some key events before they are sent to the view.*
 
-**I've long since dropped this for an overidden General/NSApplication::sendEvent; seems to work fine on tiger** --General/ShamylZakariya
+**I've long since dropped this for an overidden NSApplication::sendEvent; seems to work fine on tiger** --ShamylZakariya
 
 ----
 
@@ -33,14 +33,14 @@ That explains behavioral oddities I had, but didn't consider worth fixing. Care 
     they can't fit in the bool array. So they're being defined at the end
     going inwards.
 */
-enum General/GameViewKeys {
+enum GameViewKeys {
 	gvArrowKeyUp = 255,
 	gvArrowKeyDown = 254,
 	gvArrowKeyLeft = 253,
 	gvArrowKeyRight = 252
 };
 
-@interface General/GameView : General/NSView
+@interface GameView : NSView
 {
 	BOOL keys[256];
         // FIX : store key pressed for a particular keycode
@@ -61,21 +61,21 @@ And the definition:
 
     
 
-@interface General/GameView(Internal)
+@interface GameView(Internal)
 
 - (int) translateKeyCode: (int) input;
 
 @end
 
-@implementation General/GameView
+@implementation GameView
 
-- (id)initWithFrame:(General/NSRect)frameRect
+- (id)initWithFrame:(NSRect)frameRect
 {
 	if ((self = [super initWithFrame:frameRect]) != nil) {}
 	return self;
 }
 
-- (void)drawRect:(General/NSRect)rect
+- (void)drawRect:(NSRect)rect
 {
 }
 
@@ -84,9 +84,9 @@ And the definition:
 	return YES;
 }
 
-- (void) keyUp:(General/NSEvent *)theEvent
+- (void) keyUp:(NSEvent *)theEvent
 {
-	int key = General/theEvent charactersIgnoringModifiers] characterAtIndex:0];
+	int key = theEvent charactersIgnoringModifiers] characterAtIndex:0];
 	// FIX :
         // key = [self translateKeyCode: key];
 
@@ -104,9 +104,9 @@ And the definition:
 	}
 }
 
-- (void) keyDown:(General/NSEvent *)theEvent
+- (void) keyDown:(NSEvent *)theEvent
 {
-	int key = General/theEvent charactersIgnoringModifiers] characterAtIndex:0];
+	int key = theEvent charactersIgnoringModifiers] characterAtIndex:0];
 	key = [self translateKeyCode: key];	
 
         // FIX : store actual key pressed for this keycode
@@ -126,39 +126,39 @@ And the definition:
 /*
     Capture shift, ctrl, opt and command press & release
 */
-- (void)flagsChanged:(General/NSEvent *)theEvent
+- (void)flagsChanged:(NSEvent *)theEvent
 {
 	int flags = [theEvent modifierFlags];
 
-	opt = (flags & General/NSAlternateKeyMask) ? YES : NO;
-	ctrl = (flags & General/NSControlKeyMask) ? YES : NO;
-	command = (flags & General/NSCommandKeyMask) ? YES : NO;
-	shift = ( flags & General/NSShiftKeyMask ) ? YES : NO;
+	opt = (flags & NSAlternateKeyMask) ? YES : NO;
+	ctrl = (flags & NSControlKeyMask) ? YES : NO;
+	command = (flags & NSCommandKeyMask) ? YES : NO;
+	shift = ( flags & NSShiftKeyMask ) ? YES : NO;
 }
 
 /////////////////////////////////////////////////////////////
 
 /*
-    Turn the Cocoa General/ArrowKeys into our arrow key constants.
+    Turn the Cocoa ArrowKeys into our arrow key constants.
 */
 - (int) translateKeyCode: (int) input
 {
 	int key = input;
 	switch ( input )
 	{
-		case General/NSUpArrowFunctionKey:
+		case NSUpArrowFunctionKey:
 			key = gvArrowKeyUp;
 			break;
 	
-		case General/NSDownArrowFunctionKey:
+		case NSDownArrowFunctionKey:
 			key = gvArrowKeyDown;
 			break;
 	
-		case General/NSLeftArrowFunctionKey:
+		case NSLeftArrowFunctionKey:
 			key = gvArrowKeyLeft;
 			break;
 	
-		case General/NSRightArrowFunctionKey:
+		case NSRightArrowFunctionKey:
 			key = gvArrowKeyRight;
 			break;
 			
@@ -293,21 +293,21 @@ I used it in a manner like this:
 	*/
 	if ( sidestep || velocity )
 	{
-		General/GLVisualization::instance()->moveCamera( RIGHT_MOUSE, 
+		GLVisualization::instance()->moveCamera( RIGHT_MOUSE, 
 				(int) sidestep * scale,  
 				(int) velocity * scale );
 	}
 	
 	if ( turn || pitch )
 	{
-		General/GLVisualization::instance()->moveCamera( LEFT_MOUSE, 
+		GLVisualization::instance()->moveCamera( LEFT_MOUSE, 
 				(int) turn * turnScale,  
 				(int) pitch * turnScale );
 	}
 	
 	if ( height )
 	{
-		General/GLVisualization::instance()->moveCamera( MIDDLE_MOUSE, 0,  
+		GLVisualization::instance()->moveCamera( MIDDLE_MOUSE, 0,  
 				(int) height * scale );
 	}
 	
@@ -328,24 +328,24 @@ This works well enough for what I'm doing, which isn't a game, but being a envir
 
 Of course, if you're writing a serious game, you'd probably be using pure Carbon or SDL.
 
---General/ShamylZakariya
+--ShamylZakariya
 
 Why would you? Omni uses Cocoa for their game ports, and they're definitely serious.
 
-**Well, chances are quite good that only the window which houses the game's graphics, an General/NSOpenGLView, some sort of event-handling and possibly a preferences window are done in Cocoa. Most likely the original game was C++ or even C code, and converting it all to Objective-C would be too time-consuming (not to mention pointless and taxing on the frame rate).**
+**Well, chances are quite good that only the window which houses the game's graphics, an NSOpenGLView, some sort of event-handling and possibly a preferences window are done in Cocoa. Most likely the original game was C++ or even C code, and converting it all to Objective-C would be too time-consuming (not to mention pointless and taxing on the frame rate).**
 
 ----
 
-I've run into the same command key oddness when trying to do something similar. Try overiding -sendEvent and passing General/NSFlagsChanged events to yourself...
+I've run into the same command key oddness when trying to do something similar. Try overiding -sendEvent and passing NSFlagsChanged events to yourself...
     
-- (void)sendEvent:(General/NSEvent *)anEvent
+- (void)sendEvent:(NSEvent *)anEvent
 {
     switch([anEvent type]) {
-        case General/NSKeyDown:
+        case NSKeyDown:
              // [self processKeyDownEvent:anEvent];  ...?
-        case General/NSKeyUp:
+        case NSKeyUp:
              // [self processKeyUpEvent:anEvent];  ...?
-        case General/NSFlagsChanged:
+        case NSFlagsChanged:
             [self processFlagsChangedEvent:anEvent];
     }
 
@@ -357,17 +357,17 @@ I think that way you get a chance to see if it's up or down before it gets strip
 
 ----
 
-There appears to be a bug in General/AppKit, where key up events that are pressed while holding the command key don't get routed to the General/NSWindow. They do, however, get routed through the General/NSApplication. Therefore it's fairly trivial to handle that ourselves.
+There appears to be a bug in AppKit, where key up events that are pressed while holding the command key don't get routed to the NSWindow. They do, however, get routed through the NSApplication. Therefore it's fairly trivial to handle that ourselves.
 
-Add this to your General/NSApplication subclass:
+Add this to your NSApplication subclass:
 
     
 
-- (void)sendEvent:(General/NSEvent *)anEvent{
-	//This works around an General/AppKit bug, where key up events while holding
+- (void)sendEvent:(NSEvent *)anEvent{
+	//This works around an AppKit bug, where key up events while holding
 	//down the command key don't get sent to the key window.
-	if([anEvent type] == General/NSKeyUp && ([anEvent modifierFlags] & General/NSCommandKeyMask)){
-		General/self keyWindow] sendEvent:anEvent];
+	if([anEvent type] == NSKeyUp && ([anEvent modifierFlags] & NSCommandKeyMask)){
+		self keyWindow] sendEvent:anEvent];
 	}else{
 		[super sendEvent:anEvent];
 	}
@@ -385,13 +385,13 @@ THANK YOU for this bug fix!  I was banging my head at this for *hours* until I s
 
 From the developer documentation, as of July 2011:
 
-"General/NSApplication sends a Control-key event to the key window via performKeyEquivalent:  before sending it as an General/NSKeyDown event through the responder chain."
+"NSApplication sends a Control-key event to the key window via performKeyEquivalent:  before sending it as an NSKeyDown event through the responder chain."
 
-You could add something like this to your General/NSView subclass for it to receive the equivalent of a Cmd-Key press:
+You could add something like this to your NSView subclass for it to receive the equivalent of a Cmd-Key press:
 
     
 
-- (BOOL)performKeyEquivalent:(General/NSEvent *)theEvent
+- (BOOL)performKeyEquivalent:(NSEvent *)theEvent
 {
 	//----------------------------------------------------------------------
 	// Variables:

@@ -1,16 +1,16 @@
-In Panther, Apple added a new section to the top of General/NSFontPanel that contains controls to set text shadows, colors, and various other things. Sometimes it's not useful. Is there any way to turn it off? I have scoured the documentation and have not found any way to do it.
+In Panther, Apple added a new section to the top of NSFontPanel that contains controls to set text shadows, colors, and various other things. Sometimes it's not useful. Is there any way to turn it off? I have scoured the documentation and have not found any way to do it.
 
--- General/MikeAsh
-
-----
-
-According to General/NSFontPanel, you might want to try just overriding changeAttributes: to do nothing wherever you don't want style changes? Not really good UI, though...
-
--- General/UliKusterer
+-- MikeAsh
 
 ----
 
-I'm already implementing all of this stuff manually, so in this case, implementing changeAttributes: to do nothing is the same as not implementing it at all. I agree that it's not good UI, which is why I'd like to hide it, but it doesn't seem possible. -- General/MikeAsh
+According to NSFontPanel, you might want to try just overriding changeAttributes: to do nothing wherever you don't want style changes? Not really good UI, though...
+
+-- UliKusterer
+
+----
+
+I'm already implementing all of this stuff manually, so in this case, implementing changeAttributes: to do nothing is the same as not implementing it at all. I agree that it's not good UI, which is why I'd like to hide it, but it doesn't seem possible. -- MikeAsh
 
 ----
 

@@ -1,11 +1,11 @@
 Is it possible to add images to a dock menu like this?
     
-General/NSMenuItem *item1 = [dockMenu addItemWithTitle:@"TEST ITEM"];
+NSMenuItem *item1 = [dockMenu addItemWithTitle:@"TEST ITEM"];
 item1 = [dockMenu itemAtIndex:0];
-[item1 setImage:General/[NSImage imageWithName:@"image1"]];
+[item1 setImage:[NSImage imageWithName:@"image1"]];
 
 
---General/JoshaChapmanDodson
+--JoshaChapmanDodson
 
 ----
 
@@ -16,7 +16,7 @@ Seriously, you'd think that people would try things before they posted their que
 
 Dock menus don't support images in the menu items I don't believe.
 
--- General/KentSutherland
+-- KentSutherland
 
 ----
 
@@ -28,17 +28,17 @@ I think it is possible, but not from Cocoa -- the menu system seems to be Carbon
 
 ----
 
-I haven't tried it, but in 10.3 General/NSMenuItem has     - (void)setAttributedTitle:(General/NSAttributedString *)string, which according to Apple *You can use this method to add styled text and embedded images to menu item strings*
+I haven't tried it, but in 10.3 NSMenuItem has     - (void)setAttributedTitle:(NSAttributedString *)string, which according to Apple *You can use this method to add styled text and embedded images to menu item strings*
 
 ----
 
-So it seems that setting icons on General/NSMenuItem for a dock menu is futile. For my app, the lack of icons is sort of lame, so I plunged into Carbon, but it seems that I am totally not getting something, because even though the calls to get icon from files/apps succeed, the icons displayed are default icons (for apps it is showing the document icon). Any thoughts on what I am missing here?
+So it seems that setting icons on NSMenuItem for a dock menu is futile. For my app, the lack of icons is sort of lame, so I plunged into Carbon, but it seems that I am totally not getting something, because even though the calls to get icon from files/apps succeed, the icons displayed are default icons (for apps it is showing the document icon). Any thoughts on what I am missing here?
 
     
 ...
-  General/IconRef iconRef;
+  IconRef iconRef;
   SInt16 label;
-  General/FSSpec spec;
+  FSSpec spec;
 
   err = convertPathToFSSpec(fullpath, &spec);
   // I am passing things like /Applications/Some.app, 
@@ -48,15 +48,15 @@ So it seems that setting icons on General/NSMenuItem for a dock menu is futile. 
 			
 if(err == noErr)
 {
-  err = General/GetIconRefFromFile(&spec, &iconRef, NULL);
+  err = GetIconRefFromFile(&spec, &iconRef, NULL);
   if(err == noErr)
   {
-    err = General/SetMenuItemIconHandle(gDockMenu
+    err = SetMenuItemIconHandle(gDockMenu
               , menuItem
               , kMenuSystemIconSelectorType
               , iconRef);
 
-    General/ReleaseIconRef(iconRef);
+    ReleaseIconRef(iconRef);
   }
 }
 	
@@ -64,32 +64,32 @@ if(err == noErr)
 I have also tried:
 
     
-General/NSImage *icon = General/[[NSWorkspace sharedWorkspace] iconForFile:fullpath];
-[icon setSize:General/NSMakeSize(16,16)];
-General/NSBitmapImageRep *bitmap = General/[NSBitmapImageRep imageRepWithData:
-                [icon General/TIFFRepresentation]];
-General/NSData *data = [bitmap representationUsingType:General/NSPNGFileType properties: nil];
-General/NSString *iconFile = General/[NSString stringWithFormat: 
+NSImage *icon = [[NSWorkspace sharedWorkspace] iconForFile:fullpath];
+[icon setSize:NSMakeSize(16,16)];
+NSBitmapImageRep *bitmap = [NSBitmapImageRep imageRepWithData:
+                [icon TIFFRepresentation]];
+NSData *data = [bitmap representationUsingType:NSPNGFileType properties: nil];
+NSString *iconFile = [NSString stringWithFormat: 
                                        @"/tmp/appmenuicons/%@.png", title];
 [data writeToFile: iconFile atomically:YES];
 
 NSURL *url = [NSURL fileURLWithPath:iconFile];
-General/CGDataProviderRef provider = General/CGDataProviderCreateWithURL(url);
-General/CGImageRef image = General/CGImageCreateWithPNGDataProvider(provider
+CGDataProviderRef provider = CGDataProviderCreateWithURL(url);
+CGImageRef image = CGImageCreateWithPNGDataProvider(provider
                                           , NULL
                                           , false
                                           ,kCGRenderingIntentDefault);
 
-General/NSLog(@"%d, %d\n", General/CGImageGetWidth(image), General/CGImageGetHeight(image));
+NSLog(@"%d, %d\n", CGImageGetWidth(image), CGImageGetHeight(image));
 // this prints 16x16, so the image loaded.
 
 // specifying kMenuCGImageRefType doesn't show any icon
 // but kMenuSystemIconSelectorType again defaults to the default document icon...
-err = General/SetMenuItemIconHandle(gDockMenu, menuItem, kMenuSystemIconSelectorType, image);
+err = SetMenuItemIconHandle(gDockMenu, menuItem, kMenuSystemIconSelectorType, image);
 
 
-General/CGDataProviderRelease(provider);
-General/CGImageRelease(image);
+CGDataProviderRelease(provider);
+CGImageRelease(image);
 
 
 Any thoughts?
@@ -98,12 +98,12 @@ Any thoughts?
 ----
 Your carbon code is wrong. In particular the line
     
-err = General/SetMenuItemIconHandle(gDockMenu , menuItem, kMenuSystemIconSelectorType, iconRef);
+err = SetMenuItemIconHandle(gDockMenu , menuItem, kMenuSystemIconSelectorType, iconRef);
 
-Says that your parameter is a 4 char code, registered with creator  kSystemIconsCreator when it is in fact an General/IconRef. You get the default document icon because there is no registered icon with the 4 char code that matches the pointer value of your iconRef. Pass kMenuIconRefType instead.
+Says that your parameter is a 4 char code, registered with creator  kSystemIconsCreator when it is in fact an IconRef. You get the default document icon because there is no registered icon with the 4 char code that matches the pointer value of your iconRef. Pass kMenuIconRefType instead.
 
 ----
 
 Searching through my list archives I found this. Maybe someone will find it helpful.
 
-*Arbitrary General/NSImages can't be passed across the app->Dock boundary. The only images that can be displayed in a Dock menu are General/IconRefs and images located in your app's bundle that are specified by name. I'm not sure if General/NSMenu supports either of these types of images (I do know they can be specified in Carbon).*
+*Arbitrary NSImages can't be passed across the app->Dock boundary. The only images that can be displayed in a Dock menu are IconRefs and images located in your app's bundle that are specified by name. I'm not sure if NSMenu supports either of these types of images (I do know they can be specified in Carbon).*

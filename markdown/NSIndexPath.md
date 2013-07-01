@@ -1,78 +1,78 @@
-Here's a category for getting the index path to an object stored in nested General/NSArray<nowiki/>s:
+Here's a category for getting the index path to an object stored in nested NSArray<nowiki/>s:
 
     
-@interface General/NSArray (General/MBIndexPath)
+@interface NSArray (MBIndexPath)
 
-- (id)objectAtIndexPath:(General/NSIndexPath *)indexPath;	//  Raises an General/NSRangeException if the indexPath goes beyond the bounds of the receiver.
-- (General/NSIndexPath *)indexPathOfObject:(id)object;		//  Returns nil if the object does not exist within the receiver.
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;	//  Raises an NSRangeException if the indexPath goes beyond the bounds of the receiver.
+- (NSIndexPath *)indexPathOfObject:(id)object;		//  Returns nil if the object does not exist within the receiver.
 @end
 
 
-@interface General/NSArray (General/MBIndexPathPrivate)
+@interface NSArray (MBIndexPathPrivate)
 
-- (General/NSUInteger *)createIndexesOfPathToObject:(id)object count:(General/NSUInteger *)count;	//  Returns a dynamically allocated array which must be freed by the caller. *count must be 0 when passed in.
+- (NSUInteger *)createIndexesOfPathToObject:(id)object count:(NSUInteger *)count;	//  Returns a dynamically allocated array which must be freed by the caller. *count must be 0 when passed in.
 @end
 
 
-@implementation General/NSArray (General/MBIndexPath)
+@implementation NSArray (MBIndexPath)
 
-- (id)objectAtIndexPath:(General/NSIndexPath *)indexPath;
+- (id)objectAtIndexPath:(NSIndexPath *)indexPath;
 {
 	if (indexPath == nil)
-		General/[NSException raise:General/NSInvalidArgumentException format:nil];
+		[NSException raise:NSInvalidArgumentException format:nil];
 	
 	id object = self;
-	General/NSUInteger i;
+	NSUInteger i;
 	for (i = 0; i < [indexPath length]; i++)
 	{
-		if ([object isKindOfClass:General/[NSArray class]] == NO || [object count] <= [indexPath indexAtPosition:i])
-			General/[NSException raise:General/NSRangeException format:nil];
+		if ([object isKindOfClass:[NSArray class]] == NO || [object count] <= [indexPath indexAtPosition:i])
+			[NSException raise:NSRangeException format:nil];
 		object = [object objectAtIndex:[indexPath indexAtPosition:i]];
 	}
 	
 	return object;
 }
 
-- (General/NSIndexPath *)indexPathOfObject:(id)object;
+- (NSIndexPath *)indexPathOfObject:(id)object;
 {
 	if (object == nil)
-		General/[NSException raise:General/NSInvalidArgumentException format:nil];
+		[NSException raise:NSInvalidArgumentException format:nil];
 
-	General/NSUInteger count = 0;
-	General/NSUInteger *indexes = [self createIndexesOfPathToObject:object count:&count];
+	NSUInteger count = 0;
+	NSUInteger *indexes = [self createIndexesOfPathToObject:object count:&count];
 	
 	if (indexes == NULL)
 		return nil;
 		
-	General/NSIndexPath *indexPath = General/[NSIndexPath indexPathWithIndexes:indexes length:count];
+	NSIndexPath *indexPath = [NSIndexPath indexPathWithIndexes:indexes length:count];
 	free(indexes);
 	return indexPath;
 }
 
-//  General/NSArray (General/MBIndexPathPrivate)
-- (General/NSUInteger *)createIndexesOfPathToObject:(id)object count:(General/NSUInteger *)count;
+//  NSArray (MBIndexPathPrivate)
+- (NSUInteger *)createIndexesOfPathToObject:(id)object count:(NSUInteger *)count;
 {
-	if (*count == General/NSUIntegerMax)
+	if (*count == NSUIntegerMax)
 		return NULL;
 	(*count)++;
 	
-	General/NSUInteger i;
+	NSUInteger i;
 	for (i = 0; i < [self count]; i++)
 	{
-		if (General/self objectAtIndex:i] isEqual:object])
+		if (self objectAtIndex:i] isEqual:object])
 		{
-			[[NSUInteger *indexes = malloc(*count * sizeof(General/NSUInteger));
+			[[NSUInteger *indexes = malloc(*count * sizeof(NSUInteger));
 			if (indexes == NULL)
 			{
-				*count = General/NSUIntegerMax;
+				*count = NSUIntegerMax;
 				return NULL;
 			}
 			indexes[*count - 1] = i;
 			return (indexes + *count - 1);
 		}
-		else if (General/self objectAtIndex:i] isKindOfClass:[[[NSArray class]])
+		else if (self objectAtIndex:i] isKindOfClass:[[[NSArray class]])
 		{
-			General/NSUInteger *indexes = General/self objectAtIndex:i] createIndexesOfPathToObject:object count:count];
+			NSUInteger *indexes = self objectAtIndex:i] createIndexesOfPathToObject:object count:count];
 			if (*count == [[NSUIntegerMax)
 				return NULL;
 			if (indexes != NULL)
@@ -91,4 +91,4 @@ Here's a category for getting the index path to an object stored in nested Gener
 
 
 
---  General/MiloBird
+--  MiloBird

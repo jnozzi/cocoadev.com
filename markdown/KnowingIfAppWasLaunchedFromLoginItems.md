@@ -1,30 +1,30 @@
 To know if your application was launched because it is a login item, as opposed to being launched explicitly by the user from the Finder, use the code below:
 
     
-+ (BOOL)wasLaunchedByProcess:(General/NSString*)creator
++ (BOOL)wasLaunchedByProcess:(NSString*)creator
 {
   BOOL  wasLaunchedByProcess = NO;
 
   // Get our PSN
-  General/OSStatus  err;
-  General/ProcessSerialNumber currPSN;
-  err = General/GetCurrentProcess (&currPSN);
+  OSStatus  err;
+  ProcessSerialNumber currPSN;
+  err = GetCurrentProcess (&currPSN);
   if (!err) {
-    // We don't use General/ProcessInformationCopyDictionary() because the 'General/ParentPSN' item in the dictionary
+    // We don't use ProcessInformationCopyDictionary() because the 'ParentPSN' item in the dictionary
     // has endianness problems in 10.4, fixed in 10.5 however.
-    General/ProcessInfoRec  procInfo;
+    ProcessInfoRec  procInfo;
     bzero (&procInfo, sizeof (procInfo));
-    procInfo.processInfoLength = (UInt32)sizeof (General/ProcessInfoRec);
-    err = General/GetProcessInformation (&currPSN, &procInfo);
+    procInfo.processInfoLength = (UInt32)sizeof (ProcessInfoRec);
+    err = GetProcessInformation (&currPSN, &procInfo);
     if (!err) {
-      General/ProcessSerialNumber parentPSN = procInfo.processLauncher;
+      ProcessSerialNumber parentPSN = procInfo.processLauncher;
 
       // Get info on the launching process
-      General/NSDictionary* parentDict = (General/NSDictionary*)General/ProcessInformationCopyDictionary (&parentPSN, kProcessDictionaryIncludeAllInformationMask);
+      NSDictionary* parentDict = (NSDictionary*)ProcessInformationCopyDictionary (&parentPSN, kProcessDictionaryIncludeAllInformationMask);
       
       // Test the creator code of the launching app
       if (parentDict) {
-        wasLaunchedByProcess = General/parentDict objectForKey:@"[[FileCreator"] isEqualToString:creator];
+        wasLaunchedByProcess = parentDict objectForKey:@"[[FileCreator"] isEqualToString:creator];
         [parentDict release];
       }
     }
@@ -42,12 +42,12 @@ To know if your application was launched because it is a login item, as opposed 
 
 or, you may determine this through an Apple Event:
     
- (void) handleOpenApplicationEvent: (General/NSAppleEventDescriptor *) event replyEvent: (General/NSAppleEventDescriptor *) replyEvent 
+ (void) handleOpenApplicationEvent: (NSAppleEventDescriptor *) event replyEvent: (NSAppleEventDescriptor *) replyEvent 
 {
-    General/NSAppleEventDescriptor* propData = [event paramDescriptorForKeyword: keyAEPropData];
+    NSAppleEventDescriptor* propData = [event paramDescriptorForKeyword: keyAEPropData];
     bool startAtLogin = false;
-    General/DescType type = propData ? [propData descriptorType] : typeNull;
-    General/OSType value = 0;
+    DescType type = propData ? [propData descriptorType] : typeNull;
+    OSType value = 0;
     
     if(type == typeType)
     {
@@ -55,13 +55,13 @@ or, you may determine this through an Apple Event:
         startAtLogin = (value == 'lgit'); //keyAELaunchedAsLogInItem
     }
     
-    General/NSLog(@"General/PropDataTypeValue:%i startAtLogin:%i", value, startAtLogin );
+    NSLog(@"PropDataTypeValue:%i startAtLogin:%i", value, startAtLogin );
 }
 
-- (void)applicationWillFinishLaunching:(General/NSNotification *)aNotification
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
     // install event handler
-    General/[[NSAppleEventManager sharedAppleEventManager] 
+    [[NSAppleEventManager sharedAppleEventManager] 
      setEventHandler: self 
      andSelector: @selector(handleOpenApplicationEvent:replyEvent:)
      forEventClass:kCoreEventClass andEventID:kAEOpenApplication];
@@ -69,10 +69,10 @@ or, you may determine this through an Apple Event:
 
 If you wish to determine if an application is amongst the user's current login items:
 
-* 10.4+: use Apple's General/LoginItemsAE sample code (not 64 bit clean, deprecated General/APIs)
-* 10.5+: use the General/APIs in General/LaunchServices/General/LSSharedFileList.h
+* 10.4+: use Apple's LoginItemsAE sample code (not 64 bit clean, deprecated APIs)
+* 10.5+: use the APIs in LaunchServices/LSSharedFileList.h
 
 
 These are two different tests, since an app can be a login item but still be launched from the Finder.
 
-If you want to add an application to the set of login items, see General/StartingMyAppOnStartup.
+If you want to add an application to the set of login items, see StartingMyAppOnStartup.

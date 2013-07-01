@@ -3,4 +3,4 @@ Hi, I am writing an app that needs to detect when the screen resolution has chan
 Can anyone help please ?
 
 ----
-General/NSApplicationDidChangeScreenParametersNotification on General/NSApplication
+NSApplicationDidChangeScreenParametersNotification on NSApplication

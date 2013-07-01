@@ -5,7 +5,7 @@ What I would like to do is eliminate having to repeat the code that sets the com
 Can I do this by having each constructor call another method to set the common values (that does NOT end in a "return self;" statement) and then perform the "return self;" in the calling constructor?  Will this work?  Is this the best way to do this?  Is there a more standard way?
 
 Thanks,
-General/KentSignorini
+KentSignorini
 
 ----
 
@@ -43,14 +43,14 @@ I think that it is preferred to make this happen in the other way but I, persona
 
 The important thing to realize is that     init is just some other method.  The     alloc or     allocWithZone: messages are the ones that actually allocate the memory.  Even there, there isn't anything special about those names.  It is just a convention.
 
---General/JeffDisher
+--JeffDisher
 
 ----
 
 I'm sorry for a silly question, but don't you think that     
 self = [self init];
 
-doesn't make sense? --General/KonstantinAnoshkin
+doesn't make sense? --KonstantinAnoshkin
 
 ----
 
@@ -58,11 +58,11 @@ It makes sense in that the value returned by     [self init] may not actually be
 
 Does that make sense?
 
---General/JeffDisher
+--JeffDisher
 
 ----
 
-Yes, thank you. I was just confused by this example's simplicity, in which it doesn't do anything: since     -init returns     self, it's pointless to do     self = self. In less obvious cases, such as class clusters, it does make sense. --General/KonstantinAnoshkin
+Yes, thank you. I was just confused by this example's simplicity, in which it doesn't do anything: since     -init returns     self, it's pointless to do     self = self. In less obvious cases, such as class clusters, it does make sense. --KonstantinAnoshkin
 
 ----
 
@@ -89,11 +89,11 @@ return self;
 
 
 
-But also:  What the original poster was suggesting is also fine.  Say you're inheriting from General/NSView, which has two designated initializers:
+But also:  What the original poster was suggesting is also fine.  Say you're inheriting from NSView, which has two designated initializers:
 
     
 
-- (id)initWithFrame:(General/NSRect)frameRect
+- (id)initWithFrame:(NSRect)frameRect
 {
   self = [super initWithFrame:frameRect];
   if (self != nil)
@@ -104,7 +104,7 @@ But also:  What the original poster was suggesting is also fine.  Say you're inh
   return self;
 }
 
-- (id)initWithCoder:(General/NSCoder *)decoder
+- (id)initWithCoder:(NSCoder *)decoder
 {
   self = [super initWithCoder: decoder];
   if (self != nil)
@@ -124,4 +124,4 @@ But also:  What the original poster was suggesting is also fine.  Say you're inh
  
 
 
--General/KenFerry
+-KenFerry

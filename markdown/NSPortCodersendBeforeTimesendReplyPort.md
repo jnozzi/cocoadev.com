@@ -4,7 +4,7 @@ I have an issue with following,  kindly let me know  any inputs on this.
 
 I have created a sample  application that uses the distributed objects and Bonjour to communicate with each other instances of the application (sample) running
 on other remote machine on the local network. Thought Bonjour successfully able to discover services , when I try to connect other machine it fails
-(may be calls like (General/[NSConnectionInstance rootproxy]  ) with a error message in console looks like   "General/[NSPortCoder sendBeforeTime:sendReplyPort:] timed out ". But this is not  happening frequently.
+(may be calls like ([NSConnectionInstance rootproxy]  ) with a error message in console looks like   "[NSPortCoder sendBeforeTime:sendReplyPort:] timed out ". But this is not  happening frequently.
 
 Do you have any idea about this or Is this a bug in Distributed Object ? Any fix to this is highly helpful  for me.
 
@@ -15,24 +15,24 @@ Here is my code
     
 //Server code
 {
-General/NSSocketPort *listeningSocket = NULL;
+NSSocketPort *listeningSocket = NULL;
 try 
 {
 
-listeningSocket= General/[[NSSocketPort alloc ] initWithTCPPort: 0];
+listeningSocket= [[NSSocketPort alloc ] initWithTCPPort: 0];
 
 }
-catch (General/NSException *e ) 
+catch (NSException *e ) 
 {
 
-General/NSLog(@"listening socket connot be created in server" );
+NSLog(@"listening socket connot be created in server" );
 exit(EXIT_FAILURE  );
 
 }
 //inet_ntop
 struct sockaddr *addr;
 
-addr = (struct sockaddr *)General/listeningSocket address] bytes];
+addr = (struct sockaddr *)listeningSocket address] bytes];
 
 uint16_t  port = 0;
 if(addr->sa_family == AF_INET)
@@ -52,15 +52,15 @@ port = ntohs(((struct sockaddr_in6 *)addr)->sin6_port);
 
 [[NSLog(@"listening port number in server %d ",port);
 
-General/NSConnection *connection = General/[NSConnection connectionWithReceivePort:listeningSocket  sendPort:NULL];
+NSConnection *connection = [NSConnection connectionWithReceivePort:listeningSocket  sendPort:NULL];
 
 [connection setRootObject: self];
 
 [listeningSocket release ];
 
-General/NSNetService *netService = General/[[NSNetService alloc ] initWithDomain:@"" type:@"_test._tcp" name:General/NSFullUserName() port:port];
+NSNetService *netService = [[NSNetService alloc ] initWithDomain:@"" type:@"_test._tcp" name:NSFullUserName() port:port];
 
-General/NSRunLoop *currentRunLoop = General/[NSRunLoop currentRunLoop ];
+NSRunLoop *currentRunLoop = [NSRunLoop currentRunLoop ];
 
 [netService publish ];
 
@@ -73,27 +73,27 @@ General/NSRunLoop *currentRunLoop = General/[NSRunLoop currentRunLoop ];
 
 //Client code
 
-- (void)netServiceDidResolveAddress:(General/NSNetService *)sender
+- (void)netServiceDidResolveAddress:(NSNetService *)sender
 
 {
 
-General/NSLog(@"netServiceDidResolveAddress ..." );
+NSLog(@"netServiceDidResolveAddress ..." );
 
-General/NSArray *addresses;
+NSArray *addresses;
 
 addresses = [sender addresses];
 
 if([addresses count] > 0) 
 {
 
-General/NSData *data =(General/NSData *) General/sender addresses] objectAtIndex: 0];
+NSData *data =(NSData *) sender addresses] objectAtIndex: 0];
 
-[[NSSocketPort *sendingSocket = General/[[NSSocketPort alloc ] initRemoteWithProtocolFamily: AF_INET 
+[[NSSocketPort *sendingSocket = [[NSSocketPort alloc ] initRemoteWithProtocolFamily: AF_INET 
 												          socketType:SOCK_STREAM 
                                                                                               protocol:INET_TCP 
                                                                                                     address:data];
 
-General/NSConnection *connection = General/[NSConnection connectionWithReceivePort: NULL sendPort:sendingSocket];
+NSConnection *connection = [NSConnection connectionWithReceivePort: NULL sendPort:sendingSocket];
 
 //[connection setRequestTimeout:20.0];
 
@@ -107,15 +107,15 @@ id tempProxy = [connection rootProxy ];
 
 [tempProxy retain ];
 
-General/[[NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(connectionLost:) name:General/NSConnectionDidDieNotification object:NULL];
+[[NSNotificationCenter defaultCenter ] addObserver: self selector:@selector(connectionLost:) name:NSConnectionDidDieNotification object:NULL];
 
 [tempProxy setClientName: self];
 
 }
-catch (General/NSException *e)
+catch (NSException *e)
 {
 
-General/NSLog(@"proxy object creation failed" );
+NSLog(@"proxy object creation failed" );
 
 }
 

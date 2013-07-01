@@ -3,12 +3,12 @@ my new app should run as a sort of networking daemon - and should not reveal its
 
 ----
 
-General/LSBackgroundOnly, General/LSUIElement
+LSBackgroundOnly, LSUIElement
 
 ----
 
-great! only the instructions on those pages are for Project Builder - no such menu options are available in General/XCode as is described there.. :-( Anyone able to help out on this?
+great! only the instructions on those pages are for Project Builder - no such menu options are available in XCode as is described there.. :-( Anyone able to help out on this?
 
 ----
 
-Yeah, put the desired attributes in your Info.plist file. --General/EliotSimcoe
+Yeah, put the desired attributes in your Info.plist file. --EliotSimcoe

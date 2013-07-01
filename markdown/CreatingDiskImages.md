@@ -4,7 +4,7 @@ Does anyone know what the easiest way is to programatically create a Disk Image 
 ----
 Does this help?
 http://www.c-command.com/dropdmg/
--- General/JohnDevor
+-- JohnDevor
 
 Hmm... Scrath that idea... I didn't catch the "programatically"
 
@@ -22,7 +22,7 @@ is now accomplished by passing     -fs HFS+ to hdiutil create.
 
 ----
 
-Would it be possible  to use General/AppleScript to control Disk Copy, to create a disk image?
+Would it be possible  to use AppleScript to control Disk Copy, to create a disk image?
 
 ----
 
@@ -59,17 +59,17 @@ rm -f build/$1.dmg
 mv build/$1.udzo.dmg build/$1.dmg
 
 
--- General/TravM
+-- TravM
 
 ----
 
-Along the same lines, anybody got a convenient way, from a build script, to attach a license agreement to a disk image? I think it has something to do with resource forks, but I'm not really sure. I use General/DropDmg right now to attach big "THIS IS PRERELEASE SOFTWARE" warnings to all the beta stuff I release, but I'd rather do it as an automatic part of the build process.
+Along the same lines, anybody got a convenient way, from a build script, to attach a license agreement to a disk image? I think it has something to do with resource forks, but I'm not really sure. I use DropDmg right now to attach big "THIS IS PRERELEASE SOFTWARE" warnings to all the beta stuff I release, but I'd rather do it as an automatic part of the build process.
 
-(General/JeffHarrell)
+(JeffHarrell)
 
-You can use the General/DropDMG command-line tool from a build script.
+You can use the DropDMG command-line tool from a build script.
 
---General/MichaelTsai
+--MichaelTsai
 
 ----
 
@@ -89,7 +89,7 @@ When your software corrupts the user's important files and the user sues you, yo
 
 When you throw 36-point bright-red type on the user's screen saying "THIS IS PRERELEASE SOFTWARE," he reads it.
 
-(General/JeffHarrell)
+(JeffHarrell)
 
 Perhaps a bit off topic considering the title, but does it really make a legal difference?  Is showing a license agreement when you download the software better than simply putting the license agreement in a readme?  And finally: is this something developers should worry about?
 
@@ -100,7 +100,7 @@ License agreements aren't just for "don't sue us" purposes. I include a license 
 ----
 
 This is a nice script - that allows licences: 
-http://www.objectpark.org/buildDMG.html - General/DiggoryLaycock
+http://www.objectpark.org/buildDMG.html - DiggoryLaycock
 
 ----
 
@@ -112,7 +112,7 @@ The same way you change the name of any volume. Mount the disk image, select the
 
 ----
 
-OK great, that can be General/AppleScripted and used with osascript, I don't know why the simple answer didn't come to me.  Still I  would prefer a command line method for changing the volume name, General/AppleScript is tedious.
+OK great, that can be AppleScripted and used with osascript, I don't know why the simple answer didn't come to me.  Still I  would prefer a command line method for changing the volume name, AppleScript is tedious.
 
 ----
 

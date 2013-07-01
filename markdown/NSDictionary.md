@@ -1,12 +1,12 @@
-Documentation from the General/AppleDeveloperConnection:
+Documentation from the AppleDeveloperConnection:
 
 https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSDictionary_Class/Reference/Reference.html
 
-See General/FoundationCollections for a general overview; see General/DesignDictionary for a critique of the dictionary design in general.
+See FoundationCollections for a general overview; see DesignDictionary for a critique of the dictionary design in general.
 
 ----**Notes:**
 
-Here's a little example I threw together to use General/NSDictionary with some strings.  It's not particularly good, but it might help you understand a little better.
+Here's a little example I threw together to use NSDictionary with some strings.  It's not particularly good, but it might help you understand a little better.
     
  #import <Cocoa/Cocoa.h>
  
@@ -15,7 +15,7 @@ Here's a little example I threw together to use General/NSDictionary with some s
    NSDictionary *dict;
    NSEnumerator *enumerator;
    id key;
-   NSAutoreleasePool * pool = General/NSAutoreleasePool alloc] init];
+   NSAutoreleasePool * pool = NSAutoreleasePool alloc] init];
    
    dict = [NSDictionary dictionaryWithObjectsAndKeys:
            @"A beverage prepared by heating cocoa with water/milk",
@@ -40,7 +40,7 @@ Here's a little example I threw together to use General/NSDictionary with some s
    
    while ((key = [enumerator nextObject])) {
      //printf("%s : %s\n", [key cString],
-     //        General/dict objectForKey: key] cString]);
+     //        dict objectForKey: key] cString]);
      NSLog(@"%@ : %@", key, [dict objectForKey:key]);
    }
    
@@ -51,4 +51,4 @@ Here's a little example I threw together to use General/NSDictionary with some s
 
 
 ----
-I switched the order of "dictionary" and its definition. It looked like it was in key-object order instead of object key. -- General/GKinnel
+I switched the order of "dictionary" and its definition. It looked like it was in key-object order instead of object key. -- GKinnel

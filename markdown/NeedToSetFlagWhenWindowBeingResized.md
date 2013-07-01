@@ -5,4 +5,4 @@ blakespot
 
 ----
 
-This flag already exists; it's an General/NSView method called     -inLiveResize.  Just check that for your view when you're about to draw. -- Bo
+This flag already exists; it's an NSView method called     -inLiveResize.  Just check that for your view when you're about to draw. -- Bo

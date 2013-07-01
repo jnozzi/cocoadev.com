@@ -1,6 +1,6 @@
 
 
-I am a General/WebObjects developer by trade, but I have a General/CocoaJava project I am currently working on called General/MacPAF (a genealogy application):
+I am a WebObjects developer by trade, but I have a CocoaJava project I am currently working on called MacPAF (a genealogy application):
 
 http://macpaf.sf.net/
 

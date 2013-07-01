@@ -2,7 +2,7 @@
 
 Here is my scenario. I have a management application that I decided to write as my first app using Cocoa. I have some experience with Java but am new to Objective-C. I have two questions that have been causing me some grief.
 
-First my app is designed to have multiple Leagues, these leagues have weeks, and a week has a set number of players. I created a model object for a league, week, and player. Each one of these has a General/NSMutableArray that holds the child (lack of a better word.)
+First my app is designed to have multiple Leagues, these leagues have weeks, and a week has a set number of players. I created a model object for a league, week, and player. Each one of these has a NSMutableArray that holds the child (lack of a better word.)
 
 I have one masterclass that contains the array for the league, and is also the class that I save (document based app) so that the app saves all the data.
 
@@ -18,12 +18,12 @@ What i am trying to do with copy is when the user clicks on create new week the 
 		{
 			[weeks insertObject:w atIndex:index];
 			[w createPlayers];
-			[w setPlayers:General/[weeks objectAtIndex:(weekCount - 1)] players] mutableCopy;
-			[w setWeekName:General/[NSString stringWithFormat:@"Week %d", (weekCount + 1)]];
+			[w setPlayers:[weeks objectAtIndex:(weekCount - 1)] players] mutableCopy;
+			[w setWeekName:[NSString stringWithFormat:@"Week %d", (weekCount + 1)]];
 		} else {
 			[weeks insertObject:w atIndex:index];
 			[w createPlayers];
-			[w setWeekName:General/[NSString stringWithFormat:@"Week %d", (weekCount + 1)]];
+			[w setWeekName:[NSString stringWithFormat:@"Week %d", (weekCount + 1)]];
 		}
 	}
 }
@@ -43,7 +43,7 @@ Copies in Cocoa are shallow copies, not deep copies. This means that when you do
 
 ----
 
-An easier way would be to alloc a new array, and use the "initWithArray:(General/NSArray *)array copyItems:(BOOL)flag" initializer. Remember that you'll have to implement the General/NSCopying protocol on all your model classes that you're creating copies of.
+An easier way would be to alloc a new array, and use the "initWithArray:(NSArray *)array copyItems:(BOOL)flag" initializer. Remember that you'll have to implement the NSCopying protocol on all your model classes that you're creating copies of.
 
 ----
 
@@ -51,30 +51,30 @@ Some code I'm using for deep copy (requires 10.2) that can be easily adapted for
 
     
 
-@interface General/NSDictionary (General/MutableDeepCopy)
+@interface NSDictionary (MutableDeepCopy)
 
 - (id) mutableDeepCopy;
 
 @end
 
-@implementation General/NSDictionary (General/MutableDeepCopy)
+@implementation NSDictionary (MutableDeepCopy)
 
 - (id) mutableDeepCopy
 {
-	General/NSData * tData;
+	NSData * tData;
 	id tMutableDeepCopy=nil;
-	General/NSString * tErrorString;
+	NSString * tErrorString;
 	
-	tData=General/[NSPropertyListSerialization dataFromPropertyList:self
+	tData=[NSPropertyListSerialization dataFromPropertyList:self
 										         format:NSPropertyListBinaryFormat_v1_0
 									   errorDescription:&tErrorString];
 	
 	if (tData!=nil)
 	{
-		General/NSPropertyListFormat tFormat;
+		NSPropertyListFormat tFormat;
 	
-		tMutableDeepCopy=General/[NSPropertyListSerialization propertyListFromData:tData
-												       mutabilityOption:General/NSPropertyListMutableContainersAndLeaves
+		tMutableDeepCopy=[NSPropertyListSerialization propertyListFromData:tData
+												       mutabilityOption:NSPropertyListMutableContainersAndLeaves
 												                      format:&tFormat
 												         errorDescription:&tErrorString];
 	
@@ -98,4 +98,4 @@ Some code I'm using for deep copy (requires 10.2) that can be easily adapted for
 @end
 
 
-*This won't work if there are any non-property-list items in the array. What if I had an General/NSAttributedString in the array? Probably you would just have to do a recursive copy here...*
+*This won't work if there are any non-property-list items in the array. What if I had an NSAttributedString in the array? Probably you would just have to do a recursive copy here...*

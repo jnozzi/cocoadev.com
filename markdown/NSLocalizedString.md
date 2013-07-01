@@ -3,11 +3,11 @@ Apple's official documentation is this:
 <code>
 Returns a localized version of a string.
 
-General/NSString *General/NSLocalizedString(General/NSString *key, General/NSString *comment)
+NSString *NSLocalizedString(NSString *key, NSString *comment)
 Discussion
 Invokes localizedStringForKey:value:table: on the main bundle and a nil table. In order to be parsed correctly by genstrings, key should not contain any high-ASCII characters.
 
-For more information, see General/NSBundle.
+For more information, see NSBundle.
 </code>
 
 I have a question: Is the second parameter, the comment parameter, used for key/value lookups?
@@ -22,8 +22,8 @@ a "commanding element" (like a button). *
 I believe that is what the comment is for:
 
 <code>
-General/NSString *General/NSLocalizedString(@"Print", @"Button text");
-General/NSString *General/NSLocalizedString(@"Print", @"Informational Tooltip");
+NSString *NSLocalizedString(@"Print", @"Button text");
+NSString *NSLocalizedString(@"Print", @"Informational Tooltip");
 </code>
 ----
 

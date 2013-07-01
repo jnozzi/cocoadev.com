@@ -1,7 +1,7 @@
 
 
 
-I've been attempting to create an General/NSWindow sublcass that, upon opening, starts as a small window (20x20 pixels) in the middle of the screen, and immediately animates the resize to it's proper size and location, and displays the proper content view, as designed in the nib.  To acheive the opposite effect when a window closes is as simple as overriding -General/[NSWindow close] to call [self setFrame:smallFrameInMiddleOfScreen display:YES animate:YES]; followed by a call to [super close]; delayed by the appropriate time time interval.  However, there doesn't seem to be any obvious analog for opening a window.  Any help would be greatly appreciated.  Thank in advance.
+I've been attempting to create an NSWindow sublcass that, upon opening, starts as a small window (20x20 pixels) in the middle of the screen, and immediately animates the resize to it's proper size and location, and displays the proper content view, as designed in the nib.  To acheive the opposite effect when a window closes is as simple as overriding -[NSWindow close] to call [self setFrame:smallFrameInMiddleOfScreen display:YES animate:YES]; followed by a call to [super close]; delayed by the appropriate time time interval.  However, there doesn't seem to be any obvious analog for opening a window.  Any help would be greatly appreciated.  Thank in advance.
 
 
 -Mike
@@ -20,19 +20,19 @@ You don't *need* to override a method. Before you open your window, set its alph
 Why would you override anything? Windows don't open by magic, they open because you told them to open. Tell them to resize while you tell them to open.
 
 ----
-Yes, windows open because you tell them to, but I assume that if a generic subclass of General/NSWindow that animates while opening and closing is being created, ALL the code for animation should be in the subclass rather than having to handle it whenever a window is shown.
+Yes, windows open because you tell them to, but I assume that if a generic subclass of NSWindow that animates while opening and closing is being created, ALL the code for animation should be in the subclass rather than having to handle it whenever a window is shown.
 
 On that note, have you tried overriding makeKeyAndOrderFront?
 
 Here's just something I threw together which solves the blip of the window initially showing with the original frame before performing the animation:
 
     
-- (id)initWithContentRect:(General/NSRect)contentRect
+- (id)initWithContentRect:(NSRect)contentRect
 				styleMask:(unsigned int)styleMask
-				  backing:(General/NSBackingStoreType)bufferingType 
+				  backing:(NSBackingStoreType)bufferingType 
 					defer:(BOOL)deferCreation
 {
-	if(self = [super initWithContentRect:General/NSMakeRect(60,60,20,20)
+	if(self = [super initWithContentRect:NSMakeRect(60,60,20,20)
 							   styleMask:styleMask
 								 backing:bufferingType
 								   defer:deferCreation])
@@ -60,4 +60,4 @@ Here's just something I threw together which solves the blip of the window initi
 
 Hope that helps!
 
--General/TylerStromberg
+-TylerStromberg

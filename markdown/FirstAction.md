@@ -4,7 +4,7 @@ is there anyway to get a program to invoke a button action or a menu action imme
 
     
 
-- (void)applicationDidFinishLaunching: (General/NSNotification *)aNotification
+- (void)applicationDidFinishLaunching: (NSNotification *)aNotification
 {
     [myButton action:nil];
 }

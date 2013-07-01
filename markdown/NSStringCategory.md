@@ -1,13 +1,13 @@
 
 
 
-General/GormanChristian thought it would be a good idea to start a page with useful string methods. Now, anyone in the community can feel free to add a method or two (or more)! (Functions are also acceptable.) Refactoring is also always welcome.
+GormanChristian thought it would be a good idea to start a page with useful string methods. Now, anyone in the community can feel free to add a method or two (or more)! (Functions are also acceptable.) Refactoring is also always welcome.
 
-*Be careful when using methods that return non-class types (such as int or General/NSRange). You'll need to #import the category's header file or declare the method some other way, or else the compiler will consider the return type to be id and complain*
+*Be careful when using methods that return non-class types (such as int or NSRange). You'll need to #import the category's header file or declare the method some other way, or else the compiler will consider the return type to be id and complain*
 
-**General/NSString category General/CocoaDevUsersAdditions:**
+**NSString category CocoaDevUsersAdditions:**
 
-**General/NSString+General/CocoaDevUsersAdditions.h**
+**NSString+CocoaDevUsersAdditions.h**
     
  #import <Foundation/Foundation.h>
  
@@ -65,14 +65,14 @@ General/GormanChristian thought it would be a good idea to start a page with use
 
 
 
-**General/NSString+General/CocoaDevUsersAdditions.m**
+**NSString+CocoaDevUsersAdditions.m**
     
  #import "NSString+CocoaDevUsersAdditions.h"
  
  @implementation NSString (CocoaDevUsersAdditions)
  
  + (NSString *)stringWithPascalString:(Str255)aString encoding:(CFStringEncoding)encoding {
-   return General/[self alloc] initWithPascalString:aString encoding:encoding] autorelease];
+   return [self alloc] initWithPascalString:aString encoding:encoding] autorelease];
  }
  
  - (id)initWithPascalString:(Str255)aString encoding:(CFStringEncoding)encoding {
@@ -149,10 +149,10 @@ General/GormanChristian thought it would be a good idea to start a page with use
    return [self tokensSeparatedByCharactersFromSet:[tokensSet invertedSet]];
  }
  
- //be careful if you're using General/SenTe's General/SenFoundation.  It implements -words as well,
+ //be careful if you're using SenTe's SenFoundation.  It implements -words as well,
  //and you may become confused in seeking bugs.
  
- //General/NSTextStorage implements a -words method as well (in 10.3, at least). You may be able to use that instead.
+ //NSTextStorage implements a -words method as well (in 10.3, at least). You may be able to use that instead.
  - (NSArray *)words
  {
    NSMutableCharacterSet *tokenSet = [NSMutableCharacterSet letterCharacterSet];
@@ -182,7 +182,7 @@ General/GormanChristian thought it would be a good idea to start a page with use
  }
  
  -(NSArray *)linesSortedByLength {
-   return General/self componentsSeparatedByString:@"\n"] sortedArrayUsingSelector:@selector(compareLength:)];
+   return self componentsSeparatedByString:@"\n"] sortedArrayUsingSelector:@selector(compareLength:)];
  }
  
  -(NSComparisonResult)compareLength:(NSString *)otherString {
@@ -269,7 +269,7 @@ General/GormanChristian thought it would be a good idea to start a page with use
   	[outputString appendString:temp];
      
    }
-   return General/outputString copy] autorelease];
+   return outputString copy] autorelease];
  }
  
  -(NSString*)newlineToCR
@@ -309,7 +309,7 @@ General/GormanChristian thought it would be a good idea to start a page with use
  
  -(NSRange)whitespaceRangeForRange:(NSRange)characterRange
  {
-   NSString *string = General/self copy] autorelease];
+   NSString *string = self copy] autorelease];
    NSCharacterSet *whitespaceSet = [NSCharacterSet whitespaceAndNewlineCharacterSet];
    unsigned int areamax = NSMaxRange(characterRange);
    unsigned int length = [string length];
@@ -497,9 +497,9 @@ General/GormanChristian thought it would be a good idea to start a page with use
 
 
 ----
-**General/NSString category General/CocoaDevUsersAdditionsTest using General/ObjcUnit framework:**
+**NSString category CocoaDevUsersAdditionsTest using ObjcUnit framework:**
 
-**General/NSString+General/CocoaDevUsersAdditionsTest.h**
+**NSString+CocoaDevUsersAdditionsTest.h**
     
  #import <ObjcUnit/ObjcUnit.h>
  
@@ -509,7 +509,7 @@ General/GormanChristian thought it would be a good idea to start a page with use
  @end
 
 
-**General/NSString+General/CocoaDevUsersAdditionsTest.m**
+**NSString+CocoaDevUsersAdditionsTest.m**
     
  #import "NSString+CocoaDevUsersAdditionsTest.h"
  #import "NSString+CocoaDevUsersAdditions.h"
@@ -550,30 +550,30 @@ General/GormanChristian thought it would be a good idea to start a page with use
 ----
 **Revision History**
 
-Adjusted indentation, spacing, braces. -- General/DustinVoss
+Adjusted indentation, spacing, braces. -- DustinVoss
 
-Added header and implemetation files for unit tesing using General/ObjcUnit. I think it should be a part of any code. -- General/NirSoffer
+Added header and implemetation files for unit tesing using ObjcUnit. I think it should be a part of any code. -- NirSoffer
 
-Added someone's **containsString:**. -- General/DustinVoss
+Added someone's **containsString:**. -- DustinVoss
 
 7 November 2003 - added splitToSize:(unsigned)size, removeTabsAndReturns, newlineToCR methods
 
-**25 November 2003** - added General/GormanChristian's safeFilePath method from the General/SafelyNamingFiles page
+**25 November 2003** - added GormanChristian's safeFilePath method from the SafelyNamingFiles page
 
-**7 June 2004** - added     whitespaceRangeForRange: adapted from code by General/MikeTrent over at General/ImplementSyntaxHighlighting
+**7 June 2004** - added     whitespaceRangeForRange: adapted from code by MikeTrent over at ImplementSyntaxHighlighting
 
 
-**13 June 2004** - added     findRegularExpression: -- General/PerryClarke
+**13 June 2004** - added     findRegularExpression: -- PerryClarke
 
 **16 March 2005** - added     -(BOOL)isValidURL
 
-**16 March 2005** - added     containsCharacterFromSet:,     stringWithSubstitute:forCharactersFromSet:,     stringSafeForXML, and     substringBefore/    General/AfterRange: -- General/DustinVoss
+**16 March 2005** - added     containsCharacterFromSet:,     stringWithSubstitute:forCharactersFromSet:,     stringSafeForXML, and     substringBefore/    AfterRange: -- DustinVoss
 
-**9 October 2005** - cleaned up and modified -tokensSeparatedByCharactersFromSet: to behave as expected, that is, to return tokens separated by characters from specified set, instead of tokens separated by the inverse of the specified set.  Updated -words and -objCTokens accordingly and fixed compile error in -words, though I question the usefulness of these methods.  Corrected misuse of NULL in containsString: and eliminated C99 scoping in *for* loop within -findRegularExpression:ignoreCase: to eliminate compiler warnings.  Fixed bug in findRegularExpression:ignoreCase: where *for* loop would be exited prematurely if a subexpression was not matched; instead, now returns General/[NSNull null] in this case.  Also rewrote this method to use General/NSMutableData, removing hard-coded space allocation, and added raise_reg_error_exception function to raise an exception on error.  -- General/TkM
+**9 October 2005** - cleaned up and modified -tokensSeparatedByCharactersFromSet: to behave as expected, that is, to return tokens separated by characters from specified set, instead of tokens separated by the inverse of the specified set.  Updated -words and -objCTokens accordingly and fixed compile error in -words, though I question the usefulness of these methods.  Corrected misuse of NULL in containsString: and eliminated C99 scoping in *for* loop within -findRegularExpression:ignoreCase: to eliminate compiler warnings.  Fixed bug in findRegularExpression:ignoreCase: where *for* loop would be exited prematurely if a subexpression was not matched; instead, now returns [NSNull null] in this case.  Also rewrote this method to use NSMutableData, removing hard-coded space allocation, and added raise_reg_error_exception function to raise an exception on error.  -- TkM
 
 ----
 
-**General/NSString (rot13)**
+**NSString (rot13)**
 
 This is a simple category to add a class function that allows ROT13 encoding to the string class. 
 A friend asked for a simple ROT13 encoder/decoder, so I hacked this together real quick while 
@@ -588,7 +588,7 @@ of now it works and is compliant with ROT13 standards, and most of all, it's eas
 The same function encoded and decodes, so it's easy to use.
 
 
-**General/NSString+rot13.h**
+**NSString+rot13.h**
     
  //
  //  rot13.h
@@ -605,7 +605,7 @@ The same function encoded and decodes, so it's easy to use.
  @end
 
 
-**General/NSString+rot13.m**
+**NSString+rot13.m**
     
  //
  //  rot13.m
@@ -621,7 +621,7 @@ The same function encoded and decodes, so it's easy to use.
  @implementation NSString (rot13)
  
  + (NSString *)rot13:(NSString *)theText {
-   NSMutableString *holder = General/NSMutableString alloc] init];
+   NSMutableString *holder = NSMutableString alloc] init];
    unichar theChar;
    int i;
    
@@ -662,13 +662,13 @@ so I figured this way, others can get the use of this, and I can look it up here
 *This code will break with characters that don't fit within a single byte, which is all unicode characters that are outside of the Latin1 charset. It will work fine for ASCII, but it will mangle general unicode text. Declaring theChar as a unichar and changing the append lines would fix it.*
 
 *Thanks, I totally missed that. Still not used to messing with the unichar typedef... I just fixed this in the application and am updating the above posted code to reflect it. Again, thanks for the input.*
-General/DaveGiffin
+DaveGiffin
 
 *Great! I'm always keeping my eye out for things like that. I'm glad you were able to fix it so easily. It does make one wonder, what exactly is the proper way to rot13 a bunch of Chinese text? :-)*
 
 **It's probably like rot3000 or something...**
 
-By the way, you are leaking the local General/NSMutableString holder.
+By the way, you are leaking the local NSMutableString holder.
     
  NSString *rval = [NSString stringWithString:holder];
  [holder release];
@@ -697,4 +697,4 @@ Usage:
 
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

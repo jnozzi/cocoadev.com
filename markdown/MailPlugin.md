@@ -1,12 +1,12 @@
 
 
-Here's an General/XCode template for creating a Mail.app plugin:
+Here's an XCode template for creating a Mail.app plugin:
 
 http://harnly.net/category/software/mail-plugin-template/
 
 Some links and sample about how to write plugin for Mail.app:
 
-*http://www.sente.ch/software/General/GPGMail/English.lproj/General/GPGMail.html#Download
+*http://www.sente.ch/software/GPGMail/English.lproj/GPGMail.html#Download
 *http://www.cocoabuilder.com/archive/message/cocoa/2005/5/20/136461
 *http://www.apple.com/downloads/macosx/email_chat/danielshttpmailplugin.html
 *http://www.tikouka.net/mailapp/

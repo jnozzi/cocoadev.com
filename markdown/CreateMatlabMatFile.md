@@ -1,6 +1,6 @@
 Create a MATLAB .MAT / .MEX file using Xcode
 
-Several people have posted tips on the web on techniques to link to MATLAB dylibs using Xcode. The root problem is that General/MathWorks uses localized embedded names, and also relative path references to other linked General/MathWorks libraries. The libraries are in located in the /Applications/MATLAB??/bin/maci directory. In my case, I'm using MATLAB74, so what follows is most relevant for that release and creating an environment to support building a ".mat" file. However, the technique can clearly be extended to new versions, and / or .mex files.
+Several people have posted tips on the web on techniques to link to MATLAB dylibs using Xcode. The root problem is that MathWorks uses localized embedded names, and also relative path references to other linked MathWorks libraries. The libraries are in located in the /Applications/MATLAB??/bin/maci directory. In my case, I'm using MATLAB74, so what follows is most relevant for that release and creating an environment to support building a ".mat" file. However, the technique can clearly be extended to new versions, and / or .mex files.
 
 Looking at one such library using otool:
 
@@ -50,12 +50,12 @@ path="../../bin/maci/"
 newpath="${newlibraries}/"
 
 # create the new folders if needbe (-p says do intermediates if needed)
-if General/ ! -e $newheaders 
+if  ! -e $newheaders 
 then
 	print "Make new directory: $newheaders"
 	mkdir -p $newheaders
 fi
-if General/ ! -e $newlibraries 
+if  ! -e $newlibraries 
 then
 	print "Make new directory: $newlibraries"
 	mkdir -p $newlibraries
@@ -108,14 +108,14 @@ do
 	do
 		# ksh command to strip $path from the $lib and return the result
 		name=${lib#$path}
-		if General/ $lib != $name  
+		if  $lib != $name  
 		then
 			print "   Changing $lib to ${newpath}${name} in file $library"
 			/usr/bin/install_name_tool -change $lib ${newpath}${name} ./${library}
 		fi
 		name=${lib#lib}
 		# if this name starts with "lib" then its a local reference, so fully quality it
-		if General/ $lib != $name  
+		if  $lib != $name  
 		then
 			print "   Changing $lib to ${newpath}${lib} in file $library"
 			/usr/bin/install_name_tool -change $lib ${newpath}${lib} ./${library}

@@ -1,6 +1,6 @@
 
 
-I have a Core Data model from which I generate custom classes all of them inheriting from General/NSManagedObject. That is all fine. But when I want to add custom code to the classes it becomes a mess when I regenerate the code from the data model, because then I have to merge the changes manually.
+I have a Core Data model from which I generate custom classes all of them inheriting from NSManagedObject. That is all fine. But when I want to add custom code to the classes it becomes a mess when I regenerate the code from the data model, because then I have to merge the changes manually.
 
 I would much rather use the "Generation Gap" design pattern, where I put my custom code in a class that extends the generated class. But I can't seem to figure out how to do that with the xcode tools. 
 
@@ -10,9 +10,9 @@ Ps. I already had a brief look at "mogenerator". Is that the only way to do what
 
 ----
 
-Uhm, isn't mogenerator the *only* Core Data code generator out there, for now? I mean, Xcode never generates *any* code for you; it compiles your entity model into an efficient representation which Core Data loads at runtime, but no code is ever generated (if you do [someObject class] you'll see it is equa to General/NSManagedObject).
+Uhm, isn't mogenerator the *only* Core Data code generator out there, for now? I mean, Xcode never generates *any* code for you; it compiles your entity model into an efficient representation which Core Data loads at runtime, but no code is ever generated (if you do [someObject class] you'll see it is equa to NSManagedObject).
 
-Since Xcode does not generate any code, there is no need for a generation gap (which is useful only when code generation would otherwise wipe out your customizations). If you don't want to use mogenerator, simply make a new class and set it as the class for your entity in the editor; Xcode will not modify it. -- General/EmanueleVulcano aka millenomi
+Since Xcode does not generate any code, there is no need for a generation gap (which is useful only when code generation would otherwise wipe out your customizations). If you don't want to use mogenerator, simply make a new class and set it as the class for your entity in the editor; Xcode will not modify it. -- EmanueleVulcano aka millenomi
 
 ----
 Xcode certainly does have a Core Data code generator. In your model you click File -> New File and select "Managed Object Class". I opens the "Managed Object Class Generation" utility. Which lets you select from which entities in your model you would like to generate classes.
@@ -20,17 +20,17 @@ Xcode certainly does have a Core Data code generator. In your model you click Fi
 So - my question remains :-)
 
 ----
-I put my code in categories of the X Code generated Core Data classes.  For example if there is a class, General/VTPath, that is an X Code generated subclass of General/NSManagedObject
+I put my code in categories of the X Code generated Core Data classes.  For example if there is a class, VTPath, that is an X Code generated subclass of NSManagedObject
 
-I simply define General/VTPath+Utility.m  and General/VTPath+Quartz.m and so forth:
+I simply define VTPath+Utility.m  and VTPath+Quartz.m and so forth:
 
-General/[VTPath+Utility.m]
+[VTPath+Utility.m]
     
-#import "General/VTPath.h"
+#import "VTPath.h"
 
-@implementation General/VTPath (Utility)
+@implementation VTPath (Utility)
 
-- (General/NSBezierPath *)bezierPathRepresentation;
+- (NSBezierPath *)bezierPathRepresentation;
 {
    ...
 }
@@ -38,9 +38,9 @@ General/[VTPath+Utility.m]
 @end
 
 
-General/[VTPath+Quartz.m]
+[VTPath+Quartz.m]
     
-@implementation General/VTPath (Quartz)
+@implementation VTPath (Quartz)
 
 - (void)strokePath
 {

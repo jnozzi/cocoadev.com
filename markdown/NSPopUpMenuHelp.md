@@ -1,15 +1,15 @@
-I don't know how to use the General/NSPopUpMenu. Can anyone help me?
+I don't know how to use the NSPopUpMenu. Can anyone help me?
 
 ----
 
 Add this to the view where you want the context menu to pop up.
 
     
--(id)initWithFrame:(General/NSRect)frame {
+-(id)initWithFrame:(NSRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        menu=General/[[NSMenu alloc] init];
-        id item=General/[[[NSMenuItem alloc] initWithTitle:@"doSomething" action:@selector(doSomething) keyEquivalent:@""] autorelease];
+        menu=[[NSMenu alloc] init];
+        id item=[[[NSMenuItem alloc] initWithTitle:@"doSomething" action:@selector(doSomething) keyEquivalent:@""] autorelease];
         [menu addItem:item];
     }
     return self;
@@ -21,12 +21,12 @@ Add this to the view where you want the context menu to pop up.
 }
 
 -(void)doSomething {
-    General/NSLog(@"doingSomething");
+    NSLog(@"doingSomething");
 }
 
--(void)mouseDown:(General/NSEvent *)theEvent {
-    General/NSLog(@"mouseDown:");
-    General/[NSMenu popUpContextMenu:menu withEvent:theEvent forView:self];
+-(void)mouseDown:(NSEvent *)theEvent {
+    NSLog(@"mouseDown:");
+    [NSMenu popUpContextMenu:menu withEvent:theEvent forView:self];
 }
 
 
@@ -40,9 +40,9 @@ Is there a good way to control the exact positioning of the popup menu? For exam
 
 ----
 
-If you want a button to control the menu, then just use an General/NSPopUpButton. You can add these in IB!! --zootbobbalu
+If you want a button to control the menu, then just use an NSPopUpButton. You can add these in IB!! --zootbobbalu
 
-Alternatively, you can make a new cell subclass which does the popping of menus as appropriate, make a button in IB, and have the button use your cell class-- it honestly is preferable sometimes. -- General/RobRix
+Alternatively, you can make a new cell subclass which does the popping of menus as appropriate, make a button in IB, and have the button use your cell class-- it honestly is preferable sometimes. -- RobRix
 
 But what if you want a dropdown from a toolbar? Adding a button with no boarder and an image with a some transparency seems to screw up the toolbar's background drawing. What would be great is if you could force the toolbar item's submenu to appear no matter what format the toolbar is set to (ie - not just in text-only view). Does anybody know what I'm getting at? I think Keynote does this...
 

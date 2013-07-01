@@ -1,24 +1,24 @@
-**General/AddClassAspects**  - 
+**AddClassAspects**  - 
 
-So General/PoseAsAspects won't work on General/NSObject and need to be loaded before Object get instantiated.  General/AddMethodAspects aren't working because class_addMethods isn't working.  So let's create a new class for the class we're loading an aspect on.  And instead of posing this new class as the other one, we set up the IMP pointers of the original class to point to replacement methods we define.  These replacement methods then lookup the original IMP pointers by looking to the replacement class that we've created.  here goes...
+So PoseAsAspects won't work on NSObject and need to be loaded before Object get instantiated.  AddMethodAspects aren't working because class_addMethods isn't working.  So let's create a new class for the class we're loading an aspect on.  And instead of posing this new class as the other one, we set up the IMP pointers of the original class to point to replacement methods we define.  These replacement methods then lookup the original IMP pointers by looking to the replacement class that we've created.  here goes...
 
-http://www.ccs.neu.edu/home/igotimac/General/AddClassAspect.zip
+http://www.ccs.neu.edu/home/igotimac/AddClassAspect.zip
 
     
 
-#import "General/ACAddClassAspect.h"
-#import "General/ACMethodIterator.h"
+#import "ACAddClassAspect.h"
+#import "ACMethodIterator.h"
 #import </usr/include/objc/objc-class.h>
 
-@implementation General/ACAddClassAspect
+@implementation ACAddClassAspect
 
 +(void)wrapAllMethodsOfClass:(Class)toWrap{
-    [self wrapAllMethodsOfClass: toWrap beforeAndAfterOf: General/[ACAddClassAspect class]];
+    [self wrapAllMethodsOfClass: toWrap beforeAndAfterOf: [ACAddClassAspect class]];
 }
 
 +(void)wrapAllMethodsOfClass:(Class)toWrap beforeAndAfterOf:(Class)toGetMethodsFrom{
     Class poser = [self createClassDefinition: 
-        General/@"replace_" stringByAppendingString: 
+        @"replace_" stringByAppendingString: 
         [[[NSString stringWithCString: toWrap->name]] cString] 
         withSuper: toWrap->name];
         
@@ -45,7 +45,7 @@ http://www.ccs.neu.edu/home/igotimac/General/AddClassAspect.zip
     meth = *class_getInstanceMethod(toGetMethodsFrom, @selector(after:));
     methodsToAdd->method_list[1] = meth;
 
-    General/ACMethodIterator * mit = General/[[ACMethodIterator alloc] initWithClass: toWrap];
+    ACMethodIterator * mit = [[ACMethodIterator alloc] initWithClass: toWrap];
 
     for( i = 2; i< totalMethodsToAdd; i++){
         //add identical method from the toWrap class
@@ -84,8 +84,8 @@ http://www.ccs.neu.edu/home/igotimac/General/AddClassAspect.zip
 }
 
 +(struct objc_class *)createClassDefinition: (const char *) name withSuper: (const char *) superclassName{
-    General/NSLog(@"creating a subclass of %s", superclassName);
-    General/NSLog(@"named %s", name);
+    NSLog(@"creating a subclass of %s", superclassName);
+    NSLog(@"named %s", name);
     struct objc_class * meta_class;
     struct objc_class * super_class;
     struct objc_class * new_class;
@@ -133,14 +133,14 @@ http://www.ccs.neu.edu/home/igotimac/General/AddClassAspect.zip
 }
 
 /*
-* none of the methods below should ever be called as members of this class! (General/ACPoser)
-* and are therefore not declared in General/ACPoser.h
+* none of the methods below should ever be called as members of this class! (ACPoser)
+* and are therefore not declared in ACPoser.h
 */
 
 -(id)replacement{
     struct objc_method *methodINeedToCallNow;
     Class withOriginalMethods = objc_lookUpClass( 
-    General/@"replace_" stringByAppendingString: [[[NSString stringWithCString: self->isa->name]] cString]);
+    @"replace_" stringByAppendingString: [[[NSString stringWithCString: self->isa->name]] cString]);
     methodINeedToCallNow = class_getInstanceMethod(withOriginalMethods, @selector(before:));
     id (*before)(id, SEL, void*);
     before = methodINeedToCallNow->method_imp;
@@ -162,7 +162,7 @@ http://www.ccs.neu.edu/home/igotimac/General/AddClassAspect.zip
 -(id)replacement: a{
     struct objc_method *methodINeedToCallNow;
     Class withOriginalMethods = objc_lookUpClass( 
-    General/@"replace_" stringByAppendingString: [[[NSString stringWithCString: self->isa->name]] cString]);
+    @"replace_" stringByAppendingString: [[[NSString stringWithCString: self->isa->name]] cString]);
     methodINeedToCallNow = class_getInstanceMethod(withOriginalMethods, @selector(before:));
     id (*before)(id, SEL, void*);
     before = methodINeedToCallNow->method_imp;
@@ -184,7 +184,7 @@ http://www.ccs.neu.edu/home/igotimac/General/AddClassAspect.zip
 -(id)replacement: a r: b{
     struct objc_method *methodINeedToCallNow;
     Class withOriginalMethods = objc_lookUpClass( 
-    General/@"replace_" stringByAppendingString: [[[NSString stringWithCString: self->isa->name]] cString]);
+    @"replace_" stringByAppendingString: [[[NSString stringWithCString: self->isa->name]] cString]);
     methodINeedToCallNow = class_getInstanceMethod(withOriginalMethods, @selector(before:));
     id (*before)(id, SEL, void*);
     before = methodINeedToCallNow->method_imp;
@@ -206,7 +206,7 @@ http://www.ccs.neu.edu/home/igotimac/General/AddClassAspect.zip
 -(id)replacement: a r: b r: c{
     struct objc_method *methodINeedToCallNow;
     Class withOriginalMethods = objc_lookUpClass( 
-    General/@"replace_" stringByAppendingString: [[[NSString stringWithCString: self->isa->name]] cString]);
+    @"replace_" stringByAppendingString: [[[NSString stringWithCString: self->isa->name]] cString]);
     methodINeedToCallNow = class_getInstanceMethod(withOriginalMethods, @selector(before:));
     id (*before)(id, SEL, void*);
     before = methodINeedToCallNow->method_imp;
@@ -227,11 +227,11 @@ http://www.ccs.neu.edu/home/igotimac/General/AddClassAspect.zip
 }
 
 -(void)before:(SEL)selector{  //to be overriden in subclasses with actual functionality
-    General/NSLog(@"before %s", selector);
+    NSLog(@"before %s", selector);
 }
 
 -(void)after:(SEL)selector{  //to be overriden in subclasses with actual functionality
-    General/NSLog(@"after %s", selector);
+    NSLog(@"after %s", selector);
 }
 
 

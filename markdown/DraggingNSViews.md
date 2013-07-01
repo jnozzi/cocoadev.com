@@ -1,12 +1,12 @@
 
 
-Hey everyone, I have a question for the community. I'm trying to drag an General/NSView around a window. I have it working 80% correctly, but there is a problem. While dragging, a negative set of coordinates is sent, and the view jitters all over the place. Here's the code I have (it is mainly adapted from Sketch code): http://goo.gl/General/OeSCu
+Hey everyone, I have a question for the community. I'm trying to drag an NSView around a window. I have it working 80% correctly, but there is a problem. While dragging, a negative set of coordinates is sent, and the view jitters all over the place. Here's the code I have (it is mainly adapted from Sketch code): http://goo.gl/OeSCu
 
     
-- (void)drag: (General/NSEvent *)inEvent;
+- (void)drag: (NSEvent *)inEvent;
 {
-	General/NSPoint	theLastPoint	= General/NSZeroPoint;
-	General/NSPoint	theCurrentPoint	= General/NSZeroPoint;
+	NSPoint	theLastPoint	= NSZeroPoint;
+	NSPoint	theCurrentPoint	= NSZeroPoint;
 	BOOL	theMovingFlag	= NO;
 	float	theXDelta	= 0;
 	float	theYDelta	= 0;
@@ -15,7 +15,7 @@ Hey everyone, I have a question for the community. I'm trying to drag an General
 	_startPoint = [self frame].origin;
 	
 	while( 1 ) {
-		inEvent = General/self window] nextEventMatchingMask: ([[NSLeftMouseDraggedMask | General/NSLeftMouseUpMask)];
+		inEvent = self window] nextEventMatchingMask: ([[NSLeftMouseDraggedMask | NSLeftMouseUpMask)];
 		theCurrentPoint = [self convertPoint: [inEvent locationInWindow] fromView: nil];
 		
 		theXDelta = (theCurrentPoint.x - theLastPoint.x);
@@ -28,10 +28,10 @@ Hey everyone, I have a question for the community. I'm trying to drag an General
 		}
 		
 		if( theMovingFlag ) {
-			if( ! General/NSEqualPoints(theLastPoint, theCurrentPoint) ) {
+			if( ! NSEqualPoints(theLastPoint, theCurrentPoint) ) {
 				[self invalidate];
 				
-				[self moveBy: General/NSMakePoint(theXDelta, theYDelta)];
+				[self moveBy: NSMakePoint(theXDelta, theYDelta)];
 				
 				[self invalidate];
 			}
@@ -39,7 +39,7 @@ Hey everyone, I have a question for the community. I'm trying to drag an General
 			theLastPoint = theCurrentPoint;
 		}
 		
-		if( [inEvent type] == General/NSLeftMouseUp ) {
+		if( [inEvent type] == NSLeftMouseUp ) {
 			break;
 		}
 	}
@@ -51,9 +51,9 @@ Hey everyone, I have a question for the community. I'm trying to drag an General
 	}
 }
 
-- (void)moveBy: (General/NSPoint)inVector
+- (void)moveBy: (NSPoint)inVector
 {
-	[self setFrame: General/NSOffsetRect([self frame], inVector.x + 1, inVector.y + 1)];
+	[self setFrame: NSOffsetRect([self frame], inVector.x + 1, inVector.y + 1)];
 }
 
 - (void)startFrameManipulation
@@ -65,12 +65,12 @@ Hey everyone, I have a question for the community. I'm trying to drag an General
 - (void)stopFrameManipulation
 {
 	if( _flags.manipulatingFrame ) {
-		General/NSRect	theFrame = General/NSZeroRect;
+		NSRect	theFrame = NSZeroRect;
 		
 		theFrame = [self frame];
 		
-		if( ! General/NSEqualRects(_originalFrame, theFrame) ) {
-			General/NSRect	temp;
+		if( ! NSEqualRects(_originalFrame, theFrame) ) {
+			NSRect	temp;
 			
 			_flags.manipulatingFrame = NO;
 			temp = theFrame;
@@ -82,20 +82,20 @@ Hey everyone, I have a question for the community. I'm trying to drag an General
 }
 
 
-As I said earlier, this all works fine, except every time moveBy: is called, it is called again, but with a negative X coordinate. It's really weird. Does anyone have any ideas? (and I cleaned up the code for posting; my style doesn't work well with posting here :)) Thanks in advance, General/QuentinHill
+As I said earlier, this all works fine, except every time moveBy: is called, it is called again, but with a negative X coordinate. It's really weird. Does anyone have any ideas? (and I cleaned up the code for posting; my style doesn't work well with posting here :)) Thanks in advance, QuentinHill
 
 ----
 How about just overriding -mouseDragged like so...
 
     
-- (void)mouseDragged:(General/NSEvent*)event
+- (void)mouseDragged:(NSEvent*)event
 {
-    General/NSRect rect = [self frame];
+    NSRect rect = [self frame];
     rect.origin.x += [event deltaX];
     rect.origin.y -= [event deltaY];
     
     [self setFrame:rect];
-    General/self superview] setNeedsDisplay:YES];
+    self superview] setNeedsDisplay:YES];
     
     [super mouseDragged:event];
 }
@@ -109,38 +109,38 @@ I think your problem is that you're calling -nextEventMatchingMask: in a tight l
 
 ----
 
-Because my method uses more lines of code :P Seems I completely overlooked <code>-mouseDragged</code> and <code>-mouseUp</code>. That did the trick. Much abliged to both Bo and General/NeilVanNote -- General/QuentinHill
+Because my method uses more lines of code :P Seems I completely overlooked <code>-mouseDragged</code> and <code>-mouseUp</code>. That did the trick. Much abliged to both Bo and NeilVanNote -- QuentinHill
 
 ----
 
 A new version to account for a superview with a flipped coordinate system and to only mark "where we were" and "where we went" as needing an update.
 
     
-- (void)mouseDragged:(General/NSEvent*)event
+- (void)mouseDragged:(NSEvent*)event
 {
-    General/NSView *superView = [self superview];
-    General/NSRect frameRect  = [self frame];
-    General/NSRect rect = General/NSOffsetRect(frameRect, [event deltaX], [superView isFlipped] ? [event deltaY] : -[event deltaY]);
+    NSView *superView = [self superview];
+    NSRect frameRect  = [self frame];
+    NSRect rect = NSOffsetRect(frameRect, [event deltaX], [superView isFlipped] ? [event deltaY] : -[event deltaY]);
     [self setFrame:rect];
-    [superView setNeedsDisplayInRect:General/NSUnionRect(frameRect, rect)];
+    [superView setNeedsDisplayInRect:NSUnionRect(frameRect, rect)];
     [super mouseDragged:event];
 }
 
 
---General/NeilVanNote
+--NeilVanNote
 
-Added note: that General/NSUnionRect might be very inefficient - it causes a potentially huge rect to be updated. Instead, just invalidate the frame before and after the move, so two separate rectangles are invalidated. The system will coalesce them into a complex region for you, so keeping the update area to a minimum. -General/GrahamCox
+Added note: that NSUnionRect might be very inefficient - it causes a potentially huge rect to be updated. Instead, just invalidate the frame before and after the move, so two separate rectangles are invalidated. The system will coalesce them into a complex region for you, so keeping the update area to a minimum. -GrahamCox
 
 ----
 
 This works, too:
 
     
-- (void)mouseDragged:(General/NSEvent*)event
+- (void)mouseDragged:(NSEvent*)event
 {
-	General/NSPoint origin = [self frame].origin;
+	NSPoint origin = [self frame].origin;
 	origin.x += [theEvent deltaX];
-	origin.y += (General/self superview] isFlipped] ? [theEvent deltaY] : -[theEvent deltaY]);
+	origin.y += (self superview] isFlipped] ? [theEvent deltaY] : -[theEvent deltaY]);
 	[self setFrameOrigin:origin];
 }
 
@@ -156,7 +156,7 @@ How can this be accomplished 'live'? In other words, I want the view to smoothly
 (Dec 1, '05) Let me clarify this a bit more. I have a 'grip' graphic in the lower-right of my custom view that allows the user to horizontally resize the view by dragging the grip. When the mouse is moved in a drag (using the method above), if you move too fast, the mouse pointer ends up outside the grip area and stays there; when you stop moving the mouse (while still in drag), the pointer is still outside the grip area defined by my tracking rect (in other words, the view doesn't properly track the mouse pointer). I'm recreating Mail 2.x's mailboxes view (the bottom glossy bar's grip region). How can I get the view's tracking rect to 'snap to' the pointer during the drag?
 
 ----
-*Why don't you check where the mouse ends up and then adjust the grip. Just convert     [[[NSEvent mouseLocation] to window coords.* -General/JeremyJurksztowicz
+*Why don't you check where the mouse ends up and then adjust the grip. Just convert     [[[NSEvent mouseLocation] to window coords.* -JeremyJurksztowicz
 
 ----
 I'd thought of that, but I guess what I'm asking is how. I admit I only have a vague understanding of how the above method actually works. At what point would I check that for adjustment?
@@ -165,7 +165,7 @@ I'd thought of that, but I guess what I'm asking is how. I admit I only have a v
 
 ----
 
-I'm kind of at that awkward position of knowing enough General/ObjC/Cocoa to get myself in trouble and not enough to  avoid it. 
+I'm kind of at that awkward position of knowing enough ObjC/Cocoa to get myself in trouble and not enough to  avoid it. 
 I'm just about ready to start implementing drag and drop in a custom tool but am not sure which way to approach it.
 Here's what I'm trying to get:
 
@@ -183,7 +183,7 @@ another color then the user wants to swap the positions of the two colors. Note 
 and dragged-over colors (intended to indicate that this is a swap, not a copy of one color to another). The bottom 2 pictures
 show the same thing but this time the far right color is being dragged to the left.
 
-The color "cells" are subclasses of General/NSImageView, each occupying a fixed position within a containing General/NSView (not visible),
+The color "cells" are subclasses of NSImageView, each occupying a fixed position within a containing NSView (not visible),
 which is also subclassed. My question is, where should the drag/drop code be implemented? It looks to me like it needs
 to be in the containing view's methods. This would allow it to draw the vertical "insert" highlighting between the cells. Since
 the cells are each in a fixed position within the containing view (and don't actually change postion, or size) the containing 
@@ -198,9 +198,9 @@ The drag & drop code can (and probably should) be in the control cell code - you
 
     
 
--(void)drawHighlightAtPosition:(General/NSRectEdge)edge
+-(void)drawHighlightAtPosition:(NSRectEdge)edge
 {
-    General/NSView *superView = [self superview];
+    NSView *superView = [self superview];
 
     [superView lockFocus];
     // draw here in the appropriate place
@@ -218,7 +218,7 @@ If I've got the mechanics right, the mouse-dragged event message is going to be 
 
 ----
 
-What I'd do is make the image wells (wouldn't General/NSColorWell be a better fit?) contained within a special purpose view that would handle the mouse tracking & drawing (and any other interaction between the individual wells.) Make this view a subview of your 'master' view.
+What I'd do is make the image wells (wouldn't NSColorWell be a better fit?) contained within a special purpose view that would handle the mouse tracking & drawing (and any other interaction between the individual wells.) Make this view a subview of your 'master' view.
 
 Or how about just having a modifier key indicate swap vs. change order? Option-drop to swap, Plain drop to change order (Cmd-Option drop if you're also allowing replacing the wells' contents via drop)
 

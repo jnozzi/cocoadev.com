@@ -1,6 +1,6 @@
-How do you create an General/NSOutlineView with multiple roots?
+How do you create an NSOutlineView with multiple roots?
 
-- General/JohnDevor
+- JohnDevor
 
 Huh? ... Doesn't that, like, defy the laws of nature or something?
 
@@ -10,7 +10,7 @@ Why not just pretend that root siblings are root nodes?
 
 ----
 
-Create multiple outline views, or one outline view with a popup at top to switch between roots, or use a General/NSBrowserView
+Create multiple outline views, or one outline view with a popup at top to switch between roots, or use a NSBrowserView
 
 ----
 
@@ -18,7 +18,7 @@ When your data source methods     -outlineView:numberOfChildrenOfItem: and     -
 
 ----
 
-Ah, thanks Bo. - General/JohnDevor
+Ah, thanks Bo. - JohnDevor
 
 ----
 
@@ -28,7 +28,7 @@ I've got some sketchy code like this:
 
     
 static int i = 0; // this is probably a horrible way to cycle through the items...
-- (id)outlineView:(General/NSOutlineView *)ov child:(int)index ofItem:(id)item
+- (id)outlineView:(NSOutlineView *)ov child:(int)index ofItem:(id)item
 {
     // is the parent non-nil?
     if (item)
@@ -42,7 +42,7 @@ static int i = 0; // this is probably a horrible way to cycle through the items.
 }
 
 
-- General/JohnDevor
+- JohnDevor
 
 ----
 

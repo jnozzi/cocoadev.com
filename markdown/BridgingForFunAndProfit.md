@@ -1,25 +1,25 @@
 
 
-See also : General/TollFreeBridging, classes that are General/TollFreeBridged
+See also : TollFreeBridging, classes that are TollFreeBridged
 
 What is Toll Free Bridging?
 
-Toll free bridging is the mechanism that allows us to transparently use General/CoreFoundation types as Foundation classes, and vice versa.  Classes such as General/NSString, General/NSDictionary, General/NSArray are bridged to types such as General/CFString, General/CFDictionary, General/CFArray, etc.
+Toll free bridging is the mechanism that allows us to transparently use CoreFoundation types as Foundation classes, and vice versa.  Classes such as NSString, NSDictionary, NSArray are bridged to types such as CFString, CFDictionary, CFArray, etc.
 
-This is one of the few bonuses of having Foundation built on top of General/CoreFoundation, rather than being a 'pure' Objective-C library. But then, if Apple hadn't spent so much time developing Carbon, we might have everything in pure General/ObjC, like we had with General/NeXTSTEP, and not have to bugger about with General/CoreFoundation at all... But I digress.
+This is one of the few bonuses of having Foundation built on top of CoreFoundation, rather than being a 'pure' Objective-C library. But then, if Apple hadn't spent so much time developing Carbon, we might have everything in pure ObjC, like we had with NeXTSTEP, and not have to bugger about with CoreFoundation at all... But I digress.
 
 How do we use Toll Free Bridging?
 
 Look at the following fragment of code.
 
     
-General/NSString * ocString = General/[NSString stringWithString:@"pants"];
-General/CFStringRef cfString = General/CFStringCreateWithCString(NULL,
+NSString * ocString = [NSString stringWithString:@"pants"];
+CFStringRef cfString = CFStringCreateWithCString(NULL,
                                                 "pants",
                                                 kCFStringEncodingASCII);
 
-BOOL eqTest1 = [(General/NSString *)cfString isEqual:ocString];
-Boolean eqTest2 = (General/CFStringCompare((General/CFStringRef)ocString,
+BOOL eqTest1 = [(NSString *)cfString isEqual:ocString];
+Boolean eqTest2 = (CFStringCompare((CFStringRef)ocString,
                                    cfString, NULL)
                     == kCFCompareEqualTo);
 
@@ -28,11 +28,11 @@ Here we create two strings using the two different methods, and them compare the
 
 Whatever.  We can happily cast these types backwards and forwards.  And for most of us, that's enough.  We look in the docs, see 'toll free bridged', and happily go on our merry way.
 
-But.  Not all of General/CoreFoundation is bridged.  Not even nearly.  Which means that, for certain operations, not all of which are obscure, we have to go to General/CoreFoundation to get the job done.  And that takes time.  Lots of it.  The documentation is obtuse, and you need to do lots of crossreferencing.  Maybe I'm being harsh here, but that's been my experience.
+But.  Not all of CoreFoundation is bridged.  Not even nearly.  Which means that, for certain operations, not all of which are obscure, we have to go to CoreFoundation to get the job done.  And that takes time.  Lots of it.  The documentation is obtuse, and you need to do lots of crossreferencing.  Maybe I'm being harsh here, but that's been my experience.
 
 So, why isn't all of CF bridged?  Is Apple just lazy?  Or is there some other reason?
 
-To answer those questions we need to understand how bridging actually works.  And that means looking into Apple's codebase.  Now, Foundation itself is closed source, but large parts of General/CoreFoundation have been opensourced as part of the Darwin Project.  Yep, it's all sitting there in Apple's CVS repository, waiting for you to go and look at it.  On top of that, the Objective-C guts are also there.
+To answer those questions we need to understand how bridging actually works.  And that means looking into Apple's codebase.  Now, Foundation itself is closed source, but large parts of CoreFoundation have been opensourced as part of the Darwin Project.  Yep, it's all sitting there in Apple's CVS repository, waiting for you to go and look at it.  On top of that, the Objective-C guts are also there.
 
 So, how does it all work?
 
@@ -57,7 +57,7 @@ All instances of Objective-C classes are, are pointers to blocks of memory, the 
 
 This, of course, is much like a structure, although there is no formal structure definition for a given class as such, although one can almost be obtained by using @defs(classname.  Not that we have to do that very often, thank the lord.
 
-Now let's dig into the guts of General/CoreFoundation
+Now let's dig into the guts of CoreFoundation
 
 CF types are opaque structures - none of the normally available headers give away the structure of their internals, so we need to download the CF source from Darwin.  And what do we find?
 
@@ -79,27 +79,27 @@ typedef struct __CFRuntimeBase {
 #else
 #error unknown architecture
 #endif
-} General/CFRuntimeBase;
+} CFRuntimeBase;
 
 
 Well, well, well.  A CF structure also starts with a pointer to its class.  Or a pointer to something, at least.  That is followed by two 16 bit numbers, and then the rest of the object definition.  Here we actually do have a structure, although Apple doesn't like giving it away - we're not supposed to play with it.
 
 We can now begin to see how bridging works at a high level.  As long as the isa pointer is set to the point at the Objective-C class, and the Objective-C class definition has the same type of variables in the same place, and both definitions are exactly the same size, we can happily typecast between the two, and therefore use them in both runtimes.
 
-We do, however, need to be extremely careful.  The structures absolutely must be the same size - if, for example, we created an Objective-C class that was bigger than the CF type, the additional data might well be thrown away by any CF functions, and if we try to access those extra variables in a CF-created object cast to General/ObjC, we are going to overwrite random memory.
+We do, however, need to be extremely careful.  The structures absolutely must be the same size - if, for example, we created an Objective-C class that was bigger than the CF type, the additional data might well be thrown away by any CF functions, and if we try to access those extra variables in a CF-created object cast to ObjC, we are going to overwrite random memory.
 
-And, most importantly of all, that isa pointer.  It needs to point to the right Objective-C Class object, or the General/ObjC runtime is going to start coughing in a very nasty way.
+And, most importantly of all, that isa pointer.  It needs to point to the right Objective-C Class object, or the ObjC runtime is going to start coughing in a very nasty way.
 
 So, any bridged class, when instantiated through CF, must be having its isa pointer initialised the right way.  How is CF doing that?
 
-Cunningly enough, General/CoreFoundation has a table that maps CF types to General/ObjC classes.  It really is that simple.  During CF intialisation, the various bridged types are initialised in the table, and the rest point to a 'dummy' class, General/NSCFType.  When an object is created via CF, it looks up the type it's creating, uses that as an index into the table, and sets the isa pointer to whatever class object happens to be floating around at that index in the lookup table.  Simple really.  Look in Base.subproj/General/CFRuntime.c function _CFRuntimeCreateInstance() and the definition for __CFISAForTypeID() in Base.subproj/General/CFInternal.h (the one in the #ifdef __MACH__ block)
+Cunningly enough, CoreFoundation has a table that maps CF types to ObjC classes.  It really is that simple.  During CF intialisation, the various bridged types are initialised in the table, and the rest point to a 'dummy' class, NSCFType.  When an object is created via CF, it looks up the type it's creating, uses that as an index into the table, and sets the isa pointer to whatever class object happens to be floating around at that index in the lookup table.  Simple really.  Look in Base.subproj/CFRuntime.c function _CFRuntimeCreateInstance() and the definition for __CFISAForTypeID() in Base.subproj/CFInternal.h (the one in the #ifdef __MACH__ block)
 
-I couldn't find anything in CF that seemed to be setting the values in this table explicitly except for the default values, and some stuff that un-defaults for known bridged classes - I suspect the actual values get stuffed in there as part of the General/ObjC class initialisation (proprietary Apple code), and that is good news for us, as it opens up the possibility of bridging our own classes
+I couldn't find anything in CF that seemed to be setting the values in this table explicitly except for the default values, and some stuff that un-defaults for known bridged classes - I suspect the actual values get stuffed in there as part of the ObjC class initialisation (proprietary Apple code), and that is good news for us, as it opens up the possibility of bridging our own classes
 
-Then, to allow for the reverse casting to work, there is an undocumented method on General/NSObject
+Then, to allow for the reverse casting to work, there is an undocumented method on NSObject
 
     
--(General/CFTypeID) _cfTypeID;
+-(CFTypeID) _cfTypeID;
 
 
 By default, this returns _kCFRuntimeNotATypeID, and bridged classes override to return the typeid they are bridged to.
@@ -108,7 +108,7 @@ All pretty simple, really, despite the horrendous code in CF to make it all work
 
 Back to the original question.  Why isn't all of CF bridged?  
 
-Sadly, it looks as though the reason is - Apple is either lazy, or for some reason doesn't consider Cocoa needs General/ObjC-accessible trees, XML parsers, and the like.   There appears to be no reason all of CF couldn't be bridged to equivalent classes.
+Sadly, it looks as though the reason is - Apple is either lazy, or for some reason doesn't consider Cocoa needs ObjC-accessible trees, XML parsers, and the like.   There appears to be no reason all of CF couldn't be bridged to equivalent classes.
 
 So, what can we do?  Can we write our own bridged classes, now we have a handle on how it works?
 
@@ -117,11 +117,11 @@ Well, (and Apple probably aren't going to thank me for this), yes.  Yes, we can.
 All we need to do is this:
 
 *Make sure our class has the required structure to bridge to the CF type in question
-*Make sure our class identifies itself as the right General/CFType
+*Make sure our class identifies itself as the right CFType
 *Patch CF's class lookup table
 
 
-Let's have a little example.  A useful thing to bridge might well be General/CFTree.  So, we get up the CF collections documentation, wait about a week for it to all load, work out what we want our class to look like.  We can definitely make it easier to use, that's for sure.
+Let's have a little example.  A useful thing to bridge might well be CFTree.  So, we get up the CF collections documentation, wait about a week for it to all load, work out what we want our class to look like.  We can definitely make it easier to use, that's for sure.
 
 Our public interface might look a bit like this:
 
@@ -136,14 +136,14 @@ Our public interface might look a bit like this:
 
 - (BOOL) isLeaf;
 
-- (General/NSArray*) allChildren;
-- (General/NSEnumerator*) childEnumerator;
+- (NSArray*) allChildren;
+- (NSEnumerator*) childEnumerator;
 - (unsigned) childCount;
 - (id) childAtIndex: (unsigned) index;
 
 - (xxTree*) previousSibling;
 - (xxTree*) nextSibling;
-- (General/NSArray*) allSiblings;
+- (NSArray*) allSiblings;
 
 - (void) addChild: (xxTree*) child;
 - (void) addChild: (xxTree*) child atIndex: (unsigned) index;
@@ -157,8 +157,8 @@ Now, apart from the fact we've mixed up the mutating and non-mutating methods (w
 So, now we need to make it identify itself to CF as the correct type.  Nothing simpler.  
 
     
-- (General/CFTypeID) _cfTypeID {
-  return General/CFTreeGetTypeID();
+- (CFTypeID) _cfTypeID {
+  return CFTreeGetTypeID();
 }
 
 
@@ -170,10 +170,10 @@ Looks like this...
 
     
 struct __CFTree {
-    General/CFRuntimeBase _base;
-    General/CFTreeRef _parent;	/* Not retained */
-    General/CFTreeRef _sibling;	/* Not retained */
-    General/CFTreeRef _child;	/* All children get a retain from the parent */
+    CFRuntimeBase _base;
+    CFTreeRef _parent;	/* Not retained */
+    CFTreeRef _sibling;	/* Not retained */
+    CFTreeRef _child;	/* All children get a retain from the parent */
     /* This is the context, exploded.
      * Currently the only valid version is 0, so we do not store that.
      * _callbacks initialized if not a special form. */
@@ -197,11 +197,11 @@ typedef struct _xxTreeGuts {
 } xxTreeGuts;
 
 
-You will notice that we don't bring across the 'isa' from General/CFRuntimeBase - objc_object already has one of those, remember.  The two 16 bit variables don;t interest us, so we create an ignored 32 bit variable and leave it at that (this is dangerous, as we might be omitting padding, probably best to leave 'em as two 16 bitters).
+You will notice that we don't bring across the 'isa' from CFRuntimeBase - objc_object already has one of those, remember.  The two 16 bit variables don;t interest us, so we create an ignored 32 bit variable and leave it at that (this is dangerous, as we might be omitting padding, probably best to leave 'em as two 16 bitters).
 
-I'm precasting the General/CFTreeRef objects, makes it easier should we need to access them directly.
+I'm precasting the CFTreeRef objects, makes it easier should we need to access them directly.
 
-We also can't have any extra instance variable baggage to carry around, as CF methods will simply throw it away and we risk overwriting other objects if we access them through General/ObjC.  We need to be careful with all this, and the sizes need to be the same.
+We also can't have any extra instance variable baggage to carry around, as CF methods will simply throw it away and we risk overwriting other objects if we access them through ObjC.  We need to be careful with all this, and the sizes need to be the same.
 
 So our internal interface looks a bit like this, maybe.
 
@@ -228,9 +228,9 @@ The final options are *hardcoded' values for known versions of CF, and where tha
 Ignoring the search part, the code to actually do the patching looks (a bit) like this:
 
     
-+ (BOOL) bridgeClass: (Class) class toCFType: (General/CFTypeID) type {
++ (BOOL) bridgeClass: (Class) class toCFType: (CFTypeID) type {
   // Get the address of the class table
-  General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+  NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
   struct objc_class ** cfClassTable;
   
   // dump out if we don't have CF yet
@@ -241,20 +241,20 @@ Ignoring the search part, the code to actually do the patching looks (a bit) lik
   // Check it's not already bridged
   struct objc_class * bridgingPointer = cfClassTable[type];
   if (bridgingPointer == class) {
-    General/[NSException raise:General/NSInternalInconsistencyException
+    [NSException raise:NSInternalInconsistencyException
                 format:@"Class %@ tried to bridge to CF type %d, to which it is already bridged",
-                       General/NSStringFromClass(class),
+                       NSStringFromClass(class),
                        type,
                        bridgingPointer->name];
-  } else if (bridgingPointer != General/[NSCFType class]) {
-    General/[NSException raise:General/NSInternalInconsistencyException
+  } else if (bridgingPointer != [NSCFType class]) {
+    [NSException raise:NSInternalInconsistencyException
                 format:@"Class %@ tried to bridge to CF type %d, which is already bridged to %s",
-                       General/NSStringFromClass(class),
+                       NSStringFromClass(class),
                        type,
                        bridgingPointer->name];
   }
-  General/NSLog (@"Bridging user class %@ to CF type %d",
-        General/NSStringFromClass(class), type);
+  NSLog (@"Bridging user class %@ to CF type %d",
+        NSStringFromClass(class), type);
   cfClassTable[type] = class;
   [pool release];
   
@@ -264,23 +264,23 @@ Ignoring the search part, the code to actually do the patching looks (a bit) lik
 
 Note this is in a separate class provided for the exact purpose of bridging CF to user classes ;-)
 
-I will be releasing a few frameworks in the next week or so to provide exactly this functionality, and some more besides.  The stuff to do the patching, and a bridged General/CFTree is already there.
+I will be releasing a few frameworks in the next week or so to provide exactly this functionality, and some more besides.  The stuff to do the patching, and a bridged CFTree is already there.
 
 All at http://www.tufty.co.uk/Software, all BSD licensed.
 
 enjoy
 
-General/TufTy
+TufTy
 
 ----
 
-You may need to be careful about retain/release, I'm not entirely clear on the issue. It appears to me at least that CF and Cocoa do not keep their General/RetainCount in the same place, so you may need to override the Cocoa retain/release code to use the CF equivalent. You may have already noticed this, of course. -- General/KritTer
+You may need to be careful about retain/release, I'm not entirely clear on the issue. It appears to me at least that CF and Cocoa do not keep their RetainCount in the same place, so you may need to override the Cocoa retain/release code to use the CF equivalent. You may have already noticed this, of course. -- KritTer
 
 ----
 
 OK, got it figured now.
 
-First off, we need to get all the reference counting going through the same channels.  As we can't change the way that General/CFRetain() et al work, this means overriding -retain, -release and -retainCount in our classes to simply call the CF methods.
+First off, we need to get all the reference counting going through the same channels.  As we can't change the way that CFRetain() et al work, this means overriding -retain, -release and -retainCount in our classes to simply call the CF methods.
 
 Next up, we need to be very careful what happens in our -init... methods.  As you may remember, we are delegating all responsibility for creating these objects to CF - so our -init... methods are throwing away the memory already allocated for the object and re-creating through CF.  The standard pattern for this is:
 
@@ -293,12 +293,12 @@ Next up, we need to be very careful what happens in our -init... methods.  As yo
 }
 
 
-However, in this case, this pattern causes an infinite loop.  Why?  Well, the loop occurs between General/CFRelease() and -release.  For some reason, General/CFRelease() is calling our -release method, which is calling General/CFRelease etc etc until we run out of stack space and eat flaming SEGV.
+However, in this case, this pattern causes an infinite loop.  Why?  Well, the loop occurs between CFRelease() and -release.  For some reason, CFRelease() is calling our -release method, which is calling CFRelease etc etc until we run out of stack space and eat flaming SEGV.
 
-Back to the CF source, then, to understand what's going on.  In General/CFRuntime.c we find the definition of General/CFRelease (and General/CFRetain, etc).  And what we see is the following:
+Back to the CF source, then, to understand what's going on.  In CFRuntime.c we find the definition of CFRelease (and CFRetain, etc).  And what we see is the following:
 
     
-void General/CFRelease(General/CFTypeRef cf) {
+void CFRelease(CFTypeRef cf) {
     ...
     CFTYPE_OBJC_FUNCDISPATCH0(void, cf, "release");
     ....
@@ -312,7 +312,7 @@ object->isa != null
 
 Now, as far as I can tell, for our uninitialised object, we should still be appearing as a bridged class, and thus autorelease should work, but it doesn't.  I still don't fully understand this.
 
-However, replacing the autorelease with General/NSDeallocateObject(self) works 100%, so I'll leave it at that.  General/NSDeallocateObject is the function that gets called at the end of the -dealloc chain, and as we have no special handling for dealloc going on, we should be OK.
+However, replacing the autorelease with NSDeallocateObject(self) works 100%, so I'll leave it at that.  NSDeallocateObject is the function that gets called at the end of the -dealloc chain, and as we have no special handling for dealloc going on, we should be OK.
 
 Just for kicks, I've overridden -dealloc to raise an exception (we should only be deallocing through CF anyway, so we might want to know if this being called.
 
@@ -320,7 +320,7 @@ This approach works, but **only** if we are willing to accept that we will never
 
 Why?
 
-Well, if we subclass on the General/ObjC side, we **want** our -dealloc chain to be called.  And that now can't happen.  On top of this, our standard -init method will in all probability SEGV, or at least overwrite random memory, as the 'base' initialiser will return a block of memory that is the size of the CF object, not the subclassed General/ObjC object, and any additional  variables will be outside that block.  Whoops!
+Well, if we subclass on the ObjC side, we **want** our -dealloc chain to be called.  And that now can't happen.  On top of this, our standard -init method will in all probability SEGV, or at least overwrite random memory, as the 'base' initialiser will return a block of memory that is the size of the CF object, not the subclassed ObjC object, and any additional  variables will be outside that block.  Whoops!
 
 So, we want our -init method to return the original block of memory, but with the 'base' part initialised correctly.  In addition, we want our dealloc method to get called.  How are we going to go about this?
 
@@ -332,9 +332,9 @@ Our current -init looks a bit like this:
 
     
 - (id) init... {
-  General/NSDeallocateObject (self);
+  NSDeallocateObject (self);
   ...
-  self = General/CFCreate....(stuff);
+  self = CFCreate....(stuff);
   return self;
 }
 
@@ -345,7 +345,7 @@ But that's not going to work.  We need something like this:
 - (id) init... {
   if (self = [super init]) {
     ...
-    General/CFTypeRef myref = General/CFCreate...(stuff);
+    CFTypeRef myref = CFCreate...(stuff);
     // copy the CF object into self
     // delete the original CF object
   }
@@ -355,9 +355,9 @@ But that's not going to work.  We need something like this:
 
 Now, copying is a bit tricky.  We have two options.  
 
-One is to use CF functions to copy (keeping all the internal retain counts up to date) and then simply General/CFRelease() the original, but this option isn't available for all CF types.
+One is to use CF functions to copy (keeping all the internal retain counts up to date) and then simply CFRelease() the original, but this option isn't available for all CF types.
 
-The other option is to simply memcpy() the object into our memory, then somehow release the original without breaking the retain counts.  this could be troublesome due to the way CF holds retain counts - it keeps the low 15 bits within the object (that mysterious rc part of General/CFRuntimeBase) and the rest in an external dictionary keyed on the address of the object.  We intend to change the address of the object, which could cause problems - luckily CF lazily initialises the dictionary, so we don't have to worry - the only problem we're likely to get is if we re-init an object with > 32,000 retains on it, so we won't be doing that.  So we can copy the object, but how do we then get rid of the original without releasing any internal stuff?  General/CFRelease() is out, but there is General/CFAllocatorDeallocate() which just deallocates the memory block.
+The other option is to simply memcpy() the object into our memory, then somehow release the original without breaking the retain counts.  this could be troublesome due to the way CF holds retain counts - it keeps the low 15 bits within the object (that mysterious rc part of CFRuntimeBase) and the rest in an external dictionary keyed on the address of the object.  We intend to change the address of the object, which could cause problems - luckily CF lazily initialises the dictionary, so we don't have to worry - the only problem we're likely to get is if we re-init an object with > 32,000 retains on it, so we won't be doing that.  So we can copy the object, but how do we then get rid of the original without releasing any internal stuff?  CFRelease() is out, but there is CFAllocatorDeallocate() which just deallocates the memory block.
 
 So, that's that.  Our init looks a bit like this:
 
@@ -368,18 +368,18 @@ So, that's that.  Our init looks a bit like this:
   if (self = [super init]) {
     Class myClass = self->isa;  // Save isa
     ...
-    General/CFTypeRef ref = General/CFCreate...(stuff);
+    CFTypeRef ref = CFCreate...(stuff);
     memcpy(self, ref, sizeof(struct myGuts) + sizeof(void*));
     self->isa = myClass;        // Restore isa
-    General/CFAllocatorDeallocate(NULL, ref);
+    CFAllocatorDeallocate(NULL, ref);
   }
   return self;
 }
 
 
-We have to save and restore our isa pointer, as the isa returned by the General/CFCreate... will return the base class, but we can't guarantee that's our actual class.
+We have to save and restore our isa pointer, as the isa returned by the CFCreate... will return the base class, but we can't guarantee that's our actual class.
 
-And now, we have problems.  Our -release and -retain methods won't work for subclasses, as they have different classes to the 'base', and thus General/CFRelease/General/CFRetain will call their General/ObjC equivalents as described before, and it'll be back to SEGV City via Infinite Loop Central...
+And now, we have problems.  Our -release and -retain methods won't work for subclasses, as they have different classes to the 'base', and thus CFRelease/CFRetain will call their ObjC equivalents as described before, and it'll be back to SEGV City via Infinite Loop Central...
 
 So, what should they look like?
 
@@ -387,8 +387,8 @@ So, what should they look like?
 
 - (id) retain {
   Class myClass = self->isa;     // Save actual isa
-  self->isa = General/[BaseClass class]; // replace temporarily
-  General/CFRetain (self);
+  self->isa = [BaseClass class]; // replace temporarily
+  CFRetain (self);
   self->isa = myClass;           // And restore it
   return self;
 }
@@ -400,8 +400,8 @@ So, what should they look like?
   if (shouldDealloc) {
     [self dealloc];  // Need to call custom dealloc before possibly releasing the object
   }
-  self->isa = General/[BaseClass class]; // replace temporarily
-  General/CFRelease (self);
+  self->isa = [BaseClass class]; // replace temporarily
+  CFRelease (self);
   if (!shouldDealloc)
     self->isa = myClass;         // And restore it if we didn't dealloc
 }
@@ -409,24 +409,24 @@ So, what should they look like?
 - (unsigned) retainCount {
   Class myClass = self->isa;     // Save actual isa
   unsigned rc;
-  self->isa = General/[BaseClass class]; // replace temporarily
-  rc = General/CFGetRetainCount (self);
+  self->isa = [BaseClass class]; // replace temporarily
+  rc = CFGetRetainCount (self);
   self->isa = myClass;           // And restore it
   return rc;
 }
 
 - (void) dealloc {
   // Deallocate any additional memory we own.
-  General/NSZoneRealloc([self zone, self, sizeof(struct myGuts) + sizeof(void*)]);
+  NSZoneRealloc([self zone, self, sizeof(struct myGuts) + sizeof(void*)]);
   // Don't call [super dealloc];
 }
 
 
-And that, I think, should do it.  We trick the CF runtime into not treating our subclasses as pure General/ObjC classes, we call our custom dealloc chain, we get rid of all our additional memory.
+And that, I think, should do it.  We trick the CF runtime into not treating our subclasses as pure ObjC classes, we call our custom dealloc chain, we get rid of all our additional memory.
 
-It should probably be noted that subclassing bridged classes will blow away the bridging ability to a certain extent - (General/CFTypeRef)myObject will work, but the converse won't, in the same way that (General/NSObject*)myObject will work, but (General/MyClass*)General/[[NSObject alloc] init] won't.  But that's bleedin' obvious.
+It should probably be noted that subclassing bridged classes will blow away the bridging ability to a certain extent - (CFTypeRef)myObject will work, but the converse won't, in the same way that (NSObject*)myObject will work, but (MyClass*)[[NSObject alloc] init] won't.  But that's bleedin' obvious.
 
-General/TufTy
+TufTy
 
 ----
 
@@ -437,7 +437,7 @@ Rather bemused. Why are you copying the new CF object into the original Cocoa ob
 // the isa pointer
 - (id) init {
   Class myClass = self->isa;  // Save isa
-  General/CFxxxRef ref = General/CFxxxCreate(stuff);
+  CFxxxRef ref = CFxxxCreate(stuff);
   [self release];
   self = (id)ref;
   self->isa = myClass;        // Restore isa
@@ -445,29 +445,29 @@ Rather bemused. Why are you copying the new CF object into the original Cocoa ob
 }
 
 
-That way, when the retain count hits zero, you don't need to worry about the fact that General/CFRelease is going to try to deallocate the pointer it's given (which your code doesn't seem to deal with):
+That way, when the retain count hits zero, you don't need to worry about the fact that CFRelease is going to try to deallocate the pointer it's given (which your code doesn't seem to deal with):
 
     
 - (id) retain {
   Class myClass = self->isa;     // Save actual isa
-  self->isa = General/[BaseClass class]; // replace temporarily
-  General/CFRetain (self);
+  self->isa = [BaseClass class]; // replace temporarily
+  CFRetain (self);
   self->isa = myClass;           // And restore it
   return self;
 }
 
 - (oneway void) release {
   Class myClass = self->isa;     // Save actual isa
-   self->isa = General/[BaseClass class]; // replace temporarily
-  General/CFRelease (self);
+   self->isa = [BaseClass class]; // replace temporarily
+  CFRelease (self);
   self->isa = myClass;         // Errr...whoops?
 }
 
 - (unsigned) retainCount {
   Class myClass = self->isa;     // Save actual isa
   unsigned rc;
-  self->isa = General/[BaseClass class]; // replace temporarily
-  rc = General/CFGetRetainCount (self);
+  self->isa = [BaseClass class]; // replace temporarily
+  rc = CFGetRetainCount (self);
   self->isa = myClass;           // And restore it
   return rc;
 }
@@ -477,17 +477,17 @@ Except the code is still illegal when the dealloc occurs. Excuse me while I go a
 
 No, I have no quick solution. And now I have to go and work. Excuse me again, and good luck.
 
- -- General/KritTer
+ -- KritTer
  
  ----
  
- Reason for copying is because I might want to subclass the class and add extra variables.  If I simply return the CF stuff, I don't get the extra memory.  A bit like wanting to use an General/NSMutableArray, but expecting General/[[NSObject alloc] init] to provide me everything I need.
+ Reason for copying is because I might want to subclass the class and add extra variables.  If I simply return the CF stuff, I don't get the extra memory.  A bit like wanting to use an NSMutableArray, but expecting [[NSObject alloc] init] to provide me everything I need.
  
  Yeah, it means jumping through lots of hoops.  And I've still got all sorts of problems with it, but it's almost working.
  
- General/TufTy
+ TufTy
 
-So make it a class cluster like all the other bridged stuff. I just can't see how you could get around the whole memory deallocation problem. -- General/KritTer
+So make it a class cluster like all the other bridged stuff. I just can't see how you could get around the whole memory deallocation problem. -- KritTer
 
 ----
 Forgive the obvious question, but if I wanted to make a subclass of a class that is toll-free bridged, but still wanted to retain the bridging, how could I add an interface variable?

@@ -6,9 +6,9 @@ Say, for instance, I was to have a preference to start a task automatically when
 
 ----
 
-General/NSApplication does have the following (among others) delegate method     - (void)applicationDidFinishLaunching:(General/NSNotification *)aNotification
+NSApplication does have the following (among others) delegate method     - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 
-You can also register for this notification (General/NSApplicationDidFinishLaunchingNotification) explicitly in other classes, if you want it.
+You can also register for this notification (NSApplicationDidFinishLaunchingNotification) explicitly in other classes, if you want it.
 
 ----
  
@@ -22,17 +22,17 @@ But I try to put it into the - (void)applicationDidFinishLaunching, and I don't 
 
 Was the applicationDidFinishLaunching method in your application's delegate object? Or did you register for the notification?
 
-*Sounds to me like outPut wasn't set at the time of -applicationDidFinishLaunching. Check to see if it's nil with a simple      if(outPut) General/NSLog(@"bah");  statement, and let us know.**
+*Sounds to me like outPut wasn't set at the time of -applicationDidFinishLaunching. Check to see if it's nil with a simple      if(outPut) NSLog(@"bah");  statement, and let us know.**
 
 ----
 
-If those approaches don't work, you could always use a one-shot General/NSTimer. It just has to run once and then remove itself.
+If those approaches don't work, you could always use a one-shot NSTimer. It just has to run once and then remove itself.
 
-E.g. I have one app that displays a splash screen at startup. The screen fades in using an General/NSTimer, then the timer sets its next fire time to "in three seconds" so the user sees the splash, then fades out again. The overall running time isn't even three seconds, but on slower Macs, documents the user opens or loading of plugins at startup happens while the splash is up, which makes for a much more responsive app. -- General/UliKusterer
+E.g. I have one app that displays a splash screen at startup. The screen fades in using an NSTimer, then the timer sets its next fire time to "in three seconds" so the user sees the splash, then fades out again. The overall running time isn't even three seconds, but on slower Macs, documents the user opens or loading of plugins at startup happens while the splash is up, which makes for a much more responsive app. -- UliKusterer
 
 ----
 
-Just a style note - <code>outputView</code> or something would be a better name for the outlet. 'outPut' just looks really odd. See [http://developer.apple.com/documentation/Cocoa/Conceptual/General/CodingGuidelines/Articles/General/NamingBasics.html]
+Just a style note - <code>outputView</code> or something would be a better name for the outlet. 'outPut' just looks really odd. See [http://developer.apple.com/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingBasics.html]
 
 ----
 
@@ -40,4 +40,4 @@ Just a style note - <code>outputView</code> or something would be a better name 
 
 ----
 
-If you want to do something whenever something happens in the run loop, you can use     General/CFRunLoopAddObserver() to add a callback as an observer of the run loop.
+If you want to do something whenever something happens in the run loop, you can use     CFRunLoopAddObserver() to add a callback as an observer of the run loop.

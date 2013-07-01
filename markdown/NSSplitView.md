@@ -8,9 +8,9 @@ In Xcode 4, there are many splitviews, such as the main three panel splitter wit
 
 ==Related Topics==
 
-* General/SplitViewBasics
-* General/AnimatedNSSplitView
-* General/NSSplitViewWithAspectRatio
+* SplitViewBasics
+* AnimatedNSSplitView
+* NSSplitViewWithAspectRatio
 
 
 

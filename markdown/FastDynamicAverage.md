@@ -1,7 +1,7 @@
 This is probably more of a C question since "fast" and "cocoa" don't usually belong in the same sentence.  What's a very fast way to report a dynamic average.  Suppose I push a number into an object that stores a list of those numbers.  The behavior comes in one of two flavors.  The list grows until it is emptied it, or it grows until a certain size beyond which the head of the list is removed to make room for the new tail.  At any point I can call average.  There's the obvious naive way to implement this functionality, but there must be a good way to do this that would make Fibonacci proud.
 
 ----
-Well, you could calculate the average each time a new number is added, store it somewhere, and return it whenever you call the average method/function. This doesn't speed up the averaging process itself, but it might "look" faster. Or you could do something like this, which is probably marginally faster than totalling and dividing each time. --General/JediKnil
+Well, you could calculate the average each time a new number is added, store it somewhere, and return it whenever you call the average method/function. This doesn't speed up the averaging process itself, but it might "look" faster. Or you could do something like this, which is probably marginally faster than totalling and dividing each time. --JediKnil
     
 static const unsigned int kMaxLength = 10; // or whatever
 
@@ -36,7 +36,7 @@ What exactly is the problem? You want to avoid a division when calling average??
 
 What might be your problem is if     storeNumber or     removeAndReturnFirstNumber are not O(1).
 
-Read up on General/TimeComplexity (and make Knuth happy) -- and also, do you want a fast     addNumber: or     average method?
+Read up on TimeComplexity (and make Knuth happy) -- and also, do you want a fast     addNumber: or     average method?
 
 ----
 
@@ -51,4 +51,4 @@ The process is slightly complicated by your requirement that only the last M dat
 If you're app's slow, **profile it**. Don't guess where the inefficiencies are, because you'll probably be wrong. Use one of the tools Apple provided for this happenstance, and locate the slow patch empirically. There's no other way to fly.
 
 ----
-General/MultipleEditSyndrome! Anyway, do you ever need to access the numbers again? Do they *have* to be removed afterwards? Because if they don't, you could just keep a running total and divide by the size whenever necessary, leaving out all the number storage stuff. --General/JediKnil (again)
+MultipleEditSyndrome! Anyway, do you ever need to access the numbers again? Do they *have* to be removed afterwards? Because if they don't, you could just keep a running total and divide by the size whenever necessary, leaving out all the number storage stuff. --JediKnil (again)

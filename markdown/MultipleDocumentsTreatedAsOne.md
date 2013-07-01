@@ -45,7 +45,7 @@ Thanks,
 Brian
 
 ----
-Hmm.. continuing to dig. Went to book store last night and bought all the cocoa books I could find. One is "Step into General/XCode". It is looking like I will have to manage the second documebnt COMPLETELY by hand sans cocoa bindings.. Thought I would update the page. If I find a solution I will post it.
+Hmm.. continuing to dig. Went to book store last night and bought all the cocoa books I could find. One is "Step into XCode". It is looking like I will have to manage the second documebnt COMPLETELY by hand sans cocoa bindings.. Thought I would update the page. If I find a solution I will post it.
 
 Why is this so convoluted? I would think SOMONE would have run into this before (I.e. are there NO applications with need more than one document open at a time?).
 

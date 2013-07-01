@@ -1,5 +1,5 @@
 Sorry if this has been asked before. I searched for some information, but there is so much that it is easy to miss.
-I was wondering how to go about putting two General/NSTableViews inside a single General/NSScrollView. I essentially want to have two tables
+I was wondering how to go about putting two NSTableViews inside a single NSScrollView. I essentially want to have two tables
 of the exact same height that are in sink together when scrolling, but there would be a divider between them separating them.
 
     
@@ -18,7 +18,7 @@ E.g.                                                                          Sc
 
 EDIT: Sorry I could not get the picture correct, it appears much better in edit mode :(
 
-Sorry for the poor drawing. Right now I have made a subclass of an General/NSView, set that as the document view to the General/NSScrollView and then I added my two table views to the new view, unfortunately the headers are now gone. There present if I directly set the table view as the document view of the scroll view though.
+Sorry for the poor drawing. Right now I have made a subclass of an NSView, set that as the document view to the NSScrollView and then I added my two table views to the new view, unfortunately the headers are now gone. There present if I directly set the table view as the document view of the scroll view though.
 
 Thanks
 ----
@@ -30,4 +30,4 @@ If you are trying to remove the scroll bars from the individual table views, the
 ----
 Read the conceptual documents regarding view frame, bounds, and scroll views.
 
-*What you want to do will likely be very hard to pull off; an alternative on the General/TwoPDFViewsWithSynchronizedScrolling page is to have one scroll view to scroll whenever the user drags the scroller on the other one.*
+*What you want to do will likely be very hard to pull off; an alternative on the TwoPDFViewsWithSynchronizedScrolling page is to have one scroll view to scroll whenever the user drags the scroller on the other one.*

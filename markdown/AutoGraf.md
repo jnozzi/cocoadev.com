@@ -1,11 +1,11 @@
 [http://autograf.sourceforge.net/]
 
-From the General/AutoGraf web site:
+From the AutoGraf web site:
 
 *
 ...a whole new metaphor for Cocoa with automatic, self-updating diagrams of your classes, and intelligent, visual browsing of code documentation.
 
-Think of General/AutoGraf as the best way to understand your code. Using the General/AutoDoc code parser that is optimized for Objective-C, General/AutoGraf reads your existing Cocoa code and generates UML class diagrams rendered beautifully using Quartz and the AT&T Graphviz engine.
+Think of AutoGraf as the best way to understand your code. Using the AutoDoc code parser that is optimized for Objective-C, AutoGraf reads your existing Cocoa code and generates UML class diagrams rendered beautifully using Quartz and the AT&T Graphviz engine.
 *
 
 Open source, GPL license.

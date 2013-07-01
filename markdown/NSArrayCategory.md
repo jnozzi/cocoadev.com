@@ -1,8 +1,8 @@
 
 
-Some handy addenda to General/NSArray, everybody's favorite Cocoa General/OrderedCollection.  Some are for symmetry, some are for kicks, all are for free.  Enjoy.
+Some handy addenda to NSArray, everybody's favorite Cocoa OrderedCollection.  Some are for symmetry, some are for kicks, all are for free.  Enjoy.
 
-**Source for General/NSArray+General/CocoaDevUsersAdditions.h :**
+**Source for NSArray+CocoaDevUsersAdditions.h :**
     
  #import <Foundation/Foundation.h>
  
@@ -10,8 +10,8 @@ Some handy addenda to General/NSArray, everybody's favorite Cocoa General/Ordere
  
  - (NSIndexSet *) indexesForObjects: (NSArray *) array; // returns the indexes which match objects
  
- + (NSArray *)arrayWithObjectsFromArrays:(NSArray *)arrays; //for handiness, especially with General/HigherOrderMessages
- + (NSArray *)arrayWithClonesOf:(id)object count:(unsigned)count; //for things like General/FlywheelPattern or maybe a General/RunArray implementation.
+ + (NSArray *)arrayWithObjectsFromArrays:(NSArray *)arrays; //for handiness, especially with HigherOrderMessages
+ + (NSArray *)arrayWithClonesOf:(id)object count:(unsigned)count; //for things like FlywheelPattern or maybe a RunArray implementation.
  
  /* please criticize these.... */
  + (NSArray *)arrayWithCRLFLinesOfFile:(NSString *)filePath; // assumes CRLF
@@ -21,7 +21,7 @@ Some handy addenda to General/NSArray, everybody's favorite Cocoa General/Ordere
  - (BOOL)isEmpty;
  - (id)firstObject;
  
- // Unnecessary; can use -doesContain from General/NSComparisonMethods.
+ // Unnecessary; can use -doesContain from NSComparisonMethods.
  - (BOOL)containsObjectIdenticalTo:(id)anObject;
  
  - (NSArray *)arrayByRemovingFirstObject;
@@ -34,7 +34,7 @@ Some handy addenda to General/NSArray, everybody's favorite Cocoa General/Ordere
  - (NSArray *)choppedAtCount:(unsigned)count;
  - (NSArray *)reversedArray;
  
- // NOTE: results array contains instance of General/NSNull where result of performing selector is nil
+ // NOTE: results array contains instance of NSNull where result of performing selector is nil
  // a collection here is anything responding to -objectEnumerator
  - (NSArray *)resultsOfMakeObjectsPerformSelector:(SEL)aSelector;
  - (NSArray *)resultsOfMakeObjectsPerformSelector:(SEL)aSelector withObject:(id)anObject;
@@ -52,7 +52,7 @@ Some handy addenda to General/NSArray, everybody's favorite Cocoa General/Ordere
  @end
 
 
-**Source for General/NSArray+General/CocoaDevUsersAdditions.m :**
+**Source for NSArray+CocoaDevUsersAdditions.m :**
     
  #import "NSArray+CocoaDevUsersAdditions.h"
  
@@ -67,7 +67,7 @@ Some handy addenda to General/NSArray, everybody's favorite Cocoa General/Ordere
      index = [self indexOfObject:obj];
      if (index != NSNotFound) [indexSet addIndex:index];
    }
-   return General/[NSIndexSet alloc] initWithIndexSet:indexSet] autorelease];
+   return [NSIndexSet alloc] initWithIndexSet:indexSet] autorelease];
  }
  
  + (NSArray *)arrayWithObjectsFromArrays:(NSArray *)arrays
@@ -282,4 +282,4 @@ Some handy addenda to General/NSArray, everybody's favorite Cocoa General/Ordere
 
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

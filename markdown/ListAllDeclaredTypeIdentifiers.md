@@ -1,19 +1,19 @@
-Here is a quick tool that uses an undocumented API call to list all declared General/UniformTypeIdentifier<nowiki/>s. It could easily be rewritten to use General/CoreFoundation instead of Objective-C, but I'm too lazy to do it. Feel free to do it for me and post it here. --General/WAHa
+Here is a quick tool that uses an undocumented API call to list all declared UniformTypeIdentifier<nowiki/>s. It could easily be rewritten to use CoreFoundation instead of Objective-C, but I'm too lazy to do it. Feel free to do it for me and post it here. --WAHa
 
     
 #include <Foundation/Foundation.h>
 
-General/NSArray *_UTCopyDeclaredTypeIdentifiers();
+NSArray *_UTCopyDeclaredTypeIdentifiers();
 
 int main()
 {
-	General/NSAutoreleasePool *pool=General/[[NSAutoreleasePool alloc] init];
-	General/NSArray *types=_UTCopyDeclaredTypeIdentifiers();
+	NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
+	NSArray *types=_UTCopyDeclaredTypeIdentifiers();
 	int i;
 
 	for(i=0;i<[types count];i++)
 	{
-		printf("%s\n",General/types objectAtIndex:i] UTF8String]);
+		printf("%s\n",types objectAtIndex:i] UTF8String]);
 	}
 
 	return 0;

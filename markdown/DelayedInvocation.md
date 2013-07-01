@@ -1,12 +1,12 @@
 Hello, I'm currently trying to implement a delayed invocation of a method that takes an id and a boolean, my code is as follows:
 
-    General/NSMethodSignature * signature = [self methodSignatureForSelector:@selector(saveDocument:closeAfter:)];
-			General/NSInvocation * invoke = General/[NSInvocation invocationWithMethodSignature:signature];
+    NSMethodSignature * signature = [self methodSignatureForSelector:@selector(saveDocument:closeAfter:)];
+			NSInvocation * invoke = [NSInvocation invocationWithMethodSignature:signature];
 			[invoke setArgument:self atIndex:2];
 			BOOL close = YES;
 			[invoke setArgument:&close atIndex:3];
 			[invoke setTarget:self];
-			General/[NSTimer timerWithTimeInterval:0.5 invocation:invoke repeats:NO];
+			[NSTimer timerWithTimeInterval:0.5 invocation:invoke repeats:NO];
 
 It looks like it should work to me, but nothing at all happens. Any ideas?
 

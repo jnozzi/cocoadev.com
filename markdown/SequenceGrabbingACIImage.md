@@ -1,13 +1,13 @@
-Is there any function in the Sequence Grabber API that would help me grab an image and create a General/CIImage?
+Is there any function in the Sequence Grabber API that would help me grab an image and create a CIImage?
 
 ----
-I have no idea of General/QuickTime, honestly, but one short google search brought up toxicsoftware's blog with an example: 
+I have no idea of QuickTime, honestly, but one short google search brought up toxicsoftware's blog with an example: 
 
 http://toxicsoftware.com/blog/sequence_grabber_code_now_with_coregoodness/
 
 source:
 
-http://svn.toxicsoftware.com/public/trunk/Frameworks/General/ToxicMedia/
+http://svn.toxicsoftware.com/public/trunk/Frameworks/ToxicMedia/
 
 
 Did that help?
@@ -19,9 +19,9 @@ I don't see a whole lot of use of the Quicktime Sequence grabber API in the exam
 
 ----
 
-Make sure not to look into samples/General/SequenceGrabber but into /frameworks/source/sequencegrabber...
+Make sure not to look into samples/SequenceGrabber but into /frameworks/source/sequencegrabber...
 
-http://svn.toxicsoftware.com/public/trunk/Frameworks/General/ToxicMedia/Framework/Source/General/SequenceGrabber/
+http://svn.toxicsoftware.com/public/trunk/Frameworks/ToxicMedia/Framework/Source/SequenceGrabber/
 
 But as I said, I m not familiar with that thing, maybe it s of no help whatsoever...
 
@@ -36,6 +36,6 @@ http://developer.apple.com/tools/subversionxcode.html
 --marcocoa
 ----
 Problem solved.  This article helped:
-General/NSImageFromAMovieFrame
+NSImageFromAMovieFrame
 
-All you do is use General/SGSetGWorld, and then use a method similar to the one in the article.
+All you do is use SGSetGWorld, and then use a method similar to the one in the article.

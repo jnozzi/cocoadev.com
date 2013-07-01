@@ -1,5 +1,5 @@
-Question: Is there an equivalent to General/ActiveX on Mac OS X?
+Question: Is there an equivalent to ActiveX on Mac OS X?
 
 Answer: No.
 
-If you want to display interactive media through your Cocoa application, you can use Flash content via General/WebKit's General/WebView, or General/QTKit's General/QTMovieView. If you want to display General/PDFs, use General/PDFKit. Several things that would be packaged as General/ActiveX controls (like calendars, PDF viewers, web browsers, etc.) on Windows are implemented as custom controls on Mac OS X.
+If you want to display interactive media through your Cocoa application, you can use Flash content via WebKit's WebView, or QTKit's QTMovieView. If you want to display PDFs, use PDFKit. Several things that would be packaged as ActiveX controls (like calendars, PDF viewers, web browsers, etc.) on Windows are implemented as custom controls on Mac OS X.

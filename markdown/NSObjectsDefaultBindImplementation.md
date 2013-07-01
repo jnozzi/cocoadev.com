@@ -1,15 +1,15 @@
 
 
-I'm doing some Cocoa programming with General/CocoaBindings and I get slightly confused when I try to create a custom controller (view) with bindings.
+I'm doing some Cocoa programming with CocoaBindings and I get slightly confused when I try to create a custom controller (view) with bindings.
 
 
-I have a custom General/NSImageView that I call P<nowiki/>refImageView. The P<nowiki/>refImageView class exposes a binding named "cutting" in the initialize method and has General/KeyValueCoding compliant accessor methods for the member. P<nowiki/>refImageView differs from a regular General/NSImageView in that images are always scaled to fill the whole the image view, but the cutting member determines if the image should be stretched disproportionally or have edges cut off if the image and the image view have different proportions.
+I have a custom NSImageView that I call P<nowiki/>refImageView. The P<nowiki/>refImageView class exposes a binding named "cutting" in the initialize method and has KeyValueCoding compliant accessor methods for the member. P<nowiki/>refImageView differs from a regular NSImageView in that images are always scaled to fill the whole the image view, but the cutting member determines if the image should be stretched disproportionally or have edges cut off if the image and the image view have different proportions.
 
-    General/PrefImageView.h
+    PrefImageView.h
 - (void) setCutting:(BOOL)b;
 - (BOOL) isCutting;
 
-General/PrefImageView.m
+PrefImageView.m
 + (void) initialize {
 	[self exposeBinding:@"cutting"];
 }
@@ -28,9 +28,9 @@ Add a call +exposeBinding in [P<nowiki/>refImageView +initialize]:
 
 you may also want to add a valueClassForBinding implementation to P<nowiki/>refImageView:
     
-- (Class)valueClassForBinding:(General/NSString *)binding {
+- (Class)valueClassForBinding:(NSString *)binding {
     if ([binding isEqualToString:@"cutting"]) {
-        return General/[NSNumber class];
+        return [NSNumber class];
     } else {
         return [super valueClassForBinding:binding];
     }
@@ -39,15 +39,15 @@ you may also want to add a valueClassForBinding implementation to P<nowiki/>refI
 
 This will allow IB to customize what information it exposes about your binding a little bit such as what value transformers it displays.
 
-General/DaveMacLachlan
+DaveMacLachlan
  ----
 
 Since I couldn't find the answer to question 1 anywhere, I tried to programmatically bind "cutting" to the user defaults:
     
-[imageView bind:@"cutting" toObject:ud withKeyPath:@"General/CutImage" options:nil];
+[imageView bind:@"cutting" toObject:ud withKeyPath:@"CutImage" options:nil];
 
 This worked fine! Manipulation of the S<nowiki/>witch changes both the user defaults and the visuals of the image view. However, according to all the binding docs I've read, it's not supposed to work, because I'm supposed to have to override the bind method to make anything work. 
 
-Question 2: What exactly does bind:toObject:withKeyPath:options in General/NSObject do? Can I reliably get away with not overriding bind if I stick to simple General/KeyValueCoding compliant accessor members?
+Question 2: What exactly does bind:toObject:withKeyPath:options in NSObject do? Can I reliably get away with not overriding bind if I stick to simple KeyValueCoding compliant accessor members?
 
-... I have since added and bound a second member, framed, to P<nowiki/>refImageView and it still works. I have also realised that I could have used General/NSObjectController in General/InterfaceBuilder to avoid binding manually.
+... I have since added and bound a second member, framed, to P<nowiki/>refImageView and it still works. I have also realised that I could have used NSObjectController in InterfaceBuilder to avoid binding manually.

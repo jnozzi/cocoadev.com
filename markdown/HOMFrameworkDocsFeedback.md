@@ -10,7 +10,7 @@ In particular I'd like to know if you think you would use any of the features, a
 
 Cheers for your time if you read it, anyone who gives useful feedback will be credited in the release.
 
--- General/MikeAmy
+-- MikeAmy
 
 Oh and Happy Christmas & New Year to you all.
 
@@ -25,7 +25,7 @@ All higher order messages are defined for root classes. Most except -all and -fo
 In the following, "message" refers to some arbitrary message with an arbitrary number of arguments. Where you see "id result =" that means that you don't have to wait for the result (say if it hasn't been computed yet).
 
  Forwarding
-         General/object forward] message]
+         object forward] message]
  "perform [(encapsulated message) invokeWithTarget:object] (Nothing really special)"
          [[object reforward] message]
  "perform [object forwardInvocation:(encapsulated message)] (Useful for hiding methods behind a proxy)"
@@ -38,11 +38,11 @@ In the following, "message" refers to some arbitrary message with an arbitrary n
 
 Number elements
          [[[NSNumber ints:1 to:100]
- "General/NSNumbers from 1 to 100 representing ints, all other primitive types (chars, shorts, longs, floats, etc) are also available."
+ "NSNumbers from 1 to 100 representing ints, all other primitive types (chars, shorts, longs, floats, etc) are also available."
 
  Collection operations
  Note that this is a subset of the possible collection manipulation higher order messages. You can also use collections as iterating arguments. Refer to the documentation for full details.
-         General/[collection elements] all] message]
+         [collection elements] all] message]
  "send message to each element in collection"
          [[[collection elements] collectEach] messageReturningObject] 
  "collect each result from sending message to each element in collection in a matching collection"
@@ -58,7 +58,7 @@ Number elements
  "combine all elements in collection into one object using combineMessage:, whose target and first argument types are the compatible"
 
  [[MultiProcessing
-         id result = General/object inParallel] message]
+         id result = object inParallel] message]
  "perform [object message] using symmetric multi processing if multiple processors are available, otherwise just perform [object message] normally. Result is available immediately."
          id result = [[object inNewThread] message]
  "perform [object message] in a new thread."
@@ -78,7 +78,7 @@ Number elements
  "return [object message] as an [[NSInvocation instead of performing it"
 
  Wrapping primitives
-         General/object wrapResult] messageReturningPrimitive]
+         object wrapResult] messageReturningPrimitive]
  "Wrap primitive return values as objects"
          [[object unwrapArguments] messageWithPrimitive:object]
  "Unwrap object arguments into primitives where necessary"
@@ -127,7 +127,7 @@ Number elements
 
  State pattern
          [object changeClassTo:[[[NewState class]] 
- "safely change class of object to General/NewState"
+ "safely change class of object to NewState"
 
  Observation
          [invocation invokeWhenever:object posts:notification]

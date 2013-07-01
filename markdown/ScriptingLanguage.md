@@ -1,30 +1,30 @@
-A General/ScriptingLanguage is the counterpart of a compiled language. General/ScriptingLanguages are interpreted, whilst compiled languages are, well, compiled, turned into machine code.
+A ScriptingLanguage is the counterpart of a compiled language. ScriptingLanguages are interpreted, whilst compiled languages are, well, compiled, turned into machine code.
 
-Examples of General/ScriptingLanguages: General/PerlLang, General/PythonLang, General/RubyLang, General/PHPLang, General/JavaScript
+Examples of ScriptingLanguages: PerlLang, PythonLang, RubyLang, PHPLang, JavaScript
 
-Examples of General/CompiledLanguages: General/ObjC, General/JaVA, C/C++
+Examples of CompiledLanguages: ObjC, JaVA, C/C++
 
-(ignore the "Lang" part, it's just for the General/WordsJammedTogether syntax)
+(ignore the "Lang" part, it's just for the WordsJammedTogether syntax)
 
-Oh, and don't forget about General/AppleScript....   :)
+Oh, and don't forget about AppleScript....   :)
 
 ----
 
 Java isn't compiled in quite the same sense that C is, though, since it's compiled to a byte code and then recompiled at execution time. Right?
 
--- General/FinlayDobbie
+-- FinlayDobbie
 
 
-Java is compiled to binary code that a General/JavaVirtualMachine can run, in the same way that a C program is compiled to binary code that a General/PowerPC or Intel machine can run. The General/JavaVM then translates the Java instructions into PPC or x86 instructions (or system calls, dunno). Has anyone tried General/JavaVM assembler?
+Java is compiled to binary code that a JavaVirtualMachine can run, in the same way that a C program is compiled to binary code that a PowerPC or Intel machine can run. The JavaVM then translates the Java instructions into PPC or x86 instructions (or system calls, dunno). Has anyone tried JavaVM assembler?
 
--- General/TheoHultberg
+-- TheoHultberg
 
 ----
 
-Has anyone tried General/JavaVM assembler?  Not worth the time.  I wouldn't want to write the Java assembly
+Has anyone tried JavaVM assembler?  Not worth the time.  I wouldn't want to write the Java assembly
 code required for a simple loop as illustrated in this example from The Java Virtual Machine Specification
 [http://java.sun.com/docs/books/vmspec/].  Most of us would get more out of learning more Cocoa.
-  -- General/BruceB
+  -- BruceB
 
 http://java.sun.com/docs/books/vmspec/2nd-edition/html/Compiling.doc.html
 
@@ -63,4 +63,4 @@ Generally, "scripting langauges" have a high instant-gratification factor, and f
 
 Jython - http://www.jython.org is very powerful.  It combines Python (interpreted) with Java's classes.
 
-General/PyObjC might also be an option.
+PyObjC might also be an option.

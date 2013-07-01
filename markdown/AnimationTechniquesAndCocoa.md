@@ -1,17 +1,17 @@
 
 **Animation Techniques and Cocoa**
 
-*I'm leaving this up because the discussion is interesting; don't use my code, though!  It was written back when I was just learning how to program, so it's pretty lame.  -  General/JoeOsborn*
+*I'm leaving this up because the discussion is interesting; don't use my code, though!  It was written back when I was just learning how to program, so it's pretty lame.  -  JoeOsborn*
 
 **Introduction**
 
-	For a new programmer, the task of animation can be daunting; it was for me. How was I to know how to do things like General/NSAffineTransform, image compositing, drawing to the screen, or even implementing drawing at all?  Every piece of sample animation code I'd seen was cryptic, poorly-refactored, even hacky C and C++.  Though I'm comfortable with C, the concept of a 3D graphics library gives me the willies.  So I looked to Cocoa for an answer, being a new Cocoa programmer.  After toying with General/NSImage for a while, this is what I've discovered:
+	For a new programmer, the task of animation can be daunting; it was for me. How was I to know how to do things like NSAffineTransform, image compositing, drawing to the screen, or even implementing drawing at all?  Every piece of sample animation code I'd seen was cryptic, poorly-refactored, even hacky C and C++.  Though I'm comfortable with C, the concept of a 3D graphics library gives me the willies.  So I looked to Cocoa for an answer, being a new Cocoa programmer.  After toying with NSImage for a while, this is what I've discovered:
 
 *Animation in Cocoa is more fun than a crate full of peanut-butter and jelly sandwiches(and it's a whole lot easier to implement)!*
 
-	That notwithstanding, there were some road blocks; I changed my mind between using General/NSTimer and a more traditional(and less Cocoa) timing method, first concerned about General/NSTimer's unreliability when it's given General/NSTimeIntervals of less than .05, then disgusted by all the while() loops and the un-GOOD("GOOD Object-Oriented Design")ness of my code.  The only 
+	That notwithstanding, there were some road blocks; I changed my mind between using NSTimer and a more traditional(and less Cocoa) timing method, first concerned about NSTimer's unreliability when it's given NSTimeIntervals of less than .05, then disgusted by all the while() loops and the un-GOOD("GOOD Object-Oriented Design")ness of my code.  The only 
 
-	The approach I will take will be purely Cocoa, with a helper class(General/OpenSwordGroup's General/OSAnimationTimer) of my own design which wraps the necessary General/NSTimer methods into a pleasant and easy-to-use class.  In this article, I'll show a bit of animation code and a bit of theory.  General/OSAnimationTimer can be found at http://opensword.dyndns.org/General/OSAnimationTimer.dmg.  (I won't bother going over the implementation of General/OSAnimationTimer; it's laughably simple.  General/OSAnimationTimer might be an example of a refactoring known as General/MethodObject; many of my classes implemented General/NSTimer convenience methods, so I bundled them all up into a single class.)
+	The approach I will take will be purely Cocoa, with a helper class(OpenSwordGroup's OSAnimationTimer) of my own design which wraps the necessary NSTimer methods into a pleasant and easy-to-use class.  In this article, I'll show a bit of animation code and a bit of theory.  OSAnimationTimer can be found at http://opensword.dyndns.org/OSAnimationTimer.dmg.  (I won't bother going over the implementation of OSAnimationTimer; it's laughably simple.  OSAnimationTimer might be an example of a refactoring known as MethodObject; many of my classes implemented NSTimer convenience methods, so I bundled them all up into a single class.)
 
 
 
@@ -20,23 +20,23 @@
 
 	Before any thought can be given to animation, a simple fact must be considered: movement is quantized.  Any motion can be divided into a number of parts, by time or by distance moved(or type of motion).  On a computer, it is easiest to quantize by time.  A "frame" of animation is simply a given picture of the animating object at a given location.  When different images are presented to a human in quick succession, the illusion of motion is created.  The speed at which frames are drawn is called the "framerate" and is measured in frames per second(fps).  **To best present the illusion of motion, framerate must be constant and fairly high**(television's framerate is 30 FPS; most games are either that or 60)** and the distance an object moves between frames must be fairly low**(in the following examples, the character will move 4 pixels every frame, for 8 frames; a total of 32 pixels will be moved.)**.**
 
-	General/NSTimer is a powerful class, but its interface is unwieldy for one who wants to use it in a lot of different classes in different inheritance heirarchies.  Additionally, General/NSTimer usage generally requires creation of a method with an ugly extraneous argument.  General/OSAnimationTimer solves both of these problems.
+	NSTimer is a powerful class, but its interface is unwieldy for one who wants to use it in a lot of different classes in different inheritance heirarchies.  Additionally, NSTimer usage generally requires creation of a method with an ugly extraneous argument.  OSAnimationTimer solves both of these problems.
 
-	There isn't much to say for timing.  Usage of General/OSAnimationTimer is straightforward:
+	There isn't much to say for timing.  Usage of OSAnimationTimer is straightforward:
 
     
-/*an instance variable, General/OSAnimationTimer*timer, has been initialized in -init
+/*an instance variable, OSAnimationTimer*timer, has been initialized in -init
 already.  another instance variable, frameNumber, is an unsigned integer which is 
-accessed below to help make sure the entire animation occurs(General/NSTimer sometimes fires
+accessed below to help make sure the entire animation occurs(NSTimer sometimes fires
 unreliably).  A third instance variable, 'view', is the view into which this
 object which animates will be drawn.  A fourth instance variable, drawPos, is
-the General/NSPoint to which this object will be composited.  The image for this object
+the NSPoint to which this object will be composited.  The image for this object
 is 32 pixels by 32 pixels.*/
 
 -(void)beginAnimation
 {
 	[self setFrameNumber:0];
-	General/self timer] start];
+	self timer] start];
 }
 
 -(double)framerate
@@ -55,7 +55,7 @@ is 32 pixels by 32 pixels.*/
 	}
 	else // done animating; let's clean up after ourselves.
 	{
-		General/self timer] stop];
+		self timer] stop];
 		[[NSLog(@"Done moving.");
 	}
 }
@@ -74,37 +74,37 @@ Solution: Try changing your -framerate method to return a different value; if it
 
 Problem: Image doesn't seem to move at all.
 
-Solution: Make sure you're telling the object's view to redraw the proper area;  make doubly sure that you're telling the right view to redraw.  You can use General/NSLogs or GDB for these purposes.  If you are doing what you're supposed to, try other things- make sure your drawing or animation code is called.  Be creative.
+Solution: Make sure you're telling the object's view to redraw the proper area;  make doubly sure that you're telling the right view to redraw.  You can use NSLogs or GDB for these purposes.  If you are doing what you're supposed to, try other things- make sure your drawing or animation code is called.  Be creative.
 
 Remember-- programming is fun.
 
-General/JoeOsborn
+JoeOsborn
 
 ----
 
-Discussion on timing techniques refactored to General/AnimationTimingAndCocoaDiscussion.
+Discussion on timing techniques refactored to AnimationTimingAndCocoaDiscussion.
 
 ----
 
-It looks like Apple is making some efforts in this area.... See General/NSAnimation? and General/NSViewAnimation?, both added in 10.4 .... I don't know about the rest of you, but I kind of wanted an easy way to do Quicksilver-like animations, and finding those articles in Apple's dev docs made me happy.
+It looks like Apple is making some efforts in this area.... See NSAnimation? and NSViewAnimation?, both added in 10.4 .... I don't know about the rest of you, but I kind of wanted an easy way to do Quicksilver-like animations, and finding those articles in Apple's dev docs made me happy.
 
 --
 
-Does anyone have any working method for swapping the content view of a window with a fade (i.e. when switching prefence panes in sys prefs) This should be easy with General/NSViewAnimation, but my handful of tests produced horrible results - where should one begin?
+Does anyone have any working method for swapping the content view of a window with a fade (i.e. when switching prefence panes in sys prefs) This should be easy with NSViewAnimation, but my handful of tests produced horrible results - where should one begin?
 
-There is some downloadable code in the General/CoreImage section which does what you want.
+There is some downloadable code in the CoreImage section which does what you want.
 
 ----
 
-I just published Flipr, sample code to do widget-like window flipping - it's a category on General/NSWindow, and uses General/CoreImage and General/NSAnimation.
+I just published Flipr, sample code to do widget-like window flipping - it's a category on NSWindow, and uses CoreImage and NSAnimation.
 
 Details and downloads here: http://www.brockerhoff.net/src/index.html
 
-*General/RainerBrockerhoff*
+*RainerBrockerhoff*
 
 ----
 
-I am working on getting animations to work in an General/OpenGL-based game. The animation system is working, except that things are *very* jerky when the app first starts. My log for the first few frames is like this (FPS should be 60.0):
+I am working on getting animations to work in an OpenGL-based game. The animation system is working, except that things are *very* jerky when the app first starts. My log for the first few frames is like this (FPS should be 60.0):
     
 2009-03-15 15:04:48.885 Bouncies[3193] FPS: 3.834378
 2009-03-15 15:04:48.974 Bouncies[3193] FPS: 12.164340
@@ -134,42 +134,42 @@ Is there any way to fix this? Here's an outline of what my code looks like:
     
 /*  
 Since Cocoa doesn't call the init methods on views created in Interface
-Builder, I used awakeFromNib to do my General/OpenGL initializations.
+Builder, I used awakeFromNib to do my OpenGL initializations.
 */
 - (void) awakeFromNib
 {  
   {
-    // set up General/OpenGL context, load sprites
+    // set up OpenGL context, load sprites
   }
 
   // set up main timer
-  General/NSMethodSignature *aSignature = 
-    General/[MyOpenGLView instanceMethodSignatureForSelector: 
+  NSMethodSignature *aSignature = 
+    [MyOpenGLView instanceMethodSignatureForSelector: 
       @selector( calculateNextFrame )];
-  timerInvocation = General/[NSInvocation invocationWithMethodSignature: aSignature];
+  timerInvocation = [NSInvocation invocationWithMethodSignature: aSignature];
   [timerInvocation setSelector: @selector( calculateNextFrame )];
   [timerInvocation setTarget: self];
 
   // sets up timer for 60.0 FPS
-  theTimer = General/[NSTimer
+  theTimer = [NSTimer
           scheduledTimerWithTimeInterval: 1.0 / 60.0 
                               invocation: timerInvocation
                                  repeats:  YES];
   [theTimer retain];
     
-  lastUpdate = General/[[NSDate date] retain];
+  lastUpdate = [[NSDate date] retain];
 
 }
 
-- (void) drawRect: (General/NSRect) rect
+- (void) drawRect: (NSRect) rect
 {      
   { 
-    // prepare General/OpenGL render system for drawing next frame
+    // prepare OpenGL render system for drawing next frame
   }
   
   [self drawBackground: rect];
-  [self drawForeground: rect]; // draws the ballSprite to the General/OpenGL view
-  General/self openGLContext] flushBuffer]; 
+  [self drawForeground: rect]; // draws the ballSprite to the OpenGL view
+  self openGLContext] flushBuffer]; 
 }
 
 /* 

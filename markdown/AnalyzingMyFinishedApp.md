@@ -5,11 +5,11 @@ It's working fine & I've beeen using it daily, but now that its done I'd just li
 
 Are there any apps that will help me examine my app & see if memory is being leaked or anything goofy like that?  Like I said, its a very lightweight app & if theres a leak It'd take forever for me to even notice a problem, let alone find out for sure that its coming from my app.  I'd just like to educate myself on a little more of the development process outside of the code & make sure I'm doing things right with memory management.
 
-Any recomendations?  General/CliffPruitt
+Any recomendations?  CliffPruitt
 
 ----
 
-See General/MemoryLeaks for advice on detecting and eliminating leaks.
+See MemoryLeaks for advice on detecting and eliminating leaks.
 
 ----
 

@@ -2,7 +2,7 @@
 
 Hi all!
 
-I am working to implement in Objective C a class General/QuadEdge based on Guibas and Stolfi's data structure for a GIS spatial data class. I have some design questions. I hope some people can help me in figuring these out.
+I am working to implement in Objective C a class QuadEdge based on Guibas and Stolfi's data structure for a GIS spatial data class. I have some design questions. I hope some people can help me in figuring these out.
 
 I have found 3 implementations. Here are the abreiviated headers:
 
@@ -12,8 +12,8 @@ I have found 3 implementations. Here are the abreiviated headers:
 typedef int edge_ref;
 
 typedef struct {
-    edge_ref next[4]; //Stores General/ONext, General/SymDNext, General/RotRNext, General/TorLNext
-    void *data[4];    //Stores origin, destination, General/LeftFace, General/RightFace
+    edge_ref next[4]; //Stores ONext, SymDNext, RotRNext, TorLNext
+    void *data[4];    //Stores origin, destination, LeftFace, RightFace
     unsigned mark;
   } edge_struct;
 
@@ -27,16 +27,16 @@ typedef struct {
     -C++ : http://www-2.cs.cmu.edu/afs/andrew/scs/cs/15-463/pub/src/a2/quadedge.html
 
     
-class General/QuadEdge;
+class QuadEdge;
 class Edge {
-   friend General/QuadEdge;
+   friend QuadEdge;
    private:
       int num;
       Edge *next;
       Point2d *data;
 };
 
-class General/QuadEdge {
+class QuadEdge {
    private:
       Edge e[4];
 };
@@ -61,50 +61,50 @@ inline Edge* Edge::invRot()
     -Delphi : "The Quad-Arc Data Structure" by C Gold
 
     
-General/TQuad = class
-   N : General/TQuad;
-   R : General/TQuad;
-   V : General/TPoint;
+TQuad = class
+   N : TQuad;
+   R : TQuad;
+   V : TPoint;
    Index : Integer;
 end;
 
-function General/TQuad.Rot : General/TQuad;
+function TQuad.Rot : TQuad;
 begin
    Sym := Self.R;
 end;
 
-function General/TQuad.Sym : General/TQuad;
+function TQuad.Sym : TQuad;
 begin
    Sym := Self.R.R;
 end;
 
-function General/TQuad.Inv : General/TQuad;
+function TQuad.Inv : TQuad;
 begin
    Sym := Self.R.R.R;
 end;
 
 
 
-The 3 use different approaches and I am trying to decide which approach to use to make a General/ObjectiveC class. I would like my General/QuadEdge class to have the following variables:
+The 3 use different approaches and I am trying to decide which approach to use to make a ObjectiveC class. I would like my QuadEdge class to have the following variables:
 
-General/NSString* edgeId;   Unique ID for each edge.
-General/NSString* lineId;   Unique ID for each line composed of edges.
+NSString* edgeId;   Unique ID for each edge.
+NSString* lineId;   Unique ID for each line composed of edges.
 id vertex;   Refers to either a point or a face.
 
 I have tried it using the following header based on the Delphi implementation:
 
     
-@interface General/GISEdge : General/NSObject {
-    General/NSString* lineId;
-    General/NSString* edgeId;
-    General/GISEdge* next;
-    General/GISEdge* rotate;
+@interface GISEdge : NSObject {
+    NSString* lineId;
+    NSString* edgeId;
+    GISEdge* next;
+    GISEdge* rotate;
     id vertex;
     BOOL internal;  // Edge is inside the hull of the TIN (1) or on the edge is part of the outer hull (0)
 }
 
 
-But this implementation seems to be way too bloated because each edge has 4 General/GISEdge structures. If a Voronoi diagram of any significant size uses this structure, it will be way too big, won't it?
+But this implementation seems to be way too bloated because each edge has 4 GISEdge structures. If a Voronoi diagram of any significant size uses this structure, it will be way too big, won't it?
 
 So back to the drawing board. I looked at the C++ implementation and started:
 
@@ -116,21 +116,21 @@ struct edge {
     id data;
 };
 
-@interface General/GISEdge : General/NSObject {
-    General/NSString* lineId;
-    General/NSString* edgeId;
+@interface GISEdge : NSObject {
+    NSString* lineId;
+    NSString* edgeId;
     Edge e[4];
 }
 
 
-But if next points to edge[2] of General/QuadEdge "PR102", how can I get the edgeId for edge[2]? This seems too complicated. Yet I like the fact that the edgeId, lineId, and interior variables are only stored once and are associated where they should be, in the General/QuadEdge and not in the Edge. I could also add new items to the General/QuadEdge later without a 4x increase in size for every edge.
+But if next points to edge[2] of QuadEdge "PR102", how can I get the edgeId for edge[2]? This seems too complicated. Yet I like the fact that the edgeId, lineId, and interior variables are only stored once and are associated where they should be, in the QuadEdge and not in the Edge. I could also add new items to the QuadEdge later without a 4x increase in size for every edge.
 
-Another thought that has crossed my mind is to create a General/GISLayer class that hides individual edges. This would be more like the Symbol-Table Abstract Data Types I learned in Sedgewick's Algorithms books. 
+Another thought that has crossed my mind is to create a GISLayer class that hides individual edges. This would be more like the Symbol-Table Abstract Data Types I learned in Sedgewick's Algorithms books. 
 
 This data structure is more advanced than anything I have done before. Any thoughts or suggestions are appreciated!
 
-General/PhilipRiggs
+PhilipRiggs
 
 ----
 
-If it is already available as a C library then why do you want to go and re-implement it in Objective-C? I would simply write a couple of helper classes to wrap the entire library. General/RbrtPntn.
+If it is already available as a C library then why do you want to go and re-implement it in Objective-C? I would simply write a couple of helper classes to wrap the entire library. RbrtPntn.

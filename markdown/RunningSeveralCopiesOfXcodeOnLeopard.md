@@ -3,7 +3,7 @@ On WWDC '06 they said we'd be able to run Xcode 2.4.1 and Xcode 3.0 simultaneous
 However, I just tried installing Xcode 2.4.1 and it just told me that no copy of mac os x 10.4 was found so it couldn't install...
 
 Any ideas?
---General/MatthiasGansrigler
+--MatthiasGansrigler
 
 ----
 
@@ -11,7 +11,7 @@ Get Xcode 2.5.
 
 ----
 
-Another solution would be using General/SDKs -- you can program for 10.4 (and 10.3.9) even within Xcode 3. -- General/EmanueleVulcano aka millenomi
+Another solution would be using SDKs -- you can program for 10.4 (and 10.3.9) even within Xcode 3. -- EmanueleVulcano aka millenomi
 
 ----
 A very good point. The only reason you need Xcode 2 is if you're going to be sharing projects with people on 10.4. If you're just writing apps for 10.4 then Xcode 3 will do fine.
@@ -20,7 +20,7 @@ A very good point. The only reason you need Xcode 2 is if you're going to be sha
 
 In fact you don't even need Xcode 2 in the latter case -- as the project format is identical and you get warned (in the project's info pane) if you are accidentally using any feature that is Xcode 2-incompatible.
 
-(Yep, it really seems Apple learned from the PB -> Xcode 1 -> Xcode 2 debacle.) -- General/EmanueleVulcano aka millenomi
+(Yep, it really seems Apple learned from the PB -> Xcode 1 -> Xcode 2 debacle.) -- EmanueleVulcano aka millenomi
 
 ----
 Well, I don't think Xcode 3 for 10.4 works, just try making a simple button in IB. It'll tell you that some image scaling thing is not available in 10.4... Or did I miss something?

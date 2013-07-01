@@ -3,7 +3,7 @@ Hello!
 I am drawing a circle and wish to fill in part of it.  For instance, I have a black circle, and want to fill in the top right quarter of the circle in white, and have the fill go along with the arc of the circle.  Much like only drawing a few slices from a pizza pan.  I have looked at the arc drawing functions but cannot wrap my head around how to begin, do you have any suggestions for doing so? Thankyou!
 
 ----
-Take a look at     -General/[NSBezierPath addClip].
+Take a look at     -[NSBezierPath addClip].
 
 ----
 

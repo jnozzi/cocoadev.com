@@ -1,18 +1,18 @@
 
 
-**Using General/NSDate to implement a trial period for a demo**
+**Using NSDate to implement a trial period for a demo**
 
 
-    	General/NSDate * today = General/[NSDate date];
+    	NSDate * today = [NSDate date];
 	
 	// pick a target date
 	
-	General/NSDate * targetDate = General/[NSDate dateWithString:@"2004-012-13 19:29:54 -0400"];
+	NSDate * targetDate = [NSDate dateWithString:@"2004-012-13 19:29:54 -0400"];
 	
-	if (!General/today laterDate:targetDate] isEqualToDate:targetDate]){
+	if (!today laterDate:targetDate] isEqualToDate:targetDate]){
 		[[NSRunAlertPanel(@"this beta has expired", @"please download a new one", nil, nil, nil);
-		General/NSLog(@"expired");
-		General/[[NSApplication sharedApplication] terminate:self];
+		NSLog(@"expired");
+		[[NSApplication sharedApplication] terminate:self];
 	}
 
 
@@ -24,13 +24,13 @@ Be aware that someone could hack your app's executable to expire on any date the
 
 To use     timeIntervalSinceReferenceDate:
 
-    	General/NSDate * today = General/[NSDate date];
+    	NSDate * today = [NSDate date];
 	
-	General/NSTimeInterval expiry = *//(the number of seconds from Midnight, January 1st, 2001 GMT until you want your app to expire)*;
+	NSTimeInterval expiry = *//(the number of seconds from Midnight, January 1st, 2001 GMT until you want your app to expire)*;
 	if ([today timeIntervalSinceReferenceDate] > expiry){
-		General/NSRunAlertPanel(@"this beta has expired", @"please download a new one", nil, nil, nil);
-		General/NSLog(@"expired");
-		General/[[NSApplication sharedApplication] terminate:self];
+		NSRunAlertPanel(@"this beta has expired", @"please download a new one", nil, nil, nil);
+		NSLog(@"expired");
+		[[NSApplication sharedApplication] terminate:self];
 	}
 
 
@@ -59,13 +59,13 @@ If you try to make it 'more secure' here are some issues you'll have to deal wit
 
 What if the user runs your app once, then a month or so later downloads a new version (or even re-downloads the same version). Will your app refuse to open? When people email you and ask to have their trial period reset for this very reason will you do it? how?
 
-If you try checking the network for the date, how will you deal with the inevitable General/VersionTracker comments to the effect *"This is spyware!! It connects to the net everytime it starts up!"* What if the system your app is running on isn't connected to the internet?
+If you try checking the network for the date, how will you deal with the inevitable VersionTracker comments to the effect *"This is spyware!! It connects to the net everytime it starts up!"* What if the system your app is running on isn't connected to the internet?
 
 What if the user simply resets their system clock to a later date? What about daylight savings time? What if their clock battery is dead?
 
 Sorry if this sounds contentious - I've run into all these issues at various times, with various applications, and I've never once paid for any of them, and it always gave a bad impression of the company/individual responsible. Concentrate on making your application better so people will **want** to support and pay for it, and not assuming all your users are out to rip you off.
 
-General/DetectFirstRun contains a discussion about using the defaults database to store time information related to this issue
+DetectFirstRun contains a discussion about using the defaults database to store time information related to this issue
 
 ----
 
@@ -78,13 +78,13 @@ But in your support, might I recommend providing a "demo license" along with the
 How about this scheme: when the application starts, it checks the presence of ~/Library/Preferences/com.myCompany.myApplication,
 
 
-*if it does not exist, write today + 30 days into General/NSUserDefaults and also place a checksum on the date
-*if it exists, read the expiration date from General/NSUserDefaults, if there is none, the checksum is incorrect, or it's more than 30 days into the future, write today + 1 to the user defaults (and tell the user that he has been a bad little boy!)
+*if it does not exist, write today + 30 days into NSUserDefaults and also place a checksum on the date
+*if it exists, read the expiration date from NSUserDefaults, if there is none, the checksum is incorrect, or it's more than 30 days into the future, write today + 1 to the user defaults (and tell the user that he has been a bad little boy!)
 
 
 So for the user to bypass the protection, he'd have to delete his user defaults, which I think most users would dislike, if they are fond of the application (unless they are smart enough to move it to /Library/Preferences, but they'd still have to delete the user-local copy each time they restart the application -- and you could check all the Library folders).
 
---General/AllanOdgaard
+--AllanOdgaard
 
 ----
 
@@ -100,8 +100,8 @@ And if you really do think users would have a script remove the keys, then you c
 
 *No, this is a bad idea. Honest users who somehow managed to mess up the file will be insulted, and determined pirates who wanted to keep using the software without paying will just be spurred on by the challenge. Never accuse your user of anything, whether or not he has actually done it. Unless you live inside the Disney version of Pinocchio, being told of their lies isn't going to shame them into going legit. Using expiring licenses is probably the tightest you're going to get your secruity without shooting yourself in the foot.*
 
-**What are you referring to when saying �this is a bad idea�? only bringing up the requester, or the entire scheme? As a user I generelly do not bother trying out software if it means that I need to enter my email address to get sent an expiring license. General/OmniGroup may get away with it due to their great reputation, but I'm not sure it'll benefit Joe Random Coder!?!**
+**What are you referring to when saying �this is a bad idea�? only bringing up the requester, or the entire scheme? As a user I generelly do not bother trying out software if it means that I need to enter my email address to get sent an expiring license. OmniGroup may get away with it due to their great reputation, but I'm not sure it'll benefit Joe Random Coder!?!**
 
 ----
 
-Note added, January 2006: There is copious further discussion of software licensing security schemes in General/SoftwareSerializationPiracyDiscussion
+Note added, January 2006: There is copious further discussion of software licensing security schemes in SoftwareSerializationPiracyDiscussion

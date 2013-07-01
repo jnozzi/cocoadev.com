@@ -10,4 +10,4 @@ Thanks a lot for your help, it's much appreciated! Seriously!
 
 ----
 
-See General/TableViewDockStyleRowRemoval
+See TableViewDockStyleRowRemoval

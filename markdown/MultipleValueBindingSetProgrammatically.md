@@ -2,7 +2,7 @@
 
 I tried:
     
-[bindingOptions setObject:@"%{value1}@ / %{value2}@" forKey:@"General/NSDisplayPattern"];
+[bindingOptions setObject:@"%{value1}@ / %{value2}@" forKey:@"NSDisplayPattern"];
 
 [theTextField bind:@"displayPatternValue1" toObject:theObjToBind
     withKeyPath:@"result" options:bindingOptions];
@@ -10,7 +10,7 @@ I tried:
     withKeyPath:@"total" options:bindingOptions];
 
 
-But I got the error �[<General/NSTextField 0x34b750> valueForUndefinedKey:]: this class is not key value coding-compliant for the key displayPatternValue1.�
+But I got the error �[<NSTextField 0x34b750> valueForUndefinedKey:]: this class is not key value coding-compliant for the key displayPatternValue1.�
 
 Has anybody some suggestion? Thanks.
 
@@ -30,15 +30,15 @@ Done. "displayPatternValue" returns the same error�
 
 ----
 
-Well the proper name is     displayPatternValue1, see http://developer.apple.com/documentation/Cocoa/Reference/General/CocoaBindingsRef/General/BindingsText/General/NSTextField.html
+Well the proper name is     displayPatternValue1, see http://developer.apple.com/documentation/Cocoa/Reference/CocoaBindingsRef/BindingsText/NSTextField.html
 
 I just tried the following code:
     
-General/NSDictionary* options = General/[NSDictionary dictionaryWithObject:@"-> %{value1}@ <-" forKey:@"General/NSDisplayPattern"];
+NSDictionary* options = [NSDictionary dictionaryWithObject:@"-> %{value1}@ <-" forKey:@"NSDisplayPattern"];
 [textField bind:@"displayPatternValue1" toObject:arrayController withKeyPath:@"arrangedObjects.title" options:options];
 
 
-And it works w/o problems for me. How did you instantiate the General/NSTextField (although the run-time exception seems to make clear that it really is an General/NSTextField instance)?
+And it works w/o problems for me. How did you instantiate the NSTextField (although the run-time exception seems to make clear that it really is an NSTextField instance)?
 
 Try sending     exposedBindings to the text field and see what you get back, this is what I get:
     

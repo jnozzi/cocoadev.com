@@ -1,8 +1,8 @@
 
 
 
-* **Name:** General/IconFamily
-* **Description:** Wrapper for General/IconServicesAndUtilities (ICNS).
+* **Name:** IconFamily
+* **Description:** Wrapper for IconServicesAndUtilities (ICNS).
 * **URL:** http://iconfamily.sourceforge.net
 * **Authors:** Troy Stephens, David Remahl, Thomas Schnitzer
 * **Functionality present:**

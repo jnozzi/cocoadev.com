@@ -1,23 +1,23 @@
-I propose here what I think is a simpler solution than that proposed in General/GameKeyboardHandlingAlmost.
+I propose here what I think is a simpler solution than that proposed in GameKeyboardHandlingAlmost.
 
 Game Keyboard Handling Solution
 ----
 
-When writing games or many other programs that heavily involve keyboard interaction it is often desirable to respond many keys being held at once. A common example of this is the user's desire to perform an action while moving or to move and turn or move diagonally. This was the inspiration for the solution I present below. Note, however, that this solution can be used in any program where the user would likely be holding keys down while pressing others. Through the use of Cocoa data structures like General/NSMutableSet this solution can be trivially extended to support any number of simultaneous keys. If you wanted to you could use it to support even the absurd edge case of all keys on the keyboard being held at once.
+When writing games or many other programs that heavily involve keyboard interaction it is often desirable to respond many keys being held at once. A common example of this is the user's desire to perform an action while moving or to move and turn or move diagonally. This was the inspiration for the solution I present below. Note, however, that this solution can be used in any program where the user would likely be holding keys down while pressing others. Through the use of Cocoa data structures like NSMutableSet this solution can be trivially extended to support any number of simultaneous keys. If you wanted to you could use it to support even the absurd edge case of all keys on the keyboard being held at once.
 
-Onward to the solution. There are three steps to this solution: configuring your NIB file in General/InterfaceBuilder, modifying the header of your custom view class, and finally adding the code for multiple-keys pressed support to the implementation file. I sincerely hope this solution proves as effective for you as it has for me.
+Onward to the solution. There are three steps to this solution: configuring your NIB file in InterfaceBuilder, modifying the header of your custom view class, and finally adding the code for multiple-keys pressed support to the implementation file. I sincerely hope this solution proves as effective for you as it has for me.
 
-STEP 1: Configuring your NIB file in General/InterfaceBuilder
+STEP 1: Configuring your NIB file in InterfaceBuilder
 ----
-In your General/MainMenu.nib or General/MyDocument.nib file (or any other nib where you have custom drawing code that needs keyboard input) make a connection from the Window object in the Instances tab to the custom view in the window itself and connect it to the     initialFirstResponder outlet. If you don't know how to do this, I recommend doing the General/CurrencyConverter tutorial in Apple's Developer Documentation first.
+In your MainMenu.nib or MyDocument.nib file (or any other nib where you have custom drawing code that needs keyboard input) make a connection from the Window object in the Instances tab to the custom view in the window itself and connect it to the     initialFirstResponder outlet. If you don't know how to do this, I recommend doing the CurrencyConverter tutorial in Apple's Developer Documentation first.
 
 STEP 2: Modifying the Header of Your Custom View Class
 ----
 Header file:
     
-@interface General/MyCustomView : General/NSView
+@interface MyCustomView : NSView
 {
-  General/NSMutableSet * keysPressed;
+  NSMutableSet * keysPressed;
 }
 - (void)processKeys;
 @end
@@ -36,17 +36,17 @@ Declare that your view will accept keyboard focus:
 
 Add keys of interest to the keysPressed set as they are hit:
     
-- (void)keyDown:(General/NSEvent *) theEvent {
+- (void)keyDown:(NSEvent *) theEvent {
   if (!keysPressed) {
-    keysPressed = General/[[NSMutableSet alloc] init];
+    keysPressed = [[NSMutableSet alloc] init];
   }
-  General/NSNumber * keyHit = General/[NSNumber numberWithUnsignedInt:
-    General/theEvent characters] characterAtIndex:0;
+  NSNumber * keyHit = [NSNumber numberWithUnsignedInt:
+    theEvent characters] characterAtIndex:0;
   switch ([keyHit unsignedIntValue]) {
-    case General/NSUpArrowFunctionKey:
-    case General/NSDownArrowFunctionKey:
-    case General/NSRightArrowFunctionKey:
-    case General/NSLeftArrowFunctionKey:
+    case NSUpArrowFunctionKey:
+    case NSDownArrowFunctionKey:
+    case NSRightArrowFunctionKey:
+    case NSLeftArrowFunctionKey:
     case ' ':
       [keysPressed addObject:keyHit];
       break;
@@ -58,17 +58,17 @@ Add keys of interest to the keysPressed set as they are hit:
 
 Remove keys of interest from the keysPressed set as they are released:
     
-- (void)keyUp:(General/NSEvent *)theEvent {
+- (void)keyUp:(NSEvent *)theEvent {
   if (!keysPressed) {
-    keysPressed = General/[[NSMutableSet alloc] init];
+    keysPressed = [[NSMutableSet alloc] init];
   }
-  General/NSNumber * keyReleased = General/[NSNumber numberWithUnsignedInt:
-    General/theEvent characters] characterAtIndex:0;
+  NSNumber * keyReleased = [NSNumber numberWithUnsignedInt:
+    theEvent characters] characterAtIndex:0;
   switch ([keyReleased unsignedIntValue]) {
-    case General/NSUpArrowFunctionKey:
-    case General/NSDownArrowFunctionKey:
-    case General/NSRightArrowFunctionKey:
-    case General/NSLeftArrowFunctionKey:
+    case NSUpArrowFunctionKey:
+    case NSDownArrowFunctionKey:
+    case NSRightArrowFunctionKey:
+    case NSLeftArrowFunctionKey:
     case ' ':
       [keysPressed removeObject:keyReleased];
       break;
@@ -80,10 +80,10 @@ Remove keys of interest from the keysPressed set as they are released:
 
 Setup up a periodic key processing operation:
     
-- (id)initWithFrame:(General/NSRect)frame {
+- (id)initWithFrame:(NSRect)frame {
   self = [super initWithFrame:frame];
   if (self) {
-    General/[NSTimer scheduledTimerWithTimeInterval:0.03
+    [NSTimer scheduledTimerWithTimeInterval:0.03
                                      target:self
                                    selector:@selector(processKeys)
                                    userInfo:nil repeats:YES];
@@ -93,21 +93,21 @@ Setup up a periodic key processing operation:
 
 - (void)processKeys {
   if ([keysPressed count] != 0) {
-    General/NSEnumerator * enumerator = [keysPressed objectEnumerator];
-    General/NSNumber * keyHit;
+    NSEnumerator * enumerator = [keysPressed objectEnumerator];
+    NSNumber * keyHit;
     /* process all keys of interest that are held down */
     while (keyHit = [enumerator nextObject]) {
       switch ([keyHit unsignedIntValue]) {
-        case General/NSUpArrowFunctionKey:
+        case NSUpArrowFunctionKey:
           /* Your Up Arrow handling code */
           break;
-        case General/NSDownArrowFunctionKey:
+        case NSDownArrowFunctionKey:
           /* Your Down Arrow handling code */
           break;
-        case General/NSRightArrowFunctionKey:
+        case NSRightArrowFunctionKey:
           /* Your Right Arrow handling code */
           break;
-        case General/NSLeftArrowFunctionKey:
+        case NSLeftArrowFunctionKey:
           /* Your Left Arrow handling code */
           break;
         case ' ':
@@ -125,7 +125,7 @@ As a result, the compound effect of multiple keys that are pressed is applied to
 
 If you want to enhance this page please add descriptive comments to the code itself or post comments, additions, and feedback below. This isn't a perfect solution, but it's easy to implement and separates key capturing from processing.
 
---General/AlainODea
+--AlainODea
 
 ----
 
@@ -136,9 +136,9 @@ Specifically, this doesn't cover state-dependent processing of keys or the order
 I've got a rough idea of how this might be designed.  We will need:
 
 
-*General/CCDKeyEventDispatcher - Handles the dispatching of a single or multiple key events in the same way.  This simply contains the keys we want to respond to and a way to dispatch the event.  You could make this an abstract class, with subclasses that dispatch via selector or notification.  This is essentially a slightly modified version of the Command General/DesignPattern.  
+*CCDKeyEventDispatcher - Handles the dispatching of a single or multiple key events in the same way.  This simply contains the keys we want to respond to and a way to dispatch the event.  You could make this an abstract class, with subclasses that dispatch via selector or notification.  This is essentially a slightly modified version of the Command DesignPattern.  
 
-*General/CCDKeyProcessor - Our processor (could be a singleton), based on the State General/DesignPattern.  This will hold the set of keys down (key events notify or call the key processor rather than manipulating the set directly).  It will also set up the timer and process the keys down at the appropriate interval.  The processor will also keep a dictionary of mutable collections of General/CCDKeyEventDispatchers, keyed by a user-defined string.  
+*CCDKeyProcessor - Our processor (could be a singleton), based on the State DesignPattern.  This will hold the set of keys down (key events notify or call the key processor rather than manipulating the set directly).  It will also set up the timer and process the keys down at the appropriate interval.  The processor will also keep a dictionary of mutable collections of CCDKeyEventDispatchers, keyed by a user-defined string.  
 
 
 
@@ -146,11 +146,11 @@ So, here's how it works:
 
 
 
-* The programmer makes a new mutable collection, and adds or inserts new General/CCDKeyEventDispatchers, essentially binding keys to a dispatching mode (selector on an object, notification, whatever).  **This collection represents a state which only responds to the keys associated with the key dispatchers it contains.**
+* The programmer makes a new mutable collection, and adds or inserts new CCDKeyEventDispatchers, essentially binding keys to a dispatching mode (selector on an object, notification, whatever).  **This collection represents a state which only responds to the keys associated with the key dispatchers it contains.**
 
 * The collection can be a set if the programmer doesn't care about the order in which keys are processed.  If order matters, an ordered collection, like a mutable array, should be used.  In fact, if there are dispatchers which will modify the state, it's best to use a mutable array and keep state-modifying dispatchers at the front.
 
-* As they're completed, the collections are passed to the General/CCDKeyProcessor along with a string state name to act as a key.  The key processor will throw this into its dictionary of dispatcher collections.  
+* As they're completed, the collections are passed to the CCDKeyProcessor along with a string state name to act as a key.  The key processor will throw this into its dictionary of dispatcher collections.  
 
 * Once all dispatcher states have been set, the key processor is started with the name of the first state to use.  The key processor starts the callback (or, alternatively, you can start when the first keyDown event is received).  
 
@@ -166,10 +166,10 @@ So, here's how it works:
 
 So, what do you think?  Is this too complex, not complex enough, or just right?
 
--- General/AndrewBowman
+-- AndrewBowman
 
 ----
 
 Andrew, that's a very good point about my solution losing the key ordering and thus losing an important aspect of key state. From my brief review of your suggestion it seems to be quite sophisticated. My goal in mashing-up the solution I did was to enable people to support very simple keyboard support for games needing to supporting many keys down at once (up and left arrows for example) assuming a one to one relationship of keys to actions. What you are describing sounds like a key dispatcher for keyboard shortcuts in a windowed UI. More than what I need, but perhaps essential in more sophisticated scenarios.
 
---General/AlainODea
+--AlainODea

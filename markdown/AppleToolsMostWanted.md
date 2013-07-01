@@ -1,14 +1,14 @@
-Part of General/CocoaDevelopersMostWanted (It would be cool to have a category "Most Wanted" or something, no?)
+Part of CocoaDevelopersMostWanted (It would be cool to have a category "Most Wanted" or something, no?)
 
-**If you want any of these changes, please submit them to [https://bugreport.apple.com/cgi-bin/General/WebObjects/General/RadarWeb.woa Radar]. Simply posting them here is great for discussion and raising awareness, but submitting them to Apple's bug tracker is what will get them implemented. In addition, the more people submit a given issue, the more likely Apple is to do something about it.**
+**If you want any of these changes, please submit them to [https://bugreport.apple.com/cgi-bin/WebObjects/RadarWeb.woa Radar]. Simply posting them here is great for discussion and raising awareness, but submitting them to Apple's bug tracker is what will get them implemented. In addition, the more people submit a given issue, the more likely Apple is to do something about it.**
 
-**General/XCode**
+**XCode**
 
 
 
 *Smarter smart groups. (yea: 1 nay:0) The only options currently available are simple and regex filters on the file name. Spotlight should make it simple to create groups based on all sorts of things, such as: "All .m files in the project not modified since noon today" or "All image and sound files in the project." You can do this easily enough in Finder, and since Xcode uses the same icon for smart groups that Finder uses for smart folders, I'd guess Apple might be heading in this direction. But I think of new ways to that I could use a feature like this in Xcode two or three times a day.
 
-*refactoring tools. (yea:14 nay:0) Please! The primary advantages to using an IDE over a straight text editor are code-completion (which we now have - hooray) and refactoring (which we're still waiting for!). Please add refactoring soon. "All the other General/IDEs are doing it!"
+*refactoring tools. (yea:14 nay:0) Please! The primary advantages to using an IDE over a straight text editor are code-completion (which we now have - hooray) and refactoring (which we're still waiting for!). Please add refactoring soon. "All the other IDEs are doing it!"
 
 *Tabbed Editing. Good gods, tabbed editing. I work on a huge project, and switching between files requires way too much mousing. (yea:3 nay:1)
 
@@ -24,36 +24,36 @@ Part of General/CocoaDevelopersMostWanted (It would be cool to have a category "
 
 *why are there "executables" and "products" in the tree? Can these be merged or replaced with something more self-explanatory? (yea:8 nay:1) Some "products" like plug-in bundles are not "executables" this is for multi-target projects
 
-*new build phases: General/PackageMaker and dmg creation (with a GUI supporting all the features of the CLI tool) (yea:8 nay:0) *It's not from Apple, but there are third-party tools for this. General/DropDMG is my favorite. There are free ones as well.*
+*new build phases: PackageMaker and dmg creation (with a GUI supporting all the features of the CLI tool) (yea:8 nay:0) *It's not from Apple, but there are third-party tools for this. DropDMG is my favorite. There are free ones as well.*
 
-*I would be perfectly satisfied with just getting the stuff that it has now to work properly.  The thing crashes like no other, it's ridiculous.  Not to mention it has redraw errors in the text editor.  Also, syntax coloring doesn't work so well, case in point: comments.  UGH. (yay: 10: nay: 0) *I'm just one yay, but I'm shouting it* **'I'm just another yay, but I'm screaming.**' ** -- People should be ranting about this. It's like Xcode was written by M$.** (Ouch, you should try actually using Visual Studio before saying things like this. It's a fantastic IDE and contains virtually every feature people are asking for in this list, plus tons of other stuff) *I'm holding out high hopes for General/TextMate.*
+*I would be perfectly satisfied with just getting the stuff that it has now to work properly.  The thing crashes like no other, it's ridiculous.  Not to mention it has redraw errors in the text editor.  Also, syntax coloring doesn't work so well, case in point: comments.  UGH. (yay: 10: nay: 0) *I'm just one yay, but I'm shouting it* **'I'm just another yay, but I'm screaming.**' ** -- People should be ranting about this. It's like Xcode was written by M$.** (Ouch, you should try actually using Visual Studio before saying things like this. It's a fantastic IDE and contains virtually every feature people are asking for in this list, plus tons of other stuff) *I'm holding out high hopes for TextMate.*
 
 *static code analysis/QA tools (yea:4 nay:0) <-- MS Visual tools have some static analysis tools in the IDE. Java tools like Eclipse do too!
 
 *Third-party language plug-ins (yea:4 nay:0) <-- I want Eiffel...(oh there is... well make it better) -- full python support! Hasn't this already been done? Xcode can edit any filetype, so all you have to do is make a project that ends up being a template, and configure the build phases correctly. You can do shell scripts in the build phase so theoretically you could make your own compiler and call it from a build phase.
 
-* Distributed build using non OS X machines through General/XCode (yea:1 nay:0) So I can use my linux box for building things instead of dust collection. **Done already.**
+* Distributed build using non OS X machines through XCode (yea:1 nay:0) So I can use my linux box for building things instead of dust collection. **Done already.**
 
 * More support for Lex and Yacc (yes, I do have Xcode 1.2, but I haven't been able to get it to work with the y.tab.h file), including syntax coloring (yay: 2, nay: 0)
 
 *adorn variable names (color/font/style) to indicate extern/file/instance/local/undeclared (yea:2 nay:1) + class syntax highlighting
-What are some examples? *I don't know if this is what was meant, but there's General/AutoGraf*
+What are some examples? *I don't know if this is what was meant, but there's AutoGraf*
 
-*some kind of meta-indexing or shared indexing: indexes for libraries/frameworks shared between projects, not re-generated for every project (yea:1 nay:0) <- not needed, see General/IndexTemplates
+*some kind of meta-indexing or shared indexing: indexes for libraries/frameworks shared between projects, not re-generated for every project (yea:1 nay:0) <- not needed, see IndexTemplates
 
-*Xcode to stop disabling the damn build buttons and menu items, etc..., after finding one warning in my code (like an unused variable), and causing me to close the project and reopen it. (yea:4 nay:0) <- Don't have to close the project: just make a  build using the menu and the button will come back * So and friggin what.  It's a bug.  They need to fix it, not to mention build train hangs*. **<-- Does anyone know if this has been fixed in the Xcode 1.2 beta (I dont have it)? **  Erm... I have never had this problem, even with Xcode 1.1. -General/RossDude
+*Xcode to stop disabling the damn build buttons and menu items, etc..., after finding one warning in my code (like an unused variable), and causing me to close the project and reopen it. (yea:4 nay:0) <- Don't have to close the project: just make a  build using the menu and the button will come back * So and friggin what.  It's a bug.  They need to fix it, not to mention build train hangs*. **<-- Does anyone know if this has been fixed in the Xcode 1.2 beta (I dont have it)? **  Erm... I have never had this problem, even with Xcode 1.1. -RossDude
 
 *"flat views" of obj-c classes (shows all methods/instance vars... including those inherited)
-*I'd love to be able to use General/XCode as a general-purpose text editor, but can't because it's so bloody slow.*
+*I'd love to be able to use XCode as a general-purpose text editor, but can't because it's so bloody slow.*
 
-* Pluggable Editors (emacs or vi instead of that piece of crap). *This is there, to a certain extent - you can set General/XCode to open files in any editor you want via preferences. You could presumably hack something together with Platypus or iHook to open files in emacs/vi* *General/XCode (v. 1.5) has external editor support for emacs/gnuclient*
+* Pluggable Editors (emacs or vi instead of that piece of crap). *This is there, to a certain extent - you can set XCode to open files in any editor you want via preferences. You could presumably hack something together with Platypus or iHook to open files in emacs/vi* *XCode (v. 1.5) has external editor support for emacs/gnuclient*
 
 * Ditching the multiple window concept (or it being configurable). The class browser should be in the same window, and all the smart group bar(s) should be completely closable/hidable. *Xcode has been pretty configurable w.r.t. single/multiple windows for quite a while now. Unless you're really picky, I'd call this one done.*
 
 * A keyboard shortcut to move the cursor in each split views: i use a lot of split views when editing my code (the above split view is A.m, then bottom is B.m) each time you want to pass from A.m to B.m, you have to use the mouse! * **-- Already existing : ctrl+tab to navigate between split views --** *
 
 
-**General/InterfaceBuilder**
+**InterfaceBuilder**
 
 
 ***Symbolic Tags**- 
@@ -62,17 +62,17 @@ Take a look at this post on cocoa-dev:
 http://www.cocoabuilder.com/archive/message/cocoa/2009/2/26/231103 
 If you're interested there's some good discussion in the thread- this particular post is about a third down, but there's good posts above and below
 
-*Java Swing source code generator. Take a nib file and generate Java source code - for those that want to make cross platform app (native cocoa on General/MacOS X, java on other platforms). (yea: 5 nay: 4)
+*Java Swing source code generator. Take a nib file and generate Java source code - for those that want to make cross platform app (native cocoa on MacOS X, java on other platforms). (yea: 5 nay: 4)
 
-*Why would this be part of General/InterfaceBuilder? Maybe an external, 3rd party tool, but I don't think Apple should bother with this.*
+*Why would this be part of InterfaceBuilder? Maybe an external, 3rd party tool, but I don't think Apple should bother with this.*
 
 This exists: http://www.nib4j.com/
 
-* Add the support of General/NSSegmentedControl. * Actually, support was added in Xcode 2.0's version of IB. Get it at the ADC. [http://developer.apple.com/] *
+* Add the support of NSSegmentedControl. * Actually, support was added in Xcode 2.0's version of IB. Get it at the ADC. [http://developer.apple.com/] *
 
-* Drag & Drop General/NSToolbar support.(yea:4 nay:0) **When I first started doing toolbars, way back when, I though: "gosh darn it, why doesn't IB do this?" but as the years went by, I think I realized that toolbar validation and dealing with different tool bar items at different app times, would essentially make you reprogram all the methods IB would do for you, with maybe the exception of the default set...**  Unless you use a highly static toolbar, the best IB could do for you is autogen the few lines of code it takes to get a toolbar up and running.  There are bigger fish to fry in my opinion.
+* Drag & Drop NSToolbar support.(yea:4 nay:0) **When I first started doing toolbars, way back when, I though: "gosh darn it, why doesn't IB do this?" but as the years went by, I think I realized that toolbar validation and dealing with different tool bar items at different app times, would essentially make you reprogram all the methods IB would do for you, with maybe the exception of the default set...**  Unless you use a highly static toolbar, the best IB could do for you is autogen the few lines of code it takes to get a toolbar up and running.  There are bigger fish to fry in my opinion.
 
-Well, for those of you who still want this, download General/GenericToolbar, a free and mostly bug-free IB palette written by me to address this problem. Also, any news from Tiger users on this issue? --General/JediKnil.
+Well, for those of you who still want this, download GenericToolbar, a free and mostly bug-free IB palette written by me to address this problem. Also, any news from Tiger users on this issue? --JediKnil.
 
 It's in Leopard. --Amorya
 
@@ -94,27 +94,27 @@ It's in Leopard. --Amorya
 
 
 
-**General/AppleScript**
-* Add a more programmer-friendly OSA language than General/AppleScript. A la Frontier 4.x.
+**AppleScript**
+* Add a more programmer-friendly OSA language than AppleScript. A la Frontier 4.x.
 
-*There's binding for General/JavaScript - [http://www.latenightsw.com/freeware/General/JavaScriptOSA/index.html]. I believe there are perl bindings out there too.*
+*There's binding for JavaScript - [http://www.latenightsw.com/freeware/JavaScriptOSA/index.html]. I believe there are perl bindings out there too.*
 
 A selection of OSA language components: [http://homepage.mac.com/philip_aker/osa/osa.html]
 
 Apple Event Manager bindings for Perl: [http://search.cpan.org/~cnandor/Mac-Glue/], Python [http://appscript.sourceforge.net] and Ruby [http://rb-appscript.rubyforge.org]. There are also Tcl bindings, but don't think they're as advanced. -- has
 
-**General/PerformanceTools**
+**PerformanceTools**
 
-**General/GraphicsTools**
+**GraphicsTools**
 
 
-*A simple icon editor (yea:2 nay:3) [There already is one: Developer/Applications/Utilities/General/IconComposer] �No, this is not an editor, just an importer. *How to make a simple editor for 128x128x32 icons with alpha? Might as well just use Photoshop.*  As the naysayer, I just want to say that graphics design is simply beyond the scope of software engineering.  I second the photoshop comment. *Sure, $650 is reasonable to make a bloody icon. Not.* Iconographer is a pretty nice alternative for small icons, but if you want a good-looking 128x128 icon, a full-out graphics editor is the way to go (i.e. Photoshop).
+*A simple icon editor (yea:2 nay:3) [There already is one: Developer/Applications/Utilities/IconComposer] �No, this is not an editor, just an importer. *How to make a simple editor for 128x128x32 icons with alpha? Might as well just use Photoshop.*  As the naysayer, I just want to say that graphics design is simply beyond the scope of software engineering.  I second the photoshop comment. *Sure, $650 is reasonable to make a bloody icon. Not.* Iconographer is a pretty nice alternative for small icons, but if you want a good-looking 128x128 icon, a full-out graphics editor is the way to go (i.e. Photoshop).
 
-Re: the $650 comment - So use General/GraphicConverter ($35) or the gimp ($0). The point is, for OSX icons the only difference between an icon editor and a general purpose image editor is canvas size.
+Re: the $650 comment - So use GraphicConverter ($35) or the gimp ($0). The point is, for OSX icons the only difference between an icon editor and a general purpose image editor is canvas size.
 
 Because of both the resizable nature of OSX icons, and the general look and feel that seems common to them all, I think it's easier to at least start by copying the paper sketch of the icon design in a vector package anyway.
 
-Speaking of vector packages, is there an equivalent of the gimp or General/GraphicConverter for that kind of thing? I'd love to buy an Adobe thing, but I just shelled out for Elements (for other reasons than icon-making). *There's Intaglio [http://www.purgatorydesign.com] and Create [http://www.stone.com/] And nobody's mentioned the $15 Iconographer [http://www.mscape.com/products/iconographer.html] Doh. Nevermind. Someone did mention it. But they didn't post a link, so I'm leaving my comment.*
+Speaking of vector packages, is there an equivalent of the gimp or GraphicConverter for that kind of thing? I'd love to buy an Adobe thing, but I just shelled out for Elements (for other reasons than icon-making). *There's Intaglio [http://www.purgatorydesign.com] and Create [http://www.stone.com/] And nobody's mentioned the $15 Iconographer [http://www.mscape.com/products/iconographer.html] Doh. Nevermind. Someone did mention it. But they didn't post a link, so I'm leaving my comment.*
 
 "For Open Source vector graphics, there's Inkscape. There's a Fink package. It's oriented towards SVG, and works nicely with SVG-based KDE icons."
 
@@ -133,23 +133,23 @@ You might want to try http://splodge.fluff.org/~phil/terminator/ (nightly builds
 
 **Utilities**
 
-* A code formatting tool, similar to indent, that works with Objective-C code. Or at least the ability to script this in General/XCode.
+* A code formatting tool, similar to indent, that works with Objective-C code. Or at least the ability to script this in XCode.
 
 
 **Refactoring Tools**
 
-* Refactoring tools for Objective-C (if possible -- C++ and Java too ). See the refactoring tools in Eclipse and General/IntelliJ IDEA. See also www.refactoring.com.
+* Refactoring tools for Objective-C (if possible -- C++ and Java too ). See the refactoring tools in Eclipse and IntelliJ IDEA. See also www.refactoring.com.
 
 
 **Other**
 
-* A WYSIWYG HTML editor based on General/InterfaceBuilder. I only dream of one written in Cocoa for stability. IB has the ability to layout UI objects for applications, and I'm sure the talented engineers at Apple could rewrite the engine so that it parses and produces HTML, XML, etc.. Plus they could use General/WebKit for a perfect preview. I think that Apple would find something like this to be wildly successful, and even if it wasn't free, I would definitely pay for it. (yea:2 nay:1) *Apple would then have to write a Photoshop-level image editor and a page layout program, since this would surely be the last straw for Adobe. The public beta did include a wysiwyg html editor, but it was pulled after that.* **<-- You see I don't think that Adobe would drop it's Macintosh product line. I would say that easily 50% of Adobe's desktop publishing (i.e. Illustrator and Photoshop) customers are using Macintosh. Macintoshes running Adobe apps are used heavily in marketing/advertisement. I simply don't think that Adobe could afford to take a hit like that.** ""<-- Adobe should not be the answer to what we can and can not use. It has been several years now for OSX, why has no one at all developed this app? "" *Because it's a big, commerically-oriented project, and most big commercially-oriented developers are using Carbon. A small independent developer (most likely to be using Cocoa) probably isn't going to write a WYSIWYG HTML editor for his/her own use. If you want one, get started on it - you could be the next Adobe ;)* ** Why the hell not? Why not create a General/SourceForge project for this idea? ** "I (the original poster of this item), have actually as of late been working on starting to clean up the code for Gorm (the General/GnuStep project's open source version of General/InterfaceBuilder) to maybe use as a basis for a Cocoa HTML WYSIWYG editor."
+* A WYSIWYG HTML editor based on InterfaceBuilder. I only dream of one written in Cocoa for stability. IB has the ability to layout UI objects for applications, and I'm sure the talented engineers at Apple could rewrite the engine so that it parses and produces HTML, XML, etc.. Plus they could use WebKit for a perfect preview. I think that Apple would find something like this to be wildly successful, and even if it wasn't free, I would definitely pay for it. (yea:2 nay:1) *Apple would then have to write a Photoshop-level image editor and a page layout program, since this would surely be the last straw for Adobe. The public beta did include a wysiwyg html editor, but it was pulled after that.* **<-- You see I don't think that Adobe would drop it's Macintosh product line. I would say that easily 50% of Adobe's desktop publishing (i.e. Illustrator and Photoshop) customers are using Macintosh. Macintoshes running Adobe apps are used heavily in marketing/advertisement. I simply don't think that Adobe could afford to take a hit like that.** ""<-- Adobe should not be the answer to what we can and can not use. It has been several years now for OSX, why has no one at all developed this app? "" *Because it's a big, commerically-oriented project, and most big commercially-oriented developers are using Carbon. A small independent developer (most likely to be using Cocoa) probably isn't going to write a WYSIWYG HTML editor for his/her own use. If you want one, get started on it - you could be the next Adobe ;)* ** Why the hell not? Why not create a SourceForge project for this idea? ** "I (the original poster of this item), have actually as of late been working on starting to clean up the code for Gorm (the GnuStep project's open source version of InterfaceBuilder) to maybe use as a basis for a Cocoa HTML WYSIWYG editor."
 
-Now we NEED this, with Dashboard and all. HTML is easy, but for any decent interface-d widgets? One of the reasons IB is better than simply editing code is design. Which do you prefer? Coding-then-checking or an actual, productive environment. Dashboard would then be a first-class citizen in the Tiger world. In my mind, right now it isn't. No General/XCode project, even! Alright, well that's not too bad, but it sort of shows how much apple cares about it...
+Now we NEED this, with Dashboard and all. HTML is easy, but for any decent interface-d widgets? One of the reasons IB is better than simply editing code is design. Which do you prefer? Coding-then-checking or an actual, productive environment. Dashboard would then be a first-class citizen in the Tiger world. In my mind, right now it isn't. No XCode project, even! Alright, well that's not too bad, but it sort of shows how much apple cares about it...
 
 *Amen. And an easier way to add Cocoa UI to widgets would be nice as well -- presumably this would be included.*
 
-If you know how to code why would you want to develop a Dashboard thing? It's not a first-class citizen; it's a way for the code-challenged to write stuff, like General/HyperCard was. And I think the Dashboard guidelines specifically recommends *against* using Cocoa/Aqua widgets. It would be better to do a separate IDE for Dashboard, instead of trying to glom stuff onto IB
+If you know how to code why would you want to develop a Dashboard thing? It's not a first-class citizen; it's a way for the code-challenged to write stuff, like HyperCard was. And I think the Dashboard guidelines specifically recommends *against* using Cocoa/Aqua widgets. It would be better to do a separate IDE for Dashboard, instead of trying to glom stuff onto IB
 
 >> You mean like Dashcode?
 

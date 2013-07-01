@@ -1,6 +1,6 @@
-[http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/Classes/NSGraphicsContext_Class/index.html]
+[http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSGraphicsContext_Class/index.html]
 
-The General/NSGraphicsContext class is the programmatic interface to objects that represent graphics contexts.
+The NSGraphicsContext class is the programmatic interface to objects that represent graphics contexts.
 
 
 
@@ -11,10 +11,10 @@ unlockFocus called too many time
 
 Make sure you're saving/restoring the graphics context properly.  Example:
 
-	General/[NSGraphicsContext saveGraphicsState];
+	[NSGraphicsContext saveGraphicsState];
 	
-	General/[NSGraphicsContext setCurrentContext:General/[NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:NO]];
+	[NSGraphicsContext setCurrentContext:[NSGraphicsContext graphicsContextWithGraphicsPort:context flipped:NO]];
 
 	// draw something
 
-	General/[NSGraphicsContext restoreGraphicsState];
+	[NSGraphicsContext restoreGraphicsState];

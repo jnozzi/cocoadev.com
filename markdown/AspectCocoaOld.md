@@ -1,31 +1,31 @@
-The Following: General/LookupAspects and General/SingleInstanceAspects, are the AOP for Cocoa possibilities currently being pursued. So far, the other approaches to solving the problem of enabling aspects for Objective-C are too restrictive.
+The Following: LookupAspects and SingleInstanceAspects, are the AOP for Cocoa possibilities currently being pursued. So far, the other approaches to solving the problem of enabling aspects for Objective-C are too restrictive.
 
-**General/LookupAspects**
+**LookupAspects**
 *Loaded at runtime.
-*Can override any number of methods on any class with any number of General/AdviceObjects.  
-*Calling the original method is done with a lookup via the General/ACAspectManager.
+*Can override any number of methods on any class with any number of AdviceObjects.  
+*Calling the original method is done with a lookup via the ACAspectManager.
 *Has concept of loading and unloading Aspects.
 *Allows loading multiple aspects on a single class/method.
 *Lookup for finding original IMP of called SEL results in additional overhead when loading/unloading aspects or looking up advice.
 *Requires no knowledge of the class being modified.  
-*Implemented by scanning through a class and replacing methods with appropriate "replacement" methods (declared elsewhere in AC classes) which use a lookup to call the original method, and on before: and after: methods on all relevant General/AdviceObjects.
-*A work-in-progress example: http://www.ccs.neu.edu/home/igotimac/General/LookupAspect.zip
+*Implemented by scanning through a class and replacing methods with appropriate "replacement" methods (declared elsewhere in AC classes) which use a lookup to call the original method, and on before: and after: methods on all relevant AdviceObjects.
+*A work-in-progress example: http://www.ccs.neu.edu/home/igotimac/LookupAspect.zip
 
-**General/SingleInstanceAspects**
+**SingleInstanceAspects**
 *Loaded at runtime.
 *Can override any number of methods on a single instance of a class (created, or yet-to-be-created).
 *Implemented by dynamically creating a subclass of the instance-to-Aspect.
 *Calling the original methods is done with a lookup of that method on [self superclass].
-*Calling Advice is done with a call to the General/ACAspectManager for the relevant General/AdviceObjects.
+*Calling Advice is done with a call to the ACAspectManager for the relevant AdviceObjects.
 *Aspects may be loaded and unloaded.
-*Overhead approximately equal to that of General/LookupAspects.
+*Overhead approximately equal to that of LookupAspects.
 *Requires no knowledge of the class being modified.
 
 ----
 
 Other approaches considered:
 
-**General/PoseAsAspects**
+**PoseAsAspects**
 *Loaded at runtime.
 *Can override all methods of a class without requiring specific declaration of each class.
 *Originally thought we could call the original method with a call to super, but we'll have to instead lookup the IMP via [self superclass]. yuck
@@ -33,42 +33,42 @@ Other approaches considered:
 *Allows loading of only one aspects per class.
 *Low overhead, but only after aspects have been loaded.
 *Requires no knowledge of the class being modified.
-*implemented by declaring a new class in the runtime as a subclass of an existing one, declaring methods in this new class to override the super classes, plus additional before and after methods. And then uses the General/PoseAsClass functionality to replace the original class in the runtime.
-*A working example: http://www.ccs.neu.edu/home/igotimac/General/PoseAspect.zip
+*implemented by declaring a new class in the runtime as a subclass of an existing one, declaring methods in this new class to override the super classes, plus additional before and after methods. And then uses the PoseAsClass functionality to replace the original class in the runtime.
+*A working example: http://www.ccs.neu.edu/home/igotimac/PoseAspect.zip
 
-**General/SimpleAspects**
+**SimpleAspects**
 *Loaded at runtime.
 *Require that every method of every class be declared (with the same SEL as the method it's overriding) and behavior described.  
 *Calling the original method is done here with a call to self.  
 *Has concept of loading and unloading Aspects.
 *Allows loading of only one aspects per class/method.  Lowest overhead, but only after aspects have been loaded.
 *Requires some knowledge of the class being modified.  
-*Implemented with categories (to add methods to a class), and swapping method IMP pointers.  Also see, General/MethodSwizzling.
+*Implemented with categories (to add methods to a class), and swapping method IMP pointers.  Also see, MethodSwizzling.
 
-**General/AddMethodAspects**
+**AddMethodAspects**
 *Loaded at runtime.
-*Since General/PoseAs won't work quite like we wanted it to. we need something that can be loaded and unloaded at any time and apply to everything.
-*A working example: (New!) http://www.ccs.neu.edu/home/igotimac/General/ReplaceAspect.zip
+*Since PoseAs won't work quite like we wanted it to. we need something that can be loaded and unloaded at any time and apply to everything.
+*A working example: (New!) http://www.ccs.neu.edu/home/igotimac/ReplaceAspect.zip
 
-**General/AddClassAspects**
+**AddClassAspects**
 *Loaded at runtime.
 *Another idea.
-* A working example: http://www.ccs.neu.edu/home/igotimac/General/AddClassAspect.zip
+* A working example: http://www.ccs.neu.edu/home/igotimac/AddClassAspect.zip
 
-**General/ForwardInvocationAspect**
+**ForwardInvocationAspect**
 
-**General/CompiledAspects**
+**CompiledAspects**
 *Loaded at compile-time.
 *Beyond the scope of this project at the momment.
 
 ----
 
-Along the way I've encountered alot of strange behaviors that have led me to ask some General/AspectRelatedQuestions
-also see: General/AspectCocoaResources.
+Along the way I've encountered alot of strange behaviors that have led me to ask some AspectRelatedQuestions
+also see: AspectCocoaResources.
 
-Right now we are working on a set of General/AspectCocoaRequirements to put the whole thing together into something useful.  After that we'll need to come up with an General/AspectCocoaSyntax.
+Right now we are working on a set of AspectCocoaRequirements to put the whole thing together into something useful.  After that we'll need to come up with an AspectCocoaSyntax.
 
-Checkout General/AspectOnSketch (the example program that comes with dev tools) and it's General/AspectOnSketchOutput as an example of what an aspect can do.
+Checkout AspectOnSketch (the example program that comes with dev tools) and it's AspectOnSketchOutput as an example of what an aspect can do.
 
 **Jacob:**  This piece on overriding may be of interest to you:  http://rentzsch.com/papers/overridingMacOSX  (Sorry, but I didn't have time to look up an email adress...)
 
@@ -78,6 +78,6 @@ This looks pretty cool.  What is the driving motivation?  What are the problems 
 
 11/25/2003
 Could this be used to benchmark your code and put a timer for every method call you are interested in? The possibility of doing it at runtime and to load/unload at wish would make it even more powerful.
-General/CharlesParnot
+CharlesParnot
 
-Charles - Yes, this certainly would be a good use for Aspects... And pretty simple to do with the General/LookupAspects library, look for: General/AspectsForBenchmarking coming soon.. (the timers wouldn't be as accurate as if you were to add them into your code(method calls) yourself because of the time involved in looking up the original method. But that time would be relatively constant, so therefore possible to factor out.
+Charles - Yes, this certainly would be a good use for Aspects... And pretty simple to do with the LookupAspects library, look for: AspectsForBenchmarking coming soon.. (the timers wouldn't be as accurate as if you were to add them into your code(method calls) yourself because of the time involved in looking up the original method. But that time would be relatively constant, so therefore possible to factor out.

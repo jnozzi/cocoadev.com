@@ -8,7 +8,7 @@ You can use openSSL to do it.
 
 ----
 
-The General/MulleCipher framework has a category on General/NSData to create md5 digests; you can use General/NSString's -dataUsingEncoding: method to convert your string to data and then call that.  -- Bo
+The MulleCipher framework has a category on NSData to create md5 digests; you can use NSString's -dataUsingEncoding: method to convert your string to data and then call that.  -- Bo
 
 ----
 
@@ -16,7 +16,7 @@ Enough with the stupid third party solutions already! This is using the librarie
     
 #include <openssl/md5.h>
 
-General/NSData *data = [myString dataUsingEncoding:General/PickYourEncoding];
+NSData *data = [myString dataUsingEncoding:PickYourEncoding];
 unsigned char *digest = MD5([data bytes], [data length], NULL);
 
 
@@ -24,7 +24,7 @@ Link in libcrypto.dynlib. Use your own buffer instead of using the static buffer
 
 ----
 
-I wouldn't describe General/MulleCipher as "stupid"... it's actually a very nice framework. And in my case it proved educational in showing how to implement an MD5 algorithm from scratch (something I wanted to know how to do so I could obfuscate my methods and make my serial-number code harder to reverse engineer).
+I wouldn't describe MulleCipher as "stupid"... it's actually a very nice framework. And in my case it proved educational in showing how to implement an MD5 algorithm from scratch (something I wanted to know how to do so I could obfuscate my methods and make my serial-number code harder to reverse engineer).
 
 
 ----
@@ -36,16 +36,16 @@ I tried the "native" Cocoa code above, but am having trouble getting my test res
 MD5 ("hello") = 5d41402abc4b2a76b9719d911017c592
 
 
-But I can't get this same result out of the unsigned char*.  Perhaps I am converting it incorrectly to an General/NSString?
+But I can't get this same result out of the unsigned char*.  Perhaps I am converting it incorrectly to an NSString?
 
     
-General/NSString* test = General/[[NSString alloc] initWithString:@"hello"];
-unsigned char* foo = General/[FileManager md5: [test dataUsingEncoding: General/NSASCIIStringEncoding]];
+NSString* test = [[NSString alloc] initWithString:@"hello"];
+unsigned char* foo = [FileManager md5: [test dataUsingEncoding: NSASCIIStringEncoding]];
 unsigned char x = foo[0];
-General/NSLog(@"x is %C", x);
+NSLog(@"x is %C", x);
 
 
-where md5 is a + method in a class I have called General/FileManager...defined just like the code above.
+where md5 is a + method in a class I have called FileManager...defined just like the code above.
 
 And it prints out "x is ]" which doesn't match "5" above.
 
@@ -60,11 +60,11 @@ This should clear things up...
 .
 .
 .
-General/NSData *data = [@"hello" dataUsingEncoding:NSUTF8StringEncoding];
+NSData *data = [@"hello" dataUsingEncoding:NSUTF8StringEncoding];
 if (data) {
-	General/NSMutableData *digest = General/[NSMutableData dataWithLength:MD5_DIGEST_LENGTH];
+	NSMutableData *digest = [NSMutableData dataWithLength:MD5_DIGEST_LENGTH];
 	if (digest && MD5([data bytes], [data length], [digest mutableBytes]))
-		General/NSLog(@"%@", digest);
+		NSLog(@"%@", digest);
 }
 
 
@@ -72,23 +72,23 @@ Which should emit in your log, <5d41402a bc4b2a76 b9719d91 1017c592 >, the MD5 d
 
 ----
 
-Great.  Thank you very much.  I was able to reproduce your results.  But now I'm tearing out my hair trying to get the MD5 into a normal General/NSString.  It seems to be an issue of being able to convert a "unsigned char" to "const char".  But I could be very wrong about that.
+Great.  Thank you very much.  I was able to reproduce your results.  But now I'm tearing out my hair trying to get the MD5 into a normal NSString.  It seems to be an issue of being able to convert a "unsigned char" to "const char".  But I could be very wrong about that.
 
 ----
 
-Hmm, something tells me I am reinventing the wheel here but the following can be used as a category addition to General/NSData to produce an General/NSString hex representation. A long winded sprintf or stringWithFormat could also do it for just the 16 bytes but this is more generic.
+Hmm, something tells me I am reinventing the wheel here but the following can be used as a category addition to NSData to produce an NSString hex representation. A long winded sprintf or stringWithFormat could also do it for just the 16 bytes but this is more generic.
 
 Remember, a MD5 digest is a 16 byte binary result, not a string.
 
     
 static const char *const digits = "0123456789abcdef";
 
-- (General/NSString*)hexadecimalRepresentation
+- (NSString*)hexadecimalRepresentation
 {
-	General/NSString *result = nil;
+	NSString *result = nil;
 	size_t length = [self length];
 	if (0 != length) {
-		General/NSMutableData *temp = General/[NSMutableData dataWithLength:(length << 1)];
+		NSMutableData *temp = [NSMutableData dataWithLength:(length << 1)];
 		if (temp) {
 			const unsigned char *src = [self bytes];
 			unsigned char *dst = [temp mutableBytes];
@@ -97,7 +97,7 @@ static const char *const digits = "0123456789abcdef";
 					*dst++ = digits[(*src >> 4) & 0x0f];
 					*dst++ = digits[(*src++ & 0x0f)];
 				}
-				result = General/[[NSString alloc] initWithData:temp encoding:General/NSASCIIStringEncoding];
+				result = [[NSString alloc] initWithData:temp encoding:NSASCIIStringEncoding];
 			}
 		}
 	}
@@ -109,9 +109,9 @@ static const char *const digits = "0123456789abcdef";
 
 Ah, stringWithFormat!  I didn't think of that.  Anyway, here's the long-winded version mentioned previously:
     
-// toHash is an General/NSData
+// toHash is an NSData
 unsigned char* digest = MD5([toHash bytes], [toHash length], NULL);
-General/NSString* s = General/[NSString stringWithFormat: @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+NSString* s = [NSString stringWithFormat: @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
 			digest[0], digest[1], 
 			digest[2], digest[3],
 			digest[4], digest[5],
@@ -122,7 +122,7 @@ General/NSString* s = General/[NSString stringWithFormat: @"%02x%02x%02x%02x%02x
 			digest[14], digest[15]];
 
 
-*The 02 prefix makes sure the hex values are zero-padded. --General/BenStiglitz*
+*The 02 prefix makes sure the hex values are zero-padded. --BenStiglitz*
 
 *(My code was suddenly acting very strange...authentication failing randomly.  And then I noticed that a zero was missing from a hash and thought aha!  So I came back here and there was already a fix!  Thanks, Ben.  I think it would have taken me a very very long time to figure out the "02.")*
 
@@ -131,14 +131,14 @@ General/NSString* s = General/[NSString stringWithFormat: @"%02x%02x%02x%02x%02x
 It might be safer, if a little slower, to do a loop:
 
     
-// toHash is an General/NSData
+// toHash is an NSData
 unsigned char* digest = MD5([toHash bytes], [toHash length], NULL);
 if (digest) {
-	General/NSMutableString *ms = General/[NSMutableString string];
+	NSMutableString *ms = [NSMutableString string];
 	for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
 		[ms appendFormat: @"%02x", (int)(digest[i])];
 	}
-	General/NSString *s = General/ms copy] autorelease];
+	NSString *s = ms copy] autorelease];
 } else {
 	/* digest failed */
 	/* ... */
@@ -160,25 +160,25 @@ Do you have some sample code on that? That would be awesome, thanks.
 ----
 I'd suggest using the CC_MD5() function. It's basically the same as the openssl variant, but it's a wrapper created by Apple around the openssl library. If you use it, you won't have to link against openssl, and are protected against changes apple may make in the future (such as dropping openssl for another crypto library). 
 ----
-Could someone tell me, how to use the code above as a method, so that I can call it with a General/NSString? I get some very strange Build Errors, when I try the Code above. (Newbie with Cocoa programming).
+Could someone tell me, how to use the code above as a method, so that I can call it with a NSString? I get some very strange Build Errors, when I try the Code above. (Newbie with Cocoa programming).
 ----
-Leave the code the way it is and convert your string to a General/NSData
+Leave the code the way it is and convert your string to a NSData
 
 ----
 
-Just wanted to clarify to any users who want to use CC_MD5() such as myself.. you need to #import <General/CommonCrypto/General/CommonDigest.h> into your code, or else it will give a compiler warning of implicit function. No special frameworks or libs are needed to be included for this to work (besides maybe Foundation or Cocoa?), it should work right off the bat. -General/StevenDegutis
+Just wanted to clarify to any users who want to use CC_MD5() such as myself.. you need to #import <CommonCrypto/CommonDigest.h> into your code, or else it will give a compiler warning of implicit function. No special frameworks or libs are needed to be included for this to work (besides maybe Foundation or Cocoa?), it should work right off the bat. -StevenDegutis
 
 ----
 
 For the record, this is the code I've found is easiest to use CC_MD5():
 
     
-- (General/NSString *) someMethodThatReturnsSomeHashForSomeString:(General/NSString*)concat {
+- (NSString *) someMethodThatReturnsSomeHashForSomeString:(NSString*)concat {
 	const char *concat_str = [concat UTF8String];
 	unsigned char result[CC_MD5_DIGEST_LENGTH];
 	CC_MD5(concat_str, strlen(concat_str), result);
 	
-	General/NSMutableString *hash = General/[NSMutableString string];
+	NSMutableString *hash = [NSMutableString string];
 	
 	for (int i = 0; i < 16; i++)
 		[hash appendFormat:@"%02X", result[i]];
@@ -187,7 +187,7 @@ For the record, this is the code I've found is easiest to use CC_MD5():
 }
 
 
--General/StevenDegutis
+-StevenDegutis
 
 ----
 
@@ -195,10 +195,10 @@ Why not just do something like this:
 
     
 ...
-hash = General/[NSMutableString stringWithFormat:@"%08x%08x%08x%08x", ((unsigned int *)&result)[0], ((unsigned int *)&result)[1], ((unsigned int *)&result)[2], ((unsigned int *)&result)[3]];
+hash = [NSMutableString stringWithFormat:@"%08x%08x%08x%08x", ((unsigned int *)&result)[0], ((unsigned int *)&result)[1], ((unsigned int *)&result)[2], ((unsigned int *)&result)[3]];
 ...
 
 
 It seems to work for me, but you're going to want to watch the size of ints on your platform. You could use a safer type like uint32_t. It just seems to me that using a loop is unnecessary, but I guess this line is perhaps a little unreadable.
 
--General/DaltonMC
+-DaltonMC

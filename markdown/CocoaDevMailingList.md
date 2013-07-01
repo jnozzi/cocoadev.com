@@ -1,10 +1,10 @@
-A mailing list maintained by General/AppleComputer. It is not affiliated with this web-site (General/CocoaDev).
+A mailing list maintained by AppleComputer. It is not affiliated with this web-site (CocoaDev).
 To enroll, go to http://lists.apple.com/mailman/listinfo/cocoa-dev.
 
 The archives can be searched at several sites:
 
 http://search.lists.apple.com (official Apple archives)
-http://www.cocoabuilder.com (includes General/OmniGroup's Macosxdev mailing list, Cocoadev and Xcode-users mailing list from Apple)
+http://www.cocoabuilder.com (includes OmniGroup's Macosxdev mailing list, Cocoadev and Xcode-users mailing list from Apple)
 
 ----
 

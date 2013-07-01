@@ -12,13 +12,13 @@ I find situations like that quite funny, as generally when I am coding late at n
 
 One of the most enjoyable coding problems was hunting through a mass of code for an error only to find it was an array that was declared that was not nil ended.
 
-Oh, I guess there may be just funny code. For example, I happened to write this yesterday: General/[[self superview] superview] superview] close]. Silly as it may seem, when I saw it I laughed for half an hour.
+Oh, I guess there may be just funny code. For example, I happened to write this yesterday: [[self superview] superview] superview] close]. Silly as it may seem, when I saw it I laughed for half an hour.
 
 * Wouldn't [[self window] close] suffice? (Unless it is something totally different) :)*
 
 ----
 
-*Somewhere in a turtle graphics program there were two Boolean functions called [[PenIsUp() and General/PenIsDown().*  **Off-color "joke" aside, don't you mean LOGO?**
+*Somewhere in a turtle graphics program there were two Boolean functions called [[PenIsUp() and PenIsDown().*  **Off-color "joke" aside, don't you mean LOGO?**
 
 My most common error: not returning self in an init function.
 

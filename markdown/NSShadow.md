@@ -1,4 +1,4 @@
-How do I use General/NSShadow to draw a shadow around a view? Not around the view's contents, but just the view itself.
+How do I use NSShadow to draw a shadow around a view? Not around the view's contents, but just the view itself.
 
 ----
 

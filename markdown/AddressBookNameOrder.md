@@ -1,8 +1,8 @@
-I'm trying to write an app that is localized for both Japanese and English (for now), and I need to construct full names for people in the General/AddressBook.
+I'm trying to write an app that is localized for both Japanese and English (for now), and I need to construct full names for people in the AddressBook.
 
 The problem is that in Japanese and who knows what else, last names go before first names in a full name.
 
-Okay, so panther provides information as to ordering in the ABPersonFlags property of an General/ABPerson, but I can't figure out how to interpret the info.
+Okay, so panther provides information as to ordering in the ABPersonFlags property of an ABPerson, but I can't figure out how to interpret the info.
 
 ----
 
@@ -20,7 +20,7 @@ Figured it out.  For anyone who else who wonders, this code will compute the nam
 
     
  ABAddressBook *addressBook = [ABAddressBook sharedAddressBook];
- ABPerson *person = General/addressBook people] objectAtIndex:0];
+ ABPerson *person = addressBook people] objectAtIndex:0];
  BOOL lastNameGoesFirst;
  
  int nameOrderFlags = [[person valueForProperty:kABPersonFlags] intValue] & kABNameOrderingMask;

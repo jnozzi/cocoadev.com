@@ -18,9 +18,9 @@ Thanks.
 
 ----
 
-Look at General/NSView's convertRect:toView: and General/NSWindow's convertBaseToScreen: methods for 1.
+Look at NSView's convertRect:toView: and NSWindow's convertBaseToScreen: methods for 1.
 
-For 2, you can just call General/[NSEvent mouseLocation].
+For 2, you can just call [NSEvent mouseLocation].
 
 ----
 
@@ -32,10 +32,10 @@ the best way to get a position of a view is to use the following methods:
 
     
 
-General/NSPoint widgetOriginInSuperviewCords = [widgetView frame].origin;
-General/NSPoint widgetOriginInWindowCords = [self convertPoint:widgetOrigin toView:nil];
-General/NSPoint windowOrigin = General/widgetView window] frame].origin;
-[[NSPoint widgetOriginOnScreen = General/NSMakePoint(windowOrigin.x + widgetOriginInWindowCords.x,
+NSPoint widgetOriginInSuperviewCords = [widgetView frame].origin;
+NSPoint widgetOriginInWindowCords = [self convertPoint:widgetOrigin toView:nil];
+NSPoint windowOrigin = widgetView window] frame].origin;
+[[NSPoint widgetOriginOnScreen = NSMakePoint(windowOrigin.x + widgetOriginInWindowCords.x,
                                            windowOrigin.y + widgetOriginInWindowCords.y);
 
 
@@ -43,7 +43,7 @@ the best way to get mouse location outside of an event:
 
     
 
-General/NSPoint mouseLocationInWindow = General/widgetView window] mouseLocationOutsideOfEventStream];
+NSPoint mouseLocationInWindow = widgetView window] mouseLocationOutsideOfEventStream];
 [[NSPoint mouseLocationInWidgetView = [widgetView convertPoint:mouseLocationInWindow fromView:nil];
 
 
@@ -53,9 +53,9 @@ General/NSPoint mouseLocationInWindow = General/widgetView window] mouseLocation
 Thanks, that worked great, I just needed to make a couple of adjustments to get it to work from within a custom control that doesn't know what view it's on. I'll put it up here as a reference for anyone else who's trying to do the same thing.
 
     
-General/NSPoint widgetOriginInWindowCords = General/self superview] convertPoint : [self frame].origin toView : nil];
-[[NSPoint windowOrigin = General/self window] frame].origin;
-[[NSPoint widgetOriginOnScreen = General/NSMakePoint(windowOrigin.x + widgetOriginInWindowCords.x,
+NSPoint widgetOriginInWindowCords = self superview] convertPoint : [self frame].origin toView : nil];
+[[NSPoint windowOrigin = self window] frame].origin;
+[[NSPoint widgetOriginOnScreen = NSMakePoint(windowOrigin.x + widgetOriginInWindowCords.x,
                                            windowOrigin.y + widgetOriginInWindowCords.y);
 
 
@@ -63,9 +63,9 @@ General/NSPoint widgetOriginInWindowCords = General/self superview] convertPoint
 
 You could simplify things somewhat more with the following code ("self" is the widget here)...
     
-General/NSPoint widgetOriginOnScreen = General/self window] convertBaseToScreen: [self convertPoint: [[NSZeroPoint toView: nil]];
+NSPoint widgetOriginOnScreen = self window] convertBaseToScreen: [self convertPoint: [[NSZeroPoint toView: nil]];
 
 
-Or is there a reason for not using convertBaseToScreen? --General/PeterMaurer
+Or is there a reason for not using convertBaseToScreen? --PeterMaurer
 
 *I'm not sure of the reasons, but it doesn't seem to work for a widget in a tab view.*

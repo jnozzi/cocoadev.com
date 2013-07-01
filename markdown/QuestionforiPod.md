@@ -4,15 +4,15 @@
 
 I have several questions about the iPod and Cocoa.
 
-How does an app like General/PodWorks (http://www.scifihifi.com/podworks/ ) get a listing of all of the songs on the iPod with the ID3 tags? (I know that the songs are in the invisible iPod_Control folder, but they are scattered all around in there)
+How does an app like PodWorks (http://www.scifihifi.com/podworks/ ) get a listing of all of the songs on the iPod with the ID3 tags? (I know that the songs are in the invisible iPod_Control folder, but they are scattered all around in there)
 
-How I can I use the General/ListofConnectediPods code here to make a selected iPod unmount?
+How I can I use the ListofConnectediPods code here to make a selected iPod unmount?
 
 -scott (http://chs.claremont.edu/~ssmith )
 
 ----
 
-To unmount: Get the iPod Volume and use General/[NSWorkspace unmountAndEjectDeviceAtPath:];
+To unmount: Get the iPod Volume and use [NSWorkspace unmountAndEjectDeviceAtPath:];
 
 As to the songs on the iPod, you can read the entire structure in quite easily.
 
@@ -25,7 +25,7 @@ Thanks, but how do you get all of the song files to show up in a table?
 
 --
 
-Place them in a dictionary or array and then put them in an General/NSTableView.
+Place them in a dictionary or array and then put them in an NSTableView.
 
 --
 
@@ -33,7 +33,7 @@ Yes, but the songs are in many folders like F00, F01, etc. How would you pull ou
 
 ----
 
-Have you looked at General/NSFileManager? Its got methods for listing the contents of a folder. Simply get the contents and add them to an array/dictionary and you are off.
+Have you looked at NSFileManager? Its got methods for listing the contents of a folder. Simply get the contents and add them to an array/dictionary and you are off.
 
 ----
 
@@ -42,7 +42,7 @@ As it happens, I've recently written a class that will parse the iTunesDB file o
 *http://idisk.mac.com/d.j.v.-Public/iTunesDBParser (using Finder's "Connect to Server..." command)
 *http://homepage.mac.com/d.j.v./FileSharing3.html
 
--- General/DustinVoss
+-- DustinVoss
 
 ----
 
@@ -52,12 +52,12 @@ Nice. I'll give it a shot!      -scott
 
 Well, I tried it, here is my code for the table:
     
-- (int)numberOfRowsInTableView:(General/NSTableView *)tableView
+- (int)numberOfRowsInTableView:(NSTableView *)tableView
 
 {
-General/NSMutableArray *songs = General/[NSMutableArray arrayWithCapacity:lastSongCount];
-	General/NSEnumerator *songEnum = [self songEnumerator];
-	General/NSDictionary *songDict; while ( (songDict = [songEnum nextObject]) != nil)
+NSMutableArray *songs = [NSMutableArray arrayWithCapacity:lastSongCount];
+	NSEnumerator *songEnum = [self songEnumerator];
+	NSDictionary *songDict; while ( (songDict = [songEnum nextObject]) != nil)
     
 for (songEnum=0;songEnum<[songDict count];)
 {
@@ -68,13 +68,13 @@ for (songEnum=0;songEnum<[songDict count];)
 }
 
 
-- (id)tableView:(General/NSTableView *)tableView
-      objectValueForTableColumn:(General/NSTableColumn *)tableColumn
+- (id)tableView:(NSTableView *)tableView
+      objectValueForTableColumn:(NSTableColumn *)tableColumn
       row:(int)row
 {
-General/NSMutableArray *songs = General/[NSMutableArray arrayWithCapacity:lastSongCount];
-	General/NSEnumerator *songEnum = [self songEnumerator];
-	General/NSDictionary *songDict; while ( (songDict = [songEnum nextObject]) != nil)
+NSMutableArray *songs = [NSMutableArray arrayWithCapacity:lastSongCount];
+	NSEnumerator *songEnum = [self songEnumerator];
+	NSDictionary *songDict; while ( (songDict = [songEnum nextObject]) != nil)
     
 for (songEnum=0;songEnum<[songDict count];)
    { 
@@ -89,7 +89,7 @@ for (songEnum=0;songEnum<[songDict count];)
 
 When I run this, it builds all the way but then the app crashes right away with this error:
 
-General/PodTool has exited due to signal 10 (SIGBUS).
+PodTool has exited due to signal 10 (SIGBUS).
 
 I think that is a memory leak, but I am not sure. Anyone have any ideas for this?
 
@@ -97,7 +97,7 @@ I think that is a memory leak, but I am not sure. Anyone have any ideas for this
 
 ----
 
-Is that a straight copy-and-paste from what you ran?  I don't think that'd compile without a whole slew of warnings at least.  You're calling -objectAtIndex:, an General/NSArray method, on an General/NSDictionary and comparing an General/NSEnumerator* (songEnum) to an unsigned int ([songDict count]), both of which should produce compiler warnings at least.  
+Is that a straight copy-and-paste from what you ran?  I don't think that'd compile without a whole slew of warnings at least.  You're calling -objectAtIndex:, an NSArray method, on an NSDictionary and comparing an NSEnumerator* (songEnum) to an unsigned int ([songDict count]), both of which should produce compiler warnings at least.  
 
 Also, there doesn't seem to be any way that the for loop will ever terminate since songEnum is never advanced within it, the -setNeedsDisplay: call (which is unnecessary anyways) won't be called because it's after the return statement and you should really consider setting up the array beforehand (in your -init method perhaps) rather than recreating it every time the data source methods get called (these methods get called many times).  -- Bo
 
@@ -109,7 +109,7 @@ It's a good idea to heed compiler warnings.  They're usually pointing out someth
 
 ----
 
-Not really, since I don't know either how your data is stored in your data source or how your table is setup in your nib.  However, it's good general practice to go through any warnings you get one by one and either fix each one or at the very least make sure you understand why you're getting each one.  For more general info on tables, the General/NSTableViewTutorial page is an article on how to set up a table and its data source; it even uses an iPod theme for the example code.  -- Bo
+Not really, since I don't know either how your data is stored in your data source or how your table is setup in your nib.  However, it's good general practice to go through any warnings you get one by one and either fix each one or at the very least make sure you understand why you're getting each one.  For more general info on tables, the NSTableViewTutorial page is an article on how to set up a table and its data source; it even uses an iPod theme for the example code.  -- Bo
 
 ----
 
@@ -122,26 +122,26 @@ Yeah, I got all of my errors out. I am not completley sure how well it will work
 
 #import <Foundation/Foundation.h>
 #import <Cocoa/Cocoa.h>
-#import <General/AppKit/General/AppKit.h>
+#import <AppKit/AppKit.h>
 
 Which would seem fine, but there are many errors with this for some reason. For each of the three, I get a whole set of warnings like this:
 
 
 iTunesDBParser.h:13: warning: could not use precompiled header '/System/Library/Frameworks/Foundation.framework/Headers/Foundation-gcc3.p', because:
 
-iTunesDBParser.h:13: warning: 'Foundation/General/NSObjCRuntime.h' has different date than in precomp
+iTunesDBParser.h:13: warning: 'Foundation/NSObjCRuntime.h' has different date than in precomp
 
-iTunesDBParser.h:13: warning: 'Foundation/General/NSArchiver.h' has different date than in precomp
+iTunesDBParser.h:13: warning: 'Foundation/NSArchiver.h' has different date than in precomp
 
-iTunesDBParser.h:13: warning: 'Foundation/General/NSCoder.h' has different date than in precomp
+iTunesDBParser.h:13: warning: 'Foundation/NSCoder.h' has different date than in precomp
 
-iTunesDBParser.h:13: warning: 'Foundation/General/NSObject.h' has different date than in precomp
+iTunesDBParser.h:13: warning: 'Foundation/NSObject.h' has different date than in precomp
 
 iTunesDBParser.h:13: warning:   and others...
 
 
 
-What is up with that? And that slew of warnings comes in three times for each of Foundation, Cocoa, and General/AppKit. Other than that, no other warnings.
+What is up with that? And that slew of warnings comes in three times for each of Foundation, Cocoa, and AppKit. Other than that, no other warnings.
 
 -scott
 
@@ -153,7 +153,7 @@ These warnings are because Foundation's precompiled header is out of date; go to
 
 ----
 
-As I am using that code in a project right now, I can safely say it works, although I have tweaked it heavily to make it more efficient cpu and memory wise. Its very nice code though. -- General/MatPeterson
+As I am using that code in a project right now, I can safely say it works, although I have tweaked it heavily to make it more efficient cpu and memory wise. Its very nice code though. -- MatPeterson
 
 ----
 
@@ -190,7 +190,7 @@ I did not, and I honestly don't know what to do for that.
 
 -scott
 
-You may want to get one of the General/CocoaBooks, which covers the basics, like using an enumerator.  The General/NSEnumerator documentation includes a sample enumeration loop.
+You may want to get one of the CocoaBooks, which covers the basics, like using an enumerator.  The NSEnumerator documentation includes a sample enumeration loop.
 
 ----
 
@@ -199,13 +199,13 @@ Ok, I just looked at the iTuneDBParser class.  If you set up an instance of that
     
 #pragma mark -
 #pragma mark TABLE DATA SOURCE
-- (int)numberOfRowsInTableView:(General/NSTableView *)tableView
+- (int)numberOfRowsInTableView:(NSTableView *)tableView
 {
 	return [itParser countSongs];
 }
-- (id)tableView:(General/NSTableView *)tableView objectValueForTableColumn:(General/NSTableColumn *)tableColumn row:(int)row
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row
 {
-	return General/[itParser allSongs] objectAtIndex:row] objectForKey:[tableColumn identifier;
+	return [itParser allSongs] objectAtIndex:row] objectForKey:[tableColumn identifier;
 }
 
 
@@ -219,9 +219,9 @@ That would seem easier and cleaner, but would the instance look like this:
 
 - (int) itsParser
 {
-        General/NSMutableArray *songs = General/[[NSMutableArray alloc] init];
-	General/NSEnumerator *songEnum = [self songEnumerator];
-	General/NSArray *songDict;
+        NSMutableArray *songs = [[NSMutableArray alloc] init];
+	NSEnumerator *songEnum = [self songEnumerator];
+	NSArray *songDict;
         while ( (songDict = [songEnum nextObject]) != nil)
 }
 
@@ -233,18 +233,18 @@ Then below that would be the code you put up? I think it is something like that.
 
 ----
 
-I think I said that; itParser should point to an instance variable of class iTunesDBParser in your class's header, which you should allocate and initialize in your class's designated initializer.  If you find this terminology confusing, I would suggest reading Apple's General/ObjectiveC docs (at file:///Developer/Documentation/Cocoa/General/ObjectiveC/index.html on your computer) to bring yourself up to speed.   -- Bo
+I think I said that; itParser should point to an instance variable of class iTunesDBParser in your class's header, which you should allocate and initialize in your class's designated initializer.  If you find this terminology confusing, I would suggest reading Apple's ObjectiveC docs (at file:///Developer/Documentation/Cocoa/ObjectiveC/index.html on your computer) to bring yourself up to speed.   -- Bo
 
 ----
 
-Guys, as the author of iTunesDBParser, I don't recommend using **allSongs** on a regular basis. All it does is run through the enumerator, which will read & parse the file from disk. I'd call it once and cache the result, and re-call **allSongs** only when you think the DB changed. -- General/DustinVoss
+Guys, as the author of iTunesDBParser, I don't recommend using **allSongs** on a regular basis. All it does is run through the enumerator, which will read & parse the file from disk. I'd call it once and cache the result, and re-call **allSongs** only when you think the DB changed. -- DustinVoss
 
 ----
 
-I've removed iTunesDBParser, as General/MatPeterson and I have come to an...*arrangement*. -- General/DustinVoss
+I've removed iTunesDBParser, as MatPeterson and I have come to an...*arrangement*. -- DustinVoss
 
 ----
 
-Dustin, what about those who already downloaded your class? I emailed you about it - can I still use it? Or is it already in use in the latest iPodRip beta? -- General/KevinWojniak
+Dustin, what about those who already downloaded your class? I emailed you about it - can I still use it? Or is it already in use in the latest iPodRip beta? -- KevinWojniak
 
-If you've already downloaded it, go ahead and continue to use it. As for iPodRip, General/MatPeterson is the author, hence the arrangement. -- General/DustinVoss
+If you've already downloaded it, go ahead and continue to use it. As for iPodRip, MatPeterson is the author, hence the arrangement. -- DustinVoss

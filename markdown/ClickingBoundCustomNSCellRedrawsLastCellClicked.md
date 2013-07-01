@@ -1,8 +1,8 @@
-I'm having a problem where I'm not sure whether I'm doing something wrong or bindings is doing something wrong.  I have a custom General/NSCell (nothing too fancy, the normal image+text stuff).  In Interface Builder, I've got the table column bound to General/NSArrayController.arrangedObjects.  In the code, however, I build my cell and set it to the data cell of the table view.  I then bind all of my outlets to the object value.
+I'm having a problem where I'm not sure whether I'm doing something wrong or bindings is doing something wrong.  I have a custom NSCell (nothing too fancy, the normal image+text stuff).  In Interface Builder, I've got the table column bound to NSArrayController.arrangedObjects.  In the code, however, I build my cell and set it to the data cell of the table view.  I then bind all of my outlets to the object value.
 
     
-General/CustomCell *cell = General/[[CustomCell new] autorelease]; // It isn't really named "General/CustomCell", but this is an example
-General/[[[TableView tableColumns] lastObject] setDataCell:cell]; // There's only one column
+CustomCell *cell = [[CustomCell new] autorelease]; // It isn't really named "CustomCell", but this is an example
+[[[TableView tableColumns] lastObject] setDataCell:cell]; // There's only one column
 [cell bind:@"image" toObject:cell withKeyPath:@"objectValue.image" options:nil];
 [cell bind:@"text" toObject:cell withKeyPath:@"objectValue.name" options:nil];
 

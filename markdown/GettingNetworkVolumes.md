@@ -1,6 +1,6 @@
 Hi
 
-I've devoured General/NSWorkspace into giving me a list of paths to all mountedLocalVolumes, this lists everything from the hard disks to cds to network volumes. General/NSWorkspace has another option to list the paths of mountedRemovableMedia. This will give ipods/firewire drives, network volumes and cds. However, I want to be able to single out certain volume types, namely being network volumes. I want to be able to get a list of hard disks, a separate list of removable media, and then a separate list of only network volumes. General/NSWorkspace unfortunately wont allow this. Is there any possible way of doing this? I have done it in Applescript Studio so it is most definately possible in cocoa.
+I've devoured NSWorkspace into giving me a list of paths to all mountedLocalVolumes, this lists everything from the hard disks to cds to network volumes. NSWorkspace has another option to list the paths of mountedRemovableMedia. This will give ipods/firewire drives, network volumes and cds. However, I want to be able to single out certain volume types, namely being network volumes. I want to be able to get a list of hard disks, a separate list of removable media, and then a separate list of only network volumes. NSWorkspace unfortunately wont allow this. Is there any possible way of doing this? I have done it in Applescript Studio so it is most definately possible in cocoa.
 
 Thanks, 
 Cheers
@@ -37,7 +37,7 @@ Just wanna do this in cocoa. At the moment all I can get is one full list of eve
 
 ----
 
-Okay, here's the direct conversion.  It's going to use General/KFAppleScript handler additions from http://homepage.mac.com/kenferry/software.html though you can do without this addition with a little more effort.  It's mainly used to convert the applescript lists of strings to General/NSArrays of General/NSStrings.
+Okay, here's the direct conversion.  It's going to use KFAppleScript handler additions from http://homepage.mac.com/kenferry/software.html though you can do without this addition with a little more effort.  It's mainly used to convert the applescript lists of strings to NSArrays of NSStrings.
 
 Typed in the browser window, so please correct as necessary.
 
@@ -68,12 +68,12 @@ Now, in the cocoa program,
 
     
 
-General/NSDictionary *errorDict;
-General/NSAppleScript *volumeInfoScpt = General/[[NSAppleScript alloc] initWithContentsOfURL:*<url to saved scpt file>* error:errorDict];
+NSDictionary *errorDict;
+NSAppleScript *volumeInfoScpt = [[NSAppleScript alloc] initWithContentsOfURL:*<url to saved scpt file>* error:errorDict];
 
 // do error processing
 
-General/NSArray *netDiskNames = [volumeInfoScpt executeHandler:@"network_disk_names"];
+NSArray *netDiskNames = [volumeInfoScpt executeHandler:@"network_disk_names"];
 // etc.
 
 
@@ -95,6 +95,6 @@ Nope, north america.
 
 *Btw, are there any other project settings I need to change for the Applescript to work?*
 
-Only make sure you #import "General/KFAppleSciptHandlerAdditionsCore.h" in each file where you want to use -General/[NSAppleScript executeHandler:].  There's an General/NSAppleScriptEnabled plist key you may be thinking of, but that's used when you want to signal that your app is scriptable, not when you want to run scripts.
+Only make sure you #import "KFAppleSciptHandlerAdditionsCore.h" in each file where you want to use -[NSAppleScript executeHandler:].  There's an NSAppleScriptEnabled plist key you may be thinking of, but that's used when you want to signal that your app is scriptable, not when you want to run scripts.
 
-If you're going to put the volume names in a table, it might be noticably slow to run the script every time the table wants data.  If that's what you find, you can cache the names in a local variable and dirty the cache when you receive General/NSWorkspaceDidMountNotification or General/NSWorkspaceDidUnmountNotification.
+If you're going to put the volume names in a table, it might be noticably slow to run the script every time the table wants data.  If that's what you find, you can cache the names in a local variable and dirty the cache when you receive NSWorkspaceDidMountNotification or NSWorkspaceDidUnmountNotification.

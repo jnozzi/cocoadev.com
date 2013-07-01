@@ -8,9 +8,9 @@ Trying to sift through old projects to pu on my new portfolio site http://www.ql
 
 *PHP
 *HTML
-*General/JavaScript
+*JavaScript
 *CSS
-*General/REALbasic
+*REALbasic
 *Ruby (only just!)
 *Cocoa (only just started learning)
 

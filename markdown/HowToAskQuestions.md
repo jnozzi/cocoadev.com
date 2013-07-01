@@ -1,4 +1,4 @@
-The goal of this page is to educate the members of this community on how to ask a good, solid question and receive a good, solid answer. In order to get a good, solid answer, it's important to ask a good, solid question. Before you even ask, however, you should search the wiki thoroughly using the General/FindPage. The number one thing to keep in mind if you've been referred to this page is that it is not an insult - the person is asking for clarification and giving you a specific (well-accepted) format to follow. Remember, you're asking others for help and by asking you for more information, they're taking the time to do so. Don't take it personally!
+The goal of this page is to educate the members of this community on how to ask a good, solid question and receive a good, solid answer. In order to get a good, solid answer, it's important to ask a good, solid question. Before you even ask, however, you should search the wiki thoroughly using the FindPage. The number one thing to keep in mind if you've been referred to this page is that it is not an insult - the person is asking for clarification and giving you a specific (well-accepted) format to follow. Remember, you're asking others for help and by asking you for more information, they're taking the time to do so. Don't take it personally!
 
 ----
 
@@ -8,14 +8,14 @@ Asking the 'perfect' question is probably a lofty goal. Best to settle for a 're
 
 
 *First and foremost, post your goal. What do you intend to accomplish? "I want it to work." is insufficient. Please elaborate!
-*Consider the notion that you may be in the throes of a General/CommonProblem - someone, somewhere may have had the same one before!
+*Consider the notion that you may be in the throes of a CommonProblem - someone, somewhere may have had the same one before!
 *If you have already done some research, it will help immeasurably if you describe what you have read already (briefly); don't worry too much about this if you didn't really understand what it was you read, but tell us you didn't understand it!
 *Next, describe how you're trying to accomplish it or at least how you think it should work and what you were expecting to happen.
 *Also, make sure you state what actually happened - what went 'wrong'.
 *If you are having a problem with your own code, post the code in question. Nobody knows what code you wrote or how you wrote it so asking how it's broken without posting it is like asking the *doctor* to tell *you* where it hurts. :-) In other words, post your problem code!
 *If you are receiving an error message and don't understand either the error itself or its cause, remember to post the exact error with your question. If you don't say what the error is, the best anyone can give you is a guess.
 *Don't post a question in an unrelated page. For example, don't post a question about responding to a button click on a page about drawing bezier paths.
-*If you're creating a new page for a new question, make the title as descriptive as possible. Titles like "General/NSBezierPathQuestion" are too vague and so are unhelpful to future visitors looking for answers to the same question. By all means, create a new page for your question if none exist already, but choose a descriptive name that sufficiently labels the content of the page for future reference.
+*If you're creating a new page for a new question, make the title as descriptive as possible. Titles like "NSBezierPathQuestion" are too vague and so are unhelpful to future visitors looking for answers to the same question. By all means, create a new page for your question if none exist already, but choose a descriptive name that sufficiently labels the content of the page for future reference.
 
 
 *Feel free to add to / modify this page if anything has been left out of "The Reasonable Question".*
@@ -26,7 +26,7 @@ Asking the 'perfect' question is probably a lofty goal. Best to settle for a 're
 
 [Topic]
 
-Consider pointing newbies to one of these rather than directly to General/HowToAskQuestions, as the title is potentially aggravating. If they follow the link, they should find their way here.
+Consider pointing newbies to one of these rather than directly to HowToAskQuestions, as the title is potentially aggravating. If they follow the link, they should find their way here.
 
 ----
 
@@ -38,7 +38,7 @@ This is a great page that describes the best approach to asking a question in a 
 
 http://www.catb.org/~esr/faqs/smart-questions.html
 
-A shorter guide by General/MikeAsh of this parish:
+A shorter guide by MikeAsh of this parish:
 
 http://www.mikeash.com/getting_answers.html
 

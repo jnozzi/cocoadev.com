@@ -1,8 +1,8 @@
-Is there any way to figure out how large a standard text file will be just by using the text in an General/NSTextView? I want to have a display showing the current size a file will be if saved at that time.
+Is there any way to figure out how large a standard text file will be just by using the text in an NSTextView? I want to have a display showing the current size a file will be if saved at that time.
 
 ----
 
-You can do a character count, by getting the *length* of the *stringValue* of the General/NSTextView instance in question.  If you're dealing with an 8 bit character code -- plain ASCII, for instance you can just multiply that times the length -- I think unicode is 16 bit, but I might be wrong... anyhow -- that's pretty much the only way I can think of.  However keep in mind that that won't really tell you how much space your file will hog up on the drive.  That will depend on how your drive is formated.
+You can do a character count, by getting the *length* of the *stringValue* of the NSTextView instance in question.  If you're dealing with an 8 bit character code -- plain ASCII, for instance you can just multiply that times the length -- I think unicode is 16 bit, but I might be wrong... anyhow -- that's pretty much the only way I can think of.  However keep in mind that that won't really tell you how much space your file will hog up on the drive.  That will depend on how your drive is formated.
 
 ----
 
@@ -10,26 +10,26 @@ Yes, Apple's unichar represent an UCS-2 character and thus is 16 bit. But often 
 
 ----
 
-You could get an General/NSData object from the General/NSTextView's contents, and do a [dataObject length] on that.
+You could get an NSData object from the NSTextView's contents, and do a [dataObject length] on that.
 
 ----
 
-I'm trying to get the file size for a file/folder, and using General/NSFileManager's directoryAttributesAtPath:traverseLink: works (using objectForKey:General/NSFileSize) but it returns the length of the file and I want/prefer to get the size it takes up on disk. For example, for a text file, Finder says it's 211 bytes, but takes 4K on disk, and the .Mac Backup program also says 4K. Is there a way to get this? General/NSFileManager's method returns the 211 bytes, but I want to get the 4K. Or is that unnecessary (btw I'm making a backup function in my app). --General/KevinWojniak
+I'm trying to get the file size for a file/folder, and using NSFileManager's directoryAttributesAtPath:traverseLink: works (using objectForKey:NSFileSize) but it returns the length of the file and I want/prefer to get the size it takes up on disk. For example, for a text file, Finder says it's 211 bytes, but takes 4K on disk, and the .Mac Backup program also says 4K. Is there a way to get this? NSFileManager's method returns the 211 bytes, but I want to get the 4K. Or is that unnecessary (btw I'm making a backup function in my app). --KevinWojniak
 
 ----
 
 Finder is returning the file size expressed in a multiple of disk page sizes. IIRC from my Traditional Mac OS days, HFS and HFS+ support a variable page length scheme, depending entirely on the size of the HFS volume in question. Also, page sizes may not be the same between file types (HFS, HFS+, UFS, NFS, FAT32, AFS, AFP, etc.). So ... a complete solution would be to ask the User what string encoding they intend to use, get the size of the file in that string encoding, ask User where they intend to save the file, use statfs to find out what the fundamental block size is for that file system, and then produce a value accordingly. 
 
     
-off_t logicalSize = General/FileSizeForTheUsersIntendedStringEncoding(); // you know what to do here
-int blockSize = General/GetTheBlockSizeForTheUsersIntendedFileSystem(); // call statfs
+off_t logicalSize = FileSizeForTheUsersIntendedStringEncoding(); // you know what to do here
+int blockSize = GetTheBlockSizeForTheUsersIntendedFileSystem(); // call statfs
 off_t physicalSize = size / blockSize + ((size % blockSize) ? 1 : 0 );
 
 
 Another solution is just to round up to 4k. 
 
     
-off_t logicalSize = General/FileSizeForTheUsersIntendedStringEncoding(); // you know what to do here
+off_t logicalSize = FileSizeForTheUsersIntendedStringEncoding(); // you know what to do here
 off_t physicalSize = size / 4096 + ((size % 4096) ? 1 : 0 );
 
 
@@ -39,19 +39,19 @@ Also, IMO, doing all this work is normally unnecessary. If you want to tell the 
 
 HTH.
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
 You can always use the trusty Carbon File Manager:
-    General/NSString *filePath = @"...";
-General/OSStatus err;
+    NSString *filePath = @"...";
+OSStatus err;
 
-General/FSRef fileRef;
-err = General/FSPathMakeRef([filePath fileSystemRepresentation], &fileRef, NULL);
+FSRef fileRef;
+err = FSPathMakeRef([filePath fileSystemRepresentation], &fileRef, NULL);
 if (err == noErr) {
-    General/FSCatalogInfo catalogInfo;
-    err = General/FSGetCatalogInfo(&fileRef, kFSCatInfoDataSizes, &catalogInfo, NULL, NULL, NULL);
+    FSCatalogInfo catalogInfo;
+    err = FSGetCatalogInfo(&fileRef, kFSCatInfoDataSizes, &catalogInfo, NULL, NULL, NULL);
     if (err == noErr) {
         UInt64 physicalSize = catalogInfo.dataPhysicalSize;
     }
@@ -63,11 +63,11 @@ if (err == noErr) {
 Here's a way to get any file or folder's content size in Cocoa:
 
     
-General/NSFileManager * fm = General/[NSFileManager defaultManager];
-General/NSArray * contents;
+NSFileManager * fm = [NSFileManager defaultManager];
+NSArray * contents;
 unsigned long long size = 0;
-General/NSEnumerator * enumerator;
-General/NSString * path;
+NSEnumerator * enumerator;
+NSString * path;
 BOOL isDirectory;
 
 
@@ -75,18 +75,18 @@ BOOL isDirectory;
 if ([fm fileExistsAtPath:filePath isDirectory:&isDirectory] && isDirectory) {
 	contents = [fm subpathsAtPath:filePath];
 } else {
-	contents = General/[NSArray arrayWithObject:@""];
+	contents = [NSArray arrayWithObject:@""];
 }
 
 // Add Size Of All Paths
 enumerator = [contents objectEnumerator];
 while (path = [enumerator nextObject]) {
-	General/NSDictionary *fattrs = [fm fileAttributesAtPath:[filePath stringByAppendingPathComponent:path] traverseLink:NO];
-	size += General/fattrs objectForKey:[[NSFileSize] unsignedLongLongValue];
+	NSDictionary *fattrs = [fm fileAttributesAtPath:[filePath stringByAppendingPathComponent:path] traverseLink:NO];
+	size += fattrs objectForKey:[[NSFileSize] unsignedLongLongValue];
 }
 
 // Return Total Size in Bytes
-return General/[NSNumber numberWithUnsignedLongLong:size];
+return [NSNumber numberWithUnsignedLongLong:size];
 
 
 -- Seth Willits.

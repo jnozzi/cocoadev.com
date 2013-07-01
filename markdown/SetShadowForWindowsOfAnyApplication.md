@@ -1,19 +1,19 @@
-As described in General/CoreGraphicsPrivate, I tried to modify the shadow bit for windows of any application.
+As described in CoreGraphicsPrivate, I tried to modify the shadow bit for windows of any application.
 I use the following code for it:
     
-General/CGSConnectionID cid = _CGSDefaultConnection();
-General/NSPoint curP = General/[NSEvent mouseLocation];
-General/CGPoint myPoint = General/CGPointMake(curP.x, 1024-curP.y);
-General/CGPoint outP;
+CGSConnectionID cid = _CGSDefaultConnection();
+NSPoint curP = [NSEvent mouseLocation];
+CGPoint myPoint = CGPointMake(curP.x, 1024-curP.y);
+CGPoint outP;
 int widOut;
 int cidOut;
-General/CGSFindWindowByGeometry(cid, 0, 1, 0, &myPoint, &outP, &widOut, &cidOut);
+CGSFindWindowByGeometry(cid, 0, 1, 0, &myPoint, &outP, &widOut, &cidOut);
 
-General/CGSWindowTag tags[2] = {0,0};
-tags[0] = General/CGSTagNoShadow;
-General/CGSSetWindowTags(cidOut, widOut, tags, 32);
+CGSWindowTag tags[2] = {0,0};
+tags[0] = CGSTagNoShadow;
+CGSSetWindowTags(cidOut, widOut, tags, 32);
 
-What this does is get the cgsconnection and the windowNumber of the window the mouse Pointer is over, and use that for General/CGSSetWindowTags to set the noShadow bit.
+What this does is get the cgsconnection and the windowNumber of the window the mouse Pointer is over, and use that for CGSSetWindowTags to set the noShadow bit.
 Now, it works for windows in my application where this code is executed in, but it doesn't work for other applications I move the mouse over.
 
 Is there anything I'm missing or is it just not possible?
@@ -42,15 +42,15 @@ Of course, unlike a car's booster parts, these parts can be removed in seconds i
 I read somewhere around here on cocoadev that things like this have to be run as root. Now generally, running anything as root is a bad idea and no worries, I'm not going to release anything like that. I'm just interested in if it would work would I run the code above as root?
 
 ----
-Many General/CoreGraphics functions are protected (by the window server) : you can use them in your application on your windows. But you cannot use them on other windows, because you don't have permission.
+Many CoreGraphics functions are protected (by the window server) : you can use them in your application on your windows. But you cannot use them on other windows, because you don't have permission.
 Running as root doesn't give this permission.
 To get this permission, you must run as "universal owner" : this is a process which is authorized to do all.
 Currently, the universal owner is the Dock, and it cannot be changed "easyly".
-One tip to get this permission is "code injection" : this is to inject your own code into the running Dock process. Then, this code will act as "universal owner". By implementing a communication system between your application and your injected code, you'll do call all General/CoreGraphics functions successfully.
+One tip to get this permission is "code injection" : this is to inject your own code into the running Dock process. Then, this code will act as "universal owner". By implementing a communication system between your application and your injected code, you'll do call all CoreGraphics functions successfully.
 
-General/MrBru.
+MrBru.
 ----
-In the private General/CoreDock API (see General/DockPrefsPrivate) there's something called General/CoreDockRegisterAsDockOwner or something like that. Could that give me those privileges?
+In the private CoreDock API (see DockPrefsPrivate) there's something called CoreDockRegisterAsDockOwner or something like that. Could that give me those privileges?
 
 ----
 Now that we have a forum for this kind of question-and-answer, please migrate this discussion there, and if/when you receive a satisfactory answer, edit this page as appropriate.

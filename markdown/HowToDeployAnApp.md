@@ -1,6 +1,6 @@
 
 
-I am a newbie Cocoa programmer. I created a small application on General/XCode 2.1 on my computer running OS 10.4, and it works fine. When I move the built application to another computer in the lab, which is running 10.3, it does not work. The crash log reveals that it is trying to find the zerolink framework, even though I built it under deployment mode with zerolink supposedly turned off. Also, no matter what target OS SDK I build for (i.e. if I use the compiler default 10.4 or if I change it to 10.3) the same problem occurs. Is there something obvious I am missing? 
+I am a newbie Cocoa programmer. I created a small application on XCode 2.1 on my computer running OS 10.4, and it works fine. When I move the built application to another computer in the lab, which is running 10.3, it does not work. The crash log reveals that it is trying to find the zerolink framework, even though I built it under deployment mode with zerolink supposedly turned off. Also, no matter what target OS SDK I build for (i.e. if I use the compiler default 10.4 or if I change it to 10.3) the same problem occurs. Is there something obvious I am missing? 
 
 ----
 
@@ -18,18 +18,18 @@ Any time you're posting about a problem and you start talking about a log, that'
 
 You're quite right I should have done that in the first place. Here's the crash.log:
 
-Command: General/MyApplication
-Path:    /Users/*****/General/MyApplication.app/Contents/General/MacOS/General/MyApplication
+Command: MyApplication
+Path:    /Users/*****/MyApplication.app/Contents/MacOS/MyApplication
 Version: ??? (???)
 PID:     14313
 Thread:  Unknown
 
 Link (dyld) error:
 
-dyld: /Users/*****/General/MyApplication.app/Contents/General/MacOS/General/MyApplication can't open library: /System/Library/General/PrivateFrameworks/General/ZeroLink.framework/Versions/A/General/ZeroLink  (No such file or directory, errno = 2)
+dyld: /Users/*****/MyApplication.app/Contents/MacOS/MyApplication can't open library: /System/Library/PrivateFrameworks/ZeroLink.framework/Versions/A/ZeroLink  (No such file or directory, errno = 2)
 
 This particular file exists on my computer but not on the target computer. I tried dragging it across, but I don't have write priviliges there, and that shouldn't be the real solution anyway. Again, I am cleaning all targets before rebuilding in deployment mode, and the Info window does show that  zerolink is turned off. Thanks for any insights.
 
 ----
 
-You're using General/ZeroLink. There's more than one place to turn it off, evidently you just didn't hit the right place yet. More specifically, you have to disable it in your General/BuildStyle/General/BuildConfiguration, not just the main target.
+You're using ZeroLink. There's more than one place to turn it off, evidently you just didn't hit the right place yet. More specifically, you have to disable it in your BuildStyle/BuildConfiguration, not just the main target.

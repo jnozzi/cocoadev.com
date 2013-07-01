@@ -1,13 +1,13 @@
 Firstly my apologies for giving in and posting here on what I am very sure will appear a very trivial concept to many here.
 
-Although useful information regarding General/NSAttributedString is already available, both here and in the developer documentation I am still having trouble using the class despite fervent Googling.
+Although useful information regarding NSAttributedString is already available, both here and in the developer documentation I am still having trouble using the class despite fervent Googling.
 
-I am attempting to create an General/NSAttributedString from a plain string I already have, but want it to be in the system font but just a little smaller, say font size 7. Here is what I have already, but it doesn't work. If anyone has a practical example of using General/NSAttributedString it would be of great value. 
+I am attempting to create an NSAttributedString from a plain string I already have, but want it to be in the system font but just a little smaller, say font size 7. Here is what I have already, but it doesn't work. If anyone has a practical example of using NSAttributedString it would be of great value. 
 
 <source lang="objc">
 NSFont *stringFont = [NSFont fontWithName:@"Arial" size:7.0];
 NSDictionary *stringAttributes = [NSDictionary dictionaryWithObject:stringFont forKey:NSFontAttributeName];
-NSAttributedString *lowerString = General/NSAttributedString alloc] 
+NSAttributedString *lowerString = NSAttributedString alloc] 
 							initWithString:stringFromElsewhere
 						        attributes:stringAttributes];
 </source>
@@ -38,31 +38,31 @@ If you want the system font, you may want to use the class method <source lang="
 
 Also, don't forget to release the attributed string once you're done with it. It's easy to forget that.
 
--- General/RyanBates
+-- RyanBates
 
 ----
 
-In particular, don't use something like <source lang="objc">[textView setString: lowerString]</source> which only takes a non-attributed General/NSString. Do <source lang="objc">General/textView textStorage] setAttributedString: lowerString]</source>
+In particular, don't use something like <source lang="objc">[textView setString: lowerString]</source> which only takes a non-attributed NSString. Do <source lang="objc">textView textStorage] setAttributedString: lowerString]</source>
 
 ----
 
-As for your code, I think your problem is in the first line; you need to pass the font's Postscript name to     +fontWithName:size: not it's display name.  You may find the [[NSFontManager function     -fontWithFamily:traits:weight:size: easier to use for manually specify fonts as the family is usually what you think of as the name.  For example, your first line would become     General/NSFont *stringFont = General/[[NSFontManager sharedFontManager] fontWithFamily:@"Arial" traits:0 weight:5 size:7.0]; -- Bo
+As for your code, I think your problem is in the first line; you need to pass the font's Postscript name to     +fontWithName:size: not it's display name.  You may find the [[NSFontManager function     -fontWithFamily:traits:weight:size: easier to use for manually specify fonts as the family is usually what you think of as the name.  For example, your first line would become     NSFont *stringFont = [[NSFontManager sharedFontManager] fontWithFamily:@"Arial" traits:0 weight:5 size:7.0]; -- Bo
 
 *I don't think that's the problem - I pasted the identical code into a test project and it worked fine when the text was output with     insertText:*
 
 ----
 
-Thankyou for your input, the problem was of course that I was using setString which happily ignored my Attributions. That said, the process of using General/NSAttributedString seems very verbose.
+Thankyou for your input, the problem was of course that I was using setString which happily ignored my Attributions. That said, the process of using NSAttributedString seems very verbose.
 
 ----
 
-I would like to load an General/NSImage into an General/NSAttributedString.  I have tried to use the General/FileWrapper, but this doesn't seem to work:
+I would like to load an NSImage into an NSAttributedString.  I have tried to use the FileWrapper, but this doesn't seem to work:
 
     
-General/NSFileWrapper *wrapper = General/[[NSFileWrapper alloc] initWithSerializedRepresentation:[myImage General/TIFFRepresentation]]; // returns nil
+NSFileWrapper *wrapper = [[NSFileWrapper alloc] initWithSerializedRepresentation:[myImage TIFFRepresentation]]; // returns nil
 
 
-I realize that I could write the General/NSImage out to a temporary file and then call General/[[NSFileWrapper alloc] initWithPath:tempPath].  But is there a way of placing an General/NSImage into a General/NSAttributedString more elegantly (without file I/O)?
+I realize that I could write the NSImage out to a temporary file and then call [[NSFileWrapper alloc] initWithPath:tempPath].  But is there a way of placing an NSImage into a NSAttributedString more elegantly (without file I/O)?
 
 Thanks, Joe
 
@@ -73,10 +73,10 @@ I found a solution out there in the Macosx-dev archives:  (http://www.omnigroup.
 Here is my code, in hopes that it might be usefule to someone:
 
     
-General/NSTextAttachment   *attachment  = General/[[NSTextAttachment alloc] init];
-General/NSCell             *cell        = [attachment attachmentCell];
+NSTextAttachment   *attachment  = [[NSTextAttachment alloc] init];
+NSCell             *cell        = [attachment attachmentCell];
 [cell setImage:myImage];
-General/NSAttributedString *imageString = General/[NSAttributedString attributedStringWithAttachment:attachment];
+NSAttributedString *imageString = [NSAttributedString attributedStringWithAttachment:attachment];
 [attachment release];
 
 
@@ -88,14 +88,14 @@ Thanks Joe, yes i was asking myself how to achieve this :)
 
 ----
 
-Just to save you the trouble to those of you who were wondering, General/NSAttributedStrings cannot be put into General/NSTextFields. The solution to this problem (or what I did), was resize the General/TextView to look like a General/TextField.
+Just to save you the trouble to those of you who were wondering, NSAttributedStrings cannot be put into NSTextFields. The solution to this problem (or what I did), was resize the TextView to look like a TextField.
 
 ----
 
-Sure it can. Try     [myTextField setAttributedStringValue:someAttributedString];. This method is documented in General/NSControl, a superclass of General/NSTextField.
+Sure it can. Try     [myTextField setAttributedStringValue:someAttributedString];. This method is documented in NSControl, a superclass of NSTextField.
 
 ----
-You're right, you can put an attributed string in General/NSTextField<nowiki/>s. Problem is, the attributes get lost as soon as the user starts editing and stay lost when they're done. I think you can pass the attributed string to the fieldEditor when editing starts and get it out of the fieldEditor when editing is finished to pass that back to the text field...real nice.
+You're right, you can put an attributed string in NSTextField<nowiki/>s. Problem is, the attributes get lost as soon as the user starts editing and stay lost when they're done. I think you can pass the attributed string to the fieldEditor when editing starts and get it out of the fieldEditor when editing is finished to pass that back to the text field...real nice.
 
 ----
-Well, check out General/NSTextField's     setAllowsEditingTextAttributes:, General/NSControl's formatting methods, or General/NSFormatter's     attributedStringForObjectValue:withDefaultAttributes:. At least *one* of those might be able to help you out.
+Well, check out NSTextField's     setAllowsEditingTextAttributes:, NSControl's formatting methods, or NSFormatter's     attributedStringForObjectValue:withDefaultAttributes:. At least *one* of those might be able to help you out.

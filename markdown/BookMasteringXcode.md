@@ -4,7 +4,7 @@
 ***Title:**
 Mastering Xcode 4: Develop and Design
 ***Author:**
-General/JNozzi
+JNozzi
 ***Publisher:**
 Peachpit Press
 ***Release Date:**
@@ -26,7 +26,7 @@ This project-based book introduces readers to Apple's development environment. T
 
 ----**A Word from the Author**----
 
-I just wanted to write a quick word to help you make an informed buying decision. The book is about the Xcode 4 IDE and **does not** focus on coding or application design. There are plenty of good books for learning Cocoa development specifically, but not too many books for diving deep into the Xcode 4 IDE itself. *This* is your Xcode book. :-) - General/JNozzi
+I just wanted to write a quick word to help you make an informed buying decision. The book is about the Xcode 4 IDE and **does not** focus on coding or application design. There are plenty of good books for learning Cocoa development specifically, but not too many books for diving deep into the Xcode 4 IDE itself. *This* is your Xcode book. :-) - JNozzi
 
 ----**Comments**----
 

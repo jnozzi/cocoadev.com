@@ -8,7 +8,7 @@ Below is a history of the fun I had looking for a way to convert a hex string to
 
 Spent about 20 minutes searching the web for a standard library function that does this and gave up because I knew I could write one in less time!! If anyone knows of a function that does this, please post here. --zootbobbalu
 
-Is there a specific length of string you are handling?  It might be easier to do a lookup on the hex digit, then multiply by the position. Or see conversion of a decimal string code below. --General/BruceB 
+Is there a specific length of string you are handling?  It might be easier to do a lookup on the hex digit, then multiply by the position. Or see conversion of a decimal string code below. --BruceB 
 
 Isn't that what this is doing? If not, could you write an example? --zootbobbalu
 
@@ -55,24 +55,24 @@ I see now what you mean by "look up the hex digit". Well, your example is basica
 int main()
 {
    int n;
-   n = General/ConvertStrToInt( "0" );
+   n = ConvertStrToInt( "0" );
    printf( "n: %d\n", n );
-   n = General/ConvertStrToInt( "10" );
+   n = ConvertStrToInt( "10" );
    printf( "n: %d\n", n );
-   n = General/ConvertStrToInt( "124" );
+   n = ConvertStrToInt( "124" );
    printf( "n: %d\n", n );
 
-   nH = General/ConvertHexStrToLong( "000A" );
+   nH = ConvertHexStrToLong( "000A" );
    printf( "nH: %ld\n", nH );
-   nH = General/ConvertHexStrToLong( "000F" );
+   nH = ConvertHexStrToLong( "000F" );
    printf( "nH: %ld\n", nH );
-   nH = General/ConvertHexStrToLong( "00A0" );
+   nH = ConvertHexStrToLong( "00A0" );
    printf( "nH: %ld\n", nH );
-   nH = General/ConvertHexStrToLong( "CAFE" );
+   nH = ConvertHexStrToLong( "CAFE" );
    printf( "nH: %ld\n", nH );
 }
 
-int General/ConvertStrToInt( char* s )
+int ConvertStrToInt( char* s )
 {
     int  n = 0;
     char c = *s++;
@@ -86,7 +86,7 @@ int General/ConvertStrToInt( char* s )
     return n;
 }
 
-long General/ConvertHexStrToLong( char* s )   
+long ConvertHexStrToLong( char* s )   
 {
     int hexDigit[] = { 10, 11, 12, 13, 14, 15 };
     long n = 0;
@@ -172,7 +172,7 @@ document with all of the standard functions in it?
 
 *--Paul*
 
-Yes, the C standard:  http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf *--General/TkM*
+Yes, the C standard:  http://www.open-std.org/jtc1/sc22/wg14/www/docs/n1124.pdf *--TkM*
 ----
 
 ----

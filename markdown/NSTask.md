@@ -1,19 +1,19 @@
 *
-Using General/NSTask, your program can run another program as a **subprocess** and can monitor that program's execution. General/NSTask creates a separate executable entity; unlike General/NSThread, it does not share memory space with the parent process.
+Using NSTask, your program can run another program as a **subprocess** and can monitor that program's execution. NSTask creates a separate executable entity; unlike NSThread, it does not share memory space with the parent process.
 
 By default, a task inherits several characteristics of its parent's environment: the current directory, standard input, standard output, standard error, and the values of any environment variables. If you want to change any of these, e.g., the current directory, you must set a new value before you launch the task. **A task's environment is established once it has launched.**
 
-**An General/NSTask can only be run once. Subsequent attempts to run an General/NSTask raise an error.**
+**An NSTask can only be run once. Subsequent attempts to run an NSTask raise an error.**
 *
 
-If you run a task from a document in a document-based application, you should (at the very least) send the     terminate message to the task instance in the cleanup code for the document. See also General/NSTaskTermination for more discussion.
+If you run a task from a document in a document-based application, you should (at the very least) send the     terminate message to the task instance in the cleanup code for the document. See also NSTaskTermination for more discussion.
 
-Other pages at General/CocoaDev related to using General/NSTask (and see particularly General/NSPipe and General/NSFileHandle):
+Other pages at CocoaDev related to using NSTask (and see particularly NSPipe and NSFileHandle):
 
 **TODO:** since the migration to MediaWiki this embedded search is broken. I guess we could use http://www.mediawiki.org/wiki/Extension:DynamicPageList_(Wikimedia) and put all the relevant pages into an NSTask category, but that seems like redundant work. Perhaps someone knows of a way to do a similar embedded search results in MediaWiki but I couldn't find one. -- markaufflick
 
 ----
-**Example: Launching an General/NSTask** (this is intended only as a simple example of launching a task, using the UNIX     ls command, and passing arguments to it. Of course, if you just want to get a directory' contents, you should use General/NSFileManager. The usual way to redirect the standard input and output of the task is to use General/NSPipe and General/NSFileHandle, as shown below:
+**Example: Launching an NSTask** (this is intended only as a simple example of launching a task, using the UNIX     ls command, and passing arguments to it. Of course, if you just want to get a directory' contents, you should use NSFileManager. The usual way to redirect the standard input and output of the task is to use NSPipe and NSFileHandle, as shown below:
 
 <syntaxhighlight lang="objc">
  //Launch "ls -l -a -t" in the current directory, and then read the result into an NSString:
@@ -27,7 +27,7 @@ Other pages at General/CocoaDev related to using General/NSTask (and see particu
  
  [task launch];
  
- NSData *data = General/pipe fileHandleForReading] readDataToEndOfFile];
+ NSData *data = pipe fileHandleForReading] readDataToEndOfFile];
  
  [task waitUntilExit];
  [task release];
@@ -37,11 +37,11 @@ Other pages at General/CocoaDev related to using General/NSTask (and see particu
  [string release];
 </syntaxhighlight>
 
-keywords: [[NSTask, General/NSFileHandle, General/NSPipe
+keywords: [[NSTask, NSFileHandle, NSPipe
 
 ----
 
-For more, see the General/CocoaDev pages on General/NSPipe and General/NSFileHandle, and:
+For more, see the CocoaDev pages on NSPipe and NSFileHandle, and:
 
 http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSTask_Class/index.html
 
@@ -55,11 +55,11 @@ Apple: Moriarity - http://developer.apple.com/samplecode/Moriarity/index.html
 
 Cocoadevcentral Tutorial: http://cocoadevcentral.com/articles/000025.php
 
-General/BookBuildingCocoaApplications presents an extended example developing GUI that communicates with an auxiliary task, as, I believe, does General/BookCoreMacOSXandUnix.
+BookBuildingCocoaApplications presents an extended example developing GUI that communicates with an auxiliary task, as, I believe, does BookCoreMacOSXandUnix.
 
 ----
 
-An General/NSTask will break Xcode's debug log entirely if you execute ANYTHING related with sh or bash (including scripts). printf, General/NSLog; all will cease to function as soon as the task has been launched. Even things like right clicking on an object in the debugger will yield nothing (straight GDB still prints though). The best way around this bug is to use a different shell, like zsh (which should be compatible with all your sh/bash commands).
+An NSTask will break Xcode's debug log entirely if you execute ANYTHING related with sh or bash (including scripts). printf, NSLog; all will cease to function as soon as the task has been launched. Even things like right clicking on an object in the debugger will yield nothing (straight GDB still prints though). The best way around this bug is to use a different shell, like zsh (which should be compatible with all your sh/bash commands).
 
 ----
 
@@ -67,7 +67,7 @@ Actually, I looked back in on the error again, after finding out that zsh was no
 
 <syntaxhighlight lang="objc">
  NSLog(@"Starting log...");
- NSTask *task = General/[NSTask alloc]init]autorelease];
+ NSTask *task = [NSTask alloc]init]autorelease];
  NSPipe *pipe = [NSPipe pipe];
  
  [task setLaunchPath:@"/bin/sh"];
@@ -84,7 +84,7 @@ Actually, I looked back in on the error again, after finding out that zsh was no
 
 ----
 
-General/NSTask-related sample code (added Oct. 2010):
+NSTask-related sample code (added Oct. 2010):
 
 1.  OpenFileKiller    --    http://projectswithlove.com/projects/index.html
 
@@ -100,14 +100,14 @@ similar in structure to Apple's Moriarity example, except for using pseudo-ttys 
 
 3. asynctask.m    --    http://www.cocoadev.com/index.pl?NSPipe
 
-a command-line tool that shows how to implement asynchronous stdin, stdout & stderr streams for processing data with General/NSTask;
-creates its own General/NSRunLoop; uses asynchronous "waitForDataInBackgroundAndNotify" notifications and pthread_create(3) and 
-pthread_detach(3) for writing more than 64 KB to the stdin of an General/NSTask.
+a command-line tool that shows how to implement asynchronous stdin, stdout & stderr streams for processing data with NSTask;
+creates its own NSRunLoop; uses asynchronous "waitForDataInBackgroundAndNotify" notifications and pthread_create(3) and 
+pthread_detach(3) for writing more than 64 KB to the stdin of an NSTask.
 
 
 4. Task.{h,m}    --    http://code.google.com/p/polkit/
 
-General/NSTask wrapper (for Mac OS X 10.6)
+NSTask wrapper (for Mac OS X 10.6)
 
 
 5. MYTask.{h,m}    --    https://bitbucket.org/snej/myutilities/src
@@ -117,7 +117,7 @@ NSTask wrapper (uses garbage collection)
 
 6. AMShellWrapper    --    http://www.harmless.de/cocoa-code.php
 
-Based on General/TaskWrapper from Apple's Moriarity sample code, use this class to run commandline tools from your application. 
+Based on TaskWrapper from Apple's Moriarity sample code, use this class to run commandline tools from your application. 
 Connect your own methods to stdout and stderr, get notified on process termination and more.
 
 
@@ -128,4 +128,4 @@ a Cocoa application for running scripts
 
 8. MFTask    --    https://bitbucket.org/iracooke/mftask/src
 
-a wrapper around General/NSTask that makes some things like monitoring output easier
+a wrapper around NSTask that makes some things like monitoring output easier

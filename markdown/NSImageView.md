@@ -1,33 +1,33 @@
-General/NSImageView
+NSImageView
 
-An General/NSImageView displays a single General/NSImage in a frame and can optionally allow a user to drag an image to it. http://goo.gl/General/OeSCu
+An NSImageView displays a single NSImage in a frame and can optionally allow a user to drag an image to it. http://goo.gl/OeSCu
 
 ----
 
-To display an image from the application bundle using an General/NSImageView use the following code:
+To display an image from the application bundle using an NSImageView use the following code:
 
     
 // Header
-General/IBOutlet *General/NSImageView imageView;
+IBOutlet *NSImageView imageView;
 
 // Source
-General/NSImage *imageFromBundle = General/[NSImage imageNamed:@"your_image.tif"];
+NSImage *imageFromBundle = [NSImage imageNamed:@"your_image.tif"];
 
 [imageView setImage: imageFromBundle];
 
 
 ----
 
-To download and display an image from a server using an General/NSImageView use the following code:
+To download and display an image from a server using an NSImageView use the following code:
 
     
 // Header
-General/IBOutlet *General/NSImageView imageView;
+IBOutlet *NSImageView imageView;
 
 // Source
-NSURL *imageURL = [NSURL General/URLWithString:@"http://www.someserver.com/image.tif"];
-General/NSData *imageData = [imageURL resourceDataUsingCache:NO];
-General/NSImage *imageFromBundle = General/[[NSImage alloc] initWithData:imageData];
+NSURL *imageURL = [NSURL URLWithString:@"http://www.someserver.com/image.tif"];
+NSData *imageData = [imageURL resourceDataUsingCache:NO];
+NSImage *imageFromBundle = [[NSImage alloc] initWithData:imageData];
 
 if (imageFromBundle)
 {
@@ -40,7 +40,7 @@ else  //  if (!imageFromBundle)
     // The image did not load properly, so lets send an error to the log.
     // At this time, we could either load a copy of the image from the bundle,
     // or simply display an error sheet.
-    General/NSLog(@"imageView could not be loaded.");
+    NSLog(@"imageView could not be loaded.");
 }
 
 
@@ -50,31 +50,31 @@ Other failure modes:  URL, Data?
 
 ----
 
-The code is just meant to be a simple examples showing how to do a few things with General/NSImageView.
+The code is just meant to be a simple examples showing how to do a few things with NSImageView.
 
 ----
 
-**General/FakeImageView**
+**FakeImageView**
 
 Despite my efforts the following statement refuses to live up to itself:
 
-* General/NSScaleProportionally. If the image is too large, it shrinks to fit inside the frame. If the image is too small, it expands. The proportions of the image are preserved.
+* NSScaleProportionally. If the image is too large, it shrinks to fit inside the frame. If the image is too small, it expands. The proportions of the image are preserved.
 
 It shrinks to fit inside the frame, but it does NOT expand to fill the frame.
 
 ----
 
-This is the intended, if poorly documented, behavior of General/NSImageView. It's worked that way in General/OpenStep as well. Feelings of mistrust or betrayal are natural.
+This is the intended, if poorly documented, behavior of NSImageView. It's worked that way in OpenStep as well. Feelings of mistrust or betrayal are natural.
 
-I ended up writing my own class, which I call General/FakeImageView, to implement this and a few other features I wanted. Click through for more details.
+I ended up writing my own class, which I call FakeImageView, to implement this and a few other features I wanted. Click through for more details.
 
-When necessary, I create a General/FakeImageView subclass of General/NSView in IB and set image views to that custom class. Maybe it would have been better to subclass General/NSImageView ... but oh well. Your mileage may vary. 
+When necessary, I create a FakeImageView subclass of NSView in IB and set image views to that custom class. Maybe it would have been better to subclass NSImageView ... but oh well. Your mileage may vary. 
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
-I liked the Drag and Drop support of General/NSImageView -- I'm going to try to add that functionality to your General/FakeImageView.
+I liked the Drag and Drop support of NSImageView -- I'm going to try to add that functionality to your FakeImageView.
 
 ----
 
@@ -82,87 +82,87 @@ Is there a way to repeat an image over the X axis, forming a pattern?
 
 ----
 
-Sure. If I was doing it, I'd add that to General/NSImageCategory though.     +patternImage: alongAxis: size:, maybe.
+Sure. If I was doing it, I'd add that to NSImageCategory though.     +patternImage: alongAxis: size:, maybe.
 
 ----
 
-See General/NSColor's colorWithPatternImage: method.
+See NSColor's colorWithPatternImage: method.
 
 ----
 
-I needed an image view to use in a General/CoreData project that would let me get and set the path of the displayed image (because I wanted to use discrete image files instead of ballooning the CD store). Here's what I came up with.
+I needed an image view to use in a CoreData project that would let me get and set the path of the displayed image (because I wanted to use discrete image files instead of ballooning the CD store). Here's what I came up with.
 
     
 //// Header
 #import <Cocoa/Cocoa.h>
 
-@interface General/PRImageView : General/NSImageView
+@interface PRImageView : NSImageView
 {
-	General/AliasHandle mImageAlias;
+	AliasHandle mImageAlias;
 	BOOL mDraggingFlag;
 }
 
-- (General/NSString*)imagePath;
+- (NSString*)imagePath;
 - (NSURL*)imageURL;
-- (General/AliasHandle)imageAlias;
-- (BOOL)getImageRef:(General/FSRef*)outRef;
+- (AliasHandle)imageAlias;
+- (BOOL)getImageRef:(FSRef*)outRef;
 
-- (void)setImageFromPath:(General/NSString*)inPath;
+- (void)setImageFromPath:(NSString*)inPath;
 - (void)setImageFromURL:(NSURL*)inURL;
 
 @end
 
 //// Implementation
 //
-//  General/PRImageView.m
+//  PRImageView.m
 //
 //  Created by Gregory Weston on 3/5/08.
 //
 
-#import "General/PRImageView.h"
+#import "PRImageView.h"
 
 
-@implementation General/PRImageView
+@implementation PRImageView
 
 - (void)cacheAliasFromURL:(NSURL*)inURL
 {
-	General/FSRef theRef = {};
-	General/CFURLGetFSRef((General/CFURLRef)inURL, &theRef);
-	General/OSErr theError = General/FSNewAlias(NULL, &theRef, &mImageAlias);
-	if(theError != noErr) General/NSLog(@"General/FSNewAlias: %d", theError);
+	FSRef theRef = {};
+	CFURLGetFSRef((CFURLRef)inURL, &theRef);
+	OSErr theError = FSNewAlias(NULL, &theRef, &mImageAlias);
+	if(theError != noErr) NSLog(@"FSNewAlias: %d", theError);
 }
 
 - (void)clearCachedAlias
 {
 	if(mImageAlias)
 	{
-		General/DisposeHandle((Handle)mImageAlias);
+		DisposeHandle((Handle)mImageAlias);
 		mImageAlias = NULL;
 	}
 }
 
 - (void)dealloc
 {
-	General/DisposeHandle((Handle)mImageAlias);
+	DisposeHandle((Handle)mImageAlias);
 	[super dealloc];
 }
 
-- (void)setImage:(General/NSImage*)inImage
+- (void)setImage:(NSImage*)inImage
 {
 	if(mDraggingFlag == NO) [self clearCachedAlias];
 	[super setImage:inImage];
 }
 
-- (void)concludeDragOperation:(id <General/NSDraggingInfo>)sender
+- (void)concludeDragOperation:(id <NSDraggingInfo>)sender
 {
 	[self clearCachedAlias];
 
-	General/NSPasteboard* thePasteboard = [sender draggingPasteboard];
-	General/NSArray* theTypes = [thePasteboard types];
-	if([theTypes containsObject:General/NSFilenamesPboardType])
+	NSPasteboard* thePasteboard = [sender draggingPasteboard];
+	NSArray* theTypes = [thePasteboard types];
+	if([theTypes containsObject:NSFilenamesPboardType])
 	{
-		General/NSArray* thePaths = [thePasteboard propertyListForType:General/NSFilenamesPboardType];
-		General/NSString* thePath = [thePaths objectAtIndex:0];
+		NSArray* thePaths = [thePasteboard propertyListForType:NSFilenamesPboardType];
+		NSString* thePath = [thePaths objectAtIndex:0];
 		NSURL* theURL = [NSURL fileURLWithPath:thePath];
 		[self cacheAliasFromURL:theURL];
 	}
@@ -172,9 +172,9 @@ I needed an image view to use in a General/CoreData project that would let me ge
 	mDraggingFlag = NO;
 }
 
-- (General/NSString*)imagePath
+- (NSString*)imagePath
 {
-	General/NSString* theResult = nil;
+	NSString* theResult = nil;
 	NSURL* theURL = [self imageURL];
 	if(theURL && [theURL isFileURL])
 	{
@@ -186,10 +186,10 @@ I needed an image view to use in a General/CoreData project that would let me ge
 - (NSURL*)imageURL
 {
 	NSURL* theResult = nil;
-	General/FSRef theRef = {};
+	FSRef theRef = {};
 	if([self getImageRef:&theRef])
 	{
-		General/CFURLRef theURL = General/CFURLCreateFromFSRef(kCFAllocatorDefault, &theRef);
+		CFURLRef theURL = CFURLCreateFromFSRef(kCFAllocatorDefault, &theRef);
 		if(theURL)
 		{
 			theResult = [(NSURL*)theURL autorelease];
@@ -198,18 +198,18 @@ I needed an image view to use in a General/CoreData project that would let me ge
 	return theResult;
 }
 
-- (General/AliasHandle)imageAlias
+- (AliasHandle)imageAlias
 {
 	return mImageAlias;
 }
 
-- (BOOL)getImageRef:(General/FSRef*)outRef
+- (BOOL)getImageRef:(FSRef*)outRef
 {
 	BOOL theResult = NO;
 	if(mImageAlias && outRef)
 	{
 		Boolean theChangeFlag = false;
-		if(General/FSResolveAlias(NULL, mImageAlias, outRef, &theChangeFlag) == noErr)
+		if(FSResolveAlias(NULL, mImageAlias, outRef, &theChangeFlag) == noErr)
 		{
 			theResult = YES;
 		}
@@ -217,11 +217,11 @@ I needed an image view to use in a General/CoreData project that would let me ge
 	return theResult;
 }
 
-- (void)setImageFromPath:(General/NSString*)inPath
+- (void)setImageFromPath:(NSString*)inPath
 {
 	if(inPath)
 	{
-		General/NSImage* theImage = General/[[NSImage alloc] initWithContentsOfFile:inPath];
+		NSImage* theImage = [[NSImage alloc] initWithContentsOfFile:inPath];
 		if(theImage)
 		{
 			[self setImage:theImage];
@@ -236,7 +236,7 @@ I needed an image view to use in a General/CoreData project that would let me ge
 {
 	if(inURL)
 	{
-		General/NSImage* theImage = General/[[NSImage alloc] initWithContentsOfURL:inURL];
+		NSImage* theImage = [[NSImage alloc] initWithContentsOfURL:inURL];
 		if(theImage)
 		{
 			[self setImage:theImage];

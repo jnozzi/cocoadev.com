@@ -2,10 +2,10 @@ How do you composite text onto images?
 
 ----
 
-(Taken from General/ImageCompositing)
+(Taken from ImageCompositing)
     
-General/NSImage *canvas = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(100, 100)] autorelease];
+NSImage *canvas = [[[NSImage alloc] initWithSize:NSMakeSize(100, 100)] autorelease];
 [canvas lockFocus];
-General/NSString *myString = @"Hello World!";
-[myString drawAtPoint:General/NSMakePoint(10, 10) withAttributes:nil];
+NSString *myString = @"Hello World!";
+[myString drawAtPoint:NSMakePoint(10, 10) withAttributes:nil];
 [canvas unlockFocus];

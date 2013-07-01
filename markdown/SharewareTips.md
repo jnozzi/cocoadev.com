@@ -3,7 +3,7 @@ This page is for insightful comments, mistakes and other goodies that can assist
 
 *Shareware Authoring Part I (misc.) � http://www.peter.com.au/programming/sharewareauthor.html
 *Shareware Authoring Part II (shipping) � http://www.peter.com.au/programming/sharewareauthor2.html
-*Describe � http://www.semicolon.com/General/ShareSuccess/Shareware1.html
+*Describe � http://www.semicolon.com/ShareSuccess/Shareware1.html
 *Pricing � http://software.ericsink.com/bos/Business_of_Software.html
 *Marketing � http://software.ericsink.com/Marketing_for_Geeks.html
 *Serial numbers � http://macromates.com/sigpipe/archives/2004/09/05/using-openssl-for-license-keys/
@@ -40,7 +40,7 @@ Also, avoid whineware; instead treat your users with dignity (A corollary to "th
 
 I also believe it's better to charge a little less than charge a little more. You'd rather have people coasting on your free trial / free featureset than using your competitor's app. Insert your favorite Guy Kawasaki quote here. Commercial software has also demonstrated you can go back to your customers for more money (i.e., upgrades) as long as the featureset is there and the price is right. 
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
@@ -109,4 +109,4 @@ Staggering when you announce your app to the different sites (news site 1 on Tue
 
 ----
 
-Just thought I'd recommend using Potion Store (in place of esellerate or rolling your own). It's a rails application that has pretty much everything you might need (and it's free). You can find it here: http://www.potionfactory.com/potionstore/ -- General/JohnDevor
+Just thought I'd recommend using Potion Store (in place of esellerate or rolling your own). It's a rails application that has pretty much everything you might need (and it's free). You can find it here: http://www.potionfactory.com/potionstore/ -- JohnDevor

@@ -16,7 +16,7 @@ Yes. I am of the opinion that 6 months is enough time to migrate, and they are w
 
 ----
 
-General/JaguarOrPanther has a (months old) discussion with some (months old) usage statistics. J**'agWire users currently stand at 6.7%
+JaguarOrPanther has a (months old) discussion with some (months old) usage statistics. J**'agWire users currently stand at 6.7%
 
 ----
 
@@ -40,7 +40,7 @@ lol... yes, 17 people injured and 3 died last time I did code maintenance/cleanu
 
 Seriously though, my application requires Panther, but I'm looking forward to the day where it'll be Tiger+ -- I have lots of Panther workarounds and my own implementation of several Tiger features. Removing the former keeps the code-complexity down, removing the latter does the same and ensures consistency with the OS.
 
-Code complexity is the main problem when developing big applications, and too much complexity means less flexibility when it comes to changing the code to new requirements. I'd love to drop all my custom outline view controller code for General/NSTreeController, use General/CoreData for consistent storage, free undo a.s.o.
+Code complexity is the main problem when developing big applications, and too much complexity means less flexibility when it comes to changing the code to new requirements. I'd love to drop all my custom outline view controller code for NSTreeController, use CoreData for consistent storage, free undo a.s.o.
 
 Not to mention, being Panther compatible means I need to test each new feature on Panther, since there may be bugs (with Panther) causing another outcome than on Tiger, which has really become a pain now that my Xcode project has been updated to 2.0, which isn't available for Panther (so basically I can no longer build on the test machine).
 
@@ -52,6 +52,6 @@ Surely if you use the appropriate SDK this will be a mimimal issue....the compil
 
 JKP
 
-In theory, yes, in practice, no. General/SDKs do help a great deal, but they are far from being able to catch everything. The General/SDKs have bugs/ommissions, indirect method calls won't be caught, General/OSes have different bugs and different responses for bad inputs, etc.
+In theory, yes, in practice, no. SDKs do help a great deal, but they are far from being able to catch everything. The SDKs have bugs/ommissions, indirect method calls won't be caught, OSes have different bugs and different responses for bad inputs, etc.
 
 *Yes, it was mainly the bugs (needing workarounds) in Panther, I was referring to. Some bugs stand out immediately, others are very subtle.*

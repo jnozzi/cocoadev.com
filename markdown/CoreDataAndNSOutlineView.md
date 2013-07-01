@@ -21,4 +21,4 @@ I have an entity called "Entry" and one called "Folder". The relationship is:   
 
 ----
 
-*Just like a filesystem. Make a root folder that contains **everything**, then display its contents. Any root object has this special root folder as its parent. The user doesn't need to know about the root folder at all if you only show what's in it. --General/JediKnil*
+*Just like a filesystem. Make a root folder that contains **everything**, then display its contents. Any root object has this special root folder as its parent. The user doesn't need to know about the root folder at all if you only show what's in it. --JediKnil*

@@ -1,6 +1,6 @@
 
 
-http://www.staronesw.com/General/CardMachine.zip
+http://www.staronesw.com/CardMachine.zip
 
 Run the program and then do the following:
 
@@ -16,11 +16,11 @@ Run the program and then do the following:
 
 The program will mess up, and usually quit.
 
-I get this:    *** -General/[NSCFString replaceOccurrencesOfString:withString:options:range:]: nil argument
+I get this:    *** -[NSCFString replaceOccurrencesOfString:withString:options:range:]: nil argument
 
 The app won't quit if the two occurances of:
 
-[tstrin drawAtPoint:General/NSMakePoint(xv[temp],yv[temp]) withAttributes:attrs]; 
+[tstrin drawAtPoint:NSMakePoint(xv[temp],yv[temp]) withAttributes:attrs]; 
 
 in Itemcontroller.m
 

@@ -5,4 +5,4 @@ I'm trying to get my program to execute a function in the controller immediately
 
 ----
 
-You need to be the application's delegate to receive that message.  If you're the window's delegate you can implement -windowDidLoad and it might be close enough.  If not, create an instance of your class in your General/MainMenu.nib and hook the File's Owner delegate outlet to your instance, and then you'll receive the applicationDidFinishLaunching method. -- Bo
+You need to be the application's delegate to receive that message.  If you're the window's delegate you can implement -windowDidLoad and it might be close enough.  If not, create an instance of your class in your MainMenu.nib and hook the File's Owner delegate outlet to your instance, and then you'll receive the applicationDidFinishLaunching method. -- Bo

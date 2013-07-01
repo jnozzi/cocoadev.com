@@ -1,8 +1,8 @@
-I have a document-based app that is not using General/NSDocument subclasses (basically writing all the MDI support myself).
+I have a document-based app that is not using NSDocument subclasses (basically writing all the MDI support myself).
 
 I got bitten because I added a document getter to my window controller. Apparently the window calls something like
 
-    General/[self windowController] document] isDocumentEdited]
+    [self windowController] document] isDocumentEdited]
 
 although the     document message in the window controller class is said only to return     id. The result is used for handling the responder chain (i.e. sending a message to nil will reach the document of the current window, if no-one else responds to the message. This should *not* require that the instance be (a subclass of) [[NSDocument).
 

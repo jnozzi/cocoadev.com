@@ -18,7 +18,7 @@ jeremy
 
 ----
 
-Not all computers have their own WAN address, do they? I.e. if you're using a gateway server, won't the WAN address of all computers it's routing traffic to be the same as its own WAN address? -- General/RobRix
+Not all computers have their own WAN address, do they? I.e. if you're using a gateway server, won't the WAN address of all computers it's routing traffic to be the same as its own WAN address? -- RobRix
 
 ----
 
@@ -28,27 +28,27 @@ jeremy
 
 ----
 
-Yes, I also need to get the WAN IP of a computer, whether or not they are behind a router or another kind of network setup. The only way I can think of is parsing http://whatismyip.com with PCRE for Cocoa. But that web server could easily go down which could cause some major problems. Is there perhaps a command-line program that I could open an General/NSTask to that gives the computer's WAN IP address?
+Yes, I also need to get the WAN IP of a computer, whether or not they are behind a router or another kind of network setup. The only way I can think of is parsing http://whatismyip.com with PCRE for Cocoa. But that web server could easily go down which could cause some major problems. Is there perhaps a command-line program that I could open an NSTask to that gives the computer's WAN IP address?
 
--- General/MarcWeil
-
-----
-
-You could write a small Perl script and execute it through General/NSTask I think
+-- MarcWeil
 
 ----
 
-Your computer could have several IP addresses, one for each network interface. Even if it isn't connected to anything, it'll have the localhost IP address. It might also have General/AirPort, Ethernet, PPP, or VPN IP addresses. If you want a list of all the addresses the computer has, use BSD functions. I think "getnetent()" will do the trick. -- General/DustinVoss
+You could write a small Perl script and execute it through NSTask I think
+
+----
+
+Your computer could have several IP addresses, one for each network interface. Even if it isn't connected to anything, it'll have the localhost IP address. It might also have AirPort, Ethernet, PPP, or VPN IP addresses. If you want a list of all the addresses the computer has, use BSD functions. I think "getnetent()" will do the trick. -- DustinVoss
 
 ----
 
 Your network addresses sans error checking...
 
     
-General/NSEnumerator *addresses = General/[[[NSHost currentHost] addresses] objectEnumerator];
-General/NSString *address;
+NSEnumerator *addresses = [[[NSHost currentHost] addresses] objectEnumerator];
+NSString *address;
 while (address = [addresses nextObject])
-	General/NSLog(@"%@", address);
+	NSLog(@"%@", address);
 
 
 It is easy to filter out local network addresses as these fall into well documented ranges. After filtering 127.0.0.1 (localhost) and the local net ranges, you may end up with nothing. Getting at a *external* network address may be a bit harder (if not impossible without actually connecting to something that tells you) as the local machine may not know it's *external* address(es) if it's behind a proxy or router/NAT. It may also have a different external address depending on the port it is communicating on (via. proxies). To make matters worse, the local machine or any of the proxies/servers could be multi-homed and have many external addresses.
@@ -67,7 +67,7 @@ Just a note on thread linked directly above, both of the code samples (I believe
 
 ----
 
-If you want to get the WAN of the computer, you can run this Perl script throught General/NSTask:
+If you want to get the WAN of the computer, you can run this Perl script throught NSTask:
     
 #!/usr/bin/perl
 

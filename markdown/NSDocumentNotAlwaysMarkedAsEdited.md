@@ -1,4 +1,4 @@
-I use the standard General/NSDocument class and General/[NSTextView breakUndoCoalescing] does solve a lot.
+I use the standard NSDocument class and [NSTextView breakUndoCoalescing] does solve a lot.
 
 But when running my application in Tiger (10.4.11) my document isn't marked as edited in this case (dot in the red led top left):
 

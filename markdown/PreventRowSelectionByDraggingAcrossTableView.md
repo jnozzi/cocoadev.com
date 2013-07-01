@@ -13,7 +13,7 @@ Thanks.
 
 ----
 
-It looks like you also need to use     - (void)selectRowIndexes:(General/NSIndexSet *)indexes byExtendingSelection:(BOOL)extend
+It looks like you also need to use     - (void)selectRowIndexes:(NSIndexSet *)indexes byExtendingSelection:(BOOL)extend
 
 (BOOL)extend should be set to NO. It should prevent the user from extending the selection by dragging.
 
@@ -29,7 +29,7 @@ PS: the user can select more than 2 rows with shift-arrowUp/Down too and I�d l
 
 ----
 
-To "short-circuit" the select system, perhaps you could subclass General/NSTableView to override     selectRowIndexes:byExtendingSelection:, and use your custom subclass instead of General/NSTableView...
+To "short-circuit" the select system, perhaps you could subclass NSTableView to override     selectRowIndexes:byExtendingSelection:, and use your custom subclass instead of NSTableView...
 
 ----
 

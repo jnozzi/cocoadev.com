@@ -1,6 +1,6 @@
 
 
-General/RandomNumber topics:
+RandomNumber topics:
 [Topic]
 
 
@@ -10,7 +10,7 @@ Simple question, how do you create a random number?
 
 *-- I was going to email someone for the answer but I thought this question might be a good one for other newbies like myself.* ; )
 
--- General/JohnDevor
+-- JohnDevor
 
 Not exactly a Cocoa question, but if we're going to be catering to a larger newbie audience as it seems is the trend, then why not...
 
@@ -29,9 +29,9 @@ rand() % 50; //Gives a number between 0 and 49 inclusive.
 (rand() % 51)-25; //Gives a number between -25 and 25 inclusive.
 
 
-For more information on rand(), srand(), and related functions, read 'man 3 rand' (note: on my machine at least, it will bring up the General/OpenSSL man page for it's rand() function, which isn't what I've used here. Just hit q and the C library page will load).
+For more information on rand(), srand(), and related functions, read 'man 3 rand' (note: on my machine at least, it will bring up the OpenSSL man page for it's rand() function, which isn't what I've used here. Just hit q and the C library page will load).
 
---General/KevinPerry
+--KevinPerry
 
 ----
 
@@ -57,7 +57,7 @@ In most cases you can make do with pseudo random numbers.  Certain applications 
 
 As to whether two coins flipped in identical/parallel universes would come up the same...  Well acording to quantum theory they may not.   Here's an interesting article (linked from random.org): http://www.nytimes.com/2001/06/12/science/12RAND.html?ex=1051243200&en=3c7d5133647db297&ei=5070.
 
--- General/SaileshAgrawal
+-- SaileshAgrawal
 
 all gobs of RF noise are not random in a serial sense, but a single sample of an arbitrary frequency used to select the frequency of another sample should be completely random. Now I'm not saying that you are guaranteed a particular distribution, but I highly doubt that there is some binding coherency to the entire electromagnetic spectrum with a temporal order of such magnitude!!!!!!
 
@@ -72,9 +72,9 @@ I'd like to point out that the method of getting random numbers within a given r
 //that rand() can output
 
 
-Note also that you are not restricted to using the built-in rand().  There are numerous other random number generators in existance.  Probably the most well known is the General/MersenneTwister, which is 4 times faster than rand().  More info about it is available at: http://www.math.keio.ac.jp/~matumoto/emt.html
+Note also that you are not restricted to using the built-in rand().  There are numerous other random number generators in existance.  Probably the most well known is the MersenneTwister, which is 4 times faster than rand().  More info about it is available at: http://www.math.keio.ac.jp/~matumoto/emt.html
 
--- General/OwenAnderson
+-- OwenAnderson
 
 ----
 
@@ -220,10 +220,10 @@ val	frequency
 
 I now get integer numbers between 0 and 5 w/ relatively even distribution, and no chance of a buffer overrun.
 
-General/ScreenSaver programmers can use a handy macro General/SSRandomIntBetween to do this kind of thing. From General/ScreenSaverView.h:
+ScreenSaver programmers can use a handy macro SSRandomIntBetween to do this kind of thing. From ScreenSaverView.h:
 
     
-static __inline__ int General/SSRandomIntBetween(int a, int b)
+static __inline__ int SSRandomIntBetween(int a, int b)
 {
     int range = b - a < 0 ? b - a - 1 : b - a + 1; 
     int value = (int)(range * ((float)random() / (float) LONG_MAX));
@@ -231,19 +231,19 @@ static __inline__ int General/SSRandomIntBetween(int a, int b)
 }
 
 
--- General/MikeTrent
+-- MikeTrent
 
 
 ----
 
-Thanks for all of your comments! I thought this was a lot simpler concept before, but now I've learned more about this subject, so thanks for your insights. And thank you General/WikiWiki!
+Thanks for all of your comments! I thought this was a lot simpler concept before, but now I've learned more about this subject, so thanks for your insights. And thank you WikiWiki!
 ----
 Everybody now, "Thank you newbies!"
---General/JohnDevor
+--JohnDevor
 
 ----
 
-General/MikeTrent, I am willing to defend the modulo operator (%). I used your example code, and generated the random numbers with this line:
+MikeTrent, I am willing to defend the modulo operator (%). I used your example code, and generated the random numbers with this line:
     
 int value = rand() % (MAXVALUE +1);
 
@@ -257,9 +257,9 @@ val     frequency
 4       1665665
 5       1668178
 
--- General/EnglaBenny
+-- EnglaBenny
 
-I guess I stand corrected.  I was just repeating what I read in an old C book.  Maybe it was referring to a different rand() implementation than OS X uses.  Either way, I still think the RAND_MAX technique is preferable.  It is conceivable that the modulus (%) method could break some random functions.  On the other hand, there is no way that the RAND_MAX technique could break a function.  But it would appear not to make much of a difference, at least on Mac OS X. --General/OwenAnderson
+I guess I stand corrected.  I was just repeating what I read in an old C book.  Maybe it was referring to a different rand() implementation than OS X uses.  Either way, I still think the RAND_MAX technique is preferable.  It is conceivable that the modulus (%) method could break some random functions.  On the other hand, there is no way that the RAND_MAX technique could break a function.  But it would appear not to make much of a difference, at least on Mac OS X. --OwenAnderson
 
 The claim comes from older versions of rand() available on some systems. In these systems the least significant bits (the ones we're looking at with %) tended to produce less random results, and the solution to that problem was to divide by RAND_MAX. Dig around on Google if you're interested in the history. Now, it seems to be the case that Darwin's rand() is better than the "known to be poor" rand() of old. Can you rely on that in the future? Will you ever need to port your code to some other platform? 
 
@@ -276,20 +276,20 @@ You aren't using all 32 bits, you're just favoring most significant bits over le
 
 Now think about selecting a number between 0 and 2, inclusive.  In the modulus method, each bit is equally important.  In the divide-by-RAND_MAX method, the least significant bits are much less important.  Any number that starts with 11.. in binary is in the top third of the space, so will result in a '2'.
 
--General/KenFerry
+-KenFerry
 
 *
 
-Finally, I don't think any of this really matters to screen saver twinkers and wannabe video game hackers. Do whatever you want. The issue of where random numbers come from matters more to people who are interested in a standard distribution from their generator function. And people who are really serious about it, such as cryptographers, are using other mechanisms for random number generation. -- General/MikeTrent
+Finally, I don't think any of this really matters to screen saver twinkers and wannabe video game hackers. Do whatever you want. The issue of where random numbers come from matters more to people who are interested in a standard distribution from their generator function. And people who are really serious about it, such as cryptographers, are using other mechanisms for random number generation. -- MikeTrent
 
-If you modulus by 6, you're using all the bits in the random number. It's only powers of 2 that are problems, neh? -- General/KritTer
+If you modulus by 6, you're using all the bits in the random number. It's only powers of 2 that are problems, neh? -- KritTer
 
-Really? Aren't you just using the bottom 3 bits? Modulo is the remainder after division, not the division itself. -- General/MikeTrent
+Really? Aren't you just using the bottom 3 bits? Modulo is the remainder after division, not the division itself. -- MikeTrent
 
-Yep, and you can't tell the remainder by looking at the bottom three bits. By analogy, the rule for determining remainder modulo 3 in decimal is to add all the digits together and see if **that's** divisible by three. e.g. 18 is, 28 isn't. Nor is 218, but 318 is. As is 1218. Et cetera. -- General/KritTer
+Yep, and you can't tell the remainder by looking at the bottom three bits. By analogy, the rule for determining remainder modulo 3 in decimal is to add all the digits together and see if **that's** divisible by three. e.g. 18 is, 28 isn't. Nor is 218, but 318 is. As is 1218. Et cetera. -- KritTer
 
 ----
-Anyone interested in generating random numbers should take a look at General/NumericalRecipes or Knuth's seminal works on General/TheArtOfComputerProgramming  Or, check random.org, which has links to a number of good resources.
+Anyone interested in generating random numbers should take a look at NumericalRecipes or Knuth's seminal works on TheArtOfComputerProgramming  Or, check random.org, which has links to a number of good resources.
 ----
 
 **The natural follow-up question is whether or not any arbitrary discussion of computer science as pertaining to the determinism of generated values is itself deterministic.**
@@ -298,16 +298,16 @@ Anyone interested in generating random numbers should take a look at General/Num
 
     rand() % x is not uniformly distributed.      random() % x is (assuming     (RAND_MAX+1) % x == 0).  Check the man page for random().  It specifically states that all bits from it are usable, and that random() & 01 is a valid way to generate a random bit, unlike rand(), whose lower bits are cyclic.
 
--- General/AndresSantiagoPerezBergquist
+-- AndresSantiagoPerezBergquist
 
 ----
 
-How about the General/MersenneTwister?  It has a period of 2^19937-1!
+How about the MersenneTwister?  It has a period of 2^19937-1!
 
 New page [http://www.math.sci.hiroshima-u.ac.jp/~m-mat/MT/emt.html]
 Old page [http://www.math.keio.ac.jp/~matumoto/emt.html]  
 
-From the General/WebPage:
+From the WebPage:
 
 ""What is Mersenne Twister?
 Mersenne Twister(MT) is a pseudorandom number generator developped by Makoto Matsumoto and Takuji Nishimura (alphabetical order) during 1996-1997. MT has the following merits: 
@@ -317,19 +317,19 @@ Far longer period and far higher order of equidistribution than any other implem
 Fast generation. (Although it depends on the system, it is reported that MT is sometimes faster than the standard ANSI-C library in a system with pipeline and cache memory.)
 Efficient use of the memory. (The implemented C-code mt19937.c consumes only 624 words of working area.)""
 
--General/PhilipRiggs
+-PhilipRiggs
 
 ----
 
 I'd like to point out that there are two sets of random functions. srand and rand are the C standard functions, and srandom and random are the BSD-issued functions that the manpages recommend (check man random and man srand). also, there are sranddev and srandomdev, which read a seed value from /dev/random and call srand[om]() with it.
 
-and to General/KevinPerry: those are functions, not methods.
+and to KevinPerry: those are functions, not methods.
 
 *--boredzo*
 
 ----
 
-A quick test of the method I added to the General/GeneratingRandomNumber page:
+A quick test of the method I added to the GeneratingRandomNumber page:
 
     
 + (long)randomLongFrom:(long)lower to:(long)upper{
@@ -345,11 +345,11 @@ driven by
 		results[i] = 0;
 	}
 	for (int i=0; i<10000000; i++){
-		long r = General/[DieModel randomLongFrom:1 to:6];
+		long r = [DieModel randomLongFrom:1 to:6];
 		results[r-1]++;
 	}
 	for (int i=0; i<6; i++){
-		General/NSLog(@"r[%d] = %d",i+1,results[i]);
+		NSLog(@"r[%d] = %d",i+1,results[i]);
 	}
 
 
@@ -364,7 +364,7 @@ r[5] = 1667205
 r[6] = 1665905
 
 
-Mk I eyeball says those look good enough, though it would not be a bad idea to run a few real statistical tests on the output sequence.  Still, I am willing to believe the man page on random() - the claim that every bit is usable is a very strong one, and I rather hope they tested it well. -- General/ScottEllsworth
+Mk I eyeball says those look good enough, though it would not be a bad idea to run a few real statistical tests on the output sequence.  Still, I am willing to believe the man page on random() - the claim that every bit is usable is a very strong one, and I rather hope they tested it well. -- ScottEllsworth
 ----
 The claim that every bit is usable is not equivalent to the claim that you can use the modulo operator to get randomness out.
 
@@ -407,7 +407,7 @@ Well, if you want a really unusual number, reseed your generator every time, usi
 *Random (physics) = pretty much impossible
 *Random (programming) = does not look like a pattern, and has roughly equal result frequencies.
 
-BTW, to avoid the "double-zero" problem of     Random() % 254, just recalculate the number if it is 255. And go ahead and call me an ignorant freak (or something else equally insulting), but I think that a random function that "looks good" is almost always good enough unless you actually do have to generate several thousand random numbers in the life span of a program. And yes, I know that sometimes you do. --General/JediKnil
+BTW, to avoid the "double-zero" problem of     Random() % 254, just recalculate the number if it is 255. And go ahead and call me an ignorant freak (or something else equally insulting), but I think that a random function that "looks good" is almost always good enough unless you actually do have to generate several thousand random numbers in the life span of a program. And yes, I know that sometimes you do. --JediKnil
 ----
 The technique of simply re-calling the generator if it gives something that is out of range is a standard technique which eliminates this problem. Or more efficiently, you can calculate a maximum based on a factor from your modulus, use modulus if the number is under that maximum, and recalculate if it's over. You lose no randomness by doing this technique.
 

@@ -7,4 +7,4 @@ Can anyone explain ?
 
 -- Trax
 
-See General/HowToGenerateRandomNumbers for more information.
+See HowToGenerateRandomNumbers for more information.

@@ -1,19 +1,19 @@
 
 
 
-(Newb here) I've cobbled together a little experimental program where if you make a selection of text from a text view, it automatically dumps the text in an General/NSTextField elsewhere in the same window.
+(Newb here) I've cobbled together a little experimental program where if you make a selection of text from a text view, it automatically dumps the text in an NSTextField elsewhere in the same window.
 
-(I tried making the text go into an General/NSTextView, but the newly built app would always crash on any attempt and Xcode would warn me before the end of the build that General/NSTextView may not be able to accept or recognize the new text -- anyone know why?)
+(I tried making the text go into an NSTextView, but the newly built app would always crash on any attempt and Xcode would warn me before the end of the build that NSTextView may not be able to accept or recognize the new text -- anyone know why?)
 
-Anyway my problem is, yes, the text does show up in the General/NSTextField upon selection of text in a nearby text view, but when the selection is deselected, the new text in the General/NSTextField goes away too.  How do I make it stick?  And even better, how can I make this work in an General/NSTextView, where I could give the user more choices, like being able to edit and save.
+Anyway my problem is, yes, the text does show up in the NSTextField upon selection of text in a nearby text view, but when the selection is deselected, the new text in the NSTextField goes away too.  How do I make it stick?  And even better, how can I make this work in an NSTextView, where I could give the user more choices, like being able to edit and save.
 
 The key part of the code I have in the controller is this:
 
     
-- (void) textViewDidChangeSelection: (General/NSNotification *) aNotification
+- (void) textViewDidChangeSelection: (NSNotification *) aNotification
 {
 
-        General/NSString *selected, *placeholder;
+        NSString *selected, *placeholder;
 	
 	selected = [self selectedText];
 
@@ -35,8 +35,8 @@ What is happening is that when you deselect the text, the notification is posted
 You could use something like this:
 
     
-- (void)textViewDidChangeSelection:(General/NSNotification *)aNotification {
-	General/NSString *selected = General/[[NSString alloc] init];
+- (void)textViewDidChangeSelection:(NSNotification *)aNotification {
+	NSString *selected = [[NSString alloc] init];
 
 	selected = [self selectedText];
 
@@ -53,7 +53,7 @@ Jacob
 
 ----
 
-The reason your code breaks with an General/NSTextView as the outputField is that General/NSTextView doesn't respond to the same messages. You'll need to write this for an General/NSTextView:
+The reason your code breaks with an NSTextView as the outputField is that NSTextView doesn't respond to the same messages. You'll need to write this for an NSTextView:
 
     
 [outputField setString:selected];

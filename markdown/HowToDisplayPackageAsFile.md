@@ -2,13 +2,13 @@ The discussion is essentially closed. The answerToTheQuestion was found!! Feel f
 
 ----
 
-I use 'package files' for the documents of the application I am writing. I set this in the inspector window of the target, by clicking on the appropriate checkbox (in General/XCode). However, in the Finder, the documents still do not show as files, but as folders. This is fine for now, because I am the only user of the app, but I would like future users to not have to deal with this. Are these 'file packages' supposed to show as regular files (like icns or nib files)? How and when is the Finder aware of it? Does the app have to be in a particular path where it will be known by the system? I tried to put the product in /Applications, and quit-start the Finder, but it is still not showing.
+I use 'package files' for the documents of the application I am writing. I set this in the inspector window of the target, by clicking on the appropriate checkbox (in XCode). However, in the Finder, the documents still do not show as files, but as folders. This is fine for now, because I am the only user of the app, but I would like future users to not have to deal with this. Are these 'file packages' supposed to show as regular files (like icns or nib files)? How and when is the Finder aware of it? Does the app have to be in a particular path where it will be known by the system? I tried to put the product in /Applications, and quit-start the Finder, but it is still not showing.
 
 Another point: I used the same file extension for a while for regular files, and now shifted the app to use packages instead, so maybe there is a potential conflict here?
 
 Thanks for your experience/input!!
 
-General/CharlesParnot
+CharlesParnot
 
 Have you tried restarting the system? Finder may need more encouragement to get rid of its cache. Also make sure there aren't any old builds of your app that used the non-package format lurking about.
 

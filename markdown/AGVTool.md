@@ -1,4 +1,4 @@
-General/AppleGenericVersioningTool.
+AppleGenericVersioningTool.
 
 see: /Developer/Tools/agvtool help
 
@@ -71,21 +71,21 @@ see: /Developer/Tools/agvtool help
      agvtool should be invoked from a Terminal while you are cd'd into
      your project directory (the folder containing your .pbproj file).
  
-     agvtool pays attention to two defaults: General/CVSEnabled and General/CVSSubmitByTag.
+     agvtool pays attention to two defaults: CVSEnabled and CVSSubmitByTag.
  
-     If General/CVSEnabled is set to "YES" then agvtool will perform certain
+     If CVSEnabled is set to "YES" then agvtool will perform certain
      CVS operations like committing modified project files and performing
      tagging operations.  You can set this default by issuing the
      following command in a Terminal:
-         'defaults write agvtool General/CVSEnabled YES'
+         'defaults write agvtool CVSEnabled YES'
  
-     If General/CVSSumbitByTag is set to "YES" then agvtool, by default will
+     If CVSSumbitByTag is set to "YES" then agvtool, by default will
      submit your project by cvs tag using the same version as the
      tag operation.  The sense of this default can be overridden by 
      supplying an explicit -bytag or -notbytag argument to the submit 
      operation. You can set this default by issuing the following
      command in a Terminal:
-         'defaults write agvtool General/CVSSumbitByTag YES'
+         'defaults write agvtool CVSSumbitByTag YES'
  
  agvtool commands and options:
  
@@ -107,7 +107,7 @@ see: /Developer/Tools/agvtool help
  
          The CURRENT_PROJECT_VERSION and the DYLIB_CURRENT_VERSION will
          be updated.  The -all option will cause agvtool to also update
-         the General/CFBundleVersion Info.plist key.
+         the CFBundleVersion Info.plist key.
  
          If CVS support is enabled, the modified project file will be 
          committed.
@@ -119,7 +119,7 @@ see: /Developer/Tools/agvtool help
  
          The CURRENT_PROJECT_VERSION and the DYLIB_CURRENT_VERSION will
          be updated.  The -all option will cause agvtool to also update
-         the General/CFBundleVersion Info.plist key.
+         the CFBundleVersion Info.plist key.
  
          If CVS support is enabled, the modified project file will be 
          committed.
@@ -128,9 +128,9 @@ see: /Developer/Tools/agvtool help
  
          This command will only function is the CVS support is enabled.
  
-         It will create a new tag <General/ProjectName>-<General/CurrentVersion> where
-         <General/ProjectName> is the name of the pbproj file (without the extension)
-         and <General/CurrentVersion> is the CURRENT_PROJECT_VERSION with any "." 
+         It will create a new tag <ProjectName>-<CurrentVersion> where
+         <ProjectName> is the name of the pbproj file (without the extension)
+         and <CurrentVersion> is the CURRENT_PROJECT_VERSION with any "." 
          transformed into a "~" (since CVS does not allow dots in tag names).
  
          The -force or -F option, if given, will add a -F to the cvs tag 
@@ -151,7 +151,7 @@ see: /Developer/Tools/agvtool help
          instead of submitting from the project source directly.  The 
          -notbytag option makes agvtool submit from the project source.
  
-         If General/CVSSubmitByTag is set, -bytag is the default.  Otherwise,
+         If CVSSubmitByTag is set, -bytag is the default.  Otherwise,
          -notbytag is the default.
  
      what-marketing-version|mvers:
@@ -159,7 +159,7 @@ see: /Developer/Tools/agvtool help
          This command will print the current marketing version of 
          the project.
  
-         The marketing version is the General/CFBundleShortVersionString
+         The marketing version is the CFBundleShortVersionString
          Info.plist key.  This is often a totally different version
          determined by product marketing folks.
  
@@ -173,7 +173,7 @@ see: /Developer/Tools/agvtool help
          This command will set the marketing version numbers of
          all versioned targets to the given version number.
  
-         The marketing version is the General/CFBundleShortVersionString
+         The marketing version is the CFBundleShortVersionString
          Info.plist key.  This is often a totally different version
          determined by product marketing folks.
  
@@ -181,7 +181,7 @@ see: /Developer/Tools/agvtool help
          committed.
 
 
-NB:  Do not use General/AGVTool when the project in question is open in General/ProjectBuilder.
+NB:  Do not use AGVTool when the project in question is open in ProjectBuilder.
 
 ----
 But feel free to use it till you're blue if it's open in Xcode!
@@ -193,4 +193,4 @@ But feel free to use it till you're blue if it's open in Xcode!
 I use it with     /Developer/Tools/agvtool next-version -all; open *.xcodeproj - having the man page on here I think is unnecessary too.
 
 ----
-Here is a great article on using General/AGVTool by Chris Hanson: http://chanson.livejournal.com/125568.html
+Here is a great article on using AGVTool by Chris Hanson: http://chanson.livejournal.com/125568.html

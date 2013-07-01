@@ -1,4 +1,4 @@
-I need to get the line number of a range of text as displayed in a General/NSTextView. I've done some research and found General/NSString's 
+I need to get the line number of a range of text as displayed in a NSTextView. I've done some research and found NSString's 
 
     
 � getLineStart:end:contentsEnd:forRange:
@@ -11,7 +11,7 @@ methods, but I'm unclear how to get the line number of a specific range from it.
 
 ----
 
-Get yourself General/AppKiDo (or General/DocoaBrowser) and search for 'paragraph' and 'line' and look at all the results. Those methods are what you need to read about.
+Get yourself AppKiDo (or DocoaBrowser) and search for 'paragraph' and 'line' and look at all the results. Those methods are what you need to read about.
 
 ----
 

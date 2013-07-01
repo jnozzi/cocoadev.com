@@ -1,5 +1,5 @@
 
 
-General/OpenScripting is the Open Scripting Architecture and Carbon General/AppleScript API.
+OpenScripting is the Open Scripting Architecture and Carbon AppleScript API.
 
-Wrapper: General/NDAppleScriptObject, in 10.2 and higher there is also an General/NSAppleScript class.
+Wrapper: NDAppleScriptObject, in 10.2 and higher there is also an NSAppleScript class.

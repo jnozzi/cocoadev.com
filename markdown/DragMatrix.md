@@ -1,9 +1,9 @@
 I needed a matrix of image views that would let the user change the order of the image in it using drag and drop.  Thus I wrote the following class.  When the user drags an image a little insertion bar is draw to give them an indication of where the insertion will occur.
 
--- General/SaileshAgrawal
+-- SaileshAgrawal
 
 ----
-**General/DragMatrix.h**
+**DragMatrix.h**
     
  /****************************************************************
   * DragMatrix
@@ -38,7 +38,7 @@ I needed a matrix of image views that would let the user change the order of the
  @end
 
 ----
-**General/DragMatrix.m**
+**DragMatrix.m**
     
  #import "DragMatrix.h"
  
@@ -94,7 +94,7 @@ I needed a matrix of image views that would let the user change the order of the
  /****************************************************************
  * Function - clearDragDestinationMembers
  *
- * Resets all member variables used by General/DragDestination functions.
+ * Resets all member variables used by DragDestination functions.
  ****************************************************************/
  - (void) clearDragDestinationMembers {
    shouldDraw = FALSE;
@@ -103,7 +103,7 @@ I needed a matrix of image views that would let the user change the order of the
  }
  
  /****************************************************************
- * Function - draggingEntered (implements General/NSDraggingDestination)
+ * Function - draggingEntered (implements NSDraggingDestination)
  *
  * Called when the user drags an object on top of us. The return value tells
  * the caller if we'll accept the object.
@@ -118,7 +118,7 @@ I needed a matrix of image views that would let the user change the order of the
  }
  
  /****************************************************************
- * Function - performDragOperation (implements General/NSDraggingDestination)
+ * Function - performDragOperation (implements NSDraggingDestination)
  *
  * Called after the user releases the drag object.  Here we perform the
  * result of the dragging.
@@ -140,7 +140,7 @@ I needed a matrix of image views that would let the user change the order of the
      objects[2] = [NSNumber numberWithInt:dstRow];
      objects[3] = [NSNumber numberWithInt:dstCol];
      dict = [NSDictionary dictionaryWithObjects:objects forKeys:keys count:4];
-     [nc postNotificationName:@"General/DragMatrixImageMoved" object:self userInfo:dict];
+     [nc postNotificationName:@"DragMatrixImageMoved" object:self userInfo:dict];
    }
    
    [self clearDragDestinationMembers];
@@ -150,7 +150,7 @@ I needed a matrix of image views that would let the user change the order of the
  }
  
  /****************************************************************
- * Function - draggingExited (implements General/NSDraggingDestination)
+ * Function - draggingExited (implements NSDraggingDestination)
  *
  * Invoked when the dragged image exits the destination's bounds rectangle.
  * We use this to erase the insertion pointer from the view.
@@ -161,7 +161,7 @@ I needed a matrix of image views that would let the user change the order of the
  }
  
  /****************************************************************
- * Function - draggingUpdated (implements General/NSDraggingDestination)
+ * Function - draggingUpdated (implements NSDraggingDestination)
  *
  * Invoked periodically as the image is held within the destination.
  * The messages continue until the image is either released or dragged out of
@@ -247,7 +247,7 @@ I needed a matrix of image views that would let the user change the order of the
      NSRect rect;
      
      shouldDraw = TRUE;
-     General/NSColor blackColor] set];
+     NSColor blackColor] set];
      [NSBezierPath fillRect:newDrawRect];
      
      rect.size.width = CIRCLE_SIZE;

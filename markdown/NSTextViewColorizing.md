@@ -1,31 +1,31 @@
 
 
-I've subclassed General/NSTextView to make commented lines green, I use this code
+I've subclassed NSTextView to make commented lines green, I use this code
 
     
 - (void) didChangeText
 {
-	General/NSLayoutManager *layoutManager = [self layoutManager];
-	General/NSRange lineGlyphRange, lineCharRange;
-	General/NSString *prefix;
-	General/NSColor *color;
-	General/NSRange range = [self rangeForUserTextChange];
+	NSLayoutManager *layoutManager = [self layoutManager];
+	NSRange lineGlyphRange, lineCharRange;
+	NSString *prefix;
+	NSColor *color;
+	NSRange range = [self rangeForUserTextChange];
 	
 	(void)[layoutManager lineFragmentRectForGlyphAtIndex:range.location
                             effectiveRange:&lineGlyphRange];  
 	lineCharRange = [layoutManager characterRangeForGlyphRange:lineGlyphRange
                            actualGlyphRange:NULL];
 	
-	prefix = General/[self string] substringWithRange:lineCharRange]
+	prefix = [self string] substringWithRange:lineCharRange]
                   tringByTrimmingCharactersInSet:[[[NSCharacterSet whitespaceCharacterSet]];
 	if([prefix hasPrefix:@"#"])
-		color = General/[NSColor colorWithCalibratedRed:(float)42/255
+		color = [NSColor colorWithCalibratedRed:(float)42/255
                            green:(float)126/255 blue:(float)49/255 alpha:1.0f];
 	else
-		color = General/[NSColor blackColor];
+		color = [NSColor blackColor];
 		
   [layoutManager addTemporaryAttributes:
-    General/[NSDictionary dictionaryWithObjectsAndKeys:color, General/NSForegroundColorAttributeName, nil]
+    [NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, nil]
               forCharacterRange:lineCharRange];
 }
 
@@ -47,5 +47,5 @@ when *(void)[layoutManager lineFragmentRectForGlyphAtIndex:range.location effect
 
 so i used
     
-General/NSRange range = [self rangeForUserTextChange];
+NSRange range = [self rangeForUserTextChange];
 lineCharRange = [[self string]lineRangeForRange:range];

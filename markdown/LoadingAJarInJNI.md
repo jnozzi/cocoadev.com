@@ -5,8 +5,8 @@ I've never used JNI before and I'm trying to load classes from a jar.
 Here's what I've got.
 
     
-	General/JNIEnv *env;
-	General/JavaVM *jvm;
+	JNIEnv *env;
+	JavaVM *jvm;
 	jint res;
 	jclass cls;
 	jmethodID mid;
@@ -14,8 +14,8 @@ Here's what I've got.
 	jclass stringClass;
 	jobjectArray args;
 	
-	General/JavaVMInitArgs vm_args;
-	General/JavaVMOption options[1];
+	JavaVMInitArgs vm_args;
+	JavaVMOption options[1];
 	options[0].optionString = "-Djava.class.path=/Users/me/Desktop/myJarFile.jar";
 	vm_args.version = JNI_VERSION_1_4;
 	vm_args.options = options;
@@ -26,11 +26,11 @@ Here's what I've got.
 		fprintf(stderr, "Can't create Java VM\n");
 		exit(1);
 	
-cls = (*env)->General/FindClass(env, "General/MyJavaClass");
+cls = (*env)->FindClass(env, "MyJavaClass");
 
 
-What I get is the following:	*Exception in thread "main" java.lang.General/NoClassDefFoundError: General/MyJavaClass*.  What am I doing wrong?
-(PS: Had a similar problem when trying to use the General/JavaBridge -- I couldn't find the classes in my Jar file.)
+What I get is the following:	*Exception in thread "main" java.lang.NoClassDefFoundError: MyJavaClass*.  What am I doing wrong?
+(PS: Had a similar problem when trying to use the JavaBridge -- I couldn't find the classes in my Jar file.)
 
 ----
 

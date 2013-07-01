@@ -1,7 +1,7 @@
 **
-We were all beginners once, remember? Play General/WikiWikiNice lest you may need help someday and no one will be around to help you.
+We were all beginners once, remember? Play WikiWikiNice lest you may need help someday and no one will be around to help you.
 
-So, too, be nice when answering questions from beginner Cocoa programmers (or wannabes :) on books, tutorials, coding and when to shut up and stop asking such stupid questions. See also, General/HowToProgramInOSX. To kick things off, a well-handled example:
+So, too, be nice when answering questions from beginner Cocoa programmers (or wannabes :) on books, tutorials, coding and when to shut up and stop asking such stupid questions. See also, HowToProgramInOSX. To kick things off, a well-handled example:
 **
 
 ----
@@ -10,11 +10,11 @@ I'm so new to this whole cocoa programming thing, and in fact to programming in 
 
 ----
 
-I suggest learning C first. Cocoa is based on General/ObjectiveC, which is itself a superset of C, so if you don't know C you need to learn it all at once, which would make for a rather long book. You should find you can easily compile C apps with General/ProjectBuilder. -- General/KritTer
+I suggest learning C first. Cocoa is based on ObjectiveC, which is itself a superset of C, so if you don't know C you need to learn it all at once, which would make for a rather long book. You should find you can easily compile C apps with ProjectBuilder. -- KritTer
 
 ----
 
-I agree with General/KritTer, learning C is a good start. A book that on C that I found very useful (well I must admit it's the only C-book I've read :) is:
+I agree with KritTer, learning C is a good start. A book that on C that I found very useful (well I must admit it's the only C-book I've read :) is:
 
 Learn C on the Macintosh (2nd Edition)
 by Dave Mark
@@ -38,7 +38,7 @@ file = fopen(filename,rwmode);
 
 Someone will probably enlighten you to a more specific way to check just for the existance of a file, but the functionality gained by checking file against NULL might be ideal for your situation.
 
---General/KevinPerry
+--KevinPerry
 
 ----
 
@@ -49,7 +49,7 @@ As far as far as finding a file goes, what exactly do you want to do?  Do you wa
 sorry, I am trying to do this in cocoa, and, no, due to my own lack of experience, it doesn't seem too straight-forward.
 I'm writing an app that will test for a file at a fixed path when it starts up, say
 
-~/Library/General/SomeApp'sFolder/someresource
+~/Library/SomeApp'sFolder/someresource
 
 so that if it doesn't find it, the app will create it and if it does find it, it will load the file.  There's probably an easy and obvious way to do this that I just haven't thought of, thanks!
 
@@ -57,17 +57,17 @@ so that if it doesn't find it, the app will create it and if it does find it, it
 
 ----
 
-General/[[NSFileManager defaultManager] fileExistAtPath:@"foo"]. Optionally you can add isDirectory:(BOOL) which will allow you to check for a directory via this code:
+[[NSFileManager defaultManager] fileExistAtPath:@"foo"]. Optionally you can add isDirectory:(BOOL) which will allow you to check for a directory via this code:
 
     
 
-General/NSArray *subpaths;
+NSArray *subpaths;
 BOOL isDir;
-General/NSString *fontPath = @"/System/Library/Fonts";
-General/NSFileManager *manager = General/[NSFileManager defaultManager];
+NSString *fontPath = @"/System/Library/Fonts";
+NSFileManager *manager = [NSFileManager defaultManager];
 if ([manager fileExistsAtPath:fontPath isDirectory:&isDir] && isDir)
     subpaths = [manager subpathsAtPath:fontPath];
 
 
 
-Reading the functions in General/NSFileManager is probably what you will want to do. Hope this helps. -- General/MatPeterson
+Reading the functions in NSFileManager is probably what you will want to do. Hope this helps. -- MatPeterson

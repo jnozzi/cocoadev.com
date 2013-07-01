@@ -1,12 +1,12 @@
-Hi I've created a non-General/NSDocument Program that creates custom files that open the application when double-clicked but how do I make the application recongize and handle when the application was started by a file being double-clicked?
+Hi I've created a non-NSDocument Program that creates custom files that open the application when double-clicked but how do I make the application recongize and handle when the application was started by a file being double-clicked?
 
 Gabe
 
 ----
 
     
-- (BOOL)application:(General/NSApplication *)sender openFile:(General/NSString *)filename;
-- (void)application:(General/NSApplication *)sender openFiles:(General/NSArray *)filenames;
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename;
+- (void)application:(NSApplication *)sender openFiles:(NSArray *)filenames;
 
 
 ----

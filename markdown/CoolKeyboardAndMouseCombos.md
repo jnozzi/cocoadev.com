@@ -21,28 +21,28 @@ This is a posting I used to keep up to date at http://www.macosx.com but I rarel
 
 
 
-I don't know that many for IB or PB so hopefully these sections get some help here. http://goo.gl/General/OeSCu
+I don't know that many for IB or PB so hopefully these sections get some help here. http://goo.gl/OeSCu
 
-**General/XCode Keyboard Shortcuts and Mouse tricks**
+**XCode Keyboard Shortcuts and Mouse tricks**
 
 
-*Large Method/Function/General/PragmaMark menus can be scrolled with a scroll wheel by single clicking the popup menu without dragging (i.e. click down on the popup menu and release without moving the mouse). This action will keep the menu open so you can scroll through the menu with a scroll wheel or a mighty mouse. (9/3/07)
+*Large Method/Function/PragmaMark menus can be scrolled with a scroll wheel by single clicking the popup menu without dragging (i.e. click down on the popup menu and release without moving the mouse). This action will keep the menu open so you can scroll through the menu with a scroll wheel or a mighty mouse. (9/3/07)
 
 
 **PB Keyboard Shortcuts and Mouse tricks**
 
 
-*To toggle back and forth between the header and source file use COMMAND + OPTION + General/UpArrow
+*To toggle back and forth between the header and source file use COMMAND + OPTION + UpArrow
 *To jump to the implementation of a method just COMMAND + Click on the method name
-*To execute a shell command with a file, start at the begining of the line and type a command like "pwd" and then hit CONTROL + "r"  (also see General/ProjectBuilderShell)
+*To execute a shell command with a file, start at the begining of the line and type a command like "pwd" and then hit CONTROL + "r"  (also see ProjectBuilderShell)
 *To rename an item in the project list, option-click on it
 
 
 **IB Keyboard Shortcuts and Mouse tricks**
 
 
-*To copy an interface element (e.g. an General/NSButton), just OPTION + drag the item 
-*To move an element across views (e.g. from an General/NSBox into another General/NSWindow), click and hold the element without moving the mouse. In about a second, a shadow will appear under the element, and you are free to drag it wherever you please (it also keeps it's binding if it has one)
+*To copy an interface element (e.g. an NSButton), just OPTION + drag the item 
+*To move an element across views (e.g. from an NSBox into another NSWindow), click and hold the element without moving the mouse. In about a second, a shadow will appear under the element, and you are free to drag it wherever you please (it also keeps it's binding if it has one)
 
 
 
@@ -51,10 +51,10 @@ I don't know that many for IB or PB so hopefully these sections get some help he
 
 *here's a little tid-bit i found in the universal acces system preference. it isn't really easter egg but it was unknown to me that it could be done.  it is called the zoom feature: option + command + *(8) turns on the zoom from any where. pressing option + command + +(plus) or - (minus) you can zoom in and out on the active desktop. i'm sure isn't really anything new, but it's rather fun to play with, especially with pictures. Greystroke (12/16/02) 
 *To swich the display to B&W press control+option+command+(the times sign on the num pad)
-See General/ControlCommandOptionAsterisk for how to invert the display in color mode!
+See ControlCommandOptionAsterisk for how to invert the display in color mode!
  *Quick Key to take a snapshot / screenshot of a portion of your display!! 
   
- Here's a cool trick MrNivit1 (11/26/02) stumbled upon while messing around with keyboard combinations. Hold down command-shift-4 and the cursor will turn into a target. Select an area of the screen (i.e. click, drag to draw a box, release) and a new graphic file with an image of the area you selected will appear on the desktop (if the picture file isn't automatically placed on your desktop check your "Desktop" folder in your home directory for the file). General/MrNivit guesses Apple was kind enough to bring this easter egg from OS9 (apple-shift-3 will give you a picture of the entire screen in OS9) to OSX.  
+ Here's a cool trick MrNivit1 (11/26/02) stumbled upon while messing around with keyboard combinations. Hold down command-shift-4 and the cursor will turn into a target. Select an area of the screen (i.e. click, drag to draw a box, release) and a new graphic file with an image of the area you selected will appear on the desktop (if the picture file isn't automatically placed on your desktop check your "Desktop" folder in your home directory for the file). MrNivit guesses Apple was kind enough to bring this easter egg from OS9 (apple-shift-3 will give you a picture of the entire screen in OS9) to OSX.  
 
 If you press command-shift-4 and the press space, the window under the mouse can be snapshotted (it will turn blue).
  * Jaguar Global Keyboard shortcut 
@@ -106,7 +106,7 @@ you, too, can make your Mac look like DOS!]
     
 **Finder Window**
 
-*>>NEW!! just figured this one out 6/18/03. You can scroll horizontally with the scroll wheel of your mouse (if you have one) by holding the shift key down as you scroll. This one is really useful for a column view when you are deep within the file system. This trick works for any General/NSScrollView in case you were wondering :-)
+*>>NEW!! just figured this one out 6/18/03. You can scroll horizontally with the scroll wheel of your mouse (if you have one) by holding the shift key down as you scroll. This one is really useful for a column view when you are deep within the file system. This trick works for any NSScrollView in case you were wondering :-)
 *The option key changes some Finder Menu Items in real time. 
  
 *Home (Command + Shift + H) 
@@ -181,8 +181,8 @@ you, too, can make your Mac look like DOS!]
 **Any Window**
 
   
- I just found a great way to hide General/XDarwin without having 
- to use a command key or to select Hide General/XDarwin from the General/XDarwin 
+ I just found a great way to hide XDarwin without having 
+ to use a command key or to select Hide XDarwin from the XDarwin 
  menu. Just hold the option key down while you click on another window 
  or the desktop.  
               
@@ -217,7 +217,7 @@ you, too, can make your Mac look like DOS!]
                              icon in the dock  
   
  To get any item in the Dock to pop open a menu (Folder/HD icons  
- pop open a quasi General/AppleMenu, applications pop open a menu with  
+ pop open a quasi AppleMenu, applications pop open a menu with  
  options to quit, show or select a window and the trash can pops  
  open the option to empty):  
                     Control + Click on the Dock icon  

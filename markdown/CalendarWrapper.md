@@ -26,7 +26,7 @@ iCalendarParser
 **
 http://www.oops.se/~malte/software.html
 
-An iCalendar parser written in Objective-C. It's at a very experimental stage right now and only handles the inital parsing of iCalendar content lines. It works in a fashion similar to a General/SAXParser.
+An iCalendar parser written in Objective-C. It's at a very experimental stage right now and only handles the inital parsing of iCalendar content lines. It works in a fashion similar to a SAXParser.
 
  *
  **
@@ -38,7 +38,7 @@ Perl script converts iCalendar (.ics) to vCalendar (.vcs).
 
  *
  **
-General/CALCore
+CALCore
 **
 
 Apple's private framework for working with iCalendars.

@@ -1,6 +1,6 @@
 
 
-Apple's Class Reference: http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/Classes/NSWorkspace_Class/
+Apple's Class Reference: http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSWorkspace_Class/
 
 This is a great Class that has all sorts of stuff in it.  You can think of the Workspace as the Finder - most methods in this class do something related to files or volumes.
 
@@ -8,19 +8,19 @@ This is a great Class that has all sorts of stuff in it.  You can think of the W
 
 ----
 
-When using General/NSWorkspace, you do not allocate your own instance of the class; you grab the sharedWorkspace thusly:
+When using NSWorkspace, you do not allocate your own instance of the class; you grab the sharedWorkspace thusly:
     
-General/[[NSWorkspace sharedWorkspace] someNSWorkSpacemethod]
+[[NSWorkspace sharedWorkspace] someNSWorkSpacemethod]
 
  
 ...or you could get a reference and keep it around, as in:
     
-General/NSWorkspace *ws = General/[NSWorkspace sharedWorkspace];
+NSWorkspace *ws = [NSWorkspace sharedWorkspace];
 [ws someNSWorkSpaceMethod];
 [ws someOtherNSWorkSpaceMethod];
 
 
-The benefit to this is speed, if you know you're going to be calling lots of methods of General/NSWorkspace.
+The benefit to this is speed, if you know you're going to be calling lots of methods of NSWorkspace.
  
 ----
  
@@ -48,65 +48,65 @@ When launching an application, it is best to use launchAppWithBundleIdentifier: 
 3- open a file:
 
 **Specifying a program:**
-     General/[[NSWorkspace sharedWorkspace] openFile:@"/Myfiles/README" withApplication:@"Edit"]; 
+     [[NSWorkspace sharedWorkspace] openFile:@"/Myfiles/README" withApplication:@"Edit"]; 
 
 **Using the default program:**
-    General/[[NSWorkspace sharedWorkspace] openFile:@"/foo"];
+    [[NSWorkspace sharedWorkspace] openFile:@"/foo"];
 
 **With the open file animation**
     
-General/[[NSWorkspace sharedWorkspace] openFile:@"/foo" fromImage:General/[NSImage imageNamed:@"foo"] at:General/NSMakePoint(1,1) inView:aView];
+[[NSWorkspace sharedWorkspace] openFile:@"/foo" fromImage:[NSImage imageNamed:@"foo"] at:NSMakePoint(1,1) inView:aView];
 
 
 
 4- find the icon for a file or filetype
 
 ** Of a file at a path: **
-     General/[[NSWorkspace sharedWorkspace] iconForFile:@"/path"]; 
+     [[NSWorkspace sharedWorkspace] iconForFile:@"/path"]; 
 
 
 
 ** Icon of a file type, no reference file needed: **
-     General/[[NSWorkspace sharedWorkspace] iconForFileType:@"tif"]; 
+     [[NSWorkspace sharedWorkspace] iconForFileType:@"tif"]; 
 
 
 
 5- reveal a file in the finder.
     
-General/NSString * path ="/tmp/foo.txt";
-General/[[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:nil];
+NSString * path ="/tmp/foo.txt";
+[[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:nil];
 
 
 ----
 
-*Odd comment in the General/NSWorkspace docs under hideOtherApplications: "The user can hide all applications except the current one by Command-double-clicking an application�s tile, so programmatic invocation of this method is usually unnecessary." Tile? Is this a General/NeXT leftover?  In OS X one Command-option-clicks an application's icon in the dock.*
+*Odd comment in the NSWorkspace docs under hideOtherApplications: "The user can hide all applications except the current one by Command-double-clicking an application�s tile, so programmatic invocation of this method is usually unnecessary." Tile? Is this a NeXT leftover?  In OS X one Command-option-clicks an application's icon in the dock.*
 
 File a documentation bug.
 
 * Done -- #3910776. Thanks for the confirmation.  *
 
-It also talks about Edit.app ( rdar://3944321 )  I don't think the General/NSWorkspace docs have been changed much in a looong time.
+It also talks about Edit.app ( rdar://3944321 )  I don't think the NSWorkspace docs have been changed much in a looong time.
 ----
-I have not gotten     openFile:fromImage:at:inView: to work, and I know that the docs say "Currently provides the same functionality as openFile:", so I'm wondering: has anyone gotten the nice (or hated) Finder zoom animation to work using General/NSWorkspace (or by any other means)? --General/JediKnil
+I have not gotten     openFile:fromImage:at:inView: to work, and I know that the docs say "Currently provides the same functionality as openFile:", so I'm wondering: has anyone gotten the nice (or hated) Finder zoom animation to work using NSWorkspace (or by any other means)? --JediKnil
 
 ----
-Hmm... I'm using General/[[NSWorkspace sharedWorkspace] mountedRemovableMedia], but getting an empty array when my external Firewire drive is attached and mounted. The drive is, however, included in General/[[NSWorkspace sharedWorkspace] mountedLocalVolumePaths] What gives? -- Devin
+Hmm... I'm using [[NSWorkspace sharedWorkspace] mountedRemovableMedia], but getting an empty array when my external Firewire drive is attached and mounted. The drive is, however, included in [[NSWorkspace sharedWorkspace] mountedLocalVolumePaths] What gives? -- Devin
 
 ----
-Well, according to the docs, it seems that - (General/NSArray *)mountedRemovableMedia only works for media that is physically inserted into a drive (ie. a CD or DVD). I personally can only get it to return disks in my optical drive.
+Well, according to the docs, it seems that - (NSArray *)mountedRemovableMedia only works for media that is physically inserted into a drive (ie. a CD or DVD). I personally can only get it to return disks in my optical drive.
 
 ----
-Right you are, thanks. However, using General/[[NSWorkspace sharedWorkspace] getFileSystemInfoForPath:isRemovable:isWritable:isUnmountable:description:type:] returns completely incorrect info as far as the isRemovable and isMountable flags. Do you know of any way to find out these two pieces of information? -- Devin
+Right you are, thanks. However, using [[NSWorkspace sharedWorkspace] getFileSystemInfoForPath:isRemovable:isWritable:isUnmountable:description:type:] returns completely incorrect info as far as the isRemovable and isMountable flags. Do you know of any way to find out these two pieces of information? -- Devin
 ----
-General/NSWorkspace's volume methods are crippled. The solution I found was to use Applescript. See General/GettingNetworkVolumes. (I know it says Network Volumes, but it covers all volume types)
+NSWorkspace's volume methods are crippled. The solution I found was to use Applescript. See GettingNetworkVolumes. (I know it says Network Volumes, but it covers all volume types)
 
 ----
-when I attempt to launch an app bundle  via the General/NSWorkspace method launchAppWithBundleIdentifier: it gives a warning: 'General/NSWorkspace' may not respond to '-launchAppWithBundleIdentifier:' and fails to launch the app.
+when I attempt to launch an app bundle  via the NSWorkspace method launchAppWithBundleIdentifier: it gives a warning: 'NSWorkspace' may not respond to '-launchAppWithBundleIdentifier:' and fails to launch the app.
 yet when I hard code the path using launchApplication: its fine.
 
-this fails:     General/[[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.apple.General/CharPaletteServer"];
+this fails:     [[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.apple.CharPaletteServer"];
 
-this works: [    General/[NSWorkspace sharedWorkspace] launchApplication:@"/System/Library/Components/General/CharacterPalette.component/Contents/General/SharedSupport/General/CharPaletteServer.app"];
+this works: [    [NSWorkspace sharedWorkspace] launchApplication:@"/System/Library/Components/CharacterPalette.component/Contents/SharedSupport/CharPaletteServer.app"];
 
 any idea on how to get an app to load via bundle id? --encro
 
@@ -117,7 +117,7 @@ Read the manual and realize that the full method is     launchAppWithBundleIdent
 Thankyou, I think it was more the Constants for options: that I misunderstood. --encro
 
 Solution:
-    General/[[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.apple.General/CharPaletteServer" options:General/NSWorkspaceLaunchAsync additionalEventParamDescriptor:nil launchIdentifier:nil];
+    [[NSWorkspace sharedWorkspace] launchAppWithBundleIdentifier:@"com.apple.CharPaletteServer" options:NSWorkspaceLaunchAsync additionalEventParamDescriptor:nil launchIdentifier:nil];
 
 ----
 I have been using [NSWorkspace getInfoForFile:application:type:] to tell whether a given path is an application, by comparing type to NSApplicationFileType.  Apparently NSApplicationFileType was deprecated in 10.6.  What's the new way to do this?  The docs and the header just say it's deprecated, with no indication of what to do to port old code.

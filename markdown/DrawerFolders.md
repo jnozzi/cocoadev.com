@@ -5,4 +5,4 @@ Does anyone know how to create folders in a drawer?  Like the ones in the Mail a
 Paul
 
 
-You're asking the wrong question.  What you need to do is get images (and text, presumably) into an General/NSTableView (or General/NSOutlineView if you want to do hierarchy).  Basically, all you have to do is return the correct cell type in the data source object... check up on that and you'll have all the info you need.
+You're asking the wrong question.  What you need to do is get images (and text, presumably) into an NSTableView (or NSOutlineView if you want to do hierarchy).  Basically, all you have to do is return the correct cell type in the data source object... check up on that and you'll have all the info you need.

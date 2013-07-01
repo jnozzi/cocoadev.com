@@ -82,7 +82,7 @@ This code returns the elements in a dictionary. This is quick and simple use of 
  void handleCharacters(void *userData, const char *data, int len)
  {
      NSData *utf8Data = [NSData dataWithBytes:data length:len];
-     NSString *dataString = General/[NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding] autorelease];
+     NSString *dataString = [NSString alloc] initWithData:utf8Data encoding:NSUTF8StringEncoding] autorelease];
      
      NSLog(@"CData=%@",dataString);
  }
@@ -102,4 +102,4 @@ There are other features, but this meets most needs.
 
 
 ----
-I would recommend Apple's XML Services before General/OmniExpat. Seems just as simple, but more powerful -- General/TheoHultberg/Iconara
+I would recommend Apple's XML Services before OmniExpat. Seems just as simple, but more powerful -- TheoHultberg/Iconara

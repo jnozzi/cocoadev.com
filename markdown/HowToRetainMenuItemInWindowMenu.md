@@ -5,7 +5,7 @@ Should I destroy the automatically created menu item or there is a way to tell i
 
 ----
 
-Change your window to a General/NSPanel (or tell it to     setExcludedFromWindowsMenu:YES) and add your own menu item to the Window menu for your window.
+Change your window to a NSPanel (or tell it to     setExcludedFromWindowsMenu:YES) and add your own menu item to the Window menu for your window.
 
 ----
 
@@ -53,11 +53,11 @@ I agree that this way is clearer:*
 *So i think i will stick with Apple's way for now :) *
 
 ----
-Relevant HIG link: [http://developer.apple.com/documentation/General/UserExperience/Conceptual/General/OSXHIGuidelines/General/XHIGMenus/chapter_7_section_3.html#//apple_ref/doc/uid/TP30000356/TPXREF121]
+Relevant HIG link: [http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/XHIGMenus/chapter_7_section_3.html#//apple_ref/doc/uid/TP30000356/TPXREF121]
 
 ----
 
-You don't really need to do anything with the window's state. If the item is selected and the window's closed, open it, if it's open, bring it to the front. This is what General/FontBook does.
+You don't really need to do anything with the window's state. If the item is selected and the window's closed, open it, if it's open, bring it to the front. This is what FontBook does.
 
 ----
 

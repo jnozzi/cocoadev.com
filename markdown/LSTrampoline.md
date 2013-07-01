@@ -1,12 +1,12 @@
 
 
-General/LSTrampoline is an implementation of a General/TrampolineObject for the purpose of General/HigherOrderMessaging. Enjoy!
+LSTrampoline is an implementation of a TrampolineObject for the purpose of HigherOrderMessaging. Enjoy!
 
 ----
 
-General/LSTrampoline.h
+LSTrampoline.h
 
-I provide a protocol for convenience (though I currently make only haphazard use of it) for HOM. Other than that, this is pretty standard stuff; you init the trampoline with the target object (be it a collection or otherwise), the callback selector, and the signature that the trampoline should use. http://goo.gl/General/OeSCu
+I provide a protocol for convenience (though I currently make only haphazard use of it) for HOM. Other than that, this is pretty standard stuff; you init the trampoline with the target object (be it a collection or otherwise), the callback selector, and the signature that the trampoline should use. http://goo.gl/OeSCu
 
     
 #import <Foundation/Foundation.h>
@@ -20,24 +20,24 @@ I provide a protocol for convenience (though I currently make only haphazard use
 
 @end
 
-@protocol General/LSHOMMath <LSHOM>
+@protocol LSHOMMath <LSHOM>
 
 -(id)sumInt;
 -(id)sumFloat;
 
 @end
 
-@interface General/LSTrampoline : General/NSProxy {
+@interface LSTrampoline : NSProxy {
     id target;
     SEL selector;
-    General/NSMethodSignature *signature;
+    NSMethodSignature *signature;
     id idReturn;
     float floatReturn;
     int intReturn;
 }
 
 // init
--(id)initWithTarget:(id)t selector:(SEL)s signature:(General/NSMethodSignature *)sig;
+-(id)initWithTarget:(id)t selector:(SEL)s signature:(NSMethodSignature *)sig;
 
 // factory
 +(id)trampolineWithTarget:(id)t selector:(SEL)s prototypeSelector:(SEL)p;
@@ -55,17 +55,17 @@ I provide a protocol for convenience (though I currently make only haphazard use
 
 ----
 
-General/LSTrampoline.m
+LSTrampoline.m
 
-I make use of -initWithMethodSignature: and +signatureWithObjCTypes: just like in General/BSTrampoline. And I really ought to be using @encode() rather than the explicit "@^v^c" string. Eventually. This makes is crash on OS X/Intel.
+I make use of -initWithMethodSignature: and +signatureWithObjCTypes: just like in BSTrampoline. And I really ought to be using @encode() rather than the explicit "@^v^c" string. Eventually. This makes is crash on OS X/Intel.
 
     
-#import "General/LSTrampoline.h"
+#import "LSTrampoline.h"
 
-@implementation General/LSTrampoline
+@implementation LSTrampoline
 
 // init
--(id)initWithTarget:(id)t selector:(SEL)s signature:(General/NSMethodSignature *)sig
+-(id)initWithTarget:(id)t selector:(SEL)s signature:(NSMethodSignature *)sig
 {
     target = [t retain];
     selector = s;
@@ -89,7 +89,7 @@ I make use of -initWithMethodSignature: and +signatureWithObjCTypes: just like i
 // factory
 +(id)trampolineWithTarget:(id)t selector:(SEL)s prototypeSelector:(SEL)p
 {
-    return General/[self alloc] initWithTarget:t
+    return [self alloc] initWithTarget:t
         selector:s
         signature:[t methodSignatureForSelector:p
     autorelease];
@@ -110,10 +110,10 @@ I make use of -initWithMethodSignature: and +signatureWithObjCTypes: just like i
 }
 
 
--(void)forwardInvocation:(General/NSInvocation *)invocation
+-(void)forwardInvocation:(NSInvocation *)invocation
 {
     const char *returnType =
-        General/target methodSignatureForSelector:selector] methodReturnType];
+        target methodSignatureForSelector:selector] methodReturnType];
     if(!strcmp(returnType, @encode(float)))
     {
         [target performSelector:selector withObject:invocation];
@@ -129,7 +129,7 @@ I make use of -initWithMethodSignature: and +signatureWithObjCTypes: just like i
         [target performSelector:selector withObject:invocation];
         [invocation getReturnValue:&intReturn];
         [invocation initWithMethodSignature:
-            General/[NSMethodSignature signatureWithObjCTypes:"i^v^c"]];
+            [NSMethodSignature signatureWithObjCTypes:"i^v^c"]];
         [invocation setSelector:@selector(intReturn)];
         [invocation invokeWithTarget:self];
         [invocation setReturnValue:&intReturn];
@@ -138,7 +138,7 @@ I make use of -initWithMethodSignature: and +signatureWithObjCTypes: just like i
     {
         idReturn = [target performSelector:selector withObject:invocation];
         [invocation initWithMethodSignature:
-            General/[NSMethodSignature signatureWithObjCTypes:"@^v^c"]];
+            [NSMethodSignature signatureWithObjCTypes:"@^v^c"]];
         [invocation setSelector:@selector(idReturn)];
         [invocation invokeWithTarget:self];
         [invocation setReturnValue:&idReturn];
@@ -146,7 +146,7 @@ I make use of -initWithMethodSignature: and +signatureWithObjCTypes: just like i
 }
 
 
--(General/NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+-(NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
 {
     return signature;
 }
@@ -172,44 +172,44 @@ I make use of -initWithMethodSignature: and +signatureWithObjCTypes: just like i
 
 ----
 
-Here is a category on General/NSArray for purposes of demonstration. This category's interface is just conforming to LSHOM and General/LSHOMMath declared in General/LSTrampoline.h above.
+Here is a category on NSArray for purposes of demonstration. This category's interface is just conforming to LSHOM and LSHOMMath declared in LSTrampoline.h above.
 
     
-#import "General/LSTrampoline.h"
+#import "LSTrampoline.h"
 
-@implementation General/NSArray (HOM)
+@implementation NSArray (HOM)
 
 -(id)collect
 {
-    return General/[LSTrampoline trampolineWithTarget:self
+    return [LSTrampoline trampolineWithTarget:self
         selector:@selector(collect:)
         prototypeSelector:@selector(collectPrototype)];
 }
 
 -(id)select
 {
-    return General/[LSTrampoline trampolineWithTarget:self
+    return [LSTrampoline trampolineWithTarget:self
         selector:@selector(select:)
         prototypeSelector:@selector(selectPrototype)];
 }
 
 -(id)reject
 {
-    return General/[LSTrampoline trampolineWithTarget:self
+    return [LSTrampoline trampolineWithTarget:self
         selector:@selector(reject:)
         prototypeSelector:@selector(selectPrototype)];
 }
 
 -(id)detect
 {
-    return General/[LSTrampoline trampolineWithTarget:self
+    return [LSTrampoline trampolineWithTarget:self
         selector:@selector(detect:)
     prototypeSelector:@selector(collectPrototype)];
 }
 
 -(id)do
 {
-    return General/[LSTrampoline trampolineWithTarget:self
+    return [LSTrampoline trampolineWithTarget:self
         selector:@selector(do:)
         prototypeSelector:@selector(doPrototype)];
 }
@@ -217,14 +217,14 @@ Here is a category on General/NSArray for purposes of demonstration. This catego
 
 -(id)sumInt
 {
-    return General/[LSTrampoline trampolineWithTarget:self
+    return [LSTrampoline trampolineWithTarget:self
         selector:@selector(sumInt:)
         prototypeSelector:@selector(sumIntPrototype)];
 }
 
 -(id)sumFloat
 {
-    return General/[LSTrampoline trampolineWithTarget:self
+    return [LSTrampoline trampolineWithTarget:self
         selector:@selector(sumFloat:)
         prototypeSelector:@selector(sumFloatPrototype)];
 }
@@ -256,9 +256,9 @@ Here is a category on General/NSArray for purposes of demonstration. This catego
 }
 
 
--(id)do:(General/NSInvocation *)invocation
+-(id)do:(NSInvocation *)invocation
 {
-    General/NSEnumerator *e = [self objectEnumerator];
+    NSEnumerator *e = [self objectEnumerator];
     id temp;
     
     while(temp = [e nextObject])
@@ -268,10 +268,10 @@ Here is a category on General/NSArray for purposes of demonstration. This catego
     return nil;
 }
 
--(id)collect:(General/NSInvocation *)invocation
+-(id)collect:(NSInvocation *)invocation
 {
-    General/NSMutableArray *a = General/[NSMutableArray array];
-    General/NSEnumerator *e = [self objectEnumerator];
+    NSMutableArray *a = [NSMutableArray array];
+    NSEnumerator *e = [self objectEnumerator];
     id temp;
     
     while(temp = [e nextObject])
@@ -284,10 +284,10 @@ Here is a category on General/NSArray for purposes of demonstration. This catego
     return a;
 }
 
--(id)select:(General/NSInvocation *)invocation
+-(id)select:(NSInvocation *)invocation
 {
-    General/NSMutableArray *a = General/[NSMutableArray array];
-    General/NSEnumerator *e = [self objectEnumerator];
+    NSMutableArray *a = [NSMutableArray array];
+    NSEnumerator *e = [self objectEnumerator];
     id temp;
     
     while(temp = [e nextObject])
@@ -302,10 +302,10 @@ Here is a category on General/NSArray for purposes of demonstration. This catego
     return a;
 }
 
--(id)reject:(General/NSInvocation *)invocation
+-(id)reject:(NSInvocation *)invocation
 {
-    General/NSMutableArray *a = General/[NSMutableArray array];
-    General/NSEnumerator *e = [self objectEnumerator];
+    NSMutableArray *a = [NSMutableArray array];
+    NSEnumerator *e = [self objectEnumerator];
     id temp;
     
     while(temp = [e nextObject])
@@ -320,9 +320,9 @@ Here is a category on General/NSArray for purposes of demonstration. This catego
     return a;
 }
 
--(id)detect:(General/NSInvocation *)invocation
+-(id)detect:(NSInvocation *)invocation
 {
-    General/NSEnumerator *e = [self objectEnumerator];
+    NSEnumerator *e = [self objectEnumerator];
     id temp, result = nil;
     
     while(temp = [e nextObject])
@@ -337,9 +337,9 @@ Here is a category on General/NSArray for purposes of demonstration. This catego
 }
 
 
--(int)sumInt:(General/NSInvocation *)invocation
+-(int)sumInt:(NSInvocation *)invocation
 {
-    General/NSEnumerator *e = [self objectEnumerator];
+    NSEnumerator *e = [self objectEnumerator];
     id temp;
     int result = 0;
     
@@ -354,9 +354,9 @@ Here is a category on General/NSArray for purposes of demonstration. This catego
     return result;
 }
 
--(float)sumFloat:(General/NSInvocation *)invocation
+-(float)sumFloat:(NSInvocation *)invocation
 {
-    General/NSEnumerator *e = [self objectEnumerator];
+    NSEnumerator *e = [self objectEnumerator];
     id temp;
     float result = 0.0;
     
@@ -374,32 +374,32 @@ Here is a category on General/NSArray for purposes of demonstration. This catego
 @end
 
 
-Many thanks to General/ThomasCastiglione for General/BSTrampoline as an example of how to get General/LSTrampoline to stop crashing General/LodeStone. Thanks also to General/JoeOsborn for trying to get me to use blocks (must! not! rely! on! other! people's! code! Oh no, I have to implement Cocoa now! :D ), to General/KritTer for much discussion of HOM in general, and to General/MarcelWeiher for General/MPWFoundation and the spark for the interest. And as of March 15th, thanks to General/ChrisTh for help moving away from +signatureWithObjCTypes:! Getting closer to using only documented methods.
+Many thanks to ThomasCastiglione for BSTrampoline as an example of how to get LSTrampoline to stop crashing LodeStone. Thanks also to JoeOsborn for trying to get me to use blocks (must! not! rely! on! other! people's! code! Oh no, I have to implement Cocoa now! :D ), to KritTer for much discussion of HOM in general, and to MarcelWeiher for MPWFoundation and the spark for the interest. And as of March 15th, thanks to ChrisTh for help moving away from +signatureWithObjCTypes:! Getting closer to using only documented methods.
 
 Suggestions, fixes, and the like are welcome; please make note of them on this page so there's a clear indication of what's changed!
 
-Finally, General/LSHOMTest is a function which tests -do, -collect, -select, and -reject.
+Finally, LSHOMTest is a function which tests -do, -collect, -select, and -reject.
 
--- General/RobRix
+-- RobRix
 
-See also General/BSTrampoline for an alternative implementation.
+See also BSTrampoline for an alternative implementation.
 
-Note from the author of General/BSTrampoline: I wouldn't recommend it as an alternative, actually, General/LSTrampoline is a rather more general version useful for things other than just HOM on collections.
+Note from the author of BSTrampoline: I wouldn't recommend it as an alternative, actually, LSTrampoline is a rather more general version useful for things other than just HOM on collections.
 
-Just depends on your priorities, I suppose; General/BSTrampoline is pretty fast to get up and running. -- General/RobRix
+Just depends on your priorities, I suppose; BSTrampoline is pretty fast to get up and running. -- RobRix
 
 ----
 **Changelog**
 ----
 
 
-* Feb. 25th, 2003 - General/RobRix realized that -do in the category above should really be returning "v^v^c" instead of "@^v^c" This didn't affect General/LSHOMTest, but it was crashing General/LodeStone when I used -do on an General/NSSet. I also changed the implementations of -do: and -collect: to use General/NSEnumerator cos that way it's one-to-one between the implementation for General/NSArray and General/NSSet.
+* Feb. 25th, 2003 - RobRix realized that -do in the category above should really be returning "v^v^c" instead of "@^v^c" This didn't affect LSHOMTest, but it was crashing LodeStone when I used -do on an NSSet. I also changed the implementations of -do: and -collect: to use NSEnumerator cos that way it's one-to-one between the implementation for NSArray and NSSet.
 
-* Feb. 26th, 2003 - General/RobRix decided to note that one-to-one between General/NSArray HOM and General/NSSet HOM isn't likely, but for a different reason--General/NSSet HOM methods should be implemented with General/NSMutableSet rather than General/NSMutableArray!
+* Feb. 26th, 2003 - RobRix decided to note that one-to-one between NSArray HOM and NSSet HOM isn't likely, but for a different reason--NSSet HOM methods should be implemented with NSMutableSet rather than NSMutableArray!
 
-* Mar. 15th, 2003 - implemented General/ChrisTh's offline suggestions re: method prototypes (to reduce the number of calls to +signatureWithObjCTypes:) and the +(id)trampolineWithTarget:selector:prototypeSelector: factory method. Also formatted to help remove the General/HorizontalScrollbars.
+* Mar. 15th, 2003 - implemented ChrisTh's offline suggestions re: method prototypes (to reduce the number of calls to +signatureWithObjCTypes:) and the +(id)trampolineWithTarget:selector:prototypeSelector: factory method. Also formatted to help remove the HorizontalScrollbars.
 
-* Apr. 08th, 2003 - implemented changes in General/LSTrampoline allowing overall returns other than objects. This is demonstrated by sumInt and sumFloat which will return the sum of int- or float-returns, respectively. Another potential use (although one which would need a bit of an addition to -forwardInvocation: to handle overall BOOL-returns--not a complex matter at all) is adding BOOL values together to see if all objects in a collection return the same, YES or NO, to the message in question; just boolean compare against 0 or -count, respectively.
+* Apr. 08th, 2003 - implemented changes in LSTrampoline allowing overall returns other than objects. This is demonstrated by sumInt and sumFloat which will return the sum of int- or float-returns, respectively. Another potential use (although one which would need a bit of an addition to -forwardInvocation: to handle overall BOOL-returns--not a complex matter at all) is adding BOOL values together to see if all objects in a collection return the same, YES or NO, to the message in question; just boolean compare against 0 or -count, respectively.
 
 In short, if you want to assign [[array message] higherOrderMessage] to something other than id, these changes are for you.
 

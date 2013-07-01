@@ -9,12 +9,12 @@ If the actual size is important, then you should use the types is stdint.h, like
 ----
 
 Easiest way IMHO is to pick an equivalent data type and define in Xcode project Other C Flags using the -D[efine] flag
-(e.g. -DDWORD=UInt32). This will perform a global replace on DWORD at compile time. - General/DerekBolli
+(e.g. -DDWORD=UInt32). This will perform a global replace on DWORD at compile time. - DerekBolli
 
 ----
 
-    DWORD  is a double word.      LPBYTE is a long pointer to byte.  Take a look at a reference on General/HungarianNotation (considered by
-many to be a somewhat abominable naming convention), for example http://c2.com/cgi/wiki?General/HungarianNotation
+    DWORD  is a double word.      LPBYTE is a long pointer to byte.  Take a look at a reference on HungarianNotation (considered by
+many to be a somewhat abominable naming convention), for example http://c2.com/cgi/wiki?HungarianNotation
 
 *Yep I am familiar with this since I am taking an MFC class right now.*
 

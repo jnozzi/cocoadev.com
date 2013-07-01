@@ -3,7 +3,7 @@ Here is a list of Cocoa apps produced by Apple.
 
 *Address Book - http://www.apple.com/macosx/features/addressbook/
 *Font Book - http://www.apple.com/macosx/features/fontbook/
-*General/GarageBand - http://www.apple.com/ilife/garageband/
+*GarageBand - http://www.apple.com/ilife/garageband/
 *iChat - http://www.apple.com/macosx/features/ichat/
 *iCal - http://www.apple.com/ical/
 *Interface Builder - http://developer.apple.com/tools/interfacebuilder/
@@ -11,7 +11,7 @@ Here is a list of Cocoa apps produced by Apple.
 *iPhoto - http://www.apple.com/ilife/iphoto/
 *iSync - http://www.apple.com/isync/
 *Keynote - http://www.apple.com/keynote/
-*General/LiveType - Silly General/LiveType personages - http://www.apple.com/finalcutpro/livetype.html
+*LiveType - Silly LiveType personages - http://www.apple.com/finalcutpro/livetype.html
 *Mail - http://www.apple.com/macosx/features/mail/
 *Pages - http://www.apple.com/iwork/pages/
 *Preview - http://www.apple.com/macosx/features/preview/
@@ -19,9 +19,9 @@ Here is a list of Cocoa apps produced by Apple.
 *Soundtrack - http://www.apple.com/soundtrack/
 *System Preferences - http://www.apple.com/macosx/features/systempreferences/
 *Terminal - http://www.apple.com/macosx/features/unix/
-*General/TextEdit - file:///Developer/Examples/General/AppKit/General/TextEdit
+*TextEdit - file:///Developer/Examples/AppKit/TextEdit
 *Xcode - http://developer.apple.com/tools/xcode/
-*General/QuickTime Player 7.0 - http://www.apple.com/quicktime
+*QuickTime Player 7.0 - http://www.apple.com/quicktime
 
 
 ----
@@ -30,11 +30,11 @@ Cocoa is used for almost anything new as I understand it.
 
 ----
 
-Then there are the General/AppleCarbonApps.
+Then there are the AppleCarbonApps.
 
 ----
 
-Will Microsoft ever create in Cocoa? Or will they forever be in General/CarbonLand?
+Will Microsoft ever create in Cocoa? Or will they forever be in CarbonLand?
 
 Anyone with legacy code will probably stick with Carbon for some time.  That describes Microsoft M.B.U. development pretty well.
 
@@ -42,9 +42,9 @@ Anyone with legacy code will probably stick with Carbon for some time.  That des
 
 People set in their ways...one of our worst traits.
 
-I think that Carbon developers look at Cocoa development like taking the easy way out. The same way that we look at General/RealBASIC development, as taking the easy way out.
+I think that Carbon developers look at Cocoa development like taking the easy way out. The same way that we look at RealBASIC development, as taking the easy way out.
 
-**I look at Ruby as taking the easy way out � and I prefer it. General/RealBasic is taking the awful way out.**
+**I look at Ruby as taking the easy way out � and I prefer it. RealBasic is taking the awful way out.**
 
 *Perhaps. There's also the fact that it's quite possibly a pretty huge investment to switch from Carbon to Cocoa. You'd have to ask somebody who's actually done it to be sure, though... like the Nisus Writer guys, perhaps.*
 
@@ -54,4 +54,4 @@ Nisus didn't really switch from Carbon to Cocoa - they bought and extended an ex
 
 ----
 
-Apparently DVD Player is Carbon. I was looking through it's nib files and they all register as Carbon nibs. Huh. I moved it to General/AppleCarbonApps
+Apparently DVD Player is Carbon. I was looking through it's nib files and they all register as Carbon nibs. Huh. I moved it to AppleCarbonApps

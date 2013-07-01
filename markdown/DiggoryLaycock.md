@@ -1,16 +1,16 @@
 
 
 
-General/DiggoryLaycock loves cocoa and marvels at the power of Objects.
+DiggoryLaycock loves cocoa and marvels at the power of Objects.
 See my dabblings at http://www.monkeyfood.com
 
-especially More Internet General/PreferencePane @ http://www.monkeyfood.com/software/moreinternet/
+especially More Internet PreferencePane @ http://www.monkeyfood.com/software/moreinternet/
 
-General/DiggoryLaycock may or may not be evil. Stay tuned for more!
+DiggoryLaycock may or may not be evil. Stay tuned for more!
 
-General/DiggoryLaycock doesn't remember typing the statement above  - either this is a testament to the wonders of wikki or his short-term memory may be failing faster than previously thought.
+DiggoryLaycock doesn't remember typing the statement above  - either this is a testament to the wonders of wikki or his short-term memory may be failing faster than previously thought.
 
-Wouldn't General/DouglasAdams have lovedThe guide that re-writes itself!
+Wouldn't DouglasAdams have lovedThe guide that re-writes itself!
 
 ----
 

@@ -1,2 +1,2 @@
-General/ActionScript is a developing technology created by Macromedia exclusively for Flash. It is very similar to General/JavaScript and other object-oriented languages.
-One of the main goals of General/ActionScript is that it runs on the objects, and not through methods or functions (although they are available too). To know more about General/ActionScript, please visit http://www.macromedia.com/ (and most likely search for a while).
+ActionScript is a developing technology created by Macromedia exclusively for Flash. It is very similar to JavaScript and other object-oriented languages.
+One of the main goals of ActionScript is that it runs on the objects, and not through methods or functions (although they are available too). To know more about ActionScript, please visit http://www.macromedia.com/ (and most likely search for a while).

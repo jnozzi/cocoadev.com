@@ -2,8 +2,8 @@
 
 Dedicated fan of all things Apple and Mac for over 20 years
 
-Thanks to this site and reference books like General/BookCocoaProgramming
-and General/BookCocoaRecipes I am happily porting all my Classic apps to
+Thanks to this site and reference books like BookCocoaProgramming
+and BookCocoaRecipes I am happily porting all my Classic apps to
 Cocoa and Objective-C
 
 Example apps can be found at http://web.mac.com/dbolli

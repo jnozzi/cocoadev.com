@@ -1,12 +1,12 @@
-How the heck do you do it?  General/NSTextStorage does not implement its own copy methods!  I tried using copy (came up with an General/NSAttributedString) and mutableCopy (came up with an General/NSMutableAttributedString), and even tried using a category to implement it, but to the stickiness of a malloc error (don't ask me how I got it, because I do not do C memory management).  How the blast can you do it (with layout managers and everything)?  Any help is appreciated. -General/RossDude
+How the heck do you do it?  NSTextStorage does not implement its own copy methods!  I tried using copy (came up with an NSAttributedString) and mutableCopy (came up with an NSMutableAttributedString), and even tried using a category to implement it, but to the stickiness of a malloc error (don't ask me how I got it, because I do not do C memory management).  How the blast can you do it (with layout managers and everything)?  Any help is appreciated. -RossDude
 
 ----
 
-General/NSTextStorage is a subclass of General/NSMutableAttributedString. Unless I'm missing something, all you need to do is create a new text storage and use General/NSAttributedString's initWithAttributedString: method, passing the old General/NSTextStorage (since it's  an General/NSMutableAttributedString with additions).
+NSTextStorage is a subclass of NSMutableAttributedString. Unless I'm missing something, all you need to do is create a new text storage and use NSAttributedString's initWithAttributedString: method, passing the old NSTextStorage (since it's  an NSMutableAttributedString with additions).
 
 ----
 
-And then call     replaceTextStorage: on your layout manager. Copying General/NSTextStorage doesn't really make sense, since all it adds to the string is links to other objects.
+And then call     replaceTextStorage: on your layout manager. Copying NSTextStorage doesn't really make sense, since all it adds to the string is links to other objects.
 
 ----
 

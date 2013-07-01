@@ -11,8 +11,8 @@ Which is for many lines of code, or for a comment in the middle of a line.
 ----
 It is possible to generate program documentation from the comments too.
 
-General/AutoDoc is simple, efficent and works with General/ObjC.
+AutoDoc is simple, efficent and works with ObjC.
 
-General/HeaderDoc is somewhat more complicated. 
+HeaderDoc is somewhat more complicated. 
 ----
-Back to General/HowToProgramInOSX
+Back to HowToProgramInOSX

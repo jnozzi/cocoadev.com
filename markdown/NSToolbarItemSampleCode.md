@@ -1,14 +1,14 @@
-The following is derived from a thread on the General/MacOSX-dev mailing list run by General/TheOmniGroup.
+The following is derived from a thread on the MacOSX-dev mailing list run by TheOmniGroup.
 
 Authors include Dave Clark and Michael B. Johnson, the sample code was provided by Chuck Pisula.
 
-To create an General/NSToolbarItem with a custom view, you have to do a little more work than for the regular General/NSToolbarItem.
+To create an NSToolbarItem with a custom view, you have to do a little more work than for the regular NSToolbarItem.
 **[ED: Somebody add sample code for that before this section, please!] **
-You can create an General/NSToolbarItem and call setView on it with a custom view. The problem is that the view's drawRect method is never called unless you also implement a few more methods, specifically these: 
+You can create an NSToolbarItem and call setView on it with a custom view. The problem is that the view's drawRect method is never called unless you also implement a few more methods, specifically these: 
 
     <pre>
-- (id) initWithCoder:(General/NSCoder *)coder;
-- (void) encodeWithCoder: (General/NSCoder *)coder;
+- (id) initWithCoder:(NSCoder *)coder;
+- (void) encodeWithCoder: (NSCoder *)coder;
 </pre>
 
 You also have to make sure the toolbar item knows the view's min/max size. Without this, you'll be allocated a rect that is 0 by 0.
@@ -24,7 +24,7 @@ Here is some sample code:
 returns an item
      // The toolbar will use self method to obtain toolbar items that can 
 be displayed in the customization sheet, or in the toolbar itself
-     NSToolbarItem *toolbarItem = General/[NSToolbarItem] alloc] 
+     NSToolbarItem *toolbarItem = [NSToolbarItem] alloc] 
 initWithItemIdentifier: itemIdent] autorelease];
 
      if ([itemIdent isEqual: SquareDotViewItemIdentifier]) {
@@ -78,7 +78,7 @@ fromView: nil];
 }
 
 - (void)drawRect:(NSRect)rect {
-     General/NSColor redColor] set];
+     NSColor redColor] set];
      [[NSBezierPath bezierPathWithRect: NSMakeRect(sdLocation.x, 
 sdLocation.y, sdSide, sdSide)] fill];
 
@@ -108,21 +108,21 @@ sdLocation.y, sdSide, sdSide)] fill];
 
 ----
 
-Read the documentation on General/NSToolbar and General/NSToolbarItem. Makes light work of everything, from attach a toolbar to the window to adding toolbaritems to it. This discussion is on the more technical aspects of toolbaritems and therefore it needs some source code that you may not understand.
+Read the documentation on NSToolbar and NSToolbarItem. Makes light work of everything, from attach a toolbar to the window to adding toolbaritems to it. This discussion is on the more technical aspects of toolbaritems and therefore it needs some source code that you may not understand.
 
-I would suggest General/NSToolbarSampleCode and this link:
+I would suggest NSToolbarSampleCode and this link:
 
 http://macdevcenter.com/pub/a/mac/2002/03/15/cocoa.html
 
 ----
 
-I wanted to put a progress indicator in the toolbar the app described in General/ValidatingToolbarItemsInThreadedApp.
+I wanted to put a progress indicator in the toolbar the app described in ValidatingToolbarItemsInThreadedApp.
 
 I didn't see any existing source code examples, and so I publish the following...
 
 I declared an instance variable in the threaded class (which also happens to be the view class)
 
-    General/NSProgressIndicator *prog;
+    NSProgressIndicator *prog;
 
 In the     init method of the threaded class, I created the progress indicator with the following:
 
@@ -171,7 +171,7 @@ Works like a charm.
 
 **Debugging a toolbar item with a custom view**
 
-I'm working on a General/WebKit-based browser and I recently implemented a toolbar. I have several buttons in and working, but I can't get a URL and Google field to work. At runtime it acknowledges its existence by showing its text label but it won't show the fields themselves. All needed IB connections have been made as well as defining the General/NSView's outlets.
+I'm working on a WebKit-based browser and I recently implemented a toolbar. I have several buttons in and working, but I can't get a URL and Google field to work. At runtime it acknowledges its existence by showing its text label but it won't show the fields themselves. All needed IB connections have been made as well as defining the NSView's outlets.
 
     <pre>
 
@@ -180,8 +180,8 @@ I'm working on a General/WebKit-based browser and I recently implemented a toolb
 	[item setLabel:@""];
 	[item setPaletteLabel:@"URL Bar and Google search"];
 	[item setView: toolbarExtras];
-	[item setMinSize:NSMakeSize(30, General/NSHeight([toolbarExtras frame]))];
-	[item setMaxSize:NSMakeSize(400,General/NSWidth([toolbarExtras frame]))]; 
+	[item setMinSize:NSMakeSize(30, NSHeight([toolbarExtras frame]))];
+	[item setMaxSize:NSMakeSize(400,NSWidth([toolbarExtras frame]))]; 
 	}
 
 </pre>
@@ -190,17 +190,17 @@ I'm working on a General/WebKit-based browser and I recently implemented a toolb
 
 you need to set the minSize and maxSize properties of the toolbar item, or else the view won't show up.
 
-what happens if you set the y value for the maxSize using General/NSHeight?
+what happens if you set the y value for the maxSize using NSHeight?
 
 I don't know what to tell you - I have almost this exact same code working fine. Where is     toolbarExtras coming from? How are the autosizing properties of the view set in IB?
 
 ----
 
-Is your General/NSView correctly initalized? or connected to its IB counterpart? Try General/NSLog on the object to see if it's nil.
+Is your NSView correctly initalized? or connected to its IB counterpart? Try NSLog on the object to see if it's nil.
 
 ----
 
-General/AutoSize options are default.
+AutoSize options are default.
 
 ----
 

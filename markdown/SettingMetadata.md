@@ -1,7 +1,7 @@
-What is the preferred manner of setting metadata tags on files already in the filesystem?  I would like to go through the files in a directory and set their kMDItemCreator and kMDItemFinderComment values, for example.  I don't see why I would write a whole spotlight importer to do this, especially since the metadata isn't going to be derived from file content, but rather set at run time.  I've been looking at General/NSMetadataItem and General/MDItem and can only find methods for getting the attributes, not setting them.  I must be really missing the boat on this.
+What is the preferred manner of setting metadata tags on files already in the filesystem?  I would like to go through the files in a directory and set their kMDItemCreator and kMDItemFinderComment values, for example.  I don't see why I would write a whole spotlight importer to do this, especially since the metadata isn't going to be derived from file content, but rather set at run time.  I've been looking at NSMetadataItem and MDItem and can only find methods for getting the attributes, not setting them.  I must be really missing the boat on this.
 
 ----
-kMDItemCreator corresponds to the HFS creator code, so just set that using traditional methods. (General/NSFileManager can do it.) From what I've read, kMDItemFinderComment is stored in mysterious places and the only real way to set it programmatically is by General/AppleScript<nowiki/>ing the Finder, which sucks.
+kMDItemCreator corresponds to the HFS creator code, so just set that using traditional methods. (NSFileManager can do it.) From what I've read, kMDItemFinderComment is stored in mysterious places and the only real way to set it programmatically is by AppleScript<nowiki/>ing the Finder, which sucks.
 
 ----
 What about the 100 or so standard tags listed like kMDItemLastUsedDate, or kMDItemStarRating?  These last two are tags which the user is likely to change randomly and often, and I don't understand how an application other than the creator (who creates an importer) is supposed to set these attributes.  Is there even a setValue:forKey: method for the files themselves?  Maybe I'm not clear on the role of the importer but that just doesn't seem to fulfill the role in question...
@@ -14,7 +14,7 @@ The mysterious place you talked about seems to be .DS_Store file of the file's p
 Apple didn't gave any specifications on .DS_Store files.
 
 ----
-The problem is that Spotlight (General/MDItem/General/NSMetadataItem) doesn't know how to set metadata properties in files. For example, Spotlight doesn't know anything about how the kMDItemExposureTimeSeconds is derived from an image or how to write that information into an image, it just believes whatever the importer tells it. The same goes for almost all of the other values -- and it doesn't make sense to change the value of some metadata in the Spotlight store, but not in the file.
+The problem is that Spotlight (MDItem/NSMetadataItem) doesn't know how to set metadata properties in files. For example, Spotlight doesn't know anything about how the kMDItemExposureTimeSeconds is derived from an image or how to write that information into an image, it just believes whatever the importer tells it. The same goes for almost all of the other values -- and it doesn't make sense to change the value of some metadata in the Spotlight store, but not in the file.
 
 You'll have to read the files, update the values, save them back out and let the importer capture the changes.
 ----
@@ -45,13 +45,13 @@ SYNOPSIS
 
 
 ----
-xattrs aren't metadata (in the spotlight sense).  Though as an aside - Finder comments are stored as a com.apple.metadata:kMDItemFinderComment xattr, but that's just Finder playing games - General/RbrtPntn
+xattrs aren't metadata (in the spotlight sense).  Though as an aside - Finder comments are stored as a com.apple.metadata:kMDItemFinderComment xattr, but that's just Finder playing games - RbrtPntn
 
 ----
 thanks, i just realized that the xattrs supported by hfs+ (since tiger i guess) and this kMDItemWhatever stuff which is apparently where the UTI stuff actually lives are two entirely different things after beating my head against it for a couple days.  however, i still can't believe there's not a (relatively) easy way to set a damn UTI so you can have some control over what app is going to open a document you create, without having to resort to the retardedness of file extensions or the (what i've (mistakenly?) been assuming to be deprecated) old-school type & creator codes ...
 
 ----
-Spotlight importers import metadata for one (or a group) of file types. But Apple has a system to import metadata on any file: if you set an xattr extended attribute with a plist that is not a dictionary, under a key like com.apple.metadata:General/YourKeyNameHere then in the spotlight database you will find an entry under 'General/YourKeyNameHere'. (you see them by doing an mdls on the file). We have developed General/OpenMeta to come up with a standard set of keys and safe procedures for setting this data. Apple itself uses this feature all over the place, with kMDItemWhereFroms, with time machine, and many other places. You can also use this system to for instance set a GPS coordinate on a text file, or a camera model on a PDF. These xattrs stay with the file through editing, (there are some Adobe apps that have a bug that erases xattrs at every save though!)
+Spotlight importers import metadata for one (or a group) of file types. But Apple has a system to import metadata on any file: if you set an xattr extended attribute with a plist that is not a dictionary, under a key like com.apple.metadata:YourKeyNameHere then in the spotlight database you will find an entry under 'YourKeyNameHere'. (you see them by doing an mdls on the file). We have developed OpenMeta to come up with a standard set of keys and safe procedures for setting this data. Apple itself uses this feature all over the place, with kMDItemWhereFroms, with time machine, and many other places. You can also use this system to for instance set a GPS coordinate on a text file, or a camera model on a PDF. These xattrs stay with the file through editing, (there are some Adobe apps that have a bug that erases xattrs at every save though!)
 
 By creating a spotlight plugin, a search for 'tag:superman' in the Spotlight UI will find all files with a com.apple.metadata:kOMUserTags array with 'Superman' as an array element. 
 

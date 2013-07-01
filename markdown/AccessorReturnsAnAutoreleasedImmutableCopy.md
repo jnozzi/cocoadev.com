@@ -18,12 +18,12 @@ Here, at least, clients will be clued in that they are getting a standard kind o
 * Its generally assumed that it will be autoreleased, so you could ignore this problem or document it. *
 
 ----
-Aaah! General/MultipleEditSyndrome! From Apple's General/MemoryManagement docs:
+Aaah! MultipleEditSyndrome! From Apple's MemoryManagement docs:
 
 *
 This document summarizes the rules for memory management in Objective-C.
 
-If you get an instance of an object via a method with     alloc or     copy in its name (or from the General/NSObject convenience method new), or if you send an instance a     retain message, you have a reference to it and will need to release it eventually.
+If you get an instance of an object via a method with     alloc or     copy in its name (or from the NSObject convenience method new), or if you send an instance a     retain message, you have a reference to it and will need to release it eventually.
 
 If you get an instance of an object any other way (exceptions include multithreaded applications and some Distributed Objects situations), you must NOT release it and you must NOT hang onto it beyond the scope of the current method (if you need to hang onto it, retain it).
 
@@ -33,7 +33,7 @@ If you get an instance of an object any other way (exceptions include multithrea
 Also (code removed, documentation changed to reflect that):
 
 *
-It is common practice in Objective-C code to copy value objects that represent attributes. C-type variables can usually be substituted for value objects, but value objects have the advantage of encapsulating convenient utilities for common manipulations. For example, General/NSString objects are used instead of character pointers because they encapsulate encoding and storage. Despite General/NSString functionality, the role played by General/NSStrings parallels the role played by character pointers.
+It is common practice in Objective-C code to copy value objects that represent attributes. C-type variables can usually be substituted for value objects, but value objects have the advantage of encapsulating convenient utilities for common manipulations. For example, NSString objects are used instead of character pointers because they encapsulate encoding and storage. Despite NSString functionality, the role played by NSStrings parallels the role played by character pointers.
 
 When value objects are passed as method arguments or returned from a method, it is common to use a copy instead of the object itself. Storing a copy of the variable has the effect of producing an object that is independent of the original, but has the same contents. Subsequent changes to the copy don't affect the original, and changes to the original don't affect the copy. Similarly, it is common to return a copy of an instance variable instead of the instance variable itself.
 *

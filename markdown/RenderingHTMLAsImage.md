@@ -3,23 +3,23 @@
 Is it possible to render HTML directly as an image?  I've been trying to do the following:
 
     
-General/webView mainFrame] loadRequest:[[[NSURLRequest requestWithURL:myURL]];
-General/NSView* tempView = General/[webView mainFrame] frameView] documentView];
+webView mainFrame] loadRequest:[[[NSURLRequest requestWithURL:myURL]];
+NSView* tempView = [webView mainFrame] frameView] documentView];
 [[NSData* imageData = [tempView dataWithPDFInsideRect:[tempView bounds]]
-[previewFrame setImage:General/[[[NSImage alloc] initWithData:imageData] autorelease]];
+[previewFrame setImage:[[[NSImage alloc] initWithData:imageData] autorelease]];
 
 
-However, previewFrame stays empty.  The peculiarity of this code is that webView is initialized with 'General/WebView* webView = General/[[WebView alloc] init];' and is never displayed in the GUI.
+However, previewFrame stays empty.  The peculiarity of this code is that webView is initialized with 'WebView* webView = [[WebView alloc] init];' and is never displayed in the GUI.
 
 So, my question is, is there a way to get this method to work?  Or is there a simpler way to directly render the HTML as an image without all this mucking about with views?
 
-(The reason I want this to be not simply a General/WebView is that I want links to be disabled and the content to be scalable.)
+(The reason I want this to be not simply a WebView is that I want links to be disabled and the content to be scalable.)
 
 Thanks.
 
 ----
 
-Read the General/WebView docs. You can customize virtually everything about webpages.
+Read the WebView docs. You can customize virtually everything about webpages.
 
 Related to your code, you may need to wrap     dataWithPDFInsideRect: inside calls to lockFocus and unlockFocus on your tempView.
 
@@ -35,22 +35,22 @@ I tried to get this to to work by setting up the delegate, but that didn't seem 
 
 ----
 
-Here you go. But it's probably better to use General/NSBitmapRep's     initWithFocusedViewRect: and generate an General/NSImage from that instead of a PDF. --General/KevinWojniak
+Here you go. But it's probably better to use NSBitmapRep's     initWithFocusedViewRect: and generate an NSImage from that instead of a PDF. --KevinWojniak
 
     
-#import <General/WebKit/General/WebView.h>
-#import <General/WebKit/General/WebFrame.h>
+#import <WebKit/WebView.h>
+#import <WebKit/WebFrame.h>
 
 - (void)loadImage
 {
 	// assumes webView is initalized somewhere already...
 	[webView setFrameLoadDelegate:self];
-	General/webView mainFrame] loadRequest:[[[NSURLRequest requestWithURL:[NSURL General/URLWithString:@"http://www.apple.com/ipod"]]];
+	webView mainFrame] loadRequest:[[[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.apple.com/ipod"]]];
 }
 
-- (void)webView:(General/WebView *)sender didFinishLoadForFrame:(General/WebFrame *)frame
+- (void)webView:(WebView *)sender didFinishLoadForFrame:(WebFrame *)frame
 {
-	General/NSView *tempView = General/[sender mainFrame] frameView] documentView];
+	NSView *tempView = [sender mainFrame] frameView] documentView];
 	[[NSData *pdfData = [tempView dataWithPDFInsideRect:[tempView bounds]];
-	[pdfData writeToFile:General/[NSString stringWithFormat:@"%@/Desktop/test.pdf", General/NSHomeDirectory()] atomically:YES];
+	[pdfData writeToFile:[NSString stringWithFormat:@"%@/Desktop/test.pdf", NSHomeDirectory()] atomically:YES];
 }

@@ -2,7 +2,7 @@
 
 Hey guys/girls,
 
-I've been trying to get an General/NSView to respond to the mouseEntered event but having a lot of trouble. I've read apple's docs and followed their steps but I think I must have missed something really quite obvious. Anyhow if it is possible, could someone paste some example code in or tell me the little trick in getting an General/NSView to respond to mouseEntered.
+I've been trying to get an NSView to respond to the mouseEntered event but having a lot of trouble. I've read apple's docs and followed their steps but I think I must have missed something really quite obvious. Anyhow if it is possible, could someone paste some example code in or tell me the little trick in getting an NSView to respond to mouseEntered.
 
 This is what I've got so far:
 
@@ -19,11 +19,11 @@ Here is the .m file of my window subclass
 
 @implementation mouseServer
 
-//In Interface Builder we set General/CustomWindow to be the class for our window, so our own initializer is called here.
-- (id)initWithContentRect:(General/NSRect)contentRect styleMask:(unsigned int)aStyle backing:(General/NSBackingStoreType)bufferingType defer:(BOOL)flag {
-    General/NSWindow* result = [super initWithContentRect:contentRect styleMask:General/NSBorderlessWindowMask backing:General/NSBackingStoreBuffered defer:NO];
-    [result setBackgroundColor: General/[NSColor clearColor]];
-    [result setLevel: General/NSNormalWindowLevel];
+//In Interface Builder we set CustomWindow to be the class for our window, so our own initializer is called here.
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
+    NSWindow* result = [super initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO];
+    [result setBackgroundColor: [NSColor clearColor]];
+    [result setLevel: NSNormalWindowLevel];
     [result setAlphaValue:1.0];
     [result setOpaque:NO];
     [result setHasShadow: YES];
@@ -40,7 +40,7 @@ Here is the .m file of my window subclass
 @end
 
 
-My custom view has had a trackingRect assigned, does accept first responder and has the method -(void)mouseEntered:(General/NSEvent *)theEvent
+My custom view has had a trackingRect assigned, does accept first responder and has the method -(void)mouseEntered:(NSEvent *)theEvent
 Here is the .m file of my custom view subclass
 
     
@@ -48,7 +48,7 @@ Here is the .m file of my custom view subclass
 
 @implementation mouseServerCV
 
-- (id)initWithFrame:(General/NSRect)frameRect
+- (id)initWithFrame:(NSRect)frameRect
 {
 	if ((self = [super initWithFrame:frameRect]) != nil) {
 		// Add initialization code here
@@ -57,10 +57,10 @@ Here is the .m file of my custom view subclass
 	return self;
 }
 
-- (void)drawRect:(General/NSRect)rect
+- (void)drawRect:(NSRect)rect
 {
-General/[[NSColor colorWithCalibratedHue:0 saturation:0 brightness:0 alpha:0.8] set];
-General/NSRectFill([self frame]);
+[[NSColor colorWithCalibratedHue:0 saturation:0 brightness:0 alpha:0.8] set];
+NSRectFill([self frame]);
 }
 
 - (BOOL)acceptsFirstResponder
@@ -68,9 +68,9 @@ General/NSRectFill([self frame]);
 return YES;
 }
 
--(void)mouseEntered:(General/NSEvent *)theEvent
+-(void)mouseEntered:(NSEvent *)theEvent
 {
-General/NSLog(@"VIEW LOGGED");
+NSLog(@"VIEW LOGGED");
 }
 @end
 
@@ -95,13 +95,13 @@ At the time     initWithFrame: is called,  your view hasn't been added to the wi
 }
  
 ----
-One of your problems is your     initWithContentRect:::: method -- you never set     self to     result, and so you don't call     setAcceptsMouseMovedEvent: and     setIgnoresMouseEvents: on the right object. Here's (theoretically) correct version of the method, which I hope works out for you. --General/JediKnil
+One of your problems is your     initWithContentRect:::: method -- you never set     self to     result, and so you don't call     setAcceptsMouseMovedEvent: and     setIgnoresMouseEvents: on the right object. Here's (theoretically) correct version of the method, which I hope works out for you. --JediKnil
     
-- (id)initWithContentRect:(General/NSRect)contentRect styleMask:(unsigned int)aStyle backing:(General/NSBackingStoreType)bufferingType defer:(BOOL)flag {
-    if (self = [super initWithContentRect:contentRect styleMask:General/NSBorderlessWindowMask backing:General/NSBackingStoreBuffered defer:NO]) {
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)aStyle backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag {
+    if (self = [super initWithContentRect:contentRect styleMask:NSBorderlessWindowMask backing:NSBackingStoreBuffered defer:NO]) {
         // These should be done in IB, if possible
-        [self setBackgroundColor: General/[NSColor clearColor]];
-        [self setLevel: General/NSNormalWindowLevel];
+        [self setBackgroundColor: [NSColor clearColor]];
+        [self setLevel: NSNormalWindowLevel];
         [self setAlphaValue:1.0];
         [self setOpaque:NO];
         [self setHasShadow: YES];

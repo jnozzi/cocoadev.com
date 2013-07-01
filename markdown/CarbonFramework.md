@@ -1,6 +1,6 @@
 
 
-General/CarbonFramework is an umbrella for an assortment of technologies, old and new:
+CarbonFramework is an umbrella for an assortment of technologies, old and new:
 
 [Topic]
 

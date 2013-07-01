@@ -10,38 +10,38 @@ What pasteboard types is your view registered to receive?
 
 No bug, just a common English problem. From what I remember in school, the subject often comes after the verb in a question. You had it right the first time. For a check, turn the question into a statement: "Your **view is** registered to receive pasteboard types." Sounds good to me.
 
-*so it's a feature then ;) i was waiting for someone to suggest using General/HigherOrderMessaging to solve the problem. Anyway, back to the original question; i don't want to hijack this page with trivia.*
+*so it's a feature then ;) i was waiting for someone to suggest using HigherOrderMessaging to solve the problem. Anyway, back to the original question; i don't want to hijack this page with trivia.*
 
 ----
 
-What pasteboard types is your view registered to receive? You probably don't want anything but General/NSFilenamesPboardType.
+What pasteboard types is your view registered to receive? You probably don't want anything but NSFilenamesPboardType.
 
 ----
 
-I just did a test and large files work instantly for me. It appears that the Finder only sends General/NSFilenamesPboardType, so registering under something else (such as General/NSFileContentsPboardType) doesn't even work. Are you sure something isn't taking place after the drop which is causing the delay? If you are dragging into an General/NSTableView, put an General/NSLog at the top and bottom of these two methods and see if they are getting called before or after the delay.
+I just did a test and large files work instantly for me. It appears that the Finder only sends NSFilenamesPboardType, so registering under something else (such as NSFileContentsPboardType) doesn't even work. Are you sure something isn't taking place after the drop which is causing the delay? If you are dragging into an NSTableView, put an NSLog at the top and bottom of these two methods and see if they are getting called before or after the delay.
 
     
-- (General/NSDragOperation)tableView:(General/NSTableView *)tableView validateDrop:(id <General/NSDraggingInfo>)info
-		proposedRow:(int)row proposedDropOperation:(General/NSTableViewDropOperation)operation
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info
+		proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)operation
 {
-    General/NSLog(@"Begin Validate Drop");
+    NSLog(@"Begin Validate Drop");
     // ...
-    General/NSLog(@"End Validate Drop");
+    NSLog(@"End Validate Drop");
     
-    return General/NSDragOperationCopy;
+    return NSDragOperationCopy;
 }
 
 
     
-- (BOOL)tableView:(General/NSTableView *)tableView acceptDrop:(id <General/NSDraggingInfo>)info
-		row:(int)row dropOperation:(General/NSTableViewDropOperation)operation
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id <NSDraggingInfo>)info
+		row:(int)row dropOperation:(NSTableViewDropOperation)operation
 {
-    General/NSLog(@"Begin Accept Drop");
+    NSLog(@"Begin Accept Drop");
     // ...
-    General/NSLog(@"End Accept Drop");
+    NSLog(@"End Accept Drop");
 
     return YES;
 }
 
 
-Hope that helps. -- General/RyanBates
+Hope that helps. -- RyanBates

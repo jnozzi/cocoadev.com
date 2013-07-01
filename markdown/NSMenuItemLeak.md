@@ -1,24 +1,24 @@
 I don't know if this is my fault or not, I truly don't know... Here is the code:
 
-    - (General/NSMenu *)emoticonMenu
+    - (NSMenu *)emoticonMenu
 {
-	General/NSMenu * menu = General/[NSMenu new];
-	General/NSArray * emoticonPacks = [self emoticonPacksInMainBundle];
+	NSMenu * menu = [NSMenu new];
+	NSArray * emoticonPacks = [self emoticonPacksInMainBundle];
 	
 	int i;
 	for (i=0; i<[emoticonPacks count]; i++)
 	{
 		// Add the title item that says which emoticonpack this comes from.
-		[menu addItemWithTitle:General/emoticonPacks objectAtIndex:i] objectForKey:@"Name"]
+		[menu addItemWithTitle:emoticonPacks objectAtIndex:i] objectForKey:@"Name"]
 						action:nil 
 				 keyEquivalent:@""];
 		
 		// Create a bundle with the path, this solves so many problems just 
 		// using an [[NSBundle, LOTS of headaches solved.
-		General/NSBundle * bundle = General/[NSBundle bundleWithPath:General/emoticonPacks objectAtIndex:i] objectForKey:@"[[FullPath"]];
+		NSBundle * bundle = [NSBundle bundleWithPath:emoticonPacks objectAtIndex:i] objectForKey:@"[[FullPath"]];
 		
 		// Inside the info.plist file is our array of icons, this is nessesary.
-		General/NSArray * icons = General/bundle infoDictionary] objectForKey:@"Icons"];
+		NSArray * icons = bundle infoDictionary] objectForKey:@"Icons"];
 		
 		int j;
 		for (j=0; j<[icons count]; j++)
@@ -26,13 +26,13 @@ I don't know if this is my fault or not, I truly don't know... Here is the code:
 			// Inside every entry in that array is a dictionary with all the attributes.
 			[[NSDictionary * dict = [icons objectAtIndex:j];
 			
-			General/NSImage * image = General/[[[NSImage alloc] initWithContentsOfFile:
+			NSImage * image = [[[NSImage alloc] initWithContentsOfFile:
 				[bundle pathForResource:[dict objectForKey:@"Icon"] ofType:nil]] autorelease];
-			General/NSString * name = [dict objectForKey:@"Name"];
-			General/NSString * textRep = [dict objectForKey:@"General/TextEmoticon"];
+			NSString * name = [dict objectForKey:@"Name"];
+			NSString * textRep = [dict objectForKey:@"TextEmoticon"];
 			
 			// There is a leak in this menuitem code
-			General/NSMenuItem * item = General/[[NSMenuItem alloc] init];
+			NSMenuItem * item = [[NSMenuItem alloc] init];
 			[item setImage:image];
 			[item setTitle:name];
 			// Using a tooltip to pass which emoticon we want inserted saves us 
@@ -51,7 +51,7 @@ You'll be leaking     image, because it's created but never released. Could that
 
     image *is autoreleased.  Scroll to the side.*
 
-Yeah Its not the Image or the General/ToolTip, but this isn't the first time I've had this problem with General/NSMenuItems, it has happened every time I have tried to make them programatically, none of my solutions have worked so i decided to ask the more experienced people here :).
+Yeah Its not the Image or the ToolTip, but this isn't the first time I've had this problem with NSMenuItems, it has happened every time I have tried to make them programatically, none of my solutions have worked so i decided to ask the more experienced people here :).
 
 ----
 
@@ -59,7 +59,7 @@ What's your process for deciding there's a leak here?
 
 ----
 
-Well, as soon as I call this code, the leak shows up, I comment out the General/NSMenuItem code, and the leak disappears, so it isn't the General/NSMenu, I know that much.
+Well, as soon as I call this code, the leak shows up, I comment out the NSMenuItem code, and the leak disappears, so it isn't the NSMenu, I know that much.
 
 ----
 
@@ -73,7 +73,7 @@ Well I don't have the time to do that at the moment, however supposing you are r
 - (void)windowWillLoad
 {
 	...
-	emoticonMenu = General/self emoticonMenu] retain];
+	emoticonMenu = self emoticonMenu] retain];
 	...
 }
 - (void)dealloc {
@@ -88,9 +88,9 @@ I have to retain it or it will crash, and I can't call that every time because t
     
 - (void)emoticonMenu:([[NSToolbarItem *)item
 {
-	General/[NSMenu popUpContextMenu:emoticonMenu 
-				   withEvent:General/[NSApp currentEvent] 
-					 forView:General/self window] contentView;
+	[NSMenu popUpContextMenu:emoticonMenu 
+				   withEvent:[NSApp currentEvent] 
+					 forView:self window] contentView;
 }
 
 

@@ -1,4 +1,4 @@
-General/JavaCC (a.k.a. Java Compiler Compiler) is a parser/lexer generater in the same style as Lex/Yacc.
+JavaCC (a.k.a. Java Compiler Compiler) is a parser/lexer generater in the same style as Lex/Yacc.
 
 https://javacc.dev.java.net/
 

@@ -8,7 +8,7 @@ This is just for your window's content view (typed in Safari, untested):
 
 - (BOOL) isWindowObscured
 {
-    return ( General/NSEqualRects(General/window contentView] visibleRect], [[NSZeroRect) || ![window screen];
+    return ( NSEqualRects(window contentView] visibleRect], [[NSZeroRect) || ![window screen];
 }
 
 
@@ -19,4 +19,4 @@ I think there are private methods to get the window's entire view, including the
 
 How about just calling isWindowObscured? Not overriding it?
 
-I'm prolly being really dense, but... um... I don't see     % - General/[NSWindow isWindowObscured]  or      %- General/[NSViewis isWindowObscured] so I'm assuming this is a category or ordinary subclass, but not override
+I'm prolly being really dense, but... um... I don't see     % - [NSWindow isWindowObscured]  or      %- [NSViewis isWindowObscured] so I'm assuming this is a category or ordinary subclass, but not override

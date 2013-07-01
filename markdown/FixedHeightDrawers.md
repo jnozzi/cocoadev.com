@@ -1,7 +1,7 @@
 
 
 This one is from the Mac OS X list, from a posting by Douglas Davidson:
-(I might put in some General/CocoaSampleCode later if I get the time)
+(I might put in some CocoaSampleCode later if I get the time)
 
 Here's the procedure I was using to get a fixed-height drawer:
 
@@ -13,4 +13,4 @@ window's frame size (take the height and subtract some fixed constant);
 constrain the parent window's height so that there is sufficient room 
 for the drawer.
 
--- General/JensBaumeister
+-- JensBaumeister

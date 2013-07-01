@@ -7,20 +7,20 @@ This is a really dumb question, but, how do I force my single window application
 In Cocoa:
 
     
-General/[NSApp activateIgnoringOtherApps:YES];
+[NSApp activateIgnoringOtherApps:YES];
 
 
-I think this does what you need. If not you can do it with Carbon (see General/GetCurrentProcess and General/SetFrontProcess).
+I think this does what you need. If not you can do it with Carbon (see GetCurrentProcess and SetFrontProcess).
 
 I'm not sure what you mean by getting the event focus.
 
 -------------
 
-If you do a General/SetFrontProcessWithOptions(&psn, kSetFrontProcessFrontWindowOnly);
-to force only one window, it doesn't seem to work if General/NSBorderlessWindowMask is set for the window.
+If you do a SetFrontProcessWithOptions(&psn, kSetFrontProcessFrontWindowOnly);
+to force only one window, it doesn't seem to work if NSBorderlessWindowMask is set for the window.
 It brings two windows to the front instead! (Looks like a bug).
 
 But if you set:
-styleMask:General/NSTitledWindowMask|General/NSTexturedBackgroundWindowMask
+styleMask:NSTitledWindowMask|NSTexturedBackgroundWindowMask
 
-It seems to look and work as you would like, and not have a title (despite General/NSTitledWindowMask being set).
+It seems to look and work as you would like, and not have a title (despite NSTitledWindowMask being set).

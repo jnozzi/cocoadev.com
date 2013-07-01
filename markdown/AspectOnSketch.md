@@ -1,15 +1,15 @@
-**General/AspectOnSketch** - an example usage of General/AspectCocoa
+**AspectOnSketch** - an example usage of AspectCocoa
 
 The Example application Sketch that comes with Apple's Dev tools has undo functionality scaterred throughout...
 We will attempt to use Aspects to centralize this functionality into one location.
 
-First we will create a class, instances of which will be used at General/AdviceObjects
+First we will create a class, instances of which will be used at AdviceObjects
 
     
 //code
 
 
-Next, we will define our General/PointCuts and the undo Aspect.. we'll do it in that class we just defined for sake of convenience..
+Next, we will define our PointCuts and the undo Aspect.. we'll do it in that class we just defined for sake of convenience..
 
     
 //code

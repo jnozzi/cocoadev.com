@@ -4,27 +4,27 @@ What I'd like is to display some text in these cells that one can select and dra
     
 - (void)awakeFromNib
 {        
-	General/NSRect frameRect = General/NSMakeRect(0, 0, 480, 48);
-        General/NSWindow *theWindow = General/[ [[NSWindow alloc] initWithContentRect:frameRect
-                      styleMask:(General/NSTitledWindowMask|General/NSClosableWindowMask|General/NSMiniaturizableWindowMask|General/NSResizableWindowMask)
-                      backing:General/NSBackingStoreBuffered
+	NSRect frameRect = NSMakeRect(0, 0, 480, 48);
+        NSWindow *theWindow = [ [[NSWindow alloc] initWithContentRect:frameRect
+                      styleMask:(NSTitledWindowMask|NSClosableWindowMask|NSMiniaturizableWindowMask|NSResizableWindowMask)
+                      backing:NSBackingStoreBuffered
                       defer:YES] retain];
     
-	General/NSTextFieldCell *textCell = General/[ [[NSTextFieldCell alloc] init] autorelease];
+	NSTextFieldCell *textCell = [ [[NSTextFieldCell alloc] init] autorelease];
 	[ textCell setSelectable:YES];
 	[ textCell setRefusesFirstResponder:YES];
 	
-	General/NSMutableDictionary *attributesDictionary = [ General/NSMutableDictionary dictionaryWithObjectsAndKeys:
-		[ General/NSColor blueColor], General/NSForegroundColorAttributeName,
-		[ General/NSFont fontWithName:@"General/LucidaGrande" size:20],  General/NSFontAttributeName,
+	NSMutableDictionary *attributesDictionary = [ NSMutableDictionary dictionaryWithObjectsAndKeys:
+		[ NSColor blueColor], NSForegroundColorAttributeName,
+		[ NSFont fontWithName:@"LucidaGrande" size:20],  NSFontAttributeName,
 		nil];
-	General/NSAttributedString *aString = General/ [[NSAttributedString alloc] initWithString:@"test" attributes:attributesDictionary];
+	NSAttributedString *aString =  [[NSAttributedString alloc] initWithString:@"test" attributes:attributesDictionary];
 	[ textCell setAttributedStringValue:aString];
 
-        General/NSMatrix *newMatrix = General/[ [[NSMatrix alloc] initWithFrame:frameRect mode:General/NSRadioModeMatrix 
+        NSMatrix *newMatrix = [ [[NSMatrix alloc] initWithFrame:frameRect mode:NSRadioModeMatrix 
 						prototype:textCell numberOfRows:1 numberOfColumns:NCOLS] autorelease];
-	[ newMatrix setCellSize:General/NSMakeSize(frameRect.size.width/NCOLS, frameRect.size.height)];
-        General/ theWindow contentView] addSubview:newMatrix];
+	[ newMatrix setCellSize:NSMakeSize(frameRect.size.width/NCOLS, frameRect.size.height)];
+         theWindow contentView] addSubview:newMatrix];
 	[ theWindow center];
 	[ theWindow makeKeyAndOrderFront:self];
 }
@@ -48,8 +48,8 @@ field editor) to redraw it without its attributes.  I'd like to be able to selec
 
 The only suggestion that I can make is this.  Set the cell his attributes directly like:
 
-    [ textCell setTextColor:[ General/NSColor blueColor]];
-    [ textCell setFont:[ General/NSFont fontWithName:@"General/LucidaGrande" size:20]];
+    [ textCell setTextColor:[ NSColor blueColor]];
+    [ textCell setFont:[ NSFont fontWithName:@"LucidaGrande" size:20]];
 
 Hope this helps
 
@@ -65,11 +65,11 @@ What I ended up doing was a nasty hack that destroys some functionality but gets
 I did try it right now, if I add it directly after
 
     
-General/NSTextFieldCell *textCell = General/[ [[NSTextFieldCell alloc] init] autorelease];
+NSTextFieldCell *textCell = [ [[NSTextFieldCell alloc] init] autorelease];
 [ textCell setSelectable:YES];
 [ textCell setRefusesFirstResponder:YES];
-[ textCell setTextColor:[ General/NSColor blueColor]];
-[ textCell setFont:[ General/NSFont fontWithName:@"General/LucidaGrande" size:20]];
+[ textCell setTextColor:[ NSColor blueColor]];
+[ textCell setFont:[ NSFont fontWithName:@"LucidaGrande" size:20]];
 
 
 then I dont have a problem. It stays Blue and selectable.

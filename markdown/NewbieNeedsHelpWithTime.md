@@ -10,9 +10,9 @@ Many thanks for any help offered!
 
 ----
 
-First, you need to read up on General/ObjectOrientedProgramming. For a quick run down of objects and classes I think there is some info in General/AnObject. Then pick up a book on a Cocoa. For instance any of the General/CocoaBooks.
+First, you need to read up on ObjectOrientedProgramming. For a quick run down of objects and classes I think there is some info in AnObject. Then pick up a book on a Cocoa. For instance any of the CocoaBooks.
 
---General/GormanChristian
+--GormanChristian
 
 ----
 
@@ -20,4 +20,4 @@ Also look through Apple's developer site for the PDF, **Object Oriented Programm
 
 ----
 
-If  Time is of the essence, consult the documentation on General/NSDate. The message [ General/NSDate date ] returns the current moment. Of course, by the "time" you get that information, it will be "later", since signals travel no faster than the speed of light in a vacuum (and somewhat slower inside your  machine.) In material media, though light can travel faster there than it does in a vacuum, there are inevitable losses when dealing with traditional computer hardware architecture.
+If  Time is of the essence, consult the documentation on NSDate. The message [ NSDate date ] returns the current moment. Of course, by the "time" you get that information, it will be "later", since signals travel no faster than the speed of light in a vacuum (and somewhat slower inside your  machine.) In material media, though light can travel faster there than it does in a vacuum, there are inevitable losses when dealing with traditional computer hardware architecture.

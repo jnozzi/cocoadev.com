@@ -1,19 +1,19 @@
-**General/KTLLMutableArray**
+**KTLLMutableArray**
 ----
 
-This code creates a subclass of General/NSMutableArray implementing General/DesignDoublyXORLinkedList for constant-time head/tail operations, at the cost of two pointers per array element (cf one for simple C-array implementations) and O(n) times for general operations.
+This code creates a subclass of NSMutableArray implementing DesignDoublyXORLinkedList for constant-time head/tail operations, at the cost of two pointers per array element (cf one for simple C-array implementations) and O(n) times for general operations.
 
-Aside from reverseObjects, which reverses the order of the array, this subclass has no methods not found in General/NSMutableArray, so no documentation is provided. http://goo.gl/General/OeSCu
+Aside from reverseObjects, which reverses the order of the array, this subclass has no methods not found in NSMutableArray, so no documentation is provided. http://goo.gl/OeSCu
 
-Note that using an enumerator is the fastest way of traversing all the objects in this class, unlike the standard General/NSArray implementations.
+Note that using an enumerator is the fastest way of traversing all the objects in this class, unlike the standard NSArray implementations.
 
 Feel free to correct errors in this code, add comments, etc. (Any changes you make to the code on this page, however, will be placed under the license described below.) This code *has* been tested, but not exhaustively, so bugs may still lurk.
 
--- General/KritTer
+-- KritTer
 
 ----
 
-*Are you sure this is even necessary?  The standard General/NSMutableArray implementation is analogous to the STL deque (*d*ouble-*e*nded *que*ue), where head and tail operations are constant-time due to the beginning of the array being somewhere in the middle of an allocated chunk of memory*
+*Are you sure this is even necessary?  The standard NSMutableArray implementation is analogous to the STL deque (*d*ouble-*e*nded *que*ue), where head and tail operations are constant-time due to the beginning of the array being somewhere in the middle of an allocated chunk of memory*
 
 Think of this as an intellectual exercise. Specifically, exercise 11.2-8 of Cormen, Leiserson and Rivest's "Introduction to algorithms". The interesting feature is the O(1)     reverseObjects method.
 

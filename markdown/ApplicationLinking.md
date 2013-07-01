@@ -1,8 +1,8 @@
-General/ApplicationLinking, or just linking, is the final stage in the build process for binaries built with C and C-like languages, as well as other languages (such as many Pascal and assembly variants) which use a C-like build process. The linking stage is when external libraries are included in the binary. Linking can also refer to dynamic or runtime linking, which happens when a program is launched and is when dynamic libraries are loaded into the process's address space.
+ApplicationLinking, or just linking, is the final stage in the build process for binaries built with C and C-like languages, as well as other languages (such as many Pascal and assembly variants) which use a C-like build process. The linking stage is when external libraries are included in the binary. Linking can also refer to dynamic or runtime linking, which happens when a program is launched and is when dynamic libraries are loaded into the process's address space.
 
 This page will give an overview of what linking is, how it works on OS X, and how it relates to Cocoa.
 
-If you've come here because you're having a problem with dynamic libraries or frameworks, this page will give you a good overview of the mechanisms involved and will help you to solve your problem. If you're looking for a page which discusses specific, commonly-seen issues with linking, see General/ApplicationLinkingIssues.
+If you've come here because you're having a problem with dynamic libraries or frameworks, this page will give you a good overview of the mechanisms involved and will help you to solve your problem. If you're looking for a page which discusses specific, commonly-seen issues with linking, see ApplicationLinkingIssues.
 
 The contents of this page are geared towards Mac OS X development. Much of the page will apply to other UNIX systems, and I'll try to mark OS X specific information when I can, but I may forget about it, so exercise caution.
 
@@ -34,7 +34,7 @@ If you're linking against a static library, then all the exciting parts are over
 
 Runtime library loading is handled on OS X by the     dyld program. It's responsible for finding, loading, and linking dynamic libraries into a running program.
 
-Unlike many General/OSes, OS X does not have a search path for the dynamic linker**. This means that you can't simply put a dynamic library in some "standard" location and have     dyld find it, because there is no standard location. Instead, OS X embeds an "install name" inside each dynamic library. This install name is the path to where the library can be found when     dyld needs to load it. When you build an application that links against a dynamic library, this install name is copied into the application binary. When the application runs, the copied install name is then used to locate the library or framework.
+Unlike many OSes, OS X does not have a search path for the dynamic linker**. This means that you can't simply put a dynamic library in some "standard" location and have     dyld find it, because there is no standard location. Instead, OS X embeds an "install name" inside each dynamic library. This install name is the path to where the library can be found when     dyld needs to load it. When you build an application that links against a dynamic library, this install name is copied into the application binary. When the application runs, the copied install name is then used to locate the library or framework.
 
 How about an example? You can get a library's install name by using the     otool -D command. Let's look at Cocoa:
 
@@ -49,17 +49,17 @@ The first line of the output is the file we're actually inspecting, and the seco
 How about an application that uses Cocoa? We can look at all of the copied install names by using     otool -L:
 
     
-$ otool -L /Applications/Adium.app/Contents/General/MacOS/Adium 
-/Applications/Adium.app/Contents/General/MacOS/Adium:
-        @executable_path/../Frameworks/General/AIUtilities.framework/Versions/A/General/AIUtilities (compatibility version 1.0.0, current version 1.0.0)
-        @executable_path/../Frameworks/General/AIHyperlinks.framework/Versions/A/General/AIHyperlinks (compatibility version 1.0.0, current version 1.0.0)
+$ otool -L /Applications/Adium.app/Contents/MacOS/Adium 
+/Applications/Adium.app/Contents/MacOS/Adium:
+        @executable_path/../Frameworks/AIUtilities.framework/Versions/A/AIUtilities (compatibility version 1.0.0, current version 1.0.0)
+        @executable_path/../Frameworks/AIHyperlinks.framework/Versions/A/AIHyperlinks (compatibility version 1.0.0, current version 1.0.0)
         /System/Library/Frameworks/Cocoa.framework/Versions/A/Cocoa (compatibility version 1.0.0, current version 11.0.0)
         @executable_path/../Frameworks/Adium.framework/Versions/A/Adium (compatibility version 1.0.0, current version 1.0.0)
         /System/Library/Frameworks/Carbon.framework/Versions/A/Carbon (compatibility version 2.0.0, current version 128.0.0)
-        /System/Library/Frameworks/General/ExceptionHandling.framework/Versions/A/General/ExceptionHandling (compatibility version 1.0.0, current version 4.9.0)
-        /System/Library/Frameworks/General/SystemConfiguration.framework/Versions/A/General/SystemConfiguration (compatibility version 1.0.0, current version 1.0.0)
-        /System/Library/Frameworks/General/AddressBook.framework/Versions/A/General/AddressBook (compatibility version 1.0.0, current version 483.0.0)
-        @executable_path/../Frameworks/Growl-General/WithInstaller.framework/Versions/A/Growl-General/WithInstaller (compatibility version 1.0.0, current version 1.0.0)
+        /System/Library/Frameworks/ExceptionHandling.framework/Versions/A/ExceptionHandling (compatibility version 1.0.0, current version 4.9.0)
+        /System/Library/Frameworks/SystemConfiguration.framework/Versions/A/SystemConfiguration (compatibility version 1.0.0, current version 1.0.0)
+        /System/Library/Frameworks/AddressBook.framework/Versions/A/AddressBook (compatibility version 1.0.0, current version 483.0.0)
+        @executable_path/../Frameworks/Growl-WithInstaller.framework/Versions/A/Growl-WithInstaller (compatibility version 1.0.0, current version 1.0.0)
         /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 88.1.2)
 
 
@@ -69,7 +69,7 @@ What's with all those     @executable_path lines? Well, let's say you have a thi
 
 The answer is to copy the framework into your application itself. Since a     .app is really a directory structure, there's plenty of room for that. But a problem presents itself: the path to the framework is embedded in the app, and the framework must be located there. But we don't know where the app is going to be when the user runs it, so how can we embed this path when we create the application?
 
-The answer to *that* is to use     @executable_path. When     dyld sees that in an install name, it replaces it with the path to the enclosing directory of the program that's loading the framework. In this example, it'll evaluate to     /Applications/Adium.app/Contents/General/MacOS. The entire path to, say,     Adium.framework will then be     /Applications/Adium.app/Contents/General/MacOS/../Frameworks/Adium.framework/Versions/A/Adium, which is correct.
+The answer to *that* is to use     @executable_path. When     dyld sees that in an install name, it replaces it with the path to the enclosing directory of the program that's loading the framework. In this example, it'll evaluate to     /Applications/Adium.app/Contents/MacOS. The entire path to, say,     Adium.framework will then be     /Applications/Adium.app/Contents/MacOS/../Frameworks/Adium.framework/Versions/A/Adium, which is correct.
 
 Note that     @executable_path always resolves to the application's path, so you can't use it to embed a framework inside a bundle. If you can require Tiger, you can use     @loader_path instead. If you need to support pre-Tiger, your life becomes much harder, and solutions to that are beyond the scope of this page.
 
@@ -91,10 +91,10 @@ The     install_name_tool command allows you to change both a library or framewo
 
 Common linker problems are "symbol not found" during compiles, and "image not found" during execution. If the former appears, it usually means that you need a library but you're not actually linking against it. The latter means that     dyld couldn't find a dynamic library or framework that your application needs. Since the necessary code isn't present, your app can't be launched. Make sure that the library is actually where     dyld expects it to be.
 
-For more in-depth troubleshooting, see General/ApplicationLinkingIssues.
+For more in-depth troubleshooting, see ApplicationLinkingIssues.
 
 ----
 
-*     .dylib is an OS X-ism. Other General/OSes use different extensions. For example, Linux uses     .so, and Windows uses the infamous     .dll.
+*     .dylib is an OS X-ism. Other OSes use different extensions. For example, Linux uses     .so, and Windows uses the infamous     .dll.
 
 ** Technically,     dyld does have a search path, defined in the     DYLD_FRAMEWORK_PATH and     DYLD_LIBRARY_PATH variables. However, these are empty on OS X by default, so they rarely matter.

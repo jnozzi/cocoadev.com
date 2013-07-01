@@ -1,14 +1,14 @@
 
 
-I've got a pretty common interface (like Mail, iTunes, etc) with the basic dual splitter. (Folder List on left, then another General/NSSplitView on right with contents of folder at top right and object inspector on lower right).
+I've got a pretty common interface (like Mail, iTunes, etc) with the basic dual splitter. (Folder List on left, then another NSSplitView on right with contents of folder at top right and object inspector on lower right).
 
-My mainmenu.nib has a simple window with three General/NSView placeholders (with their outlets saved in the controller's variables).  Because of the challenge of defining all my controls inside multiple splitviews, I've decided to have each "subview" of the overall window to be stored in separate General/NIBs and loaded at runtime.  This makes maintenance easier and also allows me to dynamically add additional object inspectors in the future.
+My mainmenu.nib has a simple window with three NSView placeholders (with their outlets saved in the controller's variables).  Because of the challenge of defining all my controls inside multiple splitviews, I've decided to have each "subview" of the overall window to be stored in separate NIBs and loaded at runtime.  This makes maintenance easier and also allows me to dynamically add additional object inspectors in the future.
 
 Here's the scenario/issue(s):
 
 1. I load the custom NIB just fine.  I then add the custom view from the nib as the subview of the placeholder view in the mainmenu.nib.  (e.g. [folderView addSubview:folderSubView];)
 
-2. Question: what is the correct time to perform this code?  General/AwakeFromNib in the Main window?  Or some better time?
+2. Question: what is the correct time to perform this code?  AwakeFromNib in the Main window?  Or some better time?
 
 3. Once the windows appear, they are the wrong size and resizing the splitter sure doesn't help.
 
@@ -20,7 +20,7 @@ OK, so I'm a newbie at all this.  But I want to structure the app better the fir
 http://www.digitalintegrity.com/images/samplewindow.jpg
 http://www.digitalintegrity.com/images/subview.jpg
 
-I'm assuming I need to do a lot of custom resize logic.  I don't want to use something like General/RBSplitView. 
+I'm assuming I need to do a lot of custom resize logic.  I don't want to use something like RBSplitView. 
 
 ----
 I don't think you have to do any custom resize logic at all.
@@ -41,10 +41,10 @@ I think what I'm trying to do is pretty common.  Many apps that I've looked at (
 
 1.     
 [someNewView setFrame:[placeholderView frame]];
-General/placeholderView superview] replaceSubview:placeholderView  with:someNewView];
+placeholderView superview] replaceSubview:placeholderView  with:someNewView];
 
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/[[CocoaViewsGuide/General/WorkingWithAViewHierarchy/chapter_4_section_5.html
-http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/Classes/NSView_Class/Reference/Reference.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/[[CocoaViewsGuide/WorkingWithAViewHierarchy/chapter_4_section_5.html
+http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSView_Class/Reference/Reference.html
 
-2. Perhaps I don't understand the question.  Do it when it makes sense for your application.  The only time you can't change the view hierarchy is within a hand full of methods like -drawRect: that depend on the hierarchy.  -awakeFromNib is a possibility.  In a General/NSDocument based application, - (void)windowControllerDidLoadNib:(General/NSWindowController *)windowController is an option.  You might do it in response to a user action.
+2. Perhaps I don't understand the question.  Do it when it makes sense for your application.  The only time you can't change the view hierarchy is within a hand full of methods like -drawRect: that depend on the hierarchy.  -awakeFromNib is a possibility.  In a NSDocument based application, - (void)windowControllerDidLoadNib:(NSWindowController *)windowController is an option.  You might do it in response to a user action.

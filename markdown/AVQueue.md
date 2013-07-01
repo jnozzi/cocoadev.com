@@ -1,7 +1,7 @@
 
 
-**General/AVQueue**
+**AVQueue**
 
 <code>- (id)init;</code>
 
-<code>- (void)appendItem:(General/AVItem*)item error:(General/NSError**)outError;</code>
+<code>- (void)appendItem:(AVItem*)item error:(NSError**)outError;</code>

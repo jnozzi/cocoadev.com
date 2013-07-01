@@ -2,26 +2,26 @@
 
 Correct name is Smalltalk (the "t" is not a capital letter).
 
-Smalltalk is the language that most of the General/ObjC additions to standard C are based upon. It is very advanced, and is conceptually very similar to General/ObjC in many ways.
+Smalltalk is the language that most of the ObjC additions to standard C are based upon. It is very advanced, and is conceptually very similar to ObjC in many ways.
 
-General/FScript provides Smalltalk-like scripting for Cocoa objects.  
+FScript provides Smalltalk-like scripting for Cocoa objects.  
 
 Information about Smalltalk can be found at Smalltalk.org [http://www.smalltalk.org]
 
 Cincom [http://smalltalk.cincom.com/index.ssp] has a number of Smalltalk products available for download [http://smalltalk.cincom.com/downloads/index.ssp].
-They have built a news aggregator, Bottom Feeder [http://www.cincomsmalltalk.com/General/BottomFeeder/], that runs under OS X.
+They have built a news aggregator, Bottom Feeder [http://www.cincomsmalltalk.com/BottomFeeder/], that runs under OS X.
 
-General/AmbraiSmalltalk [http://ambrai.com] is a newcomer, and it looks very promising.
+AmbraiSmalltalk [http://ambrai.com] is a newcomer, and it looks very promising.
 
 Squeak [http://www.squeak.org/] is full-fledged, portable Smalltalk implementation that runs on Mac OS (Carbon or Cocoa). It's derived from Apple's Smalltalk-80 environment for the Mac.
 
-Free Smalltalk books [http://www.iam.unibe.ch/~ducasse/General/FreeBooks.html]
+Free Smalltalk books [http://www.iam.unibe.ch/~ducasse/FreeBooks.html]
 
 ----
 
 **Discussion**
 
-Having had the benefit of 'doing' Smalltalk for about 5 years and knowing all the time that Objective-C existed during that time, I finally get myself an Apple General/PowerBook General/GeeFour about two years ago and boy, what a satisfying experience Cocoa married with General/ObjC is!!! OK, not perfect, but then, it could be Windows...anyway, to the point.
+Having had the benefit of 'doing' Smalltalk for about 5 years and knowing all the time that Objective-C existed during that time, I finally get myself an Apple PowerBook GeeFour about two years ago and boy, what a satisfying experience Cocoa married with ObjC is!!! OK, not perfect, but then, it could be Windows...anyway, to the point.
 
 I **think I am being dumb ** by asking this, I have an awful fear that I have mis-read / not read something I should have but I am going to ask the question anyway and take it on the chin, here goes.
 
@@ -53,7 +53,7 @@ In Objective-C I seem to have to say this:
 when what I would like to be able to do is:
 
     
-   General/[anObject msg1] msg2: arg ] msg3];
+   [anObject msg1] msg2: arg ] msg3];
 
 
 but, and here is the crunch bit, most of the Cocoa classes return void when they *could* have returned 'self' instead. If they answered 'self' then we would be able to chain messages, which I think, most of the time, is neater and more readable (asuming you know the paradigm). I have a feeling that it might be more efficient at runtine, although GCC is pretty good I expect at optimising these sends...isn't it?
@@ -70,7 +70,7 @@ Sean Charles
 
 I'm not sure how readable that would be. To give an example:
 
-    General/view setNeedsUpdate:YES] doSomeOtherViewStuff];
+    view setNeedsUpdate:YES] doSomeOtherViewStuff];
 
 loses some coherency, to my mind, as it dilutes the use of e.g.:
 
@@ -107,10 +107,10 @@ I find these deeply chained calls a real pain in the neck to debug.  You can't s
 *Strictly, this is a problem with the debugger, and one that should be fixed.*
 
 ----
-Back in the General/NeXTstep days, most methods that had no other reasonable return value returned self.  The chaining described above was possible and common.  **Note** that we still write General/[[[SomeClass alloc] init] autorelease];  and fuBar = [someObject retain];
-In fact, Objective-C has often been criticized (usually from C++ and Java fans) for promoting nested message sends.  *Some would prefer General/SomeClass->alloc()->init()->autorelease();, but let's not go there with the whole "modern syntax" and message sending looks like function calls and -> dereferencing a pointer is not safe but sending messages to nil is etc. etc. etc.*
+Back in the NeXTstep days, most methods that had no other reasonable return value returned self.  The chaining described above was possible and common.  **Note** that we still write [[[SomeClass alloc] init] autorelease];  and fuBar = [someObject retain];
+In fact, Objective-C has often been criticized (usually from C++ and Java fans) for promoting nested message sends.  *Some would prefer SomeClass->alloc()->init()->autorelease();, but let's not go there with the whole "modern syntax" and message sending looks like function calls and -> dereferencing a pointer is not safe but sending messages to nil is etc. etc. etc.*
 
-General/NeXT wrote the following in 1997:
+NeXT wrote the following in 1997:
 "Previously, methods returned self by convention. Some methods return self to 
 indicate success and nil to indicate failure. Returning self to indicate a 
 Boolean value or returning self without any associated meaning made the API 

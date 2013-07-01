@@ -1,19 +1,19 @@
-This Objective-C category is rewritten from Erik Doernenburg's Foundation extensions: General/NSData(MIME). You can find his code in General/EDFrameworks' General/EDMessage Framework. You can use it to convert hex value that hold by General/NSData and convert it into binary value.
+This Objective-C category is rewritten from Erik Doernenburg's Foundation extensions: NSData(MIME). You can find his code in EDFrameworks' EDMessage Framework. You can use it to convert hex value that hold by NSData and convert it into binary value.
 
-General/NSData+Hex.h
+NSData+Hex.h
 
     
 #import <Foundation/Foundation.h>
 
-@interface General/NSData (NSData_Hex)
-- (General/NSData*) hex2raw;
+@interface NSData (NSData_Hex)
+- (NSData*) hex2raw;
 @end
 
 
-General/NSData+Hex.m
+NSData+Hex.m
 
     
-#import "General/NSData+Hex.h"
+#import "NSData+Hex.h"
 
 static int asciitable[128] = {
   99,99,99,99, 99,99,99,99, 99,99,99,99, 99,99,99,99,
@@ -26,17 +26,17 @@ static int asciitable[128] = {
   99,99,99,99, 99,99,99,99, 99,99,99,99, 99,99,99,99
 };
 
-@implementation General/NSData (NSData_Hex)
+@implementation NSData (NSData_Hex)
 
-- (General/NSData*) hex2raw {
-  // Based on Erik Doernenburg's General/NSData+MIME.m
+- (NSData*) hex2raw {
+  // Based on Erik Doernenburg's NSData+MIME.m
   const char *source, *endOfSource;
-  General/NSMutableData *decodedData;
+  NSMutableData *decodedData;
   char *dest;
   
   source = [self bytes];
   endOfSource = source + [self length];
-  decodedData = General/[NSMutableData dataWithLength:[self length]];
+  decodedData = [NSMutableData dataWithLength:[self length]];
   dest = [decodedData mutableBytes];
 
   while (source < endOfSource) {

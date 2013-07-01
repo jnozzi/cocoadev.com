@@ -4,9 +4,9 @@ I got two tests into the process and ran into problems with the following test:
     
 - (void) testNumberWithFloat
 {
-	General/NSNumber *number = General/[NSNumber numberWithFloat:10.5];
+	NSNumber *number = [NSNumber numberWithFloat:10.5];
 
-	General/STAssertEqualsWithAccuracy(10.5, [number floatValue], 0.1,
+	STAssertEqualsWithAccuracy(10.5, [number floatValue], 0.1,
 							 @"Number should equal 10.5 but instead equals %g.",
 							 [number floatValue]);
 	
@@ -16,13 +16,13 @@ I got two tests into the process and ran into problems with the following test:
 
 It fails with the following error:
     
-General/TestNSNumber.m:32: error: -General/[TestNSNumber testNumberWithFloat] : Type mismatch -- Number should equal 10.5 but instead equals 10.5.
-General/RunUnitTests:153: error: Test rig '/Developer/Tools/otest' exited abnormally with code 139 (it may have crashed).
+TestNSNumber.m:32: error: -[TestNSNumber testNumberWithFloat] : Type mismatch -- Number should equal 10.5 but instead equals 10.5.
+RunUnitTests:153: error: Test rig '/Developer/Tools/otest' exited abnormally with code 139 (it may have crashed).
 
 
 I'm utterly stumped and am surely missing something so blindingly obvious I simply can't see it. I'd be very grateful for a pointer in the right direction. Thanks!
 
---General/DaneJensen
+--DaneJensen
 
 ----
 
@@ -36,7 +36,7 @@ Unfortunately, otest is still crashing.
 
 ----
 
-You should not release     number, as you have not alloced, copied, or retained it. See General/MemoryManagement.
+You should not release     number, as you have not alloced, copied, or retained it. See MemoryManagement.
 
 ----
 

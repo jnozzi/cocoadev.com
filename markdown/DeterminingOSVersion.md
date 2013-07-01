@@ -19,7 +19,7 @@ Unfortunately, over the years there have been a wide variety of solutions to det
 **NSA<nowiki/>ppKitVersionNumber? No (or Sometimes).**
 
 ----
-    General/NSAppKitVersionNumber is a constant defined in the General/AppKit framework, which, not surprisingly, defines "The version of the General/AppKit framework". On the surface it seems like this is a nice and simple way for a Cocoa programmer to determine the OS version, but it's not perfectly clear. First of all, General/NSApplication.h is sadly missing a ton of constants. As of the developer tools version 3.0 release, there are only the following constants:
+    NSAppKitVersionNumber is a constant defined in the AppKit framework, which, not surprisingly, defines "The version of the AppKit framework". On the surface it seems like this is a nice and simple way for a Cocoa programmer to determine the OS version, but it's not perfectly clear. First of all, NSApplication.h is sadly missing a ton of constants. As of the developer tools version 3.0 release, there are only the following constants:
 
     
 #define NSAppKitVersionNumber10_0 577
@@ -32,16 +32,16 @@ Unfortunately, over the years there have been a wide variety of solutions to det
 #define NSAppKitVersionNumber10_3_5 743.24
 
 
-Not exactly all-encompassing. Why the constants are hit and miss (mostly miss) is a mystery, but regardless of the missing constants, General/NSAppKitVersionNumber is only there to define the *General/AppKit* version number. Although General/AppKit certainly gets revisions in most updates, it's not guaranteed, and finding the constants can be rather annoying. General/NSAppKitVersionNumber is best used for deteriming the General/AppKit version number, not the OS version.
+Not exactly all-encompassing. Why the constants are hit and miss (mostly miss) is a mystery, but regardless of the missing constants, NSAppKitVersionNumber is only there to define the *AppKit* version number. Although AppKit certainly gets revisions in most updates, it's not guaranteed, and finding the constants can be rather annoying. NSAppKitVersionNumber is best used for deteriming the AppKit version number, not the OS version.
 
 ----
 It's not all bad news though--in a Cocoa app, the framework version may be exactly what you need. More constants are available now (as of dev tools 3.1 at least), up through NSAppKitVersionNumber10_4. To determine whether you're on Leopard:
     
-if (floor(General/NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
+if (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_4) {
 // 10.5
 }
 
-If you want 10.4 minor release versions, through 10.4.11, you can use the Foundation flavor, General/NSFoundationVersionNumber, in General/NSObjCRuntime.h . See http://developer.apple.com/documentation/General/DeveloperTools/Conceptual/cross_development/chapter_5_section_1.html 
+If you want 10.4 minor release versions, through 10.4.11, you can use the Foundation flavor, NSFoundationVersionNumber, in NSObjCRuntime.h . See http://developer.apple.com/documentation/DeveloperTools/Conceptual/cross_development/chapter_5_section_1.html 
 
 Also, at the Cocoa level, instancesRespondToSelector can be used to see if the desired method is available without needing to get the OS Version.
 ----
@@ -51,11 +51,11 @@ Also, at the Cocoa level, instancesRespondToSelector can be used to see if the d
 **S<nowiki/>ystemVersion.plist? No. Wait, yes.**
 
 ----
-Although the official stance was to use Gestalt, even as far back as 2001, some developers were reading the plist file located at     /System/Library/General/CoreServices/S<nowiki/>ystemVersion.plist to get the version number. At some point (it seems in 10.4's initial release) a comment appeared in Gestalt.h:
+Although the official stance was to use Gestalt, even as far back as 2001, some developers were reading the plist file located at     /System/Library/CoreServices/S<nowiki/>ystemVersion.plist to get the version number. At some point (it seems in 10.4's initial release) a comment appeared in Gestalt.h:
 
     
     A better way to get version information on Mac OS X would be to read in the system
-    version information from the file /System/Library/General/CoreServices/S<nowiki/>ystemVersion.plist.
+    version information from the file /System/Library/CoreServices/S<nowiki/>ystemVersion.plist.
 
 
 The use of this file, although odd, seemed to be validated and recommended directly by Apple, so its use spread. Apple Developer Eric Schelegel cleared this matter up nicely in an email to the Carbon-Dev mailinglist in August 2007. [http://lists.apple.com/archives/carbon-dev/2007/Aug/msg00089.html]
@@ -80,7 +80,7 @@ And then further, according to this [http://stackoverflow.com/questions/11072804
  
  	static dispatch_once_t onceToken;
  	dispatch_once(&onceToken, ^{
- 		NSString* versionString = General/NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"] objectForKey:@"ProductVersion"];
+ 		NSString* versionString = NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"] objectForKey:@"ProductVersion"];
  		NSArray* versions = [versionString componentsSeparatedByString:@"."];
  		check( versions.count >= 2 );
  		if ( versions.count >= 1 ) {
@@ -122,12 +122,12 @@ It should be noted that Gestalt is officially part of [[CoreServices, not Carbon
 **Cocoa Code for Gestalt**
 
 ----
-Here is a bit of simple code to use Gestalt in an General/NSApplication category method, that is backwards and forwards compatible from 10.0 on. 
+Here is a bit of simple code to use Gestalt in an NSApplication category method, that is backwards and forwards compatible from 10.0 on. 
 
     
  #import <Cocoa/Cocoa.h>
  
- @interface General/NSApplication (General/SystemVersion)
+ @interface NSApplication (SystemVersion)
  
  - (void)getSystemVersionMajor:(unsigned *)major
                          minor:(unsigned *)minor
@@ -135,13 +135,13 @@ Here is a bit of simple code to use Gestalt in an General/NSApplication category
  
  @end
  
- @implementation General/NSApplication (General/SystemVersion)
+ @implementation NSApplication (SystemVersion)
  
  - (void)getSystemVersionMajor:(unsigned *)major
                          minor:(unsigned *)minor
                         bugFix:(unsigned *)bugFix;
  {
-     General/OSErr err;
+     OSErr err;
      SInt32 systemVersion, versionMajor, versionMinor, versionBugFix;
      if ((err = Gestalt(gestaltSystemVersion, &systemVersion)) != noErr) goto fail;
      if (systemVersion < 0x1040)
@@ -164,7 +164,7 @@ Here is a bit of simple code to use Gestalt in an General/NSApplication category
      return;
      
  fail:
-     General/NSLog(@"Unable to obtain system version: %ld", (long)err);
+     NSLog(@"Unable to obtain system version: %ld", (long)err);
      if (major) *major = 10;
      if (minor) *minor = 0;
      if (bugFix) *bugFix = 0;
@@ -174,12 +174,12 @@ Here is a bit of simple code to use Gestalt in an General/NSApplication category
  
  int main(void)
  {
-     General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
  
      unsigned major, minor, bugFix;
-     General/[[NSApplication sharedApplication]
+     [[NSApplication sharedApplication]
          getSystemVersionMajor:&major minor:&minor bugFix:&bugFix];
-     General/NSLog(@"%u.%u.%u", major, minor, bugFix);
+     NSLog(@"%u.%u.%u", major, minor, bugFix);
      
      [pool release];
      return EXIT_SUCCESS;

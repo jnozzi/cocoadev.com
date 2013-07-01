@@ -7,8 +7,8 @@ See also http://variogram.com/latest/?p=24, and thanks to Brian Whitman for most
 **Classes**
 
 
-*General/AVController
-*General/AVQueue
-*General/AVItem
-*General/AVRecorder
-*General/AVSystemController
+*AVController
+*AVQueue
+*AVItem
+*AVRecorder
+*AVSystemController

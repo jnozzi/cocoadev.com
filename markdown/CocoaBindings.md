@@ -23,21 +23,21 @@ Now, can someone explain the whole thing? Please?
 
 ----
 
-The whole thing is a set of layers.  From low level to high level:  General/KeyValueCoding -> General/KeyValueObserving -> General/NSController -> General/NSBindings.   General/NSValueTransformer is mechanism implemented within the Foundation that allows values to be transformed from one type to another.   A value transformer (or multiple transformers can be chained) can be applied to a binding such that conversion happens whenever data passes through a particular binding.
+The whole thing is a set of layers.  From low level to high level:  KeyValueCoding -> KeyValueObserving -> NSController -> NSBindings.   NSValueTransformer is mechanism implemented within the Foundation that allows values to be transformed from one type to another.   A value transformer (or multiple transformers can be chained) can be applied to a binding such that conversion happens whenever data passes through a particular binding.
 
-General/KeyValueCoding lets you manipulate properties (attributes or relationships) of objects easily.  General/KeyValueObserving lets you find out when a property in another object changes easily.  General/KeyValueBinding lets you link the value of a property in one object to the value of a property in another object.  General/NSController uses General/KeyValueBinding to let you do this easily in General/InterfaceBuilder.
+KeyValueCoding lets you manipulate properties (attributes or relationships) of objects easily.  KeyValueObserving lets you find out when a property in another object changes easily.  KeyValueBinding lets you link the value of a property in one object to the value of a property in another object.  NSController uses KeyValueBinding to let you do this easily in InterfaceBuilder.
 [http://www.tokobungasabana.com Toko Bunga Online] | [http://www.propertykita.com/rumah.html Rumah Dijual] | [http://www.vincentmaestro.com Rental Sound] | [http://www.kindercube.com Perlengkapan Bayi] | [http://www.raywhitesemarang.com Properti Semarang] | [http://www.forklift.co.id Rental Forklift] | [http://www.pedatimotor.com Aksesoris Sparepart Motor]
 ----
 
 Here is my take on it:
 
-A model object may have some attributes, e.g. "General/DocumentName" accessed thru setDocumentName: and documentName (i.e. General/KeyValueCoding). Furthermore, if the model change this name internally, it should issue a will/didChangeValueForKey:@"General/DocumentName" (to conform to General/KeyValueObserving).
+A model object may have some attributes, e.g. "DocumentName" accessed thru setDocumentName: and documentName (i.e. KeyValueCoding). Furthermore, if the model change this name internally, it should issue a will/didChangeValueForKey:@"DocumentName" (to conform to KeyValueObserving).
 
-This allow others to observe the value of this attribute, and is exactly the job of General/NSObjectController, it will observe a value (attribute) in the model, and propagate any changes to the view, potentially transforming the value using an arbitrary value transformer (object) -- the link is bi-directional, so if the view is changed, the same will happen in the other direction (i.e the change is propagated to the model).
+This allow others to observe the value of this attribute, and is exactly the job of NSObjectController, it will observe a value (attribute) in the model, and propagate any changes to the view, potentially transforming the value using an arbitrary value transformer (object) -- the link is bi-directional, so if the view is changed, the same will happen in the other direction (i.e the change is propagated to the model).
 
-Those familiar with the 12 year old General/MagicUserInterface GUI kit for General/AmigaOS, will probably recognize this concept :)
+Those familiar with the 12 year old MagicUserInterface GUI kit for AmigaOS, will probably recognize this concept :)
 
-I have not been able to fully understand the inner workings of General/NSArrayController -- by binding the 'value' of an General/NSTableColumn (which is not an attribute nor mentioned in headers or the documentation) one suddenly have the array controller act as datasource for the entire table view, even handling sort. To me this does not seem like the usage of a flexible API, but instead some very hardcoded General/NSTableView support in the General/NSArrayController.
+I have not been able to fully understand the inner workings of NSArrayController -- by binding the 'value' of an NSTableColumn (which is not an attribute nor mentioned in headers or the documentation) one suddenly have the array controller act as datasource for the entire table view, even handling sort. To me this does not seem like the usage of a flexible API, but instead some very hardcoded NSTableView support in the NSArrayController.
 
 Apart from the above, the new binding API has also made it possible to bind arguments to the action selector sent to a views target -- target arguments are also attributes 'fetched' from an arbitrary object, and if any of the arguments are unavailable, the view will disable itself.
 

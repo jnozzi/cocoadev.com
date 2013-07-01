@@ -1,4 +1,4 @@
-I am having a similar problem to that of the person in General/NSOutlineViewBindingsHelp. I put it on a separate page because it seemed sufficiently different.
+I am having a similar problem to that of the person in NSOutlineViewBindingsHelp. I put it on a separate page because it seemed sufficiently different.
 
 Basically, I'm trying to implement the usual iTunes/Mail.app source list style interface.
 

@@ -11,7 +11,7 @@ Maarten Wolzak (September 10, 2009)
 
 ----
 
-**twitterrific:** -- A private URL scheme used by the Twitterrific application http://itunes.apple.com/General/WebObjects/General/MZStore.woa/wa/viewSoftware?id=284540316&mt=8 by the General/IconFactory.
+**twitterrific:** -- A private URL scheme used by the Twitterrific application http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=284540316&mt=8 by the IconFactory.
 
 **Action: Preparing a message**: This will prepare a message, which the user will be able to post to Twitter.
 
@@ -31,7 +31,7 @@ Details regarding this URL scheme are encapsulated in a set of open source class
 
 ----
 
-**x-infinitelabs-diceshaker:** -- A private URL scheme used by the Diceshaker application http://infinite-labs.net/diceshaker/ by General/EmanueleVulcano.
+**x-infinitelabs-diceshaker:** -- A private URL scheme used by the Diceshaker application http://infinite-labs.net/diceshaker/ by EmanueleVulcano.
 
 **Action: Posting a message**: This action is only available with Diceshaker 1.0.4 or later. When used, it will allow the user to roll dice in the Diceshaker application and return the result to the calling application. Diceshaker displays a "Send" and a "Cancel" message; both return to the calling application with an appropriate result.
 
@@ -116,9 +116,9 @@ ie: a href="fb://profile/1415672410"
 
 ----
 
-**stanza:** -- Launch an ePub/PDF/CBR/CBZ/General/DjVu book HTTP URL in Stanza
+**stanza:** -- Launch an ePub/PDF/CBR/CBZ/DjVu book HTTP URL in Stanza
 
-**stanzas:** -- Launch an ePub/PDF/CBR/CBZ/General/DjVu book HTTPS URL in Stanza
+**stanzas:** -- Launch an ePub/PDF/CBR/CBZ/DjVu book HTTPS URL in Stanza
 
 **stanzacatalog:** -- Open Stanza and add a new Stanza catalog entry with the specified HTTP URL
 

@@ -10,7 +10,7 @@ Thanks,
 Alexandre
 
 ----
-General/NSTabView.
+NSTabView.
 
 ----
 
@@ -22,15 +22,15 @@ Random person here. Thanks for this suggestion. I've also been hiding/showing el
 
 ----
 
-Tab views are probably easiest, but there is another solution that's reasonably clean. Collect your related controls into a plain General/NSView as its subviews, then implement a simple category on General/NSView that implements -setHidden: by iterating over its child views with the same method. Because General/NSControl implements setHidden:, this gives you a quick way to turn a set on or off in one line. You can extend this idea to -setEnabled: too. This approach would allow you to have sets of controls showable or enabled within the same window or view, which tabs don't solve. That can sometimes be handy for dialogs, where one control enables a whole bunch of others. --General/GrahamCox
+Tab views are probably easiest, but there is another solution that's reasonably clean. Collect your related controls into a plain NSView as its subviews, then implement a simple category on NSView that implements -setHidden: by iterating over its child views with the same method. Because NSControl implements setHidden:, this gives you a quick way to turn a set on or off in one line. You can extend this idea to -setEnabled: too. This approach would allow you to have sets of controls showable or enabled within the same window or view, which tabs don't solve. That can sometimes be handy for dialogs, where one control enables a whole bunch of others. --GrahamCox
 
 ----
-General/NSView itself implements setHidden: in 10.3 and up, so you don't have to do anything as long as you aren't supporting Jaguar. And if you are, what is wrong with you??
-
-----
-
-So it does - I didn't have the docs to hand when I wrote the above. Actually I was more thinking of the setEnabled: case, which of course is not what the poster was asking about, but grouping related controls and enabling/disabling them is very handy for the situation I mentioned. General/NSView doesn't have a setEnabled: but General/NSControl does, so adding this method to General/NSView using a category can save umpteen lines of code for some kinds of UI work. --GC
+NSView itself implements setHidden: in 10.3 and up, so you don't have to do anything as long as you aren't supporting Jaguar. And if you are, what is wrong with you??
 
 ----
 
-Yes, that would be useful. I would recommend giving it a less obvious name, though, such as     General/XYZRecursiveSetEnabled: though, just in case Apple adds     setEnabled: to General/NSView one day.
+So it does - I didn't have the docs to hand when I wrote the above. Actually I was more thinking of the setEnabled: case, which of course is not what the poster was asking about, but grouping related controls and enabling/disabling them is very handy for the situation I mentioned. NSView doesn't have a setEnabled: but NSControl does, so adding this method to NSView using a category can save umpteen lines of code for some kinds of UI work. --GC
+
+----
+
+Yes, that would be useful. I would recommend giving it a less obvious name, though, such as     XYZRecursiveSetEnabled: though, just in case Apple adds     setEnabled: to NSView one day.

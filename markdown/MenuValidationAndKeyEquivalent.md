@@ -4,25 +4,25 @@ So basically I must change the key equivalent for the two menu items (Close and 
 
 I figured that this could be done from validateMenuItem: in my window controller (being the delegate for the window), and as such, it can. The problem is, what if another window is active, and responds to performClose:, then my delegate is not asked, and the key equivalent which was most recently set for this item, will be used.
 
-Any suggestions to how I can gracefully solve this problem? I have thought about adding a category to General/NSMenu which always validate items with the performClose: action, and set the key equivalent, but I don't like this solution, because the window may already overload this method, and so I would need to do General/MethodSwizzling or similar.
+Any suggestions to how I can gracefully solve this problem? I have thought about adding a category to NSMenu which always validate items with the performClose: action, and set the key equivalent, but I don't like this solution, because the window may already overload this method, and so I would need to do MethodSwizzling or similar.
 
-*I just tried the Menu Validation-scheme, but it does not work -- I think General/NSMenu tries to do some dynamic key equivalent clash-avoidance, at least the qualifier for Close Current File ends up as shift-command-w, even though I set it to command-w only. Another problem is that performClose: is implemented by the window and thus not validated by the delegate (but that can easily be solved).*
+*I just tried the Menu Validation-scheme, but it does not work -- I think NSMenu tries to do some dynamic key equivalent clash-avoidance, at least the qualifier for Close Current File ends up as shift-command-w, even though I set it to command-w only. Another problem is that performClose: is implemented by the window and thus not validated by the delegate (but that can easily be solved).*
 
 ----
 
-I solved the same problem via making the General/AppController delegate for the File Menu and then implementing:
+I solved the same problem via making the AppController delegate for the File Menu and then implementing:
     
-- (BOOL)menuHasKeyEquivalent:(General/NSMenu *)menu forEvent:(General/NSEvent *)event target:(id *)target action:(SEL *)action {
+- (BOOL)menuHasKeyEquivalent:(NSMenu *)menu forEvent:(NSEvent *)event target:(id *)target action:(SEL *)action {
     [menu update];
     return NO;
 }
 
-which works beginning with 10.3 which introduced menu delegates. Note that after having returned NO the menu will perform the valid General/KeyEquivalents, so saying NO does not stop the menu.
+which works beginning with 10.3 which introduced menu delegates. Note that after having returned NO the menu will perform the valid KeyEquivalents, so saying NO does not stop the menu.
 
-General/DominikWagner
+DominikWagner
 ----
 
-You could always subclass General/NSWindow, which I don't think would be inappropriate in this case.
+You could always subclass NSWindow, which I don't think would be inappropriate in this case.
 
 *Not that easily, because a lot of windows are not instantiated by me (i.e. all "standard" panels), and so would not use my subclass.*
 
@@ -30,7 +30,7 @@ Allow me to show my ignorance of Document centric programming here, but, what's 
 
 ----
 
-That would break the General/FirstResponder mechanism. I don't see why subclassing General/NSWindow and overriding performClose: to check for open tabs wouldn't work -  standard panels would have the standard performClose: method called, and MDI windows of the custom General/NSWindow subclass would have the overriden performClose: called.
+That would break the FirstResponder mechanism. I don't see why subclassing NSWindow and overriding performClose: to check for open tabs wouldn't work -  standard panels would have the standard performClose: method called, and MDI windows of the custom NSWindow subclass would have the overriden performClose: called.
 
 ----
 
@@ -46,11 +46,11 @@ I have now set it up so that I change the key equivalence modifiers in windowDid
 *It seems the extra shift is because:*
     
 [item setKeyEquivalent:@"W"];
-[item setKeyEquivalentModifierMask:General/NSCommandKeyMask];
+[item setKeyEquivalentModifierMask:NSCommandKeyMask];
 
 *Will set the shift modifier (sticky), because the key is given in uppercase.*
 
 ----
 
-I solved a similar problem by overriding General/NSDocuments respondsToSelector, ending it with a call of     [[super class] instancesRespondsToSelector: ]
+I solved a similar problem by overriding NSDocuments respondsToSelector, ending it with a call of     [[super class] instancesRespondsToSelector: ]
 Not a pretty sight, but it worked.

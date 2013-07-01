@@ -1,4 +1,4 @@
-See General/IBInspector.
+See IBInspector.
 
 Someone's idea of a joke?
 
@@ -6,7 +6,7 @@ Does anyone have time+knowledge to fill this in a bit? The documentation is meag
 
 ----
 
-General/KritterDev's site has a pointer to Sun's General/OpenStep documentation for General/IBInspector (and the rest of the General/InterfaceBuilder.framework):
+KritterDev's site has a pointer to Sun's OpenStep documentation for IBInspector (and the rest of the InterfaceBuilder.framework):
 http://docs.sun.com/db/doc/802-2110/6i63kq4uj?a=view
 
 ----

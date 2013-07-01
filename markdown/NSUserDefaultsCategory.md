@@ -1,10 +1,10 @@
 
 
-Code for using custom types with the General/NSUserDefaults class.
+Code for using custom types with the NSUserDefaults class.
 
-Modified from the General/NSColor sample code on Apple's developer web site
+Modified from the NSColor sample code on Apple's developer web site
 
-**Source for General/NSUserDefaults+General/CocoaDevUsersAdditions.h :**
+**Source for NSUserDefaults+CocoaDevUsersAdditions.h :**
     
  #import <Foundation/Foundation.h>
  
@@ -14,7 +14,7 @@ Modified from the General/NSColor sample code on Apple's developer web site
  @end
 
  
-**Source for General/NSUserDefaults+General/CocoaDevUsersAdditions.m :**
+**Source for NSUserDefaults+CocoaDevUsersAdditions.m :**
     
  #import "NSUserDefaults+CocoaDevUsersAdditions.h"
  
@@ -37,4 +37,4 @@ Modified from the General/NSColor sample code on Apple's developer web site
 
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

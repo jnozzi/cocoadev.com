@@ -1,10 +1,10 @@
-The document at http://developer.apple.com/documentation/Cocoa/Conceptual/General/CodingGuidelines/Articles/General/NamingIvarsAndTypes.html says about naming instance variables:
+The document at http://developer.apple.com/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html says about naming instance variables:
 
 *Do not use the underscore character as a prefix meaning that the instance variable is private*
 
-This got me a little confused, because I have started to name all my instance variables with an underscore prefix, due to how General/KeyValueCoding will search first for the key with an underscore, and next just the key.
+This got me a little confused, because I have started to name all my instance variables with an underscore prefix, due to how KeyValueCoding will search first for the key with an underscore, and next just the key.
 
-So should I stop with the underscores? Often instance variable names will clash with local variables or arguments - normally I solve it by always using title case for my instance variables, but then it will not work with General/KeyValueCoding, which is why I adopted the other convention...
+So should I stop with the underscores? Often instance variable names will clash with local variables or arguments - normally I solve it by always using title case for my instance variables, but then it will not work with KeyValueCoding, which is why I adopted the other convention...
 
 ----
 
@@ -16,7 +16,7 @@ A2: Apple reserves the underscore prefix for their own private ivars. AFAIK this
 
 ----
 
-Checkout General/NSKeyValueCoding (item 2 and 3 in     valueForKey:):
+Checkout NSKeyValueCoding (item 2 and 3 in     valueForKey:):
 
 
 *If a public accessor method is not found and the class     methodaccessInstanceVariablesDirectly returns     YES, searches for a private accessor method based on key (a method preceded by an underbar). For example, with a key of �lastName�,     valueForKey: looks for a method named     _getLastName or     _lastName.
@@ -33,4 +33,4 @@ This doesn't conflict with Apple's recommendations wrt naming - prefix your vari
 
 I interpret it as meaning there's nothing stopping you from using the underscore for anything you want. But Apple uses it for their own private stuff so you may run into problems there. Be forewarned. The link you gave above also says *If an instance variable is to be an accessible attribute of objects of the class, make sure you write accessor methods for it.* There are many tools that will automate writing proper accessors - Accessorizer and Objective-C Services to name 2 - and once written you shouldn't have to touch them again.
 
-Well, no � no technical reasons, but when Apple writes **don't** and also that **Apple reserves the use of this convention**, then I'd like to honor that, similar to how I don't name my init method     funkyInit, even though I could :) wrt accessor methods, this was true before General/KeyValueCoding, but with valueForKey: it explictly says it will return the instance variables named after they key, unless disabled by the class. And as said, I have a tendency to create a window controller subclass with maybe 10+ ivars, all bound to the GUI of the controller, so even though tool exists to help me write code for these 10+ ivars, I would rather avoid cluttering up my program with such things, when they are only used for one thing, binding to the ivars, and really are not needed to do that job.
+Well, no � no technical reasons, but when Apple writes **don't** and also that **Apple reserves the use of this convention**, then I'd like to honor that, similar to how I don't name my init method     funkyInit, even though I could :) wrt accessor methods, this was true before KeyValueCoding, but with valueForKey: it explictly says it will return the instance variables named after they key, unless disabled by the class. And as said, I have a tendency to create a window controller subclass with maybe 10+ ivars, all bound to the GUI of the controller, so even though tool exists to help me write code for these 10+ ivars, I would rather avoid cluttering up my program with such things, when they are only used for one thing, binding to the ivars, and really are not needed to do that job.

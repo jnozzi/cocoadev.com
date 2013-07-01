@@ -1,4 +1,4 @@
-**Question: Does the Cocoa Printing architecture have support for headers and footers, in the sense of it shows on every page automatically like you'd expect in a word processor? I seem to recall reading in the General/AppKit docs that it does, but I can't find it again. If so, how do you implement it? Any help's appreciated. --General/LoganCollins** 
+**Question: Does the Cocoa Printing architecture have support for headers and footers, in the sense of it shows on every page automatically like you'd expect in a word processor? I seem to recall reading in the AppKit docs that it does, but I can't find it again. If so, how do you implement it? Any help's appreciated. --LoganCollins** 
 
 **Answer:** 
 Apple provides the following documentation.
@@ -15,8 +15,8 @@ If the headers and footers are something that only shows up when printing, there
 A) Implement -drawRect: to draw the headers and footers only when printing and use custom pagination using -rectForPage: that includes the headers and footers.
 The following code is taken from Apple's documentation:
      
-- (void)drawRect:(General/NSRect)r {
-     if ( General/[NSGraphicsContext currentContextDrawingToScreen] ) {
+- (void)drawRect:(NSRect)r {
+     if ( [NSGraphicsContext currentContextDrawingToScreen] ) {
          // Draw screen-only elements here
      } else {
         // Draw printer-only elements here

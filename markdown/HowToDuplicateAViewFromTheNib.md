@@ -1,13 +1,13 @@
 I can load a nib file from my project in order to make a view with the content of that nib:
 
     
-- (id)initWithFrame:(General/NSRect)frameRect
+- (id)initWithFrame:(NSRect)frameRect
 {
 	if ((self = [super initWithFrame:frameRect]) != nil) {
-		if (General/[NSBundle loadNibNamed:@"content"
+		if ([NSBundle loadNibNamed:@"content"
 							 owner:self])
 		[self addSubview:viewContent];
-		else General/NSLog(@"Failed to load content.nib");
+		else NSLog(@"Failed to load content.nib");
 	}
 	return self;
 }
@@ -15,19 +15,19 @@ I can load a nib file from my project in order to make a view with the content o
 
 Then I can bind dynamically the objects of this nib to control them.
 
-But why can't I simply drag a General/NSView object in my General/MainMenu.nib, "populate" it, and then make copy of this view to use "clones" in my program?
+But why can't I simply drag a NSView object in my MainMenu.nib, "populate" it, and then make copy of this view to use "clones" in my program?
 
-I tried this : i added a custom view to the General/MainMenu.nib file of my project and i connect an outlet "content" to my controller.
+I tried this : i added a custom view to the MainMenu.nib file of my project and i connect an outlet "content" to my controller.
 
 When i do this� :
 
     
-- (General/IBAction)add:(id)sender
+- (IBAction)add:(id)sender
 {
-	General/MySubview *subview = [content copy];
+	MySubview *subview = [content copy];
 	[mainView addSubview:subview];
-	General/NSRect frame = [subview frame];
-	[subview setFrame:General/NSMakeRect(0,yPosition,frame.size.width,frame.size.height)];
+	NSRect frame = [subview frame];
+	[subview setFrame:NSMakeRect(0,yPosition,frame.size.width,frame.size.height)];
 	yPosition += 70;
 }
 
@@ -37,9 +37,9 @@ When i do this� :
 Is it possible to do such a thing? Maybe it's my copyWithZone: code that is not correct?
 
     
-- (id)copyWithZone:(General/NSZone *)zone
+- (id)copyWithZone:(NSZone *)zone
 {
-	General/MySubview *copy = General/[[MySubview alloc] initWithFrame:[self frame]];
+	MySubview *copy = [[MySubview alloc] initWithFrame:[self frame]];
 	return copy;
 }
 
@@ -50,11 +50,11 @@ The copy makes a new view with the same class and the same frame. You aren't doi
 
 The best way to do this is to put this view in a separate nib, and then reload the nib every time you want a new copy of it.
 
-It's also possible to encode/decode your view with an General/NSKeyArchiver to get a deep copy of it. Something like this should work
+It's also possible to encode/decode your view with an NSKeyArchiver to get a deep copy of it. Something like this should work
 
     
-General/NSData *viewData = General/[NSKeyedArchiver archivedDataWithRootObject:view];
-General/NSView *deepCopy = General/[NSKeyedUnarchiver unarchiveObjectWithData:viewData];
+NSData *viewData = [NSKeyedArchiver archivedDataWithRootObject:view];
+NSView *deepCopy = [NSKeyedUnarchiver unarchiveObjectWithData:viewData];
 
 
 ----
@@ -63,11 +63,11 @@ It's working just fine, nice trick.
 
 ----
 
-I'm trying to use a view 'drawn' in IB several times:First I opened my General/MainMenu.nib files and added a small view named "element" with UI element in it.Then on my main window, I added custom view "myPlan" to hold the several "element" views.A button is used to add the elements, here is the code of the add: method
+I'm trying to use a view 'drawn' in IB several times:First I opened my MainMenu.nib files and added a small view named "element" with UI element in it.Then on my main window, I added custom view "myPlan" to hold the several "element" views.A button is used to add the elements, here is the code of the add: method
 
     
 
-@interface Controller : General/NSObject{    General/IBOutlet id plan;    General/IBOutlet id elementUI;    int yPos;}- (General/IBAction)add:(id)sender;//� more code �- (General/IBAction)add:(id)sender{	Element *myElement = General/Element alloc] initWithFrame:[[NSMakeRect(0,yPos,244,43)];	[myElement addSubview:elementUI];	[plan addSubview:myElement];	[myElement release];	yPos = yPos+44;}
+@interface Controller : NSObject{    IBOutlet id plan;    IBOutlet id elementUI;    int yPos;}- (IBAction)add:(id)sender;//� more code �- (IBAction)add:(id)sender{	Element *myElement = Element alloc] initWithFrame:[[NSMakeRect(0,yPos,244,43)];	[myElement addSubview:elementUI];	[plan addSubview:myElement];	[myElement release];	yPos = yPos+44;}
 
 
 

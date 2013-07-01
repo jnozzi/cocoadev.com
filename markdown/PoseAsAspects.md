@@ -1,18 +1,18 @@
-**General/PoseAsAspects** - 
+**PoseAsAspects** - 
 
-The idea here is that you could call General/[ACPoser wrapAllMethodsOfClass: General/[MyClass class]], and get a nice little stack trace of all the methods being called in your class.  And this bit of code does appear to work very well for that purpose, especially if you haven't done anything with General/MyClass before that point.  Also, you could subclass General/ACPoser and override the before: and after: methods to perform some specific aspect functionality.  You can get an example of that here: http://www.ccs.neu.edu/home/igotimac/General/PoseAspect.zip
+The idea here is that you could call [ACPoser wrapAllMethodsOfClass: [MyClass class]], and get a nice little stack trace of all the methods being called in your class.  And this bit of code does appear to work very well for that purpose, especially if you haven't done anything with MyClass before that point.  Also, you could subclass ACPoser and override the before: and after: methods to perform some specific aspect functionality.  You can get an example of that here: http://www.ccs.neu.edu/home/igotimac/PoseAspect.zip
 
-The implementation uses General/ClassPosing
+The implementation uses ClassPosing
 
-But, there is a major problem with this Aspect that need to be worked out, but here's some code of something that does work for some cases.  It seems a major obstacle of this approach lies in that posing as a class only affects new instances of that class, not existing ones.  So, I really just need to figure out where a good place is to instantiate aspects on things that are allocated and used early on. something like: General/[ACPoser wrapAllMethodsOfClass: General/[NSObject class]]. but where does it belong? if I put it too early (like in initialize or load methods of General/ACPoser I get memory leaks or sigbus errors).
+But, there is a major problem with this Aspect that need to be worked out, but here's some code of something that does work for some cases.  It seems a major obstacle of this approach lies in that posing as a class only affects new instances of that class, not existing ones.  So, I really just need to figure out where a good place is to instantiate aspects on things that are allocated and used early on. something like: [ACPoser wrapAllMethodsOfClass: [NSObject class]]. but where does it belong? if I put it too early (like in initialize or load methods of ACPoser I get memory leaks or sigbus errors).
 
-Here's General/ACPoser.h  Note, you'll also need General/ACMethodIterator
+Here's ACPoser.h  Note, you'll also need ACMethodIterator
     
 
 #import <Foundation/Foundation.h>
 
 
-@interface General/ACPoser : General/NSObject {
+@interface ACPoser : NSObject {
 
 }
 
@@ -33,28 +33,28 @@ Here's General/ACPoser.h  Note, you'll also need General/ACMethodIterator
 
 
 
-and General/ACPoser.m
+and ACPoser.m
     
 
-#import "General/ACPoser.h"
-#import "General/ACMethodIterator.h"
+#import "ACPoser.h"
+#import "ACMethodIterator.h"
 #import </usr/include/objc/objc-class.h>
-#import "General/MyDocument.h"
+#import "MyDocument.h"
 
-@implementation General/ACPoser
+@implementation ACPoser
 
-//We will want to define another class: General/MethodStrategy
+//We will want to define another class: MethodStrategy
 //which will be passed to this method
 //to define which methods to aspect
 
 +(void)wrapAllMethodsOfClass:(Class)toWrap{
-    [self wrapAllMethodsOfClass: toWrap beforeAndAfterOf: General/[ACPoser class]];
+    [self wrapAllMethodsOfClass: toWrap beforeAndAfterOf: [ACPoser class]];
 }
 
 +(void)wrapAllMethodsOfClass:(Class)toWrap beforeAndAfterOf:(Class)toGetMethodsFrom{
     //add a new class (poser) to the runtime as a subclass of toWrap
     Class poser = [self createClassDefinition: 
-        General/@"replace_" stringByAppendingString: 
+        @"replace_" stringByAppendingString: 
         [[[NSString stringWithCString: toWrap->name]] cString] 
         withSuper: toWrap->name];
 
@@ -81,7 +81,7 @@ and General/ACPoser.m
     meth = *class_getInstanceMethod(toGetMethodsFrom, @selector(after:));
     methodsToAdd->method_list[1] = meth;
 
-    General/ACMethodIterator * mit = General/[[ACMethodIterator alloc] initWithClass: toWrap];
+    ACMethodIterator * mit = [[ACMethodIterator alloc] initWithClass: toWrap];
 
     for( i = 2; i< totalMethodsToAdd; i++){
         struct objc_method *originalMeth = [mit nextMethod];        
@@ -120,8 +120,8 @@ and General/ACPoser.m
 +(struct objc_class *)createClassDefinition: (const char *) name 
     withSuper: (const char *) superclassName
 {
-    General/NSLog(@"creating a subclass of %s", superclassName);
-    General/NSLog(@"named %s", name);
+    NSLog(@"creating a subclass of %s", superclassName);
+    NSLog(@"named %s", name);
     struct objc_class * meta_class;
     struct objc_class * super_class;
     struct objc_class * new_class;
@@ -169,8 +169,8 @@ and General/ACPoser.m
 }
 
 /*
-* none of the methods below should ever be called as members of this class! (General/ACPoser)
-* and are therefore not declared in General/ACPoser.h
+* none of the methods below should ever be called as members of this class! (ACPoser)
+* and are therefore not declared in ACPoser.h
 */
 
 -(id)replacement{
@@ -226,11 +226,11 @@ and General/ACPoser.m
 }
 
 -(void)before:(SEL)selector{  //to be overridden in subclasses with actual functionality
-    General/NSLog(@"before %s", selector);
+    NSLog(@"before %s", selector);
 }
 
 -(void)after:(SEL)selector{  //to be overridden in subclasses with actual functionality
-    General/NSLog(@"after %s", selector);
+    NSLog(@"after %s", selector);
 }
 
 @end
@@ -242,7 +242,7 @@ and General/ACPoser.m
 ----
 an Old problem:
 
-Originally the idea of this type of Aspect was use the objc runtime's ability to let subclasses pose as their super class, to dynamically make subclasses of any class we'd like to create an aspect on, add the methods we're going to have as General/PointCuts, and then swap their General/IMPs with General/IMPs to replace methods (taking the right number of arguments) that just call the original method which we have reference to as _cmd on super.. There is a big problem with this approach.  I thought I could just do [super performSelector: _cmd];  But what I really need is a [self performSelectorOnSuper: _cmd]; method.  because clearly it doesn't matter whether I call  [super performSelector: _cmd]; or  [self performSelector: _cmd];.   Because performSelector is implemented in General/NSObject, not in my Aspect class or any other class involved here. Instead I have to do something like:
+Originally the idea of this type of Aspect was use the objc runtime's ability to let subclasses pose as their super class, to dynamically make subclasses of any class we'd like to create an aspect on, add the methods we're going to have as PointCuts, and then swap their IMPs with IMPs to replace methods (taking the right number of arguments) that just call the original method which we have reference to as _cmd on super.. There is a big problem with this approach.  I thought I could just do [super performSelector: _cmd];  But what I really need is a [self performSelectorOnSuper: _cmd]; method.  because clearly it doesn't matter whether I call  [super performSelector: _cmd]; or  [self performSelector: _cmd];.   Because performSelector is implemented in NSObject, not in my Aspect class or any other class involved here. Instead I have to do something like:
 
     
 
@@ -257,11 +257,11 @@ which is not only dependent on the number of arguments I pass, but also on the r
 
 ----
 
-Would an General/NSInvocation help here? You could even wire up a General/HigherOrderMessaging trampoline so that     General/self performOnSuper] someMethod:arg] would work, probably.
+Would an NSInvocation help here? You could even wire up a HigherOrderMessaging trampoline so that     self performOnSuper] someMethod:arg] would work, probably.
 
 ----
 
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSInvocation.html   General/NSInvocation is great, but it has no concept of invoking on super.  (just like [super performSelector: _cmd] ends up being exactly the same as doing [self performSelector: _cmd];)   This just boils down to one thing....  
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/[[NSInvocation.html   NSInvocation is great, but it has no concept of invoking on super.  (just like [super performSelector: _cmd] ends up being exactly the same as doing [self performSelector: _cmd];)   This just boils down to one thing....  
 
 **How do I call some variable selector on my superclass (when I too implement that selector) ?**
 

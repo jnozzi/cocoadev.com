@@ -1,4 +1,4 @@
-Does anyone else think that using an General/NSTableHeaderCell to indicate the *selection* of an General/NSTableView is a bad UI idea?  This site is primarily devoted to implemention in Cocoa, but I wonder if it might be nice to start up some discussion about **design**.  It's been mentioned here and there, but I'd like to see a bit more.  Comments?  Questions?
+Does anyone else think that using an NSTableHeaderCell to indicate the *selection* of an NSTableView is a bad UI idea?  This site is primarily devoted to implemention in Cocoa, but I wonder if it might be nice to start up some discussion about **design**.  It's been mentioned here and there, but I'd like to see a bit more.  Comments?  Questions?
 ----
 I like it, it's all transparent and stuff too. However, it certainly could've been done better.
 ----
@@ -27,4 +27,4 @@ What I can't stand about Party Shuffle is its stupidity. When adding random song
 
 ----
 
-It's sad that Apple is one of the worst offenders when it comes to the General/AppleHumanInterfaceGuidelines (save for a few freeware/shareware hobbyist hackers with colour-blindness). See General/AHIGHypocrisy. --General/TheoHultberg/Iconara
+It's sad that Apple is one of the worst offenders when it comes to the AppleHumanInterfaceGuidelines (save for a few freeware/shareware hobbyist hackers with colour-blindness). See AHIGHypocrisy. --TheoHultberg/Iconara

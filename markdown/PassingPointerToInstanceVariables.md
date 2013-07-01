@@ -12,8 +12,8 @@ After drinking the Kool Aid and pledging my elegance to OOP, I have to admit tha
 
     
 
-void General/NSFrameRect(General/NSRect aRect);
-void General/NSFrameRectFillList(const General/NSRect *rects, int count);
+void NSFrameRect(NSRect aRect);
+void NSFrameRectFillList(const NSRect *rects, int count);
 
 
 
@@ -29,9 +29,9 @@ any thoughts?
 
 ----
 
-Like a lot of stuff in programming, it takes experience and judgment (and making lots of mistakes :-) when deciding where to break the encapsulation barrier.  The General/BigNerdRanch folks told us to Prefer objects, but when things make more sense as structs, make them structs.  particularly short-lived stuff (like General/NSRanges), or things that are small and lightweight (like General/NSRects. adding an extra 4 bytes to an General/NSRect for the Objective-C isa pointer is significant.  An extra 4 bytes to an General/NSTextView for instance isn't significant)
+Like a lot of stuff in programming, it takes experience and judgment (and making lots of mistakes :-) when deciding where to break the encapsulation barrier.  The BigNerdRanch folks told us to Prefer objects, but when things make more sense as structs, make them structs.  particularly short-lived stuff (like NSRanges), or things that are small and lightweight (like NSRects. adding an extra 4 bytes to an NSRect for the Objective-C isa pointer is significant.  An extra 4 bytes to an NSTextView for instance isn't significant)
 
-as you noticed in Apple's/General/NeXT's stuff, they pass these small structs by value.  The extra bytes wasted on the stack is made up for in time not spent dereferencing pointers to the structures.
+as you noticed in Apple's/NeXT's stuff, they pass these small structs by value.  The extra bytes wasted on the stack is made up for in time not spent dereferencing pointers to the structures.
 
 When to go 'low level' in  your own clases, by exposing implementation details directly (vs hiding them in setters and getters) is a design choice.  In general I like to postpone optimizations like those until I've had a chance to measure where the problems actually are. You can cause yourself more headache in maintenance by exposing details than you save in run-time.
 
@@ -39,7 +39,7 @@ When to go 'low level' in  your own clases, by exposing implementation details d
 
 Make it work, *then* optimise it.
 
-*But remember, sometimes using a struct is the easiest way of doing things as well as the cheapest. General/NSRect would make no sense as an object.*
+*But remember, sometimes using a struct is the easiest way of doing things as well as the cheapest. NSRect would make no sense as an object.*
 
 ----
 
@@ -47,4 +47,4 @@ On topic: anything's fair as long as you document the behavior and follow the ru
 
 Off topic: I can't imagine life without the K&R. It's perhaps the best programming language book ever written. But then again, C is probably my favorite programming language. I think that's why I like Objective C a lot more than the leading brands (C++, Java). 
 
--- General/MikeTrent
+-- MikeTrent

@@ -6,6 +6,6 @@ While I am running certain applications, they seem to swallow all the key presse
 
 I can certainly globally post keyboard events, but they go to the frontmost app.  I already have it so that certain key presses are grabbed and a message is piped to RDC.  I just don't know how to simulate the key press.
 
-Incidentally, I'm doing this using General/APEs and via manipulating the carbon event loop.
+Incidentally, I'm doing this using APEs and via manipulating the carbon event loop.
 
--General/VinayVenkatesh
+-VinayVenkatesh

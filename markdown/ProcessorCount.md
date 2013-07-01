@@ -17,7 +17,7 @@ int getProcessorCount() {
 This code was copied from the web page:  http://alienryderflex.com/processor_count.html
 
 ----
-It is much shorter, however, to simply call     General/MPProcessors().
+It is much shorter, however, to simply call     MPProcessors().
 
 ----
 
@@ -55,25 +55,25 @@ int processorCount() {
 
 Actually, applications should not use this information to decide about going to multi-threaded or not. They should always do so :)
 
--- General/DenisGryzlov
+-- DenisGryzlov
 
 ----
 
-Re my Carbon/Cocoa question:  It was just a question; no need to jump down my throat.  So there won't be any issue about General/MPProcessors becoming deprecated or anything like that?  I'm not worried about whether it works now, but whether my projects can be expected to compile without glitches in the future.
+Re my Carbon/Cocoa question:  It was just a question; no need to jump down my throat.  So there won't be any issue about MPProcessors becoming deprecated or anything like that?  I'm not worried about whether it works now, but whether my projects can be expected to compile without glitches in the future.
 
-General/DenisGryzlov, I agree with you that apps should be multithreaded even on a single-core machine.  But how many threads to create?  If there are 4 processor cores, then I will need to create four background-processing threads to take full advantage of the power of the machine.  If there are 8 cores, I need to create 8 threads.
-
-----
-You're still displaying strangeness with regards to the whole Cocoa/Carbon thing though. Your deprecation question shows it. Cocoa things can and have become deprecated as well. General/MPProcessors is not *currently* deprecated, and that's all I can tell you.
-
-As far as being multithreaded, there's no intrinsic virtue in it. If multithreading can make your application more responsive on a single-CPU machine then that's great, but if it doesn't then you may as well just run one thread on them. Dynamically spawning different numbers of threads depending on how many General/CPUs a machine has is a good idea, in that it keeps your application performing well even on unanticipated hardware, and it improves efficiency (although probably not noticeably) on machines with fewer General/CPUs.
+DenisGryzlov, I agree with you that apps should be multithreaded even on a single-core machine.  But how many threads to create?  If there are 4 processor cores, then I will need to create four background-processing threads to take full advantage of the power of the machine.  If there are 8 cores, I need to create 8 threads.
 
 ----
-I don't think Carbon functions would be deprecated anytime soon. They are not only for Classic compatibility, but they are also may be used when porting apps from procedural languages from Windows and other platforms. Any function in Cocoa or Carbon could be deprecated, though. This can't brake your app, because you will have at least 2-3 years to *repair* your code with deprecated functions. I bet that     General/MPProcessors function will be available even if Apple decides to move from UNIX platform in General/MacOSX, while *sysctl* - will not :) --General/DenisGryzlov
+You're still displaying strangeness with regards to the whole Cocoa/Carbon thing though. Your deprecation question shows it. Cocoa things can and have become deprecated as well. MPProcessors is not *currently* deprecated, and that's all I can tell you.
+
+As far as being multithreaded, there's no intrinsic virtue in it. If multithreading can make your application more responsive on a single-CPU machine then that's great, but if it doesn't then you may as well just run one thread on them. Dynamically spawning different numbers of threads depending on how many CPUs a machine has is a good idea, in that it keeps your application performing well even on unanticipated hardware, and it improves efficiency (although probably not noticeably) on machines with fewer CPUs.
+
+----
+I don't think Carbon functions would be deprecated anytime soon. They are not only for Classic compatibility, but they are also may be used when porting apps from procedural languages from Windows and other platforms. Any function in Cocoa or Carbon could be deprecated, though. This can't brake your app, because you will have at least 2-3 years to *repair* your code with deprecated functions. I bet that     MPProcessors function will be available even if Apple decides to move from UNIX platform in MacOSX, while *sysctl* - will not :) --DenisGryzlov
 
 ----
 
 Cocoa-ish way:
 
-General/NSUInteger a = General/[[NSProcessInfo processInfo] processorCount];
-General/NSUInteger b = General/[[NSProcessInfo processInfo] activeProcessorCount];
+NSUInteger a = [[NSProcessInfo processInfo] processorCount];
+NSUInteger b = [[NSProcessInfo processInfo] activeProcessorCount];

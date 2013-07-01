@@ -1,24 +1,24 @@
 hi !
-can someone basically explain the difference between a General/NSTimer that will fire and execute a method in a delay and the call to performSelector:afterDelay: ?
+can someone basically explain the difference between a NSTimer that will fire and execute a method in a delay and the call to performSelector:afterDelay: ?
 
 which one is the "lightest" ? i don't need extreme precision in delay.
 thanks !
 
 ----
 
-General/NSTimer is generally more flexible. You can more easily cancel the timer, you can make the timer repeat, you can query the timer, and you can make the timer invoke an arbitrary method call using General/NSInvocation. General/NSTimer is probably slightly more expensive, since it's a separate object, but I doubt if this is noticeable in most cases. Both methods rely on the runloop for scheduling and will have the same accuracy.
+NSTimer is generally more flexible. You can more easily cancel the timer, you can make the timer repeat, you can query the timer, and you can make the timer invoke an arbitrary method call using NSInvocation. NSTimer is probably slightly more expensive, since it's a separate object, but I doubt if this is noticeable in most cases. Both methods rely on the runloop for scheduling and will have the same accuracy.
 
 ----
 
-You really need to do some testing as to which one is faster. If it were me writing this, I'd implement performSelector:afterDelay: with an General/NSTimer.
+You really need to do some testing as to which one is faster. If it were me writing this, I'd implement performSelector:afterDelay: with an NSTimer.
 
 *Why do you really need to test it? Unless you're calling it thousands of times per second, the speed difference will not be important.*
 
-**I just checked with some breakpoints;  calling performSelector:afterDelay: does not create a new General/NSTimer.**
+**I just checked with some breakpoints;  calling performSelector:afterDelay: does not create a new NSTimer.**
 
-*The documentation says it uses a "timer, " so it sounds like it's either creating an General/NSTimer or using the underlying General/CoreFoundation calls without explicitly creating an General/NSTimer.*
+*The documentation says it uses a "timer, " so it sounds like it's either creating an NSTimer or using the underlying CoreFoundation calls without explicitly creating an NSTimer.*
 
-**Yep yep, should have thought of that before.  Tests with breaking on General/CFRunLoopTimerCreate are interesting but not exactly conclusive.  *Everything* causes that function to be called.  performSelector:withObject:afterDelay: causes it to be called one time, but so does performSelector:withObject:.  In a normal running app it's called a heck of a lot.**
+**Yep yep, should have thought of that before.  Tests with breaking on CFRunLoopTimerCreate are interesting but not exactly conclusive.  *Everything* causes that function to be called.  performSelector:withObject:afterDelay: causes it to be called one time, but so does performSelector:withObject:.  In a normal running app it's called a heck of a lot.**
 
 ----
 
@@ -32,7 +32,7 @@ if(timer) {
 timer = nil;
 }
 
-timer = General/[[NSTimer scheduledTimerWith...] retain];
+timer = [[NSTimer scheduledTimerWith...] retain];
 
 
 is it possible to change the fireDate of the timer on the fly ? this would be a clear advantage over performSelector:afterDelay: that need a cancel first
@@ -43,11 +43,11 @@ Timer cancelling is a bit more flexible. It's not possible to have two delayed p
 
 As far as changing the fire date, yes, rtfm.
 
-duuuuude.... "rtfm" should not be in our vocab.  The 'm' in question is HUGE, and half the purpose of this site is to answers questions that have answers but are hard to find.  In this case, a simple check on file:///Developer/ADC%20Reference%20Library/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSTimer.html#//apple_ref/occ/cl/General/NSTimer would have answered the question, but still....  sheeeesh!
+duuuuude.... "rtfm" should not be in our vocab.  The 'm' in question is HUGE, and half the purpose of this site is to answers questions that have answers but are hard to find.  In this case, a simple check on file:///Developer/ADC%20Reference%20Library/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/NSTimer.html#//apple_ref/occ/cl/NSTimer would have answered the question, but still....  sheeeesh!
 
 ----
 
-General/NSTimer has a whole *eight* instance methods, one of which is very obviously the answer to the question. If you can't read through a half-screen header file to check for the answer to an extremely simple question, how do you expect to be able to program a computer at all? This question was *not* hard to find. If you think it was, you're not trying hard enough.
+NSTimer has a whole *eight* instance methods, one of which is very obviously the answer to the question. If you can't read through a half-screen header file to check for the answer to an extremely simple question, how do you expect to be able to program a computer at all? This question was *not* hard to find. If you think it was, you're not trying hard enough.
 
 ----
 
@@ -62,7 +62,7 @@ Well, I suppose the thing to do would be to try it.  Should only take a minute..
 
 By the way, is this Erik in regard to < http://nslog.com/archives/2004/11/25/nstimers_need_voidpauseidsender.php >?  If so I'll note that, (a) I misunderstood the intent of the blog posting, (b) this is an effective way to pause and resume a timer.
 
--General/KenFerry
+-KenFerry
 
 ---- 
-<CORNY_MUSIC>As the General/NSTimer turns ... so are the days of our lives ... </CORNY_MUSIC>
+<CORNY_MUSIC>As the NSTimer turns ... so are the days of our lives ... </CORNY_MUSIC>

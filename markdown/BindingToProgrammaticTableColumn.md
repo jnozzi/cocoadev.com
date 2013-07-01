@@ -15,7 +15,7 @@ Apologies in advance if this question falls under the "asked-and-answered" rubri
 
 ----
 
-You do not use exposeBinding in this way. In fact, for this problem, you don't use it at all. Check out the     <General/NSKeyValueBindingCreation> informal protocol's     bind:toObject:withKeyPath:options: method. This is exactly what you need. Nothing more. Just add the column to the table as you normally would, then bind it to whatever.
+You do not use exposeBinding in this way. In fact, for this problem, you don't use it at all. Check out the     <NSKeyValueBindingCreation> informal protocol's     bind:toObject:withKeyPath:options: method. This is exactly what you need. Nothing more. Just add the column to the table as you normally would, then bind it to whatever.
 
 See Also: [ http://www.cocoabuilder.com/archive/message/2004/8/23/115385 ] and [ http://www.cocoabuilder.com/archive/message/2004/1/6/98427 ] and [ http://www.google.com/ ] (sorry, couldn't resist) :-)
 

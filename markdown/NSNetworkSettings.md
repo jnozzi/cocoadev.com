@@ -1,9 +1,9 @@
 Undocumented Foundation class that looks pretty useful for HTTP proxy configuration, including but not limited to the evaluation of PAC files.
 
     
-@interface General/NSNetworkSettings : General/NSObject
+@interface NSNetworkSettings : NSObject
 {
-    General/NSNetworkSettingsInternal *_internal;
+    NSNetworkSettingsInternal *_internal;
 }
 
 + (id)sharedNetworkSettings;

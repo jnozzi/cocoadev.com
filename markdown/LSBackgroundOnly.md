@@ -4,21 +4,21 @@ If this key exists and is set to "1", Launch Services runs the application in th
 
 You can also specify the type of this key as Boolean or Number. However, these type values are only supported in Mac OS X 10.2 or later.
 
-http://developer.apple.com/documentation/General/MacOSX/Conceptual/General/BPRuntimeConfig/Articles/General/PListKeys.html
+http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/PListKeys.html
 
-See also General/LSUIElement.
-
-----
-General/LSBackgroundOnly (sometimes General/LSUIElement, I believe that's what it is, is also used, but for different reasons) is the flag for the active target that tells the compiled application to run in the background.
+See also LSUIElement.
 
 ----
-
-I believe that General/LSBackgroundOnly hides all windows and status items, which makes a true daemon app, whereas General/LSUIElement allows windows and status items. I could be wrong about this though. -- General/KentSutherland
+LSBackgroundOnly (sometimes LSUIElement, I believe that's what it is, is also used, but for different reasons) is the flag for the active target that tells the compiled application to run in the background.
 
 ----
 
-Actually General/LSBackgroundOnly does remove the standard menus, however, the developer can add an extra menu(s) for whatever reason to be used in various ways, perhaps contextually, perhaps as an addition to another part of the operating system.  Further, as long as the General/LSBackgroundOnly flagged application forces a window to the front, then that window will be available, for example a global floating panel.  However, General/LSUIElement is typically used for user element based interfaces/applications, whereas General/LSBackgroundOnly is typically used for true background only applications.  As always, it is really up to the developer to decide which is more appropriate.  Of course, you should probably look into the variations on Apple's developer website.  
+I believe that LSBackgroundOnly hides all windows and status items, which makes a true daemon app, whereas LSUIElement allows windows and status items. I could be wrong about this though. -- KentSutherland
 
---General/TriLateral
+----
+
+Actually LSBackgroundOnly does remove the standard menus, however, the developer can add an extra menu(s) for whatever reason to be used in various ways, perhaps contextually, perhaps as an addition to another part of the operating system.  Further, as long as the LSBackgroundOnly flagged application forces a window to the front, then that window will be available, for example a global floating panel.  However, LSUIElement is typically used for user element based interfaces/applications, whereas LSBackgroundOnly is typically used for true background only applications.  As always, it is really up to the developer to decide which is more appropriate.  Of course, you should probably look into the variations on Apple's developer website.  
+
+--TriLateral
 
 ----

@@ -1,12 +1,12 @@
 Hello, 
 
-I am a Cocoa newbie and I'm wondering why the default code that's given in a cocoa application in Xcode creates and deallocates an General/NSAutoreleasePool. Do you always need to create an General/NSAutoreleasePool even if you never explicitly use the General/NSAutoreleasePool object that's been initialised?  I'm looking through "Cocoa Programming for Mac OS X" and it does the same thing in the 'General/LotteryEntry' exercise -- creating an General/NSAutoreleasePool 'pool' object even though that object is never explicitly used, as far as I can see.
+I am a Cocoa newbie and I'm wondering why the default code that's given in a cocoa application in Xcode creates and deallocates an NSAutoreleasePool. Do you always need to create an NSAutoreleasePool even if you never explicitly use the NSAutoreleasePool object that's been initialised?  I'm looking through "Cocoa Programming for Mac OS X" and it does the same thing in the 'LotteryEntry' exercise -- creating an NSAutoreleasePool 'pool' object even though that object is never explicitly used, as far as I can see.
 
 Thanks for your help.
 
 ----
 
-An General/NSAutoreleasePool is implicitly used whenever something is autoreleased.  The frameworks always assume autoreleasing is allowed, so it isn't safe to make *any* cocoa call if an autorelease pool doesn't exist.   For example, the line     General/[NSArray array] will leak memory if there isn't an autorelease pool set up.
+An NSAutoreleasePool is implicitly used whenever something is autoreleased.  The frameworks always assume autoreleasing is allowed, so it isn't safe to make *any* cocoa call if an autorelease pool doesn't exist.   For example, the line     [NSArray array] will leak memory if there isn't an autorelease pool set up.
 
 You can think of autorelease pools as being on a global stack.  When an object is autoreleased, it's added to the topmost pool.  When that pool is popped off the stack (i.e. when it's deallocated) it releases every object it contains.  This is the mechanism by which an autorelease is a 'delayed release'.  If there is no pool on the stack, autoreleased objects drop to the ground, so to speak, and are never released.  They leak.
 

@@ -4,18 +4,18 @@
 It is possible to customize the behavior of table views so that return/enter doesn't start editing the next row etc. Unfortunately it is not very obvious how to do this. 
 
 
-* Override keyDown: from General/NSResponder and take care of the keys you want to handle (forward the rest to super).
+* Override keyDown: from NSResponder and take care of the keys you want to handle (forward the rest to super).
 * Implement cancelOperation: which is called when you hit escape so that the editing is escaped (this should be the default behavior)
-* Implement textDidEndEditing: from General/NSTextView, see if the editing ended because of return and take action accordingly
+* Implement textDidEndEditing: from NSTextView, see if the editing ended because of return and take action accordingly
 
 
     
-#pragma mark General/NSResponder
+#pragma mark NSResponder
 
-- (void)keyDown:(General/NSEvent *)theEvent
+- (void)keyDown:(NSEvent *)theEvent
 {
 	if([theEvent keyCode] == 0x31)//Space
-		General/[NSApp sendAction:@selector(doSomethingWithSpace:) to:[self delegate] from:self];
+		[NSApp sendAction:@selector(doSomethingWithSpace:) to:[self delegate] from:self];
 	else if([theEvent keyCode] == 0x24 && [self numberOfSelectedRows] == 1)//return
 		[self editColumn:0 row:[self selectedRow] withEvent:theEvent select:YES];
 	else
@@ -25,23 +25,23 @@ It is possible to customize the behavior of table views so that return/enter doe
 - (void)cancelOperation:(id)sender
 {
 	[self abortEditing];
-	General/self window] makeFirstResponder:self];
+	self window] makeFirstResponder:self];
 }
 
 
 #pragma mark [[NSTableView
 
-- (void)textDidEndEditing:(General/NSNotification *)aNotification
+- (void)textDidEndEditing:(NSNotification *)aNotification
 {
 	// what made editing stop?
-	int movement = General/[aNotification userInfo] objectForKey:@"[[NSTextMovement"] intValue];
+	int movement = [aNotification userInfo] objectForKey:@"[[NSTextMovement"] intValue];
 	int selectedRow = [self selectedRow];
 	
 	// pass on info to superclass, which will advance the field editor
 	[super textDidEndEditing:aNotification];
 	
 	// was the movement a return?
-	if(movement == General/NSReturnTextMovement)
+	if(movement == NSReturnTextMovement)
 	{
 		// abort editing (you have to do it after calling [super textDidEndEditing:] or the changes will be ignored)
 		[self abortEditing];

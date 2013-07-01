@@ -8,7 +8,7 @@ But getting serious now....
 
 *An ADC sanctioned forum for Select and Premier developers with access to Tiger builds (and other seed items) to be able talk and share information. Then, they could read everything, and they would probably get better feedback than they do from the bug reporter. <-- UPDATE: I have submitted this to the ADC, so lets see what will happen.
 
-Amen! -- General/MikeZornek
+Amen! -- MikeZornek
 
 This isn't the first time this has been asked (far from it) and nothing's ever happened before, so don't hold your breath.
 

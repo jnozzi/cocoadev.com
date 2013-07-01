@@ -1,10 +1,10 @@
-I want to use the keychain to store and retrieve internet passwords. This is not the big problem, i.e. I use: http://goo.gl/General/OeSCu
+I want to use the keychain to store and retrieve internet passwords. This is not the big problem, i.e. I use: http://goo.gl/OeSCu
     
-#include <Security/General/SecKeychain.h>
+#include <Security/SecKeychain.h>
 
    // store a password in the keychain
-   General/OSStatus status = General/SecKeychainAddInternetPassword(
-      NULL,                            // General/SecKeychainRef keychain, 
+   OSStatus status = SecKeychainAddInternetPassword(
+      NULL,                            // SecKeychainRef keychain, 
       strlen(server),                  // UInt32 serverNameLength, 
       server,                          // const char *serverName, 
       0,                               // UInt32 securityDomainLength, 
@@ -14,16 +14,16 @@ I want to use the keychain to store and retrieve internet passwords. This is not
       strlen(path),                    // UInt32 pathLength, 
       path,                            // const char *path, 
       port,                            // UInt16 port, 
-      kSecProtocolTypeFTP,             // General/SecProtocolType protocol, 
-      kSecAuthenticationTypeDefault,   // General/SecAuthType authType, 
+      kSecProtocolTypeFTP,             // SecProtocolType protocol, 
+      kSecAuthenticationTypeDefault,   // SecAuthType authType, 
       strlen(password),                // UInt32 passwordLength, 
       password,                        // const void *passwordData, 
-      &item                            // General/SecKeychainItemRef *itemRef
+      &item                            // SecKeychainItemRef *itemRef
    );
 
    // retrieve a password from the keychain
-   General/OSStatus status = General/SecKeychainFindInternetPassword(
-      NULL,                            // General/CFTypeRef keychainOrArray, 
+   OSStatus status = SecKeychainFindInternetPassword(
+      NULL,                            // CFTypeRef keychainOrArray, 
       strlen(server),                  // UInt32 serverNameLength, 
       server,                          // const char *serverName, 
       0,                               // UInt32 securityDomainLength, 
@@ -33,22 +33,22 @@ I want to use the keychain to store and retrieve internet passwords. This is not
       strlen(path),                    // UInt32 pathLength, 
       path,                            // const char *path, 
       port,                            // UInt16 port, 
-      kSecProtocolTypeFTP,             // General/SecProtocolType protocol, 
-      kSecAuthenticationTypeDefault,   // General/SecAuthType authType, 
+      kSecProtocolTypeFTP,             // SecProtocolType protocol, 
+      kSecAuthenticationTypeDefault,   // SecAuthType authType, 
       &passwordLength,                 // UInt32 *passwordLength, 
       &passwordBuf,                    // void **passwordData, 
-      &item                            // General/SecKeychainItemRef *itemRef
+      &item                            // SecKeychainItemRef *itemRef
    );
 
 
 The problem is, that in the keychain the entry is shown as the account name -- and likewise, when my application request the password, the system tells me that my app wish to access <account>, which is quite ambiguous.
 
-I did find kSecLabelItemAttr in the "documentation", which I assume can be used to set the label differently. But for General/SecKeychainItemModifyAttributesAndData() to work (which I assume is what I want, or perhaps General/SecKeychainItemModifyContent()) I need to set up attribute lists and such which I don't really understand. Can anyone clarify the meaning of:
+I did find kSecLabelItemAttr in the "documentation", which I assume can be used to set the label differently. But for SecKeychainItemModifyAttributesAndData() to work (which I assume is what I want, or perhaps SecKeychainItemModifyContent()) I need to set up attribute lists and such which I don't really understand. Can anyone clarify the meaning of:
 
 
-* General/SecKeychainAttribute -- what is the type?
-* General/SecKeychainAttributeList -- am I to set this up manually (with count and attr pointer)?
-* General/SecKeychainAttributeInfo -- and what the h... is this?
+* SecKeychainAttribute -- what is the type?
+* SecKeychainAttributeList -- am I to set this up manually (with count and attr pointer)?
+* SecKeychainAttributeInfo -- and what the h... is this?
 * 'data' and 'length' -- given to many functions, but how does one data/length pair relate to a list of attributes?
 
 
@@ -60,7 +60,7 @@ Also, what is the recommended behaviour if e.g. I request a password, am denied 
 
 ----
 
-You might find the Carbon Keychain API is better for you, I don't really know. I wonder if Apple will ever open up their Cocoa API (General/SecurityHICocoa.framework). -- General/FinlayDobbie
+You might find the Carbon Keychain API is better for you, I don't really know. I wonder if Apple will ever open up their Cocoa API (SecurityHICocoa.framework). -- FinlayDobbie
 
 ----
 
@@ -68,11 +68,11 @@ I thought the above *was* the Carbon API?!?
 
 ----
 
-**Updated:** With the release of Panther, there finally is some actual documentation on the concepts of the General/KeyChain: http://developer.apple.com/documentation/Security/Conceptual/keychainServConcepts/01introduction/index.html
+**Updated:** With the release of Panther, there finally is some actual documentation on the concepts of the KeyChain: http://developer.apple.com/documentation/Security/Conceptual/keychainServConcepts/01introduction/index.html
 
 This includes an example of how to construct a 'custom' entry, which is actually just a normal internet password, but with an extra attribute (being the label, which is what I wanted above), and there is also an example of how these attribute lists are constructed.
 
-Also with Panther, it no longer uses 'account' as the name of the General/KeyChainItem, but for internet passwords it uses the server part of the URL (which makes more sense).
+Also with Panther, it no longer uses 'account' as the name of the KeyChainItem, but for internet passwords it uses the server part of the URL (which makes more sense).
 
 ----
 
@@ -82,7 +82,7 @@ I think the above link is now: http://developer.apple.com/documentation/Security
 
 On the little example page is says:
 
-    status = General/SecKeychainItemModifyAttributesAndData (
+    status = SecKeychainItemModifyAttributesAndData (
      itemRef,            // the item reference
      &attributes,        // no change to attributes
      passwordLength,     // length of password
@@ -96,7 +96,7 @@ this is the problem I'm having, the attributes are not getting changed.  The pas
 
 I can not give you any advice on the attributes, but when I call:
 
-    err = General/SecKeychainItemModifyAttributesAndData(item, nil, strlen(passwordUTF8), &passwordUTF8);
+    err = SecKeychainItemModifyAttributesAndData(item, nil, strlen(passwordUTF8), &passwordUTF8);
 
 the password is garbled afterwards. Any idea why that happens?
 
@@ -110,15 +110,15 @@ Alex, try dropping the & from passwordUTF8 - it looks like you're passing a poin
 
 ----
 
-General/SecKeychainItemModifyAttributesAndData should be General/SecKeychainItemModifyContent
+SecKeychainItemModifyAttributesAndData should be SecKeychainItemModifyContent
 
 Cheers,
 Brian Amerige.
 
 ----
 
-It's better to use General/SecKeychainItemModifyAttributesAndData as it's the newer function and hadles more attributes. Not a problem for modifing the data but might as well stick to the lastest General/APIs.
+It's better to use SecKeychainItemModifyAttributesAndData as it's the newer function and hadles more attributes. Not a problem for modifing the data but might as well stick to the lastest APIs.
 
 ----
 
-If you need to use attributes from the keychain, read "Re:Creating a General/SecKeychainAttributeList" at lists.apple.com (apple-cdsa) post by General/AaronHillegass. It seems a lot easier to use the function to create "all" attributes for the class rather than try to create a specific Info struct manually.
+If you need to use attributes from the keychain, read "Re:Creating a SecKeychainAttributeList" at lists.apple.com (apple-cdsa) post by AaronHillegass. It seems a lot easier to use the function to create "all" attributes for the class rather than try to create a specific Info struct manually.

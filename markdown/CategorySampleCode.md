@@ -1,9 +1,9 @@
-**Implementing General/ClassCategories**
+**Implementing ClassCategories**
 
-This sample code comes from a mailing list post by Uli Zappe and shows how to implement General/ClassCategories:
+This sample code comes from a mailing list post by Uli Zappe and shows how to implement ClassCategories:
 
 
-**General/MySillyStringAddition.h**
+**MySillyStringAddition.h**
 ----
     
  #import <Foundation/NSString.h>
@@ -16,7 +16,7 @@ This sample code comes from a mailing list post by Uli Zappe and shows how to im
 
 
 
-**General/MySillyStringAddition.m**
+**MySillyStringAddition.m**
 ----
     
  #import "MySillyStringAddition.h"
@@ -33,13 +33,13 @@ This sample code comes from a mailing list post by Uli Zappe and shows how to im
 
 ----
 
-See also General/KissyFaceView for an example of hiding private API using General/ClassCategories.  You may also want to see General/CocoaDevUsersAdditions for more keen categories.
+See also KissyFaceView for an example of hiding private API using ClassCategories.  You may also want to see CocoaDevUsersAdditions for more keen categories.
 ----
-I'm not sure of the value of this example but it was meant to serve as an example of what could usefully? be done, it's based on some General/SmallTalk code I once saw.
+I'm not sure of the value of this example but it was meant to serve as an example of what could usefully? be done, it's based on some SmallTalk code I once saw.
 
-**General/URLString.h**
+**URLString.h**
 
-Add a Category so that a General/NSString can return the contents of a Web page as General/NSString.
+Add a Category so that a NSString can return the contents of a Web page as NSString.
 
     
  #import <Foundation/NSString.h>
@@ -49,7 +49,7 @@ Add a Category so that a General/NSString can return the contents of a Web page 
  @end
 
  
-**General/URLString.m**
+**URLString.m**
     
  #import <Foundation/Foundation.h>
  #import "URLString.h"
@@ -86,7 +86,7 @@ Example of silly use.
  #import <Foundation/Foundation.h>
  #import "URLString.h"
  int main (int argc, const char * argv[]) {
-   NSAutoreleasePool * pool = General/NSAutoreleasePool alloc] init];
+   NSAutoreleasePool * pool = NSAutoreleasePool alloc] init];
    
    NSString *page = [@"http://www.google.com" asURL];
    NSLog(@"Page = %@", page);
@@ -98,4 +98,4 @@ Example of silly use.
 *Ahh, [[StringWithCString strikes again! Please don't use it, it is evil.*
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

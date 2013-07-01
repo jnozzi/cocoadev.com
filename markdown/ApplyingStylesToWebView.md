@@ -1,4 +1,4 @@
-Is there an easy way to apply a CSS style to a page in a General/WebView?
+Is there an easy way to apply a CSS style to a page in a WebView?
 
 Thanks.
 
@@ -12,7 +12,7 @@ I just insert this into the <head> tag:
 
 There should be a better way though...
 
---General/ZacWhite
+--ZacWhite
 
 ----
 

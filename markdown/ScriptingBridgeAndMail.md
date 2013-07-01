@@ -3,9 +3,9 @@
 I've been playing around with the new Scripting Bridge in Leopard and trying to send an email through Apples Mail, but for some reason I can't specify recipients in e-mails.
 
     
-General/MailApplication *mail = General/[SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
-General/MailOutgoingMessage *mess = General/[mail classForScriptingClass:@"outgoing message"] alloc] init];
-[[MailToRecipient *to = General/[mail classForScriptingClass:@"to recipient"] alloc] init];
+MailApplication *mail = [SBApplication applicationWithBundleIdentifier:@"com.apple.mail"];
+MailOutgoingMessage *mess = [mail classForScriptingClass:@"outgoing message"] alloc] init];
+[[MailToRecipient *to = [mail classForScriptingClass:@"to recipient"] alloc] init];
 [[mail outgoingMessages] addObject:mess];
 [[mess toRecipients] addObject:to];
 mess.sender = @"my@address.com";  // The sender of the message
@@ -19,8 +19,8 @@ Everything is fine until the last line. A new mail is created and filled with su
     
 2007-11-11 19:49:10.688 test[6665:10b] *** Terminating app due to uncaught exception '[[NSGenericException', reason: 'Apple event returned an error.  Event = 'core'\'setd'{ '----':'obj '{ 'want':'prop', 'from':'obj '{ 'from':'obj '{ 'from':'null'(), 'want':'bcke', 'form':'ID  ', 'seld':392386640 }, 'want':'trcp', 'form':'indx', 'seld':1 }, 'form':'prop', 'seld':'radd' }, 'data':'utxt'("test@address.com") }
 Error info = {
-    General/ErrorNumber = -1719;
-    General/ErrorOffendingObject = <General/MailToRecipient @0x535c30: General/MailToRecipient 0 of General/MailOutgoingMessage id 392386640 of application "Mail" (4719)>;
+    ErrorNumber = -1719;
+    ErrorOffendingObject = <MailToRecipient @0x535c30: MailToRecipient 0 of MailOutgoingMessage id 392386640 of application "Mail" (4719)>;
 }'
 
 
@@ -52,7 +52,7 @@ Anyway, the correct command to use is:
 make new to recipient at end of to recipients of theOutgoingMessage with properties {address:"test@address.com"}
 
 
-For Scripting Bridge, see -General/[SBObject initWithProperties:].
+For Scripting Bridge, see -[SBObject initWithProperties:].
 
 Scripting Bridge also deserves blame here for obfuscating the heck out of various aspects of Apple event IPC, including object creation, making it difficult for the average user to understand what's actually going on beneath its pseudo-OO exterior. If Apple event IPC and Scripting Bridge really did operate in an object-oriented fashion a-la COM/CORBA, these three pieces of (Python) code would all do the same thing:
 
@@ -84,20 +84,20 @@ p.s. For a less obfuscated and more reliable alternative to Scripting Bridge, se
 
 ----
 
-Without knowing much about Mail scripting, it looks like the address is a collection, and you're trying to set it to a string.  The clue is "General/MailToRecipient 0 of General/MailOutgoingMessage".  --K
+Without knowing much about Mail scripting, it looks like the address is a collection, and you're trying to set it to a string.  The clue is "MailToRecipient 0 of MailOutgoingMessage".  --K
 
 ----
 
 This is what the interface looks like.
     
 // An email recipient
-@interface General/MailRecipient : General/MailItem
-@property (copy) General/NSString *address;  // The recipients email address
-@property (copy) General/NSString *name;  // The name used for display
+@interface MailRecipient : MailItem
+@property (copy) NSString *address;  // The recipients email address
+@property (copy) NSString *name;  // The name used for display
 @end
 
 // An email recipient in the To: field
-@interface General/MailToRecipient : General/MailRecipient
+@interface MailToRecipient : MailRecipient
 @end
 
 
@@ -108,7 +108,7 @@ This is what the interface looks like.
  Scripting Bridge falls down when it comes to collections. Running iTunes through sdp it generates the following method for iTunesPlaylist
 
     
-- (iTunesTrack *) searchFor:(General/NSString *)for_ only:(iTunesESrA)only;  // search a playlist for tracks matching the search string. Identical to entering search text in the Search field in iTunes.
+- (iTunesTrack *) searchFor:(NSString *)for_ only:(iTunesESrA)only;  // search a playlist for tracks matching the search string. Identical to entering search text in the Search field in iTunes.
 
 
 What it doesn't say is that unless the search yields only one track (even then, I haven't actually tested it) the method will return a collection, an array to be exact. So everytime I call this method I'm having to perform a runtime check for the class of the object to see if it has returned an array or a single track.

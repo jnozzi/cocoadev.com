@@ -1,6 +1,6 @@
 Have any ideas for Cocoa apps? Something you'd like to have but can't find a version that runs on your Mac? Want to get your idea read by hundreds (maybe thousands) of incredibly brilliant developers? **You've come to the right place!**
 
-If you're a newbie looking for something to practice your cocoa on, be sure to check out the ideas over at General/NewbieProjectIdeas.
+If you're a newbie looking for something to practice your cocoa on, be sure to check out the ideas over at NewbieProjectIdeas.
 
 ----
 
@@ -31,7 +31,7 @@ You'll keep this page easy to read and update for everyone by using the followin
 
 ***2004.10.07: Particle Swarm Optimization (PSO) GUI** -- I have an open source Java version of the basic PSO algorithm available on my web site that I always wanted to add a GUI to but haven't found the time for (click on my name, below, for a link to an introductory article about PSO). PSO has a lot of parameters controlling its behavior which would be nice to be able to set via a GUI. More important, though, would be the ability to create or adjust the "test code" (what's called the "fitness algorithm") via the GUI (which would involve being able to compile or interpret and then run code from the GUI). More interesting would be a graphic rendering of the swarm in action (not hard to do for simple problems but much tougher to do well when there are more than 3 unknowns in the problem being solved).
 
-This would probably work as a freeware (or possibly shareware) product. If you're smart enough, though,  to get it bundled with some kind of *problem solver* that PSO works well for, it could be worth considerably more. --General/PaulPomeroy
+This would probably work as a freeware (or possibly shareware) product. If you're smart enough, though,  to get it bundled with some kind of *problem solver* that PSO works well for, it could be worth considerably more. --PaulPomeroy
 ----
 **Way Cool: 1, Yawn: 0**
 
@@ -69,7 +69,7 @@ I have no quarrel with that. The technology of media sharing vs. DRM is a good o
 I don't think this has anything to do with Cocoa, but maybe someone will chime in as to how its security features impinge here.
 -- I'm thinking something that would let you group information together and "freeze" it as a file. Sound, Images, Movies, and text in some kind of HTML-like WYSIWYG form. It'd have to be XML based, of course... 
 
-Anyway, if you could do this with applications and somehow "freeze" them together it'd be a lifesaver. Working on your tutorial at macdevcenter.com? Freeze the Safari window and the General/XCode window as a file...
+Anyway, if you could do this with applications and somehow "freeze" them together it'd be a lifesaver. Working on your tutorial at macdevcenter.com? Freeze the Safari window and the XCode window as a file...
 ----
 **Way Cool: 1, Yawn: 0**
 

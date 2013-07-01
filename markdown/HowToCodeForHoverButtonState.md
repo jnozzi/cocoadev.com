@@ -6,7 +6,7 @@ I am using a custom face for the button and I have all 4 states (normal, down, d
 But in IB I can ony control the first two.
 
 ----
-Well, IB's still not going to help you much, but you can subclass General/NSButton and override     mouseEntered:,     mouseExited:, and     setEnabled:. In each of those methods you can change the image. (Your alternate/down image can probably stay the same the whole time, since it'll only happen after a hover anyway). That should be enough to get you started...but if you need more help just ask. --General/JediKnil
+Well, IB's still not going to help you much, but you can subclass NSButton and override     mouseEntered:,     mouseExited:, and     setEnabled:. In each of those methods you can change the image. (Your alternate/down image can probably stay the same the whole time, since it'll only happen after a hover anyway). That should be enough to get you started...but if you need more help just ask. --JediKnil
 
 ----
 
@@ -16,34 +16,34 @@ JKP
 
 ----
 
-Seems you need to use General/AddTrackingRect to handle tracking rects before you can even receive     mouseEntered: and     mouseExited: messages. This is very tricky to get right. I posted some code that might help on the General/AddTrackingRect page.
+Seems you need to use AddTrackingRect to handle tracking rects before you can even receive     mouseEntered: and     mouseExited: messages. This is very tricky to get right. I posted some code that might help on the AddTrackingRect page.
 
---General/WAHa
+--WAHa
 
 ----
 
 My implementation:
     
 
-#import "General/HoverButtonCell.h"
+#import "HoverButtonCell.h"
 
-@interface General/NSButtonCell()
+@interface NSButtonCell()
 - (void)_updateMouseTracking;
 @end
 
-@implementation General/HoverButtonCell
+@implementation HoverButtonCell
 @synthesize hoverImage;
 
-- (void)mouseEntered:(General/NSEvent *)event {
+- (void)mouseEntered:(NSEvent *)event {
 	if (hoverImage != nil && [hoverImage isValid]) {
-		_oldImage = General/([[NSButton *)[self controlView] image] retain];
-		[(General/NSButton *)[self controlView] setImage:hoverImage];
+		_oldImage = ([[NSButton *)[self controlView] image] retain];
+		[(NSButton *)[self controlView] setImage:hoverImage];
 	}
 }
 
-- (void)mouseExited:(General/NSEvent *)event {
+- (void)mouseExited:(NSEvent *)event {
 	if (_oldImage != nil && [_oldImage isValid]) {
-		[(General/NSButton *)[self controlView] setImage:_oldImage];
+		[(NSButton *)[self controlView] setImage:_oldImage];
 		[_oldImage release];
 		_oldImage = nil;
 	}
@@ -51,7 +51,7 @@ My implementation:
 
 - (void)_updateMouseTracking {
 	[super _updateMouseTracking];
-	if ([self controlView] != nil && General/self controlView] respondsToSelector:@selector(_setMouseTrackingForCell:)]) {
+	if ([self controlView] != nil && self controlView] respondsToSelector:@selector(_setMouseTrackingForCell:)]) {
 		[[self controlView] performSelector:@selector(_setMouseTrackingForCell:) withObject:self];
 	}
 }
@@ -60,7 +60,7 @@ My implementation:
 	[newImage retain];
 	[hoverImage release];
 	hoverImage = newImage;
-	General/self controlView] setNeedsDisplay:YES];
+	self controlView] setNeedsDisplay:YES];
 }
 
 - (void)dealloc {
@@ -77,12 +77,12 @@ Then the .h file:
     
 #import <Cocoa/Cocoa.h>
 
-@interface [[HoverButtonCell : General/NSButtonCell {
-	General/NSImage *_oldImage;
-	General/NSImage *hoverImage;
+@interface [[HoverButtonCell : NSButtonCell {
+	NSImage *_oldImage;
+	NSImage *hoverImage;
 }
 
-@property (retain) General/NSImage *hoverImage;
+@property (retain) NSImage *hoverImage;
 
 @end
 

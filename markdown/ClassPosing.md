@@ -1,30 +1,30 @@
 
 
-General/NSObject's poseAsClass: method lets you take a class of your own and use it to replace an existing class.  This is useful for changing behaviour of an existing class.
+NSObject's poseAsClass: method lets you take a class of your own and use it to replace an existing class.  This is useful for changing behaviour of an existing class.
 
-For example, let's say you create a subclass of General/NSWindow (we'll call it MyWindow) that draws its elements (title bar, close/minimize/zoom buttons) differently from the Aqua standard.  You can already use IB to specify the class of a window object and make it use your subclass, but what if you want your subclass to be used EVERYWHERE in your application, without modifying all your nibs (perhaps you allow a user preference to specify the look of the windows)?  poseAsClass: will let you insert MyWindow into the object hierarchy in place of General/NSWindow;  All General/NSWindow subclasses will now effectively be subclasses of MyWindow.  Interesting, MyWindow's superclass will still be the original General/NSWindow, even though all external accesses to General/NSWindow will now access MyWindow instead!
+For example, let's say you create a subclass of NSWindow (we'll call it MyWindow) that draws its elements (title bar, close/minimize/zoom buttons) differently from the Aqua standard.  You can already use IB to specify the class of a window object and make it use your subclass, but what if you want your subclass to be used EVERYWHERE in your application, without modifying all your nibs (perhaps you allow a user preference to specify the look of the windows)?  poseAsClass: will let you insert MyWindow into the object hierarchy in place of NSWindow;  All NSWindow subclasses will now effectively be subclasses of MyWindow.  Interesting, MyWindow's superclass will still be the original NSWindow, even though all external accesses to NSWindow will now access MyWindow instead!
 
 **Example:**
 A piece of the class hierarchy before calling poseAsClass:
 
     
- General/NSObject -- General/NSWindow -- General/NSPanel
+ NSObject -- NSWindow -- NSPanel
                       \- MyWindow
 
 
 after calling [MyWindow poseAsClass:[NSWindow class]]
 
     
- General/NSObject -- General/NSWindow -- MyWindow -- General/NSPanel
+ NSObject -- NSWindow -- MyWindow -- NSPanel
 
 
-The important distinction that is not seen in the "after" diagram is that from now on, the original General/NSWindow can no longer be referenced by name;  It still exists and its code will be used wherever MyWindow refers to "super", but it is "invisible" and all references to General/NSWindow will actually go to MyWindow.
+The important distinction that is not seen in the "after" diagram is that from now on, the original NSWindow can no longer be referenced by name;  It still exists and its code will be used wherever MyWindow refers to "super", but it is "invisible" and all references to NSWindow will actually go to MyWindow.
 
 For this method to work best, it's important to do the posing as early as possible when the application starts;  Inside of the main() function is a good place.
 
-See also General/PosingClasses.
+See also PosingClasses.
 
-General/StepWise article on posing (and General/ClassCategories, and when to use each): [http://www.stepwise.com/Articles/Technical/PosersAndCategories/index.html]
+StepWise article on posing (and ClassCategories, and when to use each): [http://www.stepwise.com/Articles/Technical/PosersAndCategories/index.html]
 
 ----
 
@@ -41,32 +41,32 @@ As stated by the second to last sentence of the opening entry.
 The diagrams above may be the best way to understand it at first, but they aren't exactly correct.  The hierarchy goes from 
 
     
- General/NSObject -- General/NSWindow -- General/NSPanel
+ NSObject -- NSWindow -- NSPanel
                       \- MyWindow
 
 
 to
 
     
- General/NSObject -- %General/NSWindow -- General/NSWindow -- General/NSPanel
+ NSObject -- %NSWindow -- NSWindow -- NSPanel
                        \- MyWindow
 
 
-    General/NSWindow is mostly a shallow copy of     MyWindow, except that it has a different name.      %General/NSWindow is the class formerly known as     General/NSWindow.  It can no longer be referred to by name.
+    NSWindow is mostly a shallow copy of     MyWindow, except that it has a different name.      %NSWindow is the class formerly known as     NSWindow.  It can no longer be referred to by name.
 
-    MyWindow and     General/NSWindow (post-posing) are distinct classes, but they share exactly the same method lists, adopted protocols, etc. 
+    MyWindow and     NSWindow (post-posing) are distinct classes, but they share exactly the same method lists, adopted protocols, etc. 
 
 
-
-----
-
-A class can only pose for its super class if it has no instance variables, but there's a standard workaround: a static General/NSMutableDictionary mapping instances to 'ivar' values.  It's the same trick used for General/ClassCategories, and there's sample code over there.
 
 ----
 
-Hypothetical question: what happens if two classes try to pose as the same class. Would the class hierarchy then look like this? --General/JediKnil
+A class can only pose for its super class if it has no instance variables, but there's a standard workaround: a static NSMutableDictionary mapping instances to 'ivar' values.  It's the same trick used for ClassCategories, and there's sample code over there.
+
+----
+
+Hypothetical question: what happens if two classes try to pose as the same class. Would the class hierarchy then look like this? --JediKnil
     
- General/NSObject -- %%General/NSWindow -- %General/NSWindow -- General/NSWindow
+ NSObject -- %%NSWindow -- %NSWindow -- NSWindow
                         \- WindowOne \-WindowTwo
 
 
@@ -74,11 +74,11 @@ Hypothetical question: what happens if two classes try to pose as the same class
 
 Pretty much.  If you look at the strings the runtime print out, it's actually
     
- General/NSObject -- %General/NSWindow -- %General/NSWindow -- General/NSWindow
+ NSObject -- %NSWindow -- %NSWindow -- NSWindow
                        \- WindowOne \-WindowTwo
 
 
-    %General/NSWindow isn't a class that can be referenced by name anyway, so, uh, I guess it doesn't matter that two classes have the same name.
+    %NSWindow isn't a class that can be referenced by name anyway, so, uh, I guess it doesn't matter that two classes have the same name.
 
 Note something weird:  post posing,     [MyWindow isKindOfClass:[NSWindow class]] is false.
 
@@ -177,14 +177,14 @@ I did some playing around with poseAsClass: and just wanted to share the code wi
    return 0;
  }
 
---General/GregorNobis
+--GregorNobis
 
-*Why don't you use General/NSLog? This is Cocoa! --General/JediKnil*
+*Why don't you use NSLog? This is Cocoa! --JediKnil*
 
-*Well, for me it's not pure Cocoa, I'm working on a project that mixes C, Objective C and Scheme. I know, I could've still used General/NSLog - but it doesn't seem to make much of a difference. I just wanted to print out a couple o' words and printf did the job. --General/GregorNobis*
+*Well, for me it's not pure Cocoa, I'm working on a project that mixes C, Objective C and Scheme. I know, I could've still used NSLog - but it doesn't seem to make much of a difference. I just wanted to print out a couple o' words and printf did the job. --GregorNobis*
 
 ----
 
-I tried this with XCODE 1.5 (General/ZeroLink) - and it didn't work (using Developer option). However, I found if I used the "Deployment" option, it worked. So, just be aware you might have the same problem. I was trying to pose as General/NSTimer, and after I did the poseAsClass I put General/NSLogs to look at the classes - that is how I found the problem.
+I tried this with XCODE 1.5 (ZeroLink) - and it didn't work (using Developer option). However, I found if I used the "Deployment" option, it worked. So, just be aware you might have the same problem. I was trying to pose as NSTimer, and after I did the poseAsClass I put NSLogs to look at the classes - that is how I found the problem.
 
 David

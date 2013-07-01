@@ -6,9 +6,9 @@ How do I launch it, get it ready to recieve distributed object commands, and the
 
     
 // will get the full path of your app if it is located in /Contents/Resources/
-General/NSString *path = General/[[NSBundle mainBundle] pathForResource:@"myApp" ofType:@"app"];
+NSString *path = [[NSBundle mainBundle] pathForResource:@"myApp" ofType:@"app"];
  // will launch the app
-General/[[NSWorkspace sharedWorkspace] openFile:path];
+[[NSWorkspace sharedWorkspace] openFile:path];
 
 
 ----
@@ -25,20 +25,20 @@ system("killall myApp"); // easiest - you asked for it :-)
 I use 
     
 // pass the application bundle location as a url in the openURLs array
-General/[[NSWorkspace sharedWorkspace]
+[[NSWorkspace sharedWorkspace]
     openURLs:applicationURLinArray
     withAppBundleIdentifier:nil
     options:options
     additionalEventParamDescriptor:nil
     launchIdentifiers:nil];
 
-to launc the application. This method will not cause a distributed General/NSWorkspaceDidLaunchApplicationNotification to be posted, but it has the advantage that you can use launch options like General/NSWorkspaceLaunchWithoutActivation and General/NSWorkspaceLaunchAsync. I would just post a distributed notification in my background application if you want your main application to be notified of the application launch.
+to launc the application. This method will not cause a distributed NSWorkspaceDidLaunchApplicationNotification to be posted, but it has the advantage that you can use launch options like NSWorkspaceLaunchWithoutActivation and NSWorkspaceLaunchAsync. I would just post a distributed notification in my background application if you want your main application to be notified of the application launch.
 
 To quit the background application you can send another distributed notification or you could use an applescript like:
     
-tell application "General/MyBackgroundApp" to quit
+tell application "MyBackgroundApp" to quit
 
 
--- General/JorisKluivers
+-- JorisKluivers
 
-See General/QuitApplicationUsingAppleEvent for faster quit code.
+See QuitApplicationUsingAppleEvent for faster quit code.

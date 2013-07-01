@@ -53,7 +53,7 @@ Not sure if I have understood, but I'll try:
 
 Somewhere in myDocument, when you create the myClass instance, you may do:
 
-  myClass* inst = General/myClass alloc] initWithMyDocument:self]; 
+  myClass* inst = myClass alloc] initWithMyDocument:self]; 
 
 A faster way would be to use outlets in the [[InterfaceBuilder file for your document (create an instance there of myClass with an outlet and attach that outlet to File's Owner -- that is, the myDocument instance).
 

@@ -1,14 +1,14 @@
-A very fast 64-bit chip (or a shortened name for the General/PowerMac General/GeeFive).
+A very fast 64-bit chip (or a shortened name for the PowerMac GeeFive).
 
 See http://developer.apple.com/hardware/g5/ for more technical details.
 
-Much faster than the General/GeeFour.
+Much faster than the GeeFour.
 
-Much, much faster than the General/GeeThree.
+Much, much faster than the GeeThree.
 
-[Much, much, much, much faster than a General/SixtyEightKay-ha!]
+[Much, much, much, much faster than a SixtyEightKay-ha!]
 
-Much, much much, much, much, much, much faster than a 6502 *Shouldn't that be General/SixFiveOhTwo? ;)*
+Much, much much, much, much, much, much faster than a 6502 *Shouldn't that be SixFiveOhTwo? ;)*
 
 http://a772.g.akamai.net/7/772/51/b17df8b651c6b3/www.apple.com/powermac/images/indextop06232003.jpg
 http://a1344.g.akamai.net/7/1344/51/900c203718ebc8/www.apple.com/powermac/images/designclutter06232003.jpg
@@ -40,7 +40,7 @@ http://images.apple.com/imac/images/indextop20040831.jpg
 
 ----
 
-That thing is just ugly... I much preferred the old design. I was thinking of getting an iMac, but no way I'm putting that thing on my desk - I'll get a General/PowerBook instead. My ideal Mac would be a General/PowerBookGeeFive with a vertical docking station kinda thing... You'd have all your desktop stuff connected to that and the PB would slide into the dock like a book. I wonder if Steve takes product suggestions via email ;)
+That thing is just ugly... I much preferred the old design. I was thinking of getting an iMac, but no way I'm putting that thing on my desk - I'll get a PowerBook instead. My ideal Mac would be a PowerBookGeeFive with a vertical docking station kinda thing... You'd have all your desktop stuff connected to that and the PB would slide into the dock like a book. I wonder if Steve takes product suggestions via email ;)
 
 ----
 

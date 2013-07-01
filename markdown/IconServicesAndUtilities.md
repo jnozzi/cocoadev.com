@@ -1,9 +1,9 @@
 
 
-General/IconServicesAndUtilities is the Carbon API used to deal with icons, icon resources and icon files.
+IconServicesAndUtilities is the Carbon API used to deal with icons, icon resources and icon files.
 
-**General/CocoaWrappers**:
+**CocoaWrappers**:
 
-* General/IconFamily
+* IconFamily
 
 ----

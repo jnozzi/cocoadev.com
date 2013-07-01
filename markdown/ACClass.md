@@ -12,8 +12,8 @@
      So, an ACClass object created from [NSObject class] won't include class methods, such as alloc
      such methods are accessible only via [NSObject class]->isa
      
-     General/ACClass alloc] initWithClass: [NSObject class;
-     General/ACClass alloc] initWithClass: [NSObject class]->isa];
+     ACClass alloc] initWithClass: [NSObject class;
+     ACClass alloc] initWithClass: [NSObject class]->isa];
  
  */
  -(id)initWithClass:(Class)aClass;

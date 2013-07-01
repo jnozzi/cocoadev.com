@@ -1,10 +1,10 @@
 
 
-Displaying the same text in multiple text views is as easy as replacing the text storage object of a text view with a shared     General/NSTextStorage object.
+Displaying the same text in multiple text views is as easy as replacing the text storage object of a text view with a shared     NSTextStorage object.
 
     
-@interface General/MyDocument : General/NSDocument {
-    General/IBOutlet General/NSTextView *topTextView, *bottomTextView;
+@interface MyDocument : NSDocument {
+    IBOutlet NSTextView *topTextView, *bottomTextView;
 }
 @end
 
@@ -15,24 +15,24 @@ in your document implementation...
 - (id)init {
 
     if (self = [super init]) {
-        storage = General/[[NSTextStorage alloc] init];
+        storage = [[NSTextStorage alloc] init];
     }
     return self;
 
 }
 
-- (BOOL)loadDataRepresentation:(General/NSData *)data ofType:(General/NSString *)aType {
+- (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType {
 
-    General/NSString *string = General/[[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    NSString *string = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if (string) {
-        [storage setAttributedString:General/[[[NSAttributedString alloc] initWithString:string] autorelease]];
+        [storage setAttributedString:[[[NSAttributedString alloc] initWithString:string] autorelease]];
         return YES;
     }
     return NO;
 
 }
 
-- (void)windowControllerDidLoadNib:(General/NSWindowController *)aController {
+- (void)windowControllerDidLoadNib:(NSWindowController *)aController {
 
     [super windowControllerDidLoadNib:aController];
     if (storage) {

@@ -1,11 +1,11 @@
 Hia, 
 
-Just an informal poll. How many people strictly stick to MVC? I am in the midst (near end) of a large Cocoa/C++ project which has C++ as the model layer, and Cocoa as the view and controller layers. There were a few design dilemmas (as in any large project), and I found that many of them were simply there because of my over-strict adherence to MVC. For example, my app uses a lot of General/AudioUnit<nowiki/>s, (wrapped in a General/AudioUnit Obj-C class), and I was trying to figure out how to make a MVC compliant view system for the AU's. One important caveat was that each single General/AudioUnit instance was to have 1 and ONLY 1 editor window. Having more would not harm the system, but they would waste resources for zero added value. So I was thinking of a way in which I could associate the editors somehow with the units, to enforce the 1 editor per unit policy. I came up with all sorts of ways, including having a singleton ensure a 1 to 1 relationship, but each one suffered from one subtle problem or another. Finally I realised that the best way would be to screw MVC (this time) and embed the editor in the AU class:
+Just an informal poll. How many people strictly stick to MVC? I am in the midst (near end) of a large Cocoa/C++ project which has C++ as the model layer, and Cocoa as the view and controller layers. There were a few design dilemmas (as in any large project), and I found that many of them were simply there because of my over-strict adherence to MVC. For example, my app uses a lot of AudioUnit<nowiki/>s, (wrapped in a AudioUnit Obj-C class), and I was trying to figure out how to make a MVC compliant view system for the AU's. One important caveat was that each single AudioUnit instance was to have 1 and ONLY 1 editor window. Having more would not harm the system, but they would waste resources for zero added value. So I was thinking of a way in which I could associate the editors somehow with the units, to enforce the 1 editor per unit policy. I came up with all sorts of ways, including having a singleton ensure a 1 to 1 relationship, but each one suffered from one subtle problem or another. Finally I realised that the best way would be to screw MVC (this time) and embed the editor in the AU class:
     
 - (void) showEditor
 {
     if(!editor)
-        editor = General/[[AUEditorController alloc] initWithWindowNibNamed:@"General/AUEditor"];
+        editor = [[AUEditorController alloc] initWithWindowNibNamed:@"AUEditor"];
 
     [editor showWindow:self];
 }
@@ -27,9 +27,9 @@ Do you mean you stored a link to a (unique) controller object in each model obje
 
 I haven't got a good mental picture of your architecture, unfortunately, but how about having a controller that pools the audio units? When a new editor is created (by the controller, presumably) the controller checks if there's an audio unit in the pool, connects it with the editor, and removes it from the pool. When the editor is closed the audio unit is pooled again. If there is no audio units in the pool, a new ones are created as needed. This way you're reusing the audio units (which seem to be a scarce supply) and you won't create new ones unless it's absolutely needed.
 
-Coupling components, like the view and the model is usually a bad idea, as tight coupling always is, but you seem to know that already. At the same time, it's not necessarily a bad idea to include the view in the model directly, since the model object knows better than any one else about what controls and fields the view should present (see the article linked from General/GettersAndSettersAreEvil for more info on that).
+Coupling components, like the view and the model is usually a bad idea, as tight coupling always is, but you seem to know that already. At the same time, it's not necessarily a bad idea to include the view in the model directly, since the model object knows better than any one else about what controls and fields the view should present (see the article linked from GettersAndSettersAreEvil for more info on that).
 
---General/TheoHultberg/Iconara
+--TheoHultberg/Iconara
 
 ----
 
@@ -43,7 +43,7 @@ So - in your case, you tried hard to find an MVC solution, and finally ended up 
 
 So yeah - it's frustrating when a bad design choice is implemented, but in the bigger picture, it's not nearly as frustrating as not delivering code on time. I make better MVC code now than I did a year ago - and in a year I'll do better than today.
 
---General/TimHart
+--TimHart
 
 ----
 
@@ -53,21 +53,21 @@ In your case,
 
     
 
-@implementation General/AudioUnit (General/EditorSupport)
+@implementation AudioUnit (EditorSupport)
 
 - (void) showEditor
 {
-    static General/NSMutableDictionary   *controllerDict = nil;
+    static NSMutableDictionary   *controllerDict = nil;
 
     if(nil == controllerDict)
     {
-       controllerDict = General/[[NSMutableDictionary alloc] init];
+       controllerDict = [[NSMutableDictionary alloc] init];
     }
    
-    General/AUEditorController *editor = [controllerDict objectForKey:self];
+    AUEditorController *editor = [controllerDict objectForKey:self];
     if(!editor)
     {
-        editor = General/[[AUEditorController alloc] initWithWindowNibNamed:@"General/AUEditor"]; 
+        editor = [[AUEditorController alloc] initWithWindowNibNamed:@"AUEditor"]; 
         [controllerDict setObject:editor forKey:self]; 
     }
 
@@ -82,24 +82,24 @@ The advantages:
    - No instance variable is added to the model class just to support editing.
    - Any object in the controller or view layers may use the -showEditor method, and object in the model need not know it exists.
    - The code is not particularly brittle: the same technique (using a different category and a different method) could add other editor types so that in no coupling from the model to a particular controller or view.
-   - The controller/view specific code is implemented in the controller/view layers and is not in the model at all.  For example, if the model is implemented as a framework, the General/EditorSupport category method is not in the model framework.
+   - The controller/view specific code is implemented in the controller/view layers and is not in the model at all.  For example, if the model is implemented as a framework, the EditorSupport category method is not in the model framework.
 
-For another example of this technique: See the way the General/ApplicationKit framework adds view related methods to the General/NSString class declared and implemented in the Foundation framework.
+For another example of this technique: See the way the ApplicationKit framework adds view related methods to the NSString class declared and implemented in the Foundation framework.
 
-*I would say the fact that it doesn't add an instance variable is actually a con � it reimplements the instance variable system using an General/NSDictionary just so it can say it doesn't use an instance variable. D'oh!*
+*I would say the fact that it doesn't add an instance variable is actually a con � it reimplements the instance variable system using an NSDictionary just so it can say it doesn't use an instance variable. D'oh!*
 
 I think, its a trade off. One thing to remember is that dictionaries retain objects, so In order to avoid circular references, some extra care is needed.
     
-@implementation General/AudioUnit(General/EditorSupport)
-- (void) setUIElement:(General/NSView*)view
+@implementation AudioUnit(EditorSupport)
+- (void) setUIElement:(NSView*)view
 {
-    [additions setObject:General/[NSValue valueWithPointer:(void*)view] forKey:@"General/MyUIKey];
+    [additions setObject:[NSValue valueWithPointer:(void*)view] forKey:@"MyUIKey];
 }
 
-- (General/NSView*) General/UIElement
+- (NSView*) UIElement
 {
-    id obj = [additions objectForKey:@"General/MyUIKey];
-    if(obj) return (General/NSView*)[obj pointerValue];
+    id obj = [additions objectForKey:@"MyUIKey];
+    if(obj) return (NSView*)[obj pointerValue];
 
     return nil;
 }
@@ -110,7 +110,7 @@ Sorry, the example is a little contrived :)
 
 ----
 
-Better still, just General/NSMapTable with General/NSNonRetainedObjectMapKeyCallBacks and General/NSNonOwnedPointerMapValueCallBacks and avoid retain cycles, General/NSValue instance creation, etc.
+Better still, just NSMapTable with NSNonRetainedObjectMapKeyCallBacks and NSNonOwnedPointerMapValueCallBacks and avoid retain cycles, NSValue instance creation, etc.
 
 *I would say the fact that it doesn't add an instance variable is actually a great plus.  I don't think the model object should contain any view specific information.  By not containing information about a particular view within the model, the design is left open to supporting any number of different views of the same model.  By not storing view information in the model, model objects can be easily archived and unarchived, put in undo stacks, copied, etc. which is much more complicated and requires special case code (within the model) to support if view information is mixed into the model*
 

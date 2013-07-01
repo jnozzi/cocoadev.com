@@ -2,4 +2,4 @@ I wonder how to create the famous animated lock for user-authentication Apple us
 
 ----
 
-You probably want to use the General/SecurityFramework and the General/SFAuthorizationView class.
+You probably want to use the SecurityFramework and the SFAuthorizationView class.

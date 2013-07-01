@@ -1,6 +1,6 @@
-General/JTTracker is a public domain sample that provides a framework for a UI tracking facility (grab handles). The code is public domain and free for use for all.
+JTTracker is a public domain sample that provides a framework for a UI tracking facility (grab handles). The code is public domain and free for use for all.
 
-http://www.jtechsoftworks.com/samples/General/TrackerSample.sit
+http://www.jtechsoftworks.com/samples/TrackerSample.sit
 
 *
 Pardon my ignorance, but what is a 'UI tracking facility' or 'grab handles' for that matter?

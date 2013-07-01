@@ -6,15 +6,15 @@ I have a basic outline view and nstreecontroller connected which is propogated w
 	
 	// check for editing row and end edit
 	if ([view editedRow] >= 0) {
-		General/NSTableColumn *tableColumn = General/view tableColumns] objectAtIndex:0];
+		NSTableColumn *tableColumn = view tableColumns] objectAtIndex:0];
 		[[NSCell *dataCell = [tableColumn dataCellForRow:[view editedRow]];
 		[dataCell endEditing:[view currentEditor]];
 	}
 	
-    General/NSArray *selectedObjects = [controller selectedObjects]; 
+    NSArray *selectedObjects = [controller selectedObjects]; 
     if ([selectedObjects count] > 0) {	
-		General/NSManagedObjectContext *context = [dataSource managedObjectContext]; 
-		General/NSEnumerator *objEnumerator = [selectedObjects objectEnumerator];
+		NSManagedObjectContext *context = [dataSource managedObjectContext]; 
+		NSEnumerator *objEnumerator = [selectedObjects objectEnumerator];
 		id obj;
 		while (obj = [objEnumerator nextObject]) {
 			[context deleteObject:obj];

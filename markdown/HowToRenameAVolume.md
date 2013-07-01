@@ -1,11 +1,11 @@
 Is there a way to rename a mounted volume programatically?
 
 ----
-The disktool command line utility has a '-n' switch for renaming volumes ... Perhaps a simple General/NSTask wrapper?
+The disktool command line utility has a '-n' switch for renaming volumes ... Perhaps a simple NSTask wrapper?
 
 ----
 
-General/NSAppleScript would do the trick as well.
+NSAppleScript would do the trick as well.
 
     
 tell application "System Events"
@@ -19,7 +19,7 @@ end tell
 
 I tried using disktool, and it works, but it sits open rather than quitting after it renames the disk... ???
 
-Why must errors be caught for General/AppleScript? Its a removable flash drive... Just wondering?
+Why must errors be caught for AppleScript? Its a removable flash drive... Just wondering?
 
 *Because if the rename doesn't take place for whatever reason (and there can always be reasons - they're users!), your app should reflect that rather than assuming everything's okay. Good practice. ;-)*
 

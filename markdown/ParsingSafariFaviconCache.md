@@ -2,7 +2,7 @@ I had reason recently to want to get inside Safari's favicon cache but I couldn'
 
     
 // Assume path is a path to ~/Library/Safari/Icons/XX/YY/long-name.cache
-General/NSData *dat = General/[NSData dataWithContentsOfFile:path];
+NSData *dat = [NSData dataWithContentsOfFile:path];
 	
 // Initialize and create a simple byte array
 unsigned char data[ [dat length] ];
@@ -11,8 +11,8 @@ unsigned char data[ [dat length] ];
 // Init variables.  These could be moved up so I could use j when initializing 
 // my byte array and make one less call, but I don't think it is too costly.
 int i, j = [dat length], icostart;
-General/NSString *sitePath = General/[NSString string];
-General/NSData *iconData = General/[NSData data];
+NSString *sitePath = [NSString string];
+NSData *iconData = [NSData data];
 
 // Iterate through the byte array
 for (i=0; i < j; i++)
@@ -24,14 +24,14 @@ for (i=0; i < j; i++)
 		i += 4; // Move i to grab the rest of the path
 
 		// I suppose I could use stringWithUTF8String but this method is left over from testing.
-		sitePath = General/[NSString stringWithFormat:@"%s", 
-			General/dat subdataWithRange:[[NSMakeRange(icostart, i - icostart)] bytes]];
-		NSURL *url = [NSURL General/URLWithString:sitePath];  // A quick URL just to put the host into the icoPath
+		sitePath = [NSString stringWithFormat:@"%s", 
+			dat subdataWithRange:[[NSMakeRange(icostart, i - icostart)] bytes]];
+		NSURL *url = [NSURL URLWithString:sitePath];  // A quick URL just to put the host into the icoPath
 		sitePath = [url host];
 	}
 	if (data[i] == 'M' && data[i+1] == 'M' && data[i+2] == 0) //found start of icon
 	{
-		iconData = [dat subdataWithRange:General/NSMakeRange(i, j - i)]; //Data goes to end of file.
+		iconData = [dat subdataWithRange:NSMakeRange(i, j - i)]; //Data goes to end of file.
 		i = j; //Jump out
 	}	
 }

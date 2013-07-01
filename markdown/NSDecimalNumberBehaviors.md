@@ -1,9 +1,9 @@
 **Protocol Description**
 
-The General/NSDecimalNumberBehaviors protocol declares three methods that control the discretionary aspects of working with General/NSDecimalNumber(s). The     scale and     roundingMode methods determine the precision of General/NSDecimalNumber�s return values and the way in which those values should be rounded to fit that precision. The     exceptionDuringOperation:error:leftOperand:rightOperand: method determines the way in which an General/NSDecimalNumber should handle different calculation errors.
+The NSDecimalNumberBehaviors protocol declares three methods that control the discretionary aspects of working with NSDecimalNumber(s). The     scale and     roundingMode methods determine the precision of NSDecimalNumber�s return values and the way in which those values should be rounded to fit that precision. The     exceptionDuringOperation:error:leftOperand:rightOperand: method determines the way in which an NSDecimalNumber should handle different calculation errors.
 
 
-For an example of a class that adopts the General/NSDecimalNumberBehaviors protocol, see the specification for General/NSDecimalNumberHandler.
+For an example of a class that adopts the NSDecimalNumberBehaviors protocol, see the specification for NSDecimalNumberHandler.
  ----
 **Apple Documentation**
 
@@ -12,5 +12,5 @@ http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Protocols/NS
 ----
 **See Also**
 
-*General/NSDecimalNumber
-*General/NSDecimalNumberHandler
+*NSDecimalNumber
+*NSDecimalNumberHandler

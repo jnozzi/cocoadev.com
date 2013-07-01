@@ -1,13 +1,13 @@
-I am trying to detect when the option key is being held down in my window (I'm ultimately trying to do something like iTunes, where you can hold option to have the add playlist button change into a gear icon for adding smart playlists).  I have the following code, but it does not work -- it always says the option key is being held down, even when I have released it.  The following is part of my General/NSWindow subclass.
+I am trying to detect when the option key is being held down in my window (I'm ultimately trying to do something like iTunes, where you can hold option to have the add playlist button change into a gear icon for adding smart playlists).  I have the following code, but it does not work -- it always says the option key is being held down, even when I have released it.  The following is part of my NSWindow subclass.
 
-    - (void)flagsChanged:(General/NSEvent *)theEvent
+    - (void)flagsChanged:(NSEvent *)theEvent
 {
 	[super flagsChanged:theEvent];
 
-	if ([theEvent modifierFlags] && General/NSAlternateKeyMask)
-		General/NSLog(@"Option down");
+	if ([theEvent modifierFlags] && NSAlternateKeyMask)
+		NSLog(@"Option down");
 	else
-		General/NSLog(@"Option up");
+		NSLog(@"Option up");
 }
 
 ----
@@ -27,10 +27,10 @@ http://www.google.com/search?q=%22bitwise+and+operator%22
 By using the boolean AND operator, && (two ampersands), you're writing the equivalent of this:
 
     
-if( ([theEvent modifierFlags] != 0) && (General/NSAlternateKeyMask != 0) )
+if( ([theEvent modifierFlags] != 0) && (NSAlternateKeyMask != 0) )
 
 
-General/NSAlternateKeyMask is always non-zero. The modifierFlags are as well, since there are probably some private flags that are always set.
+NSAlternateKeyMask is always non-zero. The modifierFlags are as well, since there are probably some private flags that are always set.
 
 Using the bitwise AND searches for matching bits. For example, if you bitwise AND these two numbers:
 
@@ -41,7 +41,7 @@ Using the bitwise AND searches for matching bits. For example, if you bitwise AN
 | 00010001001
 
 
-Where the 1's match you get 1, otherwise you get zero. General/NSAlternateKeyMask looks like this:
+Where the 1's match you get 1, otherwise you get zero. NSAlternateKeyMask looks like this:
 
     
 ...000000100000...

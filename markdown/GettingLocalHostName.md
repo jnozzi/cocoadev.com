@@ -11,24 +11,24 @@ Mike's Machine
 
 ----
 
-This used to be called "Rendezvous Name" but is now called, simply, "Computer Name". The following snippet comes from the page General/HowToGetHardwareAndNetworkInfo ...
+This used to be called "Rendezvous Name" but is now called, simply, "Computer Name". The following snippet comes from the page HowToGetHardwareAndNetworkInfo ...
 
     
-+ (General/NSString *)computerName
++ (NSString *)computerName
 {
-        General/CFStringRef name;
-        General/NSString *computerName;
-        name=General/SCDynamicStoreCopyComputerName(NULL,NULL);
-        computerName=General/[NSString stringWithString:(General/NSString *)name];
-        General/CFRelease(name);
+        CFStringRef name;
+        NSString *computerName;
+        name=SCDynamicStoreCopyComputerName(NULL,NULL);
+        computerName=[NSString stringWithString:(NSString *)name];
+        CFRelease(name);
         return computerName;
 }
 
 ----
-Since General/CFString and General/NSString are General/TollFreeBridged, this could be simplified to:
+Since CFString and NSString are TollFreeBridged, this could be simplified to:
     
-+ (General/NSString *)computerName {
-   return [(id)General/SCDynamicStoreCopyComputerName(NULL, NULL) autorelease];
++ (NSString *)computerName {
+   return [(id)SCDynamicStoreCopyComputerName(NULL, NULL) autorelease];
 }
 
 
@@ -43,8 +43,8 @@ How do i get the name of the startupDisk?
 
 ----
 
-General/GettingTheRootVolumeName
+GettingTheRootVolumeName
 
 Use google to search cocoadev.  Works well.  http://www.google.com/search?q=site%3Acocoadev.com+volume+name
 
-(General/LaunchBar 4 users:  use search template http://www.google.com/search?q=site%3Acocoadev.com+* )
+(LaunchBar 4 users:  use search template http://www.google.com/search?q=site%3Acocoadev.com+* )

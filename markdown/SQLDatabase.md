@@ -1,3 +1,3 @@
-Obj-C interface to the General/SQLite embeddable SQL database library
+Obj-C interface to the SQLite embeddable SQL database library
 
-from General/BlackholeMedia - available at http://www.blackholemedia.com/code/
+from BlackholeMedia - available at http://www.blackholemedia.com/code/

@@ -10,7 +10,7 @@ If you have a class A that needs references to class B, but you don't want to #i
 
     @class B;
 
-Then just #import B's header into A's .m file. --General/GrahamCox
+Then just #import B's header into A's .m file. --GrahamCox
 
 ----
 
@@ -47,7 +47,7 @@ This has been a defining characteristic of C since it was created.  The way arou
 But please note that if you ever find yourself doing this you're probably doing something wrong.
 
 ----
-I must disagree strongly with the "doing something wrong" comment. Two-way references in class hierarchies are quite common, especially when you consider that you need forward declarations even for parameter and return values. Consider General/NSView and General/NSWindow, for example, which both refer to each other and which both have methods taking or returning the other.
+I must disagree strongly with the "doing something wrong" comment. Two-way references in class hierarchies are quite common, especially when you consider that you need forward declarations even for parameter and return values. Consider NSView and NSWindow, for example, which both refer to each other and which both have methods taking or returning the other.
 
 A minor nit in the example code, I would strongly recommend using @class in both, and only #import when you really need to, like when there's a struct or enum definition you use in the header, or when it's your superclass.
 

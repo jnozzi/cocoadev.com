@@ -1,8 +1,8 @@
 To add a progress bar you need to first go into Interface Builder.  Grab a progress bar from the "Cocoa-Other" palette and put it on your window.
 
-Now, to actually have the progress bar do something, you need to associate it with code.  Make the progress bar an outlet for the class in which you will use it (if you do not know how to create an outlet see General/HowToUseOutlets).  Once you create the outlet, go into Project Builder.  The following text should appear in between the braces of your class implementation file
+Now, to actually have the progress bar do something, you need to associate it with code.  Make the progress bar an outlet for the class in which you will use it (if you do not know how to create an outlet see HowToUseOutlets).  Once you create the outlet, go into Project Builder.  The following text should appear in between the braces of your class implementation file
     
-General/IBOutlet General/NSProgressIndicator *myProgress;
+IBOutlet NSProgressIndicator *myProgress;
 
 Here "myProgress" is the name of the outlet (you can choose your own as you please).
 
@@ -38,24 +38,24 @@ One thing to remember is that this code only works with determinate progress bar
 ----
 For an indeterminate progress indicator, invoke startAnimation: to start the animation (the spinning of the barber pole) and stopAnimation: when the task is complete. By default, the delay between animation steps is one twelfth of a second (5/60). You can change the animation delay by invoking setAnimationDelay:. Setting the delay to a double value larger than the default value will slow the animation, while setting the delay to a smaller value will speed it up.
 
-Instead of invoking startAnimation: and stopAnimation:, you can control an indeterminate progress indicator directly by sending the animate: message. Each time you invoke animate:, the animation advances by one step. You can speed up or slow down the animation by varying how often you invoke animate:. Like other views, a progress indicator redisplays itself on each pass through the event loop, if needed. To ensure immediate redrawing, however, you can invoke the displayIfNeeded method (inherited from General/NSView) each time you invoke animate:.
+Instead of invoking startAnimation: and stopAnimation:, you can control an indeterminate progress indicator directly by sending the animate: message. Each time you invoke animate:, the animation advances by one step. You can speed up or slow down the animation by varying how often you invoke animate:. Like other views, a progress indicator redisplays itself on each pass through the event loop, if needed. To ensure immediate redrawing, however, you can invoke the displayIfNeeded method (inherited from NSView) each time you invoke animate:.
 
 If your application is threaded, you may want the progress indicator?s animation to happen in a separate thread by calling setUsesThreadedAnimation:. If your application doesn?t already use threads, creating a thread just for the progress indicator can actually slow down your application.
 
-For an example of  this see General/ProgressIndicatorInToolbar
+For an example of  this see ProgressIndicatorInToolbar
 
 By default, a progress indicator is indeterminate.
 ----
 
-One thing to consider about startAnimation: and stopAnimation: It isn't reflective of real-world progress. So, if your app's thread hangs in the middle of its loop, the progress indicator will happily keep on spinning, thus telling the user it's fine while actually it isn't. Best practice in such cases is to call animate: instead. This method is what's called by the timer each time it fires and advances the animation by one frame. So, by calling this periodically from your loop, the user will have feedback that is much more true to what is actually happening. -- General/UliKusterer
+One thing to consider about startAnimation: and stopAnimation: It isn't reflective of real-world progress. So, if your app's thread hangs in the middle of its loop, the progress indicator will happily keep on spinning, thus telling the user it's fine while actually it isn't. Best practice in such cases is to call animate: instead. This method is what's called by the timer each time it fires and advances the animation by one frame. So, by calling this periodically from your loop, the user will have feedback that is much more true to what is actually happening. -- UliKusterer
 
 ----
 
-* This is from http://developer.apple.com/techpubs/macosx/Cocoa/General/TasksAndConcepts/General/ProgrammingTopics/General/ProgIndic/index.html *
+* This is from http://developer.apple.com/techpubs/macosx/Cocoa/TasksAndConcepts/ProgrammingTopics/ProgIndic/index.html *
 
-*Edited by General/DerekCramer*
+*Edited by DerekCramer*
 
-Back to General/HowToProgramInOSX
+Back to HowToProgramInOSX
 
 ----
 
@@ -63,10 +63,10 @@ It's possible, depending on what you're doing, that as you increment the value o
 
 ----
 (This is an auto-response)
-To put a progress bar in a General/NSPanel, make the panel appear when the process begins, and then disappear when the process is finished use:
+To put a progress bar in a NSPanel, make the panel appear when the process begins, and then disappear when the process is finished use:
 
     
-General/myProgress window] center];
+myProgress window] center];
 [[myProgress window] makeKeyAndOrderFront:nil]; // nspanel was originally hidden in Interface Builder
 [[myProgress window] display];
 for(i=0;i<max;i++)
@@ -76,7 +76,7 @@ for(i=0;i<max;i++)
 
 	/* do my stuff */
 }
-General/myProgress window] orderOut:nil];
+myProgress window] orderOut:nil];
 
 
 How can I do to have a stop button breaking the loop? Thanks!
@@ -84,4 +84,4 @@ How can I do to have a stop button breaking the loop? Thanks!
 
 ----
 
-This is not the correct way to display a progress bar for a long-running task. You should either make the panel modal or make it a sheet. Then do your stuff in an General/NSTimer. To cancel, have a button in the panel/sheet that simply ends the modal/sheet session, and stops the timer. You should be doing this even if you don't want a cancel button, as using a loop will stop your app from processing events, displaying the spinning pizza of death and generally causing bad things.
+This is not the correct way to display a progress bar for a long-running task. You should either make the panel modal or make it a sheet. Then do your stuff in an NSTimer. To cancel, have a button in the panel/sheet that simply ends the modal/sheet session, and stops the timer. You should be doing this even if you don't want a cancel button, as using a loop will stop your app from processing events, displaying the spinning pizza of death and generally causing bad things.

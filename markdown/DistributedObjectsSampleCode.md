@@ -1,47 +1,47 @@
 
 
-From John Hornkvist (General/MacOsxDev mailing list):
+From John Hornkvist (MacOsxDev mailing list):
 
     
 
 Here is code that I know to work:
 
-// General/DOTest.h
+// DOTest.h
 
 #import <Foundation/Foundation.h>
 
-@interface Client:General/NSObject
+@interface Client:NSObject
 {
          id serverObject;
 }
 
 - (void) connect;
-- (void)log: (General/NSString*)string;
+- (void)log: (NSString*)string;
 @end
 
-@interface Server:General/NSObject
+@interface Server:NSObject
 {
-         General/NSConnection* serverConnection;
+         NSConnection* serverConnection;
 }
-- (void)log: (General/NSString*)string;
+- (void)log: (NSString*)string;
 - (void)serve;
-- (General/NSConnection*) createConnectionName:(General/NSString*)name;
+- (NSConnection*) createConnectionName:(NSString*)name;
 @end
 
 ----
 
-// General/DOTest.m
+// DOTest.m
 
-#import "General/DOTest.h"
+#import "DOTest.h"
 
 
 @implementation Client
 - (void) connect
 {
-   serverObject=General/[NSConnection
-rootProxyForConnectionWithRegisteredName:@"General/MyServer" host: nil];
+   serverObject=[NSConnection
+rootProxyForConnectionWithRegisteredName:@"MyServer" host: nil];
 }
-- (void)log: (General/NSString*)string
+- (void)log: (NSString*)string
 {
          [serverObject log: string];
 }
@@ -51,19 +51,19 @@ rootProxyForConnectionWithRegisteredName:@"General/MyServer" host: nil];
 
 @implementation Server
 
-- (void)log: (General/NSString*)string
+- (void)log: (NSString*)string
 {
-         General/NSLog(string);
+         NSLog(string);
 }
 
 - (void)serve
 {
-         serverConnection=[self createConnectionName:@"General/MyServer"];
-         General/[[NSRunLoop currentRunLoop] run];
+         serverConnection=[self createConnectionName:@"MyServer"];
+         [[NSRunLoop currentRunLoop] run];
 }
-- (General/NSConnection*) createConnectionName:(General/NSString*)name
+- (NSConnection*) createConnectionName:(NSString*)name
 {
-   General/NSConnection* newConnection=General/[[NSConnection alloc] init];
+   NSConnection* newConnection=[[NSConnection alloc] init];
    if ([newConnection registerName:name])
      {
        [newConnection setRootObject:self];
@@ -82,12 +82,12 @@ rootProxyForConnectionWithRegisteredName:@"General/MyServer" host: nil];
 
 // server.m
 
-#import "General/DOTest.h"
+#import "DOTest.h"
 
 main()
 {
-         General/NSAutoreleasePool* pool=General/[[NSAutoreleasePool alloc] init];
-         Server* server=General/Server alloc] init];
+         NSAutoreleasePool* pool=[[NSAutoreleasePool alloc] init];
+         Server* server=Server alloc] init];
 
          [server serve];
 
@@ -102,8 +102,8 @@ main()
 
 main()
 {
-         General/NSAutoreleasePool* pool=General/[[NSAutoreleasePool alloc] init];
-         Client* client=General/Client alloc] init];
+         NSAutoreleasePool* pool=[[NSAutoreleasePool alloc] init];
+         Client* client=Client alloc] init];
 
          [client connect];
          [client log:@"Hello, world!"];
@@ -114,9 +114,9 @@ main()
 ----
 
 To test:
-cc -c -o [[DOTest.o General/DOTest.m
-cc -o client client.m General/DOTest.o -framework Foundation
-cc -o server server.m General/DOTest.o -framework Foundation
+cc -c -o [[DOTest.o DOTest.m
+cc -o client client.m DOTest.o -framework Foundation
+cc -o server server.m DOTest.o -framework Foundation
 
 And then launch client in one Terminal window and Server in another. The
 "Hello, world!" will be sent from the client and logged in the servers
@@ -151,68 +151,68 @@ the main thread).
 
     
 
-@interface General/MainThread:General/NSObject
+@interface MainThread:NSObject
 {
-    General/NSConnection *destConnection;
+    NSConnection *destConnection;
 }
-- (void) General/YourMethod;
+- (void) YourMethod;
 - (void) amessage;
 @end
 
 
-@implementation General/MainThread
+@implementation MainThread
 
-- (void) General/YourMethod
+- (void) YourMethod
 {
     //----- now create the connection
-    destConnection = General/[[NSConnection alloc] init];    // create connection object
+    destConnection = [[NSConnection alloc] init];    // create connection object
     if ([destConnection registerName:@"Any Name You Want"])
     {
         [destConnection setRootObject: self];
-        General/NSLog(@"General/DestConnection Created!");
+        NSLog(@"DestConnection Created!");
     }
     else
     {
         [destConnection release];
         destConnection = nil;
-        General/NSLog(@"General/DestConnection didn't get created");
+        NSLog(@"DestConnection didn't get created");
     }
 
-    //----- start General/ChildThread up
+    //----- start ChildThread up
 
      //----- more code
 }
 
 - (void) amessage
 {
-    General/NSLog("Message for you sir!");
+    NSLog("Message for you sir!");
 }
 @end
 
 
-@interface General/ChildThread : General/NSObject
+@interface ChildThread : NSObject
 {
     id srcConnection;
-    // note: it is better you static type this to General/MainThread (or whatever your parent thread
+    // note: it is better you static type this to MainThread (or whatever your parent thread
     //      is named. You will avoid warning messages.
 }
-- (void) General/ChildThread;
+- (void) ChildThread;
 @end
 
 @implementation
-- (void) General/ChildThread
+- (void) ChildThread
 {
     // MUST have this or you will leak!
-    General/NSAutoreleasePool *localPool = General/[[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool *localPool = [[NSAutoreleasePool alloc] init];
 
-    //----- set up the proxy object so that we can directly talk to the General/MainThread
-    srcConnection = General/[[NSConnection
+    //----- set up the proxy object so that we can directly talk to the MainThread
+    srcConnection = [[NSConnection
         rootProxyForConnectionWithRegisteredName:@"Any Name You Want"
         host: nil] retain];
     // remember to retain any object you get - esp. if you will be in
     // a loop! We don't want to constantly make/break connections!
 
-    // now we use it as if it were a General/MainThread object!
+    // now we use it as if it were a MainThread object!
     [srcConnection amessage];
     // however, note that the communication is only child to main
     // ALSO note that this will give a warning unless you static type
@@ -237,7 +237,7 @@ or later.
 
 The example is very simple, just a random number server.  With 
 USE_SOCKETS equal to 0, it uses Mach ports, otherwise TCP sockets 
-(General/NSSocketPort).  Compile with the comment at the top, and make a copy 
+(NSSocketPort).  Compile with the comment at the top, and make a copy 
 of the binary, and name one 'client' and one 'server'.
 
 Run the server on the local machine or a remote one.  If the client is 
@@ -256,8 +256,8 @@ Real-world example: The Mac OS X build system is a complex system for
 farming out project builds to build servers and managing dependencies 
 and whatnot, and it has used DO over TCP for some time, using its own 
 hand-rolled TCP transport.  So DO over TCP is possible.  That system 
-isn't using General/NSSocketPort yet (it predates General/NSSocketPort), but we'll be 
-switching it to General/NSSocketPort sometime after Mac OS X is released, which 
+isn't using NSSocketPort yet (it predates NSSocketPort), but we'll be 
+switching it to NSSocketPort sometime after Mac OS X is released, which 
 will eliminate several hundreds of lines of code.  I've given the 
 engineers that will do that this same example to work from.
 
@@ -275,12 +275,12 @@ Cocoa Frameworks, Apple, Inc.
  	#define USE_SOCKETS 1
 #endif
 
-@protocol General/ServerProtocol
+@protocol ServerProtocol
 - (void)setRandomSeed:(unsigned int)s;
 - (long)getRandom;
 @end
 
-@interface Server : General/NSObject <General/ServerProtocol>
+@interface Server : NSObject <ServerProtocol>
 @end
 
 @implementation Server
@@ -298,19 +298,19 @@ Cocoa Frameworks, Apple, Inc.
 #define SERVER_NAME @"TEST"
 
 void server(int argc, const char *argv[]) {
-     General/NSPort *receivePort = nil;
-     General/NSConnection *conn;
+     NSPort *receivePort = nil;
+     NSConnection *conn;
      id serverObj;
 
  #if USE_SOCKETS
-     receivePort = General/[[NSSocketPort alloc] initWithTCPPort:SERVER_PORT];
+     receivePort = [[NSSocketPort alloc] initWithTCPPort:SERVER_PORT];
  #else
      // Mach ports being "anonymous" and need to be named later
-     receivePort = General/[[NSMachPort alloc] init];
+     receivePort = [[NSMachPort alloc] init];
  #endif
-     conn = General/[[NSConnection alloc] initWithReceivePort:receivePort 
+     conn = [[NSConnection alloc] initWithReceivePort:receivePort 
  sendPort:nil];
-     serverObj = General/Server alloc] init];
+     serverObj = Server alloc] init];
      [conn setRootObject:serverObj];
  #if USE_SOCKETS
      // registration done by allocating the [[NSSocketPort
@@ -323,27 +323,27 @@ void server(int argc, const char *argv[]) {
      printf("server configured to use Mach ports\n");
  #endif
 
-     General/[[NSRunLoop currentRunLoop] run];
+     [[NSRunLoop currentRunLoop] run];
  }
 
  void client(int argc, const char *argv[]) {
-     General/NSPort *sendPort = nil;
-     General/NSConnection *conn;
+     NSPort *sendPort = nil;
+     NSConnection *conn;
      id proxyObj;
      long result;
-     General/NSString *hostName = nil;
+     NSString *hostName = nil;
 
      if (1 < argc) {
- 	hostName = General/[NSString stringWithCString:argv[1]];
+ 	hostName = [NSString stringWithCString:argv[1]];
      }
 
-     sendPort = General/[[NSMachBootstrapServer sharedInstance] 
+     sendPort = [[NSMachBootstrapServer sharedInstance] 
  portForName:SERVER_NAME host:hostName];
      if (nil == sendPort) {
  	// This will succeed (if host exists), even when there is no server
  	// on the other end, since the connect() is done lazily (arguably wrong),
  	// when first message is sent.
- 	sendPort = General/[[NSSocketPort alloc] initRemoteWithTCPPort:SERVER_PORT 
+ 	sendPort = [[NSSocketPort alloc] initRemoteWithTCPPort:SERVER_PORT 
  host:hostName];
      }
      if (nil == sendPort) {
@@ -351,8 +351,8 @@ void server(int argc, const char *argv[]) {
  	exit(1);
      }
      NS_DURING
- 	conn = General/[[NSConnection alloc] initWithReceivePort:(General/NSPort*)
-              General/sendPort class] port] sendPort:sendPort];
+ 	conn = [[NSConnection alloc] initWithReceivePort:(NSPort*)
+              sendPort class] port] sendPort:sendPort];
  	proxyObj = [conn rootProxy];
      NS_HANDLER
  	proxyObj = nil;
@@ -363,7 +363,7 @@ void server(int argc, const char *argv[]) {
      }
      [proxyObj setProtocolForProxy:@protocol([[ServerProtocol)];
      printf("client configured to use %s\n", ([sendPort class] == 
- General/[NSSocketPort self]) ? "sockets" : "Mach ports");
+ [NSSocketPort self]) ? "sockets" : "Mach ports");
 
      result = [proxyObj getRandom];
      printf("random #: %ld\n", result);
@@ -386,7 +386,7 @@ void server(int argc, const char *argv[]) {
  }
 
  int main(int argc, const char *argv[]) {
-     id pool = General/[[NSAutoreleasePool alloc] init];
+     id pool = [[NSAutoreleasePool alloc] init];
      if (0 < argc && 0 == strcmp(argv[0] + strlen(argv[0]) - 6, "server")) {
  	server(argc, argv);
      } else {

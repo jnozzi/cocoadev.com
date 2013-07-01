@@ -2,7 +2,7 @@ How do I know how much I can programatically resize my window before running int
 
 ----
 
-    General/[[[NSScreen screens] objectAtIndex:0] visibleFrame].size will return the General/NSSize of the screen, minus the dock & menubar.
+    [[[NSScreen screens] objectAtIndex:0] visibleFrame].size will return the NSSize of the screen, minus the dock & menubar.
 
 ----
 
@@ -10,11 +10,11 @@ Ah cool, I was looking for just this, but never got around to posting.
 
 ----
 
-The following makes a window full screen (except for the dock and menu). It should be noted that     [aWindow setFrame:General/aWindow screen] visibleFrame] display:YES] does the same thing as all the code below. However, this code demonstrates how to determine the dock's orientation (bottom, left, or right), the height of the dock (if on the bottom), and the width of the dock (if on the left or right), should you need to do so. aWindow is any window on the screen. Depending on what you want to do, you can use [[[NSScreen mainScreen] instead of [aWindow screen].
+The following makes a window full screen (except for the dock and menu). It should be noted that     [aWindow setFrame:aWindow screen] visibleFrame] display:YES] does the same thing as all the code below. However, this code demonstrates how to determine the dock's orientation (bottom, left, or right), the height of the dock (if on the bottom), and the width of the dock (if on the left or right), should you need to do so. aWindow is any window on the screen. Depending on what you want to do, you can use [[[NSScreen mainScreen] instead of [aWindow screen].
 
     
 
-	float visibleScreenWidth = General/aWindow screen] visibleFrame].size.width;
+	float visibleScreenWidth = aWindow screen] visibleFrame].size.width;
 	float visibleScreenHeight = [[aWindow screen] visibleFrame].size.height; // doesn't include dock and menu bar
 	BOOL dockOnBottom = false;
 	
@@ -42,7 +42,7 @@ The following makes a window full screen (except for the dock and menu). It shou
 	
 	if(dockOnBottom)
 	{
-		float heightOfDock = General/aWindow screen] visibleFrame].origin.y; 
+		float heightOfDock = aWindow screen] visibleFrame].origin.y; 
 		rect.origin.y = heightOfDock;
 	}
 	else
@@ -63,10 +63,10 @@ You can get 'live updates' on the usable screen area by registering for the foll
 
     [[[[NSNotificationCenter defaultCenter] addObserver:self 
                                              selector:@selector(screenChanged:) 
-                                                 name:General/NSApplicationDidChangeScreenParametersNotification 
+                                                 name:NSApplicationDidChangeScreenParametersNotification 
                                                object:nil];
     
-    General/[[NSDistributedNotificationCenter defaultCenter] addObserver:self 
+    [[NSDistributedNotificationCenter defaultCenter] addObserver:self 
                                                         selector:@selector(screenChanged:) 
                                                             name:@"com.apple.dock.prefchanged" 
                                                           object:nil];

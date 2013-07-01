@@ -2,30 +2,30 @@
 
 I'd like to write a command-line tool to invoke Cocoa system services -- the things usually found in the Services Menu.  It seems easy to invoke them using the function
     
-BOOL General/NSPerformService(General/NSString *serviceItem, General/NSPasteboard *pboard)
+BOOL NSPerformService(NSString *serviceItem, NSPasteboard *pboard)
 
 in the application kit.  My problem is in determining which services are available.  I've scoured the Apple docs but can't find any way to extract the list of service names.  Does anyone know how to do this?  Any help appreciated.
 
 --
 
-Use 	(General/NSArray *)General/CFServiceControllerCopyServicesEntries().
+Use 	(NSArray *)CFServiceControllerCopyServicesEntries().
 
-Example code (from General/DavidMcCabe, not the original questioner). It would be great if somebody could explain the questions in the comments.
+Example code (from DavidMcCabe, not the original questioner). It would be great if somebody could explain the questions in the comments.
 
     
-- (General/NSEnumerator *)serviceEnumerator {
-	General/NSArray *services = (General/NSArray *)General/CFServiceControllerCopyServicesEntries();
-	General/NSEnumerator *se = [services objectEnumerator];
-	General/NSDictionary *serviceEntry;
-	General/NSMutableArray *result = General/[NSMutableArray arrayWithCapacity:[services count]];
+- (NSEnumerator *)serviceEnumerator {
+	NSArray *services = (NSArray *)CFServiceControllerCopyServicesEntries();
+	NSEnumerator *se = [services objectEnumerator];
+	NSDictionary *serviceEntry;
+	NSMutableArray *result = [NSMutableArray arrayWithCapacity:[services count]];
 
 	while( serviceEntry = [se nextObject] ) {
 		id m;
-		m = General/serviceEntry valueForKey:@"[[NSMenuItem"] valueForKey:@"default"];
+		m = serviceEntry valueForKey:@"[[NSMenuItem"] valueForKey:@"default"];
 		if( m == nil ) {
 			// There are a couple of entries with no labels; don't know what they are.
-			//[result addObject: [serviceEntry valueForKey:@"General/NSMessage"]];
-		} else { // would like to see if they're enabled here. we can get General/NSSendTypes.
+			//[result addObject: [serviceEntry valueForKey:@"NSMessage"]];
+		} else { // would like to see if they're enabled here. we can get NSSendTypes.
 			[result addObject: m];
 		}
 	}
@@ -33,11 +33,11 @@ Example code (from General/DavidMcCabe, not the original questioner). It would b
 }
 
 
-The first comment indicates that the specified service has no menu item label, and the commented out code passes the message (@"General/NSMessage" key refers to a string?)  instead of the menu label. The 'else' comment says it would be nice to know if the service is enabled, and we might want to get the object refered to by the @"General/NSSendTypes" key, which is an array holding type names which the service accepts. Now that I think about it, maybe the service system could be wrapped in a class which makes it easier to access and understand this stuff. I just this very minute looked at apple docs "System Services" to find this out, the documentation is a little obtuse, but seems comprehensive... General/JeremyJurksztowicz
+The first comment indicates that the specified service has no menu item label, and the commented out code passes the message (@"NSMessage" key refers to a string?)  instead of the menu label. The 'else' comment says it would be nice to know if the service is enabled, and we might want to get the object refered to by the @"NSSendTypes" key, which is an array holding type names which the service accepts. Now that I think about it, maybe the service system could be wrapped in a class which makes it easier to access and understand this stuff. I just this very minute looked at apple docs "System Services" to find this out, the documentation is a little obtuse, but seems comprehensive... JeremyJurksztowicz
 
 ----
 
-Hi, I'm back. I just whipped this up on a windows notepad clone at work. I looked at the online documentation, but since It's quitting time in a few minutes I don't feel like combing through the code now. I have become so dependant on syntax coloring. How did people do it in black and white? There is certainly a better way to do this, but I had fun at work today, so, who cares? -General/JeremyJurksztowicz
+Hi, I'm back. I just whipped this up on a windows notepad clone at work. I looked at the online documentation, but since It's quitting time in a few minutes I don't feel like combing through the code now. I have become so dependant on syntax coloring. How did people do it in black and white? There is certainly a better way to do this, but I had fun at work today, so, who cares? -JeremyJurksztowicz
 
     
 // Copyright (C) Jeremy Jurksztowicz, 2008
@@ -45,7 +45,7 @@ Hi, I'm back. I just whipped this up on a windows notepad clone at work. I looke
 // but that would be really petty and immature. You're a nice person, right?
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-enum General/ServiceInputMechanism
+enum ServiceInputMechanism
 {
 	ServiceInput_Standard,
 	ServiceInput_UnixStdio,
@@ -53,45 +53,45 @@ enum General/ServiceInputMechanism
 };
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-General/NSArray * General/SystemServices ( );
+NSArray * SystemServices ( );
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-@interface General/SystemService
+@interface SystemService
 {
-	General/NSDictionary * properties;
+	NSDictionary * properties;
 }
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-- (General/NSString*) 	messageString;
-- (General/NSString*)	filterMessageString;
-- (General/NSString*)	portName;
-- (General/NSString*)	menuItemString;
-- (General/NSString*)	keyEquivalent;
-- (General/NSArray*)	sendTypes;
-- (General/NSArray*)	returnTypes;
-- (General/NSString*)	userDataString;
+- (NSString*) 	messageString;
+- (NSString*)	filterMessageString;
+- (NSString*)	portName;
+- (NSString*)	menuItemString;
+- (NSString*)	keyEquivalent;
+- (NSArray*)	sendTypes;
+- (NSArray*)	returnTypes;
+- (NSString*)	userDataString;
 - (double)	timeout; // In milliseconds
 
 - (BOOL) isIdentityFilter;
-- (General/ServiceInputMechanism) inputMechanism;
+- (ServiceInputMechanism) inputMechanism;
 
-- (BOOL) performServiceOnData:(General/NSData*)data ofType:(General/NSString*)type outData:(General/NSData**)output;
+- (BOOL) performServiceOnData:(NSData*)data ofType:(NSString*)type outData:(NSData**)output;
 
 @end
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-General/NSArray * General/SystemServices ( )
+NSArray * SystemServices ( )
 {
-	General/NSArray * services = (General/NSArray *)General/CFServiceControllerCopyServicesEntries();
+	NSArray * services = (NSArray *)CFServiceControllerCopyServicesEntries();
 	if(services)
 	{
-		General/NSMutableArray * result = General/[NSMutableArray arrayWithCapacity:[services count]];
+		NSMutableArray * result = [NSMutableArray arrayWithCapacity:[services count]];
 	
-		General/NSEnumerator * serviceEnum = [services objectEnumerator];
-		General/NSDictionary * serviceInfo;
+		NSEnumerator * serviceEnum = [services objectEnumerator];
+		NSDictionary * serviceInfo;
 		while(serviceInfo = [serviceEnum nextObject])
 		{
-			General/SystemService * service = General/[[[SystemService alloc] init] autorelease];
+			SystemService * service = [[[SystemService alloc] init] autorelease];
 			service->properties = [serviceInfo retain];
 		
 			[result addObject:service];
@@ -104,7 +104,7 @@ General/NSArray * General/SystemServices ( )
 }
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
-@implementation General/ServiceInfo
+@implementation ServiceInfo
 
 - (void) dealloc
 {
@@ -112,46 +112,46 @@ General/NSArray * General/SystemServices ( )
 	[super dealloc];
 }
 
-- (General/NSString*) 	messageString		{ return [properties objectForKey:@"General/NSMessage"]; }
-- (General/NSString*) 	filterMessageString	{ return [properties objectForKey:@"General/NSFilter"]; }
-- (General/NSString*)	portName		{ return [properties objectForKey:@"General/NSPortName"]; }
-- (General/NSString*)	menuItemString		{ return General/properties objectForKey:@"[[NSMenuItem"] objectForKey:@"default"]; }
-- (General/NSString*)	keyEquivalent		{ return General/properties objectForKey:@"[[NSKeyEquivalent"] objectForKey:@"default"]; }
-- (General/NSArray*)	sendTypes		{ return [properties objectForKey:@"General/NSSendTypes"]; }
-- (General/NSArray*)	returnTypes		{ return [properties objectForKey:@"General/NSReturnTypes"]; }
-- (General/NSString*)	userDataString		{ return [properties objectForKey:@"General/NSUserData"]; }
-- (General/NSString*)	timeout			{ return General/properties objectForKey:@"[[NSTimeout"] doubleValue]; }
+- (NSString*) 	messageString		{ return [properties objectForKey:@"NSMessage"]; }
+- (NSString*) 	filterMessageString	{ return [properties objectForKey:@"NSFilter"]; }
+- (NSString*)	portName		{ return [properties objectForKey:@"NSPortName"]; }
+- (NSString*)	menuItemString		{ return properties objectForKey:@"[[NSMenuItem"] objectForKey:@"default"]; }
+- (NSString*)	keyEquivalent		{ return properties objectForKey:@"[[NSKeyEquivalent"] objectForKey:@"default"]; }
+- (NSArray*)	sendTypes		{ return [properties objectForKey:@"NSSendTypes"]; }
+- (NSArray*)	returnTypes		{ return [properties objectForKey:@"NSReturnTypes"]; }
+- (NSString*)	userDataString		{ return [properties objectForKey:@"NSUserData"]; }
+- (NSString*)	timeout			{ return properties objectForKey:@"[[NSTimeout"] doubleValue]; }
 
 - (BOOL) isIdentityFilter
 {
-	return General/properties objectForKey:@"[[NSInputMechanism"] isEqualToString:@"General/NSIdentity"];
+	return properties objectForKey:@"[[NSInputMechanism"] isEqualToString:@"NSIdentity"];
 }
 
-- (General/ServiceInputMechanism) inputMechanism
+- (ServiceInputMechanism) inputMechanism
 {
-	General/NSString * inputMechanismString = [properties objectForKey:@"General/NSInputMechanism"];
-	if([inputMechanismString isEqualToString:@"General/NSUnixStdio"])
+	NSString * inputMechanismString = [properties objectForKey:@"NSInputMechanism"];
+	if([inputMechanismString isEqualToString:@"NSUnixStdio"])
 		return ServiceInput_UnixStdio;
-	else if([inputMechanismString isEqualToString:@"General/NSMapFile"])
+	else if([inputMechanismString isEqualToString:@"NSMapFile"])
 		return ServiceInput_MapFile;
 	else
 		return ServiceInput_Standard;
 }
 
-- (BOOL) performServiceOnData:(General/NSData*)data ofType:(General/NSString*)type outData:(General/NSData**)output outType:(General/NSString*)outputType
+- (BOOL) performServiceOnData:(NSData*)data ofType:(NSString*)type outData:(NSData**)output outType:(NSString*)outputType
 {
-	if(!General/self sendTypes] containsObject:type] || ![[self returnTypes] containsObject:outputType])
+	if(!self sendTypes] containsObject:type] || ![[self returnTypes] containsObject:outputType])
 		return NO;
 
-	[[NSPasteboard * pboard = General/[NSPasteboard pasteboardWithName:@"General/MyServicePasteboard"];
+	[[NSPasteboard * pboard = [NSPasteboard pasteboardWithName:@"MyServicePasteboard"];
 	
-	[pboard declareTypes:General/[NSArray arrayWithObject:type] owner:nil];
+	[pboard declareTypes:[NSArray arrayWithObject:type] owner:nil];
 	[pboard setData:data forType:type];
 
-	BOOL result = General/NSPerformService([self menuItemString], pboard);
+	BOOL result = NSPerformService([self menuItemString], pboard);
 	if(result)
 	{
-		if([pboard availableTypeFromArray:General/[NSArray arrayWithObject:outputType]])
+		if([pboard availableTypeFromArray:[NSArray arrayWithObject:outputType]])
 		{
 			*output = [pboard dataForType:outputType];
 		}

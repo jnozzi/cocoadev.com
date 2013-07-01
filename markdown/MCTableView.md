@@ -2,10 +2,10 @@
 
 Yes, it's done now, i was a bit too slow :-))
 
-For sample use see: General/ClickThroughButtonInTableView
+For sample use see: ClickThroughButtonInTableView
 
     
-//  2005 by St�phane BARON - General/MacAvocat . All rights reserved.
+//  2005 by St�phane BARON - MacAvocat . All rights reserved.
 //  Derivated from work by Erik Doernenburg
 //  Derivated from work by Omnigroup, as i can remember.
 //  Derivated from work by Eric Petit
@@ -29,36 +29,36 @@ For sample use see: General/ClickThroughButtonInTableView
 //  DEALINGS IN THE SOFTWARE.
  
  
-#import <General/AppKit/General/NSTableView.h>
-#import "General/MCButtonCell.h"
+#import <AppKit/NSTableView.h>
+#import "MCButtonCell.h"
 
-@interface General/MCTableView : General/NSTableView
+@interface MCTableView : NSTableView
 {
 	
 	int clickedButtonNumber;
        int	clickedRowIdx, clickedColumnIdx;
 	int previousRow;
-	General/NSCell *previousCell;
-	General/NSRect cellFrameDown;
+	NSCell *previousCell;
+	NSRect cellFrameDown;
 	BOOL isClickedButton;
 }
 
 
 - (void)setClickedButton:(int)aButton;
-- (void)mouseUp:(General/NSEvent *)theEvent;
+- (void)mouseUp:(NSEvent *)theEvent;
 
 @end
 
 
 
-#import "General/MCTableView.h"
-#import <General/AppKit/General/AppKit.h>
-#import "General/MCButtonCell.h"
+#import "MCTableView.h"
+#import <AppKit/AppKit.h>
+#import "MCButtonCell.h"
 
-@implementation General/MCTableView
+@implementation MCTableView
 
 
-- initWithFrame:(General/NSRect)frame
+- initWithFrame:(NSRect)frame
 {
     [super initWithFrame:frame];
 	
@@ -72,12 +72,12 @@ For sample use see: General/ClickThroughButtonInTableView
 }
 
 
-- (void)mouseDown:(General/NSEvent *)theEvent
+- (void)mouseDown:(NSEvent *)theEvent
 {
-    General/NSTableColumn	*column;
-    General/NSCell			*cell;
-    General/NSRect			cellFrame;
-    General/NSPoint			location;
+    NSTableColumn	*column;
+    NSCell			*cell;
+    NSRect			cellFrame;
+    NSPoint			location;
 	
 	location = [self convertPoint:[theEvent locationInWindow] fromView:nil];
     clickedRowIdx = [self rowAtPoint:location];
@@ -85,7 +85,7 @@ For sample use see: General/ClickThroughButtonInTableView
 	column = [_tableColumns objectAtIndex:clickedColumnIdx];
 	cell = [column dataCell];
 	
-    if((clickedColumnIdx == -1) || (clickedRowIdx == -1) ||	([cell isKindOfClass:General/[MCTCell class]]==NO))
+    if((clickedColumnIdx == -1) || (clickedRowIdx == -1) ||	([cell isKindOfClass:[MCTCell class]]==NO))
 	{
 		
 		isClickedButton=NO;
@@ -121,13 +121,13 @@ For sample use see: General/ClickThroughButtonInTableView
 	}
 }
 
--(void)mouseUp:(General/NSEvent *)theEvent;
+-(void)mouseUp:(NSEvent *)theEvent;
 {
 	
-	General/NSTableColumn	*column;
-    General/NSCell			*cell;
-    General/NSRect			cellFrameUp;
-    General/NSPoint			location;
+	NSTableColumn	*column;
+    NSCell			*cell;
+    NSRect			cellFrameUp;
+    NSPoint			location;
 	
 	if(isClickedButton==NO)
 	{
@@ -144,7 +144,7 @@ For sample use see: General/ClickThroughButtonInTableView
 		cell = [column dataCell];
 		
 		
-		if((clickedColumnIdx == -1) || (clickedRowIdx == -1) ||([cell isKindOfClass:General/[MCTCell class]]==NO))
+		if((clickedColumnIdx == -1) || (clickedRowIdx == -1) ||([cell isKindOfClass:[MCTCell class]]==NO))
         {
 			[self setClickedButton:-1];
 			[previousCell mouseUp:theEvent];
@@ -156,7 +156,7 @@ For sample use see: General/ClickThroughButtonInTableView
         {
 			cellFrameUp = [self frameOfCellAtColumn:clickedColumnIdx row:clickedRowIdx];
 			
-			if(General/NSEqualRects(cellFrameUp,cellFrameDown))
+			if(NSEqualRects(cellFrameUp,cellFrameDown))
 			{
 				
 				if([cell isPointInImageRect:location forCell:cellFrameUp])
@@ -164,7 +164,7 @@ For sample use see: General/ClickThroughButtonInTableView
 					[cell mouseUp:theEvent];
 					[self displayRect:[self rectOfRow:clickedRowIdx]];					
 					[self setClickedButton:clickedRowIdx];
-					General/self target] performSelector:[self action] withObject:self];
+					self target] performSelector:[self action] withObject:self];
 					isClickedButton=NO;
 				}
 				else

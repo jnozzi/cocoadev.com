@@ -1,4 +1,4 @@
-A quick question about mathematics in Cocoa. I can't find a good answer to this. What I want to do is take a set of values, either in an General/NSArray, General/NSSet, or by themselves, and average them. Specifically, I have several General/NSTextFields which can be filled in with a number. They will be General/NSDecimalNumber values. The user will click "Calculate" and they will be averaged. Is there a good way to do this? Do I have to perform the mathematical operations or can I just take the average? Also, if some of the fields are blank, will the averaging take this into account, or will it see them as zero, and mess up the average? Much appreciated, --General/LoganCollins
+A quick question about mathematics in Cocoa. I can't find a good answer to this. What I want to do is take a set of values, either in an NSArray, NSSet, or by themselves, and average them. Specifically, I have several NSTextFields which can be filled in with a number. They will be NSDecimalNumber values. The user will click "Calculate" and they will be averaged. Is there a good way to do this? Do I have to perform the mathematical operations or can I just take the average? Also, if some of the fields are blank, will the averaging take this into account, or will it see them as zero, and mess up the average? Much appreciated, --LoganCollins
 
 
 ----
@@ -7,16 +7,16 @@ Your table view data should be an array of dictionary objects, so all you would 
 
     
 
-	objects = General/[NSMutableArray array];
+	objects = [NSMutableArray array];
 	unsigned int i;
 	for (i = 0; i < 256; i++) {
-		General/NSMutableDictionary *entry = General/[NSMutableDictionary dictionary];
-		[entry setValue:General/[NSNumber numberWithInt:i] forKey:@"index"];
+		NSMutableDictionary *entry = [NSMutableDictionary dictionary];
+		[entry setValue:[NSNumber numberWithInt:i] forKey:@"index"];
 		[objects addObject:entry];
 	}
 		
-	General/NSNumber *average = [objects valueForKeyPath:@"@avg.index"];
-	General/NSLog(@"average: %@", average);
+	NSNumber *average = [objects valueForKeyPath:@"@avg.index"];
+	NSLog(@"average: %@", average);
 
 
 
@@ -24,11 +24,11 @@ Your table view data should be an array of dictionary objects, so all you would 
 
 ----
 
-But how can adapt this to use the values from the General/NSTextField's that are connected? That works great otherwise. Thanks, --General/LoganCollins
+But how can adapt this to use the values from the NSTextField's that are connected? That works great otherwise. Thanks, --LoganCollins
 
 ----
 
-Okay, maybe I'm completely off track. :) I'm not too versed in math operations in Cocoa yet. Let me just start further back. I have the several text fields that I want averaged into a "result" text field. How do I accomplish this? By the code above? --General/LoganCollins
+Okay, maybe I'm completely off track. :) I'm not too versed in math operations in Cocoa yet. Let me just start further back. I have the several text fields that I want averaged into a "result" text field. How do I accomplish this? By the code above? --LoganCollins
 
 ----
 
@@ -36,15 +36,15 @@ Sorry, I didn't understand your question. I think the best thing to do in your c
 
 ----
 
-That's what I was planning to do, however, I realized that if the user does not use all the fields the division will be off. It will divide by the total number of fields, not the total number being used. Any way you can think of to resolve that? --General/LoganCollins
+That's what I was planning to do, however, I realized that if the user does not use all the fields the division will be off. It will divide by the total number of fields, not the total number being used. Any way you can think of to resolve that? --LoganCollins
 
-*One possible solution would be to get the fields'     objectValues as well as their     intValues (or     floatValues or     doubleValues). That way, the object value will be     nil when the field is empty. --General/JediKnil*
+*One possible solution would be to get the fields'     objectValues as well as their     intValues (or     floatValues or     doubleValues). That way, the object value will be     nil when the field is empty. --JediKnil*
 
 ----
 
-Okay, probably a stupid question, but how do I go about doing the mathematical operations on the values? I have them all as General/NSDecimalNumbers, but what do I do to add them all together and then divide them? Is there a set of methods for this? --General/LoganCollins
+Okay, probably a stupid question, but how do I go about doing the mathematical operations on the values? I have them all as NSDecimalNumbers, but what do I do to add them all together and then divide them? Is there a set of methods for this? --LoganCollins
 
-*Why are you using General/NSDecimalNumbers? Are your numbers really that big that you need to use that class? Use General/NSNumber if you can, and then just tally up the total via intValue or whatever they contain, summing them up into a normal primitive variable (i.e. double) and then dividing by the number of numbers.*
+*Why are you using NSDecimalNumbers? Are your numbers really that big that you need to use that class? Use NSNumber if you can, and then just tally up the total via intValue or whatever they contain, summing them up into a normal primitive variable (i.e. double) and then dividing by the number of numbers.*
 
 Okay, I understand that I have to add then divide, but how can I take into account if the user does not take advantage of all of the fields? It will divide by the wrong number. I could run if-else statements, but there would be like a thousand of them.
 
@@ -57,7 +57,7 @@ int totalFields = 0;
 int totalValue = 0;
 
 foreach(field in fields)
-   if(General/field stringValue] length] > 0)
+   if(field stringValue] length] > 0)
       totalFields++;
       totalValue += [field intValue];
 

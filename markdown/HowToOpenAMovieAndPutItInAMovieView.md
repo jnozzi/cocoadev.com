@@ -1,21 +1,21 @@
-This article shows you the code that will open a movie file in the finder, assign the movie to an General/NSMovie, and then put this movie into an General/NSMovieView.
+This article shows you the code that will open a movie file in the finder, assign the movie to an NSMovie, and then put this movie into an NSMovieView.
 
-In addition to this code, you need to create an outlet for an General/NSMovieView (named myMovieView) in your header file.  You also need to put this code in a method that you attach to perhaps the "Open" item in the "File" menu.
+In addition to this code, you need to create an outlet for an NSMovieView (named myMovieView) in your header file.  You also need to put this code in a method that you attach to perhaps the "Open" item in the "File" menu.
 
     
-//Declare op as a pointer to an General/NSOpenPanel.
-General/NSOpenPanel *op;
+//Declare op as a pointer to an NSOpenPanel.
+NSOpenPanel *op;
 
-//Create, initilize, and assign an General/NSOpenPanel to the pointer op.
-op = General/[[NSOpenPanel alloc] init];
+//Create, initilize, and assign an NSOpenPanel to the pointer op.
+op = [[NSOpenPanel alloc] init];
 
 //Open an Open panel and record the file the user selected.
 [op runModal];
 
-//Assign the movie file to the General/NSMovie pointer named movie.
-General/NSMovie *movie=General/[[NSMovie alloc] initWithURL: [op URL] byReference: YES];
+//Assign the movie file to the NSMovie pointer named movie.
+NSMovie *movie=[[NSMovie alloc] initWithURL: [op URL] byReference: YES];
 
-//Put the movie into the General/NSMovieView.
+//Put the movie into the NSMovieView.
 [myMovieView setMovie:movie];
 
 //Release the objects you allocated above.
@@ -23,4 +23,4 @@ General/NSMovie *movie=General/[[NSMovie alloc] initWithURL: [op URL] byReferenc
 [op release];
 
 
-Back to General/HowToProgramInOSX
+Back to HowToProgramInOSX

@@ -1,6 +1,6 @@
 
 
-Dicsuss the wisdom of having multiple returns in a function or method.  (Taken from General/PollCodingStyles)
+Dicsuss the wisdom of having multiple returns in a function or method.  (Taken from PollCodingStyles)
 
     
 if (flag)                                            [2]
@@ -36,7 +36,7 @@ I tend to be afraid of duplication not just because of increased code-size, but 
 
 As for goto statements, I don't like them since they remove the notion of a code path which is something that C has over ASM.  Goto statements (in the use which I think you are implying) seem to be a patch on this multiple exit problem but they only address some of the problems.  I tend to use the control flow structures in C to avoid the problem entirely.
 
---General/JeffDisher
+--JeffDisher
 
 ----
 Goto Considered Harmful, settled the goto question once and for all... and code duplication is to be avoided at all costs for sure.  Are there any other reasons multiple exit points in a function or method should be considered bad design strategy?
@@ -45,9 +45,9 @@ Goto Considered Harmful, settled the goto question once and for all... and code 
 
 Isn't it in Pascal that you state which variable will hold the return value at the start of the function? Nice touch anyway, that way it's clear where the return value is. You can still write confusing code though... just a thought late in the evening.
 
-The GRASP-pattern (oops, redundant acronym syndrome) General/HighCohesion states that a method should do as litte as possible (meaning, doing only one thing, one side-effect or one calculation). This means that multiple returns are not much of a problem, if your method is highly cohesive, there will most likely be little confusion over what is happening.
+The GRASP-pattern (oops, redundant acronym syndrome) HighCohesion states that a method should do as litte as possible (meaning, doing only one thing, one side-effect or one calculation). This means that multiple returns are not much of a problem, if your method is highly cohesive, there will most likely be little confusion over what is happening.
 
---General/TheoHultberg/Iconara 
+--TheoHultberg/Iconara 
 
 
 ----
@@ -55,15 +55,15 @@ The GRASP-pattern (oops, redundant acronym syndrome) General/HighCohesion states
 Taken from Darwin source...
 
     
-static Boolean __CFStringEqual(General/CFTypeRef cf1, General/CFTypeRef cf2) {
-    General/CFStringRef str1 = cf1;
-    General/CFStringRef str2 = cf2;
+static Boolean __CFStringEqual(CFTypeRef cf1, CFTypeRef cf2) {
+    CFStringRef str1 = cf1;
+    CFStringRef str2 = cf2;
     const uint8_t *contents1;
     const uint8_t *contents2;
-    General/CFIndex len1;
+    CFIndex len1;
 
-    /* !!! We do not need General/IsString assertions, as the General/CFBase runtime assures this */
-    /* !!! We do not need == test, as the General/CFBase runtime assures this */
+    /* !!! We do not need IsString assertions, as the CFBase runtime assures this */
+    /* !!! We do not need == test, as the CFBase runtime assures this */
 
     contents1 = __CFStrContents(str1);
     contents2 = __CFStrContents(str2);
@@ -77,25 +77,25 @@ static Boolean __CFStringEqual(General/CFTypeRef cf1, General/CFTypeRef cf2) {
     if (__CFStrIsEightBit(str1) && __CFStrIsEightBit(str2)) {
         return memcmp((const char *)contents1, (const char *)contents2, len1) ? false : true;
     } else if (__CFStrIsEightBit(str1)) {	/* One string has Unicode contents */
-        General/CFStringInlineBuffer buf;
-	General/CFIndex buf_idx = 0;
+        CFStringInlineBuffer buf;
+	CFIndex buf_idx = 0;
 
-        General/CFStringInitInlineBuffer(str1, &buf, General/CFRangeMake(0, len1));
+        CFStringInitInlineBuffer(str1, &buf, CFRangeMake(0, len1));
 	for (buf_idx = 0; buf_idx < len1; buf_idx++) {
-	    if (__CFStringGetCharacterFromInlineBufferQuick(&buf, buf_idx) != ((General/UniChar *)contents2)[buf_idx]) return false;
+	    if (__CFStringGetCharacterFromInlineBufferQuick(&buf, buf_idx) != ((UniChar *)contents2)[buf_idx]) return false;
   	}
     } else if (__CFStrIsEightBit(str2)) {	/* One string has Unicode contents */
-        General/CFStringInlineBuffer buf;
-	General/CFIndex buf_idx = 0;
+        CFStringInlineBuffer buf;
+	CFIndex buf_idx = 0;
 
-        General/CFStringInitInlineBuffer(str2, &buf, General/CFRangeMake(0, len1));
+        CFStringInitInlineBuffer(str2, &buf, CFRangeMake(0, len1));
         for (buf_idx = 0; buf_idx < len1; buf_idx++) {
-            if (__CFStringGetCharacterFromInlineBufferQuick(&buf, buf_idx) != ((General/UniChar *)contents1)[buf_idx]) return false;
+            if (__CFStringGetCharacterFromInlineBufferQuick(&buf, buf_idx) != ((UniChar *)contents1)[buf_idx]) return false;
         }
     } else {					/* Both strings have Unicode contents */
-	General/CFIndex idx;
+	CFIndex idx;
         for (idx = 0; idx < len1; idx++) {
-            if (((General/UniChar *)contents1)[idx] != ((General/UniChar *)contents2)[idx]) return false;
+            if (((UniChar *)contents1)[idx] != ((UniChar *)contents2)[idx]) return false;
         }
     }
     return true;
@@ -104,8 +104,8 @@ static Boolean __CFStringEqual(General/CFTypeRef cf1, General/CFTypeRef cf2) {
 
 ----
 
-Note that each return statement increases the CCN (General/CyclomaticComplexityNumber) of a method. In general, the higher the CCN of a method, the more likely it is for that method to have a bug. And the more difficult it is to modify that method if necessary. 
+Note that each return statement increases the CCN (CyclomaticComplexityNumber) of a method. In general, the higher the CCN of a method, the more likely it is for that method to have a bug. And the more difficult it is to modify that method if necessary. 
 
 I certainly don't mind returns in guard clauses at the top of a method. I strive to allow only one return statement after the guard clauses. I dont' always succeed.
 
-General/TimHart
+TimHart

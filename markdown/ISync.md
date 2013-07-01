@@ -4,4 +4,4 @@ Eddy
 
 ---
 
-A start of documentation can be found at General/NSSyncConduit
+A start of documentation can be found at NSSyncConduit

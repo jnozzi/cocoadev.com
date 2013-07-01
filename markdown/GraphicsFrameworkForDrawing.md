@@ -4,21 +4,21 @@ I want to draw some thing like what quick model draws. So i want to know wether 
 
 ----
 
-You won't find anything easier to use than General/NSBezierPath. It's not the fastest thing on earth, but you get a lot of stuff "for free".
+You won't find anything easier to use than NSBezierPath. It's not the fastest thing on earth, but you get a lot of stuff "for free".
 
 ----
 
 Agreed. Drawing a solid (filled) rectangle can be done with one line:
 
     
-General/[[NSBezierPath bezierPathWithRect:General/NSMakeRect(10, 10, 100, 50)] fill];
+[[NSBezierPath bezierPathWithRect:NSMakeRect(10, 10, 100, 50)] fill];
 
 
 Other shapes (like a triangle) are slightly more complicated in that you must define the points (then use -moveToPoint: and -lineToPoint: to draw trace it), but if you find anything that reduces basic drawing to an even easier approach, you've found the Holy Grail. 
 ----
 There is also 
     
-General/NSRectFill(General/NSMakeRect(10, 10, 100, 50));
+NSRectFill(NSMakeRect(10, 10, 100, 50));
 
 
 However, generic drawing frameworks for USER EDITABLE graphics certainly do exist.  If the original question may really be about user editable graphics.  There are also high level programatic interfaces e.g. GNOME Canvas.
@@ -27,6 +27,6 @@ There are also frameworks like Graphviz that meet specialized needs for directed
 
 ----
 
-There's also General/GCDrawKit, which I'm currently developing with others, to be an open source Cocoa-based general purpose graphics editing framework.Feel free to have a look and perhaps get involved. It's not quite ready yet, but we are making good progress. --General/GrahamCox
+There's also GCDrawKit, which I'm currently developing with others, to be an open source Cocoa-based general purpose graphics editing framework.Feel free to have a look and perhaps get involved. It's not quite ready yet, but we are making good progress. --GrahamCox
 ----
-I need to edit it programatically. General/GCDrawKit is not available yet. I need to develop just similar to quick model of xcode. drawing arrows stuff i found bit diff. incase there is no framework available i have to go for beziers.
+I need to edit it programatically. GCDrawKit is not available yet. I need to develop just similar to quick model of xcode. drawing arrows stuff i found bit diff. incase there is no framework available i have to go for beziers.

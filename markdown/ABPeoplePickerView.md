@@ -1,10 +1,10 @@
-General/ABPeoplePickerView is a new Cocoa class released in 10.3. It show all of your contacts in General/AddressBook. It has been used in Apple Mail, and Apple iCal. 
+ABPeoplePickerView is a new Cocoa class released in 10.3. It show all of your contacts in AddressBook. It has been used in Apple Mail, and Apple iCal. 
 
 http://developer.apple.com/documentation/UserExperience/Reference/AddressBook/ObjC_classic/Classes/ABPeoplePickerView.html
 
 ----
 
-I need to know what property the user selected in my General/ABPeoplePickerView, but I can't find a way to do this.
+I need to know what property the user selected in my ABPeoplePickerView, but I can't find a way to do this.
 
 ----
     

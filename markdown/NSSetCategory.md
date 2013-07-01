@@ -1,21 +1,21 @@
 
 
-People have expressed their desire for greater functionality from General/NSSet.  Anyone who wants to write a few of the methods (or improve existing methods) should feel more than welcome.
+People have expressed their desire for greater functionality from NSSet.  Anyone who wants to write a few of the methods (or improve existing methods) should feel more than welcome.
 
 At least one person has said they want:
 
 
-*- (General/NSSet *)intersectionWithSet:(General/NSSet *)aSet;
-*- (General/NSSet *)setByAddingSet:(General/NSSet *)aSet;
-*- (General/NSSet *)setByRemovingSet:(General/NSSet *)aSet;
-*- (General/NSSet *)setByAddingObject:(id)anObject;
-*- (General/NSSet *)setByRemovingObject:(id)anObject;
+*- (NSSet *)intersectionWithSet:(NSSet *)aSet;
+*- (NSSet *)setByAddingSet:(NSSet *)aSet;
+*- (NSSet *)setByRemovingSet:(NSSet *)aSet;
+*- (NSSet *)setByAddingObject:(id)anObject;
+*- (NSSet *)setByRemovingObject:(id)anObject;
 
 
 ----
-**General/NSSet category General/CocoaDevUsersAdditions:**
+**NSSet category CocoaDevUsersAdditions:**
 
-**General/NSSet+General/CocoaDevUsersAdditions.h**
+**NSSet+CocoaDevUsersAdditions.h**
     
  #import <Foundation/Foundation.h>
  
@@ -37,7 +37,7 @@ At least one person has said they want:
 
 
 
-**General/NSSet+General/CocoaDevUsersAdditions.m**
+**NSSet+CocoaDevUsersAdditions.m**
     
  #import "NSSet+CocoaDevUsersAdditions.h"
  
@@ -45,7 +45,7 @@ At least one person has said they want:
  
  - (NSSet *)setByUnioningSet:(NSSet *)aSet
  {
-   id ret = General/self mutableCopy] autorelease];
+   id ret = self mutableCopy] autorelease];
    [ret unionSet:aSet];
    return ret;
  }
@@ -70,7 +70,7 @@ At least one person has said they want:
  }
  - (NSSet *)setByAddingObject:(id)anObject
  {
-   id ret = General/self mutableCopy] autorelease];
+   id ret = self mutableCopy] autorelease];
    [ret addObject:anObject];
    return ret;
  }

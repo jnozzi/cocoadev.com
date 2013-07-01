@@ -1,26 +1,26 @@
 
 
-General/IOKit provides access to devices. It is an object-oriented framework leveraged by programmers for creating device drivers. It uses a subset of Embedded-C++ as its *lingua franca*, but the user space client API is wrapped into C General/APIs.
+IOKit provides access to devices. It is an object-oriented framework leveraged by programmers for creating device drivers. It uses a subset of Embedded-C++ as its *lingua franca*, but the user space client API is wrapped into C APIs.
 
 ----
 
-Two C snippets showing how to retrieve the MAC address via General/IOKit.
+Two C snippets showing how to retrieve the MAC address via IOKit.
 
     
 
 /*
 
-    taken from: http://developer.apple.com/mac/library/samplecode/General/GetPrimaryMACAddress/Introduction/Intro.html
+    taken from: http://developer.apple.com/mac/library/samplecode/GetPrimaryMACAddress/Introduction/Intro.html
 
     compile with:
 
-    gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework General/CoreFoundation \
-        -framework General/IOKit -o General/GetPrimaryMACAddress General/GetPrimaryMACAddress.c
+    gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework CoreFoundation \
+        -framework IOKit -o GetPrimaryMACAddress GetPrimaryMACAddress.c
 
-   ./General/GetPrimaryMACAddress
+   ./GetPrimaryMACAddress
 
 
-    File:           General/GetPrimaryMACAddress.c
+    File:           GetPrimaryMACAddress.c
     
     Description:    This sample application demonstrates how to do retrieve the Ethernet MAC
                     address of the built-in Ethernet interface from the I/O Registry on Mac OS X.
@@ -68,94 +68,94 @@ Two C snippets showing how to retrieve the MAC address via General/IOKit.
     Change History (most recent first):
         
             <3>     09/15/05    Updated to produce a universal binary. Use kIOMasterPortDefault
-                                instead of older General/IOMasterPort function. Print the MAC address
+                                instead of older IOMasterPort function. Print the MAC address
                                 to stdout in response to <rdar://problem/4021220>.
             <2>     04/30/02    Fix bug in creating the matching dictionary that caused the
                                 kIOPrimaryInterface property to be ignored. Clean up comments and add
-                                additional comments about how General/IOServiceGetMatchingServices operates.
+                                additional comments about how IOServiceGetMatchingServices operates.
             <1>     06/07/01    New sample.
         
 */
 
 #include <stdio.h>
 
-#include <General/CoreFoundation/General/CoreFoundation.h>
+#include <CoreFoundation/CoreFoundation.h>
 
-#include <General/IOKit/General/IOKitLib.h>
-#include <General/IOKit/network/General/IOEthernetInterface.h>
-#include <General/IOKit/network/General/IONetworkInterface.h>
-#include <General/IOKit/network/General/IOEthernetController.h>
+#include <IOKit/IOKitLib.h>
+#include <IOKit/network/IOEthernetInterface.h>
+#include <IOKit/network/IONetworkInterface.h>
+#include <IOKit/network/IOEthernetController.h>
 
-static kern_return_t General/FindEthernetInterfaces(io_iterator_t *matchingServices);
-static kern_return_t General/GetMACAddress(io_iterator_t intfIterator, UInt8 *General/MACAddress, UInt8 bufferSize);
+static kern_return_t FindEthernetInterfaces(io_iterator_t *matchingServices);
+static kern_return_t GetMACAddress(io_iterator_t intfIterator, UInt8 *MACAddress, UInt8 bufferSize);
 
 // Returns an iterator containing the primary (built-in) Ethernet interface. The caller is responsible for
 // releasing the iterator after the caller is done with it.
-static kern_return_t General/FindEthernetInterfaces(io_iterator_t *matchingServices)
+static kern_return_t FindEthernetInterfaces(io_iterator_t *matchingServices)
 {
     kern_return_t       kernResult; 
-    General/CFMutableDictionaryRef  matchingDict;
-    General/CFMutableDictionaryRef  propertyMatchDict;
+    CFMutableDictionaryRef  matchingDict;
+    CFMutableDictionaryRef  propertyMatchDict;
     
     // Ethernet interfaces are instances of class kIOEthernetInterfaceClass. 
-    // General/IOServiceMatching is a convenience function to create a dictionary with the key kIOProviderClassKey and 
+    // IOServiceMatching is a convenience function to create a dictionary with the key kIOProviderClassKey and 
     // the specified value.
-    matchingDict = General/IOServiceMatching(kIOEthernetInterfaceClass);
+    matchingDict = IOServiceMatching(kIOEthernetInterfaceClass);
 
     // Note that another option here would be:
-    // matchingDict = General/IOBSDMatching("en0");
+    // matchingDict = IOBSDMatching("en0");
         
     if (NULL == matchingDict) {
-        printf("General/IOServiceMatching returned a NULL dictionary.\n");
+        printf("IOServiceMatching returned a NULL dictionary.\n");
     }
     else {
-        // Each General/IONetworkInterface object has a Boolean property with the key kIOPrimaryInterface. Only the
+        // Each IONetworkInterface object has a Boolean property with the key kIOPrimaryInterface. Only the
         // primary (built-in) interface has this property set to TRUE.
         
-        // General/IOServiceGetMatchingServices uses the default matching criteria defined by General/IOService. This considers
+        // IOServiceGetMatchingServices uses the default matching criteria defined by IOService. This considers
         // only the following properties plus any family-specific matching in this order of precedence 
-        // (see General/IOService::passiveMatch):
+        // (see IOService::passiveMatch):
         //
-        // kIOProviderClassKey (General/IOServiceMatching)
-        // kIONameMatchKey (General/IOServiceNameMatching)
+        // kIOProviderClassKey (IOServiceMatching)
+        // kIONameMatchKey (IOServiceNameMatching)
         // kIOPropertyMatchKey
         // kIOPathMatchKey
         // kIOMatchedServiceCountKey
         // family-specific matching
-        // kIOBSDNameKey (General/IOBSDNameMatching)
+        // kIOBSDNameKey (IOBSDNameMatching)
         // kIOLocationMatchKey
         
-        // The General/IONetworkingFamily does not define any family-specific matching. This means that in            
-        // order to have General/IOServiceGetMatchingServices consider the kIOPrimaryInterface property, we must
+        // The IONetworkingFamily does not define any family-specific matching. This means that in            
+        // order to have IOServiceGetMatchingServices consider the kIOPrimaryInterface property, we must
         // add that property to a separate dictionary and then add that to our matching dictionary
         // specifying kIOPropertyMatchKey.
             
-        propertyMatchDict = General/CFDictionaryCreateMutable(kCFAllocatorDefault, 0,
+        propertyMatchDict = CFDictionaryCreateMutable(kCFAllocatorDefault, 0,
                                                       &kCFTypeDictionaryKeyCallBacks,
                                                       &kCFTypeDictionaryValueCallBacks);
     
         if (NULL == propertyMatchDict) {
-            printf("General/CFDictionaryCreateMutable returned a NULL dictionary.\n");
+            printf("CFDictionaryCreateMutable returned a NULL dictionary.\n");
         }
         else {
             // Set the value in the dictionary of the property with the given key, or add the key 
             // to the dictionary if it doesn't exist. This call retains the value object passed in.
-            General/CFDictionarySetValue(propertyMatchDict, CFSTR(kIOPrimaryInterface), kCFBooleanTrue); 
+            CFDictionarySetValue(propertyMatchDict, CFSTR(kIOPrimaryInterface), kCFBooleanTrue); 
             
             // Now add the dictionary containing the matching value for kIOPrimaryInterface to our main
             // matching dictionary. This call will retain propertyMatchDict, so we can release our reference 
             // on propertyMatchDict after adding it to matchingDict.
-            General/CFDictionarySetValue(matchingDict, CFSTR(kIOPropertyMatchKey), propertyMatchDict);
-            General/CFRelease(propertyMatchDict);
+            CFDictionarySetValue(matchingDict, CFSTR(kIOPropertyMatchKey), propertyMatchDict);
+            CFRelease(propertyMatchDict);
         }
     }
     
-    // General/IOServiceGetMatchingServices retains the returned iterator, so release the iterator when we're done with it.
-    // General/IOServiceGetMatchingServices also consumes a reference on the matching dictionary so we don't need to release
+    // IOServiceGetMatchingServices retains the returned iterator, so release the iterator when we're done with it.
+    // IOServiceGetMatchingServices also consumes a reference on the matching dictionary so we don't need to release
     // the dictionary explicitly.
-    kernResult = General/IOServiceGetMatchingServices(kIOMasterPortDefault, matchingDict, matchingServices);    
+    kernResult = IOServiceGetMatchingServices(kIOMasterPortDefault, matchingDict, matchingServices);    
     if (KERN_SUCCESS != kernResult) {
-        printf("General/IOServiceGetMatchingServices returned 0x%08x\n", kernResult);
+        printf("IOServiceGetMatchingServices returned 0x%08x\n", kernResult);
     }
         
     return kernResult;
@@ -164,7 +164,7 @@ static kern_return_t General/FindEthernetInterfaces(io_iterator_t *matchingServi
 // Given an iterator across a set of Ethernet interfaces, return the MAC address of the last one.
 // If no interfaces are found the MAC address is set to an empty string.
 // In this sample the iterator should contain just the primary interface.
-static kern_return_t General/GetMACAddress(io_iterator_t intfIterator, UInt8 *General/MACAddress, UInt8 bufferSize)
+static kern_return_t GetMACAddress(io_iterator_t intfIterator, UInt8 *MACAddress, UInt8 bufferSize)
 {
     io_object_t     intfService;
     io_object_t     controllerService;
@@ -176,46 +176,46 @@ static kern_return_t General/GetMACAddress(io_iterator_t intfIterator, UInt8 *Ge
     }
     
     // Initialize the returned address
-    bzero(General/MACAddress, bufferSize);
+    bzero(MACAddress, bufferSize);
     
-    // General/IOIteratorNext retains the returned object, so release it when we're done with it.
-    while ( (intfService = General/IOIteratorNext(intfIterator)) )
+    // IOIteratorNext retains the returned object, so release it when we're done with it.
+    while ( (intfService = IOIteratorNext(intfIterator)) )
     {
-        General/CFTypeRef   General/MACAddressAsCFData;        
+        CFTypeRef   MACAddressAsCFData;        
 
-        // General/IONetworkControllers can't be found directly by the General/IOServiceGetMatchingServices call, 
+        // IONetworkControllers can't be found directly by the IOServiceGetMatchingServices call, 
         // since they are hardware nubs and do not participate in driver matching. In other words,
-        // registerService() is never called on them. So we've found the General/IONetworkInterface and will 
+        // registerService() is never called on them. So we've found the IONetworkInterface and will 
         // get its parent controller by asking for it specifically.
         
-        // General/IORegistryEntryGetParentEntry retains the returned object, so release it when we're done with it.
-        kernResult = General/IORegistryEntryGetParentEntry(intfService,
+        // IORegistryEntryGetParentEntry retains the returned object, so release it when we're done with it.
+        kernResult = IORegistryEntryGetParentEntry(intfService,
                                                    kIOServicePlane,
                                                    &controllerService);
         
         if (KERN_SUCCESS != kernResult) {
-            printf("General/IORegistryEntryGetParentEntry returned 0x%08x\n", kernResult);
+            printf("IORegistryEntryGetParentEntry returned 0x%08x\n", kernResult);
         }
         else {
-            // Retrieve the MAC address property from the I/O Registry in the form of a General/CFData
-            General/MACAddressAsCFData = General/IORegistryEntryCreateCFProperty(controllerService,
+            // Retrieve the MAC address property from the I/O Registry in the form of a CFData
+            MACAddressAsCFData = IORegistryEntryCreateCFProperty(controllerService,
                                                                  CFSTR(kIOMACAddress),
                                                                  kCFAllocatorDefault,
                                                                  0);
-            if (General/MACAddressAsCFData) {
-                General/CFShow(General/MACAddressAsCFData); // for display purposes only; output goes to stderr
+            if (MACAddressAsCFData) {
+                CFShow(MACAddressAsCFData); // for display purposes only; output goes to stderr
                 
-                // Get the raw bytes of the MAC address from the General/CFData
-                General/CFDataGetBytes(General/MACAddressAsCFData, General/CFRangeMake(0, kIOEthernetAddressSize), General/MACAddress);
-                General/CFRelease(General/MACAddressAsCFData);
+                // Get the raw bytes of the MAC address from the CFData
+                CFDataGetBytes(MACAddressAsCFData, CFRangeMake(0, kIOEthernetAddressSize), MACAddress);
+                CFRelease(MACAddressAsCFData);
             }
                 
             // Done with the parent Ethernet controller object so we release it.
-            (void) General/IOObjectRelease(controllerService);
+            (void) IOObjectRelease(controllerService);
         }
         
         // Done with the Ethernet interface object so we release it.
-        (void) General/IOObjectRelease(intfService);
+        (void) IOObjectRelease(intfService);
     }
         
     return kernResult;
@@ -223,35 +223,35 @@ static kern_return_t General/GetMACAddress(io_iterator_t intfIterator, UInt8 *Ge
 
 int main(int argc, char *argv[])
 {
-    kern_return_t   kernResult = KERN_SUCCESS; // on General/PowerPC this is an int (4 bytes)
+    kern_return_t   kernResult = KERN_SUCCESS; // on PowerPC this is an int (4 bytes)
 /*
- *  error number layout as follows (see mach/error.h and General/IOKit/General/IOReturn.h):
+ *  error number layout as follows (see mach/error.h and IOKit/IOReturn.h):
  *
  *  hi                     lo
  *  | system(6) | subsystem(12) | code(14) |
  */
 
     io_iterator_t   intfIterator;
-    UInt8           General/MACAddress[kIOEthernetAddressSize];
+    UInt8           MACAddress[kIOEthernetAddressSize];
  
-    kernResult = General/FindEthernetInterfaces(&intfIterator);
+    kernResult = FindEthernetInterfaces(&intfIterator);
     
     if (KERN_SUCCESS != kernResult) {
-        printf("General/FindEthernetInterfaces returned 0x%08x\n", kernResult);
+        printf("FindEthernetInterfaces returned 0x%08x\n", kernResult);
     }
     else {
-        kernResult = General/GetMACAddress(intfIterator, General/MACAddress, sizeof(General/MACAddress));
+        kernResult = GetMACAddress(intfIterator, MACAddress, sizeof(MACAddress));
         
         if (KERN_SUCCESS != kernResult) {
-            printf("General/GetMACAddress returned 0x%08x\n", kernResult);
+            printf("GetMACAddress returned 0x%08x\n", kernResult);
         }
         else {
             printf("This system's built-in MAC address is %02x:%02x:%02x:%02x:%02x:%02x.\n",
-                    General/MACAddress[0], General/MACAddress[1], General/MACAddress[2], General/MACAddress[3], General/MACAddress[4], General/MACAddress[5]);
+                    MACAddress[0], MACAddress[1], MACAddress[2], MACAddress[3], MACAddress[4], MACAddress[5]);
         }
     }
     
-    (void) General/IOObjectRelease(intfIterator);   // Release the iterator.
+    (void) IOObjectRelease(intfIterator);   // Release the iterator.
         
     return kernResult;
 }
@@ -273,63 +273,63 @@ http://forums.macrumors.com/showthread.php?t=689645
 
 compile with:
 
-gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework General/CoreFoundation -framework General/IOKit -o getmacaddress getmacaddress.c
+gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework CoreFoundation -framework IOKit -o getmacaddress getmacaddress.c
 
 ./getmacaddress
 
 
 "One important thing to note is that the CF* and NS* classes are toll-free bridged. That is, 
-if you have some General/CFStringRef, for example, you can just typecast it to General/NSString* and use it 
-as you would an General/NSString. This also means the same retain/release requirements apply."
+if you have some CFStringRef, for example, you can just typecast it to NSString* and use it 
+as you would an NSString. This also means the same retain/release requirements apply."
 
 */
 
 #import <Foundation/Foundation.h>
 
-#include <General/IOKit/General/IOKitLib.h>
-#include <General/IOKit/network/General/IOEthernetInterface.h>
-#include <General/IOKit/network/General/IOEthernetController.h>
+#include <IOKit/IOKitLib.h>
+#include <IOKit/network/IOEthernetInterface.h>
+#include <IOKit/network/IOEthernetController.h>
 
-static General/NSDictionary* General/GetMACAddresses( io_iterator_t netIterator );
-static kern_return_t General/FindNetworkInterfaces( io_iterator_t *services );
-static General/NSString* bytesToHexString( General/NSData* data );
+static NSDictionary* GetMACAddresses( io_iterator_t netIterator );
+static kern_return_t FindNetworkInterfaces( io_iterator_t *services );
+static NSString* bytesToHexString( NSData* data );
 
 int main (int argc, const char * argv[]) {
   io_iterator_t intfIterator;
   kern_return_t kernResult = KERN_FAILURE;
   
-  General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+  NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
-  // General/NSLog(@"Detecting Network Interfaces...");
+  // NSLog(@"Detecting Network Interfaces...");
   
-  kernResult = General/FindNetworkInterfaces( &intfIterator );
+  kernResult = FindNetworkInterfaces( &intfIterator );
   if( KERN_SUCCESS != kernResult ) {
     printf( "findNetworkInterfaces failed\n" );
 
   } else {
 
-    // General/NSLog( @"Found one of more valid interfaces. Extracting MAC addresses..." );
+    // NSLog( @"Found one of more valid interfaces. Extracting MAC addresses..." );
 
-    General/NSDictionary* intfDictionary = General/GetMACAddresses( intfIterator );
+    NSDictionary* intfDictionary = GetMACAddresses( intfIterator );
 
     /*
     for( id key in intfDictionary ) {
-      General/NSLog( @"  %@  =>  %@", key, [intfDictionary objectForKey: key] );
+      NSLog( @"  %@  =>  %@", key, [intfDictionary objectForKey: key] );
     }
    */
 
    /* ADDED !!! */
    /* more portable code than: for( id key in intfDictionary ) { ... */
-   General/NSArray* keys = General/intfDictionary allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+   NSArray* keys = intfDictionary allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
    int num = [keys count];
    int i;
    for (i = 0; i < num; i++) 
    {
       /* [[NSLog( @"  %@  =>  %@", [keys objectAtIndex: i], [intfDictionary objectForKey: [keys objectAtIndex: i]] ); */
-      printf("%s => %s\n", General/keys objectAtIndex: i] UTF8String], [[intfDictionary objectForKey: [keys objectAtIndex: i UTF8String]);
+      printf("%s => %s\n", keys objectAtIndex: i] UTF8String], [[intfDictionary objectForKey: [keys objectAtIndex: i UTF8String]);
    }
 
-    General/IOObjectRelease( intfIterator );
+    IOObjectRelease( intfIterator );
   }
   
   /* [pool drain]; */
@@ -340,86 +340,86 @@ int main (int argc, const char * argv[]) {
 /* Search through each of the Network interfaces identified
  *  in the netIterator and pull out the MAC address and the BSD
  *  name of the interface. Then convert the raw MAC address into
- *  a readable string and return an General/NSDictionary with a mapping of
- *  BSD Name (General/NSString*) => MAC Address (General/NSString*) for each interface
+ *  a readable string and return an NSDictionary with a mapping of
+ *  BSD Name (NSString*) => MAC Address (NSString*) for each interface
  */
-static General/NSDictionary* General/GetMACAddresses( io_iterator_t netIterator ) {
-  General/NSMutableDictionary*    etherDictionary = nil;
+static NSDictionary* GetMACAddresses( io_iterator_t netIterator ) {
+  NSMutableDictionary*    etherDictionary = nil;
   kern_return_t           kernResult = KERN_FAILURE;
   io_object_t             interfaceService;
   io_object_t             controllerService;
   
-  while( ( interfaceService = General/IOIteratorNext(netIterator) ) ) {
-    General/CFTypeRef General/MACAddrAsCFData = NULL;
-    General/CFTypeRef General/BSDNameAsCFString = NULL;
+  while( ( interfaceService = IOIteratorNext(netIterator) ) ) {
+    CFTypeRef MACAddrAsCFData = NULL;
+    CFTypeRef BSDNameAsCFString = NULL;
     
-    kernResult = General/IORegistryEntryGetParentEntry( interfaceService,
+    kernResult = IORegistryEntryGetParentEntry( interfaceService,
                                                 kIOServicePlane,
                                                 &controllerService );
     if( KERN_SUCCESS != kernResult ) {
-      printf( "General/IORegistryEntryGetParentEntry failed with 0x%08x\n", kernResult );
+      printf( "IORegistryEntryGetParentEntry failed with 0x%08x\n", kernResult );
     } else {
-      General/MACAddrAsCFData = General/IORegistryEntryCreateCFProperty( controllerService,
+      MACAddrAsCFData = IORegistryEntryCreateCFProperty( controllerService,
                                                          CFSTR(kIOMACAddress),
                                                          kCFAllocatorDefault,
                                                          0 );
       
-      General/BSDNameAsCFString = General/IORegistryEntryCreateCFProperty( interfaceService,
+      BSDNameAsCFString = IORegistryEntryCreateCFProperty( interfaceService,
                                                            CFSTR("BSD Name"),
                                                            kCFAllocatorDefault,
                                                            0 );
       
-      if( General/MACAddrAsCFData && General/BSDNameAsCFString ) {
+      if( MACAddrAsCFData && BSDNameAsCFString ) {
         if( nil == etherDictionary ) {
-          etherDictionary = General/[[NSMutableDictionary alloc] init]; 
+          etherDictionary = [[NSMutableDictionary alloc] init]; 
         }
         
-        [etherDictionary setObject:bytesToHexString((General/NSData*)General/MACAddrAsCFData)
-                            forKey:(General/NSString*)General/BSDNameAsCFString];
+        [etherDictionary setObject:bytesToHexString((NSData*)MACAddrAsCFData)
+                            forKey:(NSString*)BSDNameAsCFString];
         
       }
 
-      if( nil != General/BSDNameAsCFString ) {
-            General/CFRelease( General/BSDNameAsCFString );
+      if( nil != BSDNameAsCFString ) {
+            CFRelease( BSDNameAsCFString );
       }
 
-      if( nil != General/MACAddrAsCFData ) {
-            General/CFRelease( General/MACAddrAsCFData );
+      if( nil != MACAddrAsCFData ) {
+            CFRelease( MACAddrAsCFData );
       }
     }
   }
   
-  return (nil == etherDictionary) ? nil : (General/NSDictionary*)[etherDictionary autorelease];
+  return (nil == etherDictionary) ? nil : (NSDictionary*)[etherDictionary autorelease];
 }
-/* Search through the General/IOServicePlane and find any services that
- *  represent an General/IOEthernetInterface. If you wanted to find a
+/* Search through the IOServicePlane and find any services that
+ *  represent an IOEthernetInterface. If you wanted to find a
  *  MAC address for a specific interface you could replace the
- *  General/IOServiceMatching calls with General/IOBSDNameMatching
+ *  IOServiceMatching calls with IOBSDNameMatching
  */
-static kern_return_t General/FindNetworkInterfaces( io_iterator_t *services ) {
-  General/CFMutableDictionaryRef  matchClasses = NULL;
+static kern_return_t FindNetworkInterfaces( io_iterator_t *services ) {
+  CFMutableDictionaryRef  matchClasses = NULL;
   kern_return_t           kernResult = KERN_FAILURE;
   mach_port_t             machPort;
   
-  kernResult = General/IOMasterPort( MACH_PORT_NULL, &machPort );
+  kernResult = IOMasterPort( MACH_PORT_NULL, &machPort );
   if( KERN_SUCCESS != kernResult ) {
-    printf( "General/IOMasterPort failed: %d\n", kernResult );
+    printf( "IOMasterPort failed: %d\n", kernResult );
   }
   
-  matchClasses = General/IOServiceMatching( kIOEthernetInterfaceClass );
+  matchClasses = IOServiceMatching( kIOEthernetInterfaceClass );
   if( NULL == matchClasses ) {
-    printf( "General/IOServiceMatching returned a NULL dictionary" );
+    printf( "IOServiceMatching returned a NULL dictionary" );
   }
   
-  kernResult = General/IOServiceGetMatchingServices( machPort, matchClasses, services );
+  kernResult = IOServiceGetMatchingServices( machPort, matchClasses, services );
   if( KERN_SUCCESS != kernResult ) {
-    printf( "General/IOServiceGetMatchingServices failed: %d\n", kernResult );
+    printf( "IOServiceGetMatchingServices failed: %d\n", kernResult );
   }
   
   return kernResult;
 }
-static General/NSString* bytesToHexString( General/NSData* data ) {
-  General/NSMutableString*  result = General/[[NSMutableString alloc] initWithCapacity: [data length] << 1];
+static NSString* bytesToHexString( NSData* data ) {
+  NSMutableString*  result = [[NSMutableString alloc] initWithCapacity: [data length] << 1];
   UInt8*  mbytes = (UInt8*)[data bytes];
   char    hBytes[8] = {'\0'};
   int     i = 0;
@@ -433,16 +433,16 @@ static General/NSString* bytesToHexString( General/NSData* data ) {
     }
   }
   
-  return (General/NSString*)[result autorelease];
+  return (NSString*)[result autorelease];
 }
 
 
 
 ----
 
-A command line tool to list mounted USB devices and their respective volume paths; uses General/IOKit and man 2 getfsstat to get the job done.
+A command line tool to list mounted USB devices and their respective volume paths; uses IOKit and man 2 getfsstat to get the job done.
 
-The man 2 getfsstat code could be replaced by Apple's General/IOKit-based sample code General/VolumeToBSDNode though.
+The man 2 getfsstat code could be replaced by Apple's IOKit-based sample code VolumeToBSDNode though.
 
     
 
@@ -455,12 +455,12 @@ References:
 - http://stackoverflow.com/questions/2459414/osx-how-to-get-a-volume-name-or-bsd-name-from-a-iousbdeviceinterface-or-locati
 - http://superuser.com/questions/103755/whats-up-with-stat-on-mac-os-x-darwin-or-filesystems-without-names
 - http://stackoverflow.com/questions/1698124/how-to-tell-if-a-given-path-is-mounted-removable-media-in-mac-os-x
-- http://developer.apple.com/mac/library/samplecode/General/VolumeToBSDNode/Introduction/Intro.html
+- http://developer.apple.com/mac/library/samplecode/VolumeToBSDNode/Introduction/Intro.html
 
 compile with:
 
-gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework General/CoreFoundation \
-    -framework General/IOKit -o usbdevs usbdevs.c
+gcc -Wall -O3 -x objective-c -fobjc-exceptions -framework Foundation -framework CoreFoundation \
+    -framework IOKit -o usbdevs usbdevs.c
 
 usage:
 
@@ -477,31 +477,31 @@ usage:
 #import <sys/mount.h>
 
 #import <Foundation/Foundation.h>
-#import <General/CoreFoundation/General/CoreFoundation.h>
-#import <General/IOKit/General/IOKitLib.h>
-#import <General/IOKit/General/IOMessage.h>
-#import <General/IOKit/General/IOCFPlugIn.h>
-#import <General/IOKit/usb/General/IOUSBLib.h>
-#import <General/IOKit/IOBSD.h>
+#import <CoreFoundation/CoreFoundation.h>
+#import <IOKit/IOKitLib.h>
+#import <IOKit/IOMessage.h>
+#import <IOKit/IOCFPlugIn.h>
+#import <IOKit/usb/IOUSBLib.h>
+#import <IOKit/IOBSD.h>
 
 
 
 int main(int argc, char *argv[]) {
 
-   General/NSAutoreleasePool * pool = General/[[NSAutoreleasePool alloc] init];
+   NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
 
    mach_port_t             master_port;
    kern_return_t           k_result = KERN_FAILURE;
    io_iterator_t           iterator = 0;
    io_service_t            usb_device_ref;
-   General/CFMutableDictionaryRef  matching_dictionary = NULL; 
+   CFMutableDictionaryRef  matching_dictionary = NULL; 
 
    char devicePath[MAXPATHLEN*2] = {0};
 
    int print0 = 0;
    size_t pathlen = 0;
    const char *deviceName = 0;
-   General/CFStringRef bsdName = NULL;
+   CFStringRef bsdName = NULL;
 
    if (argc > 2) return 1;
 
@@ -556,34 +556,34 @@ int main(int argc, char *argv[]) {
 
 
    // first create a master_port
-   k_result = General/IOMasterPort(MACH_PORT_NULL, &master_port);
+   k_result = IOMasterPort(MACH_PORT_NULL, &master_port);
    if (KERN_SUCCESS != k_result) 
    {
       fprintf(stderr, "could not create master port, err = %d\n", k_result);
    }
 
-   if ((matching_dictionary = General/IOServiceMatching(kIOUSBDeviceClassName)) == NULL)
+   if ((matching_dictionary = IOServiceMatching(kIOUSBDeviceClassName)) == NULL)
    {
       fprintf(stderr, "could not create matching dictionary, err = %d\n", k_result);
    }
 
-   k_result = General/IOServiceGetMatchingServices(master_port, matching_dictionary, &iterator);
+   k_result = IOServiceGetMatchingServices(master_port, matching_dictionary, &iterator);
    if (KERN_SUCCESS != k_result) 
    {
       fprintf(stderr, "could not find any matching services, err = %d\n", k_result);
    }
 
-   while ((usb_device_ref = General/IOIteratorNext(iterator)))
+   while ((usb_device_ref = IOIteratorNext(iterator)))
    {
    
-      bsdName = (General/CFStringRef) General/IORegistryEntrySearchCFProperty (usb_device_ref,
+      bsdName = (CFStringRef) IORegistryEntrySearchCFProperty (usb_device_ref,
                                                                kIOServicePlane,
                                                                CFSTR ( kIOBSDNameKey ),
                                                                kCFAllocatorDefault,
                                                                kIORegistryIterateRecursively );
       if (!bsdName) continue;
 
-      deviceName = General/[[NSString stringWithFormat: @"%@", bsdName] UTF8String];
+      deviceName = [[NSString stringWithFormat: @"%@", bsdName] UTF8String];
 
       //printf("%s\n", deviceName);
 
@@ -609,9 +609,9 @@ int main(int argc, char *argv[]) {
 
       }
 
-      General/CFRelease(bsdName);
+      CFRelease(bsdName);
 
-      General/IOObjectRelease(usb_device_ref);            // no longer need this reference
+      IOObjectRelease(usb_device_ref);            // no longer need this reference
 
 
    } // while

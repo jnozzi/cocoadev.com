@@ -1,4 +1,4 @@
-General/AirTunes uses Bonjour to announce remote speakers to the network. To browse for available General/AirTunes instances, type:
+AirTunes uses Bonjour to announce remote speakers to the network. To browse for available AirTunes instances, type:
     
 mDNS -B _raop._tcp
 
@@ -13,7 +13,7 @@ The Bonjour service has following attributes, according to the mDNS command line
 
 The service **name** is something like *00112400B28F@Speakers*. The first part up to @ seems to be the Base Station's MAC address (*00:11:24:00:B2:8F* in this case). The latter part is the speaker's name (*Speakers* in this case).
 
-The service is of **type** *_raop._tcp* (General/RemoteAudioOutputProtocol).
+The service is of **type** *_raop._tcp* (RemoteAudioOutputProtocol).
 
 The **port** is 5000 (TCP).
 
@@ -31,7 +31,7 @@ Version number of this TXT record.
 
 *pw=false
 
-Is the General/AirPortExpress password protected?
+Is the AirPortExpress password protected?
 
 
 *sr=44100
@@ -70,7 +70,7 @@ Sample size = 16 bits
 
 ----
 
-When publishing a Bonjour service with the above details iTunes connects to the given port (5000 by default). The General/RemoteAudioOutputProtocol is used for communication. If your TXT records are corrupt you will end up with  this message:
+When publishing a Bonjour service with the above details iTunes connects to the given port (5000 by default). The RemoteAudioOutputProtocol is used for communication. If your TXT records are corrupt you will end up with  this message:
 
 
 *The remote Speaker "..." is not compatible with this version of iTunes.*
@@ -110,10 +110,10 @@ Any help would be appreciated, and I can be contacted at job1729@gmail.com
 ----
 
 
-I've been looking at this to figure out why the old ATV doesn't work with General/AirPlay, when the Airport express does... The key mDNS keys are ek and et.
+I've been looking at this to figure out why the old ATV doesn't work with AirPlay, when the Airport express does... The key mDNS keys are ek and et.
 
-The General/AppleTV broadcasts   et=0,2
-The General/AirportExpress broadcasts:  ek=1 et=0,1
+The AppleTV broadcasts   et=0,2
+The AirportExpress broadcasts:  ek=1 et=0,1
 
 My guess is that these are Encryption Key (present) and Encryption Type, but that's only a guess. The mDNS docs which are supposed to define the keys simply tell you to contact apple (helpfull).
 
@@ -144,14 +144,14 @@ also if anyone with an atv2 could see what ek/et settings it's advertising that 
 
 ----
 
-Here is General/AppleTV V2 as seen by Avahi:
+Here is AppleTV V2 as seen by Avahi:
 
     
  avahi-browse --terminate --all --resolve --parsable | grep -i appletv
 +;eth0;IPv4;40C7B59B5D7EADAA;_appletv-v2._tcp;local
-=;eth0;IPv4;5855CA0EC672\064Apple\194\160TV;General/AirTunes Remote Audio;local;General/AppleTV.local;192.168.1.112;49152;"sf=0x4" "am=AppleTV2,1" "vs=104.29" "md=0,1,2" "tp=TCP,UDP" "vn=65537" "pw=false" "ss=16" "sr=44100" "da=true" "sv=false" "et=0,3" "cn=0,1" "ch=2" "txtvers=1"
-=;eth0;IPv4;Apple\194\160TV;_airplay._tcp;local;General/AppleTV.local;192.168.1.112;7000;"model=AppleTV2,1" "features=0x7" "deviceid=58:55:CA:0E:C6:72"
-=;eth0;IPv4;40C7B59B5D7EADAA;_appletv-v2._tcp;local;General/AppleTV.local;192.168.1.112;3689;"General/MiTPV=196611" "DFID=2" "General/PrVs=65538" "Name=Apple�TV" "fs=2" "General/MniT=167845888" "hG=00000000-05bf-a709-e555-9474a09b4015" "txtvers=1"
+=;eth0;IPv4;5855CA0EC672\064Apple\194\160TV;AirTunes Remote Audio;local;AppleTV.local;192.168.1.112;49152;"sf=0x4" "am=AppleTV2,1" "vs=104.29" "md=0,1,2" "tp=TCP,UDP" "vn=65537" "pw=false" "ss=16" "sr=44100" "da=true" "sv=false" "et=0,3" "cn=0,1" "ch=2" "txtvers=1"
+=;eth0;IPv4;Apple\194\160TV;_airplay._tcp;local;AppleTV.local;192.168.1.112;7000;"model=AppleTV2,1" "features=0x7" "deviceid=58:55:CA:0E:C6:72"
+=;eth0;IPv4;40C7B59B5D7EADAA;_appletv-v2._tcp;local;AppleTV.local;192.168.1.112;3689;"MiTPV=196611" "DFID=2" "PrVs=65538" "Name=Apple�TV" "fs=2" "MniT=167845888" "hG=00000000-05bf-a709-e555-9474a09b4015" "txtvers=1"
  
 
 HTH, Andrej                         
@@ -170,7 +170,7 @@ some other minor things have changed but if we assume et is encryption type, it 
 Here is what worked for me with Network Beacon:
 
     
-Service Name:	General/YourMACaddress@yourSpeakerName
+Service Name:	YourMACaddress@yourSpeakerName
 Service Type:	_raop._tcp.
 Port Number:	5000
 

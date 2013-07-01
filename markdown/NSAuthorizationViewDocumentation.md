@@ -1,8 +1,8 @@
-Has anyone used an General/NSAuthorizationView? Can you please explain to me how it works?
+Has anyone used an NSAuthorizationView? Can you please explain to me how it works?
 
 ----
 
-You need to look this up in docs under General/SFAuthorizationView. I won't make too many smart remarks, so as not to make NS of myself.
+You need to look this up in docs under SFAuthorizationView. I won't make too many smart remarks, so as not to make NS of myself.
 
 ----
 

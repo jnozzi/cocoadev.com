@@ -12,7 +12,7 @@ Here's my MWSF 2002 show report:
 
 The security goons wouldn't let me take photos w/o a press pass. I didn't feel like arguing with them. I got a photo of an escalator though ... not quite worth importing into iPhoto ... 
 
-Honestly, this show seemed a little smaller than the last show I went to. Attendance was strong, but there weren't many exhibitors. Even so, there was a strong showing by Adobe, Microsoft, Canon, Nikon, Olympus, and other creative/pro companies. Games also got a large amount of floor space; I got to play the single-player General/ReturnToCastleWolfenstein for a few minutes (lots o fun!). By far the most ridiculous showing was by Sony, who had a teeny-tiny booth with a couple pictures of a digital camera and a single rep. Why bother showing up at all?
+Honestly, this show seemed a little smaller than the last show I went to. Attendance was strong, but there weren't many exhibitors. Even so, there was a strong showing by Adobe, Microsoft, Canon, Nikon, Olympus, and other creative/pro companies. Games also got a large amount of floor space; I got to play the single-player ReturnToCastleWolfenstein for a few minutes (lots o fun!). By far the most ridiculous showing was by Sony, who had a teeny-tiny booth with a couple pictures of a digital camera and a single rep. Why bother showing up at all?
 
 I ate a $13 dollar sandwich while I was there.
 
@@ -24,4 +24,4 @@ The single biggest undercurrent at this show, though, was Mac OS X. Almost every
 
 That's my show report ... 
 
--- General/MikeTrent
+-- MikeTrent

@@ -4,8 +4,8 @@ From: http://www.nist.gov/dads/HTML/deque.html
 
 Also known as doubly-ended queue.
 
-**Note:** Short for Double-Ended General/QUEue. Pronounced "deck". After [Knuth98, vol 1, page 239]. 
+**Note:** Short for Double-Ended QUEue. Pronounced "deck". After [Knuth98, vol 1, page 239]. 
 
 ----
 
-The Standard C++ Library contains an implementation of a General/DeQue (std::deque).
+The Standard C++ Library contains an implementation of a DeQue (std::deque).

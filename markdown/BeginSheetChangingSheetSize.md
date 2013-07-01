@@ -2,33 +2,33 @@
 
 I'm trying to programmatically change the height of my sheet, but an interesting thing happens.  The first time I open the sheet, it is about 20 pixels too short, cutting off the top.  But, every time it is opened after that, it's the correct height.
 
-Here is my Code, along with some checks via General/NSLog:
+Here is my Code, along with some checks via NSLog:
 
     
 
-General/NSLog( @"Before Resize: %d", (int)General/NSHeight([exportWindow frame]) );
+NSLog( @"Before Resize: %d", (int)NSHeight([exportWindow frame]) );
 		
-General/NSRect r;
+NSRect r;
 int newWinSizeV = 204;
-int newWinSizeH = (int) General/NSWidth([exportWindow frame]);
+int newWinSizeH = (int) NSWidth([exportWindow frame]);
 		
-r = General/NSMakeRect([exportWindow frame].origin.x, [exportWindow frame].origin.y, newWinSizeH, newWinSizeV);
+r = NSMakeRect([exportWindow frame].origin.x, [exportWindow frame].origin.y, newWinSizeH, newWinSizeV);
 [exportWindow setFrame:r display:YES animate:NO];
 		
-General/NSLog( @"After Resize: %d", (int)General/NSHeight([exportWindow frame]) );
+NSLog( @"After Resize: %d", (int)NSHeight([exportWindow frame]) );
 		
-General/[NSApp beginSheet: exportSheet
+[NSApp beginSheet: exportSheet
    modalForWindow: mainWindow
    modalDelegate: self
    didEndSelector: nil
    contextInfo: nil];
 		
-General/NSLog( @"After Showing Sheet: %d", (int)General/NSHeight([exportWindow frame]) );
-General/NSLog( @"  " );
+NSLog( @"After Showing Sheet: %d", (int)NSHeight([exportWindow frame]) );
+NSLog( @"  " );
 
 
 
-And here is the General/NSLog result
+And here is the NSLog result
 
     
 

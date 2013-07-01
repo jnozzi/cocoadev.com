@@ -1,9 +1,9 @@
 
 
 
-Questions about animating General/NSBezierPath through General/NSAffineTransform with General/NSTimer
+Questions about animating NSBezierPath through NSAffineTransform with NSTimer
 
-I am experimenting with General/NSAffineTransform, specifically trying to rotate an General/NSBezierPath around its own center.
+I am experimenting with NSAffineTransform, specifically trying to rotate an NSBezierPath around its own center.
 
 What is necessary is to draw the object at the origin, do the rotation and translate it out to the desired position.
 
@@ -105,13 +105,13 @@ Great title to the page ... but are you asking a question? You might want to cac
 ----
 
 I am definitely asking questions, but they may need to go in a topic whose title focuses more on the problem - which now is the animation.
-I have it working now using an General/NSTimer to do the animation.
-Previous memory allocation problems that progressively slowed the animation were not detectable in General/ObjectAlloc because
-it was manufacturing General/NSPoint structs in the drawRect method. Fixed that!
+I have it working now using an NSTimer to do the animation.
+Previous memory allocation problems that progressively slowed the animation were not detectable in ObjectAlloc because
+it was manufacturing NSPoint structs in the drawRect method. Fixed that!
 I don't think the thing is leaking memory, now -- I have run it through Object Alloc. Do I need to explore multithreading now? (Yikes!)
 
 ----
-Manufacturing General/NSPoints? They're either statically or automatically allocated, so you won't be leaking memory unless you were allocating memory for them with something in the malloc(3) family. --General/BenStiglitz
+Manufacturing NSPoints? They're either statically or automatically allocated, so you won't be leaking memory unless you were allocating memory for them with something in the malloc(3) family. --BenStiglitz
 
 ----
 
@@ -126,7 +126,7 @@ To put a humorous spin on it, this all feels a little like learning how to whist
 
 ----
 
-To be helpful I'll offer a robust and tidier (hopefully) solution -- General/RbrtPntn
+To be helpful I'll offer a robust and tidier (hopefully) solution -- RbrtPntn
     
  #import <Cocoa/Cocoa.h>
  @interface UFOView : NSView {

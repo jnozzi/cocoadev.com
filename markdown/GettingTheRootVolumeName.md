@@ -1,4 +1,4 @@
-I'm using beginSheetForDirectory to obtain a file name that will be passed in an General/AppleScript invocation.
+I'm using beginSheetForDirectory to obtain a file name that will be passed in an AppleScript invocation.
 For volumes OTHER than the root volume, I get something like:
 
 /Volumes/CK OS X/Capture/Untitled 3
@@ -7,32 +7,32 @@ which, by stripping off the /Volumes/ and replacing the /s with :s becomes:
 
 CK OS X:Capture:Untitled 3
 
-which General/AppleScript understands just fine.
+which AppleScript understands just fine.
 
 However, for the root volume, beginSheetForDirectory give me something like:
 
 /Users/cklein/Documents/Untitled 3
 
-Since the first element is not a volume name, replacing the /s with :s gives something General/AppleScript can't handle.
+Since the first element is not a volume name, replacing the /s with :s gives something AppleScript can't handle.
 I could recognize this case and add the volume name... but I can't figure out how to GET the name of the root
 volume in a system-independent way. Any suggestions?
 
 ----
 
-Rather than creating the path manually, use General/CoreFoundation:
+Rather than creating the path manually, use CoreFoundation:
 
     
-General/CFURLRef posixURL = General/CFURLCreateWithFileSystemPath(NULL, 
+CFURLRef posixURL = CFURLCreateWithFileSystemPath(NULL, 
     CFSTR("/Volumes/CK OS X/Capture/Untitled 3"), kCFURLPOSIXPathStyle, false);
-General/CFStringRef hfsPath = General/CFURLCopyFileSystemPath(posixURL, kCFURLHFSPathStyle);
-General/CFShow(hfsPath);
-General/CFRelease(hfsPath);
-General/CFRelease(posixURL);
+CFStringRef hfsPath = CFURLCopyFileSystemPath(posixURL, kCFURLHFSPathStyle);
+CFShow(hfsPath);
+CFRelease(hfsPath);
+CFRelease(posixURL);
 
 
 ----
 
-Ouch. Really complicated. I suggest you to use General/NSFileManager's displayNameAtPath:@"/". It should do the work.
+Ouch. Really complicated. I suggest you to use NSFileManager's displayNameAtPath:@"/". It should do the work.
 
 ----
 
@@ -66,7 +66,7 @@ Just bare careful, dudes. displayName may do something different and unexpected 
 
 ----
 
-I'd agree with the last post. If you need a HFS path do it the proper way (General/CFURLCopyFileSystemPath etc).
+I'd agree with the last post. If you need a HFS path do it the proper way (CFURLCopyFileSystemPath etc).
 
 ----
-Indeed. General/WorksForMe is a very easy way to create software which breaks inexplicably on other people's computers.
+Indeed. WorksForMe is a very easy way to create software which breaks inexplicably on other people's computers.

@@ -1,8 +1,8 @@
-How can I prevent an General/NSBrowser from both scrolling and changing the cell selection after reloading columns?
+How can I prevent an NSBrowser from both scrolling and changing the cell selection after reloading columns?
 
 ----
 
-I haven't looked into it, but can't you retrieve the scroll position/selections and place them in variables? That way, after you reload it, just reset the scroll position and selection to the appropriate values. -- General/RyanBates
+I haven't looked into it, but can't you retrieve the scroll position/selections and place them in variables? That way, after you reload it, just reset the scroll position and selection to the appropriate values. -- RyanBates
 
 ----
 
@@ -15,26 +15,26 @@ Actually I did something like this in my code to restore the cell selections and
 
     
 
-- (General/IBAction) refreshBrowserContent:(id)sender
+- (IBAction) refreshBrowserContent:(id)sender
 {
-	General/NSString* pathRoot = [self absoultePathOfRepositoryRoot];
-	General/NSArray* selectedPaths = [self absoultePathsOfBrowserSelectedFiles];
+	NSString* pathRoot = [self absoultePathOfRepositoryRoot];
+	NSArray* selectedPaths = [self absoultePathsOfBrowserSelectedFiles];
 
 	// Save scroll positions of the columns
 	int numberOfColumns = [theBrowser lastColumn];
-	General/NSMutableArray* columnScrollPositions = General/[[NSMutableArray alloc] init];
+	NSMutableArray* columnScrollPositions = [[NSMutableArray alloc] init];
 	int i;
 	for (i = 0; i <= numberOfColumns; i++)
 	{
-		General/NSMatrix* matrixForColumn = [fsBrowser matrixInColumn:i];
-		General/NSScrollView* enclosingSV = [matrixForColumn enclosingScrollView];
-		General/NSPoint currentScrollPosition = General/enclosingSV contentView] bounds].origin;
+		NSMatrix* matrixForColumn = [fsBrowser matrixInColumn:i];
+		NSScrollView* enclosingSV = [matrixForColumn enclosingScrollView];
+		NSPoint currentScrollPosition = enclosingSV contentView] bounds].origin;
 		[columnScrollPositions addObject:[[[NSValue valueWithPoint:currentScrollPosition]];
 	}
 
 	// Save the horizontal scroll position
-	General/NSScrollView* horizontalSV = General/[fsBrowser matrixInColumn:0] enclosingScrollView] enclosingScrollView];
-	[[NSPoint horizontalScrollPostion = General/horizontalSV contentView] bounds].origin;
+	NSScrollView* horizontalSV = [fsBrowser matrixInColumn:0] enclosingScrollView] enclosingScrollView];
+	[[NSPoint horizontalScrollPostion = horizontalSV contentView] bounds].origin;
 
 	rootNodeInfo_ = ...compute this...;
 
@@ -49,7 +49,7 @@ Actually I did something like this in my code to restore the cell selections and
 Then the restore is something like:
 
     
-- (void) restoreBrowserSelection:([[NSArray*) selectedPaths withColumnScrollPoisitions:(General/NSArray*)columnScrollPositions  andHorizontalScrollPosition:(General/NSPoint)horizontalScrollPostion;
+- (void) restoreBrowserSelection:([[NSArray*) selectedPaths withColumnScrollPoisitions:(NSArray*)columnScrollPositions  andHorizontalScrollPosition:(NSPoint)horizontalScrollPostion;
 {
 	if ([selectedPaths count] <1)
 		return;
@@ -62,12 +62,12 @@ Then the restore is something like:
 
 	// restore column scroll positions
 	int i = 0;
-	for (General/NSValue* position in columnScrollPositions)
+	for (NSValue* position in columnScrollPositions)
 	{
-		General/NSPoint savedScrollPosition = [position pointValue];
-		General/NSMatrix* matrixForColumn = [theBrowser matrixInColumn:i];
-		General/NSScrollView* enclosingSV = [matrixForColumn enclosingScrollView];
-		General/enclosingSV documentView] scrollPoint:savedScrollPosition];
+		NSPoint savedScrollPosition = [position pointValue];
+		NSMatrix* matrixForColumn = [theBrowser matrixInColumn:i];
+		NSScrollView* enclosingSV = [matrixForColumn enclosingScrollView];
+		enclosingSV documentView] scrollPoint:savedScrollPosition];
 		i++;
 	}
 

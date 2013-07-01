@@ -4,7 +4,7 @@ I'm trying to work out how to execute encrypted code on the fly. Here's the basi
 
 At build time:
 
-1. Build the code. Stick it in an General/NSBundle (or whatever).
+1. Build the code. Stick it in an NSBundle (or whatever).
 
 2. Encrypt the actual binary.
 
@@ -20,7 +20,7 @@ At run time:
 
 7. Execute it, or somehow make it available for execution.
 
-I know how to do all of these steps except the last one. If I have a blob of binary data in memory? How do I execute it (or make it available for execution)? Ideally, I'd like to neatly package this in an elegant General/NSBundle subclass that hid all the nasty details away inside the -principalClass and/or -load methods. Ideas?
+I know how to do all of these steps except the last one. If I have a blob of binary data in memory? How do I execute it (or make it available for execution)? Ideally, I'd like to neatly package this in an elegant NSBundle subclass that hid all the nasty details away inside the -principalClass and/or -load methods. Ideas?
 
 ----
 
@@ -35,20 +35,20 @@ How hackish do you want to be? You can cast memory to a function pointer if you 
 ----
 That's not really helpful unless the loaded code is self-contained, which is highly unlikely. If it links against external frameworks or dylibs, which is almost certain, then dyld has to get involved to hook everything up at load time. So the real question is, how do you get dyld to effectively "load" a chunk of code that's already in memory?
 
-The answer is (caveat: I haven't done it, I'm just reading man pages) to use     General/NSCreateObjectFileImageFromMemory (in     man General/NSObjectFileImage) to create a     General/NSObjectFileImage for your code. From there, use     General/NSLinkModule (in     man General/NSModule) to actually link it. Once it's linked into your process, you can use     General/NSLookupSymbolInModule (in the same man page) to get a pointer to a symbol. If you're looking to duplicate General/NSBundle's     principalClass, then you'd parse the Info.plist, get the name of the class, construct the appropriate symbol name from it, and get a pointer using this function. General/NSBundle also has the ability to return the first class in the image if nothing is defined in the Info.plist, but I have no idea how to do that, and maybe you don't care. I hope this can get you started.
+The answer is (caveat: I haven't done it, I'm just reading man pages) to use     NSCreateObjectFileImageFromMemory (in     man NSObjectFileImage) to create a     NSObjectFileImage for your code. From there, use     NSLinkModule (in     man NSModule) to actually link it. Once it's linked into your process, you can use     NSLookupSymbolInModule (in the same man page) to get a pointer to a symbol. If you're looking to duplicate NSBundle's     principalClass, then you'd parse the Info.plist, get the name of the class, construct the appropriate symbol name from it, and get a pointer using this function. NSBundle also has the ability to return the first class in the image if nothing is defined in the Info.plist, but I have no idea how to do that, and maybe you don't care. I hope this can get you started.
 
 ----
 Brilliant. Will see how far I can get with those NS routines. Thanks for the tip off.
 
 ----
 
-Check out General/NSCreateObjectFileImageFromMemory. I don't think you can load General/ObjectiveC based code, but you can load code that links against General/CoreFoundation.
+Check out NSCreateObjectFileImageFromMemory. I don't think you can load ObjectiveC based code, but you can load code that links against CoreFoundation.
 
-http://developer.apple.com/documentation/General/DeveloperTools/Reference/General/MachOReference/index.html
+http://developer.apple.com/documentation/DeveloperTools/Reference/MachOReference/index.html
 
-http://developer.apple.com/samplecode/General/MemoryBasedBundle/listing3.html
+http://developer.apple.com/samplecode/MemoryBasedBundle/listing3.html
 
 --zootbobbalu
 
 ----
-Many thanks, especially for the link to the General/MemoryBasedBundle sample code.
+Many thanks, especially for the link to the MemoryBasedBundle sample code.

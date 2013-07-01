@@ -31,18 +31,18 @@ I wrote up a function to decode some Base64 text and return it. Here is the (som
 
 It mostly works, but I'm looking for ways to improve it. Any suggestions on corners I could cut?
 
--- General/RyanGovostes
+-- RyanGovostes
 
 ----
 
-Most of the code examples I've seen that deal with Base64 data use mostly straight C/C++ code, not much Objective-C/Cocoa calls (slower, I assume). Maybe redo it using mostly straight C datatypes (char instead of General/NSString). Just a thought. --Kevin
+Most of the code examples I've seen that deal with Base64 data use mostly straight C/C++ code, not much Objective-C/Cocoa calls (slower, I assume). Maybe redo it using mostly straight C datatypes (char instead of NSString). Just a thought. --Kevin
 
 ----
 
 Some advice:
 
-*You should base64 decode into an General/NSData, not an General/NSString, since you want the existing structure to be 8-bit clean
-*Lose all the object allocation; just malloc() a buffer up front of the proper size, write directly into it and then wrap it up in an General/NSData at the end.
+*You should base64 decode into an NSData, not an NSString, since you want the existing structure to be 8-bit clean
+*Lose all the object allocation; just malloc() a buffer up front of the proper size, write directly into it and then wrap it up in an NSData at the end.
 *Error check your input for illegal characters.
 *Reverse your lookup.  Create a lookup table that maps from your possible ASCII values to the corresponding 6-bit output values.
 *Check for '=' characters, the official base64 padding character.  You're current implementation pads your output string with 0x00 characters, which is a no-no in an 8-bit clean world.
@@ -51,22 +51,22 @@ I'm sure I'll think of more but that's it for now ;) -- Bo
 
 ----
 
-Here is a General/NSData category to do Base64 encode and decode, mostly C, used in Colloquy's General/ChatCore. ~ General/TimothyHatcher
+Here is a NSData category to do Base64 encode and decode, mostly C, used in Colloquy's ChatCore. ~ TimothyHatcher
 
 http://project.colloquy.info/trac/file/trunk/NSDataAdditions.m
 
 ----
 
-!!! BIG WARNING to those wanting to use the General/NSDataAdditions category (which has moved to http://colloquy.info/project/browser/trunk/Additions/NSDataAdditions.m ) !!!
+!!! BIG WARNING to those wanting to use the NSDataAdditions category (which has moved to http://colloquy.info/project/browser/trunk/Additions/NSDataAdditions.m ) !!!
 
-The General/YouTube Plugin used by the General/UIWebView in iOS 4 uses a (hidden) method in General/NSData:      -(NSData*)base64Encoding. This obviously conflicts with     -(NSString*)base64Encoding defined by General/NSDataAdditions, will cause web pages with embedded General/YouTube links to crash your app. I learnt this from bitter personal experience.
+The YouTube Plugin used by the UIWebView in iOS 4 uses a (hidden) method in NSData:      -(NSData*)base64Encoding. This obviously conflicts with     -(NSString*)base64Encoding defined by NSDataAdditions, will cause web pages with embedded YouTube links to crash your app. I learnt this from bitter personal experience.
 
 I haven't checked the other methods, but consider yourselves warned.
 
 - David Jacobson
 
 ----
-Timothy: Is there any particular license on using General/NSDataAdditions?
+Timothy: Is there any particular license on using NSDataAdditions?
 
 *I believe it's safe to say it's public domain, since most people who publish categories on objects are just contributing info. If it were a 'custom solution' (like a fully-functional control, plug-in, or app), I would worry, but for any categories published here that doesn't say otherwise, consider it public domain. To be safe (and honest and honorable), you could and should mention the person's contribution to your own app in your credits.*
 
@@ -77,10 +77,10 @@ Another opinion: that category isn't published here, just linked from here.  The
  [decoded stringByAppendingString:[NSString stringWithCString:(char *)&z]]
 
 
-This line is detrimental to the performance of this method. Every time you call it, it copies 'decoded' plus z into a new string. So on the first call it copies 1 character, on the second it copies 2, on the third it copies 3, on the fourth it copies 4 ... It make the method run in n^2 time. The method will run much faster with large inputs if you put the output buffer into an General/NSMutableData - Jon H.
+This line is detrimental to the performance of this method. Every time you call it, it copies 'decoded' plus z into a new string. So on the first call it copies 1 character, on the second it copies 2, on the third it copies 3, on the fourth it copies 4 ... It make the method run in n^2 time. The method will run much faster with large inputs if you put the output buffer into an NSMutableData - Jon H.
 
 ----
-I'm attempting to use the General/NSDataAdditions from Colloquy, and having some problems decoding.  To encode, I do:
+I'm attempting to use the NSDataAdditions from Colloquy, and having some problems decoding.  To encode, I do:
     
 	NSData *data = [NSData dataWithContentsOfFile:filePath];
 	NSString *encodedFile = [data base64Encoding];
@@ -129,11 +129,11 @@ Use "-e" for encoding, "-d" for decoding.
 
 ----
 
-Here is an General/NSData category  method based on the command above that converts an General/NSData object to a base64 string:
+Here is an NSData category  method based on the command above that converts an NSData object to a base64 string:
     
  - (NSString *)base64Encoding
  {
- 	NSTask *task = General/[NSTask alloc] init] autorelease];
+ 	NSTask *task = [NSTask alloc] init] autorelease];
  	NSPipe *inPipe = [NSPipe pipe], *outPipe = [NSPipe pipe];
  	NSFileHandle *inHandle = [inPipe fileHandleForWriting], *outHandle = [outPipe fileHandleForReading];
  	NSData *outData = nil;
@@ -154,7 +154,7 @@ Here is an General/NSData category  method based on the command above that conve
  	outData = [outHandle readDataToEndOfFile];
  	if (outData)
  	{
- 		NSString *base64 = General/[NSString alloc] initWithData:outData encoding:NSUTF8StringEncoding] autorelease];
+ 		NSString *base64 = [NSString alloc] initWithData:outData encoding:NSUTF8StringEncoding] autorelease];
  		if (base64)
  			return base64;
  	}
@@ -167,7 +167,7 @@ I find that the best way to implement this sort of thing is, well, to not implem
 
 ----
 
-You can using libcrypto, part of General/OpenSSL, to do this directly without spawning a task:
+You can using libcrypto, part of OpenSSL, to do this directly without spawning a task:
 
     
  #include <openssl/bio.h>
@@ -216,11 +216,11 @@ You can using libcrypto, part of General/OpenSSL, to do this directly without sp
  @end
 
 
-You need to link against     /usr/lib/libcrypto.dyld.  I've tested on OS X 10.4.5. It does seem to build and run if I use the 10.2.8 SDK, which would imply that General/OpenSSL is included all the way back to at least 10.2.  Here's the man page which shows how you could decode a Base64 string into data, as well:
+You need to link against     /usr/lib/libcrypto.dyld.  I've tested on OS X 10.4.5. It does seem to build and run if I use the 10.2.8 SDK, which would imply that OpenSSL is included all the way back to at least 10.2.  Here's the man page which shows how you could decode a Base64 string into data, as well:
 
 http://developer.apple.com/documentation/Darwin/Reference/ManPages/man3/BIO_f_base64.3ssl.html
 
--- General/DaveDribin
+-- DaveDribin
 
 ----
 WARNING: the base64Pointer is NOT a string C pointer !!!
@@ -232,7 +232,7 @@ You must update the source like this:
  
  // The base64Pointer is NOT null terminated
  NSData * base64data = [NSData dataWithBytesNoCopy:base64Pointer length:base64Length freeWhenDone:NO];
- NSString * base64String = General/NSString alloc] initWithData:base64data encoding:NSUTF8StringEncoding];
+ NSString * base64String = NSString alloc] initWithData:base64data encoding:NSUTF8StringEncoding];
 
 
 -- JM Marino
@@ -291,7 +291,7 @@ Okay, here's code to decode with libssl:
 
 Here's an MIT licensed Xcode 2.2 project with the encoding and decoding categories, along with unit tests: http://www.dribin.org/dave/files/base64.zip
 
--- General/DaveDribin
+-- DaveDribin
 
 ----
 
@@ -405,7 +405,7 @@ Here's a simple category for this which doesn't require libcrypto:
  		else characters[length++] = '=';	
  	}
  	
- 	return General/[NSString alloc] initWithBytesNoCopy:characters length:length encoding:NSASCIIStringEncoding freeWhenDone:YES] autorelease];
+ 	return [NSString alloc] initWithBytesNoCopy:characters length:length encoding:NSASCIIStringEncoding freeWhenDone:YES] autorelease];
  }
  
  @end
@@ -415,7 +415,7 @@ Here's a simple category for this which doesn't require libcrypto:
 
 ----
 
-General/MiloBird - what is the license for your base64 category for this which doesn't require libcrypto?
+MiloBird - what is the license for your base64 category for this which doesn't require libcrypto?
 
 -- Susheel
 
@@ -423,13 +423,13 @@ General/MiloBird - what is the license for your base64 category for this which d
 
 It's public domain, just use it. Nothing fancy there, just thought I'd share as I for one found it sufficiently annoying to have to roll my own.
 
--- General/MiloBird
+-- MiloBird
 
 ----
 
-General/MiloBird - is there a way I can privately message you in regards to the use of this code?
+MiloBird - is there a way I can privately message you in regards to the use of this code?
 
--- General/Sapchiquita
+-- Sapchiquita
 
 ----
 
@@ -472,7 +472,7 @@ Here's a version that's very simple and clean and doesn't require libcrypto.  Wo
          output[index + 3] = (i + 2) < length ? encodingTable[(value >> 0)  & 0x3F] : '=';
      }
  
-     return General/[NSString alloc] initWithData:data
+     return [NSString alloc] initWithData:data
                                    encoding:NSASCIIStringEncoding] autorelease];
  }
  
@@ -525,9 +525,9 @@ Here's a version that's very simple and clean and doesn't require libcrypto.  Wo
 
 ----
 
-A really, really fast implementation which was ported (and modified/improved) from the PHP Core library into native Objective-C code is available in the **[[QSStrings Class** from the **General/QSUtilities Library**.  I did a quick benchmark: a 5.3MB image (JPEG) file took < 50ms to encode, and about 140ms to decode.
+A really, really fast implementation which was ported (and modified/improved) from the PHP Core library into native Objective-C code is available in the **[[QSStrings Class** from the **QSUtilities Library**.  I did a quick benchmark: a 5.3MB image (JPEG) file took < 50ms to encode, and about 140ms to decode.
 
-The code for the entire library (including the Base64 Methods) are available on General/GitHub at **https://github.com/mikeho/QSUtilities**.
+The code for the entire library (including the Base64 Methods) are available on GitHub at **https://github.com/mikeho/QSUtilities**.
 
 Or alternatively, if you want the code to *just* the Base64 methods themselves, I've posted it here:
 
@@ -673,7 +673,7 @@ Or alternatively, if you want the code to *just* the Base64 methods themselves, 
  	}
  
  	// Cleanup and setup the return NSData
- 	NSData * objData = General/[NSData alloc] initWithBytes:objResult length:j] autorelease];
+ 	NSData * objData = [NSData alloc] initWithBytes:objResult length:j] autorelease];
  	free(objResult);
  	return objData;
  }
@@ -684,7 +684,7 @@ For any questions, issues, etc., please feel free and post on the comments in [[
 
 
 ----
-I wanted to be able to encode and decode an General/NSString both ways. Example here:
+I wanted to be able to encode and decode an NSString both ways. Example here:
 http://agerson.net/base64-encode-and-decode-nsstring-cocoa
 
 ----
@@ -696,7 +696,7 @@ Several categories use a construct calling realloc like so:
 But this has a potential error (I think). realloc is supposed to do inplace modification of a pointer if the new size is smaller than the original malloc. Visit  for more info .But it seems that rarely (I think when malloc is busy, and wants to compact?) it actually changes the pointer, to that you should called bytes = realloc(bytes, smallerSize). Or perhaps it only happens with debug malloc on. Either way its better to be safe. I was (I think) running into this when calling on multiple threads, with heavy C++ allocation/deallocation  going on in other threads.  
 
 
-One way to see this is to run it with the 'Enable Guard Malloc' set in the General/XCode run menu. It will then trip up often. So I guess its dangerous to simply call realloc(bytes, size) - you should always assign. 
+One way to see this is to run it with the 'Enable Guard Malloc' set in the XCode run menu. It will then trip up often. So I guess its dangerous to simply call realloc(bytes, size) - you should always assign. 
 Turn on Malloc guarding, then try this:
     
  char* oldPtr = bytes;
@@ -708,6 +708,6 @@ Turn on Malloc guarding, then try this:
 
 Here is my code: https://github.com/sprhawk/ytoolkit/blob/master/ybase64/code/ybase64.c
 
-with Cocoa additions to General/NSString/General/NSData: https://github.com/sprhawk/ytoolkit/tree/master/ybase64additions/code
+with Cocoa additions to NSString/NSData: https://github.com/sprhawk/ytoolkit/tree/master/ybase64additions/code
 
-This is the benchmark, compared to General/NSData+Base64/General/GNUCoreUtiles/libb64: https://github.com/sprhawk/ytoolkit/blob/master/BENCHMARK
+This is the benchmark, compared to NSData+Base64/GNUCoreUtiles/libb64: https://github.com/sprhawk/ytoolkit/blob/master/BENCHMARK

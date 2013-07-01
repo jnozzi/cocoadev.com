@@ -1,4 +1,4 @@
-Do you regularly write General/UnitTest**'s when programming in Cocoa?
+Do you regularly write UnitTest**'s when programming in Cocoa?
 
     
 What is a unit test?  (0) 
@@ -13,12 +13,12 @@ You get only one (1) point to add where it fits best. Add your point and add one
 
 *Wouldn't "I have tried it but�" be the same as either "I don't know how" or "I don't like it"?*  Not necessarily.  I could be that "I know how, I like it, but circumstances | employeer make it impractical"
 
-For those of you who do not know, a General/UnitTest is used to automatically test your code and is usually written **before** the code to drive developement. For more information see: General/UnitTesting, General/UnitTest, http://www.c2.com/cgi/wiki?General/UnitTest
+For those of you who do not know, a UnitTest is used to automatically test your code and is usually written **before** the code to drive developement. For more information see: UnitTesting, UnitTest, http://www.c2.com/cgi/wiki?UnitTest
 
-Also see General/ObjCUnit, General/OCUnit, General/TestKit, General/UnitKit
+Also see ObjCUnit, OCUnit, TestKit, UnitKit
 
 ----
-Discussion at General/UnitTestingProsAndCons.
+Discussion at UnitTestingProsAndCons.
 
 ----
 

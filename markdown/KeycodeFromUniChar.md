@@ -1,6 +1,6 @@
 Hi All, 
 
-The program I'm trying to create is to increase accessibility to text fields so for a given set of preset strings the user can click a button and the app will post that string (or single key) to whichever app is active. I found the method General/CGPostKeyboardEvent but it requires a keycode as opposed to a string. So in theory I thought I would iterate through each character in my string and "post" them separately. I'm trying to figure out how to get the keycode for a given character. 
+The program I'm trying to create is to increase accessibility to text fields so for a given set of preset strings the user can click a button and the app will post that string (or single key) to whichever app is active. I found the method CGPostKeyboardEvent but it requires a keycode as opposed to a string. So in theory I thought I would iterate through each character in my string and "post" them separately. I'm trying to figure out how to get the keycode for a given character. 
 
 Thanks in advance for any help.
 
@@ -15,7 +15,7 @@ This is not exactly what you asked for (nor it is a perfect solution), but it's 
 
 BOOL Ascii2Virtual(char pcar, BOOL *pshift, BOOL *palt, char *pkeycode) 
 {
-    General/KeyboardLayoutRef keyboard;
+    KeyboardLayoutRef keyboard;
     const void *keyboardData; // keyboard layout data
     UInt16 nbblocs;
     char *modblocs, *blocs, *deadkeys;
@@ -25,11 +25,11 @@ BOOL Ascii2Virtual(char pcar, BOOL *pshift, BOOL *palt, char *pkeycode)
     
     // r�cup�ration du clavier courant
     // get the current keyboard
-    if(General/KLGetCurrentKeyboardLayout(&keyboard)) return NO;
+    if(KLGetCurrentKeyboardLayout(&keyboard)) return NO;
     
     // r�cup�ration de la description (keyboard layout) du clavier courant
     // get the description of the current keyboard layout
-    if(General/KLGetKeyboardLayoutProperty(keyboard, kKLKCHRData, &keyboardData)) return NO;
+    if(KLGetKeyboardLayoutProperty(keyboard, kKLKCHRData, &keyboardData)) return NO;
     
     // r�cup�ration du pointeur de d�but des num�ros de blocs pour chaque combinaison de modifiers
     // get pointer early numbers of blocks for each combination of modifiers
@@ -106,7 +106,7 @@ Don't ask me how the guy who wrote that figured it out, but I can assure you tha
 
     
 
-- (int)keyCodeForCharacter: (General/NSString*)character {
+- (int)keyCodeForCharacter: (NSString*)character {
     if(![character length]) return -1;
     
     char code;

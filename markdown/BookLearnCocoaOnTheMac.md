@@ -2,7 +2,7 @@
 
 
 ***Title:**Learn Cocoa on the Mac
-***Author:**Jack Nutting, Jeff General/LaMarche, Dave Mark
+***Author:**Jack Nutting, Jeff LaMarche, Dave Mark
 ***Publisher:**Apress***Release Date:**February 17, 2010
 ***List Price:**$39.99
 ***ISBN:**978-1-4302-1859-3

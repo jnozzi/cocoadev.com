@@ -9,12 +9,12 @@
 	return runtime;
 }
 
-- (General/NSString *)uptime {
+- (NSString *)uptime {
 	long microseconds = [self runtime];
 	double seconds = microseconds/100;
 	double minutes = seconds/60;
 	double hours = minutes/60;
-	return General/[NSString stringWithFormat:@"%lf",hours];
+	return [NSString stringWithFormat:@"%lf",hours];
 }
 
 
@@ -36,7 +36,7 @@ Any ideas?
 
 ----
 
-Why not just run General/NSTask with uptime, and parse the results?
+Why not just run NSTask with uptime, and parse the results?
 
 ----
 
@@ -48,11 +48,11 @@ Does this machine sleep? Maybe kern.boottime is reset upon waking.
 
 ----
 
-The sleep comment is dead on. I think the function you want is called General/UpTime() which returns an General/AbsoluteTime structure, and it stops while sleeping. There's a nice discussion of General/AbsoluteTime (struct) as well as Duration (32 bits) here:
-http://developer.apple.com/documentation/Hardware/General/DeviceManagers/pci_srvcs/pci_cards_drivers/PCI_BOOK.197.html
+The sleep comment is dead on. I think the function you want is called UpTime() which returns an AbsoluteTime structure, and it stops while sleeping. There's a nice discussion of AbsoluteTime (struct) as well as Duration (32 bits) here:
+http://developer.apple.com/documentation/Hardware/DeviceManagers/pci_srvcs/pci_cards_drivers/PCI_BOOK.197.html
 
 And how to convert between data types here:
-http://developer.apple.com/documentation/Hardware/General/DeviceManagers/pci_srvcs/pci_cards_drivers/PCI_BOOK.19a.html
+http://developer.apple.com/documentation/Hardware/DeviceManagers/pci_srvcs/pci_cards_drivers/PCI_BOOK.19a.html
 
 If you use Duration (I did) the trick there is to note that if the number returned is negative, its in microseconds, if its positive its in milliseconds. Its so very easy to screw up.
 
@@ -82,14 +82,14 @@ Try this:
  * This function reads the kern.boottime sysctl value and
  * subtracts it from the current time.
  */
-+ (General/NSTimeInterval)uptime {
++ (NSTimeInterval)uptime {
 	struct timeval boottime;
 	size_t len = sizeof(boottime);
 	int mib[2] = { CTL_KERN, KERN_BOOTTIME };
 	if (sysctl(mib, 2, &boottime, &len, NULL, 0) == -1) {
 		perror("sysctl");
-		return (General/NSTimeInterval) -1;
+		return (NSTimeInterval) -1;
 	}		
 	time_t bsec = boottime.tv_sec, csec = time(NULL);
-	return (General/NSTimeInterval) difftime(csec, bsec);
+	return (NSTimeInterval) difftime(csec, bsec);
 }

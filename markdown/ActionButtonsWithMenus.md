@@ -18,17 +18,17 @@ I have the custom buttons nailed... :)
 
 Can you please describe what you are doing better?  It is difficult to debug if all you say is that you are using Interface Builder and it doesn't work.
 
-As a guess, try using an General/NSPopupButton instance instead of an General/NSButton instance.  In the palette, this is the button with "Item1" printed on it.  You can change the attributes to make it look more like the kind of button you're after. 
+As a guess, try using an NSPopupButton instance instead of an NSButton instance.  In the palette, this is the button with "Item1" printed on it.  You can change the attributes to make it look more like the kind of button you're after. 
 
 ----
 
-When I created a custom control that needed to pop up a menu in certain circumstances, I simply had it contain an General/NSPopUpButtonCell. I never asked it to draw itself, so the user never had to see it, but I could pass it clicks and it would show its menu when I wanted it to. It works perfectly, and it gives you good control over the location of the menu.
+When I created a custom control that needed to pop up a menu in certain circumstances, I simply had it contain an NSPopUpButtonCell. I never asked it to draw itself, so the user never had to see it, but I could pass it clicks and it would show its menu when I wanted it to. It works perfectly, and it gives you good control over the location of the menu.
 
 ----
 
 I guess creating a cusom palette is the answer?
 
-To clarify my quest, using a General/NSPopupButton with the Item1 you can give it an image for the face of the button, but it adds som space outside the image no matter what I do in IB.
+To clarify my quest, using a NSPopupButton with the Item1 you can give it an image for the face of the button, but it adds som space outside the image no matter what I do in IB.
 I will try to attach an image when I figure out how to do that :)
 
 Picture
@@ -36,8 +36,8 @@ http://homepage.mac.com/noonas/images/NibPopUpButton.gif
 
 ----
 
-You may be able to override     -menuForEvent:. Otherwise, the only way I know of to arbitrarily pop up menus is with the Carbon General/MenuManager.
+You may be able to override     -menuForEvent:. Otherwise, the only way I know of to arbitrarily pop up menus is with the Carbon MenuManager.
 
 ----
 
-No, no need for a custom palette.  To reiterate a previous suggestion, read the documentation for General/NSPopUpButtonCell.
+No, no need for a custom palette.  To reiterate a previous suggestion, read the documentation for NSPopUpButtonCell.

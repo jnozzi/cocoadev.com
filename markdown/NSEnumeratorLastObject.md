@@ -1,4 +1,4 @@
-It seems that [myNSEnumerator nextObject] will General/object retain] autorelease] the last object it returns.  Does anybody know why the heck it's doing that?
+It seems that [myNSEnumerator nextObject] will object retain] autorelease] the last object it returns.  Does anybody know why the heck it's doing that?
 
 ----
 

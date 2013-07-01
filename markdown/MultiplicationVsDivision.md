@@ -27,7 +27,7 @@ Multiplication: 0.041s
 
 Those are the fastest results after 3 runs each.
 
-:I ran this test and got the same results. Howerver, noting that you don't init i, I tried to put i = 0; for some reason this didn't effect the division, but my results then were: Mult: 0.120s, Div 0.115s /General/EnglaBenny
+:I ran this test and got the same results. Howerver, noting that you don't init i, I tried to put i = 0; for some reason this didn't effect the division, but my results then were: Mult: 0.120s, Div 0.115s /EnglaBenny
 
 *Interesting, that shouldn't have made a difference at all.*
 
@@ -94,7 +94,7 @@ Agreed.  You need to do a different case.  I think the integer-to-floating-point
 
 I'm a little surprised that the above loops compile to any code at all since they don't do anything.  Are you optimizing?  Aside from the need to make sure the compiler puts *something* in, we're probably interested in the optimized result.  Maybe?
 
-I don't know how good clock() is, but I do know that mach_absolute_time() is the highest precision timer in Mac OS X.  There's a bit of a hoop to jump through to convert the units involved to seconds, but you can use the numbers as a relative measure.  Or, code to do the conversion is on the General/AlternativesToPrefixing page.
+I don't know how good clock() is, but I do know that mach_absolute_time() is the highest precision timer in Mac OS X.  There's a bit of a hoop to jump through to convert the units involved to seconds, but you can use the numbers as a relative measure.  Or, code to do the conversion is on the AlternativesToPrefixing page.
 
 ----
 

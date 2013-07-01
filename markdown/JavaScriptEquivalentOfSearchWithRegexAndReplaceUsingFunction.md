@@ -1,4 +1,4 @@
-I'd like to discuss and come up with a solution to the equivalent of the following General/JavaScript code in Objective-C/Cocoa:
+I'd like to discuss and come up with a solution to the equivalent of the following JavaScript code in Objective-C/Cocoa:
 
 text = text.replace(/[^\x00-\xFF]/g,  function(s) {
 			if (s in someHash) { s = someHash[s]; }

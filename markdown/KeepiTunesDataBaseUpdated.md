@@ -7,7 +7,7 @@ But there's something that messed me up : I really want to keep smarts playlists
 Anyway, they are important for "recently played" and "most played" playlists.
 So I tried to modify a track played count number with Property Plist Editor (iTunes not launched) and then I've saved the file. I've  opened iTunes but the track played count is still the same than before editing the XML file.
 I tried songbird, but it doesn't keep those fields up to date in iTunes too.
-I also don't want to use General/AppleScript for changing those information because it would mean that iTunes has to be launched for that.
+I also don't want to use AppleScript for changing those information because it would mean that iTunes has to be launched for that.
 
 I suspect that Apple keeps tracks informations somewhere else, like caching them before quitting.
 

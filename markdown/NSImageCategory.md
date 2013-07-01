@@ -145,7 +145,7 @@ NSImage_CoreImageAdditions.m
  	NSAutoreleasePool *pool;
  	NSBitmapImageRep *rep;
  		
- 	pool = General/NSAutoreleasePool alloc] init];
+ 	pool = NSAutoreleasePool alloc] init];
  	
  	if (filterName) {
  		rep = [self bitmapImageRepresentation];

@@ -1,6 +1,6 @@
 
 
-**Source for General/NSCalendarDate+General/CocoaDevUsersAdditions.h :**
+**Source for NSCalendarDate+CocoaDevUsersAdditions.h :**
     
  #import <Foundation/Foundation.h>
  
@@ -14,12 +14,12 @@
  @end
 
 
-**Source for General/NSCalendarDate+General/CocoaDevUsersAdditions.m :**
+**Source for NSCalendarDate+CocoaDevUsersAdditions.m :**
     
  #import "NSCalendarDate+CocoaDevUsersAdditions.h"
  
  @implementation  NSCalendarDate (CocoaDevUsersAdditions)
- //note-- refactoring by General/JoeOsborn...  I wish there
+ //note-- refactoring by JoeOsborn...  I wish there
  //were a better way to implement the first two.
  //um.. these are also untested.  Would someone please see if they work?
  
@@ -60,4 +60,4 @@
 
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

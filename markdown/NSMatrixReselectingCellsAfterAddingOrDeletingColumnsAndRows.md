@@ -6,10 +6,10 @@ This sample code is for a custom matrix method that adds/removes rows/columns wh
 
     
 - (void)resizeMatrix {
-	General/NSArray *selectedCells = [self selectedCells];
-	General/NSMutableIndexSet *indexSet = General/[[[NSMutableIndexSet alloc] init] autorelease];
+	NSArray *selectedCells = [self selectedCells];
+	NSMutableIndexSet *indexSet = [[[NSMutableIndexSet alloc] init] autorelease];
 	unsigned int i, selectedCellCount = [selectedCells count];
-	General/NSArray *cells = [self cells];
+	NSArray *cells = [self cells];
 	for (i = 0; i < selectedCellCount; i++) {
 		[indexSet addIndex:[cells indexOfObject:[selectedCells objectAtIndex:i]]];
 	}
@@ -24,7 +24,7 @@ This sample code is for a custom matrix method that adds/removes rows/columns wh
 	[self deselectAllCells];
 	i = [indexSet firstIndex]; 
 	do [self setSelectionFrom:i to:i anchor:i highlight:YES];
-	while ((i = [indexSet indexGreaterThanIndex:i]) != General/NSNotFound);
+	while ((i = [indexSet indexGreaterThanIndex:i]) != NSNotFound);
 
 
 }

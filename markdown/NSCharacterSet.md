@@ -1,4 +1,4 @@
-Apple's documentation is at http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSCharacterSet.html#//apple_ref/occ/cl/General/NSCharacterSet.
+Apple's documentation is at http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/NSCharacterSet.html#//apple_ref/occ/cl/NSCharacterSet.
 
 The whitespaceAndNewlineCharacterSet includes U+2028 (Line Separator) and U+2029 (Paragraph Separator), in addition to what's listed.
 
@@ -64,7 +64,7 @@ Character set (0-127): whitespaceCharacterSet
 8-Bit: a0 
 
 
-General/CharSetGen.app has exited with status 0.
+CharSetGen.app has exited with status 0.
 
 
 And in case anybody is interested, here is the source code for the program.
@@ -79,10 +79,10 @@ And in case anybody is interested, here is the source code for the program.
 // the thing for reference.
 //
 // ----------------------------------------------------------------------------------------
-void dumpCharacterSet( General/NSString *name )
+void dumpCharacterSet( NSString *name )
 {
 	unichar idx;
-	General/NSCharacterSet *cset = General/[NSCharacterSet performSelector: General/NSSelectorFromString(name)];
+	NSCharacterSet *cset = [NSCharacterSet performSelector: NSSelectorFromString(name)];
 
 	printf("Character set (0-127): %s\n7-Bit: ", [name cString]);
 
@@ -108,15 +108,15 @@ void dumpCharacterSet( General/NSString *name )
 
 
 // ----------------------------------------------------------------------------------------
-// General/CharSetGen
+// CharSetGen
 //
-// This is a utility that is used to generate General/NSCharacterSet objects that can be used to
+// This is a utility that is used to generate NSCharacterSet objects that can be used to
 // perform various parsing / testing functions for the coders.
 //
 // ----------------------------------------------------------------------------------------
 int main(int argc, const char *argv[])
 {
-	General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
 	// Reference output...
 	dumpCharacterSet( @"alphanumericCharacterSet" );

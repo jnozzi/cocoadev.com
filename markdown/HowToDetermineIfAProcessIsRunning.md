@@ -1,16 +1,16 @@
 
 
-I'm writing a program where I need to find out if Apache is running.  Is there an easy way to do this using Cocoa (or carbon for that matter)? I was thinking about using an General/NSTask with ps, but I'm hoping there's a better way. Suggestions?
+I'm writing a program where I need to find out if Apache is running.  Is there an easy way to do this using Cocoa (or carbon for that matter)? I was thinking about using an NSTask with ps, but I'm hoping there's a better way. Suggestions?
 
--General/JacobMarienthal
-
-----
-Yea, check out General/NSWorkspace.
-
-General/GormanChristian
+-JacobMarienthal
 
 ----
-Unfortunately General/NSWorkspace only displays apps that have been switched on in the Dock so that does not help for apache. General/NSTask is the best approach I can think of at the moment. There must be an easier way to do it.
+Yea, check out NSWorkspace.
+
+GormanChristian
+
+----
+Unfortunately NSWorkspace only displays apps that have been switched on in the Dock so that does not help for apache. NSTask is the best approach I can think of at the moment. There must be an easier way to do it.
 
 -Mat
 
@@ -28,12 +28,12 @@ For apache, what you CAN do is find out where apache's logs reside (usually /usr
 ----
 That's a good idea.  I think I'll look into it.  What's the easiest way to check for the existence of the file then?
 
--General/JacobMarienthal
+-JacobMarienthal
 
 ----
-The easiest way in my opinion is to use General/NSFileManager and call 
+The easiest way in my opinion is to use NSFileManager and call 
 
-- (BOOL)fileExistsAtPath:(General/NSString *)path
+- (BOOL)fileExistsAtPath:(NSString *)path
 
 If the file is there, bingo, you are home free. Remember of course to open the file, get the PID, check it against PS and then do everything that follows. 
 
@@ -41,7 +41,7 @@ If the file is there, bingo, you are home free. Remember of course to open the f
 
 ----
 Hmm, isn't there a (slight) maintainability issue here? - what if at sometime in the future or in some odd version/configuration, apache changes where the logs are, or what the log is called? Wouldn't that trip up the program? 
-Is there any way to find out if an arbitrary process is running? -- General/MikeAmy
+Is there any way to find out if an arbitrary process is running? -- MikeAmy
 
 ----
 A complete process list can be obtained from BSD/POSIX via the sysctl API. See: *man 3 sysctl*.
@@ -125,4 +125,4 @@ int find_processes_that_look_like_apache()
 
 Here�s a neat Unix trick I like: call <code>kill(pid, 0)</code>; if the return value is 0, the process is still running.  If the return value is -1 with an <code>errno</code> value of <code>ESRCH</code>, the process is not running.  If the return value is -1 with any other value of <code>errno</code>, then something wonky has happened.
 
-�General/SethKingsley
+�SethKingsley

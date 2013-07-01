@@ -9,4 +9,4 @@ Weblog: http://chanson.livejournal.com/
 
 I used to run a consulting company: http://bdistributed.com/
 
-I started General/NSCoderNight.
+I started NSCoderNight.

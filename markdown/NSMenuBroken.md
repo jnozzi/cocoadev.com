@@ -1,10 +1,10 @@
-In 10.3.x, General/NSMenu appears to be broken.
+In 10.3.x, NSMenu appears to be broken.
 
-General/[[[NSApp mainMenu] itemWithTitle:@"Utilities"] setSubmenu:[mode utilityMenu]] causes a crash.
+[[[NSApp mainMenu] itemWithTitle:@"Utilities"] setSubmenu:[mode utilityMenu]] causes a crash.
 There is definately an itemWithTitle:@"Utilities" (I can modify the titles of the items it contains), and [mode utilityMenu] is definitely not nil. Can anybody tell me what is going on?
 
 Update:
-General/[[[[[NSApp mainMenu] itemWithTitle:@"Utilities"] submenu] itemAtIndex:0] setSubmenu:[mode utilityMenu]]; works fine, except that its a hack and shouldn't be necessary. Argh.
+[[[[[NSApp mainMenu] itemWithTitle:@"Utilities"] submenu] itemAtIndex:0] setSubmenu:[mode utilityMenu]]; works fine, except that its a hack and shouldn't be necessary. Argh.
 
 ----
 

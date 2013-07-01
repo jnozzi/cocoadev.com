@@ -22,13 +22,13 @@ I'm quite new to all this, so I am not too sure about it all! The way I have it 
 
 With the second question, again been doing the linking in interface builder, so cannot figure out where to put the accessor method, would it be in the main .h file?
 
-Also, despite having - (General/IBAction)saveAction:sender; at the end of appName_AppDelegate.h and having:
+Also, despite having - (IBAction)saveAction:sender; at the end of appName_AppDelegate.h and having:
 
     
-- (General/IBAction) saveAction:(id)sender {
+- (IBAction) saveAction:(id)sender {
 
-    General/NSError *error = nil;
-    if (!General/self managedObjectContext] save:&error]) {
+    NSError *error = nil;
+    if (!self managedObjectContext] save:&error]) {
         [[[[NSApplication sharedApplication] presentError:error];
     }
 }
@@ -40,10 +40,10 @@ Also, despite having - (General/IBAction)saveAction:sender; at the end of appNam
     before the application terminates.
  */
  
-- (General/NSApplicationTerminateReply)applicationShouldTerminate:(General/NSApplication *)sender {
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
 
-    General/NSError *error;
-    int reply = General/NSTerminateNow;
+    NSError *error;
+    int reply = NSTerminateNow;
     
     if (managedObjectContext != nil) {
         if ([managedObjectContext commitEditing]) {
@@ -58,24 +58,24 @@ Also, despite having - (General/IBAction)saveAction:sender; at the end of appNam
                 // Typically, this process should be altered to include application-specific 
                 // recovery steps.  
 
-                BOOL errorResult = General/[[NSApplication sharedApplication] presentError:error];
+                BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
 				
                 if (errorResult == YES) {
-                    reply = General/NSTerminateCancel;
+                    reply = NSTerminateCancel;
                 } 
 
                 else {
 					
-                    int alertReturn = General/NSRunAlertPanel(nil, @"Could not save changes while quitting. Quit anyway?" , @"Quit anyway", @"Cancel", nil);
-                    if (alertReturn == General/NSAlertAlternateReturn) {
-                        reply = General/NSTerminateCancel;	
+                    int alertReturn = NSRunAlertPanel(nil, @"Could not save changes while quitting. Quit anyway?" , @"Quit anyway", @"Cancel", nil);
+                    if (alertReturn == NSAlertAlternateReturn) {
+                        reply = NSTerminateCancel;	
                     }
                 }
             }
         } 
         
         else {
-            reply = General/NSTerminateCancel;
+            reply = NSTerminateCancel;
         }
     }
     
@@ -88,12 +88,12 @@ the data will not save when the application saves. How annoying. Learning is tou
 
 ----
 
-Learning is even tougher, if you'll permit me to point out, if you try to go straight for the college material when you're still lacking your a.b.c.'s. As a professional, I advise you to drop the Core Data aspect for now and concentrate on the basics (which you are unfortunately missing, as evidenced by your last reply). With respect, I think you need to go back to the General/CurrencyConverter example and make sure you thoroughly understand every concept covered in that example before throwing in more advanced technologies such as General/CocoaBindings (which are, in turn, built on General/KeyValueObserving and General/KeyValueCoding) and General/CoreData. You're putting the cart before the horse, so to speak, and you'll learn very little that way. Follow the link to General/CurrencyConverter and master it, otherwise, there's not much advice people can give you that will truly help.
+Learning is even tougher, if you'll permit me to point out, if you try to go straight for the college material when you're still lacking your a.b.c.'s. As a professional, I advise you to drop the Core Data aspect for now and concentrate on the basics (which you are unfortunately missing, as evidenced by your last reply). With respect, I think you need to go back to the CurrencyConverter example and make sure you thoroughly understand every concept covered in that example before throwing in more advanced technologies such as CocoaBindings (which are, in turn, built on KeyValueObserving and KeyValueCoding) and CoreData. You're putting the cart before the horse, so to speak, and you'll learn very little that way. Follow the link to CurrencyConverter and master it, otherwise, there's not much advice people can give you that will truly help.
 
 
 ----
 
-Yeah, I am aware of that fact, but someone I know needed an application for something, so I thought I would give it a go in an effort to learn something, I always find, for me, that it is easier to learn when you have a goal rather than doing examples. But thanks for the feedback, I will definatly be trying out the General/CurrencyConverter, but am still going to give Core Data a go, as if I dont then I will never come back to it!
+Yeah, I am aware of that fact, but someone I know needed an application for something, so I thought I would give it a go in an effort to learn something, I always find, for me, that it is easier to learn when you have a goal rather than doing examples. But thanks for the feedback, I will definatly be trying out the CurrencyConverter, but am still going to give Core Data a go, as if I dont then I will never come back to it!
 
 ----
 

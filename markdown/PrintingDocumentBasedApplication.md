@@ -6,16 +6,16 @@ Gerhard Sletten
 
 ----
 
-Check out General/BookCocoaProgMacOSX
+Check out BookCocoaProgMacOSX
 
 ----
 
-http://developer.apple.com/documentation/Cocoa/Conceptual/Printing/Tasks/General/PrintingDocs.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/Printing/Tasks/PrintingDocs.html
 
-Just found that in a google search while I was looking for something else. Haven't looked at it much, but it mentions General/NSDocument, so maybe it'll help.
+Just found that in a google search while I was looking for something else. Haven't looked at it much, but it mentions NSDocument, so maybe it'll help.
 
--- General/RobRix
+-- RobRix
 
 ----
 
-There is also a sophisticated discussion about printing complicated graphics in General/PrintingInADocumentBasedApp
+There is also a sophisticated discussion about printing complicated graphics in PrintingInADocumentBasedApp

@@ -4,7 +4,7 @@ IETF on the web: http://www.ietf.org/
 
 ----
 
-Are they doing any anti spam (or in our case anti General/WikiSpam) work?
+Are they doing any anti spam (or in our case anti WikiSpam) work?
 
 ----
 

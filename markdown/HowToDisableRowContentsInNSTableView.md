@@ -1,15 +1,15 @@
 
 
-I am trying to make certain rows in General/NSTableView to be disabled.  I have tried to use setEnabled method, which didn't work for me.  Can someone help me to solve this problem?  Thanks
+I am trying to make certain rows in NSTableView to be disabled.  I have tried to use setEnabled method, which didn't work for me.  Can someone help me to solve this problem?  Thanks
 
 ----
 
-What do you mean disabled? Do you have a text cell that you don't want to be editable or do you have  controls embedded in the rows you want disabled? Check out the delegate methods in the documentation for General/NSTableView     - (BOOL)tableView:(General/NSTableView *)aTableView shouldEditTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex is what  you're most likely looking for.
+What do you mean disabled? Do you have a text cell that you don't want to be editable or do you have  controls embedded in the rows you want disabled? Check out the delegate methods in the documentation for NSTableView     - (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex is what  you're most likely looking for.
 
     
 // This belongs in your tableview's delegate. It looks for the cell at disabledRow and textColumn (made up - 
 // assume these are valid. You're free to determine whether the cell should be editable any way you like, though.
-- (BOOL)tableView:(General/NSTableView *)aTableView shouldEditTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
+- (BOOL)tableView:(NSTableView *)aTableView shouldEditTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
      if (rowIndex == disabledRow && aTableColumn == textColumn)
      {
@@ -24,10 +24,10 @@ What do you mean disabled? Do you have a text cell that you don't want to be edi
 ----
 And if you want a text cell to appear disabled..
     
-- (void)tableView:(General/NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
+- (void)tableView:(NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-     if ([aCell type] == General/NSTextCellType)
-          [aCell setTextColor:General/[NSColor disabledControlTextColor]];
+     if ([aCell type] == NSTextCellType)
+          [aCell setTextColor:[NSColor disabledControlTextColor]];
 }
 
 
@@ -42,4 +42,4 @@ In that case, you will want to tell the cell itself     [aCell setEnabled:NO];. 
 
 **In the case of the text cell, setEnabled:NO and setEditable:NO are used. This will give the appropriate effect.**
 
-*No, it won't produce the appropriate effect. setEnabled:NO fails to draw in the disabledControlTextColor but disallows editing like it's supposed to (meaning it acts the same as setEditable:NO) when the text cell is in an General/NSTableView. Also, you don't call setEnabled:NO followed by setEditable:NO because a disabled cell can't be edited anyway.*
+*No, it won't produce the appropriate effect. setEnabled:NO fails to draw in the disabledControlTextColor but disallows editing like it's supposed to (meaning it acts the same as setEditable:NO) when the text cell is in an NSTableView. Also, you don't call setEnabled:NO followed by setEditable:NO because a disabled cell can't be edited anyway.*

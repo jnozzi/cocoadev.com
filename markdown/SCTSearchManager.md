@@ -1,6 +1,6 @@
-General/SCTSearchManager is a class in Apple's Shortcut.framework. It's used to control the Help menu introduced in Mac OS 10.5.
+SCTSearchManager is a class in Apple's Shortcut.framework. It's used to control the Help menu introduced in Mac OS 10.5.
 
-For more info see General/ProgramaticallyShowMenuInMenuBar. --General/SaileshAgrawal
+For more info see ProgramaticallyShowMenuInMenuBar. --SaileshAgrawal
 
 ----
 
@@ -11,25 +11,25 @@ For more info see General/ProgramaticallyShowMenuInMenuBar. --General/SaileshAgr
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2007 by Steve Nygard.
  */
 
-#import "General/NSResponder.h"
+#import "NSResponder.h"
 
-@class General/NSButton, General/NSConditionLock, General/NSImageView, General/NSMutableArray, General/NSMutableSet, General/NSSearchField, General/NSStatusItem, General/NSString, General/NSTableView, General/NSTextField, General/NSTimer, General/NSView, General/NSWindow, SCTGRL, General/SCTGRLIndex, General/SCTMenuView;
+@class NSButton, NSConditionLock, NSImageView, NSMutableArray, NSMutableSet, NSSearchField, NSStatusItem, NSString, NSTableView, NSTextField, NSTimer, NSView, NSWindow, SCTGRL, SCTGRLIndex, SCTMenuView;
 
-@interface General/SCTSearchManager : General/NSResponder
+@interface SCTSearchManager : NSResponder
 {
-    General/SCTMenuView *mSearchView;
-    General/NSTextField *mSearchTitle;
-    General/NSStatusItem *mStatusItem;
-    General/NSButton *mSCTIconView;
-    General/NSTableView *mResultsTable;
-    General/NSSearchField *mSearchField;
-    General/NSView *mSearchFieldView;
-    General/NSImageView *mBackgroundView;
-    General/SCTGRLIndex *mGRLIndex;
-    General/NSMutableSet *mSearchDataSources;
-    General/NSMutableArray *mGRLSearchResults;
-    General/NSMutableArray *mCustomSearchResults;
-    General/NSMutableArray *mHelpSearchResults;
+    SCTMenuView *mSearchView;
+    NSTextField *mSearchTitle;
+    NSStatusItem *mStatusItem;
+    NSButton *mSCTIconView;
+    NSTableView *mResultsTable;
+    NSSearchField *mSearchField;
+    NSView *mSearchFieldView;
+    NSImageView *mBackgroundView;
+    SCTGRLIndex *mGRLIndex;
+    NSMutableSet *mSearchDataSources;
+    NSMutableArray *mGRLSearchResults;
+    NSMutableArray *mCustomSearchResults;
+    NSMutableArray *mHelpSearchResults;
     int mSelectedResult;
     BOOL mSelectionInProgress;
     BOOL mIgnoreMenuClosedEvents;
@@ -37,22 +37,22 @@ For more info see General/ProgramaticallyShowMenuInMenuBar. --General/SaileshAgr
     SCTGRL *mGRLToBeShown;
     SCTGRL *mShownGRL;
     SCTGRL *mPrevShownGRL;
-    General/NSWindow *mSavedKeyWindow;
-    General/NSTimer *mClearSearchTimer;
+    NSWindow *mSavedKeyWindow;
+    NSTimer *mClearSearchTimer;
     unsigned int mLastNavigationDirection;
-    struct General/OpaqueEventHandlerRef *mCloseMenuHandler;
+    struct OpaqueEventHandlerRef *mCloseMenuHandler;
     BOOL mDebugMode;
     float mSearchFrameWidth;
     int mThreadCount;
-    General/NSConditionLock *mSearchThreadLock;
+    NSConditionLock *mSearchThreadLock;
     BOOL mResetSearch;
-    General/NSString *mSearchString;
+    NSString *mSearchString;
     BOOL mTerminateSearchThread;
     unsigned int mGRLResultSequenceNumber;
     unsigned int mHelpResultSequenceNumber;
     unsigned int mQuerySequenceNumber;
     double mSearchTimeInterval;
-    General/NSTimer *mDelayedShowcaseTimer;
+    NSTimer *mDelayedShowcaseTimer;
     SEL mMoveUpSelector;
     SEL mMoveDownSelector;
     SEL mMoveLeftSelector;
@@ -60,8 +60,8 @@ For more info see General/ProgramaticallyShowMenuInMenuBar. --General/SaileshAgr
     SEL mCarriageReturnSelector;
     SEL mNewLineSelector;
     SEL mEnterSelector;
-    struct General/OpaqueMenuRef *mPreviousHelpMenu;
-    struct General/OpaqueEventHandlerRef *mInstallWhenTrackingHandlerRef;
+    struct OpaqueMenuRef *mPreviousHelpMenu;
+    struct OpaqueEventHandlerRef *mInstallWhenTrackingHandlerRef;
 }
 
 + (id)initShortCut;
@@ -91,7 +91,7 @@ For more info see General/ProgramaticallyShowMenuInMenuBar. --General/SaileshAgr
 - (void)sendAppleEventCompleted;
 - (void)applicationWillTerminate:(id)fp8;
 - (void)installCarbonEventHandler;
-- (long)installShortcutMenuHandlers:(struct General/OpaqueMenuRef *)fp8;
+- (long)installShortcutMenuHandlers:(struct OpaqueMenuRef *)fp8;
 - (long)installShortcutView;
 - (id)setupTableView:(struct _NSRect)fp8;
 - (void)updateHelpResults:(id)fp8;
@@ -108,7 +108,7 @@ For more info see General/ProgramaticallyShowMenuInMenuBar. --General/SaileshAgr
 - (void)handleMenuClosed:(id)fp8;
 - (BOOL)shouldTakeFocus;
 - (void)makeSearchFieldKey;
-- (void)selectRowAfterTargetingItem:(unsigned short)fp8 withMenu:(struct General/OpaqueMenuRef *)fp12;
+- (void)selectRowAfterTargetingItem:(unsigned short)fp8 withMenu:(struct OpaqueMenuRef *)fp12;
 - (void)setLastNavigationDirection:(unsigned int)fp8;
 - (void)keyDown:(id)fp8;
 - (void)mouseDown:(id)fp8;

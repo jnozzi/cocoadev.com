@@ -1,13 +1,13 @@
 Im trying to output a gif, the colors are all messed up. I figured it was because I passed nil to the properties in the following:
 
     
- icon = General/[[[NSBitmapImageRep imageRepWithData:[newIcon General/TIFFRepresentation]] representationUsingType:General/NSGIFFileType properties:nil] retain];
+ icon = [[[NSBitmapImageRep imageRepWithData:[newIcon TIFFRepresentation]] representationUsingType:NSGIFFileType properties:nil] retain];
 
 Im trying to do this:
     
-    icon = General/[[[NSBitmapImageRep imageRepWithData:[newIcon General/TIFFRepresentation]] representationUsingType:General/NSGIFFileType properties:
-    General/[NSDictionary dictionaryWithObjectsAndKeys:
-    ?????,General/NSImageRGBColorTable, NULL]] retain];
+    icon = [[[NSBitmapImageRep imageRepWithData:[newIcon TIFFRepresentation]] representationUsingType:NSGIFFileType properties:
+    [NSDictionary dictionaryWithObjectsAndKeys:
+    ?????,NSImageRGBColorTable, NULL]] retain];
 
 But I do not know what to put in to the ?????, documentation says:
 ----
@@ -17,15 +17,15 @@ The RGB color table. Used only for a GIF. It's stored as packed RGB. It's set wh
 ----
 But I can not figure out what that is, or how to get it.
 ----
-A quick look in General/NSBitmapImageRep.h shows that the object for the General/NSImageRGBColorTable key should be a (as mentioned in the class's header file) "GIF input/output (packed RGB in General/NSData)." So it's some General/NSData that represents the GIF's RGB color table, but unfortunately, I haven't ever worked with this stuff, so I'm clueless to what that General/NSData should contain. I'll see what I can find for you.
+A quick look in NSBitmapImageRep.h shows that the object for the NSImageRGBColorTable key should be a (as mentioned in the class's header file) "GIF input/output (packed RGB in NSData)." So it's some NSData that represents the GIF's RGB color table, but unfortunately, I haven't ever worked with this stuff, so I'm clueless to what that NSData should contain. I'll see what I can find for you.
 
--General/KevinPerry
+-KevinPerry
 ----
 Ok, I'm going to assume that the order that Photoshop uses for it's HTML color table is a good one for a typical GIF. The way Photoshop orders it is they start with FFFFFF, then go to FFFFCC, FFFF99, etc, subtracting 0x33 or 51 until it gets to FFFF00. From there it starts at FFCCFF, then FFCCCC, again subtracting 0x33 or 51. So basically, just create an algorithm to start at FFFFFF, subtracting 0x33 from the last byte until it's zero (adding these to your data buffer of course as each is formed), then subtract 0x33 from the middle byte while the last one wraps around, etc, like an odometer counts up, until you get to 000000, which is your 256th and last color.
 
 Does that even make sense? Well, I hope it gives you an idea to get where you're trying to go.
 
--General/KevinPerry
+-KevinPerry
 
 ----
 I will look into that, kind of confused, but got the genral idea. I think the ??? are in their right spot, the objects are provided before the keys in a dictionaryWithObjectsAndKeys list and terminated with a null entry.

@@ -4,15 +4,15 @@
 
 ----
 
-*I nominate this area as next for an overhaul. It's pretty messy. How about a General/DeveloperToolsDiscussions umbrella page, with  sections for General/XCode, General/InterfaceBuilder, General/PropertyListEditor, General/ProjectBuilder, General/IconComposer, and so on. I'll do some work on it tomorrow if I have time.*
+*I nominate this area as next for an overhaul. It's pretty messy. How about a DeveloperToolsDiscussions umbrella page, with  sections for XCode, InterfaceBuilder, PropertyListEditor, ProjectBuilder, IconComposer, and so on. I'll do some work on it tomorrow if I have time.*
 
 **Done**
 
-There's some docs on using General/XCode for Pascal development at [http://www.surtec.com/~rj/Xcode-General/FreePascal/]
+There's some docs on using XCode for Pascal development at [http://www.surtec.com/~rj/Xcode-FreePascal/]
 
 ----
 
-Anyone got any idea how I can make General/XCode 2.0 autocomplete instance vars etc etc like it used to, instead of just methods like it does now? Its lovely and quick now but I miss that feature!
+Anyone got any idea how I can make XCode 2.0 autocomplete instance vars etc etc like it used to, instead of just methods like it does now? Its lovely and quick now but I miss that feature!
 
 Wait till it underlines the partial word and hit Ctrl-. If the first suggestion is not the correct one keep using Ctrl-. till it finds the one you want.
 
@@ -22,7 +22,7 @@ IBM has released C, C++, and Fortran compilers for the G4 and G5.  They are supp
 See [http://www-3.ibm.com/software/awdtools/ccompilers/] for more information.  It's a 55 MB download and 
 requires registration.
 
-From the General/ReadMe file:
+From the ReadMe file:
     
 Prerequisites
 =============
@@ -39,13 +39,13 @@ and Dec 2002 gcc Updater)
 A G5 is required!  Guess it'll be awhile :(
 
 I installed it anyway.  It installed!  I thought it might check to see if I was using a G5 and stop when it didn't
-find one in my General/TiBook.
+find one in my TiBook.
 
 Compiling is another matter.  C worked.  C++ failed.  Could be something wrong in what I did....
 
 It's not required actually - I've run it just fine on my G4. I think they might've meant that it's capable of generating code optimized for the G5 when you specify the options     -qarch=g5 -qtune=g5.
 
-IBM's xlc has traditionally been a great compiler which (when you intelligently tweak the optimization settings) will generate some of the best General/PowerPC code out there. Of the command-line PPC compilers out there, the pecking order is probably xlc > General/MrC > mwcppc > gcc. Then again, General/MrC isn't being maintained any more and most people probably don't have the patience to run it in MPW, so you can probably disregard it.
+IBM's xlc has traditionally been a great compiler which (when you intelligently tweak the optimization settings) will generate some of the best PowerPC code out there. Of the command-line PPC compilers out there, the pecking order is probably xlc > MrC > mwcppc > gcc. Then again, MrC isn't being maintained any more and most people probably don't have the patience to run it in MPW, so you can probably disregard it.
 
 ----
 
@@ -57,7 +57,7 @@ Does this compiler support Objective-C, or is there reason to think that it will
 
 To link as C++ one needs to invoke the compiler as xlC (uppercase C), unfortunately with HFS, one cannot have the same file in different case, so probably the symbolic links were lost during install (didn't IBM test this?), but one can still invoke the compiler as xlC, just provide the full path.
 
-Strangely though, I cannot get it to build Hello.cc, I get internal compiler error. But I did manage to make it build another project of mine. Unfortunately if I build it with optimizations my program will become unstable, both bus error, segmentation fault and even "invalid instruction" were among the errors I got when running the program (it would start fine, but some features of my program would trigger this) -- I did specify "-qarch=ppcv" for "Generic PPC with General/AltiVec" -- also, on optimisation levels other than 2, the compiler would bail out, clamming it couldn't inline a function.
+Strangely though, I cannot get it to build Hello.cc, I get internal compiler error. But I did manage to make it build another project of mine. Unfortunately if I build it with optimizations my program will become unstable, both bus error, segmentation fault and even "invalid instruction" were among the errors I got when running the program (it would start fine, but some features of my program would trigger this) -- I did specify "-qarch=ppcv" for "Generic PPC with AltiVec" -- also, on optimisation levels other than 2, the compiler would bail out, clamming it couldn't inline a function.
 
 So unfortunately I am not able to provide any real benchmarks, but compile time is definitely better (at least w/o optimisations), here is the output from "time" running the two compilers:
     

@@ -1,4 +1,4 @@
-see also General/TypeIDDoesNotCastToTypeBOOL, a very important point made by General/MikeTrent
+see also TypeIDDoesNotCastToTypeBOOL, a very important point made by MikeTrent
 
 **BOOL is a scalar type, not an object type**
 
@@ -16,9 +16,9 @@ then, in my awakeFromNib: method I say:
 
 Relevant implementation code:
 
-#import "General/MyView.h"
+#import "MyView.h"
 
-Now if I so much as say     "General/NSLog(@"viewReduced = @", viewReduced);
+Now if I so much as say     "NSLog(@"viewReduced = @", viewReduced);
 the result is (null).
 
 ----
@@ -26,27 +26,27 @@ the result is (null).
 BOOL is not an object type, so your log statement above is incorrect. It should be:*
 
     
-General/NLog( @"viewReduced = %d", viewReduced);
+NLog( @"viewReduced = %d", viewReduced);
 
 
 ----
 
-Actually, I have abandoned the approach that involved that variable.  The problem could simply have  been my use of "@" in my General/NSLog while referring  to a BOOL.  I'm sure that's what it was.
+Actually, I have abandoned the approach that involved that variable.  The problem could simply have  been my use of "@" in my NSLog while referring  to a BOOL.  I'm sure that's what it was.
 
 ----
 
 %@ means an object, and BOOL is not an object. If you want to log a BOOL, you can use %d, or you can do something like this:
     
-General/NSLog(@"General/MyBool is %@", myBool ? @"YES" : @"NO");
+NSLog(@"MyBool is %@", myBool ? @"YES" : @"NO");
 
 
-General/NSLog() has caused crashes for me from stupid mistakes like that. BTW, what is a BOOL really? It appears to be some type of macro? Why use something other than the C/C++     bool?
+NSLog() has caused crashes for me from stupid mistakes like that. BTW, what is a BOOL really? It appears to be some type of macro? Why use something other than the C/C++     bool?
 
 ----
 
 Command-double-click "BOOL" in Xcode and find out!
 
-The answer is, it's simply a typedef to a type of     char. The reason they don't use     bool is because     bool only appears in C++, not in C, and General/ObjectiveC is a superset of C; C++ is something else. C99 has a _Bool type, but obviously this was not available when General/ObjectiveC or Cocoa were first being designed.
+The answer is, it's simply a typedef to a type of     char. The reason they don't use     bool is because     bool only appears in C++, not in C, and ObjectiveC is a superset of C; C++ is something else. C99 has a _Bool type, but obviously this was not available when ObjectiveC or Cocoa were first being designed.
 
 *Taken from     <objc/objc.h>:*
     
@@ -59,15 +59,15 @@ typedef signed char		BOOL;
 
 **More about BOOL versus bool and Boolean**
 
-I'm very confused as to the difference between BOOL and Boolean in Objective C.  I've been using BOOL, but then, suddenly, I needed to use an General/NSAppleEventDescriptor method: booleanValue.  And this returns a Boolean.  I can't figure out how to even save such a thing in a variable.
+I'm very confused as to the difference between BOOL and Boolean in Objective C.  I've been using BOOL, but then, suddenly, I needed to use an NSAppleEventDescriptor method: booleanValue.  And this returns a Boolean.  I can't figure out how to even save such a thing in a variable.
 
 ----
 
-Boolean and BOOL are basically the same thing. In straight-C any (integer-type) value that is not zero is true, the type Boolean is just a typedef'ed int or short (not sure which). In General/ObjectiveC the type BOOL is also an type that can be cast to an int. There are also the values YES and NO, which are just #defines for the values 1 and 0, respectively. True and false exist for Booleans.
+Boolean and BOOL are basically the same thing. In straight-C any (integer-type) value that is not zero is true, the type Boolean is just a typedef'ed int or short (not sure which). In ObjectiveC the type BOOL is also an type that can be cast to an int. There are also the values YES and NO, which are just #defines for the values 1 and 0, respectively. True and false exist for Booleans.
 
 So if a method returns a Boolean, and you don't really know what to do with it, check if it's 0, false (NO); otherwise, it's true (nonzero) (YES).
 
-If you don't want to treat Booleans and General/BOOLs as the same, you can always do this:
+If you don't want to treat Booleans and BOOLs as the same, you can always do this:
 
     
 BOOL returnval = methodReturningBoolean() ? YES : NO;
@@ -77,13 +77,13 @@ Which 'converts' a Boolean to a BOOL.
 
 Here is more info: http://cs1313.ou.edu/boolean_data_lesson_2up.pdf (google cache: http://66.102.11.104/search?q=cache:gpRNOUz_BPwJ:cs1313.ou.edu/boolean_data_lesson_2up.pdf)
 
-Personaly, I don't care for the BOOL type, I think it clashes with otherwise nice syntax in General/ObjectiveC. SEL, BOOL and IMP are all-caps, which is very odd, did Cox think that is was so very hard to type selector, boolean or implementation, written out, and in lower case (to denote that these are primitives, not classes). CAPITALS are for constants, not for types.
+Personaly, I don't care for the BOOL type, I think it clashes with otherwise nice syntax in ObjectiveC. SEL, BOOL and IMP are all-caps, which is very odd, did Cox think that is was so very hard to type selector, boolean or implementation, written out, and in lower case (to denote that these are primitives, not classes). CAPITALS are for constants, not for types.
 
--- General/TheoHultberg/Iconara
+-- TheoHultberg/Iconara
 
 ----
 
-FYI,     Boolean is a data-type left over from the dawn of the Macintosh. General/NSAppleEventDescriptor wraps Carbon's     General/AEDesc type, and the boolean     General/AEDesc is documented as containing     Boolean.
+FYI,     Boolean is a data-type left over from the dawn of the Macintosh. NSAppleEventDescriptor wraps Carbon's     AEDesc type, and the boolean     AEDesc is documented as containing     Boolean.
 
 There are at least three boolean types: BOOL, Boolean, and C's bool. **Only the last is a true boolean type.**
 
@@ -98,8 +98,8 @@ There are at least three boolean types: BOOL, Boolean, and C's bool. **Only the 
     YES and     NO are defined as     (BOOL)1 and     (BOOL)0. Is it safe to assume that these definitions will always be the same. The reason I ask is I was wondering if the following statement is a good or bad idea:
 
     
-    BOOL hasTopSelection = General/SomeFunctionToCheckForTopSelection();
-    BOOL hasBottomSelection = General/SomeFunctionToCheckForBottomSelection();
+    BOOL hasTopSelection = SomeFunctionToCheckForTopSelection();
+    BOOL hasBottomSelection = SomeFunctionToCheckForBottomSelection();
     int numberOfSelections = hasTopSelection + hasBottomSelection;
 
 
@@ -107,8 +107,8 @@ I know you could write this:
 
     
     int numberOfSelections = 0;
-    if (General/SomeFunctionToCheckForTopSelection()) numberOfSelections++;
-    if (General/SomeFunctionToCheckForBottomSelection()) numberOfSelections++;
+    if (SomeFunctionToCheckForTopSelection()) numberOfSelections++;
+    if (SomeFunctionToCheckForBottomSelection()) numberOfSelections++;
 
 
 but the first example will avoid two conditionals. 
@@ -123,8 +123,8 @@ In C++ though, you are guaranteed that if you cast a bool to int, it will take t
 
 With regard to your code, use inline if's:
     
-BOOL hasTopSelection = General/SomeFunctionToCheckForTopSelection();
-BOOL hasBottomSelection = General/SomeFunctionToCheckForBottomSelection();
+BOOL hasTopSelection = SomeFunctionToCheckForTopSelection();
+BOOL hasBottomSelection = SomeFunctionToCheckForBottomSelection();
 int numberOfSelections = (hasTopSelection?1:0) + (hasBottomSelection?1:0);
 
 
@@ -132,6 +132,6 @@ Remember, functions often do not explicitly return YES, but instead e.g. return 
 
 ----
 
-Yes, inline ifs work nice here. Your point about the return value being 8 bits wide is true (see General/TypeIDDoesNotCastToTypeBOOL). I guess I should never assume that a return of type BOOL will actually be the defined values of YES or NO (even when dealing with General/AppKit or Foundation objects).  
+Yes, inline ifs work nice here. Your point about the return value being 8 bits wide is true (see TypeIDDoesNotCastToTypeBOOL). I guess I should never assume that a return of type BOOL will actually be the defined values of YES or NO (even when dealing with AppKit or Foundation objects).  
 
 *I can only second that, though you can assume that the return value takes the form of     NO, but not     YES, as that is the complement of     NO, which basically means �all values not equal to     NO�.*

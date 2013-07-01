@@ -1,4 +1,4 @@
-With the increase in multi core machines and the example by google and their distributed General/MapReduce implementation( http://labs.google.com/papers/mapreduce.html ) why not have the same thing but on a local multiprocessor machine. 
+With the increase in multi core machines and the example by google and their distributed MapReduce implementation( http://labs.google.com/papers/mapreduce.html ) why not have the same thing but on a local multiprocessor machine. 
 
 **HOM integration**
 This also maps well onto HOM where a map, select and reduce message could distribute the calls automatically to all the different cores(threads).
@@ -9,7 +9,7 @@ Even on a single processor machine there might be advantage to using this. For e
 **Dead lock and race conditions**
 All messages passed must be written in an re-enterent manner.
 
-**General/ThreadPool**
+**ThreadPool**
 I've seen this kind of thing somewhere before but I cannot remember where. A thread pool is a pool of threads which can be called upon to do your bidding. 
 
 The pool has a maximum size and starts with no threads in it. Once an (object, message) pair is passed to it a thread is created and then given the object and message. Once a message has completed the thread waits for more input. The next (message, object) pair to be received by the pool is sent to the first thread which is waiting for input, a new thread is created if the pool isn't full or otherwise the pair is left on a queue till a thread becomes free.
@@ -33,13 +33,13 @@ A. Haven't looked and probably too complicated
 Q. Should we really be bothered about this? 
 A. Probably shouldn't bother but it may depend on how people would tend to use it.
 
-**General/ThreadPool Interface**
-General/BSThreadPool
+**ThreadPool Interface**
+BSThreadPool
 The pool it's self. There is no reason the thread pool needs to be made up of threads on the local machine. These could be threads on distant machines and the object and job gets sent to the other machine to be run.
     
-@interface General/BSThreadPool : General/NSObject {
-	  General/NSMutableArray* iThreads;
-	  General/BSQueue* iWork;
+@interface BSThreadPool : NSObject {
+	  NSMutableArray* iThreads;
+	  BSQueue* iWork;
 	  unsigned short iCreatedThreads;
 	  unsigned short iMaxThreads;
 }
@@ -80,7 +80,7 @@ The pool it's self. There is no reason the thread pool needs to be made up of th
 	  @param pInvocation the invocation to run on a thread. The invocation should be ready to run.
 	  @result A completion notice which can be used to inform the recieve of when the job is completed.
 */
--(General/BSCompletionNotice*) invoke:(General/NSInvocation*)pInvocation;
+-(BSCompletionNotice*) invoke:(NSInvocation*)pInvocation;
 
 /*!
 	  @method invoke:on:
@@ -89,7 +89,7 @@ The pool it's self. There is no reason the thread pool needs to be made up of th
 	  @param pTarget The target to send the selector to.
 	  @result A completion notice which can be used to inform the recieve of when the job is completed.
 */
--(General/BSCompletionNotice*) invoke:(SEL)pSelector on:(id)pTarget;
+-(BSCompletionNotice*) invoke:(SEL)pSelector on:(id)pTarget;
 
 /*!
 	  @method end
@@ -100,13 +100,13 @@ The pool it's self. There is no reason the thread pool needs to be made up of th
 -(void)end;
 
 
-General/BSCompletionNotice
+BSCompletionNotice
 This is used to wait for jobs to finish and to receive any exceptions.
     
-@interface General/BSCompletionNotice :General/NSObject{
-	  General/BSThreadPoolJob* iJob;
+@interface BSCompletionNotice :NSObject{
+	  BSThreadPoolJob* iJob;
 }
-- (id) initWith:(General/BSThreadPoolJob*)pJob;
+- (id) initWith:(BSThreadPoolJob*)pJob;
 /*!
 	  @method exceptions
 	  @description Returns any exceptions which occured when running the job.
@@ -121,9 +121,9 @@ This is used to wait for jobs to finish and to receive any exceptions.
 
 
 **Multithread HOM Interface**
-I would put my HOM interface on to General/NSEnumerator because I prefer it here and I think it's cleaner. Lots of people disagree, I know. It is also then added to General/NSArray, General/NSDictionary too but as General/NSEnumerator is a standard iteration class then we've covered all/most bases.
+I would put my HOM interface on to NSEnumerator because I prefer it here and I think it's cleaner. Lots of people disagree, I know. It is also then added to NSArray, NSDictionary too but as NSEnumerator is a standard iteration class then we've covered all/most bases.
     
-@interface General/NSEnumerator (BSHOM)
+@interface NSEnumerator (BSHOM)
 - (id) foldl;
 - (id) map;
 - (id) select;
@@ -138,17 +138,17 @@ I would put my HOM interface on to General/NSEnumerator because I prefer it here
 I don't think pNumThreads is a good way to do it. It should just use as many threads as possible. Also in my implementation it's a misnomer which I haven't yet corrected. It's really the number of jobs it's split into. These jobs are then consumed by the threads in the thread pool. 
 
 **Example of use**
-This is the main function of my multithreaded HOM implementation. It's more an example of using HOM. Also it is actually slower on my machine then if I use the single threaded version but I only have a General/PowerBook. It may be better for problems which involve larger chunks of disk reads I haven't tried it.
+This is the main function of my multithreaded HOM implementation. It's more an example of using HOM. Also it is actually slower on my machine then if I use the single threaded version but I only have a PowerBook. It may be better for problems which involve larger chunks of disk reads I haven't tried it.
 
     
 int main(int argc, char *argv[])
 {
-	  General/NSAutoreleasePool* tPool = General/[[NSAutoreleasePool alloc] init];
-	  General/BSThreadPool* tThreadPool = General/[BSThreadPool threadPoolOfSize:3];
-	  General/BSArguments* tArgument = General/[[BSArguments alloc] initWith:argc arguments:argv];
+	  NSAutoreleasePool* tPool = [[NSAutoreleasePool alloc] init];
+	  BSThreadPool* tThreadPool = [BSThreadPool threadPoolOfSize:3];
+	  BSArguments* tArgument = [[BSArguments alloc] initWith:argc arguments:argv];
 	  
-	  General/NSDate* tTime = General/[NSDate date];
-	  General/NSArray* tResults = General/[[[tArgument files] threadedMap:3] grep:[tArgument regex] options:kIncludeLineNumber | kIncludeFileName] foldl] arrayByAddingObjectsFromArray:nil];	  
+	  NSDate* tTime = [NSDate date];
+	  NSArray* tResults = [[[tArgument files] threadedMap:3] grep:[tArgument regex] options:kIncludeLineNumber | kIncludeFileName] foldl] arrayByAddingObjectsFromArray:nil];	  
 
 	  float tTimeInt = [tTime timeIntervalSinceNow];
 	  	  
@@ -169,12 +169,12 @@ Wonder what people think and has all this been done before?
 Stefan Pantos
 
 ----
-Release your pool with every job. Autorelease pools are *cheap*. They cost about as much to create and destroy as it does to create and destroy two plain General/NSObject<nowiki/>s. In other words, the time spent is totally inconsequential. Unless your jobs are on the order of     return 1+1 you'll be spending far more time processing those, and most likely your thread communication system will have a lot more overhead too. There's no point in getting fancy.
+Release your pool with every job. Autorelease pools are *cheap*. They cost about as much to create and destroy as it does to create and destroy two plain NSObject<nowiki/>s. In other words, the time spent is totally inconsequential. Unless your jobs are on the order of     return 1+1 you'll be spending far more time processing those, and most likely your thread communication system will have a lot more overhead too. There's no point in getting fancy.
 
-Otherwise I think this is a good idea, but unfortunately it's much more complicated than it would be in a functional language. You have to make sure that all the code that goes through the map/reduce system is thread safe, preferably by having no side effects. But General/ObjC really encourages the use of side effects so you'll have to be careful. Still, I think it could be a real aid to getting the most performance out of these shiny new multicore machines.
+Otherwise I think this is a good idea, but unfortunately it's much more complicated than it would be in a functional language. You have to make sure that all the code that goes through the map/reduce system is thread safe, preferably by having no side effects. But ObjC really encourages the use of side effects so you'll have to be careful. Still, I think it could be a real aid to getting the most performance out of these shiny new multicore machines.
 
 ----
-Just been looking though the Java API and it provides a thread pool which gives a similar interface http://java.sun.com/j2se/1.5.0/docs/api/java/util/concurrent/General/ThreadPoolExecutor.html I haven't yet seen an implementation of the multi threaded map reduce etc.
+Just been looking though the Java API and it provides a thread pool which gives a similar interface http://java.sun.com/j2se/1.5.0/docs/api/java/util/concurrent/ThreadPoolExecutor.html I haven't yet seen an implementation of the multi threaded map reduce etc.
 
 What would also be possible with this interface is that the threads wouldn't have to be local. It could provided a clean interface which would give access to 
 a cluster of machines in the same was as google do map reduce just with what I think is a much cleaner interface.
@@ -184,7 +184,7 @@ I have a working implementation now and I am just implementing a partially compu
 Stefan
 
 ----
-Here is some example code (http://www.beaversoft.co.uk/programming/General/ThreadedHOM.html) it's part of a simple grep program. I would be interested to find out if it is at all faster on a multi core machine if anyone has one. You also need to get a copy of my thread pool code here(http://www.beaversoft.co.uk/programming/General/ThreadPool.html). I haven't written much about it yet and I'm sure there are bugs in it. Any suggestions would be appreciated.
+Here is some example code (http://www.beaversoft.co.uk/programming/ThreadedHOM.html) it's part of a simple grep program. I would be interested to find out if it is at all faster on a multi core machine if anyone has one. You also need to get a copy of my thread pool code here(http://www.beaversoft.co.uk/programming/ThreadPool.html). I haven't written much about it yet and I'm sure there are bugs in it. Any suggestions would be appreciated.
 
 If you do have a multicore/CPU machine and you manage to get it to compile and work could you please tell me how it performs. if you use don't use -t it uses a no extra threads.
 

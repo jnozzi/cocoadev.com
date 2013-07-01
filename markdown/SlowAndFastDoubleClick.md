@@ -2,19 +2,19 @@
 
 
     
-- (General/IBAction) click:(id)sender
+- (IBAction) click:(id)sender
 {
 	fastClick++;
 	slowClick++;
 	int clicked = [localFilesView clickedRow];
 	
-	General/NSUserDefaults *defaults = General/[NSUserDefaults standardUserDefaults];
-  float doubleClickTime=General/defaults objectForKey:@"com.apple.mouse.doubleClickThreshold"] 
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  float doubleClickTime=defaults objectForKey:@"com.apple.mouse.doubleClickThreshold"] 
                                          floatValue];
 	
 	[[[NSTimer scheduledTimerWithTimeInterval:doubleClickTime
        target:self selector:@selector(fastClickReset:) userInfo:nil repeats:NO];
-	General/[NSTimer scheduledTimerWithTimeInterval:doubleClickTime*10
+	[NSTimer scheduledTimerWithTimeInterval:doubleClickTime*10
        target:self selector:@selector(slowClickReset:) userInfo:nil repeats:NO];
 	
 	if(clicked == lastSelectedRow)
@@ -51,12 +51,12 @@ Tnx
 I've solved it with this code
 
     
-- (General/IBAction) click:(id)sender
+- (IBAction) click:(id)sender
 {
 int clicked = [localFilesView clickedRow];
 	
-	General/NSUserDefaults *defaults = General/[NSUserDefaults standardUserDefaults];
-float doubleClickTime = General/defaults objectForKey:@"com.apple.mouse.doubleClickThreshold"] floatValue];
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+float doubleClickTime = defaults objectForKey:@"com.apple.mouse.doubleClickThreshold"] floatValue];
 	
 	BOOL doubleClick     = ([[[localFilesView window] currentEvent] clickCount] == 2);
 	
@@ -66,14 +66,14 @@ float doubleClickTime = General/defaults objectForKey:@"com.apple.mouse.doubleCl
 		if(doubleClick)
 		{
 			[localFiles setDir:[[[NSString stringWithFormat:@"%@%@/",
-                             [localFiles getDir], General/[localFiles getContent] objectAtIndex:clicked] fileName];
+                             [localFiles getDir], [localFiles getContent] objectAtIndex:clicked] fileName];
 			[localFilesView reloadData];
 		}
 		else
 		{
-			General/NSArray *event = General/[NSArray arrayWithObjects:localFilesView,
-                                              General/[NSNumber numberWithInt:[localFilesView clickedColumn]],
-                                              General/[NSNumber numberWithInt:clicked], nil];
+			NSArray *event = [NSArray arrayWithObjects:localFilesView,
+                                              [NSNumber numberWithInt:[localFilesView clickedColumn]],
+                                              [NSNumber numberWithInt:clicked], nil];
 			[self performSelector:@selector(editTableRow:) withObject:event afterDelay:0.2];
 		}
 	}
@@ -84,6 +84,6 @@ float doubleClickTime = General/defaults objectForKey:@"com.apple.mouse.doubleCl
 
 ----
 
-Don't get the double click time from defaults, use Carbon's General/GetDblTime() instead.
+Don't get the double click time from defaults, use Carbon's GetDblTime() instead.
 
-    float dblClickTime = (General/GetDblTime() / 60.0);
+    float dblClickTime = (GetDblTime() / 60.0);

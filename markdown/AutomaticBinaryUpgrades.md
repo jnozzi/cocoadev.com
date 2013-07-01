@@ -33,11 +33,11 @@ If you handle the download in the background  and its small, the downtime for th
 
 ----
 
-Okay, so what mechanism do you use to "change all the files"?  Do you just do a shell call using General/NSTask with maybe a "sudo" and an "rm" in there?
+Okay, so what mechanism do you use to "change all the files"?  Do you just do a shell call using NSTask with maybe a "sudo" and an "rm" in there?
 
 ----
 
-Nope. General/NSFileManager calls.
+Nope. NSFileManager calls.
 
 ----
 
@@ -46,11 +46,11 @@ Hmmm... it probably wouldn't be too difficult to also archive the old files and 
 ----
 It would be pretty nifty if someone out there wrote a framework and helper app that did all of this so the Cocoa community could have a semi-standard way of self-updating their applications without the user needing to really do much work. We all know how lazy users can be. ;-)
 
-- General/MarcWeil
+- MarcWeil
 
 ----
 
-Although implementing this would NOT be a guarantee that all users of the app will be running the current version, as the OP wanted. Users without internet access, users behind restrictive firewalls, paranoid users who keep a tcp stack sniffing utility open at all times and when an app connects to do something post 'THIS IS SPYWARE! IT CONNECTED WITHOUT ASKING ME!' on General/VersionTracker, and so on.
+Although implementing this would NOT be a guarantee that all users of the app will be running the current version, as the OP wanted. Users without internet access, users behind restrictive firewalls, paranoid users who keep a tcp stack sniffing utility open at all times and when an app connects to do something post 'THIS IS SPYWARE! IT CONNECTED WITHOUT ASKING ME!' on VersionTracker, and so on.
 
 ----
 

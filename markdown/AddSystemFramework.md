@@ -1,6 +1,6 @@
-The following is the code mentioned in the example that I talk about in General/PerlObjCBridge
+The following is the code mentioned in the example that I talk about in PerlObjCBridge
 
-In Project Builder, create a new 'cocoa framework' named 'General/AddSystemFramework'.
+In Project Builder, create a new 'cocoa framework' named 'AddSystemFramework'.
 Add 2 Objective C classes to it: Addclient and Addserver.
 Now add the following code to the files:
 
@@ -9,7 +9,7 @@ Now add the following code to the files:
 Addclient.h
     
 #import <Foundation/Foundation.h>
-@interface Addclient : General/NSObject
+@interface Addclient : NSObject
 - (int)firstNumber;
 - (int)secondNumber;
 @end
@@ -35,7 +35,7 @@ Addserver.h
 - (int)secondNumber;
 @end
 
-@interface Addserver : General/NSObject
+@interface Addserver : NSObject
 - (int)addNumbersForClient:(id <Addserverclient>)client;
 @end
 
@@ -43,7 +43,7 @@ Addserver.h
 *
 Addserver.m
     
-#import "General/AddServer.h"
+#import "AddServer.h"
 @implementation Addserver
 - (int)addNumbersForClient:(id <Addserverclient>)client { return 0; }
 @end
@@ -58,15 +58,15 @@ Here is the code for addSystemFramework.pm:
 
 use Foundation;
 
-package General/AddSystemFramework;
+package AddSystemFramework;
 
-@ISA = qw(Exporter General/DynaLoader General/PerlObjCBridge);
+@ISA = qw(Exporter DynaLoader PerlObjCBridge);
 @EXPORT = qw( );
 
 
-$path='General/AddSystemFramework.framework';
+$path='AddSystemFramework.framework';
 
-$bundle=General/NSBundle->bundleWithPath_($path);
+$bundle=NSBundle->bundleWithPath_($path);
 die "could not find framework at $path" unless ($bundle and $$bundle);
 
 $bundle->load() or die "could not load framework";
@@ -89,11 +89,11 @@ Here is the code for addserver.pm:
     
 #!/usr/bin/perl
 
-use General/AddSystemFramework;
+use AddSystemFramework;
 use Addclient;
 
 package Addserver;
-@ISA = qw(General/PerlObjCBridge);
+@ISA = qw(PerlObjCBridge);
 @EXPORT = qw( );
 
 sub new
@@ -114,7 +114,7 @@ sub addNumbersForClient_
 	return int($first + $second);
 }
 
-General/PerlObjCBridge::preloadSelectors('Addserver');
+PerlObjCBridge::preloadSelectors('Addserver');
 
 1;
 
@@ -124,10 +124,10 @@ Here is the code for addclient.pm:
     
 #!/usr/bin/perl
 
-use General/AddSystemFramework;
+use AddSystemFramework;
 
 package Addclient;
-@ISA = qw(General/PerlObjCBridge);
+@ISA = qw(PerlObjCBridge);
 @EXPORT = qw( );
 
 sub new
@@ -152,7 +152,7 @@ sub secondNumber
 	return $self{'secondNumber'};
 }
 
-General/PerlObjCBridge::preloadSelectors('Addclient');
+PerlObjCBridge::preloadSelectors('Addclient');
 
 1;
 
@@ -165,16 +165,16 @@ Here is the code for runserver.pl:
 
 use Addserver;
 
-#General/PerlObjCBridge::preloadSelectors('General/AddServer');
+#PerlObjCBridge::preloadSelectors('AddServer');
 
 $server = new Addserver;
-$connection = General/NSConnection->defaultConnection();
+$connection = NSConnection->defaultConnection();
 $connection->setRootObject_($server);
-$connection->registerName_(General/NSString->stringWithCString_("General/AddServer"));
+$connection->registerName_(NSString->stringWithCString_("AddServer"));
 
 print "the server is running...\n";
 print "waiting for requests...\n";
-General/NSRunLoop->currentRunLoop()->run();
+NSRunLoop->currentRunLoop()->run();
 
 
 ----
@@ -191,8 +191,8 @@ die "usage: perlClient <firstNumber> <secondNumber>\n" unless @ARGV == 2;
 $client = new Addclient (@ARGV);
 
 # create connection to server
-$name = General/NSString->stringWithCString_("General/AddServer");
-$server = General/NSConnection->rootProxyForConnectionWithRegisteredName_host_($name, 0);
+$name = NSString->stringWithCString_("AddServer");
+$server = NSConnection->rootProxyForConnectionWithRegisteredName_host_($name, 0);
 if (!$server or !$$server) {
 	print "Can't get server\n";
 	exit(1);
@@ -203,4 +203,4 @@ printf "response from the server: %d\n", $server->addNumbersForClient_($client);
 
 
 ----
-General/CharlesParnot
+CharlesParnot

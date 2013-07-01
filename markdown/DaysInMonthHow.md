@@ -10,10 +10,10 @@ Thank you
 
     
 
-static int General/DaysInMonth(int month, int year) {
-    General/NSTimeZone *EST = General/[NSTimeZone timeZoneWithAbbreviation:@"EST"];
-    General/NSCalendarDate *day27 = General/[NSCalendarDate dateWithYear:year month:month day:27 hour:12 minute:0 second:0 timeZone:EST];
-    General/NSCalendarDate *day27Plus5Days = [day27 dateByAddingYears:0 months:0 days:5 hours:0 minutes:0 seconds:0];
+static int DaysInMonth(int month, int year) {
+    NSTimeZone *EST = [NSTimeZone timeZoneWithAbbreviation:@"EST"];
+    NSCalendarDate *day27 = [NSCalendarDate dateWithYear:year month:month day:27 hour:12 minute:0 second:0 timeZone:EST];
+    NSCalendarDate *day27Plus5Days = [day27 dateByAddingYears:0 months:0 days:5 hours:0 minutes:0 seconds:0];
     return 32 - [day27Plus5Days dayOfMonth];
 }
 
@@ -30,7 +30,7 @@ This sounds like it would be easier to do manually:
 static int monthDaysTable[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 int daysInMonth(int month, int year)
 {
-	General/NSAssert(month >= 1 && month <= 12, @"month is invalid");
+	NSAssert(month >= 1 && month <= 12, @"month is invalid");
 	// leap years occur when the year is divisible by 4 but not 100, unless it's divisible by 400 in which case it is again
 	if (month == 2 && (year % 4) == 0 && ((year % 100) != 0 || (year % 400) == 0)) {
 		return 29;
@@ -58,11 +58,11 @@ I could go for the party idea, How about Just forgetting the years and months al
 .
 .
 .
-General/[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(solarOrbitComplete:) name:General/NSSolarOrbitComplete object:General/[HomeWorld defaultInstance]];
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(solarOrbitComplete:) name:NSSolarOrbitComplete object:[HomeWorld defaultInstance]];
 .
 .
 .
-- (void)solarOrbitComplete:(General/NSNotification*)aNotification
+- (void)solarOrbitComplete:(NSNotification*)aNotification
 {
 	@synchronized (self) {
 		++m_day;

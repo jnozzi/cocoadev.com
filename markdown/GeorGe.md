@@ -2,7 +2,7 @@
 
 I've visited this site quite a lot of times and it's great. It's one of the places I look when I'm stuck with my programming...
 
-I'm learning Cocoa and have managed to finish a game with it and General/OpenGL. It's on my site: http://www.makasoft.net 
+I'm learning Cocoa and have managed to finish a game with it and OpenGL. It's on my site: http://www.makasoft.net 
 
 Now I'm working on another game, trying to do some network programming... we'll see how it goes ;) I have 0 experience on that matter... 
 

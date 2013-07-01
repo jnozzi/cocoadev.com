@@ -1,9 +1,9 @@
 
 
-A category that adds some functionality to General/NSWindow.
+A category that adds some functionality to NSWindow.
 
 A particularly interesting method is 
-    - (void)morphToFrame:(General/NSRect)newFrame overTimeInterval:(General/NSTimeInterval)morphInterval;
+    - (void)morphToFrame:(NSRect)newFrame overTimeInterval:(NSTimeInterval)morphInterval;
 which allows you to smoothly animate a window resizing. 
 
 ----
@@ -11,17 +11,17 @@ I haven't used this - it looks like it might be a little slow. Does anyone have 
 
 ----
 
-I've not used any of the Omni frameworks myself, but I'd assume they use this in the preferences window in General/OmniWeb, which is quick enough. -- General/RobRix
+I've not used any of the Omni frameworks myself, but I'd assume they use this in the preferences window in OmniWeb, which is quick enough. -- RobRix
 
-Looking at General/OAPreferenceController, they use General/NSWindow's <code>setFrame:display: animate:</code>. In fact, they don't use morphToFrame anywhere in General/OmniAppKit. --General/MichaelMcCracken
+Looking at OAPreferenceController, they use NSWindow's <code>setFrame:display: animate:</code>. In fact, they don't use morphToFrame anywhere in OmniAppKit. --MichaelMcCracken
 
-Heh, curious. -- General/RobRix
+Heh, curious. -- RobRix
 
 ----
-It's used in General/OmniWeb: 
+It's used in OmniWeb: 
 
 *Main Menu -> View -> Status Bar 
 *Downloads window: Show details disclosure widget.
 
 
--- General/TomBunch
+-- TomBunch

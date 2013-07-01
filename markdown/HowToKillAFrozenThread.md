@@ -2,7 +2,7 @@ Is there a way to kill a frozen thread from the main thread?
 
 ----
 
-I don't think there is a way to KILL a thread, like you kill a process (I have looked for that too, but never found anything). If you want to kill it because it is locked and using 0%CPU, then, well, it is not using the CPU, so it's OK... If you want to kill it because it is in a infinite loop, then you have to use a BOOL variable that you can set from the main thread and that the other thread checks in the critical loop (which means you have to know where it might freeze). Sorry, not super helpful!  --General/CharlesParnot
+I don't think there is a way to KILL a thread, like you kill a process (I have looked for that too, but never found anything). If you want to kill it because it is locked and using 0%CPU, then, well, it is not using the CPU, so it's OK... If you want to kill it because it is in a infinite loop, then you have to use a BOOL variable that you can set from the main thread and that the other thread checks in the critical loop (which means you have to know where it might freeze). Sorry, not super helpful!  --CharlesParnot
 
 ----
 
@@ -14,7 +14,7 @@ What are you trying to do?
 
 I'm designing a template for a self healing server. I'm going to use DO for IPC and worker threads for each request. This server template is going to be a foundation for custom application services. My main design goals is to move the messy details of handling broken and frozen connections into a connection manager class. This class will launch the server process if it is not running, see if the server is responding using distributed notifications, kill/relaunch unresponsive servers and notify all clients of any updated proxies.  
 
-The server right now is a Cocoa command-line tool that uses an General/NSRunLoop (configured as a server run loop). Here is where I am stuck. Detaching General/NSThreads and using General/NSConnections is the straight forward thing to do. I can easily deal with connections that are not responding to requests using timeouts, but I need a way to cleanup frozen threads that are stuck in a loop. Having the worker thread check a BOOL variable is an option, but I would like to design a catch all healing method (yes make it idiot proof). Plus, there is no guarantee that the thread will get stuck in my code. 
+The server right now is a Cocoa command-line tool that uses an NSRunLoop (configured as a server run loop). Here is where I am stuck. Detaching NSThreads and using NSConnections is the straight forward thing to do. I can easily deal with connections that are not responding to requests using timeouts, but I need a way to cleanup frozen threads that are stuck in a loop. Having the worker thread check a BOOL variable is an option, but I would like to design a catch all healing method (yes make it idiot proof). Plus, there is no guarantee that the thread will get stuck in my code. 
 
 I'm thinking about having the parent process spawn a child process for each connection (one connection per application) and have these child processes detach worker threads for each request. This would isolate server connections to applications, so if one child process crashes, the server will still be able to keep valid connections open to other applications. Plus I will be able to ask the server to create a new connection from the client side without having to relaunch the service. But all of this could be done with threads if there was a way to force a thread to exit from the main thread.     pthread_self() and     pthread_exit() seem like they can do the trick, but I feel like I have to hack my way around passing thread info from one thread to another (doesn't seem like a safe thing to do). 
 
@@ -41,14 +41,14 @@ Thanks to whoever posted the above. I originally posted this question a couple o
 It sounds like you have a solid understanding of pthreads. Before I read up on     pthread_cleanup_push(), I have a couple of questions. 
 
 
-*Can I create an General/NSZone for each thread, have each thread use their assigned zone for memory allocation and then have the cleanup handler only worry about destroying the zone?
+*Can I create an NSZone for each thread, have each thread use their assigned zone for memory allocation and then have the cleanup handler only worry about destroying the zone?
 *Have you ever used the system level call     malloc_destroy_zone()?
-*You talk about having to keep track of mutual exclusions, but since I'm using General/NSConnections how am I supposed to keep track of locks created by these DO support objects? 
+*You talk about having to keep track of mutual exclusions, but since I'm using NSConnections how am I supposed to keep track of locks created by these DO support objects? 
 
 
 ----
 
-You cannot call out to external libraries if you are doing asynchronous kills of threads, period. You have no idea what those libraries are doing. What if malloc grabs a mutex, and you kill the thread before it can release it? Your entire program will deadlock instantly. What if General/NSConnection grabs a mutex? Dead. Without knowing exactly what kind of resources your libraries allocate (including things like allocating memory, opening file descriptors, acquiring mutexes, etc.), you cannot use them in an async-killable thread, period. Even if you're thinking, "well, I'll just write everything myself, then", keep in mind that this holds true even for libobjc. Unless you can be sure that an async kill happening in the middle of an objc_msgSend() will never do any damage (and I'm pretty sure there are locks in there to handle thread safety in the caching mechanism), then you can't use General/ObjC from an async-killable thread *at all*.
+You cannot call out to external libraries if you are doing asynchronous kills of threads, period. You have no idea what those libraries are doing. What if malloc grabs a mutex, and you kill the thread before it can release it? Your entire program will deadlock instantly. What if NSConnection grabs a mutex? Dead. Without knowing exactly what kind of resources your libraries allocate (including things like allocating memory, opening file descriptors, acquiring mutexes, etc.), you cannot use them in an async-killable thread, period. Even if you're thinking, "well, I'll just write everything myself, then", keep in mind that this holds true even for libobjc. Unless you can be sure that an async kill happening in the middle of an objc_msgSend() will never do any damage (and I'm pretty sure there are locks in there to handle thread safety in the caching mechanism), then you can't use ObjC from an async-killable thread *at all*.
 
 **Yep, there's a spinlock in Apple's message caching system. It's mutually assured destruction: kill it and die yourself.**
 
@@ -69,6 +69,6 @@ Threads are not processes! Terminating a frozen thread is a horrible idea. It is
 ----
 * if you know a priori that the only reason you want to kill a thread is because something has gone wrong.  If you do it, please let me know which app you're releasing so I can make sure I don't use it.*
 
-As the poster of that statement let me clarify.  I **DID** mean that with respect to threads only.  You can terminate a heavy weight process whenever you like.  There are obviously cases in which unexpected termination can be bad: eg, it can leave the file(s) it was writing to in an unpredictable state, or even cause a dead lock if other apps are stuck waiting for the terminated app to do something (.e.g send a message).  However, those are mostly higher level problems, and with journaled General/FSs the damage is limited to the data the process was manipulating, or second rate code that assumes no faults in the system.
+As the poster of that statement let me clarify.  I **DID** mean that with respect to threads only.  You can terminate a heavy weight process whenever you like.  There are obviously cases in which unexpected termination can be bad: eg, it can leave the file(s) it was writing to in an unpredictable state, or even cause a dead lock if other apps are stuck waiting for the terminated app to do something (.e.g send a message).  However, those are mostly higher level problems, and with journaled FSs the damage is limited to the data the process was manipulating, or second rate code that assumes no faults in the system.
 
 *A minor correction; killing a process cannot corrupt your FS on any UNIX-alike. Journalled filesystems protect you from FS corruption in the event of an OS crash or power failure, not process death. Your file damage will never go beyond corrupting actual file data.***-- I agree with that... unless it's not a User process... but of course, that's what an OS crash is! :)**

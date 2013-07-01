@@ -1,36 +1,36 @@
-I was wondering if it is possible to create an array of General/IBOutlets such that Interface Builder will let me select these as outlets.
+I was wondering if it is possible to create an array of IBOutlets such that Interface Builder will let me select these as outlets.
 
 Currently, I've tried this, I declare
 
     
-General/IBOutlet id oneOutlet;
-General/IBOutlet id arrayOfOutlets[20];
+IBOutlet id oneOutlet;
+IBOutlet id arrayOfOutlets[20];
 
 
 within my test.h file.  When I drop test.h into IB, it parses it without a problem and lets me select oneOutlet as a valid outlet, but I cannot select arrayOfOutlets[0], arrayOfOutlets[1], etc...
 
-Is this possible.  I might need to look into General/NSMatrix if I can't do this...
+Is this possible.  I might need to look into NSMatrix if I can't do this...
 
 Thanks..
 
 ----
 
-There's no difference between General/IBOutlets and any other instance variable. General/IBOutlet is just a key for IB to pick up on when you drag a header file into it. If the outlets are objects, just add them to a General/NSArray, but you still won't be able to do anything with it in IB.
+There's no difference between IBOutlets and any other instance variable. IBOutlet is just a key for IB to pick up on when you drag a header file into it. If the outlets are objects, just add them to a NSArray, but you still won't be able to do anything with it in IB.
 
     
-General/NSArray *arrayOfOutlets = General/[NSArray arrayWithObjects: oneOutlet, ... , nil];
+NSArray *arrayOfOutlets = [NSArray arrayWithObjects: oneOutlet, ... , nil];
 
 
 ----
 
-General/NSMatrix sounds like what you're looking for. A little more detail about what you're trying to do might be helpful.
+NSMatrix sounds like what you're looking for. A little more detail about what you're trying to do might be helpful.
 
-*General/NSMatrix doesn't sound like what you're looking for to me... have you seen General/FoundationCollectionsPalette? With it, you could have an General/IBOutlet connected to an General/NSArray instance inside your nib which you would populate with whatever you wanted to connect to.*
+*NSMatrix doesn't sound like what you're looking for to me... have you seen FoundationCollectionsPalette? With it, you could have an IBOutlet connected to an NSArray instance inside your nib which you would populate with whatever you wanted to connect to.*
 
 ----
-The details of the app are this:  I have about 20 General/NSSliders all connected to a single action.  Each slider has its own unique tag value.  I also have 20 corresponding General/NSTextField's that get updated when I move any of the sliders.  My CONCEPTUAL way of acheiving this is by creating an array of General/IBOutlet General/NSTextField's and when , say slider with tag '7' is moved, outletTextField[7] will be updated.  So within IB, I need to make(connect) all 20 General/NSTextField as outlets.  My naive method of creating an array of General/IBOutlets just doesn't show up within IB.
+The details of the app are this:  I have about 20 NSSliders all connected to a single action.  Each slider has its own unique tag value.  I also have 20 corresponding NSTextField's that get updated when I move any of the sliders.  My CONCEPTUAL way of acheiving this is by creating an array of IBOutlet NSTextField's and when , say slider with tag '7' is moved, outletTextField[7] will be updated.  So within IB, I need to make(connect) all 20 NSTextField as outlets.  My naive method of creating an array of IBOutlets just doesn't show up within IB.
 
-This might lead to an alternate question then, if I create 20 General/NSTextFields within IB, can I access them without connection them as General/IBOutlets?  Perhaps I can interrogate the NIB and assign the outlets programmatically?
+This might lead to an alternate question then, if I create 20 NSTextFields within IB, can I access them without connection them as IBOutlets?  Perhaps I can interrogate the NIB and assign the outlets programmatically?
 
 ----
 
@@ -38,6 +38,6 @@ You don't need to do anything with outlets for this - just connect your sliders'
 
 ----
 
-I gave this a shot but I hit a snag.  This is what I for do within IB: I ctrl-click FROM my slider to my appController.  This is so I can do my magic with the slider values.  But now that I've done this, if I attempt to ctrl-click on the slider again and connect to the General/NSTextField, I don't see the option to takeIntValueFrom.  If I disconnect my slider from my appController and try connecting to the General/NSTextField, it does work.  So how can I connect them both.  I must be missing something easy here...
+I gave this a shot but I hit a snag.  This is what I for do within IB: I ctrl-click FROM my slider to my appController.  This is so I can do my magic with the slider values.  But now that I've done this, if I attempt to ctrl-click on the slider again and connect to the NSTextField, I don't see the option to takeIntValueFrom.  If I disconnect my slider from my appController and try connecting to the NSTextField, it does work.  So how can I connect them both.  I must be missing something easy here...
 
-*No, you're not, you can't connect multiple actions, unfortunately. You could probably do this with General/CocoaBindings if you didn't mind learning to use them and didn't mind your app being Panther-only. I still think General/FoundationCollectionsPalette may be your best bet, though.*
+*No, you're not, you can't connect multiple actions, unfortunately. You could probably do this with CocoaBindings if you didn't mind learning to use them and didn't mind your app being Panther-only. I still think FoundationCollectionsPalette may be your best bet, though.*

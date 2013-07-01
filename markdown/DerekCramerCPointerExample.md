@@ -29,10 +29,10 @@ void main(void)
 
 I should point out that this code doesn't work as intended; the implementation of pointerAdd really needs to be <code>*x = *x + 1;</code>.  Your code as written will print 0 then 1 and then 1 again. --Bo
 
-*I fixed the code (I hope :) -- General/KritTer*
+*I fixed the code (I hope :) -- KritTer*
 
 ----
 
 Thanks, I was just trying to explain something from the chat room.  I love how fast this place works...=)
 
---General/DerekCramer
+--DerekCramer

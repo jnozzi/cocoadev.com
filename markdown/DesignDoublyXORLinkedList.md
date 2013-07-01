@@ -3,10 +3,10 @@
 ----
 
 
-* part1 - What a doubly-linked list is http://goo.gl/General/OeSCu
+* part1 - What a doubly-linked list is http://goo.gl/OeSCu
 * part2 - The XOR optimization
 * part3 - Other optimizations
-* appendix - General/KTLLMutableArray
+* appendix - KTLLMutableArray
 
 
 ----**part1 - What a doubly-linked list is**----
@@ -35,7 +35,7 @@ In other words, if we know     prev and     prev^next, it is a simple matter to 
           NULL<-  pn   --------> object2 <--------  pn   ->NULL
 
 
-Since the operations to traverse a doubly-XOR-linked list are a little more complex than a simple doubly-linked list, I shall list some here. Note that this code won't actually compile verbatim as pointers cannot be XOR-ed without explicit typecasting in General/ObjC. Also, I have ignored niceties about how memory is allocated and freed.
+Since the operations to traverse a doubly-XOR-linked list are a little more complex than a simple doubly-linked list, I shall list some here. Note that this code won't actually compile verbatim as pointers cannot be XOR-ed without explicit typecasting in ObjC. Also, I have ignored niceties about how memory is allocated and freed.
 
 
 * Processing along the list:
@@ -83,31 +83,31 @@ Since the doubly-XOR-linked list is concerned with optimizing memory usage, ther
 
 Allocating chunks of memory is costly in time and wasted memory. Allocating large swathes at a time is much better than tiny bites, and the two pointers per entry of a doubly-XOR-linked list definitely counts as tiny. It is best, therefore, to allocate a large chunk of memory and keep track of what is used and what not. We do this by keeping a singly-linked list of unused nodes (since we'll only ever want to add or remove entries to/from the head of the list). This allows us to keep head/tail insertions and deletions constant-time, except in the case when we run out of spare room in the array.
 
-Since we are keeping our list in a large, contiguous chunk of memory, we may as well use array indexing instead of pointers inside the array. This has two benefits. Firstly, unsigned indexes can be XOR-ed together without typecasting, making much neater code. Secondly, the easiest way to resize the list if it gets too full is with General/NSZoneRealloc (see General/NSZone), which will duplicate the memory byte-for-byte elsewhere if necessary. If we used pointers, we would have to go through the array and change every pointer in it if this duplication occurred because none of the pointers would be valid any more; if we use indexes, they will stay valid if the array is duplicated, saving us a lot of effort.
+Since we are keeping our list in a large, contiguous chunk of memory, we may as well use array indexing instead of pointers inside the array. This has two benefits. Firstly, unsigned indexes can be XOR-ed together without typecasting, making much neater code. Secondly, the easiest way to resize the list if it gets too full is with NSZoneRealloc (see NSZone), which will duplicate the memory byte-for-byte elsewhere if necessary. If we used pointers, we would have to go through the array and change every pointer in it if this duplication occurred because none of the pointers would be valid any more; if we use indexes, they will stay valid if the array is duplicated, saving us a lot of effort.
 
 These two optimizations ensure our memory usage is two pointers per entry plus a constant amount (cf plus an unknown amount per entry), and that head/tail insertion/deletion is kept constant-time.
 
-----**appendix - General/KTLLMutableArray**----
+----**appendix - KTLLMutableArray**----
 
-This design, with both the extra optimizations mentioned, is implemented in an open source General/NSMutableArray subclass; see General/KTLLMutableArray.
+This design, with both the extra optimizations mentioned, is implemented in an open source NSMutableArray subclass; see KTLLMutableArray.
 
--- General/KritTer, comments and corrections welcome
+-- KritTer, comments and corrections welcome
 
 ----
 *The doubly-linked list is a common array implementation when constant insertion, access and deletion times are wanted at both beginning and end of the array*
 
-For this we actually have the General/DeQue -- the advantage of a double linked list is constant time removal and insertion at *any* place in the list (including constant time list splicing or splitting), which the XOR trick does not allow us.
+For this we actually have the DeQue -- the advantage of a double linked list is constant time removal and insertion at *any* place in the list (including constant time list splicing or splitting), which the XOR trick does not allow us.
 
---General/AllanOdgaard
+--AllanOdgaard
 ----
 I should go on to say the XOR hack of swapping two values w/o using a temporary placeholder will cause the processor pipeline to stall. Time critical code should stick with the less-geeky technique of using a temporary pointer. Never mind code safety issues of someone accidentally dereferencing a mangled pointer.
 
--- General/MikeTrent
+-- MikeTrent
 ----
 Why would it cause the pipeline to stall?
 
 ----
-You can also use addition and subtraction instead of General/XORing:
+You can also use addition and subtraction instead of XORing:
     
  a=10;
  b=-2;
@@ -117,7 +117,7 @@ You can also use addition and subtraction instead of General/XORing:
 
 I guess it doesn't look as cool. But it's almost as obfuscated.
 
-*Actually, you can use any operation where you can get an original value back given the other original operand. This also includes multiplication/division. But I would guess XOR is often used because it is more efficient than subtraction or division (or at least was in the past), and "looks neater" because it is contained in a single operation. Personally, I always found this more confusing. Another advantage is that it cannot possibly exceed storage limitations since all operations are being done to a single bit. --General/JediKnil*
+*Actually, you can use any operation where you can get an original value back given the other original operand. This also includes multiplication/division. But I would guess XOR is often used because it is more efficient than subtraction or division (or at least was in the past), and "looks neater" because it is contained in a single operation. Personally, I always found this more confusing. Another advantage is that it cannot possibly exceed storage limitations since all operations are being done to a single bit. --JediKnil*
     
  // a and b are integers in the expressions
  // c is either a or b, and d is the other one
@@ -138,4 +138,4 @@ I guess it doesn't look as cool. But it's almost as obfuscated.
  int modExp = a % b; // ?
 
 
-Multiplication/division will work for this purpose in the theoretical, mathematical sense (they are reversible mathematical operations), but they won't work in the real world unless you use a 64-bit integer with 32-bit pointers (or more generally, if you use twice as much storage for the result as you use for a pointer), which completely defeats the purpose of this crazy fun anyway. When using standard int or float types, it is not always true that     a / b * b == a or that     a * b / b == a. -- General/PrimeOperator
+Multiplication/division will work for this purpose in the theoretical, mathematical sense (they are reversible mathematical operations), but they won't work in the real world unless you use a 64-bit integer with 32-bit pointers (or more generally, if you use twice as much storage for the result as you use for a pointer), which completely defeats the purpose of this crazy fun anyway. When using standard int or float types, it is not always true that     a / b * b == a or that     a * b / b == a. -- PrimeOperator

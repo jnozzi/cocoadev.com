@@ -5,7 +5,7 @@ A few related questions:
 
 - Would it be possible to make a framework that could be added to a screensaver source base to make it compile as a visualizer?
 
-- Has anyone made a framework which could be added to a screensaver project (similar to General/SaverLab I'd imagine) that would make it compile as an app that would simply run the saver code, for debugging purposes (or "incremental source modification"), and then just removed when you want to compile the final saver bundle?
+- Has anyone made a framework which could be added to a screensaver project (similar to SaverLab I'd imagine) that would make it compile as an app that would simply run the saver code, for debugging purposes (or "incremental source modification"), and then just removed when you want to compile the final saver bundle?
 
 ----
 

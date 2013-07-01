@@ -1,10 +1,10 @@
 
      
-#import "General/KeyView.h"
+#import "KeyView.h"
 
-@implementation General/KeyView
+@implementation KeyView
 
-- (id)initWithFrame:(General/NSRect)frameRect
+- (id)initWithFrame:(NSRect)frameRect
 {
         [super initWithFrame:frameRect];
 	return self;
@@ -18,15 +18,15 @@
 
 -(void)awakeFromNib {
 
-	General/NSArray *keys=General/[NSArray arrayWithObjects:@"76",@"36",@"122",@"120",@"99",@"118",
+	NSArray *keys=[NSArray arrayWithObjects:@"76",@"36",@"122",@"120",@"99",@"118",
 @"96",@"97",@"98",@"100",@"101",@"109",@"103",@"111",
 @"124",@"123",@"125",@"126",@"51",@"53",@"49",@"48",nil];
-        General/NSArray *objects=General/[NSArray arrayWithObjects:@"Enter",@"Return",@"F1",@"F2",@"F3"
+        NSArray *objects=[NSArray arrayWithObjects:@"Enter",@"Return",@"F1",@"F2",@"F3"
 ,@"F4",@"F5",@"F6",@"F7",@"F8",
 @"F9",@"F10",@"F11",@"F12",@"Right Arrow",@"Left Arrow",@"Down Arrow",
 @"Up Arrow",@"Delete",@"Escape",@"Space",@"Tab",nil];
         
-        nonVisibleDict=General/[[[NSDictionary alloc] initWithObjects:objects forKeys:keys] retain];
+        nonVisibleDict=[[[NSDictionary alloc] initWithObjects:objects forKeys:keys] retain];
 }
 
 - (BOOL) becomeFirstResponder
@@ -44,25 +44,25 @@
 }
 
 
-- (void)drawRect:(General/NSRect)rect
+- (void)drawRect:(NSRect)rect
 {
 
-        General/NSBezierPath *myPath=General/[NSBezierPath bezierPathWithRect:rect];
-        General/[[NSColor whiteColor] set];
+        NSBezierPath *myPath=[NSBezierPath bezierPathWithRect:rect];
+        [[NSColor whiteColor] set];
         [myPath fill];
     
        if ([viewString isEqualToString:@""] !=YES) {
-            General/[[NSColor blackColor] set];
-            [viewString drawAtPoint:General/NSMakePoint(7,General/NSMidY(rect)-8) withAttributes:nil];
+            [[NSColor blackColor] set];
+            [viewString drawAtPoint:NSMakePoint(7,NSMidY(rect)-8) withAttributes:nil];
         }	
 
         if (isSelected==YES && [myWindow isKeyWindow]) {
-            General/NSSetFocusRingStyle(General/NSFocusRingOnly); 
-            General/NSRectFill(rect);
+            NSSetFocusRingStyle(NSFocusRingOnly); 
+            NSRectFill(rect);
             [self setKeyboardFocusRingNeedsDisplayInRect: rect];
         } else {
-            myPath=General/[NSBezierPath bezierPathWithRect:rect];
-            General/[[NSColor grayColor] set];
+            myPath=[NSBezierPath bezierPathWithRect:rect];
+            [[NSColor grayColor] set];
             [myPath stroke]; 
         }
     
@@ -72,27 +72,27 @@
     return YES;
 } 
 
-- (void)mouseDown:(General/NSEvent *)theEvent {
+- (void)mouseDown:(NSEvent *)theEvent {
     isSelected=YES;
     [self setNeedsDisplay:YES];
 }
 
 
 
-- (void)keyDown:(General/NSEvent *)theEvent {
+- (void)keyDown:(NSEvent *)theEvent {
   if (isSelected=YES) {
-        unichar myKeystroke = General/[[[NSApp currentEvent] charactersIgnoringModifiers]
+        unichar myKeystroke = [[[NSApp currentEvent] charactersIgnoringModifiers]
 characterAtIndex:0]; 
-        myKeyCode = General/[[NSApp currentEvent] keyCode];
+        myKeyCode = [[NSApp currentEvent] keyCode];
     
         [viewString release];
         
-        if ([nonVisibleDict objectForKey:General/[[NSNumber numberWithInt:myKeyCode]
+        if ([nonVisibleDict objectForKey:[[NSNumber numberWithInt:myKeyCode]
 stringValue]] != nil) {
-            viewString=General/[[NSString stringWithString:
-[nonVisibleDict objectForKey:General/[[NSNumber numberWithInt:myKeyCode] stringValue]]] retain];
+            viewString=[[NSString stringWithString:
+[nonVisibleDict objectForKey:[[NSNumber numberWithInt:myKeyCode] stringValue]]] retain];
         } else {
-            viewString=General/[[NSString stringWithFormat:@"%C",myKeystroke] retain];
+            viewString=[[NSString stringWithFormat:@"%C",myKeystroke] retain];
         }
       
         

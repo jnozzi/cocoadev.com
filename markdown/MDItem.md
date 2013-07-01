@@ -2,17 +2,17 @@ A Carbon object that represents the metadata of a file.
 
 ----
 
-kMDItemTextContent attribute can't be obtained from General/MDItemRef.  So I wrote this code, General/SpotlightTextContentRetriever
+kMDItemTextContent attribute can't be obtained from MDItemRef.  So I wrote this code, SpotlightTextContentRetriever
 
 It parses mdimport -L command to find mdimporter plugins, then compare the bundle identifier of each plugin and the target file's handler identifier.
 
 
-This code is used in General/SpotInside http://www.oneriver.jp/
+This code is used in SpotInside http://www.oneriver.jp/
 
     
 //
-//  General/SpotlightTextContentRetriever.h
-//  General/SpotInside
+//  SpotlightTextContentRetriever.h
+//  SpotInside
 //
 //  Created by Masatoshi Nishikata on 06/11/22.
 //  Copyright 2006 www.oneriver.jp. All rights reserved.
@@ -27,10 +27,10 @@ This code is used in General/SpotInside http://www.oneriver.jp/
  */
 
 /*
- Using codes from Apple's General/BasicPlugin
+ Using codes from Apple's BasicPlugin
  ----------------------------------
  
- Description: Basic General/CFPlugIn sample code shell, Carbon API
+ Description: Basic CFPlugIn sample code shell, Carbon API
  
  Copyright: 	 © Copyright 2001 Apple Computer, Inc. All rights reserved.
  
@@ -71,7 +71,7 @@ This code is used in General/SpotInside http://www.oneriver.jp/
  
  */
 
-/* Japanese Text General/MDImporter
+/* Japanese Text MDImporter
  * Copyright (c) 2005-2006 KATO Kazuyoshi
  *
  * Permission is hereby granted, free of charge, to any person
@@ -136,18 +136,18 @@ This code is used in General/SpotInside http://www.oneriver.jp/
 
 #import <Cocoa/Cocoa.h>
 
-@interface General/SpotlightTextContentRetriever : General/NSObject {
+@interface SpotlightTextContentRetriever : NSObject {
 
 }
 +(void)initialize;
 +(BOOL)loadPlugIns;
-+(General/NSArray* )loadedPlugIns;
-+(General/NSArray* )unloadedPlugIns;
-+(General/NSMutableArray* )metaDataOfFileAtPath:(General/NSString*)targetFilePath;
-+(General/NSString* )textContentOfFileAtPath:(General/NSString*)targetFilePath;
-+(General/NSMutableDictionary*)executeMDImporterAtPath:(General/NSString*)mdimportPath forPath:(General/NSString*)path uti:(General/NSString*)uti;
-+(int)General/OSVersion;
-+(General/NSString*)readTextAtPath:(General/NSString*)path;
++(NSArray* )loadedPlugIns;
++(NSArray* )unloadedPlugIns;
++(NSMutableArray* )metaDataOfFileAtPath:(NSString*)targetFilePath;
++(NSString* )textContentOfFileAtPath:(NSString*)targetFilePath;
++(NSMutableDictionary*)executeMDImporterAtPath:(NSString*)mdimportPath forPath:(NSString*)path uti:(NSString*)uti;
++(int)OSVersion;
++(NSString*)readTextAtPath:(NSString*)path;
 
 @end
 
@@ -155,8 +155,8 @@ This code is used in General/SpotInside http://www.oneriver.jp/
 
 
 //
-//  General/SpotlightTextContentRetriever.m
-//  General/SpotInside
+//  SpotlightTextContentRetriever.m
+//  SpotInside
 //
 //  Created by Masatoshi Nishikata on 06/11/22.
 //  Copyright 2006 www.oneriver.jp. All rights reserved.
@@ -166,42 +166,42 @@ This code is used in General/SpotInside http://www.oneriver.jp/
 
 
 #include <Carbon/Carbon.h>
-#include <General/CoreFoundation/General/CoreFoundation.h>
-#include <General/CoreFoundation/General/CFPlugInCOM.h>
-#import "General/SpotlightTextContentRetriever.h"
+#include <CoreFoundation/CoreFoundation.h>
+#include <CoreFoundation/CFPlugInCOM.h>
+#import "SpotlightTextContentRetriever.h"
 
 #import "TEC.h"
-#import "General/JapaneseString.h"
+#import "JapaneseString.h"
 
 
-typedef struct General/PlugInInterfaceStruct {
+typedef struct PlugInInterfaceStruct {
     IUNKNOWN_C_GUTS;
-	Boolean (*General/GetMetadataForFile)(void* myInstance, 
-								  General/CFMutableDictionaryRef attributes, 
-								  General/CFStringRef contentTypeUTI,
-								  General/CFStringRef pathToFile);
+	Boolean (*GetMetadataForFile)(void* myInstance, 
+								  CFMutableDictionaryRef attributes, 
+								  CFStringRef contentTypeUTI,
+								  CFStringRef pathToFile);
 	
-} General/MDImporterInterfaceStruct;
+} MDImporterInterfaceStruct;
 
 
-static General/MDImporterInterfaceStruct **mdimporterInterface = nil;
+static MDImporterInterfaceStruct **mdimporterInterface = nil;
 
-@implementation General/SpotlightTextContentRetriever
+@implementation SpotlightTextContentRetriever
 
-static General/NSArray* mdimporterArray = nil;
-static General/NSArray* unloadedMDImporterArray = nil;
+static NSArray* mdimporterArray = nil;
+static NSArray* unloadedMDImporterArray = nil;
 
-static General/NSDictionary* contentTypesForMDImporter = nil;
+static NSDictionary* contentTypesForMDImporter = nil;
 
-static General/NSMutableDictionary* converters_ = nil;
+static NSMutableDictionary* converters_ = nil;
 static int osversion = 0;
 
 + (void)initialize
 {
-    if ( self == General/[SpotlightTextContentRetriever class] ) {
+    if ( self == [SpotlightTextContentRetriever class] ) {
 	
-		converters_ = General/[[NSMutableDictionary alloc] init];
-		osversion = [self General/OSVersion];
+		converters_ = [[NSMutableDictionary alloc] init];
+		osversion = [self OSVersion];
 		
 		if( mdimporterArray == nil )
 			[self loadPlugIns];
@@ -211,12 +211,12 @@ static int osversion = 0;
 +(BOOL)loadPlugIns
 {
 	
-	// Get and store General/MDImporter list	
-	General/NSTask *task = General/[[NSTask alloc] init];
-	General/NSPipe *messagePipe = General/[NSPipe pipe];
+	// Get and store MDImporter list	
+	NSTask *task = [[NSTask alloc] init];
+	NSPipe *messagePipe = [NSPipe pipe];
 	
 	[task setLaunchPath:@"/usr/bin/mdimport"];
-	[task setArguments:General/[NSArray arrayWithObjects: @"-L" ,nil]];
+	[task setArguments:[NSArray arrayWithObjects: @"-L" ,nil]];
 	
 	
 	[task setStandardError : messagePipe];				
@@ -225,11 +225,11 @@ static int osversion = 0;
 	
 	
 	
-	General/NSData *messageData = General/messagePipe fileHandleForReading] availableData]; 
+	NSData *messageData = messagePipe fileHandleForReading] availableData]; 
 	
 	
 	[[NSString* message;
-	message = General/[[[NSString alloc] initWithData:messageData
+	message = [[[NSString alloc] initWithData:messageData
 									 encoding:NSUTF8StringEncoding] autorelease];
 	
 	[task release];
@@ -238,41 +238,41 @@ static int osversion = 0;
 	
 	// Cut unwanted string
 	
-	General/NSRange firstReturn = [message rangeOfString:@"(\n"];
-	if( firstReturn.location == General/NSNotFound )
+	NSRange firstReturn = [message rangeOfString:@"(\n"];
+	if( firstReturn.location == NSNotFound )
 	{
-		mdimporterArray = General/[[NSArray array] retain];
+		mdimporterArray = [[NSArray array] retain];
 	}else
 	{
 		
-		General/NSString* arrayStr = [message substringFromIndex:  firstReturn.location ];
+		NSString* arrayStr = [message substringFromIndex:  firstReturn.location ];
 		
 		
 		// Convert string to array
 		
-		General/NSData* data = [arrayStr dataUsingEncoding:General/NSASCIIStringEncoding];
-		General/NSMutableArray *array = General/[NSPropertyListSerialization propertyListFromData:data 
-																 mutabilityOption:General/NSPropertyListMutableContainers
+		NSData* data = [arrayStr dataUsingEncoding:NSASCIIStringEncoding];
+		NSMutableArray *array = [NSPropertyListSerialization propertyListFromData:data 
+																 mutabilityOption:NSPropertyListMutableContainers
 																		   format:nil errorDescription:nil];
 		
 		
 		if( array == nil ){
-			General/NSLog(@"Parse Error");
+			NSLog(@"Parse Error");
 			return NO;
 		}
 		
 		
 		
 		//sortMDImporterArray
-		General/NSMutableArray* sortedArray = General/[NSMutableArray array];
+		NSMutableArray* sortedArray = [NSMutableArray array];
 		int hoge;
 		
 		//(1) ~/Library/Spotlight/
-		General/NSString* userFolder = General/[NSHomeDirectory() stringByAppendingPathComponent:@"Library/Spotlight"];
+		NSString* userFolder = [NSHomeDirectory() stringByAppendingPathComponent:@"Library/Spotlight"];
 		
 		for( hoge = 0; hoge < [array count]; hoge++ )
 		{
-			General/NSString* aStr = [array objectAtIndex:hoge];
+			NSString* aStr = [array objectAtIndex:hoge];
 			if( [aStr hasPrefix: userFolder] )
 			{
 				[sortedArray addObject: aStr];
@@ -281,10 +281,10 @@ static int osversion = 0;
 		
 		
 		//(2) /Library/Spotlight/
-		General/NSString* pluginFolder = @"/Library/Spotlight/";
+		NSString* pluginFolder = @"/Library/Spotlight/";
 		for( hoge = 0; hoge < [array count]; hoge++ )
 		{
-			General/NSString* aStr = [array objectAtIndex:hoge];
+			NSString* aStr = [array objectAtIndex:hoge];
 			if( [aStr hasPrefix: pluginFolder] )
 			{				
 				[sortedArray addObject: aStr];
@@ -292,10 +292,10 @@ static int osversion = 0;
 		}
 		
 		//(3) /System/Library/Spotlight/
-		General/NSString* sysPluginFolder = @"/System/Library/Spotlight";
+		NSString* sysPluginFolder = @"/System/Library/Spotlight";
 		for( hoge = 0; hoge < [array count]; hoge++ )
 		{
-			General/NSString* aStr = [array objectAtIndex:hoge];
+			NSString* aStr = [array objectAtIndex:hoge];
 			if( [aStr hasPrefix: sysPluginFolder] )
 			{				
 				[sortedArray addObject: aStr];
@@ -309,29 +309,29 @@ static int osversion = 0;
 		
 		
 		
-		// exclude dynamic plugins ... check General/CFPlugInDynamicRegistration
-		General/NSMutableArray* unloadedArray = General/[NSMutableArray array];
+		// exclude dynamic plugins ... check CFPlugInDynamicRegistration
+		NSMutableArray* unloadedArray = [NSMutableArray array];
 		
 		for( hoge = 0; hoge < [sortedArray count]; hoge++ )
 		{
-			General/NSString* aStr = [sortedArray objectAtIndex:hoge];
+			NSString* aStr = [sortedArray objectAtIndex:hoge];
 			
-			General/CFTypeRef dynamicValue = General/[[NSBundle bundleWithPath:aStr] objectForInfoDictionaryKey: @"General/CFPlugInDynamicRegistration"];
+			CFTypeRef dynamicValue = [[NSBundle bundleWithPath:aStr] objectForInfoDictionaryKey: @"CFPlugInDynamicRegistration"];
 			
 			
 			BOOL removeFlag = NO;
 			
 			
-			if( General/CFGetTypeID(dynamicValue) == General/CFBooleanGetTypeID()  )
+			if( CFGetTypeID(dynamicValue) == CFBooleanGetTypeID()  )
 			{
 				
-				removeFlag = General/CFBooleanGetValue(dynamicValue);
+				removeFlag = CFBooleanGetValue(dynamicValue);
 				
 				
-			}else if( General/CFGetTypeID(dynamicValue) == General/CFStringGetTypeID()  )
+			}else if( CFGetTypeID(dynamicValue) == CFStringGetTypeID()  )
 			{
 				
-				removeFlag = ( General/dynamicValue lowercaseString] isEqualToString:@"yes"] ? YES:NO);
+				removeFlag = ( dynamicValue lowercaseString] isEqualToString:@"yes"] ? YES:NO);
 			}
 			
 			
@@ -345,39 +345,39 @@ static int osversion = 0;
 		}
 		
 		mdimporterArray = [[[[NSArray alloc] initWithArray:sortedArray];
-		unloadedMDImporterArray = General/[[NSArray alloc] initWithArray:unloadedArray];
+		unloadedMDImporterArray = [[NSArray alloc] initWithArray:unloadedArray];
 		
 		
-		// Read value for key:General/CFBundleDocumentTypes in Info.plist
-		// Get one item and check if it has key:General/CFBundleTypeRole value:General/MDImporter  
-		// Read the value for key:General/LSItemContentTypes
+		// Read value for key:CFBundleDocumentTypes in Info.plist
+		// Get one item and check if it has key:CFBundleTypeRole value:MDImporter  
+		// Read the value for key:LSItemContentTypes
 		// set the value to contentTypesForMDImporter 
 		
-		General/NSMutableDictionary* contentTypesForMDImporterMutableDictionary = General/[[NSMutableDictionary alloc] init];
+		NSMutableDictionary* contentTypesForMDImporterMutableDictionary = [[NSMutableDictionary alloc] init];
 		
 		for( hoge = 0; hoge < [mdimporterArray count]; hoge++ )
 		{
-			General/NSString* aStr = [mdimporterArray objectAtIndex:hoge];
+			NSString* aStr = [mdimporterArray objectAtIndex:hoge];
 			
-			id value = General/[[NSBundle bundleWithPath:aStr] objectForInfoDictionaryKey: @"General/CFBundleDocumentTypes"];
+			id value = [[NSBundle bundleWithPath:aStr] objectForInfoDictionaryKey: @"CFBundleDocumentTypes"];
 			if( value != nil )
 			{
-				if( [value isKindOfClass:General/[NSArray class]] && [value count] >0 )
+				if( [value isKindOfClass:[NSArray class]] && [value count] >0 )
 				{
 					int piyo=0;
 					for( piyo = 0; piyo < [value count] ; piyo++ )
 					{
 						id typeDictionary = [value objectAtIndex:piyo];
-						if( [typeDictionary isKindOfClass:General/[NSDictionary class]] && 
-							General/typeDictionary valueForKey:@"[[CFBundleTypeRole"] isEqualToString: @"General/MDImporter"]   )
+						if( [typeDictionary isKindOfClass:[NSDictionary class]] && 
+							typeDictionary valueForKey:@"[[CFBundleTypeRole"] isEqualToString: @"MDImporter"]   )
 						{
-							id array = [typeDictionary objectForKey: @"General/LSItemContentTypes"];
-							if( array != nil && [array isKindOfClass:General/[NSArray class]] )
+							id array = [typeDictionary objectForKey: @"LSItemContentTypes"];
+							if( array != nil && [array isKindOfClass:[NSArray class]] )
 							{
 								if( [contentTypesForMDImporterMutableDictionary objectForKey: aStr] == nil )
-									[contentTypesForMDImporterMutableDictionary setObject:General/[NSMutableArray array] forKey:aStr];
+									[contentTypesForMDImporterMutableDictionary setObject:[NSMutableArray array] forKey:aStr];
 								
-								General/contentTypesForMDImporterMutableDictionary objectForKey: aStr] addObjectsFromArray: array ];
+								contentTypesForMDImporterMutableDictionary objectForKey: aStr] addObjectsFromArray: array ];
 							}
 						
 						}
@@ -397,38 +397,38 @@ static int osversion = 0;
 	return YES;
 }
 
-+(General/NSArray* )loadedPlugIns
++(NSArray* )loadedPlugIns
 {
 	return mdimporterArray;
 }
-+(General/NSArray* )unloadedPlugIns
++(NSArray* )unloadedPlugIns
 {
 	return unloadedMDImporterArray;
 }
 
-+(General/NSDictionary*)contentTypesForMDImporter
++(NSDictionary*)contentTypesForMDImporter
 {
 	return contentTypesForMDImporter;
 }
 
-+(General/NSMutableArray* )metaDataOfFileAtPath:(General/NSString*)targetFilePath
++(NSMutableArray* )metaDataOfFileAtPath:(NSString*)targetFilePath
 {
 	//Check plugIn list
 	if( mdimporterArray == nil )
 	{
-		if( !General/[SpotlightTextContentRetriever loadPlugIns] ) 
-			return General/[NSMutableArray array];
+		if( ![SpotlightTextContentRetriever loadPlugIns] ) 
+			return [NSMutableArray array];
 	}
 
 	
 	// Get UTI of the given file
 	
-	General/NSString* targetFilePath_converted = [targetFilePath stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-	NSURL* anUrl = [NSURL General/URLWithString: targetFilePath_converted];
-	General/FSRef ref;
-	General/CFURLGetFSRef(anUrl,&ref);
-	General/CFTypeRef outValue;
-	General/LSCopyItemAttribute (
+	NSString* targetFilePath_converted = [targetFilePath stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+	NSURL* anUrl = [NSURL URLWithString: targetFilePath_converted];
+	FSRef ref;
+	CFURLGetFSRef(anUrl,&ref);
+	CFTypeRef outValue;
+	LSCopyItemAttribute (
 						 &ref,
 						 kLSRolesAll,
 						 kLSItemContentType,
@@ -437,8 +437,8 @@ static int osversion = 0;
 	
 	if( outValue == nil ) return nil;
 	
-	General/NSString* uti = General/[NSString stringWithString:outValue];
-	General/CFRelease(outValue);
+	NSString* uti = [NSString stringWithString:outValue];
+	CFRelease(outValue);
 	
 	//mdimporterArray
 	//contentTypesForMDImporter
@@ -447,26 +447,26 @@ static int osversion = 0;
 	
 	int hoge;
 	for (hoge = 0; hoge < [mdimporterArray count]; hoge++) {
-		General/NSString* mdimporterPath = [mdimporterArray objectAtIndex:hoge];
+		NSString* mdimporterPath = [mdimporterArray objectAtIndex:hoge];
 		
-		General/NSArray* contentUTITypes = [contentTypesForMDImporter objectForKey:mdimporterPath ];
+		NSArray* contentUTITypes = [contentTypesForMDImporter objectForKey:mdimporterPath ];
 		
 		if( [contentUTITypes containsObject:uti ] )
 		{
 
 			// found one mdimporter
-			General/NSMutableDictionary* attributes = 
-			General/[SpotlightTextContentRetriever executeMDImporterAtPath:mdimporterPath 
+			NSMutableDictionary* attributes = 
+			[SpotlightTextContentRetriever executeMDImporterAtPath:mdimporterPath 
 														   forPath:targetFilePath_converted
 															   uti:uti];
 			
 				
-			//In 10.5, text content created by General/SourceCode.mdimporter contains only minimum keywords.
+			//In 10.5, text content created by SourceCode.mdimporter contains only minimum keywords.
 			// Overwrite full text here.
-			if( osversion >= 1050 && General/UTTypeConformsTo ( uti, kUTTypeSourceCode  )) 
+			if( osversion >= 1050 && UTTypeConformsTo ( uti, kUTTypeSourceCode  )) 
 			{
 			   
-			   General/NSString* contents = General/[SpotlightTextContentRetriever readTextAtPath: targetFilePath];
+			   NSString* contents = [SpotlightTextContentRetriever readTextAtPath: targetFilePath];
 			   if ( contents) {
 				   [attributes setObject:contents forKey:kMDItemTextContent];
 								
@@ -488,19 +488,19 @@ static int osversion = 0;
 	
 	
 	//Get handlers that can handle the file
-	General/CFArrayRef ha = General/LSCopyAllRoleHandlersForContentType (
+	CFArrayRef ha = LSCopyAllRoleHandlersForContentType (
 														 uti,
 														 kLSRolesAll
 														 );	
-	General/NSArray* handlerArray;
+	NSArray* handlerArray;
 	
 	if( ha == nil )
 	{
 		return nil;
 	}else
 	{
-		handlerArray = General/[NSArray arrayWithArray: ha];
-		General/CFRelease(ha);
+		handlerArray = [NSArray arrayWithArray: ha];
+		CFRelease(ha);
 	}
 	
 	//----------------
@@ -510,8 +510,8 @@ static int osversion = 0;
 	int hoge;
 	for( hoge = 0; hoge < [mdimporterArray count]; hoge++ )
 	{
-		General/NSString* mdimporterPath = [mdimporterArray objectAtIndex:hoge];			
-		General/NSBundle* bndl = General/[NSBundle bundleWithPath: mdimporterPath ];
+		NSString* mdimporterPath = [mdimporterArray objectAtIndex:hoge];			
+		NSBundle* bndl = [NSBundle bundleWithPath: mdimporterPath ];
 		
 		if( bndl != nil )
 		{
@@ -519,16 +519,16 @@ static int osversion = 0;
 			int piyo;
 			for( piyo = 0; piyo < [handlerArray count]; piyo++ )
 			{
-				General/NSString* aHandler = [handlerArray objectAtIndex:piyo];
+				NSString* aHandler = [handlerArray objectAtIndex:piyo];
 				
 	
 				if( [aHandler isEqualToString:[bndl bundleIdentifier] ] )
 				{
 
-					//General/NSLog(@"Reading using %@",mdimporterPath);
+					//NSLog(@"Reading using %@",mdimporterPath);
 					// found one mdimporter
-					General/NSMutableDictionary* attributes = 
-					General/[SpotlightTextContentRetriever executeMDImporterAtPath:mdimporterPath 
+					NSMutableDictionary* attributes = 
+					[SpotlightTextContentRetriever executeMDImporterAtPath:mdimporterPath 
 																   forPath:targetFilePath
 																	   uti:uti];
 					
@@ -541,7 +541,7 @@ static int osversion = 0;
 			
 		}else
 		{
-			//General/NSLog(@"bndl is null");
+			//NSLog(@"bndl is null");
 			
 		}
 		
@@ -552,28 +552,28 @@ static int osversion = 0;
 	
 }
 
-+(General/NSString*)readTextAtPath:(General/NSString*)path
++(NSString*)readTextAtPath:(NSString*)path
 {
 	// When handling only ascii text, the source can be much more simple.
 	
 	
 	
-	General/NSData* data = General/[NSData dataWithContentsOfFile: path ];
+	NSData* data = [NSData dataWithContentsOfFile: path ];
 	if ( data) {
 		
 		// Detect Encoding
-		General/NSStringEncoding encoding;
-		encoding = General/[JapaneseString detectEncoding: data];
+		NSStringEncoding encoding;
+		encoding = [JapaneseString detectEncoding: data];
 		
 		// Convert Encoding
-		General/NSString* contents = nil;
-		if (encoding == General/NSUnicodeStringEncoding ||
-			encoding == General/CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF16BE) ||
-			encoding == General/CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF16LE)) {
-			contents = General/[[[NSString alloc] initWithData: data
+		NSString* contents = nil;
+		if (encoding == NSUnicodeStringEncoding ||
+			encoding == CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF16BE) ||
+			encoding == CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingUTF16LE)) {
+			contents = [[[NSString alloc] initWithData: data
 											  encoding: encoding] autorelease];
 		} else {
-			General/TECConverter* converter = General/[SpotlightTextContentRetriever createConverter:encoding];
+			TECConverter* converter = [SpotlightTextContentRetriever createConverter:encoding];
 			contents = [converter convertToString: data];
 		}
 		return contents;
@@ -582,40 +582,40 @@ static int osversion = 0;
 	return nil;
 }
 
-+(int)General/OSVersion
++(int)OSVersion
 {
-	long General/SystemVersionInHexDigits;
-	long General/MajorVersion, General/MinorVersion, General/MinorMinorVersion;
+	long SystemVersionInHexDigits;
+	long MajorVersion, MinorVersion, MinorMinorVersion;
 	
-	Gestalt(gestaltSystemVersion, &General/SystemVersionInHexDigits);
-	
-	
-	General/MinorMinorVersion = General/SystemVersionInHexDigits & 0xF;
-	
-	General/MinorVersion = (General/SystemVersionInHexDigits & 0xF0)/0xF;
-	
-	General/MajorVersion = ((General/SystemVersionInHexDigits & 0xF000)/0xF00) * 10 +
-	(General/SystemVersionInHexDigits & 0xF00)/0xF0;
+	Gestalt(gestaltSystemVersion, &SystemVersionInHexDigits);
 	
 	
-	////General/NSLog(@"ver %ld", General/SystemVersionInHexDigits);
-	////General/NSLog(@"%ld.%ld.%ld", General/MajorVersion, General/MinorVersion, General/MinorMinorVersion);	
+	MinorMinorVersion = SystemVersionInHexDigits & 0xF;
+	
+	MinorVersion = (SystemVersionInHexDigits & 0xF0)/0xF;
+	
+	MajorVersion = ((SystemVersionInHexDigits & 0xF000)/0xF00) * 10 +
+	(SystemVersionInHexDigits & 0xF00)/0xF0;
 	
 	
-	return (int)General/MajorVersion*100 + General/MinorVersion*10 + General/MinorMinorVersion ;
+	////NSLog(@"ver %ld", SystemVersionInHexDigits);
+	////NSLog(@"%ld.%ld.%ld", MajorVersion, MinorVersion, MinorMinorVersion);	
+	
+	
+	return (int)MajorVersion*100 + MinorVersion*10 + MinorMinorVersion ;
 }
 
 
 
 
 
-+(General/NSString* )textContentOfFileAtPath:(General/NSString*)targetFilePath
++(NSString* )textContentOfFileAtPath:(NSString*)targetFilePath
 {
-	General/NSMutableDictionary* attributes = 
-	General/[SpotlightTextContentRetriever metaDataOfFileAtPath:targetFilePath];
+	NSMutableDictionary* attributes = 
+	[SpotlightTextContentRetriever metaDataOfFileAtPath:targetFilePath];
 	
 	id textContent = [attributes objectForKey:kMDItemTextContent];
-	if( [textContent isKindOfClass:General/[NSString class]]  )
+	if( [textContent isKindOfClass:[NSString class]]  )
 	{
 		return textContent;
 	}
@@ -624,17 +624,17 @@ static int osversion = 0;
 }
 
 
-+(General/NSMutableDictionary*)executeMDImporterAtPath:(General/NSString*)mdimportPath forPath:(General/NSString*)path uti:(General/NSString*)uti
++(NSMutableDictionary*)executeMDImporterAtPath:(NSString*)mdimportPath forPath:(NSString*)path uti:(NSString*)uti
 {
 	
 	mdimportPath = [mdimportPath stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 	
-	General/NSMutableDictionary* attributes = nil;
-	General/CFBundleRef		bundle;
+	NSMutableDictionary* attributes = nil;
+	CFBundleRef		bundle;
 	
 		
 
-	General/CFURLRef url = General/CFURLCreateWithString (
+	CFURLRef url = CFURLCreateWithString (
 											 nil,
 											 mdimportPath,
 											 nil
@@ -643,16 +643,16 @@ static int osversion = 0;
 	if( url == nil )	return nil;
 
 
-	// Create General/CFPlugInRef
+	// Create CFPlugInRef
 		
-	General/CFPlugInRef plugin = General/CFPlugInCreate(NULL, url);
-	General/CFRelease(url);
+	CFPlugInRef plugin = CFPlugInCreate(NULL, url);
+	CFRelease(url);
 
 
 	
 	if (!plugin)
 	{
-		//General/NSLog(@"Could not create General/CFPluginRef.\n");
+		//NSLog(@"Could not create CFPluginRef.\n");
 		return nil;
 	}
 
@@ -660,20 +660,20 @@ static int osversion = 0;
 	//  The plug-in was located. Now locate the interface.
 
 	BOOL foundInterface = NO;
-	General/CFArrayRef	factories;
+	CFArrayRef	factories;
 	
 	//  See if this plug-in implements the Test type.
-	factories	= General/CFPlugInFindFactoriesForPlugInTypeInPlugIn( kMDImporterTypeID, plugin );
+	factories	= CFPlugInFindFactoriesForPlugInTypeInPlugIn( kMDImporterTypeID, plugin );
 	
 	
 	
-	//  If there are factories for the Test type, attempt to get the General/IUnknown interface.
+	//  If there are factories for the Test type, attempt to get the IUnknown interface.
 	if ( factories != NULL )
 	{
-		General/CFIndex	factoryCount;
-		General/CFIndex	index;
+		CFIndex	factoryCount;
+		CFIndex	index;
 		
-		factoryCount	= General/CFArrayGetCount( factories );
+		factoryCount	= CFArrayGetCount( factories );
 		
 
 		
@@ -681,24 +681,24 @@ static int osversion = 0;
 		{
 			for ( index = 0 ; (index < factoryCount) && (foundInterface == false) ; index++ )
 			{
-				General/CFUUIDRef	factoryID;
+				CFUUIDRef	factoryID;
 				
-				//  Get the factory ID for the first location in the array of General/IDs.
-				factoryID = (General/CFUUIDRef) General/CFArrayGetValueAtIndex( factories, index );
+				//  Get the factory ID for the first location in the array of IDs.
+				factoryID = (CFUUIDRef) CFArrayGetValueAtIndex( factories, index );
 				if ( factoryID )
 				{
 					
-					General/IUnknownVTbl **iunknown;
+					IUnknownVTbl **iunknown;
 					
-					//  Use the factory ID to get an General/IUnknown interface. Here the plug-in code is loaded.
-					iunknown	= (General/IUnknownVTbl **) General/CFPlugInInstanceCreate( NULL, factoryID, kMDImporterTypeID );
+					//  Use the factory ID to get an IUnknown interface. Here the plug-in code is loaded.
+					iunknown	= (IUnknownVTbl **) CFPlugInInstanceCreate( NULL, factoryID, kMDImporterTypeID );
 					
 					if ( iunknown )
 					{
-						//  If this is an General/IUnknown interface, query for the test interface.
-						(*iunknown)->General/QueryInterface( iunknown, General/CFUUIDGetUUIDBytes( kMDImporterInterfaceID ), (LPVOID *)( &mdimporterInterface ) );
+						//  If this is an IUnknown interface, query for the test interface.
+						(*iunknown)->QueryInterface( iunknown, CFUUIDGetUUIDBytes( kMDImporterInterfaceID ), (LPVOID *)( &mdimporterInterface ) );
 						
-						// Now we are done with General/IUnknown
+						// Now we are done with IUnknown
 						(*iunknown)->Release( iunknown );
 						
 						if ( mdimporterInterface )
@@ -712,7 +712,7 @@ static int osversion = 0;
 		}
 		
 		
-		General/CFRelease( factories );
+		CFRelease( factories );
 
 	}
 
@@ -724,7 +724,7 @@ static int osversion = 0;
 	}
 	else
 	{
-		attributes = General/[NSMutableDictionary dictionary];	
+		attributes = [NSMutableDictionary dictionary];	
 
 
 		/* This sometimes fails and causes crash. */
@@ -733,23 +733,23 @@ static int osversion = 0;
 			path = [path stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 
 			
-			//General/NSLog(@"General/GetMetadataForFile" );
+			//NSLog(@"GetMetadataForFile" );
 
-			(*mdimporterInterface)->General/GetMetadataForFile( mdimporterInterface, 
+			(*mdimporterInterface)->GetMetadataForFile( mdimporterInterface, 
 														attributes, 
 														uti,
 														path);	
 		
-			//void* ptr = (*mdimporterInterface)->General/GetMetadataForFile;
-			//General/NSLog(@"%x",ptr);
+			//void* ptr = (*mdimporterInterface)->GetMetadataForFile;
+			//NSLog(@"%x",ptr);
 			//(*mdimporterInterface)->Release( mdimporterInterface );
 			
 			
 			
 		}
-		@catch (General/NSException *exception) {
+		@catch (NSException *exception) {
 			attributes = nil;
-			//General/NSLog(@"exception" );
+			//NSLog(@"exception" );
 
 		}
 		
@@ -760,22 +760,22 @@ static int osversion = 0;
 	
 	// Finished
 
-	General/CFRelease( plugin );
+	CFRelease( plugin );
 	plugin	= NULL;
 	
 	return attributes;
 }
 #pragma mark Japanese Converter
-+(General/TECConverter*)createConverter:(General/NSStringEncoding) encoding
++(TECConverter*)createConverter:(NSStringEncoding) encoding
 {
-General/TECConverter* converter;
+TECConverter* converter;
 
-converter = [converters_ objectForKey: General/[NSNumber numberWithInt: encoding]];
+converter = [converters_ objectForKey: [NSNumber numberWithInt: encoding]];
 
 if (! converter) {
-converter = General/[[TECConverter alloc] initWithEncoding: encoding];
+converter = [[TECConverter alloc] initWithEncoding: encoding];
 [converters_ setObject: converter
-			   forKey: General/[NSNumber numberWithInt: encoding]];
+			   forKey: [NSNumber numberWithInt: encoding]];
 [converter release];
 }
 

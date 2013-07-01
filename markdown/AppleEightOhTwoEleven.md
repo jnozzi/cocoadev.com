@@ -1,4 +1,4 @@
-Apple80211.framework is private General/APIs relating to the wireless link. The header is available at http://www.macstumbler.com/Apple80211.h and copied here for posterity:
+Apple80211.framework is private APIs relating to the wireless link. The header is available at http://www.macstumbler.com/Apple80211.h and copied here for posterity:
 
     
  /*
@@ -13,7 +13,7 @@ Apple80211.framework is private General/APIs relating to the wireless link. The 
   *
   *  Contributors:
   *  korben - korben@cox.net
-  *  jason - catalyst@mac.com  -- General/JasonToffaletti
+  *  jason - catalyst@mac.com  -- JasonToffaletti
   *  ragge - ragge@nada.kth.se
   *
   *  Last updated by korben on 5/15/2002

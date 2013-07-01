@@ -12,7 +12,7 @@ So do I have to handle these manually or is there a better way to do this?
 
 Thanks in advance,
 
-General/AlanSmith
+AlanSmith
 
 ----
 
@@ -28,4 +28,4 @@ Another approach: Give Menu two relationships: daysUsedForLunch and daysUsedForD
 
 ----
 
-A **subentity** is a "child entity" in a Core Data General/NSManagedObjectModel.  It is not necessarily a child class; Core Data does not require that your class hierarchy and your entity hierarchy have a one-to-one mapping.
+A **subentity** is a "child entity" in a Core Data NSManagedObjectModel.  It is not necessarily a child class; Core Data does not require that your class hierarchy and your entity hierarchy have a one-to-one mapping.

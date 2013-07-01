@@ -1,12 +1,12 @@
-This is a variant of the General/RealTimeStreamingProtocol (RTSP), but it seems to be on TCP ports 5000 (control) and 6000 (data) instead of the RFC ports. The iTunes app connects to the RTSP server on 5000, tells it to record an Apple Lossless stream, tells it an RSA key, and then switches to 6000 to send the data.
+This is a variant of the RealTimeStreamingProtocol (RTSP), but it seems to be on TCP ports 5000 (control) and 6000 (data) instead of the RFC ports. The iTunes app connects to the RTSP server on 5000, tells it to record an Apple Lossless stream, tells it an RSA key, and then switches to 6000 to send the data.
 
 *It defaults to 6000, but the airport tells the client the port to use in the RTSP SETUP exchange; I've had it use 6001.*
 
-It's RSA, so the algorithms are well-known. I think anyone who knows enough about RSA to write an ssh client/server pair could write an General/AirTunes client - it should be much less work that, say, DVD's CSS, since the RSA algorithm is well-known. 
+It's RSA, so the algorithms are well-known. I think anyone who knows enough about RSA to write an ssh client/server pair could write an AirTunes client - it should be much less work that, say, DVD's CSS, since the RSA algorithm is well-known. 
 
 ----
 
-See General/AirTunesEncryption for encryption details.
+See AirTunesEncryption for encryption details.
 
 ----
 
@@ -29,7 +29,7 @@ s=iTunes
 c=IN IP4 10.0.1.103
 t=0 0
 m=audio 0 RTP/AVP 96
-a=rtpmap:96 General/AppleLossless
+a=rtpmap:96 AppleLossless
 a=fmtp:96 4096 0 16 40 10 14 2 255 0 0 44100
 a=rsaaeskey:5QYIqmdZGTONY5SHjEJrqAhaa0W9wzDC5i6q221mdGZJ5ubO6Kg
             yhC6U83wpY87TFdPRdfPQl2kVC7+Uefmx1bXdIUo07ZcJsqMbgtje4w2JQw0b
@@ -113,7 +113,7 @@ Client-Instance: 9FF35780A8BC8D2B
 
 ----
 
-When the General/AirTunes has a password configured for the speakers, it uses HTTP Digest Authentication (RFC 2069) -- **almost**.  What follows is a dump of the exchange with iTunes when the password is "T**'uneItUp".
+When the AirTunes has a password configured for the speakers, it uses HTTP Digest Authentication (RFC 2069) -- **almost**.  What follows is a dump of the exchange with iTunes when the password is "T**'uneItUp".
 
     
 OPTIONS * RTSP/1.0
@@ -122,7 +122,7 @@ User-Agent: iTunes/4.6 (Macintosh; N; PPC)
 Client-Instance: 78C152DD8C2636B2
 
 *RTSP/1.0 401 Unauthorized*
-*General/CSeq: 1*
+*CSeq: 1*
 *WWW-Authenticate: Digest realm="raop",*
 *  nonce="8A000000F689AF0BBD1A871E728A0116EE7C5933"*
 *Audio-Jack-Status: connected; type=analog*
@@ -185,15 +185,15 @@ Later, bringing the volume all the way back up returned to *0.00000*.
 
 ----
 
-Jon Lech Johansen published sample code in C# that lets you stream MPEG4 Apple Lossless files to your General/AirPort Express:
+Jon Lech Johansen published sample code in C# that lets you stream MPEG4 Apple Lossless files to your AirPort Express:
 http://nanocrew.net/blog/apple/revairtunes.html
 
 ----
 
-Can anyone with an General/AirPort Express and iTunes 4.7.1 (as opposed to 4.6, which is used above) log the exchanges for a non-passworded connection?  Thanks.
+Can anyone with an AirPort Express and iTunes 4.7.1 (as opposed to 4.6, which is used above) log the exchanges for a non-passworded connection?  Thanks.
 
 ----
 
-Q: How were you able to capture the text during the General/AirportExpress<->Mac exchange?
+Q: How were you able to capture the text during the AirportExpress<->Mac exchange?
 
 A: Use wireshark (http://wireshark.org) or another packet sniffer.

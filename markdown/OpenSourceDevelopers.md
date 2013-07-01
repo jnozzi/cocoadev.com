@@ -8,17 +8,17 @@ Thanks! :-)
 
 ----
 
-You could create the project at General/SourceForge, but most developers scratch their own itch, so if you do not provide an initial implementation which looks promising, I'd not be too optimistic about finding developers, unless your idea itself has an interesting potential.
+You could create the project at SourceForge, but most developers scratch their own itch, so if you do not provide an initial implementation which looks promising, I'd not be too optimistic about finding developers, unless your idea itself has an interesting potential.
 
 Why not tell about it here? That might also lead to some better advice.
 
---General/AllanOdgaard
+--AllanOdgaard
 
 ----
 
 Ah, I've got a rather complex idea scratched out across paper, my mind, and my computer... I'll post it online when I have it in a human-readable form (as it is now, I'm lucky that *I* can read it. This concept app is basically a word processor. I'm a general computer consultant (for normal people, not companies), and the majority of the complaints I receive about software have to do with word processors sucking (miserably, in most cases).
 
-Out of all the applications I use, ranging from General/OmniWeb and General/AdiumX to Photoshop and Final Cut Pro, I'm most disappointed with word processors. I keep General/SubEthaEdit in my dock - it's my favorite editor due to lack of bloat - and use it for most anything, including outlining, jotting things down, web site creation, and even writing full-fledged reports.
+Out of all the applications I use, ranging from OmniWeb and AdiumX to Photoshop and Final Cut Pro, I'm most disappointed with word processors. I keep SubEthaEdit in my dock - it's my favorite editor due to lack of bloat - and use it for most anything, including outlining, jotting things down, web site creation, and even writing full-fledged reports.
 
 Most every complaint my customers and I have regarding word processors would be solved with a CLEAN and USABLE implementation of the features I have strewn about, which include:
 
@@ -31,7 +31,7 @@ Most every complaint my customers and I have regarding word processors would be 
 * [Entire Document Library]-wide find and replace
 * Referencing a document 'part' inside a document, kind of like HTML's <IFRAME>s - e.g., referencing a part the user could call "Casual Footer" would insert the data, which could include the user's name, telno, email address, and mailing address. When the document 'part' changes, all documents that reference that 'part' will also change.
 * ** XML or XML-based format
-* If someone could figure out a good way to implement it, General/TOCs, indexes, footnotes, endnotes, and things to that effect would be nice.
+* If someone could figure out a good way to implement it, TOCs, indexes, footnotes, endnotes, and things to that effect would be nice.
 * RTF 'scratchpads' that are document-wide or category-wide, and provide the user with a nice way to organize thoughts.
 
 
@@ -46,14 +46,14 @@ Any feedback would be welcomed :).
 
 ----
 
-Great plan! I want that too. I hope some real developers (I am not really!) can help make your dream come true. Just my 2 cents: I was on the subversion web site this morning (http://subversion.tigris.org) and I just thought while reading your idea that Subversion could already give some of the functionality you are describing (unlimited Undos/history, automatic saving made easier, saving without folders in the repository). Have you also checked for existing projects similar to your idea? --General/CharlesParnot
+Great plan! I want that too. I hope some real developers (I am not really!) can help make your dream come true. Just my 2 cents: I was on the subversion web site this morning (http://subversion.tigris.org) and I just thought while reading your idea that Subversion could already give some of the functionality you are describing (unlimited Undos/history, automatic saving made easier, saving without folders in the repository). Have you also checked for existing projects similar to your idea? --CharlesParnot
 
 ----
 
-Yeah, I've looked around for apps labeling themselves 'a better word processor,' and really, nothing comes close to this ideal feature set. Someone please correct me if I'm missing a lovely app :). There's General/LetterStar [http://objectpark.net/ls-download.html] - basically General/TextEdit with a few extra features, and Mellel [http://www.redlers.com/mellel.html], but neither of them solve many problems.
+Yeah, I've looked around for apps labeling themselves 'a better word processor,' and really, nothing comes close to this ideal feature set. Someone please correct me if I'm missing a lovely app :). There's LetterStar [http://objectpark.net/ls-download.html] - basically TextEdit with a few extra features, and Mellel [http://www.redlers.com/mellel.html], but neither of them solve many problems.
 
 Here's something I had been thinking of, but I hadn't figured how to put into words:
-"White space should not have style, font or pagination properties that are different from the surrounding text.  In word, when I delete some white space sometimes entire paragraphs and pages change font, size and style all at once.  That's just wrong.  Just very, very wrong." - from General/AppleAppsMostWanted.
+"White space should not have style, font or pagination properties that are different from the surrounding text.  In word, when I delete some white space sometimes entire paragraphs and pages change font, size and style all at once.  That's just wrong.  Just very, very wrong." - from AppleAppsMostWanted.
 
 Any developers with an inordinate amount of free time? Anyone? No, didn't think so :).
 
@@ -61,29 +61,29 @@ Any developers with an inordinate amount of free time? Anyone? No, didn't think 
 
 ----
 
-Are you aware of General/LaTeX? Here you can change the output using style-sheets, you can export to PS, PDF, HTML etc. and it also allows you to include other files, e.g. standard header/footers.
+Are you aware of LaTeX? Here you can change the output using style-sheets, you can export to PS, PDF, HTML etc. and it also allows you to include other files, e.g. standard header/footers.
 
-The barrier of entry however might not be low, and this is probably the real problem, i.e. the superuser will use a revision control system (for the unlimited undo across editing sessions), a markup language a la General/LaTeX (for the reasons above and more), a rather powerful editor like Vi or Emacs (which he can fully customize to act like he wants it to, including writing macros/scripts to add/replace functionality etc.) supplemented by sed, find, grep, and similar from the Unix toolbox (for searching in several files, doing file level search'n'replace, conversions and more), and this will give him almost infinite power in his editing tasks -- but all this requires a lot from the user if he wants to master these "tools", and most likely only programmers will end up using such a tool chain.
+The barrier of entry however might not be low, and this is probably the real problem, i.e. the superuser will use a revision control system (for the unlimited undo across editing sessions), a markup language a la LaTeX (for the reasons above and more), a rather powerful editor like Vi or Emacs (which he can fully customize to act like he wants it to, including writing macros/scripts to add/replace functionality etc.) supplemented by sed, find, grep, and similar from the Unix toolbox (for searching in several files, doing file level search'n'replace, conversions and more), and this will give him almost infinite power in his editing tasks -- but all this requires a lot from the user if he wants to master these "tools", and most likely only programmers will end up using such a tool chain.
 
 Now if I understand you correctly, you'd like to have similar functionality but without the hassle.  Rather than write a new program to incorporate all the ideas, I think another approach could be to try and make a nice wrapper for some of the existing tools.
 
-A friend of mine wrote a Wiki -- http://www.instiki.org/ (there is an OS X download which has it bundled as a single double-clickable application you start, and then it serves the Wiki on port 2500 or so, no setup required) -- the interesting thing here is, that it uses a very simple markup language, but can be converted to General/LaTeX and thus exported as PDF (directly from the web-page, though if you run it on your own machine, you'll need to install General/LaTeX separately).
+A friend of mine wrote a Wiki -- http://www.instiki.org/ (there is an OS X download which has it bundled as a single double-clickable application you start, and then it serves the Wiki on port 2500 or so, no setup required) -- the interesting thing here is, that it uses a very simple markup language, but can be converted to LaTeX and thus exported as PDF (directly from the web-page, though if you run it on your own machine, you'll need to install LaTeX separately).
 
 There are revision history on the pages (like with this Wiki, but with changes highlighted) and there is of cause also search functions.
 
-I am mentioning it because my friend cowrote his bachelor project (with 4 others IIRC) using the system, and as I understood it, it was a big success, especially for the other people involved, who would not normally use General/LaTeX, a revision control system, or split up one paper into different sections included by the top level sections (table of contents etc.).
+I am mentioning it because my friend cowrote his bachelor project (with 4 others IIRC) using the system, and as I understood it, it was a big success, especially for the other people involved, who would not normally use LaTeX, a revision control system, or split up one paper into different sections included by the top level sections (table of contents etc.).
 
 The downside is that you'll need to do all the editing in the browser (the upside is that you do not need to install anything, you get revision control, and you have access to your documents from anywhere there is internet -- granted you have the Wiki running on some server).
 
-However, the next step for this Wiki might be to introduce a custom URL scheme for page edits, so that editing pages on the server would be done using a local editor -- possible something like General/SubEthaEdit, so that if two people edit the same page simultaneously, it would let them share that same document and allow for collaborative editing.
+However, the next step for this Wiki might be to introduce a custom URL scheme for page edits, so that editing pages on the server would be done using a local editor -- possible something like SubEthaEdit, so that if two people edit the same page simultaneously, it would let them share that same document and allow for collaborative editing.
 
 I don't know if this sounds like something which could be another solution for you and your clients? As I see it, most of the features you want are really external, and writing a new word processor is a big task, I know, as I am currently writing a programmers editor! ;)
 
---General/AllanOdgaard
+--AllanOdgaard
 
 ----
 
-Because I use a laptop (they seem to be quite popular in this little podunk town) and  run about constantly, I usually don't have access to the internet, so a Wiki wouldn't be that great of an idea for fulfilling my document-editing dreams. General/LaTeX would be a good thing to integrate - for some reason, I never thought of that. I'll be reading more about it :).
+Because I use a laptop (they seem to be quite popular in this little podunk town) and  run about constantly, I usually don't have access to the internet, so a Wiki wouldn't be that great of an idea for fulfilling my document-editing dreams. LaTeX would be a good thing to integrate - for some reason, I never thought of that. I'll be reading more about it :).
 
  - Oliver
 
@@ -119,37 +119,37 @@ You've got mail!
 
 ----
 
-I found a  word processor project called Tekstilo on General/SourceForge.  They are still in a very early stage of development, I'm sure they would be glad to see your ideas.  Maybe they will let you join the project, who knows.  You can find it at http://sourceforge.net/projects/tekstilo
+I found a  word processor project called Tekstilo on SourceForge.  They are still in a very early stage of development, I'm sure they would be glad to see your ideas.  Maybe they will let you join the project, who knows.  You can find it at http://sourceforge.net/projects/tekstilo
 
 ----
 
-What about General/DocBook + CSS, that would be a great combo. Or perhaps write a General/DocBook editor with a functioning XSL-FO renderer (FOP is worthless).
+What about DocBook + CSS, that would be a great combo. Or perhaps write a DocBook editor with a functioning XSL-FO renderer (FOP is worthless).
 
---General/TheoHultberg/Iconara
-
-----
-
-I have become a BIG fan of General/LaTeX. I use it all the time for mathematical formulas in research papers, proposals, etc. Currently, I use the tools:
-
-General/LaTeX Equation Editor - http://evolve.lse.ac.uk/software/General/EquationEditor/
-General/TeX General/FoG - http://homepage.mac.com/marco_coisson/General/MacOSXsoftware.html
-
-And import it as a .pdf into Adobe General/InDesign. Really, General/InDesign is overkill for most things. If you could base the text editor on General/LaTeX and make it easy to use (not having to know or remember all the commands) I could see that as a very successful product. The fact that it can do equations and tables means it can really fit the bill for technical and scientific writing. 
-
-General/PhilipRiggs
+--TheoHultberg/Iconara
 
 ----
-Oliver: you dismissed the idea of the Wiki based on the idea that you don't have access to internet all the time. But in fact, you only want the wiki on the web if you need to share the documents. But I don't think this is what you want to do, otherwise you would not be able to do so because you are not connected to the internet all the time (am I repeating myself here or just turning in circles???). Anyway: you can have the wiki server locally on your computer, and access it on your web browser without the need for an internet connection. In other words, you have a web browser-based app. That could be a good starting point. And you could always have a local wiki (for personal docs) AND a server-based wiki (for shared docs). --General/CharlesParnot
+
+I have become a BIG fan of LaTeX. I use it all the time for mathematical formulas in research papers, proposals, etc. Currently, I use the tools:
+
+LaTeX Equation Editor - http://evolve.lse.ac.uk/software/EquationEditor/
+TeX FoG - http://homepage.mac.com/marco_coisson/MacOSXsoftware.html
+
+And import it as a .pdf into Adobe InDesign. Really, InDesign is overkill for most things. If you could base the text editor on LaTeX and make it easy to use (not having to know or remember all the commands) I could see that as a very successful product. The fact that it can do equations and tables means it can really fit the bill for technical and scientific writing. 
+
+PhilipRiggs
+
+----
+Oliver: you dismissed the idea of the Wiki based on the idea that you don't have access to internet all the time. But in fact, you only want the wiki on the web if you need to share the documents. But I don't think this is what you want to do, otherwise you would not be able to do so because you are not connected to the internet all the time (am I repeating myself here or just turning in circles???). Anyway: you can have the wiki server locally on your computer, and access it on your web browser without the need for an internet connection. In other words, you have a web browser-based app. That could be a good starting point. And you could always have a local wiki (for personal docs) AND a server-based wiki (for shared docs). --CharlesParnot
 
 ----
 
 Indeed, and the Wiki requires no setup for OS X, comes as one app on a disk image which you doubleclick, and it stores the data in ~/Library/Application Support.
 
-It uses General/MarkDown for the syntax, which I wish this Wiki would also use! :) There is a perl script to convert General/MarkDown to HTML, and this Wiki is already using Perl, so perhaps it could be possible? Although all existing pages would have to be converted.
+It uses MarkDown for the syntax, which I wish this Wiki would also use! :) There is a perl script to convert MarkDown to HTML, and this Wiki is already using Perl, so perhaps it could be possible? Although all existing pages would have to be converted.
 
---General/AllanOdgaard
+--AllanOdgaard
 
 ----
 Dear Cocoa dev'ers
 
-There is an exciting set of ideas on this page.  As the OP and primary contributer of General/AppleAppsMostWanted page, I want to let you know that there was a call for developers on the page -- I even contacted some of you personally by email to implement the ideas enumerated on that page and partially duplicated on this one.  I got few responses, and none that came from developers seriously interested in spending/wasting their time on such a project.  In the end I went ahead with implementing a WP with an old coding buddy of mine.  We have a fairly mature code base at this point and have some exciting features not mentioned on this page or the earlier one.  We are about one month away from release at this point, but would still welcome any other developers, provided they are in a position to contribute.  Our model is most likely opensource shareware.  We are all about supporting standards and introduce no proprietary formats whatsoever (besides supporting ones like .doc).  We'd hate to see two identical apps released by the same community, instead of consolidating our efforts.  If interested, please feel free to contact us at:  nsobject@gmail.com
+There is an exciting set of ideas on this page.  As the OP and primary contributer of AppleAppsMostWanted page, I want to let you know that there was a call for developers on the page -- I even contacted some of you personally by email to implement the ideas enumerated on that page and partially duplicated on this one.  I got few responses, and none that came from developers seriously interested in spending/wasting their time on such a project.  In the end I went ahead with implementing a WP with an old coding buddy of mine.  We have a fairly mature code base at this point and have some exciting features not mentioned on this page or the earlier one.  We are about one month away from release at this point, but would still welcome any other developers, provided they are in a position to contribute.  Our model is most likely opensource shareware.  We are all about supporting standards and introduce no proprietary formats whatsoever (besides supporting ones like .doc).  We'd hate to see two identical apps released by the same community, instead of consolidating our efforts.  If interested, please feel free to contact us at:  nsobject@gmail.com

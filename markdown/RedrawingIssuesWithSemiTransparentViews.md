@@ -1,7 +1,7 @@
 
 
 
-I have an General/NSTableView which has its background set to be semi transparent in IB.  When I add content to the table view, they appear to get drawn twice, giving a 'boldface' effect.  If I select a row (or drag something over it) it reverts back to its normal, non-bolded self.  How can I avoid these double-draws?
+I have an NSTableView which has its background set to be semi transparent in IB.  When I add content to the table view, they appear to get drawn twice, giving a 'boldface' effect.  If I select a row (or drag something over it) it reverts back to its normal, non-bolded self.  How can I avoid these double-draws?
 
 (screenshots attached)
 
@@ -21,6 +21,6 @@ hmm...not sure how to do that.  I tried [self setNeedsDisplayInRect:[aCell rect]
 
 in the controller
 
-"Only Views responds to setNeedsDisplayInRect:; you should send that message to the General/NSTableView instance, once for every cell needing to be redrawn."
+"Only Views responds to setNeedsDisplayInRect:; you should send that message to the NSTableView instance, once for every cell needing to be redrawn."
 
 at what stage would I call this?  I have tried at  willDisplayCell:

@@ -1,5 +1,5 @@
 Something a little more interesting than random key mashing:
 
-http://developer.apple.com/documentation/General/CoreFoundation/Reference/General/CFUUIDRef/index.html
+http://developer.apple.com/documentation/CoreFoundation/Reference/CFUUIDRef/index.html
 
-Also see General/NSProcessInfo
+Also see NSProcessInfo

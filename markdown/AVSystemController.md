@@ -1,4 +1,4 @@
-**General/AVSystemController**
+**AVSystemController**
 
     + (id)sharedAVSystemController;
 
@@ -13,4 +13,4 @@ Sends a AVSystemController_HeadphoneJackIsConnectedDidChangeNotification notific
 Sends a AVSystemController_SystemVolumeDidChangeNotification notification when the system volume has changed (via up/down buttons, mute switch, or programatically)
 
 
-General/Category:PointlessInformation‏‎
+Category:PointlessInformation‏‎

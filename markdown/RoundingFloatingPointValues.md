@@ -3,7 +3,7 @@ I'm using Xcode 1.1, and I am in vain trying to round off a floating point value
 ----
 
 Crude hack (that may or may not work)
-General/[[NSString stringWithFormat:@"%.2f", theFloat] floatValue];
+[[NSString stringWithFormat:@"%.2f", theFloat] floatValue];
 
 ----
 
@@ -13,9 +13,9 @@ Well, if we're talking crude hacks, wouldn't      round(theFloat*100) / 100; be 
 
 How is that a crude hack, Bo? Looks pretty straightforward to me.
 
-Anyway, if your goal is to do it all in cocoa then you can use the General/NSDecimalNumber class.  Bo's way is more straightforward though.
+Anyway, if your goal is to do it all in cocoa then you can use the NSDecimalNumber class.  Bo's way is more straightforward though.
 
-General/NSDecimalNumberBehaviors mentions a little about the rounding behavior included in that class
+NSDecimalNumberBehaviors mentions a little about the rounding behavior included in that class
 
 ----
 
@@ -36,7 +36,7 @@ JKP
 
 Since it hasn't come up yet..
 
-The usual thing to do is to not round a float internally, but to only *display* it rounded to two decimal places.  printf, General/NSString, and General/NSFormatter have ways to do this.
+The usual thing to do is to not round a float internally, but to only *display* it rounded to two decimal places.  printf, NSString, and NSFormatter have ways to do this.
 
 ----
 

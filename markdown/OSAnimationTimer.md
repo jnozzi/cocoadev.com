@@ -1,10 +1,10 @@
-A handy class from General/OpenSwordGroup which allows one to time animation easily.  General/OSATimers are very simple - only two methods are ever invoked.
+A handy class from OpenSwordGroup which allows one to time animation easily.  OSATimers are very simple - only two methods are ever invoked.
 
-Creating an General/OSAnimationTimer:
+Creating an OSAnimationTimer:
 
-+(General/OSAnimationTimer*)timerWithFramerate:(double)theFramerate
++(OSAnimationTimer*)timerWithFramerate:(double)theFramerate
 
-General/OSAnimationTimer*animationTimer = General/[OSAnimationTimer timerWithFramerate:30];
+OSAnimationTimer*animationTimer = [OSAnimationTimer timerWithFramerate:30];
 
 and
 
@@ -12,7 +12,7 @@ and
 
 [animationTimer sleepThreadUntilNextFrameDate];
 
-You can find it, along with example animation code, at http://opensword.dyndns.org/General/OSATObjectProject.dmg.gz .  You might also want to visit General/OpenSwordGroup's General/WikiWikiWeb at http://himitsu.dyndns.org/General/OpenSwordWiki/ .
+You can find it, along with example animation code, at http://opensword.dyndns.org/OSATObjectProject.dmg.gz .  You might also want to visit OpenSwordGroup's WikiWikiWeb at http://himitsu.dyndns.org/OpenSwordWiki/ .
 
 The original author feels that no one should ever use this object in this state.
 

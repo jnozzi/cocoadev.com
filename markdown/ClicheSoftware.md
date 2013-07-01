@@ -1,2 +1,2 @@
 http://www.clichesw.com/
-Company run by General/JeanOlivierLanctot. Famous for General/BurnoutMenu, General/MyPod and General/ThemeChanger.
+Company run by JeanOlivierLanctot. Famous for BurnoutMenu, MyPod and ThemeChanger.

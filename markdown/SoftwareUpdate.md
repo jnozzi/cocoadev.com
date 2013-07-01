@@ -4,4 +4,4 @@ Thanks for any input. Sammi (14/Jan/06)
 
 ----
 
-Software Update is Apple-only. I recommend trying General/SparkleUpdater, it seems pretty slick.
+Software Update is Apple-only. I recommend trying SparkleUpdater, it seems pretty slick.

@@ -1,11 +1,11 @@
-A class that inherits from General/NSObject has three roles. The first role is to act as a "factory" for objects the class intends to create, the second role is to define how objects manufactured by the "factory" behave and interface with other objects and the last role of a class is to define services that the "factory" and products of the "factory" implement for other objects. The "factory" is called the General/ClassObject and an object manufactured by the General/ClassObject is called an "instance" or General/InstanceObject.
+A class that inherits from NSObject has three roles. The first role is to act as a "factory" for objects the class intends to create, the second role is to define how objects manufactured by the "factory" behave and interface with other objects and the last role of a class is to define services that the "factory" and products of the "factory" implement for other objects. The "factory" is called the ClassObject and an object manufactured by the ClassObject is called an "instance" or InstanceObject.
 
 Creating a factory method:  (discussion follows)
 
     
-+ (General/MyClass *) objectFromData:(primitive_C_Type)data{
++ (MyClass *) objectFromData:(primitive_C_Type)data{
 
-return General/[self alloc] initUsingDesignatedInitializerWithData:data] autorelease];
+return [self alloc] initUsingDesignatedInitializerWithData:data] autorelease];
 }
 
 - ([[MyClass *) initUsingDesignatedInitializerWithData:(primitive_C_Type)data{
@@ -15,23 +15,23 @@ return self;
 }
 
 
-The class is a direct subclass of General/NSObject.
+The class is a direct subclass of NSObject.
 
 By returning     [ self alloc], subclasses will return instances of themselves from their factory methods with no extra work from you.
 
-The General/FactoryMethod does all of this in one step for you.  If Object has a General/FactoryMethod, I might be able to create an instance of Object like this:
+The FactoryMethod does all of this in one step for you.  If Object has a FactoryMethod, I might be able to create an instance of Object like this:
 
 Object* myObject = [Object object];
 
-Where "object" is the General/ClassMethod that will allocate, initialize, and return the object to me.
+Where "object" is the ClassMethod that will allocate, initialize, and return the object to me.
 
-Many classes in the Cocoa frameworks use the General/FactoryMethod approach; in general the objects you get from them are given to you with an General/AutoRelease pending. You should understand the General/AutoReleasePool before using them.
+Many classes in the Cocoa frameworks use the FactoryMethod approach; in general the objects you get from them are given to you with an AutoRelease pending. You should understand the AutoReleasePool before using them.
 
-A General/FactoryMethod name often starts with the suffix of the class name (i.e. for the General/NSString class some General/FactoryMethod names are string, stringWithString:, stringWithCString:). Sometimes factory methods are known as "convenience methods", because they perform three important tasks at once. Factory methods alloc the memory needed to store state information, set up the initial state of the newly-allocated instance and then registers the new instance with the General/RunTime system to let the memory manager know that a new object needs to be tracked in terms of memory usage. All of this happens by asking the General/ClassObject (factory) to perform a General/FactoryMethod: 
+A FactoryMethod name often starts with the suffix of the class name (i.e. for the NSString class some FactoryMethod names are string, stringWithString:, stringWithCString:). Sometimes factory methods are known as "convenience methods", because they perform three important tasks at once. Factory methods alloc the memory needed to store state information, set up the initial state of the newly-allocated instance and then registers the new instance with the RunTime system to let the memory manager know that a new object needs to be tracked in terms of memory usage. All of this happens by asking the ClassObject (factory) to perform a FactoryMethod: 
 
-A General/FactoryMethod is simply a convenience for the programmer. Since many operations are implied in a General/FactoryMethod, I like to think of factory methods as *implicit factory orders*.
+A FactoryMethod is simply a convenience for the programmer. Since many operations are implied in a FactoryMethod, I like to think of factory methods as *implicit factory orders*.
 Factory methods only save you the time of having to explicitly allocate, initialize and memory-manage instances. *Implicit factory orders*
-and *explicit factory orders* are the two fundamental ways you can obtain an instance from a General/ClassObject (Class Factory).
+and *explicit factory orders* are the two fundamental ways you can obtain an instance from a ClassObject (Class Factory).
 The customizablility of factory orders is not limited by the choice of using a factory/convenience method (making an*implicit factory order*
 or making an *explicit factory order*). 
 
@@ -39,13 +39,13 @@ or making an *explicit factory order*).
 
 **Lengthy discussion on the use of      self = [ super init ] **
 
-While invoking     self = [ super init ]  is best practice to do in general, it's not *strictly* necessary in this case. General/NSObject's -init method is documented as doing nothing and always returning     self. However, writing your initializer in a more general fashion means that you don't have to worry about changing anything if you change your superclass later on.
+While invoking     self = [ super init ]  is best practice to do in general, it's not *strictly* necessary in this case. NSObject's -init method is documented as doing nothing and always returning     self. However, writing your initializer in a more general fashion means that you don't have to worry about changing anything if you change your superclass later on.
 
 ----
 The self = [super init] thing is one of those long-standing stylistic issues you can argue about for weeks. It is not good style, and you will never actually need to reassign self when subclassing any of the cocoa classes. I've been using plain [super init]; reassigning self looks to me like an unwholesome stylistic trick.
 
 ----
-See General/ClassClusters. Returning something besides     self is standard practice here; it seems to be the only way to get the proper subclass without overriding     alloc (an even bigger evil).
+See ClassClusters. Returning something besides     self is standard practice here; it seems to be the only way to get the proper subclass without overriding     alloc (an even bigger evil).
 
 ----
 
@@ -94,7 +94,7 @@ Since there's no information passed to     init, there can't be any decision-mak
 The point isn't whether or not it makes sense for init to return something other than self. By assigning self, you only have one return statement since self is nil if     [super init] returned nil. Not assigning self gains you nothing.
 
 ----
-A pattern that "does absolutely nothing, but do it anyway" makes no sense. Give a case where it actually works better than     if (![super init]) return nil; -- General/KritTer
+A pattern that "does absolutely nothing, but do it anyway" makes no sense. Give a case where it actually works better than     if (![super init]) return nil; -- KritTer
 
 ----
 
@@ -104,7 +104,7 @@ I have found the **ultimate perfect init method**. Seriously, there are 2 issues
 - (id)init
 {
     if  ( self != [super init] )
-        General/[NSException raise:@"General/IncredibleSituationHere" format:@"Wow, self != [super init] for object <%@:%p>:\n%@",[self class],self,self];
+        [NSException raise:@"IncredibleSituationHere" format:@"Wow, self != [super init] for object <%@:%p>:\n%@",[self class],self,self];
     if ( self !=nil ) {
         //do my initializations...
     }
@@ -112,7 +112,7 @@ I have found the **ultimate perfect init method**. Seriously, there are 2 issues
 }
 
 
-Runtime error would likely be caught during development, and then appropriate action can be taken. More code, but a MACRO could help, e.g     SUPER_INIT_CHECK;. And the benefit is that when it happens, you get the front page on Wil Shipley's blog. It is like running SETI@HOME on your computer and you find an alien. --General/CharlesParnot
+Runtime error would likely be caught during development, and then appropriate action can be taken. More code, but a MACRO could help, e.g     SUPER_INIT_CHECK;. And the benefit is that when it happens, you get the front page on Wil Shipley's blog. It is like running SETI@HOME on your computer and you find an alien. --CharlesParnot
 
 *Charles, that bit about the alien is the best line in this whole screed*
 
@@ -120,7 +120,7 @@ Runtime error would likely be caught during development, and then appropriate ac
 If     [super init] returns     nil, you don't reassign self, and so self is not nil, you do your initializations, and probably explode in a violent fashion (*much as the Alien would*). You need to introduce a variable to store either the new value returned by     [super init], or the old value of     self for comparison.
 
 ----
-If     [super init]==nil, then     self!=[super init] and you raise the exception (well, except if     self is also already nil, but then it is fine... but it should probably not happen!). However, if     [super init]==nil, it should probably not raise an exception, but rather set     self to     nil too and return it. There could be another debate about how often     [super init]==nil and what to do with it. --General/CharlesParnot
+If     [super init]==nil, then     self!=[super init] and you raise the exception (well, except if     self is also already nil, but then it is fine... but it should probably not happen!). However, if     [super init]==nil, it should probably not raise an exception, but rather set     self to     nil too and return it. There could be another debate about how often     [super init]==nil and what to do with it. --CharlesParnot
 
 ----
 
@@ -137,7 +137,7 @@ Revised strategy:
     if ( newSelf == nil )
         self = nil;
     else if ( self != newSelf )     //fixed
-        General/[NSException raise:@"General/IncredibleSituationHere" format:@"Wow, self != [super init] for object <%@:%p>:\n%@\nCall Wil!",[self class],self,self];
+        [NSException raise:@"IncredibleSituationHere" format:@"Wow, self != [super init] for object <%@:%p>:\n%@\nCall Wil!",[self class],self,self];
     if ( self !=nil ) {
         //do my initializations...
     }

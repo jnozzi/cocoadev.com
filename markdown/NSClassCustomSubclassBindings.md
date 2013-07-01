@@ -1,4 +1,4 @@
-I want to design a project management application, and I need to draw a "Gantt Diagram" in a view. To do so, I use a General/NSTableView, and I created a custom General/NSCell subclass (M<nowiki/>yGantCell).
+I want to design a project management application, and I need to draw a "Gantt Diagram" in a view. To do so, I use a NSTableView, and I created a custom NSCell subclass (M<nowiki/>yGantCell).
 
 M<nowiki/>yGantCell is used to draw an "Gantt bar", from 4 values :
 
@@ -9,15 +9,15 @@ M<nowiki/>yGantCell is used to draw an "Gantt bar", from 4 values :
 *the ending date of the project caldendar
 
 
-Then, I set an instance of M<nowiki/>yGanttCell as the General/NSDataCell of the "Gantt" column of the General/NSTableView :
+Then, I set an instance of M<nowiki/>yGanttCell as the NSDataCell of the "Gantt" column of the NSTableView :
 
     
-myCell = General/[[MyGanttCell alloc] init];
+myCell = [[MyGanttCell alloc] init];
 ganttCol = [myGantt tableColumnWithIdentifier:@"ganttBars"];
 [ganttCol setDataCell:myCell];
 
 
-But then, I'm lost with the bindings : data being the General/NSArrayController that controls the data source (a General/CoreData model, with an Entity "Task" and 3 attributes : taskname, begin, end, I wonder how I can bind these data to the General/NSCell instance or to the General/NSTableColumn ?  I tried :
+But then, I'm lost with the bindings : data being the NSArrayController that controls the data source (a CoreData model, with an Entity "Task" and 3 attributes : taskname, begin, end, I wonder how I can bind these data to the NSCell instance or to the NSTableColumn ?  I tried :
 
     [myCell bind:@"begin" toObject:data withKeyPath:@"arrangedObjects.begin" options:nil];
 
@@ -29,18 +29,18 @@ without success. Any idea ?
 
 ----
 
-*Have you tried this? If it doesn't work, you might want to consider using a custom General/NSFormatter. --General/JediKnil*
+*Have you tried this? If it doesn't work, you might want to consider using a custom NSFormatter. --JediKnil*
     [ganttCol bind:@"value.begin" toObject:data withKeyPath:@"arrangedObjects.begin" options:nil];
 
 ----
 
-I looked at the way the General/NSSliderCell works with bindings. In IB, in the General/NSTableColumn inspector, you can bind the maxValue, the minValue and the Value of the to some attributes of an Entity : this works perfectly.
+I looked at the way the NSSliderCell works with bindings. In IB, in the NSTableColumn inspector, you can bind the maxValue, the minValue and the Value of the to some attributes of an Entity : this works perfectly.
 
 Now programmaticaly  :
 
-In http://developer.apple.com/documentation/Cocoa/Conceptual/General/CocoaBindings/Tasks/masterdetail.html#//apple_ref/doc/uid/20002090, it says : "you actually configure the bindings of the table columns, not the bindings of a table view. Even if you use a special type of cell in the table column, for example, an image cell or General/NSPopUpButtonCell, you configure the table column, not the cell. The bindings for an General/NSTableColumn may change depending on its cell."
+In http://developer.apple.com/documentation/Cocoa/Conceptual/CocoaBindings/Tasks/masterdetail.html#//apple_ref/doc/uid/20002090, it says : "you actually configure the bindings of the table columns, not the bindings of a table view. Even if you use a special type of cell in the table column, for example, an image cell or NSPopUpButtonCell, you configure the table column, not the cell. The bindings for an NSTableColumn may change depending on its cell."
 
-After setting an instance of General/NSSliderCell as the General/NSDataCell of the "Gantt" column of the General/NSTableView, the exposed bindings of this General/NSTableColumn actually change from :
+After setting an instance of NSSliderCell as the NSDataCell of the "Gantt" column of the NSTableView, the exposed bindings of this NSTableColumn actually change from :
 
  exposed bindings =(
     fontSize,  maxWidth, fontName, 
@@ -72,4 +72,4 @@ exposed bindings =(
 )
 
 
-but this doesn't work with my custom General/NSCell subclass ...
+but this doesn't work with my custom NSCell subclass ...

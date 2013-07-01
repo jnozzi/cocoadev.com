@@ -1,27 +1,27 @@
-Is there a way in General/ObjC / Cocoa to detect that the current app has changed (and find out which app the user has changed to)?  Note that I don't just mean *my* app... I mean that I want to know whenever a user makes a new app active, and I want to know which app it is she activated.  The best I can come up with is an General/NSTimer/Applescript solution, but I don't really like that one because without making the timer frequency super-high, it will be wrong if the user switches too fast.  Thanks!
+Is there a way in ObjC / Cocoa to detect that the current app has changed (and find out which app the user has changed to)?  Note that I don't just mean *my* app... I mean that I want to know whenever a user makes a new app active, and I want to know which app it is she activated.  The best I can come up with is an NSTimer/Applescript solution, but I don't really like that one because without making the timer frequency super-high, it will be wrong if the user switches too fast.  Thanks!
 
 ----
 
 If you don't mind undocumented tricks, you can use the following code:
     
-General/[[NSDistributedNotificationCenter defaultCenter] 
+[[NSDistributedNotificationCenter defaultCenter] 
    addObserver:self
    selector:@selector(registerFrontAppChanged:)
-   name:@"com.apple.General/HIToolbox.menuBarShownNotification"
+   name:@"com.apple.HIToolbox.menuBarShownNotification"
    object:nil]
 
-From there, you can use General/NSWorkspace to get information about the front application.
+From there, you can use NSWorkspace to get information about the front application.
 
-If you prefer documented tricks, you'll have to go to Carbon for it. But this works in 10.2 and 10.3, at least, and probably earlier General/OSes as well, and I would not be at all shocked if it continued to work in later General/OSes. -- General/MikeAsh
+If you prefer documented tricks, you'll have to go to Carbon for it. But this works in 10.2 and 10.3, at least, and probably earlier OSes as well, and I would not be at all shocked if it continued to work in later OSes. -- MikeAsh
 
 23 September 2004 - *Actually, it will stop working in Tiger, according to someone from Apple:* http://www.cocoabuilder.com/archive/message/2004/8/11/114301
 
 ----
 I'm curious now as to how one figures out when the relevant notification names are if they are undocumented.  
 
-*For distributed notifications you can use General/NotificationWatcher.*
+*For distributed notifications you can use NotificationWatcher.*
 
-I did a search on "com.apple.General/HIToolbox.menuBarShownNotification" and found this page:
+I did a search on "com.apple.HIToolbox.menuBarShownNotification" and found this page:
 
 http://www.unsanity.org/archives/000045.php
 
@@ -40,39 +40,39 @@ Does anyone know how to do this now that Tiger's broken the notification system?
 ----
 
 Here's a really simple example that does this using carbon-
-When an app changes, it moves all of it's windows to the front. - General/GusMueller
+When an app changes, it moves all of it's windows to the front. - GusMueller
 
     
 #import <Carbon/Carbon.h>
-#import "General/MyObject.h"
+#import "MyObject.h"
 
 
-static General/OSStatus handleAppFrontSwitched(General/EventHandlerCallRef inHandlerCallRef, General/EventRef inEvent, void *inUserData);
+static OSStatus handleAppFrontSwitched(EventHandlerCallRef inHandlerCallRef, EventRef inEvent, void *inUserData);
 
-@implementation General/MyObject
+@implementation MyObject
 
 - (void) setupAppChangeNotification {
     
-    General/EventTypeSpec spec = { kEventClassApplication,  
+    EventTypeSpec spec = { kEventClassApplication,  
         kEventAppFrontSwitched };
     
-    General/OSStatus err = General/InstallApplicationEventHandler(General/NewEventHandlerUPP(handleAppFrontSwitched), 1, &spec, (void*)self, NULL);
+    OSStatus err = InstallApplicationEventHandler(NewEventHandlerUPP(handleAppFrontSwitched), 1, &spec, (void*)self, NULL);
     
     if (err) {
-        General/NSLog(@"Uh oh...");
+        NSLog(@"Uh oh...");
     }
 }
 
 - (void) appDidChange {
     
-    General/NSDictionary *activeAppDict = General/[[NSWorkspace sharedWorkspace] activeApplication];
-    General/ProcessSerialNumber    psn;
+    NSDictionary *activeAppDict = [[NSWorkspace sharedWorkspace] activeApplication];
+    ProcessSerialNumber    psn;
     
-    psn.highLongOfPSN = General/activeAppDict objectForKey:@"[[NSApplicationProcessSerialNumberHigh"] intValue];
-    psn.lowLongOfPSN  = General/activeAppDict objectForKey:@"[[NSApplicationProcessSerialNumberLow"] intValue];
+    psn.highLongOfPSN = activeAppDict objectForKey:@"[[NSApplicationProcessSerialNumberHigh"] intValue];
+    psn.lowLongOfPSN  = activeAppDict objectForKey:@"[[NSApplicationProcessSerialNumberLow"] intValue];
     
     // bring all windows to front.
-    General/SetFrontProcess( &psn );    
+    SetFrontProcess( &psn );    
 }
 
 - (void) awakeFromNib {
@@ -81,7 +81,7 @@ static General/OSStatus handleAppFrontSwitched(General/EventHandlerCallRef inHan
 
 @end
 
-static General/OSStatus handleAppFrontSwitched(General/EventHandlerCallRef inHandlerCallRef, General/EventRef inEvent, void *inUserData) {
+static OSStatus handleAppFrontSwitched(EventHandlerCallRef inHandlerCallRef, EventRef inEvent, void *inUserData) {
     [(id)inUserData appDidChange];
     return 0;
 }

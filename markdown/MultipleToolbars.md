@@ -1,12 +1,12 @@
 
 
-I'm trying to create a document window with one toolbar for each of its major modes, like General/XCode. 
+I'm trying to create a document window with one toolbar for each of its major modes, like XCode. 
 
 I've approached the problem by creating (and retaining) two different toolbar instances. I implemented the basic delegate methods, providing a different set of allowed / default item identifiers depending on the toolbar. I swap the toolbars using     [window setToolbar:toolbar]; when the document's mode changes.
 
 The problem is that, in certain circumstances, the following error occurs while swapping the toolbar (but not on the setToolbar: line, this is somewhere in the Cocoa frameworks):
 
-    *** General/NSRunLoop ignoring exception **** -General/[NSCFArray addObject:]: attempt to insert nil' that raised during posting of delayed perform with target 550a0f0 and selector '_doDelayedValidateVisibleToolbarItems'
+    *** NSRunLoop ignoring exception **** -[NSCFArray addObject:]: attempt to insert nil' that raised during posting of delayed perform with target 550a0f0 and selector '_doDelayedValidateVisibleToolbarItems'
 
 At this point, the toolbar that was switched to is missing items where it wasn't before. It's important to note (because I think this may be part of - if not all of - the problem): Both toolbars share some items - and the shared items are the ones that *stay* during the erroneous swap while the non-shared ones are the ones that disappear.
 
@@ -14,7 +14,7 @@ I'm thinking this is some problem with the auto-saving behavior. Looking the pro
 
 Has anybody tackled this issue? How should this be handled?
 
-**Note:** *I realize this is rarely good UI design, but I have a situation similar to General/XCode (multi-mode project window) and this solution really does work well -- I'm sure everyone has their opinions regarding UI design, but I'm looking for a solution to this problem, not a UI debate. Thanks! :-)*
+**Note:** *I realize this is rarely good UI design, but I have a situation similar to XCode (multi-mode project window) and this solution really does work well -- I'm sure everyone has their opinions regarding UI design, but I'm looking for a solution to this problem, not a UI debate. Thanks! :-)*
 
 ----
 
@@ -25,18 +25,18 @@ I've never run into this problem, but maybe you could try retaining both toolbar
 Thanks for the response. I use the following pattern:
 
     
-- (General/NSToolbarItem *)toolbar:(General/NSToolbar *)toolbar
-     itemForItemIdentifier:(General/NSString *)itemIdentifier
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar
+     itemForItemIdentifier:(NSString *)itemIdentifier
  willBeInsertedIntoToolbar:(BOOL)flag
 {
-    General/NSToolbarItem * toolbarItem = General/[[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+    NSToolbarItem * toolbarItem = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
     [toolbarItem autorelease];
 
 	if ([itemIdentifier isEqual:@"Inspector"]) {
         [toolbarItem setLabel:@"Inspector"];
         [toolbarItem setPaletteLabel:@"Document Inspector"];
         [toolbarItem setToolTip:@"Show the document inspector palette"];
-        [toolbarItem setImage:General/[NSImage imageNamed:@"info"]];
+        [toolbarItem setImage:[NSImage imageNamed:@"info"]];
         [toolbarItem setTarget:self];
 	} else if ([itemIdentifier isEqual:@"New Item"]) {
 ...
@@ -46,7 +46,7 @@ Are you saying I should make each item a separate instance variable and instanti
 
 ----
 
-Try making a single instance variable, a General/NSMutableArray called "items" or something. alloc and init it inside your init method, then add a quick
+Try making a single instance variable, a NSMutableArray called "items" or something. alloc and init it inside your init method, then add a quick
 
     
     [items addObject:toolbarItem];
@@ -62,15 +62,15 @@ The reply above is saying to add the toolbar item you create to an array (which 
 
     
 
-static General/NSMutableDictionary *toolbarItems = nil;    // create this in +(void)initialize
+static NSMutableDictionary *toolbarItems = nil;    // create this in +(void)initialize
 
-- (General/NSToolbarItem *)toolbar:(General/NSToolbar *)toolbar itemForItemIdentifier:(General/NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
+- (NSToolbarItem *)toolbar:(NSToolbar *)toolbar itemForItemIdentifier:(NSString *)itemIdentifier willBeInsertedIntoToolbar:(BOOL)flag
 {
-    General/NSToolbarItem *item = [toolbarItems objectForKey: itemIdentifier];
+    NSToolbarItem *item = [toolbarItems objectForKey: itemIdentifier];
 
     if ( item == nil )
     {
-        item = General/[[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
+        item = [[NSToolbarItem alloc] initWithItemIdentifier:itemIdentifier];
 
         // setup the toolbar item here
 
@@ -93,10 +93,10 @@ Okay - did that. I got the same error after switching between toolbars several t
 
 A day later and still getting nowhere - I'm about to give up on this idea entirely; it just seems too friggin' buggy.
 
-After even more attempts and frustration, I'm almost 100% certain there is a bug in the General/AppKit that's preventing this. Nothing in the documentation suggests this shouldn't work. The very structure of the whole General/NSToolbar system suggests it *should* work. Has **anybody** had any experience with this?
+After even more attempts and frustration, I'm almost 100% certain there is a bug in the AppKit that's preventing this. Nothing in the documentation suggests this shouldn't work. The very structure of the whole NSToolbar system suggests it *should* work. Has **anybody** had any experience with this?
 
 ----
 
 look whether you are calling [item autorelease] more than once. I had the same problem and found this solution, which works without anything.
 
-*I don't have a solution to the specific problem, but you could use one toolbar and change the behavior of the *delegate*. That is, when the mode switches, change what's returned by     toolbarAllowedItemIdentifiers:,     toolbarDefaultItemIdentifiers:, and     toolbarSelectableItemIdentifiers:. To switch the items currently in the toolbar, use     configurationDictionary and     setConfigurationDictionary:. Warning: untested. --General/JediKnil*
+*I don't have a solution to the specific problem, but you could use one toolbar and change the behavior of the *delegate*. That is, when the mode switches, change what's returned by     toolbarAllowedItemIdentifiers:,     toolbarDefaultItemIdentifiers:, and     toolbarSelectableItemIdentifiers:. To switch the items currently in the toolbar, use     configurationDictionary and     setConfigurationDictionary:. Warning: untested. --JediKnil*

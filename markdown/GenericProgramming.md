@@ -1,10 +1,10 @@
 
 
-General/GenericProgramming is a way to write code that does not rely on the underlying types.
+GenericProgramming is a way to write code that does not rely on the underlying types.
 
 For example, imagine you want to write a text editor. You may wish to write it under Mac OS X today, and thus the storage type for text should be unichar, but a port to Linux or Windows may later be handy, and here you'd use either char or wchar_t for the text.
 
-So it would be cumbersome to have a lot of unichar types hardcoded into your source. In General/CPlusPlus you can abstract away the type by writing a template, which is basically a template of how the code should look. Template parameters is often the type the code should use, but it could also be an integer. Here is an example:
+So it would be cumbersome to have a lot of unichar types hardcoded into your source. In CPlusPlus you can abstract away the type by writing a template, which is basically a template of how the code should look. Template parameters is often the type the code should use, but it could also be an integer. Here is an example:
 
     
 template <unsigned ibase, unsigned obase, typename _InputIter, typename _OutputIter>
@@ -26,7 +26,7 @@ This function can be used to convert a sequence of bytes with n bits pr. byte, t
 
     
    char buf[120];
-   General/ReadFile(..., buf); // assume buf now contains the file
+   ReadFile(..., buf); // assume buf now contains the file
    char newBuf[120 * 8 / 6]; // the result is larger
 
    reinterpret_base<8, 6>(buf, buf + sizeof(buf), newBuf);

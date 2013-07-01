@@ -1,10 +1,10 @@
 
 
-Plural of API, Application Programming Interface. To my knowledge frameworks don't fall into this *per se* since API refers more to, for instance, the headers you'd write for plugin developers for your app. So General/FoundationKit, General/CoreFoundation, et cetera aren't really General/APIs, are they? -- General/RobRix
+Plural of API, Application Programming Interface. To my knowledge frameworks don't fall into this *per se* since API refers more to, for instance, the headers you'd write for plugin developers for your app. So FoundationKit, CoreFoundation, et cetera aren't really APIs, are they? -- RobRix
 
-Well, I've often heard Cocoa as a whole referred to as an API. It's the interface to the OS, after all. I'd say General/AppKit and General/FoundationKit are General/APIs, yes. -- General/KritTer
+Well, I've often heard Cocoa as a whole referred to as an API. It's the interface to the OS, after all. I'd say AppKit and FoundationKit are APIs, yes. -- KritTer
 
-Debatable, since the OS isn't General/AnApplication. But it's only nitpicking in any case. -- General/RobRix
+Debatable, since the OS isn't AnApplication. But it's only nitpicking in any case. -- RobRix
 
 An OS is The Application imho -- peacha
 
@@ -16,9 +16,9 @@ An API can also provide an interface between a high level language and lower lev
 
 ----
 
-An API encapsulates functionality in a fixed way. For instance, you know that you can write this code:     [NSObject alloc] and get a reference to an General/NSObject object. It's understood that this will always be the way to allocate an object and return a reference to it, so it's part of the API for managing objects. Certainly, +alloc can and probably will do things you don't want or need to know in order to instantiate the object (like, for instance, call +allocWithZone:, which in turn will call one of those objc_ runtime functions), which is what makes it an interface.
+An API encapsulates functionality in a fixed way. For instance, you know that you can write this code:     [NSObject alloc] and get a reference to an NSObject object. It's understood that this will always be the way to allocate an object and return a reference to it, so it's part of the API for managing objects. Certainly, +alloc can and probably will do things you don't want or need to know in order to instantiate the object (like, for instance, call +allocWithZone:, which in turn will call one of those objc_ runtime functions), which is what makes it an interface.
 
-Note that in General/ObjectiveC, you define objects as @interface and @implementation. Every class you define is a sort of mini-API for the functionality of that class, since its interface can be used by other code.
+Note that in ObjectiveC, you define objects as @interface and @implementation. Every class you define is a sort of mini-API for the functionality of that class, since its interface can be used by other code.
 -----
 
 It should be noted that Apple marketing uses the initialism to mean "interface". For instance, when the release Xcode 4, they talked about it having 1500 more APIs. I, for one, hate this use of the term.
@@ -37,4 +37,4 @@ So, let's posit that
 Does this make sense to people?
 
 Also, perhaps all this ought to be moved to the Discussion page?
-General/User:Hacksaw|Hacksaw (General/User talk:Hacksaw|talk) 05:57, 1 March 2013 (EST)
+User:Hacksaw|Hacksaw (User talk:Hacksaw|talk) 05:57, 1 March 2013 (EST)

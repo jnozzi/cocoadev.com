@@ -10,11 +10,11 @@ place respecting the user's chosen scroll position.
 This code (taken from Apple's documentation) appends text to the end of a text view and scrolls the view to make the appended text visible.
 
     
-    General/NSTextView     *myView;
-    General/NSString          *myText;
-    General/NSRange         endRange;
+    NSTextView     *myView;
+    NSString          *myText;
+    NSRange         endRange;
 
-    endRange.location = General/myView textStorage] length];
+    endRange.location = myView textStorage] length];
     endRange.length = 0;
 
     [myView replaceCharactersInRange:endRange withString:myText];
@@ -29,12 +29,12 @@ Otherwise the user has a different scroll position that should be respected.
 
     
     [[NSTextView     *myView;
-    General/NSString          *myText;
-    General/NSRange         endRange;
+    NSString          *myText;
+    NSRange         endRange;
     BOOL             shouldAutoScroll;
 
     // This assumes text view is flipped so max Y is at the bottom
-    shouldAutoScroll = ((int)General/NSMaxY([myView bounds]) == (int)General/NSMaxY([myView visibleRect]));
+    shouldAutoScroll = ((int)NSMaxY([myView bounds]) == (int)NSMaxY([myView visibleRect]));
 
     endRange.location = [[myView textStorage] length];
     endRange.length = 0;

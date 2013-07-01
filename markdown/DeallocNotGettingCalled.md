@@ -14,9 +14,9 @@ Dealloc is called when an objects retain count drops to zero (not necessarily wh
 
 This is probably worth tracking down, but in general in cocoa you should not count on ever receiving dealloc messages.  Any object in the entire system can extend the lifetime of one of your objects, so it's fragile.  Dealloc should only be used to deallocate memory, release referenced objects, and do other non-deal-breaking cleanup.
 
-*I don't think that's right. With the way Unix manages memory, any memory in use by your application will be wiped after the application quits. This means that your objects don't need to be explicitly deallocated, because any objects they release will also be deallocated. In this way, you can't really leak memory outside of your application (which is good, because if you ran it some huge amount of times with a 1KB leak each time, however unlikely this is, you could actually start tying up the system). If you really wanted to do anything besides release other objects before quitting, you should look at     General/NSApplicationWillTerminateNotification. --General/JediKnil*
+*I don't think that's right. With the way Unix manages memory, any memory in use by your application will be wiped after the application quits. This means that your objects don't need to be explicitly deallocated, because any objects they release will also be deallocated. In this way, you can't really leak memory outside of your application (which is good, because if you ran it some huge amount of times with a 1KB leak each time, however unlikely this is, you could actually start tying up the system). If you really wanted to do anything besides release other objects before quitting, you should look at     NSApplicationWillTerminateNotification. --JediKnil*
 
-Yes Knil, the memory is not permanently gone.  It's still called a memory leak.  This is why I was unconcerned about this particular leak - if it's from General/MainMenu.nib it's probably not something leaks more and more memory over the lifetime of the application.  You will not receive a dealloc message when the system cleans up your leaked memory.
+Yes Knil, the memory is not permanently gone.  It's still called a memory leak.  This is why I was unconcerned about this particular leak - if it's from MainMenu.nib it's probably not something leaks more and more memory over the lifetime of the application.  You will not receive a dealloc message when the system cleans up your leaked memory.
 
 ----
 
@@ -25,7 +25,7 @@ The dealloc code is never encountered. I can't even get to it with the debugger.
 
 The controller instance in my nib file is the one that never reaches dealloc. It's instantiated in the nib file (or rather, when the nib file is loaded by the app)
 and there is not, in fact, any code where I can release the object. The concern is that none of the utility objects that the controller owns during its
-lifetime can get deallocated if the dealloc method is never called by General/NSApp or whoever is responsible.
+lifetime can get deallocated if the dealloc method is never called by NSApp or whoever is responsible.
 
 I can put all the cleanup code in applicationWillTerminate: and make the controller the delegate of File's Owner. So I can clean up.
 
@@ -38,31 +38,31 @@ associated with the app is returned to the system at that time.
 This seems to imply that if you *do* have some last minute archiving or synching to do, you have to do it in one of the delegate methods,
 rather than in dealloc. It just does not seem to me that it has always been this way. If so, I think it is cleaner, actually.
 
-Of course, classes like General/NSDocument still automatically call dealloc when a document window is closed.
+Of course, classes like NSDocument still automatically call dealloc when a document window is closed.
 
 ----
 
-As documented at [http://developer.apple.com/documentation/Cocoa/Conceptual/General/LoadingResources/Concepts/General/NibFileLoaded.html]
+As documented at [http://developer.apple.com/documentation/Cocoa/Conceptual/LoadingResources/Concepts/NibFileLoaded.html]
  **you** are responsible for releasing objects instantiated in your nibs. The runtime won't do it for you.
 
 ----
 
 I read the above article and drew a different conclusion. The article states clearly that the File's Owner is responsible for
-releasing the top level nib objects, such as my General/NSObject subclass. In this case that would be General/NSApplication by default.
+releasing the top level nib objects, such as my NSObject subclass. In this case that would be NSApplication by default.
 
 All the rules of memory management I have read state that I am responsible for releasing all the objects that I create *inside* that
-General/NSObject subclass. I had hoped to do that in the dealloc method of that subclass. But since General/NSApp is evidently *not* releasing the top
+NSObject subclass. I had hoped to do that in the dealloc method of that subclass. But since NSApp is evidently *not* releasing the top
 level nib objects it is responsible for as the nib file's owner, I am puzzled.
 
-If I put the same code in an General/NSDocument subclass in a Document class nib, it will behave as it should. The File's Owner will take care of it.
+If I put the same code in an NSDocument subclass in a Document class nib, it will behave as it should. The File's Owner will take care of it.
 
 ----
 
-The article says that General/NSWindowController will release nib-instantiated objects. General/NSApplication won't. You should not instantiate objects in nibs where General/FilesOwner isn't a General/NSWindowController, General/NSDocument (which uses a General/NSWindowController behind the scenes), or a custom class of your own making that takes care of this. Instantiating something in a nib is no different than instantiating it in code. It's still *you* that instantiated it, and it's still you that's responsible for releasing it.
+The article says that NSWindowController will release nib-instantiated objects. NSApplication won't. You should not instantiate objects in nibs where FilesOwner isn't a NSWindowController, NSDocument (which uses a NSWindowController behind the scenes), or a custom class of your own making that takes care of this. Instantiating something in a nib is no different than instantiating it in code. It's still *you* that instantiated it, and it's still you that's responsible for releasing it.
 
 ----
 
-The above respondent makes the surprising claim that one should not instantiate objects in nibs where File's Owner is not a General/NSWindowController.
+The above respondent makes the surprising claim that one should not instantiate objects in nibs where File's Owner is not a NSWindowController.
 
 ----
 
@@ -72,7 +72,7 @@ Search cocoabuilder.com for "nib release instantiate". The topic comes up quite 
 
 When the application is terminated some deallocs are not called to speed up quit process. If you need to do something other than release memory you should use applicationWillTerminate:
 
-*As stated in the conversation above, it's not to 'speed up' any process, but this is due to a bug in the implementation of General/NSApplication which should release the objects when done. Of course, applicationWillTerminate: is a perfectly safe way to solve this problem, but this remains a General/NSApp bug nonetheless.*
+*As stated in the conversation above, it's not to 'speed up' any process, but this is due to a bug in the implementation of NSApplication which should release the objects when done. Of course, applicationWillTerminate: is a perfectly safe way to solve this problem, but this remains a NSApp bug nonetheless.*
 
 Can you state why you think it's a bug? From where I sit, it doesn't look like a bug. When you're running on an operating system that explicitly guarantees it will free all memory used by your program when it quits, not deallocating everything before quitting is hardly buggy behavior.
 
@@ -81,7 +81,7 @@ Can you state why you think it's a bug? From where I sit, it doesn't look like a
 ----
 
 I am the person who started this thread, and I think that "all of the above" is most correct. One practical significance of the misbehavior
-of General/NSApp is that you cannot sandbox a window controller for a document-based app in a non-document app and have it behave *just* as it
+of NSApp is that you cannot sandbox a window controller for a document-based app in a non-document app and have it behave *just* as it
 would if the app were document-based. This is a minor annoyance in the long run. I still contend that when I was first learning, I could
 log from dealloc in a non-document app, but I have damaged or destroyed a lot of cerebral neurons since then.
 
@@ -99,7 +99,7 @@ IMHO this is for sure a bug... At best a GROSS oversite on Apple's part.. I say 
 
 Now to make matters worse, this appears to be a COMMON misconception.. I purchased 2 different books to help with my Cocoa adventure, and EACH of them shows examples of -(void)dealloc.. 
 
-Memory management is a game of "put away your toys"... It appears General/NSApp goes to bed without picking up it's room<grin>..
+Memory management is a game of "put away your toys"... It appears NSApp goes to bed without picking up it's room<grin>..
 
 Apple should fix this.. I don't buy the optimization argument either... REALLY we are expected to believe that? Come on... I have been programming for 25 years.. I am not quite that gullible anymore. 
 
@@ -119,11 +119,11 @@ Objects MUST have defined lifetimes and be closed properly and reliably for soft
 Respectfully submitted.. regards.. chrisaiken@mac.com
 
 ----
-A whole lot of Java, Lisp, General/SmallTalk, and Python programmers were no doubt shocked to realize that none of the software they have ever written works in the real world. I'm sure they'll all port their software to environments that do work in the real world as soon as they can.
+A whole lot of Java, Lisp, SmallTalk, and Python programmers were no doubt shocked to realize that none of the software they have ever written works in the real world. I'm sure they'll all port their software to environments that do work in the real world as soon as they can.
 
 The name of the method is "dealloc", as in memory deallocation. It's not "cleanup". Relying on dealloc to free external resources is a bad idea. This is hardly unique to Cocoa. Java and other garbage-collected languages heavily discourage it since garbage collection is nondeterministic, and so there is no guarantee your external resource will ever get freed. Cocoa with autorelease pools are in a similar situation, so relying on dealloc to release your external resources is a poor idea.
 
-Just because a system doesn't match your preconceptions doesn't make it bad. Sometimes different is bad, sometimes it's good, and sometimes it's just different. Programming is inherently difficult. Complaining about this one little difference that takes five seconds to understand and which occurs in many other programming environments is just ridiculous. It's different, this is how it is, other things do it to, move on. -- General/MikeAsh
+Just because a system doesn't match your preconceptions doesn't make it bad. Sometimes different is bad, sometimes it's good, and sometimes it's just different. Programming is inherently difficult. Complaining about this one little difference that takes five seconds to understand and which occurs in many other programming environments is just ridiculous. It's different, this is how it is, other things do it to, move on. -- MikeAsh
 
 ----
 
@@ -150,16 +150,16 @@ Garbage collection is *not* a different issue. GC makes no guarantees that any o
 
 Even if dealloc were called when the application terminated normally, it still won't catch crashes. So you would still leak in that case. Better to clean up properly.
 
-The standard technique is to simply have a -close call that you invoke manually. If this disturbs you too much, have your objects listen for General/NSApplicationWillTerminate notifications.
+The standard technique is to simply have a -close call that you invoke manually. If this disturbs you too much, have your objects listen for NSApplicationWillTerminate notifications.
 
-Cocoa clearly doesn't conform to your expectations. Your problem is in insisting that this is an obvious bug. Yet the fact that we're arguing about it means that it's not so obvious. You should consider the possibility that there is more than one correct way to do things. -- General/MikeAsh
+Cocoa clearly doesn't conform to your expectations. Your problem is in insisting that this is an obvious bug. Yet the fact that we're arguing about it means that it's not so obvious. You should consider the possibility that there is more than one correct way to do things. -- MikeAsh
 
 ----
 
 This is a non-issue. It's a quit-time optimization that the frameworks don't call dealloc on their objects. The OS will free the memory your app is using when it tears down your process, much faster than it could by walking the object trees and call dealloc. dealloc is ONLY used for freeing memory - not for releasing devices, locks or closing files etc. It is just the same in C++ frameworks - you should never do "real work" inside a destructor.
 
 ----
-Actually, this is fairly common practice in C++. It's called RAII, or Resource Acquisition Is Initialization. It's generally done using stack objects since those always have very clearly defined lifetimes. The advantage is that the resource always gets freed even if an exception is thrown through the code or you call return in the middle of the block. (Of course it's not freed if somebody calls     exit() in the middle. However, without stack objects, RAII becomes much less useful. -- General/MikeAsh
+Actually, this is fairly common practice in C++. It's called RAII, or Resource Acquisition Is Initialization. It's generally done using stack objects since those always have very clearly defined lifetimes. The advantage is that the resource always gets freed even if an exception is thrown through the code or you call return in the middle of the block. (Of course it's not freed if somebody calls     exit() in the middle. However, without stack objects, RAII becomes much less useful. -- MikeAsh
 ----
 
 Finally: Why do you need dealloc called for your objects when your app is quiting?
@@ -168,26 +168,26 @@ Finally: Why do you need dealloc called for your objects when your app is quitin
 By the way, dealloc of all objects can only be done if your objects form something like a tree-structure, where releasing the top-level object will cause lower-level leafs to destroy. But remember that there are a lot of complex patterns in Cocoa applications, like:
 
 * Singletons (which can never be released)
-* General/NSBundle/General/CFBundle loadable code (General/NSBundle can't be unloaded)
+* NSBundle/CFBundle loadable code (NSBundle can't be unloaded)
 * Objects instantiated from .nib files (Which have strange retain counts)
 * Multiple relationships between objects (What object have rights to dealloc another object?)
 
 
-How could you release all this stuff in the time of application termination, so any-object-ever-created will be freed? If you really want to dealloc to be called before application quits, just use this in your General/AppController class:
+How could you release all this stuff in the time of application termination, so any-object-ever-created will be freed? If you really want to dealloc to be called before application quits, just use this in your AppController class:
 
     
-- (void)applicationWillTerminate:(General/NSNotification *)aNotification {
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
  [self release]; //or autorelease 
 }
 
 
-After fixing all SIGBUS'es and such, don't forget that secondary threads you create with General/NSThread can't be joined when you app quits, because Cocoa will just kill them inside of     terminate: method without notifications. So objects inside them will be never deallocated too. 
+After fixing all SIGBUS'es and such, don't forget that secondary threads you create with NSThread can't be joined when you app quits, because Cocoa will just kill them inside of     terminate: method without notifications. So objects inside them will be never deallocated too. 
 
--- General/DenisGryzlov
+-- DenisGryzlov
 
 ----
 
-To quote Apple's General/NSObject dealloc documentation:
+To quote Apple's NSObject dealloc documentation:
 
 "Note that when an application terminates, objects may not be sent a dealloc message since the process�s memory is automatically cleared on exit�it is more efficient simply to allow the operating system to clean up resources than to invoke all the memory management methods."
 
@@ -223,12 +223,12 @@ Regards..chrisaiken@mac.com
 
 ----
 
-I think I can help. The fundamental problem you're having is that Cocoa does not work the way you want it to work. It's even documented specifically to work differently from how you think it should work (see the quote from General/NSObject's documentation posted above by some kind respondant). You can continue to think that it's wrong and you're right, but that doesn't change the way that it works. Perhaps, instead, we can help you change your mental model of things so that it comes a little closer to Cocoa's reality.
+I think I can help. The fundamental problem you're having is that Cocoa does not work the way you want it to work. It's even documented specifically to work differently from how you think it should work (see the quote from NSObject's documentation posted above by some kind respondant). You can continue to think that it's wrong and you're right, but that doesn't change the way that it works. Perhaps, instead, we can help you change your mental model of things so that it comes a little closer to Cocoa's reality.
 
-After reading all of the above, it seems that you're equating -dealloc with, say, C++'s object destructors. They're not the same thing, though. Consider the way that objects in Objective-C are created. First you call -alloc to allocate some memory for your new object, and then you call -init (or some variant of -init) to initialize your object. I'm sure you'll agree that except in the case of General/NSObject itself, it's an error to try to use an object before it has been initialized. Therefore, Objective-C's -alloc is not the same as C++'s constructor. It's similar with -dealloc... you should use it to clean up any memory that you've allocated, but that doesn't mean that it's exactly the same as a C++ destructor. -CS
+After reading all of the above, it seems that you're equating -dealloc with, say, C++'s object destructors. They're not the same thing, though. Consider the way that objects in Objective-C are created. First you call -alloc to allocate some memory for your new object, and then you call -init (or some variant of -init) to initialize your object. I'm sure you'll agree that except in the case of NSObject itself, it's an error to try to use an object before it has been initialized. Therefore, Objective-C's -alloc is not the same as C++'s constructor. It's similar with -dealloc... you should use it to clean up any memory that you've allocated, but that doesn't mean that it's exactly the same as a C++ destructor. -CS
 
 ----
-Time to General/SignArguments, no doubt.
+Time to SignArguments, no doubt.
 
 I'm a little confused as to your position now. You say "If a caller is not going to release me, I doubt the caller will call my -CLOSE." You seem to want the system to clean up leaks for you as well. This isn't going to happen. If you have code in your application which is misbehaving then you lose, period. There's no way to protect against other code running in your address space.
 
@@ -240,7 +240,7 @@ I did some research and discovered that Java doesn't (usually) invoke finalizers
 
 Therefore your statements about garbage collection are not correct for all systems. Not only does GC nondeterminism mean you don't know *when* an object will be destroyed, it also means you have no guarantee that any non-memory components of an object will *ever* be cleaned up, at least in Java. I would not be surprised if other GC systems were the same. Relying on finalizers to release limited external resources is a bad idea in any case, so providing an app-termination fallback isn't really helpful to them.
 
-I'm curious as to exactly which sorts of system resources you're referring to when you're worried about leaks. A terminating application cannot leak memory, file handles, sockets, or non-distributed locks. It is possible to leak temporary files but it's also frequently possible to limit the window of death in those cases and ensure that they're always cleaned up when you exit. There are always exceptional circumstances but they're rare. In any case, anything which the OS cannot clean up will not be cleaned up if your application should crash, so the possibility of a leak is *always* there. Your application will not leak on termination unless you don't know how to do proper termination cleanup with Cocoa, and if you don't know how to do that then the leaks are your own fault, plain and simple. -- General/MikeAsh
+I'm curious as to exactly which sorts of system resources you're referring to when you're worried about leaks. A terminating application cannot leak memory, file handles, sockets, or non-distributed locks. It is possible to leak temporary files but it's also frequently possible to limit the window of death in those cases and ensure that they're always cleaned up when you exit. There are always exceptional circumstances but they're rare. In any case, anything which the OS cannot clean up will not be cleaned up if your application should crash, so the possibility of a leak is *always* there. Your application will not leak on termination unless you don't know how to do proper termination cleanup with Cocoa, and if you don't know how to do that then the leaks are your own fault, plain and simple. -- MikeAsh
 
 ----
 
@@ -252,16 +252,16 @@ My work has been focused mainly in high-speed vision systems and optimization li
 
 Life has taught me to "free if thou malloc...delete if thou new".. So to me it is natural to expect that this is a basic premise..
 
-About 6 months ago, I bought a General/IMac.. First off, I love it.. Because my son and I are tinkering with HD video, and there is almost no better platform at the price. With this General/IMac sitting at home, I began to play with Interface Builder, and General/XCode, and Cocoa.. 
+About 6 months ago, I bought a IMac.. First off, I love it.. Because my son and I are tinkering with HD video, and there is almost no better platform at the price. With this IMac sitting at home, I began to play with Interface Builder, and XCode, and Cocoa.. 
 
-I was especially interested in Cocoa, since I bought and installed many years ago, General/NextStep! The promise of General/NextStep in those days was a fully implemented OO Operating System... I dream even today of such a wonderful life!
+I was especially interested in Cocoa, since I bought and installed many years ago, NextStep! The promise of NextStep in those days was a fully implemented OO Operating System... I dream even today of such a wonderful life!
 
 Now, take a case of an OCX/ATL control written in Visual C++, and called by the Visual Basic framework. 
 
 - When an app creates an instance of the control it's C++ constructor is called.. 
-- Also a method General/FinalConstruct is called.. (Here we do resource allocation.. Dynamic memory alloc, system resources (like handles to Windows resources.. ports...), spin up worker threads.. etc..)
+- Also a method FinalConstruct is called.. (Here we do resource allocation.. Dynamic memory alloc, system resources (like handles to Windows resources.. ports...), spin up worker threads.. etc..)
 - Now we work...
-- When the control instance is destroyed by the framework General/FinalRelease is called.. (Here we release our allocations, shutdown threads.. clean up our stuff).
+- When the control instance is destroyed by the framework FinalRelease is called.. (Here we release our allocations, shutdown threads.. clean up our stuff).
 - The framework destroys the control/object.. the C++ destructor is called..
 
 The above is repeatable and reliable.. ONLY in the case that some serious happens (e.g. an app exception.. a forced exit) does the wheel run off. 
@@ -276,7 +276,7 @@ I am NOT asking the OS to clean my leaks.. I just want to know WHERE in the obje
 
 If -dealloc is not called, then where do I do this?
 
-General/NSApp is the caller in the above... If it won't release me.. Then as an object I don't know I am dying.. 
+NSApp is the caller in the above... If it won't release me.. Then as an object I don't know I am dying.. 
 
 From what I understand, the delegates applicationWillTerminate: or applicationShouldTerminate: can give me a chance for this. 
 
@@ -314,17 +314,17 @@ So basically, you don't have any *actual* problems, you just want all of your ob
 
 In most systems, objects that live for the lifetime of the application don't need to be destroyed and this is considered acceptable. If you're writing code it's good to code for destruction as well because you never know if you will change the code later on so that it no longer lives for the lifetime of the application. But in the case where Cocoa *knows* that the objects live for the lifetime of the application, it's entirely acceptable for it not to destroy them.
 
-As far as making the point "VERY CLEAR", I really don't know how you could get any clearer than stating in the     dealloc documentation, "Note that when an application terminates, objects may not be sent a dealloc message since the process�s memory is automatically cleared on exit�it is more efficient simply to allow the operating system to clean up resources than to invoke all the memory management methods." -- General/MikeAsh
+As far as making the point "VERY CLEAR", I really don't know how you could get any clearer than stating in the     dealloc documentation, "Note that when an application terminates, objects may not be sent a dealloc message since the process�s memory is automatically cleared on exit�it is more efficient simply to allow the operating system to clean up resources than to invoke all the memory management methods." -- MikeAsh
 
 ----
 Hrm.  OK, well here's an question for you.  I spin a thread that is updating an local sqlite db instance.  If the user exits my app, I need to ensure that all classes using that singleton instance shutdown/go away and that afterwards, I can uninitialize my access to the db.  How do I do this without implementing some giant custom chain of finalization calls if there is no guaranteed way to dealloc or deconstruct my objects?  Yes, I'm very used to the c++ way of doing things, so what's the cocoa way of doing this? -- rkuo
 
 ----
-Use the -applicationWillTerminate: delegate method on General/NSApp. In Adium's, for example, we wait on an General/NSOperationQueue to ensure that all background threads are done writing out files to disk. -- Catfish_Man
+Use the -applicationWillTerminate: delegate method on NSApp. In Adium's, for example, we wait on an NSOperationQueue to ensure that all background threads are done writing out files to disk. -- Catfish_Man
 
 ----
-What if it's a command-line tool?  No nib.  No General/NSApp.  Where is the "correct" place to put this code? ---
+What if it's a command-line tool?  No nib.  No NSApp.  Where is the "correct" place to put this code? ---
 
-Huh..  http://developer.apple.com/mac/library/documentation/Cocoa/Conceptual/General/GarbageCollection/Articles/gcFinalize.html#//apple_ref/doc/uid/TP40002453
+Huh..  http://developer.apple.com/mac/library/documentation/Cocoa/Conceptual/GarbageCollection/Articles/gcFinalize.html#//apple_ref/doc/uid/TP40002453
 
-Apparently there is a "finalize" method of General/NSObject if you use GC.  Still, they recommend you just create your own method.  The few places I can find on General/ObjC "standards" for this say that it is typical to create a "free" method to handle any resource issues.
+Apparently there is a "finalize" method of NSObject if you use GC.  Still, they recommend you just create your own method.  The few places I can find on ObjC "standards" for this say that it is typical to create a "free" method to handle any resource issues.

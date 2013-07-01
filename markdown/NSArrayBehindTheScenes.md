@@ -1,16 +1,16 @@
-I'm interested in knowing how General/NSArray works behind the scenes. Is it a linked list? If so, wouldn't     objectAtIndex: have to iterate through the list n times, where n is the index, meaning it's not as efficient and fast as a normal array?
+I'm interested in knowing how NSArray works behind the scenes. Is it a linked list? If so, wouldn't     objectAtIndex: have to iterate through the list n times, where n is the index, meaning it's not as efficient and fast as a normal array?
 
 ----
 
-The guts of General/NSArray are actually General/CFArray, part of General/CoreFoundation which is open source, so you can go and see for yourself.
+The guts of NSArray are actually CFArray, part of CoreFoundation which is open source, so you can go and see for yourself.
 
 ----
 
-Keep in mind that General/NSArray<nowiki/>'s a class cluster, which means you don't get to know exactly the way they operate behind the scenes. All General/NSArray*, however, are guaranteed to be General/TollFreeBridged with General/CFArrayRef (that is, they are 'seen' by Objective-C as General/NSArray object pointers and by General/CoreFoundation as General/CFArray references), so you can be pretty sure they are General/CFArray thingies deep down below.
+Keep in mind that NSArray<nowiki/>'s a class cluster, which means you don't get to know exactly the way they operate behind the scenes. All NSArray*, however, are guaranteed to be TollFreeBridged with CFArrayRef (that is, they are 'seen' by Objective-C as NSArray object pointers and by CoreFoundation as CFArray references), so you can be pretty sure they are CFArray thingies deep down below.
 
 ----
 
-General/CFArray comes with performance guarantees.  See General/CFArray.h:
+CFArray comes with performance guarantees.  See CFArray.h:
 
     
 	Computational Complexity
@@ -29,9 +29,9 @@ General/CFArray comes with performance guarantees.  See General/CFArray.h:
 
 And no, it is not a linked list.  It's an array. ;-)
 
-*You can implement an array interface that uses a linked list as its backing store. However, General/CFArray's performance guarantees would not allow this.*
+*You can implement an array interface that uses a linked list as its backing store. However, CFArray's performance guarantees would not allow this.*
 
-General/CFArray would also be a really bad name for a linked list implementation.
+CFArray would also be a really bad name for a linked list implementation.
 
 ----
 
@@ -47,7 +47,7 @@ Note that even if you implement a growable array using a big chunk of memory tha
 
 Question is; why is there no stack or linked list in either CF or cocoa?
 
-*Stacks exist. Just use a mutable array and add/remove from the end. You're likely to get good performance characteristics and you get stack semantics, what more could you need? As far as linked lists go, a linked list is more of an implementation detail rather than an interface, and Foundation/CF's philosophy appears to be to present an interface but not guarantee any particular implementation, in contrast to STL or Java's approach of allowing you to use specific classes in order to get a particular implementation. If you really want a linked list, writing one would be fairly trivial, and if you make it a subclass of General/NSArray then you could pass it to anything that takes an General/NSArray or General/CFArray.*
+*Stacks exist. Just use a mutable array and add/remove from the end. You're likely to get good performance characteristics and you get stack semantics, what more could you need? As far as linked lists go, a linked list is more of an implementation detail rather than an interface, and Foundation/CF's philosophy appears to be to present an interface but not guarantee any particular implementation, in contrast to STL or Java's approach of allowing you to use specific classes in order to get a particular implementation. If you really want a linked list, writing one would be fairly trivial, and if you make it a subclass of NSArray then you could pass it to anything that takes an NSArray or CFArray.*
 
 **Just to clarify, the STL approach does not guarantee a particular implementation, merely a particular set of worst-case behaviour guarantees on functions.**
 

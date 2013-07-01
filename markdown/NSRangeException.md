@@ -1,8 +1,8 @@
-General/NSRangeException is one of the pre-defined exception types.  Well, it's not actually a type per-se, but an General/NSString that describes the reason for an exception that is thrown with General/NSException.  Currently there is no official documentation on listing General/MethodsThrowingExceptions.
+NSRangeException is one of the pre-defined exception types.  Well, it's not actually a type per-se, but an NSString that describes the reason for an exception that is thrown with NSException.  Currently there is no official documentation on listing MethodsThrowingExceptions.
 
 ----
 
-I have code which sets up an General/NSRange with an off-by-1 error: instead of setting the range location to 0, I mistakenly set it to -1, which wraps around as an large unsigned int. Then I use this range to call General/NSMutableString deleteCharactersInRange:. Why is an General/NSRangeException not being thrown for me when the location clearly lies beyond the length of the string? It seems to be thrown for a friend who reported the problem to me.
+I have code which sets up an NSRange with an off-by-1 error: instead of setting the range location to 0, I mistakenly set it to -1, which wraps around as an large unsigned int. Then I use this range to call NSMutableString deleteCharactersInRange:. Why is an NSRangeException not being thrown for me when the location clearly lies beyond the length of the string? It seems to be thrown for a friend who reported the problem to me.
 
 ----
 
@@ -12,7 +12,7 @@ Exceptions are not thrown for *every* possible error. One generally hopes that C
 
 ----
 
-*Raises an General/NSRangeException if any part of aRange lies beyond the end of the receiver�s characters.*
+*Raises an NSRangeException if any part of aRange lies beyond the end of the receiver�s characters.*
 
 So if it's not beyond (i.e. -1) then it won't throw an exception. Are you sure you're executing the exact same code on these different machines?
 
@@ -20,10 +20,10 @@ So if it's not beyond (i.e. -1) then it won't throw an exception. Are you sure y
 
 ----
 
-One possible explanation for the lack of an exception is that the off-by-one error mentioned by the original poster is setting the range's location to General/NSNotFound (which is defined as -1, or 4294967295 in the world of unsigned ints). A range where location==General/NSNotFound and length==0 is a valid range, but a null range: no operations using it should have any effect.
+One possible explanation for the lack of an exception is that the off-by-one error mentioned by the original poster is setting the range's location to NSNotFound (which is defined as -1, or 4294967295 in the world of unsigned ints). A range where location==NSNotFound and length==0 is a valid range, but a null range: no operations using it should have any effect.
 
-Are the ranges you're working with always the same length? I'm at work right now, nowhere near a Mac, so I can't test this... but could it be possible that a you're only getting an exception when (range.location==General/NSNotFound)&&(range.length!=0)? 
+Are the ranges you're working with always the same length? I'm at work right now, nowhere near a Mac, so I can't test this... but could it be possible that a you're only getting an exception when (range.location==NSNotFound)&&(range.length!=0)? 
 
 ----
 
-Actually, General/NSNotFound is actually 0x7fffffff, which is 2147483647 for both signed and unsigned 32-bit ints. It's certainly possible that General/NSMutableString is treating it funny because it's so huge, though.
+Actually, NSNotFound is actually 0x7fffffff, which is 2147483647 for both signed and unsigned 32-bit ints. It's certainly possible that NSMutableString is treating it funny because it's so huge, though.

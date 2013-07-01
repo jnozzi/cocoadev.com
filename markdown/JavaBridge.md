@@ -1,20 +1,20 @@
 The Cocoa Developer Documentation page on Apple's web site: 
-   developer.apple.com/techpubs/macosx/Cocoa/General/CocoaTopics.html
+   developer.apple.com/techpubs/macosx/Cocoa/CocoaTopics.html
 isted Java bridge as a legacy programming topics.  Is it dead?  Will it be updated?  Can we rely on this core piece of technology to be there in the future? 
 
-The General/JavaBridge is what makes it possible to access Java classes from Cocoa-applications in other languages. It's an extraordinary piece of software, though not well documented. There are projects going on to create similar bridges for General/PythonLang, General/PerlLang (General/CamelBones) and General/RubyLang.
+The JavaBridge is what makes it possible to access Java classes from Cocoa-applications in other languages. It's an extraordinary piece of software, though not well documented. There are projects going on to create similar bridges for PythonLang, PerlLang (CamelBones) and RubyLang.
 
-How does one go about General/UsingCompiledJavaCodeInObjectiveC?
+How does one go about UsingCompiledJavaCodeInObjectiveC?
 
-Incorporating Java into an Objective-C project in Project Builder/Xcode: General/XcodeObjCJavaBridge.
+Incorporating Java into an Objective-C project in Project Builder/Xcode: XcodeObjCJavaBridge.
 ----
-I'm curious as to what Apple's intentions with the Java bridge are. The documentation for it hasn't been updated in ages. This seems to indicate that the bridge will be going away in the future. However, IIRC Apple's own General/WebObjects still uses the bridge, as do multiple third-party applications (see General/TrailBlazer). Will Apple break these third-party applications, possibly reserving the bridge for its own internal use? http://goo.gl/General/OeSCu
+I'm curious as to what Apple's intentions with the Java bridge are. The documentation for it hasn't been updated in ages. This seems to indicate that the bridge will be going away in the future. However, IIRC Apple's own WebObjects still uses the bridge, as do multiple third-party applications (see TrailBlazer). Will Apple break these third-party applications, possibly reserving the bridge for its own internal use? http://goo.gl/OeSCu
 
 As much as I like Objective-C, there are just a ton of useful Java libraries out there that have no direct Objective-C equivalent (see the Apache Jakarta project). I am considering using the Java bridge for an upcoming project, however I don't want to be left out in the cold if Apple decides to remove the bridge.
 
-One thought that occurred to me is creating an open-souce version of the Java bridge. I haven't looked into it yet so I have no idea of the level of effort it would require or if it's even feasible at all. Other languages with an open-souce Objective-C bridge seem to be doing well (General/PyObjC in particular). Any thoughts? Comments?
+One thought that occurred to me is creating an open-souce version of the Java bridge. I haven't looked into it yet so I have no idea of the level of effort it would require or if it's even feasible at all. Other languages with an open-souce Objective-C bridge seem to be doing well (PyObjC in particular). Any thoughts? Comments?
 
--General/EricWang
+-EricWang
 
 ----
 
@@ -24,17 +24,17 @@ Steve
 
 ----
 
-Apple's Java Bridge is deprecated in favor of JNI. JNI stands for Java Native Interface. JNI is a Java standard that defines how Java code can call native routines, and how C code can call Java routines. The Java bridge is a very nice thing, but JNI is very close is functionality, and quite easy to wrapper into a General/ObjC class if you prefer.
+Apple's Java Bridge is deprecated in favor of JNI. JNI stands for Java Native Interface. JNI is a Java standard that defines how Java code can call native routines, and how C code can call Java routines. The Java bridge is a very nice thing, but JNI is very close is functionality, and quite easy to wrapper into a ObjC class if you prefer.
 
 You can learn more about JNI here
 
 http://java.sun.com/j2se/1.4.2/docs/guide/jni/
 
---General/TimHart
+--TimHart
 
 *where's it say that?*
 
-Oh, come on, the General/JavaBridge is way more sofisticated than JNI, Apple would not deprecate the General/JavaBridge in favor of something so basic as JNI, that would absolute madness. JNI is not very nice to work with, and it's stone-age compared to the General/JavaBridge.
+Oh, come on, the JavaBridge is way more sofisticated than JNI, Apple would not deprecate the JavaBridge in favor of something so basic as JNI, that would absolute madness. JNI is not very nice to work with, and it's stone-age compared to the JavaBridge.
 
 ----
 
@@ -57,18 +57,18 @@ The language incompatibilities between Java and Objective-C are what eventually 
 For a simple illustration: Java's overloading behavior resolves method invocation at compile time. So if you have
 
     
-public class General/SomeClass
+public class SomeClass
 {
     public void foo(Object a){/*...*/}
-    public void foo(General/MyClass a){/*...*/}
+    public void foo(MyClass a){/*...*/}
 
     public static void main(int argc, String argv[]){
-        General/SomeClass someClass = new General/SomeClass();
-        Object a = new General/MyClass();
-        General/MyClass b = new General/MyClass();
+        SomeClass someClass = new SomeClass();
+        Object a = new MyClass();
+        MyClass b = new MyClass();
 
         someClass.foo(a);//the compiler will choose the first implementation above, 
-                                   //because the variable a's declared type is Object, not General/MyClass
+                                   //because the variable a's declared type is Object, not MyClass
         someClass.foo(b);//here, the compiler will choose the second implementation.
 }
 
@@ -81,12 +81,12 @@ public class General/SomeClass
 
 -(id) someMethod
 {
-    Class General/SomeClass = General/NSClassFromString(@"General/SomeClass");
-    id someClass = [ [ General/SomeClass alloc ] init ];
+    Class SomeClass = NSClassFromString(@"SomeClass");
+    id someClass = [ [ SomeClass alloc ] init ];
 
-    Class aClass = General/NSClassFromString(@"General/MyClass");
+    Class aClass = NSClassFromString(@"MyClass");
     id a = [ [ aClass alloc ] init ];
-    General/MyClass *b = [ [aClass alloc] init ];
+    MyClass *b = [ [aClass alloc] init ];
 
     //Remember Objective-C does no compile-time resolution at all,
      //so how do you differentiate between the two distinct java methods?
@@ -115,12 +115,12 @@ So in a nutshell, the Java Bridge was very nice, but impossible to maintain in a
 
 *Fort� is a defunct application development environment
 
---General/TimHart
+--TimHart
 
-*I see your point, 'stone-age' was (as it seems you guessed) meant to say that it's very low-level, which I think is not appropriate for this kind of thing. Cocoa-Java is supposed to 'just work', and using JNI is not a very Apple thing to do, and it's not something that 'just works'. It seems as though the General/JavaBridge has huge problems, and maybe the solution is JNI, but hopefully at the base of a new high-level General/JavaBridge. Cocoa-Java would be doomed if client programmers had to resort to JNI to get things done. --Theo*
+*I see your point, 'stone-age' was (as it seems you guessed) meant to say that it's very low-level, which I think is not appropriate for this kind of thing. Cocoa-Java is supposed to 'just work', and using JNI is not a very Apple thing to do, and it's not something that 'just works'. It seems as though the JavaBridge has huge problems, and maybe the solution is JNI, but hopefully at the base of a new high-level JavaBridge. Cocoa-Java would be doomed if client programmers had to resort to JNI to get things done. --Theo*
 
 
-*There's several simple generic ways that example could have been done,  a nicer looking way Apple would have just had to add one method more method to General/JavaBridge Proxy Object.*
+*There's several simple generic ways that example could have been done,  a nicer looking way Apple would have just had to add one method more method to JavaBridge Proxy Object.*
 
     
 
@@ -128,13 +128,13 @@ So in a nutshell, the Java Bridge was very nice, but impossible to maintain in a
 
 -(id) someMethod
 {
-    Class General/SomeClass = General/NSClassFromString(@"General/SomeClass");
-    id someClass = [ [ General/SomeClass alloc ] init ];
+    Class SomeClass = NSClassFromString(@"SomeClass");
+    id someClass = [ [ SomeClass alloc ] init ];
 
-    Class aClass = General/NSClassFromString(@"General/MyClass");
+    Class aClass = NSClassFromString(@"MyClass");
     id a = [ [ aClass alloc ] init ];
     //this doesn't look too ugly, seems quite reasonable since we are working with a proxy to statically typed runtime.
-    [a setJavaCast:General/NSClassFromString(@"General/SuperClass");
+    [a setJavaCast:NSClassFromString(@"SuperClass");
     id b= [ [aClass alloc] init ];
     
     [ someClass foo:a ];//which implementation of foo should get called?
@@ -147,7 +147,7 @@ So in a nutshell, the Java Bridge was very nice, but impossible to maintain in a
 
 *And your ugly way (but using java signatures would be more appropriate) would have been a be pretty straight forward to implement too as having a label on the second argument guarantees that you are not going to have a collision with a java method, allowing you to parse it in forward invocation and thus you don't need to put the argument on each method (performance penalty would be a downside to this). And a third option you could have a perform selector type method that is just for invoke java methods when you need to cast to a specific type, and pass in a selector and java signature.*
 
-*On the documentation it's clear that the bridget stuff is legacy and calling objective-C from java is a lot of effort. However the other way around, doesn't look too bad, and when I look at the example JNI sample code on Apple's site for calling Java from a core foundation program, I can't help  but think that it's just a little less than what apple is wrapping in  General/NSJavaVirtualMachine (Which isn't flagged as deprecated in it's public header as of Panther at least) and is giving a very object oriented way and much less ugly was to accessing java objects than JNI directly. If I personally needed to access a java api from objective-C, and General/NSJavaVirtualMachine was just magically gone, I'd just wrap JNI code in objective-C something similar with proxy objects and forward invocation, because it would be a lot less code that using JNI directly. --General/JayTuley*
+*On the documentation it's clear that the bridget stuff is legacy and calling objective-C from java is a lot of effort. However the other way around, doesn't look too bad, and when I look at the example JNI sample code on Apple's site for calling Java from a core foundation program, I can't help  but think that it's just a little less than what apple is wrapping in  NSJavaVirtualMachine (Which isn't flagged as deprecated in it's public header as of Panther at least) and is giving a very object oriented way and much less ugly was to accessing java objects than JNI directly. If I personally needed to access a java api from objective-C, and NSJavaVirtualMachine was just magically gone, I'd just wrap JNI code in objective-C something similar with proxy objects and forward invocation, because it would be a lot less code that using JNI directly. --JayTuley*
 
 ----
 
@@ -159,17 +159,17 @@ Are you claiming the cocoa-java is now deprecated? I've certainly not seen evide
 
 Quoted from the following URL:
 
-http://developer.apple.com/referencelibrary/General/LegacyTechnologies/idxCocoa-date.html
+http://developer.apple.com/referencelibrary/LegacyTechnologies/idxCocoa-date.html
 
-*As Cocoa and Mac OS X evolve, the General/APIs and technologies they encompass change to meet the needs of users and developers. As part of this evolution, less efficient features, interfaces, and programming techniques are deprecated or retired in favor of newer ones. Apple makes these changes only when deemed absolutely necessary. A technology identified in the ADC Reference Library as deprecated has been superseded and may become unsupported in the future. A technology identified as unsupported is no longer available from Apple for use by developers. Legacy documents help developers understand legacy technologies, identify replacements, and update their products to run on current Apple platforms.*
+*As Cocoa and Mac OS X evolve, the APIs and technologies they encompass change to meet the needs of users and developers. As part of this evolution, less efficient features, interfaces, and programming techniques are deprecated or retired in favor of newer ones. Apple makes these changes only when deemed absolutely necessary. A technology identified in the ADC Reference Library as deprecated has been superseded and may become unsupported in the future. A technology identified as unsupported is no longer available from Apple for use by developers. Legacy documents help developers understand legacy technologies, identify replacements, and update their products to run on current Apple platforms.*
 
-The Java bridge is listed at the bottom of this list. Cocoa-Java is not. I do not know the current relationship between the two, although I do believe that at one time Cocoa-Java used the Java Bridge. Perhaps it still does. Perhaps it now uses JNI. *AFAIK, all Cocoa-Java classes are bridget-generated and use the Java Bridge (as the bridge-loading key in General/InfoPlist leads me to think). -- l0ne aka General/EmanueleVulcano*
+The Java bridge is listed at the bottom of this list. Cocoa-Java is not. I do not know the current relationship between the two, although I do believe that at one time Cocoa-Java used the Java Bridge. Perhaps it still does. Perhaps it now uses JNI. *AFAIK, all Cocoa-Java classes are bridget-generated and use the Java Bridge (as the bridge-loading key in InfoPlist leads me to think). -- l0ne aka EmanueleVulcano*
 
---General/TimHart
+--TimHart
 
 ----
 
-Cocoa-Java is certainly deprecated; Apple's Cocoa-Java Integration documentation (http://developer.apple.com/documentation/Cocoa/Conceptual/General/LanguageIntegration/index.html) has this:
+Cocoa-Java is certainly deprecated; Apple's Cocoa-Java Integration documentation (http://developer.apple.com/documentation/Cocoa/Conceptual/LanguageIntegration/index.html) has this:
 
 *"The Cocoa-Java API is deprecated in Mac OS X version 10.4 and later. You should use the Objective-C API instead..."*
 
@@ -179,18 +179,18 @@ and
 
 ----
 
-There used to be a general-purpose General/JavaBridge that would allow users to create their own custom bridges. You can still (last I checked, anyway) see remnants of this in the /Developer folder. There are old example bridge files still lying around, but even they say in their comments that the bridging tools have died.
+There used to be a general-purpose JavaBridge that would allow users to create their own custom bridges. You can still (last I checked, anyway) see remnants of this in the /Developer folder. There are old example bridge files still lying around, but even they say in their comments that the bridging tools have died.
 
-*Sure, but they're still in the process of dying. I got the Java bridge to work in General/CallingObjCFromJava, although this was almost completely undocumented. Now I have to learn JNI... --General/JediKnil*
+*Sure, but they're still in the process of dying. I got the Java bridge to work in CallingObjCFromJava, although this was almost completely undocumented. Now I have to learn JNI... --JediKnil*
 
 ----
 
 I wrote a Java program to generate Objective C header files for the corresponding Java class. This is available at:
-http://homepage.mac.com/jamiec/General/JavaBridge/General/BridgeWeaver.tar.gz
+http://homepage.mac.com/jamiec/JavaBridge/BridgeWeaver.tar.gz
 
 An example project is available at:
-http://homepage.mac.com/jamiec/General/JavaBridge/General/JavaHack.tar.gz
-This Objective C sample project does some simple stuff with a Vector and pops up a General/JFrame with a General/JButton inside of it.
+http://homepage.mac.com/jamiec/JavaBridge/JavaHack.tar.gz
+This Objective C sample project does some simple stuff with a Vector and pops up a JFrame with a JButton inside of it.
 
 Jamie Cho
 
@@ -204,8 +204,8 @@ Raymond Martin
 
 ----
 
-General/CocoaJava has been permanently removed in 10.6 (Snow Leopard) so apps that rely on it will crash on launch and log some errors to system.log, viewable in Console.app. It shouldn't come as a huge surprise, but now it's officially time to move on...
+CocoaJava has been permanently removed in 10.6 (Snow Leopard) so apps that rely on it will crash on launch and log some errors to system.log, viewable in Console.app. It shouldn't come as a huge surprise, but now it's officially time to move on...
 
 ----
 
-Cyberduck (a General/CocoaJava app) still works under 10.6 (Snow Leopard). It now uses Rococoa instead of the old General/JavaBridge.
+Cyberduck (a CocoaJava app) still works under 10.6 (Snow Leopard). It now uses Rococoa instead of the old JavaBridge.

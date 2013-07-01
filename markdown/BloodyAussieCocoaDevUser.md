@@ -7,18 +7,18 @@ Please don't take my clumsy humour the wrong way!!
 
 ----
 
-General/CocoaDev Users located in Australia:
+CocoaDev Users located in Australia:
 
-* General/AdamWright - From the western suburbs of Perth, wondering if a local General/CocoaHeads group is a pipe dream.
-* General/AlexClarke - Back verandah Cocoa developer in Lismore, NSW, Australia
-* General/AxmanCocoaTeen - Aussie teen Cocoa developer... well kinda. wow, thought i was the only one downunder. Canberra, ACT (:|)
-* General/BodanielJeanes - Brisbane, QLD
-* General/GrahamCox - another bloody Pom. Cocoa developer in Armidale, NSW. 
-* General/GrahamMiln - Enjoying life down under.
-* General/LouisKlaassen - Yo Cocoa in Sydney!
+* AdamWright - From the western suburbs of Perth, wondering if a local CocoaHeads group is a pipe dream.
+* AlexClarke - Back verandah Cocoa developer in Lismore, NSW, Australia
+* AxmanCocoaTeen - Aussie teen Cocoa developer... well kinda. wow, thought i was the only one downunder. Canberra, ACT (:|)
+* BodanielJeanes - Brisbane, QLD
+* GrahamCox - another bloody Pom. Cocoa developer in Armidale, NSW. 
+* GrahamMiln - Enjoying life down under.
+* LouisKlaassen - Yo Cocoa in Sydney!
 
 
 and New Zealand:
 
-* General/User:Rbrtpntn - Wellington Kiwi.
-* General/ThomasBauer - Indie developer in Wellington.
+* User:Rbrtpntn - Wellington Kiwi.
+* ThomasBauer - Indie developer in Wellington.

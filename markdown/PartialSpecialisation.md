@@ -1,6 +1,6 @@
 
 
-In General/CPlusPlus you can write a generic function or structure using templates. General/PartialSpecialisation refers to providing code for the generic function or structure (class) when one or more of the template parameters are more specialised.
+In CPlusPlus you can write a generic function or structure using templates. PartialSpecialisation refers to providing code for the generic function or structure (class) when one or more of the template parameters are more specialised.
 
 For example, you might write some code that copies anything passed in.
 
@@ -50,7 +50,7 @@ This is mainly to write a more effective algorithm, but it can be used for somet
 
     
 template <typename _CharT>
-struct General/CharacterTraits
+struct CharacterTraits
 {
    static bool isLetter (const _CharT ch)       { return false; }
    static bool isUppercase (const _CharT ch)    { return false; }
@@ -62,24 +62,24 @@ And then we can specialise it for char and unichar:
     
 
 template <>
-struct General/CharacterTraits<char>
+struct CharacterTraits<char>
 {
    static bool isLetter (const char ch)         { return isalpha(ch); }
    static bool isUppercase (const char ch)      { return isupper(ch); }
 };
 
 template <>
-struct General/CharacterTraits<unichar>
+struct CharacterTraits<unichar>
 {
    static bool isLetter (const unichar ch)
    {
-      static General/NSCharacterSet *letter = General/[NSCharacterSet letterCharacterSet];
+      static NSCharacterSet *letter = [NSCharacterSet letterCharacterSet];
       return [letter characterIsMember:ch] == YES;
    }
 
    static bool isUppercase (const unichar ch)
    {
-      static General/NSCharacterSet *uppercase = General/[NSCharacterSet uppercaseLetterCharacterSet];
+      static NSCharacterSet *uppercase = [NSCharacterSet uppercaseLetterCharacterSet];
       return [uppercase characterIsMember:ch] == YES;
    }
 }
@@ -91,10 +91,10 @@ Well, we would also need one member function to actually convert the character t
 template <typename _CharT>
 bool is_letter (_CharT ch)
 {
-   return General/CharacterTraits<_CharT>::isLetter(ch);
+   return CharacterTraits<_CharT>::isLetter(ch);
 }
 
-void General/MyFunction ()
+void MyFunction ()
 {
    unichar ch1 = 'a';
    char ch2 = 'a';

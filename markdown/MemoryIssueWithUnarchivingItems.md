@@ -1,15 +1,15 @@
-I have decided to broaden my Cocoa knowledge a little by creating an General/NSObject subclass that abides by General/NSCopying and General/NSCoding. Part of this experimentation was to provide my class with the ability to be archived to disk and unarchived, which I have succeeded except when throwing around multiple objects.
+I have decided to broaden my Cocoa knowledge a little by creating an NSObject subclass that abides by NSCopying and NSCoding. Part of this experimentation was to provide my class with the ability to be archived to disk and unarchived, which I have succeeded except when throwing around multiple objects.
 
-I want to copy the items into an array (they are distinct items) so I can reuse them later. I call General/NSKeyedUnarchiver which calls this:
+I want to copy the items into an array (they are distinct items) so I can reuse them later. I call NSKeyedUnarchiver which calls this:
 
     
 
-- (id)initWithCoder:(General/NSCoder *)coder
+- (id)initWithCoder:(NSCoder *)coder
 {
     if (self = [super init])
     {
-        _contents = General/[[[NSMutableDictionary alloc] initWithDictionary:[coder decodeObjectForKey:@"SVCONTENTS"]] retain]; 
-        _name = General/coder decodeObjectForKey:@"SVNAME"] retain];
+        _contents = [[[NSMutableDictionary alloc] initWithDictionary:[coder decodeObjectForKey:@"SVCONTENTS"]] retain]; 
+        _name = coder decodeObjectForKey:@"SVNAME"] retain];
         _notes = [[coder decodeObjectForKey:@"SVNOTES"] retain];
         _type = [coder decodeIntForKey:@"SVTYPE"];        
     }

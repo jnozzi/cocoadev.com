@@ -1,8 +1,8 @@
-General/CallToArms - Metaphorically speaking of course.
+CallToArms - Metaphorically speaking of course.
 
 Apple has created for itself the best situation possible. 
 
-It has Mac OS X, by far the world's best operating system. It has the General/GeeFive's and cheaper machines holding prominent positions in the market as high quality and fairly high bang for buck computers. Finally it has the most powerful programming environment on any major platform based around the new interface, General/XCode. 
+It has Mac OS X, by far the world's best operating system. It has the GeeFive's and cheaper machines holding prominent positions in the market as high quality and fairly high bang for buck computers. Finally it has the most powerful programming environment on any major platform based around the new interface, XCode. 
 
 Apple will use this new found position in the market to push their market share, create more revenue and therefore profits and move the platform forward into the future as the prominent non-niche brand.
 
@@ -18,9 +18,9 @@ Its time for a change.
 
 ----
 
-Political thoughts aside: I'm trying, I'm trying. I don't think anybody's been sitting on their hands; releasing software is as good for you as it is for the community, generally speaking. -- General/RobRix
+Political thoughts aside: I'm trying, I'm trying. I don't think anybody's been sitting on their hands; releasing software is as good for you as it is for the community, generally speaking. -- RobRix
 
-Yeah, I think stepping up the amount of code that I write here would probably be a good idea. Then again, I also want to see Micro$oft go down. Lets roll! -- General/MatPeterson
+Yeah, I think stepping up the amount of code that I write here would probably be a good idea. Then again, I also want to see Micro$oft go down. Lets roll! -- MatPeterson
 
 ----
 
@@ -41,7 +41,7 @@ I hope to soon earn some money from my software production and become a paying A
 
 ----
 
-Sad to say, but paying ADC members don't get much more attention than non-paying ones. The way I found best for thnings like your case is to read the mailing-lists and go to WWDC - that's where some of the people who'll listen hang out. You could, of course, throw away one of your "paid incidents" for such a thing, but I doubt it'll be worth it. -- General/JonasLuster
+Sad to say, but paying ADC members don't get much more attention than non-paying ones. The way I found best for thnings like your case is to read the mailing-lists and go to WWDC - that's where some of the people who'll listen hang out. You could, of course, throw away one of your "paid incidents" for such a thing, but I doubt it'll be worth it. -- JonasLuster
 
 ----
 

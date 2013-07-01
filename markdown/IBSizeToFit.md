@@ -8,8 +8,8 @@ Your implementation of ibSizeToFit should adjust the view's frame to what you wa
 
 This applies to IB from 10.4 and previously.
 
-General/DaveMacLachlan
+DaveMacLachlan
 
 ----
 
-Did you try implementing -General/[NSView sizeToFit]?  That's a public method that should be enough.
+Did you try implementing -[NSView sizeToFit]?  That's a public method that should be enough.

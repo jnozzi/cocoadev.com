@@ -16,4 +16,4 @@ And is it possible to have a dialog within a dialog?
 
 ok. What are dialogs then? :-)
 
-*There are alert panels (check out General/NSAlert documentation) that float above like a windows dialogue box and sheets (check out General/NSApplication's documentation, the beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo: method) which are panels that pop out of the top of whatever window they're attached to.*
+*There are alert panels (check out NSAlert documentation) that float above like a windows dialogue box and sheets (check out NSApplication's documentation, the beginSheet:modalForWindow:modalDelegate:didEndSelector:contextInfo: method) which are panels that pop out of the top of whatever window they're attached to.*

@@ -1,18 +1,18 @@
 
 
-This uses General/UndocumentedGoodness, so maybe don't rely on it too much. It sets the dynamic menu item attribute, which allows the menu to change depending on which keys are held down. For usage, see Menus.h -- General/DustinVoss
+This uses UndocumentedGoodness, so maybe don't rely on it too much. It sets the dynamic menu item attribute, which allows the menu to change depending on which keys are held down. For usage, see Menus.h -- DustinVoss
 
-I think this has been properly exposed in the General/InterfaceBuilder now. You can set up consecutive menu items and set them as "alternates", based on the modifier keys. This causes the General/NSMenuItem underneath to change - meaning you can bind separate text, icons and actions to the alternates.  -- General/MikeSolomon
+I think this has been properly exposed in the InterfaceBuilder now. You can set up consecutive menu items and set them as "alternates", based on the modifier keys. This causes the NSMenuItem underneath to change - meaning you can bind separate text, icons and actions to the alternates.  -- MikeSolomon
 
-Correct. The new Panther General/APIs are **alternate** and **setAlternate**, making these obsolete.
+Correct. The new Panther APIs are **alternate** and **setAlternate**, making these obsolete.
 
-If you want to do this in Jaguar or below without using the undocumented parts, you can subclass General/NSWindow for the main window of your app, and override the - (void)flagsChanged:(General/NSEvent *)theEvent method. In your method you can change the General/NSMenuItem which is to have an option key alternative using setTitle:, setAction and setKeyEquivalent:
+If you want to do this in Jaguar or below without using the undocumented parts, you can subclass NSWindow for the main window of your app, and override the - (void)flagsChanged:(NSEvent *)theEvent method. In your method you can change the NSMenuItem which is to have an option key alternative using setTitle:, setAction and setKeyEquivalent:
 
 This won't work if the user has already clicked on the menu though, will it? It seems to me that the application doesn't get the flagsChanged: message when the menu is showing...
 
 
 ----
-Header file for General/NSMenuItemCategory+General/CocoaDevUsersAdditions:
+Header file for NSMenuItemCategory+CocoaDevUsersAdditions:
     
  #import <AppKit/AppKit.h>
  
@@ -22,7 +22,7 @@ Header file for General/NSMenuItemCategory+General/CocoaDevUsersAdditions:
  @end
 
 
-Implementation file for General/NSMenuItemCategory+General/CocoaDevUsersAdditions:
+Implementation file for NSMenuItemCategory+CocoaDevUsersAdditions:
 
     
  #import "NSMenuItemCategory+CocoaDevUsersAdditions.h"
@@ -30,11 +30,11 @@ Implementation file for General/NSMenuItemCategory+General/CocoaDevUsersAddition
  
  @implementation NSMenuItem (NSMenuItemExtension)
  
- // Must be called after General/NSApp delegate's applicationDidFinishLaunching.
+ // Must be called after NSApp delegate's applicationDidFinishLaunching.
  - (void)setDynamic:(BOOL)aFlag
  {
    OSStatus err;
-   // If the following ever becomes obsolete, can use Carbon's General/AcquireRootMenu and work my way to the item.
+   // If the following ever becomes obsolete, can use Carbon's AcquireRootMenu and work my way to the item.
    extern MenuRef _NSGetCarbonMenu(NSMenu *);
    NSMenu *cocoaMenu = [self menu];
    int item = [cocoaMenu indexOfItemWithTag:[self tag]] + 1;
@@ -49,7 +49,7 @@ Implementation file for General/NSMenuItemCategory+General/CocoaDevUsersAddition
  - (BOOL)isDynamic
  {
    OSStatus err;
-   // If the following ever becomes obsolete, can use Carbon's General/AcquireRootMenu and work my way to the item.
+   // If the following ever becomes obsolete, can use Carbon's AcquireRootMenu and work my way to the item.
    extern MenuRef _NSGetCarbonMenu(NSMenu *);
    NSMenu *cocoaMenu = [self menu];
    int item = [cocoaMenu indexOfItemWithTag:[self tag]] + 1;
@@ -65,4 +65,4 @@ Implementation file for General/NSMenuItemCategory+General/CocoaDevUsersAddition
 
 
 
-General/Category:CocoaDevUsersAdditions
+Category:CocoaDevUsersAdditions

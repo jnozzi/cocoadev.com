@@ -52,7 +52,7 @@ What I get on running it is:
  AbortTrap has exited due to signal 6 (SIGABRT).
 
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 longjmp() is safe to call from a signal handler.  You can use setjmp() before your call into the library, and then in your SIGABRT handler, do a longjmp.  One thing to be careful of is if the library has allocated resources (they'll probalby leak), and if the library has left things in an indeterminant state.  This could cause you pain next time you use the library.  If the calculations are heavyweight and not interactive, you could put your library usage into another process.  If it goes south and aborts, no problem, just fork a new one.
@@ -64,7 +64,7 @@ It does occur to me, though, that maybe in my aborthandler I could open a modal 
 
 ----
 
-It's ok for GUI apps if it's controlled. For example, Cocoa's exceptions system (both the old General/NSException stuff and the new @try/@throw stuff) are built using setjmp and longjmp.
+It's ok for GUI apps if it's controlled. For example, Cocoa's exceptions system (both the old NSException stuff and the new @try/@throw stuff) are built using setjmp and longjmp.
 
 Given that, the solution sounds pretty easy, depending on how the physics stuff gets called. If you're calling it from Cocoa code, wrap every call in a @try block. Then your abort handler can just throw an exception, which you can catch and handle in a sane manner. The warnings about inconsistent state and leaks still apply, but you can at the very least safely throw up an alert and exit nicely.
 
@@ -76,23 +76,23 @@ P.S. I never knew that @try and @throw and whatnot were supported in 10.3 until 
 
 Where can I find some documentation on the new exception system? I consider myself reasonably well-read when it comes to apple's documentation, but somehow I completely overlooked this, and frankly, this is *useful*.
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 
-It is badly documented. It's only documented in the gcc 3.3 release notes, as far as I can tell. (In Xcode's docs window, click anything under Library in the left panel, then find "Release Notes" in the right panel, then click Tools, then GCC 3.3.) There isn't really that much to cover. If you're familiar with Java's exception handling, they're pretty much the same. @try does what you'd think. @catch as well, and you can have multiple @catch blocks for different classes, and it'll execute the one that corresponds to the class of the object that was thrown. @finally encapsulates code that runs before the other stuff exits, whether an exception was thrown or rethrown, or whether a return statement executed, or anything else. You can @throw any kind of General/ObjC object.
+It is badly documented. It's only documented in the gcc 3.3 release notes, as far as I can tell. (In Xcode's docs window, click anything under Library in the left panel, then find "Release Notes" in the right panel, then click Tools, then GCC 3.3.) There isn't really that much to cover. If you're familiar with Java's exception handling, they're pretty much the same. @try does what you'd think. @catch as well, and you can have multiple @catch blocks for different classes, and it'll execute the one that corresponds to the class of the object that was thrown. @finally encapsulates code that runs before the other stuff exits, whether an exception was thrown or rethrown, or whether a return statement executed, or anything else. You can @throw any kind of ObjC object.
 
-There's also a (nearly) completely unrelated @synchronize keyword that was added at the same time and is activated with the same compiler switch; it also takes any kind of General/ObjC object.
+There's also a (nearly) completely unrelated @synchronize keyword that was added at the same time and is activated with the same compiler switch; it also takes any kind of ObjC object.
 
 These features are *not* on by default; you have to add     -fobjc-exceptions to the OTHER_CFLAGS of your project to turn them on.
 
---General/MikeAsh
+--MikeAsh
 
 ----
 
 Alternatively, setting your "Mac OS X Deployment Target" to "Mac OS X 10.3" (in Xcode) enables exceptions automatically, without setting any flags.
 
---General/RichardNewman
+--RichardNewman
 
 ----
 
@@ -100,4 +100,4 @@ Wow -- this trick is pretty cool!
 
 I wrote some B+Tree code once that used abort() for certain kinds of errors. Basically if the B+Tree's data integrity got mangled it would call abort() to prevent further data corruption. This was a pain the butt for high-level app code which wanted to display some kind of error message. Who knew simply throwing an Objective-C exception would allow apps to circumvent this behavior. Of course, in my case, any subsequent calls into the B+Tree library would likely generate the same error ... 
 
--- General/MikeTrent
+-- MikeTrent

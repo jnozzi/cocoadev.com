@@ -1,8 +1,8 @@
 
 
-I have a problem with General/NSArrayController : I have a General/NSTableView and a General/NSArrayController that is bound to. There are, for example, 5 values for each General/NSManagedObject of the General/NSArrayController. But what I want is to have a 6th column, calculated ,and that depends on the other Objects...
+I have a problem with NSArrayController : I have a NSTableView and a NSArrayController that is bound to. There are, for example, 5 values for each NSManagedObject of the NSArrayController. But what I want is to have a 6th column, calculated ,and that depends on the other Objects...
 
-To try to be clear, each object is a financial transaction, with an amount, and I want my General/NSTableView to print a balance for each transaction, indicating the account balance up to this particular transaction. That is : that balance value depends on the previous transaction and the current transaction amount.
+To try to be clear, each object is a financial transaction, with an amount, and I want my NSTableView to print a balance for each transaction, indicating the account balance up to this particular transaction. That is : that balance value depends on the previous transaction and the current transaction amount.
 
 I've tried to add a instance variable in the Transaction Class :
 
@@ -10,7 +10,7 @@ I've tried to add a instance variable in the Transaction Class :
 + initialize {
         ...
 
-        General/NSArray *keys = General/[NSArray arrayWithObjects: @"amount", nil];
+        NSArray *keys = [NSArray arrayWithObjects: @"amount", nil];
         [self setKeys:keys triggerChangeNotificationsForDependentKey:@"balance"];
         ...
 }
@@ -20,7 +20,7 @@ I've tried to add a instance variable in the Transaction Class :
 }
 
 
-But from the balance method I cannot reach the previous Transaction Object. So I think what I want should be implemented in a General/NSArrayController subclass. 
+But from the balance method I cannot reach the previous Transaction Object. So I think what I want should be implemented in a NSArrayController subclass. 
 
 Does anyone have an idea about it ?
 
@@ -35,13 +35,13 @@ I'd recommend that you create a data source object that has a pointer to the arr
 Many thanks, that worked. I linked a delegate to my tableview, and coded the following method in it :
 
     
-- (id)tableView:(General/NSTableView *)aTableView objectValueForTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
 {
-	if (General/aTableColumn identifier] isEqualToString:@"balance"])
+	if (aTableColumn identifier] isEqualToString:@"balance"])
 	{
-		[[NSNumber *currentAmount = General/[transactionArrayController arrangedObjects] objectAtIndex:rowIndex] valueForKey:@"amount"];
+		[[NSNumber *currentAmount = [transactionArrayController arrangedObjects] objectAtIndex:rowIndex] valueForKey:@"amount"];
 		[[NSNumber *previousBalance;
-		General/NSNumber *balance;
+		NSNumber *balance;
 		
 		if (rowIndex < 0)
 			return nil;
@@ -50,7 +50,7 @@ Many thanks, that worked. I linked a delegate to my tableview, and coded the fol
 		if (rowIndex == 0)
 			balance = currentAmount;
 		else {
-			previousBalance = General/[transactionArrayController arrangedObjects] objectAtIndex:rowIndex - 1] valueForKey:@"balance"];
+			previousBalance = [transactionArrayController arrangedObjects] objectAtIndex:rowIndex - 1] valueForKey:@"balance"];
 			balance = [[[NSNumber numberWithDouble: [previousBalance doubleValue] + [currentAmount doubleValue]];
 		}
 

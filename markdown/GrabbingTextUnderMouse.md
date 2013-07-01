@@ -8,4 +8,4 @@ Wouldn't Distributed Objects apply here?
 
 ----
 
-I'm thinking the General/AccessibilityAPI introduced in Jaguar is your best bet.  Apple has some sample code demonstrating how an accessibility client works here: http://developer.apple.com/samplecode/Sample_Code/OS_Utilities/General/UIElementInspector.htm  -- Bo
+I'm thinking the AccessibilityAPI introduced in Jaguar is your best bet.  Apple has some sample code demonstrating how an accessibility client works here: http://developer.apple.com/samplecode/Sample_Code/OS_Utilities/UIElementInspector.htm  -- Bo

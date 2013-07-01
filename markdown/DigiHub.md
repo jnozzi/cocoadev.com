@@ -14,28 +14,28 @@ When I set the prefs to open a custom app it becomes:
 
 So, conclusion: to customize what happens when you insert a cd, open the defaults domain "com.apple.digihub". and set the preferences like above 
 
-when class dumping General/SystemUIServer you'll find 2 classes related to General/DigiHub, here's the dump:
+when class dumping SystemUIServer you'll find 2 classes related to DigiHub, here's the dump:
 
     
-@interface General/DigiHub : General/NSObject
+@interface DigiHub : NSObject
 {
     struct __CFRunLoopSource *_diskArbSource;
-    General/NSDictionary *_defaultActions;
-    General/NSDictionary *_bundleIDMapper;
-    General/NSMutableDictionary *_digiHubPrefs;
-    General/NSMutableDictionary *_specificMedia;
-    General/NSMutableArray *_specificMediaList;
-    General/NSMutableDictionary *_specificiPods;
-    General/NSMutableArray *_specificiPodList;
-    General/NSMutableDictionary *_specificDVCameras;
-    General/NSMutableArray *_specificDVCameraList;
-    General/NSMutableDictionary *_askDialogList;
-    General/NSMutableDictionary *_ejectList;
-    General/NSString *_uiscriptrunnerPath;
-    General/NSMutableDictionary *_ipods;
-    General/NSDictionary *_mountControls;
-    General/NSDictionary *_unmountControls;
-    General/NSDictionary *_ejectControls;
+    NSDictionary *_defaultActions;
+    NSDictionary *_bundleIDMapper;
+    NSMutableDictionary *_digiHubPrefs;
+    NSMutableDictionary *_specificMedia;
+    NSMutableArray *_specificMediaList;
+    NSMutableDictionary *_specificiPods;
+    NSMutableArray *_specificiPodList;
+    NSMutableDictionary *_specificDVCameras;
+    NSMutableArray *_specificDVCameraList;
+    NSMutableDictionary *_askDialogList;
+    NSMutableDictionary *_ejectList;
+    NSString *_uiscriptrunnerPath;
+    NSMutableDictionary *_ipods;
+    NSDictionary *_mountControls;
+    NSDictionary *_unmountControls;
+    NSDictionary *_ejectControls;
     BOOL _isConsoleSession;
 }
 
@@ -46,7 +46,7 @@ when class dumping General/SystemUIServer you'll find 2 classes related to Gener
 
 @end
 
-@interface General/DigiHub (private)
+@interface DigiHub (private)
 - (void)_getDigiHubPrefs;
 - (void)_m5PrefsChanged:(id)fp8;
 - (void)_m5PrefsChanged:(id)fp8 sync:(BOOL)fp12;
@@ -75,7 +75,7 @@ mountpoint:(char [1024])fp16 ioContent:(char [1024])fp20 afterLogin:
 - (BOOL)_doAction:(int)fp8 event:(id)fp12 key:(id)fp16;
 - (BOOL)_handleEventInScript:(id)fp8 eventInfo:(id)fp12;
 - (long)_createAppleEvent:(unsigned long)fp8 psn:(struct
-General/CPSProcessSerNum *)fp12 info:(id)fp16 outAE:(struct General/AEDesc *)fp20;
+CPSProcessSerNum *)fp12 info:(id)fp16 outAE:(struct AEDesc *)fp20;
 - (BOOL)_handleEventInApp:(id)fp8 path:(id)fp12 bundleID:(id)fp16
 eventInfo:(id)fp20;
 - (void)_savePreference:(id)fp8;
@@ -94,9 +94,9 @@ fp12 defaultID:(id)fp16;
 - (void)_launchICAppForDigiCamera;
 @end
 
-@interface General/DigiHubEvent : General/NSObject
+@interface DigiHubEvent : NSObject
 {
-    General/NSString *_event;
+    NSString *_event;
     int _action;
     int _defaultAction;
     NSURL *_app;

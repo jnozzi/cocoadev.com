@@ -1,4 +1,4 @@
-I'm having problems with General/NSTableView and having alternating row colors when I put data in them... 
+I'm having problems with NSTableView and having alternating row colors when I put data in them... 
 is it something to do with my dynamic column generation?
 
 I set up a table view with alternating row colors in the nib file (or set it programmatically in awakeFromNib).
@@ -17,7 +17,7 @@ and the table data source behaves such that the column identifiers and header ce
 
 The drawing problem only appears when I add data to the table, one row at a time. The unfilled rows draw properly.
 
-I am aware of the (old) Tony Arnold General/AlternatingRowColors subclass from the pre-Panther days.
+I am aware of the (old) Tony Arnold AlternatingRowColors subclass from the pre-Panther days.
 
 ----
 
@@ -26,19 +26,19 @@ The textfield cells need to be told NOT to draw their backgrounds, using setDraw
 One way to do this is to set up the data cell, like this:
 
     
-General/NSTextFieldCell *myPrefsCell= General/[[NSTextFieldCell alloc] initTextCell: @""];
+NSTextFieldCell *myPrefsCell= [[NSTextFieldCell alloc] initTextCell: @""];
 //... Modify myPrefsCell to your delight, for example:
 [myPrefsCell setDrawsBackground: NO];
 [theTableColumnInQuestion setDataCell: myPrefsCell];
 [myPrefsCell release];
 
 
-- General/FranciscoTolmasky
+- FranciscoTolmasky
 
 ----
 
 I think I had this same type of problem too, a while ago.  What fixed it for me was to edit the Data Cells when building the new Table Columns. For example:
 
-    General/NSButtonCell *cell = General/[[NSButtonCell alloc] init];
+    NSButtonCell *cell = [[NSButtonCell alloc] init];
 [newColumn setDataCell:cell]; 
 [cell release];

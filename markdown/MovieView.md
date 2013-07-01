@@ -1,6 +1,6 @@
-Can someone tell me how to load and play a movie in General/NSView
+Can someone tell me how to load and play a movie in NSView
 
-General/NSMovieView
+NSMovieView
 
 ----
-[http://developer.apple.com/samplecode/Sample_Code/Cocoa/General/SimpleCocoaMovie.htm]
+[http://developer.apple.com/samplecode/Sample_Code/Cocoa/SimpleCocoaMovie.htm]

@@ -1,16 +1,16 @@
 
 
-Is there a way to prevent certain columns in a General/NSTableView from being dragged around, and only allow other columns? I see that there is a delegate method     tableView:didDragTableColumn: but I need something like     tableView:shouldDragTableColumn:. I also need the table column to be sorted, so I can't override     tableView:shouldSelectTableColumn: to return NO.
+Is there a way to prevent certain columns in a NSTableView from being dragged around, and only allow other columns? I see that there is a delegate method     tableView:didDragTableColumn: but I need something like     tableView:shouldDragTableColumn:. I also need the table column to be sorted, so I can't override     tableView:shouldSelectTableColumn: to return NO.
 
 ----
 
-Without looking I can't say whether or not there's a built-in mechanism for this. I'm not going to look because you can. ;-)  However, if there are none, you might try subclassing General/NSTableColumn and giving it a -(BOOL)allowsDrag and a -(void)setAllowsDrag: method. Override the beginDrag or related method and if -allowsDrag is NO ... don't. At runtime, you can copy all the properties you set up in IB to your custom column object, then swap them out into the table. Or, you could create all columns programmatically, which would probably be better performance-wise, though I can't imagine it being too big a difference.
+Without looking I can't say whether or not there's a built-in mechanism for this. I'm not going to look because you can. ;-)  However, if there are none, you might try subclassing NSTableColumn and giving it a -(BOOL)allowsDrag and a -(void)setAllowsDrag: method. Override the beginDrag or related method and if -allowsDrag is NO ... don't. At runtime, you can copy all the properties you set up in IB to your custom column object, then swap them out into the table. Or, you could create all columns programmatically, which would probably be better performance-wise, though I can't imagine it being too big a difference.
 
 ----
 
-From the General/NSTableView page:
+From the NSTableView page:
 
-    - (BOOL)canDragRowsWithIndexes:(General/NSIndexSet *)rowIndexes atPoint:(General/NSPoint)mouseDownPoint
+    - (BOOL)canDragRowsWithIndexes:(NSIndexSet *)rowIndexes atPoint:(NSPoint)mouseDownPoint
 
 Returns whether the receiver allows dragging the rows at rowIndexes with a drag initiated at mousedDownPoint. Return NO to disallow the drag.
 
@@ -30,7 +30,7 @@ I wanted to do this, but gave up. Even if you can prevent, say a flagged column 
 
 ----
 
-Do the columns need to be resized? If not you can easily fix this by telling the table view not to display column headers (which are used to drag), and then draw them yourself (either using an General/NSImageView or an General/NSView). It would be more difficult to implement if you have sorting set up, but if that is not the case, it would work out fine.
+Do the columns need to be resized? If not you can easily fix this by telling the table view not to display column headers (which are used to drag), and then draw them yourself (either using an NSImageView or an NSView). It would be more difficult to implement if you have sorting set up, but if that is not the case, it would work out fine.
 
 ----
 

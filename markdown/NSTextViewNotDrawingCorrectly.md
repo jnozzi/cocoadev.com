@@ -1,26 +1,26 @@
 
 
-I've got a custom view drawing a background color (white) and two�borders (gray). Inside this custom view i've got two�labels and one General/NSTextField. like this:
+I've got a custom view drawing a background color (white) and two�borders (gray). Inside this custom view i've got two�labels and one NSTextField. like this:
 
 http://anais.3motions.net/Screen.jpg
 
-The problem is that the�General/NSTextField always seams to draw the whole custom view as its background. (the two lines above and below the General/NSTextField)
+The problem is that the�NSTextField always seams to draw the whole custom view as its background. (the two lines above and below the NSTextField)
 Here is the code i used for the custom view
 
     
-- (void)drawRect:(General/NSRect)rect {
-	General/[[NSColor colorWithCalibratedWhite:1.0 alpha:1.0] setFill];
-	General/[[NSColor colorWithCalibratedWhite:0.0 alpha:1.0] setStroke];
+- (void)drawRect:(NSRect)rect {
+	[[NSColor colorWithCalibratedWhite:1.0 alpha:1.0] setFill];
+	[[NSColor colorWithCalibratedWhite:0.0 alpha:1.0] setStroke];
 	
-	General/NSBezierPath * path = General/[NSBezierPath bezierPathWithRect:General/NSInsetRect(rect,-4.0,0.0)];
+	NSBezierPath * path = [NSBezierPath bezierPathWithRect:NSInsetRect(rect,-4.0,0.0)];
 	[path fill];
 	[path stroke];
 }
 
 
-How can i solve this problem. Should I make a custom General/NSTextField?
+How can i solve this problem. Should I make a custom NSTextField?
 
--- General/SimonAndreasMenke
+-- SimonAndreasMenke
 
 ----
 
@@ -31,4 +31,4 @@ The rect in your code is that of the redraw region as opposed to that of the who
 ----
 
 Thanks a lot :-)
-�-- General/SimonAndreasMenke
+�-- SimonAndreasMenke

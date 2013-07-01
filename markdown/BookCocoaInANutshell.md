@@ -33,17 +33,17 @@ http://www.oreilly.com/catalog/cocoaian/
 ----**Comments**----
 
 
-*General/MichaelMcCracken - I assume I'll have to buy this. I love Nutshell books.
+*MichaelMcCracken - I assume I'll have to buy this. I love Nutshell books.
 *Steve Dekore - As far as I can tell, this is, for the most part, just a hardcopy of the Apple reference docs that come with the developer tools.
 * A good basic reference for when you don't feel like having 80 browser windows/tabs open to various parts of the online documentation.
 * Most of the stuff in here can be found in Apple's Cocoa Documentation pages, but a hard copy is always nice to have. I found the part on networking and Rendezvous extremely useful. Just watch out for some errors in the example code! I stumbled on quite a few of them. You may want to check out the errata page for details: http://www.oreilly.com/catalog/cocoaian/errata/
-*General/JoshaChapmanDodson - I just bought it today! It is the best quick reference book available for Cocoa!
-*General/StephaneDassieu - (read the comment above)
-*General/OwenYamauchi - if you're trying to learn Cocoa, steer clear of this - it's very dense and fast-paced. However, if you've already got the hang of Cocoa and you're looking to broaden your knowledge about cool, little-used Cocoa classes, definitely get this book.
+*JoshaChapmanDodson - I just bought it today! It is the best quick reference book available for Cocoa!
+*StephaneDassieu - (read the comment above)
+*OwenYamauchi - if you're trying to learn Cocoa, steer clear of this - it's very dense and fast-paced. However, if you've already got the hang of Cocoa and you're looking to broaden your knowledge about cool, little-used Cocoa classes, definitely get this book.
 *Bought this, found it useless for learning Cocoa and useless as a reference. Xcode's in-built documentation suits me better. I'm afraid I cannot recommend this one.
 
 
 ---
 
-All of General/MichaelBeam 's articles published on O'Reilly's General/MacDevCenter are available online
+All of MichaelBeam 's articles published on O'Reilly's MacDevCenter are available online
 http://www.oreillynet.com/pub/au/159

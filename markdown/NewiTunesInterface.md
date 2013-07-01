@@ -20,7 +20,7 @@ Eh.  Polished metal is passe.  Flower Power is the new hotness.  http://www.gusm
 
 *Heh heh ... my kinda' guy.*
 
-<tongue-in-cheek>what is this, General/CocoaDev or the boardroom at Armani?</tongue-in-cheek>
+<tongue-in-cheek>what is this, CocoaDev or the boardroom at Armani?</tongue-in-cheek>
 
 ----
 
@@ -52,7 +52,7 @@ SOLD: http://gui.interacto.net/
 
 What I regard so cynically, and what pisses me off so much, is that you cannot even experiment with this without moving to Tiger. Another excellent way to sell boxes of OS (with its box of Xcode) if the pipeline is starting to trickle a bit. There's a lot better stuff they could use if they wanted to sell a few more copies. Of course, the reflex action of most of you is to say, "WHAT!? You mean you haven't migrated to Tiger yet? What sort of lame-a$$ developer ARE you anyway. You GOTTA stay current!!!" In other words, be a yo-yo for Apple, while we wiser developers focus on functionality.
 
-Or, why don't you just subclass General/NSToolbar and General/NSWindow and add the functionality which apple payed its employees to add to their latest product upgrade? General/JeremyJurksztowicz
+Or, why don't you just subclass NSToolbar and NSWindow and add the functionality which apple payed its employees to add to their latest product upgrade? JeremyJurksztowicz
 
 I actually made the new interface without subclassing anything, hell you can do the unified toolbar without subclassing anything. Not hard. 
 
@@ -70,16 +70,16 @@ Basically the steps are the following;
 
 3) use the hidden unsupported method setRoundedCorner: (iirc) to NO.
 
-4) Either have something that takes up the entire content view OR have a custom General/NSView as the contentView that simply draws http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSColor.html#//apple_ref/doc/uid/20000353-BCIFCIEG to everywhere.
+4) Either have something that takes up the entire content view OR have a custom NSView as the contentView that simply draws http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSColor.html#//apple_ref/doc/uid/20000353-BCIFCIEG to everywhere.
 
 ----
 
 Back again, finished it, it has one known bug where if you hide the toolbar there is no separator line. But I don't feel like fixing that.
 
 Shot:
-http://catsdorule.torpedobird.com/tmp/General/UnifiedPanther.png (No longer accessible at this address.)
+http://catsdorule.torpedobird.com/tmp/UnifiedPanther.png (No longer accessible at this address.)
 
 Project:
-http://catsdorule.torpedobird.com/tmp/General/UnifiedPanther.zip (No longer accessible at this address.)
+http://catsdorule.torpedobird.com/tmp/UnifiedPanther.zip (No longer accessible at this address.)
 
 ----

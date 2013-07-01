@@ -1,17 +1,17 @@
-I'm trying to use General/NSStream's SOCKS Proxy support, and I cannot seem to get it to work.  I've written a class to wrap around the General/NSStream (for purposes of General/UnitTesting) and these are the two relevant methods:
+I'm trying to use NSStream's SOCKS Proxy support, and I cannot seem to get it to work.  I've written a class to wrap around the NSStream (for purposes of UnitTesting) and these are the two relevant methods:
 
     
-- (BOOL) setProperty:(id)value forKey:(General/NSString *)key
+- (BOOL) setProperty:(id)value forKey:(NSString *)key
 {
   BOOL success;
-  General/NSLog(@"Value before set: %@ forKey: %@", value, key);
+  NSLog(@"Value before set: %@ forKey: %@", value, key);
   success = [stream setProperty:value forKey:key];
-  General/NSLog(@"Value after set: %@ forKey: %@",
+  NSLog(@"Value after set: %@ forKey: %@",
         [stream propertyForKey:key], key);
   return success;
 }
 
-- (id) propertyForKey:(General/NSString *)key
+- (id) propertyForKey:(NSString *)key
 {
   return [stream propertyForKey:key];
 }
@@ -20,38 +20,38 @@ I'm trying to use General/NSStream's SOCKS Proxy support, and I cannot seem to g
 Elsewhere I call this code:
 
     
-- (BOOL) enableProxyWithHostname:(General/NSString *)hostname
+- (BOOL) enableProxyWithHostname:(NSString *)hostname
                           onPort:(int)port
                          version:(int)version
-                        username:(General/NSString *)username
-                        password:(General/NSString *)password
+                        username:(NSString *)username
+                        password:(NSString *)password
 {
   BOOL success;
-  General/NSArray *objects = General/[NSArray arrayWithObjects:
+  NSArray *objects = [NSArray arrayWithObjects:
     hostname,
-    General/[NSNumber numberWithInt:port],
+    [NSNumber numberWithInt:port],
     (version == 4 ? NSStreamSOCKSProxyVersion4 : NSStreamSOCKSProxyVersion5),
     username,
     password, nil];
   
-  General/NSArray *keys = General/[NSArray arrayWithObjects:
-    General/NSStreamSOCKSProxyHostKey,
-    General/NSStreamSOCKSProxyPortKey,
-    General/NSStreamSOCKSProxyVersionKey,
-    General/NSStreamSOCKSProxyUserKey,
-    General/NSStreamSOCKSProxyPasswordKey, nil];
+  NSArray *keys = [NSArray arrayWithObjects:
+    NSStreamSOCKSProxyHostKey,
+    NSStreamSOCKSProxyPortKey,
+    NSStreamSOCKSProxyVersionKey,
+    NSStreamSOCKSProxyUserKey,
+    NSStreamSOCKSProxyPasswordKey, nil];
   
-  General/NSDictionary *proxyDictionary = General/[NSDictionary dictionaryWithObjects:objects
+  NSDictionary *proxyDictionary = [NSDictionary dictionaryWithObjects:objects
                                                               forKeys:keys];
   
-  General/NSLog(@"Dictionary %@", proxyDictionary);
+  NSLog(@"Dictionary %@", proxyDictionary);
   
   success = [inputStream setProperty:proxyDictionary
-                              forKey:General/NSStreamSOCKSProxyConfigurationKey];  
+                              forKey:NSStreamSOCKSProxyConfigurationKey];  
   if (success)
   {
     success = [outputStream setProperty:proxyDictionary
-                                 forKey:General/NSStreamSOCKSProxyConfigurationKey];
+                                 forKey:NSStreamSOCKSProxyConfigurationKey];
   }
   
   return success;

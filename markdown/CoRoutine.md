@@ -2,7 +2,7 @@ Coroutines are a generalization of subroutines that allow multiple entry points 
 
 See Wikipedia for a more comprehensive explanation: http://en.wikipedia.org/wiki/Coroutine
 
-General/CSCoroutine is a simple implementation of coroutines for Cocoa.
+CSCoroutine is a simple implementation of coroutines for Cocoa.
 
-General/DPCoroutine [http://www.dpompa.com/?p=83] another Cocoa implementation that uses libcoroutine [http://www.dekorte.com/projects/opensource/libCoroutine/].
+DPCoroutine [http://www.dpompa.com/?p=83] another Cocoa implementation that uses libcoroutine [http://www.dekorte.com/projects/opensource/libCoroutine/].
 May not work properly under Leopard.

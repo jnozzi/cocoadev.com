@@ -1,6 +1,6 @@
 
 
-Here's a General/CheesyXOREncryption scheme, which I call a "scrambling" scheme, since I don't like suggesting this is some kind of secure encryption. This snippet originally appeared in the General/ProtectingResources page
+Here's a CheesyXOREncryption scheme, which I call a "scrambling" scheme, since I don't like suggesting this is some kind of secure encryption. This snippet originally appeared in the ProtectingResources page
 
     
 // scramble
@@ -73,4 +73,4 @@ This is regarded as unsafe as someone versed in exclusive-or encryption algorith
 
 You could probably shore this up by using a better generating function than random(), preferably one that can be seeded with more than 4-billion seeds.
 
--- General/MikeTrent
+-- MikeTrent

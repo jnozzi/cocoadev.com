@@ -4,12 +4,12 @@ In other words, I would like to see a progress of uploading process.
 
 ----
 
-http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSURLConnection.html
+http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/NSURLConnection.html
 
 
-General/NSURLConnection�s delegate methods allow an object to receive informational callbacks about the asynchronous load of a URL request. Other delegate methods provide facilities that allow the delegate to customize the process of performing an asynchronous URL load.�
+NSURLConnection�s delegate methods allow an object to receive informational callbacks about the asynchronous load of a URL request. Other delegate methods provide facilities that allow the delegate to customize the process of performing an asynchronous URL load.�
 
-- (void)connection:(General/NSURLConnection *)connection didReceiveData:(General/NSData *)data
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 
 The delegate receives this message as connection loads data incrementally. The delegate should concatenate the contents of each data object delivered to build up the complete data for a URL load.
 
@@ -28,8 +28,8 @@ I'm writing a client/server application, where the client is a Cocoa app.  It oc
 
 ----
 
-Your best bet would probably be to use something other than General/NSURLConnection. I believe that the General/[[CUrl]] wrappers will report upload status.
+Your best bet would probably be to use something other than NSURLConnection. I believe that the [[CUrl]] wrappers will report upload status.
 
 ----
 
-more discussion of uploading in General/HTTPFileUpload
+more discussion of uploading in HTTPFileUpload

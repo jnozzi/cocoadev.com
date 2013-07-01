@@ -1,41 +1,41 @@
-Has anyone had luck setting the General/ScreenSaver idle activation time outside of the General/SystemPreferences application -- and having the value change be correctly observed by the system?  The following bit of code makes the requisite changes in the ~/Library/Preferences/General/ByHost/com.apple.screensaver.xxxxx.plist file:
+Has anyone had luck setting the ScreenSaver idle activation time outside of the SystemPreferences application -- and having the value change be correctly observed by the system?  The following bit of code makes the requisite changes in the ~/Library/Preferences/ByHost/com.apple.screensaver.xxxxx.plist file:
 
     
-General/CFStringRef appID = CFSTR("com.apple.screensaver");
-General/CFStringRef key = CFSTR("idleTime");
+CFStringRef appID = CFSTR("com.apple.screensaver");
+CFStringRef key = CFSTR("idleTime");
 
 // Set up the preference.
-General/CFPreferencesSetValue(key, 
-                      General/[NSNumber numberWithInt:[foo intValue]], 
+CFPreferencesSetValue(key, 
+                      [NSNumber numberWithInt:[foo intValue]], 
                       appID,
                       kCFPreferencesCurrentUser, 
                       kCFPreferencesCurrentHost);
     
 // Write out the preference data.
-General/CFPreferencesSynchronize(appID,
+CFPreferencesSynchronize(appID,
                          kCFPreferencesCurrentUser, 
                          kCFPreferencesCurrentHost);
     
 // Let apps know this changed?
-General/[[NSWorkspace sharedWorkspace] noteUserDefaultsChanged];
+[[NSWorkspace sharedWorkspace] noteUserDefaultsChanged];
 
 
 ...however, the change doesn't always seem to take effect.  What does the Screen Saver preferences panel do to notify the system that this value has changed?
 
---General/MatthewSwann
+--MatthewSwann
 ----
 I had the same problem when writing my menu extra, Dockyard. Dynamically loaded bundles just don't have a good way to access preferences. Anyway, the solution seems to be using the following code:
     
-General/NSDictionary *screenSaverDefaults = General/[[NSUserDefaults standardUserDefaults] persistentDomainForName:@"com.apple.screensaver"];
+NSDictionary *screenSaverDefaults = [[NSUserDefaults standardUserDefaults] persistentDomainForName:@"com.apple.screensaver"];
 *
 ...
 // Change screenSaverDefaults somehow, probably through mutableCopy/setObject:forKey:
 ...
 *
-General/[[NSUserDefaults standardUserDefaults] setPersistentDomain:screenSaverDefaults forName:@"com.apple.screensaver"];
-General/[[NSUserDefaults standardUserDefaults] synchronize];
+[[NSUserDefaults standardUserDefaults] setPersistentDomain:screenSaverDefaults forName:@"com.apple.screensaver"];
+[[NSUserDefaults standardUserDefaults] synchronize];
 
-The     synchronize method is what updates the actual plist files in ~/Library/Preferences, and presumably what sends out your notification. Hope this works! --General/JediKnil
+The     synchronize method is what updates the actual plist files in ~/Library/Preferences, and presumably what sends out your notification. Hope this works! --JediKnil
 ----
 Thanks for the tips!  The code I pasted above *does* make changes to the actual plist files... that part works great.  What I'm having trouble with is getting whatever process (the loginwindow?) that watches the idle time and kicks off the screensaver to notice that I've updated the file and changed the idle time.
 
@@ -43,9 +43,9 @@ The behavior I'm seeing is that the .plist changes 100% of the time, but the cha
 ----
 You can send a notification to loginwindow to reload preferences with the following code:
     
-           General/CFMessagePortRef port = General/CFMessagePortCreateRemote(NULL, CFSTR("com.apple.loginwindow.notify"));
-           General/CFMessagePortSendRequest(port, 500, 0, 0, 0, 0, 0);
-           General/CFRelease(port);
+           CFMessagePortRef port = CFMessagePortCreateRemote(NULL, CFSTR("com.apple.loginwindow.notify"));
+           CFMessagePortSendRequest(port, 500, 0, 0, 0, 0, 0);
+           CFRelease(port);
 
 
 Preference changes will take immediate effect after sending that notification.

@@ -31,13 +31,13 @@ int generated;
 generated = (((float)random() / RAND_MAX) * 100) + 1;
 if (generated > 100) generated = 0;
 
-In this example, a number between 0 and 100 is generated, and we add one to it to bring it into the range of [1-101]. Since 101 is out of range, we look for that case and set it to 0. See General/RandomNumber if you want to know more about the details. Note that RAND_MAX must be declared as the maximum possible return value from random(). RAND_MAX is defined along with random() and srandom() in "stdlib.h"
+In this example, a number between 0 and 100 is generated, and we add one to it to bring it into the range of [1-101]. Since 101 is out of range, we look for that case and set it to 0. See RandomNumber if you want to know more about the details. Note that RAND_MAX must be declared as the maximum possible return value from random(). RAND_MAX is defined along with random() and srandom() in "stdlib.h"
 
-Mac OS X's General/ScreenSaver framework contains some handy macros for generating random numbers with random(): General/SSRandomIntBetween and General/SSRandomFloatBetween. Instead of writing your own, you could just pull them out of General/ScreenSaverView.h. Don't forget to initialize the random seed.
+Mac OS X's ScreenSaver framework contains some handy macros for generating random numbers with random(): SSRandomIntBetween and SSRandomFloatBetween. Instead of writing your own, you could just pull them out of ScreenSaverView.h. Don't forget to initialize the random seed.
 
 ----
 
-From the disscussion in General/RandomNumber, and the man page, random() is safe to use with %, so the following is a valid function to return numbers between lower and upper, inclusive.  I still might use a Mersenne Twister with RAND_MAX, but this is a decent quick and dirty function. -- General/ScottEllsworth
+From the disscussion in RandomNumber, and the man page, random() is safe to use with %, so the following is a valid function to return numbers between lower and upper, inclusive.  I still might use a Mersenne Twister with RAND_MAX, but this is a decent quick and dirty function. -- ScottEllsworth
 
     
 + (long)randomLongFrom:(long)lower to:(long)upper{
@@ -47,6 +47,6 @@ From the disscussion in General/RandomNumber, and the man page, random() is safe
 
 ----
 
-See also: General/RandomNumber General/ScreenSaverView
+See also: RandomNumber ScreenSaverView
 
-Back to General/HowToProgramInOSX
+Back to HowToProgramInOSX

@@ -9,7 +9,7 @@ What's a good way for me to know, from inside my app, how much memory I'm consum
 He wants to know within his code, like in a unit test.
 
 ----
-Yeah, I thought about doing an General/NSTask or something, but that is SOOO lame.  There has got to be a sys call somewhere for this kind of thing.
+Yeah, I thought about doing an NSTask or something, but that is SOOO lame.  There has got to be a sys call somewhere for this kind of thing.
 
 ----
 

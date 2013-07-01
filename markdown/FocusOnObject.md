@@ -9,12 +9,12 @@ You mean programatically? If so, thusly:
 
 If you want the window to open with a particular object as first responder, connect the window's initialFirstResponder outlet to that object in the nib.
 
-A General/NSTabViewItem instance also has an initialFirstResponder outlet to specify which object should have focus when this item is chosen in the General/NSTabView.
+A NSTabViewItem instance also has an initialFirstResponder outlet to specify which object should have focus when this item is chosen in the NSTabView.
 
 ----
 ----
 
-Once my program receives a specific event, I'd like a window to appear and set focus on an General/NSTextField. Here's the code I'm trying now:
+Once my program receives a specific event, I'd like a window to appear and set focus on an NSTextField. Here's the code I'm trying now:
 
     [self orderFrontRegardless];
 [self makeKeyWindow];
@@ -22,7 +22,7 @@ Once my program receives a specific event, I'd like a window to appear and set f
 
 However, <code>textField</code> is never given focus. Am I doing something wrong here?
 
--- General/RyanGovostes
+-- RyanGovostes
 
 ----
 
@@ -30,13 +30,13 @@ have you tried     [self makeKeyAndOrderFront:nil]?
 
 ----
 
-This does not seem to work either. If the window is key, does it even receive keyDown events? If so, I could just ditch the General/NSTextField, but when I write this in my Window subclass, nothing happens when I hit a key:
+This does not seem to work either. If the window is key, does it even receive keyDown events? If so, I could just ditch the NSTextField, but when I write this in my Window subclass, nothing happens when I hit a key:
 
-    - (void)keyDown:(General/NSEvent *)theEvent {
-    General/NSLog(@"General/KeyDown event!\n");
+    - (void)keyDown:(NSEvent *)theEvent {
+    NSLog(@"KeyDown event!\n");
 }
 
--- General/RyanGovostes
+-- RyanGovostes
 
 ----
 
@@ -46,4 +46,4 @@ Try removing the text field and overriding     -(BOOL)acceptsFirstResponder in y
 
 Yeah, the     keyDown event fires, but if the cursor is in a different window, it still doesn't receive the event.
 
-see (perhaps relevant) discussion at General/SimulateTyping
+see (perhaps relevant) discussion at SimulateTyping

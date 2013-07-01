@@ -4,14 +4,14 @@
 
 
 * part1 - Hash table basics
-* part2 - Chaining http://goo.gl/General/OeSCu
+* part2 - Chaining http://goo.gl/OeSCu
 * part3 - Open Addressing
 * part4 - Hybrid schemes
 
 
 ----**part1 - Hash table basics**----
 
-Hash tables are good when the number of potential keys is far too big to make an array, but a better access performance than General/DesignRedBlackTree's o(log(n)) is needed, or the keys cannot realistically be ordered. 
+Hash tables are good when the number of potential keys is far too big to make an array, but a better access performance than DesignRedBlackTree's o(log(n)) is needed, or the keys cannot realistically be ordered. 
 
 The basis of a hash table is an array with MAX entries, and a *hash function*. This latter takes a key and *hashes* it to produce a number in the range [0,MAX). Identical keys must always hash to the same number, but so may different keys - the hashed value need not be unique.
 
@@ -77,4 +77,4 @@ On the whole, therefore, open addressing is rarely seen.
 
 ----**part4 - Hybrid schemes**----
 
-An alternative to a linked list of entries a la chaining is to use a more sophisticated search structure to store collided objects. Hybrid schemes welding General/DesignHashTable with General/DesignRedBlackTree work well at bounding operation times in pathological cases (like a crummy hash function or a stupidly small array).
+An alternative to a linked list of entries a la chaining is to use a more sophisticated search structure to store collided objects. Hybrid schemes welding DesignHashTable with DesignRedBlackTree work well at bounding operation times in pathological cases (like a crummy hash function or a stupidly small array).

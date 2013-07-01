@@ -14,8 +14,8 @@ You may want to take a look at RTP/RTCP and the multitude of associated standard
 
 ----
 
-Thanks for the advice. Just a couple more related questions: #1) Anyone know/have any sample code dealing with encoding sound and transmitting it over a network? #2) Would General/SmallSockets be up to the task, or would General/OmniNetworking be a better choice?
+Thanks for the advice. Just a couple more related questions: #1) Anyone know/have any sample code dealing with encoding sound and transmitting it over a network? #2) Would SmallSockets be up to the task, or would OmniNetworking be a better choice?
 
 ----
 
-General/SmallSockets doesn't work in the background. General/AsyncSocket maybe?
+SmallSockets doesn't work in the background. AsyncSocket maybe?

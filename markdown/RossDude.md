@@ -17,11 +17,11 @@ Also, what got you into programming in the first place?
 
 Hi,
 
-I'm not General/RossDude but I found this interesting because I started programming when I was seven or eight, thanks to my older siblings all programming on the C64/Vic20/Amstrad etc and teaching me to. I'm sure my code would have been awful back then but I wonder how good my logic was.
+I'm not RossDude but I found this interesting because I started programming when I was seven or eight, thanks to my older siblings all programming on the C64/Vic20/Amstrad etc and teaching me to. I'm sure my code would have been awful back then but I wonder how good my logic was.
 
 ----
 
-General/RossDude: Well, I don't know how good my logical reasoning is.  I can just sort of see how I need to do stuff in program.  i didn't think programming was that difficult (well, cocoa at least.  i tried windows programming, but it's too hard), but applescript was, which caused my switch to cocoa-java, then the lack of support changed me over to objective c cocoa.  none of my friends have a clue what the heck i am doing.  i did start about 1-2 years ago.
+RossDude: Well, I don't know how good my logical reasoning is.  I can just sort of see how I need to do stuff in program.  i didn't think programming was that difficult (well, cocoa at least.  i tried windows programming, but it's too hard), but applescript was, which caused my switch to cocoa-java, then the lack of support changed me over to objective c cocoa.  none of my friends have a clue what the heck i am doing.  i did start about 1-2 years ago.
 
 ----
 Wow, we have the same first name! 
@@ -29,12 +29,12 @@ I'll answer the modus ponens question: It didn't make sense for a few months, th
 Simple enough, right? HTML doesn't require logic, so it's easy.
 
 Applescript is pure evil. Java is like some weak melding pot that feels bad to program with, like C++, and Obj-C...
-Just... Freakin'.... awsome. -General/RossLeonardy, the village idiot.
+Just... Freakin'.... awsome. -RossLeonardy, the village idiot.
 
 ----
 
-That is a weird coincidence.  General/ObjectiveC is so awesome!  Love it!
+That is a weird coincidence.  ObjectiveC is so awesome!  Love it!
 
 ----
 
-Update: I use General/PyObjC now.  Don't bombard this page, but I personally prefer Python over General/ObjC now...
+Update: I use PyObjC now.  Don't bombard this page, but I personally prefer Python over ObjC now...

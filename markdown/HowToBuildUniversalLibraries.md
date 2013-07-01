@@ -1,7 +1,7 @@
 
 
 
-There is a page General/LinkingAndUniversalBinaries under General/ApplicationLinkingIssues that outlines what happens if you have not, in fact, built universal binaries of the libraries for your project
+There is a page LinkingAndUniversalBinaries under ApplicationLinkingIssues that outlines what happens if you have not, in fact, built universal binaries of the libraries for your project
 
 ----
 
@@ -11,7 +11,7 @@ Are there any pointers available on how to build universal libraries (the .a and
 
 *That's a pretty general question, and the answer isn't really much different from how you build a universal application. Is there a particular step in the process that you're having trouble with?*
 
-I'm trying to build an open-source library (I'll leave it at that, since being more specific generally won't help future readers, and this is likely to be a 'common problem' for general OS code anyways), so it's the kind that you do './configure, make, make install'; I've tried inserting the custom environment variables between the     .configure and     make commands as described at http://developer.apple.com/documentation/Porting/Conceptual/General/PortingUnix/compiling/chapter_4_section_3.html but all I ever get is only ppc binaries. I'm guessing maybe further changes are needed in the makefile, but I haven't a clue on what to look for or do (I usually just use libraries, not compile them).
+I'm trying to build an open-source library (I'll leave it at that, since being more specific generally won't help future readers, and this is likely to be a 'common problem' for general OS code anyways), so it's the kind that you do './configure, make, make install'; I've tried inserting the custom environment variables between the     .configure and     make commands as described at http://developer.apple.com/documentation/Porting/Conceptual/PortingUnix/compiling/chapter_4_section_3.html but all I ever get is only ppc binaries. I'm guessing maybe further changes are needed in the makefile, but I haven't a clue on what to look for or do (I usually just use libraries, not compile them).
 
 ----
 
@@ -31,8 +31,8 @@ and the relevant portion of the log:
     
 ...
 configure:2072: checking for C compiler default output file name
-configure:2075: gcc -isysroot /Developer/General/SDKs/MacOSX10.4u.sdk -arch i386 -arch ppc  -Wl,-syslibroot,/De
-veloper/General/SDKs/MacOSX10.4u.sdk conftest.c  >&5
+configure:2075: gcc -isysroot /Developer/SDKs/MacOSX10.4u.sdk -arch i386 -arch ppc  -Wl,-syslibroot,/De
+veloper/SDKs/MacOSX10.4u.sdk conftest.c  >&5
 /usr/bin/ld: -syslibroot: multiply specified
 collect2: ld returned 1 exit status
 /usr/bin/ld: -syslibroot: multiply specified
@@ -51,14 +51,14 @@ From http://gcc.gnu.org/ml/gcc-patches/2005-06/msg00308.html,
 it looks like the     -syslibroot stuff is no longer necessary.  A project built just fine using this:
 
     
-env CFLAGS="-isysroot /Developer/General/SDKs/MacOSX10.4u.sdk -arch i386 -arch ppc" ./configure --disable-dependency-tracking
+env CFLAGS="-isysroot /Developer/SDKs/MacOSX10.4u.sdk -arch i386 -arch ppc" ./configure --disable-dependency-tracking
 
 
 ----
 
 Similar to the above code, but if you're wanting to compile from the command line directly, you can use this:
     
-gcc myapp.c -o myapp -arch i386 -arch ppc -isysroot /Developer/General/SDKs/MacOSX10.4u.sdk
+gcc myapp.c -o myapp -arch i386 -arch ppc -isysroot /Developer/SDKs/MacOSX10.4u.sdk
 
 
 ----

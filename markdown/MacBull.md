@@ -4,6 +4,6 @@ The new kid here for COCOA Programming environment. Handling the system level pr
 
 Welcome ... but what does that *mean*? ;-)
 ----
-Funny... I read it and thought: "Yeah, that sure sounds like General/MacBull to me."
+Funny... I read it and thought: "Yeah, that sure sounds like MacBull to me."
 ----
 Also, Cocoa isn't an acronym... unless it's for Complete Object Collection for Organising Applications... ;-)

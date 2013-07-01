@@ -10,9 +10,9 @@ blah blah
 And I see a number like 5, what's the fastest way for me to know that I'm looking at A+C?
 
     
--(General/NSString *)convertNumber:(int)number {
+-(NSString *)convertNumber:(int)number {
    
-    id answer=General/[NSMutableString string];
+    id answer=[NSMutableString string];
     
     if (number & 0x1) [answer appendString:@"A"];
     if (number & 0x2) [answer length] ? [answer appendString:@" + B"] : [answer appendString:@"B"];
@@ -25,9 +25,9 @@ And I see a number like 5, what's the fastest way for me to know that I'm lookin
 
 or
 
--(General/NSString *)convertNumber:(int)number {
+-(NSString *)convertNumber:(int)number {
 
-    id answer=General/[NSMutableString string];
+    id answer=[NSMutableString string];
     int powerOfTwo=1;
     int i;
     BOOL appendmentMade=NO;
@@ -51,7 +51,7 @@ or
 
 ----
 
-Subjectively, the first looks faster, but this is no substitution for testing/profiling. -- General/RobRix
+Subjectively, the first looks faster, but this is no substitution for testing/profiling. -- RobRix
 
 ----
 
@@ -61,15 +61,15 @@ I agree that the first way is more inline, but the second is more compact. I gue
 
 I'd go with the second, not because it's faster, but because it'd be far easier to optimize further if you found out your initial implementation wasn't fast enough.  Loop unrolling usually only provides a tiny performance enhancement on modern processors, and the compiler is usually far smarter about when it'll help than the programmer.  From my perspective, the low-hanging fruit in optimizing your algorithm seems to be:
 
-*Eliminating all the temporary General/NSString objects you're creating and the appending operations to your General/NSMutableString, and using a temporary buffer instead.
+*Eliminating all the temporary NSString objects you're creating and the appending operations to your NSMutableString, and using a temporary buffer instead.
 *Not testing if it's the first character on every match.  I'd use 2 loops, one loop that iterates until it finds the first match and then just appends the character, and then a second loop for all the other matches that inserts the " + " and then the character.  At the very least, you'd want to replace that method call with an isFirstChar local variable.
 
-So, without further ado, my entry for a fast General/OrAddition decoder:
+So, without further ado, my entry for a fast OrAddition decoder:
     
 #define kFirstLetter 'A'
 #define kLastLetter 'Z'
 
-- (General/NSString*)convertNumber:(int)number
+- (NSString*)convertNumber:(int)number
 {
 	char* charBuf = alloca(sizeof(char) * (kLastLetter - kFirstLetter) * 4);
 	int bufIndex;
@@ -93,7 +93,7 @@ So, without further ado, my entry for a fast General/OrAddition decoder:
 		}
 		powerOfTwo *= 2;
 	}
-	return General/[NSString stringWithCString:charBuf length:bufIndex];
+	return [NSString stringWithCString:charBuf length:bufIndex];
 }
 
 You could probably make it considerably faster using some sort of table lookup scheme or using Altivec instructions, but this will probably do if it's only going to be called thousands of times a second instead of millions. ;)  -- Bo
@@ -152,21 +152,21 @@ This one requires a buffer that already exists before the call is made. Here the
 
     
 void main(int argc, char *argv[]) {
-General/NSAutoreleasePool *pool=General/[[NSAutoreleasePool alloc] init];
+NSAutoreleasePool *pool=[[NSAutoreleasePool alloc] init];
     int i;
     char buf[1024];
-    General/NSLog(@"start");
+    NSLog(@"start");
     for (i=0;i<16777216;i++) {
         convertNumber4(i, buf);
     }
-    General/NSLog(@"stop");
+    NSLog(@"stop");
     [pool release];
     return 0;
 
 }
 
 2003-06-09 15:54:15.112 TEST[2313] start
-2003-06-09 15:54:30.008 TEST[2313] stop   << about 15 sec on a 450 General/MHz General/GeeFour Cube
+2003-06-09 15:54:30.008 TEST[2313] stop   << about 15 sec on a 450 MHz GeeFour Cube
 
 
 
@@ -311,7 +311,7 @@ Hey that long assingment is pretty neat. I didn't know you could do that!! I pla
 
 
 
-I agree that gcc is getting pretty darn good. I also think that the General/GeeFour chip must have some pretty awesome branch predictors, because I noticed that bitwise operators were more of a bottleneck than conditional statements. The fastest converter only used 5 pairs of bitwise operators (& and >>),  five switch statements and one conditional.  I know I could speed things up more if I could reduce the number of times memory gets touched during character assignments (i.e. *pointer=some long value). Since the General/GeeFour is a 32bit processor, I wonder if you can't touch memory any wider than you can with long assignments. I also wonder if Altivec allows you to touch memory in 128 bit chunks? If that's true than maybe it might be worth learning more about Altivec. --zootbobbalu
+I agree that gcc is getting pretty darn good. I also think that the GeeFour chip must have some pretty awesome branch predictors, because I noticed that bitwise operators were more of a bottleneck than conditional statements. The fastest converter only used 5 pairs of bitwise operators (& and >>),  five switch statements and one conditional.  I know I could speed things up more if I could reduce the number of times memory gets touched during character assignments (i.e. *pointer=some long value). Since the GeeFour is a 32bit processor, I wonder if you can't touch memory any wider than you can with long assignments. I also wonder if Altivec allows you to touch memory in 128 bit chunks? If that's true than maybe it might be worth learning more about Altivec. --zootbobbalu
 
 ----
 

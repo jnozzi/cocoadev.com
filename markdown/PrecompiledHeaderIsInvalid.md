@@ -1,6 +1,6 @@
-I've been working on an app on my General/PowerBook General/GeeFour for a while now and it builds and runs fine.
+I've been working on an app on my PowerBook GeeFour for a while now and it builds and runs fine.
 
-This morning I tried to copy the project onto my  work machine, a General/GeeFour tower.  When I try to build it I  get a cascade of errors (2128 total), begining with:
+This morning I tried to copy the project onto my  work machine, a GeeFour tower.  When I try to build it I  get a cascade of errors (2128 total), begining with:
 
 "Precompiled header is invalid; header file /System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h is now different."
 

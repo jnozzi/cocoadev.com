@@ -4,10 +4,10 @@ Image Capture Architecture (ICA) provides system level support for image input d
 
 At first glance there appears to be no documentation for this framework. Iin fact there is an SDK which you can get from http://developer.apple.com/sdk/ (along with oodles of sample code and useful tester applications).  Note that ICA is not a premier or well loved API, and the documentation is not updated for every major release, and the documentation can sometime be slightly behind the times.
 
-This is the place to look if you're looking for something like a TWAIN or a direct General/ImageCapture interface to your scanner.
+This is the place to look if you're looking for something like a TWAIN or a direct ImageCapture interface to your scanner.
 
 ----
-Has anyone any information on progressively collecting data one scanline at a time? Short of doing a custom properly, I do not see a way to properly do this under General/ImageCapture
+Has anyone any information on progressively collecting data one scanline at a time? Short of doing a custom properly, I do not see a way to properly do this under ImageCapture
 
 
 ----

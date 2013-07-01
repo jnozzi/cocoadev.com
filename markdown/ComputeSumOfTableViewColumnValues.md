@@ -1,12 +1,12 @@
-I've got a basic General/NSTableView, but I want to add all the values of one column and put it in a text field. I'm stumped. Is there an easy way to do this?
+I've got a basic NSTableView, but I want to add all the values of one column and put it in a text field. I'm stumped. Is there an easy way to do this?
 ----
     
 
--(General/IBAction)addButton:(id)sender {
+-(IBAction)addButton:(id)sender {
     int i;
     int sum=0; 
     for (i=0;i<[tableData count];i++) {
-        sum+=General/[tableData objectAtIndex:i] objectForKey:@"keyForColumnYouWantToSum"] intValue];
+        sum+=[tableData objectAtIndex:i] objectForKey:@"keyForColumnYouWantToSum"] intValue];
     }
     [whatEverOutletYouWantToDisplayYourResultTo setIntValue:sum];
 }
@@ -30,7 +30,7 @@ Better yet
     else return;
     id columnID = [columnSelected identifier];
     for ( i=0 ; i<[tableData count] ; i++ ) {
-        sum += General/[tableData objectAtIndex:i] objectForKey:columnID] intValue];
+        sum += [tableData objectAtIndex:i] objectForKey:columnID] intValue];
     }
     [whatEverOutletYouWantToDisplayYourResultTo setIntValue:sum];
 
@@ -60,7 +60,7 @@ You are using float values. Just change the type for "sum" from "int" to type "f
     else return;
     id columnID = [columnSelected identifier];
     for ( i=0 ; i<[tableData count] ; i++ ) {
-        sum += General/[tableData objectAtIndex:i] objectForKey:columnID] floatValue];
+        sum += [tableData objectAtIndex:i] objectForKey:columnID] floatValue];
     }
     [whatEverOutletYouWantToDisplayYourResultTo setFloatValue:sum];
 
@@ -75,14 +75,14 @@ or for the simple case:
     int i;
     float sum=0; 
     for (i=0;i<[tableData count];i++) {
-        sum+=General/[tableData objectAtIndex:i] objectForKey:@"keyForColumnYouWantToSum"] floatValue];
+        sum+=[tableData objectAtIndex:i] objectForKey:@"keyForColumnYouWantToSum"] floatValue];
     }
     [whatEverOutletYouWantToDisplayYourResultTo setFloatValue:sum];
 }
 
 
 
-I am a beginner. I tried implementing something like this in my code with no success. I linked my [[NSTextField with myDataSource Object that uses General/NSTextField. I also linked the Add button to the addButton function. No success. can someone explain the variables above? For example, in myDadSource file I have declared General/NSMutableArray * items in the header and a pointer to my object that handles all the data inside my textView as  table. When I insert these pointers into the code above I get
+I am a beginner. I tried implementing something like this in my code with no success. I linked my [[NSTextField with myDataSource Object that uses NSTextField. I also linked the Add button to the addButton function. No success. can someone explain the variables above? For example, in myDadSource file I have declared NSMutableArray * items in the header and a pointer to my object that handles all the data inside my textView as  table. When I insert these pointers into the code above I get
 
     
 -(void)awakeFromNib {
@@ -90,7 +90,7 @@ I am a beginner. I tried implementing something like this in my code with no suc
 }
 
 
--(General/IBAction)addButton:(id)sender {
+-(IBAction)addButton:(id)sender {
     int i;
     float sum=0; 
     int selectedColumn = [table selectedColumn];
@@ -100,7 +100,7 @@ I am a beginner. I tried implementing something like this in my code with no suc
     else return;
     id columnID = [columnSelected identifier];
     for ( i=0 ; i<[items count] ; i++ ) {
-        sum += General/[items objectAtIndex:i] objectForKey:columnID] floatValue];
+        sum += [items objectAtIndex:i] objectForKey:columnID] floatValue];
     }
     [addField setFloatValue:sum];
 
@@ -109,4 +109,4 @@ I am a beginner. I tried implementing something like this in my code with no suc
 
 When I do this and compile my application, Nothing happens to my [[NSTextField. What am I missing. Really frustrating you know!
 
-I figured out my problem. it seams within the for loop whenever I wanted to use "objectForKey:columnID" I always got selector not recognized. When I changed it to "valueForKey" it summed up in my General/NSTextField! Sweet!
+I figured out my problem. it seams within the for loop whenever I wanted to use "objectForKey:columnID" I always got selector not recognized. When I changed it to "valueForKey" it summed up in my NSTextField! Sweet!

@@ -1,4 +1,4 @@
-General/HowToAndWhyWithDocklings - Trying to make a good resource for developing docklings... unless anyone know of such a place already?
+HowToAndWhyWithDocklings - Trying to make a good resource for developing docklings... unless anyone know of such a place already?
 
 
 ----
@@ -8,31 +8,31 @@ First up is me... How do I dynamically change the icon of a dockling? I know how
 
 ----
 
-How exactly are you implementing your dockling? Ye olde dockling API of 10.0.x or General/NSDockExtra (if that even works, not sure).
+How exactly are you implementing your dockling? Ye olde dockling API of 10.0.x or NSDockExtra (if that even works, not sure).
 
- -- General/FinlayDobbie
+ -- FinlayDobbie
 
 ----
 
-I've only tried the old dockling API. Didn't know of any General/NSDockExtra. Any hints/tips/pointers etc. are very welcome! :-)
+I've only tried the old dockling API. Didn't know of any NSDockExtra. Any hints/tips/pointers etc. are very welcome! :-)
 
 - Frode Danielsen
 
 ----
 
-Ok. After a lot of trial and error I figured a way of doing this. Thnx to someones General/EightBall dockling. Here's the code needed, using the old Dockling API:
+Ok. After a lot of trial and error I figured a way of doing this. Thnx to someones EightBall dockling. Here's the code needed, using the old Dockling API:
     
-- (void)changeImage:(General/NSImage *)newImage
+- (void)changeImage:(NSImage *)newImage
 {
-    General/NSImageView *iconView = General/[[NSImageView alloc]
-            initWithFrame:General/NSMakeRect(0.0, 0.0, 128.0, 128.0)];
+    NSImageView *iconView = [[NSImageView alloc]
+            initWithFrame:NSMakeRect(0.0, 0.0, 128.0, 128.0)];
 
     [iconView setImage: newImage];
      
-    General/self window] setContentView:iconView];
+    self window] setContentView:iconView];
     [iconView release];
     [[self window] setBackgroundColor:[[[NSColor clearColor]];
-    General/self window] display];
+    self window] display];
 }
 
 -Frode Danielsen
@@ -50,4 +50,4 @@ Has anybody had any success with putting pictures into dockling menus? I haven't
 
 It doesn't work. Sorry :(
 
--- General/KentSutherland
+-- KentSutherland

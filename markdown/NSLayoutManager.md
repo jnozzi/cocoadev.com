@@ -1,5 +1,5 @@
-See: http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/Classes/NSLayoutManager_Class/index.html
+See: http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSLayoutManager_Class/index.html
 
 ----
 
-A good overview of subclassing General/NSLayoutManager to override the default accessory view: http://www.vortimac.com/blog/?p=33
+A good overview of subclassing NSLayoutManager to override the default accessory view: http://www.vortimac.com/blog/?p=33

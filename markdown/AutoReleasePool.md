@@ -1,18 +1,18 @@
 
 
-To understand any of the stuff I'm talking about here, you should be familiar with the basic concept of General/RetainingAndReleasing objects.
+To understand any of the stuff I'm talking about here, you should be familiar with the basic concept of RetainingAndReleasing objects.
 
-In that article, we talked about how sending General/AnObject the autorelease message would not actually release that object right away, but instead keep it around a little longer before it goes away.
+In that article, we talked about how sending AnObject the autorelease message would not actually release that object right away, but instead keep it around a little longer before it goes away.
 
-This is something that's desirable when you want a method to release General/AnObject it returns, but want to give the method's caller a chance to retain the returned object.
+This is something that's desirable when you want a method to release AnObject it returns, but want to give the method's caller a chance to retain the returned object.
 
-The thing that's working behind the scenes to make this happen is the General/AutoReleasePool.
+The thing that's working behind the scenes to make this happen is the AutoReleasePool.
 
-As soon as you call the autorelease message on General/AnObject, Cocoa creates another object called General/AutoReleasePool that will retain the object for a short time before releasing it again automatically. That's what bridges the gap between the release from the creator method and the (possible) retain from the caller.
+As soon as you call the autorelease message on AnObject, Cocoa creates another object called AutoReleasePool that will retain the object for a short time before releasing it again automatically. That's what bridges the gap between the release from the creator method and the (possible) retain from the caller.
 
-This involves a lot of work, so to avoid sluggish performance you should only use it when you really need that General/AutoReleasePool to be created.
+This involves a lot of work, so to avoid sluggish performance you should only use it when you really need that AutoReleasePool to be created.
 
-The good thing is: You don't really have to do any work to get this done; the system normally automatically takes care of everything directly related to the General/AutoReleasePool. You can, however create your own General/AutoReleasePool for any given context. If you do, all the autorelease calls in that context will automatically use that new General/AutoReleasePool.
+The good thing is: You don't really have to do any work to get this done; the system normally automatically takes care of everything directly related to the AutoReleasePool. You can, however create your own AutoReleasePool for any given context. If you do, all the autorelease calls in that context will automatically use that new AutoReleasePool.
 
 More on this (including examples) can be found in this article:
 
@@ -21,25 +21,25 @@ http://www.stepwise.com/Articles/Technical/HoldMe.html
 
 Some of the information in this page is incorrect.
 
-Cocoa does not create an General/AutoReleasePool when you call     [object autorelease]. It uses the **most recently created** pool in the current thread. They are stackable, so that you can create as many General/AutoReleasePool's as you like and it will always use the most recent one.
+Cocoa does not create an AutoReleasePool when you call     [object autorelease]. It uses the **most recently created** pool in the current thread. They are stackable, so that you can create as many AutoReleasePool's as you like and it will always use the most recent one.
 
-You can think of an General/AutoReleasePool as a simple list. The list contains objects to be released later. When the General/AutoReleasePool object is itself deallocated, it releases all the items that it's taken charge of.
+You can think of an AutoReleasePool as a simple list. The list contains objects to be released later. When the AutoReleasePool object is itself deallocated, it releases all the items that it's taken charge of.
 
-General/AppKit usually takes care of making sure that there's always one around. When you call     [object autorelease], no new pool is created. It just looks up the current pool. So it's approximately this:
+AppKit usually takes care of making sure that there's always one around. When you call     [object autorelease], no new pool is created. It just looks up the current pool. So it's approximately this:
 
 
-* Get the General/AutoReleasePool that was most recently created in this thread
+* Get the AutoReleasePool that was most recently created in this thread
 * Add     object to that pool's list of items to release
 
 
-"This involves a lot of work" isn't really true ...     [object autorelease] isn't trivial but it's not allocating any memory either. Sometimes convenience and ease of development is the most important thing. Don't start hacking at your code until you can actually find and prove what's -really- making it slow ... watch out for General/PrematureOptimization!
+"This involves a lot of work" isn't really true ...     [object autorelease] isn't trivial but it's not allocating any memory either. Sometimes convenience and ease of development is the most important thing. Don't start hacking at your code until you can actually find and prove what's -really- making it slow ... watch out for PrematureOptimization!
 
-(Some supporting evidence to show that     -autorelease doesn't actually create an General/NSAutoreleasePool object can be had by creating a General/FoundationTool and not creating an General/NSAutoreleasePool manually. You'll get warning messages whenever anything is autoreleased, because there are no autorelease pools in the stack, and the memory will be leaked.)
+(Some supporting evidence to show that     -autorelease doesn't actually create an NSAutoreleasePool object can be had by creating a FoundationTool and not creating an NSAutoreleasePool manually. You'll get warning messages whenever anything is autoreleased, because there are no autorelease pools in the stack, and the memory will be leaked.)
 
-When do your objects get cleaned up anyway? When the pool object is destroyed, it releases all of the objects that it's been given. It does this from its     -dealloc method. The pool is intended to be destroyed by the same code that created it ... which makes everything stay balanced. Normally you use the pool created by General/AppKit around the event handler, which conceptually is something like this:
+When do your objects get cleaned up anyway? When the pool object is destroyed, it releases all of the objects that it's been given. It does this from its     -dealloc method. The pool is intended to be destroyed by the same code that created it ... which makes everything stay balanced. Normally you use the pool created by AppKit around the event handler, which conceptually is something like this:
 
     
- NSAutoreleasePool *pool = General/NSAutoreleasePool alloc] init]; // pool is created
+ NSAutoreleasePool *pool = NSAutoreleasePool alloc] init]; // pool is created
  
  [self handleEvent:event]; // your methods get invoked somewhere in here,
                            // and you will probably add objects to this pool
@@ -76,7 +76,7 @@ One alternative might be to use alloc/init instead of autorelease:
  int i;
  for (i=0; i<100000; ++i)
  {
-     NSString *newString = General/NSString alloc] initWithFormat:@"%@%d", string, i];
+     NSString *newString = NSString alloc] initWithFormat:@"%@%d", string, i];
      [string release]; // release old string
      string = newString; // keep new string around
  }
@@ -100,7 +100,7 @@ Another solution is to create an autorelease pool inside the loop. For this exam
      // - - -
  
      // create our own pool.
-     NSAutoreleasePool *pool = General/NSAutoreleasePool alloc] init];
+     NSAutoreleasePool *pool = NSAutoreleasePool alloc] init];
      
      // - - -
      // if we autorelease an object HERE, it will go into our pool.
@@ -119,7 +119,7 @@ Another solution is to create an autorelease pool inside the loop. For this exam
  
      // - - -
      // if we were to autorelease an object HERE, it would go into
-     // an autorelease pool somewhere above us, probably created by General/AppKit.
+     // an autorelease pool somewhere above us, probably created by AppKit.
      // - - -
  }
 

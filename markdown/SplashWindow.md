@@ -1,11 +1,11 @@
 Is this the best way to create a splash window?
 
 *
-**General/SplashWindow.h**
+**SplashWindow.h**
     
 #import <Cocoa/Cocoa.h>
 
-@interface General/SplashWindow : General/NSWindow
+@interface SplashWindow : NSWindow
 {
 
 }
@@ -13,25 +13,25 @@ Is this the best way to create a splash window?
 @end
 
 *
-**General/SplashWindow.m**
+**SplashWindow.m**
     
 
-#import "General/SplashWindow.h"
-#import <General/AppKit/General/AppKit.h>
+#import "SplashWindow.h"
+#import <AppKit/AppKit.h>
 
-@implementation General/SplashWindow
+@implementation SplashWindow
 
-- (id)initWithContentRect:(General/NSRect)contentRect
+- (id)initWithContentRect:(NSRect)contentRect
                 styleMask:(unsigned int)aStyle
-                  backing:(General/NSBackingStoreType)bufferingType
+                  backing:(NSBackingStoreType)bufferingType
                     defer:(BOOL)flag
 {
 	self = [super initWithContentRect:contentRect
-                                styleMask:General/NSBorderlessWindowMask
-                                  backing:General/NSBackingStoreBuffered
+                                styleMask:NSBorderlessWindowMask
+                                  backing:NSBackingStoreBuffered
                                     defer:NO];
-    [self setBackgroundColor: General/[NSColor clearColor]];
-    [self setLevel: General/NSStatusWindowLevel];
+    [self setBackgroundColor: [NSColor clearColor]];
+    [self setLevel: NSStatusWindowLevel];
     [self setAlphaValue:1.0];
     [self setOpaque:NO];
     [self setHasShadow: YES];
@@ -44,38 +44,38 @@ Is this the best way to create a splash window?
 
 ----
 
-I don't know if I would use General/NSStatusWindowLevel, that makes a floating window that stays above all other windows.  What if a user wanted to switch to another application while your program was launching?
+I don't know if I would use NSStatusWindowLevel, that makes a floating window that stays above all other windows.  What if a user wanted to switch to another application while your program was launching?
 
 ----
 
-General/NSStatusWindowLevel wouldn't be objectionable if the window was set to hide on deactivate. Although I find splash windows in general objectionable unless they show some sort of useful information about the app's startup progress.
+NSStatusWindowLevel wouldn't be objectionable if the window was set to hide on deactivate. Although I find splash windows in general objectionable unless they show some sort of useful information about the app's startup progress.
 
 ----
 
 I'd use something more like this...
 
     
-@implementation General/SplashWindow
+@implementation SplashWindow
 
-- (id)initWithImage:(General/NSImage *)splashImage
+- (id)initWithImage:(NSImage *)splashImage
 {
-     General/NSRect contentRect = General/NSMakeRect(0,0, [splashImage size].width, [splashImage size].height);
+     NSRect contentRect = NSMakeRect(0,0, [splashImage size].width, [splashImage size].height);
 
 	self = [super initWithContentRect:contentRect
-                                styleMask:General/NSBorderlessWindowMask
-                                  backing:General/NSBackingStoreBuffered
+                                styleMask:NSBorderlessWindowMask
+                                  backing:NSBackingStoreBuffered
                                     defer:NO];
 
          { // create the contentView and set the image...
-           General/NSImageView *contentView = General/[[NSImageView alloc] initWithFrame:contentRect];
-                [contentView setImageFrameStyle:General/NSImageFrameNone];
+           NSImageView *contentView = [[NSImageView alloc] initWithFrame:contentRect];
+                [contentView setImageFrameStyle:NSImageFrameNone];
                 [contentView setImage:splashImage];
                 [self setContentView:contentView];
                 [contentView release];
          }
 
-    [self setBackgroundColor: General/[NSColor clearColor]];
-    [self setLevel: General/NSStatusWindowLevel];
+    [self setBackgroundColor: [NSColor clearColor]];
+    [self setLevel: NSStatusWindowLevel];
     [self setAlphaValue:1.0];
     [self setOpaque:NO];
     [self setHasShadow: YES];
@@ -87,4 +87,4 @@ I'd use something more like this...
 @end
 
 
-Of course, it could borrow from the lower General/ToolTip example to return an autoreleased General/SplashWindow that displays for a set amount of time. Then using it would be real simple... General/[SplashWindow splashWithImage:yourImage display:YES];
+Of course, it could borrow from the lower ToolTip example to return an autoreleased SplashWindow that displays for a set amount of time. Then using it would be real simple... [SplashWindow splashWithImage:yourImage display:YES];

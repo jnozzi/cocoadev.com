@@ -1,12 +1,12 @@
 I have a method which resizes an image and adds a drop shadow to it.
-I've determined that it is leaking several General/NSImage instances.
+I've determined that it is leaking several NSImage instances.
 I've read up on retain counts, and I think that when I retain "resizedImage," I
 increase the retain count such that [resizedImage release]; doesn't
 completely release it.
 
     
 
-- (General/NSImage *)shadowedImageWithImage:(General/NSImage *)image
+- (NSImage *)shadowedImageWithImage:(NSImage *)image
 {
 	[image setFlipped:YES];
 	
@@ -14,45 +14,45 @@ completely release it.
 	float thumbnailHeight = [tableView rowHeight] * 0.85;
 	float thumbnailWidth = (thumbnailHeight / [image size].height) * [image size].width;
 	
-	General/NSImage *resizedImage = General/[[NSImage alloc] initWithSize:General/NSMakeSize(thumbnailHeight, thumbnailWidth)];
+	NSImage *resizedImage = [[NSImage alloc] initWithSize:NSMakeSize(thumbnailHeight, thumbnailWidth)];
 	[resizedImage lockFocus];
-	General/[NSGraphicsContext saveGraphicsState];
-	General/[[NSGraphicsContext currentContext] setImageInterpolation:General/NSImageInterpolationHigh];
-	[image drawInRect:General/NSMakeRect(0.0, 0.0, thumbnailWidth, thumbnailHeight) fromRect:General/NSMakeRect(0.0, 0.0, [image size].width, [image size].height) operation:General/NSCompositeCopy fraction:1.0];
-	General/[NSGraphicsContext restoreGraphicsState];
+	[NSGraphicsContext saveGraphicsState];
+	[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
+	[image drawInRect:NSMakeRect(0.0, 0.0, thumbnailWidth, thumbnailHeight) fromRect:NSMakeRect(0.0, 0.0, [image size].width, [image size].height) operation:NSCompositeCopy fraction:1.0];
+	[NSGraphicsContext restoreGraphicsState];
 	[resizedImage unlockFocus];
 	image = [resizedImage retain];
 	[resizedImage release];
 	
 	// Place our new image on a background	
-	General/NSImage *imageCanvas = General/[[NSImage alloc] init];
+	NSImage *imageCanvas = [[NSImage alloc] init];
 	[imageCanvas setSize:[image size]];
 	[imageCanvas lockFocus];
-	General/NSRect imageFrame = General/NSMakeRect(0, 0, [imageCanvas size].width, [imageCanvas size].height);
-	General/NSImage *transparencyPattern = General/[[NSImage alloc] initWithSize:General/NSMakeSize(4, 4)];
+	NSRect imageFrame = NSMakeRect(0, 0, [imageCanvas size].width, [imageCanvas size].height);
+	NSImage *transparencyPattern = [[NSImage alloc] initWithSize:NSMakeSize(4, 4)];
 	[transparencyPattern lockFocus];
-	General/[[NSColor colorWithCalibratedWhite:0.8 alpha:1.0] set];
-	General/NSRectFill(General/NSMakeRect(0,0,2,2));
-	General/NSRectFill(General/NSMakeRect(2,2,2,2));
-	General/[[NSColor whiteColor] set];
-	General/NSRectFill(General/NSMakeRect(2,0,2,2));
-	General/NSRectFill(General/NSMakeRect(0,2,2,2));
+	[[NSColor colorWithCalibratedWhite:0.8 alpha:1.0] set];
+	NSRectFill(NSMakeRect(0,0,2,2));
+	NSRectFill(NSMakeRect(2,2,2,2));
+	[[NSColor whiteColor] set];
+	NSRectFill(NSMakeRect(2,0,2,2));
+	NSRectFill(NSMakeRect(0,2,2,2));
 	[transparencyPattern unlockFocus];
-	General/[[NSColor colorWithPatternImage:transparencyPattern] set];
-	General/NSRectFill(imageFrame);
-	[image compositeToPoint:General/NSMakePoint(0, 0) operation:General/NSCompositeSourceOver];
+	[[NSColor colorWithPatternImage:transparencyPattern] set];
+	NSRectFill(imageFrame);
+	[image compositeToPoint:NSMakePoint(0, 0) operation:NSCompositeSourceOver];
 	[imageCanvas unlockFocus];
 	image = [imageCanvas copy];
 	[transparencyPattern release];
 	[imageCanvas release];
 	
-	General/NSImage *shadowCanvas = General/[[NSImage alloc] initWithSize:General/NSMakeSize([image size].width+4, [image size].height+4)];
+	NSImage *shadowCanvas = [[NSImage alloc] initWithSize:NSMakeSize([image size].width+4, [image size].height+4)];
 	[shadowCanvas lockFocus];
-	General/NSShadow *theShadow = General/[[NSShadow alloc] init];
-	[theShadow setShadowColor:General/[NSColor blackColor]];
+	NSShadow *theShadow = [[NSShadow alloc] init];
+	[theShadow setShadowColor:[NSColor blackColor]];
 	[theShadow setShadowBlurRadius:4];
 	[theShadow set];
-	[image compositeToPoint:General/NSMakePoint(2, 1) operation:General/NSCompositeSourceOver];
+	[image compositeToPoint:NSMakePoint(2, 1) operation:NSCompositeSourceOver];
 	[shadowCanvas unlockFocus];
 	image = [shadowCanvas retain];
 	[theShadow release];
@@ -79,15 +79,15 @@ do not do anything.  Just return resizedImage.
 
 To say just a bit more:  the variables image and resizedImage are pointers.  When you say     image = resizedImage, that doesn't copy the image object or anything like that, it just means that image will point to the same object that resizedImage points at.  If you were to modify resizedImage at this point, image would also be modified (they're the same object).
 
-*Actually, you do have to autorelease     resizedImage, so you should do something like this:     return [resizedImage autorelease]; to solve the leak --General/JediKnil*
+*Actually, you do have to autorelease     resizedImage, so you should do something like this:     return [resizedImage autorelease]; to solve the leak --JediKnil*
 
 **Knil, read what I said. Points one and two.**
 
 ----
 
-I'm having a problem because I can't really balance my allocs and releases. If I release every General/NSImage except the final one and return [shadowCanvas autorelease]; then it won't work, because the General/NSImage chain that shadowCanvas points to will have already been released.
+I'm having a problem because I can't really balance my allocs and releases. If I release every NSImage except the final one and return [shadowCanvas autorelease]; then it won't work, because the NSImage chain that shadowCanvas points to will have already been released.
 
--- General/MattBall
+-- MattBall
 
 ----
 
@@ -103,22 +103,22 @@ In every method you write (unless you're doing something complicated, which you 
 *Erm, except for accessors, init methods and dealloc methods.  In the first two you may wish to increase the retain count of an object, and in dealloc you may want to release some stuff.*
 
 ----
-*There is really no reason to keep changing     image, just do something like this (below). Notice how every     alloc is balanced with a     release or     autorelease. --General/JediKnil*
+*There is really no reason to keep changing     image, just do something like this (below). Notice how every     alloc is balanced with a     release or     autorelease. --JediKnil*
     
-- (General/NSImage *)shadowedImageWithImage:(General/NSImage *)image
+- (NSImage *)shadowedImageWithImage:(NSImage *)image
 {
 	float thumbnailHeight = [tableView rowHeight] * 0.85;
 	float thumbnailWidth = (thumbnailHeight / [image size].height) * [image size].width;
-	General/NSSize thumbnailSize = General/NSMakeSize(thumbnailHeight, thumbnailWidth);
+	NSSize thumbnailSize = NSMakeSize(thumbnailHeight, thumbnailWidth);
 	
 	BOOL oldFlipped = [image isFlipped];
 	[image setFlipped:YES];
-	General/NSImage *resizedImage = General/[[NSImage alloc] initWithSize:thumbnailSize];
+	NSImage *resizedImage = [[NSImage alloc] initWithSize:thumbnailSize];
 *// From [resizedImage lockFocus]*
 *// to [resizedImage unlockFocus]*
 	[image setFlipped:oldFlipped];
 
-	General/NSImage *imageCanvas = General/[[NSImage alloc] initWithSize:thumbnailSize];
+	NSImage *imageCanvas = [[NSImage alloc] initWithSize:thumbnailSize];
 *// From [imageCanvas lockFocus]*
 *// to [imageCanvas unlockFocus]*
 	[transparencyPattern release];
@@ -126,7 +126,7 @@ In every method you write (unless you're doing something complicated, which you 
 	thumbnailSize.width += 4;
 	thumbnailSize.height += 4;
 
-	General/NSImage *shadowCanvas = General/[[NSImage alloc] initWithSize:thumbnailSize];
+	NSImage *shadowCanvas = [[NSImage alloc] initWithSize:thumbnailSize];
 *// From [shadowCanvas lockFocus]*
 *// to [shadowCanvas unlockFocus]*
 	[theShadow release];
@@ -144,11 +144,11 @@ I'm still getting massive amounts (~200) of memory leaks from the function. Here
 
 First, my tableView gets the image to be displayed:
     
-- (void)tableView:(General/NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(General/NSTableColumn *)tableColumn row:(int)row
+- (void)tableView:(NSTableView *)tableView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn row:(int)row
 {
-	General/NSMutableArray *array = General/[[[NSDocumentController sharedDocumentController] currentDocument] array];
+	NSMutableArray *array = [[[NSDocumentController sharedDocumentController] currentDocument] array];
 	if(array != nil) {
-		if(General/tableColumn identifier] isEqualToString:@"titleColumn"]) {
+		if(tableColumn identifier] isEqualToString:@"titleColumn"]) {
 			int indexToQueryForImage = row * 6 + 1;
 			[[NSImage *image = [array objectAtIndex:indexToQueryForImage];
 			image = [self shadowedImageWithImage:image];
@@ -159,14 +159,14 @@ First, my tableView gets the image to be displayed:
 	}
 }
 
-shadowedImageWithImage: is using the code General/JediKnil posted. The cell's code is as follows:
+shadowedImageWithImage: is using the code JediKnil posted. The cell's code is as follows:
     
 - (void)dealloc {
 	[image release];
 	[super dealloc];
 }
 
-- (void)setImage:(General/NSImage *)anImage
+- (void)setImage:(NSImage *)anImage
 {
 	if(anImage != image && anImage != nil)
 	{
@@ -175,32 +175,32 @@ shadowedImageWithImage: is using the code General/JediKnil posted. The cell's co
 	}
 }
 
-- (void)drawWithFrame:(General/NSRect)cellFrame inView:(General/NSView *)controlView
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
 	// Draw the thumbnail image
 	if (image != nil) {
-        General/NSSize	imageSize;
-        General/NSRect	imageFrame;
+        NSSize	imageSize;
+        NSRect	imageFrame;
 		
         imageSize = [image size];
-        General/NSDivideRect(cellFrame, &imageFrame, &cellFrame, 10 + imageSize.width, General/NSMinXEdge);
+        NSDivideRect(cellFrame, &imageFrame, &cellFrame, 10 + imageSize.width, NSMinXEdge);
         if ([self drawsBackground]) {
-            General/self backgroundColor] set];
+            self backgroundColor] set];
             [[NSRectFill(imageFrame);
         }
         imageFrame.origin.x += 3;
         imageFrame.size = imageSize;
-		imageFrame.origin.y = General/NSMinY(cellFrame) + (cellFrame.size.height - [image size].height)/2;
+		imageFrame.origin.y = NSMinY(cellFrame) + (cellFrame.size.height - [image size].height)/2;
 		
-		[image drawInRect:imageFrame fromRect:General/NSMakeRect(0, 0, [image size].width, [image size].height) operation:General/NSCompositeSourceOver fraction:1.0];
+		[image drawInRect:imageFrame fromRect:NSMakeRect(0, 0, [image size].width, [image size].height) operation:NSCompositeSourceOver fraction:1.0];
 	}
 	// Modify the cell frame to compensate for the image
-	cellFrame.origin.y = General/NSMinY(cellFrame) + cellFrame.size.height/4 + 2;
+	cellFrame.origin.y = NSMinY(cellFrame) + cellFrame.size.height/4 + 2;
 	
 	if([self isHighlighted])
-		[self setTextColor:General/[NSColor alternateSelectedControlTextColor]];
+		[self setTextColor:[NSColor alternateSelectedControlTextColor]];
 	else
-		[self setTextColor:General/[NSColor textColor]];
+		[self setTextColor:[NSColor textColor]];
 	// Draw the cell's text normally
     [super drawWithFrame:cellFrame inView:controlView];
 }
@@ -209,21 +209,21 @@ shadowedImageWithImage: is using the code General/JediKnil posted. The cell's co
 
 Thanks
 
--- General/MattBall
+-- MattBall
 
-*You do need to uncomment that line -- it's essential for a proper accessor method. I looked at my method again, and it's not doing the leaking - not on its own, at least. Make sure you are using     setImage: everywhere you want to change the     image ivar. And sorry for missing your post, anonymous. I was in a hurry and didn't take it in. --General/JediKnil*
+*You do need to uncomment that line -- it's essential for a proper accessor method. I looked at my method again, and it's not doing the leaking - not on its own, at least. Make sure you are using     setImage: everywhere you want to change the     image ivar. And sorry for missing your post, anonymous. I was in a hurry and didn't take it in. --JediKnil*
 
 ----
 
 I've uncommented it, and some people on the cocoa-dev mailing list and I are trying to figure out why it's crashing. You can catch up here: http://www.cocoabuilder.com/archive/message/cocoa/2005/7/11/141442
 
--- General/MattBall
+-- MattBall
 
 ----
 
 Ugh.  I just read through the first bunch of posts, and the people replying do not know what they're talking about. 
 
-*I should be offended, but I completely failed to solve this problem. Sorry, Matt! --General/JediKnil*  **On the apple list, knil. :-) And just the first few.**
+*I should be offended, but I completely failed to solve this problem. Sorry, Matt! --JediKnil*  **On the apple list, knil. :-) And just the first few.**
 
 Heh, not a problem :) You definitely helped me clean up my shadowedImageWithImage method, and I think I finally understand the deal with retain and copy. Hopefully I'll get this crash resolved soon. Thanks for your help thus far.
 

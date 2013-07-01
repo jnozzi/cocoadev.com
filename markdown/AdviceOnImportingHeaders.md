@@ -2,7 +2,7 @@
 
 I'm confused as to how to properly include all the headers in my project to make everybody happy.
 
-I have 2 classes that need to know about each other, but all hell breaks loose if they try to include each other's header files via #import. One is a simple application class based on General/NetSocket example, GhettoServer.  I put @class ClassName in it to make it happy but it produces warnings when it calls methods to that class. Importing the header will blow it up with parser errors.
+I have 2 classes that need to know about each other, but all hell breaks loose if they try to include each other's header files via #import. One is a simple application class based on NetSocket example, GhettoServer.  I put @class ClassName in it to make it happy but it produces warnings when it calls methods to that class. Importing the header will blow it up with parser errors.
 
 It seems to be that the PSApplication class imports a header, which imports another header, and eventually gets to another class that's doing @class PSApplication so it knows about PSApplication being defined.  
 
@@ -17,7 +17,7 @@ This way, the compiler knows that your instance variables are pointers to object
 
 Does that help?
 
---General/JeffDisher
+--JeffDisher
 
 ----
 
@@ -29,9 +29,9 @@ Well said Jeff, I total agree. NEVER include/import headers in your class header
 
 *By way of example*
 
-For my first project I would subclass General/NSButton and add code to make it bounce around the screen.  So far, everything has been going pretty well.  I can take a NIB, add a new General/NSButton (I use the round ones with no text), change the class to DButton, draw a connection to the General/NSView and compile and it will bounce like mad.  I know this is a vastly inefficient way to do this, but I thought it would be cool.
+For my first project I would subclass NSButton and add code to make it bounce around the screen.  So far, everything has been going pretty well.  I can take a NIB, add a new NSButton (I use the round ones with no text), change the class to DButton, draw a connection to the NSView and compile and it will bounce like mad.  I know this is a vastly inefficient way to do this, but I thought it would be cool.
 
-For the next part, I am writing a collision detector that keeps track of all the balls on the screen and lets them know if they need to bounce.  I have DButton register itself with collisionDetector at init.  Collision detector stores all the buttons in a General/NSMutableArray. DButton stores it's index as an int and passes it to this function:
+For the next part, I am writing a collision detector that keeps track of all the balls on the screen and lets them know if they need to bounce.  I have DButton register itself with collisionDetector at init.  Collision detector stores all the buttons in a NSMutableArray. DButton stores it's index as an int and passes it to this function:
 
     
  - (BOOL)checkCollision:(int)sender
@@ -43,7 +43,7 @@ For the next part, I am writing a collision detector that keeps track of all the
      
      // some variables removed for space
  
-     view1 = General/items objectAtIndex:sender] frame];
+     view1 = items objectAtIndex:sender] frame];
      
      for(i=0; i<[items count]; i++)
      {
@@ -80,11 +80,11 @@ I get errors at the part where I set m1 and m2, saying DButton does not respond 
 
 Please let me know what you think, or if you need more information.  Thanks in advance.
 
---General/DerekCramer
+--DerekCramer
 
 ----
 
-Only thing that comes to the top of my mind right now is that you either didn't #import "DButton.h", or you didn't declare -mass in DButton.h or possibly it either wasn't implemented in DButton.m or you misspelled the method name in either file. --General/KevinPerry 
+Only thing that comes to the top of my mind right now is that you either didn't #import "DButton.h", or you didn't declare -mass in DButton.h or possibly it either wasn't implemented in DButton.m or you misspelled the method name in either file. --KevinPerry 
 ----
 I thought that too, but I checked most of that, here is my header files:
 
@@ -102,7 +102,7 @@ I thought that too, but I checked most of that, here is my header files:
      double vx, vy;
      double mass;
      float g;
-     General/NSRect previous;
+     NSRect previous;
      double prevyv, prevxv;
      IBOutlet NSView *window;
      IBOutlet CollisionDetector *collisionDetector;
@@ -138,7 +138,7 @@ I thought that too, but I checked most of that, here is my header files:
 
 ----
 
-To be honest I am a little stumped on when I need to import and when I don't need to.  I assumed that because I     #import "DButton.h" in CollisionDetector.h, I don't need to import it in CollisionDetector.m. --General/DerekCramer
+To be honest I am a little stumped on when I need to import and when I don't need to.  I assumed that because I     #import "DButton.h" in CollisionDetector.h, I don't need to import it in CollisionDetector.m. --DerekCramer
 
 *From the code you posted above, you used     @class DButton;, not     #import "DButton.h". This is probably where you got confused.*
 
@@ -148,9 +148,9 @@ To help a little, @class is used to forward-declare a class. It says "This thing
 
 With classes, you almost always want to import only in the .m file and forward-declare in the header. This keeps weird import loop/collision problems from arising and saves you headache while simultaneously making your header files cleaner and warmer, too!
 
-Okay, seriously though, it's good practice. -- General/RobRix
+Okay, seriously though, it's good practice. -- RobRix
 
-*Another good practice is to declare a General/FormalProtocol that your class will use and just write your code around that; then you never need use the classname at all, and your code becomes more flexible if e.g. you want to reuse it with a similar class. Experience (and some thought) will help you decide when to use this approach. (If you need to create an object, a General/FormalProtocol won't help you.) -- General/KritTer*
+*Another good practice is to declare a FormalProtocol that your class will use and just write your code around that; then you never need use the classname at all, and your code becomes more flexible if e.g. you want to reuse it with a similar class. Experience (and some thought) will help you decide when to use this approach. (If you need to create an object, a FormalProtocol won't help you.) -- KritTer*
 
 ----
 
@@ -200,7 +200,7 @@ Is there any way I can strip down the warning messages so that only the ones I w
 Although you are not #importing the classes in the .h file, you still must #import the classes into both .m files. This will shut up the warnings and also prevent some other potential problems.
 
 ----
-I've got a similar problem, actually. I've got a subclassed General/NSSplitView, named "General/FTPSplitView". I have a few methods in there (mainly restoreDefault: and saveDefault) for maintaining the splitview position. In the class I call from, AppController, in my main file (AppController.m), I call     [SplitView restoreDefault:@"MyDefault"]; , and even with #import "FTPSplitView.h" in the .m file, it still gives me "General/NSSplitView may not respond to -restoreDefault:" 
+I've got a similar problem, actually. I've got a subclassed NSSplitView, named "FTPSplitView". I have a few methods in there (mainly restoreDefault: and saveDefault) for maintaining the splitview position. In the class I call from, AppController, in my main file (AppController.m), I call     [SplitView restoreDefault:@"MyDefault"]; , and even with #import "FTPSplitView.h" in the .m file, it still gives me "NSSplitView may not respond to -restoreDefault:" 
 
 The actual execution works perfectly, just those silly warnings...
 
@@ -210,12 +210,12 @@ Any ideas?
 
 ----
 
-This has nothing to do with headers. Read the error message again. The compiler things the split view is an General/NSSplitView, not an General/FTPSplitView. This means that the type of your variable is incorrect. Fix the type and your warnings should go away.
+This has nothing to do with headers. Read the error message again. The compiler things the split view is an NSSplitView, not an FTPSplitView. This means that the type of your variable is incorrect. Fix the type and your warnings should go away.
 
 
 ----
 
-Thanks! I totally forgot to change the in my AppController header file to FTPSplitView, as it had been there as General/NSSplitView. Thanks for the heads up.
+Thanks! I totally forgot to change the in my AppController header file to FTPSplitView, as it had been there as NSSplitView. Thanks for the heads up.
 
 ----
 As you can use @class A and tell the compiler that 'there is a class A'  and avoid including headers, is there any way to forward declare the methods to remove the warnings?

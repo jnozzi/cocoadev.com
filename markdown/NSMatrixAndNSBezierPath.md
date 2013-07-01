@@ -5,23 +5,23 @@ I get funky errors when I'm trying to compile a screensaver. Here is the content
     switch (c) {
     case 0:
         
-        x = General/SSRandomIntBetween(0,a);
-        y = General/SSRandomIntBetween(0,b);
+        x = SSRandomIntBetween(0,a);
+        y = SSRandomIntBetween(0,b);
         
         if (matrice[a][b] = 0) {
             c = 1;
-            dx = General/SSRandomIntBetween(-1,2);
-            if (x == 0) dy = General/SSRandomIntBetween(0,1)*2-1;
+            dx = SSRandomIntBetween(-1,2);
+            if (x == 0) dy = SSRandomIntBetween(0,1)*2-1;
             if ((x == 1) || (x == -1)) dy = 0;
-            if (x == 2) { x = 0; dy = General/SSRandomIntBetween(0,1)*2-1; }
+            if (x == 2) { x = 0; dy = SSRandomIntBetween(0,1)*2-1; }
             
         }
         else break;
     
     case 1:
         
-        General/NSBezierPath *p = General/[NSBezierPath bezierPath];    // This is the supposedly wrong line
-        p = General/[NSBezierPath bezierPath];
+        NSBezierPath *p = [NSBezierPath bezierPath];    // This is the supposedly wrong line
+        p = [NSBezierPath bezierPath];
         [p moveToPoint:matrice[x][y]];
         [p lineToPoint:matrice[x+dx][y+dy]];
         
@@ -46,7 +46,7 @@ And my second problem is about regular C matrices. I want to define my matrix wi
 ----
 Hey Trax,
 
-I think you might want to read up on how to bracket switch statements and look at the documentation for General/NSPoint, General/NSRect and General/NSSize.
+I think you might want to read up on how to bracket switch statements and look at the documentation for NSPoint, NSRect and NSSize.
 
     
 -(void)animateOneFrame
@@ -54,15 +54,15 @@ I think you might want to read up on how to bracket switch statements and look a
     switch (c) {
         case 0: {
             
-            x = General/SSRandomIntBetween(0,a);
-            y = General/SSRandomIntBetween(0,b);
+            x = SSRandomIntBetween(0,a);
+            y = SSRandomIntBetween(0,b);
             
             if (matrice[a][b] = 0) {
                 c = 1;
-                dx = General/SSRandomIntBetween(-1,2);
-                if (x == 0) dy = General/SSRandomIntBetween(0,1)*2-1;
+                dx = SSRandomIntBetween(-1,2);
+                if (x == 0) dy = SSRandomIntBetween(0,1)*2-1;
                 if ((x == 1) || (x == -1)) dy = 0;
-                if (x == 2) { x = 0; dy = General/SSRandomIntBetween(0,1)*2-1; }
+                if (x == 2) { x = 0; dy = SSRandomIntBetween(0,1)*2-1; }
                 
             }
             else break;
@@ -73,20 +73,20 @@ I think you might want to read up on how to bracket switch statements and look a
             
 
 
-            General/NSBezierPath *p;    
+            NSBezierPath *p;    
 
            //  you were assigning a path twice, but that probably wasn't 
            // causing the parse error, I think it was how your brackets were done 
            // for the entire switch statement
 
-            p = General/[NSBezierPath bezierPath];
+            p = [NSBezierPath bezierPath];
             
-            // part of your problem is that moveToPoint:(General/NSPoint) takes a struct of type General/NSPoint
+            // part of your problem is that moveToPoint:(NSPoint) takes a struct of type NSPoint
             //
             //	typedef struct _NSPoint {
             //	    float x;
             //	    float y;
-            //	} General/NSPoint;
+            //	} NSPoint;
             // 
             // I assume that matrice is some scaler value, but you want to 
             // draw a line based on two dimensional cordinates so I have
@@ -94,8 +94,8 @@ I think you might want to read up on how to bracket switch statements and look a
             // Here's a blind guess on what you might be trying to do
             //
             
-            [p moveToPoint:General/NSMakePoint(matrice[x][y], matrice[x][y])];
-            [p lineToPoint:General/NSMakePoint(matrice[dx][dy], matrice[dx][dy])];
+            [p moveToPoint:NSMakePoint(matrice[x][y], matrice[x][y])];
+            [p lineToPoint:NSMakePoint(matrice[dx][dy], matrice[dx][dy])];
             
             x += dx;
             y += dy;
@@ -109,7 +109,7 @@ I think you might want to read up on how to bracket switch statements and look a
 
 ----
 
-oh, I guess matrice could be a 2D array of General/NSPoint's. Is it?
+oh, I guess matrice could be a 2D array of NSPoint's. Is it?
 
 ----
 
@@ -117,8 +117,8 @@ There's no particular reason that you need to put all the code for a particular 
 
 PS.  And please reload a page before you re-edit it to make sure you don't delete other people's replies.
 
-PPS.  As for the second question, are you referring to creating a variable size array at runtime?  Because there's a gcc extension that allows you to dynamically specify the size of an array that I assume would work for multidimensional arrays as well.  See  file:///Developer/Documentation/General/DeveloperTools/gcc3/gcc/Variable-Length.html for details.
+PPS.  As for the second question, are you referring to creating a variable size array at runtime?  Because there's a gcc extension that allows you to dynamically specify the size of an array that I assume would work for multidimensional arrays as well.  See  file:///Developer/Documentation/DeveloperTools/gcc3/gcc/Variable-Length.html for details.
 
-*I would have thought the blocks were there to make the line     General/NSBezierPath *p; valid General/ObjC - declarations must occur only at the start of blocks.*
+*I would have thought the blocks were there to make the line     NSBezierPath *p; valid ObjC - declarations must occur only at the start of blocks.*
 
-There is a little discussion of this on the General/GCCThreePointThree.  The long and short of it is that the newest C standard, C99, finally allows variable declarations to be mixed freely with other expressions, and that gcc 3.1 and 3.3 support this idiom, while 2.95 does not.  I haven't used it for a while, but if memory serves, 2.95 did not allow local variables to be declared within arbitrary blocks but only at the start of the function.  -- Bo
+There is a little discussion of this on the GCCThreePointThree.  The long and short of it is that the newest C standard, C99, finally allows variable declarations to be mixed freely with other expressions, and that gcc 3.1 and 3.3 support this idiom, while 2.95 does not.  I haven't used it for a while, but if memory serves, 2.95 did not allow local variables to be declared within arbitrary blocks but only at the start of the function.  -- Bo

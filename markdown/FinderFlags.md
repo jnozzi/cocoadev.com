@@ -5,46 +5,46 @@ Same way you do it in a carbon application.
 Yea, I don't know how to do it there either :)
 ----
 
-Well I havent given up on this and General/KengoTsuruzono was kind enough to give me the following code which I have found to only work on files. I tried yanking some code from an apple sample code application too but I got the same file not found error. I am totally lost, and wishing I knew carbon. I spent several hours reading through and trying various Carbon API's to no avail. Any way here is that code I was talking about:
+Well I havent given up on this and KengoTsuruzono was kind enough to give me the following code which I have found to only work on files. I tried yanking some code from an apple sample code application too but I got the same file not found error. I am totally lost, and wishing I knew carbon. I spent several hours reading through and trying various Carbon API's to no avail. Any way here is that code I was talking about:
 
     
 #import <Cocoa/Cocoa.h>
 #import <Carbon/Carbon.h>
 
-General/OSErr General/FilePathToFSSpec( General/NSString* asFilePath, General/FSSpec* apSpec )
+OSErr FilePathToFSSpec( NSString* asFilePath, FSSpec* apSpec )
 {
 
-   General/CFURLRef cfUrl = General/CFURLCreateWithFileSystemPath( kCFAllocatorDefault,
-               (General/CFStringRef) asFilePath, kCFURLPOSIXPathStyle, false );
-   General/FSRef  fileRef;
-   General/OSErr  err = noErr;
+   CFURLRef cfUrl = CFURLCreateWithFileSystemPath( kCFAllocatorDefault,
+               (CFStringRef) asFilePath, kCFURLPOSIXPathStyle, false );
+   FSRef  fileRef;
+   OSErr  err = noErr;
 
-   if ( General/CFURLGetFSRef( cfUrl, &fileRef ) ) {
-     err = General/FSGetCatalogInfo( &fileRef, kFSCatInfoNone, NULL,
+   if ( CFURLGetFSRef( cfUrl, &fileRef ) ) {
+     err = FSGetCatalogInfo( &fileRef, kFSCatInfoNone, NULL,
            NULL, apSpec, NULL );
 
      if ( err ) return( err );
    }
    
-   General/CFRelease( cfUrl );
+   CFRelease( cfUrl );
    return( err );
 
 }
 
 
-General/OSErr General/SetFileVisibility( General/NSString* asFilePath, BOOL abIsVisible ) {
+OSErr SetFileVisibility( NSString* asFilePath, BOOL abIsVisible ) {
    
-    General/FSSpec  spec;
-    General/FInfo   fInfo;
-    General/OSErr   err;
+    FSSpec  spec;
+    FInfo   fInfo;
+    OSErr   err;
    
-    ///// Get General/FSSpec
+    ///// Get FSSpec
 
-    err = General/FilePathToFSSpec( asFilePath, &spec );
+    err = FilePathToFSSpec( asFilePath, &spec );
    
     ///// Get Finder Info
 
-    err = General/FSpGetFInfo( &spec, &fInfo );
+    err = FSpGetFInfo( &spec, &fInfo );
    
     ///// Change Finder Info
 
@@ -53,7 +53,7 @@ General/OSErr General/SetFileVisibility( General/NSString* asFilePath, BOOL abIs
 
     ///// Set Finder Info
 
-    err = General/FSpSetFInfo( &spec, &fInfo );
+    err = FSpSetFInfo( &spec, &fInfo );
 
     return( err );
 }
@@ -62,9 +62,9 @@ General/OSErr General/SetFileVisibility( General/NSString* asFilePath, BOOL abIs
 int main(int argc, const char *argv[])
 {
 
-    General/NSAutoreleasePool *arp = [ [ General/NSAutoreleasePool alloc ] init ];
+    NSAutoreleasePool *arp = [ [ NSAutoreleasePool alloc ] init ];
    
-    General/SetFileVisibility( @"/Users/xxx/filePath", YES );
+    SetFileVisibility( @"/Users/xxx/filePath", YES );
    
     [ arp release ];
 
@@ -72,23 +72,23 @@ int main(int argc, const char *argv[])
 }
 
 ----
-I think the reason you can only do it to a file is in how the General/FSSpec is obtained, I know the awseome General/IconFamily class can get the proper references to a folder, perhaps checking their will be useful.
+I think the reason you can only do it to a file is in how the FSSpec is obtained, I know the awseome IconFamily class can get the proper references to a folder, perhaps checking their will be useful.
 
 ----
 Here's an additional routine which gets the file visibility. -- Seth
 
     
-General/OSErr General/GetFileVisibility(General/NSString* asFilePath, BOOL * isVisible)
+OSErr GetFileVisibility(NSString* asFilePath, BOOL * isVisible)
 {
-	General/FSSpec  spec;
-	General/FInfo   fInfo;
-	General/OSErr   err;
+	FSSpec  spec;
+	FInfo   fInfo;
+	OSErr   err;
 	
-	///// Get General/FSSpec
-	err = General/FilePathToFSSpec( asFilePath, &spec );
+	///// Get FSSpec
+	err = FilePathToFSSpec( asFilePath, &spec );
 	
 	///// Get Finder Info
-	err = General/FSpGetFInfo(&spec, &fInfo);
+	err = FSpGetFInfo(&spec, &fInfo);
 	
 	///// Change Finder Info
 	if (fInfo.fdFlags & kIsInvisible)
@@ -114,27 +114,27 @@ Just had to do something similar myself. Here is some 10.X compatible code that 
     
 typedef enum { HIDDEN, VISIBLE, UNKNOWN } Visibility;
 
--(bool)setFile:(General/NSString*)filepath visibility:(Visibility)visibility; {
+-(bool)setFile:(NSString*)filepath visibility:(Visibility)visibility; {
 	if(visibility == UNKNOWN) return NO;
-	General/FSRef pathRef;
-	General/FSCatalogInfo catalogInfo;
-	if(General/FSPathMakeRef((const UInt8*)[filepath UTF8String], &pathRef, NULL) != 0) {return NO;}
-	if(General/FSGetCatalogInfo(&pathRef, kFSCatInfoFinderInfo, &catalogInfo, NULL, NULL, NULL) != 0) {return NO;} 
+	FSRef pathRef;
+	FSCatalogInfo catalogInfo;
+	if(FSPathMakeRef((const UInt8*)[filepath UTF8String], &pathRef, NULL) != 0) {return NO;}
+	if(FSGetCatalogInfo(&pathRef, kFSCatInfoFinderInfo, &catalogInfo, NULL, NULL, NULL) != 0) {return NO;} 
 	
 	// Set the flag based on user input
-	General/FileInfo *fileInfo = (General/FileInfo*)&catalogInfo.finderInfo;
+	FileInfo *fileInfo = (FileInfo*)&catalogInfo.finderInfo;
 	if(visibility == VISIBLE && (kIsInvisible & fileInfo->finderFlags) == kIsInvisible) { fileInfo->finderFlags = (kIsInvisible ^ fileInfo->finderFlags); }
 	else if(visibility == HIDDEN) { fileInfo->finderFlags = (kIsInvisible | fileInfo->finderFlags); }
 
-	if(General/FSSetCatalogInfo (&pathRef, kFSCatInfoFinderInfo, &catalogInfo) != 0) { return NO; }
+	if(FSSetCatalogInfo (&pathRef, kFSCatInfoFinderInfo, &catalogInfo) != 0) { return NO; }
 	return YES;
 }
--(Visibility)fileVisibility:(General/NSString*)filepath; {
-	General/FSRef pathRef;
-	General/FSCatalogInfo catalogInfo;
-	if(General/FSPathMakeRef((const UInt8*)[filepath UTF8String], &pathRef, NULL) != 0) {return UNKNOWN;}
-	if(General/FSGetCatalogInfo(&pathRef, kFSCatInfoFinderInfo, &catalogInfo, NULL, NULL, NULL) != 0) {return UNKNOWN;} 	
-	General/FileInfo *fileInfo = (General/FileInfo*)&catalogInfo.finderInfo;
+-(Visibility)fileVisibility:(NSString*)filepath; {
+	FSRef pathRef;
+	FSCatalogInfo catalogInfo;
+	if(FSPathMakeRef((const UInt8*)[filepath UTF8String], &pathRef, NULL) != 0) {return UNKNOWN;}
+	if(FSGetCatalogInfo(&pathRef, kFSCatInfoFinderInfo, &catalogInfo, NULL, NULL, NULL) != 0) {return UNKNOWN;} 	
+	FileInfo *fileInfo = (FileInfo*)&catalogInfo.finderInfo;
 	if((kIsInvisible & fileInfo->finderFlags) == kIsInvisible) {return HIDDEN;}
 	return VISIBLE;
 }

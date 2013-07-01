@@ -10,13 +10,13 @@ Use of the "*" **pointer** operator.
 
 In declaration code like this:
 
-General/NSColor *color;
+NSColor *color;
 
-the * operator is indicates that the variable "color" is a pointer to an General/NSColor object. See also General/HowToDeclareAVariable
+the * operator is indicates that the variable "color" is a pointer to an NSColor object. See also HowToDeclareAVariable
 
 The pointer operator is also used to specify arguments that are pointers, e.g., in code like this:
 
--(void) mouseUP:(General/NSEvent *)event;
+-(void) mouseUP:(NSEvent *)event;
 
 ----
 
@@ -41,7 +41,7 @@ In C, we use the "*" character to define a pointer-to-variable type. The followi
         int *pointer;
 
 In a list of several variables, each pointer variable needs its own pointer operator; if you do this:
-    General/NSObject* myObject1,myObject2:// one's a pointer, one's not instead of     General/NSObject *myObject1,*myObject2;// probably what you wanted
+    NSObject* myObject1,myObject2:// one's a pointer, one's not instead of     NSObject *myObject1,*myObject2;// probably what you wanted
 
 When you see something like this: (void **)....
 
@@ -110,7 +110,7 @@ So now you basically understand what pointer variables are and how they work. If
 
 The most basic way pointers are used in C is to pass values into functions "by reference". C functions *always* pass variables around "by value". That means when you pass a variable into a function, that function can do whatever it likes with that variable and the client's copy of the variable will not be changed. For example:
 
-    int General/AddTwoNumbers(int a, int b) 
+    int AddTwoNumbers(int a, int b) 
 {
     a = a + b;
     return a;
@@ -120,7 +120,7 @@ int main (void)
 {
     int a = 1, b = 2, c = 0;
     
-    c = General/AddTwoNumbers(a, b);
+    c = AddTwoNumbers(a, b);
     
     printf("a=%d\tb=%d\tc=%d\n", a, b, c);
 
@@ -132,11 +132,11 @@ The previous code segment returns:
 
     a=1  b=2  c=3
 
-Since all C parameters are passed "by value", the function General/AddTwoNumbers has its own copies of the variables a and b. It can change its own copy of a without changing the copy of a defined in main().
+Since all C parameters are passed "by value", the function AddTwoNumbers has its own copies of the variables a and b. It can change its own copy of a without changing the copy of a defined in main().
 
 We can take advantage of pointers to get around C's "pass by value" behavior for function arguments and effectively pass a value "by reference". When we pass a variable by reference it means "refer to the original variable, don't make your own copy." In a sense pass-by-value continues, it's just the value of the pointer (but then you need to dereference it when appropriate)
 
-See also General/WhatToKnowAboutCFunctions, and maybe General/PassAnArrayFromAFunction
+See also WhatToKnowAboutCFunctions, and maybe PassAnArrayFromAFunction
 
 *usually you don't use pointers to ints or anything that fits in 4 bytes, except in pass by reference.
 *Sometimes you pass by reference, where you tell a function or method where to put the result, using one of the arguments.
@@ -159,19 +159,19 @@ int main (void)
 }
 
 
-This example displays the same results as the last example, but the mechanism is different. Rather than returning our sum in the return value of addTwoNumbers, we actually modify main's copy of the "c" variable from within addTwoNumbers. The third parameter to addTwoNumbers is a pointer to an integer variable. We can dereference the variable on the left side of our assignment expression to actually change the contents of the address pointed to by the pointer: "add a and b and store the resulting value in the variable pointed to by 'result'". Since we pass the address of main's "c" variable into General/AddTwoNumbers, the "result" variable points to main's "c" variable.
+This example displays the same results as the last example, but the mechanism is different. Rather than returning our sum in the return value of addTwoNumbers, we actually modify main's copy of the "c" variable from within addTwoNumbers. The third parameter to addTwoNumbers is a pointer to an integer variable. We can dereference the variable on the left side of our assignment expression to actually change the contents of the address pointed to by the pointer: "add a and b and store the resulting value in the variable pointed to by 'result'". Since we pass the address of main's "c" variable into AddTwoNumbers, the "result" variable points to main's "c" variable.
 
-General/ObjC programmers use this mechanism all the time when passing objects to other objects. General/NSMutableDictionary's "setObject:forKey:" method is defined as:
+ObjC programmers use this mechanism all the time when passing objects to other objects. NSMutableDictionary's "setObject:forKey:" method is defined as:
 
-    - (void)setObject:(General/NSObject*)object forKey:(General/NSString*)key;
+    - (void)setObject:(NSObject*)object forKey:(NSString*)key;
 
-This allows the General/NSMutableDictionary instance to access the "object" General/NSObject and "value" General/NSString instances even though they were created somewhere else, in some other function or method.
+This allows the NSMutableDictionary instance to access the "object" NSObject and "value" NSString instances even though they were created somewhere else, in some other function or method.
 
-The way *I* always think of the parentheses is as a cast. When you are using     (General/NSEvent *)event, you are in effect telling the compiler to cast the event argument to an instance of General/NSEvent (in this case also a pointer-to-Cocoa-object), same as     eventVar = (General/NSEvent *)argument;. Note that object casts do not really exist in the weakly-typed, dynamic language of General/ObjC; at runtime, all objects are treated as id's. --General/JediKnil
+The way *I* always think of the parentheses is as a cast. When you are using     (NSEvent *)event, you are in effect telling the compiler to cast the event argument to an instance of NSEvent (in this case also a pointer-to-Cocoa-object), same as     eventVar = (NSEvent *)argument;. Note that object casts do not really exist in the weakly-typed, dynamic language of ObjC; at runtime, all objects are treated as id's. --JediKnil
 
 Pointers are also used to pass C arrays and C strings into functions. That's described elsewhere:
 
-C programmers also use pointers to create General/AbstractDataStructures like General/LinkedList, General/BinaryTree, and General/HashTable. Objective C objects are fundamentally General/AbstractDataStructures, for that matter. But this falls outside of the scope of this tutorial. 
+C programmers also use pointers to create AbstractDataStructures like LinkedList, BinaryTree, and HashTable. Objective C objects are fundamentally AbstractDataStructures, for that matter. But this falls outside of the scope of this tutorial. 
 
 **Dynamic memory managment in C: malloc() and free()**
 
@@ -197,16 +197,16 @@ Here we reserve enough memory to hold an integer variable and assign the address
 
 something bad might happen to our program. You see, we are trying to read the contents of memory that has already been destroyed. We don't know what that value might be. Maybe it still points at our old value. Maybe it doesn't. This is where pointers start to get really dangerous.
 
-Anyway, why would you want to create memory? Fundamentally, this is the basis for how all Objective C objects are created: +General/[NSObject alloc] basically creates memory on the fly to contain your object. This is also the basis for the aforementioned General/AbstractDataStructures. But while interesting, I'll leave a discussion on malloc() and free() to other books and websites since Objective C has other mechanisms for doing this, so see also:
+Anyway, why would you want to create memory? Fundamentally, this is the basis for how all Objective C objects are created: +[NSObject alloc] basically creates memory on the fly to contain your object. This is also the basis for the aforementioned AbstractDataStructures. But while interesting, I'll leave a discussion on malloc() and free() to other books and websites since Objective C has other mechanisms for doing this, so see also:
 
-C allows you to get the address of a function and assign it to a variable. This allows you to have one piece of code call another piece of code on the fly. These are often called "callbacks", since they allow functions to "call back" to the calling code. CF uses C callbacks in a variety of places, such as for managing object creation (General/CFAllocator). Deep down, function pointers are at the heart of Objective C's dynamic method dispatching: "Find the C function with the name "setObject:forKey:" and jump into it." C callbacks are pretty cool, but I won't go into them here, since Objective C has other mechanisms for doing this.
+C allows you to get the address of a function and assign it to a variable. This allows you to have one piece of code call another piece of code on the fly. These are often called "callbacks", since they allow functions to "call back" to the calling code. CF uses C callbacks in a variety of places, such as for managing object creation (CFAllocator). Deep down, function pointers are at the heart of Objective C's dynamic method dispatching: "Find the C function with the name "setObject:forKey:" and jump into it." C callbacks are pretty cool, but I won't go into them here, since Objective C has other mechanisms for doing this.
 
-You'll find a bunch of "Introduction to Computer Science" classes on the web that have interactive labs for teaching pointers. Go read them. -- General/MikeTrent
+You'll find a bunch of "Introduction to Computer Science" classes on the web that have interactive labs for teaching pointers. Go read them. -- MikeTrent
 
 ----
 
 *99% of the time use this to define an object
-    General/NSObject *myObject (= ...);
+    NSObject *myObject (= ...);
 
 and this to use it:
     myObject

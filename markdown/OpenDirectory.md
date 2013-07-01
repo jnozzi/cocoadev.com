@@ -1,10 +1,10 @@
 
 
-General/OpenDirectory is Apple's directory and authentication services architecture. It is designed to enable easy integration with a wide variety of technologies such as General/LdAp, General/NetInfo, General/ActiveDirectory, and more. The Directory Services API provides an abstraction layer which can be used to access these various systems, which are all implemented as plug-ins to the framework.
+OpenDirectory is Apple's directory and authentication services architecture. It is designed to enable easy integration with a wide variety of technologies such as LdAp, NetInfo, ActiveDirectory, and more. The Directory Services API provides an abstraction layer which can be used to access these various systems, which are all implemented as plug-ins to the framework.
 
 See http://www.apple.com/server/macosx/open_directory.html for a more in-depth overview from the user/administrator point of view.
 
-General/OpenDirectory is part of Darwin and open-source: http://developer.apple.com/darwin/projects/opendirectory/
+OpenDirectory is part of Darwin and open-source: http://developer.apple.com/darwin/projects/opendirectory/
 
 ----
 

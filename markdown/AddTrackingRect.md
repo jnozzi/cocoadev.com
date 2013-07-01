@@ -3,7 +3,7 @@ Here's the basic steps to add a tracking rect to a custom view.     boundsTracki
     
  - (void)updateBoundsTrackingTag {
      [self removeTrackingRect:boundsTrackingTag];
-     NSPoint loc = [self convertPoint:General/self window] mouseLocationOutsideOfEventStream] fromView:nil];
+     NSPoint loc = [self convertPoint:self window] mouseLocationOutsideOfEventStream] fromView:nil];
      BOOL inside = ([self hitTest:loc] == self);
      if (inside) [[self window] makeFirstResponder:self]; // if the view accepts first responder status
      boundsTrackingTag = [self addTrackingRect:[self visibleRect] owner:self userData:nil assumeInside:inside];
@@ -21,7 +21,7 @@ Here's the basic steps to add a tracking rect to a custom view.     boundsTracki
  }
 
 
-Now the important cleanup method. If you forget to remove tracking tags before the view is removed from its window, [[NSApp could send events to this view after it has been deallocated. The source of this type of bug is hard to find. The stack trace will only show that General/NSApp is trying to send an event, with no reference to the the view the event is trying to send the event to, because the view has been deallocated. A good place to do tracking tag cleanup is in the     viewWillMoveToWindow: method.
+Now the important cleanup method. If you forget to remove tracking tags before the view is removed from its window, [[NSApp could send events to this view after it has been deallocated. The source of this type of bug is hard to find. The stack trace will only show that NSApp is trying to send an event, with no reference to the the view the event is trying to send the event to, because the view has been deallocated. A good place to do tracking tag cleanup is in the     viewWillMoveToWindow: method.
 
     
  - (void)removeTrackingTags {
@@ -49,7 +49,7 @@ If you ask me, addTrackingRect: is fundamentally broken, and should not exist. T
  
  -(void)setTrackingRect
  {
- 	NSPoint loc=[self convertPoint:General/self window] mouseLocationOutsideOfEventStream] fromView:nil];
+ 	NSPoint loc=[self convertPoint:self window] mouseLocationOutsideOfEventStream] fromView:nil];
  	BOOL inside=([self hitTest:loc]==self);
  	if(inside) [[self window] makeFirstResponder:self];
  	trackingtag=[self addTrackingRect:[self visibleRect] owner:self userData:nil assumeInside:inside];
@@ -83,11 +83,11 @@ If you ask me, addTrackingRect: is fundamentally broken, and should not exist. T
 ----
 That seems somewhat dangerous to me.. now you're resetting tracking rects way more often than is necessary.
 
-You could try using -[NSView setPostsFrameChangedNotifications:] and General/NSViewFrameDidChangeNotification on your views superviews.  You'd have to do some work to keep the list of observed views up to date, but it seems doable.
+You could try using -[NSView setPostsFrameChangedNotifications:] and NSViewFrameDidChangeNotification on your views superviews.  You'd have to do some work to keep the list of observed views up to date, but it seems doable.
 
 
 ----
-Sure, it does it quite often (although not all THAT often if your control is not animated), but I don't see how that would be dangerous. Trying to keep track of superviews seems nearly impossible - you'd have to track how all superviews are added and removed from views, too. I'd say the main problem is that the tracking rectangle system is fundamentally broken and nearly useless. -- General/WAHa
+Sure, it does it quite often (although not all THAT often if your control is not animated), but I don't see how that would be dangerous. Trying to keep track of superviews seems nearly impossible - you'd have to track how all superviews are added and removed from views, too. I'd say the main problem is that the tracking rectangle system is fundamentally broken and nearly useless. -- WAHa
 
 ----
 
@@ -102,10 +102,10 @@ The best place to update tracking rects is in the     resetCursorRects method.
  }
 
 
-This General/NSView instance method will get called after the position of a view is changed. You are correct in pointing out that my sample code was not complete. The main point I was trying to share was the importance of cleaning up tracking rects from views that are removed from windows.  --zootbobbalu
+This NSView instance method will get called after the position of a view is changed. You are correct in pointing out that my sample code was not complete. The main point I was trying to share was the importance of cleaning up tracking rects from views that are removed from windows.  --zootbobbalu
 ----
 
-Oh, that's a much nicer kludge.      resetCursorRects was obviously added to deal with the tracking rectangle system being broken, but it sure would have been nice if it was a bit more general. Still, that should work. -- General/WAHa
+Oh, that's a much nicer kludge.      resetCursorRects was obviously added to deal with the tracking rectangle system being broken, but it sure would have been nice if it was a bit more general. Still, that should work. -- WAHa
 
 ----
 
@@ -132,4 +132,4 @@ No prob, I did notice a problem in your tracking tag cleanup code.
 
 ----
 
-All right, changed the code to use that. -- General/WAHa
+All right, changed the code to use that. -- WAHa

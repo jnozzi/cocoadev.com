@@ -1,9 +1,9 @@
 Does anyone know the quickest way to zero out a large buffer (1MB+). 
 
-The following code takes about 4 milliseconds to zero out 1MB on a 450MHz General/GeeFour.
+The following code takes about 4 milliseconds to zero out 1MB on a 450MHz GeeFour.
 
     
-id buffer=General/[NSMutableData dataWithLength:262144*4];
+id buffer=[NSMutableData dataWithLength:262144*4];
 int *p;  // <<--- this should be int * d; right ?  oops typo!!
 p=[buffer bytes];
 
@@ -16,7 +16,7 @@ for (i=0;i<262144;i+=16) {
 this is a little faster, about 2.5 milliseconds
 
     
-id buffer=General/[NSMutableData dataWithLength:262144*4];
+id buffer=[NSMutableData dataWithLength:262144*4];
 double *d;
 d=[buffer bytes];
 
@@ -28,7 +28,7 @@ for (i=0;i<131072;i+=16) {
 
 Seems like there should be some sys call that can do this for you much faster. Anyone know of one?
 
-BTW, I know that General/NSMutableData provides you with a buffer filled with zeros, but this buffer is goin to be reused a bunch.
+BTW, I know that NSMutableData provides you with a buffer filled with zeros, but this buffer is goin to be reused a bunch.
 
 ----
 
@@ -44,4 +44,4 @@ memset is right at 1.5 also, but since method calls take on the order of microse
 
 ----
 
-Yes, memset is the way to go on Mac OS X. I have been told memset (like all mem* functions) has both been optimized for various architectures, and the compiler can optimize the code around the callsite. (I'll leave the details to a Darwin expert) I'll bet you'll find General/NSMutableData is actually calling memset on your behalf, which is why performance is the same ;-) -- General/MikeTrent
+Yes, memset is the way to go on Mac OS X. I have been told memset (like all mem* functions) has both been optimized for various architectures, and the compiler can optimize the code around the callsite. (I'll leave the details to a Darwin expert) I'll bet you'll find NSMutableData is actually calling memset on your behalf, which is why performance is the same ;-) -- MikeTrent

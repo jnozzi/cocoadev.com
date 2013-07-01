@@ -20,16 +20,16 @@ So question 1: Where best to begin?
 ---- 
 As with everything, the best place to begin is the documentation.
 
-http://developer.apple.com/documentation/General/UserExperience/Conceptual/General/OSXHIGuidelines/General/XHIGUserInput/chapter_11_section_3.html#//apple_ref/doc/uid/TP30000361-CHDIGFBH
+http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/XHIGUserInput/chapter_11_section_3.html#//apple_ref/doc/uid/TP30000361-CHDIGFBH
 
 ----
 
 With respect, it does not appear that you have read the above thoroughly (at all?). The document you referenced has nothing to do with the problem described above, but merely describes the best practice for what shortcuts to assign and what not to assign. Referencing the HIG in response to a technical 'how-to' question having nothing to do with design makes no sense whatsoever. The word 'programmable' appears in this page's title as well as in four other places in the body above your comment ... I believe I've made it clear what I'm looking for.
 
-Incidentally, I've also found some information by searching for the term "key bindings", as they're called in General/XCode's preferences. There are several Cocoa documents that reference input managers, etc. This is a completely different approach from the open-source methods I've seen and frankly looks quite clunky (creating a ~/Library/General/KeyBindings/General/DefaultKeyBinding.dict file??) by comparison. By contrast, the open-source projects I've seen seem to capture and store key / modifier codes (but this has the weaknesses I outlined above). Does anyone have any suggestions as to which approach is better? If it turns out the documentation's way is the best way, does anyone know of a more detailed text outlining the best way to manage the General/DefaultKeyBinding.dict file / data?
+Incidentally, I've also found some information by searching for the term "key bindings", as they're called in XCode's preferences. There are several Cocoa documents that reference input managers, etc. This is a completely different approach from the open-source methods I've seen and frankly looks quite clunky (creating a ~/Library/KeyBindings/DefaultKeyBinding.dict file??) by comparison. By contrast, the open-source projects I've seen seem to capture and store key / modifier codes (but this has the weaknesses I outlined above). Does anyone have any suggestions as to which approach is better? If it turns out the documentation's way is the best way, does anyone know of a more detailed text outlining the best way to manage the DefaultKeyBinding.dict file / data?
 
 ----
 
 This may do what you want. I love it:
 
-General/ShortcutRecorder [http://code.google.com/p/shortcutrecorder/]
+ShortcutRecorder [http://code.google.com/p/shortcutrecorder/]

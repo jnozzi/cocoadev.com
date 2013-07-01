@@ -5,9 +5,9 @@ I was working on a program like Pixen, but just to find the mouse's X and Y. I w
 #import <Cocoa/Cocoa.h>
 
 
-@interface General/MouseMovement : General/NSObject {
-	General/NSPoint oldPos;
-	General/NSThread *sensorThread;
+@interface MouseMovement : NSObject {
+	NSPoint oldPos;
+	NSThread *sensorThread;
 	SEL targetCallSelector;
 	id target;
 }
@@ -19,16 +19,16 @@ I was working on a program like Pixen, but just to find the mouse's X and Y. I w
 - (void)stopScanning;
 @end
 
-@interface General/MouseMovement()
+@interface MouseMovement()
 - (void)mouseSensing: (id)param;
 @end
 
 
-@implementation General/MouseMovement
+@implementation MouseMovement
 
 - (id)init
 {
-	[self initWithTarget: nil selector: General/NSSelectorFromString(@"")];
+	[self initWithTarget: nil selector: NSSelectorFromString(@"")];
 	return self;
 }
 
@@ -37,7 +37,7 @@ I was working on a program like Pixen, but just to find the mouse's X and Y. I w
 	[super init];
 	target = tgtObj;
 	targetCallSelector = tgtSel;
-	sensorThread = General/[[NSThread alloc] initWithTarget: self selector: @selector(mouseSensing:) object: nil];
+	sensorThread = [[NSThread alloc] initWithTarget: self selector: @selector(mouseSensing:) object: nil];
 	return self;
 }
 
@@ -69,15 +69,15 @@ I was working on a program like Pixen, but just to find the mouse's X and Y. I w
 {
 	[sensorThread cancel];
 	[sensorThread release];
-	sensorThread = General/[[NSThread alloc] initWithTarget: self selector: @selector(mouseSensing:) object: nil];
+	sensorThread = [[NSThread alloc] initWithTarget: self selector: @selector(mouseSensing:) object: nil];
 }
 
 - (void)mouseSensing: (id)param
 {
-	General/NSAutoreleasePool *threadPool = General/[[NSAutoreleasePool alloc] init];
-	oldPos = General/[NSEvent mouseLocation];
+	NSAutoreleasePool *threadPool = [[NSAutoreleasePool alloc] init];
+	oldPos = [NSEvent mouseLocation];
 	while(![sensorThread isCancelled]) {
-		General/NSPoint mousePos = General/[NSEvent mouseLocation];
+		NSPoint mousePos = [NSEvent mouseLocation];
 		if((mousePos.x != oldPos.x) || (mousePos.y != oldPos.y)) { // If mouse moved
 			// Post selector
 			[target performSelector: targetCallSelector];

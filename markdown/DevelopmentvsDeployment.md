@@ -14,7 +14,7 @@ I am stumped by this behavior.
 
 ----
 
-On General/PowerPC, the awakeFromNib method is not called in either case.
+On PowerPC, the awakeFromNib method is not called in either case.
 
 The signature of your -init method is wrong.  You have it returning void, but it must return the initialized object.  On intel with a release build, you're probably getting 'lucky' in that the pointer you ought to have returned happened to be in the return register anyway.
 
@@ -73,7 +73,7 @@ Anyway, I solved it by:
 
 Which does appear to work as well. It is an amazing feature of Cocoa and Mac OS X that I can write what are too me amazing programs without totally understanding what I am doing. 
 
-The finished program appears here, if anyone is interested: http://mrmac.mr.aps.anl.gov/~jterry/images/General/GRASDesktop.dmg
+The finished program appears here, if anyone is interested: http://mrmac.mr.aps.anl.gov/~jterry/images/GRASDesktop.dmg
 
 Appreciate the help. 
 

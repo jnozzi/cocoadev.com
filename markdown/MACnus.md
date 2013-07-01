@@ -1,4 +1,4 @@
-General/MACnus
+MACnus
 
 *Cocoa
 *Objective C
@@ -9,9 +9,9 @@ General/MACnus
 
 Topics:
 
-*General/BuildFolder
-*General/LoadMovie
-*General/MovieController
-*General/NSMovieSlider
-*General/FullScreen
-*General/AlternateImage
+*BuildFolder
+*LoadMovie
+*MovieController
+*NSMovieSlider
+*FullScreen
+*AlternateImage

@@ -1,6 +1,6 @@
 
 
-How do I implement dragging in an General/NSOutlineView? More specifically, if I know what rows (and/or parents) are selected how do I drop them without screwing up the indexes?
+How do I implement dragging in an NSOutlineView? More specifically, if I know what rows (and/or parents) are selected how do I drop them without screwing up the indexes?
 
 I'm using something like this right now to: 
 
@@ -20,16 +20,16 @@ I'm using something like this right now to:
 
     
 
-- (BOOL)outlineView:(General/NSOutlineView *)oView writeRows:(General/NSArray *)rows toPasteboard:(General/NSPasteboard *)pboard
+- (BOOL)outlineView:(NSOutlineView *)oView writeRows:(NSArray *)rows toPasteboard:(NSPasteboard *)pboard
 {
     [self setDragNodeArrayWithRows:rows];
     
-    [pboard declareTypes: General/[NSArray arrayWithObjects: General/QuestionDragType, nil] owner: self];
+    [pboard declareTypes: [NSArray arrayWithObjects: QuestionDragType, nil] owner: self];
     
     _oldRows = rows;
 }
 
-- (void)dragNodeArrayWithRows:(General/NSArray *)rows
+- (void)dragNodeArrayWithRows:(NSArray *)rows
 {
     int i;
     
@@ -38,7 +38,7 @@ I'm using something like this right now to:
     
     for (i = [rows count]; i > 0; i--) {
         
-        node = [outlineView itemAtRow:General/rows objectAtIndex: i] intValue;
+        node = [outlineView itemAtRow:rows objectAtIndex: i] intValue;
         
         if (parent = [node parent]) { // check to see if we're dealing with a root
             
@@ -56,32 +56,32 @@ I'm using something like this right now to:
 
  I guess this is more of a combination question rather... just: Is what I'm doing now correct, and how can I manage the method:
 
-- (BOOL)outlineView:(General/NSOutlineView *)oView
-       acceptDrop:(id <General/NSDraggingInfo>)info
+- (BOOL)outlineView:(NSOutlineView *)oView
+       acceptDrop:(id <NSDraggingInfo>)info
               row:(int)row
-    dropOperation:(General/NSTableViewDropOperation)op
+    dropOperation:(NSTableViewDropOperation)op
 
-- General/JohnDevor
+- JohnDevor
 
 ----
 
 Given:
     
-General/NSArray* draggedItems = ...;
-General/NSArray* insertionArray = ...; // destination array
+NSArray* draggedItems = ...;
+NSArray* insertionArray = ...; // destination array
 int insertAtIndex = ...; // where the user dropped the items
 
 All we need to do is to adjust insertAtIndex to correspond to the index after removing the draggedItems -- that is, every item in draggedItems which is also before insertAtIndex, should move insertAtIndex one back.
 
 This can be expressed like this:
     
-General/NSMutableSet* dragSet = General/[NSMutableSet setWithArray:draggedItems];
-General/NSArray* before = [insertionArray subarrayWithRange:General/NSMakeRange(0, insertAtIndex)];
-[dragSet intersectSet:General/[NSSet setWithArray:before]];
+NSMutableSet* dragSet = [NSMutableSet setWithArray:draggedItems];
+NSArray* before = [insertionArray subarrayWithRange:NSMakeRange(0, insertAtIndex)];
+[dragSet intersectSet:[NSSet setWithArray:before]];
 insertAtIndex -= [dragSet count];
 
 
-Alternatively one could use node-coloring (tagging), similar to what is discussed in General/NSOutlineViewRemoveItem.
+Alternatively one could use node-coloring (tagging), similar to what is discussed in NSOutlineViewRemoveItem.
 
 ----
 
@@ -92,8 +92,8 @@ Alright, I'll try it later. Thanks.
 Anyone using this page to get started on implementing this should look out - the above code contains an incorrectly named method. It should be:
 
     
-- (BOOL)outlineView:(General/NSOutlineView *) oView writeItems:(General/NSArray *) rows toPasteboard:(General/NSPasteboard *) pboard
+- (BOOL)outlineView:(NSOutlineView *) oView writeItems:(NSArray *) rows toPasteboard:(NSPasteboard *) pboard
 
 
 
-I fell foul of this since the Xcode documentation at first appears to lack these delegate methods and so I cut and pasted the code above as a starting point. The Apple sample code is however correct. The info is in the Xcode docs - just not listed under the delegate methods for General/NSOutlineView - instead they can be found at  General/NSOutlineViewDataSource protocol --General/GrahamCox
+I fell foul of this since the Xcode documentation at first appears to lack these delegate methods and so I cut and pasted the code above as a starting point. The Apple sample code is however correct. The info is in the Xcode docs - just not listed under the delegate methods for NSOutlineView - instead they can be found at  NSOutlineViewDataSource protocol --GrahamCox

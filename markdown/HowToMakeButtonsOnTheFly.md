@@ -18,4 +18,4 @@ would reduce the application size.
 
 Well yes, adding own button graphics will increase, but if you dont have to add more than one set per button styl/state it's a lot less than 2 x actual button with face...
 
-*Using General/NSSegmentedControl might be easier, just saying :)*
+*Using NSSegmentedControl might be easier, just saying :)*

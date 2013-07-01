@@ -1,15 +1,15 @@
 
 
 
-One of the questions I see come up a lot in newbie questions on Cocoa is how to handle General/MemoryManagement, especially General/RetainingAndReleasing.
+One of the questions I see come up a lot in newbie questions on Cocoa is how to handle MemoryManagement, especially RetainingAndReleasing.
 ----
-General/ObjC uses General/GarbageCollection procedures which require more active involvement on the part of the programmer than do those in Java.
-When an object is created, something called its General/RetainCount is given an initial value of 1. General/GarbageCollection only kicks in when the General/RetainCount goes to 0.
+ObjC uses GarbageCollection procedures which require more active involvement on the part of the programmer than do those in Java.
+When an object is created, something called its RetainCount is given an initial value of 1. GarbageCollection only kicks in when the RetainCount goes to 0.
 
-If you create an object with     alloc*,     new,     copy* or     mutableCopy* or     retain an existing object, you increment the General/RetainCount.
+If you create an object with     alloc*,     new,     copy* or     mutableCopy* or     retain an existing object, you increment the RetainCount.
 But unlike in Java, the **programmer** is then responsible for making certain to free the memory held by the object
 by sending either     release or     autorelease (    release is preferred).
-The     release and     autorelease messages are the only ways over which you have direct control of decrementing the General/RetainCount.
+The     release and     autorelease messages are the only ways over which you have direct control of decrementing the RetainCount.
 
 *     allocWithZone,     copyWithZone,     mutableCopyWithZone
 
@@ -21,26 +21,26 @@ THIS BEARS REPEATING...
 If your object creates or retains an object, then your object has the responsibility to release/autorelease that object.
 
 In a single code block, always balance retains and releases.
-If you increase the General/RetainCount for a variable which goes out of scope at the end of a code block be sure to send a     release message to it.
+If you increase the RetainCount for a variable which goes out of scope at the end of a code block be sure to send a     release message to it.
 
 Be sure to override     dealloc and use it to send     release messages to any instance variables that you created with     alloc,     copy, etc..
 
 **BUT NOTE CAREFULLY**
-however, that when you add an object to a collection, the collection object increments the member's General/RetainCount.
-When you release a collection object to a General/RetainCount of 0 and it gets deallocated, all of the member objects have their General/RetainCount decremented.
+however, that when you add an object to a collection, the collection object increments the member's RetainCount.
+When you release a collection object to a RetainCount of 0 and it gets deallocated, all of the member objects have their RetainCount decremented.
 
 **AUTORELEASED OBJECTS**
-Cocoa applications maintain an General/AutoreleasePool (and you can create your own auxiliary versions if you need to)
-When you send an     autorelease message to an object it is added to the most recently created General/AutoreleasePool.
-Each pass through the application's General/RunLoop
-(as when the General/WindowServer forwards an event to your app) begins by creating a new pool and ends by destroying the pool.
-In between, autoreleased objects are added to the pool; when an General/AutoreleasePool is destroyed, all the objects in it get a     release message,
-and if that happens to zero out the General/RetainCount, the General/GarbageCollection system disposes of the object.
+Cocoa applications maintain an AutoreleasePool (and you can create your own auxiliary versions if you need to)
+When you send an     autorelease message to an object it is added to the most recently created AutoreleasePool.
+Each pass through the application's RunLoop
+(as when the WindowServer forwards an event to your app) begins by creating a new pool and ends by destroying the pool.
+In between, autoreleased objects are added to the pool; when an AutoreleasePool is destroyed, all the objects in it get a     release message,
+and if that happens to zero out the RetainCount, the GarbageCollection system disposes of the object.
 
-General/AutoRelease can cause headaches in multithreaded apps - see the General/WeakReferences topic for strategies
+AutoRelease can cause headaches in multithreaded apps - see the WeakReferences topic for strategies
 
 For a good discussion of     autorelease that is perhaps a little roundabout, but does cover all the bases (sorta like Pete Rose, I guess!)
-see General/QuickAutoreleaseQuestion in General/RetiredDiscussions.
+see QuickAutoreleaseQuestion in RetiredDiscussions.
 
 Cocoa methods that return objects can be assumed to be returning     autoreleased objects
 so you should not send     release or     autorelease unless you     retain them at some point.
@@ -49,7 +49,7 @@ Therefore do ye the same with thine own classes.
 
 **Note:** Class factory methods are the ones which begin with a '+' for example:
     
-+ (General/NSString *)stringWithString:(General/NSString *)aString;
++ (NSString *)stringWithString:(NSString *)aString;
 
 
 ----
@@ -57,7 +57,7 @@ Therefore do ye the same with thine own classes.
 **EXAMPLE:**
 
     
-- (void) setMyString:(General/NSString*) newString
+- (void) setMyString:(NSString*) newString
 {
 	if (myString != newString) {
 		[myString release];
@@ -68,15 +68,15 @@ Therefore do ye the same with thine own classes.
 
 Notice that for every     retain on an object, we also have a     release. This is also an example of a set accessor method. The     [newString retain] ensures we'll hang on to the object pointed to by     newString while the     [myString release] lets go of the previously     retained value. The next time through this method we'll again     release myString which now contains the most recently acquired value of     newString. See how it ends up balancing out?
 
-(Alternative versions for a set method can be found on the General/AccessorMethods page.)
+(Alternative versions for a set method can be found on the AccessorMethods page.)
 
 ----
-The same thing works for     General/alloc] init].
+The same thing works for     alloc] init].
 
     
 - ([[NSString *)getEmptyString
 {
-	General/NSString* string = General/[[NSString alloc] init];
+	NSString* string = [[NSString alloc] init];
 
 	return [string autorelease];
 }
@@ -86,9 +86,9 @@ You need to send     autorelease even though you did not explicitly send     ret
 
 ----
     
-- (General/NSString *) getPiString
+- (NSString *) getPiString
 {
-	General/NSString* string = General/[NSString stringWithFormat:@"%f", 3.1415926535];
+	NSString* string = [NSString stringWithFormat:@"%f", 3.1415926535];
 	return string;
 }
 
@@ -96,10 +96,10 @@ You need to send     autorelease even though you did not explicitly send     ret
 In this example we don't need to do anything in terms of     retain or     release since by convention a method of the form
 
     
-+ (General/NSWhatever*) whateverPlusSomeOtherPotentialArguments...
++ (NSWhatever*) whateverPlusSomeOtherPotentialArguments...
 
 
-returns an     autoreleased object. This     stringWithFormat: message handles the     retain (    General/alloc] init]) and     release (    autorelease as in our previous example) for us so it's just up to us to     return the object to the caller.
+returns an     autoreleased object. This     stringWithFormat: message handles the     retain (    alloc] init]) and     release (    autorelease as in our previous example) for us so it's just up to us to     return the object to the caller.
 In other words, if you return an autoreleased object from one of your methods. let the user of that object worry about retaining it.
 
 ----
@@ -118,7 +118,7 @@ Watch out for autoreleased objects created in a loop.  If you find yourself doin
 
     
 for (...50 times...) {
-  blah = General/[NSString stringWithString: ...];
+  blah = [NSString stringWithString: ...];
   // do stuff with blah
 }
 
@@ -127,15 +127,15 @@ you should use manual allocation instead, since the lifetime of 'blah' is very c
 
     
 for (...50 times...) {
-  blah = General/[[NSString alloc] initWithString: ...];
+  blah = [[NSString alloc] initWithString: ...];
   // do stuff with blah
   [blah release];
 }
 
 
-This will avoid (essentially) adding 50 items to a     General/NSMutableArray and
+This will avoid (essentially) adding 50 items to a     NSMutableArray and
 then going through them and sending     [object release] to each one when
-the General/AutoreleasePool is freed.  Not to mention the extra memory used
+the AutoreleasePool is freed.  Not to mention the extra memory used
 by those 50 strings.
 
 *Note also that if you find yourself allocating and releasing 50 objects in quick succession in a loop such as this, it may be worth finding ways of reusing a single object instead - it all depends on what you are doing with the objects. If the strings above were being retained by some other section of code for use later, retain-release would be the appropriate construction. If they were not, you could consider using a single mutable string instead, saving the needless creation/deletion.*
@@ -150,41 +150,41 @@ Now the tricky part is not to get confused with thinking that your object create
 
 ----
 
-General/NSObject defines a     +new method as a shortcut for alloc / init. It's not used often, and probably shouldn't be, but it's there.
+NSObject defines a     +new method as a shortcut for alloc / init. It's not used often, and probably shouldn't be, but it's there.
 
-    General/NSArray *myArray = General/[NSArray new]
+    NSArray *myArray = [NSArray new]
 
 is equivalent to
 
-    General/NSArray *myArray = General/[[NSArray alloc] init]
+    NSArray *myArray = [[NSArray alloc] init]
 
-[http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/General/NSObject.html]
+[http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/NSObject.html]
 
 ----
 
-**I believe that most methods which return objects will return General/obj retain] autorelease] (so that the object will hang around even after the possessive object is gone), but otherwise right.**
+**I believe that most methods which return objects will return obj retain] autorelease] (so that the object will hang around even after the possessive object is gone), but otherwise right.**
 
 *Actually, that is a very suspect assumption. Foundation collections, for instance, will most probably not bother, because returning an object is a lot cheaper than retaining and autoreleasing it first. Thus, retaining in your own code is vital. -- [[KritTer*
 
-**Fair enough, it's suspect; still and all, you see it done a lot in sample code. -- General/RobRix**
+**Fair enough, it's suspect; still and all, you see it done a lot in sample code. -- RobRix**
 
 ----
 
-Auto-released objects are taken care of at the end of the request-response cycle. If, for example, you're in a method that was called by pressing a button in the GUI, the auto-released variables will stick around until the execution of that method is finished and control goes back to the user. (If you're not using General/MultiThreading, the GUI will be unresponsve while   the method is running.)
+Auto-released objects are taken care of at the end of the request-response cycle. If, for example, you're in a method that was called by pressing a button in the GUI, the auto-released variables will stick around until the execution of that method is finished and control goes back to the user. (If you're not using MultiThreading, the GUI will be unresponsve while   the method is running.)
 That's also the reason why crashes that have anything to do with not retaining an auto-released object usually occur right before the method in question is finished.
 
 Please correct if there's anything wrong in there.
 
--- General/JensBaumeister
+-- JensBaumeister
 
 ----
-The answer to the question 'When will an autoreleased object be released?' is: When the autorelease pool itself gets released. There can be more pools than the one in the main runloop. See General/AutoreleasePool.
+The answer to the question 'When will an autoreleased object be released?' is: When the autorelease pool itself gets released. There can be more pools than the one in the main runloop. See AutoreleasePool.
 
 ----
 
-You should make a point to talk about what method to create instances. The "duh" response would be to say that you should always create instances in an init method (i.e. init, initWithFrame.........), but sometimes you might be tempted to create objects after a window has loaded from a nib file. I got burned when I created a couple of objects in the viewDidMoveToWindow so I could get some values from the window at runtime thinking that this was safe since the view in question was only going to be placed in the window once. Boy was I wrong!!!! there might be cases when a view will receive a "viewDidMoveToWindow" message more than once even if it is only added once to its superview. Since my code looked fine on paper (each retain/alloc/copy had the required release/autorelease) I couldn't figure out where the memory leak was. It took me about an hour to trace the leak to an General/NSDictionary initialized twice because the viewDidMoveToWindow method was called twice (but the view was properly released and deallocated once). 
+You should make a point to talk about what method to create instances. The "duh" response would be to say that you should always create instances in an init method (i.e. init, initWithFrame.........), but sometimes you might be tempted to create objects after a window has loaded from a nib file. I got burned when I created a couple of objects in the viewDidMoveToWindow so I could get some values from the window at runtime thinking that this was safe since the view in question was only going to be placed in the window once. Boy was I wrong!!!! there might be cases when a view will receive a "viewDidMoveToWindow" message more than once even if it is only added once to its superview. Since my code looked fine on paper (each retain/alloc/copy had the required release/autorelease) I couldn't figure out where the memory leak was. It took me about an hour to trace the leak to an NSDictionary initialized twice because the viewDidMoveToWindow method was called twice (but the view was properly released and deallocated once). 
 
-It's easy to think that if you only have one instance variable you only have one object to keep track of. Don't fall into this trap. One instance variable has the ability to point to any number of objects over time, just it can't point to more than one object at the same time. In the case above I had one General/NSDictionary pointer that appeared on paper to point to only one General/NSDictionary instance for the life of the object. 
+It's easy to think that if you only have one instance variable you only have one object to keep track of. Don't fall into this trap. One instance variable has the ability to point to any number of objects over time, just it can't point to more than one object at the same time. In the case above I had one NSDictionary pointer that appeared on paper to point to only one NSDictionary instance for the life of the object. 
 
 The moral of the story is to initialize all instances in an init method (awakeFromNib has never given me problems, but it will now be a place I check if I can't find a leak anywhere else). And don't forget to release/autorelease everything you create!!!
 
@@ -201,11 +201,11 @@ what I did to solve my problem:
 } 
 
 -(void)viewDidMoveToWindow {
-    General/NSRect frame = General/[self window] delegate] frameForNewView];
+    NSRect frame = [self window] delegate] frameForNewView];
     if (!myView) {
          myView = [[[[NSView alloc] initWithFrame:frame];
          [myView autorelease];
-         General/[self window] contentView] addSubview:myView];
+         [self window] contentView] addSubview:myView];
     }
 }
 
@@ -218,11 +218,11 @@ what I did to solve my problem:
 
 Those new to Cocoa:
 
-The code above is not that advanced, but if you are scratching your head about it I'll explain. All of the methods above belong to a subclass of an [[NSView that supports (is a custom class for) an instance of a custom view frozen in a nib file.  Sometimes you might want to get information from the window at runtime, but the problem is an General/NSView's instance variable for "window" is not set until the view in question becomes a subview of the window. Using viewDidMoveToWindow allows you to create and modify objects based on information obtained from the window the view is placed in.
+The code above is not that advanced, but if you are scratching your head about it I'll explain. All of the methods above belong to a subclass of an [[NSView that supports (is a custom class for) an instance of a custom view frozen in a nib file.  Sometimes you might want to get information from the window at runtime, but the problem is an NSView's instance variable for "window" is not set until the view in question becomes a subview of the window. Using viewDidMoveToWindow allows you to create and modify objects based on information obtained from the window the view is placed in.
 
-I just wanted to bring attention to this type of problem because I have seen many code examples use awakeFromNib as an initializer method without setting instance variables to nil and using General/NSAssert as a precaution. Like I mentioned above, it probably is safe to use awakeFromNib as an initializer method, but thinking awakeFromNib is ok might lead to poor assumptions (like me assuming viewDidMoveToWindow was a failsafe substitute for an initializer method). 
+I just wanted to bring attention to this type of problem because I have seen many code examples use awakeFromNib as an initializer method without setting instance variables to nil and using NSAssert as a precaution. Like I mentioned above, it probably is safe to use awakeFromNib as an initializer method, but thinking awakeFromNib is ok might lead to poor assumptions (like me assuming viewDidMoveToWindow was a failsafe substitute for an initializer method). 
 
-*Instance variables in General/ObjC objects are guaranteed to be initialized to nil when an object is created, so it is not necessary to do so manually.*
+*Instance variables in ObjC objects are guaranteed to be initialized to nil when an object is created, so it is not necessary to do so manually.*
 
 ----
 
@@ -236,9 +236,9 @@ This doesn't really seem like a discussion about retaining/release, so perhaps t
 
 To any volunteers who follow up on this re-factoring:
 I am perplexed by the final discussion above, which begins with the words "You should make a point to talk about what method to create instances."
-This seems to have rather less to do with General/MemoryManagement per se and more to do with procedures for objects to initialize their variables.
-Yet here it is in General/RetainReleaseTips. I suspect that it is valuable and should be transplanted to a more appropriate place, dealing with initialization.
-Not everything that causes General/MemoryLeaks can be dealt with directly as a General/MemoryManagement problem.
+This seems to have rather less to do with MemoryManagement per se and more to do with procedures for objects to initialize their variables.
+Yet here it is in RetainReleaseTips. I suspect that it is valuable and should be transplanted to a more appropriate place, dealing with initialization.
+Not everything that causes MemoryLeaks can be dealt with directly as a MemoryManagement problem.
 
 ----
 
@@ -257,7 +257,7 @@ void inline replace(id *old,id new)
 
 This can be used in dealloc for each field, 
 remember to balance any stray alloc|copy|new|mutableCopy 
-... and sleep easily at night. -- General/MikeAmy
+... and sleep easily at night. -- MikeAmy
 
 void inline clear(id *old)
 {
@@ -265,7 +265,7 @@ void inline clear(id *old)
     *old = nil; // of course you could change this to a zombie style object for debugging
 }
 
-General/MPWFoundation has some other macros.
+MPWFoundation has some other macros.
 Note you don't want to retain things that might lead to a cycle
 
 ----

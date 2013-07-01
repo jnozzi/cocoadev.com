@@ -1,7 +1,7 @@
 libcurl is a static library to integrate curl functionality into an application.
 
-See General/StaticLibraries for infomation about General/XCode issues related to General/ZeroLink runtime errors
+See StaticLibraries for infomation about XCode issues related to ZeroLink runtime errors
 
-General/SimpleHTTP will not link properly if the target is upgraded to native (see General/ZeroLink)
+SimpleHTTP will not link properly if the target is upgraded to native (see ZeroLink)
 
-General/CURLHandle is an General/ObjectiveC wrapper around General/LibCurl it can be found at http://sourceforge.net/projects/curlhandle/
+CURLHandle is an ObjectiveC wrapper around LibCurl it can be found at http://sourceforge.net/projects/curlhandle/

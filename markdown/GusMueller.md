@@ -9,6 +9,6 @@ Personal website: http://gusmueller.com/
 
 Flying Meat is his company, and some apps written by him:
 
- - General/VoodooPad: http://flyingmeat.com/voodoopad/
- - General/FlySketch: http://flyingmeat.com/flysketch/
- - General/FlyGesture: http://flyingmeat.com/flygesture/
+ - VoodooPad: http://flyingmeat.com/voodoopad/
+ - FlySketch: http://flyingmeat.com/flysketch/
+ - FlyGesture: http://flyingmeat.com/flygesture/

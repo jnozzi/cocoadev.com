@@ -1,8 +1,8 @@
-This is a General/NSCollectionView like class that works on Tiger. It derives directly from General/NSView. I tried to customize General/NSTableView but there were too many bugs with drag/drop and scrollbars for it too work. If you don't need those features then you might want to start there first (see  http://www.joar.com/code ). --General/SaileshAgrawal
+This is a NSCollectionView like class that works on Tiger. It derives directly from NSView. I tried to customize NSTableView but there were too many bugs with drag/drop and scrollbars for it too work. If you don't need those features then you might want to start there first (see  http://www.joar.com/code ). --SaileshAgrawal
 
 This is written specifically with the requirements I had in mind. It has the following features and limitations hard coded into it:
 
-* Like General/NSCollectionView allows you to create you row's view in Interface Builder and add it to the collection view.
+* Like NSCollectionView allows you to create you row's view in Interface Builder and add it to the collection view.
 * One column only
 * Always has at least one selected item.
 * Allows multiple selection.
@@ -10,7 +10,7 @@ This is written specifically with the requirements I had in mind. It has the fol
 * Allows files to be dragged into it.
 * Allows rows to be dragged out of it as shortcuts to files.
 * Automatically changes text field colors to white when a row is selected.
-* Your row view must derive from General/TigerCollectionViewItem to be added to the collection view.
+* Your row view must derive from TigerCollectionViewItem to be added to the collection view.
 * Allows menus on right click
 
 
@@ -23,30 +23,30 @@ Remember that this is mostly sample code. Feel free to use it any way you like b
 #import <Cocoa/Cocoa.h>
 
 
-@class General/TigerCollectionViewItem;
+@class TigerCollectionViewItem;
 
 
-@protocol General/TigerCollectionViewTarget <General/NSObject>
+@protocol TigerCollectionViewTarget <NSObject>
 
-- (General/NSDragOperation)dragOperationForFiles: (General/NSArray *)filePaths;
-- (void)dragFiles: (General/NSArray *)filePaths toIndex: (int)index;
-- (void)dragItemsAtIndexes: (General/NSArray *)indexes toIndex: (int)index;
-- (BOOL)shouldRemoveItemsAtIndexes: (General/NSArray *)indexes;
+- (NSDragOperation)dragOperationForFiles: (NSArray *)filePaths;
+- (void)dragFiles: (NSArray *)filePaths toIndex: (int)index;
+- (void)dragItemsAtIndexes: (NSArray *)indexes toIndex: (int)index;
+- (BOOL)shouldRemoveItemsAtIndexes: (NSArray *)indexes;
 - (void)performDoubleClickActionForIndex: (int)index;
 - (void)onSelectionDidChange;
-- (General/NSString *)filePathForIndex: (int)index;
+- (NSString *)filePathForIndex: (int)index;
 
 @end
 
 
-@interface General/TigerCollectionView : General/NSView
+@interface TigerCollectionView : NSView
 {
-   General/IBOutlet id<General/TigerCollectionViewTarget> target;
-   General/NSMutableArray *items;
+   IBOutlet id<TigerCollectionViewTarget> target;
+   NSMutableArray *items;
    BOOL needsLayout;
 }
 
-- (void)addItem: (General/TigerCollectionViewItem *)item
+- (void)addItem: (TigerCollectionViewItem *)item
         atIndex: (int)index;
 
 - (void)removeItemAtIndex: (int)index;
@@ -55,17 +55,17 @@ Remember that this is mostly sample code. Feel free to use it any way you like b
 
 - (int)numberOfItems;
 
-- (General/NSArray *)selectedIndexes;
+- (NSArray *)selectedIndexes;
 
 @end
 
 
-@interface General/TigerCollectionViewItem : General/NSView
+@interface TigerCollectionViewItem : NSView
 {
    BOOL isSelected;
-   General/NSPoint mouseDownPos;
+   NSPoint mouseDownPos;
    int dragTargetType;
-   General/NSMutableDictionary *cachedTextColors;
+   NSMutableDictionary *cachedTextColors;
 }
 @end
 
@@ -75,100 +75,100 @@ Remember that this is mostly sample code. Feel free to use it any way you like b
 **Implementation**
 
     
-#import "General/TigerCollectionView.h"
+#import "TigerCollectionView.h"
 
 
 static const float DRAG_START_DISTANCE = 10;
 static const float DRAG_IMAGE_ALPHA = 0.5;
-static General/NSString * const DRAG_ITEM_TYPE = @"General/TigerCollectionViewDragType";
+static NSString * const DRAG_ITEM_TYPE = @"TigerCollectionViewDragType";
 
 typedef enum
 {
    DragTargetType_None,
    DragTargetType_Top,
    DragTargetType_Bottom,
-} General/DragTargetType;
+} DragTargetType;
 
 
-@interface General/TigerCollectionView (Private)
+@interface TigerCollectionView (Private)
 
-// Override General/NSView
+// Override NSView
 - (void)moveDown: (id)sender;
 - (void)moveUp: (id)sender;
 - (BOOL)isFlipped;
 - (void)selectAll: (id)sender;
-- (void)keyDown: (General/NSEvent *)event;
+- (void)keyDown: (NSEvent *)event;
 - (void)deleteBackward: (id)sender;
 - (void)deleteForward: (id)sender;
-- (General/NSDragOperation)draggingEntered: (id<General/NSDraggingInfo>)sender;
-- (void)draggingExited: (id<General/NSDraggingInfo>)sender;
-- (BOOL)prepareForDragOperation: (id<General/NSDraggingInfo>)sender;
-- (BOOL)performDragOperation: (id<General/NSDraggingInfo>)sender;
-- (General/NSDragOperation)draggingUpdated: (id<General/NSDraggingInfo>)sender;
+- (NSDragOperation)draggingEntered: (id<NSDraggingInfo>)sender;
+- (void)draggingExited: (id<NSDraggingInfo>)sender;
+- (BOOL)prepareForDragOperation: (id<NSDraggingInfo>)sender;
+- (BOOL)performDragOperation: (id<NSDraggingInfo>)sender;
+- (NSDragOperation)draggingUpdated: (id<NSDraggingInfo>)sender;
 - (BOOL)wantsPeriodicDraggingUpdates;
-- (General/NSDragOperation)draggingSourceOperationMaskForLocal: (BOOL)isLocal;
-- (void)resizeWithOldSuperviewSize: (General/NSSize)oldBoundsSize;
+- (NSDragOperation)draggingSourceOperationMaskForLocal: (BOOL)isLocal;
+- (void)resizeWithOldSuperviewSize: (NSSize)oldBoundsSize;
 
 // Internal methods
 - (void)setNeedsLayout: (BOOL)flag;
 - (void)performLayout;
-- (void)startDrag: (General/NSEvent *)event
-         withItem: (General/TigerCollectionViewItem *)item;
-- (General/NSImage *)dragImageForIndexes: (General/NSArray *)indexes
-                     dragPoint: (General/NSPoint *)dragPoint;
-- (void)itemClicked: (General/TigerCollectionViewItem *)item
-              event: (General/NSEvent *)event;
+- (void)startDrag: (NSEvent *)event
+         withItem: (TigerCollectionViewItem *)item;
+- (NSImage *)dragImageForIndexes: (NSArray *)indexes
+                     dragPoint: (NSPoint *)dragPoint;
+- (void)itemClicked: (TigerCollectionViewItem *)item
+              event: (NSEvent *)event;
 - (void)setAllItemsSelected: (BOOL)selected;
-- (void)growSelectionToItem: (General/TigerCollectionViewItem *)item;
+- (void)growSelectionToItem: (TigerCollectionViewItem *)item;
 - (void)moveSelection: (BOOL)moveUp
           byExtending: (BOOL)byExtending;
-- (void)scrollToItem: (General/TigerCollectionViewItem *)item;
+- (void)scrollToItem: (TigerCollectionViewItem *)item;
 - (void)maintainNonEmptySelection: (int)index;
-- (void)removeItemsAtIndexes: (General/NSArray *)indexes;
-- (int)indexFromDragTarget: (General/NSView *)targetView
-              draggingInfo: (id<General/NSDraggingInfo>)draggingInfo;
-- (void)setDragTarget: (General/NSView *)targetView
-         draggingInfo: (id<General/NSDraggingInfo>)draggingInfo;
+- (void)removeItemsAtIndexes: (NSArray *)indexes;
+- (int)indexFromDragTarget: (NSView *)targetView
+              draggingInfo: (id<NSDraggingInfo>)draggingInfo;
+- (void)setDragTarget: (NSView *)targetView
+         draggingInfo: (id<NSDraggingInfo>)draggingInfo;
 - (void)setIndex: (int)index
     isDragTarget: (BOOL)isDragTarget;
-- (id<General/TigerCollectionViewTarget>)target;
+- (id<TigerCollectionViewTarget>)target;
 - (int)dragTargetIndex;
 - (void)maximizeViewWidth: (id)sender;
-- (void)onKeyWindowChanged: (General/NSNotification *)notification;
-- (void)testSelectionChanged: (General/NSArray *)oldSelection;
-- (General/NSArray *)filePathsForIndexes: (General/NSArray *)indexes;
+- (void)onKeyWindowChanged: (NSNotification *)notification;
+- (void)testSelectionChanged: (NSArray *)oldSelection;
+- (NSArray *)filePathsForIndexes: (NSArray *)indexes;
 
 @end
 
 
-@interface General/TigerCollectionViewItem (Private)
+@interface TigerCollectionViewItem (Private)
 
-// Override General/NSView
-- (General/NSMenu *)menuForEvent:(General/NSEvent *)event;
-- (General/NSView *)hitTest: (General/NSPoint)point;
-- (void)mouseDown: (General/NSEvent *)event;
-- (void)mouseUp: (General/NSEvent *)event;
-- (void)mouseDragged: (General/NSEvent *)event;
+// Override NSView
+- (NSMenu *)menuForEvent:(NSEvent *)event;
+- (NSView *)hitTest: (NSPoint)point;
+- (void)mouseDown: (NSEvent *)event;
+- (void)mouseUp: (NSEvent *)event;
+- (void)mouseDragged: (NSEvent *)event;
 - (BOOL)acceptsFirstResponder;
 
 // Internal methods
 - (void)setIsSelected: (BOOL)flag;
 - (BOOL)isSelected;
-- (General/TigerCollectionView *)collectionView;
-- (BOOL)isLeftClickEvent: (General/NSEvent *)event;
-- (void)setDragTargetType: (General/DragTargetType)type;
-- (General/DragTargetType)dragTargetType;
+- (TigerCollectionView *)collectionView;
+- (BOOL)isLeftClickEvent: (NSEvent *)event;
+- (void)setDragTargetType: (DragTargetType)type;
+- (DragTargetType)dragTargetType;
 - (void)updateHighlightState;
 - (void)setHighlight: (BOOL)isHighlighted
-        forTextField: (General/NSTextField *)textField;
+        forTextField: (NSTextField *)textField;
 - (BOOL)shouldDrawSecondaryHighlight;
 
 @end
 
 
 static float
-General/PointDistance(General/NSPoint start,
-              General/NSPoint end)
+PointDistance(NSPoint start,
+              NSPoint end)
 {
    float deltaX = end.x - start.x;
    float deltaY = end.y - start.y;
@@ -176,13 +176,13 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-@implementation General/TigerCollectionView
+@implementation TigerCollectionView
 
 
-- (id)initWithFrame: (General/NSRect)frame
+- (id)initWithFrame: (NSRect)frame
 {
    if ((self = [super initWithFrame:frame])) {
-      items = General/[[NSMutableArray alloc] init];
+      items = [[NSMutableArray alloc] init];
    }
    return self;
 }
@@ -190,7 +190,7 @@ General/PointDistance(General/NSPoint start,
 
 - (void)dealloc
 {
-   General/[[NSNotificationCenter defaultCenter] removeObserver:self];
+   [[NSNotificationCenter defaultCenter] removeObserver:self];
    [items release];
    items = nil;
    [super dealloc];
@@ -199,30 +199,30 @@ General/PointDistance(General/NSPoint start,
 
 - (void)awakeFromNib
 {
-   ASSERT(General/self target] conformsToProtocol:
+   ASSERT(self target] conformsToProtocol:
       @protocol([[TigerCollectionViewTarget)]);
 
-   General/[[NSNotificationCenter defaultCenter]
+   [[NSNotificationCenter defaultCenter]
       addObserver:self
          selector:@selector(onKeyWindowChanged:)
-             name:General/NSWindowDidBecomeKeyNotification
+             name:NSWindowDidBecomeKeyNotification
            object:[self window]];
-   General/[[NSNotificationCenter defaultCenter]
+   [[NSNotificationCenter defaultCenter]
       addObserver:self
          selector:@selector(onKeyWindowChanged:)
-             name:General/NSWindowDidResignKeyNotification
+             name:NSWindowDidResignKeyNotification
            object:[self window]];
 
-   General/[self enclosingScrollView] contentView] setCopiesOnScroll:NO];
+   [self enclosingScrollView] contentView] setCopiesOnScroll:NO];
 
    [self registerForDraggedTypes:
-      [[[NSArray arrayWithObjects:General/NSFilenamesPboardType, DRAG_ITEM_TYPE, nil]];
+      [[[NSArray arrayWithObjects:NSFilenamesPboardType, DRAG_ITEM_TYPE, nil]];
 
    [self maximizeViewWidth:nil];
 }
 
 
-- (void)drawRect: (General/NSRect)rect
+- (void)drawRect: (NSRect)rect
 {
    /*
     * XXX: This is a hack to work around autohide scrollbars not working
@@ -241,20 +241,20 @@ General/PointDistance(General/NSPoint start,
    }
    [super drawRect:rect];
 
-   General/[[NSColor colorWithCalibratedRed:214.0/255.0
+   [[NSColor colorWithCalibratedRed:214.0/255.0
                               green:221.0/255.0
                                blue:229.0/255.0
                               alpha:1.0] set];
-   General/NSRectFill([self bounds]);
+   NSRectFill([self bounds]);
 }
 
 
-- (void)addItem: (General/TigerCollectionViewItem *)item
+- (void)addItem: (TigerCollectionViewItem *)item
         atIndex: (int)index
 {
    ASSERT(item);
    [items insertObject:item atIndex:index];
-   [item setAutoresizingMask:General/NSViewWidthSizable | General/NSViewMinYMargin];
+   [item setAutoresizingMask:NSViewWidthSizable | NSViewMinYMargin];
    [self addSubview:item];
    [self setNeedsLayout:YES];
 }
@@ -263,7 +263,7 @@ General/PointDistance(General/NSPoint start,
 - (void)removeItemAtIndex: (int)index
 {
    [self removeItemsAtIndexes:
-      General/[NSArray arrayWithObject:General/[NSNumber numberWithInt:index]]];
+      [NSArray arrayWithObject:[NSNumber numberWithInt:index]]];
    [self maintainNonEmptySelection:index];
 }
 
@@ -281,25 +281,25 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (General/NSArray *)selectedIndexes
+- (NSArray *)selectedIndexes
 {
-   General/NSMutableArray *selectedIndexes = General/[NSMutableArray array];
+   NSMutableArray *selectedIndexes = [NSMutableArray array];
    int count = [items count];
    int i;
    for (i = 0; i < count; i++) {
-      General/TigerCollectionViewItem *item = [items objectAtIndex:i];
+      TigerCollectionViewItem *item = [items objectAtIndex:i];
       if ([item isSelected]) {
-         [selectedIndexes addObject:General/[NSNumber numberWithInt:i]];
+         [selectedIndexes addObject:[NSNumber numberWithInt:i]];
       }
    }
    return selectedIndexes;
 }
 
 
-@end // General/TigerCollectionView
+@end // TigerCollectionView
 
 
-@implementation General/TigerCollectionView (Private)
+@implementation TigerCollectionView (Private)
 
 
 - (void)setNeedsLayout: (BOOL)flag
@@ -312,15 +312,15 @@ General/PointDistance(General/NSPoint start,
 {
    // Calculate the total height.
    float myHeight = 0;
-   General/NSEnumerator *e = [items objectEnumerator];
-   General/TigerCollectionViewItem *item;
+   NSEnumerator *e = [items objectEnumerator];
+   TigerCollectionViewItem *item;
    while ((item = [e nextObject])) {
       myHeight += [item frame].size.height;
    }
 
    // Resize the collection view to fit.
-   General/NSRect myFrame = [self frame];
-   [self setFrameSize:General/NSMakeSize(myFrame.size.width, myHeight)];
+   NSRect myFrame = [self frame];
+   [self setFrameSize:NSMakeSize(myFrame.size.width, myHeight)];
    if (myFrame.size.height != myHeight) {
       [self setNeedsDisplay:YES];
    }
@@ -329,8 +329,8 @@ General/PointDistance(General/NSPoint start,
    float yPos = 0;
    e = [items objectEnumerator];
    while ((item = [e nextObject])) {
-      General/NSRect oldItemFrame = [item frame];
-      General/NSRect newItemFrame;
+      NSRect oldItemFrame = [item frame];
+      NSRect newItemFrame;
       newItemFrame.origin.y = yPos;
       newItemFrame.origin.x = 0;
       newItemFrame.size.width = myFrame.size.width;
@@ -338,7 +338,7 @@ General/PointDistance(General/NSPoint start,
       [item setFrame:newItemFrame];
 
       yPos += newItemFrame.size.height;
-      if (!General/NSEqualRects(newItemFrame, oldItemFrame)) {
+      if (!NSEqualRects(newItemFrame, oldItemFrame)) {
          [item setNeedsDisplay:YES];
       }
    }
@@ -353,37 +353,37 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (void)startDrag: (General/NSEvent *)event
-         withItem: (General/TigerCollectionViewItem *)item
+- (void)startDrag: (NSEvent *)event
+         withItem: (TigerCollectionViewItem *)item
 {
    // If the dragged item is selected then drag all selected items too.
-   General/NSArray *dragIndexes = nil;
+   NSArray *dragIndexes = nil;
    if ([item isSelected]) {
       dragIndexes = [self selectedIndexes];
    } else {
-      dragIndexes = General/[NSArray arrayWithObject:
-         General/[NSNumber numberWithInt:[items indexOfObject:item]]];
+      dragIndexes = [NSArray arrayWithObject:
+         [NSNumber numberWithInt:[items indexOfObject:item]]];
    }
 
    // Write data to the paste board.
-   General/NSPasteboard *pboard = General/[NSPasteboard pasteboardWithName:General/NSDragPboard];
-   [pboard declareTypes:General/[NSArray arrayWithObjects:DRAG_ITEM_TYPE,
-                                                  General/NSFilenamesPboardType,
+   NSPasteboard *pboard = [NSPasteboard pasteboardWithName:NSDragPboard];
+   [pboard declareTypes:[NSArray arrayWithObjects:DRAG_ITEM_TYPE,
+                                                  NSFilenamesPboardType,
                                                   nil]
                   owner:self];
    [pboard setPropertyList:dragIndexes
                    forType:DRAG_ITEM_TYPE];
    [pboard setPropertyList:[self filePathsForIndexes:dragIndexes]
-                   forType:General/NSFilenamesPboardType];
+                   forType:NSFilenamesPboardType];
 
    // Generate the drag image from the dragged items.
-   General/NSPoint dragPos;
-   General/NSImage *dragImage = [self dragImageForIndexes:dragIndexes dragPoint:&dragPos];
+   NSPoint dragPos;
+   NSImage *dragImage = [self dragImageForIndexes:dragIndexes dragPoint:&dragPos];
 
    // Start the drag.
    [self dragImage:dragImage
                 at:dragPos
-            offset:General/NSZeroSize
+            offset:NSZeroSize
              event:event
         pasteboard:pboard
             source:self
@@ -391,43 +391,43 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (General/NSImage *)dragImageForIndexes: (General/NSArray *)indexes
-                     dragPoint: (General/NSPoint *)dragPoint
+- (NSImage *)dragImageForIndexes: (NSArray *)indexes
+                     dragPoint: (NSPoint *)dragPoint
 {
    // Make an image as big as the visible rect.
-   General/NSRect dragRect = [self convertRect:[self visibleRect]
+   NSRect dragRect = [self convertRect:[self visibleRect]
                               fromView:[self superview]];
-   General/NSImage *dragImage =
-      General/[[[NSImage alloc] initWithSize:dragRect.size] autorelease];
+   NSImage *dragImage =
+      [[[NSImage alloc] initWithSize:dragRect.size] autorelease];
 
-   General/NSEnumerator *e = [indexes objectEnumerator];
-   General/NSNumber *indexNumber;
+   NSEnumerator *e = [indexes objectEnumerator];
+   NSNumber *indexNumber;
    while ((indexNumber = [e nextObject])) {
-      General/TigerCollectionViewItem *item =
+      TigerCollectionViewItem *item =
          [items objectAtIndex:[indexNumber intValue]];
 
-      General/NSRect itemRect = [item visibleRect];
-      if (General/NSEqualRects(itemRect, General/NSZeroRect)) {
+      NSRect itemRect = [item visibleRect];
+      if (NSEqualRects(itemRect, NSZeroRect)) {
          continue;
       }
 
       // Get an image of the dragged view without the selection.
       BOOL oldSelectedValue = [item isSelected];
       [item setIsSelected:NO];
-      General/NSData *itemAsPDF = [item dataWithPDFInsideRect:itemRect];
+      NSData *itemAsPDF = [item dataWithPDFInsideRect:itemRect];
       [item setIsSelected:oldSelectedValue];
-      General/NSImage *itemImage = General/[[NSImage alloc] initWithData:itemAsPDF];
+      NSImage *itemImage = [[NSImage alloc] initWithData:itemAsPDF];
 
       // Convert from our flipped axis into the image's non-flipped axis.
-      General/NSPoint pos = [item frame].origin;
+      NSPoint pos = [item frame].origin;
       pos.y = dragRect.origin.y + dragRect.size.height - pos.y;
       pos.y -= itemRect.size.height;
 
       // Drag the view's image into the drag image.
       [dragImage lockFocus];
       [itemImage drawAtPoint:pos
-                    fromRect:General/NSZeroRect
-                   operation:General/NSCompositeSourceOver
+                    fromRect:NSZeroRect
+                   operation:NSCompositeSourceOver
                     fraction:DRAG_IMAGE_ALPHA];
       [dragImage unlockFocus];
 
@@ -435,27 +435,27 @@ General/PointDistance(General/NSPoint start,
    }
 
    ASSERT(dragPoint);
-   *dragPoint = General/NSMakePoint(dragRect.origin.x,
+   *dragPoint = NSMakePoint(dragRect.origin.x,
                             dragRect.origin.y + dragRect.size.height);
 
    return dragImage;
 }
 
 
-- (void)itemClicked: (General/TigerCollectionViewItem *)item
-              event: (General/NSEvent *)event
+- (void)itemClicked: (TigerCollectionViewItem *)item
+              event: (NSEvent *)event
 {
-   General/NSArray *oldSelection = [self selectedIndexes];
+   NSArray *oldSelection = [self selectedIndexes];
 
-   if (([event modifierFlags] & General/NSCommandKeyMask) != 0) {
+   if (([event modifierFlags] & NSCommandKeyMask) != 0) {
       [item setIsSelected:![item isSelected]];
-   } else if (([event modifierFlags] & General/NSShiftKeyMask) != 0) {
+   } else if (([event modifierFlags] & NSShiftKeyMask) != 0) {
       [self growSelectionToItem:item];
    } else {
       [self setAllItemsSelected:NO];
       [item setIsSelected:YES];
       if ([event clickCount] == 2) {
-         General/self target]
+         self target]
             performDoubleClickActionForIndex:[items indexOfObject:item;
       }
    }
@@ -467,20 +467,20 @@ General/PointDistance(General/NSPoint start,
 
 - (void)setAllItemsSelected: (BOOL)selected
 {
-   General/NSEnumerator *e = [items objectEnumerator];
-   General/TigerCollectionViewItem *item;
+   NSEnumerator *e = [items objectEnumerator];
+   TigerCollectionViewItem *item;
    while ((item = [e nextObject])) {
       [item setIsSelected:selected];
    }
 }
 
 
-- (void)growSelectionToItem: (General/TigerCollectionViewItem *)item
+- (void)growSelectionToItem: (TigerCollectionViewItem *)item
 {
-   General/NSArray *oldSelection = [self selectedIndexes];
+   NSArray *oldSelection = [self selectedIndexes];
 
    int itemIndex = [items indexOfObject:item];
-   int startIndex = General/oldSelection objectAtIndex:0] intValue];
+   int startIndex = oldSelection objectAtIndex:0] intValue];
    int endIndex = [[oldSelection lastObject] intValue];
 
    if (itemIndex < startIndex) {
@@ -500,14 +500,14 @@ General/PointDistance(General/NSPoint start,
 
 - (void)moveDown: (id)sender
 {
-   BOOL shift = ([[[[NSApp currentEvent] modifierFlags] & General/NSShiftKeyMask) != 0;
+   BOOL shift = ([[[[NSApp currentEvent] modifierFlags] & NSShiftKeyMask) != 0;
    [self moveSelection:NO byExtending:shift];
 }
 
 
 - (void)moveUp: (id)sender
 {
-   BOOL shift = (General/[[NSApp currentEvent] modifierFlags] & General/NSShiftKeyMask) != 0;
+   BOOL shift = ([[NSApp currentEvent] modifierFlags] & NSShiftKeyMask) != 0;
    [self moveSelection:YES byExtending:shift];
 }
 
@@ -518,11 +518,11 @@ General/PointDistance(General/NSPoint start,
    if ([items count] == 0) {
       return;
    }
-   General/NSArray *oldSelection = [self selectedIndexes];
+   NSArray *oldSelection = [self selectedIndexes];
 
-   int index = General/NSNotFound;
+   int index = NSNotFound;
    if (moveUp) {
-      int firstIndex = General/oldSelection objectAtIndex:0] intValue];
+      int firstIndex = oldSelection objectAtIndex:0] intValue];
       firstIndex--;
       if (firstIndex >= 0) {
          index = firstIndex;
@@ -539,7 +539,7 @@ General/PointDistance(General/NSPoint start,
       if (!byExtending) {
          [self setAllItemsSelected:NO];
       }
-      General/TigerCollectionViewItem *item = [items objectAtIndex:index];
+      TigerCollectionViewItem *item = [items objectAtIndex:index];
       [item setIsSelected:YES];
       [self scrollToItem:item];
    }
@@ -548,20 +548,20 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (void)scrollToItem: (General/TigerCollectionViewItem *)item
+- (void)scrollToItem: (TigerCollectionViewItem *)item
 {
-   General/NSRect itemFrame = [item frame];
-   General/NSPoint top, bottom;
-   bottom.y = General/NSMaxY(itemFrame);
-   top.y = General/NSMinY(itemFrame);
+   NSRect itemFrame = [item frame];
+   NSPoint top, bottom;
+   bottom.y = NSMaxY(itemFrame);
+   top.y = NSMinY(itemFrame);
    top.x = 0;
    bottom.x = 0;
 
-   General/NSRect visibleRect = [self visibleRect];
-   BOOL bottomVisible = General/NSPointInRect(bottom, visibleRect);
-   BOOL topVisible = General/NSPointInRect(top, visibleRect);
+   NSRect visibleRect = [self visibleRect];
+   BOOL bottomVisible = NSPointInRect(bottom, visibleRect);
+   BOOL topVisible = NSPointInRect(top, visibleRect);
    if (!topVisible || !bottomVisible) {
-      General/NSPoint scrollPos;
+      NSPoint scrollPos;
       if (!bottomVisible) {
          scrollPos.y = bottom.y - visibleRect.size.height;
       } else {
@@ -569,9 +569,9 @@ General/PointDistance(General/NSPoint start,
       }
       scrollPos.x = 0;
 
-      General/NSClipView *clipView = General/self enclosingScrollView] contentView];
+      NSClipView *clipView = self enclosingScrollView] contentView];
       [clipView scrollToPoint:[clipView constrainScrollPoint:scrollPos;
-      General/self enclosingScrollView] reflectScrolledClipView:clipView];
+      self enclosingScrollView] reflectScrolledClipView:clipView];
    }
 }
 
@@ -586,7 +586,7 @@ General/PointDistance(General/NSPoint start,
 
 - (void)maintainNonEmptySelection: (int)index
 {
-   General/NSArray *oldSelection = [self selectedIndexes];
+   NSArray *oldSelection = [self selectedIndexes];
    if ([items count] > 0 && [oldSelection count] == 0) {
       int selectionIndex = index;
       if (selectionIndex < 0) {
@@ -594,7 +594,7 @@ General/PointDistance(General/NSPoint start,
       } else if (selectionIndex >= [items count]) {
          selectionIndex = [items count] - 1;
       }
-      General/items objectAtIndex:selectionIndex] setIsSelected:YES];
+      items objectAtIndex:selectionIndex] setIsSelected:YES];
 
       [self testSelectionChanged:oldSelection];
    }
@@ -603,17 +603,17 @@ General/PointDistance(General/NSPoint start,
 
 - (void)keyDown: ([[NSEvent *)event
 {
-   unichar u = General/event charactersIgnoringModifiers] characterAtIndex: 0];
+   unichar u = event charactersIgnoringModifiers] characterAtIndex: 0];
 
    if (u == [[NSDeleteCharacter ||
-       u == General/NSDeleteFunctionKey) {
+       u == NSDeleteFunctionKey) {
       // Forward or backward delete.
-      [self interpretKeyEvents:General/[NSArray arrayWithObject:event]];
-   } else if (u == General/NSEnterCharacter ||
-              u == General/NSCarriageReturnCharacter) {
-      General/NSArray *indexes = [self selectedIndexes];
+      [self interpretKeyEvents:[NSArray arrayWithObject:event]];
+   } else if (u == NSEnterCharacter ||
+              u == NSCarriageReturnCharacter) {
+      NSArray *indexes = [self selectedIndexes];
       if ([indexes count] > 0) {
-         General/self target] performDoubleClickActionForIndex:
+         self target] performDoubleClickActionForIndex:
             [[indexes objectAtIndex:0] intValue;
       }
    } else {
@@ -624,9 +624,9 @@ General/PointDistance(General/NSPoint start,
 
 - (void)deleteBackward: (id)sender
 {
-   General/NSArray *indexes = [self selectedIndexes];
+   NSArray *indexes = [self selectedIndexes];
    if ([indexes count] > 0 &&
-       General/self target] shouldRemoveItemsAtIndexes:indexes]) {
+       self target] shouldRemoveItemsAtIndexes:indexes]) {
       [self removeItemsAtIndexes:indexes];
       [self maintainNonEmptySelection:[[indexes objectAtIndex:0] intValue] - 1];
       [[self window] makeFirstResponder:self];
@@ -638,10 +638,10 @@ General/PointDistance(General/NSPoint start,
 {
    [[NSArray *indexes = [self selectedIndexes];
    if ([indexes count] > 0 &&
-       General/self target] shouldRemoveItemsAtIndexes:indexes]) {
+       self target] shouldRemoveItemsAtIndexes:indexes]) {
       [self removeItemsAtIndexes:indexes];
       [self maintainNonEmptySelection:[[indexes objectAtIndex:0] intValue;
-      General/self window] makeFirstResponder:self];
+      self window] makeFirstResponder:self];
    }
 }
 
@@ -652,13 +652,13 @@ General/PointDistance(General/NSPoint start,
       return;
    }
 
-   General/NSMutableIndexSet *indexSet = General/[NSMutableIndexSet indexSet];
+   NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
 
-   General/NSEnumerator *e = [indexes objectEnumerator];
-   General/NSNumber *indexNumber;
+   NSEnumerator *e = [indexes objectEnumerator];
+   NSNumber *indexNumber;
    while ((indexNumber = [e nextObject])) {
       int index = [indexNumber intValue];
-      General/TigerCollectionViewItem *item = [items objectAtIndex:index];
+      TigerCollectionViewItem *item = [items objectAtIndex:index];
       [item removeFromSuperview];
       [indexSet addIndex:index];
    }
@@ -673,29 +673,29 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (General/NSDragOperation)draggingEntered: (id<General/NSDraggingInfo>)sender
+- (NSDragOperation)draggingEntered: (id<NSDraggingInfo>)sender
 {
    return [self draggingUpdated:sender];
 }
 
 
-- (void)draggingExited: (id<General/NSDraggingInfo>)sender
+- (void)draggingExited: (id<NSDraggingInfo>)sender
 {
    [self setDragTarget:nil draggingInfo:sender];
 }
 
 
-- (BOOL)prepareForDragOperation: (id<General/NSDraggingInfo>)sender
+- (BOOL)prepareForDragOperation: (id<NSDraggingInfo>)sender
 {
    BOOL acceptDrop = NO;
-   General/NSArray *dragTypes = General/sender draggingPasteboard] types];
+   NSArray *dragTypes = sender draggingPasteboard] types];
 
    if ([dragTypes containsObject:DRAG_ITEM_TYPE]) {
       acceptDrop = YES;
    } else if ([dragTypes containsObject:[[NSFilenamesPboardType]) {
-      General/NSArray *filePaths = General/sender draggingPasteboard]
+      NSArray *filePaths = sender draggingPasteboard]
          propertyListForType:[[NSFilenamesPboardType];
-      acceptDrop = General/self target] dragOperationForFiles:filePaths] !=
+      acceptDrop = self target] dragOperationForFiles:filePaths] !=
                    [[NSDragOperationNone;
    }
 
@@ -706,40 +706,40 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (BOOL)performDragOperation: (id<General/NSDraggingInfo>)sender
+- (BOOL)performDragOperation: (id<NSDraggingInfo>)sender
 {
    int destIndex = [self dragTargetIndex];
-   ASSERT(destIndex != General/NSNotFound);
+   ASSERT(destIndex != NSNotFound);
    [self setDragTarget:nil draggingInfo:sender];
 
-   General/NSArray *dragTypes = General/sender draggingPasteboard] types];
+   NSArray *dragTypes = sender draggingPasteboard] types];
    if ([dragTypes containsObject:DRAG_ITEM_TYPE]) {
-      [[NSArray *indexes = General/sender draggingPasteboard]
+      [[NSArray *indexes = sender draggingPasteboard]
          propertyListForType:DRAG_ITEM_TYPE];
       [[self target] dragItemsAtIndexes:indexes toIndex:destIndex];         
    } else if ([dragTypes containsObject:[[NSFilenamesPboardType]) {
-      General/NSArray *filePaths = General/sender draggingPasteboard]
+      NSArray *filePaths = sender draggingPasteboard]
          propertyListForType:[[NSFilenamesPboardType];
-      General/self target] dragFiles:filePaths toIndex:destIndex];
+      self target] dragFiles:filePaths toIndex:destIndex];
    }
    return YES;
 }
 
 
-- ([[NSDragOperation)draggingUpdated: (id<General/NSDraggingInfo>)sender
+- ([[NSDragOperation)draggingUpdated: (id<NSDraggingInfo>)sender
 {
-   General/NSPoint dragPos = General/self superview] convertPoint:[sender draggingLocation]
+   NSPoint dragPos = self superview] convertPoint:[sender draggingLocation]
                                            fromView:nil];
    [[NSView *targetView = [self hitTest:dragPos];
 
-   General/NSDragOperation dragOperation = General/NSDragOperationNone;
-   General/NSArray *dragTypes = General/sender draggingPasteboard] types];
+   NSDragOperation dragOperation = NSDragOperationNone;
+   NSArray *dragTypes = sender draggingPasteboard] types];
    if ([dragTypes containsObject:DRAG_ITEM_TYPE]) {
       dragOperation = [[NSDragOperationMove;
-   } else if ([dragTypes containsObject:General/NSFilenamesPboardType]) {
-      General/NSArray *filePaths = General/sender draggingPasteboard]
+   } else if ([dragTypes containsObject:NSFilenamesPboardType]) {
+      NSArray *filePaths = sender draggingPasteboard]
          propertyListForType:[[NSFilenamesPboardType];
-      dragOperation = General/self target] dragOperationForFiles:filePaths];
+      dragOperation = self target] dragOperationForFiles:filePaths];
    }
 
    if (dragOperation == [[NSDragOperationNone) {
@@ -757,31 +757,31 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (General/NSDragOperation)draggingSourceOperationMaskForLocal: (BOOL)isLocal
+- (NSDragOperation)draggingSourceOperationMaskForLocal: (BOOL)isLocal
 {
    if (isLocal) {
-      return General/NSDragOperationMove;
+      return NSDragOperationMove;
    } else {
-      return General/NSDragOperationLink;
+      return NSDragOperationLink;
    }
 }
 
 
-- (int)indexFromDragTarget: (General/NSView *)targetView
-              draggingInfo: (id<General/NSDraggingInfo>)draggingInfo
+- (int)indexFromDragTarget: (NSView *)targetView
+              draggingInfo: (id<NSDraggingInfo>)draggingInfo
 {
-   int index = General/NSNotFound;
+   int index = NSNotFound;
    if (targetView &&
-       [targetView isKindOfClass:General/[TigerCollectionViewItem class]]) {
+       [targetView isKindOfClass:[TigerCollectionViewItem class]]) {
       index = [items indexOfObject:targetView];
    }
 
-   if (index != General/NSNotFound) {
-      General/TigerCollectionViewItem *item =
+   if (index != NSNotFound) {
+      TigerCollectionViewItem *item =
          [items objectAtIndex:index];
-      General/NSPoint viewPos = [item convertPoint:[draggingInfo draggingLocation]
+      NSPoint viewPos = [item convertPoint:[draggingInfo draggingLocation]
                                   fromView:nil];
-      General/NSRect bounds = [item bounds];
+      NSRect bounds = [item bounds];
       if (viewPos.y < bounds.size.height / 2.0) {
          index = fmin(index + 1, [items count]);
       }
@@ -791,8 +791,8 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (void)setDragTarget: (General/NSView *)targetView
-         draggingInfo: (id<General/NSDraggingInfo>)draggingInfo
+- (void)setDragTarget: (NSView *)targetView
+         draggingInfo: (id<NSDraggingInfo>)draggingInfo
 {
    int newDragTargetIndex = [self indexFromDragTarget:targetView
                                          draggingInfo:draggingInfo];
@@ -807,8 +807,8 @@ General/PointDistance(General/NSPoint start,
 - (void)setIndex: (int)index
     isDragTarget: (BOOL)isDragTarget
 {
-   if (index != General/NSNotFound) {
-      General/DragTargetType dragTargetType = isDragTarget ? DragTargetType_Top :
+   if (index != NSNotFound) {
+      DragTargetType dragTargetType = isDragTarget ? DragTargetType_Top :
                                                      DragTargetType_None;
       int actualIndex = index;
       if (actualIndex == [items count]) {
@@ -817,7 +817,7 @@ General/PointDistance(General/NSPoint start,
             dragTargetType = DragTargetType_Bottom;
          }
       }
-      General/items objectAtIndex:actualIndex] setDragTargetType:dragTargetType];
+      items objectAtIndex:actualIndex] setDragTargetType:dragTargetType];
    }
 }
 
@@ -833,18 +833,18 @@ General/PointDistance(General/NSPoint start,
    int count = [items count];
    int i;
    for (i = 0; i < count; i++) {
-      General/TigerCollectionViewItem *item = [items objectAtIndex:i];
+      TigerCollectionViewItem *item = [items objectAtIndex:i];
       if ([item dragTargetType] == DragTargetType_Top) {
          return i;
       } else if ([item dragTargetType] == DragTargetType_Bottom) {
          return i + 1;
       }
    }
-   return General/NSNotFound;
+   return NSNotFound;
 }
 
 
-- (void)resizeWithOldSuperviewSize: (General/NSSize)oldBoundsSize
+- (void)resizeWithOldSuperviewSize: (NSSize)oldBoundsSize
 {
    [super resizeWithOldSuperviewSize:oldBoundsSize];
    [self performSelector:@selector(maximizeViewWidth:) withObject:nil afterDelay:0.10];
@@ -854,51 +854,51 @@ General/PointDistance(General/NSPoint start,
 
 - (void)maximizeViewWidth: (id)sender
 {
-   float width = General/[self enclosingScrollView] contentView] frame].size.width;
+   float width = [self enclosingScrollView] contentView] frame].size.width;
    [[NSRect myOldFrame = [self frame];
    if (myOldFrame.size.width != width) {
-      [self setFrameSize:General/NSMakeSize(width, myOldFrame.size.height)];
+      [self setFrameSize:NSMakeSize(width, myOldFrame.size.height)];
       [self setNeedsDisplay:YES];
    }
 }
 
 
-- (void)onKeyWindowChanged: (General/NSNotification *)notification
+- (void)onKeyWindowChanged: (NSNotification *)notification
 {
    [self setNeedsDisplay:YES];
 
-   General/NSEnumerator *e = [items objectEnumerator];
-   General/TigerCollectionViewItem *item;
+   NSEnumerator *e = [items objectEnumerator];
+   TigerCollectionViewItem *item;
    while ((item = [e nextObject])) {
       [item updateHighlightState];
    }
 }
 
 
-- (void)testSelectionChanged: (General/NSArray *)oldSelection
+- (void)testSelectionChanged: (NSArray *)oldSelection
 {
    BOOL didChange = NO;
    if (!oldSelection) {
       didChange = YES;
    } else {
-      General/NSArray *newSelection = [self selectedIndexes];
+      NSArray *newSelection = [self selectedIndexes];
       didChange = ![oldSelection isEqualToArray:newSelection];
    }
 
    if (didChange) {
-      General/self target] onSelectionDidChange];
+      self target] onSelectionDidChange];
    }
 }
 
 
-- ([[NSArray *)filePathsForIndexes: (General/NSArray *)indexes
+- ([[NSArray *)filePathsForIndexes: (NSArray *)indexes
 {
-   General/NSMutableArray *filePaths = General/[NSMutableArray array];
+   NSMutableArray *filePaths = [NSMutableArray array];
 
-   General/NSEnumerator *e = [indexes objectEnumerator];
-   General/NSNumber *indexNumber;
+   NSEnumerator *e = [indexes objectEnumerator];
+   NSNumber *indexNumber;
    while ((indexNumber = [e nextObject])) {
-      General/NSString *filePath = General/self target] filePathForIndex:[indexNumber intValue;
+      NSString *filePath = self target] filePathForIndex:[indexNumber intValue;
       if (filePath) {
          [filePaths addObject:filePath];
       }
@@ -907,10 +907,10 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-@end // General/TigerCollectionView (Private)
+@end // TigerCollectionView (Private)
 
 
-@implementation General/TigerCollectionViewItem
+@implementation TigerCollectionViewItem
 
 
 - (void)dealloc
@@ -926,50 +926,50 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (void)drawRect: (General/NSRect)rect
+- (void)drawRect: (NSRect)rect
 {
    [super drawRect:rect];
 
    if ([self isSelected]) {
       if ([self shouldDrawSecondaryHighlight]) {
-         General/[[NSColor grayColor] set];
+         [[NSColor grayColor] set];
       } else {
-         General/[[NSColor blueColor] set];
+         [[NSColor blueColor] set];
       }
-      General/NSRectFill(rect);
+      NSRectFill(rect);
    }
 
    if (dragTargetType != DragTargetType_None) {
-      General/NSRect dRect = [self bounds];
+      NSRect dRect = [self bounds];
       if (dragTargetType == DragTargetType_Top) {
          dRect.origin.y = dRect.size.height - 2.0;
       }
       dRect.size.height = 2;
-      General/[[NSColor blackColor] set];
-      General/NSRectFill(dRect);
+      [[NSColor blackColor] set];
+      NSRectFill(dRect);
    }
 }
 
 
-@end // General/TigerCollectionViewItem
+@end // TigerCollectionViewItem
 
 
-@implementation General/TigerCollectionViewItem (Private)
+@implementation TigerCollectionViewItem (Private)
 
 
-- (General/NSMenu *)menuForEvent:(General/NSEvent *)event
+- (NSMenu *)menuForEvent:(NSEvent *)event
 {
    if (![self isSelected]) {
-      General/self collectionView] itemClicked:self event:event];
+      self collectionView] itemClicked:self event:event];
    }
    return [[self superview] menuForEvent:event];
 }
 
 
-- ([[NSView *)hitTest: (General/NSPoint)point
+- ([[NSView *)hitTest: (NSPoint)point
 {
-   General/NSView *result = [super hitTest:point];
-   if (result && ![result isKindOfClass:General/[NSButton class]]) {
+   NSView *result = [super hitTest:point];
+   if (result && ![result isKindOfClass:[NSButton class]]) {
       return self;
    } else {
       return result;
@@ -977,7 +977,7 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (void)mouseDown: (General/NSEvent *)event
+- (void)mouseDown: (NSEvent *)event
 {
    if ([self isLeftClickEvent:event]) {
       mouseDownPos = [event locationInWindow];
@@ -985,10 +985,10 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (void)mouseUp: (General/NSEvent *)event
+- (void)mouseUp: (NSEvent *)event
 {
    if ([self isLeftClickEvent:event]) {
-      General/self collectionView] itemClicked:self event:event];
+      self collectionView] itemClicked:self event:event];
    }
 }
 
@@ -996,10 +996,10 @@ General/PointDistance(General/NSPoint start,
 - (void)mouseDragged: ([[NSEvent *)event
 {
    if ([self isLeftClickEvent:event]) {
-      General/NSPoint mouseDragPos = [event locationInWindow];
-      float distance = General/PointDistance(mouseDragPos, mouseDownPos);
+      NSPoint mouseDragPos = [event locationInWindow];
+      float distance = PointDistance(mouseDragPos, mouseDownPos);
       if (distance > DRAG_START_DISTANCE) {
-         General/self collectionView] startDrag:event withItem:self];
+         self collectionView] startDrag:event withItem:self];
       }
    }
 }
@@ -1029,19 +1029,19 @@ General/PointDistance(General/NSPoint start,
 
 - ([[TigerCollectionView *)collectionView
 {
-   ASSERT(General/self superview] isKindOfClass:[[[TigerCollectionView class]]);
-   return (General/TigerCollectionView *)[self superview];
+   ASSERT(self superview] isKindOfClass:[[[TigerCollectionView class]]);
+   return (TigerCollectionView *)[self superview];
 }
 
 
-- (BOOL)isLeftClickEvent: (General/NSEvent *)event
+- (BOOL)isLeftClickEvent: (NSEvent *)event
 {
    return [event buttonNumber] == 0 &&
-          ([event modifierFlags] & General/NSControlKeyMask) == 0;
+          ([event modifierFlags] & NSControlKeyMask) == 0;
 }
 
 
-- (void)setDragTargetType: (General/DragTargetType)type
+- (void)setDragTargetType: (DragTargetType)type
 {
    if (dragTargetType != type) {
       dragTargetType = type;
@@ -1050,7 +1050,7 @@ General/PointDistance(General/NSPoint start,
 }
 
 
-- (General/DragTargetType)dragTargetType
+- (DragTargetType)dragTargetType
 {
    return dragTargetType;
 }
@@ -1061,12 +1061,12 @@ General/PointDistance(General/NSPoint start,
    BOOL isHighlighted = [self isSelected] &&
                         ![self shouldDrawSecondaryHighlight];
 
-   General/NSEnumerator *e = General/self subviews] objectEnumerator];
+   NSEnumerator *e = self subviews] objectEnumerator];
    id subview;
    while ((subview = [e nextObject])) {
       if ([subview isKindOfClass:[[[NSTextField class]]) {
          [self setHighlight:isHighlighted
-               forTextField:(General/NSTextField *)subview];                  
+               forTextField:(NSTextField *)subview];                  
       } else if ([subview respondsToSelector:@selector(setIsSelected:)]) {
          [subview setIsSelected:isHighlighted];
       }
@@ -1075,18 +1075,18 @@ General/PointDistance(General/NSPoint start,
 
 
 - (void)setHighlight: (BOOL)isHighlighted
-        forTextField: (General/NSTextField *)textField
+        forTextField: (NSTextField *)textField
 {
-   General/NSNumber *key = General/[NSNumber numberWithInt:[textField hash]];
+   NSNumber *key = [NSNumber numberWithInt:[textField hash]];
 
    if (!cachedTextColors) {
-      cachedTextColors = General/[[NSMutableDictionary alloc] init];
+      cachedTextColors = [[NSMutableDictionary alloc] init];
    }
 
    if (isHighlighted) {
       if (![cachedTextColors objectForKey:key]) {
          [cachedTextColors setObject:[textField textColor] forKey:key];
-         [textField setTextColor:General/[NSColor whiteColor]];
+         [textField setTextColor:[NSColor whiteColor]];
       }
    } else {
       if ([cachedTextColors objectForKey:key]) {
@@ -1099,7 +1099,7 @@ General/PointDistance(General/NSPoint start,
 
 - (BOOL)shouldDrawSecondaryHighlight
 {
-   if (General/self window] isKeyWindow]) {
+   if (self window] isKeyWindow]) {
       return NO;
    } else {
       return YES;

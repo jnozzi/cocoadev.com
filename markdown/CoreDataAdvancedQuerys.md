@@ -1,4 +1,4 @@
-I love General/CoreData, its so easy for simple lookups. But I'm trying to do some more advanced things now and running into trouble.
+I love CoreData, its so easy for simple lookups. But I'm trying to do some more advanced things now and running into trouble.
 
 Namely I'd like something like MYSQL GROUP BY function, if I have a managed object of structured like this:
 
@@ -17,16 +17,16 @@ tia
 
 ----
 
-You'll need a bit of General/NSPredicate and a bit of key-value magic.
+You'll need a bit of NSPredicate and a bit of key-value magic.
 
     
-General/NSArray *times = [array filteredArrayUsingPredicate:General/[NSPredicate predicateWithFormat:@"images.count > 20"]];
-General/NSArray *uniqueYears = [times valueForKeyPath:@"@distinctUnionOfObjects.year"];
-General/NSLog(@"%@", uniqueYears);
+NSArray *times = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"images.count > 20"]];
+NSArray *uniqueYears = [times valueForKeyPath:@"@distinctUnionOfObjects.year"];
+NSLog(@"%@", uniqueYears);
 
 
 I'm assuming here that the images are part of a relationship and not some object.  If it's an object, you'll have to implement a count method.  If it's a one-to-many relationship, the above should work.  I think.  Hope that helps.  You could combine all of that into one line but I kept each step separate for readability.
 
-More information on array operators: http://developer.apple.com/documentation/Cocoa/Conceptual/General/KeyValueCoding/Concepts/General/ArrayOperators.html
+More information on array operators: http://developer.apple.com/documentation/Cocoa/Conceptual/KeyValueCoding/Concepts/ArrayOperators.html
 
 -G

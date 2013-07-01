@@ -1,4 +1,4 @@
-See General/DVDPlaybackFramework if you are looking for help in using Apple's DVDP<nowiki/>layback.framework
+See DVDPlaybackFramework if you are looking for help in using Apple's DVDP<nowiki/>layback.framework
 
 ----
 
@@ -14,4 +14,4 @@ http://www.dictionary.com says it can be either.
 
 ----
 
-On a cheap DVD-R, it's about 2 hours of video, or 4.7 GB. In a not-so-cheap DVD-R, about 2x that much. So a commercial DVD-ROM should hold... I have no clue. -General/RossLeonardy
+On a cheap DVD-R, it's about 2 hours of video, or 4.7 GB. In a not-so-cheap DVD-R, about 2x that much. So a commercial DVD-ROM should hold... I have no clue. -RossLeonardy

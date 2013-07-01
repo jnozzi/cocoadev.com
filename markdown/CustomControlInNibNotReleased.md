@@ -1,4 +1,4 @@
-I checked my application with General/ObjectAlloc.app and discovered that not all my custom objects in a nib file are released.
+I checked my application with ObjectAlloc.app and discovered that not all my custom objects in a nib file are released.
 I fixed this by adding a
 
     
@@ -6,20 +6,20 @@ I fixed this by adding a
 
 in the dealloc method of my fileOwner class.
 
-This is working for simple custom General/NSViews but I'm unable to release things like a custom General/NSColorWell.
-For testing purposes I simply sub classed General/NSColorWell without adding any method.
+This is working for simple custom NSViews but I'm unable to release things like a custom NSColorWell.
+For testing purposes I simply sub classed NSColorWell without adding any method.
 
 Now, when I autorelease this custom class my application crashes, if I don't autorelease each time I load and release the nib file an object is created and remains allocated.
-Why is this working with simple subclasses from General/NSView and not with more complex objects?
+Why is this working with simple subclasses from NSView and not with more complex objects?
 
 Or... how should I handle this?
 
 FYI:
 My nib file is loaded with the code below.
-myFileOwner is the class set in General/InterfaceBuilder.
+myFileOwner is the class set in InterfaceBuilder.
 The nib file consists of a file's owner, a first responder, and a window.
     
-id fileOwner=General/myFileOwner alloc] init];
+id fileOwner=myFileOwner alloc] init];
  [[[NSBundle loadNibNamed:@"bundleName" owner:fileOwner]
 
 
@@ -30,7 +30,7 @@ First of all, how do you "release a nib file". That's one I've never come across
 If you are getting objects instantiated in a nib file, why do you need to load that auxiliary nib file more than once? Me, simpleton that I am, just check to see if the thing has been loaded previously before attempting to load it, and, if so, skip it the second time around. Yikes!
 
 if ( myNibbyLittleThing == nil ) {
-[ General/NSBundle loadNibNamed bla bla bla ]
+[ NSBundle loadNibNamed bla bla bla ]
 }
 
 Of course if you over-release an object, your app will crash. At what point is your dealloc method not "working"? When you "release" the nib? (Though I have no clue what that could mean!) If you need copies of the object in the nib, maybe you should be using a document-based scheme. Hm? On the other hand, if you are worried that not all your deallocs are happening when you quit the app, this is a separate matter.
@@ -44,7 +44,7 @@ Question remains... How to fully release a nib file. Do I really have to release
 
 ----
 
-I thought releasing the General/FilesOwner was the way to do that. You must be doing something else funky in there. Yes, you might have to do it all programmatically and without the use of a nib file. Why aren't you using the     [ General/NSApp beginSheet] stuff?
+I thought releasing the FilesOwner was the way to do that. You must be doing something else funky in there. Yes, you might have to do it all programmatically and without the use of a nib file. Why aren't you using the     [ NSApp beginSheet] stuff?
 
 Perhaps I am totally out to lunch here, but this seems to me rather a perversion of the Cocoa frameworks, and what you wish to do may well be impossible. If only I could figure out what you are actually trying to do, I could be more positive (both literally and figuratively).
 
@@ -68,7 +68,7 @@ Just imagine very complex sheets with a lot of objects and perhaps images, this 
 
 ----
 
-That is not so bad. I have done it myself in a document-based app: Open a sheet on the master interface of a document view in order to present the detail part of a master-detail interface. Never had a problem with that. You have not said why [ General/NSApp beginSheet ] is not adequate for your needs, except to say you want the sheet to have lots of doodads on it. Sounds like an interface design problem. Design a panel, with lots of doodads if you like, and present it as a sheet. Add the doodads programmatically if you must. The panel should be part of your document nib.
+That is not so bad. I have done it myself in a document-based app: Open a sheet on the master interface of a document view in order to present the detail part of a master-detail interface. Never had a problem with that. You have not said why [ NSApp beginSheet ] is not adequate for your needs, except to say you want the sheet to have lots of doodads on it. Sounds like an interface design problem. Design a panel, with lots of doodads if you like, and present it as a sheet. Add the doodads programmatically if you must. The panel should be part of your document nib.
 
 I sure did not need to load a nib in order to present the detail interface. At the risk of antagonizing you, I feel you are being somewhat obstinate in insisting that your way is the only way to do what you want, that is, without giving more details about your interface. Sheets with accessory views are not out of the question, but I can do no more to guide you.
 
@@ -76,7 +76,7 @@ I sure did not need to load a nib in order to present the detail interface. At t
 *
 The OP asked a relatively simple question: "Do I really need to release each and every object in the nib?"
 
-As I understand it, the answer is that your nib file's owner generally needs to release all the top-level objects. Subviews in a view, for example, should be released when you release the view that contains them, so you should only have to release the top-level view and not all its subviews unless you've retained references to them elsewhere. I say 'generally' because General/NSWindowController releases things for you. It sounds like you (like most of us, probably) may have become accustomed to that behavior and aren't used to releasing things yourself. If you haven't already, check out the "What Happens When a Nib File is Loaded" page in the Cocoa docs.
+As I understand it, the answer is that your nib file's owner generally needs to release all the top-level objects. Subviews in a view, for example, should be released when you release the view that contains them, so you should only have to release the top-level view and not all its subviews unless you've retained references to them elsewhere. I say 'generally' because NSWindowController releases things for you. It sounds like you (like most of us, probably) may have become accustomed to that behavior and aren't used to releasing things yourself. If you haven't already, check out the "What Happens When a Nib File is Loaded" page in the Cocoa docs.
 
 To solve the problem, make sure that each top-level object is being released. Also, look for places where you might be retaining references to some of the objects in the nib, and make sure that those references are released appropriately.
 
@@ -89,16 +89,16 @@ It might be helpful if you can post your fileOwner's class declaration and -deal
 
 As the one who responded initially to the OP, I say bravo! And to which I can only add that the objects associated with the document, including those in associated sheets, should be released when the document is closed. If objects are added to those sheets programmatically, there is probably an appropriate place to release them, as when the sheet is closed.
 
-This is quite simple if the panel on which the sheet is based is a top level object in the document nib. The nib's General/FilesOwner has an outlet to the panel, and can, if necessary, create objects for it programmatically, can it not? And release them in the dealloc method or when the sheet is closed?
+This is quite simple if the panel on which the sheet is based is a top level object in the document nib. The nib's FilesOwner has an outlet to the panel, and can, if necessary, create objects for it programmatically, can it not? And release them in the dealloc method or when the sheet is closed?
 
-To amplify the "simple" question initially posed by the OP, note that it specifies that the *nib* for this sheet is explicitly loaded, ostensibly to present the sheet. I am only saying that this is not the way that I would choose to try to do this. I think I would only use General/NSBundle to load a nib on a one time basis in a non-document-based app. But I suppose there are ways to get rid of the objects created in this manner, for example by having outlets to EACH of them from that nib's General/FilesOwner, and releasing them individually at an appropriate time (and needing to check then if they are not nil).
+To amplify the "simple" question initially posed by the OP, note that it specifies that the *nib* for this sheet is explicitly loaded, ostensibly to present the sheet. I am only saying that this is not the way that I would choose to try to do this. I think I would only use NSBundle to load a nib on a one time basis in a non-document-based app. But I suppose there are ways to get rid of the objects created in this manner, for example by having outlets to EACH of them from that nib's FilesOwner, and releasing them individually at an appropriate time (and needing to check then if they are not nil).
 
 ----
 Problem solved!
 Indeed, one of the top-level objects wasn't released.
 
 Once I do that, all objects are released and I have of course no more leaks.
-And yes, I do use [ General/NSApp beginSheet ], no I don't think that my way is the only way but I want to understand what is happening in this case and why.
+And yes, I do use [ NSApp beginSheet ], no I don't think that my way is the only way but I want to understand what is happening in this case and why.
 
 Thanks for your replies, my questions are answered.
 I have a much better view on this whole nib and memory stuff now.
@@ -106,4 +106,4 @@ Thanks again!
 
 ----
 
-General/HowToDuplicateAViewFromTheNib may contain an interesting twist on this stuff
+HowToDuplicateAViewFromTheNib may contain an interesting twist on this stuff

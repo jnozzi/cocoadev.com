@@ -1,22 +1,22 @@
 
 
-Ex post factoid: General/SharewareTips has a lot of sage advice, once you get past the mechanics of hosting your project...
+Ex post factoid: SharewareTips has a lot of sage advice, once you get past the mechanics of hosting your project...
 
 ----
 
 So I've made some small utility apps, very standard things but some of them are anyway (almost) complete applications.
 
-I found out that my General/QCDesktop that puts Compositions on the desktop is far better than the only other app I could find (If I have something to say, of course).
+I found out that my QCDesktop that puts Compositions on the desktop is far better than the only other app I could find (If I have something to say, of course).
 
 So I was thinking... perhaps I should make my app available, for download on sites. I don't have a web host, although I'm looking for a good one for the moment, and looking to solve it with a friend or personally in the long term. So I need some suggestions where/how to submit and publish my applications.
 
-General/EnglaBenny
+EnglaBenny
 
 ----
 
 As a US aphorism goes, "Nothin' to it but to do it." Find a web host, put up a site (with a product description, a developer/business about page, a support request page (people tend not to want to use software if there's no obvious way to get support)) ... profit!
 
-Seriously:  *and this nested list is good candidate material to move to the practical-oriented General/SharewareTips page*
+Seriously:  *and this nested list is good candidate material to move to the practical-oriented SharewareTips page*
 
 
 *Build a web site & get a host.
@@ -33,12 +33,12 @@ Seriously:  *and this nested list is good candidate material to move to the prac
 
 *Jasper Hauser - http://www.jasperhauser.nl/icon/
 *Brian Bell - http://www.bryanbell.com/
-*General/InterfaceLIFT - http://interfacelift.com/icons-stock/
-*General/ThinkMac Icon Store - http://www.thinkmac.co.uk/aquaicons/
-*General/FernandoLucasSantos - http://www.fernandolins.com/
+*InterfaceLIFT - http://interfacelift.com/icons-stock/
+*ThinkMac Icon Store - http://www.thinkmac.co.uk/aquaicons/
+*FernandoLucasSantos - http://www.fernandolins.com/
 *Mouse Runner.com - http://mouserunner.com/ Many free icons and graphics for Mac and Windows
 
-Also see General/CommonCocoaIcons
+Also see CommonCocoaIcons
 *Google "press release format" and use it to create your own press release, then submit it to the proper e-mail address of magazines/news sites (they'll have a specific e-mail address for submitting PR - USE THAT AND NO OTHER). Until you make some contacts in the press world, you're just another app, so do it right or don't do it at all - best advice I can give regarding the press.
 *Don't make frivolous update releases every week. That annoys people. Even though it'd keep your app on the front page of the download sites (for 'today's updates'), most people will see right through that and that gives you a bad name. I've seen many apps get slammed in the 'review' forums for this very reason.
 *Make sure you have a 'cover-your-a**' EULA included with your app. This, at the very least, should state something like, "By using this software I agree not to hold the author responsible for damages ... blah blah." It's called limiting your liability. It's a good thing. While not bullet proof in all cases (considering the laws of foreign nations), it sure helps.
@@ -49,14 +49,14 @@ Also see General/CommonCocoaIcons
 
 Thanks for all the tips, I think we can refactor this to a great page for how to Publish one's app.
 
-*Just inserting a suggestion that we merge legalistic stuff, icons, etc. to General/SharewareTips*
+*Just inserting a suggestion that we merge legalistic stuff, icons, etc. to SharewareTips*
 *and leave the practical stuff here about getting it online.*
 *This of course includes those who just want advice on where to put free and/or open source projects....*
 
 This is what I'm doing right now: 
 I'm starting very slow and cheap, with putting up my website at my university. I get a trash link, but great hosting. The site is at http://www.student.lu.se/~cif04usv/
-I'm posting my application to Macupdate (succeeded) and others I can find. I'm reluctant to post at versiontracker, since they want a company name.. I'm not really a company (yet?). --General/EnglaBenny *Use your full name.*
+I'm posting my application to Macupdate (succeeded) and others I can find. I'm reluctant to post at versiontracker, since they want a company name.. I'm not really a company (yet?). --EnglaBenny *Use your full name.*
 
 ----
 
-You know you can register your own domain and use www.zoneedit.com to host it (for those who don't know, your domain record can be hosted separately from your web site). Simply configure your domain (with General/ZoneEdit's interface) to masquerade as your 'ugly' URL. Your visitors should only see your 'pretty' one.
+You know you can register your own domain and use www.zoneedit.com to host it (for those who don't know, your domain record can be hosted separately from your web site). Simply configure your domain (with ZoneEdit's interface) to masquerade as your 'ugly' URL. Your visitors should only see your 'pretty' one.

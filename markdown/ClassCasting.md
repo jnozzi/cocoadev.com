@@ -1,33 +1,33 @@
 OK, here's the deal:
 
-I have 2 General/NSDocument subclasses, one for dealing with HTML documents, one for dealing with text documents. Both implement the same methods, with HTML being treated slightly differently (saving with a .html extension, for one thing). I have some code that looks like:
+I have 2 NSDocument subclasses, one for dealing with HTML documents, one for dealing with text documents. Both implement the same methods, with HTML being treated slightly differently (saving with a .html extension, for one thing). I have some code that looks like:
 
     
-General/NSDocument *outputDocument;
+NSDocument *outputDocument;
 
     if (YES == isHTML)
     {
-	outputDocument = General/[[NSDocumentController sharedDocumentController] 
+	outputDocument = [[NSDocumentController sharedDocumentController] 
          openUntitledDocumentOfType: @"HTML Document" display:NO];
     }
     else
     {
-	outputDocument = General/[[NSDocumentController sharedDocumentController] 
+	outputDocument = [[NSDocumentController sharedDocumentController] 
           openUntitledDocumentOfType: @"Text Document" display:NO];
     }
 
     [outputDocument doStuff];
 
 
-Which gives warnings that 'General/NSDocument may not respond to doStuff'. Not a big deal, I guess, since my subclass does respond to doStuff, but I'd like to fix it if I can. I tried variations on     [([outputDocument class])outputDocument doStuff]; which didn't work. Is there a way to cast a class at runtime?
+Which gives warnings that 'NSDocument may not respond to doStuff'. Not a big deal, I guess, since my subclass does respond to doStuff, but I'd like to fix it if I can. I tried variations on     [([outputDocument class])outputDocument doStuff]; which didn't work. Is there a way to cast a class at runtime?
 
 ----
 
-Duh. General/NeverMind... Just typing outputDocument as     id gets rid of the warnings... I should retake General/ObjC 101
+Duh. NeverMind... Just typing outputDocument as     id gets rid of the warnings... I should retake ObjC 101
 
 ----
 
-I've never taken General/ObjC 101, but my natural (obsession with) tidiness leads me to ask, why not treat isHTML as a proper BOOL?
+I've never taken ObjC 101, but my natural (obsession with) tidiness leads me to ask, why not treat isHTML as a proper BOOL?
 
     
     if (isHTML) { ... }
@@ -44,9 +44,9 @@ BOOL *isHTML
 
 ----
 
-Another easy way to get rid of this warning is to declare -doStuff as an unimplemented category on General/NSDocument, similar to how an informal protocol is declared:
+Another easy way to get rid of this warning is to declare -doStuff as an unimplemented category on NSDocument, similar to how an informal protocol is declared:
     
-@interface General/NSDocument (General/DoStuffSupport)
+@interface NSDocument (DoStuffSupport)
 - (void)doStuff;
 @end
 

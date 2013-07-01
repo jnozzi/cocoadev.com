@@ -12,4 +12,4 @@ Apple Sample code has an example of this:
 
 http://developer.apple.com/samplecode/Spotlight/Spotlight.html
 
-General/EnglaBenny
+EnglaBenny

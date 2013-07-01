@@ -2,17 +2,17 @@ I'm having problems when I need to be sure that all my documents are saved befor
 The example method below says it all. 
 I need to be sure that all documents are saved before I continue but after sending the message
     
-General/[[NSDocumentController sharedDocumentController]saveAllDocuments];
+[[NSDocumentController sharedDocumentController]saveAllDocuments];
 
 the program continues without waiting. Perhaps a second thread is used to actually save the documents?
 How to handle this?
 
-In my subclass of General/NSDocument:
+In my subclass of NSDocument:
 
     
 -(void) doSomething
 {
-        General/[[NSDocumentControllersharedDocumentController]saveAllDocuments:nil];
+        [[NSDocumentControllersharedDocumentController]saveAllDocuments:nil];
         // now that all documents are saved and the user did not cancel saving untitled documents
 
         if( there are no more unsaved documents)
@@ -28,18 +28,18 @@ In my subclass of General/NSDocument:
 
 *the program continues without waiting. Perhaps a second thread is used to actually save the documents?*
 
-It has to return, because the app is supposed to keep responding to input while the user reads the dialog(s) and decides what to do.  It probably isn't in a second thread, I'd expect it to use the runloop.  Anyway, I think you'll need to do this rather more manually.  Go through each unsaved document and tell it to save itself, maybe with     -General/[NSDocument saveDocumentWithDelegate:didSaveSelector:contextInfo:] if that's the kind of behavior you want (some other related methods can be used to get different behavior).  If there aren't any unsaved documents directly call a method that does your real work.  In the didSaveSelector you specify, see if all the docs have been saved, and if so call that real work method.
+It has to return, because the app is supposed to keep responding to input while the user reads the dialog(s) and decides what to do.  It probably isn't in a second thread, I'd expect it to use the runloop.  Anyway, I think you'll need to do this rather more manually.  Go through each unsaved document and tell it to save itself, maybe with     -[NSDocument saveDocumentWithDelegate:didSaveSelector:contextInfo:] if that's the kind of behavior you want (some other related methods can be used to get different behavior).  If there aren't any unsaved documents directly call a method that does your real work.  In the didSaveSelector you specify, see if all the docs have been saved, and if so call that real work method.
 
 ----
 
-I have a General/NSDocument (myDocument) which displays a sheet (myDialog).
+I have a NSDocument (myDocument) which displays a sheet (myDialog).
 myDocument is an untitled, modified (changed) document.
 
     
 @implementation myDocument
 - (void) showDialog
 {
-	General/[[NSApplication sharedApplication] beginSheet: myDialogWindow 
+	[[NSApplication sharedApplication] beginSheet: myDialogWindow 
 				modalForWindow:[self window] modalDelegate:self 
 				didEndSelector:@selector(sheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
 }
@@ -56,7 +56,7 @@ This sheet calls saveDocumentWithDelegate
 	[myDocument saveDocumentWithDelegate:self didSaveSelector:@selector( documentIsSaved:didSave:contextInfo:) contextInfo:nil];
 }
 
-- (void) documentIsSaved:(General/NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void*)contextInfo
+- (void) documentIsSaved:(NSDocument *)doc didSave:(BOOL)didSave contextInfo:(void*)contextInfo
 {
 	if( didSave ==NO)
 	{

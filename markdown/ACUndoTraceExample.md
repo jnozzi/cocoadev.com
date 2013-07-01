@@ -1,4 +1,4 @@
-In order to produce General/SketchDotAppUndoTrace to solve General/SketchDotAppUndo, we changed Sketch_main.m as follows:
+In order to produce SketchDotAppUndoTrace to solve SketchDotAppUndo, we changed Sketch_main.m as follows:
 
     
  #import <AppKit/AppKit.h>
@@ -9,11 +9,11 @@ In order to produce General/SketchDotAppUndoTrace to solve General/SketchDotAppU
  
  int main(int argc, const char *argv[]) {
  
-     NSAutoreleasePool * pool = General/NSAutoreleasePool alloc] init];
+     NSAutoreleasePool * pool = NSAutoreleasePool alloc] init];
  
      ACPointCut * pointCut = [[ACPointCut alloc] initDefault];
      [[pointCut getClassScope] addClassAndMeta: [NSUndoManager class;
-     ACAspect * myAspect = General/ACAspect alloc] initWithPointCut: pointCut 
+     ACAspect * myAspect = ACAspect alloc] initWithPointCut: pointCut 
                                              andAdviceObject: [ACLoggingAdvice new;
      [myAspect load];    
  

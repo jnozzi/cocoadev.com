@@ -1,4 +1,4 @@
-I'm reading some RGB565 data from a binary file, and am needing to convert it to RGB888 (supposedly General/NSBitmapImageRep doesn't handle RGB565) and found some code from the Cocoa mailing list that attempts to do this. Now in the beginning I didn't really know what I was doing with RGB data at all, so I had to read up on it and now I have a fairly well understanding of the differences of RGB 555, 565, and 888 data. This function below gives me images that looks really screwy from what they should be, although I can tell that most of the colors are there in the image (just not in the right pixel location). Am I correct in saying that with RGB565/888 pixels are laid out from left to right, top to bottom? Anyways, if someone could give me a few pointers for reading RGB565 data, or why this method is not working properly, or anything I would really appreciate it. BTW, I've attempted to just hard code my own RGB888 into the code (like 0xFF0000FF for red) and that works fine. I think there's just something wrong with how its reading the data (or maybe my RGB565 data is screwy??). Thanks.
+I'm reading some RGB565 data from a binary file, and am needing to convert it to RGB888 (supposedly NSBitmapImageRep doesn't handle RGB565) and found some code from the Cocoa mailing list that attempts to do this. Now in the beginning I didn't really know what I was doing with RGB data at all, so I had to read up on it and now I have a fairly well understanding of the differences of RGB 555, 565, and 888 data. This function below gives me images that looks really screwy from what they should be, although I can tell that most of the colors are there in the image (just not in the right pixel location). Am I correct in saying that with RGB565/888 pixels are laid out from left to right, top to bottom? Anyways, if someone could give me a few pointers for reading RGB565 data, or why this method is not working properly, or anything I would really appreciate it. BTW, I've attempted to just hard code my own RGB888 into the code (like 0xFF0000FF for red) and that works fine. I think there's just something wrong with how its reading the data (or maybe my RGB565 data is screwy??). Thanks.
 
     // swizzle pixels from RGB565 to RGBA8888
 #define SRC_PIXEL    UInt16
@@ -8,15 +8,15 @@ I'm reading some RGB565 data from a binary file, and am needing to convert it to
 #define BLUE(x)        (((x) << 11) & 0x0000F800)
 #define ALPHA(x)    0x000000FF
 
-General/NSImage *ConvertRGB565ToNSImage(unsigned char *data, int width, int height)
+NSImage *ConvertRGB565ToNSImage(unsigned char *data, int width, int height)
 {
     register SRC_PIXEL *src;
     register DST_PIXEL *dest;
-    General/NSImage* image;
-    General/NSBitmapImageRep *bitmap;
+    NSImage* image;
+    NSBitmapImageRep *bitmap;
     int row, col, dstRowBytes;
 	
-    bitmap = General/[[NSBitmapImageRep alloc]
+    bitmap = [[NSBitmapImageRep alloc]
             initWithBitmapDataPlanes: nil
                           pixelsWide: width
 						  pixelsHigh: height
@@ -24,7 +24,7 @@ General/NSImage *ConvertRGB565ToNSImage(unsigned char *data, int width, int heig
 					 samplesPerPixel: 4
                             hasAlpha: YES
 							isPlanar: NO
-                      colorSpaceName: General/NSCalibratedRGBColorSpace
+                      colorSpaceName: NSCalibratedRGBColorSpace
 						 bytesPerRow: 0
 						bitsPerPixel: 32];
 	
@@ -52,7 +52,7 @@ General/NSImage *ConvertRGB565ToNSImage(unsigned char *data, int width, int heig
         //dest = (DST_PIXEL*) ((unsigned char*)dest + dstRowBytes - width*sizeof(DST_PIXEL));
     }
 	
-    image = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(width, height)] autorelease];
+    image = [[[NSImage alloc] initWithSize:NSMakeSize(width, height)] autorelease];
     [image addRepresentation:bitmap];
     [bitmap release];
 	
@@ -61,7 +61,7 @@ General/NSImage *ConvertRGB565ToNSImage(unsigned char *data, int width, int heig
 
 ----
 
-OK after spending weeks on and off trying to fix this (sort of a side project), it now works. Here's the code which reads RGB565 data and creates an General/NSImage out of it:
+OK after spending weeks on and off trying to fix this (sort of a side project), it now works. Here's the code which reads RGB565 data and creates an NSImage out of it:
     
 unsigned long RGB565toRGBA(unsigned short rgb565)
 {
@@ -76,15 +76,15 @@ unsigned long RGB565toRGBA(unsigned short rgb565)
 	return (red << 24) | (green << 16) | (blue << 8) | 0xFF;
 }
 
-General/NSImage *ConvertRGB565ToNSImage(unsigned char *data, int width, int height)
+NSImage *ConvertRGB565ToNSImage(unsigned char *data, int width, int height)
 {
 	unsigned short *src;
 	unsigned long *dest;
-	General/NSImage* image;
-	General/NSBitmapImageRep *bitmap;
+	NSImage* image;
+	NSBitmapImageRep *bitmap;
 	int dstRowBytes;
 	
-	bitmap = General/[[NSBitmapImageRep alloc]
+	bitmap = [[NSBitmapImageRep alloc]
             initWithBitmapDataPlanes: nil
                           pixelsWide: width
 						  pixelsHigh: height
@@ -92,7 +92,7 @@ General/NSImage *ConvertRGB565ToNSImage(unsigned char *data, int width, int heig
 					 samplesPerPixel: 4
                             hasAlpha: YES
 							isPlanar: NO
-                      colorSpaceName: General/NSCalibratedRGBColorSpace
+                      colorSpaceName: NSCalibratedRGBColorSpace
 						 bytesPerRow: width*4
 						bitsPerPixel: 32];
 	
@@ -112,7 +112,7 @@ General/NSImage *ConvertRGB565ToNSImage(unsigned char *data, int width, int heig
 		src++;
 	}
 	
-	image = General/[[[NSImage alloc] initWithSize:General/NSMakeSize(width, height)] autorelease];
+	image = [[[NSImage alloc] initWithSize:NSMakeSize(width, height)] autorelease];
 	[image addRepresentation:bitmap];
 	[bitmap release];
 	
@@ -141,7 +141,7 @@ unsigned long RGB565toRGBA(unsigned short rgb565)
 
 ----
 
-How about going the opposite direction? I need the ability to go from an General/NSImage to RGBA bitmap (also 565). I've seen code that uses TIFF as a intermediate step but it doesn't seem there is a clean way to assure there is always the alpha channel. Or at least I seem to be missing it...
+How about going the opposite direction? I need the ability to go from an NSImage to RGBA bitmap (also 565). I've seen code that uses TIFF as a intermediate step but it doesn't seem there is a clean way to assure there is always the alpha channel. Or at least I seem to be missing it...
 
 ----
 Adding to the routine above, this worked for me for Big-Endian raw data on an Intel Mac:

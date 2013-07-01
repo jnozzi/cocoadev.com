@@ -84,7 +84,7 @@ while ( test )              [1]
 [target fooWithObject: bar]             [4]     ST*
 [target fooWithObject:bar]              [12]     ABY**, APPL, AH
 
-* Note the space after the colon.  The syntax and semantics for message expressions in General/ObjC were modeled after the syntax and semantics for message expressions in Smalltalk, where a space after the colon is widely regarded as a best practice.  See, for example, Kent Beck, Smalltalk Best Practice Patterns; Skublics, Klimas and Thomas, Smalltalk with Style; Simon Lewis, The Art and Science of Smalltalk; and Chamond Lui, Smalltalk, Objects and Design.
+* Note the space after the colon.  The syntax and semantics for message expressions in ObjC were modeled after the syntax and semantics for message expressions in Smalltalk, where a space after the colon is widely regarded as a best practice.  See, for example, Kent Beck, Smalltalk Best Practice Patterns; Skublics, Klimas and Thomas, Smalltalk with Style; Simon Lewis, The Art and Science of Smalltalk; and Chamond Lui, Smalltalk, Objects and Design.
 
 ** This style was was adopted in two terrific Cocoa textbooks---Anguish, Buck and Yacktman, *Cocoa Programming* and Aaron Hillegass, *Cocoa Programming for Mac OS X* ---as well as recent Apple Developer Documentation on Cocoa conventions.
 
@@ -111,4 +111,4 @@ Also note that K+R style is much more compact than GNU. Many times books will us
 
 ----
 
-To keep this poll clean I condensed General/DimitriT's answers into the total results above. Hope this is ok.
+To keep this poll clean I condensed DimitriT's answers into the total results above. Hope this is ok.

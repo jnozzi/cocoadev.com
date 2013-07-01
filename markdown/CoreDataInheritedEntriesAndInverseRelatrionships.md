@@ -12,7 +12,7 @@ Remco Poelstra
 
 ----
 
-Do what General/XCode says: create the inverse relationships.  Basically, you want every relationship to have arrows on both ends.  There is a drop down menu to let you set the inverse relationship.  This is not strictly necessary, but everything is much happier if you do.
+Do what XCode says: create the inverse relationships.  Basically, you want every relationship to have arrows on both ends.  There is a drop down menu to let you set the inverse relationship.  This is not strictly necessary, but everything is much happier if you do.
 
 ----
 

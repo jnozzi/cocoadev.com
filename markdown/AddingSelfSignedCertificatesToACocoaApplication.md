@@ -2,7 +2,7 @@ I'm working on a Cocoa client program that talks to a webserver. Up until now, I
 
 I've been pulling information off the webserver primarily by:
 
-a) Using     +[NSURL URLWithString:] to create General/URLs with the string, @"http://myserver.com/"
+a) Using     +[NSURL URLWithString:] to create URLs with the string, @"http://myserver.com/"
 
 b) Retrieving the information through the method     +[NSString stringWithContentsOfURL:encoding:error:] ...
 
@@ -13,4 +13,4 @@ Having talked to friends / read up a bit on the subject, I now know that Cocoa's
 
 ----
 
-You'll need to use the new URL access stuff in General/WebKit to do this. The documentation for General/WebKit lists a bunch of callbacks you will receive in response to authorization challenges; you should be able to do something there, though it's not quite as good as adding your certificate to the keychain (which is yet another option).
+You'll need to use the new URL access stuff in WebKit to do this. The documentation for WebKit lists a bunch of callbacks you will receive in response to authorization challenges; you should be able to do something there, though it's not quite as good as adding your certificate to the keychain (which is yet another option).

@@ -5,10 +5,10 @@ I have a container-esque object that contains an nsarray internally.  These cont
 {
 [array removeObject: anObject];
 
-General/[[NSNotificationCenter defaultCenter]
- postNotificationName: General/StaticContainerDidRemoveObject
+[[NSNotificationCenter defaultCenter]
+ postNotificationName: StaticContainerDidRemoveObject
  object: self
- userInfo: General/[NSDictionary dictionaryWithObject: anObject forKey: @"Object"]];
+ userInfo: [NSDictionary dictionaryWithObject: anObject forKey: @"Object"]];
 }
 
 
@@ -19,10 +19,10 @@ The problem is, if none of the other containers have anObject, then the anObject
 {
 [array removeObject: [anObject retain]];
 
-General/[[NSNotificationCenter defaultCenter]
- postNotificationName: General/StaticContainerDidRemoveObject
+[[NSNotificationCenter defaultCenter]
+ postNotificationName: StaticContainerDidRemoveObject
  object: self
- userInfo: General/[NSDictionary dictionaryWithObject: anObject forKey: @"Object"]];
+ userInfo: [NSDictionary dictionaryWithObject: anObject forKey: @"Object"]];
 
 [anObject release];
 }
@@ -30,6 +30,6 @@ General/[[NSNotificationCenter defaultCenter]
 
 Thanks in advance,
 
-- General/FranciscoTolmasky
+- FranciscoTolmasky
 
 *Good catch on the potential bug, and yes, that is a correct solution. You could also create the dictionary before removing the object which wouldn't require the two extra calls to anObject.*

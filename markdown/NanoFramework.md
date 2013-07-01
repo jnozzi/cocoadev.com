@@ -6,12 +6,12 @@ http://www.refnum.com/products/nano
 
 ----
 
-I have to ask - why tell us about a C++ framework on a Cocoa site? After doing years of C++ I think nobody would prefer it over Objective-C/Cocoa given a free choice, and when the Cocoa framework for Mac OS X is so comprehensive, why would anyone need a C++ framework? You can do things in Objective-C that C++ only dreams about, and its learning curve is much less steep. I say this having stopped development of General/MacZoop (a C++ framework) basically because it became obsolete for exactly this reason. --General/GrahamCox.
+I have to ask - why tell us about a C++ framework on a Cocoa site? After doing years of C++ I think nobody would prefer it over Objective-C/Cocoa given a free choice, and when the Cocoa framework for Mac OS X is so comprehensive, why would anyone need a C++ framework? You can do things in Objective-C that C++ only dreams about, and its learning curve is much less steep. I say this having stopped development of MacZoop (a C++ framework) basically because it became obsolete for exactly this reason. --GrahamCox.
 
 ----
 
-The same reason that a General/MacZoop page exists.
+The same reason that a MacZoop page exists.
 
 ----
 
-General/MacZoop is not a currently active framework; I stopped work on it about three years ago now. Cocoa made any further effort in that direction pointless. The General/MacZoop page here wasn't added here by me, I should point out, though I did add a footnote to it. --General/GrahamCox
+MacZoop is not a currently active framework; I stopped work on it about three years ago now. Cocoa made any further effort in that direction pointless. The MacZoop page here wasn't added here by me, I should point out, though I did add a footnote to it. --GrahamCox

@@ -1,13 +1,13 @@
-**General/OriginalClass** -part of General/AspectCocoa
+**OriginalClass** -part of AspectCocoa
 
-Here we define an example Class as a reference.. as an example of a Class that we might want to apply some Aspects too.  Other pages related to General/AspectCocoa will make reference to this Class.
+Here we define an example Class as a reference.. as an example of a Class that we might want to apply some Aspects too.  Other pages related to AspectCocoa will make reference to this Class.
 ----
 
     
 #import <Foundation/Foundation.h>
 
 
-@interface General/OriginalClass : General/NSObject {
+@interface OriginalClass : NSObject {
 
 }
 
@@ -17,11 +17,11 @@ Here we define an example Class as a reference.. as an example of a Class that w
 
 - (void)c;
 
-- (void)d:(General/NSString *)string;
+- (void)d:(NSString *)string;
 
-- (id)e:(General/NSString *)string;
+- (id)e:(NSString *)string;
 
-- (id)f:(General/NSString *)a f:(General/NSString *)b;
+- (id)f:(NSString *)a f:(NSString *)b;
 
 - (id)g:(id *)thing;
 
@@ -32,47 +32,47 @@ Here we define an example Class as a reference.. as an example of a Class that w
 ----
 
     
-#import "General/OriginalClass.h"
+#import "OriginalClass.h"
 
-@implementation General/OriginalClass
+@implementation OriginalClass
 
 
 - (id)a
 {
-    General/NSLog(@"a");
+    NSLog(@"a");
     return self;
 }
 
 - (void)b
 {
-    General/NSLog(@"b");
+    NSLog(@"b");
 }
 
 - (void)c
 {
-    General/NSLog(@"c");
+    NSLog(@"c");
 }
 
-- (void)d:(General/NSString *)string
+- (void)d:(NSString *)string
 {
-    General/NSLog(@"%@ d:", string);
+    NSLog(@"%@ d:", string);
 }
 
-- (id)e:(General/NSString *)string
+- (id)e:(NSString *)string
 {
-    General/NSLog(@"%@ e:", string);
+    NSLog(@"%@ e:", string);
     return self;
 }
 
-- (id)f:(General/NSString *)a f:(General/NSString *)b
+- (id)f:(NSString *)a f:(NSString *)b
 {
-    General/NSLog(@"%@ %@ f:f:", a, b);
+    NSLog(@"%@ %@ f:f:", a, b);
     return self;
 }
 
 - (id)g:(id *)thing
 {
-    General/NSLog(@"%@ g:", thing);
+    NSLog(@"%@ g:", thing);
     return self;
 }
 
@@ -80,4 +80,4 @@ Here we define an example Class as a reference.. as an example of a Class that w
 
 
 
-**Shouldn't -g:'s parameter be (id) rather than (id *)? Otherwise it's a C-array of objects... and you're using it like it's a single object. So either change (id *) to (id) or change thing in the General/NSLog statement to *thing.**
+**Shouldn't -g:'s parameter be (id) rather than (id *)? Otherwise it's a C-array of objects... and you're using it like it's a single object. So either change (id *) to (id) or change thing in the NSLog statement to *thing.**

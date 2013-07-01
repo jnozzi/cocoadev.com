@@ -18,7 +18,7 @@ in your app delegate:
 
     
 
-- (void)applicationDidBecomeActive:(General/NSNotification *)aNotification
+- (void)applicationDidBecomeActive:(NSNotification *)aNotification
 {
     // show your window here
 }
@@ -35,7 +35,7 @@ Help much appreciated!
 
 ----
 
-How about returning YES from     -(BOOL)applicationShouldOpenUntitledFile:(General/NSApplication*)application and, if neccesary, implementing     - (BOOL)applicationOpenUntitledFile:(General/NSApplication *)theApplication
+How about returning YES from     -(BOOL)applicationShouldOpenUntitledFile:(NSApplication*)application and, if neccesary, implementing     - (BOOL)applicationOpenUntitledFile:(NSApplication *)theApplication
 
 ----
 
@@ -43,7 +43,7 @@ I just wanted to post this information on the end of this page, since I spent so
 
     
 
-- (BOOL)applicationShouldHandleReopen:(General/NSApplication *)theApplication
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication
              hasVisibleWindows:(BOOL)flag
 {
 	if( !flag )
@@ -56,10 +56,10 @@ I just wanted to post this information on the end of this page, since I spent so
 ----
 I'll pile on here. It sounds like the behavior the OP wants is to hide the window when the user hits the close button, and show it again when they click the app's icon or otherwise reopen the app. In a nutshell, you'll want to handle the reopen event as above, and also handle the window delegate method -shouldWindowClose:. For a simple app, you might even put both these methods in a single controller that's both the application's delegate and the window's delegate, like this:
     
-#import "General/WindowDelegate.h"
+#import "WindowDelegate.h"
 
-@implementation General/WindowDelegate
-- (BOOL)applicationShouldHandleReopen:(General/NSApplication *)theApplication
+@implementation WindowDelegate
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)theApplication
                     hasVisibleWindows:(BOOL)flag
 {
     if( !flag )
@@ -81,7 +81,7 @@ I'll pile on here. It sounds like the behavior the OP wants is to hide the windo
 }
 @end
 
-In the preceding code, theWindow is an General/IBOutlet that's hooked up to the window in question. It's expected that an instance of General/WindowDelegate is created in the nib file, and that it is the delegate of both the app (i.e. File's Owner in the General/MainMenu.nib of a plain Cocoa app) and whatever window you want to appear when the app is reopened.
+In the preceding code, theWindow is an IBOutlet that's hooked up to the window in question. It's expected that an instance of WindowDelegate is created in the nib file, and that it is the delegate of both the app (i.e. File's Owner in the MainMenu.nib of a plain Cocoa app) and whatever window you want to appear when the app is reopened.
 
 Again, the idea here is to keep the window around rather than actually closing it when the user clicks the close button. But that's just one way to do it... another approach would be to allow the window to close, and then reload the window from its nib again when the user reopens the app.
 -CS

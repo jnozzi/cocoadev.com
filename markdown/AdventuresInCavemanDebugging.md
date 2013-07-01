@@ -1,6 +1,6 @@
-I had problems with my application having a delayed crash. By delayed crash I mean I perform a few actions and the next time I try to perform a General/KeyEquivalent (could be command H, command Q etc) it crashes. These same methods when initiated by selecting the menu item do not result in a crash (when called again directly afterwards with a key equivalent it causes a crash). 
+I had problems with my application having a delayed crash. By delayed crash I mean I perform a few actions and the next time I try to perform a KeyEquivalent (could be command H, command Q etc) it crashes. These same methods when initiated by selecting the menu item do not result in a crash (when called again directly afterwards with a key equivalent it causes a crash). 
 
-I have tried setting the environment variable General/NSZombieEnabled with no luck so I do not believe it is a deallocated pointer being accessed. Actually I have little idea what it could be as I haven't had any luck in discovering the bug.
+I have tried setting the environment variable NSZombieEnabled with no luck so I do not believe it is a deallocated pointer being accessed. Actually I have little idea what it could be as I haven't had any luck in discovering the bug.
 
 However I have pin pointed the location in code where it sets off the chain of events (using caveman debugging). Firstly however I will post crashed thread from the crash log:
 
@@ -49,12 +49,12 @@ So I go ahead and comment out all the table data source methods and other then i
 Omg it crashes again! So here we can conclude it isn't the actual original data source methods that are causing the crashes. Hrmph. Well what other elements are in the table? There are the cells, the headers... that is all I actually configure, now since I had to create this table entirely in code let me head up to where I created them. There we are, lets work with the popupbutton cells first since they have menus and menuitems can have key equivalents (hell its the logical step of action...):
 
     
- NSPopUpButtonCell * applyDataCell = General/[NSPopUpButtonCell alloc] initTextCell:@""
+ NSPopUpButtonCell * applyDataCell = [NSPopUpButtonCell alloc] initTextCell:@""
  	 pullsDown:NO] autorelease];
  [applyDataCell setControlSize:NSMiniControlSize];
  [applyDataCell setMenu:[self fieldsMenu;
  
- applyColumn = General/NSTableColumn alloc] initWithIdentifier:@"Apply"];
+ applyColumn = NSTableColumn alloc] initWithIdentifier:@"Apply"];
  [applyColumn setMaxWidth:100];
  [applyColumn setDataCell:applyDataCell];
  [editTable addTableColumn:applyColumn];
@@ -78,19 +78,19 @@ I think for good measure we should comment that up again and test it just to mak
 
 So now we have the first column working perfectly.
 
-I copy and paste the code for the second column, it is identical except I don't set a menu. Crash. Wtf! Ok, so we have a crash if we have an General/NSPopUpButtonCell in a table column, the code is identical to the above column which doesn't crash....
+I copy and paste the code for the second column, it is identical except I don't set a menu. Crash. Wtf! Ok, so we have a crash if we have an NSPopUpButtonCell in a table column, the code is identical to the above column which doesn't crash....
 
 Grr! Okay what else can I check, the instance variable is named operatorColumn, we can always check that, but its a long shot, lets check if it is released properly. Oooh it *isn't* released in dealloc!!! Maybe this isn't it *adds     TRRelease(operatorColumn);* *runs* Omg omg omg it doesn't crash!!! Yay!!!
 
-Now I can see why it was crashing and all, hell General/NSTableColumn has a     -setTableView: so if it tried to access that later when the key equivalent was called it would SIG and crash, however it was DAMN hard to find and the crash log wasn't helping *at all*. This is a perfect example however why you should check that all instance variables are properly deallocated if you are receiving strange crashes.
+Now I can see why it was crashing and all, hell NSTableColumn has a     -setTableView: so if it tried to access that later when the key equivalent was called it would SIG and crash, however it was DAMN hard to find and the crash log wasn't helping *at all*. This is a perfect example however why you should check that all instance variables are properly deallocated if you are receiving strange crashes.
 
 And so concludes my adventures in caveman debugging.
 
 
 ----
-The problem is that you inadvertently leaked the General/NSPopUpButtonCell and General/NSApplication keeps track of every pop up cell to look for key equivalents. As it looks for the key equivalent, it asks the cell for it's -controlView which has been properly freed so then when it tries to message the control view it crashes.
+The problem is that you inadvertently leaked the NSPopUpButtonCell and NSApplication keeps track of every pop up cell to look for key equivalents. As it looks for the key equivalent, it asks the cell for it's -controlView which has been properly freed so then when it tries to message the control view it crashes.
 
-In my project, in my application I added a category to General/NSPopUpButtonCell to prevent such crashes:
+In my project, in my application I added a category to NSPopUpButtonCell to prevent such crashes:
     
  @implementation NSPopUpButtonCell (AppKitBugFixes)
  - controlView;

@@ -1,6 +1,6 @@
 This is a slightly modified version of Michael Beam's Cocoa Color meter.  I would like the slider float values (RED, GREEN, BLUE, ALPHA) to be added/inserted into the "codeString" so when it is displayed in the textView it can be copyied and pasted into external code.
 
-Here's the xcode download: http://www.bpstudio.com/SOFTWARE/General/NSColor%20Meter.sit.hqx
+Here's the xcode download: http://www.bpstudio.com/SOFTWARE/NSColor%20Meter.sit.hqx
 
 Here's the main code:
 
@@ -9,7 +9,7 @@ Here's the main code:
 
 @implementation Controller
 
-- (General/IBAction)setAlpha:(id)sender
+- (IBAction)setAlpha:(id)sender
 {
 
     alphaValue = [sender floatValue];
@@ -20,7 +20,7 @@ Here's the main code:
 	
 }
 
-- (General/IBAction)setBlue:(id)sender
+- (IBAction)setBlue:(id)sender
 {
 
     blueValue = [sender floatValue];
@@ -31,7 +31,7 @@ Here's the main code:
 	
 }
 
-- (General/IBAction)setGreen:(id)sender
+- (IBAction)setGreen:(id)sender
 {
 
 	greenValue = [sender floatValue];
@@ -41,7 +41,7 @@ Here's the main code:
 	
 }
 
-- (General/IBAction)setRed:(id)sender
+- (IBAction)setRed:(id)sender
 {
 
 	redValue = [sender floatValue];
@@ -54,7 +54,7 @@ Here's the main code:
 - (void)updateColor
 {
 
-    General/NSColor *aColor = General/[NSColor colorWithCalibratedRed:redValue green:greenValue blue:blueValue alpha:alphaValue];
+    NSColor *aColor = [NSColor colorWithCalibratedRed:redValue green:greenValue blue:blueValue alpha:alphaValue];
 	[colorWell setColor:aColor];
     [self updateCode];
 }
@@ -66,7 +66,7 @@ Here's the main code:
 //I would like to insert the floatValues into the "codeString" and have them update when slider are moved.
 //This way one could copy and paste the output into external code without re-typing the values.
 
-    General/NSString *codeString = @"General/NSColor *myColor = General/[NSColor colorWithCalibratedRed:redValue green:greenValue blue:blueValue alpha:alphaValue];";
+    NSString *codeString = @"NSColor *myColor = [NSColor colorWithCalibratedRed:redValue green:greenValue blue:blueValue alpha:alphaValue];";
     [codeText setString:codeString];
 	
 }
@@ -81,7 +81,7 @@ Try this:
     
 - (void)updateColor
 {
-  General/NSColor *aColor = General/[NSColor colorWithCalibratedRed:redValue 
+  NSColor *aColor = [NSColor colorWithCalibratedRed:redValue 
                      green:greenValue 
                      blue:blueValue 
                      alpha:alphaValue];
@@ -91,8 +91,8 @@ Try this:
 
 - (void)displayCodeForColor:(id)aColor 
 {
-  General/NSString *codeString = General/[NSString stringWithFormat:
-    @"General/NSColor *myColor = General/[NSColor colorWithCalibratedRed:%ff green:%ff blue:%ff alpha:%ff];",
+  NSString *codeString = [NSString stringWithFormat:
+    @"NSColor *myColor = [NSColor colorWithCalibratedRed:%ff green:%ff blue:%ff alpha:%ff];",
     [aColor redComponent],[aColor greenComponent],[aColor blueComponent],[aColor alphaComponent]];
 
   [codeText setString:codeString];
@@ -101,7 +101,7 @@ Try this:
 
 Note that your **updateCode** method has been replaced in the above by **'displayCodeForColor:aColor**' (your .h file needs to be updated to reflect this change). 
 
--General/PaulPomeroy
+-PaulPomeroy
 
 ----
 
@@ -121,7 +121,7 @@ float B = blueValue;
 float A = alphaValue;
 
 
-    General/NSString *codeString = General/[[NSString alloc] initWithFormat:@"General/NSColor *myColor = General/[NSColor colorWithCalibratedRed:%.3f green:%.3f blue:%.3f alpha:%.3f];",R, G, B, A];
+    NSString *codeString = [[NSString alloc] initWithFormat:@"NSColor *myColor = [NSColor colorWithCalibratedRed:%.3f green:%.3f blue:%.3f alpha:%.3f];",R, G, B, A];
     [codeText setString:codeString];
 
 }

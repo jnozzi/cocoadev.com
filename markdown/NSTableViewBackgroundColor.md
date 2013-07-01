@@ -1,31 +1,31 @@
 
 
-I was looking for examples of how to set an General/NSTableView row's background color based on a value in the row. I didn't find anything but came up with a method I thought I'd share. I subclassed General/NSTableView and overrode drawBackgroundInClipRect:. It gets the background color from the delegate through a call to tableView:backgroundColorForRow:. To leave the background color at the default, the delegate simply returns nil.
+I was looking for examples of how to set an NSTableView row's background color based on a value in the row. I didn't find anything but came up with a method I thought I'd share. I subclassed NSTableView and overrode drawBackgroundInClipRect:. It gets the background color from the delegate through a call to tableView:backgroundColorForRow:. To leave the background color at the default, the delegate simply returns nil.
 
 Here's the header (including a protocol that the delegate can conform to):
 
 
     
-@interface General/RowColorTableView : General/NSTableView {
+@interface RowColorTableView : NSTableView {
 	BOOL delegateRespondsToBackgroundColorForRow;
 }
 
 @end
 
-@protocol General/RowColorTableViewDelegate <General/NSObject>
-- (General/NSColor *)tableView:(General/RowColorTableView *)aTableView backgroundColorForRow:(General/NSInteger)rowIndex;
+@protocol RowColorTableViewDelegate <NSObject>
+- (NSColor *)tableView:(RowColorTableView *)aTableView backgroundColorForRow:(NSInteger)rowIndex;
 @end
 
 
 and the implementation:
 
     
-#import "General/RowColorTableView.h"
+#import "RowColorTableView.h"
 
-@implementation General/RowColorTableView
+@implementation RowColorTableView
 
 - (void)awakeFromNib {
-	delegateRespondsToBackgroundColorForRow = General/self delegate] respondsToSelector:@selector(tableView:backgroundColorForRow:)];
+	delegateRespondsToBackgroundColorForRow = self delegate] respondsToSelector:@selector(tableView:backgroundColorForRow:)];
 }
 
 - (void)drawBackgroundInClipRect:([[NSRect)clipRect {
@@ -34,9 +34,9 @@ and the implementation:
 	
 	if (delegateRespondsToBackgroundColorForRow) {
 		//Now draw custom background where necessary
-		General/NSRange rowRange = [self rowsInRect:clipRect];
+		NSRange rowRange = [self rowsInRect:clipRect];
 		for (int rowIndex=rowRange.location; rowIndex<rowRange.location + rowRange.length; rowIndex++) {
-			General/NSColor *bgndColor = General/self delegate] tableView:self backgroundColorForRow:rowIndex];
+			NSColor *bgndColor = self delegate] tableView:self backgroundColorForRow:rowIndex];
 			if (bgndColor) {
 				[bgndColor set];
 				[[[NSBezierPath fillRect:[self rectOfRow:rowIndex]];
@@ -48,4 +48,4 @@ and the implementation:
 @end
 
 
--General/SteveNicholson
+-SteveNicholson

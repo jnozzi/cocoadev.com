@@ -4,7 +4,7 @@ I'm creating a new app which has to  be able to have full permissions to make ch
 
 ----
 
-Also, no matter what I do, I can't get the damn "Describe General/PermissionsQuestion here." out of this page...grr!
+Also, no matter what I do, I can't get the damn "Describe PermissionsQuestion here." out of this page...grr!
 
 *Odd, it goes away fine when I edit it. What browser are you using?*
 

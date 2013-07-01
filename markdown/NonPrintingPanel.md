@@ -1,8 +1,8 @@
 
 My application has a main window with a custom view and a couple of panels that I use to control that view.
-The custom view accepts first responder status and the main window also makes use of an General/NSColorPanel.
+The custom view accepts first responder status and the main window also makes use of an NSColorPanel.
 
-The problem I'm having is that when I want to print the contents of the view I don't want to have to make sure that it is the selected window.  I don't have to worry about it with the General/NSColorPanel - why is that?  My panels are subclasses of General/NSPanel.  What do I have to implement in General/MyPanel class to get the same behavior?
+The problem I'm having is that when I want to print the contents of the view I don't want to have to make sure that it is the selected window.  I don't have to worry about it with the NSColorPanel - why is that?  My panels are subclasses of NSPanel.  What do I have to implement in MyPanel class to get the same behavior?
 
 
 ----

@@ -16,7 +16,7 @@ CONNECTION class
     
 
 Cocoa Code:
-- (General/NSMutableArray*)findPath:(General/NSMutableArray *)stations start:(int)startStation end:(int)endStation path:(General/NSMutableArray*)path {
+- (NSMutableArray*)findPath:(NSMutableArray *)stations start:(int)startStation end:(int)endStation path:(NSMutableArray*)path {
 
 }
 
@@ -72,4 +72,4 @@ One of the solutions for solving a single instance of this problem (one routing)
 For your first hack, depth-first if you think performance might not be a problem (will be fine if only local piece of railway)
 
 ----
-For an illustration of real-time shortest distance solving, see General/ChemicalBurn at http://mikeash.com/?page=software/chemicalburn/index.html . The source code is available.
+For an illustration of real-time shortest distance solving, see ChemicalBurn at http://mikeash.com/?page=software/chemicalburn/index.html . The source code is available.

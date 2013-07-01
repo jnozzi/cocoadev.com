@@ -51,4 +51,4 @@ ABMutableMultiValue Inherits from ABMultiValue, NSObject
  *Returns YES if successful
 
 
-General/Category:PointlessInformation
+Category:PointlessInformation

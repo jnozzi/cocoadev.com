@@ -4,15 +4,15 @@ I am very new to Cocoa programming, and for a little bit of an experiment I want
 
 I have successfuly managed to fade the display to black, capture all displays and fade back out and release displays, and prevent interupts from force quit etc.. however I am still unable to get the window level above that of the black Shielding window level, I have read that you must use this...
 
-[window setLevel: General/CGShieldingWindowLevel?() + 1];
+[window setLevel: CGShieldingWindowLevel?() + 1];
 
 ... setting window like this...
 
-General/NSWindow *window = ... your window ...;
+NSWindow *window = ... your window ...;
 
 ... however what goes in the '... your window ...' bit as this is obviously meant to be a reference to the window you are applying the action too, however as a newbie I have no idea what this reference is, or how it would be obtained.
 
---General/TomLynch
+--TomLynch
 
 ----
 
@@ -31,35 +31,35 @@ Ok I tried that, I have created, instanated and created files for a class called
 
 @implementation Controller
 
-- (General/IBAction)update:(id)sender
+- (IBAction)update:(id)sender
 {
 
 	if ([hideBtn state] == 1) {
 		
 		// Prepair for fade out
-		General/CGDisplayFadeReservationToken reservationToken;
-		General/CGAcquireDisplayFadeReservation(kCGMaxDisplayReservationInterval,
+		CGDisplayFadeReservationToken reservationToken;
+		CGAcquireDisplayFadeReservation(kCGMaxDisplayReservationInterval,
 										&reservationToken);
 		
 		// Fade out
-		General/CGDisplayFade(reservationToken,
+		CGDisplayFade(reservationToken,
 					  0.5,
 					  kCGDisplayBlendNormal,
 					  kCGDisplayBlendSolidColor,
 					  0, 0, 0,
 					  true);
-		General/CGReleaseDisplayFadeReservation(reservationToken);
+		CGReleaseDisplayFadeReservation(reservationToken);
 		
 		// Capture Display, Prevent system keys
-		General/CGCaptureAllDisplays();
-		General/SetSystemUIMode(kUIModeAllHidden,kUIOptionDisableAppleMenu | kUIOptionDisableForceQuit | kUIOptionDisableHide | kUIOptionDisableProcessSwitch | kUIOptionDisableSessionTerminate);
+		CGCaptureAllDisplays();
+		SetSystemUIMode(kUIModeAllHidden,kUIOptionDisableAppleMenu | kUIOptionDisableForceQuit | kUIOptionDisableHide | kUIOptionDisableProcessSwitch | kUIOptionDisableSessionTerminate);
 		
 		//////////////////
 		// DOESN'T WORK //
 		//////////////////
 		
 		window = [self window];
-		[window setLevel: General/CGShieldingWindowLevel() + 1];
+		[window setLevel: CGShieldingWindowLevel() + 1];
 		
 		//////////////////
 		// DOESN'T WORK //
@@ -68,26 +68,26 @@ Ok I tried that, I have created, instanated and created files for a class called
 	} else if ([hideBtn state] == 0) {
 		
 		// Prepair for fade in
-		General/CGDisplayFadeReservationToken reservationToken;
-			General/CGAcquireDisplayFadeReservation(kCGMaxDisplayReservationInterval,
+		CGDisplayFadeReservationToken reservationToken;
+			CGAcquireDisplayFadeReservation(kCGMaxDisplayReservationInterval,
 											&reservationToken);
 			
 			// Release Screen, Allow system keys
-			General/SetSystemUIMode(kUIModeNormal, 0);
-			General/CGReleaseAllDisplays();
+			SetSystemUIMode(kUIModeNormal, 0);
+			CGReleaseAllDisplays();
 			
 			// Fade in
-			General/CGDisplayFade(reservationToken,
+			CGDisplayFade(reservationToken,
 						  0.5,
 						  kCGDisplayBlendSolidColor,
 						  kCGDisplayBlendNormal,
 						  0, 0, 0,
 						  true);
-			General/CGReleaseDisplayFadeReservation(reservationToken);
+			CGReleaseDisplayFadeReservation(reservationToken);
 			
 			// Return window to normal level
 			window = [self window];
-			[window setLevel: General/NSNormalWindowLevel];
+			[window setLevel: NSNormalWindowLevel];
 	}
 	
 }
@@ -113,20 +113,20 @@ warning: 'Controller' may not respond to '-window'
 
 
 ----
-General/NSWindowController responds to window - your controller is probably just a General/NSObject.
+NSWindowController responds to window - your controller is probably just a NSObject.
 In which case, add an outlet to your controller (in IB click the controller, select the Classes tab, see attributes in the Inspector panel), name it myWindow and connect it to the window object from within Interface Builder.
 
 write a window method that returns the outlet's content:
 i.e.
     
-- (General/NSWindow *) window
+- (NSWindow *) window
 {
     return myWindow;
 }
 
 
 this should be it.
-PS note that you either have to regenerate your controller's H file after adding the outlet from General/InterfaceBuilder or add the declaration yourself.
+PS note that you either have to regenerate your controller's H file after adding the outlet from InterfaceBuilder or add the declaration yourself.
 
 ----
 
@@ -135,7 +135,7 @@ I now get the message
     
 
 [Session started at 2006-08-11 14:38:48 +0100.]
-2006-08-11 14:38:50.103 KIOSK[1233] General/PSsetwindowlevel, error setting window level (1001)
+2006-08-11 14:38:50.103 KIOSK[1233] PSsetwindowlevel, error setting window level (1001)
 
 KIOSK has exited with status 0.
 
@@ -145,7 +145,7 @@ However that message dissapears if i set...
 
     
 
-[myWindow setLevel: General/CGShieldingWindowLevel() +1];
+[myWindow setLevel: CGShieldingWindowLevel() +1];
 
 
 
@@ -153,7 +153,7 @@ However that message dissapears if i set...
 
     
 
-[myWindow setLevel: General/NSScreenSaverLevel];
+[myWindow setLevel: NSScreenSaverLevel];
 
 
 
@@ -161,13 +161,13 @@ However that message dissapears if i set...
 
     
 
-[myWindow setLevel: General/NSScreenSaverLevel + 1];
+[myWindow setLevel: NSScreenSaverLevel + 1];
 
 
 
-.. and that didnt work, General/NSScreenSaverLevel is the higest possible level and +1 sets it above that so I am unsure as to why it isnt working unless for some reason its not pointing at the right window
+.. and that didnt work, NSScreenSaverLevel is the higest possible level and +1 sets it above that so I am unsure as to why it isnt working unless for some reason its not pointing at the right window
 
---General/TomLynch
+--TomLynch
 
 ----
 
@@ -175,24 +175,24 @@ SOLVED > I think realised I haden't tried this...
 
     
 
-[myWindow setLevel: General/CGShieldingWindowLevel()];
+[myWindow setLevel: CGShieldingWindowLevel()];
 
 
 
 Thanks for your help it is very much appreciated. Out of interest who was the person(s) who helped me?
 
---General/TomLynch
+--TomLynch
 
 ----
 
 Sorry - kind of new to this Wiki thing so I tend to forget signing my replies.
--- General/CristianDraghici
+-- CristianDraghici
 
 ----
-the windowlevel-contstants provided by General/AppKit are infact mappinfgs to enum-values in General/CoreGraphics (Quartz).
+the windowlevel-contstants provided by AppKit are infact mappinfgs to enum-values in CoreGraphics (Quartz).
 there you'll find keys such as kCGCursorWindowLevelKey
 not sure what level that is exactly, but it sounds rather high..
 
-see General/CGWindowLevel.h in General/QuartzDisplayServices for details
+see CGWindowLevel.h in QuartzDisplayServices for details
 
 .arri

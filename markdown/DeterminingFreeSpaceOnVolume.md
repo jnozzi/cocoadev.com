@@ -2,4 +2,4 @@ Hello.  What is the fastest and most efficient way to determine the amount of fr
 
 ----
 
-see General/NSFileSystemFreeSize --zootbobbalu
+see NSFileSystemFreeSize --zootbobbalu

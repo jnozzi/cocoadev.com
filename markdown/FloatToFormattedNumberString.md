@@ -1,21 +1,21 @@
 
 
-General/NSStringFormatFlags discusses this in detail
+NSStringFormatFlags discusses this in detail
 
-I thought it would be easy to do this, but I have been grappling with this for two days. I have an General/NSArray of General/NSMutableDictionary objects that contain one General/NSNumber (init with float) object at key "cost", and I want to save them to a plain text file formatted in currency. I have my while loop, but I can't work out the code to format the numbers when I add them to an General/NSMutableString in code. I guess this is confusing me because I can not use an General/NSNumberFormatter because it's going to a General/NSMutableString and not a cell. I want to format it with 2 decimal places. At the moment I get 0.4695888494 and I want it to be 0.47 with a currency symbol.
+I thought it would be easy to do this, but I have been grappling with this for two days. I have an NSArray of NSMutableDictionary objects that contain one NSNumber (init with float) object at key "cost", and I want to save them to a plain text file formatted in currency. I have my while loop, but I can't work out the code to format the numbers when I add them to an NSMutableString in code. I guess this is confusing me because I can not use an NSNumberFormatter because it's going to a NSMutableString and not a cell. I want to format it with 2 decimal places. At the moment I get 0.4695888494 and I want it to be 0.47 with a currency symbol.
 
      
-General/NSMutableString *mutString = 
-	General/[[NSMutableString alloc] initWithString:@"Add floats to this: "];
-General/NSEnumerator *enumerator;
+NSMutableString *mutString = 
+	[[NSMutableString alloc] initWithString:@"Add floats to this: "];
+NSEnumerator *enumerator;
 enumerator = [myObjectArray objectEnumerator];
-General/NSMutableDictionary *myFloatDic = General/[[NSMutableDictionary alloc] init];
+NSMutableDictionary *myFloatDic = [[NSMutableDictionary alloc] init];
 while (myFloatDic = [enumerator nextObject]) {
 	// This is the 1 line of code I need
-	// mutString + [myFloatDic valueForKey:@"Cost"] <-- (General/NSNumber float)
+	// mutString + [myFloatDic valueForKey:@"Cost"] <-- (NSNumber float)
 }
 
-// After this, I'll save the mutString in a text file with a General/NSSavePanel
+// After this, I'll save the mutString in a text file with a NSSavePanel
 // I have the code for this.
  
 
@@ -23,14 +23,14 @@ Any pointers would be really helpful. I realize that this is an easy question, a
 
 ----
 
-You can just use     General/[NSString stringWithFormat:]. Try this:
+You can just use     [NSString stringWithFormat:]. Try this:
     
 
 while (myFloatDic = [enumerator nextObject]) {
  float fValue = [myFloatDic valueForKey:@"Cost"];
 
 //"%.2f" is a printf style format string, formats float to 2 decimal places.
- General/NSString *floatString = General/[NSString stringWithFormat:@"%.2f", fValue];
+ NSString *floatString = [NSString stringWithFormat:@"%.2f", fValue];
 
 //outputs one value per line; add your currency symbol here.
  [mutString appendString:[floatString stringByAppendingString:@"\n"]]; 

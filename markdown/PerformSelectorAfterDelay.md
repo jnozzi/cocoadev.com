@@ -5,16 +5,16 @@ I'm trying to use performSelector:withObject:afterDelay: in my .mailbundle, but 
 
 Well, what is the thread doing after issuing that command?  As long as you have a runloop which you are going to return to, this should work.
 
---General/JeffDisher
+--JeffDisher
 
 ----
 
-Is the any General/NSRunLoop<nowiki/>s running in your thread? Are you trying to run     performSelector::: from a secondary thread?
+Is the any NSRunLoop<nowiki/>s running in your thread? Are you trying to run     performSelector::: from a secondary thread?
 If you want to delay selector to the next run loop sequence, try to use this:
 
     
-id currentRunLoop = General/[NSRunLoop currentRunLoop];
-id defaultRunLoopModeArray = General/[NSArray arrayWithObject:General/NSDefaultRunLoopMode];	
+id currentRunLoop = [NSRunLoop currentRunLoop];
+id defaultRunLoopModeArray = [NSArray arrayWithObject:NSDefaultRunLoopMode];	
 [currentRunLoop performSelector:@selector(mySelector)
 	target:self
 	argument:nil
@@ -22,10 +22,10 @@ id defaultRunLoopModeArray = General/[NSArray arrayWithObject:General/NSDefaultR
 	modes:defaultRunLoopModeArray];
 
 
-If you just want a delayed perform, General/NSTimer is a safer way to do it:
+If you just want a delayed perform, NSTimer is a safer way to do it:
 
     
-General/[NSTimer scheduledTimerWithTimeInterval:0.5
+[NSTimer scheduledTimerWithTimeInterval:0.5
 	target:self
 	selector:@selector(myTimerHandler:)
 	userInfo:nil
@@ -33,14 +33,14 @@ General/[NSTimer scheduledTimerWithTimeInterval:0.5
 
 /* */
 
-- (void) myTimerHandler:(General/NSTime *)aTimer {
+- (void) myTimerHandler:(NSTime *)aTimer {
    [self mySelector];
 }
 
 
 As you can see, the only difference here is a dedicated method which is needed to handle timer firings.
 
--- General/DenisGryzlov
+-- DenisGryzlov
 
 ----
-What, exactly, is supposed to be the difference between using     performSelector:withObject:afterDelay: and the above code snippets? They all accomplish the exact same thing and have the same limitations. -- General/MikeAsh
+What, exactly, is supposed to be the difference between using     performSelector:withObject:afterDelay: and the above code snippets? They all accomplish the exact same thing and have the same limitations. -- MikeAsh

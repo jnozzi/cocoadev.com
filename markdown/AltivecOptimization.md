@@ -1,5 +1,5 @@
 I have to do some altivec optimizations on a cocoa code for a G4. It's the first time I'm doing this, so I'm a bit lost.
-All data in the source code is stored in an General/NSArray, and I suppose I must move it to vectors. Am I right? Is there any method or function which does this for me?
+All data in the source code is stored in an NSArray, and I suppose I must move it to vectors. Am I right? Is there any method or function which does this for me?
 Do you know any tutorial, explanation of operations with vectors, or sample code besides those in apple's website?
 
 ----
@@ -75,10 +75,10 @@ So, c is the vector that you then use for your altivec-optimized code?
 ----
 
 The optimization is beyond my expertise. Your question led me to believe you wanted
-help moving your data from General/NSArray objects to standard C arrays, which is all the above code does.
+help moving your data from NSArray objects to standard C arrays, which is all the above code does.
 
 In the above example c is a 2D array because each of my "data points" is itself a 'vector'.
-I just assume that you will be using standard C arrays for General/AltiVec code.
+I just assume that you will be using standard C arrays for AltiVec code.
 But now you've gotten me interested in the subject. Sorry I couldn't be of more help here.
 
 *no, you answered my question!*

@@ -3,10 +3,10 @@ I have thus far found that setting the window alpha below 0.06 or so causes mous
 
 If not, is there a way to install a desktop-wide mouse event filter, so that I can intercept these events before they are dispatched to other Apps?
 
--- General/ChrisG
+-- ChrisG
 
 ----
-For the former requirement,     [window setIgnoresMouseEvents:NO]. For the latter, General/CGEventTap.
+For the former requirement,     [window setIgnoresMouseEvents:NO]. For the latter, CGEventTap.
 
 ----
 That worked great, thanks.

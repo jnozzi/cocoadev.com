@@ -1,4 +1,4 @@
-See General/BookDesignPatterns for additional information.
+See BookDesignPatterns for additional information.
 
 
 Common name for the authors (Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides) of the book:

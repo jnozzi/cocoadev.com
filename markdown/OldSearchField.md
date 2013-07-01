@@ -2,4 +2,4 @@ How did the old Safari have the google search field? I have all the images for i
 
 ----
 
-Looking at the source for General/WBSearchTextField (at General/ObjectLibrary) may provide some useful info.
+Looking at the source for WBSearchTextField (at ObjectLibrary) may provide some useful info.

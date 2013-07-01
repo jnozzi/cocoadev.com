@@ -1,24 +1,24 @@
 
 
-I have a binary file that represents some information (surprise!) and I would like to parse its values into an General/NSDictionary for use in my Cocoa application. I have the C code necessary to parse the file, however I want to do it using Cocoa. 
+I have a binary file that represents some information (surprise!) and I would like to parse its values into an NSDictionary for use in my Cocoa application. I have the C code necessary to parse the file, however I want to do it using Cocoa. 
 
 For starters, I need to validate the file... the file has a signature in the first 4 bytes, such as "\0BOB". 
 
 How can I get this value and compare it, so I know it is the right format of a file?
 
-I've tried a bunch of things with General/NSData to no avail :-/
+I've tried a bunch of things with NSData to no avail :-/
 
 ----
 
      
 
-General/NSData * fileData = General/[NSData dataWithContentsOfFile:@"myfile.bob"];
+NSData * fileData = [NSData dataWithContentsOfFile:@"myfile.bob"];
 if(memcmp([fileData bytes], "\0BOB", 4) != 0) {
     //complain
 }
 
  
---General/DavidVierra (clarification by General/KritTer)
+--DavidVierra (clarification by KritTer)
 ----
 The above in addition to ensuring that the length of the read data is indeed at least 4 bytes beforehand.
 
@@ -86,6 +86,6 @@ There is this function, I don't think it works properly on OS X/PPC. Any ideas w
 ----
 Looks like a byte-order flip to me.
 
-If this code is being ported from an little-endian architecture you can probably just stub these out for big-endian architectures such as the General/PowerPC. There are standard posix functions for performing these tasks as well, take a look at htonl, htons, ntohl, and ntohs (again, no-ops on General/PowerPC).
+If this code is being ported from an little-endian architecture you can probably just stub these out for big-endian architectures such as the PowerPC. There are standard posix functions for performing these tasks as well, take a look at htonl, htons, ntohl, and ntohs (again, no-ops on PowerPC).
 
 *Don't forget the _lhbrx and _lwbrx functions defined in ppc_intrinsics.h.  If you need to byteswap from little-endian format, they will do a load and a byteswap in a single instruction.*

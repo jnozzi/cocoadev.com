@@ -1,13 +1,13 @@
-I'm trying to draw into an General/NSBitmapImageRep all via raw data (testing with RGB, not RGBA), and I'm testing it by simply filling in the bitmap with all black. But it doesn't fill up the entire image, and I have no idea why. Anyone see what's wrong with this code?
+I'm trying to draw into an NSBitmapImageRep all via raw data (testing with RGB, not RGBA), and I'm testing it by simply filling in the bitmap with all black. But it doesn't fill up the entire image, and I have no idea why. Anyone see what's wrong with this code?
     
 #import <Cocoa/Cocoa.h>
 
 int main()
 {
-	General/NSAutoreleasePool *pool = General/[[NSAutoreleasePool alloc] init];
+	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
 	int width = 50, height = 50;
-	General/NSBitmapImageRep *bmp = General/[[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil pixelsWide:width pixelsHigh:height bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:General/NSCalibratedRGBColorSpace bytesPerRow:0 bitsPerPixel:24];
+	NSBitmapImageRep *bmp = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:nil pixelsWide:width pixelsHigh:height bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:0 bitsPerPixel:24];
 	
 	unsigned char *chars = [bmp bitmapData];
 	int i, t = width*height*3;
@@ -18,10 +18,10 @@ int main()
 	
 	if (bmp)
 	{
-		General/NSImage *img = General/[[NSImage alloc] initWithSize:General/NSMakeSize(width, height)];
+		NSImage *img = [[NSImage alloc] initWithSize:NSMakeSize(width, height)];
 		[img addRepresentation:bmp];
 
-		General/img [[TIFFRepresentation] writeToFile:@"/Users/me/Desktop/test.tif" atomically:YES];
+		img [[TIFFRepresentation] writeToFile:@"/Users/me/Desktop/test.tif" atomically:YES];
 		
 		[img release];
 		[bmp release];

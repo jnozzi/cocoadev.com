@@ -1,57 +1,57 @@
 
 
-I am having problems regarding the quality of images I manipulate with General/NSImage and I would really appreciate some advice...
+I am having problems regarding the quality of images I manipulate with NSImage and I would really appreciate some advice...
 
-I have a very high quality JPEG file, which if read into an General/NSBitmapImageRep, and then saved to a file will be outputted at the same resolution and quality which is great!
+I have a very high quality JPEG file, which if read into an NSBitmapImageRep, and then saved to a file will be outputted at the same resolution and quality which is great!
 
-BUT, I wish to manipulate this image (i.e. composite other images over it etc. and draw onto) and hence I think I need to use General/NSImage.
+BUT, I wish to manipulate this image (i.e. composite other images over it etc. and draw onto) and hence I think I need to use NSImage.
 
-However whenever I use General/NSImage, no matter what I do the quality of the image is degraded too much. Is there any way to either prevent this from happening or to draw and manipulate an instance of General/NSBitmapImageRep
+However whenever I use NSImage, no matter what I do the quality of the image is degraded too much. Is there any way to either prevent this from happening or to draw and manipulate an instance of NSBitmapImageRep
 
-For example, when I comment out my General/NSImage, the code works fine:
+For example, when I comment out my NSImage, the code works fine:
     
 	[progressMeter startAnimation:self];
-	General/[[NSGraphicsContext currentContext] setImageInterpolation:General/NSImageInterpolationHigh];
+	[[NSGraphicsContext currentContext] setImageInterpolation:NSImageInterpolationHigh];
 
-	General/NSString* str = General/[[NSString alloc] initWithString:@"~/Desktop/myImage.jpg"];
+	NSString* str = [[NSString alloc] initWithString:@"~/Desktop/myImage.jpg"];
 	str = [str stringByExpandingTildeInPath];
 
-	General/NSData* data = General/[[NSData alloc] initWithContentsOfFile:str];
+	NSData* data = [[NSData alloc] initWithContentsOfFile:str];
 	
-	General/NSBitmapImageRep* image = General/[[NSBitmapImageRep alloc] initWithData:data];
+	NSBitmapImageRep* image = [[NSBitmapImageRep alloc] initWithData:data];
 	[data autorelease];
 	
-// Commented out code begin ////// If used with General/NSImage, the quality is affected drastically
+// Commented out code begin ////// If used with NSImage, the quality is affected drastically
 
-/*	General/NSImage* myImage = General/[[NSImage alloc] initWithSize:[image size]];
+/*	NSImage* myImage = [[NSImage alloc] initWithSize:[image size]];
 
 	[myImage addRepresentation:image];
 	[myImage lockFocus];
-	General/[NSBezierPath fillRect:General/NSMakeRect(50,50,100,100)];
+	[NSBezierPath fillRect:NSMakeRect(50,50,100,100)];
 	[myImage unlockFocus];
 	
-	image = General/[[NSBitmapImageRep alloc] initWithData:[myImage General/TIFFRepresentation]];
+	image = [[NSBitmapImageRep alloc] initWithData:[myImage TIFFRepresentation]];
 	*/
 // Commented out code end //////
 	
-	General/NSDictionary *imageProps = General/[NSDictionary dictionaryWithObject:General/[NSNumber numberWithFloat:0.9] forKey:General/NSImageCompressionFactor];
-	data = [image representationUsingType:General/NSJPEGFileType properties:imageProps];
+	NSDictionary *imageProps = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:0.9] forKey:NSImageCompressionFactor];
+	data = [image representationUsingType:NSJPEGFileType properties:imageProps];
 	
-	str = General/[[NSString alloc] initWithString:@"~/Desktop/outImage.jpg"];
+	str = [[NSString alloc] initWithString:@"~/Desktop/outImage.jpg"];
 	str = [str stringByExpandingTildeInPath];
 	
 	[data writeToFile:str atomically:NO];
 
 
 
-However, if I remove the comments, the JPEG is put through an General/NSImage and its quality is very poor and the JPEG is a much smaller size. I would very much appreciate any advice! Thanks
+However, if I remove the comments, the JPEG is put through an NSImage and its quality is very poor and the JPEG is a much smaller size. I would very much appreciate any advice! Thanks
 
 ----
 
 One hint unrelated to image processing: The following is silly and it will leak the allocated string
 
     
-	str = General/[[NSString alloc] initWithString:@"~/Desktop/outImage.jpg"];
+	str = [[NSString alloc] initWithString:@"~/Desktop/outImage.jpg"];
 	str = [str stringByExpandingTildeInPath];
 
 
@@ -64,41 +64,41 @@ How about
 
 Apologies, I am new to Cocoa and the concept of Wiki.
 
-Essentially when using an General/NSImage I am not getting the quality that I need. Are there any resolution settings or quality options I can use to ensure that the image quality of my JPEG image is not lost when using General/NSImage?
+Essentially when using an NSImage I am not getting the quality that I need. Are there any resolution settings or quality options I can use to ensure that the image quality of my JPEG image is not lost when using NSImage?
 
 ----
 
-If you can require Tiger, then I would suggest creating an General/NSGraphicsContext with your General/NSBitmapImageRep and drawing directly into that. The problem here is that your JPEG is at a resolution that's greater than screen resolution, and General/NSImage is throwing that away when you draw into it. Using an General/NSGraphicsContext directly will ensure that no data is thrown away. Note that you're recompressing the JPEG, so you'll get some quality loss no matter what you do.
+If you can require Tiger, then I would suggest creating an NSGraphicsContext with your NSBitmapImageRep and drawing directly into that. The problem here is that your JPEG is at a resolution that's greater than screen resolution, and NSImage is throwing that away when you draw into it. Using an NSGraphicsContext directly will ensure that no data is thrown away. Note that you're recompressing the JPEG, so you'll get some quality loss no matter what you do.
 
 ----
 
 Great, thanks for the help... 
 
-But how can I get the data from the General/NSGraphicsContext back to my output file / General/NSBitmapImageRep? 
+But how can I get the data from the NSGraphicsContext back to my output file / NSBitmapImageRep? 
 
 Much appreciated
 
-*If you create an General/NSGraphicsContext from your General/NSBitmapImageRep, then it will use your image rep as its backing store, so any drawing you do will go directly into it.*
+*If you create an NSGraphicsContext from your NSBitmapImageRep, then it will use your image rep as its backing store, so any drawing you do will go directly into it.*
 
 ----
 
-I thought that that might be the case, but it does not seem to be working (can you see any problems with the below code?) i.e. the General/NSData object data is the exact same as before, without the rectangle drawn over it.
+I thought that that might be the case, but it does not seem to be working (can you see any problems with the below code?) i.e. the NSData object data is the exact same as before, without the rectangle drawn over it.
 
     
-General/NSBitmapImageRep* image = General/[[NSBitmapImageRep alloc] initWithData:General/[NSData dataWithContentsOfFile:str]];
+NSBitmapImageRep* image = [[NSBitmapImageRep alloc] initWithData:[NSData dataWithContentsOfFile:str]];
 	
-	General/NSGraphicsContext* graphics = General/[[NSGraphicsContext graphicsContextWithBitmapImageRep:image] retain];
+	NSGraphicsContext* graphics = [[NSGraphicsContext graphicsContextWithBitmapImageRep:image] retain];
 
-	General/[NSGraphicsContext saveGraphicsState];
-	General/[NSGraphicsContext setCurrentContext:graphics];
+	[NSGraphicsContext saveGraphicsState];
+	[NSGraphicsContext setCurrentContext:graphics];
 	
-	General/[[NSColor blackColor] set];
-	General/[NSBezierPath fillRect:General/NSMakeRect(50,50,1000,1000)];
+	[[NSColor blackColor] set];
+	[NSBezierPath fillRect:NSMakeRect(50,50,1000,1000)];
 
-	General/[NSGraphicsContext restoreGraphicsState];
+	[NSGraphicsContext restoreGraphicsState];
 	
-	General/NSDictionary *imageProps = General/[NSDictionary dictionaryWithObject:General/[NSNumber numberWithFloat:0.9] forKey:General/NSImageCompressionFactor];
-	General/NSData* data = [image representationUsingType:General/NSJPEGFileType properties:imageProps];
+	NSDictionary *imageProps = [NSDictionary dictionaryWithObject:[NSNumber numberWithFloat:0.9] forKey:NSImageCompressionFactor];
+	NSData* data = [image representationUsingType:NSJPEGFileType properties:imageProps];
 
 
 
@@ -117,11 +117,11 @@ Also, for future reference, "post to the cocoa-dev mailing list" is *not* a subs
 ----
 My answer to the top question...
 
-You myImage object is specifying its size in user space resolution - which is generally 72dpi - whereas your original imageRep object is specified in actual pixel dimentions. If you have a 1600x1600 jpeg file, but it specifies 200dpi, an General/NSImage built from that will default to drawing much smaller than you want. You're specifying your size in two places - first, when you initialize the myImage object and again when you addRepresentation on it - so you may need the following code in two places or just one, I'm not sure:
+You myImage object is specifying its size in user space resolution - which is generally 72dpi - whereas your original imageRep object is specified in actual pixel dimentions. If you have a 1600x1600 jpeg file, but it specifies 200dpi, an NSImage built from that will default to drawing much smaller than you want. You're specifying your size in two places - first, when you initialize the myImage object and again when you addRepresentation on it - so you may need the following code in two places or just one, I'm not sure:
 
     
-General/NSSize mySize;
-mySize.width = General/myImage bestRepresentationForDevice:nil] pixelsWide];
+NSSize mySize;
+mySize.width = myImage bestRepresentationForDevice:nil] pixelsWide];
 mySize.height = [[myImage bestRepresentationForDevice:nil] pixelsHigh];
 [myImage setScalesWhenResized:YES];
 [myImage setSize:mySize];
@@ -132,24 +132,24 @@ That should cause your output to be the same size (and at least close to the sam
 Hope that helps,
 [[BlakeSeely ( if that doesn't work, you can email me at my firstnamelastname @ mac.com )
 ----
-Expanding on this a bit:  When you lockFocus on an image, the existing representations are destroyed and replaced with an General/NSCachedImageRep, which is more or less an offscreen window that you draw into.  There is a real live window backing your drawing, at screen resolution.  If your image had size 100x100 (even if the pixel count was 1200x1200), you now have only the 100x100 points to work with.
+Expanding on this a bit:  When you lockFocus on an image, the existing representations are destroyed and replaced with an NSCachedImageRep, which is more or less an offscreen window that you draw into.  There is a real live window backing your drawing, at screen resolution.  If your image had size 100x100 (even if the pixel count was 1200x1200), you now have only the 100x100 points to work with.
 ----
 
-That's true - you can also turn off caching to prevent this, but you'll take a performance hit, and depending what you're doing with the image, may have to add a few other considerations to your code. I recommend leaving caching on and just being aware of what General/NSImage is doing with the reps... -General/BlakeSeely
+That's true - you can also turn off caching to prevent this, but you'll take a performance hit, and depending what you're doing with the image, may have to add a few other considerations to your code. I recommend leaving caching on and just being aware of what NSImage is doing with the reps... -BlakeSeely
 ----
-Actually, you don't have much choice in this case.      -General/[NSImage lockFocus] will always replace your reps with an General/NSCachedImageRep, even if you've called     [image setDataRetained:YES].
+Actually, you don't have much choice in this case.      -[NSImage lockFocus] will always replace your reps with an NSCachedImageRep, even if you've called     [image setDataRetained:YES].
 
-Here's a useful tip though:  You can draw directly into an General/NSBitmapImageRep instead of locking focus on an image.  
+Here's a useful tip though:  You can draw directly into an NSBitmapImageRep instead of locking focus on an image.  
 
 **UNTESTED**
     
-General/NSGraphicsContext *bitmapGraphicsContext = General/[NSGraphicsContext graphicsContextWithBitmapImageRep:bitmapImageRep];
-General/[NSGraphicsContext saveGraphicsState];
-General/[NSGraphicsContext setCurrentContext:bitmapGraphicsContext];
+NSGraphicsContext *bitmapGraphicsContext = [NSGraphicsContext graphicsContextWithBitmapImageRep:bitmapImageRep];
+[NSGraphicsContext saveGraphicsState];
+[NSGraphicsContext setCurrentContext:bitmapGraphicsContext];
 
 // standard drawing drawing commands go here
 
-General/[NSGraphicsContext restoreGraphicsState];
+[NSGraphicsContext restoreGraphicsState];
 
 
-Note that this only works on Tiger, and not all General/NSBitmapImageRep formats are supported. If your General/NSBitmapImageRep wasn't directly created by you (you got it from an General/NSImage, or you initialized it with a file) so that you don't control the format, you should create a second one with the appropriate format, then draw your original one into it to copy the data over. Otherwise you risk failure due to an unsupported bitmap format.
+Note that this only works on Tiger, and not all NSBitmapImageRep formats are supported. If your NSBitmapImageRep wasn't directly created by you (you got it from an NSImage, or you initialized it with a file) so that you don't control the format, you should create a second one with the appropriate format, then draw your original one into it to copy the data over. Otherwise you risk failure due to an unsupported bitmap format.

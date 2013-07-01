@@ -6,7 +6,7 @@ This behavior has implications for exceptional conditions. If an exception occur
 ----
 
 thanks you for your answer.
-So, objects autoreleased will be released in the parent General/AutoReleasePool if there is an exception.
+So, objects autoreleased will be released in the parent AutoReleasePool if there is an exception.
 
 -- BVO.
 ----

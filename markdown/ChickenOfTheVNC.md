@@ -10,9 +10,9 @@ cvs -d :pserver:anonymous@cvs.sourceforge.net:/cvsroot/cotvnc login
 cvs -z3 -d :pserver:anonymous@cvs.sourceforget.net:/cvsroot/cotvnc co -r GEN_2_GUI cotvnc
 
 
-Then open it up and build in General/XCode... I'm using OSX 10.3.4 and General/XCode 1.2, and it builds perfectly :)
+Then open it up and build in XCode... I'm using OSX 10.3.4 and XCode 1.2, and it builds perfectly :)
 
-General/RufusCable
+RufusCable
 
 ----
 
@@ -20,8 +20,8 @@ And for those who havn't, how about giving a summary of what **Chicken of the VN
 
 ----
 
-VNC is a cross-platform remote access client and server (similar to pcAnywhere, Netops, Timbuktu, Carbon Copy, etc). **Chicken of the VNC** is a strangely-named Mac client (if you're looking for a server on the Mac, check General/VersionTracker for the current General/OSXvnc). For other platforms, have a look at http://www.realvnc.com/ - I use the Chicken to access Windows 2000 boxes a lot, and realvnc on Windows 2000 to access my Mac running General/OSXvnc. The connections can be tunnelled through SSH for security and get-through-firewall tricks...
+VNC is a cross-platform remote access client and server (similar to pcAnywhere, Netops, Timbuktu, Carbon Copy, etc). **Chicken of the VNC** is a strangely-named Mac client (if you're looking for a server on the Mac, check VersionTracker for the current OSXvnc). For other platforms, have a look at http://www.realvnc.com/ - I use the Chicken to access Windows 2000 boxes a lot, and realvnc on Windows 2000 to access my Mac running OSXvnc. The connections can be tunnelled through SSH for security and get-through-firewall tricks...
 
 I posted it here as I thought the code may be of interest :)
 
-General/RufusCable
+RufusCable

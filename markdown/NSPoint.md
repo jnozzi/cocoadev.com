@@ -1,10 +1,10 @@
-Foundation's General/NSPoint structure, defined in General/NSGeometry.h
+Foundation's NSPoint structure, defined in NSGeometry.h
 
     typedef struct {
-    General/CGFloat x;
-    General/CGFloat y;
-} General/NSPoint;
+    CGFloat x;
+    CGFloat y;
+} NSPoint;
 
-See General/NSPointFunctions for useful General/NSPoint stuff.
+See NSPointFunctions for useful NSPoint stuff.
 
-There is a pre-defined constant, General/NSZeroPoint, which is what you'd expect it to be.
+There is a pre-defined constant, NSZeroPoint, which is what you'd expect it to be.

@@ -1,11 +1,11 @@
 **Continuing string literals across lines in source code files; auto-concatenation of a series of individual string literals**
 
-Given General/ObjC code like:
+Given ObjC code like:
 
     
   if (![toolsController displayTool:selectedTool inView:toolsContainingView]) {
-    General/NSBeep();
-    General/NSAlert *alert = General/[NSAlert alertWithMessageText:@"Unable to display selected tool."
+    NSBeep();
+    NSAlert *alert = [NSAlert alertWithMessageText:@"Unable to display selected tool."
                       defaultButton:@"OK" alternateButton:nil otherButton:nil 
                       informativeTextWithFormat:@"A problem occurred while attempting to display the selected tool.\n\n\\
 
@@ -29,7 +29,7 @@ Is this normal when using a backslash to continue a line or is the compiler supp
 
 ----
 
-The proper way to split strings onto separate lines is to take advantage of the fact that C (and General/ObjC) will concatenate adjacent string constants. For example, writing "hello " "world" is equivalent to "hello world". So you can make your multiline string constants pretty and unsurprising like so:
+The proper way to split strings onto separate lines is to take advantage of the fact that C (and ObjC) will concatenate adjacent string constants. For example, writing "hello " "world" is equivalent to "hello world". So you can make your multiline string constants pretty and unsurprising like so:
 
     
 @"This message is really long.\n\n"
@@ -75,7 +75,7 @@ void main ()        //Editor's note: this problem is dealt with a little farther
 
 Of course, I have tried it without the .h as well.
 
-So the question is, when I use cc (in the terminal) or General/XCode to compile, why isn't this compiling. and 2., where is the iostream.h file located? Isn't it supposed to be in usr/include? And 3. If I'm missing the file, what can I do to replace it?
+So the question is, when I use cc (in the terminal) or XCode to compile, why isn't this compiling. and 2., where is the iostream.h file located? Isn't it supposed to be in usr/include? And 3. If I'm missing the file, what can I do to replace it?
 
 ---
 
@@ -128,7 +128,7 @@ Do you know what a function is?
 
     int main() is declaring a function named main. The int in front of main is to declare that the return value is of type     int. This is all really fundamental stuff. I highly recommend taking a time out and reading through the first couple of chapters again. I think you have missed out on a couple of important concepts if this example is giving you problems. You will thank me months from now when you realize how awful your life could have been if you didn't hit the book sooner ;-)
 
-See General/WhatToKnowAboutCFunctions for a brief summary.
+See WhatToKnowAboutCFunctions for a brief summary.
 
 ----
 
@@ -144,4 +144,4 @@ Section 1.7, about half way through  (Page 26 in my copy): "Typically, a return 
 
 *I think one of the old Borland compilers required/allowed     void main().* IIRC that wasn't uncommon in old mac programming where the program's return code was basically ignored by the OS. It's been a long time since I thought about that though, so don't quote me.
 
--- General/MikeTrent
+-- MikeTrent

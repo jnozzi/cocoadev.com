@@ -3,9 +3,9 @@ Hi There...
 Im having some issues with returning a integer through a method.
 
 Heres my code:
-- ( General/NSNumber *) getTotalExpressions
+- ( NSNumber *) getTotalExpressions
 {
-	General/NSArray  *expressionsSplit = General/myExpression stringValue] componentsSeparatedByString:@"%"];
+	NSArray  *expressionsSplit = myExpression stringValue] componentsSeparatedByString:@"%"];
 	
 	return (int)[ expressionsSplit count ];
 }
@@ -24,10 +24,10 @@ Any help would be greatly appreciated !!!
 Your method is declared to return an [[NSNumber *. You're returning an int. These two are not the same, and there is no automatic conversion between them.
 
 ----
-General/NSNumber is a class, int is a primitive type.
+NSNumber is a class, int is a primitive type.
 
-*You are promising to return an object that's an instance of the General/NSNumber class by returning a pointer to it (that's what the * stands for). However, you are returning a number (of whatever size int is on your machine) rather than a pointer. You can fix the method in one of two ways:*
+*You are promising to return an object that's an instance of the NSNumber class by returning a pointer to it (that's what the * stands for). However, you are returning a number (of whatever size int is on your machine) rather than a pointer. You can fix the method in one of two ways:*
 
 
-*Promise an int rather than a number, with     - (int) getTotalExpressions (rather than - (General/NSNumber*) ...).
-*Actually return a pointer to a General/NSNumber instance by creating one with     General/[NSNumber numberWithInt:...], for instance     return General/[NSNumber numberWithInt:[expressionSplits count]];.
+*Promise an int rather than a number, with     - (int) getTotalExpressions (rather than - (NSNumber*) ...).
+*Actually return a pointer to a NSNumber instance by creating one with     [NSNumber numberWithInt:...], for instance     return [NSNumber numberWithInt:[expressionSplits count]];.

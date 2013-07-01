@@ -1,16 +1,16 @@
-See also General/SendingEmail
+See also SendingEmail
 
 ----
 
-Using the General/AppKit class General/NSWorkspace you can have your Cocoa application create a new message in Mail using the following snippet of code:
+Using the AppKit class NSWorkspace you can have your Cocoa application create a new message in Mail using the following snippet of code:
 
     
 
-General/NSString *emailAddress = @"someone@somewhere.com";
-General/NSString *mailToString = @"mailto:";
-General/NSString *emailURLString = [mailToString stringByAppendingString:emailAddress];
-NSURL *emailURL = [NSURL General/URLWithString:emailURLString];
-General/[[NSWorkspace sharedWorkspace] openURL:emailURL];
+NSString *emailAddress = @"someone@somewhere.com";
+NSString *mailToString = @"mailto:";
+NSString *emailURLString = [mailToString stringByAppendingString:emailAddress];
+NSURL *emailURL = [NSURL URLWithString:emailURLString];
+[[NSWorkspace sharedWorkspace] openURL:emailURL];
 
 
 
@@ -18,7 +18,7 @@ or the compactified version:
 
     
 
-General/[[NSWorkspace sharedWorkspace] openURL:[NSURL General/URLWithString:@"mailto:someone@somewhere.com"]];
+[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"mailto:someone@somewhere.com"]];
 
 
 
@@ -26,7 +26,7 @@ I don't know much about the URL standard, but a prefix of mailto: indicates that
 
 
 
-The next question is how can you attach a file using the mailto: syntax? I can send email using General/NSMailDelivery and even send attachments. But, what I'm really looking to do is to be able to popup the default mail app (whatever that may be), attach a file and let the user enter the email address and subject. 
+The next question is how can you attach a file using the mailto: syntax? I can send email using NSMailDelivery and even send attachments. But, what I'm really looking to do is to be able to popup the default mail app (whatever that may be), attach a file and let the user enter the email address and subject. 
 
 -jth
 
@@ -47,7 +47,7 @@ If you would like to send additional data along with the mail, I don't know how 
 
     
 
--(General/IBAction)submitEmailBugReport:(id)sender
+-(IBAction)submitEmailBugReport:(id)sender
 {
 
     // This line defines our entire mailto link. Notice that the link is formed
@@ -56,7 +56,7 @@ If you would like to send additional data along with the mail, I don't know how 
     // I use the %@ formatting string to add the contents of the lastResult and
     // songData objects to the body of the message. You should change these to
     // whatever information you want to include in the body.
-    General/NSString* mailtoLink = General/[NSString
+    NSString* mailtoLink = [NSString
         stringWithFormat:@"mailto:sam@flexistentialist.org?subject=iScrobbler
         Bug Report&body=--Please explain the circumstances of the bug
         here--\nThanks for contributing!\n\nResult Data
@@ -65,13 +65,13 @@ If you would like to send additional data along with the mail, I don't know how 
     // This creates a URL string by adding percent escapes. Since the URL is
     // just being used locally, I don't know if this is always necessary,
     // however I thought it would be a good idea to stick to standards.
-    NSURL *url = [NSURL General/URLWithString:[(General/NSString*)
-        General/CFURLCreateStringByAddingPercentEscapes(NULL, (General/CFStringRef)mailtoLink,
+    NSURL *url = [NSURL URLWithString:[(NSString*)
+        CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)mailtoLink,
         NULL, NULL, kCFStringEncodingUTF8) autorelease]];
 
     // This just opens the URL in the workspace, to be opened up by Mail.app,
     // with data already entered in the subject, to and body fields.
-    General/[[NSWorkspace sharedWorkspace] openURL:url];
+    [[NSWorkspace sharedWorkspace] openURL:url];
 
 }
 
@@ -82,31 +82,31 @@ If you would like to send additional data along with the mail, I don't know how 
 On machines that have postfix configured and enabled, you can send emails like this:
 
     
-BOOL sendEMail( General/NSString * message, General/NSString *subject, General/NSArray * recepients )
+BOOL sendEMail( NSString * message, NSString *subject, NSArray * recepients )
 {
-	General/NSCParameterAssert( message && subject && recepients && [recepients count] );
-	General/NSTask *sendMailTask;
-	General/NSPipe *messagePipe;
-	General/NSString *messageHeader;
-	General/NSData *messageData;
+	NSCParameterAssert( message && subject && recepients && [recepients count] );
+	NSTask *sendMailTask;
+	NSPipe *messagePipe;
+	NSString *messageHeader;
+	NSData *messageData;
 	int status;
 	
-	messageHeader = General/[NSString stringWithFormat:@"To: %@\nSubject: %@\n",
+	messageHeader = [NSString stringWithFormat:@"To: %@\nSubject: %@\n",
 		[recepients componentsJoinedByString:@", "], subject];
-	messageData = General/[[NSString stringWithFormat:@"%@\n%@\n.\n",
-		messageHeader, message] dataUsingEncoding:General/NSNonLossyASCIIStringEncoding
+	messageData = [[NSString stringWithFormat:@"%@\n%@\n.\n",
+		messageHeader, message] dataUsingEncoding:NSNonLossyASCIIStringEncoding
 							 allowLossyConversion:YES];
 	
-	sendMailTask = General/[[NSTask alloc] init];
-	messagePipe = General/[[NSPipe alloc] init];
+	sendMailTask = [[NSTask alloc] init];
+	messagePipe = [[NSPipe alloc] init];
 	[sendMailTask setLaunchPath:@"/usr/sbin/sendmail"];
 	[sendMailTask setArguments:recepients];
-	[sendMailTask setStandardOutput:General/[NSFileHandle fileHandleWithNullDevice]];
-	[sendMailTask setStandardError:General/[NSFileHandle fileHandleWithStandardError]];
+	[sendMailTask setStandardOutput:[NSFileHandle fileHandleWithNullDevice]];
+	[sendMailTask setStandardError:[NSFileHandle fileHandleWithStandardError]];
 	[sendMailTask setStandardInput:messagePipe];
 	
 	[sendMailTask launch];
-	General/messagePipe fileHandleForWriting] writeData:messageData];
+	messagePipe fileHandleForWriting] writeData:messageData];
 	[sendMailTask waitUntilExit];
 	
 	status = [sendMailTask terminationStatus];
@@ -129,45 +129,45 @@ Since Mail is the default email client, that essentially ruled out the mailto UR
 
 We use [[AppleScript, as suggested by Apple in the same Q&A, and it works flawlessly (actually Apple own examples are incorrect and you need to adapt them slightly but the general principles outlined in the Q&A work).
 
--- General/BenoitMarchal
+-- BenoitMarchal
 
 ----
 
-There are frameworks for doing this. I can vouch for General/EDMessage, part of the General/EDFrameworks. Check out General/ObjectLibrary for a couple more.
+There are frameworks for doing this. I can vouch for EDMessage, part of the EDFrameworks. Check out ObjectLibrary for a couple more.
 
 ----
 
-General/CSMail might come in useful if you're reading this page. Unlike most of the techniques mentioned here, it supports attachments and is not mail-client specific (this is achieved via plug-in modules... currently there is support for Mail.app, Entourage and Eudora; we're very keen on adding support for other clients, so if any mail client developers would like to support it, it's quite easy as the object model is currently very simple). It's distributed under a BSD-style license.
+CSMail might come in useful if you're reading this page. Unlike most of the techniques mentioned here, it supports attachments and is not mail-client specific (this is achieved via plug-in modules... currently there is support for Mail.app, Entourage and Eudora; we're very keen on adding support for other clients, so if any mail client developers would like to support it, it's quite easy as the object model is currently very simple). It's distributed under a BSD-style license.
 
 ----
 
 I'm losing my hair. I need to popup the mail app with new message, paste **rich text** in the body of the message and let the user enter the email address and subject. It's certainly possible (for e.g. this app is doing exactly the same thing: http://www.vojousoftware.com/inotepad.html)
-With General/AppleScript it's only possible to create a new message from plain text string or am I missing something?
+With AppleScript it's only possible to create a new message from plain text string or am I missing something?
 
 ----
 
-I've written an e-mail framework that makes it easy to work with IMAP and SMTP. It's very easy to send a message with it, but it requires it's own settings, it doesn't use an existing e-mail app like Mail.app. In particular the framework is designed for working with IMAP/SMTP and it's the base of a new email app i'm working on known as Kiwi. Anyway, you can check out General/MailCore [http://www.theronge.com/mailcore/]
+I've written an e-mail framework that makes it easy to work with IMAP and SMTP. It's very easy to send a message with it, but it requires it's own settings, it doesn't use an existing e-mail app like Mail.app. In particular the framework is designed for working with IMAP/SMTP and it's the base of a new email app i'm working on known as Kiwi. Anyway, you can check out MailCore [http://www.theronge.com/mailcore/]
 
 ----
 
-Here's code using Message.framework for emailing an attachment and a plain ol' string body. Can easily be modified for normal General/NSAttributedStrings for formatting and multiple files --General/KevinWojniak
+Here's code using Message.framework for emailing an attachment and a plain ol' string body. Can easily be modified for normal NSAttributedStrings for formatting and multiple files --KevinWojniak
 
     
-+ (BOOL)sendEmailTo:(General/NSString *)to subject:(General/NSString *)subject body:(General/NSString *)messageBody attachment:(General/NSString *)filePath
++ (BOOL)sendEmailTo:(NSString *)to subject:(NSString *)subject body:(NSString *)messageBody attachment:(NSString *)filePath
 {
-	General/NSDictionary *headers;
-	General/NSMutableAttributedString *msg;
+	NSDictionary *headers;
+	NSMutableAttributedString *msg;
 	
-	msg = General/[[[NSMutableAttributedString alloc] initWithString:(messageBody ? messageBody : @"")] autorelease];
+	msg = [[[NSMutableAttributedString alloc] initWithString:(messageBody ? messageBody : @"")] autorelease];
 	
-	if (filePath && General/[[NSFileManager defaultManager] fileExistsAtPath:filePath])
+	if (filePath && [[NSFileManager defaultManager] fileExistsAtPath:filePath])
 	{
-		General/NSTextAttachment *ta = General/[[[NSTextAttachment alloc] initWithFileWrapper:General/[[[NSFileWrapper alloc] initWithPath:filePath] autorelease]] autorelease];
+		NSTextAttachment *ta = [[[NSTextAttachment alloc] initWithFileWrapper:[[[NSFileWrapper alloc] initWithPath:filePath] autorelease]] autorelease];
 		if (ta)
-			[msg appendAttributedString:General/[NSAttributedString attributedStringWithAttachment:ta]];
+			[msg appendAttributedString:[NSAttributedString attributedStringWithAttachment:ta]];
 	}
 	
-	headers = General/[NSDictionary dictionaryWithObjectsAndKeys:
+	headers = [NSDictionary dictionaryWithObjectsAndKeys:
 		@"noreply@mycompany.com", @"From",
 		to, @"To",
 		subject, @"Subject",
@@ -176,10 +176,10 @@ Here's code using Message.framework for emailing an attachment and a plain ol' s
 		@"1.0", @"Mime-Version",
 		nil];
 	
-	return General/[NSMailDelivery deliverMessage:msg
+	return [NSMailDelivery deliverMessage:msg
 								  headers:headers
-								   format:General/NSMIMEMailFormat
-								 protocol: General/NSSMTPDeliveryProtocol];
+								   format:NSMIMEMailFormat
+								 protocol: NSSMTPDeliveryProtocol];
 }
 
 
@@ -194,10 +194,10 @@ Join me at clairdev@hotmail.fr.
 
 ----
 
-As mentioned elsewhere, General/NSMailDelivery uses account settings from Apple Mail. I don't see why this requires the user actually have Mail as their default mail reader,though - they can still be using Eudora or whatever, as long as they set up an account in Mail. They may need to use Mail preferences anyway to set the default email reader (much like setting the default web browser in Safari prefs).
+As mentioned elsewhere, NSMailDelivery uses account settings from Apple Mail. I don't see why this requires the user actually have Mail as their default mail reader,though - they can still be using Eudora or whatever, as long as they set up an account in Mail. They may need to use Mail preferences anyway to set the default email reader (much like setting the default web browser in Safari prefs).
 
-Almost Too Good To Be True Dept.: General/NSMailDelivery seems to select the mac.com SMTP server according when the FROM address you pass in the headers dictionary is a mac.com address. At least that's what I just saw in OS X 10.4.10. I tried to get it to use a secondary SMTP server, but non-mac.com addresses all seem to use the SMTP server of the primary account in Mail preferences.
+Almost Too Good To Be True Dept.: NSMailDelivery seems to select the mac.com SMTP server according when the FROM address you pass in the headers dictionary is a mac.com address. At least that's what I just saw in OS X 10.4.10. I tried to get it to use a secondary SMTP server, but non-mac.com addresses all seem to use the SMTP server of the primary account in Mail preferences.
 
 It looks like I'll have to send an apple event to Mail to learn the user's preferred from address, though. For now, though, I think I'll check My Card in the address book instead.
 
-So far, the main drawback to General/NSMailDelivery, for me, is the lack of any specific error return, just YES/NO.
+So far, the main drawback to NSMailDelivery, for me, is the lack of any specific error return, just YES/NO.

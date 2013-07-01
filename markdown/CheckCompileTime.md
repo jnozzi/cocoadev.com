@@ -7,7 +7,7 @@ Example
 
     
 #ifdef check_compile_time
-check_compile_time(sizeof(General/IPHeader) == 20);
+check_compile_time(sizeof(IPHeader) == 20);
 ...
 #endif
 

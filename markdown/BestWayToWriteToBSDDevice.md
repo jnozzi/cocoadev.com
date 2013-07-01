@@ -1,7 +1,7 @@
 Hi,
 
 What is the best solution to write/read to a bsd device (like /dev/cu.modem)?
-I tried with General/NSFileHandle but I am not sure how to handle this with the
+I tried with NSFileHandle but I am not sure how to handle this with the
 at+commands (like: at+cops?)
 
 Thanks for your feedback!
@@ -20,7 +20,7 @@ But nevertheless - Thanks for your reply!
 
 ----
 
-More specifically, give General/MailingListMode and General/HowToAskQuestions a read. Both contain important information about how to be a good guest on this wiki. You'll get much better responses by following good etiquette. 
+More specifically, give MailingListMode and HowToAskQuestions a read. Both contain important information about how to be a good guest on this wiki. You'll get much better responses by following good etiquette. 
 
 As to *"Why you would want to do this is beyond me, but it's your computer, do what you want."* ... I'm not even sure what that type of response is meant to accomplish.
 
@@ -38,7 +38,7 @@ Are you a young programmer? If so, I can understand why you'd assume that all pe
  
 ----
 
-I was the author of General/MacDialer, a speed dial application that integrated with your Address Book.  The modem can do much more than just connect to the internet.  Apple provides only so much.  Developers can issue AT command and communicate with the modem to do some interesting things. -G
+I was the author of MacDialer, a speed dial application that integrated with your Address Book.  The modem can do much more than just connect to the internet.  Apple provides only so much.  Developers can issue AT command and communicate with the modem to do some interesting things. -G
 
 ----
 I found myself wondering how to accomplish exactly the same thing a while back, while trying to get my phonebook off my mobile phone. Here's the bit of code I came up with for connecting to the phone; hopefully it's useful to you. For what it's worth, I hereby put this into the public domain.
@@ -47,7 +47,7 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 //
 // Cocoa Code for Connecting to a BSD Modem and Issuing AT Commands
 //
-// By Tom General/McClean, 2007
+// By Tom McClean, 2007
 // tom@pixelballistics.com
 //
 // This file is public domain. It is provided without any warranty whatsoever,
@@ -63,20 +63,20 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 #include <paths.h>
 #include <termios.h>
 #include <time.h>
-#include <General/AvailabilityMacros.h>
+#include <AvailabilityMacros.h>
 
 #import <Cocoa/Cocoa.h>
-#include <General/IOKit/General/IOKitLib.h>
-#include <General/IOKit/serial/General/IOSerialKeys.h>
-#include <General/IOKit/IOBSD.h>
+#include <IOKit/IOKitLib.h>
+#include <IOKit/serial/IOSerialKeys.h>
+#include <IOKit/IOBSD.h>
 
-@interface Modem:General/NSObject{
+@interface Modem:NSObject{
 	int file;
 	io_object_t modem;
 	struct termios settings;
 	}
 	
-	+(General/NSArray*)scanForModems;
+	+(NSArray*)scanForModems;
 	-(id)initWithModem:(io_object_t)theModem;
 
 	-(int)open;
@@ -85,8 +85,8 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 	-(BOOL)connect;
 	-(void)disconnect;
 	
-	-(General/NSString*)name;
-	-(General/NSString*)responseToCommand:(General/NSString*)command;
+	-(NSString*)name;
+	-(NSString*)responseToCommand:(NSString*)command;
 		
 @end
 
@@ -114,7 +114,7 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 		settings.c_cflag|=(wordSize|parity|outputFlowControl|inputFlowControl);
 		if(tcsetattr(file,TCSANOW,&newSettings)==-1){
 			result=NO;
-			General/NSLog(@"%s error setting serial port settings (%d: \"%s\")",_cmd,errno,strerror(errno));
+			NSLog(@"%s error setting serial port settings (%d: \"%s\")",_cmd,errno,strerror(errno));
 			}
 		return result;
 		}
@@ -133,7 +133,7 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 			//
 		
 			if(tcdrain(file)==-1){
-				General/NSLog(@"%s error waiting for drain (%d: \"%s\")",_cmd,errno,strerror(errno));
+				NSLog(@"%s error waiting for drain (%d: \"%s\")",_cmd,errno,strerror(errno));
 				}
 			else{
 			
@@ -142,7 +142,7 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 				//
 			
 				if(tcsetattr(file,TCSANOW,&settings)==-1){
-					General/NSLog(@"%s error resetting serial port to original state (%d: \"%s\")",_cmd,errno,strerror(errno));
+					NSLog(@"%s error resetting serial port to original state (%d: \"%s\")",_cmd,errno,strerror(errno));
 					}
 				}
 			close(file);
@@ -153,12 +153,12 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 	-(int)open{
 		
 		//
-		// Get the path to the output device as an General/NSString (via General/CFString) string
+		// Get the path to the output device as an NSString (via CFString) string
 		//
 	
-		General/CFTypeRef path=General/IORegistryEntryCreateCFProperty(modem,CFSTR(kIOCalloutDeviceKey),kCFAllocatorDefault,0);
+		CFTypeRef path=IORegistryEntryCreateCFProperty(modem,CFSTR(kIOCalloutDeviceKey),kCFAllocatorDefault,0);
         if(!path){
-			General/NSLog(@"%s error retrieving path from General/IOKit modem device",self,_cmd);
+			NSLog(@"%s error retrieving path from IOKit modem device",self,_cmd);
 			}
 		else{
 		
@@ -166,9 +166,9 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 			// Open the device for read/write, no TTY, non-blocking reads
 			//
 		
-			file=open([(General/NSString*)path UTF8String],O_RDWR|O_NOCTTY|O_NONBLOCK);
+			file=open([(NSString*)path UTF8String],O_RDWR|O_NOCTTY|O_NONBLOCK);
 			if(file==-1){
-				General/NSLog(@"%s error opening serial port %s (%d: \"%s\")",_cmd,[(General/NSString*)path UTF8String],errno,strerror(errno));
+				NSLog(@"%s error opening serial port %s (%d: \"%s\")",_cmd,[(NSString*)path UTF8String],errno,strerror(errno));
 				}
 			else{
 			
@@ -177,7 +177,7 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 				//
 
 				if(ioctl(file,TIOCEXCL)==-1){
-					General/NSLog(@"%s error acquiring exclusive access to serial port %s (%d: \"%s\")",_cmd,[(General/NSString*)path UTF8String],errno,strerror(errno));
+					NSLog(@"%s error acquiring exclusive access to serial port %s (%d: \"%s\")",_cmd,[(NSString*)path UTF8String],errno,strerror(errno));
 					}
 				else{
 				
@@ -186,7 +186,7 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 					//
 	
 					if(0){//fcntl(file,F_SETFL,0)==-1){
-						General/NSLog(@"%s error activating blocking I/O %s (%d: \"%s\")",_cmd,[(General/NSString*)path UTF8String],errno,strerror(errno));
+						NSLog(@"%s error activating blocking I/O %s (%d: \"%s\")",_cmd,[(NSString*)path UTF8String],errno,strerror(errno));
 						}
 					else{
 					
@@ -195,7 +195,7 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 						//
 
 						if(tcgetattr(file,&settings)==-1){
-							General/NSLog(@"%s error storing original serial port settings %s (%d: \"%s\")",_cmd,[(General/NSString*)path UTF8String],errno,strerror(errno));
+							NSLog(@"%s error storing original serial port settings %s (%d: \"%s\")",_cmd,[(NSString*)path UTF8String],errno,strerror(errno));
 							}
 						else{
 							if([self configureSerialPort]){
@@ -205,20 +205,20 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 								//
 								
 								if(ioctl(file,TIOCSDTR)==-1){
-									General/NSLog(@"%s error asserting DTR %s (%d: \"%s\")",_cmd,[(General/NSString*)path UTF8String],errno,strerror(errno));
+									NSLog(@"%s error asserting DTR %s (%d: \"%s\")",_cmd,[(NSString*)path UTF8String],errno,strerror(errno));
 									}
 								else{
 									if(ioctl(file,TIOCCDTR)==-1){
-										General/NSLog(@"%s error clearing DTR %s (%d: \"%s\")",_cmd,[(General/NSString*)path UTF8String],errno,strerror(errno));
+										NSLog(@"%s error clearing DTR %s (%d: \"%s\")",_cmd,[(NSString*)path UTF8String],errno,strerror(errno));
 										}
 									else{
 										int handshake=TIOCM_DTR|TIOCM_RTS|TIOCM_CTS|TIOCM_DSR;
 										if(ioctl(file,TIOCMSET,&handshake)==-1){
-											General/NSLog(@"%s error setting handshake lines %s (%d: \"%s\")",_cmd,[(General/NSString*)path UTF8String],errno,strerror(errno));
+											NSLog(@"%s error setting handshake lines %s (%d: \"%s\")",_cmd,[(NSString*)path UTF8String],errno,strerror(errno));
 											}
 										else{
 											if(ioctl(file,TIOCMGET,&handshake)==-1){
-												General/NSLog(@"%s error getting handshake lines %s (%d: \"%s\")",_cmd,[(General/NSString*)path UTF8String],errno,strerror(errno));
+												NSLog(@"%s error getting handshake lines %s (%d: \"%s\")",_cmd,[(NSString*)path UTF8String],errno,strerror(errno));
 												}
 											else{
 												return YES;
@@ -231,7 +231,7 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 						}
 					}
 				}
-			General/CFRelease(path);
+			CFRelease(path);
 			}
 			
 		//
@@ -244,13 +244,13 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 		return NO;
 		}
 		
-	-(General/NSString*)responseToCommand:(General/NSString*)string{
+	-(NSString*)responseToCommand:(NSString*)string{
 	
 		//
 		// Ensure the command ends with a carriage return (and no other whitespace)
 		//
 		
-		General/NSString* command=General/[NSString stringWithFormat:@"%@\r",[string stringByTrimmingCharactersInSet:General/[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+		NSString* command=[NSString stringWithFormat:@"%@\r",[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
 		
 		//
 		// Try several times to send the command (in this case, three; it's arbitrary)
@@ -263,12 +263,12 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 			int bytesWritten=write(file,writeBuffer,writeBufferSize);
 			if(bytesWritten==-1){
 				if(errno==35){
-					General/NSLog(@"%s'%@': error writing to serial port (%d: \"%s\"); will retry after 250 microseconds",_cmd,string,errno,strerror(errno));
+					NSLog(@"%s'%@': error writing to serial port (%d: \"%s\"); will retry after 250 microseconds",_cmd,string,errno,strerror(errno));
 					usleep(250);
 					continue;
 					}
 				else{
-					General/NSLog(@"%s'%@': error writing to serial port (%d: \"%s\")",_cmd,string,errno,strerror(errno));
+					NSLog(@"%s'%@': error writing to serial port (%d: \"%s\")",_cmd,string,errno,strerror(errno));
 					return nil;
 					}
 				}
@@ -280,7 +280,7 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 			// After a successful write, read the response
 			//
 			
-			General/NSMutableString* result=nil;
+			NSMutableString* result=nil;
 			#define readBufferSize (1024*1024*64)
 			char* readBuffer=malloc(readBufferSize);
 			bzero(readBuffer,readBufferSize);
@@ -291,12 +291,12 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 					bytesRead=read(file,&readBuffer[readBufferPosition],readBufferSize-readBufferPosition-1);
 					if(bytesRead==-1){
 						if(errno==35){
-							General/NSLog(@"%s'%@': error writing to serial port (%d: \"%s\"); will retry after 250 microseconds",_cmd,string,errno,strerror(errno));
+							NSLog(@"%s'%@': error writing to serial port (%d: \"%s\"); will retry after 250 microseconds",_cmd,string,errno,strerror(errno));
 							usleep(250);
 							continue;
 							}
 						else{
-							General/NSLog(@"%s'%@': error writing to serial port (%d: \"%s\")",_cmd,string,errno,strerror(errno));
+							NSLog(@"%s'%@': error writing to serial port (%d: \"%s\")",_cmd,string,errno,strerror(errno));
 							return nil;
 							}
 						}
@@ -316,9 +316,9 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 				// Clean up the result
 				//
 				
-				result=General/[[[NSMutableString alloc] initWithBytes:readBuffer length:readBufferPosition encoding:NSUTF8StringEncoding] autorelease];
-				[result replaceOccurrencesOfString:@"\r\n\r\n" withString:@"\r\n" options:0 range:General/NSMakeRange(0,[result length])];
-				result=(General/NSMutableString*)[result stringByTrimmingCharactersInSet:General/[NSCharacterSet whitespaceAndNewlineCharacterSet]];;
+				result=[[[NSMutableString alloc] initWithBytes:readBuffer length:readBufferPosition encoding:NSUTF8StringEncoding] autorelease];
+				[result replaceOccurrencesOfString:@"\r\n\r\n" withString:@"\r\n" options:0 range:NSMakeRange(0,[result length])];
+				result=(NSMutableString*)[result stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];;
 				free(readBuffer);
 				}
 			return result;
@@ -329,9 +329,9 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 	-(BOOL)connect{
 		BOOL result=NO;
 		if([self open]){
-			General/NSString* response=[self responseToCommand:@"ATE0 V1"]; // You'll want to change this command, probably
-			General/NSRange range=[response rangeOfString:@"OK"];
-			result=(range.location!=General/NSNotFound);
+			NSString* response=[self responseToCommand:@"ATE0 V1"]; // You'll want to change this command, probably
+			NSRange range=[response rangeOfString:@"OK"];
+			result=(range.location!=NSNotFound);
 			}
 		return result;
 		}
@@ -347,42 +347,42 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 		return self;
 		}
 
-	-(General/NSString*)name{
-		General/CFTypeRef name=0;
+	-(NSString*)name{
+		CFTypeRef name=0;
 		io_object_t device=modem;
 		while((!name)&&(device)){
-			name=General/IORegistryEntryCreateCFProperty(device,CFSTR("Product Name"),kCFAllocatorDefault,0);
+			name=IORegistryEntryCreateCFProperty(device,CFSTR("Product Name"),kCFAllocatorDefault,0);
 			if(!name){
-				name=General/IORegistryEntryCreateCFProperty(device,CFSTR("General/BTName"),kCFAllocatorDefault,0);
+				name=IORegistryEntryCreateCFProperty(device,CFSTR("BTName"),kCFAllocatorDefault,0);
 				}
-			General/IORegistryEntryGetParentEntry(device,kIOServicePlane,&device);
+			IORegistryEntryGetParentEntry(device,kIOServicePlane,&device);
 			}
 		if(!name){
-			name=General/IORegistryEntryCreateCFProperty(modem,CFSTR(kIOCalloutDeviceKey),kCFAllocatorDefault,0);
+			name=IORegistryEntryCreateCFProperty(modem,CFSTR(kIOCalloutDeviceKey),kCFAllocatorDefault,0);
 			}
-		return [(General/NSString*)name autorelease];
+		return [(NSString*)name autorelease];
 		}
 		
-	+(General/NSArray*)scanForModems{
-		General/NSMutableArray* result=General/[NSMutableArray array];
+	+(NSArray*)scanForModems{
+		NSMutableArray* result=[NSMutableArray array];
 		
 		//
-		// Use General/IOKit iterators to find all BSD modems
+		// Use IOKit iterators to find all BSD modems
 		//
 		
 		kern_return_t status; 
-		General/CFMutableDictionaryRef criteria;
-		criteria=General/IOServiceMatching(kIOSerialBSDServiceValue);
+		CFMutableDictionaryRef criteria;
+		criteria=IOServiceMatching(kIOSerialBSDServiceValue);
 		if(criteria!=NULL){
-			General/CFDictionarySetValue(criteria,CFSTR(kIOSerialBSDTypeKey),CFSTR(kIOSerialBSDModemType)); // Note: kIOSerialBSDRS232Type seems to find PDA syncs, not modems
+			CFDictionarySetValue(criteria,CFSTR(kIOSerialBSDTypeKey),CFSTR(kIOSerialBSDModemType)); // Note: kIOSerialBSDRS232Type seems to find PDA syncs, not modems
 			io_iterator_t iterator; 
-			status=General/IOServiceGetMatchingServices(kIOMasterPortDefault,criteria,&iterator);   
+			status=IOServiceGetMatchingServices(kIOMasterPortDefault,criteria,&iterator);   
 			if(status==KERN_SUCCESS){
 				io_object_t modem;
-				while(modem=General/IOIteratorNext(iterator)){
-					[result addObject:General/[Modem alloc] initWithModem:modem] autorelease;
+				while(modem=IOIteratorNext(iterator)){
+					[result addObject:[Modem alloc] initWithModem:modem] autorelease;
 					}
-				General/IOObjectRelease(iterator);
+				IOObjectRelease(iterator);
 				}
 			}
 		return result;
@@ -390,13 +390,13 @@ I found myself wondering how to accomplish exactly the same thing a while back, 
 
 //
 //
-// General/NSObject methods
+// NSObject methods
 //
 //
 
 	-(void)dealloc{
 		[self close];
-		General/IOObjectRelease(modem);
+		IOObjectRelease(modem);
 		[super dealloc];
 		}
 			

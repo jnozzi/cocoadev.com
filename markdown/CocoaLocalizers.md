@@ -2,14 +2,14 @@ I think it would be a very useful community resource to be able to find a list o
 [http://littletods.com/en/content/4-perlengkapan-bayi Perlengkapan Bayi] | [http://subconscious-therapy.com/hipnoterapi-surabaya/ Hipnoterapi Surabaya] | [http://www.pbtaxand.com/our-services/tax-advisory-services Konsultan Pajak] | [http://www.tiraimodern.com/product/roller-blind Roller Blind] | [http://www.tiraimodern.com/product/vertical-blind Vertical Blind] | [http://www.doxapest.co.id/index.php/pest-control-dan-anti-rayap Anti Rayap]
 **Localizers:**
 
-English <-> Japanese/Chinese/French/Italian/German/Spanish/Dutch: General/LocalVersion (Xcode & iOS localization) > 
-English, Italian: me@infinite-labs.net � General/EmanueleVulcano aka millenomi aka "(Unicode char for Infinite here)" � *(also available for continued version-to-version work; use of Localization Manager or similar organization app preferred, I'll use it internally if you don't :D; last translated: Unsanity's Chat Transcript Manager, General/FFView and General/NathanDay's Popup Dock.)* 
+English <-> Japanese/Chinese/French/Italian/German/Spanish/Dutch: LocalVersion (Xcode & iOS localization) > 
+English, Italian: me@infinite-labs.net � EmanueleVulcano aka millenomi aka "(Unicode char for Infinite here)" � *(also available for continued version-to-version work; use of Localization Manager or similar organization app preferred, I'll use it internally if you don't :D; last translated: Unsanity's Chat Transcript Manager, FFView and NathanDay's Popup Dock.)* 
 
 English <-> Arabic: Abubaker Shamlan, abubaker.shamlan at gmail dot com Please include subject.
 
 English <-> Arabic: Nasser Al Zahrani, nassersala at gmail dot com 
 
-English to Chinese (Traditional/Simplified): General/BillSo - Please email me if you wanna localized your application to Chinese language. 
+English to Chinese (Traditional/Simplified): BillSo - Please email me if you wanna localized your application to Chinese language. 
 
 English->French<->Spanish<-English: fbbomao at hotmail dot com. My name is Juan. Feel free to contact me. 
 
@@ -17,7 +17,7 @@ Spanish, German -> English: Robert Morris, robertrm at  gmail dot com. (prefer t
 
 English -> Danish: Mikkel Bruun, mikkel at  increment dot dk. 
 
-Brazilian Portuguese <-> English: General/TylerStromberg
+Brazilian Portuguese <-> English: TylerStromberg
 
 English <-> Urdu    object2.0 gmail 
 
@@ -29,7 +29,7 @@ English <-> French: Fran�ois Beausoleil - francois.beausoleil@gmail.com
 
 English <-> Swedish: Robert Ylip��, aka Ylan, ylan(at)ylan.nu . Erik Aderstedt erik _at_ aderstedt _dot_ se
 
-English <-> German: Christoph Greiner, christoph_dot_greiner_a:t_web_dot_de	||	inventiveSoftLocalizationServices:  localization@inventivesoft.net - Latest projects: Contactizer Pro (www.objective-decision.com), Drawit, General/DownloadQueue, General/CMCrashReporterFramework
+English <-> German: Christoph Greiner, christoph_dot_greiner_a:t_web_dot_de	||	inventiveSoftLocalizationServices:  localization@inventivesoft.net - Latest projects: Contactizer Pro (www.objective-decision.com), Drawit, DownloadQueue, CMCrashReporterFramework
 
 English <-> German: Marcel Hansemann, mhansemann at google mail Translation english german 
 

@@ -6,4 +6,4 @@ This probably isn't a nice way to do it, but `hostinfo` will report the CPU type
 
 ----
 
-Please search before you post: General/HowToGetHardwareAndNetworkInfo
+Please search before you post: HowToGetHardwareAndNetworkInfo

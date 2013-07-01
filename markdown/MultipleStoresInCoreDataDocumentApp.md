@@ -4,19 +4,19 @@ Hi all.
 
 I have a Core Data document based app, it's very simple at the moment.
 
-At first, my App (as with any app based on the General/XCode Core Data "templates") had save and load functionality built right in for me. This is good.
+At first, my App (as with any app based on the XCode Core Data "templates") had save and load functionality built right in for me. This is good.
 
 However, I have need for an in-memory store for certain things that don't need to be saved to disk. I get my in-memory store set up like so:
 
     
-// In "windowControllerDidLoadNib" in 'General/MyDocument'
+// In "windowControllerDidLoadNib" in 'MyDocument'
 {
-	General/NSPersistentStoreCoordinator *documentStoreCoordinator = General/self managedObjectContext] persistentStoreCoordinator];
+	NSPersistentStoreCoordinator *documentStoreCoordinator = self managedObjectContext] persistentStoreCoordinator];
 	[[NSError *error;
 	
-	id inMemoryStore = [documentStoreCoordinator addPersistentStoreWithType:General/NSInMemoryStoreType configuration:nil URL:nil options:nil error:&error];
+	id inMemoryStore = [documentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:&error];
 	if (inMemoryStore == nil) 
-		General/NSLog(@"In-Mem Store Configuration Failure\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
+		NSLog(@"In-Mem Store Configuration Failure\n%@", ([error localizedDescription] != nil) ? [error localizedDescription] : @"Unknown Error");
 	else
 		{
 		// New store has been succesfully configured.
@@ -24,7 +24,7 @@ However, I have need for an in-memory store for certain things that don't need t
 }
 
 
-This works perfectly, when I want to create a managed object that'll go into this in-memory-store I create the object with     [aController newObject;] then add that object to the controller with     [aController addObject:theNewObject]; and then assign it to the in-memory-store with     General/self managedObjectContext] assignObject:theNewObject toPersistentStore:inMemoryStore];.
+This works perfectly, when I want to create a managed object that'll go into this in-memory-store I create the object with     [aController newObject;] then add that object to the controller with     [aController addObject:theNewObject]; and then assign it to the in-memory-store with     self managedObjectContext] assignObject:theNewObject toPersistentStore:inMemoryStore];.
 
 The in-memory-store seems to work perfectly in this manner.
 
@@ -41,7 +41,7 @@ Thanks again in advance.
 (Pete).
 
 ----
-Don't know much about [[CoreData, but it looks like you could just add another persistent store (before or after the in-memory-store, don't know which), and have that one used as the new default. It still won't give you the original store, but it should work fine, and it will let you choose what format to save in. --General/JediKnil
+Don't know much about [[CoreData, but it looks like you could just add another persistent store (before or after the in-memory-store, don't know which), and have that one used as the new default. It still won't give you the original store, but it should work fine, and it will let you choose what format to save in. --JediKnil
 ----
 
 Thanks, that's very much what I intend to do. Nevertheless, I'm keen to keep everything neat, and just wondering if there was something I'd missed, before bolting on another persistent store.
@@ -54,15 +54,15 @@ At the moment I have it going to the Application Support directory. But because 
 
 Also I'm going to have to clear up the file on each close of a document.
 
-The more I think about it, the less it seems I should be using a store in this way, but should in fact use another inMemoryStore that is saved to disk (when the user chooses "Save" etc.). Is this the way things are set up automatically in an untouched "Core Data Document Based Application" General/XCode template project?
+The more I think about it, the less it seems I should be using a store in this way, but should in fact use another inMemoryStore that is saved to disk (when the user chooses "Save" etc.). Is this the way things are set up automatically in an untouched "Core Data Document Based Application" XCode template project?
 
 Thanks.
 
 ----
 
-I think the persistent store which is used by General/NSPersistentDocument gets created when it is saved.
+I think the persistent store which is used by NSPersistentDocument gets created when it is saved.
 Try opening/reverting an existing document - then count will return 2 and it will save your changes.
-Seems like General/NSPersistentDocument just uses the first available store if there is one and
+Seems like NSPersistentDocument just uses the first available store if there is one and
 stops allocating its own.
 
 Should this start a new life as a bugreport or do we miss something ?
@@ -76,4 +76,4 @@ In my case (where the data is read-only after the objects are created), I tried 
 
 after constructing my object graph - which solves the problem with new documents not using a real store.
 
-General/BjoernKriews
+BjoernKriews

@@ -1,10 +1,10 @@
-I'm attempting to draw a window beneath the icons on the desktop (above the wallpaper). The http://www.cocoadev.com/index.pl?General/NSWindowLevel page lists the constant that will draw a window beneath the desktop icons (kCGDesktopWindowLevel), but, as noted, windows created with this constant will still accept mouse down events even when clicking on an icon. Ie: you will be unable to select your desktop icons that happen to be located above one of these windows. Any idea what I need to do to get the result I'm after?
+I'm attempting to draw a window beneath the icons on the desktop (above the wallpaper). The http://www.cocoadev.com/index.pl?NSWindowLevel page lists the constant that will draw a window beneath the desktop icons (kCGDesktopWindowLevel), but, as noted, windows created with this constant will still accept mouse down events even when clicking on an icon. Ie: you will be unable to select your desktop icons that happen to be located above one of these windows. Any idea what I need to do to get the result I'm after?
 
-Essentially I'm after the appearance of Stevenf's General/WebDesktop application (without the whole "web browser on the desktop thing").
+Essentially I'm after the appearance of Stevenf's WebDesktop application (without the whole "web browser on the desktop thing").
 
 Update: I've stumbled across this header file:
 
-Macintosh HD:System:Library:Frameworks:General/ApplicationServices.framework:Versions:A:Frameworks:General/CoreGraphics.framework:Versions:A:Headers:General/CGWindowLevel.h
+Macintosh HD:System:Library:Frameworks:ApplicationServices.framework:Versions:A:Frameworks:CoreGraphics.framework:Versions:A:Headers:CGWindowLevel.h
 
 that defines more window level constants, but none of them accomplish what I'm after... anyone have something that would point me in the right direction?
 
@@ -19,15 +19,15 @@ use
 to do what you want.
 
 (-2147483628) is the undocumented level for desktop window (in wich wallpaper is drawn).
-Adding 1 to be sure to be over desktop window (wallpaper) but under other windows (including Finder's icons wich are "windows" too in General/WindowServer with an higher level).
+Adding 1 to be sure to be over desktop window (wallpaper) but under other windows (including Finder's icons wich are "windows" too in WindowServer with an higher level).
 
 -- Bru
 
 ----
 
-Be careful when doing this - setting windows to this level will cause them to become "sticky" when using virtual desktop tools like General/VirtueDesktops and Desktop Manager.
+Be careful when doing this - setting windows to this level will cause them to become "sticky" when using virtual desktop tools like VirtueDesktops and Desktop Manager.
 
---General/TonyArnold
+--TonyArnold
 
 ----
 

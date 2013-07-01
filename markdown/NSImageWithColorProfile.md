@@ -1,6 +1,6 @@
 
 
-I have a source General/NSImage, with a color profile (sRGB, for example). I want to create a new image based on the source one, with the same color profile and colors.
+I have a source NSImage, with a color profile (sRGB, for example). I want to create a new image based on the source one, with the same color profile and colors.
 
 With the example below, the destination image is created OK, P<nowiki/>hotoShop even reports the source and dest image have the same profile, but the colors in the destination are not the same as the source's color.
 
@@ -8,46 +8,46 @@ I'm pretty sure the colors in the destination image are the colors from the sour
 If I dont specify a profile before writing the destination image, the profile reported by P<nowiki/>hotoShop is my monitor profile. Applying my monitor profile to the source image in P<nowiki/>hotoShop gives me the destination image.
 Specifying the color profile of the destination image just changes the name displayed by P<nowiki/>hotoShop. The colors dont change.
 
-I've Googled, searched General/CocoaBuilder.com, looked at tons of sample code, read the documentation on General/NSBitmapImageRep, General/NSImage, etc..., but I still dont have a clue on how to do it.
+I've Googled, searched CocoaBuilder.com, looked at tons of sample code, read the documentation on NSBitmapImageRep, NSImage, etc..., but I still dont have a clue on how to do it.
 
 Any help would be greatly appreciated.
 
-General/StephanBurlot
+StephanBurlot
 
 ----
 
     
-  General/NSData              *colorSyncProfile = nil;
-  General/NSRect              srcRect;
-  General/NSImage             *dstImage;
-  General/NSBitmapImageRep    *dstImageRep;
+  NSData              *colorSyncProfile = nil;
+  NSRect              srcRect;
+  NSImage             *dstImage;
+  NSBitmapImageRep    *dstImageRep;
 
-  General/NSImage *srcImage = General/[[NSImage alloc] initWithContentsOfFile:SRC];
-  General/NSBitmapImageRep *theBitmap= General/[NSBitmapImageRep imageRepWithData:[srcImage General/TIFFRepresentation]];
+  NSImage *srcImage = [[NSImage alloc] initWithContentsOfFile:SRC];
+  NSBitmapImageRep *theBitmap= [NSBitmapImageRep imageRepWithData:[srcImage TIFFRepresentation]];
 
   if (theBitmap != nil)
   {
     // keep a copy of the current color profile
-    colorSyncProfile = General/theBitmap valueForProperty:[[NSImageColorSyncProfileData] copy];
+    colorSyncProfile = theBitmap valueForProperty:[[NSImageColorSyncProfileData] copy];
     // size the image at 72 dpi
-    srcRect = General/NSMakeRect(0, 0, [theBitmap pixelsWide], [theBitmap pixelsHigh]);
+    srcRect = NSMakeRect(0, 0, [theBitmap pixelsWide], [theBitmap pixelsHigh]);
     [srcImage setSize:srcRect.size];
   }
   else
   {
-    General/NSLog(@"image has no bitmaprep");
+    NSLog(@"image has no bitmaprep");
     return;
   }
 
   // allocate destination image
-  dstImage = General/[[NSImage alloc] initWithSize:srcRect.size];
+  dstImage = [[NSImage alloc] initWithSize:srcRect.size];
   if (dstImage == NULL)
   {
-    General/NSLog(@"dstImage is NULL!");
+    NSLog(@"dstImage is NULL!");
     return;
   }
 
-  dstImageRep  = General/[[NSBitmapImageRep alloc] 
+  dstImageRep  = [[NSBitmapImageRep alloc] 
                   initWithBitmapDataPlanes:NULL
                   pixelsWide:srcRect.size.width 
                   pixelsHigh:srcRect.size.height
@@ -55,39 +55,39 @@ General/StephanBurlot
                   samplesPerPixel:[theBitmap samplesPerPixel]
                   hasAlpha:[theBitmap hasAlpha]
                   isPlanar:NO
-                  colorSpaceName:General/NSCalibratedRGBColorSpace
+                  colorSpaceName:NSCalibratedRGBColorSpace
                   bytesPerRow:nil 
                   bitsPerPixel:nil];
 
   if (dstImageRep == NULL)
   {
-    General/NSLog(@"dstImageRep is NULL!");
+    NSLog(@"dstImageRep is NULL!");
     return;
   }
 
   // set the color profile of the new bitmap
-  [dstImageRep setProperty:General/NSImageColorSyncProfileData withValue:colorSyncProfile];
+  [dstImageRep setProperty:NSImageColorSyncProfileData withValue:colorSyncProfile];
   [dstImage addRepresentation:dstImageRep];
   [dstImageRep release];
 
   // draw the src image into the destination
-  [dstImage setBackgroundColor:General/[NSColor whiteColor]];
+  [dstImage setBackgroundColor:[NSColor whiteColor]];
   [dstImage lockFocus];
-  General/NSEraseRect(srcRect);
-  [srcImage drawInRect:srcRect fromRect:srcRect operation:General/NSCompositeCopy fraction:1.0];
+  NSEraseRect(srcRect);
+  [srcImage drawInRect:srcRect fromRect:srcRect operation:NSCompositeCopy fraction:1.0];
   [dstImage unlockFocus];
   [srcImage release];
 
-  // fetch an General/NSBitmapImageRep (we cant save an General/NSCachedBitmap)
+  // fetch an NSBitmapImageRep (we cant save an NSCachedBitmap)
   [dstImage lockFocus];
-  theBitmap = General/[[NSBitmapImageRep alloc] initWithFocusedViewRect:srcRect];
+  theBitmap = [[NSBitmapImageRep alloc] initWithFocusedViewRect:srcRect];
   [dstImage unlockFocus];
 
   // set the color profile of the destination
-  [theBitmap setProperty:General/NSImageColorSyncProfileData withValue:colorSyncProfile];
+  [theBitmap setProperty:NSImageColorSyncProfileData withValue:colorSyncProfile];
 
   // and write a jpeg
-  General/NSData *bitmapData = [(General/NSBitmapImageRep *)theBitmap representationUsingType: General/NSJPEGFileType
-            properties:General/[NSDictionary dictionaryWithObject:General/[NSDecimalNumber numberWithFloat:0.8] 
-                                                   forKey:General/NSImageCompressionFactor]];
+  NSData *bitmapData = [(NSBitmapImageRep *)theBitmap representationUsingType: NSJPEGFileType
+            properties:[NSDictionary dictionaryWithObject:[NSDecimalNumber numberWithFloat:0.8] 
+                                                   forKey:NSImageCompressionFactor]];
   [bitmapData writeToFile:DST atomically:NO];

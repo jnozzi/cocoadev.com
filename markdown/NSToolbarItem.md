@@ -45,11 +45,11 @@ Typically you should not invoke this method.  This method is called by its toolb
 Return YES to allow dragging duplicate items into the toolbar.  By default, if an item with the same identifier is already in the toolbar, dragging in will act as a move of this item.  However, for instance, the separator item drags in as a duplicate always.
 ----
 ----
-**interface General/NSObject (General/NSToolbarItemValidation)**
+**interface NSObject (NSToolbarItemValidation)**
 
 
 NSToolbarItemValidation extends the standard validation idea by introducing this new method which is sent to validators for each visible standard NSToolbarItem with a valid target/action pair. 
-Note: This message is sent from General/NSToolbarItem's validate method, howevever validate will not send this message for items that have custom views. Moreover, it is sent to the item's target, NOT to the toolbar delegate.
+Note: This message is sent from NSToolbarItem's validate method, howevever validate will not send this message for items that have custom views. Moreover, it is sent to the item's target, NOT to the toolbar delegate.
 ----
 ----
 **Standard Toolbar Item Identifiers:**
@@ -59,7 +59,7 @@ Note: This message is sent from General/NSToolbarItem's validate method, howevev
 
 *Please do not remove the contents of an entire page to post a new question*
 
-How do I disable the items in General/NSToolbar during runtime? 
+How do I disable the items in NSToolbar during runtime? 
 
 ----
 Implement this method:

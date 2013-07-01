@@ -25,4 +25,4 @@
     - (void)queueItemWasAdded:(id)foo;
 
 
-General/Category:PointlessInformation
+Category:PointlessInformation

@@ -7,7 +7,7 @@ So the question is, what directories are needed in Subversion?
 I know I need the following:
 
 Source Code (*.h, *.m)
-General/XCode Project (*.xcodeproj)
+XCode Project (*.xcodeproj)
 Property Lists (*.plist)
 Language Projects (*.lproj)
 

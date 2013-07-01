@@ -4,9 +4,9 @@ Signals are a common UNIX facility which are used to signal a process about cert
 
 It's possible to install a signal handler on most signals, so that a function gets called when the signal is delivered. This can be used so that the user can make your program reload its configuration files (by trapping SIGHUP), to take action when writing to a pipe that's been closed (SIGPIPE), and for many other useful tasks.
 
-This page is about writing signal handlers, which is a way to execute code when signals are delivered. If you're getting a signal that you don't understand or your application is terminating unexpectedly, see General/SignalsSentOnCrash.
+This page is about writing signal handlers, which is a way to execute code when signals are delivered. If you're getting a signal that you don't understand or your application is terminating unexpectedly, see SignalsSentOnCrash.
 
-Signals are delivered asynchronously, much like interrupts, and so there are a great deal of restrictions placed on the code which runs. Many of these restrictions are much like General/ThreadSafety, in that you have to account for the fact that your signal handler could run at any moment while other code is running, causing weird problems. http://goo.gl/General/OeSCu
+Signals are delivered asynchronously, much like interrupts, and so there are a great deal of restrictions placed on the code which runs. Many of these restrictions are much like ThreadSafety, in that you have to account for the fact that your signal handler could run at any moment while other code is running, causing weird problems. http://goo.gl/OeSCu
 
 Here is an example of code which is safe:
 
@@ -55,14 +55,14 @@ increment the register
 write x back into memory
 
 
-If the signal handler is invoked while the main function is in the middle of this update process, an increment will be lost. Worse, the read and write of     x is not guaranteed to be atomic (for that we would need to use     sig_atomic_t).  Let's try to fix this by adding a simple lock. We'll assume that we have a     General/TestAndSet function which atomically sets a variable to 1 and returns its old value. Then we write our new program like this:
+If the signal handler is invoked while the main function is in the middle of this update process, an increment will be lost. Worse, the read and write of     x is not guaranteed to be atomic (for that we would need to use     sig_atomic_t).  Let's try to fix this by adding a simple lock. We'll assume that we have a     TestAndSet function which atomically sets a variable to 1 and returns its old value. Then we write our new program like this:
 
     
 volatile sig_atomic_t lock = 0;
 volatile int x = 0;
 
 void handler(int signal) {
-    while(General/TestAndSet(&lock)) ;
+    while(TestAndSet(&lock)) ;
     x++;
     lock = 0;
 }
@@ -72,7 +72,7 @@ int main(void) {
     while(1) {
         sleep(1);
         
-        while(General/TestAndSet(&lock)) ;
+        while(TestAndSet(&lock)) ;
         x++;
         lock = 0;
         
@@ -148,7 +148,7 @@ void handler(int signal) {
 
 The key word is "async-signal safe". If you see a function documented as being "thread safe", you know that you can call it simultaneously from multiple threads. If you see a function documented as being "async-signal safe", then you know that you can call it from a signal handler without blowing up your program. A fairly complete list of signal safe functions can be found in     man sigaction.
 
-The trick is that a *lot* of code is not async-signal safe. Since it's so much harder to write, very little code is async-signal safe. For example,     objc_msgSend() uses locks and so is not async-signal safe, meaning that you cannot use *any* Objective-C code in a signal handler. You can't use Objective-C, you can't call     malloc(), you can't touch General/CoreFoundation or most of libc.
+The trick is that a *lot* of code is not async-signal safe. Since it's so much harder to write, very little code is async-signal safe. For example,     objc_msgSend() uses locks and so is not async-signal safe, meaning that you cannot use *any* Objective-C code in a signal handler. You can't use Objective-C, you can't call     malloc(), you can't touch CoreFoundation or most of libc.
 
 How do you get anything accomplished in a signal handler, then? The best bet is usually to do as little as possible in the handler itself, but somehow signal the rest of your program that something needs to be done. For example, let's say you want to reload your configuration file when sent a SIGHUP. If your program never blocks for long, we could write our program like this:
 
@@ -160,10 +160,10 @@ void handler(int signal) {
 }
 ...
 while(!done) {
-    General/DoPeriodicProcessing();
+    DoPeriodicProcessing();
     if(gReloadConfigFile) {
         gReloadConfigFile = 0;
-        General/ReloadConfigFile();
+        ReloadConfigFile();
     }
 }
 
@@ -180,11 +180,11 @@ void handler(int signal) {
 while(!done) {
     if(gReloadConfigFile) {
         gReloadConfigFile = 0;
-        General/ReloadConfigFile();
+        ReloadConfigFile();
     }
     // X
     select(...);
-    General/ProcessData(...);
+    ProcessData(...);
 }
 
 
@@ -198,8 +198,8 @@ If you do use this scheme, you have to be careful. (I can hear you saying, "What
 
 ----
 
-What about signals in Cocoa? In fact, a Cocoa application's runloop, managed by General/CFRunLoop, is much like the basic     select()-using loop in the very last example above. (And if you think that this was just a coincidence, think again!) This means that you can use a similar strategy to notify the main event loop. Make a pipe, and wrap its read end in an General/NSFileHandle and have it notify you when new data arrives. This way, delivery of a signal will cause your code to get notified as soon as your main event loop is free, and you can use as much Objective-C and Cocoa in your General/NSFileHandle notification as you please.
+What about signals in Cocoa? In fact, a Cocoa application's runloop, managed by CFRunLoop, is much like the basic     select()-using loop in the very last example above. (And if you think that this was just a coincidence, think again!) This means that you can use a similar strategy to notify the main event loop. Make a pipe, and wrap its read end in an NSFileHandle and have it notify you when new data arrives. This way, delivery of a signal will cause your code to get notified as soon as your main event loop is free, and you can use as much Objective-C and Cocoa in your NSFileHandle notification as you please.
 
 ----
 
-General/SignalSafety is also related to writing proper code in the child process after calling     fork(). This relationship is discussed on the General/ForkSafety page.
+SignalSafety is also related to writing proper code in the child process after calling     fork(). This relationship is discussed on the ForkSafety page.

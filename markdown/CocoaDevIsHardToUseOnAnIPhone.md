@@ -8,7 +8,7 @@ Wouldn't it be smarter to suggest that the cocoadev site developers produce an i
 
 ----
 
-....and you'd want to use General/CocoaDev on an iPhone because?
+....and you'd want to use CocoaDev on an iPhone because?
 
 ----
 
@@ -34,7 +34,7 @@ You search the web site for "mark page for deletion" or something similar and fo
 Please don't get delete-happy. The hostility toward this discussion is a bit much, don't you think? The page is already here and clearly there is discussion on the topic, so there's no point in forcing your views on others and marking the page for deletion. Let's see where the conversation goes, rather than simply blowing it away while it's still active.
 
 ----
-All I can say is: what a bunch of crapbags! To any rational person, "Your site doesn't work on     $POPULAR_DEVICE because of     $SPECIFIC_PROBLEM_1 and     $SPECIFIC_PROBLEM_2 would be welcomed as constructive feedback and the contributor thanked for the information. Instead, we see him attacked, then an attempt to sweep the whole thing under the rug. If *my* web site doesn't work well on the iPhone I would appreciate it if somebody told me, and I promise that I won't attack you even a little bit. -- General/MikeAsh
+All I can say is: what a bunch of crapbags! To any rational person, "Your site doesn't work on     $POPULAR_DEVICE because of     $SPECIFIC_PROBLEM_1 and     $SPECIFIC_PROBLEM_2 would be welcomed as constructive feedback and the contributor thanked for the information. Instead, we see him attacked, then an attempt to sweep the whole thing under the rug. If *my* web site doesn't work well on the iPhone I would appreciate it if somebody told me, and I promise that I won't attack you even a little bit. -- MikeAsh
 
 ----
 

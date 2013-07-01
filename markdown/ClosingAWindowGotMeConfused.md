@@ -14,9 +14,9 @@ Thanks.
 ----
 
 To use performClose is probably "kinder" and easier for you later, unless you wish to override notifications or quickly move past user actions:
-- performClose highlights the button before closing, and calls General/NSWindowWillCloseNotification. It also checks with the delegate to get booleans as to whether or not it should actually close. If you think you'll need that later, it's good to go this route.
+- performClose highlights the button before closing, and calls NSWindowWillCloseNotification. It also checks with the delegate to get booleans as to whether or not it should actually close. If you think you'll need that later, it's good to go this route.
 - close: is indeed called by performClose after everything else is done.
 
 - close:, called by itself, doesn't check its delegate first to see if it's allowed to close or not. peformClose: does that. Something else to think about.
 
--- General/JasonTerhorst
+-- JasonTerhorst

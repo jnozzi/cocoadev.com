@@ -1,4 +1,4 @@
-Seeing the recent posting about General/BubbleSort prompted me to look up some of the details of other sorting algorithms, like General/MergeSort and General/QuickSort.  In the process, however, I noticed something odd:  My Java textbook states that General/MergeSort is O(n*log(n)), and that General/QuickSort's average case is O(n*log(n)) also.  However, it goes on to say that General/QuickSort's worst case is O(n^2).  If this is the case, why is General/QuickSort considered the standard "fast" algorithm instead of General/MergeSort?  What makes it better? --General/OwenAnderson
+Seeing the recent posting about BubbleSort prompted me to look up some of the details of other sorting algorithms, like MergeSort and QuickSort.  In the process, however, I noticed something odd:  My Java textbook states that MergeSort is O(n*log(n)), and that QuickSort's average case is O(n*log(n)) also.  However, it goes on to say that QuickSort's worst case is O(n^2).  If this is the case, why is QuickSort considered the standard "fast" algorithm instead of MergeSort?  What makes it better? --OwenAnderson
 
 *I am not sure it is the standard "fast" algorithm, ANSI-C does not require that qsort equals quick sort, and STL's std::sort is a hybrid of several sorting algorithms.*
 
@@ -8,31 +8,31 @@ Also, mergesort requires additional space equal to the size of the original arra
 
 FYI, good qsort implementations will attempt to determine if the array is already sorted or falls into some other worst-case state and use a different sort. *--this is not unique for qsort.*
 
-One thing General/MergeSort has going for it is that it is a stable sort, which preserves relative order for items that match the same (like if you had a list that was sorted by first name, then you sorted it by last name, folks with the same last name would find their first names sorted correctly).  General/QuickSort isn't a stable sort, so the folks with the same last name would have an unpredictable ordering.  But if you don't need a stable sort, then the General/QuickSort variations which avoid the worst-case scenario are the way to go.
+One thing MergeSort has going for it is that it is a stable sort, which preserves relative order for items that match the same (like if you had a list that was sorted by first name, then you sorted it by last name, folks with the same last name would find their first names sorted correctly).  QuickSort isn't a stable sort, so the folks with the same last name would have an unpredictable ordering.  But if you don't need a stable sort, then the QuickSort variations which avoid the worst-case scenario are the way to go.
 
 ----
 
-Another interesting approach to sorting is the set of General/BucketSort algorithms.  A common example is General/RadixSort which is O(mn) (n = size of the data set, m = log_{radix}(largest number is data set) = usually bounded by some predictable constant).
+Another interesting approach to sorting is the set of BucketSort algorithms.  A common example is RadixSort which is O(mn) (n = size of the data set, m = log_{radix}(largest number is data set) = usually bounded by some predictable constant).
 
-General/RadixSort takes advantage of the aforementioned "stability" to get essentially linear time.  As a result, it is also a stable sorting algorithm.
+RadixSort takes advantage of the aforementioned "stability" to get essentially linear time.  As a result, it is also a stable sorting algorithm.
 
---General/JeffDisher
+--JeffDisher
 
-*General/RadixSort was first published 75 years ago (1929) and has been used in mechanical devices for sorting punch cards. I think it is mainly of theoretical interest today.*
+*RadixSort was first published 75 years ago (1929) and has been used in mechanical devices for sorting punch cards. I think it is mainly of theoretical interest today.*
 
 *Yet another interesting approach is the counting sort, which runs in O(max(n, m)) time, where m is the highest number in the set (it only works for integers).*
 
-http://codercorner.com/General/RadixSortRevisited.htm - Some more information about a modern General/RadixSort implementation. --General/OwenAnderson
+http://codercorner.com/RadixSortRevisited.htm - Some more information about a modern RadixSort implementation. --OwenAnderson
 
 ----
 
-A practical question you might want to ask for an application is whether the order produced by the sort is constant; e.g. sort by column A, then sort by column B, then sort by column A again (then C, then A, etc), is the order the same as the first time?  While quicksort is "faster" (in the elegant sense, not necessarily in user experience), you'll need something else to preserve ordering or otherwise "equivalent" elements.  Given the practically small time difference between sorting algorithms, this is often a bigger concern for the user.  Another problem with General/QuickSort is that it tends to do worse on partially sorted data than other algorithms (added overhead for pivot selection, or just paying the penalty for picking bad pivot), and data is very often partially sorted in practice.
+A practical question you might want to ask for an application is whether the order produced by the sort is constant; e.g. sort by column A, then sort by column B, then sort by column A again (then C, then A, etc), is the order the same as the first time?  While quicksort is "faster" (in the elegant sense, not necessarily in user experience), you'll need something else to preserve ordering or otherwise "equivalent" elements.  Given the practically small time difference between sorting algorithms, this is often a bigger concern for the user.  Another problem with QuickSort is that it tends to do worse on partially sorted data than other algorithms (added overhead for pivot selection, or just paying the penalty for picking bad pivot), and data is very often partially sorted in practice.
 
 ----
 
 This page http://www.cs.ubc.ca/spider/harrison/Java/sorting-demo.html has visual demonstration of a dozen different sorts. Also, I did code a quick benchmark comparing bubble sort, merge sort and std::sort -- my merge sort could be optimized, but since this thread originated from the discussion of time complexity, the most interesting thing is how the functions scale. The sort was run 1024 times on each set size, and the set was generated with rand(). The time reported is in seconds.
     
-Elements  std::sort  General/MergeSort  Hybrid  General/BubbleSort
+Elements  std::sort  MergeSort  Hybrid  BubbleSort
 ========  =========  =========  ======  ==========
        1       0.00       0.00    0.00        0.00
        2       0.00       0.00    0.00        0.00
@@ -50,10 +50,10 @@ Elements  std::sort  General/MergeSort  Hybrid  General/BubbleSort
     8192       2.44       3.95    3.78      186.15
    16384       5.40       8.50    8.02      773.35
 
-The hybrid is General/MergeSort which use General/BubbleSort when there are
+The hybrid is MergeSort which use BubbleSort when there are
 eight or less elements left to sort. I tried different values,
 but 8 gave the bast result.
 
 Btw: std::sort is already a hybrid which I believe use
-General/InsertionSort when there are less than 20-30 elements to be
+InsertionSort when there are less than 20-30 elements to be
 sorted.

@@ -3,7 +3,7 @@
 ----
 
 Hi all,
-I was trying to emulate General/NSObject's retain count in C++ (off topic? I hope not)... I soon came up with:
+I was trying to emulate NSObject's retain count in C++ (off topic? I hope not)... I soon came up with:
 
     
 #define N_ALLOC_INIT(class) (class *) class::alloc ()->init ()
@@ -12,10 +12,10 @@ I was trying to emulate General/NSObject's retain count in C++ (off topic? I hop
  public: \
   static id alloc () { return new name; }
 
-class General/NObject;
-typedef General/NObject * id;
+class NObject;
+typedef NObject * id;
 
-class General/NObject
+class NObject
 {
 public:
 
@@ -32,12 +32,12 @@ private:
  unsigned int retainCount;
 };
 
-static inline void General/NSafeRelease (id object)
+static inline void NSafeRelease (id object)
 { if (object != NULL) object->release (); }
 
 ......
 
-General/NObject::init ()
+NObject::init ()
 {
  return this;
 }
@@ -50,22 +50,22 @@ General/NObject::init ()
 The problem is (now) about init methods in subclasses:
 
     
-id General/NASubclass::init ()
+id NASubclass::init ()
 {
- objectA = N_ALLOC_INIT (General/NObjectA);
- objectB = N_ALLOC_INIT (General/NObjectB);
+ objectA = N_ALLOC_INIT (NObjectA);
+ objectB = N_ALLOC_INIT (NObjectB);
 ......
- objectF = N_ALLOC_INIT (General/NObjectF);
+ objectF = N_ALLOC_INIT (NObjectF);
 
- return General/NObject::init ();
+ return NObject::init ();
 }
 
-void General/NASubclass::dealloc ()
+void NASubclass::dealloc ()
 {
  ..........
- General/NSafeRelease (objectB);
- General/NSafeRelease (objectA);
- General/NObject::dealloc ();
+ NSafeRelease (objectB);
+ NSafeRelease (objectA);
+ NObject::dealloc ();
 }
 
 
@@ -73,13 +73,13 @@ If I wanted the object to automatically release itself inside method init if one
 
 i.e.:
     
-id General/NASubclass::init ()
+id NASubclass::init ()
 {
  .....
  objectF = ......
 
  if (objectA != NULL && objectB != ...................................)
-  return General/NObject::init ();
+  return NObject::init ();
  else
  {
   release ();
@@ -95,7 +95,7 @@ Anyone? Thx
 
 ----
 
-I tried to make a neater solution, but it failed. -- General/KritTer
+I tried to make a neater solution, but it failed. -- KritTer
 
 ----
 
@@ -107,4 +107,4 @@ What about your implementation of delete calling C's stdlib free: would it --alw
 
 I was trying to stop stack allocation, leaving only heap alloc, but that's impossible. I also couldn't implement deletion properly because the destructor for the object is called before operator delete, so the object was going squiffy even if it was retained. All in all, I decided to throw in the towel.
 
--- General/KritTer
+-- KritTer

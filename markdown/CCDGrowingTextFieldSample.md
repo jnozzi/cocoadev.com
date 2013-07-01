@@ -1,11 +1,11 @@
-This is a slightly modified version of General/CCDGrowingTextField that supports auto resizing text fields. It also doesn't reset the width of an empty text field to the default width until the user stops editing. --General/SaileshAgrawal
+This is a slightly modified version of CCDGrowingTextField that supports auto resizing text fields. It also doesn't reset the width of an empty text field to the default width until the user stops editing. --SaileshAgrawal
 
     
-@interface General/CCDGrowingTextField : General/NSTextField
+@interface CCDGrowingTextField : NSTextField
 {
    float defaultLeftMargin;
    float defaultRightMargin;
-   General/NSRect defaultFrame;
+   NSRect defaultFrame;
 }
 
 @end
@@ -13,22 +13,22 @@ This is a slightly modified version of General/CCDGrowingTextField that supports
 
 
     
-@interface General/CCDGrowingTextField(Private)
+@interface CCDGrowingTextField(Private)
 
 - (void)updateDefaultMargins;
 - (void)viewDidMoveToSuperview;
 - (void)resetFrameToDefault;
 - (void)sizeToFit;
-- (void)textDidChange: (General/NSNotification *)notification;
-- (void)textDidEndEditing:(General/NSNotification *)notification;
+- (void)textDidChange: (NSNotification *)notification;
+- (void)textDidEndEditing:(NSNotification *)notification;
 
 @end
 
 
-@implementation General/CCDGrowingTextField
+@implementation CCDGrowingTextField
 
 
-- (id)initWithFrame: (General/NSRect)frame
+- (id)initWithFrame: (NSRect)frame
 {
    if ((self = [super initWithFrame:frame])) {
       defaultFrame = frame;
@@ -37,7 +37,7 @@ This is a slightly modified version of General/CCDGrowingTextField that supports
 }
 
 
-- (id)initWithCoder: (General/NSCoder *)decoder
+- (id)initWithCoder: (NSCoder *)decoder
 {
    if ((self = [super initWithCoder:decoder])) {
       defaultFrame = [self frame];
@@ -52,18 +52,18 @@ This is a slightly modified version of General/CCDGrowingTextField that supports
 }
 
 
-@end // General/CCDGrowingTextField
+@end // CCDGrowingTextField
 
 
-@implementation General/CCDGrowingTextField(Private)
+@implementation CCDGrowingTextField(Private)
 
 
 - (void)updateDefaultMargins
 {
-   General/NSRect myFrame = [self frame];
-   General/NSRect superBounds = General/self superview] bounds];
+   NSRect myFrame = [self frame];
+   NSRect superBounds = self superview] bounds];
    defaultLeftMargin = [[NSMinX(myFrame);
-   defaultRightMargin = superBounds.size.width - General/NSMaxX(myFrame);
+   defaultRightMargin = superBounds.size.width - NSMaxX(myFrame);
 }
 
 
@@ -76,9 +76,9 @@ This is a slightly modified version of General/CCDGrowingTextField that supports
 
 - (void)resetFrameToDefault
 {
-   General/NSRect myFrame = [self frame];
-   if (([self autoresizingMask] & General/NSViewWidthSizable) != 0) {
-      myFrame.size.width = General/self superview] bounds].size.width -
+   NSRect myFrame = [self frame];
+   if (([self autoresizingMask] & NSViewWidthSizable) != 0) {
+      myFrame.size.width = self superview] bounds].size.width -
                            (myFrame.origin.x + defaultRightMargin);
    } else {
       myFrame.size.width = defaultFrame.size.width;
@@ -99,8 +99,8 @@ This is a slightly modified version of General/CCDGrowingTextField that supports
       [super sizeToFit];
       [[NSRect myFrame = [self frame];
 
-      if (([self autoresizingMask] & General/NSViewWidthSizable) != 0) {
-         float curRightMargin = General/self superview] bounds].size.width - [[NSMaxX(myFrame);
+      if (([self autoresizingMask] & NSViewWidthSizable) != 0) {
+         float curRightMargin = self superview] bounds].size.width - [[NSMaxX(myFrame);
          if (curRightMargin < defaultRightMargin) {
             [self resetFrameToDefault];
          }
@@ -113,18 +113,18 @@ This is a slightly modified version of General/CCDGrowingTextField that supports
 }
 
 
-- (void)textDidChange: (General/NSNotification *)notification
+- (void)textDidChange: (NSNotification *)notification
 {
    [super textDidChange:notification];
    [self sizeToFit];
 }
 
 
-- (void)textDidEndEditing:(General/NSNotification *)notification
+- (void)textDidEndEditing:(NSNotification *)notification
 {
    [super textDidEndEditing:notification];
    [self sizeToFit];
 }
 
 
-@end // General/CCDGrowingTextField(Private)
+@end // CCDGrowingTextField(Private)

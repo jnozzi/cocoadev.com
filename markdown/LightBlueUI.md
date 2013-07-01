@@ -5,8 +5,8 @@ Is there a way to do this?
 ----
 
     
-General/NSWindow *myWindow = ...;
-General/NSColor *myLightBlueColor = ...;
+NSWindow *myWindow = ...;
+NSColor *myLightBlueColor = ...;
 [myWindow setBackgroundColor: myLightBlueColor];
 
 
@@ -17,12 +17,12 @@ Do you know how to use my own graphics for the tabs, and changing the alternatin
 
 ----
 
-You'll basically have to subclass the existing control classes and override their drawing methods. However, this is a bad idea in most cases. Users expect Mac apps to look like Mac apps, not some crazy blue thingy where every control is different. That's reserved for General/MicrosoftOffice.
+You'll basically have to subclass the existing control classes and override their drawing methods. However, this is a bad idea in most cases. Users expect Mac apps to look like Mac apps, not some crazy blue thingy where every control is different. That's reserved for MicrosoftOffice.
 
 ----
 
-Or Disco. -- General/RobRix
+Or Disco. -- RobRix
 
 ----
 
-Well, Disco's more grey than blue. :P -General/JonathanGrynspan
+Well, Disco's more grey than blue. :P -JonathanGrynspan

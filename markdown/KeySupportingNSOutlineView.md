@@ -1,6 +1,6 @@
 
 
-Below is an General/NSOutlineView subclass which overloads keyDown: so that
+Below is an NSOutlineView subclass which overloads keyDown: so that
 
 
 * arrow left/right will collapse/expand current item,
@@ -14,27 +14,27 @@ And: Is there any reason Apple hasn't made similar functionality built-in?
 
 ----
     
-@implementation General/KeySupportingOutlineView
+@implementation KeySupportingOutlineView
 
-- (void)keyDown:(General/NSEvent*)theEvent
+- (void)keyDown:(NSEvent*)theEvent
 {
    BOOL swallow = NO;
    if([self numberOfSelectedRows] == 1)
    {
       id item = [self itemAtRow:[self selectedRow]];
-      General/NSString* keyString = [theEvent characters];
+      NSString* keyString = [theEvent characters];
       switch([keyString length] == 1 ? [keyString characterAtIndex:0] : 0)
       {
-         case General/NSLeftArrowFunctionKey:
+         case NSLeftArrowFunctionKey:
          {
-            if(General/self dataSource] outlineView:self isItemExpandable:item] == YES)
+            if(self dataSource] outlineView:self isItemExpandable:item] == YES)
                [self collapseItem:item], swallow = YES;
          }
          break;
 
          case [[NSRightArrowFunctionKey:
          {
-            if(General/self dataSource] outlineView:self isItemExpandable:item] == YES)
+            if(self dataSource] outlineView:self isItemExpandable:item] == YES)
                [self expandItem:item], swallow = YES;
          }
          break;
@@ -48,10 +48,10 @@ And: Is there any reason Apple hasn't made similar functionality built-in?
 
          case ' ':
          {
-            General/NSArray* columns = [self tableColumns];
+            NSArray* columns = [self tableColumns];
             for(int i = 0; i < [columns count]; i++)
             {
-               General/NSTableColumn* column = [columns objectAtIndex:i];
+               NSTableColumn* column = [columns objectAtIndex:i];
                if([column isEditable] == YES)
                {
                   id delegate = [self delegate];

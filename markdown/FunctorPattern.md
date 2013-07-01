@@ -8,7 +8,7 @@ class Functor {
 	Array apply( Array indata ) { return data; }
 }
 
-class Mult2Functor : General/AbstractFunctor {
+class Mult2Functor : AbstractFunctor {
 	Array apply( Array indata ) {
 		Array outdata = new Array();
 
@@ -37,10 +37,10 @@ main( ) {
 
 Define a class for each algorithm you need. Create an interpreter for the command line syntax that maps the name of a function to a functor class, instantiate the class and possibly initialize it (there could be a Multiply-functor that could be initialized with a value to multiply by, instead of defining a Mult2Functor, Mult3Functor and so on) and apply it to the data set. No part of the code besides the interpreter will need to know about which functors are available. That's very nice OO.
 
-The General/FunctorPattern is from the General/GangOfFour book. See also http://c2.com/cgi/wiki?General/FunctorObject.
+The FunctorPattern is from the GangOfFour book. See also http://c2.com/cgi/wiki?FunctorObject.
 
--- General/TheoHultberg/Iconara
+-- TheoHultberg/Iconara
 
 ----
 
-To examine a design analysis that settled on the General/FunctorPattern see General/FunctorPatternDesignAnalysis
+To examine a design analysis that settled on the FunctorPattern see FunctorPatternDesignAnalysis

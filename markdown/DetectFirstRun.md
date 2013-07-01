@@ -1,4 +1,4 @@
-see also General/SetADateForAnAppToExpire for application of this idea
+see also SetADateForAnAppToExpire for application of this idea
 
 ----
 
@@ -9,23 +9,23 @@ In my main Controller I have the following...
 + (void)initialize //this overides the initialize method for this class
 {
    //Create a dictionary...
-      General/NSMutableDictionary *defaultValues = General/[NSMutableDictionary dictionary];
-   //archive the objects to be stored as General/NSData...
-      General/NSData *lastOpenedPathAsData = General/[NSArchiver archivedDataWithRootObject:General/[NSString stringWithString:@""]];
+      NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+   //archive the objects to be stored as NSData...
+      NSData *lastOpenedPathAsData = [NSArchiver archivedDataWithRootObject:[NSString stringWithString:@""]];
    //put the defaults in the dictionary...
-      [defaultValues setObject:lastOpenedPathAsData forKey:General/PALLastOpenedPath];
+      [defaultValues setObject:lastOpenedPathAsData forKey:PALLastOpenedPath];
    //Register the dictionary of defaults...
-      General/[[NSUserDefaults standardUserDefaults] registerDefaults: defaultValues];
+      [[NSUserDefaults standardUserDefaults] registerDefaults: defaultValues];
 }
 
 And I am trying to check on the awakeFromNib (in the same controller) for existing preferences like so:
     
-if ([defaults objectForKey:General/PALClientList] == nil) 
+if ([defaults objectForKey:PALClientList] == nil) 
    [introWindow makeKeyAndOrderFront:self];
 
 But my introWindow is never shown :(
 
-I am assuming that the detection is coming too late - and that if the defaults aren't there, then they are set up as blank, and so General/PALClientList is never going to be nil.
+I am assuming that the detection is coming too late - and that if the defaults aren't there, then they are set up as blank, and so PALClientList is never going to be nil.
 
 What order are these things done in:     +(void)initialize,     -(void)init ?
 
@@ -35,7 +35,7 @@ Thanks for any help you can offer!
 
 Yes,     initialize is always sent to the class object before the first method. It is documented in the GCC manual.
 
-file:///Developer/Documentation/General/DeveloperTools/gcc-3.3/gcc/Executing-code-before-main.html
+file:///Developer/Documentation/DeveloperTools/gcc-3.3/gcc/Executing-code-before-main.html
 
 P.S. Please format your code and surround it with BEGIN/ENDCODE markers.
 
@@ -44,37 +44,37 @@ P.S. Please format your code and surround it with BEGIN/ENDCODE markers.
 Perhaps an easier way would be to add this line to +initialize:
 
     
-[defaultValues setBool: YES forKey: @"General/IsFirstRun"];
+[defaultValues setBool: YES forKey: @"IsFirstRun"];
 
 
 Then, when you want to show your first run window do this:
 
     
-if( [defaults boolForKey: @"General/IsFirstRun"] == YES ) {
-  [defaults setBool: NO forKey: @"General/IsFirstRun"];
+if( [defaults boolForKey: @"IsFirstRun"] == YES ) {
+  [defaults setBool: NO forKey: @"IsFirstRun"];
   // Show window here.
 }
 
 
-This just checks to see if the "General/IsFirstRun" bool is YES (by default it is, so when your app is run for the first time this test will succeed). Then the "General/IsFirstRun" bool is set to NO, so that the next time your app is run, the test fails, and the window is not shown.
+This just checks to see if the "IsFirstRun" bool is YES (by default it is, so when your app is run for the first time this test will succeed). Then the "IsFirstRun" bool is set to NO, so that the next time your app is run, the test fails, and the window is not shown.
 
 This way you don't have to try to run code before main or anything, which is overkill for such a simple problem.
 
--- General/QuentinHill
+-- QuentinHill
 
 
 ----
 I generally add the following to the awakeFromNib of my application controller, this handles first run and version changes nicely...
     
-General/NSUserDefaults *userDefaults = General/[NSUserDefaults standardUserDefaults];
-General/NSString *version = [userDefaults stringForKey:@"version"]; //will return 'nil' if no defaults
-General/NSString *appVersion = General/[[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"General/CFBundleVersion"];
+NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+NSString *version = [userDefaults stringForKey:@"version"]; //will return 'nil' if no defaults
+NSString *appVersion = [[[NSBundle bundleForClass:[self class]] infoDictionary] objectForKey:@"CFBundleVersion"];
 if(!version) {
-	General/NSLog(@"First run - configuring preferences");
+	NSLog(@"First run - configuring preferences");
 }
 if(!version || ![version isEqual:appVersion]) {
-	General/NSLog(@"Version changed %@ -> %@", version, appVersion);
+	NSLog(@"Version changed %@ -> %@", version, appVersion);
 	[userDefaults setObject:appVersion forKey:@"version"];
 }
 
--- General/RbrtPntn
+-- RbrtPntn

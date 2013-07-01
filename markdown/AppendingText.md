@@ -1,21 +1,21 @@
-Unlike General/NSMutableString, General/NSTextView has not implemented a convenient method to append text to its existing text object.
+Unlike NSMutableString, NSTextView has not implemented a convenient method to append text to its existing text object.
 
-You can append text to an General/NSTextView by creating a category on General/NSTextView and using code similar to that shown below:
+You can append text to an NSTextView by creating a category on NSTextView and using code similar to that shown below:
 
     
 
-@interface General/NSTextView(Controller)
-- (void) appendString: (General/NSString *)str
+@interface NSTextView(Controller)
+- (void) appendString: (NSString *)str
 @end
 
-@implementation General/NSTextView(Controller)
--(void)appendString:(General/NSString *)str
+@implementation NSTextView(Controller)
+-(void)appendString:(NSString *)str
 {
-    int len = General/self textStorage] length];
+    int len = self textStorage] length];
     [self replaceCharactersInRange:[[NSMakeRange(len,0)withString:str];
 }
 
 
 Invoke as usual, e.g., (a, b, and c are all declared integer variables)
 
-    [reportView appendString:General/[NSString stringWithFormat:@"%i.%i.%i", a, b, c]];
+    [reportView appendString:[NSString stringWithFormat:@"%i.%i.%i", a, b, c]];

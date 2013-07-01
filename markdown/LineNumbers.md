@@ -6,17 +6,17 @@ Every once in a while a question pops up on the Cocoa mailing lists about how to
 
 == Approach 1: Custom NSRulerView == 
 
-You can subclass General/NSRulerView and draw the numbers there. An example of that is the NoodleLineNumberView in [https://github.com/MrNoodle/NoodleKit NoodleKit] along with the a more recently updated version: https://github.com/scottharwell/NoodleKit 
+You can subclass NSRulerView and draw the numbers there. An example of that is the NoodleLineNumberView in [https://github.com/MrNoodle/NoodleKit NoodleKit] along with the a more recently updated version: https://github.com/scottharwell/NoodleKit 
 
 
 
 == Approach 2: Custom NSTextView ==
 
-The trick is to subclass General/NSTextView with an General/NSTextContainer that allows for writing in a margin.
+The trick is to subclass NSTextView with an NSTextContainer that allows for writing in a margin.
 
 See http://home.earthlink.net/~kvddrift/software/linenumbers.tar.gz (link has been fixed)
 
-*This method ony works when General/NSTextView's setWidthTracksTextView attribute is set to YES.  This is a severe limitation since this attribute will almost certainly be set to NO when implementing non-wrapping text; see General/DisablingWrapInTextView.*
+*This method ony works when NSTextView's setWidthTracksTextView attribute is set to YES.  This is a severe limitation since this attribute will almost certainly be set to NO when implementing non-wrapping text; see DisablingWrapInTextView.*
 
 
 

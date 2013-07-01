@@ -2,7 +2,7 @@
 
 Hello!
 
-I�ve linked 2 to 3 instances of General/NSViewAnimation, firing them as in the official doc, I even followed the sample code in iSpend and it works for unique animations but as soon as I try to link animations, my app crashes (sigbus), but not always, even if the animation process is exactly the same and nothing else is happening in the program. Very strange! And there�s no code sample illustrating linking, except the lines in http://developer.apple.com/documentation/Cocoa/Conceptual/General/DrawViews/Tasks/General/TimingAnimations.html .
+I�ve linked 2 to 3 instances of NSViewAnimation, firing them as in the official doc, I even followed the sample code in iSpend and it works for unique animations but as soon as I try to link animations, my app crashes (sigbus), but not always, even if the animation process is exactly the same and nothing else is happening in the program. Very strange! And there�s no code sample illustrating linking, except the lines in http://developer.apple.com/documentation/Cocoa/Conceptual/DrawViews/Tasks/TimingAnimations.html .
 
 I tried to set different blocking modes etc. but with no success.
 
@@ -37,31 +37,31 @@ Yes, *maybe*. Here you are.
 
     
     // 1st animation
-    General/NSMutableDictionary * firstObjectDict = General/[NSMutableDictionary dictionaryWithObjectsAndKeys:
-	firstObject,General/NSViewAnimationTargetKey,
-	General/[NSValue valueWithRect:General/NSMakeRect(167,188,138,138)],General/NSViewAnimationStartFrameKey,
-	General/[NSValue valueWithRect:General/NSMakeRect(167,387,138,138)],General/NSViewAnimationEndFrameKey,
-	General/NSViewAnimationFadeOutEffect,General/NSViewAnimationEffectKey,nil];
+    NSMutableDictionary * firstObjectDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+	firstObject,NSViewAnimationTargetKey,
+	[NSValue valueWithRect:NSMakeRect(167,188,138,138)],NSViewAnimationStartFrameKey,
+	[NSValue valueWithRect:NSMakeRect(167,387,138,138)],NSViewAnimationEndFrameKey,
+	NSViewAnimationFadeOutEffect,NSViewAnimationEffectKey,nil];
   
-    General/NSMutableDictionary * secondObjectDict = General/[NSMutableDictionary dictionaryWithObjectsAndKeys:
-	secondObject,General/NSViewAnimationTargetKey,
-	General/[NSValue valueWithRect:General/NSMakeRect(317,188,138,138)],General/NSViewAnimationStartFrameKey,
-	General/[NSValue valueWithRect:General/NSMakeRect(471,387,138,138)],General/NSViewAnimationEndFrameKey,
-	General/NSViewAnimationFadeOutEffect,General/NSViewAnimationEffectKey,nil];
+    NSMutableDictionary * secondObjectDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+	secondObject,NSViewAnimationTargetKey,
+	[NSValue valueWithRect:NSMakeRect(317,188,138,138)],NSViewAnimationStartFrameKey,
+	[NSValue valueWithRect:NSMakeRect(471,387,138,138)],NSViewAnimationEndFrameKey,
+	NSViewAnimationFadeOutEffect,NSViewAnimationEffectKey,nil];
 
-   firstTwoObjectsAnimation = General/[[NSViewAnimation alloc] initWithViewAnimations:General/[NSArray
+   firstTwoObjectsAnimation = [[NSViewAnimation alloc] initWithViewAnimations:[NSArray
         arrayWithObjects:firstObjectDict, secondObjectDict, nil]];
     [firstTwoObjectsAnimation addProgressMark:0.5];
     [firstTwoObjectsAnimation setDelegate:self];
     
 
     // 2nd animation
-    General/NSMutableDictionary * thirdObjectDict = General/[NSMutableDictionary dictionaryWithObjectsAndKeys:
-	thirdObject,General/NSViewAnimationTargetKey,
-	General/[NSValue valueWithRect:General/NSMakeRect(149,132,175,226)],General/NSViewAnimationStartFrameKey,
-	General/NSViewAnimationFadeInEffect,General/NSViewAnimationEffectKey,nil];
+    NSMutableDictionary * thirdObjectDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+	thirdObject,NSViewAnimationTargetKey,
+	[NSValue valueWithRect:NSMakeRect(149,132,175,226)],NSViewAnimationStartFrameKey,
+	NSViewAnimationFadeInEffect,NSViewAnimationEffectKey,nil];
     
-    thirdObjectAnim = General/[[NSViewAnimation alloc] initWithViewAnimations:General/[NSArray
+    thirdObjectAnim = [[NSViewAnimation alloc] initWithViewAnimations:[NSArray
         arrayWithObjects:thirdObjectDict, nil]];
 
     [thirdObjectAnim setDelegate:self];
@@ -74,11 +74,11 @@ Yes, *maybe*. Here you are.
     
     }
 
-- (void)animationDidStop:(General/NSAnimation*)animation {    
+- (void)animationDidStop:(NSAnimation*)animation {    
     [self animationDidEnd:animation];
 }
 
-- (void)animationDidEnd:(General/NSAnimation*)animation {
+- (void)animationDidEnd:(NSAnimation*)animation {
     [animation release];
 }
 
@@ -86,36 +86,36 @@ Yes, *maybe*. Here you are.
 Now, look at the log, if I had made a mistake, would the animations start and end 5 times but the 6th time start then cause a sigbus??
 
     
-2005-08-12 11:22:51.646 General/NewApp[443] animateViews
-2005-08-12 11:22:51.649 General/NewApp[443] animation <General/NSViewAnimation: 0x36cad0> General/ShouldStart
-2005-08-12 11:22:51.925 General/NewApp[443] animation <General/NSViewAnimation: 0x36c890> General/ShouldStart
-2005-08-12 11:22:52.210 General/NewApp[443] animation <General/NSViewAnimation: 0x36cad0> General/DidEnd
-2005-08-12 11:22:52.455 General/NewApp[443] animation <General/NSViewAnimation: 0x36c890> General/DidEnd
-2005-08-12 11:22:53.678 General/NewApp[443] animateViews
-2005-08-12 11:22:53.678 General/NewApp[443] animation <General/NSViewAnimation: 0x36be60> General/ShouldStart
-2005-08-12 11:22:53.948 General/NewApp[443] animation <General/NSViewAnimation: 0x3630de0> General/ShouldStart
-2005-08-12 11:22:54.201 General/NewApp[443] animation <General/NSViewAnimation: 0x36be60> General/DidEnd
-2005-08-12 11:22:54.467 General/NewApp[443] animation <General/NSViewAnimation: 0x3630de0> General/DidEnd
-2005-08-12 11:22:55.622 General/NewApp[443] animateViews
-2005-08-12 11:22:55.623 General/NewApp[443] animation <General/NSViewAnimation: 0x36be60> General/ShouldStart
-2005-08-12 11:22:55.874 General/NewApp[443] animation <General/NSViewAnimation: 0x3630de0> General/ShouldStart
-2005-08-12 11:22:56.138 General/NewApp[443] animation <General/NSViewAnimation: 0x36be60> General/DidEnd
-2005-08-12 11:22:56.385 General/NewApp[443] animation <General/NSViewAnimation: 0x3630de0> General/DidEnd
-2005-08-12 11:22:58.038 General/NewApp[443] animateViews
-2005-08-12 11:22:58.038 General/NewApp[443] animation <General/NSViewAnimation: 0x3630de0> General/ShouldStart
-2005-08-12 11:22:58.289 General/NewApp[443] animation <General/NSViewAnimation: 0x36be60> General/ShouldStart
-2005-08-12 11:22:58.599 General/NewApp[443] animation <General/NSViewAnimation: 0x3630de0> General/DidEnd
-2005-08-12 11:22:58.822 General/NewApp[443] animation <General/NSViewAnimation: 0x36be60> General/DidEnd
-2005-08-12 11:22:59.814 General/NewApp[443] animateViews
-2005-08-12 11:22:59.814 General/NewApp[443] animation <General/NSViewAnimation: 0x3703d0> General/ShouldStart
-2005-08-12 11:23:00.066 General/NewApp[443] animation <General/NSViewAnimation: 0x36be60> General/ShouldStart
-2005-08-12 11:23:00.325 General/NewApp[443] animation <General/NSViewAnimation: 0x3703d0> General/DidEnd
-2005-08-12 11:23:00.569 General/NewApp[443] animation <General/NSViewAnimation: 0x36be60> General/DidEnd
-2005-08-12 11:23:05.246 General/NewApp[443] animateViews
-2005-08-12 11:23:05.247 General/NewApp[443] animation <General/NSViewAnimation: 0x36cad0> General/ShouldStart
-2005-08-12 11:23:05.505 General/NewApp[443] animation <General/NSViewAnimation: 0x36be60> General/ShouldStart
+2005-08-12 11:22:51.646 NewApp[443] animateViews
+2005-08-12 11:22:51.649 NewApp[443] animation <NSViewAnimation: 0x36cad0> ShouldStart
+2005-08-12 11:22:51.925 NewApp[443] animation <NSViewAnimation: 0x36c890> ShouldStart
+2005-08-12 11:22:52.210 NewApp[443] animation <NSViewAnimation: 0x36cad0> DidEnd
+2005-08-12 11:22:52.455 NewApp[443] animation <NSViewAnimation: 0x36c890> DidEnd
+2005-08-12 11:22:53.678 NewApp[443] animateViews
+2005-08-12 11:22:53.678 NewApp[443] animation <NSViewAnimation: 0x36be60> ShouldStart
+2005-08-12 11:22:53.948 NewApp[443] animation <NSViewAnimation: 0x3630de0> ShouldStart
+2005-08-12 11:22:54.201 NewApp[443] animation <NSViewAnimation: 0x36be60> DidEnd
+2005-08-12 11:22:54.467 NewApp[443] animation <NSViewAnimation: 0x3630de0> DidEnd
+2005-08-12 11:22:55.622 NewApp[443] animateViews
+2005-08-12 11:22:55.623 NewApp[443] animation <NSViewAnimation: 0x36be60> ShouldStart
+2005-08-12 11:22:55.874 NewApp[443] animation <NSViewAnimation: 0x3630de0> ShouldStart
+2005-08-12 11:22:56.138 NewApp[443] animation <NSViewAnimation: 0x36be60> DidEnd
+2005-08-12 11:22:56.385 NewApp[443] animation <NSViewAnimation: 0x3630de0> DidEnd
+2005-08-12 11:22:58.038 NewApp[443] animateViews
+2005-08-12 11:22:58.038 NewApp[443] animation <NSViewAnimation: 0x3630de0> ShouldStart
+2005-08-12 11:22:58.289 NewApp[443] animation <NSViewAnimation: 0x36be60> ShouldStart
+2005-08-12 11:22:58.599 NewApp[443] animation <NSViewAnimation: 0x3630de0> DidEnd
+2005-08-12 11:22:58.822 NewApp[443] animation <NSViewAnimation: 0x36be60> DidEnd
+2005-08-12 11:22:59.814 NewApp[443] animateViews
+2005-08-12 11:22:59.814 NewApp[443] animation <NSViewAnimation: 0x3703d0> ShouldStart
+2005-08-12 11:23:00.066 NewApp[443] animation <NSViewAnimation: 0x36be60> ShouldStart
+2005-08-12 11:23:00.325 NewApp[443] animation <NSViewAnimation: 0x3703d0> DidEnd
+2005-08-12 11:23:00.569 NewApp[443] animation <NSViewAnimation: 0x36be60> DidEnd
+2005-08-12 11:23:05.246 NewApp[443] animateViews
+2005-08-12 11:23:05.247 NewApp[443] animation <NSViewAnimation: 0x36cad0> ShouldStart
+2005-08-12 11:23:05.505 NewApp[443] animation <NSViewAnimation: 0x36be60> ShouldStart
 
-General/NewApp has exited due to signal 10 (SIGBUS).
+NewApp has exited due to signal 10 (SIGBUS).
 
 
 --Flofl
@@ -144,7 +144,7 @@ I can�t believe I�m the first one using it and having problems with it! Nobo
 This method looks kind of risky.
 
     
-- (void)animationDidEnd:(General/NSAnimation*)animation {
+- (void)animationDidEnd:(NSAnimation*)animation {
     [animation release];
 }
 
@@ -152,7 +152,7 @@ This method looks kind of risky.
 You are releasing something based on the assumption that this method is called only once. You should do something more like this:
 
     
-- (void)animationDidEnd:(General/NSAnimation*)animation {
+- (void)animationDidEnd:(NSAnimation*)animation {
     if (animation == firstTwoObjectsAnimation) {
         [firstTwoObjectsAnimation release];
         firstTwoObjectsAnimation = nil;
@@ -171,7 +171,7 @@ Yes, you�re right, this code was from a non-linked animation code sample� Fi
 
 ----
 
-I�ve just rewritten all my code without the animations! It was getting like in X-files: I put an General/NSLog in every single method of my code and the method that was supposed to start animation X happened to sometimes start animation X and animation Y. The General/NSLog stated no call to any method supposed to start animation Y� If anyone can explain� I�ve checked my code hundreds of times� If anybody hears about a known bug or finds similar cases of weirdness in its own app, let us know.
+I�ve just rewritten all my code without the animations! It was getting like in X-files: I put an NSLog in every single method of my code and the method that was supposed to start animation X happened to sometimes start animation X and animation Y. The NSLog stated no call to any method supposed to start animation Y� If anyone can explain� I�ve checked my code hundreds of times� If anybody hears about a known bug or finds similar cases of weirdness in its own app, let us know.
 
 --Flofl.
 

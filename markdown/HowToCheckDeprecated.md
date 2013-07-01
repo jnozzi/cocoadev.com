@@ -8,8 +8,8 @@ JM Marino
 ----
 
 Just a reply to my self :
-http://developer.apple.com/documentation/General/DeveloperTools/Conceptual/cross_development/Using/chapter_3_section_6.html
+http://developer.apple.com/documentation/DeveloperTools/Conceptual/cross_development/Using/chapter_3_section_6.html
 
-and you can also search General/NSDeprecated category interface into Xcode Developer Documentation.
+and you can also search NSDeprecated category interface into Xcode Developer Documentation.
 
 JM Marino

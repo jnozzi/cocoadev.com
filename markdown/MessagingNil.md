@@ -12,7 +12,7 @@ Sending messages to nil is okay unless the documentation for a method states oth
 
 ...
 
-- (void)setMyString:(General/NSString *)newString
+- (void)setMyString:(NSString *)newString
 {
 	[myString autorelease];
 	myString = [newString copy];
@@ -30,19 +30,19 @@ Consider the implication. [self setMyString:nil]; causes a number of interesting
 
 Think outside the box.
 
--- General/MikeTrent
+-- MikeTrent
 
 ----
 
 Or to put it another way, setting an ivar to nil is to make it a nil object since an ivar is just an identifier for an object and not the actual object.
 
--- General/DaveHenderson
+-- DaveHenderson
 
 ----
 
 Eek.  The code above used to say this:
 
-    - (void)setMyString:(General/NSString *)newString
+    - (void)setMyString:(NSString *)newString
 {
 	[myString release];
 	myString = [newString copy];
@@ -52,22 +52,22 @@ Note the "[myString release]".  This is not safe!  Consider the case that (newSt
 
 The more you know.  -=*
 
--- General/PeterJaros
+-- PeterJaros
 
 ----
 
-Another way, which is the one I prefer, is to first retain newString, then release myString, then do a simple assignment myString = newString. I suppose all these ways have their merits; it's just down to personal preference in the end. --General/OwenYamauchi
+Another way, which is the one I prefer, is to first retain newString, then release myString, then do a simple assignment myString = newString. I suppose all these ways have their merits; it's just down to personal preference in the end. --OwenYamauchi
 
 ----
 
 From the **Universal Binary Programming Guidelines:**
-http://developer.apple.com/documentation/General/MacOSX/Conceptual/universal_binary/universal_binary.pdf
+http://developer.apple.com/documentation/MacOSX/Conceptual/universal_binary/universal_binary.pdf
 
-On a Macintosh using an Intel microprocessor, Objective-C messages sent to     nil return garbage for return values that are typed as     float or     double. On a Macintosh using a General/PowerPC microprocessor these messages return     0.0.
+On a Macintosh using an Intel microprocessor, Objective-C messages sent to     nil return garbage for return values that are typed as     float or     double. On a Macintosh using a PowerPC microprocessor these messages return     0.0.
 
 *that's gonna suck.*
 
-**It's not like it's that common. Messaging     nil is usual, and returning a     float is usual, but when would you message an unknown object to get a     float? (OK, I just thought of two or three as I was writing this) Besides,     0.0 is often a possible value (x- or y-value of coordinates, etc); something like     NAN would be much easier to differentiate. --General/JediKnil**
+**It's not like it's that common. Messaging     nil is usual, and returning a     float is usual, but when would you message an unknown object to get a     float? (OK, I just thought of two or three as I was writing this) Besides,     0.0 is often a possible value (x- or y-value of coordinates, etc); something like     NAN would be much easier to differentiate. --JediKnil**
 
 Messages to nil already return garbage for structs. Extending that to floats is not a big thing.
 
@@ -77,12 +77,12 @@ Messages to nil already return garbage for structs. Extending that to floats is 
 
 I'm going to start a new topic about best practices for sending a message to nil.
 
-see General/MessagingNilAndUniversalBinaries
+see MessagingNilAndUniversalBinaries
 
 ----
 
 I did some digging in the assembly code that actually implements messaging, and figured out what happens when messaging nil on PPC and Intel, 32-bit and 64-bit varieties, and in Tiger and Leopard (they're different). It's here:
 
-http://www.contrib.andrew.cmu.edu/~ody/pages/General/MessagingNil.html
+http://www.contrib.andrew.cmu.edu/~ody/pages/MessagingNil.html
 
---General/OwenYamauchi
+--OwenYamauchi

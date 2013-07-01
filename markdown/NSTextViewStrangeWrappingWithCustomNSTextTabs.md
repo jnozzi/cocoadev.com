@@ -13,20 +13,20 @@ My Code:
     I can't post this code because of wiki spam protection. http://catsdorule.torpedobird.com/tmp/code
 
 
-    - (General/NSDictionary *)ingredientAttributes
+    - (NSDictionary *)ingredientAttributes
 {
-	General/NSMutableParagraphStyle * paraStyle = General/TRNewMutableParagraphStyle();
+	NSMutableParagraphStyle * paraStyle = TRNewMutableParagraphStyle();
 	
-	General/NSTextTab * rightTabStop = General/[[[NSTextTab alloc] initWithType:General/NSRightTabStopType location:80] autorelease];
-	General/NSTextTab * leftTabStop = General/[[[NSTextTab alloc] initWithType:General/NSLeftTabStopType location:85] autorelease];
+	NSTextTab * rightTabStop = [[[NSTextTab alloc] initWithType:NSRightTabStopType location:80] autorelease];
+	NSTextTab * leftTabStop = [[[NSTextTab alloc] initWithType:NSLeftTabStopType location:85] autorelease];
 	
-	[paraStyle setTabStops:General/[NSArray arrayWithObjects:rightTabStop, leftTabStop, nil]];
+	[paraStyle setTabStops:[NSArray arrayWithObjects:rightTabStop, leftTabStop, nil]];
 	[paraStyle setHeadIndent:85];
-	[paraStyle setAlignment:General/NSJustifiedTextAlignment];
-	//[paraStyle setLineBreakMode:General/NSLineBreakByTruncatingTail];
+	[paraStyle setAlignment:NSJustifiedTextAlignment];
+	//[paraStyle setLineBreakMode:NSLineBreakByTruncatingTail];
 	
-	return General/[NSDictionary dictionaryWithObjectsAndKeys:
-		paraStyle,General/NSParagraphStyleAttributeName,
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+		paraStyle,NSParagraphStyleAttributeName,
 		@"",kTRIngredientAttributeName,
 		nil];
 }

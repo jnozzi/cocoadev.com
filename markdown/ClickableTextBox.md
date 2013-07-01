@@ -11,7 +11,7 @@ So... use a button and alter its title.
 
 ----
 Okey Dokey, will give that a try.  Assumed button title couldn't be altered while App is running.
-Woz gonna try subclassing General/NSTextField to override mouseDown.  Would that work?
+Woz gonna try subclassing NSTextField to override mouseDown.  Would that work?
 
 ----
 It would, but using a button is easier since it's already done for you. There's no problem with changing a button's title while the app is running. Just watch out for sizing problems, you may need to -sizeToFit and jiggle with its positioning to make sure it's big enough to hold your text.

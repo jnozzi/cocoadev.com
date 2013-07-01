@@ -1,5 +1,5 @@
-General/NodObjC is the "The Objective-C <--> General/NodeJS bridge".
+NodObjC is the "The Objective-C <--> NodeJS bridge".
 
-A bridge to the Objective-C runtime for General/NodeJS.
+A bridge to the Objective-C runtime for NodeJS.
 
-https://github.com/General/TooTallNate/General/NodObjC
+https://github.com/TooTallNate/NodObjC

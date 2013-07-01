@@ -1,1 +1,1 @@
-A shortened form of General/DeveloperTools, the collective name for the developer tools that Apple supplies with Mac OS X.
+A shortened form of DeveloperTools, the collective name for the developer tools that Apple supplies with Mac OS X.

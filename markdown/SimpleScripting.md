@@ -46,4 +46,4 @@ That's about all there is to this -- it really IS a simple scripting application
 
 -----
 
-General/HowToSupportAppleScript
+HowToSupportAppleScript

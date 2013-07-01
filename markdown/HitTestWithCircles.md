@@ -24,13 +24,13 @@ Two circles intersect if the distance between their centers is less than the sum
 
 The above is absolutely correct.
 
-That said, if you're interested in seeing an implementation, see General/NeHE lesson 30 for a fairly straightforward implementation which also supports arbitrary rectangular solids and planes. 
+That said, if you're interested in seeing an implementation, see NeHE lesson 30 for a fairly straightforward implementation which also supports arbitrary rectangular solids and planes. 
 
 http://nehe.gamedev.net/data/lessons/lesson.asp?lesson=30
 
 If you're concerned about physics, check out the Open Dynamics Engine. It does spheres, as well as cylinders, and boxes with inertia tensors and realistic physical response. For vanilla collision detection but no physics, it also supports rays, infinite planes, and arbitrary polygon soups. http://www.ode.org
 
---General/ShamylZakariya
+--ShamylZakariya
 
 ----
 

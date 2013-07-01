@@ -12,15 +12,15 @@ Discuss:
 
 ----
 
-On #2, we might not need Apple's help for that. The iPod OS is not Apple-designed, they bought it from a third party. I visited their site once, but I can't recall the name. -- General/DustinVoss
+On #2, we might not need Apple's help for that. The iPod OS is not Apple-designed, they bought it from a third party. I visited their site once, but I can't recall the name. -- DustinVoss
 
-Well, it certainly can be done without Apple's help. Just ask whoever got Linux running on iPods. (See http://ipodlinux.sourceforge.net/) -- General/AngelaBrett, who wishes she could use the new software on her old iPod
+Well, it certainly can be done without Apple's help. Just ask whoever got Linux running on iPods. (See http://ipodlinux.sourceforge.net/) -- AngelaBrett, who wishes she could use the new software on her old iPod
 
-Apple just posted some hardware information at http://developer.apple.com/hardware/ipod/. -- General/DustinVoss
+Apple just posted some hardware information at http://developer.apple.com/hardware/ipod/. -- DustinVoss
 
 ----
 
-I believe the name of the company is General/PortalPlayer and the OS is called tango.  
+I believe the name of the company is PortalPlayer and the OS is called tango.  
 
 -Jeremy
 
@@ -32,6 +32,6 @@ I thought the OS was something designed on top of the Pixo OS.  I don't know wha
 
   How does iTunes interact with the iPod - is the iPod seen as some kind of an external file system (that's not used by the Finder - the Finder simply sees it as another HDD), or is it all done through the iPod and iPodSync private frameworks?  And what is the difference between the two?  Why have two, unless Apple plans to open one of them up at some point.
 
-  I'm wondering if you could write a kext to make something *other* than an iPod appear as one to iTunes - something like a CF or other card formatted with the Newton "file" system (yes, Newtons can use ATA cards now (http://www.kallisys.com/newton/ata/ ), and there is an MP3 player (http://40hz.org/General/MADNewton/ ).
+  I'm wondering if you could write a kext to make something *other* than an iPod appear as one to iTunes - something like a CF or other card formatted with the Newton "file" system (yes, Newtons can use ATA cards now (http://www.kallisys.com/newton/ata/ ), and there is an MP3 player (http://40hz.org/MADNewton/ ).
 
 - Jim

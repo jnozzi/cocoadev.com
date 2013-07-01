@@ -38,11 +38,11 @@ Eric
 [...] this isn't 1997. You don't hijack peoples' browsers. If your web site requires browser hijacking (forcing your viewing will on your visitors' browsers) your site is extremely poorly designed. What of those with alternate viewing needs? There are far more of those than you might think. I urge you to reconsider your design; it is outdated, presumptuous, and useless to a fairly large percent of visitors (ie, those with needs that don't fit into your narrowly-designed box) and makes you look unprofessional, careless, and ignorant of modern standards. This obviously makes any serious developers (your target market who happens to know about these things) want to steer very clear of doing business with you. I had already made up my mind the moment I saw that your site's design makes ignorant assumptions about how its content should be viewed and forces visitors to conform. Your business image, therefore, receives a flat "F" grade in my book. I don't mean to be vicious myself, but I will be truthful.*
 
 ----
-Agreed. I'll never use a site that resizes / moves my browser. -- General/AndyMatuschak
+Agreed. I'll never use a site that resizes / moves my browser. -- AndyMatuschak
 
 *Why don't they just open a new window and resize that?*
-Even that's an extremely annoying behavior. Though it is an improvement, I suppose. -- General/AndyMatuschak
+Even that's an extremely annoying behavior. Though it is an improvement, I suppose. -- AndyMatuschak
 
 ----
 
-I'm not going to judge them on the window resize thing, since I've done my share of crappy UI, but the links on the page don't work when I try to click on them. THAT is something that isn't going to work for potential clients - if they can't click on a link to contact you. -- General/JasonTerhorst
+I'm not going to judge them on the window resize thing, since I've done my share of crappy UI, but the links on the page don't work when I try to click on them. THAT is something that isn't going to work for potential clients - if they can't click on a link to contact you. -- JasonTerhorst

@@ -2,7 +2,7 @@ I have a configurable menu, where the menu item titles can be edited in a table 
 
 I let an array controller handle this table view, fetching the actual array from my model (so that the menu will be stored/retrieved from user defaults).
 
-There is another controller which can create the actual menu, given an array of names. So basically what I want is to have this controller expose a value (e.g. General/MenuTitles) and bind this value to "arrangedObjects.Name" of the array controller.
+There is another controller which can create the actual menu, given an array of names. So basically what I want is to have this controller expose a value (e.g. MenuTitles) and bind this value to "arrangedObjects.Name" of the array controller.
 
 So each time an item in the table view change, the binding will cause my menu building controller to receive a setMenuTitles: selector, with an array of the menu items as argument.
 
@@ -13,13 +13,13 @@ I did figure out that I can add an observer to the array controller with a path 
 ----
 Execute this statement:
     
-General/[MenuController bind:@"General/MenuTitles" toObject:yourArrayController withKeyPath:@"arrangedObjects.Name" options:nil];
+[MenuController bind:@"MenuTitles" toObject:yourArrayController withKeyPath:@"arrangedObjects.Name" options:nil];
 
-Then it should invoke setMenuTitles: on General/MenuController. For completeness, you may also wish to implement this class method in your General/MenuController:
+Then it should invoke setMenuTitles: on MenuController. For completeness, you may also wish to implement this class method in your MenuController:
     
 + (void)initialize
 {
-   [self exposeBinding:@"General/MenuTitles"];
+   [self exposeBinding:@"MenuTitles"];
 }
 
 

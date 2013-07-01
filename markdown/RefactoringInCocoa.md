@@ -1,17 +1,17 @@
-in General/CocoaMostWanted, the topic of adding automatic refactoring support was mentioned.
+in CocoaMostWanted, the topic of adding automatic refactoring support was mentioned.
 
 This page is a place to discuss refactoring in cocoa/obj-C.
 
 Refactoring itself is covered really well at the Portland Pattern Repository Wiki:
-http://www.c2.com/cgi/wiki?General/WhatIsRefactoring,
+http://www.c2.com/cgi/wiki?WhatIsRefactoring,
 And lists of refactorings are to be found at:
-http://www.c2.com/cgi/wiki?General/RefactoringLanguage
+http://www.c2.com/cgi/wiki?RefactoringLanguage
 and at http://www.refactoring.com/catalog/
 
-The General/FreeOnlineDictionaryOfComputing also has an entry:
+The FreeOnlineDictionaryOfComputing also has an entry:
 http://foldoc.doc.ic.ac.uk/foldoc/foldoc.cgi?query=refactor&action=Search
 
-*Disclaimer: I'm neither a refactoring expert nor an old hand at General/ObjC, so some of these topics might be mislabeled - please add corrections! -General/MichaelMcCracken *
+*Disclaimer: I'm neither a refactoring expert nor an old hand at ObjC, so some of these topics might be mislabeled - please add corrections! -MichaelMcCracken *
 
 *It'd be great if some of the more experienced cocoa/objC developers could add to this, to educate the rest of us.*
 ----
@@ -56,4 +56,4 @@ If there were any running as PB plug-ins it would be great!
 It seems that all refactoring tools around are for java only :(
 Thx -- peacha
 
-See the General/ObjectiveCeeRefactoringProject.
+See the ObjectiveCeeRefactoringProject.

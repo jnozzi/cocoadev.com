@@ -13,4 +13,4 @@ I can see the menu item being selected but no result of this.
 
 Can any one shed some light ?
 ----
-Well, one possible problem could relate to usage of custom classes. Try opening the Console application (/Applications/Utilities/Console) before testing the interface, and see if you get any error messages from Interface Builder. --General/JediKnil
+Well, one possible problem could relate to usage of custom classes. Try opening the Console application (/Applications/Utilities/Console) before testing the interface, and see if you get any error messages from Interface Builder. --JediKnil

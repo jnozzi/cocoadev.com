@@ -1,13 +1,13 @@
 I wish to launch a command and show the result of this command in the GUI as it becomes available.
 
-For this I was using General/NSTask with an General/NSPipe for its output, which I read from in the background.
+For this I was using NSTask with an NSPipe for its output, which I read from in the background.
 
 Unfortunately data only becomes available when the underlying buffer is full, which is everything but desired in this situation.
 
 I have tried to disable buffering using:
     
-General/NSPipe *outPipe = General/[NSPipe pipe];
-int fd = General/outPipe fileHandleForReading] fileDescriptor];
+NSPipe *outPipe = [NSPipe pipe];
+int fd = outPipe fileHandleForReading] fileDescriptor];
 int err = fcntl(fd, F_NOCACHE, true);
 
 

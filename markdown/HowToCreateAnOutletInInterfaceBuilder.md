@@ -2,4 +2,4 @@ In Interface Builder, switch to the nib window.  Switch to the Classes tab and s
 
 Once your class is selected, go to the Attributes pane of the Inspector (cmd-1).  Click the "Outlets" tab and hit the "Add" button.  Now name your outlet.
 
-Back to General/HowToProgramInOSX
+Back to HowToProgramInOSX

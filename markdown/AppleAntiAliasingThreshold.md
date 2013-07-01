@@ -1,6 +1,6 @@
-If you need to turn off anti-aliasing in General/XCode (or any app), just do the following:
+If you need to turn off anti-aliasing in XCode (or any app), just do the following:
 
-    defaults write com.apple.Xcode General/AppleAntiAliasingThreshold 128
+    defaults write com.apple.Xcode AppleAntiAliasingThreshold 128
 
 Gotta love Google!! --zootbobbalu
 
@@ -8,12 +8,12 @@ Gotta love Google!! --zootbobbalu
 
 **Discussion: Problems with anti-aliasing or half-pixel offsets**
 
-I'm having some trouble drawing a grid in an General/NSView. It draws OK, but I am having trouble making it look good.
+I'm having some trouble drawing a grid in an NSView. It draws OK, but I am having trouble making it look good.
 
     
  NSRect bds = [self bounds];
      
- General/NSColor blackColor] set];
+ NSColor blackColor] set];
  int i;
  for(i = 0; i < bds.size.width; i += 15){
      NSPoint start = NSMakePoint(i,bds.size.height);

@@ -6,7 +6,7 @@ I'm adding the following code to <code>windowControllerDidLoadNib</code> event:
 
     
 
-General/[NSApp beginSheet:General/[NSSavePanel savePanel] modalForWindow:theDocumentWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
+[NSApp beginSheet:[NSSavePanel savePanel] modalForWindow:theDocumentWindow modalDelegate:nil didEndSelector:nil contextInfo:nil];
 
 
 
@@ -25,28 +25,28 @@ Well... I'm trying to do exactly that (writing the files to a temp folder and th
 
     
 
-- (BOOL)writeToFile:(General/NSString *)fileName ofType:(General/NSString *)aType {
+- (BOOL)writeToFile:(NSString *)fileName ofType:(NSString *)aType {
 	
 	if ([super writeToFile:fileName ofType:aType]) {
 		
 		int x;
 		int count = [entries count];
 
-		General/NSString *tempFile;
-		General/NSString *newFile;
+		NSString *tempFile;
+		NSString *newFile;
 		
 		for (x=0; x < count; x++) {
 
-		tempFile = General/[[[NSTemporaryDirectory() stringByAppendingString:@"/"] stringByAppendingString:General/entries objectAtIndex:x] name stringByAppendingString:@".pdf"];
-		newFile = General/[[[[[[[NSDocumentController sharedDocumentController] currentDocument] fileURL] path] stringByAppendingString:@"/"] stringByAppendingString:General/entries objectAtIndex:x] name stringByAppendingString:@".pdf"];
+		tempFile = [[[NSTemporaryDirectory() stringByAppendingString:@"/"] stringByAppendingString:entries objectAtIndex:x] name stringByAppendingString:@".pdf"];
+		newFile = [[[[[[[NSDocumentController sharedDocumentController] currentDocument] fileURL] path] stringByAppendingString:@"/"] stringByAppendingString:entries objectAtIndex:x] name stringByAppendingString:@".pdf"];
 			
 			// Verify if the file exists at the temporary path
 			
-			if (General/[[NSFileManager defaultManager] fileExistsAtPath:tempFile]) {
+			if ([[NSFileManager defaultManager] fileExistsAtPath:tempFile]) {
 				
-				if (!General/[[NSFileManager defaultManager] fileExistsAtPath:newFile]) {
+				if (![[NSFileManager defaultManager] fileExistsAtPath:newFile]) {
 
-					General/[[NSFileManager defaultManager] movePath:tempFile toPath:newFile handler:nil];
+					[[NSFileManager defaultManager] movePath:tempFile toPath:newFile handler:nil];
 					
 				}
 				
@@ -61,12 +61,12 @@ Well... I'm trying to do exactly that (writing the files to a temp folder and th
 
 
 
-The problem is, the first time the user saves the document, no file is copied - because, it looks like, at that point the path defined by <code>General/[[[[NSDocumentController sharedDocumentController] currentDocument] fileURL] path]</code> still doesn't exist (the document is being created). The second time I save the file, the operation occurs without any problem.
+The problem is, the first time the user saves the document, no file is copied - because, it looks like, at that point the path defined by <code>[[[[NSDocumentController sharedDocumentController] currentDocument] fileURL] path]</code> still doesn't exist (the document is being created). The second time I save the file, the operation occurs without any problem.
 
 How do I make sure that the document bundle is created before I start copying the files into it?
 
 ----
-Why are you using     General/[[[[NSDocumentController sharedDocumentController] currentDocument] fileURL] path] and not the the filename that's passed to your method as a parameter?
+Why are you using     [[[[NSDocumentController sharedDocumentController] currentDocument] fileURL] path] and not the the filename that's passed to your method as a parameter?
 
 ----
 You're completely right... changing that to the filename works... thanks!

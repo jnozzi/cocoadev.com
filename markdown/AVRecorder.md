@@ -9,4 +9,4 @@
     - (void)deactivate;
 
 
-General/Category:PointlessInformation
+Category:PointlessInformation

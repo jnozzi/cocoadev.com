@@ -21,4 +21,4 @@ You might be thinking that instance variables declared in a class's interface (t
 
 You might want to read about encapsulation concepts in the material below.
 
-http://developer.apple.com/techpubs/macosx/Cocoa/General/ObjectiveC/General/ObjC.pdf
+http://developer.apple.com/techpubs/macosx/Cocoa/ObjectiveC/ObjC.pdf

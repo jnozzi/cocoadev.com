@@ -2,7 +2,7 @@
 
 ----
 
-Hey Frode. -- General/RobRix
+Hey Frode. -- RobRix
 
 Umm... Hey =) -Frode
 

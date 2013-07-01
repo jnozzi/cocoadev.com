@@ -5,7 +5,7 @@ The correct solution would be to create one table for artist, one for albums and
 
 If you dont't plan to update or delete records from the database once you have done the initial loading from the file there is nothing stopping you from having all information in one table and using index on some fields to speed up searches.
 
-General/JoakimDanielson
+JoakimDanielson
 
 ----
 

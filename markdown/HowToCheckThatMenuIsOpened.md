@@ -24,7 +24,7 @@ The easy way to do this is to implement     validateMenuItem: in the target of t
 
 ----
 
-If it is just the dock menu, you can supply the dock menu dynamically. Have a look at the General/NSApplication delegate method "applicationDockMenu:".
+If it is just the dock menu, you can supply the dock menu dynamically. Have a look at the NSApplication delegate method "applicationDockMenu:".
 
 BTW, your english is fine.
 
@@ -42,4 +42,4 @@ d.
 
 ----
 
-Have a try with "menuNeedsUpdate:" delegate method from General/NSMenu class.
+Have a try with "menuNeedsUpdate:" delegate method from NSMenu class.

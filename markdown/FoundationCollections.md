@@ -1,32 +1,32 @@
-The Foundation Collections classes are used for storing arbitrary numbers of objects in one place. There are several kinds of collection: an array, a dictionary, a set, and (General/ObjC only) a counted set. http://goo.gl/General/OeSCu
+The Foundation Collections classes are used for storing arbitrary numbers of objects in one place. There are several kinds of collection: an array, a dictionary, a set, and (ObjC only) a counted set. http://goo.gl/OeSCu
 
 Apple's documentation is at https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Collections/Collections.html
 
 ----**Basics**----
 
-General/NSArray stores objects in a list or array; imagine a bookcase, with books placed along its length. Objects are retrieved from an array by their index, an integer specifying how far from the first object an object is. Thus indices range from 0 (inclusive) to the size of the array (not inclusive). (See also: General/DesignArray)
+NSArray stores objects in a list or array; imagine a bookcase, with books placed along its length. Objects are retrieved from an array by their index, an integer specifying how far from the first object an object is. Thus indices range from 0 (inclusive) to the size of the array (not inclusive). (See also: DesignArray)
 
-General/NSDictionary generalizes the principle of index by attaching a unique key to each object. Imagine a dictionary, where information is found by looking for a keyword or phrase. Objects, then, are retrieved from a dictionary by their key.
+NSDictionary generalizes the principle of index by attaching a unique key to each object. Imagine a dictionary, where information is found by looking for a keyword or phrase. Objects, then, are retrieved from a dictionary by their key.
 
-Any type of object may be used as a key, but note that an efficient hashing function is a must for fast access times. To visualise what a hash is, imagine a small index that tells you the page number of any entry in the dictionary. A hashing function returns this "page number". If lots of keys are stored on the same page, it will be very inefficient to find a given one; if each page has at most one key, access times will be much faster. General/NSNumber and General/NSString objects have excellent hashes by default, so are good key types. (See also: General/DesignDictionary, General/HashingAndEquality)
+Any type of object may be used as a key, but note that an efficient hashing function is a must for fast access times. To visualise what a hash is, imagine a small index that tells you the page number of any entry in the dictionary. A hashing function returns this "page number". If lots of keys are stored on the same page, it will be very inefficient to find a given one; if each page has at most one key, access times will be much faster. NSNumber and NSString objects have excellent hashes by default, so are good key types. (See also: DesignDictionary, HashingAndEquality)
 
-General/NSSet does away with indexes and keys altogether, just storing objects. Imagine a big messy heap on the floor, with no easy way of referring to anything in the mess except by actually holding it up. Objects in a set can only be retrieved by an enumerator (see below), and generally one just checks to see if any object is in a set or not.
+NSSet does away with indexes and keys altogether, just storing objects. Imagine a big messy heap on the floor, with no easy way of referring to anything in the mess except by actually holding it up. Objects in a set can only be retrieved by an enumerator (see below), and generally one just checks to see if any object is in a set or not.
 
-General/NSCountedSet acts almost exactly like a set, except any given object can be in the set multiple times, and the number of times it is in the set can be retrieved. Imagine perhaps a big messy pile of photocopies.
+NSCountedSet acts almost exactly like a set, except any given object can be in the set multiple times, and the number of times it is in the set can be retrieved. Imagine perhaps a big messy pile of photocopies.
 
-All of these have **mutable** versions - that is, ones which can have objects added and removed, usually in a very similar way to how they are accessed. These classes are General/NSMutableArray, General/NSMutableDictionary, General/NSMutableSet, and General/NSMutableCountedSet (General/ObjC only). Each has all the same methods as their non-mutable counterparts, as well as a range of modifier methods.
+All of these have **mutable** versions - that is, ones which can have objects added and removed, usually in a very similar way to how they are accessed. These classes are NSMutableArray, NSMutableDictionary, NSMutableSet, and NSMutableCountedSet (ObjC only). Each has all the same methods as their non-mutable counterparts, as well as a range of modifier methods.
 
 ----**Memory management**----
 
-All objects are sent a retain message when they are added to a collection (eg upon construction of the collection), and a release message when they are removed from it (eg when the collection is released). See also General/MemoryManagement.
+All objects are sent a retain message when they are added to a collection (eg upon construction of the collection), and a release message when they are removed from it (eg when the collection is released). See also MemoryManagement.
 
 ----**More details**----
 
-All collections are examples of General/ClassClusters - that is, while you only ever deal with the classes I have named above, the object you are actually handling will probably be a derived class (eg General/NSCFArray instead of General/NSArray). In class clusters, inheritance serves a different purpose to normal; instead of extending the functionality in the superclass, one has to reimplement it. However, only a few methods need to be overridden (see the relevant documentation), as all other methods are defined to call them.
+All collections are examples of ClassClusters - that is, while you only ever deal with the classes I have named above, the object you are actually handling will probably be a derived class (eg NSCFArray instead of NSArray). In class clusters, inheritance serves a different purpose to normal; instead of extending the functionality in the superclass, one has to reimplement it. However, only a few methods need to be overridden (see the relevant documentation), as all other methods are defined to call them.
 
-If, for example, you wanted to access a dictionary-type mutable database, you could subclass General/NSMutableDictionary and implement count, objectForKey:, keyEnumerator, setObject:forKey:, and removeObjectForKey: to access and alter the database appropriately. Then the dictionary will behave exactly as you would expect. (Of course, for efficiency's sake you could override some other methods - say, allKeys, if the database permitted a rapid way of implementing this operation.)
+If, for example, you wanted to access a dictionary-type mutable database, you could subclass NSMutableDictionary and implement count, objectForKey:, keyEnumerator, setObject:forKey:, and removeObjectForKey: to access and alter the database appropriately. Then the dictionary will behave exactly as you would expect. (Of course, for efficiency's sake you could override some other methods - say, allKeys, if the database permitted a rapid way of implementing this operation.)
 
-The mutable collections are all subclasses of their non-mutable doubles. Thus, if you have an General/NSArray object, say, you cannot be sure it is immutable. If you want an immutable copy, the copy method guarantees to return an immutable version of the array; conversely, the mutableCopy method will return a mutable copy in all cases. See https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html for more details of the General/NSCopying and General/NSMutableCopying protocols.
+The mutable collections are all subclasses of their non-mutable doubles. Thus, if you have an NSArray object, say, you cannot be sure it is immutable. If you want an immutable copy, the copy method guarantees to return an immutable version of the array; conversely, the mutableCopy method will return a mutable copy in all cases. See https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/MemoryMgmt.html for more details of the NSCopying and NSMutableCopying protocols.
 
 ----**Other access methods**----
 
@@ -45,25 +45,25 @@ For a dictionary, a similar method, keyEnumerator, allows you to iterate through
 
 Other methods also exist, any of which may prove useful in some situation. See Apple's documentation (link above) for a definitive list of them all.
 
-See also General/IteratingThroughAnArray for a discussion of the benefits of objectEnumerator.
+See also IteratingThroughAnArray for a discussion of the benefits of objectEnumerator.
 
 ----**Storing null objects, and other miscellany**----
 
-If you wish to store a "null" object, a placeholder to say "empty space here", General/NSNull does the job. Any instance of it always equals any other (in actual fact, there only ever is one instance), so can easily be checked for. This remedies the fact that Foundation collections cannot be passed nil as an object (or a key).
+If you wish to store a "null" object, a placeholder to say "empty space here", NSNull does the job. Any instance of it always equals any other (in actual fact, there only ever is one instance), so can easily be checked for. This remedies the fact that Foundation collections cannot be passed nil as an object (or a key).
 
-If you make a copy of an immutable collection, you will probably get back the original (retained, of course). This should not be noticeable if you balance your General/RetainingAndReleasing correctly, but if you don't it may make tracing memory leaks and similar problems harder. Making a mutable copy, or any copy of a mutable collection, will always return a new object.
+If you make a copy of an immutable collection, you will probably get back the original (retained, of course). This should not be noticeable if you balance your RetainingAndReleasing correctly, but if you don't it may make tracing memory leaks and similar problems harder. Making a mutable copy, or any copy of a mutable collection, will always return a new object.
 
 ----**Multi-dimensional arrays**----
 
-While arrays are very efficient for the single-dimension they were designed for, it is inefficient to use an array of arrays, ungainly to hash multiple dimensions into a single unsigned explicitly, and wasteful to use a dictionary. For multi-dimensional arrays, check out General/DesignMatrix.
+While arrays are very efficient for the single-dimension they were designed for, it is inefficient to use an array of arrays, ungainly to hash multiple dimensions into a single unsigned explicitly, and wasteful to use a dictionary. For multi-dimensional arrays, check out DesignMatrix.
 
 ----**Foundation Collections and Interface Builder**----
 
-By default, Apple's General/InterfaceBuilder does not handle collections - you cannot modify them nor in many cases even instantiate them. See General/FoundationCollectionsPalette for a palette to remedy this.
+By default, Apple's InterfaceBuilder does not handle collections - you cannot modify them nor in many cases even instantiate them. See FoundationCollectionsPalette for a palette to remedy this.
 
 ----
 
-IMO Interface Builder is for building General/UIs. It's a strictly General/AppKit thing. You shouldn't be doing anything with foundation classes in IB.
+IMO Interface Builder is for building UIs. It's a strictly AppKit thing. You shouldn't be doing anything with foundation classes in IB.
 ----
 Quick Q:
 Since Obj-C, like C++, is a superset of C (and basically IS C except the compiler turns messages into msg_Send()), wouldn't a C style array of Obj-C objects be feasible?
@@ -71,7 +71,7 @@ Since Obj-C, like C++, is a superset of C (and basically IS C except the compile
 I mean like:
 
     
-General/NSString arrayOfStrings[]
+NSString arrayOfStrings[]
 
 
 ----
@@ -89,7 +89,7 @@ Note that since you use pointers in message sends, you don't want to actually us
 
 This is likely to be very impractical. However, creating a big array like this would be much more efficient than creating a lot of small objects, and an approach like this could be useful in a situation where lots of small objects are used and the overhead of the allocations is high.
 
-In general, General/ObjC objects are exactly like C structs, except you are aren't allowed to have a variable directly contain an object, only pointers to objects. So you can do all the same stuff to objects as you can to structs, although that doesn't make it a good idea.
+In general, ObjC objects are exactly like C structs, except you are aren't allowed to have a variable directly contain an object, only pointers to objects. So you can do all the same stuff to objects as you can to structs, although that doesn't make it a good idea.
 
 ----
 

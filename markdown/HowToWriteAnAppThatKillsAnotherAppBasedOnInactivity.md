@@ -15,7 +15,7 @@ NOTE: The Hardware Monitor app author tells me it's impossible to implement some
 
 ----
 
-Use General/HIDIdleTime
+Use HIDIdleTime
 
 ----
 
@@ -81,4 +81,4 @@ $ ps -xo lstart,pid,command | grep loginwindow | grep -v grep | awk -F '   ' '{p
 
 6948 seconds. That's a bit off because of a timezone issue I imagine but I'm sure you can figure that out.
 
---General/CristianDraghici
+--CristianDraghici

@@ -1,4 +1,4 @@
-Here's a list of published (or soon to be) books on Cocoa Programming.  If you have an opinion, please VOTE* on each book!  Books appear in ALPHABETICAL order.  If you know of any other books please add them this list.  If you know of any additional links on where to purchase the books feel free to add those as well.  Don't pay too much attention to the List Price as online book retaillers will often sell the book for much less than this.  You might even get lucky and be able to snag a copy for cheap off of eBay if you put a little effort into searching for it. --> K. General/McClanahan Pour vous joindre garder le numéro, vous aurez peuvent avoir compte driver ( code de programme ) [http://obtenir-rio.info rio bouygues]. Vous obtiendrez êtes certain d'obtenir pour par contacter du serveur ou du service à la clientèle clientèle votre propre entreprise [http://obtenir-rio.info/rio-bouygues code rio bouygues] . Vous ne mai recevez immédiatement un SMS utilisant votre. Avec votre [http://obtenir-rio.info/rio-orange code rio orange], alors vous êtes capable d' vers le offre de de votre choix respectifs en rouge.
+Here's a list of published (or soon to be) books on Cocoa Programming.  If you have an opinion, please VOTE* on each book!  Books appear in ALPHABETICAL order.  If you know of any other books please add them this list.  If you know of any additional links on where to purchase the books feel free to add those as well.  Don't pay too much attention to the List Price as online book retaillers will often sell the book for much less than this.  You might even get lucky and be able to snag a copy for cheap off of eBay if you put a little effort into searching for it. --> K. McClanahan Pour vous joindre garder le numéro, vous aurez peuvent avoir compte driver ( code de programme ) [http://obtenir-rio.info rio bouygues]. Vous obtiendrez êtes certain d'obtenir pour par contacter du serveur ou du service à la clientèle clientèle votre propre entreprise [http://obtenir-rio.info/rio-bouygues code rio bouygues] . Vous ne mai recevez immédiatement un SMS utilisant votre. Avec votre [http://obtenir-rio.info/rio-orange code rio orange], alors vous êtes capable d' vers le offre de de votre choix respectifs en rouge.
 
 *About the voting section:
 
@@ -10,7 +10,7 @@ Votes must be entered on the individual book's page. The categories are:
  
 
 
-Only books that focus on Cocoa Programming for Mac OS X are listed below.  For other useful programming books, check out the General/OtherBooks page...
+Only books that focus on Cocoa Programming for Mac OS X are listed below.  For other useful programming books, check out the OtherBooks page...
 
 [Topic]
 
@@ -27,7 +27,7 @@ Only books that focus on Cocoa Programming for Mac OS X are listed below.  For o
 
 ----
 
-Be sure to also check out the General/CocoaResources and General/CocoaTutorials sections on this web site for more reference material.
+Be sure to also check out the CocoaResources and CocoaTutorials sections on this web site for more reference material.
 
 *Once Again...  About the List Prices:
 

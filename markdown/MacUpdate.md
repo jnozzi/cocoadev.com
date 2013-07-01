@@ -2,7 +2,7 @@
 
 http://www.macupdate.com
 
-Like General/VersionTracker except:
+Like VersionTracker except:
 
  
 * It's Mac-only (although it lists the few OS9 updates that still come out mixed in with the OSX listing.)

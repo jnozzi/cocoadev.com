@@ -1,14 +1,14 @@
 
 
-Defined in <General/AppKit/General/NSNibDeclarations.h> as
+Defined in <AppKit/NSNibDeclarations.h> as
 
     
-#ifndef General/IBOutlet
-#define General/IBOutlet
+#ifndef IBOutlet
+#define IBOutlet
 #endif
 
 
-Unlike General/IBAction, which is defined as void, General/IBOutlet's sole purpose is to alert Interface Builder of outlets, and is thus an empty macro that is skipped by the compiler.
+Unlike IBAction, which is defined as void, IBOutlet's sole purpose is to alert Interface Builder of outlets, and is thus an empty macro that is skipped by the compiler.
 
 ----
 
@@ -17,7 +17,7 @@ Unlike General/IBAction, which is defined as void, General/IBOutlet's sole purpo
     
 @interface className
 {
- General/IBOutlet id outlet;
+ IBOutlet id outlet;
 }
 // ...
 @end
@@ -25,4 +25,4 @@ Unlike General/IBAction, which is defined as void, General/IBOutlet's sole purpo
 
 ----
 
-See also General/IBAction.
+See also IBAction.

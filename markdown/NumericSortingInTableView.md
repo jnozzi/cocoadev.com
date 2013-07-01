@@ -1,24 +1,24 @@
-I am trying to sort an General/NSMutableArray of General/NSStrings numerically. I tried using     compare: options:General/NSNumericSearch as a sort selector in Interface Builder, but it wouldn't let me.
+I am trying to sort an NSMutableArray of NSStrings numerically. I tried using     compare: options:NSNumericSearch as a sort selector in Interface Builder, but it wouldn't let me.
 
-I have an idea that I could make a convenience method for     -(General/NSComparisonResult)compare:(General/NSString *)*aString* options:(unsigned)General/NSNumericSearch called     -(General/NSComparisonResult)numericalCompare:(General/NSString *)*aString*, but I have no idea how to get Interface Builder to use this custom method as a sort selector. 
+I have an idea that I could make a convenience method for     -(NSComparisonResult)compare:(NSString *)*aString* options:(unsigned)NSNumericSearch called     -(NSComparisonResult)numericalCompare:(NSString *)*aString*, but I have no idea how to get Interface Builder to use this custom method as a sort selector. 
 
-I have looked in the IB help, General/XCode docs, and several sites, but the information was very difficult to find. Can anyone help me?
+I have looked in the IB help, XCode docs, and several sites, but the information was very difficult to find. Can anyone help me?
 
 ----
 
-Try to write a General/NSString category, and specify     numericalCompare: as a sort selector.
+Try to write a NSString category, and specify     numericalCompare: as a sort selector.
 
     
-@interface General/NSString (My<nowiki/>Additions)
+@interface NSString (My<nowiki/>Additions)
 @end
 
-@implementation General/NSString (M<nowiki/>yAdditions)
+@implementation NSString (M<nowiki/>yAdditions)
 
--(General/NSComparisonResult)numericalCompare:(General/NSString *)otherString {
-  return [self compare:otherString options:NS<nowiki/>General/NumericSearch];
+-(NSComparisonResult)numericalCompare:(NSString *)otherString {
+  return [self compare:otherString options:NS<nowiki/>NumericSearch];
 }
 
 @end
 
 
--- General/DenisGryzlov
+-- DenisGryzlov

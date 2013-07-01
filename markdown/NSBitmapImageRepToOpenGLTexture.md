@@ -1,17 +1,17 @@
 Hi,
 
-I am using General/NSBitmapImageRep's - (id)initWithFocusedViewRect:(General/NSRect)rect to load "screenshot" of view to General/NSBitmapImageRep. The next thing what I want to do is to use it as General/OpenGL texture in General/OpenGL drawing. I can easily load .bmp files to General/NSBitmapImageRep and then to General/OpenGL texture, but for some reason initWithFocusedViewRect doesn't work. Could anyone help me?
+I am using NSBitmapImageRep's - (id)initWithFocusedViewRect:(NSRect)rect to load "screenshot" of view to NSBitmapImageRep. The next thing what I want to do is to use it as OpenGL texture in OpenGL drawing. I can easily load .bmp files to NSBitmapImageRep and then to OpenGL texture, but for some reason initWithFocusedViewRect doesn't work. Could anyone help me?
 
-I am using code from one of the ports of General/NeHe tutorials. Here it is:
+I am using code from one of the ports of NeHe tutorials. Here it is:
     
   BOOL success = FALSE;
    int bitsPPixel, bytesPRow;
    unsigned char *theImageData;
    int rowNum, destRowNum;
-   General/NSLog(@"ziurim");
+   NSLog(@"ziurim");
    if( theImage != nil )
    {
-   General/NSLog(@"ne nilas");
+   NSLog(@"ne nilas");
       bitsPPixel = [ theImage bitsPerPixel ];
       bytesPRow = [ theImage bytesPerRow ];
       if( bitsPPixel == 24 )        // No alpha channel
@@ -50,15 +50,15 @@ Aidas
 
 ----
 
-What exactly about -initWithFocusedViewRect: doesn't work? Is it not even making it to the copying of pixel data or is it giving you garbled textures or what? That code's worked fine for me in all sorts of uses for General/NSBitmapImageRep in the past. I suspect your problem lies in either some quirk of -initWithFocusedViewRect: or your handling of it from the time you create the General/NSBitmapImageRep to its use in the code above. Could you provide that code as well?
+What exactly about -initWithFocusedViewRect: doesn't work? Is it not even making it to the copying of pixel data or is it giving you garbled textures or what? That code's worked fine for me in all sorts of uses for NSBitmapImageRep in the past. I suspect your problem lies in either some quirk of -initWithFocusedViewRect: or your handling of it from the time you create the NSBitmapImageRep to its use in the code above. Could you provide that code as well?
 
-- General/JustinAnderson
+- JustinAnderson
 
 ----
 
-Actually when I try to put that texture onto my quadrat it simply doesn't work (my quadrat becomes white). I've checked General/NSBitmapImageRep created using initWithFocusedViewRect:, i've wrote it to file using [bitmapimagerep tiffrepresentation] and it worked just fine. As I mentioned before I've created another texture sucesefully from .bmp file using General/NSBitmapImageRep imageRepWithContentsOfFile:. It worked just fine. Here is my code:
+Actually when I try to put that texture onto my quadrat it simply doesn't work (my quadrat becomes white). I've checked NSBitmapImageRep created using initWithFocusedViewRect:, i've wrote it to file using [bitmapimagerep tiffrepresentation] and it worked just fine. As I mentioned before I've created another texture sucesefully from .bmp file using NSBitmapImageRep imageRepWithContentsOfFile:. It worked just fine. Here is my code:
     
-- (BOOL) loadGLTextures:(General/NSBitmapImageRep *)textureOne secondTexture:(General/NSBitmapImageRep *)textureTwo
+- (BOOL) loadGLTextures:(NSBitmapImageRep *)textureOne secondTexture:(NSBitmapImageRep *)textureTwo
 {
    BOOL status = FALSE;
    if( [ self loadBitmap:textureOne intoIndex:0 ] )
@@ -110,12 +110,12 @@ Actually when I try to put that texture onto my quadrat it simply doesn't work (
 
 Also here is some other code that is calling loadGLTextures
     
-General/NSBitmapImageRep *rep2=General/[NSBitmapImageRep imageRepWithContentsOfFile:General/[[NSBundle mainBundle] pathForResource:@"General/NeHe" ofType:@"bmp"]];
+NSBitmapImageRep *rep2=[NSBitmapImageRep imageRepWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"NeHe" ofType:@"bmp"]];
 //i've tested [self takeShot] and it really works
 BOOL suc=[cubeView loadGLTextures:[self takeShot] secondTexture:rep2];
--(General/NSBitmapImageRep *)takeShot
+-(NSBitmapImageRep *)takeShot
 {
-General/NSBitmapImageRep *rep=General/[[NSBitmapImageRep alloc] initWithFocusedViewRect:[textField frame]];// i am sure this is ok 
+NSBitmapImageRep *rep=[[NSBitmapImageRep alloc] initWithFocusedViewRect:[textField frame]];// i am sure this is ok 
 
 return [rep autorelease];
 }

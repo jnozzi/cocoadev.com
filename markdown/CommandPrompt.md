@@ -4,7 +4,7 @@ I'm looking for a way to launch a terminal windows or command prompt window and 
 If someone has any suggestions or if there's already some documented method of doing this I would appreciate if someone can point me in the right direction.
 
 ----
-I believe you can use Terminal's General/AppleScript dictionary to do this. Another alternative would be to generate a shell script, then open it with Terminal using General/NSWorkspace.
+I believe you can use Terminal's AppleScript dictionary to do this. Another alternative would be to generate a shell script, then open it with Terminal using NSWorkspace.
 
 ----
 You have no idea the world of hurt you'd be putting yourself through if you tried to implement this on your own.  Writing a terminal emulator is NOT fun (esp. when dealing with Macs, which send different control codes for delete and such).  If they're merely going to be using a Telnet session, why not just have them use Terminal.app?
@@ -51,18 +51,18 @@ In a Cocoa program:
 
 if (fork() == 0) { /* splits process into two, returns 0 if the child process */
     exec("cat x");
-    General/NSLog(@"failed execution");
+    NSLog(@"failed execution");
 }
 
 
-All you need to do is figure out how to parse the output into a General/NSTextView if you intend to. - General/PietroGagliardi
+All you need to do is figure out how to parse the output into a NSTextView if you intend to. - PietroGagliardi
 
 ----
 
-None of you realize that he needs the user to be able to use the telnet session.  At which point you should use Terminal.app (or another terminal emulator), and launch it using General/NSWorkspace.  Launching GUI apps from the UNIX domain -- i.e. fork() + system("open Terminal.app") -- is unsupported (look up Mach bootstrap namespaces) and probably won't work in Leopard.
+None of you realize that he needs the user to be able to use the telnet session.  At which point you should use Terminal.app (or another terminal emulator), and launch it using NSWorkspace.  Launching GUI apps from the UNIX domain -- i.e. fork() + system("open Terminal.app") -- is unsupported (look up Mach bootstrap namespaces) and probably won't work in Leopard.
 
 ----
-Try encapsulating it in a shell script with Platypus - General/PietroGagliardi
+Try encapsulating it in a shell script with Platypus - PietroGagliardi
 
 ----
 The dumbness of the code examples on this page astounds me. There isn't even a function named     exec, and the     exec* class of functions will not be able to parse a string such as     "cat x".
@@ -72,12 +72,12 @@ The dumbness of the code examples on this page astounds me. There isn't even a f
 Agreed. This is the lowest-quality grouping of responses I've seen on this wiki in a long time. I will second the opinion above that rewriting a terminal emulator is a **huge** task. If you're not even able to clearly define your goal (which the OP's wording indicates), such a task is way beyond your experience. How about backing up and taking a much broader look at what you're trying to accomplish. Not in technical terms, but in "user-wordable" terms - terms you'd use to describe the feature to potential users. That way, you free yourself from the details (in which the devil resides, I'm told), and allows others to suggest approaches that aren't quite so out of your league.
 
 ----
-And to responders, particularly General/PietroGagliardi, it helps nobody to jump in with a bunch of responses that not only probably aren't what the original poster was looking for, but are just plain nonsensical and wrong in basically every context. If there is some question about what the poster wants, ask him, don't just pick something and run with it. If you don't know enough about a particular API or system to give good examples, just give general directions. There's no shame in limiting yourself to "check out     fork/    exec".
+And to responders, particularly PietroGagliardi, it helps nobody to jump in with a bunch of responses that not only probably aren't what the original poster was looking for, but are just plain nonsensical and wrong in basically every context. If there is some question about what the poster wants, ask him, don't just pick something and run with it. If you don't know enough about a particular API or system to give good examples, just give general directions. There's no shame in limiting yourself to "check out     fork/    exec".
 
 These sorts of broken responses are of little value and this page is basically useless. I don't want to be the Quality Police, and I don't think we should need any, but always write your responses with the idea of increasing the overall quality of the wiki.
 
 ----
-Just to say something: my first response involved Unix system calls (General/MacOSX is based on Unix), and my second option involves a program that turns shell scripts into executables. This is an obviously difficult topic, and I think that the most direct approach is to have the people run the Terminal. - General/PietroGagliardi
+Just to say something: my first response involved Unix system calls (MacOSX is based on Unix), and my second option involves a program that turns shell scripts into executables. This is an obviously difficult topic, and I think that the most direct approach is to have the people run the Terminal. - PietroGagliardi
 
 ----
 
@@ -90,7 +90,7 @@ Oh come on... this wiki isn't a reference manual.  So what if he said     exec("
 ----
 Odd that exec() was removed from the SUS. See http://opengroup.org/onlinepubs/009695399/functions/exec.html. It was very strange because the exec() call was one of the original 7 calls that formed the basis of Unix's uniqueness (fork, exec, open, creat, close, read, write)
 
-Anyway, we have to close this discussion because it obviously got out of hand (sorry). - General/PietroGagliardi
+Anyway, we have to close this discussion because it obviously got out of hand (sorry). - PietroGagliardi
 
 ----
 
@@ -99,11 +99,11 @@ Nobody said it was a manual but it **is** a reference tool and it was more than 
 ----
 IMO the fact that somebody recommended     exec("cat x"); is very bad. First of all, the function doesn't exist. Second, the function that does exist does not parse shell command strings. The entire idea is mistaken and makes no sense. Either the person posting it is so inexperienced that he doesn't realize how very little he actually knows about the subject, in which case he should limit himself to reading other people's advice for a year or so, or he does realize it and decides to post anyway, in which case he's just a fool and should limit himself to reading other people's advice indefinitely until this changes.
 
-Given the followups, the second choice would appear to be correct. Pietro is young and no doubt will become a fine programmer one day. But until that day arrives, he should be more careful. The need to help people can be strong, but attention should always be paid to ensure that this need doesn't overshadow the actual helping. General/ShotgunDebugging is even worse when applied to other people's problems. In a case like this, I have to say that bad advice is worse than none. -- General/MikeAsh
+Given the followups, the second choice would appear to be correct. Pietro is young and no doubt will become a fine programmer one day. But until that day arrives, he should be more careful. The need to help people can be strong, but attention should always be paid to ensure that this need doesn't overshadow the actual helping. ShotgunDebugging is even worse when applied to other people's problems. In a case like this, I have to say that bad advice is worse than none. -- MikeAsh
 
 ----
 
-Cocoatech has a subclass of General/NSView, General/CocoaTechTerminal, which I think is much along the lines of what you're looking for. It's available as open source, at http://www.cocoatech.com/opensource.php, and is used in General/PathFinder. Much easier than writing your own.  --General/DavidCooke
+Cocoatech has a subclass of NSView, CocoaTechTerminal, which I think is much along the lines of what you're looking for. It's available as open source, at http://www.cocoatech.com/opensource.php, and is used in PathFinder. Much easier than writing your own.  --DavidCooke
 
 ----
 

@@ -2,51 +2,51 @@
 
 I would appreciate it if anyone would have a look a the following code and explain to me why:
 
-�  in my  - (void)setTheLens: (Lens *)lens  method, the General/NSLog(@"lens name = %@, [theLens name]);  displays the lens name, an General/NSString, as expected, but
+�  in my  - (void)setTheLens: (Lens *)lens  method, the NSLog(@"lens name = %@, [theLens name]);  displays the lens name, an NSString, as expected, but
 
-�  in my   - (void)drawRect:(General/NSRect)rect  method, the General/NSLog(@"theLensName = %@", theLensName);  displays (null).
+�  in my   - (void)drawRect:(NSRect)rect  method, the NSLog(@"theLensName = %@", theLensName);  displays (null).
 
-Clearly the object is being passed to my General/NSView subclassed object.  Why is the drawRect not seeing it?
+Clearly the object is being passed to my NSView subclassed object.  Why is the drawRect not seeing it?
 
 I'd be much obliged.
 
 
     
-#import "General/LensReportView.h"
+#import "LensReportView.h"
 
-@implementation General/LensReportView
+@implementation LensReportView
 
-- (id)initWithFrame:(General/NSRect)frameRect
+- (id)initWithFrame:(NSRect)frameRect
 {
 	if ((self = [super initWithFrame:frameRect]) != nil) {
 		// Add initialization code here
-		theLens = General/Lens alloc] init];
+		theLens = Lens alloc] init];
 	}
 	return self;
 }
 
 - (void)drawRect:([[NSRect)rect
 {
-	General/NSDictionary *attribs = General/[[NSDictionary alloc] init];
-	General/NSPoint aPoint = General/NSMakePoint(20,20);
-	General/NSString *theLensName = General/[[NSString alloc] init];
+	NSDictionary *attribs = [[NSDictionary alloc] init];
+	NSPoint aPoint = NSMakePoint(20,20);
+	NSString *theLensName = [[NSString alloc] init];
 	
 	theLensName = [theLens name];
-	General/NSLog(@"theLensName = %@", theLensName);
+	NSLog(@"theLensName = %@", theLensName);
 	
-	General/[[NSColor redColor] set];
-	General/NSRectFill([self bounds]);
+	[[NSColor redColor] set];
+	NSRectFill([self bounds]);
 	
 	[theLensName drawAtPoint: aPoint withAttributes: attribs];	
 }
 
 - (void)setTheLens: (Lens *)lens
 {
-	General/NSLog(@"setThelens");
+	NSLog(@"setThelens");
 	[lens retain];
 	[theLens release];
 	theLens = lens;
-	General/NSLog(@"lens name = %@", [theLens name]);
+	NSLog(@"lens name = %@", [theLens name]);
 	[self setNeedsDisplay: YES];
 }
 @end
@@ -54,19 +54,19 @@ I'd be much obliged.
 
 ----
 
-The code in drawRect: is going to cause you problems in more ways than one. For the time being, it immediately leaks the General/NSString instance that you create with     General/NSString *theLensName = General/[[NSString alloc] init]; since in the very next line you point     theLensName at the instance returned from     [theLens name]. The variable     theLensName is a pointer to an instance of General/NSString, but it can point to any instance you decide to give it. As soon as the     theLensName = [theLens name]; line executes, the instance from the previous line (which has an address different from the one returned by     [theLens name]) will be lost forever, and with no hope of ever being able to release it. So never do something like this. Never. Never. Never.
+The code in drawRect: is going to cause you problems in more ways than one. For the time being, it immediately leaks the NSString instance that you create with     NSString *theLensName = [[NSString alloc] init]; since in the very next line you point     theLensName at the instance returned from     [theLens name]. The variable     theLensName is a pointer to an instance of NSString, but it can point to any instance you decide to give it. As soon as the     theLensName = [theLens name]; line executes, the instance from the previous line (which has an address different from the one returned by     [theLens name]) will be lost forever, and with no hope of ever being able to release it. So never do something like this. Never. Never. Never.
 
-We have no idea what the instance of General/NSString will come back from     theLensName = [theLens name];. According to your testimony, it is nil. It means the instance of Lens from which you are trying to get the name is not properly initialized.
+We have no idea what the instance of NSString will come back from     theLensName = [theLens name];. According to your testimony, it is nil. It means the instance of Lens from which you are trying to get the name is not properly initialized.
 
-For those reasons alone, I recommend you review your tutorials on General/ObjectCreation and General/MemoryManagement. There are many good ones. These subjects stand at the core of anything you will do in your future Cocoa programming, and you must master them yourself.
+For those reasons alone, I recommend you review your tutorials on ObjectCreation and MemoryManagement. There are many good ones. These subjects stand at the core of anything you will do in your future Cocoa programming, and you must master them yourself.
 
-To answer your formal question, it will be not be possible, unless you reveal the code for how your Lens object is created. Do you give it a default name in its     init method? There is another General/MemoryLeak problem in the code above, since you create General/AnObject of the Lens class in your view's initWithFrame: method. You would release that one if you ever called setTheLens, but the new instance that you retain there will never be released, which you would do in the cleanup code for your General/NSView subclass. Whatever Lens object you are passing into setTheLens: is NOT the one you create in the initWithFrame: method. You never call     setTheLens: in the code we see above.
+To answer your formal question, it will be not be possible, unless you reveal the code for how your Lens object is created. Do you give it a default name in its     init method? There is another MemoryLeak problem in the code above, since you create AnObject of the Lens class in your view's initWithFrame: method. You would release that one if you ever called setTheLens, but the new instance that you retain there will never be released, which you would do in the cleanup code for your NSView subclass. Whatever Lens object you are passing into setTheLens: is NOT the one you create in the initWithFrame: method. You never call     setTheLens: in the code we see above.
 
-What in the world do you mean by *Clearly the object is being passed to my General/NSView subclassed object*? You create an General/InstanceObject of the Lens class within your General/NSView subclass. You could indeed pass in a Lens object, but we don't see you do it. Not "clearly", anyway.
+What in the world do you mean by *Clearly the object is being passed to my NSView subclassed object*? You create an InstanceObject of the Lens class within your NSView subclass. You could indeed pass in a Lens object, but we don't see you do it. Not "clearly", anyway.
 
-So, no, you do not at first glance have an General/NSViewProblem, even though your problem is occurring inside an General/NSView subclass. You have a basic problem in understanding General/ObjectCreation and initialization.
+So, no, you do not at first glance have an NSViewProblem, even though your problem is occurring inside an NSView subclass. You have a basic problem in understanding ObjectCreation and initialization.
 
-This discussion should eventually be moved to a page with a title like General/MemoryManagementQuestion.
+This discussion should eventually be moved to a page with a title like MemoryManagementQuestion.
 
 ----
 
@@ -75,19 +75,19 @@ Here is the code that initializes a     Lens object:
 @implementation Lens
 - (id)init
 {
-	General/NSLog(@"initializing Lens object");
-	shutterSpeeds = General/[[NSMutableDictionary alloc] initWithCapacity: 25];
-	errors = General/[[NSMutableDictionary alloc] initWithCapacity: 25];
+	NSLog(@"initializing Lens object");
+	shutterSpeeds = [[NSMutableDictionary alloc] initWithCapacity: 25];
+	errors = [[NSMutableDictionary alloc] initWithCapacity: 25];
 	return self;
 }
 
 
-Here is the code that invokes the     setTheLens method of my General/NSView subclassed object:
+Here is the code that invokes the     setTheLens method of my NSView subclassed object:
     
-- (General/IBAction)makeLensReport: (id)sender
+- (IBAction)makeLensReport: (id)sender
 {
-	General/NSLog(@"makeLensReport");
-	General/LensReportView *theLensReportView = General/[[LensReportView alloc] init];
+	NSLog(@"makeLensReport");
+	LensReportView *theLensReportView = [[LensReportView alloc] init];
 	
 	[lensReportWindow makeKeyAndOrderFront: self];
 	[theLensReportView setTheLens: currentLens];             // LOOK HERE: you're setting the lens AFTER you put the window in front!!!!!
@@ -96,14 +96,14 @@ Here is the code that invokes the     setTheLens method of my General/NSView sub
 
 Here are the results I'm seeing in the log console:
     
-2006-04-03 09:53:15.091 General/ShutterSpeedData[11085] makeLensReport
-2006-04-03 09:53:15.102 General/ShutterSpeedData[11085] theLensName = (null)
-2006-04-03 09:53:15.105 General/ShutterSpeedData[11085] setThelens
-2006-04-03 09:53:15.105 General/ShutterSpeedData[11085] lens name = lens1
+2006-04-03 09:53:15.091 ShutterSpeedData[11085] makeLensReport
+2006-04-03 09:53:15.102 ShutterSpeedData[11085] theLensName = (null)
+2006-04-03 09:53:15.105 ShutterSpeedData[11085] setThelens
+2006-04-03 09:53:15.105 ShutterSpeedData[11085] lens name = lens1
 
 
 ----
-I would add that the original poster should make sure the instance of General/LensReportView that receives the -setTheLens: message is the SAME instance that receives the -drawRect: message.  Time and time again we see people instantiating via code and creating a separate instance in IB or mistakenly instantiating two instances in IB.  Hint: every single time you drag an object off an IB palette, you are instantiating a new and unique instance of some class.  It is redundant and mistaken to ALSO instantiate the object via the Classes tab of the IB document window or through code.  [The glaringly obvious bogus memory management in the poster's code suggests a failure to understand the Objective-C concept of instances.]
+I would add that the original poster should make sure the instance of LensReportView that receives the -setTheLens: message is the SAME instance that receives the -drawRect: message.  Time and time again we see people instantiating via code and creating a separate instance in IB or mistakenly instantiating two instances in IB.  Hint: every single time you drag an object off an IB palette, you are instantiating a new and unique instance of some class.  It is redundant and mistaken to ALSO instantiate the object via the Classes tab of the IB document window or through code.  [The glaringly obvious bogus memory management in the poster's code suggests a failure to understand the Objective-C concept of instances.]
 
 ----
 
@@ -117,9 +117,9 @@ If you get the output you expect in setTheLens:, it's because of the object you 
 
 I can now ask you this:  in makeLensReport:, where do you get currentLens? In your implementation of the Lens class, I do not see where you give the Lens object a default name. The logging that prompted your post is ostensibly only about the fact that you do not get a lens name at some point in your code.
 
-Notice that I previously asked you if your Lens class has a setName: method. I recommend you also learn how to use the debugger, so we don't have to step through your code in public like this. You might want to study General/DebuggingTechniques when you get this thing straightened out. I know that at the beginning, it's all a bit bewildering, though. It's a process of calming yourself down, and beginning to step through your code, so you can see for the first time perhaps how you have actually implemented things. Writing the source often does not give you that second sight, since one gets so immersed in just typing the code.
+Notice that I previously asked you if your Lens class has a setName: method. I recommend you also learn how to use the debugger, so we don't have to step through your code in public like this. You might want to study DebuggingTechniques when you get this thing straightened out. I know that at the beginning, it's all a bit bewildering, though. It's a process of calming yourself down, and beginning to step through your code, so you can see for the first time perhaps how you have actually implemented things. Writing the source often does not give you that second sight, since one gets so immersed in just typing the code.
 
-It's the Lens name that is giving you fits. Where do you set the name for the thing? If you set the lens *after* you put the window in front (because that will cause your custom view to re-draw), how do you expect the view to have the lens you want when it draws itself? See the comment I placed in your code. So I'm beginning to agree with your premise, that is is an General/NSViewProblem, i.e., what a view needs to have set up when it draws itself. -- anonResp
+It's the Lens name that is giving you fits. Where do you set the name for the thing? If you set the lens *after* you put the window in front (because that will cause your custom view to re-draw), how do you expect the view to have the lens you want when it draws itself? See the comment I placed in your code. So I'm beginning to agree with your premise, that is is an NSViewProblem, i.e., what a view needs to have set up when it draws itself. -- anonResp
 
 ----
 I was under the impression that     theLens in my     setTheLens method was the same object as     theLens in my     drawRect method.  As to when the     drawRect gets executed vs. when     theLens is set, I thought that the fact that I called     [self setNeedsDisplay: YES] at the end of     setTheLens that the view would be redrawn at that point.  Clearly I'm wrong, but I don't understand why.
@@ -160,7 +160,7 @@ Consider that I didn't fully understand the questions being posed to me.  I post
 Why would you attribute such sinister motives to my postings?  I guess you could think I'm being *obstinate* or *stubborn*.  However another explanation might be that I just don't know enough to respond appropriately.  If you know of another forum that might be better suited to questions for a person of my level of knowledge, I'd appreciate it if you would share that information. -- OP
 
 ----
-**Cease fire! Hold off for a moment, please. I'm trying to get a word in edge-wise. -- General/KritTer**
+**Cease fire! Hold off for a moment, please. I'm trying to get a word in edge-wise. -- KritTer**
 
 ----
 *well, if you've no interest in learning, don't keep asking questions! it's only a three-year-old who keeps on asking "why? why? why?" each time you answer his questions.*
@@ -172,6 +172,6 @@ I see that you added something constructive afterwards, which I appreciate.  I w
 
 
 ----
-OK. I agree with the OP, anonResp's teenage obsession with the word "wank" has degenerated below what I would consider acceptable for General/CocoaDev. On the other hand, he does (in his more civil moments) have a valid point: you appear on the face of it to be spending too much time reading and replying to this page, and not enough learning about the subjects mentioned. Ease off on editing this page, too, it's impossible to comment with the edit war that's going on.
+OK. I agree with the OP, anonResp's teenage obsession with the word "wank" has degenerated below what I would consider acceptable for CocoaDev. On the other hand, he does (in his more civil moments) have a valid point: you appear on the face of it to be spending too much time reading and replying to this page, and not enough learning about the subjects mentioned. Ease off on editing this page, too, it's impossible to comment with the edit war that's going on.
 
-Try printing the address of your lens object in     setTheLens and     drawRect. If they differ, you've found your problem. -- General/KritTer
+Try printing the address of your lens object in     setTheLens and     drawRect. If they differ, you've found your problem. -- KritTer

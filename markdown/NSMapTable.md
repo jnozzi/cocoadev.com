@@ -1,8 +1,8 @@
 http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/NSMapTable_class/Reference/NSMapTable.html
 
-A flexible alternative to General/NSDictionary.  As a tradeoff, it's a bit more of a pain to use. 
+A flexible alternative to NSDictionary.  As a tradeoff, it's a bit more of a pain to use. 
 
-On the other hand, I don't think this buys you anything over General/CFDictionary, and General/CFDictionary may be more convenient since it's bridged to General/NSDictionary.
+On the other hand, I don't think this buys you anything over CFDictionary, and CFDictionary may be more convenient since it's bridged to NSDictionary.
 
 ----
 
@@ -23,7 +23,7 @@ The actual behaviour is that it returns the preexisting **value** in the situati
  #import <Foundation/Foundation.h>
  
  int main (int argc, const char * argv[]) {
-     NSAutoreleasePool * pool = General/NSAutoreleasePool alloc] init];
+     NSAutoreleasePool * pool = NSAutoreleasePool alloc] init];
  
      NSMapTable *map = NSCreateMapTable(NSObjectMapKeyCallBacks, 
                                         NSObjectMapValueCallBacks, 
@@ -69,8 +69,8 @@ Be careful, this tripped me up!
 A flexible alternative to [[NSDictionary?. As a tradeoff, it's a bit more of a pain to use.
 *
 
-What are the real advantages of General/NSMapTable ? speed ? does anyone has a benchmark that show if it is faster than an General/NSDictionary ?
-another question, in the General/NSDictionary doc, they say that internally, the General/NSDictionary uses General/NSHashTables !? AFAIU, it is probably an General/NSMapTable ?
+What are the real advantages of NSMapTable ? speed ? does anyone has a benchmark that show if it is faster than an NSDictionary ?
+another question, in the NSDictionary doc, they say that internally, the NSDictionary uses NSHashTables !? AFAIU, it is probably an NSMapTable ?
 thanks
 
-*General/NSDictionary forces certain behaviours, such as copying its keys and retaining its values. General/NSMapTable and General/CFDictionary allow you to customize what happens when keys and values are inserted, so you can have more control. This would be useful to, for example, store pointers to non-objects as the keys, or make a dictionary that didn't require its keys to be copyable.*
+*NSDictionary forces certain behaviours, such as copying its keys and retaining its values. NSMapTable and CFDictionary allow you to customize what happens when keys and values are inserted, so you can have more control. This would be useful to, for example, store pointers to non-objects as the keys, or make a dictionary that didn't require its keys to be copyable.*

@@ -1,12 +1,12 @@
 I have a class method to get and set a string which returns the string called "Long". eg:
 
     
--(General/NSString *)type
+-(NSString *)type
 {
      return type:
 }
 
--(void)setType:(General/NSString *)aType
+-(void)setType:(NSString *)aType
 {
    [ aType retain];
    [type release];
@@ -28,7 +28,7 @@ The above is straight forward. I want to know how you call the string value in a
 }
 
 
-If type is set to a string called "Long". What is the  objective -C code to give back the string value "long" in the General/MyValue method. 
+If type is set to a string called "Long". What is the  objective -C code to give back the string value "long" in the MyValue method. 
 
 Thanks DSG
 

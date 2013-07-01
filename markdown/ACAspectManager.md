@@ -3,7 +3,7 @@
     
 
 
-// General/AdviceProtection
+// AdviceProtection
 +(void)enableAllAdvice;
 +(void)disableAllAdvice;
 +(void)protectAdvice;

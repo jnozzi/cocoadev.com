@@ -1,8 +1,8 @@
 
 
-An interface file is the file containing General/InstanceVariable and General/InstanceMethod declarations for a class.
+An interface file is the file containing InstanceVariable and InstanceMethod declarations for a class.
 
 ----
-See also: General/ImplementationFile
+See also: ImplementationFile
 
-And: General/AnatomyOfADotHFile
+And: AnatomyOfADotHFile

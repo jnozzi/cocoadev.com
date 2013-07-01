@@ -1,21 +1,21 @@
-I'm trying to create a General/NSTableView by hand (I need it for a particular case where I can't use a nib) and add it to a window, but it is never displayed. The code I'm using is:
+I'm trying to create a NSTableView by hand (I need it for a particular case where I can't use a nib) and add it to a window, but it is never displayed. The code I'm using is:
 
     
 
 // ... window creation ...
 
-table = General/[[NSTableView alloc] initWithFrame:General/NSMakeRect(x,y,w,h)];
+table = [[NSTableView alloc] initWithFrame:NSMakeRect(x,y,w,h)];
 
 [table setDataSource:myDataSource];
 [table setRowHeight:32];
 
-General/NSTableColumn *column = General/[[NSTableColumn alloc] initWithIdentifier:@"myColumn"];
+NSTableColumn *column = [[NSTableColumn alloc] initWithIdentifier:@"myColumn"];
 
 [column setEditable: NO];
 
 [table addTableColumn: column];
 
-General/window contentView] addSubview:table];
+window contentView] addSubview:table];
 
 // ...
 
@@ -50,15 +50,15 @@ I would use a nib anyway - much easier to configure the table based on the the t
 
 ----
 
-I have a situation where I too am building a General/NSTableView by hand and not in IB.  I'm providing a menu that allows the user to choose which table columns are visible.  This breaks the traditional autosave behavior and requires me to code up the information for each field anyway, so it's not a great leap from there to just making it in code to begin with....  The example below should produce a visible table view...
+I have a situation where I too am building a NSTableView by hand and not in IB.  I'm providing a menu that allows the user to choose which table columns are visible.  This breaks the traditional autosave behavior and requires me to code up the information for each field anyway, so it's not a great leap from there to just making it in code to begin with....  The example below should produce a visible table view...
 
     
 
-General/NSWindow *window --- should point to your window.
-General/NSView *superView = [window contentView];
-General/NSTableView *tableView = General/[[NSTableView alloc] initWithFrame:[superView frame]];
-[tableView addColumn:General/[[NSTableColumn alloc] initWithIdentifier:@"field1"]];
-General/NSScrollView *scrollView = General/[[NSScrollView alloc] initWithFrame:[superView frame]];
+NSWindow *window --- should point to your window.
+NSView *superView = [window contentView];
+NSTableView *tableView = [[NSTableView alloc] initWithFrame:[superView frame]];
+[tableView addColumn:[[NSTableColumn alloc] initWithIdentifier:@"field1"]];
+NSScrollView *scrollView = [[NSScrollView alloc] initWithFrame:[superView frame]];
 [scrollView setDocumentView:tableView];
 [superView addSubview:scrollView];
 
@@ -70,8 +70,8 @@ If you want the above table view to be free floating in the window instead of ta
 
     
 
-[scrollView setBorderType:General/NSBezelBorder];
+[scrollView setBorderType:NSBezelBorder];
 
 
 
-I have also found that by changing the code from using initWithFrame to for the General/NSTableView to just init the column resizing works properly, not sure why.
+I have also found that by changing the code from using initWithFrame to for the NSTableView to just init the column resizing works properly, not sure why.

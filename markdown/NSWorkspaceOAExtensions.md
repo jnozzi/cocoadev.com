@@ -1,7 +1,7 @@
 
 
-A category on General/NSWorkspace that adds one very handy method:
+A category on NSWorkspace that adds one very handy method:
 
-    - (General/NSString *)fullPathForApplicationWithIdentifier:(General/NSString *)bundleIdentifier;
+    - (NSString *)fullPathForApplicationWithIdentifier:(NSString *)bundleIdentifier;
 
-This lets you search by identifier for an app, which means the user can rename or move the app and you'll still find it. It uses General/LaunchServices.
+This lets you search by identifier for an app, which means the user can rename or move the app and you'll still find it. It uses LaunchServices.

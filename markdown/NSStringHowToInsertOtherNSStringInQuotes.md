@@ -1,6 +1,6 @@
 
 
-I know this is SUCH a lame question, but I'm having a hard time with using %@ inside of a pair of \" escapes.  I'm just on the ground floor of the learning process, but I'm starting to get past the book tutorials stage & start playing with some things on my own.  I'm a huge fan of General/AppleScriptStudio and so I was immediately interested in General/NSAppleScript.  I wanted to make a small app that did nothing more than reveal itself in the Finder (via General/AppleScript) when a button was pressed. To do so the path to the app needs to be enclosed in a pair of quotes that are part of the string. I acomplished that, but had to use the stringByAppendingString method to build the script source in three lines.  I thought I could just insert the variable holding the path using %@.  Is that not the case?
+I know this is SUCH a lame question, but I'm having a hard time with using %@ inside of a pair of \" escapes.  I'm just on the ground floor of the learning process, but I'm starting to get past the book tutorials stage & start playing with some things on my own.  I'm a huge fan of AppleScriptStudio and so I was immediately interested in NSAppleScript.  I wanted to make a small app that did nothing more than reveal itself in the Finder (via AppleScript) when a button was pressed. To do so the path to the app needs to be enclosed in a pair of quotes that are part of the string. I acomplished that, but had to use the stringByAppendingString method to build the script source in three lines.  I thought I could just insert the variable holding the path using %@.  Is that not the case?
 
 I'll warn everyone, I'm sure there are stupid mistakes in this. Like I said I'm all of two three days into being able to kind of do my own thing.
 
@@ -8,13 +8,13 @@ Thanks so much for any help you can give. Its great to finally be catching on a 
 
     
 <code>
-- (General/IBAction)runScript:(id)sender
+- (IBAction)runScript:(id)sender
 {
-    General/NSString *scriptText, *scriptError, *scriptErrorKey, *pathToApp;
-    General/NSAppleScript *scriptToRun;
+    NSString *scriptText, *scriptError, *scriptErrorKey, *pathToApp;
+    NSAppleScript *scriptToRun;
 
-    pathToApp = General/[[NSBundle mainBundle] bundlePath];
-    General/NSLog(pathToApp);
+    pathToApp = [[NSBundle mainBundle] bundlePath];
+    NSLog(pathToApp);
     
     
     //	    Shouldn't the below line work?  It doesn't.  It actually crashes the app.
@@ -25,8 +25,8 @@ Thanks so much for any help you can give. Its great to finally be catching on a 
     scriptText = [scriptText stringByAppendingString: pathToApp];
     scriptText = [scriptText stringByAppendingString:@"\") as alias) \n end tell"];
     
-    General/NSLog(scriptText);
-    scriptToRun = General/[[NSAppleScript alloc] initWithSource:scriptText];
+    NSLog(scriptText);
+    scriptToRun = [[NSAppleScript alloc] initWithSource:scriptText];
     [scriptToRun executeAndReturnError:nil];
     
 }
@@ -35,7 +35,7 @@ Thanks so much for any help you can give. Its great to finally be catching on a 
 
 How about using:
     
-scriptText = General/[NSString stringWithFormat: @"message \"%@\" message", scriptText]; 
+scriptText = [NSString stringWithFormat: @"message \"%@\" message", scriptText]; 
 
 ----
 Let's examine the crashing line:
@@ -55,17 +55,17 @@ And of course this does nothing. Since scriptText is uninitialized, your program
 The upshot is that you wanted the following:
 
     
-scriptText = General/[NSString stringWithFormat:@"Tell Application \"Finder\" \n reveal ((posix file \"%@\") as alias) \n end tell", pathToApp];
+scriptText = [NSString stringWithFormat:@"Tell Application \"Finder\" \n reveal ((posix file \"%@\") as alias) \n end tell", pathToApp];
 
 
 You've made two separate errors in your code: not actually calling     -stringWithFormat:; and passing the wrong argument also.
 
 ----
 
-Also, an easier way to reveal a file in the Finder is to use the -selectFile:inFileViewerRootedAtPath: in the General/NSWorkspace class. You can find documentation in http://developer.apple.com/documentation/Cocoa/Reference/General/ApplicationKit/ObjC_classic/Classes/General/NSWorkspace.html. In your example, you'd use this rather than General/NSAppleScript:
+Also, an easier way to reveal a file in the Finder is to use the -selectFile:inFileViewerRootedAtPath: in the NSWorkspace class. You can find documentation in http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSWorkspace.html. In your example, you'd use this rather than NSAppleScript:
 
     
-General/[[NSWorkspace sharedWorkspace] selectFile:pathToApp inFileViewerRootedAtPath:@""];
+[[NSWorkspace sharedWorkspace] selectFile:pathToApp inFileViewerRootedAtPath:@""];
 
 
 Easier, isn't it?
@@ -82,9 +82,9 @@ scriptText = (@"Tell Application \"Finder\" \n reveal ((posix file \"%@\") as al
 
 That was an error in posting here on the site but fortunately I wasn't quite THAT off in my original code. :-)
 
-That said, I was confused about inserting tokens into a string. In the book I'm using (Cocoa Programming for Mac OS X: First edition) there is an example near the beginning that has you use     Log("array : %@", array) to log an General/NSArray object.  I guess I have two questions there.
+That said, I was confused about inserting tokens into a string. In the book I'm using (Cocoa Programming for Mac OS X: First edition) there is an example near the beginning that has you use     Log("array : %@", array) to log an NSArray object.  I guess I have two questions there.
 
-1. Does     Log() use     General/[NSString stringWithFormat:]?
+1. Does     Log() use     [NSString stringWithFormat:]?
 2. Why does the comma operator not have the same effect in this case as stated above?  Is it just not the same context?
 
 I guess I thought you could still use tokens whenever you were working with scrings but I guess that's not the case.
@@ -92,16 +92,16 @@ I guess I thought you could still use tokens whenever you were working with scri
 So long story short, I switched to the below code which executes fine.
 
     
- General/NSString *scriptText, *scriptError, *scriptErrorKey, *pathToApp;
-    General/NSAppleScript *scriptToRun;
+ NSString *scriptText, *scriptError, *scriptErrorKey, *pathToApp;
+    NSAppleScript *scriptToRun;
 
-    pathToApp = General/[[NSBundle mainBundle] bundlePath];
-    General/NSLog(pathToApp);
+    pathToApp = [[NSBundle mainBundle] bundlePath];
+    NSLog(pathToApp);
 
-    scriptText = General/[NSString stringWithFormat:@"Tell Application \"Finder\" \n reveal ((posix file \"%@\") as alias) \n end tell", pathToApp];
+    scriptText = [NSString stringWithFormat:@"Tell Application \"Finder\" \n reveal ((posix file \"%@\") as alias) \n end tell", pathToApp];
 
-    General/NSLog(scriptText);
-    scriptToRun = General/[[NSAppleScript alloc] initWithSource:scriptText];
+    NSLog(scriptText);
+    scriptToRun = [[NSAppleScript alloc] initWithSource:scriptText];
     [scriptToRun executeAndReturnError:nil];
 
 
@@ -112,11 +112,11 @@ Thanks to all of you guys for the help. I was starting to feel like I was learni
 
     Log("array : %@", array) calls a function,     Log, taking a variable number of arguments; by examining the first string, it determines that it has one extra parameter,     array. This does *not* create a new string and pass it into     Log.
 
-Similarly, General/[NSString stringWithFormat:@"array : %@", array] sends a message taking a variable number of arguments and returning an General/NSString.
+Similarly, [NSString stringWithFormat:@"array : %@", array] sends a message taking a variable number of arguments and returning an NSString.
 
 (@"array : %@", array) is a special case: because it is not prefixed by a function name, it invokes the aforementioned comma operator, which simply discards the first argument. This is what makes lines like     for (i = 0; i < end; i++, x++) work.
 
 ----
 
 Starting to make some sense.  I'm sure it'll come the more I'm exposed to Obj-C. Thanks for helping clear up the string confusion.  Its been a huge help.
-General/CliffPruitt
+CliffPruitt

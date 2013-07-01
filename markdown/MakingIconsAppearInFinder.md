@@ -2,7 +2,7 @@
 
 
 
-see also General/IconNotBeingIncluded
+see also IconNotBeingIncluded
 
 I used the following tricks to make sure that icons that I added to the Info.plist were displayed properly in the Finder.
 
@@ -10,7 +10,7 @@ For the application icon I had to log out and log back into my account before it
 
 For the document icon I had to drag the application out of the 'build' folder onto the desktop; then I had to move the document file to a different folder. After I did those two things the document icons appeared properly.
 
-- General/ChrisMeyer
+- ChrisMeyer
 
 *This may also (but not invariably) apply if you subsequently change the application icon file in a working project*
 
@@ -20,7 +20,7 @@ Ninety-nine percent of the time, 'touching' the .app bundle (by rebuilding it or
 
 ----
 
-I had a strange bug in which under General/XCode 2.1 my icon would appear in the target's Properties tab and in the About this application under the Apple menu, but not in the Finder or the Dock. It was the generic application icon there.
+I had a strange bug in which under XCode 2.1 my icon would appear in the target's Properties tab and in the About this application under the Apple menu, but not in the Finder or the Dock. It was the generic application icon there.
 
 The final resolution was to create a whole new icns file (with the same graphic as before), name it something different, delete the old icns file to the project, and add this new one. Then update the target's Icon File field under the Properties tab to point to this new icns file. This finally restored the icon to the Finder/Dock.
 

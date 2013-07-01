@@ -29,7 +29,7 @@ However, due to an odd interaction between multithreading and     fork(), not al
     
 - (void)buttonClicked:sender {
     if(fork() == 0) { // in child
-        General/NSLog(@"fork succeeded, we're in the child, and the sender is %@", sender);
+        NSLog(@"fork succeeded, we're in the child, and the sender is %@", sender);
     }
 }
 
@@ -38,7 +38,7 @@ This code risks the chance of a deadlock in the child. Why?
 
 When     fork() is called, a copy of your process is made. The new process has the same memory contents as the old process at the point that     fork() was called. However, it doesn't have all of the threads. In fact, only the thread which called     fork() exists in the child. The other threads were simply axed, and no longer exist in the child.
 
-This creates a situation which is much like a signal handler, in that those threads could have acquired a lock, and now they will never relinquish it. This makes General/ForkSafety very much the same as General/SignalSafety, and you should read General/SignalSafety if you want to see what can be done on the child side of a     fork() call.
+This creates a situation which is much like a signal handler, in that those threads could have acquired a lock, and now they will never relinquish it. This makes ForkSafety very much the same as SignalSafety, and you should read SignalSafety if you want to see what can be done on the child side of a     fork() call.
 
 But, you say, my program isn't multithreaded, so I don't have to worry! Well, you're correct that you don't have to worry if your program isn't multithreaded, but how do you know that it's not multithreaded? If your app is a GUI application, then it's multithreaded. Cocoa creates secondary threads for all kinds of things and never tells you about it. The trick is that any other library you link against can do the same. You must be very sure of the libraries you link against before you can assume that your program will never be multithreaded.
 

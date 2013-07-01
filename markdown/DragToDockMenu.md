@@ -17,7 +17,7 @@ It uses Accessibility API to locate the position of its icon on the Dock, and th
 
 ----
 
-Use General/AXMakeProcessTrusted or
+Use AXMakeProcessTrusted or
     
 sudo chown :accessibility myApp
 sudo chmod g+s myApp

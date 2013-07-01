@@ -13,11 +13,11 @@ In Objective-C, "implemented" is nearly synonymous with "responds to". Can you e
 
 Let me see if I can be a little clearer...I know this sounds confusing...
 
-In my app, I use the General/NSTableView delegate "tableView:heightOfRow:" to make a table view with variable row heights.  In Tiger this works great (this delegate is new in 10.4), but in Panther, since this is new in 10.4, it never gets called.
+In my app, I use the NSTableView delegate "tableView:heightOfRow:" to make a table view with variable row heights.  In Tiger this works great (this delegate is new in 10.4), but in Panther, since this is new in 10.4, it never gets called.
 
 However, because I implement the "tableView:heightOfRow:" method in my code for use on Tiger, "respondsToSelector:" returns YES for this method, even on Panther (because it is implemented in my code for Tiger).
 
-So what I am looking for is a way to find out if the "tableView:heightOfRow:" method exists in the General/NSTableView class (it does exist on Tiger where it is new in 10.4, and does not exist in Panther).  Does that make things any clearer?
+So what I am looking for is a way to find out if the "tableView:heightOfRow:" method exists in the NSTableView class (it does exist on Tiger where it is new in 10.4, and does not exist in Panther).  Does that make things any clearer?
 
 In other words: **If the docs say a delegate is "New in 10.4", is there a way to test the delegate for existance to return YES on 10.4 and NO on 10.3?**
 
@@ -29,7 +29,7 @@ Either I do not understand what you are asking (most likely) or this is the most
 
 Haha, I basically wanted to test for specific features of the OS, but I suppose platform versioning would work - I was just thinking there might be a specific function to do the trick (but it sounds like there isn't).
 
-Is there an easier way to find the OS version with Cocoa than what exists on the General/DeterminingOSVersion page?
+Is there an easier way to find the OS version with Cocoa than what exists on the DeterminingOSVersion page?
 
 ----
     
@@ -55,12 +55,12 @@ See, this is what I was trying to do, but the respondsToSelector: method returns
 
 // returns true if the user is on tiger (or above)
 + (BOOL)isMacOSXTiger {
-	return (floor(General/NSAppKitVersionNumber) > NSAppKitVersionNumber10_3);
+	return (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_3);
 }
 
 // returns true if user is on panther or above
 + (BOOL)isMacOSXPanther {
-	return (floor(General/NSAppKitVersionNumber) > NSAppKitVersionNumber10_2);
+	return (floor(NSAppKitVersionNumber) > NSAppKitVersionNumber10_2);
 }
 
 

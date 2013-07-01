@@ -5,19 +5,19 @@ Valuable resources for the Cocoa programmer:
 
 
 
-General/CocoaIntroduction
+CocoaIntroduction
 
-*http://developer.apple.com/referencelibrary/General/GettingStarted/GS_Cocoa/index.html
+*http://developer.apple.com/referencelibrary/GettingStarted/GS_Cocoa/index.html
 "Getting Started with Cocoa": self-education roadmap and guide to the Guides
 
 *http://cocoadevcentral.com/
-General/CocoaDevCentral: "Learn Cocoa" - Tutorials, articles, and blog posts, frequently updated
+CocoaDevCentral: "Learn Cocoa" - Tutorials, articles, and blog posts, frequently updated
 
 *http://www.oreillynet.com/pub/ct/37
 O'Rielly's Programming With Cocoa - Good collection of articles, but stopped updating in 2006
 
-*http://www.stepwise.com/General/StartingPoint/Cocoa.html
-stepwise's Cocoa Starting Point - The original Cocoa articles site - "step" as in 'General/NeXTStep" - last update 2005
+*http://www.stepwise.com/StartingPoint/Cocoa.html
+stepwise's Cocoa Starting Point - The original Cocoa articles site - "step" as in 'NeXTStep" - last update 2005
 
 
 
@@ -30,9 +30,9 @@ http://www.faqs.org/faqs/computer-lang/Objective-C/faq/
 The Objective-C language FAQ
 
 *
-http://developer.apple.com/documentation/Cocoa/Conceptual/General/ObjectiveC/index.html
+http://developer.apple.com/documentation/Cocoa/Conceptual/ObjectiveC/index.html
 Definitive guide for the Objective-C Language.    (highly recommended!)
-The version from the old General/NeXT days is archived here:
+The version from the old NeXT days is archived here:
 http://www.toodarkpark.org/computers/objc/
 Object-Oriented Programming AND The Objective-C Language.
 
@@ -50,25 +50,25 @@ Objective-C Beginner's Guide
 
 
 
-* http://developer.apple.com/techpubs/macosx/Cocoa/General/CocoaTopics.html
+* http://developer.apple.com/techpubs/macosx/Cocoa/CocoaTopics.html
 
-Cocoa documentation from General/AppleComputer.
+Cocoa documentation from AppleComputer.
 
 * http://www.stepwise.com/
 
-General/StepWise, a variety of resources for Mac OS X programmers and administrators alike.
+StepWise, a variety of resources for Mac OS X programmers and administrators alike.
 
 * http://www.omnigroup.com/community/developer/mailinglists/macosx-dev/
 
-General/MacOsxDev mailing list, run by General/TheOmniGroup.
+MacOsxDev mailing list, run by TheOmniGroup.
 
-* General/OmniFrameworks
+* OmniFrameworks
 soso
-General/TheOmniGroup's collection of utility frameworks that extend Cocoa functionality, including extensive support for network communications.
+TheOmniGroup's collection of utility frameworks that extend Cocoa functionality, including extensive support for network communications.
 
 * http://www.cocoadevcentral.com/
 
-General/CocoaDevCentral is updated fairly frequently with tips, tricks, and tutorials (and more) for the "newbie" Cocoa developer.
+CocoaDevCentral is updated fairly frequently with tips, tricks, and tutorials (and more) for the "newbie" Cocoa developer.
 
 * http://web.archive.org/web/20060518113201/www.bignerdranch.com/Resources/Java.html <!-- NOT HERE ANYMORE: http://www.bignerdranch.com/Java.html -->
 
@@ -76,11 +76,11 @@ Discussion of the disadvantages of using Cocoa with Java.
 
 * http://www.fscript.org
 
-F-Script is the General/OpenSourceSoftware scripting environment for Cocoa.
+F-Script is the OpenSourceSoftware scripting environment for Cocoa.
 
 * http://lists.apple.com/mailman/listinfo/cocoa-dev
 
-A discussion list hosted by General/AppleComputer for Cocoa developers
+A discussion list hosted by AppleComputer for Cocoa developers
 
 * http://www.cocoabuilder.com
 
@@ -95,11 +95,11 @@ Programming With Cocoa series of tutorials aimed at the newbie.
 
 *http://www.germinara.it
 
-Programming utility using Cocoa and  ODBC tutorials to access General/MySQL and MS SQL databases - RFID project - USB I/O Card with LCD display connected to a Mac and more stuff.
+Programming utility using Cocoa and  ODBC tutorials to access MySQL and MS SQL databases - RFID project - USB I/O Card with LCD display connected to a Mac and more stuff.
 
 *http://homepage.mac.com/~samgoldman/
 
-Source code examples of questions posted on either the cocoa-dev or General/MacOSX-Dev mailing lists. Constantly being updated. "Site reports this page cannot be found."
+Source code examples of questions posted on either the cocoa-dev or MacOSX-Dev mailing lists. Constantly being updated. "Site reports this page cannot be found."
 
 *http://www.big.or.jp/~crane/cocoa/index.shtml
 
@@ -111,17 +111,17 @@ Another Japanese site with some good example code.
 
 *http://cfnetwork.tasonline.com/
 
-A General/WikiWiki site dedicated to spreading the word about General/CFNetwork (General/CFSocket and General/CFStream) *Doesn't work for me.  The address doesn't resolve* "This Domain Name is up for sale so its a good bet the operation is defunct."
+A WikiWiki site dedicated to spreading the word about CFNetwork (CFSocket and CFStream) *Doesn't work for me.  The address doesn't resolve* "This Domain Name is up for sale so its a good bet the operation is defunct."
 
 *http://wodeveloper.com/search.html
 
-Search over the Omni mailing lists for General/MacOSX, EOF and General/WebObjects, all in one place. 
+Search over the Omni mailing lists for MacOSX, EOF and WebObjects, all in one place. 
 
 * http://www.mulle-kybernetik.com
 
 * http://www.echooo.com
 
-Home of some useful open source frameworks such as General/EDInternet or General/MulleCipher as well as the popular Optimizing Objective-C article series for.
+Home of some useful open source frameworks such as EDInternet or MulleCipher as well as the popular Optimizing Objective-C article series for.
 
 * http://www.mulle-kybernetik.com/forum/Optimization/phpBB2/
 
@@ -133,7 +133,7 @@ Mac-GUI-Dev is a mailing list for discussions about designing the user experienc
 
 
 
-***Offline Resources** (no Cocoa/General/ObjC books please, put those in General/CocoaBooks)
+***Offline Resources** (no Cocoa/ObjC books please, put those in CocoaBooks)
 
 
 **The C Programming Language* by Brian Kernighan and Dennis Ritchie
@@ -147,9 +147,9 @@ An excellent intro to C programming for the beginner and newbie.  Check it out a
 
 **Freely Available E-Books for C Programming* 
 
-Some of the best freely available E-Books for  C programming.  Get from: http://prokutfaq.byethost15.com/General/EBooks
+Some of the best freely available E-Books for  C programming.  Get from: http://prokutfaq.byethost15.com/EBooks
 
-**General/CocoaBooks*
+**CocoaBooks*
 
 More books about Cocoa Programming!
 
@@ -157,7 +157,7 @@ More books about Cocoa Programming!
 
 * http://www.blackholemedia.com/code - Fun, reusable, BSD licensed code!
 
-*http://www.pnelsoncomposer.com/writings/General/NewbieFAQ.html - 38 Frequently asked questions with solutions.
+*http://www.pnelsoncomposer.com/writings/NewbieFAQ.html - 38 Frequently asked questions with solutions.
 
 *http://www.varsys.com/ - Mac OS X software development services. Native application development using Cocoa frameworks.
 
@@ -165,7 +165,7 @@ More books about Cocoa Programming!
 
 *http://www.artlogic.com/ - Mac OS X software developers. Apple Developer partner, driver and application developer.
 
-*http://osx.hyperjeff.net/Reference/General/CocoaArticles - Large collection of Cocoa Articles found around the net
+*http://osx.hyperjeff.net/Reference/CocoaArticles - Large collection of Cocoa Articles found around the net
 
 *http://www.azoft.com/ - Mac OS X software application development services.
 
@@ -182,4 +182,4 @@ http://www.zathras.de/programming/sourcecode.htm (scroll down for some made with
 
 ----
 
-For Carbon specific resources see General/CarbonResources
+For Carbon specific resources see CarbonResources

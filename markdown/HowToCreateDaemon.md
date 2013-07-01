@@ -1,17 +1,17 @@
 I want to create a daemon process that launches a specific application at regular intervals. I need a step by step procecdure to create a daemon.
 
- I tried with creating a plist file and placed it in General/LaunchDaemons folder. I didn"t get it.
+ I tried with creating a plist file and placed it in LaunchDaemons folder. I didn"t get it.
 
 ---Thanks and Regards
 
 ----
 
-General/CreatingDemonAndGettingSystemTime
+CreatingDemonAndGettingSystemTime
 
 ----
 
 I tried it. But it crashes.
-I have tried to launch the daemon at the system start. I created the plist file and placed it in  /System/Library/General/LaunchDaemons.
+I have tried to launch the daemon at the system start. I created the plist file and placed it in  /System/Library/LaunchDaemons.
 
 It gives the following execption. 
 

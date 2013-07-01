@@ -1,6 +1,6 @@
 
 
-I can't figure out how to properly assign a custom extension to a bundle. I want it to have .myappPlugin extension. Changing Wrapper extension setting in General/XCode results in a folder, not a bundle. But if I change folder extension in Finder to .bundle or .plugin, then it appears as bundle.
+I can't figure out how to properly assign a custom extension to a bundle. I want it to have .myappPlugin extension. Changing Wrapper extension setting in XCode results in a folder, not a bundle. But if I change folder extension in Finder to .bundle or .plugin, then it appears as bundle.
 Is there any other steps I'm missing?
 
 ----

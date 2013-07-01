@@ -1,16 +1,16 @@
 
 
-I know I can insert General/NSManagedObject into a context with the following code
+I know I can insert NSManagedObject into a context with the following code
 
     
-General/NSManagedObjectContext *context = [self managedObjectContext];
+NSManagedObjectContext *context = [self managedObjectContext];
 
-General/NSManagedObject *object = General/[NSEntityDescription insertNewObjectForEntityForName:@"Object" inManagedObjectContext:context];
+NSManagedObject *object = [NSEntityDescription insertNewObjectForEntityForName:@"Object" inManagedObjectContext:context];
 
 [object setValue:@"george" forKey:@"name"];
 
 
-But there is something I do not understand : if that context is bound to a General/NSArrayController, it seems that calling *insertNewObjectForEntityForName:inManagedObjectContext* sometimes inserts the object into the array and sometimes not... 
+But there is something I do not understand : if that context is bound to a NSArrayController, it seems that calling *insertNewObjectForEntityForName:inManagedObjectContext* sometimes inserts the object into the array and sometimes not... 
 
 Could anyone tell why ?
 

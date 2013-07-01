@@ -5,8 +5,8 @@ I'm using some code I got from Nehe tutorials
 {
    BOOL status = FALSE;
 
-   if( [ self loadBitmap:[ General/NSString stringWithFormat:@"%@/%s",
-                                    [ [ General/NSBundle mainBundle ] resourcePath ],
+   if( [ self loadBitmap:[ NSString stringWithFormat:@"%@/%s",
+                                    [ [ NSBundle mainBundle ] resourcePath ],
                                     "Photo 8.jpg" ] intoIndex:0 ] )
    {
       status = TRUE;
@@ -32,7 +32,7 @@ I'm using some code I got from Nehe tutorials
 
 I'm compiling in Xcode 2.4
 
-I get 2 warning and both say "General/MyOpenGLView may not respond to loadBitmap- intoIndex" so the Bitmap I put in never gets to the drawing and I get nothing but white on my shape.  Any suggestions?
+I get 2 warning and both say "MyOpenGLView may not respond to loadBitmap- intoIndex" so the Bitmap I put in never gets to the drawing and I get nothing but white on my shape.  Any suggestions?
 
 ----
 
@@ -44,15 +44,15 @@ Yeah, sorry about that.
 Heres the code.  
 
     
-- (BOOL) loadBitmap:(General/NSString *)filename intoIndex:(int)texIndex
+- (BOOL) loadBitmap:(NSString *)filename intoIndex:(int)texIndex
 {
    BOOL success = FALSE;
-   General/NSBitmapImageRep *theImage;
+   NSBitmapImageRep *theImage;
    int bitsPPixel, bytesPRow;
    unsigned char *theImageData;
    int rowNum, destRowNum;
 
-   theImage = [ General/NSBitmapImageRep imageRepWithContentsOfFile:filename ];
+   theImage = [ NSBitmapImageRep imageRepWithContentsOfFile:filename ];
    if( theImage != nil )
    {
       bitsPPixel = [ theImage bitsPerPixel ];
@@ -95,18 +95,18 @@ The reason for the warning is that the compiler can't see the prototype at the t
 
 What does the actual rendering code look like?  Does it correctly bind the texture and then make the glTexCoord2f calls preceding each vertex?
 
---General/JeffDisher
+--JeffDisher
 
 ----
 
-If you're not sure whether it's the texture not getting loaded or the stuff not rendering properly, have a look at General/OpenGL Profiler. It can show you all of the textures loaded in your application, so you can directly see whether the texture has been loaded without your potentially buggy rendering code getting in the way. Beware, though, of textures that are white-on-transparent, they often look like they're not loaded and then you spend an hour running around in circles chasing the wrong thing! (Can you tell this happened to me?)
+If you're not sure whether it's the texture not getting loaded or the stuff not rendering properly, have a look at OpenGL Profiler. It can show you all of the textures loaded in your application, so you can directly see whether the texture has been loaded without your potentially buggy rendering code getting in the way. Beware, though, of textures that are white-on-transparent, they often look like they're not loaded and then you spend an hour running around in circles chasing the wrong thing! (Can you tell this happened to me?)
 
 ----
 
-I am using glTexCoords after every vertice, I added the prototype to the header and got the texture to load fine.  Oh by the way alot of this code was stolen from General/NeHe tutorials (the one on texture mapping).  I appreciate the help thanks.
+I am using glTexCoords after every vertice, I added the prototype to the header and got the texture to load fine.  Oh by the way alot of this code was stolen from NeHe tutorials (the one on texture mapping).  I appreciate the help thanks.
 
 ----
-There are lots of General/NeHe examples that build and work with Cocoa unmodified.  What is different between what you wrote and the General/NeHe tutorial ?
+There are lots of NeHe examples that build and work with Cocoa unmodified.  What is different between what you wrote and the NeHe tutorial ?
 Here are several common mbeginner mistakes:
 - Enabled lighting when it shouldn't be.
 - Disabled lighting when it shouldn't be.
@@ -118,10 +118,10 @@ Here are several common mbeginner mistakes:
 - Open GL returned lots of errors and the code never checks them.
 - The wrong texture unit is selected
 
-[As the original poster of a giant blob of code, I have deleted the code.  I realized that I effectively spammed the page because the discussion is/was much too specific to a particular General/NeHe introductory example for my big (overly) general solution to benefit anybody.  If you want the code, you can find it in the page history.]
+[As the original poster of a giant blob of code, I have deleted the code.  I realized that I effectively spammed the page because the discussion is/was much too specific to a particular NeHe introductory example for my big (overly) general solution to benefit anybody.  If you want the code, you can find it in the page history.]
 ----
 
-Before I answer that question, I have one more problem, I am trying to modify some code I got from General/NeHe thats loads a 256 by 256 image to load a 600 by 800 image. I really would like some help as to how to change the vertices. This bit of code is in drawRect:(General/NSRect)rect.
+Before I answer that question, I have one more problem, I am trying to modify some code I got from NeHe thats loads a 256 by 256 image to load a 600 by 800 image. I really would like some help as to how to change the vertices. This bit of code is in drawRect:(NSRect)rect.
 
     
 glPopMatrix();
@@ -153,10 +153,10 @@ glPopMatrix();
 Adjust the glVertex3f xy coords so that they have a 4:3 aspect ratio.  Meanwhile, check that non-power-of-two size textures works...
 
 ---- 
-I tried changing the vertices and with no luck, I tried loading an image that was not a perfect square and with no luck either.  I may have changed the vertices incorrectly, I'm going to sound like an idiot, but can you give me some numbers for the x and y numerals and should I have changed the z at all?  I'm sorry I'm only a thirteen year old, and a beginner at General/OpenGL.  Also what do I do to change it so non-perfect-squares load? I appreciate all the help.
+I tried changing the vertices and with no luck, I tried loading an image that was not a perfect square and with no luck either.  I may have changed the vertices incorrectly, I'm going to sound like an idiot, but can you give me some numbers for the x and y numerals and should I have changed the z at all?  I'm sorry I'm only a thirteen year old, and a beginner at OpenGL.  Also what do I do to change it so non-perfect-squares load? I appreciate all the help.
 
 
 ----
-Do you have a glEnable(GL_TEXTURE_2D) somewhere early in the execution?  If you are having trouble getting started, you could try just hacking around within the tutorial to see what effect the changes that you make have on the General/OpenGL state.
+Do you have a glEnable(GL_TEXTURE_2D) somewhere early in the execution?  If you are having trouble getting started, you could try just hacking around within the tutorial to see what effect the changes that you make have on the OpenGL state.
 
---General/JeffDisher
+--JeffDisher

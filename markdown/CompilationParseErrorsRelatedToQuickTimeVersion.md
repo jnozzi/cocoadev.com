@@ -1,6 +1,6 @@
-My app was compiling all right. Suddenly, just after updating to General/QuickTime 6.4 (I use 6.5 now and still doesn't work), when I tried to recompile my app, I got a bunch of cascading parse errors refering to the General/QuickTime Framework headers. 94 errors in all. All the cascading errors look like :
+My app was compiling all right. Suddenly, just after updating to QuickTime 6.4 (I use 6.5 now and still doesn't work), when I tried to recompile my app, I got a bunch of cascading parse errors refering to the QuickTime Framework headers. 94 errors in all. All the cascading errors look like :
     
-/System/Library/Frameworks/General/QuickTime.framework/Headers/General/ImageCompression.h:5009:
+/System/Library/Frameworks/QuickTime.framework/Headers/ImageCompression.h:5009:
 parse error before "AVAILABLE_MAC_OS_X_VERSION_10_3_AND_LATER"
 
 
@@ -18,4 +18,4 @@ I get the same behaviour with Apple's sample code........ What's the problem ?
 Doesn't this kind of thing also sometimes happen (in later versions) if the SDK is not installed?
 
 ----
-Indeed - you may want to try the simplest fix: Reinstall General/XCode Tools.
+Indeed - you may want to try the simplest fix: Reinstall XCode Tools.

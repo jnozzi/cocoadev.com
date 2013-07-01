@@ -1,8 +1,8 @@
-This is some Perl code I wrote a while ago to parse the General/RecentChanges page - it doesn't put it into RSS or anything. Probably not that great of parsing but I'm new(b) to Perl. --General/KevinWojniak
+This is some Perl code I wrote a while ago to parse the RecentChanges page - it doesn't put it into RSS or anything. Probably not that great of parsing but I'm new(b) to Perl. --KevinWojniak
 
 Execute it from Terminal like:
     
-curl 'http://www.cocoadev.com/index.pl?General/RecentChanges' | ./cocoadev.pl
+curl 'http://www.cocoadev.com/index.pl?RecentChanges' | ./cocoadev.pl
 
 
     
@@ -46,11 +46,11 @@ $lastline = $line;
 Sample output:
     
 September 21, 2004
-General/CocoaDevMostWanted: 10:33:54
-General/GeeFive: 09:43:28
-General/SubclassNSTableViewForCellDrag: 09:37:25
-General/WebServicesCore: 09:28:08
-General/QiYang: 01:30:50
+CocoaDevMostWanted: 10:33:54
+GeeFive: 09:43:28
+SubclassNSTableViewForCellDrag: 09:37:25
+WebServicesCore: 09:28:08
+QiYang: 01:30:50
 
 
 ----
@@ -61,7 +61,7 @@ Ok so I was bored and added RSS to this so it works as a feed for your newsreade
 
 print "Content-type: text/xml\n\n";
 
-$html = `curl 'http://www.cocoadev.com/index.pl?General/RecentChanges'`;
+$html = `curl 'http://www.cocoadev.com/index.pl?RecentChanges'`;
 if ($html =~ m/<td id="mainContent" colspan="2">(.*)<\/td>/gi)
 {
 	$html = $1;
@@ -73,8 +73,8 @@ $lastline = "";
 
 print "<rss>\n";
 print "<channel>\n";
-print "<title>General/CocoaDev Recent Changes</title>\n";
-print "<link>http://www.cocoadev.com/index.pl?General/RecentChanges</link>\n";
+print "<title>CocoaDev Recent Changes</title>\n";
+print "<link>http://www.cocoadev.com/index.pl?RecentChanges</link>\n";
 
 @lines = split(/\n/, $html);
 foreach $line (@lines)
@@ -102,18 +102,18 @@ foreach $line (@lines)
 print "</channel>\n";
 print "</rss>\n";
 
-Or if you're lazy you can use what I have on my server: http://www.kainjow.com/scripts/cocoadev.pl - I realize General/CocoaDevRSSFeed does the same thing and probably better, but his source code isn't public (from what I could tell...) and it isn't instantly updated.
+Or if you're lazy you can use what I have on my server: http://www.kainjow.com/scripts/cocoadev.pl - I realize CocoaDevRSSFeed does the same thing and probably better, but his source code isn't public (from what I could tell...) and it isn't instantly updated.
 
 ----
 
 *Well, I'm sure if you ask Theo.. :-)*
 
-Not that anyone asked, but here is the PHP code that parses the General/RecentChanges page for General/CocoaDevRSSFeed:
+Not that anyone asked, but here is the PHP code that parses the RecentChanges page for CocoaDevRSSFeed:
 
     
 function CCD2Items( $limit=50 ) {
 	// my server runs in safemode, so I don't really use file()
-	$lines = file("http://www.cocoadev.com/index.pl?General/RecentChanges");
+	$lines = file("http://www.cocoadev.com/index.pl?RecentChanges");
 	
 	$currentDate = NULL;
 	
@@ -156,4 +156,4 @@ function createItem( $name, $date, $time ) {
 
 Naturally, there's a lot more to it, but nothing especially interesting. The items created by     CCD2Items are written to a database, and when a client comes along and want's the feed the database is read and the feed is constructed (in different formats depending on the parameters). Since the data is abstracted and put in the DB the cache-script (above) and the server-script (that outputs the feed) are independent, which also means that the output format is independent of the input format. 
 
---General/TheoHultberg/Iconara
+--TheoHultberg/Iconara

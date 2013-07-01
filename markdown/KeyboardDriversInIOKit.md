@@ -7,7 +7,7 @@ What I want to do is to interpret keypresses in the keyboard and then based on t
 1) write a kernel extension that a particular application (daemon) will take a hold of
 2) write a daemon that talks to that kernel extension and then based on keypress X, will simulate the appropriate keypress.
 
-Also, besides General/USBProber and General/IORegistryExplorer, what are some good (software only - free preferably) utilities for USB debugging, etc.
+Also, besides USBProber and IORegistryExplorer, what are some good (software only - free preferably) utilities for USB debugging, etc.
 
 Any pointers and ideas would help greatly.
 
@@ -17,7 +17,7 @@ Hello! Apparently, no one answered your question! But maybe you�re able now to
 
 **Here�s my question:** Is it possible to intercept the text input from one and only one keyboard and modify it before passing it to the text system? And if so, can/should it be made in a driver?
 
-I�m trying to make a General/CueCat driver for OS X. Of course, a modified General/CueCat outputs regular digits and letters but
+I�m trying to make a CueCat driver for OS X. Of course, a modified CueCat outputs regular digits and letters but
 
 1) It swaps upper- and lowercase (in code128, for example, *David* would become *dAVID*)
 

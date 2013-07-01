@@ -12,7 +12,7 @@ I have a float pointer and want to return it from class, is this the right way?
 
 //Another file
 
-float test[4] = General/[AClass amb];
+float test[4] = [AClass amb];
 
 
 
@@ -34,12 +34,12 @@ It's the right way to return a pointer, but your code is because your array will
 
 //Another file
 
-float* test = General/[AClass amb];
+float* test = [AClass amb];
 
 
 Don't forget to call     free(test) when you're done.
 
-Alternatively, you could use an General/NSArray of General/NSNumber<nowiki/>s.
+Alternatively, you could use an NSArray of NSNumber<nowiki/>s.
 
 ----
 
@@ -79,10 +79,10 @@ Of course, that wouldn't be a pointer return.
 
 ----
 
-You could even wrap that 4-vector up in an General/ObjC class if you wanted.
+You could even wrap that 4-vector up in an ObjC class if you wanted.
 
     
-@interface fourVector : General/NSObject {
+@interface fourVector : NSObject {
    float x, y, z, w;
 }
 - (id)initWithX:(float)_x y:(float)_y z:(float)_z w:(float)_w;
@@ -93,7 +93,7 @@ You could even wrap that 4-vector up in an General/ObjC class if you wanted.
 @end
 
 
-That way, you can take advantage not only of adding transformations, etc., to the interface, you can use General/ObjC's General/MemoryManagement to solve the return problem:
+That way, you can take advantage not only of adding transformations, etc., to the interface, you can use ObjC's MemoryManagement to solve the return problem:
 
     
 -(fourVector*)getAmb {

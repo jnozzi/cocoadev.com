@@ -8,6 +8,6 @@ There are several things you can do to make your project more debugable.
 
 
 ----
-Once you know how to debug your code you may appreciate some General/DebuggingTechniques.
+Once you know how to debug your code you may appreciate some DebuggingTechniques.
 
-Here are some General/ErrorsAndWarnings you might run into.
+Here are some ErrorsAndWarnings you might run into.

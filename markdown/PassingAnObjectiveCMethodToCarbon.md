@@ -8,20 +8,20 @@ I've been trying to read about selectors & such but I still haven't found anythi
 
 ----
 
-First, you need to get the IMP-- implementation-- of the method via General/NSObject's messages to do this. Second, it probably won't work as a callback since all General/ObjC methods take an id and a SEL as their first two arguments. Perhaps better to just write a function, use that as your callback, and have it call your message.
+First, you need to get the IMP-- implementation-- of the method via NSObject's messages to do this. Second, it probably won't work as a callback since all ObjC methods take an id and a SEL as their first two arguments. Perhaps better to just write a function, use that as your callback, and have it call your message.
 
 ----
 
-In General/ObjC, you need an object and a selector. Generally, your object can change and your selector stays constant. Carbon lets you pass in a void * to use for sending context info to yourself, which you can use to pass self. Put it all together, and you get something like this:
+In ObjC, you need an object and a selector. Generally, your object can change and your selector stays constant. Carbon lets you pass in a void * to use for sending context info to yourself, which you can use to pass self. Put it all together, and you get something like this:
 
-    void General/MyCarbonCallback(..., void *userData, ...)
+    void MyCarbonCallback(..., void *userData, ...)
 {
    id object = (id)userData;
    [object carbonCallbackWithThing:...];
 }
 
 
-Then you can pass General/MyCarbonCallback to your carbon functions.
+Then you can pass MyCarbonCallback to your carbon functions.
 
 ----
 

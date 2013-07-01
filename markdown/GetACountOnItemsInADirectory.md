@@ -1,7 +1,7 @@
-Is there a faster way to get the count of items in a directory than     General/[[[NSFileManager defaultManager] directoryContentsAtPath:aPath] count]; ? Because I'm not interested in the items but only in the amount of items in that folder.
+Is there a faster way to get the count of items in a directory than     [[[NSFileManager defaultManager] directoryContentsAtPath:aPath] count]; ? Because I'm not interested in the items but only in the amount of items in that folder.
 
 ----
-General/FSGetCatalogInfo should be much faster at obtaining this information, at least on HFS+ drives.
+FSGetCatalogInfo should be much faster at obtaining this information, at least on HFS+ drives.
 ----
 OK, thanks. any hint which Info I need to query? kFSCatInfoFinderInfo? or kFSCatInfoValence - says it's for folders only... or kFSCatinfoFinderXInfo?
 ----
@@ -14,12 +14,12 @@ Nope. The question of whether a file is invisible or not is quite complex. You w
 Darn. well that defeats the whole purpose of the "avoiding nsfilemanager" thing. Is there something faster than directoryContentsAtPath?
 
 ----
-General/FSGetCatalogInfoBulk. However, the cost needed to determine visibility of each file is likely to outweigh the cost of iterating the directory.
+FSGetCatalogInfoBulk. However, the cost needed to determine visibility of each file is likely to outweigh the cost of iterating the directory.
 
 ----
-General/NSFileManager is used throughout the system and is basically just a wrapper for the appropriate POSIX and Carbon calls. Are you sure that General/NSFileManager is the cause of your bottleneck in this case?
+NSFileManager is used throughout the system and is basically just a wrapper for the appropriate POSIX and Carbon calls. Are you sure that NSFileManager is the cause of your bottleneck in this case?
 ----
-Apparently not. I just tested it, a count of nsfilemanager's directorycontentsatpath is much faster than General/FSGetCatalogInfo (talking about milliseconds)... bottleneck sure is somewhere else.
+Apparently not. I just tested it, a count of nsfilemanager's directorycontentsatpath is much faster than FSGetCatalogInfo (talking about milliseconds)... bottleneck sure is somewhere else.
 
 ----
 
@@ -29,7 +29,7 @@ The fastest way to count files on OS X is with fts_open(). This is a BSD functio
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fts.h>
-#include <General/CoreFoundation/General/CoreFoundation.h>
+#include <CoreFoundation/CoreFoundation.h>
 #include "fcntl.h"
 #include "unistd.h"
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 	char *dirs[2] = {nil, nil};
 	FTSENT *entry = NULL;
 	unsigned dircount = 0, file_count = 0;
-	General/CFAbsoluteTime last = 0.0f, start = 0.0f;
+	CFAbsoluteTime last = 0.0f, start = 0.0f;
 
 	if (argc < 2) {
 		printf("fts_open <directory path>\n");
@@ -54,13 +54,13 @@ int main(int argc, char *argv[]) {
 		goto bail;
 	}
 	
-	start = General/CFAbsoluteTimeGetCurrent();
+	start = CFAbsoluteTimeGetCurrent();
 	while (entry = fts_read(tree)) {
 	
 		switch (entry->fts_info) {
 			case FTS_D:;
 				dircount++;
-				General/CFAbsoluteTime now = General/CFAbsoluteTimeGetCurrent();
+				CFAbsoluteTime now = CFAbsoluteTimeGetCurrent();
 				if (now - last > 0.2f) {
 					printf("%05i|%6.1f sec|%s\n", dircount, now - start, entry->fts_path);
 					last = now;
@@ -73,7 +73,7 @@ int main(int argc, char *argv[]) {
 			default: break;
 		}
 	}
-	printf("dircount: %i file_count: %i time: %.1f sec\n", dircount, file_count, General/CFAbsoluteTimeGetCurrent() - start);
+	printf("dircount: %i file_count: %i time: %.1f sec\n", dircount, file_count, CFAbsoluteTimeGetCurrent() - start);
 
 bail:;
 

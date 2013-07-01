@@ -1,4 +1,4 @@
-General/NSCarbonMenuImpl is a class accessable from the -_menuImpl method of General/NSMenu. It can be used mainly for creating a pop-up menu anywhere on the screen using popUpMenu:atLocation:width:forView:withSelectedItem:withFont:
+NSCarbonMenuImpl is a class accessable from the -_menuImpl method of NSMenu. It can be used mainly for creating a pop-up menu anywhere on the screen using popUpMenu:atLocation:width:forView:withSelectedItem:withFont:
 
 Undocumented, and liable to break at any time too ;)
 
@@ -17,7 +17,7 @@ Some other methods are:
 - (void)setupCarbonMenuBar;
 - (void)setAsMainCarbonMenuBar;
 - (void)clearAsMainCarbonMenuBar;
-- (void)popUpMenu:fp8 atLocation:(General/NSPoint)fp12 width:(float)fp20 forView:fp24 withSelectedItem:(int)fp28 withFont:fp32;
+- (void)popUpMenu:fp8 atLocation:(NSPoint)fp12 width:(float)fp20 forView:fp24 withSelectedItem:(int)fp28 withFont:fp32;
 - (void)_popUpContextMenu:fp8 withEvent:fp12 forView:fp16 withFont:fp20;
 - (void)_popUpContextMenu:fp8 withEvent:fp12 forView:fp16;
 - window;

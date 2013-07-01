@@ -1,6 +1,6 @@
 
 
-In General/AspectCocoa, an aspect is created as follows:
+In AspectCocoa, an aspect is created as follows:
     
  ACAspect * myAspect = [[ACAspect alloc] initWithPointCut: somepointcutobject 
                                           andAdviceObject: someadviceobject];

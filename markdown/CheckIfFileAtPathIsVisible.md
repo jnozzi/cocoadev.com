@@ -9,17 +9,17 @@ Thanks�
 Rather than showing you how to do that, here is the preferred way of determining invisibility by any known method:
     
 NSURL *fileURL; // this must be valid
-General/LSItemInfoRecord fileInfo;
-General/OSStatus err;
+LSItemInfoRecord fileInfo;
+OSStatus err;
 
-err = General/LSCopyItemInfoForURL((General/CFURLRef)fileURL, kLSRequestBasicFlagsOnly, &fileInfo);
+err = LSCopyItemInfoForURL((CFURLRef)fileURL, kLSRequestBasicFlagsOnly, &fileInfo);
 if (err == noErr && fileInfo.flags & kLSItemInfoIsInvisible) {
     // item is invisible
 }
 
-(you need to add General/ApplicationServices.framework to your project and include its header, too)
+(you need to add ApplicationServices.framework to your project and include its header, too)
 
--- General/FinlayDobbie
+-- FinlayDobbie
 
 ----
 

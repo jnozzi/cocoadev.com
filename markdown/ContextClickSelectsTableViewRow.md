@@ -12,4 +12,4 @@ Thanks for your help!
 
 ----
 
-There's some code that purports to do this at General/RightClickSelectInTableView
+There's some code that purports to do this at RightClickSelectInTableView

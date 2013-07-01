@@ -26,7 +26,7 @@ Here is the layout for the implementation file.  In this case, it is an implemen
 
 - (void) createFoo
 {
-   foo = General/[[NSMutableArray alloc] init];
+   foo = [[NSMutableArray alloc] init];
 }
 
 - (void)dealloc
@@ -39,4 +39,4 @@ Here is the layout for the implementation file.  In this case, it is an implemen
 @end
 
 
-Back to General/HowToProgramInOSX
+Back to HowToProgramInOSX

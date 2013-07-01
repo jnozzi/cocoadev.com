@@ -1,10 +1,10 @@
-The General/KeyChain is an API for save storage of user passwords and other authentication information.
+The KeyChain is an API for save storage of user passwords and other authentication information.
 
-See General/CarbonCompatibility for some Cocoa implementations.
+See CarbonCompatibility for some Cocoa implementations.
 
-You might also want to take a look at this General/SourceForge project http://sourceforge.net/projects/keychain/.
+You might also want to take a look at this SourceForge project http://sourceforge.net/projects/keychain/.
 
-Cocoa Wrapper Class for Keychain - http://extendmac.com/General/EMKeychain
+Cocoa Wrapper Class for Keychain - http://extendmac.com/EMKeychain
 
 Simple Keychain Example (Add, remove, modify, get)  - http://agerson.net/example-some-common-uses-keychain
 

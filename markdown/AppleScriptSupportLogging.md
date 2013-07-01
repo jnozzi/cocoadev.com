@@ -2,7 +2,7 @@ I want to learn how to support Applescript... but even the basic ones don't seem
 
 0) new project -> cocoa application -> MyASTest
 
-1) set info.plist key "General/NSAppleScriptEnabled" to @"YES"
+1) set info.plist key "NSAppleScriptEnabled" to @"YES"
 
 2) add a file to the project MyASTest.scriptSuite (a plist), and edit it like so 
 
@@ -36,7 +36,7 @@ I want to learn how to support Applescript... but even the basic ones don't seem
  }
 
 
-3) put a category on General/NSApplication to handle it
+3) put a category on NSApplication to handle it
 
     
  @interface NSApplication (LogScript)
@@ -46,7 +46,7 @@ I want to learn how to support Applescript... but even the basic ones don't seem
  @implementation NSApplication (LogScript)
  - (id)log:(NSScriptCommand *)command
  {
- 	NSLog(@"%@",General/command evaluatedArguments] objectForKey:@"target"]);
+ 	NSLog(@"%@",command evaluatedArguments] objectForKey:@"target"]);
  	// not quite sure about that line... but I never get here to test it
  	return nil;
  }
@@ -65,13 +65,13 @@ I want to learn how to support Applescript... but even the basic ones don't seem
 
 ----
 
-I think the problem is that you are using a string as a direct parameter. [[CocoaScripting is probably trying to send the "log" event to General/NSString. See General/DirectParametersAsValues for more information, but a quick fix would be to add a named parameter for the text. --General/DustinVoss
+I think the problem is that you are using a string as a direct parameter. [[CocoaScripting is probably trying to send the "log" event to NSString. See DirectParametersAsValues for more information, but a quick fix would be to add a named parameter for the text. --DustinVoss
 
 ----
 
 Is that it do you think?  I dunno... If it was the direct parameter thing wouldn't it still get into the block?  or at least pump out some kind of error?  Just I don't get any action at all so it's very tough to figure it out... well I'll try naming the log's parameter and report back in a bit...
 
-I turned on General/NSScriptDebugging... I saw that it wasn't loading the suite, so I gave the suite a real apple event code (the plist above reflects my changes) and now I get the following error:
+I turned on NSScriptDebugging... I saw that it wasn't loading the suite, so I gave the suite a real apple event code (the plist above reflects my changes) and now I get the following error:
 
     
  2004-07-29 08:39:59.210 MyASTest[11424] argument terminology dictionary not found for name=Target

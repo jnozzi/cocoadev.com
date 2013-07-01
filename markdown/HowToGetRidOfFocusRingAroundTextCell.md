@@ -2,7 +2,7 @@
 
 Does anyone know how to completely disable focus ring around a cell in a table column when it's being edited? (Yes, I want to draw my custom focus ring).
 
-I use     setFocusRingType:General/NSFocusRingTypeNone but instead of light-blue focus ring I get a white rect (which as it appears is always drawn under the focus ring in a edited textcell). It's not noticeable on white background in Finder but is clearly visible on black.
+I use     setFocusRingType:NSFocusRingTypeNone but instead of light-blue focus ring I get a white rect (which as it appears is always drawn under the focus ring in a edited textcell). It's not noticeable on white background in Finder but is clearly visible on black.
 
 Nothing helps, I don't know how to get rid of this white rectangle.
 
@@ -14,11 +14,11 @@ Post your code.
 
 ----
 
-Not sure what you mean. Ok, here it is again. In a subclass of General/NSTextFieldCell I call on init: 
+Not sure what you mean. Ok, here it is again. In a subclass of NSTextFieldCell I call on init: 
     
 if (self = [super init])
 {	
-	[self setFocusRingType:General/NSFocusRingTypeNone];
+	[self setFocusRingType:NSFocusRingTypeNone];
 	return self;
 }
 return nil;
@@ -27,7 +27,7 @@ return nil;
 And then in awakeFromNib in my Controller I set dataCell to that custom cell:
 
     
-General/tableView tableColumnWithIdentifier:@"names"] setDataCell:customCell]
+tableView tableColumnWithIdentifier:@"names"] setDataCell:customCell]
 
 
 Blue focus ring dissapears, but white rect stays with me.

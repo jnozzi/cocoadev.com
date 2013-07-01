@@ -3,7 +3,7 @@
 
 Hello everyone.
 
-Is there a way to easily compare two General/NSImage's? I have tried that via -(General/NSData*)General/TIFFRepresentation - then -(BOOL)isEqualToData:(General/NSData*)data2, but it doesn't work all the time. I need it for icon comparison in a General/NSTableView (using General/NSSortDescriptor)...
+Is there a way to easily compare two NSImage's? I have tried that via -(NSData*)TIFFRepresentation - then -(BOOL)isEqualToData:(NSData*)data2, but it doesn't work all the time. I need it for icon comparison in a NSTableView (using NSSortDescriptor)...
 
 Thanks for any clues!
 
@@ -24,7 +24,7 @@ In Finder, both the icon and the sort order are based on the file type which is 
 That's why I said IF Finder HAD. I know it doesn't.
 
 ----
-Basically, you want to define a partial ordering on the domain of General/NSImages.  Since one doesn't really exist, you'd be free to come up with your own metric.  And what do you if you need to compare a lossy-compressed and a lossless or uncompressed image?  They might be the same image to the eye, but not in terms of data.
+Basically, you want to define a partial ordering on the domain of NSImages.  Since one doesn't really exist, you'd be free to come up with your own metric.  And what do you if you need to compare a lossy-compressed and a lossless or uncompressed image?  They might be the same image to the eye, but not in terms of data.
 
 ----
 I've done something similar before (though not in Cocoa) - firstly cache images so if they're identical (data) then the image pointers are the same, secondly I defined a metric which in my case was the average 'lightness' of the image (and store this with the image so you don't need to recalc)... BUT whatever you do, you really need to avoid recalculating the comparison metric all the time!

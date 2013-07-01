@@ -21,7 +21,7 @@ Do I have to go through all the trouble of implementing "addObserver" in the doc
 
 Thanks a lot, Michael
 ----
-Well, for one thing, the     addObserver:... methods are already implemented in all objects by default (see the Foundation General/NSKeyValueObserving protocol), so you can easily add an observer if you wish. However, there are two points you need to remember. First, any key-value compliant method (    -value and     -setValue) will notify observers, so there is not always a need to use     setValue:forKey:. In your case, though, the easiest thing to do would be to set the date modified in all of your other methods (in addition to your current     initialize code, which should probably be inheritable -- no     self == [Employee class]), like so: --General/JediKnil
+Well, for one thing, the     addObserver:... methods are already implemented in all objects by default (see the Foundation NSKeyValueObserving protocol), so you can easily add an observer if you wish. However, there are two points you need to remember. First, any key-value compliant method (    -value and     -setValue) will notify observers, so there is not always a need to use     setValue:forKey:. In your case, though, the easiest thing to do would be to set the date modified in all of your other methods (in addition to your current     initialize code, which should probably be inheritable -- no     self == [Employee class]), like so: --JediKnil
 
     
  - (void)setName:(NSString *)newName
@@ -34,7 +34,7 @@ Well, for one thing, the     addObserver:... methods are already implemented in 
  }
 
 ----
-Thank you so much for the swift and clever answer.  What I did not state clearly in my initial post is that the "Employee" class is entirely coded with xcdatamodel (as Entity).  Hence, the above solution works only if you code your object programmatically.  I posted the code for working with Entities below (in case someone runs into the same problem) - which is exactly the same solution as General/JediKnil proposed.
+Thank you so much for the swift and clever answer.  What I did not state clearly in my initial post is that the "Employee" class is entirely coded with xcdatamodel (as Entity).  Hence, the above solution works only if you code your object programmatically.  I posted the code for working with Entities below (in case someone runs into the same problem) - which is exactly the same solution as JediKnil proposed.
 
 
     

@@ -1,7 +1,7 @@
 
 
-I was wondering what it is the right way of creating a General/NSSet of General/NSDictionary. I want to represent a graph with labeled connection using a dictionary referencing other dictionary (a dictionary can be tought as a state). To build that representation efficiently I would like to use a set of states. Then during the building phase if the state I want to add is already in the set use the reference to the original one. 
-The idea is to use a General/NSDictionary to represent a state and a temporary General/NSMutableDictionary (reused during the building phase) to represent the state I am actually working on. Then I would like to use General/NSSet member: method to check if there is a state with the same labeled connections and in that case use that; if it is not present create an immutable copy of the working dictionary and put that in the set.
+I was wondering what it is the right way of creating a NSSet of NSDictionary. I want to represent a graph with labeled connection using a dictionary referencing other dictionary (a dictionary can be tought as a state). To build that representation efficiently I would like to use a set of states. Then during the building phase if the state I want to add is already in the set use the reference to the original one. 
+The idea is to use a NSDictionary to represent a state and a temporary NSMutableDictionary (reused during the building phase) to represent the state I am actually working on. Then I would like to use NSSet member: method to check if there is a state with the same labeled connections and in that case use that; if it is not present create an immutable copy of the working dictionary and put that in the set.
 Any ideas?
 
 ----
@@ -41,17 +41,17 @@ At this point I would like to check the set and if I could have it tested with i
 A--a-->B--b-->C
 E--d--/ \--c--/
 
-What I was thinking is that General/NSSet member: could return the set object instead of the one passed as argument and that it test for equality using isEqualToDictionary: or something like that.
+What I was thinking is that NSSet member: could return the set object instead of the one passed as argument and that it test for equality using isEqualToDictionary: or something like that.
 
 ----
-I don't know, but this seems like it could be a case for objects or General/CoreData entities: A State that has a set of child States (as well as any other information, like a label). After all, a directed graph is basically a tree without an explicit root. --General/JediKnil
+I don't know, but this seems like it could be a case for objects or CoreData entities: A State that has a set of child States (as well as any other information, like a label). After all, a directed graph is basically a tree without an explicit root. --JediKnil
 
 ----
 Trees are acyclic by definition. Directed graphs can still have cycles.
 
 ----
-I think that can be done with a General/CFSet with an appropriate General/CFSetEqualCallBack. Anyone knows if the equal comparison of General/NSSet can be customized?
+I think that can be done with a CFSet with an appropriate CFSetEqualCallBack. Anyone knows if the equal comparison of NSSet can be customized?
 
 ----
 
-Read the documentation. General/NSSet compares objects by sending them an -isEqual: message.
+Read the documentation. NSSet compares objects by sending them an -isEqual: message.

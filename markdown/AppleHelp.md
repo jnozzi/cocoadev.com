@@ -2,34 +2,34 @@
 
 See the article at http://www.oreillynet.com/pub/a/mac/2001/05/25/mac_help.html for information on how to get basic Apple Help working for your application. 
 
-Apple now provides information on registering Apple Help for Mac OS X applications at http://developer.apple.com/documentation/Carbon/Conceptual/General/ProvidingUserAssitAppleHelp/index.html#//apple_ref/doc/uid/TP30000903
+Apple now provides information on registering Apple Help for Mac OS X applications at http://developer.apple.com/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/index.html#//apple_ref/doc/uid/TP30000903
 
-and see http://developer.apple.com/documentation/General/UserExperience/Conceptual/General/OSXHIGuidelines/General/XHIGUsingTechnologies/chapter_8_section_13.html
+and see http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/XHIGUsingTechnologies/chapter_8_section_13.html
 
 See http://www.andymatuschak.org/articles/2005/12/18/help-with-apple-help for a lengthy article on getting Apple Help working and looking like Apple's help books.
 
-See General/HelpbookCreator at http://robin.mascue.de/index.php?pageid=13 . Application for creating help books.
+See HelpbookCreator at http://robin.mascue.de/index.php?pageid=13 . Application for creating help books.
 
 See http://www.andymatuschak.org/pages/helptoolkit for HTML/CSS templates based off Apple's help books.
 
-(The information in the section is officially documented at http://developer.apple.com/documentation/Carbon/Conceptual/General/ProvidingUserAssitAppleHelp/index.html ).
+(The information in the section is officially documented at http://developer.apple.com/documentation/Carbon/Conceptual/ProvidingUserAssitAppleHelp/index.html ).
 
-Caveats about General/AppleHelp. Your help files should conform to HTML 3.2 for best results and in order to use the Apple Help Indexing Tool (part of General/CarbonLib SDK) you will need to set both the creator and file type attributes on your html files to 'hbwr' and 'TEXT' respectively. Lastly, make certain that the Info.plist key General/NSHelpFile does not exist in your plist.
+Caveats about AppleHelp. Your help files should conform to HTML 3.2 for best results and in order to use the Apple Help Indexing Tool (part of CarbonLib SDK) you will need to set both the creator and file type attributes on your html files to 'hbwr' and 'TEXT' respectively. Lastly, make certain that the Info.plist key NSHelpFile does not exist in your plist.
 
 ----
 Apple help HTML tricks:
 
 The first page must include the meta tag 
-    <META name="General/AppleTitle" Content="General/MyApp Help">
+    <META name="AppleTitle" Content="MyApp Help">
 
-the General/AppleTitle needs to be the same as your General/CFBundleHelpBookName plist key.
+the AppleTitle needs to be the same as your CFBundleHelpBookName plist key.
 
 If you want to add some keywords to your page top help the search function (I'm not sure how this works):
     <META name="keywords" Content="keyword1, keyword2, keyword3">
 If you want to exclude your page from any search results (for eg: the table of contents):
     <META name="robots" Content="noindex">
 If you want to a brief description of the link to appear in the search results:
-    <META name="General/AppleAbstract" Content="This is the topic you are looking for!">
+    <META name="AppleAbstract" Content="This is the topic you are looking for!">
 ----
 
 Links in the HREF:
@@ -41,18 +41,18 @@ help:goto_helpcenter=user
 
 To open another helpbook from your help page
 
-help:openbook=General/MyApp%20Help
+help:openbook=MyApp%20Help
 
-To go directly to an anchor in a help book (you need to have anchor indexing turned on in the indexing tool , available in the General/CarbonLib SDK by the way)
+To go directly to an anchor in a help book (you need to have anchor indexing turned on in the indexing tool , available in the CarbonLib SDK by the way)
 
-help:anchor=p001 bookID=General/MyApp%20Help
+help:anchor=p001 bookID=MyApp%20Help
 
 perform a search fro a link in your help page
 
-help:search='find files' bookID=General/MyApp%20Help
+help:search='find files' bookID=MyApp%20Help
 
 To run aa applescript from the help page
-help:runscript=General/MyApp/Help/script
+help:runscript=MyApp/Help/script
 
 ----
 
@@ -60,16 +60,16 @@ If your Help Viewer unexpectedly quits throughout your osx system, I believe the
 
 ----
 
-I followed the tutorial at http://cocoadevcentral.com/articles/000072.php with some success. I've added the help pages under "Resources" in Groups & Files inside a folder named "General/MyApp Help". When I compile, the contents of this folder ends up in the root of resources (package contents, mac os, resources) and not in a folder with the name "General/MyApp Help" and thus utterly fails.
+I followed the tutorial at http://cocoadevcentral.com/articles/000072.php with some success. I've added the help pages under "Resources" in Groups & Files inside a folder named "MyApp Help". When I compile, the contents of this folder ends up in the root of resources (package contents, mac os, resources) and not in a folder with the name "MyApp Help" and thus utterly fails.
 
 I can manually create a folder in the package and move the files, then it works. But how do I tell Xcode to create a folder in Resources instead of putting everything in the Resources root?
 
 ----
 
-I think you probably just forgot to use the option of creating folder references when you added the folder containing the help files to the project. This has not changed with Xcode 2.x. When you create the folder references, the files will be added to your bundle's Resources folder in a folder named "General/MyApp Help".
+I think you probably just forgot to use the option of creating folder references when you added the folder containing the help files to the project. This has not changed with Xcode 2.x. When you create the folder references, the files will be added to your bundle's Resources folder in a folder named "MyApp Help".
 
 ----
-This is at http://developer.apple.com/documentation/General/DeveloperTools/Conceptual/XcodeUserGuide20/Contents/Resources/en.lproj/pr_add_files/chapter_7_section_5.html#//apple_ref/doc/uid/TP40001440-CH221-BCIDAGFI and solved the problem!
+This is at http://developer.apple.com/documentation/DeveloperTools/Conceptual/XcodeUserGuide20/Contents/Resources/en.lproj/pr_add_files/chapter_7_section_5.html#//apple_ref/doc/uid/TP40001440-CH221-BCIDAGFI and solved the problem!
 
 ----
 To add a directory/folder to the Resources Group, the above reference provides a good hint as to what should be done although it points to now out-of-date documentation.  The steps that worked for me are:

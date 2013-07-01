@@ -1,8 +1,8 @@
 
 
-Hello all, I am trying to package an update for a General/CarbonCFM program, I need to use General/NSData to store the CFM application, the problem however is that General/NSData does not work with resource forks.
+Hello all, I am trying to package an update for a CarbonCFM program, I need to use NSData to store the CFM application, the problem however is that NSData does not work with resource forks.
 
-Does anyone know how I can preserve the fork (in objC) and then set it to a General/NSData object.
+Does anyone know how I can preserve the fork (in objC) and then set it to a NSData object.
 
 All of this will then be saved to a plist for use later.
 
@@ -12,13 +12,13 @@ Thanks alot!
 
 There are several possibilities:
 
-- Use Carbon functions to read the file fork into your General/NSData.
+- Use Carbon functions to read the file fork into your NSData.
 
-- Use a General/MacBinary, General/BinHex, or other package format which preserves resource forks. This has the added advantage of preserving other HFS file attributes as well, such as type and creator code, which will be necessary for your application to function.
+- Use a MacBinary, BinHex, or other package format which preserves resource forks. This has the added advantage of preserving other HFS file attributes as well, such as type and creator code, which will be necessary for your application to function.
 
 - Do the secret resource-fork dance, where opening     /path/to/file/rsrc will let you read the file's resource fork using "normal" file reading functions.
 
-Of these three, using General/MacBinary is probably the best approach. It's there, it works, and it will save all of the attributes you need.
+Of these three, using MacBinary is probably the best approach. It's there, it works, and it will save all of the attributes you need.
 ----
     /path/to/file/rsrc is deprecated (and has been for some time, and may not be around much longer). Use     /path/to/file/..namedfork/rsrc instead
 
@@ -45,13 +45,13 @@ As far as I know, HFS+ only supports two forks, resource and data, and the same 
 
 ----
 
-wow - so if I have a photoshop document with a custom icon and I read the contents of it to an General/NSData, then read the contents of /path/to/photoshopdocument/rsrc into another General/NSData, then create a filehandle to an empty file, and write both General/NSDatas to it I will have a copy of the original document, with custom icon intact?
+wow - so if I have a photoshop document with a custom icon and I read the contents of it to an NSData, then read the contents of /path/to/photoshopdocument/rsrc into another NSData, then create a filehandle to an empty file, and write both NSDatas to it I will have a copy of the original document, with custom icon intact?
 
-General/EcumeDesJours
+EcumeDesJours
 
 *No, you will still be missing HFS file attributes, such as type and creator code and special flags. I think custom icon is one of these flags, so the icon might not work. Since Photoshop is a rather old-school program, it probably relies on the type code, and the file might not work because of that either. You will get all of the data, but not all of the metadata.*
 
-**Ecume, you might want to look at General/HowToSetACustomIconWithRez.  The line with General/SetFile is the incantation to inform the Finder of the custom icon.**
+**Ecume, you might want to look at HowToSetACustomIconWithRez.  The line with SetFile is the incantation to inform the Finder of the custom icon.**
 
 ----
 
@@ -59,7 +59,7 @@ Thanks alot! Using mac binary worked! I'll post the code here for everyone else 
 
 ----
 
-Here you go all (don't post in that page or you'll go over the wiki page limit): General/NSDataAndResourceForksCode
+Here you go all (don't post in that page or you'll go over the wiki page limit): NSDataAndResourceForksCode
 
 ----
 

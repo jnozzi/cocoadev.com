@@ -6,13 +6,13 @@ You're probably running into the Cocoa Coordinate System. Since the origin (0, 0
 
 ----
 
-Except that General/NSMatrix has a reversed coord system.  ie: 0,0 is at the top left of an General/NSMatrix.  is the matrix a part of some more complicated control or are you working with the General/NSMatrix class directly? (browser, tableView, etc...)  the reason I am asking is that the behavior you are describing does not make sense to me and I suspect that your matrix is in a scrollView, or that perhaps there are other extenuating circumstances.
+Except that NSMatrix has a reversed coord system.  ie: 0,0 is at the top left of an NSMatrix.  is the matrix a part of some more complicated control or are you working with the NSMatrix class directly? (browser, tableView, etc...)  the reason I am asking is that the behavior you are describing does not make sense to me and I suspect that your matrix is in a scrollView, or that perhaps there are other extenuating circumstances.
 
-*When a view is flipped, that only affects things inside it. The fact that General/NSMatrix uses a flipped coordinate system has no influence on what happens when you change its size, because the General/NSMatrix's frame exists in its superview's coordinate system. I maintain that the behavior being seen is normal and reasonable.*
+*When a view is flipped, that only affects things inside it. The fact that NSMatrix uses a flipped coordinate system has no influence on what happens when you change its size, because the NSMatrix's frame exists in its superview's coordinate system. I maintain that the behavior being seen is normal and reasonable.*
 
 ----
 
-No special view just the main window. I have a button that adds a new cell (General/NSMatrix of combo boxes) when pressed.  I have dug around a bit and it seems that combo boxes and matricies do not currently behave very well.  It seems that combo boxes no longer behave as combo boxes when part of a matrix.  I doubt this has anything to do with my current problem but it is still bothersome.
+No special view just the main window. I have a button that adds a new cell (NSMatrix of combo boxes) when pressed.  I have dug around a bit and it seems that combo boxes and matricies do not currently behave very well.  It seems that combo boxes no longer behave as combo boxes when part of a matrix.  I doubt this has anything to do with my current problem but it is still bothersome.
 
 ----
 
@@ -24,7 +24,7 @@ You can manually reposition the matrix after you add the new cell. Assuming the 
 
     
 // Save the current frame
-General/NSRect originalFrame = [matrix frame];
+NSRect originalFrame = [matrix frame];
 
 // Add the new row
 [matrix addRow];
@@ -34,13 +34,13 @@ General/NSRect originalFrame = [matrix frame];
 // matches originalFrame, but using the new frame's size
 // origin + height = maximum Y coordinate, therefore
 // origin = maximum Y coordinate - height
-General/NSRect newFrame = [matrix frame];
-newFrame.origin.y = General/NSMaxY(originalFrame) - General/NSHeight(newFrame);
+NSRect newFrame = [matrix frame];
+newFrame.origin.y = NSMaxY(originalFrame) - NSHeight(newFrame);
 [matrix setFrame:newFrame];
 
 // The matrix and its superview need to be redrawn
 [matrix setNeedsDisplay:YES];
-General/matrix superview] setNeedsDisplay:YES];
+matrix superview] setNeedsDisplay:YES];
 
 
 
@@ -57,4 +57,4 @@ rect.origin.y -= [theMatrix intercellSpacing].height;
 [theMatrix setFrame:rect];
 </pre>
 
-- General/Bwass
+- Bwass

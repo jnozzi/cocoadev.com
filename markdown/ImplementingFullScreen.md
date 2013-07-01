@@ -8,10 +8,10 @@ I'd like to extend this with a second question; is there any way of making a win
 
 ----
 
-For the first question, take a look at General/DisplayKit [http://www.zobs.net/brian/software/].  It provides basic screen capturing, resolution switching and gamma fading functions.
+For the first question, take a look at DisplayKit [http://www.zobs.net/brian/software/].  It provides basic screen capturing, resolution switching and gamma fading functions.
 
 
-For the second question, I'm not 100% sure how to go about this but I'd guess you'd have to manually create a window with a style mask of General/NSBorderlessWindowMask and a content rect of the screen's frame (minus the menu bar height) and then call [window setLevel:General/NSFloatingWindowLevel];  and then do whatever drawing you want in that window.  -- Bo
+For the second question, I'm not 100% sure how to go about this but I'd guess you'd have to manually create a window with a style mask of NSBorderlessWindowMask and a content rect of the screen's frame (minus the menu bar height) and then call [window setLevel:NSFloatingWindowLevel];  and then do whatever drawing you want in that window.  -- Bo
 
 ----
 
@@ -20,12 +20,12 @@ I managed to get this to work with a single line of code. And with Cocoa, you ca
 [myWindow setFrame:theScreenFrame display:YES animate:YES];
 
 
-Assuming myWindow is your General/NSWindow and theScreenFrame is a General/NSRect representing the frame of the screen. If you want to get the frame of the screen, you can do something like this :
+Assuming myWindow is your NSWindow and theScreenFrame is a NSRect representing the frame of the screen. If you want to get the frame of the screen, you can do something like this :
     
-General/NSRect theScreenFrame = General/[[NSScreen mainScreen] frame];
+NSRect theScreenFrame = [[NSScreen mainScreen] frame];
 
 
-That's it. I suggest that before you make any change to your window, you keep the old window size in another General/NSRect if you want to return from your full screen mode.
+That's it. I suggest that before you make any change to your window, you keep the old window size in another NSRect if you want to return from your full screen mode.
 
 -- Trax
 
@@ -34,7 +34,7 @@ That's it. I suggest that before you make any change to your window, you keep th
 There's a tutorial on this subject here: http://cocoadevcentral.com/articles/000028.php
 ( I haven't really read through it, so if it's useless feel free to delete this )
 
-General/DanMessing
+DanMessing
 
 ----
 
@@ -42,11 +42,11 @@ Also, there's a technote from Apple about creating kiosk type applications for M
 
 http://developer.apple.com/technotes/tn2002/tn2062.html
 
--- General/AndreasMayer
+-- AndreasMayer
 
 ----
 
-I would try using the General/QuickTime function General/BeginFullScreen and the General/NSWindow init-with-window-ref stuff.
+I would try using the QuickTime function BeginFullScreen and the NSWindow init-with-window-ref stuff.
 
 ----
 
@@ -68,7 +68,7 @@ Procedure Used:
 
 1) I subclassed my window and overrode the canBecomeKey method; changed the Custom Class of borderlessWindow in the nib file.
     
-@implementation General/FullScreenWindow
+@implementation FullScreenWindow
 - ( BOOL ) canBecomeKeyWindow
 {
 	return YES;
@@ -77,12 +77,12 @@ Procedure Used:
 
 2) In the awakeFromNib method for the window controller object, save the original content view for the to-be-borderless window
     
-	General/NSView *oldView = [ borderlessWindow contentView ];
+	NSView *oldView = [ borderlessWindow contentView ];
 
 3) Reinitialize the window the way I want it
     
-	borderlessWindow = [ borderlessWindow initWithContentRect: [ [ General/NSScreen mainScreen ] frame ]
-		styleMask: General/NSBorderlessWindowMask backing: General/NSBackingStoreBuffered defer: YES ];
+	borderlessWindow = [ borderlessWindow initWithContentRect: [ [ NSScreen mainScreen ] frame ]
+		styleMask: NSBorderlessWindowMask backing: NSBackingStoreBuffered defer: YES ];
 
 4) Restore the content view - all the connections and widgets work normally
     
@@ -101,13 +101,13 @@ I don't know how to enter full screen and switch resolution, can someone give me
 
 ----
 
-General/OmniGroup has some sample code that may be of interest to you: http://www.omnigroup.com/developer/gamedevelopment/gdc2001/
+OmniGroup has some sample code that may be of interest to you: http://www.omnigroup.com/developer/gamedevelopment/gdc2001/
 
 ----
 
 those examples dont run in xcode :-(
 
-General/EcumeDesJours
+EcumeDesJours
 
 ----
 
