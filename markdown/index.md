@@ -1,9 +1,11 @@
 The New CocoaDev
 ================
 
-**EDITING HAS BEEN TEMPORARILY DISABLED**
+**EDITING HAS BEEN DISABLED HERE**
 
-The CocoaDev site is undergoing some big changes to take it into 2013 and beyond. See below for details.
+The CocoaDev site is undergoing some big changes to take it into 2014 and beyond. See below for details.
+
+You can currently contribute edits via a fork and pull request on [github](https://github.com/jnozzi/cocoadev.com).
 
 The Skinny
 ----------
