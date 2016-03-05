@@ -202,6 +202,7 @@ Here are a few prefixes to avoid, since there are significant amounts of code us
 * MFR - Madefire (http://madefire.com https://github.com/Madefire/)
 * MG - Matt Gemmel
 * MGC - Max Goedjen/Clink Apps (http://clinkapps.com)
+* MGL - [Mapbox iOS SDK](https://www.mapbox.com/ios-sdk/) (aka Mapbox GL)
 * MGS - Mugginsoft (http://www.mugginsoft.com)
 * MH - Mike Holman (http://www.mikeholman.org)
 * MI - less sadist/masochistic than 'My'; also if you're writing apps for bad Tom Cruise movies (really, if someone want this one, change this line)
