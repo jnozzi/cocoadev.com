@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In a stripped down version of my issue, I have an interface with a pair of classes that need to talk to each other: ClassA and ClassB.
 
     

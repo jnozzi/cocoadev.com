@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Another company by SteveJobs. It was bought by AppleComputer in February, 1997, starting the process that brought us AppleRhapsody, MacOSXServer, and finally, MacOSX.

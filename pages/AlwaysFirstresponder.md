@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am working on a kiosk application and I am trying to force the application to the front and to make sure my kiosk stays front and active. I can set the window level above every thing else but I need to make sure the application is always active unless I choose otherwise I have been experimenting with the code below but nothing seems to work its like it ignores my code.

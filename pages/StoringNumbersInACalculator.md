@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am new to Cocoa and I am developing a Calculator. My problem is this: how can I store the numbers which the user enters by clicking the buttons? For example a user enters 545.5 using the Calulator's buttons. Now how do I store this number? I can store the most recent number the user pushed but then only 5 will be entered. Please advise. - Saad R. Abbasi
 
 ----

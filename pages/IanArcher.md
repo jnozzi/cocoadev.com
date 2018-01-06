@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am Ian Archer.
 
 *no i am!*

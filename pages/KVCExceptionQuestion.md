@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to create a dictionary-like, bindings enabled data structure. It has a custom to-many relationship key named "entries" which I implemented using this custom code:
 
     

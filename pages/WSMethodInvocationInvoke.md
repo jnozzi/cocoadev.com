@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Greetings:
    I'm taking baby steps here.  All I want to do is to call General/WSMethodInvocationInvoke() without parameters and get any response.
 

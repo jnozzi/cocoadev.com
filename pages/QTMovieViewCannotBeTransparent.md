@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Has anyone been able to get QTMovieView to play a movie with transparency without it drawing a background color?

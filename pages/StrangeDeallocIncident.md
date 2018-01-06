@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Late note on recent page edit: *This seems largely to be a misunderstanding of how the autorelease pool works*
 
 ----

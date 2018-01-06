@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ObjCBrowser-A variation on SmallTalk's Browser application, meant to ease the writing and browsing of ObjC code.  
 
 ObjCBrowser is a project of JoeOsborn.  

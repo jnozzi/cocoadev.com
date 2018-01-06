@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Just some of the private CoreDock functions, which are used by the Dock prefpane.

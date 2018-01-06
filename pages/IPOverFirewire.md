@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://developer.apple.com/firewire/IP_over_FireWire.html
 
 Apple has a preview release of IP over Firewire. I thought this might be of interest to developers using XCode. I was wondering if anyone is currently using IP over Firewire and building projects in XCode using the distributed builds feature. The main thing I am wondering is what kind of performance can you expect to get from, say, a setup with two single CPU G4s each running at a clock speed of 1 GHz. Is anyone using a setup similar to this on a daily basis? How much help does the second CPU really provide? How many nodes can you connect with Firewire? Basically, any discussion on the subject would be nice. --zootbobbalu

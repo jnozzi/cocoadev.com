@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There is a section in ADC that describes a new Network Kernel Extension mechanism (NKE) introduced in Tiger.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See: http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/PListKeys.html
 
 Specifies that an application is background-only *but* has a UI as well (usually a floating utility window). No menu bar or Dock icon, with the exception that it may have an NSStatusItem.

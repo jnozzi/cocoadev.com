@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Pages relating to General/VersionControl: [Topic]

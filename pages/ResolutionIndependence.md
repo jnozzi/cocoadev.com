@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does someone know where to find the docs for the resolution independence stuff in Tiger/Panther (scaling API)?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CFXMLParser is part of a set of Apple-provided C-language functions for manipulating XML documents. Documentation by Apple starts here: http://developer.apple.com/documentation/CoreFoundation/Conceptual/CFXML/index.html.
 
 XMLTree is a Public Domain Objective-C wrapper for these functions.

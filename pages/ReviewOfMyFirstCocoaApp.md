@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I thought this might be a good clearinghouse for people to post requests for feedback on their apps.
 
 Hopefully, good-hearted individuals will volunteer their efforts. And those that would prefer not to may remain silent.

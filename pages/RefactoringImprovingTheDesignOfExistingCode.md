@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Book by MartinFowler &al. about refactoring.
 
 WhatIsRefactoring ?

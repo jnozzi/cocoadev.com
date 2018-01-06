@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to make a program shebangable... that is, one should be able to write shell scripts that have the name of my program at the top of the file beside the shebang.  (actually not my program, but I want to make a way to write executable FScript-s... I will just make a small program that imbeds the FScript interpreter and does the FScript), Here's what I have discovered about making a program shebangable.
 
 Here's a simple example scenario to explain what's going on.

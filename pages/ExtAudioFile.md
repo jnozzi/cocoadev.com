@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Since Mac OS X v10.4 there is a nice extension of AudioFiles available: ExtAudioFile.
 
 With ExtAudioFile it is very easy to read/write audio files even if they are in a compressed format (like MP3)

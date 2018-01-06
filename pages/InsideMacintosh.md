@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 InsideMacintosh is the name for a large library of books released by Apple describing the technologies used in the Mac OS.
 
 In the 1980s there were just a few books (volumes) and they were numbered with Roman numerals; you'll sometimes see references to them abbreviated as something like "IM-IV" (InsideMacintosh Volume 4). By the 1990s so many books were coming out that they were named, and references were usually of the form "IM:Files", or if the name was particularly long just the acronym: "IM:IAC" for Inter-Application Communication.

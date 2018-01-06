@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What I need to do is take an NSAttributedString, search it for a specific set of characters, say an @ symbol, and then replace that symbol with something else. I looked into NSScanner, but it doesn't seem to work with NSAttributedString. Does anyone have a good idea? This is probably really easy and I'm just overlooking something. Thanks.
 
 *NSMutableAttributedString*

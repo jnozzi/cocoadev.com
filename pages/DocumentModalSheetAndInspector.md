@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a document based application I'm working on, with a document window and a shared inspector panel (singleton window controller) that allows the user to change attributes for the document. When the user changes an attribute, I begin a document modal sheet that prompts for a comment to go along with the change. When this happens, the inspector panel obviously needs to be disabled. The inspector can't be part of the modal session however, since the user should be able to switch to a different document and still use be able to use it.

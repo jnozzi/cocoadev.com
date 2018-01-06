@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Cocoa's UNIX roots are getting on my nerves.
 
 ----

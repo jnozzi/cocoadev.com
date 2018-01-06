@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to build a framework with xCode.

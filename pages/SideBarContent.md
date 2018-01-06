@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How can I get the sidebar content from inside Cocoa ?

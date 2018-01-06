@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello. I've taken the task of making a Cocoa WYSIWYG HTML editor for websites, kinda like Nvu but in Cocoa. I tried it in Java, a language I am fluent in, but I hit a  few road blocks. I know very little Objective-C, but enough to get myself by. What I have tried with no success 3 times was to use the WebView control to edit a page. I want to know the following:
 
 

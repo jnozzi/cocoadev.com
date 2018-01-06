@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am having a difficult time creating Radio Buttons programmatically.  I have created an NSMatrix and set its mode to NSRadioModeMatrix.  The cellClass is NSButtonCell.  Here is the code:
 
     

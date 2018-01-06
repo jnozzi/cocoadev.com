@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have created an NSView  and created multiple tracking rects for mouseovers. The mouseovers work. I recieve the message on everyone. The problem is that they seem a little lagged. Right now I have about 300 items that have a tracking rect associated with them, and they are rather close (only 4 pixels apart). It seems that when I move the mouse quickly it sometimes does not have time to send the event and it gets lagged up. For example, I'm hovering over one item and a string is drawn at the top of the view represents that I'm hovering over this item. I then move my mouse quickly to an item that is in the top left. When I do this, I go over many other tracking rects. When i finally stop at my destination rect, i often don't see it's name up in the string at the top. Usually it's one of the other tracking rect's names that was along the way. What I would really like is an effect like in the Dock, where rollover instantly puts the name above.
 
 I hope that that expains it well. Thanks in advance for your help.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to run a sheet in an app I'm creating. I run

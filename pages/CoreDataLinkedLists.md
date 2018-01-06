@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 You can find a writeup on how to implement a double linked list in coredata on my blog at:  
 http://www.jonathansaggau.com/blog/2007/02/core_data_double_linked_list_h.html  
 

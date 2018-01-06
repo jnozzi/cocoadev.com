@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a few TLA's (ThreeLetterAcronyms) which I would like to add descriptions for. Is it possible to add pages to this wiki where all characters are uppercase, like STL, POD and similar?
 
 **No. The plurals, however... just leave out the apostrophe.**

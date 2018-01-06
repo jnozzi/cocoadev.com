@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how the color labelling is done in Mail.App..
 
 The one that colors junk mail brow and other rule based events.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Please add links to wiki pages, books, and websites that are of assistance to programmers using Carbon.
 
 From http://developer.apple.com/carbon/ ...

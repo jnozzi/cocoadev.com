@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Blocks are declared and typed as follows:
 
 'return type' (^)('parameter types')

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to add a .wdgt file (a Dashboard widget) as a resource into my application, so that I can have a menu item "Install widget..." that does this:

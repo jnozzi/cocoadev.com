@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Rebecca Gabriella Bettencourt
 
 Doing what she does best - plastering her name all over the Internet!

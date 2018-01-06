@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/TRConsolidateMessages is a small class I wrote to consolidate messages for myself, it was inspired by General/NSNotificationQueue.
 
 Unlike General/NSNotificationQueue I didn't want to mess around with General/NSNotificationCenter for this code which must be called often yet is relatively slow (redrawing).

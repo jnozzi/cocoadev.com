@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 see also, CocoaBindingsDiscussion for more discussions of bindings-related issues

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 When subclassing General/NSArrayController (or probably any object controller) what member should I override to do additional init style processing.

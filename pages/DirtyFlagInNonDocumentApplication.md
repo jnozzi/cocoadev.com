@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I'm trying to modify the dirty flag in a non-document application (the black point in the red one). How shall I do that ? By implementing a delegate method ? which one ? Is it possible to bind it to [undoManager canUndo] ?

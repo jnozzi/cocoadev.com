@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Are there anyone with information on what class the left/Playlist/iTunes-store menu, in iTunes are? A similair menu can be seen in xtorrent.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **AVSystemController**
 
     + (id)sharedAVSystemController;

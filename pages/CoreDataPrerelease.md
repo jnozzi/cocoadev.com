@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In an effort to avoid the CocoaDev chaos that came with the introduction of CocoaBindings, and given that Tiger will be released within about a month or so, I've moved the CoreData speculation and pre-release information to this page, leaving the CoreData page itself open for solid info. �DustinVoss

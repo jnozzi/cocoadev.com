@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe SelectSubviewOfNSSplitView here.
 
 I have an NSSplitView with 2 subviews.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Q:** I've been trying to install the Boost [http://www.boost.org] C++ Libraries for a while now, and I haven't gotten it to work yet. I installed a Library using "make" the other day and it worked fine, but boost uses bjam to install itself. Also according to the Boost wiki  "only a few libraries require a library compilation step using Boost.Jam. These are: thread, regex and python. Graph also requires this step only if the graphviz feature is to be used. The other Boost libraries are contained completely within header files." I have no idea what that means, and if I don't have to compile it where should I put it? The website is pretty vague about all of this and I was wondering if anyone could offer help?
 
 ----

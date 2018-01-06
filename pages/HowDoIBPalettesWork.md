@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I need to make a static palette of InterfaceBuilder with XCode, but also the example "ProgressViewPalette" doesn't work! I tried, but the application says that my custom palette is unloadable.

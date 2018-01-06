@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to create an InputManager for OmniGraffle 3 (don't ask me why at this point). I have made other InputManagers for iChat (specifically iChatExporter, and I worked on iCAR with Adrian Sampon). However, I seem to be having some trouble with this one. I class-dumped that actual OG3 executable from its bundle, and weeded out all of the classes that I didn't need, and of course fixed all of the weird struct things that class-dump puts before non-ObjectiveC classes (such as NSRange, NSPoint, etc).
 
 So I make my new project, add this new header file, and make my lovely classes. One class that I made was a subclass of OG's application delegate (called GraffleApplication, iirc, but we'll just call it that for now :-) ). In the +load method of my main class, I make this new subclass actually pose as GraffleApplication so I can "control" it, for lack of a better term. But for some reason, whenever the projects compilation gets to the linking stage, I get an error about an undefined symbol called .objc_class_name_GraffleApplication, or something along those lines (I'm too lazy to open up PB right now and copy the error directly).

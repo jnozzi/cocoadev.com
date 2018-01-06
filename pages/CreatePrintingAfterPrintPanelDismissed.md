@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to create my printing view after the user has dismissed the print dialogue. The reason for this is that I have an accessoryPanel in the print dialogue that allows the user to print only a specified type of data. But NSPrintOperation needs to be created before I can show the print panel. And in order to create NSPrintOperation I need to supply it with a View. But, to create the view I need to know which data to put in it which is only described in the print dialogue box.
 
 So you see, I'm going in circles. Is there a way around my connundrum? Thanks.

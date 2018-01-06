@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 <sputter> Dear God No!!! Drawer Abuse Stops Here! I am utterly tired of seeing shareware apps w/ scads of controls all buried in layers of control drawers! For example, check out Starfish 2.0 on VersionTracker. If this isn't the definition of Bad UI, then i don't know what is!
 
 For that matter -- look at how Apple is using Drawers! Look at Mail. Are auxilliary controls hidden there? No, the drawer holds the mail list, which is essentially the main window's (Mailbox Viewer's) parent interface (Mailbox List). 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CSCoroutine is an implementation of CoRoutine**'s for Cocoa. It provides a proxy object and NSObject category for easily setting up coroutines, and switching between them.
 
 There are only a few methods that are considered public:

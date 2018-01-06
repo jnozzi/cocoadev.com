@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I have a view with subviews (call masterView: A and the subviews, B-E) what I'd like to do is subclass A's drawRect and some how do:
 
     

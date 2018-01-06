@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 After a long detour into Java-land, I'm back programming on the Mac but am really not getting the Cocoa paradigm.  Here's a simple example:

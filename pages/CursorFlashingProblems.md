@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Q: Does anyone know how to prevent the cursor from flashing slightly everytime it is set?

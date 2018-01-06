@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CCDTextField is similar to NSSearchField.
 
 Want to do something similar to iChat's input field? This is a good jumping off point. I'll put up a screenshot when I get a chance unless someone else beats me to it.

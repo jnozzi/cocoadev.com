@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A UUID is a 128-bit value, with an interchangeable string equivalent, that is guaranteed to be unique across the space of all UUIDs generated using the same algorithm on any computer anywhere, and unique across time until approximately 3400 A.D. A UUID is useful as a unique key in databases, and in many other contexts. Standards-based.
 
 ----

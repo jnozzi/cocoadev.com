@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How can I detect a processor of the user's computer? (G3/G4/G5)

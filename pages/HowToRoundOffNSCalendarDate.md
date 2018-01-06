@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 is there any way I can get an NSCalendarDate to round itself to the nearest 5 minutes?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 An NSValueTransformer that enables bindings to use Jpeg2000 compression rather than just the raw TIFF data. 
 
 I've hand tuned the compression parameter to show no compression artifacts for my test images. You may wish to increase it. � BryanWoods

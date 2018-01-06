@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What do you think are the essential system (hardware) requirements for developing in Cocoa?  I'm using a PowerMac G4 500 with 768 MB ram (on 10.3), but I'm finding that InterfaceBuilder slows down to a crawl with even a moderately complex nib file open.  Is it a lack of RAM, or should I be looking elsewhere to eliminate this slowdown?  - NateClinton
 
 *I'd consider that about the low end of a usable system. Your IB slowness is probably just the system, but max out the RAM anyway.*

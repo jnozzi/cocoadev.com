@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaDev is probably not the best place to ask this question since it isn't strictly Cocoa related. But, having said that, people here are friendly and have always helped me out.
 
 I'm attempting to write a nice credits.rtf for my About... box -- in it I want to provide links to the various open-source project sites which supplied libraries I use. I figured it would be the Right Thing; now, the trouble is, I have no freaking idea how to make textEdit do two things:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 New to Cocoa and to C, I'm unable- after days of trying- to work out how to make the value of a variable available in different parts of a program.
 
 For example (using Project Builder) I define two classes Controller1 and Controller2 each with their own .h and .m files. Controller1 has an instance variable named Variable1 (for example a string or an array), Controller2 has an instance variable Variable2. I want Variable2 to take on the current value of Variable1 (for example in response to an IBAction). How do I communicate the data between the two classes???

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A MasterSlave paradigm generally describes situations where one system controls one or more other systems. It often refers to situations where there may be a small series of systems, in a specific order. For example of two devices on an IDE device chain, the primary device is called the "master" and the secondary device is called the "slave". 
 
 Recently Jesse Jackson and others have called on the technological industries to devise more appropriate terms for controller-controlee situations. The terms "master" and "slave" evoke images of slavery of the colonial era, and specifically in the "Southern" U.S.

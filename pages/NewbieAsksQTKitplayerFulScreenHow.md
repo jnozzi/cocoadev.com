@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm new to cocoa/obj-c. I've done a few tutirials and used the apple documentation to build my own simple quicktime player. Now I need to make my player a full screen app, but I've not enough experience with c programming or objective C to know how to do this- the only guids i've found on how to do this assume much more knowledge of programming, basically they are over my head. Can anyone help me please? 
 
 ----

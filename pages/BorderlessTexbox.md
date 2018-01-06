@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I'm trying to create a simple textbox window that's borderless and has no titlebar. I've tried all the methods posted here but won't work when I run it. I get a borderless white box with no titlebar, but I cannot enter text into it or move it around. I'm sort of new to this and I need some help
 

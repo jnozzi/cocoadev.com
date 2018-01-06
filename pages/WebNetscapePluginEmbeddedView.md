@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wanna know more of the webviews subviews???
 
 Does anyone know some methods etc.

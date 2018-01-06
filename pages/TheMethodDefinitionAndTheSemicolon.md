@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A short story by General/NedO:
 
 While reading assorted Cocoa sources today I came across and interesting semicolon usage that is not familiar to me. I certainly make no claim of anything resembling expertise in Cocoa, but I do have a solid C background. These strange semicolons confused me somewhat and after a couple hours of seaching assorted online resources I am still at a bit of a loss. The best explanation of the semicolon is the code itself.

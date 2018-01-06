@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I originally came up with the idea of a thread pool to give an easy way to distribute computations to different thread (possible cores) particually in the case of General/MapReduce. Later I discovered that the mighty Java API came up with it too. http://java.sun.com/j2se/1.5.0/docs/api/java/util/concurrent/General/ThreadPoolExecutor.html
 
 Nice to know that it's not a completely stupid idea but I wish it was original.

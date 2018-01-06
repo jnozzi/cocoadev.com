@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to subclass General/NSCell to get functionality similar to that of the cells in the Property List Editor utility, where most of the time the cell is a text field, but can also turn into an General/NSPopUpButton(Cell). I've almost got it working, but it doesn't quite work properly.
 
 Here's the code:

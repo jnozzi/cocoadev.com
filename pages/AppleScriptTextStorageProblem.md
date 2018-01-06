@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a document-based app that I'm trying to add applescript support to.
 
 I've copied in TextEdit's scriptSuite and scriptTerminology files, and exposed my textStorage via:

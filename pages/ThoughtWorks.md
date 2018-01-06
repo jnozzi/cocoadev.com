@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/ThoughtWorks is an IT consulting firm which is involved in various General/OpenSource projects. A list of their available Objective-C/Cocoa projects is here: http://opensource.thoughtworks.com/projects/objective-c.jsp

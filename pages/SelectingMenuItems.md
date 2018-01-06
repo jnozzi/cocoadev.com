@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a document based project with a standard toolbar on the document. I want an item on the toolbar to choose a menu item. I will say that the outlet is called savemenuitem for the menu I want to select. This menu item then performs an Applescript. Any ideas?
 
 thanks,

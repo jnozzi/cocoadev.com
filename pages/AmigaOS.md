@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **AmigaOS** - *The default native operating system of the Amiga*
 ----
 OS that drove/drives the Amiga family of personal computers. Consisted of Intuition (the GUI) and Workbench (everything else). Was preemptively tasked, but lacked memory protection. The most common form of IPC on Classic AmigaOS was simply passing pointers between processes. The Amiga was the first personal computer to have high-quality color graphics out of the box and found a minor niche in video production.

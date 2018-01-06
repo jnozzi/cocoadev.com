@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Just a quick question to anyone who might know the answer.  Is it possible for General/NSConnection clients to vend objects to servers so that the a client could access a server's proxy class and a server in return could access a connected client's class as well?  Right now my code works well one way.
 
 My server code looks like this:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In the process of wrapping a Cocoa gui around a C++ library, I've come across a case where it would be
 convenient (or so I think) to stash some dynamically allocated memory (from malloc) on to the AutoreleasePool.
 I've written the following code which I hoped would make this happen, but it seems to leak anyways. (i.e. the MemoryHolder

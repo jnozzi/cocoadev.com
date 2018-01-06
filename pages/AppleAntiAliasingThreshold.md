@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you need to turn off anti-aliasing in XCode (or any app), just do the following:
 
     defaults write com.apple.Xcode AppleAntiAliasingThreshold 128

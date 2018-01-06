@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm still a beginner in cocoa but i'm getting close to what i'm searching to do.

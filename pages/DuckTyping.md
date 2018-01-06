@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If it walks, talks, and quacks like a duck, then it must be a duck.
 
 For example:

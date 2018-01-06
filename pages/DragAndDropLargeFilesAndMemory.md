@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Could this be because it is first trying to make a copy of the dragged thing onto the pasteboard?  All I want is to get a path to the dragged file - I don't actually need the data so any data copying is not necessary.
 
 *As far as I know it only copies the path. When are you experiencing the delay? Upon dragging or dropping the files?*

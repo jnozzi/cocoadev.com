@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to dupicate the behavior seen in iTunes's source list, where when you click on a certain row (i.e. the Music Store), it changes the view from an General/NSTableView to a General/WebView (probably in an General/NSTabView). What I want to know is how to get it to send the method to the tabview to change its current tab when a row is clicked in the tableview. I understand General/NSTableView uses its delegate methods to send notifications about changes in selection, and that I can use the -clickedRow method to know which one, but what I need to know is where and how can I implement this? Do I do it in a subclass of the tableview? Or do I do it in another subclass altogether? I've seen this behavior in a lot of good apps and little or no documentation on how to do it exactly. --General/LoganCollins
 
 ----

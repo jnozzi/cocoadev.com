@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An implementation file is the file containing the ClassMethod and InstanceMethod definitions for a class.

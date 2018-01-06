@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to find out if I can pull the NSData from a property list to get the original binary data back. I want to do this from a non-Cocoa (and non-Mac) environment. I've got the property list (a NSDictionary) which contains the NSData, which looks like base64 data (am I right?), so can I simply decode that somehow to get the data I want (assuming I'm correct that it is base64) from the plist?

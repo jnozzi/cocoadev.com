@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Howdy!
 
 Trying to get the contents of an NSView dumped to a bitmap ( it is actually an OpenGl View subclass of NSView ).

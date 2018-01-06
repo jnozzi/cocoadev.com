@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A GUI tool for building interfaces for your programs, and then some. 
 
 http://developer.apple.com/tools/interfacebuilder/index.html

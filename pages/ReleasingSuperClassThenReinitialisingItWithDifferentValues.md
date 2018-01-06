@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to release the superclass of a class. And then from one of the subclass's methods re-initialise it but with different values. Moveover, if A is the super class and B is the subclass. I want to release A from inside a B method calls. Something like this:
 
     

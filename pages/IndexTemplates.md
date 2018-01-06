@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 XCode has brought many great features, but some features can get in the way. If you want to speed up the time it takes for a new project to index, read the link below!! --zootbobbalu

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I need to create an interface which has the same style as the Spotlight results window.  Collapsable segments which contain UI elements and a title at the top.  My requirements are a bit different in that it wouldn't just be a file list, but UI elements like sliders and buttons which are contained in each segment.

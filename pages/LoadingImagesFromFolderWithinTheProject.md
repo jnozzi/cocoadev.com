@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe LoadingImagesFromFolderWithinTheProject here.
 
 How I can load images from a folder within my Project? The folder is included in my project and copied to the target! When I added the folder to my project I used the following settings:

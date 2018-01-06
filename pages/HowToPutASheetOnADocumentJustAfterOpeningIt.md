@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to accomplish the following: a uses opens a new document in a document-based application. as soon as the document is loaded it has to show a sheet asking for some initial preferences. When I call the [NSApp beginSheet:modalForWIndow:ModalDelegate:didEndSelector:contextInfo] method in the windowControllerDidLoadNib method of the document, the sheet gets created, but is detached from the window. then the window is put in front of the sheet.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 use these with General/NSLog or your favorite routine that needs a stringWithFormat:
 
 Format Types:

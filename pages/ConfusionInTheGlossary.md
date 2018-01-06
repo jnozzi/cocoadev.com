@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is everybody certain that DynamicMethodDispatch really *is* the same thing as MultipleDispatch? It seems to me that DynamicMethodDispatch would actually be much closer related to DynamicBinding (going by the phrase "DynamicMethodDispatch", of course), but this could very well be mistaken.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ABPerson Inherits from ABRecord

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any way that I can check and see if a user has email accounts set up in Mail?
 
 ----

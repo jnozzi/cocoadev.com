@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey,
 
 My application generates a temporary perl script and needs to run it from the command line.  Using NSTask is giving me incredible headaches - how would one go about running a perl script and returning the result that is located at, say, ~/myperlscript.pl? - THANKS.

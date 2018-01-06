@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey, All--
 
 My first day using Cocoa. (Please be gentle)

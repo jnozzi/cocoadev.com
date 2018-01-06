@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 hello, i've been trying to implement a custom insertion point, sometimes refereed to as a caret, in a subclass of NSTextView. 

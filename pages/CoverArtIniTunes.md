@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 So some of us recently saw the nifty new screen saver that combines all the cover art in your iTunes library. After having seen this, I have a few questions:

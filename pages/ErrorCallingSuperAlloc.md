@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 While trying to code a ClassCluster, I came across a problem when calling [super alloc] and [super allocWithZone:]
 
 Here's a small test case:

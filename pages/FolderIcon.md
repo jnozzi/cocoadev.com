@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know where the image of a normal OS X folder can be found?
 
 http://iheartny.com/xicons/downloads/RestoreOSXIcons.sit

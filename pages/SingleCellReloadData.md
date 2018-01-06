@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here is some code to make NSTableView only update one row, column, or cell at a time. These can be used instead of **-reloadData**, which updates the entire table.

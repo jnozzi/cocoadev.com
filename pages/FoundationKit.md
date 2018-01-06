@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The FoundationKit is a set of classes first developed by NextComputer, and now by AppleComputer, for core application services.

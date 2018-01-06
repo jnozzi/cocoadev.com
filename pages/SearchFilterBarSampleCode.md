@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is the depository for three classes which together form the base code for my implementation of the search filter bar seen in itunes, safari, finder, and mail.
 
 The hope is that if you want to do it your own way, here's all the code.  But I plan on creating an IB palette for the whole project once it's polished off.  So just check back in.

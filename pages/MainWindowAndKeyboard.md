@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to make sure that my app - which has multiple windows - responds the same to keystrokes no matter what window has focus.

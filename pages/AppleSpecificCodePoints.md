@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
     
  static const struct { char const* const name; unichar const code; } KeyGlyphs[] =
  {

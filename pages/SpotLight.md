@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://images.apple.com/macosx/images/spotlightsmall20050412.gif
 
 Spotlight � Apple's new metadata search framework introduced in OSXTiger.

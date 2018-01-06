@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been trying to put images into the cells of one column of an NSTableView, but have had no success.
 
 Here is my setup.  I am trying to make a simple multiple-choice test editor.  Each question is an object and

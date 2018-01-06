@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 GameKeyBoardHandling is a generic solution that supports an arbitrary number of simultaneous keys. It requires no Carbon or magical run loop hacks to make it work. In fact it's pure Cocoa and requires less than 75 lines of code. No offense to the Omni Group, but that I<nowiki/>nputExample is a LOT more complicated.
 
 --AlainODea

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I could use some help with NSComboBox and auto-completion.. i'm getting this when i type a character that there is no match for in the dataSource
 
 2004-01-19 01:16:28.974 GameCollection[4231] *** -[NSComboBoxCell length]: selector not recognized

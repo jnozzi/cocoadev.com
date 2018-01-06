@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I use NSSavePanel to ask user to enter the file name to save, when the file name that user entered has already existed in file system, NSSavePanel will display an alert box asking user will replace the existing file or choose another file name. And I'm willing to disable the alert box, so that NSSavePanel will always replace the existing file without an alert box.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to encode NSRects and NSPoints via a Keyed Archiver, but I'm not sure if there's a solution to this. I tried to wrap them in NSValues, then encode them via encodeObject: forKey:. I got the following error: -[NSKeyedArchiver encodeValueOfObjCType:at:]: this archiver cannot encode structs.

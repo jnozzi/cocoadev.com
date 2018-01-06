@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Mac OS X introduces a unified way applications can store preference data. You can browse your preferences in Terminal with the "defaults" command line program. Try "defaults domains" to get a list of preference domains. You can read and write to specific domains with the "defaults read" and "defaults write" commands. See "defaults" usage or the defaults man page for more information. See also WorkingWithUserDefaults.

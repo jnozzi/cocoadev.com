@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's the implementation for a screen saver that blanks the screen and does no animation. It's kind of goofy now that we have energy saver, but some people insist on minimalism ... 
 
 In BlackView.h:

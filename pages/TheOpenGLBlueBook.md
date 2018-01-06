@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A very tersely written General/OpenGL API reference manual designed (as far as I can tell) to accompany General/TheOpenGLRedBook. You can find it here:

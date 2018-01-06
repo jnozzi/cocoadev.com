@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Please read WikiSpam for an expanation as to why this is here
 
 ChrisW

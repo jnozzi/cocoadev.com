@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I couldn't find any examples of using a mask on a CALayer, so I'm posting one.  
 Just create a custom view and put this code in it to see how they work.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an NSAttributedString with formatted text (different fonts, colors, styles, etc.) as well as with images. Is there any way out there that will take this string and turn it into HTML without me having to spend the three or four days writing and perfecting a parsing engine that will probably end up being slower than what it http://goo.gl/OeSCu desirable? I don't see anything for this in the class itself, so perhaps someone can point me to a third-party framework or technique to help me out here?

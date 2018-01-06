@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to rename a mounted volume programatically?
 
 ----

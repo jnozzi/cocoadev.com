@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My friend, an avid PC user but slowly budding OS X lover, expressed interest in finding a note taking application he could use on his iBook while in class.  He so far only likes MS Word for windows as it can open HTML files(which he sometimes gets notes for classes in) and add notes to it which show up in a cooler view than in MS Word for mac(along the right side with lines to where he inserted them... reminded me of FileMerge in a weird way)
 He has yet to find a program on the mac that he likes, specially to take PDF or HTML notes and add his own notes to them while in class.... this brings me to my idea...
 

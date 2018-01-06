@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Quite often whilst coding in Cocoa, I find myself spelling such classes as NSColor and NSNotificationCenter in Australian English form. i.e NSColour and NSNotificationCentre. Which makes Xcode angry. Is there a way to create some sort of alias between NSColor and NSColour? So say if I write NSColour, Xcode will interpret it as NSColor?
 
 ----

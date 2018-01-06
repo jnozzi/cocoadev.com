@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a non-document app with NSTableView and NSTextView fields. There's a mutable array of dictionaries, with two strings in each dictionary. First string is for table row, and second string is for text view. So when the user clicks on a row, the corresponding string is displayed in textview. One can edit the text in a textview and changes are added to data and saved as plist. The problem is that newly edited text in a textview doesn't show up correctly, although it's saved correctly, and after a program's restart it is displayed correctly.
 For example I have 3 records with content as such: 1st record - "Matthew", 2nd - "Joey", 3rd - "Alice". If at runtime I click on the 2nd row and modify the content of textview from "Joey" to "Bob", and then click on a third row I'll see "Alice". But when I return to the second row I still see "Alice". If I click on the 1st row and then on second, then I see "Matthew". The content of the modified record will always be the same as of previously selected row. But in fact the changes WERE saved and in plist it's already stored as "Bob".
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Please don't flame.
 
 1.  provides 'Cocoa-ish' semantics basically by fibbing its face off about how Apple event IPC actually works

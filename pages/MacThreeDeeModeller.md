@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know of a 3d modeller for native Mac OS X (Java = sucks) that follows suite with everything else mac? (Good interface. NOTNOTNOT Blender)
 Suggestions? Comments? HELP???
 

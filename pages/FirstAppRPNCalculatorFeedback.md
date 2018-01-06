@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This application models a Reverse Polish Notation calculator (RPNCalc).  I used the MVC pattern, but not much else like KVO,KVC, or binding.  That might be my next application.

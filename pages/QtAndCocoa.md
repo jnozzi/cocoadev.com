@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, folks, sorry my english.. I anybody know Qt? I'l try to discribe th problem...

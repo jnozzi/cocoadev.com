@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have two NSTextFields, and I would like for them to have the exact same content. The only way I've been able to do this is either with the controlDidEndEditing: delegate method or with the takeStringValueFrom: action in Interface Builder. The problem I have with both of these is that the content only updates after the user has finished editing the text field, and I would like the second text field to have the same as the first even when it's being edited. I tried the controlDidChange: delegate method, however, when I try to get the value from the first text field (I'm using [firstTextField getStringValue]) the first text field ends editing and I'm unable to enter more than one character. I tried searching for this and didn't come up with anything, I also tried taking a look at the the Field Editor's documentation but I couldn't figure out a way to do this.
 
 ----

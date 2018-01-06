@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Getting the Process ID for a running Application (run this with NSTask)
 
 //running app we are interested in = Terminal.app

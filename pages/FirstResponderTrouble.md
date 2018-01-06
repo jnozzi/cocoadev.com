@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have added a find text field to my toolbar. The problem is that when the user press return in this text field (to search the current document of the same window), the document view is *not* the first responder (the text field is) -- so how to handle this gracefully?
 
 My application is not document based so going through the window controllers document doesn't seem like an option (and this document could anyway be visualised in several different windows).

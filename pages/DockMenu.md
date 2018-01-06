@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to add images to a dock menu like this?
     
 NSMenuItem *item1 = [dockMenu addItemWithTitle:@"TEST ITEM"];

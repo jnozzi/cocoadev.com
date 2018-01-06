@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/AppleComputer's (formerly General/NeXT's) General/WebObjects frameworks, are basically, a set of frameworks building on the General/FoundationKit, for making web applications. An example of this is General/AppleComputer's own Apple Store, which is run by means of a General/WebObjects application (or was last I saw).

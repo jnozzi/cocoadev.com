@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I spawn a thread (using NSThread) which is responsible for fork()'ing and monitoring the output from this forked sub-process (using pipe/file descriptors). When the sub-process has output, it is read by my thread and sent to the main loop.
 
 This works fine, but there is one problem -- during shutdown, my forked sub-process will continue to run. I have a mechanism to quit it, but this requires sending a message to the thread (which then signals its sub-process), but if I send a message to my thread when receiving a NSApplicationWillTerminateNotification, my thread is not awakened.

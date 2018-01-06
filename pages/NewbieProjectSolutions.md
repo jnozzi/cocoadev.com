@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Warning!  Most of the fun (and frustration) of programming is figuring it out yourself.  This page has solutions to some of the suggestions at NewbieProjectIdeas.  If you want to figure them out yourself, go back, my newbie.  If you are so frustrated and need some help, continue...
 
 **Beginner**

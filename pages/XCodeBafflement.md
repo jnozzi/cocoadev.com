@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Xcode baffles me, scares me, and leaves me feeling like a babe in the woods. It took me the better part of an afternoon just to figure out stuff I used to take for granted, like how to make headers in a framework target be public or how to make my target debuggable.
 
 Xcode seems to still have everything PB had, but a lot has been 'relocaed'. That's OK, I'm adaptable -- hell, I've developed for embedded motorola chips, win32, General/BeOS, and so on. I pride myself on my ability to learn a new environment.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Oct. 28, 2004
 
 I'm trying to implement something like what the NSColorPanel does when it allows an external NIB (with code) for a color picker to be added to the main color panel window (via **provideNewView:(BOOL)initialRequest**). What I'm trying to plug into my app is an NSView subclass containing some buttons and other stuff which is bundled with code for responding to the UI events. I can build this without errors and I can load it (via **NSBundle loadNibNamed:@"nibName" owner:self**) but when I then try making it a subview of an existing view in the app's window it gets the following error: 

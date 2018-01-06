@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **See the PowerBook page.**
 
 http://www.apple.com/powerbook/

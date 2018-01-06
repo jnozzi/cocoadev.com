@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Upon execution of the following code (which produces no warnings):

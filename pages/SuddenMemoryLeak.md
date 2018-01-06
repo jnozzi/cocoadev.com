@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A good-behaving app (doc-based) I working on develop all sudden, awful memory leak.
 So far I have trace it to see that dealloc method in window controller does not called,
 so no objects I  do now create in window controller will go away when close the doc.

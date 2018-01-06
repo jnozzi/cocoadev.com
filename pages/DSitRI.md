@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 DSITRI (Dr. Schaller IT Research Initiative) [http://www.dsitri.de/wiki.php] is an IT research initiative using Cocoa as a development platform.

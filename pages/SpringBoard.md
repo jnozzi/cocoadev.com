@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 SpringBoard is the desktop of iPhone and also application launcher.
 
 Its configuration file is /System/Library/LaunchDaemons/com.apple.SpringBoard.plist

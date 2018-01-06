@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Objective-C is one of the most dynamic object-oriented languages. It uses the concept of messaging, in which you can send any message to any object. You can override methods of existing classes/objects, pose classes as different classes, and do many other useful tricks due to the dynamic runtime. The one area which is still static, is the objects themselves.

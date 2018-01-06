@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Subclass of General/UIView. Displays static, uneditable text, with optional shadow, center alignment, wrapping, ellipsis-izing, and so on.

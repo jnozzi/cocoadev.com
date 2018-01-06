@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Newbie question maybe and I am expecting an RTFM answer but:
 
 How do I get an image to the right of a menu item?

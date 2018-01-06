@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Greetings!
 
 Is there a way to define Menu item separators in your model layer so that Panther's controller layer will recognize this token and create menu separators from an NSArrayController's contents?

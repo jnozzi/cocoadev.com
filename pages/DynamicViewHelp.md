@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I need to implement a view much like the Find window in the finder (the 10.3 one). Basically the user needs to be able to add additional search parameters by clicking a + button, remove them by clicking a - button, etc. The content of the search parameter controls in each row will vary depending on the selected parameters, just like in the Finder Find window. Unlike the Finder Find window, the height of each row of search parameters is not guaranteed to be constant, but will vary depending on search options, and the controls required for those options. 
 
 My question is what is the best way to implement such a view/series of views?

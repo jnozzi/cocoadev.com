@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to implement a pop up menu (like when you control+click in Explorer and a list of choices pops up to give you the following options - Internet Explorer Help, Back, Refresh Page, blah, blah, blah, nil ;-)
 
 I like using these tiny windows (that only include a list and no title bar) in other apps and I would like to use them in apps I write.

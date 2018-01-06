@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ever wanted a comparison that put Cat2 before Cat20?
 
 Here's chunk of code to allow one to CompareNumerically, as taken from a post on the CocoaDev mailing list:

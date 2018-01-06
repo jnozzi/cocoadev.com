@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In order to receive Key and Mouse events  an object must implement the following methods:
 
     

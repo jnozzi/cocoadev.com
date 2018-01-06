@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A mailing list maintained by AppleComputer. It is not affiliated with this web-site (CocoaDev).
 To enroll, go to http://lists.apple.com/mailman/listinfo/cocoa-dev.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wish to allow the user to customise the contents of a menu, this include binding hotkeys to the items. But how can I snoop the keys pressed *before* the system resolves menu keys? I know both IB and PB does this, and they should both be Cocoa...
 
 Also, does anyone have a map of which glyphs to use for tab, arrow keys, enter, delete, backspace, page up/down, home/end, F1-14 and similar?

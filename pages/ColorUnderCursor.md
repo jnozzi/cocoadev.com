@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Having looked at Pixie and after a friend asking if a certain app was possible, I was wondering how people assume Pixie gets the color under the cursor or if there is a more efficient way of getting the color.
 
 ----

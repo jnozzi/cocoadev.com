@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 
 How to get the serial number of a CD on Mac OS X? Is there any 

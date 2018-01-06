@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CocoaDevCentral is a sort of a kindred spirit to CocoaDev. Both allow user participation in writing content for the site, and both are devoted to Cocoa.

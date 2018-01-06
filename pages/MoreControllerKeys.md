@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 i'm writing my own controller and i would like to change some of the controller keys.
 instead of the 'selection' key i would like to see 'connection' 
 and i would also like to programaticaly show model-key-paths in IB.

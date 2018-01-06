@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello there, I'm having trouble being able to copy an NSView, here is the code i've tried:
  .h
  @interface TRTabbleView : NSTableView

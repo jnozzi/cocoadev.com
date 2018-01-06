@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I've created a tabView and am trying to put a custom view inside it. This tab is to serve as the model for tabs created afterwards. So, I tried this:
     

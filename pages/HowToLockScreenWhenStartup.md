@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is my question:I need to lock the screen at the system startup, the user must submit his authentication information to a server to use the machine.But I really have no idea how to do this.A screen saver can help with this or cocoa got a better support??
 
 ----

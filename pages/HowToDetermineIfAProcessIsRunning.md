@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm writing a program where I need to find out if Apache is running.  Is there an easy way to do this using Cocoa (or carbon for that matter)? I was thinking about using an NSTask with ps, but I'm hoping there's a better way. Suggestions?

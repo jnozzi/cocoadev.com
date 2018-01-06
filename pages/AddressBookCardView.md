@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've often wondered and I expect others do as well. What is the "CardView" in Apple's Address book?
 
 My guess is thats its an NSTextView (from the selection behavior) with assorted NSTextAttachmentCells around to implement the various fields. Perhaps an NSLayoutManager subclass to do the positioning? IIRC there was some chatter on cocoa-dev many moons ago about a WWDC session on the subject---it seems like it would be a good subject for sample code showing off NSTextView's flexibility if it is in fact an NSTextView.

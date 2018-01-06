@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Brief history... I have been an application developer for about 15 years now (two of which were spent actually working at Apple). I am tired of doing the same things over and over. I am excited about the latest UI development frameworks. I was hoping that Cocoa would be one of these. It still has lots of problems... 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page is almost impossible to find unless you know where it is. So here it is for the record.
 
 http://developer.apple.com/ue/aqua/icons.html

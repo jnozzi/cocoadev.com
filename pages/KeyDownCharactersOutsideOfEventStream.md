@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 related key words - NSEvent, NSKeyDown, KeyMap, NSResponder, sendEvent
 
 Here's a simple way to get the current keyDown characters outside of the event stream. 

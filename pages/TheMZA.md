@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm a student in the UK, currently working on a General/PhD in bioinformatics at the University of Nottingham. When not putting the finishing touches to my thesis, I can be found hacking on some Cocoa code from my 15" Al General/PowerBook.

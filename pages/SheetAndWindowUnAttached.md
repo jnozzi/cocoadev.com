@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a document based application.  When it runs, a main menu window comes up with a few options for the user (New, Load, Quit, etc.)  I want the user to define a few properties everytime a new document is created (whether it is done from the File Menu or the actually window).  So what I have is a sheet that is displayed from an NSPanel from the MyDocument nib file.  I display this sheet in the:
 
 - (void)windowControllerDidLoadNib:(NSWindowController *) aController

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I am trying to make an IBPalette to expose some functionality of a framework I have created.  The problem, however, is that the IBPalette can't be linked with the framework because the @executable_path/../Frameworks hack doesn't work if the bundle is not the executable (ie:  with an IBPalette, Interface Builder is the executable).

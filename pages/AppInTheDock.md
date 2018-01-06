@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there anyway to make it so your application icon does not appear in the dock?
 
 ----

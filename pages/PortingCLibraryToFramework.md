@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I ported a free C library to Mac OS X (actually I just changed one word on the libtool file). I can use it from a cocoa application, but I want to wrap this library in an Objective C class, and create a reusable code that I can publish as free software.
 
 The library is buit like most unix tools in a very very complicated process, using 4 auto configuration systems. You know - /.configure make etc. 

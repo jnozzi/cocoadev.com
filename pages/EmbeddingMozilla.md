@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Embedding Mozilla in Mac OS X Cocoa Apps
 
 http://www.artlogic.com/articles/Embedding_Mozilla/

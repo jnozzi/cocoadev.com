@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here are some links to other web sites with Cocoa programming tutorials:
 
 

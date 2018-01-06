@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The General/UniformTypeIdentifier (UTI) was introduced in Mac OS X 10.3 and are documented in General/LaunchServices/UTT<nowiki/>ype.h.
 
 A UTI looks suspiciously like a bundle identifier. It is used by General/LaunchServices and General/PasteboardManager to identify the types of files and data, and is passed around in General/NSString/General/CFString format.

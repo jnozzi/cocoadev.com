@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm experimenting a bit with building a web browser; it might become a real software one day, it might just be tucked away as another experimental project.

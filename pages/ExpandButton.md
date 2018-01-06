@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello.  This is a little hard for me to explain so please be patient.  I am looking for a graphical component but dont know the proper name for it.  It is the button on the Palettes panel in Interface Builder that appears when the window is too small to display all of the different palette icons.  It looks like two small arrows pointing right and when you click on it, it opens a pop up that shows the remaining items in the list.  Im guessing it is a form of pop-up button.  You can also find that same button in Safari on the bookmarks bar if you have too many links in the bar to fit in the window.
  
 Anyone know where I can find this component in Interfacae Builder or some third party palette, or for that matter give me a proper name for it?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone have code to grab a still frame from a FireWire cam and save it to a file?

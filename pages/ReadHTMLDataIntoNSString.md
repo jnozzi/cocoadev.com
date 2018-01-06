@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've downloaded an HTML file into an NSData, but I don't know how to put the data in an NSString. I'm using Panther, by the way.
 
 ----

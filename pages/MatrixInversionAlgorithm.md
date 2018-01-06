@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I don't need an entire math package; something simple will do, to perform inversion on a 3x3 matrix. 
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is a convenience function to make sure you do not overwrite any files: http://goo.gl/OeSCu
 
     

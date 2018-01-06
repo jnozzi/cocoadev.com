@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Other than -init, -awakeFromNib, -dealloc, etc. are there any methods that run "automatically"?  In the examples I've found and trying to follow, most of their GUI apps have you press a button, which calls a method, which does something.
  
 Well, I'd like to do that "something" automatically.  For instance, after calling awakeFromNib, setting variables and such, I'd like to be able to have a method run w/out having to explicitely call it from elsewhere.  Is this possible?

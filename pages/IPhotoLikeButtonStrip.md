@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I'm trying to create a button strip / toolbar like that use in the latest iPhoto versions (underneath the photos) for my app. A little research has hinted that overriding the NSToolbar would be bad as it would need use of several private methods. So far I have opted to create an NSView and attach a series of custom NSButton classes to that view. The result so far seem good, except that when clicked on, the button draws a thick grey line along its bottom edge. Not only does this look pretty awful, but it stays drawn even when the button is released.

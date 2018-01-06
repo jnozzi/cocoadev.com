@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am a computer science student in Sydney, Aus. I am new to Cocoa (as most are) and loving it. Obj-C is a great language. I hope that many developers adopt it.

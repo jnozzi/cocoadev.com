@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaFob is a set of helper code snippets for registration code generation and verification in Objective-C applications, integrated with registration code generation in Potion Store <http://www.potionfactory.com/potionstore>.
 
 The current implementation uses DSA to generate registration keys, which significantly reduces chances of crackers producing key generators for your software. Unfortunately, it also means the registration code can be quite long and has variable length.

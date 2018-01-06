@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ** Enable debugging **
 
 There are several things you can do to make your project more debugable.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OK, I've been posting a bit about this screensaver I'm doing, it's a flag saver, and right now I'm at the final stage. Right now, it's all fine, except at low resolutions some weird wavy lines show up all over it. Here's an example:

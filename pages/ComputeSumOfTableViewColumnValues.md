@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got a basic NSTableView, but I want to add all the values of one column and put it in a text field. I'm stumped. Is there an easy way to do this?
 ----
     

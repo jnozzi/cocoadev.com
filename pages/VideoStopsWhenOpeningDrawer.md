@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any way to continue rendering a General/QCRenderer while clicking buttons or resizing your window?  I have a custom view rendering a Quartz composition with a General/QCRenderer and a video feed in the composition and the video feed refreshs with an General/NSTimer, and when I click a button or anything like that it freezes the General/NSView that I'm rendering to.  Also if I do expose and then move the window I get a repeated flashing in the General/NSView.  Is there anyway to fix this?
 
 Heres the code:

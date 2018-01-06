@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to allow the user to customize which columns are visible in an General/NSTableView (similar to the View > Columns menu in Apple's Mail app). What is the best way to implement this? I do not see any way to hide/show an General/NSTableColumn, so I assume I need to add/remove the column from the table every time. I have all of my columns set up in Interface Builder; so when adding a column after it has been removed, do I need to recreate the column from scratch programmatically? Or is there a way to use the table column I created in Interface Builder? Also, how does this all work with enabling General/AutoSaving for table column attributes (width, column order, etc.)? Will I need to save it manually because some columns are removed which were in the initial Nib file? Anyone know of any example Obj-C code that does all this? Thanks!
 
 -- General/RyanBates

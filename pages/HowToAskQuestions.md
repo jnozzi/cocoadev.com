@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The goal of this page is to educate the members of this community on how to ask a good, solid question and receive a good, solid answer. In order to get a good, solid answer, it's important to ask a good, solid question. Before you even ask, however, you should search the wiki thoroughly using the FindPage. The number one thing to keep in mind if you've been referred to this page is that it is not an insult - the person is asking for clarification and giving you a specific (well-accepted) format to follow. Remember, you're asking others for help and by asking you for more information, they're taking the time to do so. Don't take it personally!
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 You want to change the ugly Black Line during dragging inside a table?
 
 I do!

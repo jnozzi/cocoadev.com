@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There are two kinds of protocols, formal and informal. The problem is, it's easy to have too many informal protocols; you can end up polluting the method namespace for any objects inheriting from NSObject.

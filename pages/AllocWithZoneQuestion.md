@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 So what's the deal with allocWithZone:  Should I use it as much as possible, meaning all my member variables should use their owning classes' zone.  What discretionary steps should I use when determining whether to use alloc or allocWithZone: [self zone]
 
 - FranciscoTolmasky

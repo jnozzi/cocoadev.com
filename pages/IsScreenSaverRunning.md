@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to detect when the ScreenSaver starts and stops within my App (which is not a screensaver) - is there some obvious API similar to NSWorkspace notifications for didwake and willsleep, or do I have to look at the lists of processes?
 
 ----

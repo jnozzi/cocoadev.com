@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ColorSync enables you to do color management across devices.

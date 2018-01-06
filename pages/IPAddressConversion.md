@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 When I include the code
     

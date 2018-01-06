@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 FSObject is intended for users of FScript who want to do much more... like say create class hierarchies, data source and other delegate scripts and generally do everything you can do in ObjC but dynamically... I will share my implementation here when I have one but here's the (in progress) interface (annotated)  (UPDATED July 5, 2004) (Updated again July 6, 2004)(solidified (never finalized) July 7,2004)... there is a bug in FScript that makes it have trouble with any selector that starts with a colon.... changed it to my:: instead of just ::... Oh yeah... and it works... here's the implementation too. (Updated July 8,2004) put a seperator in so you can CLEARLY see what parts are interface and what is implementation.... see also discussion at bottom.
 
 ----

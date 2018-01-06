@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know how to create an NSSegmentedControl with squared edges like in Delicious Library (Details, My Info, Similar)  or iWork's inspectors? I bet the inspectors in iWork are something else, but from what I can tell from Delicious Library, since there is no images for drawing it in the Resources or anywhere else I can find, it is an NSSegmentedControl. Any idea? Thanks, --LoganCollins
 
 ----

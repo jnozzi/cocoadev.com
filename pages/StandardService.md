@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A StandardService is one of those things you find under the Services submenu of the application menu in Cocoa applications.

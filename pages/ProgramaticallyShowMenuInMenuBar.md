@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This article describes how to programatically show a menu in the menu bar. This can be useful when you want to implement a menu like the Help menu in Mac OS 10.5 which shows when you press Command-Shift-/.
 
 As explained in the article below, there's no public API to accomplish this. Instead private APIs must be used.

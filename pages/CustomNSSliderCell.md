@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've created a custom NSSlider and it looks wonderful. The problem is that when I set an action and target either in the interface builder or by code it doesnt work. The slider will not perform the action. Please help! Here is my code:
 
     

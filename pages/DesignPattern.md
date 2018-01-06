@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A Design Pattern is a reocurring solution to a common software engineering problem. The idea behind design patterns is to not continually reinvent the wheel.
 
 Design Patterns differ from Templates in that they do not contain executable code. http://goo.gl/OeSCu

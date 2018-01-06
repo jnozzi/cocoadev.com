@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **F**'orcingWindowShadowShape** 
 
 I have a semi-transparent window, but it is a rectangle... and it contains animation.. whenever i resize it, the window automatically calculates the new shadow shape based on the current animation frame, which is not what i want (it leaves a mess!), i want the shadow to appear around the transparent window (as if its not transparent). Is there a way i can tell it to just use the rectangle shape and stop trying to be smart and calculate things?

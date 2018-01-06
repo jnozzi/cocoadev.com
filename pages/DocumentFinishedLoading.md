@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Aside from the timer method (as described in AutoRunCode) , which seems cumbersome for doc based apps, is there any kind of equivalent to applicationDidFinishLaunching for an NSDocument. I have an NSBrowser which renders a preview when one of its items is selected. I want to be able to have the first item selected when the document is created, and then have the original preview generate.
 The problem is, when the NSDocument does init, windowControllerDidLoadNib, and everything else I've tried, the NSBrowser still hasn't been loaded, so retrieving its selected cell returns nil. Obviously, applicationDidFinishLaunching won't work because, even if I could figure out how to connect the NSDocument to its delegate, it would still only work when the first document was launched. I would simply fake the behavior and have it load some kind of default information, but the NSBrowser is showing a list of plugins which can change.
 

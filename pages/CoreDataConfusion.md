@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 trying to run down a problem I'm having with core data. I can easily make a "to many" relationship work. everything. it just works like magic.  but just try making a root level entity with one attribute, and it never works.  I can't find any documentation, or tutorials... what gives? doesn't ANYBODY control their interface with core data? 
 
 heres how to duplicate the problem:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **The Basics**----
 
 Topics are automatically generated lists of other pages; they can be easily created by putting \\[Topic\\] (or \\[Topic_chron\\] for a chronologically-sorted list like on CocoaDiscussions) on a suitably-named page; let us suppose we are creating StarWarsFans. First, set up that page with something like:

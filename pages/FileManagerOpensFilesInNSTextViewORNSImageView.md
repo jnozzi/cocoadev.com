@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How would I create an NSOutlineView that handles files like XCode?
 
 ----

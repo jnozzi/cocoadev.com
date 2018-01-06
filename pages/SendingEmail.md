@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One of the frameworks included with Mac OS X is called Message.framework, and in it are some classes that allow you to send email directly from you application (as opposed to sending it via Mail using the NSWorkspace technique described in SendingEmailMessages)
 
 The first order of business is to add this framework to your project.  To do so select **Add Frameworks...** from the **Project** menu in Project Builder.  Message.framework is located in the directory **/System/Library/Frameworks/**.

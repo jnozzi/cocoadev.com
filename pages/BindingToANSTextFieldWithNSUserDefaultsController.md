@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I am trying to use the NSUserDefaultsController class to bind a NSTextField to the shared user defaults. In the init method for my app, I create a NSDictionary with a single entry that associates a key called colorKey with an NSString (the color). I then register the defaults by calling registerDefaults, and passing the NSDictionary as an argument.

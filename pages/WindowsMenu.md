@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The General/WindowsMenu is a menu item that General/NSApplication automatically populates with the names of each onscreen General/NSWindow instance (General/NSPanels are not kept here).
 
 Sometimes you might want to put permanent menu items for global windows, instead of or in addition to the document window menu items (similar to how iTunes and many other applications work). Add the menu items in IB, set their target to a suitable General/FirstResponder action, and use this code in your window controller (or window's delegate) to keep track of which window is active:

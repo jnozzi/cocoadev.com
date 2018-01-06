@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I believe there are a few distinct areas where CategoriesAreGood, and there are other areas where CategoriesAreBad. Under what circumstances are categories good?
 
 -- MikeTrent

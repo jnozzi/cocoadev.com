@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 For some reason I cannot make my applications appear in Finder's Open With menu. I can select Other... and choose my application (so the document type settings in the Info.plist seems to be correct), but even after this, the choice of my application is not present in the menu the next time I open it.
 
 I have moved my application to /Applications and restarted the machine, but this have not helped (and it would seem that Finder does cache open applications, as I get e.g. World Text as an option for text files, which is in a /Developer sub directory).

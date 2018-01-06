@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 "General/SubClass" refers to a class that is a child of another class.  The General/SubClass inherits the behaviors and data of the General/SuperClass.

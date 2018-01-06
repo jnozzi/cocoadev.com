@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 The SimpleScriptingVerbs project is located at
 

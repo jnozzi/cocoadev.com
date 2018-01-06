@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm getting a lot of runtime errors that don't show up anywhere on Google and are hardly descriptive. Yay for no compile-time checking! So I'm jotting them down here (and hopefully including solutions) so that they'll be searchable and people will know they're not the only ones having these problems. Or maybe I really am the only one who can't get CoreData working right..
 
 Apologies in advance for the excessive sarcasm.

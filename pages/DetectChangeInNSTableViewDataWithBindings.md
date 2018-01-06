@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In a couple test apps I've made to learn Cocoa,  I've run into a snag.    As the data in my NSMutableArray is changed, via the NSTableView+NSArrayController,  I need to detect this and update a calculation which uses data from the NSMutableArray.

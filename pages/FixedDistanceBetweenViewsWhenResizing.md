@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 On the left side of my window, I have an NSTableView that I want to resize with the window, so I set its horizontal and right-side autosize controls to spring and its left-side control to fixed-struct.
 
 Immediately to its right, I want some other stuff (for now, just some text!).  I'd like the new view to be fixed to be the appropriate distance (18 pixels, according to the Aqua guides in IB) away from the NSTableView.  But no combination of the autosizing controls seems to be able to do this: they only let me control the distance between the new view and the edge of its enclosing view, but I want it to be based on the edge of the NSTableView next to it.  Do I need to put some more levels of hierarchy in somehow?  Or is this really uncommon enough that I need to somehow handle it in code?  --DavidGlasser

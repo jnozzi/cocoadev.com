@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 After changing the effects of an image by reducing its size or saturation, how to save that altered image as an image file?
 
 ----

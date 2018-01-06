@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Q: Is it possible to have an array controller for an array of the currently selected item in a table view controlled by another array controller?

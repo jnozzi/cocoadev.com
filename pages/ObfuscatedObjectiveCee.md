@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I was asked by a friend to create a program to create image files from icons. As I didn't feel like doing anything useful, I decided to do it. As I thought the project was a bit boring and sleep-inducing, I also decided to do it in a single line of code of nested calls:

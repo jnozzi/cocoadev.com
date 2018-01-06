@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The JavaScript implementation used in Mozilla is called SpiderMonkey. It is also available as a seperate library and can be embedded in own applications:
   http://www.mozilla.org/js/spidermonkey/
 

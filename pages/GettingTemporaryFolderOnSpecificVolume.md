@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I know there's a way to get the temporary system-wide volume (NSTemporaryDirectory) and there's a way to get system folders in particular domains (FSFindFolder and NSSearchPathForDirectoriesInDomains) but is there are way to get the temporary folder on a particular volume programatically, and without hard-coding in paths? The reason I ask is that I'd like to provide an atomic-write operation in cocoa, and need to store the file I am writing in a temporary location on the same volume as the final destination file. If there are any pointers you have I'd be grateful, thanks! -DavidThorpe

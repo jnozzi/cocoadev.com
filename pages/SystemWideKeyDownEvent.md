@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See General/HotKeysLib?, which is available at http://rogueamoeba.com/sources/HotKeysLib3.tgz and General/ShortcutRecorder, a control that uses General/HotKeysLib (General/PTHotKey, et al): http://wafflesoftware.net/shortcut/
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to make a program that accurately counts down to a certain date specified by the user and shows the days, minutes, hours, and seconds until the day the countdown is supposed to end. Would the best way to do this be to use an NSTimer and have it fire every one second and then subtract the future date and time from the current date and time?
 
 **

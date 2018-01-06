@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a Cocoa "best practice" for registering the document types an application "knows how to handle" at runtime?
 
 I have an application that has the potential to handle a large number of document types as either an editor, a viewer, or both.

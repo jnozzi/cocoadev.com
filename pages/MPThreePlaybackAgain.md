@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Okay, I have an app that ab-so-lu-te-ly need to playback MP3 files correctly. I don't know if you encountered this kind of problem in the past, but I did.
 
 I load the MP3 file, by URL reference in a NSMovie instance, and everything works... Except that, during runtime, the playback stops after 15-20 seconds. But not the progress cursor. And eventually, it restarts about 30 seconds later. I use the command so the task is maintained by QT :

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Free Mac mini with every membership! (in lieu of your hardware discount, of course)
 
 ----

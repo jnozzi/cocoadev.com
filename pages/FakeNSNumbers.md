@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been playing around with the "Extra Bytes" of an NSNumber instance and figured out how to fool an NSDictionary into thinking that it is dealing with a real key object. I don't know know how safe this is to do, but the overhead you save from not having to allocate memory, register with the autorelease pool and sending extra messages makes this a tempting idea. 
 
 I've been using NSDictionaries to do most of my hashing, and whenever I'm able to key objects with int values I hate the idea of having to create a bunch of NSNumber instances just for the purpose of providing a key value. FYI, keying a dictionary with NSNumbers makes lookups ten times faster than keying a dictionary with NSStrings. Unless you permanently keep a range of NSNumbers around just to use as keys, you usually have to create a new NSNumber every time you set an object and every time you send an objectForKey message. Maybe there is a better way to hash in Cocoa, so if anyone knows of one, I'm all ears. 

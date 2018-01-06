@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a default Cocoa Application project, I have cleaned my targets, when I compile, I get WRONG behavior, but when I Debug I get CORRECT behavior.
 the behavior that is wrong is that I have two subViews, and my superview lays them out.
 this is done by looping through the list of subviews, and lining them up vertically.

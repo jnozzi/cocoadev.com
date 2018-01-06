@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Cocoa addict from Belgium.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaDiscussions - Sample code for an idle timer? 
 Sample code for an idle timer? Please?
 

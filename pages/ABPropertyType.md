@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Defined in header file <AddressBook/ABTypedefs.h>
 
 

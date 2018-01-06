@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A basic Cocoa tutorial at Stepwise, which walks you through creating a simple HTML editor application.
 
 [http://www.stepwise.com/Articles/HTMLEditorX/]

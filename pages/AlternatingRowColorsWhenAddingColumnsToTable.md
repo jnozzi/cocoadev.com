@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm having problems with NSTableView and having alternating row colors when I put data in them... 
 is it something to do with my dynamic column generation?
 

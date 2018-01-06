@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a question about converting HTML escape code (you know & and % prefixes) into normal text.
 Cam the web-kit be used as a parser??
 

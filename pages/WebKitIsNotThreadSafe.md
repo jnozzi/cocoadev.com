@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/WebKit is not thread-safe. At least, as far as anyone knows.
 
 The following code, when launched from for (i=0; i<5; i++) in separated threads indexed with i, fails with SIGBUS.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to write a Cocoa app that works with a USB device.
 
 I am using the Apple sample code as a guide but it is code for a FOUNDATION tool - NOT a Cocoa app.

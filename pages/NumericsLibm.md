@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Apple has posted a useful pdf for numerics --zootbobbalu

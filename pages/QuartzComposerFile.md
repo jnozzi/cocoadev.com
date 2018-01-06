@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Quartz Composer app creates files that can be opened by QuickTime Player. QTMovie can also open these files to play in a QTMovieView. One thing you should understand before jumping into creating "qtz" files is the concept of a "Rendering Destination". Quartz Composer files define image compositions that are a function of time, input parameters and environment variables. These compositions are rendered dynamically into a "destination". The destination's exact dimensions are not a known constant. Instead it is up to you to create a Quartz Composer file that can adapt to variable dimensions (e.g. preserving an aspect ratio or centering an image). When you open a "qtz" file with QTMovie, you can define the "Rendering Destination" and the duration of the movie. This is done by changing the Quartz Composer environment. There are three user defaults that define the destination's size and movie duration. If you would like to define the state that a Quartz composition uses when rendering you must define this environment before you initialize a QTMovie with a "qtz" file. After the movie has been initialized you can change this environment for another movie.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Soeren Nils Kuklau has been using Macs since 1992, and been programming (first on a Commodore 64) since about 1990, which was kind of freaky and crazy yet strangely also intriguing.

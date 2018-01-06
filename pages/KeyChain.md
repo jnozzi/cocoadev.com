@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The KeyChain is an API for save storage of user passwords and other authentication information.
 
 See CarbonCompatibility for some Cocoa implementations.

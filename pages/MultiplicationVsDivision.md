@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello there, I have heard that division is much slower than multiplication on the PPC, so here is my question would there be a speed difference between (borderL/2) and (borderL*.5) since they are both logically the same thing?
 
 ----

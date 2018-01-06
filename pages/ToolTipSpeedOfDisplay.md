@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I'm just wondering how you can control the speed of displaying of General/ToolTips. I'd like to have them be displayed instantly when you hover the item.
 

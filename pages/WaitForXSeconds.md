@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I wait for a number of seconds/miliseconds/tenths of seconds etc in Cocoa? I am writing a metronome program...
 
 ----

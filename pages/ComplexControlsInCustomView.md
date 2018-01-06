@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an application which must allow an arbitrary (but most likely large) number of complicated "control widgets" with labels to be dragged and positioned anywhere within the view. Obviously table views and matrices are out, since the size and positioning are 100% arbitrary.
 
 The 'control widget' will need to have an editable label, a "marker" that can be dragged to reposition the whole widget, a clickable "x" button hovering beside it to remove it from the view, and an uneditable "short description" beneath the label. I'd like only a single click on the label itself to initiate label editing.

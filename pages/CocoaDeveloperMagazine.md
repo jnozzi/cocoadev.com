@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Are there any magazines available that focus on Cocoa development?  The REALBasic world will soon have a magazine called REALBasic Developer that will commence publication in July 2002.  See: http://www.rbdeveloper.com/

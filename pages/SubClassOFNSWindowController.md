@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I am designing a document-based application that sub-classes General/NSDocument and General/NSWindowController called General/ViewController, but i am having a problem.
 When I make a new General/NSDocument it runs through the initializing messages just fine and it goes though makeWindowControllers just fine,

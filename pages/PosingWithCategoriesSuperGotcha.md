@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 That's a gotcha with calls to super, not a really special gotcha.  To read up on class posing and categories see 
 ExtendingClasses.
 

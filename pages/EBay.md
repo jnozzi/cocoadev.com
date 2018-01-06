@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 EBay - Massive online auction site.  http://www.ebay.com
 
 You can (sometimes) get awesome deals on new/used books, computers, and peripherals here.

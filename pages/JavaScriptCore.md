@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 JavaScriptCore is a framework for Mac OS X that takes the cross-platform KJS library (part of the KDE project), combines it with the PCRE regular expression library, and makes it work with Mac OS X technologies.

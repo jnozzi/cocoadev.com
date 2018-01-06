@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I know how much I can programatically resize my window before running into the dock (if it's shown).
 
 ----

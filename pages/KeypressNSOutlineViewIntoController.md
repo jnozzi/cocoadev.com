@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been struggling for some time to find how to get a keypress in NSOutlineView into my Controller.
 
 There seem to be many others asking similar questions so I decided document my solution which may help.

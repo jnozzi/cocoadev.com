@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As a beginner in cocoa, I have no idea how to extract thumbnail images from an imagefile. Is here a simple way to do so, for example from a photoshop created tiff file?
 Or even how to get the imagefiles icon?
 

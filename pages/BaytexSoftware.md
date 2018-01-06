@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Baytex Software, 1997-2005
 http://www.baytex.net
 Santiago, Chile

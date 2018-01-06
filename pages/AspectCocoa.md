@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Now Open Source** - http://www.ccs.neu.edu/home/igotimac/AspectCocoa-src.zip
 
 http://www.ccs.neu.edu/home/igotimac/aclogo.gif

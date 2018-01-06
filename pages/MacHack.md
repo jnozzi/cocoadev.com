@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The MacHack conference website appears to be:

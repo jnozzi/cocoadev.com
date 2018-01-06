@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to use Shark to profile a small application and an underlying framework which it is built on.
 
 The profile works fine and I get data which looks reasonable but Shark doesn't find the C source so all I get is the disassembly which isn't very helpful, on its own.

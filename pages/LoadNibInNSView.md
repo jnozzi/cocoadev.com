@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to load the content of a nib file in order to add it to a NSView of my MainMenu.nib
 So there is two nib files in my project : MainMenu.nib and Box.nib.
 My MainMenu nib contains an NSObject subclass myController; a simple button (with an add: action) and a NSView myCustomView.

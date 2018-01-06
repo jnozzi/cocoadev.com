@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 It's not Cocoa related, sorry...
 
 I want to create a constant multi-dimensional array (2 dimensions) with arbitrary defined characters in it. I want to be able to access it everywhere, not just in one function. I tried hundreds of times, but can't compile without errors...

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This page was started with the following goal: be a guide to a newbie who wants to use CVS, who is somewhat familiar with the basics now (after reading the seeAlso pointers), but is still wondering about nib files and the use of them in General/XCode SCM. This is who I was yesterday. So the following guide is clearly not a reference, and hopefully, other people will improve it. General/CharlesParnot.

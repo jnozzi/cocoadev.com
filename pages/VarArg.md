@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/VarArg refers to the capacity in a method or function for it to take a variable number of arguments above a fixed minimum. You declare a function with a variable number of arguments (var args) like this:
 
     void myFunc(int a, ...);

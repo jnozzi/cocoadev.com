@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 An Objective-C framework to easily store and retrieve data objects in an embedded SQL database without a server process or query strings.
 http://treehouseideas.com/datacrux/
 

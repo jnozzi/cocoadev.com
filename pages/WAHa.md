@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 My real name is Dag �gren. I code in C, Objective-C, C++, Perl, and various other languages. Some of my works are available at http://wakaba.c3.cx/s/.

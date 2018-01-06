@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello!
 
 I was wondering if anyone knew how to make that neat iPhoto 5 Adjustment window?

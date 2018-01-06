@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been playing with the OutlineEdit example in Tiger, and it seems to me that NSOutlineView has some severe limitations when working with Core Data and bindings via NSTreeController unless I am badly mistaken (which I hope I am). It seems that it is barely compatible with datasource and delegate methods...
 
 I have an outline view in my app that uses drag and drop, saves its state, and has variable row heights using the delegate method -outlineView:heightOfRowByItem: - but using bindings most of this is difficult or (as far as I can see) impossible. The reason for this is that any datasource or delegate method that passes in an (id)item does not pass in the actual object when using NSTreeController, but instead passes in a proxy object of class _NSArrayControllerTreeNode. There is no obvious way to access the actual object stored in the http://goo.gl/OeSCu outline view using this proxy object, and it doesn't respond to valueForKey: on anything obvious.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *Note: This discussion contains accented characters which seem to be best viewed under the "Western (ISO Latin 1)" text encoding.*

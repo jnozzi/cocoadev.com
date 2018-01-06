@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am working on a project and I want to create and manage a window on every screen on the computer and update when / if screens are lost or gained. I hope some one can help...

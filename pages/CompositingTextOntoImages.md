@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do you composite text onto images?
 
 ----

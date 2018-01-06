@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 GCDrawKit is a Cocoa framework on which vector graphics applications can be built. For full details see:
 
 http://apptree.net/drawkit.htm

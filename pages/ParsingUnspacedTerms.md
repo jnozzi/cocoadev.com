@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I want to parse the string @"tORfNOTfANDNOTf" into an array containing each item of the unspaced string such that my array will look like:
 
 0:@"t"

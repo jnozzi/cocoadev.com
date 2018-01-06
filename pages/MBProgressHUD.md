@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MBProgressHUD is replacement for the undocumented UIProgressHUD UIKit class with some additional features. 
 The class displays s translucent HUD with a progress indicator and some optional labels while work is being done in a background thread. 
 The HUD can show both determinate and indeterminate progress. 

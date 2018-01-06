@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I want to load "localized" images dynamically during runtime (and they are stored in their respective language.lproj folders), do I have to do anything special, or will [[NSBundle mainBundle] pathForResource:@"image1" ofType:@"tiff"] automatically use the Resources folder for the localization of the computer it resides on?
 
 Thanks,

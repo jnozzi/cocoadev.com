@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OK, I have an on-screen "form" that is used as such:
 
 1. a table controls which item is being examined (list of names and some other info in the table). To switch which set of data is displayed in other fields on the form, one selects a different name in the table.

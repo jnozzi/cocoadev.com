@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 (retitled from JuggleWithGlobalVariables)
 
 As a relative Cocoa newbie (with no C prerequisities) I was wondering about global variables and how far they can be stretched ... or whether I should want that.

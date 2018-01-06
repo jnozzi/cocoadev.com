@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AirPort Express is a networking device to wirelessly deliver music from a Mac or Windows machine to a connected sound system using AirTunes technology. It also serves as a WLAN access point, can be used as a (USB) print server and can be connected directly to a DSL or Cable modem or an existing LAN.
 
 See http://www.apple.com/airportexpress/

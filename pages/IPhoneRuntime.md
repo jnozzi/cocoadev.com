@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As announced at M<nowiki/>acWorld 2007, the iPhone runs a stripped-down version of OS X, including CoreFoundation and many other familiar frameworks.
 
 While there is currently no publicly-available SDK for the iPhone, SteveJobs has announced that Apple plans to have one available in February 2008.  Until then, **use the information in this section at your own risk, as it is liable to change at any time.**

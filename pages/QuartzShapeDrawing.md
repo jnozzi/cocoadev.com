@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am looking to draw a rectangle with Quartz and rotate it using a timer loop.  Any tips as to where I can find the proper trig funcs to cause an intelligent rotation of a rectangle to take place?  Thanks.
 
 blakespot

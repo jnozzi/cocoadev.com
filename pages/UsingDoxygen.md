@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to hear of any experiences good or bad.  It's been getting a lot of press lately (General/MacDevCenter & Dr. Dobbs to name a few), so I'm curious.
 
 General/JohnMoore

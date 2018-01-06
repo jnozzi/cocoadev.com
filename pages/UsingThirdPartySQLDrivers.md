@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hey all, I have a quick question. For work I use SQL Server on a daily basis.  I am working on a few things that may very much benifit from some small custom apps, but I have no idea how to connect to a SQL Server database.  I have purchased a driver that allows some other apps to communicate with the server and I am wondering if I can write an app to access the server as well by using that driver.  Basically what I'm looking to do is:

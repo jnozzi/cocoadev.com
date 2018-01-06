@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 New SpellCatcherX feature that uses accessibility and TSM / NSTextInput APIs to extract text and attributes from the underlying document, in order to render a transparent overlay window showing the errors in the document.
 
 Works in any app that supports the Mac OS X Dictionary panel (command-control-d, while hovering over a word).

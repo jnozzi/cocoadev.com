@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I moved (well, copied actually) an General/XCode project from one machine to another (using rsync -avE). But when I fire it up in General/XCode on the target machine, General/XCode says it cannot find any of the source files. I get errors such as "Could not find file /developer/src/M<nowiki/>yProject/Foo.h.  Perhaps it was moved or deleted?"  I can vi that exact path, so I know it's good.
 
 Any ideas as to why General/XCode cannot see the source files?

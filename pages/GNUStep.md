@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 From the GNUstep home page [http://www.gnustep.org/]:
 
 *

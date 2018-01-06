@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Recently I ran into the need to optimise the performance of drawing many tens of thousands of objects. I started to notice that the time to traverse a linear array discovering which objects needed to be drawn (according to NSView's -needsToDrawRect: method) was becoming significant. What I describe here is one possible solution to the problem of discovering objects needing to be drawn from an arbitrarily large set. Other solutions are also well-known, such as RTrees, but I'll leave that for another day.
 
 This solution makes use of a common search algorithm - that of the BinarySearch - in fact given a sorted list of objects, the binary search is the fastest known method to find a given object.

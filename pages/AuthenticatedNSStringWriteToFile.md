@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to let strings be written to the library folder, with user authentication beforehand?
 
 ----

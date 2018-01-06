@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This page is for tracking re-usable Cocoa classes that can be mixed, matched, and dropped fairly easily into existing Cocoa projects to add useful functionality.

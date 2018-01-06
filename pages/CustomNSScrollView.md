@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What's the best way to subclass NSScrollView or otherwise access it so that I can create my own scroller. All I really need is to create two buttons that will act as the up and down scroll buttons, I don't need the bar in between. Can an action be sent that will tell the NSScrollView to go down or up one line or page? --LoganCollins
 
 ----

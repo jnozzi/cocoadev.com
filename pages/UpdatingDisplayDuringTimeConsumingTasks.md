@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I created a Document-based cocoa application. And at a certain point the user has to start a time consuming task when a button is pressed. The cursor automatically changes into the spinning wheel indicating something is very busy. No problem until here. However if I switch to another application and back to my application, my document windows don't get displayed (only my inspector window) and if i press right-mouse button on my application icon in the Dock, it says "Application not responding" while the application is actually just busy computing stuff. How can I make sure my windows are displayed when switching applications? Because now, the user gets the impression my application just crashed.
 
 ----

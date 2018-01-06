@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page is an attempt of getting an overview of how Finder finds an application, the reason is that I often end up with "corrupted" caches, i.e. Finder wants to start my application from a path which is no longer valid (e.g. the trash, a temporary directory created when packaging the application etc.) or it uses the wrong document bindings.
 
 I have not found any documentation on the subject, so take this page with a grain of salt, and please contribute if you have corrections or more info.

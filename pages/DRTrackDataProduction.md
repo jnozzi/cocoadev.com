@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Informal protocol that you must implement when you're providing your own data for a DRTrack. (See DiscRecording for an intro to this topic.) The methods in the protocol are:
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'd like to create buttons that behave like those nav buttons in Safari. What I do like: when I press and hold the mouse button on that button, a contextual menu would appear after some seconds. I've scanned through the AppKit objects and found NSSegmentedControl, but that object doesn't afford such opportunity.

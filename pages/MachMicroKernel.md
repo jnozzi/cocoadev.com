@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The MachMicroKernel is the lowest level section of MacOSX. It handles memory management, interapplication communication, and other low-level (and very important) things.

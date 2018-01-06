@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing some unit tests, and I'm testing some conditions in which an exception is supposed to be thrown.  So I've come up with this macro:
 
 #define DDAsertException(condition, errorMsg) \

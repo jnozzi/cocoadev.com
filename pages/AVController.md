@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
     - (id)init;
 
     - (void)setDelegate:(id)delegate;

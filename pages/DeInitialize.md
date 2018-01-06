@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a few classes in my code which contain only static functions.

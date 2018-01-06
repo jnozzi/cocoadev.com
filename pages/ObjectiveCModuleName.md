@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Before I ship software, I do a "strings" command on the binary.
 If you've never used it before, "strings" is a command-line that prints out anything it finds that looks like a string in a binary file.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What's the best way of making a shared inspector window like IB's inspector?  I've looked at NSWindowController, but that seems to be for "extra windows per document".  If I have three windows, I don't want three inspectors, but just one that changes when the current document changes.  I haven't seen a "Document Change Notification" to know when to swap out the contents.  How would I go about doing this?
 
 *

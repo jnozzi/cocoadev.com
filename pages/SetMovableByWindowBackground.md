@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See also BorderlessWindow
 
 I've got a strange problem with a NSWindow subclass.  I'm creating an odd-shaped window with a NSButton in it.  You can click and drag successfully almost anywhere in the window.  But, whenever I click and drag close to the edge of a button in the window, the window jumps.

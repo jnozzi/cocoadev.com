@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've decided to release the source code for my latest Cocoa game under the GNU GPL License. You can get it at: http://www.makasoft.net/cgi/mk/mk.pl/GravityWells_Source
 
 It's not very elegant, but I'm still learning... 

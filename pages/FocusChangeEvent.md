@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know if there is a notification or delegate method that's called when a window changes focus from 'View A' to 'View B'? Thanks.
 
 ----

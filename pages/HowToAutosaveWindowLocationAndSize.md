@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I looked around on CocoaDev and found the page on NSWindowFrameAutosizing, and found this suggestion:

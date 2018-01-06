@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm having a problem where I'm not sure whether I'm doing something wrong or bindings is doing something wrong.  I have a custom NSCell (nothing too fancy, the normal image+text stuff).  In Interface Builder, I've got the table column bound to NSArrayController.arrangedObjects.  In the code, however, I build my cell and set it to the data cell of the table view.  I then bind all of my outlets to the object value.
 
     

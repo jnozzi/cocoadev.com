@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Pardon my ignorance, but can somebody tell me the difference between a "framework" and a "wrapper". I have looked all over, and both terms seem to identify something specific, but I cannot find a definition of either. Specifically I am looking at building a PostgreSQL GUI to expand my understanding of Cocoa/Obj-C and develop a database to play around with. I have found references to a "wrapper" NKDPostgreSQL and a "framework" pgsqlcocoa. What would be the difference between the two? 

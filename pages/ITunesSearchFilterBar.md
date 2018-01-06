@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to create the search filter bar that exists in both iTunes and Mail.  I guess it can be done with an NSView with a background gradient, along with some custom NSButtons, but I was wondering if anyone knew of an easier/different way to accomplish this.  Even a tutorial or example somewhere online would be great (I searched around google and cocoadev for a while, finding nothing).  Thanks! http://goo.gl/OeSCu

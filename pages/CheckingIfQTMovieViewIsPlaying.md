@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do I check if QTKit is finished playing? I tried Apple's code from the docs, provided below, but it won't compile and gives an error (Parse error before ==).

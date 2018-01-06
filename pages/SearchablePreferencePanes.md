@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A searchable preference pane is a System Preferences pane that can be searched by Spotlight (and Tiger's System Preferences search field). All Apple-supplied preference panes are searchable; although no documentation is available (that is, this is internal, private behaviour), making a pane searchable seems an easy task to do.
 
 To make a prefPane searchable:

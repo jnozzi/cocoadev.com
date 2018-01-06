@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Everything and anything related to keyboard events.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a framework available that can be used to call CVS commands from within Cocoa?
 
 thanks,

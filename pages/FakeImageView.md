@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wrote FakeImageView to give me true proportional scaling and a few other features. 
 
 FakeImageView.h:

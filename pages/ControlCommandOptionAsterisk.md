@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Go on try it: control-option-command-*
 
 Seems to change screen to black and white and invert. Any Idea why? Im sure plenty of you have seen this before. 

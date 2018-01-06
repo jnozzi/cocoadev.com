@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on an application that will handle the creation and attaching of rich-text SLAs (Software License Agreements) to UDIF Disk Images.
 
 I used the example found here: http://developer.apple.com/sdk/index.html to get started.  Instead of using DeRez to decompile the resource into a string, I created a .r file from scratch and entered in the text I needed like so (just save the entire code as plain text with Western (Mac OS Roman) encoding):

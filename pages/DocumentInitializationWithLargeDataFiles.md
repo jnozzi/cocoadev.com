@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have just started Cocoa development using XCode 2.1. My application is to load big binary files (signals from a scientific research tool) and process the data and eventually show some images. I'm currently using Cocoa document based setting with Objective-C.  I am observing quite a mysterious phenomenon.
 
 I created myDocument class derived from NSDocument. It mallocs a bunch of SInt16, UInt32, and float arrays necessary for the processing. All of them are freed after processing. The end results are displayed as an instance of myImage class that derived from CIImage (I'm planning to use core image filtering later on). In Debug mode, my code works perfectly for the first time only. Whenever I open 2nd or 3rd files, the output looks weird as if it reads totally different location of the memory. In my understanding, with the document based application, one file is assigned to one instance of myDocument class. And any new files should be assigned to newly allocated instances so that there should not be any memory overlapping. Is my assumption correct? 

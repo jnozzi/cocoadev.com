@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Formerly responsible for the MacZoop framework, for better or worse. I have seen the light and am no longer a slave to the language cult that is C++. I prefer these days to get work done rather than sacrificing virgins to the byzantine demands of Bjarne Stroustrup (fun though that might sound). I've been doing loads of Cocoa work for the last three years now and hopefully the community will shortly benefit from the fruits of my labours. Other ex-Zoopers here (i've seen there are a few) will know I've always been keen to give stuff away. God knows why, I'm still getting poorer by the day.

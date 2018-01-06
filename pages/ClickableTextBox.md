@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I currently have a selection of text boxes in Interface Builder displaying the result of a user input.
 I'm wondering the best way of making these text boxes clickable / selectable so additional information can be displayed about the box content?
 I guess it's a more of a button with an altering display than text, as a selectable text box merely produces the 'enter text' icon.

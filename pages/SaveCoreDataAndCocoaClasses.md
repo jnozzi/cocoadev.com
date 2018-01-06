@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am developing a graphical application where i use Core Data to store the logical information of my entities, and normal Cocoa classes to store all the graphical information (colors, positions, sizes,...). The graphical entity has a pointer to the core data entity. Is there any way i can store the managedObjectContext together with my custom attributes? 
 ----
 The answer depends on how your objects are being used in the diagrams.  If an object can be used in many contexts then the answer gets more complex because the graphical info (colours, position, sizes) must be in "context of the object's usage".   For example is a Flow Diagramming application an object (eg a process) might get used in a number of different Flow Diagrams. Keith

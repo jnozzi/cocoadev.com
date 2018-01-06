@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is just a placeholder for ExtractPanelToNib's implementation:
 
 1. Create a new nib file with file's owner "PanelController", a class designed to manage the panel's view.

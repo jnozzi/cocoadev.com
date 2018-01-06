@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There seems to be no 'contains' operator in the NSString class.  This seems like a weird oversight.  So if I have a String that contains @"my IP is" and I want to see if that string contains the word "IP" somewhere in it how would I do this?  I looked at NSScanner but couldn't get that to work - the results were always null.
 
 here's a real example:

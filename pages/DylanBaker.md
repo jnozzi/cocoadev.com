@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Yowza.
 
 I'm 16, Alaska/USA student, just started learning Cocoa. Which basically means I have to re-learn everything about programming, given that my previous work was in TI-BASIC. Not the best language ever.

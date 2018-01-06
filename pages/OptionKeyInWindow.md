@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to detect when the option key is being held down in my window (I'm ultimately trying to do something like iTunes, where you can hold option to have the add playlist button change into a gear icon for adding smart playlists).  I have the following code, but it does not work -- it always says the option key is being held down, even when I have released it.  The following is part of my NSWindow subclass.
 
     - (void)flagsChanged:(NSEvent *)theEvent

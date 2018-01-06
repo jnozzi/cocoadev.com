@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have Safari-style tabs in my MDI application which means, that when more than one document is shown in the same window, command-w should close only the current document, not the window, otherwise, command-w should do the normal performClose:.
 
 So basically I must change the key equivalent for the two menu items (Close and Close Current Document) based on wether one or several documents are shown in the window.

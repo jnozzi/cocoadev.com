@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How can I reliably determine whether a substring in an General/NSTextView spans multiple lines and how many lines it actually spans?

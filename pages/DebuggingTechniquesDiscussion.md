@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 continued from DebuggingTechniques
 
 I felt the "parent" page was too beautiful to put a discussion on. There are many useful things there, but I cannot find answer to a question I have wondered about for a while. Is it possible to pick up messages sent to your class that you have not implemented. Say I didn't know which messages to answer if I was the NSApplication instance's delegate (In this case I know) would it be possible to set up something to catch these selectors sent to me?

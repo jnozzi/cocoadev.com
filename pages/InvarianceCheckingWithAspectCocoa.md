@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Related Links: AspectCocoa, AspectCocoaDocumentation, AdviceProtection, AspectCocoaBugs, ProgrammingByContract, EiffelProgrammingLanguage
 
 ----

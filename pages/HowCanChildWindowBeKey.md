@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  If I make a window a child of another window, the parent should remain key/main but the controls in the child window should be drawn active. Sheets and Drawers do this without stealing focus from the parent window and deactivating it, but when I make my subwindow key, the parent dims (or alternatively, if I don't make it key but merely order it to the front, the parent remains active but the controls in my subwindow are drawn inactive). How do I make the subwindow active without deactivating the parent? In other words, what's the trick that sheets and drawers pull?
 
 (Note: I did attempt to ask the same question a few days ago but nobody stepped up to the plate - I'm hoping that by rephrasing the question someone might recognise the problem and help me out! ;-)

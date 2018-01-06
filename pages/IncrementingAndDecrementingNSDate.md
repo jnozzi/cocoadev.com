@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to use a NSStepper to increment or decrement a date, by day, that is in a NSTextField with a Date Formatter on it.  Is this possible?  Here's the basic form i thought would work:

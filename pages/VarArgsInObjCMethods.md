@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know, by any chance, how to define and implement a General/VarArg method in Objective-C?  Thanks!
 
 ----

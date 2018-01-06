@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
   In Apple's Developer Documentation for NSEnumerator, there is a statement that "It is not safe to modify a mutable collection while enumerating through it. Some enumerators may currently allow enumeration of a collection that is modified, but this behavior is not guaranteed to be supported in the future."
   That statement is fairly clear, but I am not certain if it is guaranteed to be okay to modify subordinate items while enumerating the mutable collection.
   As an example, let's say I have a class called MyPix, and it has instance variables of:

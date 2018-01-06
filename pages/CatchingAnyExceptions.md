@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How would I go about catching ALL uncaught NSException's? Apps like Adium seem to catch any exception that occurs (and then launch a helper app). I desperately need something like this... anyone know how to do this? --KevinWojniak
 
 Ok I found out how....

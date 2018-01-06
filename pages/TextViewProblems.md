@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a HTML editor, I have some code that inserts some HTML code in the textview, the code is this "<meta name="author" content="Josha Chapman-Dodson, AKA devboy">" but it says I have all these undeclared functions.
 
 ----

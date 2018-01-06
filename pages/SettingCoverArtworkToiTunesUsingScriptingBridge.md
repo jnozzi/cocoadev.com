@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.
 
 I'm looking for a way to set the cover artwork of, say, the current song in iTunes. I've tried a lot of things but never got it to work. The only thing that works is setting no artwork, meaning, deleting existing artwork. This is done like this:

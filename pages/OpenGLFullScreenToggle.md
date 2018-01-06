@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to find out how I can exit OpenGL fullscreen mode in a way that I can get back into it -- quickly, that is, without destroying and having to build contexts, colourmaps, etc. I am currently using the SDL library for window and event handling, but even with a simple bit of example code (VBL: http://developer.apple.com/samplecode/VBL/VBL.html) I can't seem to find the magic touch.
 
 Applications like Acrobat provide a fullscreen mode which still allows other windows to be taken to the front. A game like Jedi Academy also allows exiting fullscreen mode. How do they do it??

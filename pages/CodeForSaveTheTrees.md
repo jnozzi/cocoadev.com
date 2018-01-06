@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Code from the description/discussion of SaveTheTrees.
 
     

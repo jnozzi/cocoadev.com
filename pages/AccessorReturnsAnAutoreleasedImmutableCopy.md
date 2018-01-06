@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I return an immutable copy of a mutable *instance* variable, should I use something other than an accessor?
 
 Clients of my class may feel entitled to think that as long as they have an instance of the owner,

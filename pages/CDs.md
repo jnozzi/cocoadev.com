@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Compact Discs - surely you know what they are?
 
 can hold data or music� ring any bells?

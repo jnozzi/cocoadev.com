@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can I programatically select an NSToolbar item?
 
 ----

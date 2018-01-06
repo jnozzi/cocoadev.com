@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe General/TibetSprague here.
 
 I'm a student at Brown University in Providence, RI. Currently I am taking an independent study with a friend researching structure oriented editing. We hope to create our own improved structure oriented programmer's editor with the front end written in Cocoa.

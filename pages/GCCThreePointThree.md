@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I just downloaded and installed Dec2002gccUpdater.pkg. I got into the habit of declaring variables all over the place, and this update doesn't set the default to allow this. Does anyone know what the setting is to allow you to declare variables anywhere?
 
 ----

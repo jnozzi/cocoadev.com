@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Objective-C files can include header files by using the standard C #include 
 preprocessor directive or by using the Objective-C #import preprocessor directive. The #import 
 directive is similar to the #include directive. #import assures that no file is imported 

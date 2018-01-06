@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've gotten it so that my scrollView's contentView gets centered
 inside of the scrollview. However, I have a custom cursor set for my
 scrollView's documentView. With my centering code in place, the cursor

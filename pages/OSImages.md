@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to find the image, that you see when you insert a blank cd next to the disk in the Panther Sidebar, where would that be located?
 
 ----

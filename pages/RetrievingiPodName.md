@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I thought I'd share some code on how to properly read an iPod's name if you're writing a program that interfaces with the iPod in any way. Most programs just use the iPod's filename as its name, but this can be different then the name set in iTunes, especially for Windows formatted iPods being read by a Mac. To get the name, you must read the D<nowiki/>eviceInfo file stored on the iPod. Enjoy! --KevinWojniak

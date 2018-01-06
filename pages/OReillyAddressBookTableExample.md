@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been looking at O'Reilly's Address Book articles by Mike Beam ([http://www.macdevcenter.com/pub/a/mac/2001/08/24/cocoa.html].  These don't deal with the Mac AddressBook app (although a later article in the series introduces it). Rather they are about making a simple address book using NSTableView. The articles also cover NSTableDataSource NSDictionary, saving data atomically, NSUserDefaults, XML etc.
 
 Here's what Beam's original interface looks like:

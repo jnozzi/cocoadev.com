@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's a question I know has been asked and asked, but I can't seem to find a good answer to. I want to create a multi-pane preferences window (like in Mail, Safari, or any other Apple app) that uses an NSToolbar to switch between the panes. From what I can tell by looking in the package, each pane is a separate Nib file, which comes together at runtime. I, however, have absolutely no idea where to begin implementing this. I know that you can use OmniAppKit framework to do it, but I just thought it is stupid to include the framework in an app that is only going to use one class, since OmniAppKit is bloated anyway. Anyone have a good idea how to do this? I'm kind of new to Cocoa (only a few months experience) so please bear with me! Thanks! --LoganCollins
 
 *Just for a starter, try looking at Apple's M<nowiki/>ultipleNibTabView example (I<nowiki/>nterfaceBuilder section). Then try making the view tabless, turning off customization on the NSToolbar, and using selectable items to select the tabs. Just an idea. Also, if you want to rely on private APIs (bad idea, but it's worth mentioning), check out NSPreferences. --JediKnil*

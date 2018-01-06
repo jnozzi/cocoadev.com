@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **Where to put supplementary files**

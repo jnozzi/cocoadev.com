@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://www.iconara.net/avatar.gif

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 An operating system designed for the Palm organizers.
 
 For info and developer documentation (and confusing site organization!) see http://palmsource.com/

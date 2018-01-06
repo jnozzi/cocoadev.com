@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have created Sticky panels.  All is well, except that when I move the "leader", the "followers" don't follow all that fast.
 
 Basically, the code that does the move looks like this, where thePanel contains the view for which mouseDragged is implemented.  childPanel is "Sticyk" to thePanel.

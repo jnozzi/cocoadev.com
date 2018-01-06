@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm new to cocoa (in terms of really trying to learn useful stuff) and am trying to decide if notifiers, delegates or subclasses are what I need.

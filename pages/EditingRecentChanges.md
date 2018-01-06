@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've noticed that edited pages don't always show up on RecentChanges. In some cases, the changes seem to simply be editorial - but is it really appropriate to 'hide' the fact that these editorial changes are taking place? I understand that the concept may be to remove 'trivial' changes from the 'what's interesting' list, but 'trivial' and 'interesting' are subjective terms: what is trivial to one may be interesting to another.
 
 Personally, I think it's extremely bad netiquette to edit the RecentChanges page.  Just say NO! --OwenAnderson

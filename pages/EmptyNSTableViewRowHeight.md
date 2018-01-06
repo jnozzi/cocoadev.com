@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Basically I have NSTableView with custom dataCell set via     [tableView tableColumns] objectAtIndex:0] setDataCell:customCell]. For some calculations I need to know the     rectOfRow and tableView returns correct value, but just while there're some rows. When I delete the last row, tableView starts to return 0 for nonexistent rows.     rowHeight (even summed with     intercellSpacing) and     [customCell cellSize].height return smaller values.
 
 But there should be somewhere the correct value, since empty table continues to draw alternate rows at correct size. The question is where can I get the same value for empty table that rectOfRow will return when the table is filled with data?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a non-document app that displays its data (a mutable array of General/CustomObject instances) in a table view and
 writes data from the model objects  (all of whose ivars are strings) in property list format as follows in the data source for the table:
 

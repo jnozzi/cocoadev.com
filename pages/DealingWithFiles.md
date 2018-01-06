@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Are there any tutorials available on file handling?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Go back to CocoaIntroduction
 
 Skip to CocoaStepOne

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Effective Use of the Objective-C/Java Bridge
 ----
 Author: General/AlainODea

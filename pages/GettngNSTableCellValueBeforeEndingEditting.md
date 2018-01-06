@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a user interface with a NSTable and a button. Users can edit some fields on the table and when the button is pressed, the program gets the values of the NSTable's cells and makes some calculations using them. But the user could press the button before having ended the editing in a cell, I mean without clicking outside the cell. In this case I want to get the value he was writing, but I get the value written before.
 How can I get the last value?
 

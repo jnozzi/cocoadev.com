@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is this is a bug in CoreData or is its just something to be aware of.
 
 I have entities called Person and SpouseRel. A Person may have many spousal relationships (SpouseRels).

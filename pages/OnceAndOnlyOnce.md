@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 "The philosophy that information on how a piece of software operates - be it an algorithm, a set of constants, human-readable documentation, or something else - should exist in only one place. The practice of this is not always easy; in most languages (CommonLisp advocates claim that practicing OAOO is significantly easier for them), there are many types of situations where there is no obvious way to follow OnceAndOnlyOnce, or where following it requires more effort than simple duplication. The essence of it, however, is: Write everything once and only once - locate and fold together any duplication you find while adding the current feature. 
 
 Practitioners of OnceAndOnlyOnce believe that, if information is written down in more than one place: 

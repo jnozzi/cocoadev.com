@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *
 This page is for CocoaNewbies to ask questions which may not merit a page of their own:
 

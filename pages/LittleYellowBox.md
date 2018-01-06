@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know the API to set the string in the "little yellow box" that pops up when the mouse is over a button? I would like to use this "little yellow box" when a row is selected in a table view. --zootbobbalu
 
 *The word you're looking for is "ToolTip". With that, you should be able to find lots of material.*

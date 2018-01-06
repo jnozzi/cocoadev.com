@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've added a Segmented Button to my toolbar, and it's looking a little off.  I'm trying to get something along the lines of the Finder window...

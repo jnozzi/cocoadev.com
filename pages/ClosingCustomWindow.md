@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Alright, I have my custom window all set up and opens up great. I made a little button to be the close button in the top left (In Interface Builder). I cannot seem to get this to close the custom window, performClose does not work and just beeps at you. In the Cocoa docs I see an NSClosableWindowMask. Will this do anything for me?
 
 thanks,

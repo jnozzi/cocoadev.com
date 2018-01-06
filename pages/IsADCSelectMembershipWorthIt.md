@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I'm wondering if it's worth it to get an ADC Select Membership. I want to learn about new stuff such as CoreAnimation. If I get that membership, will I have access to this information? Is it worth 500$ ?

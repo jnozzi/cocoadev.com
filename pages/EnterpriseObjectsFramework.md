@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Basically, EOF sits between a database and your application. Your code can treat database content as if it were plain objects by calling EOF objects to do the translation for you.

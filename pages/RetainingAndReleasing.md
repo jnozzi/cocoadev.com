@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 RetainingAndReleasing are the procedures for managing an object's RetainCount; understanding the way they work is crucial to making sure your application uses proper MemoryManagement. Several specific examples are outlined in RetainReleaseTips.

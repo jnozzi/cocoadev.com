@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Can anyone tell me (or point me towards a tutorial on) how best to scale a view?

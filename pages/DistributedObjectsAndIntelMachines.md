@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a real headache of a problem that is boggling my mind.  I have an application that uses distributed objects and Bonjour to communicate with other instances of the application running on other machines on the local network.  The code that does this has been running well for over a year and I've never had any significant problems using DO before now.
 
 Recently, two Intel-based machines (a new 20' iMac and a Mac Mini) have been added to the network.  My application compiles and runs perfectly well on these Intel machines.  However, the DO portion of the application seems irreparably broken when running on an Intel machine, and I'm pulling my hair out because I haven't changed a single line of code.

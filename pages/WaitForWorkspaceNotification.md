@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi. I am trying to create a foundation tool that records workspace notifications (using General/NSLog()).
 
 I am registering for notifications using:

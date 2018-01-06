@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a container-esque object that contains an nsarray internally.  These containers depend on each other, as some are subsets of others, and so, when an object is removed it sends out a notification so that any others that are interested can do the same:
 
     

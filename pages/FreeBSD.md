@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Quasi-parent to DarwinOS. It's OpenSourceSoftware, and fairly easy to get up and running if you're not afraid of text interfaces.

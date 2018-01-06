@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 QuantumSTEP http://www.quantum-step.com/wiki.php?page=About
 How is the name derived from? What are associations?
 

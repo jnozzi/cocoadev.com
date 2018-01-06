@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 My name is Galen D. W. I've been developing widgets for a few years now, and I've also been doing web design for a number of years. I'm also proud to be a Cocoa newbie. I live in the state of Colorado.

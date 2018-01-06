@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I bind a custom NSMatrix this way :
 
 [myMatrix bind:@"content" toObject:myArrayController withKeyPath:@"arrangedObjects" options:nil];

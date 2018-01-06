@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 My application has a main window with a custom view and a couple of panels that I use to control that view.
 The custom view accepts first responder status and the main window also makes use of an NSColorPanel.

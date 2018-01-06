@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a pasteboard type that contains \r characters so that I can cut and paste rows from a table view.
 
 If I inadvertently paste the contents of that pasteboard type into a search field that I have on the same window, things were getting

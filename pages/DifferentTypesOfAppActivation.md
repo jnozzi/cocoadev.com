@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 On Mac OS X there are two ways your application can be activated:
 
 

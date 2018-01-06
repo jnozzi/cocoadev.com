@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was adding a book recommendation to the "other books" section when I found myself arguing with my own description to the book. The book I am recommending is a book for learning C, "The C Programming Language" by Kernighan and Ritchie. I'm sure many people know about this book, but I feel the book cannot be recommended enough.  The description I gave is as follows:
 
 A must read for anyone who wants to learn a language built on top of C. If you don't know who Kernighan is then you should find out!! Apple's book on Objective-C "Inside Cocoa: Object-Oriented Programming and the Objective-C Language" recommends one book, this one (Chapter 1 p13). Need I say more.

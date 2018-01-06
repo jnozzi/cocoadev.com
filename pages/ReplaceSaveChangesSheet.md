@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 (From mailing-list posts by Dan Bernstein and Mark Piccirelli)
 
 **Q:**

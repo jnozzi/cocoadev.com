@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am using and NSSCanner to scan out some quotes in a text view subclass, but the following code causes and endless loop and I cannot find the problem.
 
 Can anyone help :-)?

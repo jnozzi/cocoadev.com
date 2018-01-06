@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In ReFactoring you clean up the code, sometimes doing radical changes, without changing the overall behaviour or functionality.

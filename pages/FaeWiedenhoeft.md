@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 i have had 3 glasses of wine and suddenly i was told to get a page.... does that mean 'get a life'? hmm.. this is certainly a deep thought.. perhaps i will have to talk it over with my friend merlot.

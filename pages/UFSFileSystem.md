@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 	UFS is a General/FileSystem type that is common on

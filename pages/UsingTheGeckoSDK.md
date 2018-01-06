@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd like to use the Gecko SDK in part of my application (to allow it to be cross platform) and was wondering if anyone has had any luck doing htis.  There seems to be no supported downloadable SDK for Mac, however someone must have figured it out to be able to compile Firefox/Thunderbird/Sunbird for Mac OS X.  Does anyone have some sort of tutorial as to how about doing this, specifically for the creation of custom XPCOM components and using Objective-C libraries in XPCOM?
 
 Thanks in advance, General/FranciscoTolmasky

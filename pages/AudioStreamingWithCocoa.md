@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello folks,
 I'm a newbie on that internet/networking stuff...
 I'm trying to do audio content streaming over internet (like MP3 Sushi, etc.) but I don't have any idea of how to do that type of thing ...

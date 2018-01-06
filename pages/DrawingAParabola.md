@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to draw a parabola (y = x*x) in my ScreenSaverView subclass. It draws the white box fine if I leave out the     for loop and the 2 lines after that.If I leave them in, it only gives me a black screen. What am I doing wrong?
 
     - (void)animateOneFrame

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Spam on wikis is a sad, unavoidable fact of life.  They are good targets because they are link-rich sites favored by search engines.  Wiki spammers don't so much think that you, a Cocoa programmer, will visit their site -- they just want to increase their Google ranking.
 
 **Wiki spam protection**

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm looking for information about writing device drivers to allow a third-party external device to be recognized as a mp3 player by iTunes. Does anyone know where I might find such information?
 
 *Obviously, Apple has control over iTunes and its development, and as we see from the lack of other third-party devices' support of iTunes, there isn't any easy way to get your other non-Apple player to show up in iTunes. Heck, Motorola and Cingular had to talk with Apple one-on-one to get the ROKR to work with iTunes. This isn't going to be something that Apple will want to see happen. (It's also not in their interest to do so, as it could change potential iPod sales).*

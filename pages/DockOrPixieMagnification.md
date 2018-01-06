@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to be able to magnify stuff like in the Dock or like in Pixie? (Developer Tools/Graphic Tools).
 Mike Matas has implemented a Dock-like magnification in Catscan but I'm looking for something more like NSColorPanel's Magnification Glass tool where it doesnt have the bend effect.
 

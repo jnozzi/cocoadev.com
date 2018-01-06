@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Cocoa allows you to substitue a custom FieldEditor, Apple provides documentation [http://devworld.apple.com/documentation/Cocoa/Conceptual/TextEditing/Tasks/FieldEditor.html] but the examples have a few bugs. See CreatingCustomFieldEditor for discussion, including broken code examples, on this topic, this page is an example of how it's actually supposed to work.
 
 **Why use a custom field editor?**

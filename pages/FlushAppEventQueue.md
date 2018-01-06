@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on a (quick-n-dirty) app which makes heavy use of NSTask to run command line operations in the background. The operations are batched, so I keep a progressbar updated so I can tell what the level of completion is.
 
 Here's an example:

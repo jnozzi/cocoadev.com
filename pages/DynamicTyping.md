@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 DynamicTyping is a relatively simple idea: you postpone specifying what type AnObject is until the program is running.

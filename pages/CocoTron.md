@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Cocotron (not CocoTron) is a clean-room partial reimplementation of the Foundation and AppKit frameworks of Cocoa. Unlike Cocoa, it's cross-platform (Foundation works on Linux, Solaris and Windows and AppKit works on Windows). Unlike similar OpenStep-inspired projects, such as GNUstep, Cocotron does not require installation and on Win32 the basic frameworks can live embedded inside the application bundle, making it a more lightweight choice.
 
 Cocotron unfortunately is not yet a complete implementation of OpenStep; it's still under development (open source under the MIT license) at http://www.cocotron.org/.

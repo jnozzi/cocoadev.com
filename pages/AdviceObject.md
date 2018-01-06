@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 An AdviceObject is the standard way of applying advice to some point cut in AspectCocoa.
 
 Any object can be an AdviceObject.  The most basic one provided by AspectCocoa is ACLoggingAdvice.

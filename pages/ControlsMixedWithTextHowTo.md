@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to have a text view (within a scroll view) that has, after certain words in the text, a button or some other control. For example, in the text:

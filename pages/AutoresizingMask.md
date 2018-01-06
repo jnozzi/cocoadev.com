@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 An autoresizing mask is used to determine how a view is resized relative to its parent view when its parent view resizes. The enumeration values are masked together.
 
 To have a view resize to fill its container, set it to NSViewWidthSizable | NSViewHeightSizable.

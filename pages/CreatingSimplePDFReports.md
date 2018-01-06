@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am writing a Cocoa/Java application for managing financial information, and need to generate reports.  The reports are fairly straightforward, for instance similar to a standard brokerage statement, but I am trying to figure out the best tools to use to generate the reports.
 
 ReportMill probably does what I need, but is way beyond my budget and does way more than I need.  I have tried creating an NSTextView in InterfaceBuilder and programmatically filling it with formatted text, and then printing and/or creating a PDF from there.  However, I need some formatting and pagination behavior that is beyond the scope of a simple NSTextView, for example a header that repeats at the top of each page, and table headers that repeat after each page break.

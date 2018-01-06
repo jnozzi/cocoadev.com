@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is it possible to have two instantiated classes share the same outlet (I'm not talking about 1 button having two actions, rather two different classes each having a reference to the same outlet)? I've tried to set this up in IB (a NSButton in my case), but one of the classes just sees it as null. Is there a special condition that has to be met (the class be file's owner, delegate?) for this to work?

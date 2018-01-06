@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I've recently finished re-writing a VERY simple app I had previously written in Applescript Studio.  I added a few things in but its basically a really simple app that takes a value delimeted string and uses the values to populate placeholders in a second (template) string.  Its really just somethign I use to speed repeative/monotonous code writing for web pages.
 

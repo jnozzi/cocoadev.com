@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there anway in cocoa (Obj-C) to have a General/NSString (Bam) and find an occurance of "BAM" in Bam.

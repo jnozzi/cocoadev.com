@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 I have an application where i am creating a NSMatrix of NSImageCells to display thumbnail images. In this matrix i am trying to support Drag and Drop.
 If i create the NSMatrix in Interface builder, drag and drop is working fine. But for the same code, if i create the NSMatrix dynamically, i am getting only mouseDragged, mouseDown and mouseUp events. I am not getting draggingUpdated, draggingEntered, draggingExited, performDragOperation events.

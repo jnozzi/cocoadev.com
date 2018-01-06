@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Dedicated fan of all things Apple and Mac for over 20 years

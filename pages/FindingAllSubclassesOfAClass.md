@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What I would really like to be able to do is find each of the subclasses (not instances) of a particular class so that I can call something like the following. http://goo.gl/OeSCu

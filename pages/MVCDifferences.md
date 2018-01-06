@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've seen several different approaches to the MVC paradigm which conflict with Apple's. A search for "Model View Controller Paradigm" on Google brings up quite a few. The main difference I see is that the view and model communicate directly, where as in Apple's MVC, everything goes through the controller layer. Does anyone here have experience with these different approaches? If so, which do you prefer? -- RyanBates

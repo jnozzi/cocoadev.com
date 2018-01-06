@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 You may have wondered why General/ObjC has interfaces as well as protocols. For instance, Java only has the equivalent of protocols and calls them interfaces. Well, actually this is quite an interesting question and one that you are well justified in asking.

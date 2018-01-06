@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Actually, I have two questions. 
 
 The first, which is embarrassingly straightforward, is that I'd like to get the dark version of the highlight color set in the system preferences. To see what I mean, notice that the highlight color for selected text is the color you set in the system prefs, whereas in tables and outline views you get a darker, more saturated version for highlighting. I want to get the latter color -- because in my current situation, I need high-contrast ( and I'd like to respect user color preferences ). For what it's worth, I've tried several of the NSColor class methods for highlight colors, but they all seem to return the light color -- not the dark. I imagine I've just overlooked some method... (but there are so many).

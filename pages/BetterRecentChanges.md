@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How much support would there be for upgrading CocoaDev to provide a better RecentChanges experience -- like http://www.usemod.com/cgi-bin/mb.pl?RecentChanges for instance? Most notable:
 
 

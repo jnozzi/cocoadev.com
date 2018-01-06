@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know what the easiest way is to programatically create a Disk Image from a directory? The manual for hdiutil tells how to do it the old style, (using du, and hdiutil), but it says that some of it is now handled by -fs. If anyone could offer any insight, it would be greatly appreciated.

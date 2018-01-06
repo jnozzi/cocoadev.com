@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This technique is an alternative to General/NSValueTransformer, though both techniques will apply to non-overlapping subsets of situations.
 
 Advantages:

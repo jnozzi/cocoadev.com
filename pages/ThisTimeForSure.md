@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The belief in the crazy idea of something working just because you said so ;-)
 
 Crazy? I prefer "mentally challenged", thank-you-very-much.

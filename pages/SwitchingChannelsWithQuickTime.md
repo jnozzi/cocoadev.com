@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 
 Is there a way to switch channels using the General/QTKit framework. What I mean is to get the left channel output into the right speaker and vice versa.

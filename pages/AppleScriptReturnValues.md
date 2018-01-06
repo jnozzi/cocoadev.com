@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I'm looking for a way to get variables from an applescript script into my app. I considered making my app applescriptable and then setting the variable directly in applescript. However I am writing a foundation tool (User Agent) so it isn't a .app and hence no Info-_____.plist file. So even if that would work I am not sure how to impliment it.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 It seems that my program acts a bit too fast for the system to recognize the changes.

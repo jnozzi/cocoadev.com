@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 KissyFaceView is some CategorySampleCode that demonstrates using ClassCategories to declare "private" method API within a .m file to keep it separate from the public .h file. The compiler does not enforce any notion of  public/private methods. "private" here means someone simply browsing your .h file won't know about the existence of the private method. Keep your source clean!
 
 KissyFaceView implements a simple, clean public interface:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm interested in starting a discussion on creating a bare-bones, reusable rules editor GUI (and controller) for use with CoreData and its NSPredicate and NSCompoundPredicate functionality. For an example of a rules editor, see the Stepwise article titled Subviews In TableView Rows, found here: http://www.stepwise.com/Articles/Technical/2003-12-20.01.html ...

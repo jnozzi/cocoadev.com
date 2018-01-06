@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 iPhone applications can provide services to other applications by providing URL schemes; these schemes can be documented so that other applications can actually make use of these services. This page intends to be a place dedicated to this.
 
 Reply to this page to document your own schemas. Feel free to copy the schemas above you as templates.

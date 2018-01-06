@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Background: I have two NSTableViews that I have manually bound together. When a row is selected in the first tableView, the second NSTableView is updated to show the contents of the selected array.

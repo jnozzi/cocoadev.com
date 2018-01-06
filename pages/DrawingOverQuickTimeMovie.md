@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I am trying to draw over a QuickTime movie. I have my own NSMovieView, place a subview over it and draw in the subview. But it seems that the QuickTime movie is drawn at last over all other views. Is it possible to do it in another way, for example using drawRect method or something similar?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've looked through CocoaDev and StepWise, but I can't seem to find an answer to my question. I have an NSPopUpButton that holds a list of items. What I want it to do is when the user changes the selection, something to happen. It will (at this time in my future planning) be that it changes the current tab in an NSTabView. Anyone have an idea?
 
 ----

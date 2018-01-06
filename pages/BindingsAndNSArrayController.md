@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a NSTableview with 4 columns (all ints) and I have a NSArrayController (bound to my class called Levels) and using bindings I've got a add and remove button to insert and remove data from that table, which works fine.  

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a slightly unusual situation which I'd like to receive suggestions about.

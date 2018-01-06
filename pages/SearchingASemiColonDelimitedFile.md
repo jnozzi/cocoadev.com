@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a semicolon delimited file that contains ICAO codes and related info. I want to be able to search this fast enough so results appear as a user is typing a search string ala iTunes.
 
 I have set it up already so that I use     componentsSeparatedByString:@"\r" to get each line, and then for each line, I split up by semicolon and put the relevant data into an NSDictionary. The file is 755KB and contains 11,574 lines. Right now it takes about 1-1.5 (not official) seconds to finish searching, and I want to get multiple results so I have to go to the very end. I only want to search the country, city, state and code fields, and nothing else so I can't just check to see if each line contains the     searchString.

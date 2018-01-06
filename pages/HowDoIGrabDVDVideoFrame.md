@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been experimenting with Apple's CocoaDVDPlayer example:
 http://developer.apple.com/samplecode/CocoaDVDPlayer/index.html
 

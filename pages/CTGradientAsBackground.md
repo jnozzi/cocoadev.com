@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got an NSView that is drawing a CTGradient in its background, and the view has controls on it. I have an NSSearchField and whenever the search field gets focus or I type in it, the background doesn't draw smoothly (see the edges around the search field?):
 
 http://img117.imageshack.us/img117/7452/guicp1.jpg

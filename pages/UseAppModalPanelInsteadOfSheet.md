@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My application is a "viewer" of sorts for a custom bundle type I've designed. Now, since the app is registered to be the primary viewer for the bundle type, you can double-click the bundles, drop them on the dock icon, etc, to open them. Of course, you can also open them directly via a standard General/NSOpenPanel running as a sheet.
 
 When my loading mechanism detects an error ( for example: bad file data formatting; my app is a viewer, and as such I often edit the data files in General/SubEthaEdit and reload) a sheet opens describing the error ( well, it *will*, right now it just points you to my runtime log). So, should you drop an invalid file on the dock, or double click it, or call "open" from the command line, the error sheet will open and everything's good.

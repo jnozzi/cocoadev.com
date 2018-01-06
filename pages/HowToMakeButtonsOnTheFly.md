@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have seen in some NIBS lately from apple that buttons are now sliced up in three images.
 left middle and right side of a button. It seems that in the code they are assebled .
 

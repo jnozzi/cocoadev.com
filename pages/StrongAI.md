@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is probably more of a philosophical debate than General/ComputerScience, but anyway, according to John Searle (1980, "Minds, Brains, and Programs"):
 
 General/StrongAI: *the computer is not merely a tool in the study of the mind, rather the appropriately programmed computer really is a mind in the sense that computers given the right programs can be literally said to understand and have other cognitive states.*

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi
 
 I have been looking for a way to store arbitrary spotlight metadata to a file using Carbon, Cocoa or any other framework in OS X. The only thing I've found is spotlight importers (which is not what I want/need since I'm acting on files already indexed by the default importers) and AppleScript for setting the comments-field. 

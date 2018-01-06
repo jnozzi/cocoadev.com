@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm working on the architecture of a game engine. (I'm essentially gluing a bunch of open-source components together, with an objective-c interface), and I've run into a problem with the design.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Problems with the currency converter bindings sample (I guess these could rightly be termed "Early Adopter Experience":

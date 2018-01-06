@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey, y'all!
 
 I'm trying to make a mail client, but I cannot get it to work.  I have tried with several different socket-classes (SmallSockets, NetSocket..) but what happens is all the time the same:

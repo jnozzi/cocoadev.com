@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have seen some applications that has a table view with nestled Outline Views / Disclosure buttons.
 
 How is this possible? I cannot find any documentation on this.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My class has a function called 'accumulator' which returns the value of the instance variable 'accumulator' when called. I also have another method called xSquared which also returns the value of the accumulator after squaring it. What is confusing me is should I use the return keyword to return values in the 'xSquared' method:
 
     -(double)xSquared

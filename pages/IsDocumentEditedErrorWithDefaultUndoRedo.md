@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 isDocumentEdited is not set when you use the default undo/redo of NSDocument in case the file is saved and the cursor is set to the end of the document.

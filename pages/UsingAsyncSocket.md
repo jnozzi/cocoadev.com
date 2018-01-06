@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm sure I'm missing something simple here, but how do I know that there is data to be read?

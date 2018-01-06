@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a General/CocoaDev engine feature request.... I want highlighting of added lines with a colour that matches the theme that the most recently added text has say 80% saturation, the second most recent has 60%, third recent having 40%  and all older with a normal background...  This could be done with css and a little tweaking of the lookup code to add span tags...
 
 ----

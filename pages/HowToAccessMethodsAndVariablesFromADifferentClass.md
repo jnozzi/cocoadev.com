@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To use functions from one class (myFirstClass) in another class (mySecondClass), create an outlet from mySecondClass to myFirstClass.  Here you use Project Builder and go into the code of mySecondClass.h.  You add the following declaration.
     
 	IBOutlet myFirstClass *myFirstClass;

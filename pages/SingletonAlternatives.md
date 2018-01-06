@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 IMO, clean and simple communication between objects is one of the most difficult tasks in any OOP language (next to coming up with names for classes and variables). It quickly becomes overly complex when more objects are added to the project. I originally thought the SingletonDesignPattern was an easy way out. It provided convenient access to global data and services which any object could use. Although singletons are the best solution in **some** cases, **most** of the time there is a better alternative.
 
 There are two reasons why one might use a singleton: to access global services or to access global data. In order to find the alternatives to the singleton, we must determine what the singleton is used for in each situation. If it is a combination of the two (a global service acting upon global data) then I would consider the reason is to access global data.

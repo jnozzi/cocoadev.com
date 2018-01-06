@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Interested in Finding Employment using Cocoa?**----
 
 Employers, please list jobs below

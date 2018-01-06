@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The IPTracker Problem.
 
 StevenFrank says it might stop WikiRape, but how. There should be a way to search the IP Address so we could find out what other pages the "abuser" has created/edited.

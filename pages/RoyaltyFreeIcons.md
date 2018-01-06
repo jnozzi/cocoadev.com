@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I know this isn't necessarily cocoa-specific, but I thought it would be of interest to a number of developers. I've created a pack of toolbar icons which can be used for free in your applications. Click the link to go to my site to download them:
 
 http://www.mattballdesign.com/portfolio/icons/devicons/devicons.png

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am seriously pulling out my hairs on this one... I have an NSOutlineView where I want local drag'n'drop, and I have these methods in my datasource:
     
 - (NSDragOperation)outlineView:(NSOutlineView*)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(int)index

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Ruby is an interpreted object-oriented language that has borrowed much of its syntax from Eiffel (LanguageEiffel) and Ada, and its thinking from SmallTalk.

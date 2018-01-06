@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I start thread off the class initialize method, with General/NSThread?
 
 It is clear, that I can't just use

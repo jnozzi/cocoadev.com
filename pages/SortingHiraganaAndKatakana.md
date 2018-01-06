@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am running into an odd problem.  I have used bindings to control a NSTableView consisting of several columns.  In one of these columns, I keep a list of Japanese entries (hiragana and katakana only; no kanji) and in another I keep a list of English entries.  I can sort the English entries without any difficulties, but when I try to sort the Japanese entries, the sort order is not correct.  It is mostly correct (about 4950 entries out of 5000 are ok); yet some entries end up in the wrong spot.

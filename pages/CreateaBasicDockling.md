@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Ok, i'm new to Cocoa, but I have experience with C++ and Jav. I can't find any information anywhere on how to create a stand alone dockling that can be used to launch apps. I just want the dockling to save multiple alias's of applications that can be launched from the dockling. Anyone have any ideas? I thought this would be a relatively simple project to work on to help me grasp the concepts of cocoa and OS X, but it is proving to be more difficult than expected. 

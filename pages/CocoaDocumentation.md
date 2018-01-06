@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *See also CocoaResources*
 ----
 Sources of Cocoa documentation:

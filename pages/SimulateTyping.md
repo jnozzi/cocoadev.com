@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I thought I'd seen another page which addressed this issue, but I couldn't find it through extensive searches, so here goes: I'm looking for a solution which types text into another program, or inserts some text into the program's FirstResponder all at once.
 
 My application pops up when a user hits a hotkey, then it hijacks keyboard input and processes it. When it's done processing the input, I'd like it to drop some new text into whatever window was open beforehand. This is possible with AppleScript and the relatively new UI Scripting stuff, but I'd rather avoid this.

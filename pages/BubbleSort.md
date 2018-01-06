@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  is regarded around the computer science world as one of the slowest, most work intensive sorting algorithms around. It's almost optimally bad. Anyone using C or C-based programming languages has immediate access to better sorting functions (qsort() for instance). There is no situation where using BubbleSort is a good idea.
 
 -- MikeTrent

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I get the 48x48 icon from a file like finder does? The times I have tried, I have used:
 
     

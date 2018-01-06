@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ProjectBuilder has a feature that allows you to execute shell commands from within the file you are editing.

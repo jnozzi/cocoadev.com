@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, mates.
 
 What do you guys think about skimming being patented? I dislike it very much, software patents in general, but this especially, because there are lots of things that come to mind I could do with this...

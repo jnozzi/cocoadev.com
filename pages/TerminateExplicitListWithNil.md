@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you use a list to initialize an array with a list of several objects, you may use     General/[NSArray arrayWithObjects: ]. A list with a variable number of arguments follows the colon; that list must be terminated with     nil. Use     [ General/NSArray arrayWithObject: ] if only initializing with a single object, in which case, the     nil termination is not used. http://goo.gl/General/OeSCu
 
 ----

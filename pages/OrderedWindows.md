@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to traverse my windows in the front-to-back order they use on the display.
 
 There is orderedWindows in NSApplication, but this one doesn't include miniaturized windows -- I could add these myself, but since it's not documented to not return miniaturized windows, I'd prefer simply to write my own implementation.

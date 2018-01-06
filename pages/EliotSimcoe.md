@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Eliot Simcoe - [11/24/84]

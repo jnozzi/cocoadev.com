@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ** Note: ** apparently someone else managed to figure it out: http://homepage.mac.com/jonassalling/Shareware/Clicker/
 
 

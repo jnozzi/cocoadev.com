@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to pass matrix from one object to another (of the same class). The error and warning i recieve is placed as comments right after the line that causes it. Can anyone help me out on this? I have no idea what goes wrong. Isn't it possible to just pass the matrix as any other variable?

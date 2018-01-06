@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *Describe KurtRevis here.*
 
 Bah! All in one little text view?

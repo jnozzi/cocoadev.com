@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I tell an NSArrayController to sort one of its associated NSTable columns in descending order without forcing the user to manually click on the column header? I still want the user to be able to sort the data, but at one point of operation in my application I want to rearrange the table for the user. http://goo.gl/OeSCu
 
 Thanks,

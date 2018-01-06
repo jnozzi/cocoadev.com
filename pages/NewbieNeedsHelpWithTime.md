@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm very new to Cocoa, and indeed have only had basic experience with the easiest areas of Delphi, which at first glance at least is easier to grasp than the (seemingly?) more open ended/loose Cocoa/Objective-C stuff. 
 
 First of all, can someone explain to me what is a 'Class' ?

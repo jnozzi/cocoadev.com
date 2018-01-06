@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is a function to parse .DS_Store files, for those who want to dig into the internals of the Finder. It's written entirely based on observation of .DS_Store files, and as such is really just guesswork. However, it does seem to parse all the .DS_Store files I've found.
 
 It returns a dictionary with filenames as keys, and further dictionaries as values. These dictionaries have four-character OStype strings as keys, and various kinds of values: NSNumber, NSString and NSData, depending on the type of the data.

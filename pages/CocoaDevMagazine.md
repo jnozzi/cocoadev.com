@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ** Cocoa Developers E-Zine **
 
 Here is a place where you can write public articles for visitors of this wonderful establishment. (This was inspired by a post in CocoaDiscussions)

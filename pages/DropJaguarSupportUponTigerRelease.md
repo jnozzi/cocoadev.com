@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Will anyone be dropping Jaguar support for their applications once Tiger is released into the wild? I'm very much considering this since it seems like a good place to do so. Then I can finally use all those Panther-only UI elements :)

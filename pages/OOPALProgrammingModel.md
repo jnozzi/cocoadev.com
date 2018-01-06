@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OOPAL is a high-level programming model for manipulating objects. It goes beyond the classic "one object at a time" model and provides a way to query and manipulate whole sets of objects at once using the principles and idioms of array programming languages. To do so, it introduces a new messaging abstraction called "message pattern".
 
 OOPAL, which stands for "Object-Oriented Programming and Array Languages integration", is implemented in FScript, an open source scripting language for Cocoa.

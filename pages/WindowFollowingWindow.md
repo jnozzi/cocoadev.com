@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In an app I m playing around with, I am trying to make a window follow another window (without requiring this target window to know about the follower). So my only chance to follow this target-window's movements would be to observe its notifications. However, General/NSWindowWillMoveNotification only informs me of the beginning of this movement, General/NSWindowDidMoveNotification only of the end- worse even, not even the end of the movement as defined by mouseUp, but also "premature" after the dragging pauses a bit. 

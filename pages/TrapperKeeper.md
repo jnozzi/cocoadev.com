@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Trapper Keeper is a notebook which resides in your menubar and is designed to mimic the **base** appearance/behavior of Spotlight in order to be as familiar to new users as possible.
 
 http://www.limbiclogic.com/General/TrapperKeeper.html

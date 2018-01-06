@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd like to propose putting together an open source refactoring framework as a ProjectBuilder plug-in. It'd be nice to (and we might) have access to an Objective-C parser (Afterall, Interface Builder obviously has one), and if that was available perhaps many of the concepts of the GPL Transmogrify plugin for Java could be applied to this project. I've come to depend on these kinds of tools at work (I use IntelliJ Idea for Java coding) and I'd love to have them for my Obj-C stuff at home. I might be willing to lead the project if others can volunteer some expertise. - WilliamBajzek
 
 ----

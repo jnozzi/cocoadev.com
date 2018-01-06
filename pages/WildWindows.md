@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 For them as don't follow the cocoa-dev/gl lists closely, you may find this interesting.

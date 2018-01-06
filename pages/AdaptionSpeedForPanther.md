@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As a software developer, I am interested in how quickly I should jump on the new Panther features. I.e. will it take half a year before my potential users have upgraded to Panther?
 
 Naturally it depends on the kind of users, but does anybody have any insight to how quick people are to upgrade?

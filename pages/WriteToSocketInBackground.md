@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am writing a server that needs to be able to answer multiple requests asynchronously ... what is the best approach for this?

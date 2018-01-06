@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My application occasionally requires a sequence of backspace keypresses to be sent to the front process. This works fine, but if the FirstResponder doesn't accept the character, it will beep. Now, this only occurs rarely, so it's not a huge deal to me, but I'd like to be able to suppress those beeps. I could do this by using an ApplicationEnhancer-like system, but I think that's a little involved for my simple project. Is there a better way? I'd like to avoid turning the volume off, as well.
 
 -- RyanGovostes

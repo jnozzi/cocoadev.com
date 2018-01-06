@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The General/YellowBox was the name (in General/AppleRhapsody) for General/NeXT's General/OpenStep libraries which eventually became Cocoa.

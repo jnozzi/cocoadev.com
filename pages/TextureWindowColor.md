@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to get the texture window color? I know that you can get it using windowBackgroundColor when the window already has texture bgd, but is there any way to get it when you have a pinstripe window?
 
 Jacob

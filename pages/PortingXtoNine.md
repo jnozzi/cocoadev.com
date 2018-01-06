@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I got started with cocoa a couple of weeks ago and I built my first application in order to replace a very dated app some people use in my office. When I showed it to my boss he said "great, but can we have it run on os9 as well?" (we still have some old machines). I'd appreciate any pointers on the subject (although I have used macs running on os 9-, I haven't developped anything for those systems, I was raised a Win guy, then turned to Linux and adopted Mac when osX came out).
 
 There is not way to run Cocoa on MacOSNine.  It simply did not exist.  All I can suggest is writing your core application logic in C/C++ (which will run on MacOSNine), and then writing the MacOSTen frontend in Cocoa with Objective-C++. --OwenAnderson

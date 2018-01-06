@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, I have a PPC General/XCode project that I've worked on for a month or so on my PPC (G4) Mac, and now am trying to get things up and running as a Universal Binary on a new Macbook Pro.

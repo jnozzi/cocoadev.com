@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **A couple of basic questions/answers on text attributes, etc. - See also, NSFontPanel**
 
 I am trying to put some formatted text in a NSTextView. Something like a report:

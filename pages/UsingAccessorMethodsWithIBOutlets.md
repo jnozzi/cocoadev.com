@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to access var1, which resides in Class1, from Class2. So I set up accessor methods in Class1 to access and return the var.  Then I call this method from Class2 only to get 'selector not recognized errors'. This issue was dealt with in General/HowToTransmitDataBetweenClasses but the only solution involved using Interface builder and General/IBOutlets ?!?!?  surely this is one of the most common things that someone using objC would want to do?  is there a better way?  
 
 General/EcumeDesJours

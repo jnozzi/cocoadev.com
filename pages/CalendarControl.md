@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AFCalendarControl is an iCal like bindings compatible control hosted at http://code.google.com/p/calendarcontrol. The project actually includes a second control; AFWeekControl. See that page for more details.
 
 AFCalendarControl is dependent on my AppKit additions in another one of my projects Amber.framework which is available at http://code.google.com/p/amber-framework.

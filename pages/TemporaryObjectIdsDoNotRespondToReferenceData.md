@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When working on an application using multiple Managed Object Contexts, you might come across this error message when saving:
 
     

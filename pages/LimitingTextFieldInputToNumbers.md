@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This seems like it should be a simple thing to find, but I've searched around and I can't seem to find any information.

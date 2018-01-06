@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 <code>- (void)insertSegment:(int)segment withTitle:(General/NSString*)title animated:(BOOL)flag;</code>

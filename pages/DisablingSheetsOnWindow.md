@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to be able to disable all sheets on a NSWindow, i.e. any attempt to start/attach a sheet is ignored.
 
 Currently I attach the following code to the delegate of my window, and while it seems to work

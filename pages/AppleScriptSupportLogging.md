@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to learn how to support Applescript... but even the basic ones don't seem to be communicating how to do it to me... so, here's what I want (for starters) is a cocoa app that only responds to a single applescript command, that only takes a string...like say log...
 
 0) new project -> cocoa application -> MyASTest

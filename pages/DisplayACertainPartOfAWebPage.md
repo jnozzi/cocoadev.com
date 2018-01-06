@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want my user to be able to press a button (in other words I want to use an IBAction) and for a certain area of a webpage to display.   Also I want the links inside the page to open up with Safari. I want to be able to scroll as wel.  Is there anyway to do this with Webkit?

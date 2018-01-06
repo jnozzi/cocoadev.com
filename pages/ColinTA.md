@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm Colin.  I'm new to Objective-C and to Macs in general.  I was never attracted to the Apple Macintosh until they released X, which I truly believe is a wonderous OS.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anybody know how the iCal drawer is done?  Is it just a white background image, and thats it?

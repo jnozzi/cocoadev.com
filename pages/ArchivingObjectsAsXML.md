@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Can I somehow archive objects into XML? I don't like the NSData mess in my plist...

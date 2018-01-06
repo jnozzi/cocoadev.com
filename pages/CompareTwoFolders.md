@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also WhenADirectoryIsAPackage
 
 I am chasing a bug (reported at Mac Fix It) in which the OS is not reporting certain files as not being copied, when copying a folder over a network. Since no errors are reported, you have to look in every folder, subfolder, and even package contents to see if there are any files missing.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know where to find the Aqua Icon Kit?  It used to be located at:
 
 http://developer.apple.com/ue/aqua/resources/AquaIconKit1.1.dmg.bin 

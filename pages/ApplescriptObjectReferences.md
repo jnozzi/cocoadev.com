@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi All,
 
 I've come across something of an architectural problem whilst getting started in Applescript.  I'm doing a basic document-based application.  The NSDocument subclass (MyDocument) contains a sub-object (Prefs), which contains a few values:

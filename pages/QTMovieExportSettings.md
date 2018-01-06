@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
     QTMovieExportSettings is a key used with QTKit's     -[QTMovie writeToFile:withAttributes:] method. It allows full control over the type of file that is written, using QuickTime's standard export settings dialogs. Unfortunately, it's a bit underdocumented. The purpose of this page is to demonstrate how to use it to export movies. Be warned, QTKit doesn't cover everything that's needed, so we have to drop back to the old C interfaces in a lot of places.

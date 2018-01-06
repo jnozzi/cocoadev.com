@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need a tableView that allows the user to select only 2 rows at a time.
 I customized the selecting behavior of my table view with mouseDown: and tableView:shouldSelectRow: and it works just fine for when the user (shift)-(command)-clics on the rows.
 

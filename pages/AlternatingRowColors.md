@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you would like to alternate colors in your NSTableView, the same way as with iTunes, use something like this:
 
 <source lang="objc">

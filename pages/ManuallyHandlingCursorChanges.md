@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a view with some rather complex rules about when to show which cursor, and the cursor rectangles are not only rectangles, and they are sort of "stacked".

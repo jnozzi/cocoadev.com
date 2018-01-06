@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There is NSCarriageReturnCharacter, there is NSUpArrowFunctionKey but you won't find an according key for the Escape key on your keyboard.
 
 But after some searching on Google I found out that it's 27. So if you want to catch the escape key being pressed in your view, do this:

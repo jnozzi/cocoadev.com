@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a General/NSTableView, and I want the Main Window's title to change whenever I select a new row. Can anyone help me?
 Thanks.
 --General/JoshaChapmanDodson

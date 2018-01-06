@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Well I finally got the time to install Mac OS X Tiger recently and I love it for the most part I love it. I went through the preferences though and got Xcode 2.0 Code Sense going and it appears to be much much faster over Xcode 1.5 code completion. though I discovered that naming suggestion is nowhere to be found. I found that if I hit Esc (though im not sure it's the default key for this) it will suggest something while I type. For example if I start typing:
 "[se " Xcode will start a popuplist with the first suggestion "[self ..."
 

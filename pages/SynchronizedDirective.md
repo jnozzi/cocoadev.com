@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Panther adds a new Objective-C directive,     @synchronized(). See http://developer.apple.com/documentation/Cocoa/Conceptual/General/ObjectiveC/General/LanguageOverview/chapter_4_section_9.html#//apple_ref/doc/uid/20001424-BCIFAFAI

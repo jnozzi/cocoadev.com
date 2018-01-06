@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'll throw in an example that I use to do asynch notification from a spawned worker thread.
 
 The background is this.  In my finder replacement, I need to fork a thread to get the size of a bundle.  I don't want the user interface to freeze while I go off doing a recursive descent of the bundle hierarchy, so I fork a thread to do the work, and use Notification to tell my controller when it finished so the view can be updated.  (You see Finder doing this when you go into /Applications, all the sizes are listed as "--", and then they fill in asynchronously.)

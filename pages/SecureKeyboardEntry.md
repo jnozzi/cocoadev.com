@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Secure Keyboard Entry (named here for the menu item in Terminal.app that turns it on and off) is a special mode of input that promises to thwart keystroke-loggers. It can also cause problems; certain input methods (like the US Extended keyboard layout) and applications (like the game Escape Velocity: Nova) don't work properly (if at all) when Secure Keyboard Entry is on.
 
 Perhaps the most common use of Secure Keyboard Entry is by NSSecureTextField, which enables it whenever it becomes the first responder.

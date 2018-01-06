@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a Core Data model from which I generate custom classes all of them inheriting from NSManagedObject. That is all fine. But when I want to add custom code to the classes it becomes a mess when I regenerate the code from the data model, because then I have to merge the changes manually.

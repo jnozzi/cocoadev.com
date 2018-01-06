@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is just a prettied up version of what's in NSTableViewRollover. (Moved from CCDSourceTable.)
 
 Never mind the inaccurate description, see the example: http://homepage.mac.com/ryanstevens/SourceList.zip

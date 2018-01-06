@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been working on a ludicrously complicated simulation program for robotics for over a year now, and since it's blossomed in many ways from when I began it, it has somewhat accordingly bloated in terms of its GUI.
 
 Now, I don't mean to toot my own horn, but the codebase itself is pretty damn tight. I do full scale reviews every month or so to see what can be streamlined, what can be turned into a generalized mechanism, and so on and so forth. It's actually very maintainable. HOWEVER, the GUI is pretty absurdly voluminous.

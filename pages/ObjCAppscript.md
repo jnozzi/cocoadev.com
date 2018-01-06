@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 objc-appscript is an easy-to-use, high level ObjC-to-Apple event bridge for OS X 10.3 and later. 
 
 See: http://appscript.sourceforge.net/objc-appscript/index.html

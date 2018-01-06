@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Overview**
 
 FindExecutableInPath allows you to search directories in $PATH for a specific executable name. 

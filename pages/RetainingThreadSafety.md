@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Sharing objects safely between threads in a multithreaded app involves understanding exactly how to use RetainingAndReleasing and mutable/immutable objects, especially collections.

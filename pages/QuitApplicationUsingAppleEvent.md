@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Code to quit an application, identified by a bundle ID, by sending it a Quit Apple Event.
 
 Sending a Quit Apple Event is the "friendly" way to quit an application.  In response, an application may display some UI to the user such as asking him to save unsaved documents.  This code executes much faster than using either NSAppleScript or NSTask to quit an application.  It requires 10.3 or later.

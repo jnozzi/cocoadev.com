@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I cannot make nibtool create a new .nib file after I have translated all the strings!
 I'm getting the following error:
 

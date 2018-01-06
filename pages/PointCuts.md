@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **PointCuts** - 
 
 a JoinPoint is a term used when refering to aspects to define when (amongst the mass of messages being sent from object to object) we would like to intervene and do something else.  

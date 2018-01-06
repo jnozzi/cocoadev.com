@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to stop the screensaver and/or wake the computer screen if it's off/dimmed. I need to do something like simulate mouse movement. How can I do something like this?
 Thanks.
 

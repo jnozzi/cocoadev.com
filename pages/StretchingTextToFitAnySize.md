@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to 'watermark' images of any size with an arbitrary string. For now, this watermark doesn't have to be rotated, etc, it just needs to go across an General/NSRect of my choice. Because this image is generated in real time, I need a very efficient way of drawing an updated watermark atop the image as it's scrolled, sized, etc.

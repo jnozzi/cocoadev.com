@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ShebangAble has the code... but I'll post it again here... if you write an FScript and put it in a file starting with a shebang (#!) line pointing to this code, and then put that script in ~/Library/Scripts, it'll appear in that AppleScript menu on your menu bar and be executable from there... 
 (UPDATE: **IT DOESN'T WORK YET**)
     

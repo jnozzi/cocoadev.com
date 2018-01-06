@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am using NSTask to pipe data through a command, the code is like this:
     
 @implementation NSData (AsyncWrite)

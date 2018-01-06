@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a idea that I've been looking at for a long time. What would be the best way to draw reflections of an image (ala Keynote, Pages, iWeb, etc.)? From what I have read through there's nothing in the Cocoa drawing methods to facilitate this, so one would have to drop down to Quartz, which I am partially familiar with but have no problem using. Basically how I see it, one would draw the image (using the normal Cocoa calls), and then draw the image again directly below and flipped from the original. The problem I'm having is with the linear gradient fade-out. I have used CGShading to draw gradients in the past, but I can't seem to figure out how to draw the image to fade out downward and then have whatever has been drawn behind it show through (instead of just doing a transparent-to-white gradient on top of the image). Also, my target platform is 10.3+, and therefore CoreImage is not an option. Any help with this topic is greatly appreciated. --LoganCollins
 
 ----

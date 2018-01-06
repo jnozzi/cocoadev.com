@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The most popular proprietary archive/compression format on the Mac. Developed & owned by Allume Systems [http://www.allume.com/] (previously Aladdin Systems).
 
 Known for annoying and incompatible changes between major versions. If possible, use tar/gzip or compressed DMG on OSX.

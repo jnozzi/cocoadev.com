@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Lots of tips on the General/CommandLineInterface at:

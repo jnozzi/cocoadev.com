@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi!
 
 I am fairly new to the idea of Cocoa as I have just moved from Visual Basic. 

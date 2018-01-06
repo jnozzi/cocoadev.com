@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The cell CCDTextField uses to get things done.
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to get a simple NSTableView implementation to work, but I'm beginner and VERY confused.
 
 Can anyone give me a simple example of a NSTableView which takes his values from an NSMutableArray with String objects in it...

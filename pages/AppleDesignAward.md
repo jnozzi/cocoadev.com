@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://developer.apple.com/designawards/
 
 The Annual Apple Design Awards for Application Software recognize innovation, advanced Mac OS X look and feel, maximum use of Apple technologies, and new, exciting, and high quality product entries to the Mac OS X market, including an all new Server Solution category.

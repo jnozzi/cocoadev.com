@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an General/NSSearchField in an General/NSToolbar and a large General/WebView spanning the content of the parent window. I want the General/NSSearchField to behave like the search field in the Dictionary app included with Tiger, which passes up/down arrow and pg up/down key presses to the General/WebView to let the user scroll without leaving the search field.
 
 I've tried subclassing General/NSSearchFieldCell and overriding its keyDown:, but calling [searchField setCell:newCell] breaks the General/NSSearchField so that only the magnifying glass is displayed.

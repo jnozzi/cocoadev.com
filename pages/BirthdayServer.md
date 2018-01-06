@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 BirthdayServer is a little HTTP server written in cocoa, based on the NetSocket class. It serves up an RSS feed and an iCal calendar of upcoming birthdays from your AddressBook. Uses the AddressBook framework. The code is here, an XCode project:
 
 http://mutablelogic.com/BirthdayServer.zip (188K)

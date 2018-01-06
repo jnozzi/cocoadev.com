@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Mac OS X AddressBook is based on the MetaKit embedded database.
 
 http://www.equi4.com/metakit.html

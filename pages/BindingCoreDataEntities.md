@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hello! I'm develping a school gradebook app, and I'm having trouble getting CoreData to work. I have two entities, Student and Activity, and array controllers in IB. Both entities have attributes and relationships to each other. In IB I have a table with two columns: student and grade. The table's connected to the student array controller. Another table holds a list of activities, connected to the activities array controller. What I want to do is have the grade column show the respective students' grade for the selected activity, and change when selection of activity changes. I've tried everything I can think of. Is there an easy way to do this? Thanks, --LoganCollins

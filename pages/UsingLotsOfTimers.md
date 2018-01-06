@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is this going to get me into trouble?
 
     

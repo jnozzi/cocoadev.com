@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 DTCPathView by DanielToddCurrie -  Line of Sight Software http://los.dtcurrie.net
 
 DTCPathView is an open source class that can be used freely by any Cocoa/Objective-C developers. It allows the programmer to easily add auto-completion of absolute path strings to any NSTextField.

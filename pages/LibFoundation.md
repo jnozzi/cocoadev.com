@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 libFoundation is a free, open-source implementation of the FoundationKit of the OpenStep specification, and also contains some additions made in OPENSTEP/YellowBox/Cocoa since the original OpenStep specification was published.
 
 It's not nearly as up to date as GnuStep, the Free Software Foundation implementation of OpenStep, but I've found that it's easier to compile it than GnuStep. GnuStep creates its own somewhat NeXTSTEP/OPENSTEP/Mac OS X-like directory structure in /usr/GNUstep, stores its libraries and headers in a configuration similar to Mac OS X Frameworks, and requires GNUmakefiles to compile, while LibFoundation is simply a library stored in /usr/[local/]lib and headers in /usr/[local/]include.

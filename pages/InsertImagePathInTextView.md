@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a basic HTML editor, and I'm trying to have an action that shows a open sheet, and selects a image, and inserts its path in the TextView. How would that be done? Thanks in advance. : )
 --JoshaChapmanDodson
 

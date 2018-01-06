@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 PageRefactoring is a term used to describe the process of moving content from one page in CocoaDev to its own page, or changing a page drastically to make it more useful. This housekeeping task serves a few purposes; including cleaning up individual pages and improving the way information is indexed by CocoaDev.
 
 Times to refactor include:

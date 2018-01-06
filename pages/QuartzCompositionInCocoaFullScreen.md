@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The application I'm working on has a quartz composition as its main view.  I have a button in my NSToolbar that I would like to in turn make my quartz composition go full screen and appropriately be able to exit when escape is hit.  I didn't think this would be much trouble but having looked at half a dozen tutorials or so I'm stuck.

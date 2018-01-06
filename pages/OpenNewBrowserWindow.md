@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am constructing some HTML and putting it into a WebView with     -loadHTMLString:baseURL:, as shown below. I would like the links in the view to open in a new window of the user's default browser, however, I can't figure out quite how to get it to work. I'm sure there is an easy solution to this - but I'm a little stuck as to what it might be.
 
     

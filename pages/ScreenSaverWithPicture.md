@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to write a screensaver.
 
 I want the screensaver to be set to an image and sometime later I want it to change that image to a newly created image.  

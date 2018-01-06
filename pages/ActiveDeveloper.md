@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone here looked at or used a product called ActiveDeveloper from http://www.interactive-technology.com/
 
 It looks like an interesting product and perhaps a good learning tool, although the docs appear somewhat confusing. Because installation is more involved than just drag & drop, I thought I would check to see if there are any opinions on it.

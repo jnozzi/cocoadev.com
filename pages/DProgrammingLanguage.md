@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A programming language developed as a successor to both C++ and Java.  It is a fully compiled language, and can be used to write low-level code.  It is also fully garbage collected. D sacrifices C source compatibility, though it is fairly easy to wrap C functions inside D.  The current D compiler is available at http://www.digitalmars.com, and a port to GCC is underway.  --OwenAnderson
 
 Status Update:  The GCC frontend has taken a major leap forward, and is now fairly stable with support for 99% of the the language.  It compiles on Linux and Mac OS X, and generic UNIX support is underway.  Most bugs are now specific implementation errors, and the compiler can be used for development.

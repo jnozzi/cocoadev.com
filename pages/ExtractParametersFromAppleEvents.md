@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to add custom 'odoc' handling to my application in order for it to support the ODBSuite.
 
 I have managed to setup my handler for aevt/odoc, and I do get the event. I can also get to the AEDesc, and see that the code is 'aevt', and I can extract the data using AEGetDescData(). But I have no idea what to do with the data... 

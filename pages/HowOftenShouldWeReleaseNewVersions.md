@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I always wondered, what should be the average time frame for releasing new versions of our software? I'm talking about shareware apps, not huge commercial apps. Because some people release updates all the time, very frequently. But is there any standard or rule that should be followed? --KevinWojniak
 ----
 

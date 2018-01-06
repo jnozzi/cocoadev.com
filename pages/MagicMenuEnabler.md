@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe MagicMenuEnabler here. I get this error on every project i run, it doesn't stop the app from running, but I don't like errors popping up.  This is the text I get
 
 

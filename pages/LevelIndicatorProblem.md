@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a single tablecolumn. Each row of the table column should have a NSRelevance type level indicator and its height should be lesser than the row height. Can anyone help me out.
 
 ----

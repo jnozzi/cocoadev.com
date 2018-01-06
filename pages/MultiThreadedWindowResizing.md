@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Calling a method that contains the line     [mainWindow setFrame:frame display:YES animate:YES]; from a secondary thread causes the window to become a giant white rectangle until it finishes resizing.  What gives!?  Anyway I can get arround this annoying little bug?
 
 ----

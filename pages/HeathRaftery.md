@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Heath is by day working on the inferior platform, researching and programming apps for condition monitoring. His main coding interest is his alterego: H<nowiki/>R<nowiki/>S<nowiki/>oftW<nowiki/>orks: http://www.hrsoftworks.net

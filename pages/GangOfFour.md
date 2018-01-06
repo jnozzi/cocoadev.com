@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See BookDesignPatterns for additional information.
 
 

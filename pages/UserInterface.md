@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The General/UserInterface is the part of an application with which the user interacts.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 I'm interested in using install_name_tool command to set a dylib's install path to a directory within the users home directory,
 e.g. 

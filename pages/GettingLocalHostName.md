@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do I get the local host name, 

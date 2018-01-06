@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there any way I can setup my table view (or outline view) to have its column be as wide as the widest entry (or as wide as available space, if the widest entry is smaller than available space)?

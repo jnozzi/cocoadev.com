@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I recently implemented a preferences window for a single-window non-document-centric app. I open the preferences window by connecting the prefs menu item directly to the orderFront: message. hitting command-w closes the window, so that's fine.

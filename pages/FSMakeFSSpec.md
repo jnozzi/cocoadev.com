@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ** Converting NSString Paths to FSSpecs **
 ----
 Converting NSString Paths to FSSpecs can be tricky, especially when dealing with paths that do not yet exist.

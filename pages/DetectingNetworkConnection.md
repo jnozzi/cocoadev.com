@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Apple Software Update say: "Checking occurs only when you have a network connection" How can I detect this?
 
 It is easy to load something in the background:

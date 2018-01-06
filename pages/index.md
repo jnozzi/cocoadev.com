@@ -1,30 +1,17 @@
-The New CocoaDev
-================
+---
+layout: page
+---
 
-**EDITING HAS BEEN DISABLED HERE**
+<div class="wrapper">
+    {% assign default_paths = site.pages | map: "path" %}
+    {% assign page_paths = site.header_pages | default: default_paths %}
 
-The CocoaDev site is undergoing some big changes to take it into 2014 and beyond. See below for details.
-
-You can currently contribute edits via a fork and pull request on [github](https://github.com/jnozzi/cocoadev.com).
-
-The Skinny
-----------
-
-* Converted to full Markdown syntax
-* Migrated to a Github repository (clone, modify, pull request)
-* Accepted pull requests use Markdoc to convert to static content, push to server
-
-Benefits
---------
-
-* Eliminates wiki-spam
-* Manages edit conflicts
-* Speeds up live site
-* Allows mass edits (yay!)
-* Standardizes markup
-
-Timeline
---------
-
-EDITABLE SOON. Check this page for updates.
-
+  <div class="trigger">
+  	<ul>
+    {% for path in page_paths %}
+      {% assign my_page = site.pages | where: "path", path | first %}
+      <li><a class="page-link" href="{{ my_page.url | relative_url }}">{{ path | escape }}</a></li>
+    {% endfor %}
+	</ul>
+  </div>
+</div>

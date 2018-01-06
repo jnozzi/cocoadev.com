@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I wrote up a function to decode some Base64 text and return it. Here is the (somewhat messy) code I made:

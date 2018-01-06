@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What I'm trying to do:
 
 launchd tells me when /Volumes has changed, so I can find out when my GPSr is plugged in to the computer. (It's a Magellan eXplorist, so it creates a nifty file system on the desktop.)

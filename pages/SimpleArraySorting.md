@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to sort an array of NSString either alphabetically, or sorted by length...

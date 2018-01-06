@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I�m using this notification to know if the return key caused end editing:

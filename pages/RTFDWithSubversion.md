@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I recently had need to add Subversion support to my app, which uses RTFD to store certain files, so I thought my solution might be of use to others.
 
 THE PROBLEM:

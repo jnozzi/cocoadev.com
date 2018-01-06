@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **This is a menagerie that records some of the strange sights that people have seen over the years...**
 
 Note that it contains embedded locators that may become invalid sometime in the future (but were valid as of Feb 02 2006) http://goo.gl/OeSCu

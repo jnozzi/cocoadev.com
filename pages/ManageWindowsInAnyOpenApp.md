@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OK I'm learning Cocoa because I thought it would be fun, but theres an app I've really needed for a long time now and I dont even know if its possible to create.  It really should be built into OS X but it's not (obviously).
 
 What I need is a simple Dock item, or menu extra, or contextual menu, or a flying saucer that hovers over my computer for all I care, that will let me pick an open window, and set its location to 0,0 or 10,10 or whatever.  Maybe this could even be set in a prefs pane or something.  The reason I need this is that there are a few OSX applications (Ahem... Adobe) that arent aware that a second monitor has been unplugged.  I daily use my powerbook with a second monitor attached, but then when I use, for example, Photoshop when I dont have the second monitor, certain windows like the styles & effects dialog will show up positioned for the second monitor and I cant get to them without trashing my prefs.  Same for GoLive & a few other applications.

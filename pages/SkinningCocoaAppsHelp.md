@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone found some good ways to skin apps in cocoa? I have nosed around a little and haven't found much via google and looking at the APIs, I am not seeing any kind of setting for a background image or anything. I guess you might be able to drop a Image or View onto the window, filling it with your image and then putting the controls on top of that, but it seems a clunky attempt. 
 
 Anyone have any other ideas or solutions?

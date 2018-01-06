@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know of a good SSH framework?  I'd like to write a quick app that simply connects to an SSH host and sets up some port forwarding (no terminal emulation is required), displaying the status as an NSMenuExtra.

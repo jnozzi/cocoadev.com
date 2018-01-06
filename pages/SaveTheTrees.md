@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When I first started programming in Cocoa I actually printed
 out the documentation for both AppKit and Foundation 
 frameworks. You wouldn't believe how many pages that

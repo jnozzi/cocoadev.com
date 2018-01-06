@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an application in which I want Cmd-Space to trigger a menu, but I cannot seem to set this in IB. Is there any way to work around this? Is there some magic reason why this isn't allowed?

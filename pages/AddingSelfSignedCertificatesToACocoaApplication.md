@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on a Cocoa client program that talks to a webserver. Up until now, I've been using HTTP to communicate with said server, but I'd like to switch over to HTTPS.
 
 I've been pulling information off the webserver primarily by:

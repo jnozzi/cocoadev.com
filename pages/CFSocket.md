@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CFSocket documentation: the header file, and
 
 file:///Developer/ADC%20Reference%20Library/documentation/CoreFoundation/Reference/CFSocketRef/index.html

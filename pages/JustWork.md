@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 JustWork is Apple's overriding philosophy. A piece of software or hardware JustWork<nowiki/>s when you can open it, turn it on, plug it in, etc. and it simply starts working the way it should; it Just Works. If something JustWork<nowiki/>s it means that there is no configuration hell, no long setup procedures, and no unexpected snags.
 
 From a user perspective, a great deal of Mac OS X falls under the JustWork philosophy, although there's still a lot that needs improvement. Cocoa likewise often JustWork<nowiki/>s, but has a lot of areas that don't.

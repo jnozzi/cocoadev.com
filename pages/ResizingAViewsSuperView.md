@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hey all, I'm lost on this...  I've got a simple subclass of NSView.  It does nothing spectacular but I wanted to figure out how to drag a view.  Mission acomplished.  Then I wanted to limit the drag to the superviews viewable area.  Again, managed to get it worked out.

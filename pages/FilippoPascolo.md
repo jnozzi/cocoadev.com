@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **[In progress...lavori in corso]**
 
 ----

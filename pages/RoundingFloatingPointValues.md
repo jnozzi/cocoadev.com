@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm using Xcode 1.1, and I am in vain trying to round off a floating point value to, for example, two decimals. i've found a method that will round it off to zero decimals, but that's not what I want. Does anybody know how to do this?
 
 ----

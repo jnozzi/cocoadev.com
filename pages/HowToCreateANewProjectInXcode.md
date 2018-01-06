@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Open Xcode, choose "New Project".  This should give you the "Assistant" window with "New Project" as its heading.  Choose "Cocoa Application".  Type in the name of the project.  Now, choose the directory you want it to be in.  Then press "Finish".

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey everyone, I've been stumped by this problema bit, so hopefully you can help out. I would like to track mouse movement to activate when it is placed in a certain corner or a certain gesture is made. The problem is that all things I have tried (my last approach using General/TrackMouseLocation()) only work when my application is foremost. As soon as I switch to something else, it stops listening for mouse movement. I would like to implement this without polling, but that is another option I'm willing to consider. So, is there some way to track mouse movement without polling even in the background, and if that's not an option, what sort of tips do you have on implementing polling for mouse movement so that I don't peg the processor or anything...
 
 Thanks!

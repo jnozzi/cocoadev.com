@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I just had a problem with a project where the prefs for the debugger window was corrupted. The split view in the debugging window was permanently snapped to one side. The divider was also not visible so I couldn't do anything to make the left side of the main debuggin window visible (thread info and variable info views). Quiting Xcode and relaunching did not solve the problem. As a last resort I backed up the project and started to play around inside the     .xcode directory. I figured out how to force Xcode to rebuild a particular project's window placement prefs.

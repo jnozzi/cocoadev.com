@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am interested in copying files to an iPod when it's NOT in disk mode. Any way to go about doing this? Using Apple's sample USBNotificationTool, I can get my app to recognize when an iPod is plugged in or disconnected, but that's about it. How do I copy something to a USB device?

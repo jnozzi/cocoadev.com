@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Let's say you have a parent class, and your parent class has children within it. For each child, you wanted it to store a reference to its parent. So you create accessor methods     setParent: and     parent. Now here's the question. Do you retain the parent in each child?
     
 - (void)setParent:(id)parent

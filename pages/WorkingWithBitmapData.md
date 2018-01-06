@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an General/NSBitmapImageRep and I'm trying to make all of its pixels white, here's my code:

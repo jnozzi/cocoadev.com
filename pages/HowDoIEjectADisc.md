@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been trying to create a very basic Cocoa application using Xcode and Interface Builder in OSX Panther... Yada, yada, yada. But basically, my program is a basic and easy DVD Player. Unfortunately, it's becoming very hard to try and get DVD's to play. DOES ANYONE OUT THERE HAVE ANY BIT OF CODE FOR IT?
 
 I heard that you may just be able to play DVD's in Carbon, but I know NOTHING about Carbon...

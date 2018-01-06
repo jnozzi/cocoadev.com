@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Core Image is Apple's new hardware accelerated Framework for creating and using filters, effects and transitions.
 
 More information:

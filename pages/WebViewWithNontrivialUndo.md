@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on an application which uses a General/WebView that interacts with some external controls. The controls modify my Model class, which generates some HTML and outputs it into the General/WebView by loading a temporary file.
 
 This was all well and good until I tried to add undo support to my application. I tried subclassing General/WebView and setting undoManager: to

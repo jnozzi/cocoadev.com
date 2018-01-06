@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe General/XCodeItalia here.
 
 We are come back.

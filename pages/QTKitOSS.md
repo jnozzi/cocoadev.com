@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 QTKitOSS, a.k.a. QTKit, is an open-source wrapper around QuickTime, not to be confused with Apple's QTKit which comes with QuickTime 7.

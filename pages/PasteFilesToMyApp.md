@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am eager to know how to get the file names in NSPasteboard
 
 1) Copy more than one files in Finder

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Alright, this is perhaps just a peeve, but there's some serious weirdness going on with this site in Safari. The font size for regular text on *this* page is pretty large, whereas the RecentChanges page has tiny text. I never had this problem with OmniWeb so I'm assuming it's a Safari bug, but I don't really know how to describe it in the bug reporter!
 
 "Your browser renders CocoaDev.com inconsistently at best."

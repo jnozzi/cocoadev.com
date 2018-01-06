@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am having no success in embedding the OgreKit framework in my application. I downloaded OgreKit_2_1_2 from http://www8.ocn.ne.jp/~sonoisa/OgreKit/. Built the included targets which comprised some test utilities and a framework. I added the OgreKit.framework to my Copy File folder in the XCODE Target directory of my new XCode project. The build succeeded, however, when I ran the application, the debugger could not find the library. I refered to the ApplicationLinkingIssues page and used the Copy File recommendation, but no luck. Is there something I'm overlooking? - patrick cusack
 
 ----

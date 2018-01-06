@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Will anyone be going to the free Tiger Development Briefing in London? Just wondering. - General/StefanPantos
 
 Me me me - General/FrederickCheung

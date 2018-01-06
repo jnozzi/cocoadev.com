@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 L0Worker is a class that handles working asynchronously while keeping the main thread informed of the progress of the operation (a very common thing to do -- see Finder, General/StuffitExpander, General/DiskUtility...).
 
 To use it, simply subclass it like this:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When you're all done with your application and want to distribute it, check out the following page on StepWise for building the disk image.
 
 http://www.stepwise.com/Articles/Technical/2001-03-29.01.html

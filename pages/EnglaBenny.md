@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 aka Ulrik Sverdrup, living currently in Lund, Sweden.

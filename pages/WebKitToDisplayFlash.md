@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, 
 
 I am trying to force General/WebKit to display some Flash files. The problem is when i load them,their size doesn't shrinks to General/WebView size. I can see only about 20-30% of content. Is there any way to force General/WebKit to shrink Flash files to it's size? 

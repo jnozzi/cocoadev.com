@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've installed 12/01 Dev tools on OS 10.2.6
 
 Project Builder (and Project Builder WO) will not launch.  Console says they are looking for App Support framework in System / Private Frameworks.

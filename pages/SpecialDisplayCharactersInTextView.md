@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 March 20, 2006

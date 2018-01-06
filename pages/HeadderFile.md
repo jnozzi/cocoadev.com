@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have defined constants in a headder file & included in my prog. Now some situation I want to swap values in defined constants headder file while my main program doing initilization. It will help for my prog efficient. Pls tell me the way or alternative way....... 
 
 ----

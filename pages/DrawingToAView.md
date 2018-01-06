@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to learn how to draw to a view.  This simple code just takes values from 4 NSTextFields and attempts to fill a MyTextView object with white, then draws a square of the color specified in CMYK from the NSTextFields.  An NSButton is connected to a "go:" action to get it going.
 
 My drawRect: method fires when the program first launches, but not when I enter values in the NSTextFields and hit "go".

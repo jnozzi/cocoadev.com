@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **For alternatives to MailingListMode@CocoaDev see SingleQuestionAndAnswer**
 
 With the advent of the RSS feed, it becomes possible to use a wiki in much the same way as a normal mailing list, simply viewing it as a sequence of posts from the perspective, say, of the RecentChanges page.

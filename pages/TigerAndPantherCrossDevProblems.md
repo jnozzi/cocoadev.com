@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm having trouble with an app I made running on Panther, after I compiled it in General/XCode 2 on Tiger. People are emailing me, telling me that the window won't open, yet the Help docs and Font panel will. It's a document-based app, and contains references to General/QTKit, but that's supposed to work in 10.3.9... any ideas?

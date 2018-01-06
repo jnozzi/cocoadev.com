@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [http://autograf.sourceforge.net/]
 
 From the AutoGraf web site:

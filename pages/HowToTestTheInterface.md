@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 When you are in Interface Builder you can always test your interface by selecting the "Test Interface" menu item of the "File" menu (or hit cmd-R).  This allows you to see if all the interface components are working like you hope.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ProKit is one of Mac OS X 10.3's PrivateFrameworks, containing a number of classes and categories that extend the FoundationKit and AppKit classes.

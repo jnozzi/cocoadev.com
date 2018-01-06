@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Part of the iPhone MusicLibraryFramework. Without any filter predicates set, MLQuery returns all tracks.

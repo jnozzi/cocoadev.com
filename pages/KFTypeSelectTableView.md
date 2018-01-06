@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The discussion on TypeAhead last week inspired me to hurry up and release my NSTableView subclass.
 
 KFTypeSelectTableView adds the type-select, or type-ahead, feature to table views. When a table has keyboard focus,

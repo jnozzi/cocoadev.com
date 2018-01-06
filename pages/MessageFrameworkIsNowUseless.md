@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Now that Panther has gotten rid of the "Internet" preferences pane that Message.Framework (especially NSMailDelivery)looked to for the server information to send emails, is Message.Framework worthless? I can't get a yes response from [NSMailDelivery hasDeliveryClassBeenConfigured].
 
 --Freedom Dumlao

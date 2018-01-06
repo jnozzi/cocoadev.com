@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I was wondering if someone could help me. My app has several classes, and calls the other classes through a protocol and a proxy that uses that protocol. The problem is, however, that my app crashes with a EXC_BAD_ACCESS message on the SIGSEGV signal, when I try to setProxyForProtocol.
 
     - (IBAction)daemonStart:(id)sender

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I have a General/WebView in my app, but I don't want people dragging stuff out of it (i.e.) images, is there anyway I can tell the drag and drop subsystem to forbid dragging from the view? 
 
 ----

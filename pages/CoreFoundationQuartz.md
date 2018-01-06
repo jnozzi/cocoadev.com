@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Right. I made a cute little screensaver in which you see fireworks in action. Now, after a short time, I realized that Quartz called through Cocoa is agonizingly slow. I don't want to plunge into OpenGL, and personnally, I don't think it's necessary because I stick with 2D graphics. But I do want to learn intensive drawing. I tried Apple's documentation on Core Graphics and, not only I'm having a rough time understanding the logic behind the SavedStates and the "stack", and everything else, I can't even draw a single rectangle. The code examples didn't help me at all. Can anyone show me the path so I can go ahead on it ?
 
 -- Trax

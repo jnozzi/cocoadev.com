@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Unsanity's haxies are system additions that bring back certain functionality to General/MacOS X.
 
 General/SlavaKarpenko is the lead programmer who develops all these gadgets.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there any simple way of making a window full-screen?  Full-screen meaning the Title-bar of the window is gone, as is the menu bar, and all you can see is the window's contentView.  If there isn't, what's the best way of doing this? 

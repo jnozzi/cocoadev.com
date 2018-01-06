@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When I build my project I get the following error. What is causing this and how do I fix? The function can be found in General/GISGeometry, but is not being seen in General/GISView.
 
 ld: Undefined symbols:

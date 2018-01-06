@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MoreAuthSample is obsolete, see BetterAuthorizationSample.
 
 ----

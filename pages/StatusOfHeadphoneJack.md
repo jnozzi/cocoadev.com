@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there a way (probably through Darwin trickery or with ioreg) to tell if a headphones is connected to the sound-out port?  I know that the internal speaker cuts out, and I'm told that on some earlier macs (orginal colored iMacs) this was through a hardware switch (indeed, when I plug something in, I think I can feel something push out of the way - maybe a switch).  But on my iBook (Dual USB G3), there almost seems to be a very slight delay before the internal speaker cuts off, leading me to believe that it's done through software.

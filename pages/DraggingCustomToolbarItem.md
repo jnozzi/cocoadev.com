@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The standard NSToolbar in OS X allows the user to Command-Drag toolbar items in the toolbar without opening the Customize Toolbar sheet.
 
 My problem is that I have created a custom NSView to be used as a toolbar item so that I can intercept the mouseDown events and popup a menu. This all works fine except that when I Command-Click to move one of these items the mouseDown goes to my custom view and I don't know where to send it so that the toolbar item can be dragged by the user.

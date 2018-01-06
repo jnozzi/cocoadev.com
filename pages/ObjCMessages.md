@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ObjC uses messages where most OO languages use methods. 
 
 ObjC still has methods. Methods are concrete blocks of code. A message is an abstract 'name of a method' which, due to ObjC's dynamic nature, can invoke any number of methods.

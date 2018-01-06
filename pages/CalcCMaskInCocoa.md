@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to use the Quickdraw function CalcCMask in a Cocoa Project. This is because I have to mask NSImages so that they are drawn completely over the background pixels. I can get a CGImage from my NSImage and use either chromacolor masking or CGImageMaskCreate() but neither method for doing this in Quartz works if there are any white pixels in the image. Chromacolor masking can be used with the function CGImageCreateWithMaskingColors() with the key color as white to remove the whitespace between the image and its rectangle but if there are any white pixels in the image content the background will show through them. A similar problem exists if one creates a mask with CGImageMaskCreate(). The mask created with this method has the same bit depth as the CGImage and the background will show through depending on how dense the pixels in the source image were. Creating either a one bit source image or mask just increases the contrast to black and white but actually creates more white pixels in the mask/image. You can think of the problem like this: Image one is a black circle with a white center. Image two is a gray rectangle. You want to draw the black circle over the gray rectangle but you want the center of the circle to remain white. You can't do this with Quartz but you could do it with quickdraw using PicHandles and regions more or less like this:
     
 GetPort(&savedPort);

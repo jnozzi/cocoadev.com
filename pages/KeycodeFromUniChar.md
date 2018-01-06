@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi All, 
 
 The program I'm trying to create is to increase accessibility to text fields so for a given set of preset strings the user can click a button and the app will post that string (or single key) to whichever app is active. I found the method CGPostKeyboardEvent but it requires a keycode as opposed to a string. So in theory I thought I would iterate through each character in my string and "post" them separately. I'm trying to figure out how to get the keycode for a given character. 

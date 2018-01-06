@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know how to use the debugger with a framework.  Suppose I have the following code
 
 #import <MyFramework/MyFramework.h>

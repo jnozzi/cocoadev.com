@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe CocoaWOMacOSXServerProblems here.
 Hello I'm a WebObjects developer of simple applications. The deployment
 of this application is done on a MacOS X Server 10.3.2 with Java 1.4.2

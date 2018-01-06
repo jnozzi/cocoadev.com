@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An InstanceMethod is a function that AnObject can perform, commonly on or with a DataMember.

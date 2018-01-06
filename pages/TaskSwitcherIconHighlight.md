@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've looked everwhere for info but I guess i'm not sure what i'm looking for - i'm a newbie numbskull.

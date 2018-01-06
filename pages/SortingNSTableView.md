@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 So, as I said, I've got an NSTableView with an array of NSDictionary objects.  i want to create a sort function, but as shown on SortingExampleUsingNSComparisonResult, you need the sort function inside of the declaration of the object.  can i put a sortItems: function in the NSDictionary definition, or somehow tell it to use a function from my Controller file?

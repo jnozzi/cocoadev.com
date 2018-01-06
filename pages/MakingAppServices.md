@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MakingServices and StandardService describes how to make a small tool that simply vends a service. But often you want to just have an application that vends services to other apps without going through a middle man. For example, TextEdit.app vends the OpenFile and OpenSelection services. Configuring your app to vend and handle a service is easy. You need to:
 
 

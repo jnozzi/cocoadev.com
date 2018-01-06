@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi
 
 I am fairly new to Cocoa and IB but I have background in other programming languages. I undertand the MVC Concept and I have a hard time adding my classes created in XCode in Interface Builder 3.0 under Leopard.

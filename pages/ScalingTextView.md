@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 Does anybody know how to scale a text view without confusing the the scroll view? By "scale", I mean making the text bigger or smaller *without* affecting the actual *font* size. ie. Those with poor eyes can make the text on screen bigger (eg. 150%) without affecting how it will print out.

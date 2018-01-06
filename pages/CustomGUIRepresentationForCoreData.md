@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anyone know how to represent the entities in Core data with custom GUI?
 
 For example, if i add an employee, i want a graphic of an employee to be shown in a Custom view area in the document.

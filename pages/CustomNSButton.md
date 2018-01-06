@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **This discussion is mostly about custom NSButton *appearance* rather than about subclassing NSButton**

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Illustrates how to open the Apple AddressBook programmatically.
 
 I have been using the new Address Book APIs... very powerful. Just one question: I have an application I wrote in Cocoa which checks our local, proprietary address database and puts the results in a window. Using the new APIs, it now checks to see if this person exists in the computer's Address Book, and offers to add the person if he/she doesn't. I want to add an additional button that will open the address book to that person if they do exist. I am stumped... there seems to be no way to do this (although mail does it). Any ideas would be much appreciated! Thanks!!!

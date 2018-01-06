@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ForwardInvocationAspect - just an idea for AspectCocoa
 
 So far we've been replacing methods with replacementIMPs... what if we instead completely drop methods we want to replace and override forwardInvocation: on all classes we're applying an Aspect to. we'd also have to override methodSignatureForSelector:.  So we'd change forwardInvocation to access a lookup for the class we've removed. (if not found, proceed with the normal forwardInvocation).  We'd change methodSignature to access our lookup and return the signature we've store for the method prior to swapping it out.  We can make swapping in and out easier by renaming rather than removing methods.

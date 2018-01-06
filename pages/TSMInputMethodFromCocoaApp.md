@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm wondering if it's possible to create a General/InputMethod (I think I'm using the right term here) in a cocoa application-
 I've checked out the General/BasicInputMethod sample ( http://developer.apple.com/samplecode/Sample_Code/Interapplication_Comm/General/BasicInputMethod.htm ) from apple's site , and I can't really make any sense of it (lots of carbon code I just don't understand).
 

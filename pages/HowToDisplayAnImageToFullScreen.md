@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How to display an image into full screen mode?
 
 ----

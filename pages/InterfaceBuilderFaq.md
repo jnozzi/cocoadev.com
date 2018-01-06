@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A FAQ for InterfaceBuilder users. Please add more.

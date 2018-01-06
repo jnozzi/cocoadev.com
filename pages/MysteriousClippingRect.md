@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got a fairly complex visualization for state data dumped from my AI code; the visualization is drawn as a graph of nodes and lines and whatnot. The nodes have numeric labels, drawn via NSString's drawAtPoint message. Finally, the code that draws the graph sets up an NSAffineTransform to scale it, such that I can hit command plus/minus to zoom in and out. 
 
 The graph itself scales fine, but the odd thing is that as I zoom out, the *text* begins to disappear, from right to left, bottom to top ( BTW, my coordinate system for the graph is flipped, with y=0 at the top ). If I zoom in ( make the graph larger ) there's no problem, and at 100% ( or scale=1.0 ) the text is fine.

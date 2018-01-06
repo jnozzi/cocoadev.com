@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 When a Cocoa or other C-based program on Mac OS X crashes, you can receive one of a number of signals, such as "SIGBUS" or "SIGSEGV". A signal is like a software interrupt.  The OS sends your program a signal, and you can register handlers to execute when that signal is sent (except for SIGKILL, which you can't catch)  Below is a list of explanations of these signals, along with common causes. Much of this information was taken from the man page for signal(3), but only signals likely to occur in the event of halted program execution are listed. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I'm working on an application which requires that I first port a Linux library over to mac and then build a cocoa interface around it...
 my question is this:  the linux lib is utilizing extensively the dumbnet library (ie dnet.h or dumbnet.h).  is there something equivalent to this on Mac?

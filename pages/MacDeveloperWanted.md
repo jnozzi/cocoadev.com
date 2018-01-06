@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Sr. Software Engineer - Mac Client Development
 
 An exciting public company in Louisville Colorado is looking for a dynamic and creative software professional to join a team that is creating the next-generation web conferencing software over the Internet. This is a full-time position, no contractors. 

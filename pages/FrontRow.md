@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 FrontRow is the media viewing application that Apple ships with the iMac (G5 and Intel), Mac mini (Intel) and MacBook Pro. These new Macs  also come with a 6-button infra-red remote control which allows the user to control FrontRow, which in turn manages the playback of music, video, and photos.
 
 FrontRow has been compared to Windows Media Center. It's said to be simpler, easier to use, and better designed than Media Center, but also less capable in that it lacks the TiVo-like digital video recording features that Media Center has.

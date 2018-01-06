@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do I send an NSImage into an AppleScript? I know how to send an NSString using something like the following:

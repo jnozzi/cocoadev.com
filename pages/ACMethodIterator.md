@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Just a class for convenience, see PoseAsAspects and LookupAspects for more info
 
 

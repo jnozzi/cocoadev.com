@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all.
 
 I have been learning Cocoa (slowly in between school and a new baby) and have made some progress. Things are coming together. I want to develop a larger project now that I have finished some tutorials and the thing I most want/need is a map viewer. I work in the field of geographic information systems (GIS) so this would have some real value for me. 

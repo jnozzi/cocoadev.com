@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to create an SystemPreferences pane for my daemon. I don't know where to start : Do I need to create a bundle or plugIn (or something else)?
 
 ----

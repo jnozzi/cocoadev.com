@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Cocoa's memory management, called reference counting, is rather ingenious. It's approximately halfway between C's malloc/free (and, for that matter, C++'s new/delete), and the automatic GarbageCollection which Java and SmallTalk both use. It is much more elegant than malloc/free, and affords more control than Java and SmallTalk-80's GarbageCollection.

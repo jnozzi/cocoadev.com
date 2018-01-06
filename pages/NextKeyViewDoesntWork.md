@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSDrawer with a ton of text fields (or, I suppose more properly, a NSDrawer's content view), organized in two columns. I've tried to set the tab order to go down each column by connecting each NSTextField via its nextKeyView outlet, but it's ignoring this tab order and going between columns with each tab stroke. Does nextKeyView not work in NSDrawer or something?
 
 ----

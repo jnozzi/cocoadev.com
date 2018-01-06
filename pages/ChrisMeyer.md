@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've got a couple of products out...

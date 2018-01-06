@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
  
 I'm trying to make some NSTextFields only accept numeric characters (they're for float editing). Here's the gotcha: I want unpressed keys to be passed to the nextResponder (we have menus that act on non-cmd-key combinations).

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know if it will ever be possible to have something like X-style forwarding for OS X (Aqua)?
 
 Ever be possible?  Sure, anything is possible.  Near-term, probably not.  Rendering by Quartz is done by the process doing the drawing into a chunk of shared memory, and then the window server blasts those bits to the screen.  (Quartz Extreme employs the graphics card to do that work).  For things to do X-style stuff, either the whole bitmap will need to be shipped across the network (slow.  but maybe with the prevalance of gigabit networking in Macs these days...), or else the Quartz layer will need to be changed to not render locally, but accumulate the drawing commands (like when it generates a PDF, or for printing) and then ship those over the network.

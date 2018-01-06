@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to get an NSImageView to resize itself to fit the graphical content inside it. I can't think of any way to do this without writing a method to generate an NSRect from the dimensions of the graphic, and I would really like to avoid going through something like that if there is already a good solution. If you happen to have a thought on this subject, please add it below. If you are sure nothing like this exists, I'll be happy to write it up and add it in, but please let me know.
 
 -- QetiPadgu

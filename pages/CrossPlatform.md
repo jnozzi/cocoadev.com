@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CrossPlatform code is code that compiles and runs on more than one platform, the more, the merrier. It's hard to do well because of endianess of the processor, the availability of libraries and frameworks, et cetera. C technically *should* be CrossPlatform, but in reality, you tend to have to code to more than the ANSI headers.

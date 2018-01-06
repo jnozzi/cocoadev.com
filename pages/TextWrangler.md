@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/TextWrangler is a free text editor from Bare Bones.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to "rotate" a General/NSTableView, in order to have the columns playing the role of rows, and rows playing the role of columns.
 
 ie : display data for a set of related records, with columns representing individual records and rows representing the attributes of those records.

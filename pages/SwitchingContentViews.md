@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to get a contentview from a window into a panel, and back again as needed. I simply do:
     
 if(![panel contentView])

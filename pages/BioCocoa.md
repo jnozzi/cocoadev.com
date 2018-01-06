@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The BioCocoa framework was originally written to provide developers with the opportunity to add support for reading and writing Clustal, Fasta, GCG-MSF, GDE, NCBI, NEXUS, PDB, Phylip, PIR and S**'wissProt files by writing only three lines of code. Current development is focusing on classes to manipulate sequences, such as translation, digestion and alignment.
 
 The framework is written in Cocoa (Objective-C) and can be used in any Cocoa application. The framework is licensed under the Creative Commons Share-Alike license, and is freely available.

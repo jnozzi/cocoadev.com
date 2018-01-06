@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an app created with CoreData that presents two entities (classroom and student), one-to-many and one-to-one, respectively.
 
 A single window presents a list with classrooms and, instead of using the traditional model of showing all the editing controls on the same window, I want to use separate windows - ONE FOR EACH ITEM I DOUBLE-CLICK.

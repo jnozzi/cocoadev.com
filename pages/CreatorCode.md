@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A creator code is a string of four bytes that uniquely identifies an application. It traditionally represented four MacRoman characters (for example, QuickTime Player's code was TVOD), but can be any four bytes. For instance, GrowlTunes' creator is     G\xE2\x99\xAB. The last three bytes represent a beamed eighth note in UTF8, so it appears as two characters when it's edited in XCode. Creator codes are the traditional MacOS way of identifying application programs, but they have been partially supplanted by Bundle Identifiers in MacOSX. http://goo.gl/OeSCu

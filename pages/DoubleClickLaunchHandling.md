@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi I've created a non-NSDocument Program that creates custom files that open the application when double-clicked but how do I make the application recongize and handle when the application was started by a file being double-clicked?
 
 Gabe

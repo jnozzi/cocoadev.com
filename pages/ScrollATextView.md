@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 JediKnil here. I know the general code used to automatically scroll a text view to the bottom:
     
 [textView scrollRangeToVisible:NSMakeRange(textView textStorage] length], 0)];

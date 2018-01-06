@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Howdy, I'm trying to figure out if it is possible to overload a struct operator in Cocoa.
 My development process has been hampered tremendously by non-linear error messages.
 (By this I mean: compile, and the program runs, add one line of code, the program doesn't compile, remove that line of code, still doesn't compile

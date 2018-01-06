@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey guys,
 
 I basically need to detect the user screaming into the microphone (or just any loud noise), but I really don't have any experience with audio programming, so I don't know any of the audio terminology. I'm using Michael Thornburgh's MTCoreAudio framework (an objective-c wrapper for CoreAudio). But like I said, I don't know any of the terminology, so I'm having a hard time finding my way through the code.

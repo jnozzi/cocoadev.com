@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Well, I am describing myself all right.

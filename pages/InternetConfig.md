@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 InternetConfig was originally a 3rd party library written by Peter Lewis for MacOS which stored various preferences which ought to be common for various internet apps. Apple adopted the standard after it became widely used. The only major differences in Mac OS X is support for bundles as well as the lack of a configuation panel for the friggin file mappings. Fortunately some Carbon internet apps like Explorer can configure these settings.

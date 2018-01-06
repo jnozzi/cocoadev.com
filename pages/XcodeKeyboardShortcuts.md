@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 X<nowiki/>codeKeyboardShortcuts is a list of keyboard shortcuts and a brief description of what the function of the keyboard shortcut.
 
 *Note: It should be mentioned that you can *customize* each and every shortcut in the app (and add new ones for any menu item you want) by selecting Preferences->Key Bindings.*

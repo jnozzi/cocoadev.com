@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Python [http://www.python.org] is a popular ScriptingLanguage in the UNIX community and beyond. Python is object-oriented ["multi-paradigm" is the preferred classification] and easy to extend with libraries written in C, which makes it possible to write really fast programs, really fast.

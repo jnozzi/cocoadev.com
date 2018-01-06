@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an app that writes several temporary files upon launch, into a folder called Temp that it assumes to be in the same directory it's in. It checks for this folder during the writing of these files, a la     [[[NSFileManager defaultManager] currentDirectoryPath] stringByAppendingString:@"/Temp"]. A new problem has suddenly appeared. Essentially, if I launch the app from Xcode, currentDirectoryPath returns the absolute path to the current directory. If I launch the app from the Finder, currentDirectoryPath is just returning /. This means that the app is checking for the Temp folder in the '/' directory, the top level of the HD.
 
 Anyone else have this?

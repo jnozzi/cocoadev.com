@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I realize this is cocadev and not jnidev, so if you have relevant links, fire away.  However, I'm doing this in Xcode and am ultimately using JNI to get in and out of objc (not that that matters)
 
 I've never used JNI before and I'm trying to load classes from a jar.

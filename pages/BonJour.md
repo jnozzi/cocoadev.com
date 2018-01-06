@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://images.apple.com/macosx/features/bonjour/images/indextop20050412.jpg

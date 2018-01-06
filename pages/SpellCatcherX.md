@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Won runner-up at WWDC 2003's Apple Design Awards, Best Mac OS X Technology Adoption category.
 
 http://developer.apple.com/wwdc/designawards.html

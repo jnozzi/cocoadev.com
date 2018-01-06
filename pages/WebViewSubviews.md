@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I know the answer might be quite simple, but I can't seem to be able to figure it out... I have a General/WebView in which I load a web page with 2 fields and a button. My question is if there is any way to access directly those fields to create something like a Autofill for the login & password...

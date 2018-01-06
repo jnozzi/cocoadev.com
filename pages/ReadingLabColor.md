@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Is it possible to sample a color in, for example, a tiff file, and get it's Lab value?
 Specifically, I have an Lab tiff that contains an array of color patches.  What I would like to be able to do is read in the tiff and obtain the L*, a* and b* values of each of the color squares.

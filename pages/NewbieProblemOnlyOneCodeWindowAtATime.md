@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am sorry if this is the wrong location to post but I have just started using XCode and don't know where to get help.   
 I opened a Java project and then tried to open two .java files.  Instead of opening the second on in a new window it just closed the open .java file and opened the new one in its place.  I have mostly been coding in C with cocoa and had no problem like this.  Now I can't even open two .c files at the same time.  I checked through the preferences but didn't see anything saying only one window could be open.  
 I really need help.  Thanks so much.

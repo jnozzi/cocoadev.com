@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to use URL Loading System to upload some files to remote server via HTTP protocol.
 I would like to receive periodic notifications during upload about the amount of already uploaded bytes.
 In other words, I would like to see a progress of uploading process.

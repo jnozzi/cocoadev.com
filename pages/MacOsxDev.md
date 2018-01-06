@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A really good(*) developer mailing list maintained by the Omni Group in Seattle. 
 http://www.omnigroup.com/community/developer/mailinglists/macosx-dev
 

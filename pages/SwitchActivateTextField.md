@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Probably a no-brainer: this is probably covered about a hundred different places on the web, but I don't know what I'm supposed to be looking for.

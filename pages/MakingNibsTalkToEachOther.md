@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page is linked *from* the page CommonProblem
 
 I want to send messages from an object in an auxiliary nib file to another object in my document's object tree.

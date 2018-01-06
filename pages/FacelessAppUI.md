@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a faceless application (using LSUIElement) and everything about the facelessness is just peachy, except that when I open a window (a preferences window, for instance), it remains hidden behind the windows of the frontmost "faced" application, even when I use makeKeyAndOrderFront. Does anyone know a way to get around this problem?
 
 --SteveCook

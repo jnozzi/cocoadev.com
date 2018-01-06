@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  (Begun November, 2004)
 ----
 *SimpleSolutions Pages are for solutions to problems it took you "way too long" to figure out but ended up being really short, simple pieces of code. Whether or not it would take someone else a long time is beside the point. Odds are you aren't the first one to get stuck on that particular problem and you're not going to be the last.*

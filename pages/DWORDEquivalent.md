@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to port some MFC code, and it uses a lot of DWORD data types, and some others such as LPBYTE. Are these Windows specific data types? I know a double word is 4 bytes, so what would be the easiest way to store these in standard C, or Objective-C? Thanks.
 
 Hm ok I'm just huge newb but couldn't I use     int in replacement for     DWORD since they're both 4 bytes?

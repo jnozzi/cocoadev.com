@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I need to use a method from my M**'yDocument.h/.m files

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I hope I'm doing this correctly, I haven't posted here before.  I already flubbed the page name (should have been SFAuthorizationVewAuthorizeMethod).
 

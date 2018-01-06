@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can anyone explain how to create a toolbar like the one we find in Coda for instance? There are many apps using this type of toolbar but I can't find no information on how to create one. For those who don't know what I'm talking about, it's a toolbar with toolbar items that are used to switch views, like the toolbar used in a preference pane.  
 
 ----

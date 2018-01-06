@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This page is also linked *from* CommonProblem

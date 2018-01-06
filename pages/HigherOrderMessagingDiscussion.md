@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Refactored from HigherOrderMessaging; see that page for context.

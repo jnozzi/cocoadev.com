@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hi!
 Trying to find a way to scan a string with NSScanner. I've never used it before and need some help figuring out how to find an "s" followed by 2 numbers

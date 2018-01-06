@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have created an General/NSView that is to serve as a template for several more General/NSViews that will be created. The code looks like this:
  
  

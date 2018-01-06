@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Tracking Mouse Position snippet:
 
     

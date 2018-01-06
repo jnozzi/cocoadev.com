@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a functioning app that I've created using Core Data. I've been using XML as by data store and it's all been peachy, save for its performance issues (fetching a couple thousand entries to delete when quitting takes ages). So I figured I'd switch over to SQLite, only I've run into an odd bug.

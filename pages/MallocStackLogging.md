@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **MallocStackLogging**
 
 This is an environment variable. When this environment variable is set, with "setenv MallocStackLogging 1" in tcsh (for example), then you can launch any app in that shell. Do not "open" the app, launch it from the shell. When you do this all mallocs are tracked. Then saying, in another shell, "leaks <name>" or "leaks <pid>" will give you a potentially voluminous list of the leaks in the app at that point.

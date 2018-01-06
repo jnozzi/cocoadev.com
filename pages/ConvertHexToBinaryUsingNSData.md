@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This Objective-C category is rewritten from Erik Doernenburg's Foundation extensions: NSData(MIME). You can find his code in EDFrameworks' EDMessage Framework. You can use it to convert hex value that hold by NSData and convert it into binary value.
 
 NSData+Hex.h

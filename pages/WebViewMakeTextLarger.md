@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Ok, so I'm struggling with this one. It seems that there's a built in action in General/WebView... I've dragged the General/WebView control to the main window... instantiated an instance of a controller class based on General/NSObject. I am loading pages and all works great... but I want to add menu items to increase and decrease text sizes. So I added an Action to my controller, connected it with the menu item but [webView makeTextLarger]; gives me one of those "selector not recognized" errors. Checking the documentation, it states that it provides an action and it's not a function per say... 

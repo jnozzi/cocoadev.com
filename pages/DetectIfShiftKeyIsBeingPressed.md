@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have one of those nifty smooth effects in my app and was wondering If I can detect if the shift key is being held so I can slow it down.

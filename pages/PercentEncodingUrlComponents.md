@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 I have a string containing a URL address which itself has a URL component as shown:
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Introspection is the ability of AnObject to reveal and alter information about itself as an object. For example, in ObjC, its class and superclass, various messages to which it responds, FormalProtocols to which it conforms, and its data.

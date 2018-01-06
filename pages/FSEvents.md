@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 FSEvents is supposed to be this really cool framework allowing you to get notifications when a specific FS event occurs.  SOOO much better than kqueue which was super lame.  Only one thing.  It's MIA.  The docs say it should be in /System/Library/Frameworks/FSEvents.framework.  Sample code links to it but... it's not there.  Does anybody know where it went?
 
 ----

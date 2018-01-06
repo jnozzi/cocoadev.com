@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How does key value binding work? It seems to know more than it should; I mean, as though encapsulation is being violated. There seems to be a notification of some sort being called, or maybe it is a direct message with some kind of intermediary object, but what process is tracking the changes? I can see if you use key value coding, but what if you change the ivar with a normal accessor? How would the protocol be activated? I am sure it is clever, but who or what has their nose in my model?

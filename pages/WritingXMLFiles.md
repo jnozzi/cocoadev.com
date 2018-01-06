@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There are four ways to write XML on OS X:
 
 

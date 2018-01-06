@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Automatic HTML documentation generator for C/C++/ObjC code. Similar to javadoc, if you're from Java.
 
 An OpenSource project from Apple to be found at:

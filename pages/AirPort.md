@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AirPort is Apple's Implementation of IEEE 802.11b
 
 http://www.apple.com/airport/

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One and a half year of Cocoa programming and I still seem to be lost with regard to proper releasing of controllers...
 
 I have this very simple window controller subclass:

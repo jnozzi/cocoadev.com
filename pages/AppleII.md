@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The first 'personal computer'. Apple's main product line before the introduction of the Macintosh (and for a time after).
 
 History of the Apple II:

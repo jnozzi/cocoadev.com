@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One more question.  I have an General/NSTextView on-screen for which I am looking to have the user enter a string that looks like any of these examples:
 
 1d8+1

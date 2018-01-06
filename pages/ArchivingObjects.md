@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When you use NSKeyedArchiver encodeRootObject to archive a whole graph of objects, does it figure out the graph itself by following pointers, or do you need to specify the links yourself in your encodeWithCoder method?
 
 e.g. If I have

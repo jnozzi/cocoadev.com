@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There are a few nuggets of info on the web that point in the right direction for making this work, but there's still a lot that's somewhat unclear, at least initially.

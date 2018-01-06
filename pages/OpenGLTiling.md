@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can anyone help me turn this into objective c/cocoa?
 Thanks!
 http://www.gamedev.net/reference/articles/article1256.asp

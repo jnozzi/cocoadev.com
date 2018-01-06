@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm developing an app that needs to be able to generate reports in PDF format. What would be the easiest way to do this? I tried taking a look at Tiger's PDFKit, but apparently that's only to view PDFs, am I missing something? If not, then what would be the easiest way to do this? Thanks in advance.
 
 *Well, you could use the Cocoa printing architecture...*

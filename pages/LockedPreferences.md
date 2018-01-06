@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Many of Apple�s preferences have a lock where one can lock the state of the preferneces pane.

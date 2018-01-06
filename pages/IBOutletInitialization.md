@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 If I create a class such as

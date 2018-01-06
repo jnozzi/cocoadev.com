@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have used the below mentioned code as a sample:
     
 on show_message(user_message)

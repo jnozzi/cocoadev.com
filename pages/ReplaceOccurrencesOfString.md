@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm a new cocoa programmer and am creating a WebView to handle some of my interface elements. I dug around in some bundles and have noticed that people are loading predefined chunks of html saved in files in the application bundle. These files take the form of standard html with tokens such as @pageTitle defined within them. At runtime these tokens have been replaced with values from other parts of the program.
 
 What's the best way to do this replacement?.

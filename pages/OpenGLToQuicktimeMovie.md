@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi everybody,
 I'm interested in help as to how I might take a number of saved out frames from OpenGL and write them to a quickime movie. 
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hello, I am trying to subclass NSControl so I can layout multiple NSCells. I know most people would just say to use NSMatrix or NSTableView, but I would like more control over the NSCells, instead of having them be all the same size, same spacing, etc. if I used NSMatrix. Does anybody know what is involved in subclassing NSControl for use with multiple NSCells? I could really use your help on this. Thanks in advance.
 - Luke

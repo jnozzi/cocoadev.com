@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm drawing a string in my custom NSView subclass with the [NSString drawAtPoint:NSPoint] method.

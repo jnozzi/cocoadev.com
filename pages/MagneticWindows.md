@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone gotten the magnetic window effect to work?  I was able to do it back in OS9 (MacToolBox, not even Carbon, but I'm sure it is the same...) but I haven't been able to accomplish this in Cocoa.  The problem, I've found, is that the WindowManager handles all window dragging, so there is no easy way to run the code.  NSWindow Delegate's method windowDidMove: doesn't work because that only gets called after a pause while dragging, not after every movement (which I suppose could be a desired effect, but my experience with this so far is that the results just aren't as cool as the real thing)
 
 In case anyone is wondering.... MagneticWindows, or StickyWindows whatever you want to call it, is when you are dragging a window and it gets pulled toward nearby windows to help with alignment and stuff.

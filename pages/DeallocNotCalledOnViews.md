@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I may be missing something obvious... but is there any reason the NSView subclasses in my project never get dealloc called on them? Is this some sort of shortcut for faster quitting behavior? I used to program for the Qt toolkit under linux, and there I had the option of having my app destructively shutdown, in which case all the views of a window always had their destructors called. Since Qt doesn't rely so heavily on delegation and controller design paradigms, but instead generally has the GUI component implementation handle its logic itself, it was important that destructors were called so I could save out settings when the app shut down.
 
 Now, in Cocoa I have a main app controller class which is set as delegate for the NSApplication object, so it receives the applicationWillTerminate message (where I save out my app settings), but since my app is really large and complicated (it's a physics simulation environment for robotics) I have several controllers, set for handling logically distanct aspects of the GUI. Some of these are tightly bound to subclasses of NSView and it seems it would be convenient for me to simply put in code for saving out settings into their destructors.

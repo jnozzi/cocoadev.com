@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, my name is Thomas Sempf.  I am studying multimedia computing in Germany, Osnabrueck.

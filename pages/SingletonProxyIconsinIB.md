@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 InterfaceBuilder does on occasion show some proxy icons, like shared user defaults, font manager etc.
 
 Is there any way I could have it show my singletons, so that I can connect to these?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 You can bind a computed value from a NSArrayController using a few built in operators in the Model Key Path. For instance, if you have an NSArrayController of objects, each of which has a "pages" property. You can display the total number of pages setting:
 Controller Key: arrangedObjects
 Model Key Path: @sum.pages

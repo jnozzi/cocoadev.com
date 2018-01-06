@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any way to capture an application so that it will run in inside of a custom view of another? so you could maybe capture a running application or start a new one to run in there or would it require some custom frameworks?
 
 ----

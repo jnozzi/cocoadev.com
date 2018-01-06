@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Note:**
 Generally, optimization is something to worry about after your code builds and runs correctly. It is easy enough to re-write any looping code in the fashion outlined below if it makes sense to do so. But until you prove that your iterators are gobbling up time and resources, you should use the nice high level concept of NSEnumerator and its -nextObject method. (Outlined even further below. :-) ) It makes the code easier to read, follow and debug until you reach the optimization stage of development.
 

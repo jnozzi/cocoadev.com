@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Since Intel's compilers don't compile the Objective-C language, does this mean I have to learn C++ to write applications for the Mac? Or does Apple have a compiler which compiles Objective-C for Intel's processors?

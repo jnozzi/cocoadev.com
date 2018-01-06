@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Download** source code at http://files.me.com/d_j_v/3trcvx
 
 See ThreadCommunication ThreadSafety for other techniques.

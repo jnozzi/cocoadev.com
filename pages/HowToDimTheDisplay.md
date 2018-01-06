@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey guys,
 
 I need to dim/turn off the display, just like pressing the display-dim button on the keyboard all the way until it's completely off. I've tried using CoreGraphics, but all that does is adjust the gamma, making the screen black, but not completely off. The difference isn't that noticeable, until the room is dark (which is the situation this will be used in); then, you can see that the display is actually emitting light.

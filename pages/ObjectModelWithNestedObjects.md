@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In all the basic projects I've done thus far, I've used single objects,  using that object's instance variables for the NSTableViews.

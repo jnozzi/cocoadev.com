@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Sorry for very basic question, but I cant' figure out what I have to do. I have an app with a single window, and when I close the window, it disappears from "window" menu. I want it to stay there, so i can bring it back later, and for this i tried to create a menu item for this window in IB, but then I have two menu items at runtime - one I created in IB and second is created automatically. 

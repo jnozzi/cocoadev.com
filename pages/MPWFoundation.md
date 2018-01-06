@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 metaobject's general-purpose toolkit.  Compiles on Jaguar as well as on GNUstep for Linux and Windows.

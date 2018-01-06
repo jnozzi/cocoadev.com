@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A CIImage object represents an immutable image in CoreImage.
 
 It is tempting to use NSBitmapImageRep in the following manner to build a CIImage.

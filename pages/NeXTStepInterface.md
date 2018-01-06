@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was reading a old MacAddict, and I saw a way to change the interface style of an app to the old NeXTStep style, by adding the this line
     <key>NSInterfaceStyle</key>
 <string>nextstep</string>

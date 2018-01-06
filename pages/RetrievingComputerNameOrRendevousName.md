@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can I retrieve via Cocoa the Computer or Rendevous name as set in Preferences->Sharing?
 
 What framework has access to this sort of information?

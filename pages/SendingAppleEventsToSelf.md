@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a plugin that loads into a larger app.  To some degree it interacts with the rest of the app through applescript - NSAppleScript calls from cocoa.
 
 The problem is, on some installations it doesn't work.  The app claims not to understand commands addressed to it, for example "Can't get version" when asked for its version (yes, I know I can get the version from the app bundle).  I can't figure out any kind of correlation for what systems it does or does not work on.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can selecting a value in an NSPopupButton who's contentValues are bound to an NSArrayController's arrangedObjects change which object in the NSArrayController's contentArray is being selected?
 
 How can I do this?

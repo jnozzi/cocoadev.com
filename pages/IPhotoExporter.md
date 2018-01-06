@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The iPhotoExporter plugin protocols dumped from class-dump can be quite confusing.
 Here's some of the things I've uncovered while building exporter .
 

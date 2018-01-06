@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a web browser for myself. It is intended to be a replacement for Safari. I can drag-and-drop URLs fine. What I cannot do is click on URLs in emails and have the URLs open up in my browser. I will kindly request that you also leave your solution as a comment under http://wits2020.net/archives/000464.html in addition to here as I don't usually check this site. Thanks a bunch!
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **ProDOS** - *Professional Disk Operating System*
 ----
 The Operating System for the Apple II series of computers. Succeeded AppleSoft DOS 3.3

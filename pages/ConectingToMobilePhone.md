@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe ConectingToMobilePhone here.
 
 I want to make an application that basicaly uses a mobile phone as a remote control.

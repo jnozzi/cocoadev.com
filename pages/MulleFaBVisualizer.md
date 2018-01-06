@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://www.mulle-kybernetik.com/artikel/MulleFaBVisualizer/
 
 Nifty tutorial / example project / walkthrough that covers all you ever wanted to know about NSView<nowiki/>s, bounds, frames, scaling and rotation

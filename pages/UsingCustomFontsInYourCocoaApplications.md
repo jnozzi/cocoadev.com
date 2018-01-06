@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Important:** Apple Type Services for Fonts is deprecated in Mac OS X v10.6 and later. Please use Core Text instead.
 
 ----

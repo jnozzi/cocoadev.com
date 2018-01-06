@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm a Cocoa and Obj-C newbie and I've been following the "BYOB: Build Your Own Browser" tutorial series over at MacDevCenter to try to learn some Obj-C and Cocoa. I have a basic browser built now, but I can't for the life of me figure out how to put in a functional Google search field. I done everything needed, such as add an outlet and connect it, define the outlets and actions in the .h file, and code the actual implementation in .m file. The code in the implementation is identical to the connectURL's implementation at the moment, because when I modify it, it causes errors. Here's the code I thought was logical to use:
 
     

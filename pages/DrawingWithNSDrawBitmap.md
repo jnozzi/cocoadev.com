@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know to write to an NSGraphicsContext with NSDrawBitmap, or using the NSBitmapImageRep? All I need is the ability to write color data to a given pixel. I know you can draw with NSRectFillListWithColors(), but it's painfully slow. I'm trying to figure out how to do simple pixel-level image manipulation.

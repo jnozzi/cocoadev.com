@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My app has a window that contains two table views, Main and Subsidiary. By selecting rows in the subsidiary table, certain rows in the main table will be selected automatically, with a relation between the content of the selected rows in the subsidiary table and the content of certain cells in the rows of the main table. It's a crude attempt at a filter allowing multiple selection criteria, instead of trying to parse regexes or something in an General/NSSearchField. The subsidiary table in fact simply shows the set of unique entries in a certain column of the main table.
 
 Things seem to be working well so far. The main table live-selects the rows I expect it to when I select rows in the subsidiary table. However, since whilst I am doing this, the focus is on the subsidiary table, the selection appears dim in the main table, rather than in the default row highlight color. Row operations based on selections in the main table all seem to work fine. Of course as soon as I click the main table to return the focus to it, that selection is destroyed.

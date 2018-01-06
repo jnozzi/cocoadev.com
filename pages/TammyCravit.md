@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Tammy Cravit -  Mac geek, hackeress, technologist, writer & photographer
 
 

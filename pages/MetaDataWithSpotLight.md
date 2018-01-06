@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm not sure if I understand exactly what spotlight qualifies as metadata, would it be theretically possible to add arbitrary fields of information to any file, for example could I personally add a rating system like itunes has to all my files then search in terms of "stars" for instance?  Or possibly add a field of who gave me the document, so when I type John Smith I get a list of all the documents I've received from him?
 
 - FranciscoTolmasky

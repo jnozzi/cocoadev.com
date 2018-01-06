@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How would i go about making my app work like the finder find system, with the add criteria buttons and making them add space and control?
 
 ----

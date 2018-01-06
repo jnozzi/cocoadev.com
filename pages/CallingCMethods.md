@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am a relative newbie to Cocoa programming and have been wondering a few things.
 
 I know how to call between Obj-C classes fine, but how do I call methods in C++ or C in another class?

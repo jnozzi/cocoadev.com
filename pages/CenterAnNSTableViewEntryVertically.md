@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Basically, I have an NSTableView with a large rowheight.  When I add a row of text into it, it gets drawn from the top... I'd like it to be centered vertically.  What's the quickest and easiest way to do this?  I'd prefer not having to subclass NSTextFieldCell.
 
 Thanks!

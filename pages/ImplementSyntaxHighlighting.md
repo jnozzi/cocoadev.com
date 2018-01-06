@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to implement syntax highlighting in a text editor. Do I have to subclass NSTextField or something similar?
 
 ----

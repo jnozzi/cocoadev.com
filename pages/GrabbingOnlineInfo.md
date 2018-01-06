@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Three questions:
 
 *1) Is it legal to fetch information from online sources such as dictionary.com or google.com without their permission (i.e. you tell your webrowser the search and it fetches the info)? I'm pretty sure its legal, an iPod program implements something like that from weather.com. 

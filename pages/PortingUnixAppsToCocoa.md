@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A number of Unix (BSD, Linux, ...)
 applications have been ported to Mac OS X,
 but most run on the command line or under X11.

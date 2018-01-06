@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, all.
 
 Just a quick question regarding General/NSProxy: when is it a good idea to subclass it instead of General/NSObject? I know all that stuff about an object standing in for another one, but what advantages does it have over General/NSObject for those situations? http://goo.gl/General/OeSCu

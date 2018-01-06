@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The current working policy on CocoaDev is to remain anonymous when having discussions, keeping pages unencumbered by identity. However, as soon as a page develops an argument, identity is already involved. Following an argument is much harder when one has to struggle to determine who is arguing what, as it is nearly impossible to follow points of contention, who has been convinced by what, *et cetera*.
 
 **Therefore,** if you disagree with something on a page, sign your posts, including any comments you may have made earlier in the discussion. This also applies if someone disagrees with something you wrote and you wish to continue the argument. If necessary, you may use a (consistent) pseudonym for the course of the discussion. You shouldn't need to be shy about openly voicing your opinion, however.

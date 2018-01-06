@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This topic is related to NSController.

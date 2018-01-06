@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 From the Mulle-Kybernetik site:
 
 "The origins of the EDCommon und EDMessage frameworks date back to 1997 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To detect whether a certain screen uses Quartz Extreme, get an NSScreen for that screen:
 
     

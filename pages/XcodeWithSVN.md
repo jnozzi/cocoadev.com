@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/XCode has had General/SubVersion (SVN) support since version 1.5.

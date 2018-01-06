@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 MultipleDispatch (also known as DynamicMethodDispatch) is a concept that allows you to write several methods with the same selector, but which take different types of objects, e.g. a method such as doSomething: that takes an NSArray and a method doSomething: that takes an NSView. Then, you would simply make a call to doSomething, and the system decides which method to use based on what type of object you pass it (at runtime, of course).

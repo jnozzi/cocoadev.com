@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 My goal is to get some protein name and sequence data into an NSTableView. The problem is getting that data into an array of dictionaries.
 I would like to make a loop that simple creates a new dictionary for each increment of the counter, but can't figure out how to do it.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I implement:
     
 - (void)move[Up|Down|Left|Right]:(id)sender;

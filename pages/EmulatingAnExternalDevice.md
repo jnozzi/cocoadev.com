@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone have any ideas as to whither or not it would be possible to create a piece of software that would emulate the presence of a usb or firewire device?

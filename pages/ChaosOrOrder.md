@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The idea of chaos is disorderment, which, in the English language, means not orderly (Or something to that effect).
 
 

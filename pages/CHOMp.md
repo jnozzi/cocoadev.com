@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CHOMP stands for Cocoa Higher-Order Messaging Platform. It's an implementation of HigherOrderMessaging that aims to be simple and easy to extend. It provides basic iteration over message targets and arguments, as well as a couple of non-iteration utility HOMs.

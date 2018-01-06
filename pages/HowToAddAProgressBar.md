@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To add a progress bar you need to first go into Interface Builder.  Grab a progress bar from the "Cocoa-Other" palette and put it on your window.
 
 Now, to actually have the progress bar do something, you need to associate it with code.  Make the progress bar an outlet for the class in which you will use it (if you do not know how to create an outlet see HowToUseOutlets).  Once you create the outlet, go into Project Builder.  The following text should appear in between the braces of your class implementation file

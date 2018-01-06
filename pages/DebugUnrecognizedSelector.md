@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there any convenient way to debug an error with a selector not recognized via breaking, in the debugger, when such an error occurs or, in a more general sense, is there any facility we can use to make an application decipher its call stack with its debugging symbols to print out a stack trace at any arbitrary point in the code?

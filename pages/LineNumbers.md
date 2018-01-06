@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **How to display line numbers alongside an NSTextView.**
 
 Every once in a while a question pops up on the Cocoa mailing lists about how to create a left margin with line numbers, such as in Xcode.

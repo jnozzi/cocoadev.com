@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Simply put, General/SwizzlingClasses is changing the class of an object after it has been allocated and initialized.

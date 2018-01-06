@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I made a wrapper for a command line app, set up to take input from several NSTextFields. Currently, the program gets the necessary strings and appends them to an NSMutableString which in-turn outputs the whole string to a specified NSTextField in the GUI. This is then grabbed from the GUI and passed as an argument to the comand line app. The thing is that the command line app shows this:

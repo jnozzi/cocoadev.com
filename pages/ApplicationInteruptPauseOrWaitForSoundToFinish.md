@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, this is my first page I've made on this site (beside my name page SamM). I have run into an issue with my most recent (and only main) application. The application simply incements or decrements a count instance variable when the user presses the corisponding button. I have also added other features: apple remote support, counting down from a specified amount and counting up styles, preferences for defaults of all values and the feature I need help with an interval at which to play a selected sound (system sounds right now). 
 
 My problem is that the sound that plays will play but if you hve the sound set to play at every count and hold the button or repeatedly press it fast some of the sounds are skipped while updating the count depending on how long the sound is.

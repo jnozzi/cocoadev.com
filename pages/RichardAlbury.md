@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've been on the Mac since 1986 (Lightspeed C, anyone?) but ironically developed a career as a Windows programmer (never could find that Mac dev job, or someone else to start a company with).

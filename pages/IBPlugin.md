@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *This page is about how to create an Interface Builder plug-in. For a list of plug-ins already created, see InterfaceBuilderPlugins.*
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am making a downloader app for a public website and currently I just want it to be able to handle a download url and download to a specified folder, any help?
 
 ----

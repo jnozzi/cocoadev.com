@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This topic is for issues related to static libraries. 

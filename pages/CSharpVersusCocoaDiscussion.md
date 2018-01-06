@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Objective-C 2.0 now has garbage collection**
 
 C# requires so much less code to write then Objective-C, it's ridiculous. Makes Objective-C/Cocoa seem old and outdated. But I doubt it'll ever happen anytime soon.

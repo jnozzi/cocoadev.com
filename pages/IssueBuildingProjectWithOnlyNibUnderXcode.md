@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello all,
 
 I am trying to build a project which only has a Nib at the moment. I am using Xcode 2.1 and building a Universal Binary. A scenario that is not covered in Apple's documentation has popped up, and I am at a loss.

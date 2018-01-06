@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Some believe that faster hardware and smarter compilers will mean they don't have to worry about their program's performance. This belief is simply wrong, usually preached by lusers who claim BubbleSort is fast enough on their systems. 
 
 Do not confuse OptimizeNever with OptimizeLater. See also PrematureOptimization.

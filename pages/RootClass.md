@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A RootClass is a class which has no superclass. In many languages, such as Java, people speak of **the** root class.  This is because every class is expected to descend from a unique root object (java.lang.Object in java).
 
 ObjC is not such a language.  In ObjC the inheritance graph is a disjoint union of trees, which is called a forest in graph theory.  We call the root of each tree a RootClass.  

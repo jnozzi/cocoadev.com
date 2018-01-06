@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See http://daringfireball.net/projects/markdown/syntax
 
 A simple syntax which can be converted into almost every element of HTML.

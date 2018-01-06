@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I needed a matrix of image views that would let the user change the order of the image in it using drag and drop.  Thus I wrote the following class.  When the user drags an image a little insertion bar is draw to give them an indication of where the insertion will occur.
 
 -- SaileshAgrawal

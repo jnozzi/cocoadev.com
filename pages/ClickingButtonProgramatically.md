@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How to perform button clicking action programatically? I have tried NSApp's sendAction:to:from still it is not working

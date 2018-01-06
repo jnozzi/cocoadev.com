@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Well I deleted my original question, as approximately 5 minutes and 2 aspirin after typing it I came up with the solution. So instead of a question, I'll post the solution I am using.
 
 Problem:

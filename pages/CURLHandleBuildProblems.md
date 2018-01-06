@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been having an awful amount of trouble attempting to build a project that links CURLHandle. Each time I build the projct I receive an error in CURLHandle.h that says, "curl/curl.h: No such file or directory." I don't know what the problem could be. I've been able to use CURLHandle in the past. Perhaps there is a problem in Xcode, or Panther, that needs to be fixed before building?
 
 I have tried downloading the latest CURLHandle source, but still run into the same error. Any help would be greatly appreciated. Thanks!

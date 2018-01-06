@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've been a Unix programmer for the past 8 years, mostly in C and C++.  I've also picked up some Java along the way, though I now much prefer ObjC over both Java and C++.

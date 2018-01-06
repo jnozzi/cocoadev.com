@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm wondering where I should start using IDEKit?
 
 *In your apps? At home? At work? Look at the example project that comes with it? What are you asking?*

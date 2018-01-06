@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Maybe all is fine, I DID find a way to make it work, but having to have my Window subclass set itself as a delegate just doesn't seem right.  My application has two windows.  The "main" window is where graphics is drawn, but it can never be the key window, it is just a place where the application draws lines in response to commands given in a sub window.  I've set up this sub window as a panel, as it is small and supports the main window.  It is always the key window, it is floating and it can be closed (to view the main window better) and reopened.  The main window is there, it cannot be closed.  It goes away only if you quit the application.

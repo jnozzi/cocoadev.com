@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm currently trying to build an application that uses loadable bundle plug-ins. 
 
 My idea is to have a "Manager" singleton class that the plugin uses to register itself in the bundle class' +load method.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The processor count can be obtained via the following function:
 
     

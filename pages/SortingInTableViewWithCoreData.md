@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to sort a Tableview holding an array of CoreData objects...
 Its easy to do with bindings but I need to sort the objects lika in iTunes & iPhoto
 Im trying to use a "Library" object at the top and then 2-3 other objects after it at the top at all times.

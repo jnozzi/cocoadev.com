@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page provides a summary of how Objective-C is implemented in C using Apple's Objective-C runtime.  Other runtimes are similar.
 
 As a C programmer, perhaps you need the "magic" removed so you can see what is happening in Objective-C.

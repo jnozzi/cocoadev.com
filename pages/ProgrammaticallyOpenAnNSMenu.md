@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, I have an NSMenu object, I want to cause it to open programmatically. It's set to be the menu for an NSView. I've searched, but can't find anything like [menu display] or similar.

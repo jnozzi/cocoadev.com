@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am searching for a very simple drawing program. I just need to alter a few pixels in some images or overlay one image on top of another etc.
 If anyone remembers Deluxe Paint or Personal Paint from the Amiga, then it's something like that I am after (mostly the latter).
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page is so that you know when you should and should not make a page for your app here at cocoadev.
 
 ----

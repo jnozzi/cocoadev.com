@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have two questions here...
 
 I want to know how to make an app that doesn't have a GUI, and is always running in background, something like the Mac OS 9 extensions...

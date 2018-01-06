@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Basically a weak pointer is a non-retaining pointer but is safe from the standpoint that if the object being pointed to is dealloced then the pointer will be nulled out so that it does not point to an invalid object.

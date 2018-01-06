@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What would be the best way [or even any way] to do this?
 
 Here is what I have so far, all I really know for sure is that it compiles and seems to do the job:

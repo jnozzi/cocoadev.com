@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want the user to enter an expression in a field and then, this expression can be calculated and the result be returned. http://goo.gl/OeSCu

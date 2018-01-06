@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wonder if somebody can help me implement an object oriented graph in Objective-C with shortest distance calculation. I've been using the example here (http://www.python.org/doc/essays/graphs.html), but both my maths and python skills are atrocious! I'm trying to map a local railway and calculate the shortest route between any given station.
 
 STATION class

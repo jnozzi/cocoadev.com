@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/NSButton is a subclass of General/NSControl. Any General/NSControl has methods for setting and finding its state. Check the superclass (in this case, of General/NSButton) when looking for a method that you don't see in the subclass with which you are working.
 
 (the discussion that was here, which was about using bindings to try to validate a control from the contents of a string, was appended to General/ValidatingUserInterface)

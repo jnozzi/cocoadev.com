@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Help! I just deleted a file (Delete References & Files) in Xcode by accident! It would be fine but this class is huge and took quite a bit of time to write. Is there any way to ressurect it from the disk? Any help MUCH appreciated.
 
 ----

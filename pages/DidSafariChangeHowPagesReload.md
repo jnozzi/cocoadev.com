@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone else noticed that after you save a change that Safari doesn't automatically reload the page. I have to manually click on the reload button to see my changes. Is anyone else having this problem? --zootbobbalu
 
 ----

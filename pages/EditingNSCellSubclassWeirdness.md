@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a tableView, which I have subclassed in order to draw a gradient selection background. I then have a subclassed NSCell which is very similar to the example "IconAndTextCell" that Apple provides. My tableView's dataSource method queries an NSMutableArray, and then returns values from it. Currently, when I edit my subclassed NSCell, it works as expected for the first edit. From then on, every time I edit a cell, every cell that I have edited up to this point changes its text to reflect the current cell's new title. Does anyone see anything in this code that might be causing this?
 
 In my tableView subclass, I have this, in order to prevent the tableView from selecting the next row when I finish editing.

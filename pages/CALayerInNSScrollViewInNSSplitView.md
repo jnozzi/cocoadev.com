@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Did anybody try to set layer - CALayer or CATiledLayer of a view embeded in NSScrollView in a NSSplitView. I had tried and the result was absolute disaster. I can't figure out how to make it work.
 
 Appkit Release Notes states:

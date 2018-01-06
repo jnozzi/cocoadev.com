@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Sen:te, http://www.sente.ch
 
 Cocoa and WebObjects (among other things) developers from Lausanne, Switzerland. 

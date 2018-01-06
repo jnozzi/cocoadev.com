@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Started programming the Apple ][ in Basic and 6502 while I was still in college in 1979. And somehow I ended up here.

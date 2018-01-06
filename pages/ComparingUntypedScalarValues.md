@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Okay, all. It's been a while since I've started a discussion, but I've got a bit of a problem that I can't seem to figure out.
 
 In my most recent project, I decided to write a scalar set class to match the scalar array class I already wrote. This is dandy, but I'm running into a couple of problems with the ordering of items in the array.

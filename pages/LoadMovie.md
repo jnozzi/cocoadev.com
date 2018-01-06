@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, can someone tell me how to load a movie into  a NSView from the computer (open)?

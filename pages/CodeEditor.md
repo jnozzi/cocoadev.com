@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CodeEditor is an attempt at creating a code editor for GNUstep. The grand plan is to use it as a component in ProjectCenter, and also as a stand-alone application.
 
 http://freshmeat.net/projects/codeeditor/?topic_id=806

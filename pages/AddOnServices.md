@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See: http://developer.apple.com/techpubs/macosx/Cocoa/TasksAndConcepts/ProgrammingTopics/SysServices/Concepts/properties.html
 
 ----

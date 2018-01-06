@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See:
 
 http://c2.com/cgi/wiki?search=singleton

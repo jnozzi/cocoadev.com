@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Definition**
 
 To encapsulate means to hide the inner workings of something from external users. Or, as I like to think of it, separating the interface from the implementation. I believe encapsulation is the heart of object-oriented programming and is a very important concept in software development.

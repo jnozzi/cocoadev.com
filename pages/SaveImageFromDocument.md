@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
         I created a document based cocoa application. I am working with image file formats. I am able to open files without any problem. If any changes are made to the file and if I try to close the document, system asks for save and if 'save' option is selected for saving the file, "writeToFile" or "dataRepresentationOfType" method is called. In writeToFile method( overridden ) I am calling my own method for saving images, which will actually save the image, but system gives the message "Couldn't save this document". Here is the code snippet:
 

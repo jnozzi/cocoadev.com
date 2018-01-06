@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can two threads lock focus on the same view? Or does one thread block while the other thread completes its drawing?
 
 The answer is: lockFocus makes no attempt to synchronize drawing between threads. Both threads will issue their drawing commands at the same time. This can have disastrous effects when drawing into NSOpenGLViews. The limitations on doing this kind of thing on normal views is less defined -- but it's probably not a good idea.

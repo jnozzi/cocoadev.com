@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If somebody has the first edition of Hillegass's BookCocoaProgMacOSX handy, could he or she glance briefly
 at the short example on p. 58 and confirm or deny that the example contains code that
 should not GENERALLY be used:

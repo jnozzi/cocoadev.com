@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [Topic]
 
 Would anyone like to work on this page?  Add your knowledge?  This page could be miles long, but I'll try to give just the essentials.  Please add whatever you think necessary. 

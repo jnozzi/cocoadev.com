@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CarbonEvents is a new Apple API designed to be more like other widely used UI APIs (read: Win32). Rather than polling the OS for events, the API user installs callbacks on interface objects, which are called by the OS when the time is right.
 
 If we were to dichotomize the world of OSX APIs (and I think we may), Cocoa would be the good; CarbonEvents would be the bad; and Classic would be the ugly.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Thomas Castiglione is a programmer.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to determine who posted a distributed notification?  I'm seeing a lot of O3EngineChanged Notifications on my system and I'm trying to track
 down the source of these.  Looking At the General/NSNotification and General/NSDistributedNotification Docs have not helped.  Any Suggestions?
 

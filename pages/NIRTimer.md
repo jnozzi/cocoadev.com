@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I just created a very simple timer. It is just a wraper around the gettimeofday() funtion, but it make the code using it so much simpler and nice. I enjoyed writing this, and you are invited to improve this if you have any nice idea. --NirSoffer
 
 **Typical Usage:**

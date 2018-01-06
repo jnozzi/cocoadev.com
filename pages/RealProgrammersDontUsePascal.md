@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A standard slight against Pascal programmers.
 
 ObjectPascal (or assembly) was the original programming language for Macintosh applications in 1984/1985.  LightSpeedC (later ThinkC) changed that for many Mac programmers.

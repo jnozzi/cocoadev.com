@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ProjectBuilder is an amazing development tool - and it's free! Until lately, I have not been able to tap fully into the features of ProjectBuilder and would like to share some of what I learned with you.

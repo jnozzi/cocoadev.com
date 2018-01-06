@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been trying in vain to mount an nfs volume though code. 
 
 Essentially mounting comprises of running the following as root:

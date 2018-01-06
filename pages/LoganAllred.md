@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am a WebObjects developer by trade, but I have a CocoaJava project I am currently working on called MacPAF (a genealogy application):

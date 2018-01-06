@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 1,000 KHz. *These days, more like .001 GHz*
 
 Note that while a capital 'K' is necessary for wiki linking, the correct SI prefix is a lower-case 'k'.  Gads it annoys me when applications use "KB" as an abbreviation for kilobyte.  It's "kB" please! 

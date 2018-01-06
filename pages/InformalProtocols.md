@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 InformalProtocols are constructs which allow you to share a common programming interface between two classes without them having to inherit from any specific object (except for NSObject).

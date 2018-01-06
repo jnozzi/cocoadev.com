@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Question: Is it necessary to maintain a distinction between singular objects and collections containing only 1 object?

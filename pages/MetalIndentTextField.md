@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am looking to create (or find an existing) NSTextField subclass that shows the indented look (for metal windows).  I know this can be achieved by creating a duplicate of the text one pixel underneath it in pure white, but there must be a more efficient way than using two NSTextFields every time I want to put text on a metal window!  Should the NSTextField spawn another one below it with the white color, or what?  Any pointer in the right direction would be excellent.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/JeffHarrell mailto:jharrell@mac.com
 
 I've come up with a method for using General/GCCThreePointThree's PCH feature with General/ProjectBuilder. General/ProjectBuilder knows about GCC 3.1's PFE, but General/GCCThreePointThree doesn't do PFE. If you don't use precompiled headers at all, your compile times will be unacceptably long. So I spent a little time figuring out how to do PCH with General/ProjectBuilder.

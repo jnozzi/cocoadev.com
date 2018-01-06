@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Are there any good open source Cocoa programs being developed? Any under consideration? Not that I have time to contribute or anything, but just to stay informed... �Brent G
 
 ----

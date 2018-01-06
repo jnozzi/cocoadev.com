@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 When I resize a window such that the scrollview becomes too small for the contained view, the vertical (or maybe horizontal too) scroller flickers briefly. It is as if the scrollview is unsure of whether the contained view is too big for the new size. I think the scroller flickers for the vertical height of one row of the contained tableview, and the scrollers also have to be hidden for the flicker to occur.

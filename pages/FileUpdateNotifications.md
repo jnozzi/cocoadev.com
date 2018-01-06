@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know what the notification name is for when one app updates a file that is also open in another app (i.e. when you edit and save source in TextEdit and then click on a text view in PB of the same file, PB will display the changes that were made in TextEdit).
 
 When TextEdit saves a file, it sends a distributed notification through the NSDistributedNotificationCenter with the name "com.apple.carbon.core.DirectoryNotification", but the object associated with this notification is set to nil. Does anyone know how to get more information about events that involve directory notifications?

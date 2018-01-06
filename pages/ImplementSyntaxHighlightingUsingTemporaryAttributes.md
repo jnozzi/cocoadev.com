@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 21 June 2004 - *Moved from ImplementSyntaxHighlighting*
 
 ----

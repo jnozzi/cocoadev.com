@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I haven't found a method to check if a NSURL is valid.

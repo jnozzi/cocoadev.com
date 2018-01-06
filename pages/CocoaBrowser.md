@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaBrowser is a browser for the Cocoa HTML reference documentation.
 
 http://homepage2.nifty.com/hoshi-takanori/cocoa-browser/

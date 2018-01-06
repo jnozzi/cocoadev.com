@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Programming is easy.
 
 Software development for Mac OS X can be a great joy. The advanced programming 

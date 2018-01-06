@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a main thread which is my Cocoa Application.  I want the user interface to remain responsive and am detatching another thread (when the user clicks a button) that will perform many computations.  What I want is that when this secondary thread exits I want a notification.  I read that performSelectorOnMainThread withObject waitUntilDone: was a "light weight" way to achive this.

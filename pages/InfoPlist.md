@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A file of strings included with a Cocoa application. The strings contain the copyright and other information for the application, which will be shown in the standard Cocoa 'About' window. Can be localized.

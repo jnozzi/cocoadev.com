@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CreatingInputManagers (from scratch)
 
 Hi, I'm looking for a crash course on making an input manager from scratch. I've looked everywhere, but no tutorial seems to explain the process right from the start. What kind of Xcode project do you use? How do you access the outlets of a class or the methods of a class? Where do you start!

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I did lots of perl for several years, before getting into java and now Objective-C. I like Objective-C the best (although I am very interested in learning Smalltalk now), and would like to take on some open-source projects to help build up the General/ObjC/Cocoa community. 

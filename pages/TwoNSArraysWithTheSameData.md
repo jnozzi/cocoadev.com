@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a set of data in an General/NSMutableArray, titled General/DataArray.  I also have two other arrays, General/AllArray and General/SubsetArray.  When the program starts up, it grabs all of the data from the preferences, and sets it as the General/DataArray.  Immediately, the General/AllArray is set equal to the General/DataArray.

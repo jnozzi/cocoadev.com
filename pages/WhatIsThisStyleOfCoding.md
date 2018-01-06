@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am looking at the QTCoreImage101 example and tried to cut and paste some code from that project into a test Cocoa project created in Xcode 2.2 set to SDKROOT=/Developer/General/SDKs/MacOSX10.4u.sdk
 
 When I try to compile the class General/MyOpenGLView I get warnings that I have never run across before. The problem seems to be in the coding style for casting types.

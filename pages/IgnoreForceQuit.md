@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm try to develop an app to lock my computer and log the password attempts and other such coolness. I've gotten it working except for one glaring issue: You can Command-Option-Esc to force quit it fairly easily. Is there anyway to bypass the force quit keys so my application will not quit?
 
 ----

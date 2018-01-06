@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an application which saves, among other things, an NSMutableArray of NSImages which can vary in size. Unfortunately, it's generating truly massive save files. How does Cocoa save NSImages? Do I need to somehow compress them first? 
 
 I know the problem is the images, as when I use and save a document from the app without accessing the image functionality, it's tiny (4 KB). As soon as I import images, the size shoots up.

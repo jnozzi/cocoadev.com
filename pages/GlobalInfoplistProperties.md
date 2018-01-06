@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there a way to load extra keys into the an app's Info.plist at runtime, and institute this on a system-wide level?

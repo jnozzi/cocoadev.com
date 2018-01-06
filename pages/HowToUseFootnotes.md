@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **The basics**----
 
 Footnotes allow you to create a page-specific form of WordsJammedTogether: give a word a definition so that whenever it is used on that page, it forms a link to the definition. **No other page is affected.**

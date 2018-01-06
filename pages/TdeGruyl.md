@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 New to cocoa, but loving every moment of it.

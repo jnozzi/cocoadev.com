@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 First of all, you may want to read up on the StandardService concept so you can be certain that you know what you're trying to do here.
 
 There are three main parts to an application that provides services (excepting any non-service-related parts of the application, of course):

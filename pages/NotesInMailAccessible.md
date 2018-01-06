@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Are the Notes in Mail.app in Leopard accessible like the to-dos via the calendar store? Or some other framework?
 
 ----

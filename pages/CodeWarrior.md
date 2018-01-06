@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Metrowerks CodeWarrior for Macintosh was a popular IDE for Classic and Carbon development, with a project manager; text editor; Pascal, C, C++, Objective-C, and Java compilers and linkers; and debuggers.
 
 CodeWarrior for Mac was discontinued in 2005, around the time of Apple's announced switch to Intel CPUs. The last release was CodeWarrior Pro 10.

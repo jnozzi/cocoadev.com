@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, 
 
 I'm an absolute beginner to Cocoa and I've done some of the basic Core Data tutorials on the web and wish to extend the experience.

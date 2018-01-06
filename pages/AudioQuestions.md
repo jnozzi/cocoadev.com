@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Feel free to post new questions here but see CoreAudioAndAudioUnitsTutorial first; it may point you in the right direction
 
 ----

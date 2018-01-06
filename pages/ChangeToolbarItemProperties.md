@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there way to change the properties (image, label, tooltip etc) of an NSToolbarItem during runtime, and have those changes reflected on the toolbar instantly?
 
 From what I can tell, the toolbar is created with the delegate's     toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar: on launch, but after that, I can't seem to find a way to alter the properties and have them appear in the toolbar.

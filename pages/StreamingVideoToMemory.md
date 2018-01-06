@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am working on a project in which i would like to take video that is streamed over the internet via multicast and be able to save the information to either memory or to a temporary file on disk.  I have looked into General/NSStream's getStreamsToHost:port:inputStream:outputStream, but when i create a host using hostWithName: it will open up a connection but will never have any bytes avaiable for reading, and when I use hostWIthAddress i get a posix error saying "Address family not supported by protocol family"

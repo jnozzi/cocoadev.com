@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Sorry if this has been asked before. I searched for some information, but there is so much that it is easy to miss.
 I was wondering how to go about putting two NSTableViews inside a single NSScrollView. I essentially want to have two tables
 of the exact same height that are in sink together when scrolling, but there would be a divider between them separating them.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anybody have any idea when parts of the NDA on new Leopard tech will be lifted?  I'd really appreciate the ability to discuss Leopard stuff before October, since we're looking at a major upgrade over winter (university schedules).  Contrary to the lackluster demo at the keynote, there's still some stuff in store that will really be a benefit to us.
 
 ----

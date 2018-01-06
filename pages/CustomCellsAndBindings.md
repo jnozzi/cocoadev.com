@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Okay, this is probably a stupid question, but i have created my own table cell class, drawn it how I want, and am ready to implement the data. I am using the cell's stringValue for the first string in the cell, and then I have others for other attributes of my CoreData entity. What I want to know is how do I get the information from bindings to be accessible to the class? I know for a normal cell I'd just bind it to my controller. How do I access that information inside of the cell's implementation code? Do I have to connect the controller to it in IB or do I have to somehow bind it? Again, probably a simple question, so please bear with me. --LoganCollins
 
 ----

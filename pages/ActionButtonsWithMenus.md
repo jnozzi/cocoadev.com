@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In Finder and Mail among other applications, there is an action button that has a jagged wheel on it and a small arrow pointing downwards.
 Pressing this button will invoke a menu attached to the button, this resembles the popup menu that exists in the NIB tool however, trying to add this scheme in IB results in an excess space and it ends up looking rather ugly..
 

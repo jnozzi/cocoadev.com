@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a float pointer and want to return it from class, is this the right way?

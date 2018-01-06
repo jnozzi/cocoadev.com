@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NDAlias is a class to access the Carbon Alias Manager from Cocoa.
 
 Your application can use an NDAlias to refer to file system objects (that is, files, directories, and volumes) in a way that doesn't expect the file system object's path to be maintained. The user then can move or rename the file system object without your program losing track of it. This behaviour is not always desirable, for intance with library resources. But for file system objects like documents or user folders, it is what Mac OS users have come to expect.

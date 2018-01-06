@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a custom view which has two visual states, one for when the window is active, and one for when it is not active.

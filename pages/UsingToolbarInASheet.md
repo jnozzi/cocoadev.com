@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to put a toolbar in a sheet (ala iMovie's "share" sheet, 
 although iMovie uses a fake toolbar). Everything works fine, except the 
 sheet is drawn about 22 pixels below where it should be. Apparently, 

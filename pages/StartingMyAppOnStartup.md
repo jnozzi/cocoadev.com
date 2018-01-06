@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 First, some terminology:
 
 

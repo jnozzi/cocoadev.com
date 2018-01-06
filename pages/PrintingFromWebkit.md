@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm a new cocoa programmer experementing with the WebKit.
 I have a cocoa application that uses WebKit to display HTML.  I want to be able to print HTML pages from this application.
 

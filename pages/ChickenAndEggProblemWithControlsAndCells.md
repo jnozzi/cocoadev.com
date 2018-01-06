@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I started working on an NSSlider subclass (let's call it XSlider) that draws its background in a special way (via a matching NSSliderCell subclass called XSliderCell).  Got that working, so far, so good.  I can drag out an NSSlider in IB, change its class to XSlider, and there I go.  Along the way, I found that overriding +cellClass wasn't working for things loaded from IB, so I programmatically set the cell in -initWithCoder:.

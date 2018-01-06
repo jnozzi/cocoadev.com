@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to implement such feature, so when you search for a word, all occurences of this word are selected in a text view. I didn't find anything in Google, but I know it's possible (MacJournal for eg does it when searching). So, how to make non-continuous selection?     setSelectedRange: takes a continuous NSRange.

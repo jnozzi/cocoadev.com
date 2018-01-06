@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/TeXShop is a cocoa text editor and front end to the General/LaTeX macros for Knuth's General/TeX publishing system.
 
 "General/TeXShop is a General/TeX previewer and editor for Mac OS X, written in Cocoa. Since PDF is a native file format on OS X, General/TeXShop uses "pdftex" and "pdflatex" rather than "tex" and "latex" to typeset".

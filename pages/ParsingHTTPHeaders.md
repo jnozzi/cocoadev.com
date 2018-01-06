@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing an network application that will need to parse HTTP headers. 
 Does anyone know of a library or framework (Objective-C or C) that can do this?
 

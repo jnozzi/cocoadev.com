@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **Beware of covering names used in the frameworks with variable names in your custom classes**

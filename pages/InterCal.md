@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 InterCal is a program for converting calendar dates from one system to another. Works far in the past and future. Supported calendars are: Gregorian, Julian, Chinese, Mayan, Jewish, Islamic, and French revolutionary.
 
 Holidays/holydays (such as Easter and Yom Kippur) are highlighted.

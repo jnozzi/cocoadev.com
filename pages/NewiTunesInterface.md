@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Anyone have any idea on how to create or modify the unified toolbar to look like the toolbar in iTunes5??
 And creating the dark "bar" at the bottom of iTunes?

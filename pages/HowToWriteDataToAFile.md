@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I realize that there are many ways to do this.  If you could take a look at how I did it and see why it is making my program crash, I would appreciate it!
 
     

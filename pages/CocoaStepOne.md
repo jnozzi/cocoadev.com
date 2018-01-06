@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Go back to CocoaPrerequisites 
 
 Skip to CocoaStepTwo

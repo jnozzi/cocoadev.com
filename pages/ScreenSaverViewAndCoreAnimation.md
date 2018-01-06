@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm playing around with Core Animation in a just-for-fun project, and I want to take advantage of it by doing a quick screen saver.
 
 Trouble is that ScreenSaverView inherits from NSView, and its :drawRect draws a black screen. I am unsure how Core Animation layers interact with NSViews (the documentation on either subject do not shed much light), but I am under the impression that the default NSView implementation draws all layers attached (via NSView:setLayer).

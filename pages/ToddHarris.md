@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hey, thanks for stopping by.

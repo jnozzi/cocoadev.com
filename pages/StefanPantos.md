@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Currently I am a General/DPhil student at the University of Oxford working in the Chemical Crystallography Lab. I moved here after completing a General/BSc at Durham University in Artificial Intelligence.

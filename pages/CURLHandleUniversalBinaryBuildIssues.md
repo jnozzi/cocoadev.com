@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I managed to find a pre-compiled version of CURLHandle for both intels and ppcs, and I installed the framework into my /Library/Frameworks folder. I found the framework at this address:

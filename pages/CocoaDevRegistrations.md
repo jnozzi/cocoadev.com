@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I think it would be really cool if CocoaDev would keep a simple username/password account for me. It can keep track of an e-mail address. All information private, of course ;-) Logins could be cached w/ a cookie, so I don't have to reauthenticate from a given browser very often. Then:

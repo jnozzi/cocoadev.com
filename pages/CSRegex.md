@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CSRegex is a simple Objective-C wrapper around the     regcomp()/    regexec() functions available in the BSD libc. It is meant to be a quick and simple regex class that can be dropped into any Cocoa project with a minimum of fuss. It consists of only two files, and no external dependencies. Currently there is no documentation, but I hope to remedy that soon. It should, however, be pretty self-documenting.
 
 It is simpler to use than other regex wrappers, such a OgreKit, AGRegex or OmniFoundation, but not as powerful. It is meant for code that needs simple regex snippets, without the need for including external libraries or frameworks. 

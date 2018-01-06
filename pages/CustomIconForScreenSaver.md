@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to apply a custom icon to a screen saver bundle?
 
 ----

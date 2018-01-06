@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Document Xcode bugs and work arounds.
 
 Anyone know what to do with Xcode not clearing the warnings and errors out of the file gutters on rebuild? *Have you fixed them? Otherwise it's not supposed to - the warnings & errors in the gutters and SmartGroup represent the state of your code, and persist across builds. There was a long post on the subject on the xcode-users list by Chris Espinosa on 17 August. I don't know if that list is archived anywhere though.*

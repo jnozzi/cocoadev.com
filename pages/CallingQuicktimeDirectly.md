@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here is some sample code to load a movie (anything that QuickTime supports) and start playing it (only audio though).

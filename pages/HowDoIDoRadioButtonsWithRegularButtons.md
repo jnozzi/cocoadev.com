@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi. After reading BookCocoaProgMacOSX and seeing a bit of the documentation, I am finally comfortable with working on Saratoga, an image editor that I want eventually to have a majority of Photoshop's features. I need to know this: I do not want to use radio buttons to allow the users to select a tool AND be notified of what tool is currently selected, nor do I want to use a segmented control because I need both rows and columns and eventually want to use images. So how do I make toggling regular buttons? - PietroGagliardi

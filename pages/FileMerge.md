@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 FileMerge is an application that allows you to visually compare differences between two source files.  You can see where lines of code have been added, removed, or changed.  You can also edit either of the files being compared.
 
 It is used by ProjectBuilder for CVS operations.  See CvsBasics for more information.

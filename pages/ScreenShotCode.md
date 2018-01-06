@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to take a picture of the screen and load it into an NSImage or some derivation of that. Right now I am using NSTask and the "screencapture" command line utility. Is there another way because this way sucks. Thanks. http://goo.gl/Cx9sQ
 
 ----

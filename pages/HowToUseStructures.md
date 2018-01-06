@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Structures are very useful.  They allow you to organize your data in one place, and retrieve it in a way that makes sense.
 
 **How to define a structure**

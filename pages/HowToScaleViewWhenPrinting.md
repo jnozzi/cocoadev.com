@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSView subclass (which contains subviews as well) that I want to display on the screen with one size and in a printing context cause it and it's subviews to act as if the frame had been set to the size of the page.  I have tried many things to achieve this affect but am not making much headway... here's a brief summary of my failed attempts:
 
 -divide drawRect into two methods, one for screen one for print detecting with [NSGraphicsContext currentContextDrawingToScreen] and adjusting rect accordingly... some variants of this technique scaled the main view but not the subviews, some were clipped, some did both... all failures

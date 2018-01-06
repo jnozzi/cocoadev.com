@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have written an NSView subclass which displays streaming video from FireWire video cameras and would like to receive notifications when said plug-and-play devices arrive and depart. Everything I have read points to IOKit, but I would be more comfortable using QuickTime if such functionality is available (I realize that this is probably outside QuickTime's scope). Later on, I will need similar notifications for all devices accessible through the ImageCapture framework.
 
 At any rate, the following URL seems to answer most of my question but I cannot figure out how to define the device description dictionary needed to call IOServiceAddMatchingNotification(). Are FireWire devices considered storage devices by IOKit? If not, how can all of this be accomplished?

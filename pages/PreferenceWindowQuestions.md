@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Ok so I have it "working" somewhat. I have 3 items in the toolbar. They have actions associated with them. I have an NSWindow being controlled by an NSWindowController (where the actions are and toolbar creation). I have 3 views. Clicking on the appropriate item results in displaying the proper view no problem. However. I wanted to auto-resize the window to fit the contents like iTunes and all those other great apps.

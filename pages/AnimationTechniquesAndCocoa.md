@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 **Animation Techniques and Cocoa**
 

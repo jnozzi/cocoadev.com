@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 HighlighterKit (LGPL) provides a framework for SyntaxHighlighting in code editors. The ProjectManager IDE makes use of it, yet it can be included in other applications.
 
 Homepage:  http://wiki.gnustep.org/index.php/HighlighterKit

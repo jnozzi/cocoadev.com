@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am opening a borderless panel. Normally a user can close a panel by hitting escape or command-".", but this does not work for the panel when it is borderless.
 
 I can overload keyDown: to call interpretKeyEvents: and then doCommandBySelector: will get called (with cancelOperation:) for escape, but not command-".". Also, overloading keyDown: for the window disables keyboard support for all other potential responders in the window.

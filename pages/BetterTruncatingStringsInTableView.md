@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What we'd really like to see is NSLineBreakByTruncatingMiddle to start working someday. My guess is we'll have to wait for Panther. ***(Yup, it works now.)*** Meanwhile, this doesn't really do what **I** needed to do in the various tables and outlines in SpellCatcherX (of files, words, other things - there are quite a few in the app). Cocoa apps need to be able to draw strings that don't fit in a given width just like the Finder does - squishing the text as far as it can, then truncating in the *middle* if necessary.
 
 In the first (circa 2003) version of SpellCatcherX, I used Carbon's TruncateThemeText. That works fine as long as the NSFont you're drawing in matches up with an available ThemeFontID. But I really wanted this to work in any font/size. The easiest way seemed to use ATSUI to draw the text. No big deal, I come from the world of Carbon (SpellCatcherX is my first Cocoa product). Use Carbon APIs when you need to - sometimes you must! No problem, so I learned a little (more than I already did) about ATSUI and got this to (mostly, with restrictions and caveats) work quite nicely. Additionally, ATSUI (well, with most fonts) deals properly with precomposed/decomposed Unicode (a potential issue with file names). http://goo.gl/OeSCu

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ----
 To make things easier I've refactored the ideas below into a generic Uploader class. I've also included a working PHP web application to receive uploads. See HTTPFileUploadSample.
 ----

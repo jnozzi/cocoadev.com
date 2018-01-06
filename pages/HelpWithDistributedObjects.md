@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey all!
 
 I've been trying to get distributed objects working with NSSocketPort and NSConnection and stuff.. but I just can't do it!

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a standard way to open a file without opening a new document in a document-based application?  I want to be able to open files of my document format normally.  On top of that, I want to be able to open other file formats (images in this case) and load them directly to the current document instead of creating a new document.  
 
 What I am considering is subclassing NSDocumentController and overwriting openDocument to do my bidding.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to use the AltiVec function for performing a scalar product (dot product) of two vectors declared:
 <code>
 extern float vSdot(

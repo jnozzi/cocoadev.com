@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A handy class from OpenSwordGroup which allows one to time animation easily.  OSATimers are very simple - only two methods are ever invoked.
 
 Creating an OSAnimationTimer:

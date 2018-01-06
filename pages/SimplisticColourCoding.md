@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey, all. Recently wrote a project that stores a few NSColor objects in the UserDefaults. I *still* haven't really figured out NSCoding and NSArchiver and all that, so I just wrote a quick hack of a function which takes a colour, converts it to RGB space if necessary, and returns an NSDictionary with keys Red, Green, Blue, and Alpha. Here goes:
 
     

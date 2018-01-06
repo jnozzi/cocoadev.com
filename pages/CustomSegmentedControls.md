@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, I'm trying to make a custom looking NSSegmentedControl but just can't get it to work...

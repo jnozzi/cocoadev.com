@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Text Encoding Conversion Manager is the legacy General/CarbonCore API for translating a string of characters between multiple encodings. TECM supports more encodings than General/CFString/General/NSString, but is frail and often fails where General/CFString/General/NSString succeeds.
 
 Apple documentation:

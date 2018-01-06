@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm making a Cocoa application that must be able to open a movie and convert it with QuickTime (actually, there is just sound in the movie). But the fact is: I don't know anything about QuickTime. And to convert my .mov I need more than just a NSMovie. Of course, I've tried to read Apple's doc about QT but it's a bit dark and not really sexy.
 
 Do anyone know where to find a tutorial to get started with QuickTime programming? Or does someone have more information about movie conversion using Cocoa API (I think it's not possible)? Thanks.

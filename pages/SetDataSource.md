@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm a C/C++ coder who is just starting to learn Objective-C.  I have run into a few snags with the memory management sytem: release, autorelease, and retain.  For example, I understand that some methods will retain an object that is passed in as a parameter and others will not.
 
 Does the method setDataSource: of NSTableView retain its parameter?  For example, what is the correct syntax for adding a new empty array as the data source?  This is what I have, but I don't know if it is correct:

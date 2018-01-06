@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'd like to implement a navigation bar like the one seen in Xcode's code editor - it has a popup for navigating through the file, and back/forward buttons to quickly zip through your history. It's unlike any GUI element, as it's sort of a cross between a toolbar and a General/NSTableView header. How would one go about creating something similar, complete with buttons and popup menus? -- General/RyanGovostes

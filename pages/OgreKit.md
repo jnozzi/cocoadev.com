@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://web.me.com/oasis/ogrekit/

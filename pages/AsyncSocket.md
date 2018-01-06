@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AsyncSocket is a class that wraps CFSocket and CFStream. You can download it from:
 
 *<strike>http://code.google.com/p/cocoaasyncsocket/</strike>

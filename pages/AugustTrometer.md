@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The creator of iPodderX, the very first podcasting application. Also owner of FoggyNoggin Software.
 
 Site: http://FoggyNoggin.com 

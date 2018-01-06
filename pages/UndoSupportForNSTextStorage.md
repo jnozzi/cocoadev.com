@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The General/AppKit comes with undo support in the text system, but unfortunatly this support is provided by the General/NSTextView class, not the General/NSTextStorage class. Adding undo support to General/NSTextStorage would make it easier to support text undo in a number of cases... problem is the implementation.
 
 Here is what I have so far. Seems to work for me on paper, but I'm doing something wrong and corupting the undo stack. The basic idea here is to commit partial edits (ones that might be merged with later edits) to a separate General/HBTextStorageEdit object. This is done so that I have a "handle" on these edits and can remove them from the undo stack when they need to be merged with later edits. When a situation arrises where the edits cannot be merged they are commited to the undo stack. By this "commit" I mean that the edits are placed on the undo stack with the General/NSTextStorage as the target, they won't be removed or merged with other edits after this commit.

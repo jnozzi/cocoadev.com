@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to kill a frozen thread from the main thread?
 
 ----

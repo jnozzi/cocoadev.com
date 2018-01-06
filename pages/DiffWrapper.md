@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm interested in creating a wrapper around the Unix     diff command to be able to display the difference between text in two separate NSTextView instances. I want to get meaningful output such that each change gives a range and the type of change (add/del/change) in an easily-parsed format so my own GUI can display these results in its own way. I'm not creating 'yet-another-file-merge' app; this will just be an extra feature of a current text app. In other words, I don't need any of the merging capabilities of the diffutils package. Also, I don't want to diff the contents of files, but rather strings - is this possible with the command-line? I realize I'll have to wrap it using     NSTask and     NSPipe, but I don't believe I saw anything in the     diff man page that shows how to pipe input (since it's two different 'files').

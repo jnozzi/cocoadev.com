@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Question: Is there an equivalent to ActiveX on Mac OS X?
 
 Answer: No.

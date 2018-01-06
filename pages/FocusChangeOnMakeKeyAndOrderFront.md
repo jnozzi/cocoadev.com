@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi there, I have a window with two text fields. When the window opens the first is the first responder. If I close it, and open it again (using makeKeyAndOrderFront) then focus has advanced down to the next textfield. Repeat, and focus is back.
 
 I have noticed similar behaviour in other programs (i.e. close and re-open their window, and focus has advanced).

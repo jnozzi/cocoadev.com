@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *The problem begins this way, but is later revealed to be a simple namespace collision... read and become wise....*
 
 I think that my developer tools have kicked the bucket. I am not sure, perhaps I got a virus! Strange errors keep popping up, not when compiling, but at runtime. For example, suddenly my categories do not work. The compiler see's the additions, and does not complain,     NSAssert([ClassName instancesRespondToSelector:theSel], @"...") passes, but     [instance respondsToSelector:theSel] returns NO. NSNotification center does not want to deliver my notifications. Here is the most recent mystery stack trace:

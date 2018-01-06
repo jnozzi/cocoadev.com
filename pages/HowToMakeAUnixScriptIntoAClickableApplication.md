@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anyone know how to make a unix script into a clickable application?
 
 ----

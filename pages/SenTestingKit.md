@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 SenTestingKit is Apple's install of OCUnit on Mac  OS X 10.4.
 
 It is installed as SenTestingKit.framework.

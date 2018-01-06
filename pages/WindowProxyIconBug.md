@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I can't get into the bug reporter to report this, states an exception happened...
 
 Here is how to reproduce;

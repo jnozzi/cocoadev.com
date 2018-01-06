@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/UITesting
 
 I want to automate my testing of code more.  Most of the time when I code, the part I spend the most time testing is user interface actions. Simple actions could be tested with applescript sure, but I am doing lots of work trying to get General/DragAndDrop to work with tables, buttons, custom views etc. and testing everything in the interface is really consuming my time.

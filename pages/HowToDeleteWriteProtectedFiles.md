@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe HowToDeleteWriteProtectedFiles here.
 
 Newbie here.  I have a simply little app which (ideally) deletes files specified files in /System/Library.  This directory, of course, belongs to System, and the users cannot delete these files by default.  isDeletableFileAtPath verifies this.  

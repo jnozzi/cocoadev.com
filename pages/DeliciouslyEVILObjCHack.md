@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The question the other day regarding Objc Objects and structs got me to thinking...
 
 I've always enjoyed the contrast between the CeePlusPlus and ObjectiveCee camps' respective outlook on efficiency of execution vs efficiency of implementation.

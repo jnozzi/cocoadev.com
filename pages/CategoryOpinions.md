@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 @discussion CategoryOpinions : WikiNode <ObjCLikeSyntaxing>
 
 I love categories!

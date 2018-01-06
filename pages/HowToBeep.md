@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Sound is a useful way to communicate with the user.  But, of course, it can be overdone.
 
 To programmatically sound a system beep, type...

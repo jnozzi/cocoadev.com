@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working on an application where I want to pull out the file I/O layer as a set of plug-ins but I am not sure if there is any way to dynamically update the file types supported for I/O.
 
 The only idea I can think of is finding a way to override the infoDictionary for the main application bundle but it sounds inelegant and requires me figuring out how to change the version instantiated for the application.  In short, it either won't work, or it won't work well.

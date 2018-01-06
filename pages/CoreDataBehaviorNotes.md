@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page is for documenting some of the behavior notes for the CoreData framework that are not otherwise mentioned in the documentation.
 
 ----

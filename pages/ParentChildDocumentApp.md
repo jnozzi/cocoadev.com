@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to figure out how to get documents in a Doc-based app to have a parent child relationship.  In my project, I have a ProjectDoc and a TextDoc.  I want the ProjectDoc to be the parent of the TextDoc.
 
 The problem is when I create a new TextDoc, I don't have a way for it to be able to find it's parent ProjectDoc.  When a new TextDoc is created, I want it to find current active ProjectDoc and become it's child.

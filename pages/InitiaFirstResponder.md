@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe InitiaFirstResponder here.
 
 I have a Main Window with a push button which loads another window which has

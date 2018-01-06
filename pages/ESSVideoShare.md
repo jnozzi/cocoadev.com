@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ESSVideoShare is a Cocoa (+touch) framework that makes it very easy and quick to add uploading functionality for videos to these services:
 YouTube, Vimeo, Facebook and Flickr.
 

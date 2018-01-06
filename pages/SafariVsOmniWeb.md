@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Lets do a Safari vs. OmniWeb poll.
 
     

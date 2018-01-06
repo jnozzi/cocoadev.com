@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What is the proper way to take a string with any possible characters and making it into a valid filename?

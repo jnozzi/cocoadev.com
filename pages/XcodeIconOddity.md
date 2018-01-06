@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I created a 128x128 icon and gave it alpha in Photoshop and dragged into Icon Composer and bg is all greyed out indicating alpha working so I add the .icns file to my project and specify it to be the icon for my app.  Launches fine and is properly transparent in dock, but not in finder - white block in finder.  Is there some trick?  I selected what I wanted of image and made a new channel and it seems right - and works right in Dock as I said.
 
 Help? Thanks.

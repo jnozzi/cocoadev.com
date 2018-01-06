@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Part of a program that I'm working on calculates an amount of time in seconds. I need to know what the best way is to calculate and format the time in Hours:Minutes:Seconds (00:00:00) format. http://goo.gl/OeSCu

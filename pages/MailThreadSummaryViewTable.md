@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to create a table like that in Mail's thread summary view. To see an example, fire up Mail, then from the menu, choose View, Organize By Thread. I want to underline the text for the entire row (each cell in that row's columns) when the mouse hovers over it. I've tried approaching it from the cell side of things, then from the subclassed table view side, then the delegate side, and a few half-hearted attempts at combinations of the three.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, I wrote a small test application to see if it is feasible to detect if a user is running SerialSeeker (pirated serial numbers)...I may not end up using it anywhere, but I decided that it may benefit someone.  http://www.yetanothersite.com/joel/SerialBoxDetect.zip
 
 The app looks for SerialSeeked when launched, and can detect if SerialSeeker is launched anytime when the app is running.

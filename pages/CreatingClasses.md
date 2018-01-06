@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a header file from visual c language. How do i turn the class into an objective c/cocoa class?
 
     

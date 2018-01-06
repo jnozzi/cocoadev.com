@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to fill an NSView subclass (actually ScreenSaverView subclass) with [NSColor clearColor], but [NSBezierPath fillRect:] doesn't work the way I'd expect. First I run:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Category:ObsoleteInformation
 
 Pages that have been edited recently; don't forget to check out CocoaDiscussions too. Do not edit this page, unless you are removing old entries (older than a week) to speed page downloads.

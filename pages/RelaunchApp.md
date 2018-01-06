@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is the best way to relaunch my app programmatically? Can it be done through running an applescript and then terminating and the applescript waits a couple seconds and launches my app again, or does the applescript go down with the ship? Any proven methods that work for you people?
 
 --ZacWhite

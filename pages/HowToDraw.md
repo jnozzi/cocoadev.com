@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 , 
 
 If you want your drawing to appear in a window, you should do it in a subclass of     NSView. If you don't have a view, you will need to make one. Create:

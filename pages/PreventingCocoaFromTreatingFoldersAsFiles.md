@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hopefully somebody can fill this in.

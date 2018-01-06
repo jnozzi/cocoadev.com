@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Okay, so maybe this is a total newbie question, and maybe it's even a question better placed in a site about C, but here goes anyway: how do you allow a method to use variable numbers of arguments?

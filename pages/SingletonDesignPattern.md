@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 If you're writing a class and want to ensure that there is never more than one instance of this class, and that there is a global access point to this one instance, then use the Singleton design pattern.  For more information on this design pattern, see *Design Patterns*, page 127.

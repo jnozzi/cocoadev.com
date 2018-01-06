@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 So, as discussed in CocoaDevRegistrations, TWiki is a collaboration tool similar in many ways to this one.  Except where this is based on the "Original Wiki" code, TWiki has a number of enhancements, such as page version histories & diffs, email notifications of changes, and user accounting / registration.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working with an API that takes an array of char*.  I have an NSArray of NSString which I would like to convert.  Is there an easy way to do this.  I have done this in c++ by just passing in the address of the first element in the vector.  I can't seem to find a quick workaround for this in Obj-C.  Thanks.
 
 ----

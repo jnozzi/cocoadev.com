@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Accelerated entire world citizenry growing along with change in lifestyle play a role in the increased need for liquid through human beings. Likewise, low-level water in many portions of the planet, retarded the actual replenishment of water source.
 
 Thus, each of all of us should generate our best efforts during the conservation of one just about the most treasured item right here with our planet, that is certainly standard water. One exertion is usually to beware of standard water leakages in the households, in spite of how small people leaks could be.

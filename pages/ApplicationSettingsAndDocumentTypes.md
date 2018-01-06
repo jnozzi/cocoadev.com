@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have finished my Cocoa app (not NSDocument based), and now wish to set up the document icons etc. and have my app launch when its documents are clicked etc. 

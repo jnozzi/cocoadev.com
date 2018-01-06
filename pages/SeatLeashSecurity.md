@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A seat leash is a little wire that connects a quick release bicycle seat to the frame. This prevents someone from walking up to the bicycle, turning the lever, and walking off with that bicycle seat. It doesn't stop someone who **wants** that bicycle seat from stealing it -- a simple pair of wire cutters will cut right through it, or someone could use a wrench to remove the seat leash -- but it prevents casual vandalism. 

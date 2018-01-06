@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Some sample code for displaying a simple sheet with OK/Cancel buttons on it:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The MacDevCenter is O'Reilly's page devoted to Mac development, from AppleScript to Cocoa.

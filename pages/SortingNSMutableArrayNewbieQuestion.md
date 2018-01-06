@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm yet another newbie trying to use some simple test apps to get a better understanding of Cocoa..

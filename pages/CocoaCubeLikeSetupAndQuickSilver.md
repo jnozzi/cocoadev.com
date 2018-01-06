@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Recent version of QuickSilver has a "cube" animation UI kind of like the same slick animation that's used when you first set up your Mac. How do you build something like that? Do you need to use OpenGL? What if I wanted to create a windowless overlay with OpenGL and have controls on the face of the cube is that possible?
 
 Thanks!

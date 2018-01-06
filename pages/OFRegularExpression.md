@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The OmniFoundation Kit contains several classes, two of which are used to perform regular expression searching. OFRegularExpression and OFRegularExpressionMatch are contained in the General Classes folder in the OmniFoundation project.

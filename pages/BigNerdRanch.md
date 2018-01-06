@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 BigNerdRanch is a set of people who teach Cocoa programming. They offer 5 day courses on Cocoa, and have two books. The first, "Cocoa Programming for Mac OS X", is a book to teach Cocoa programming. See more at BookCocoaProgMacOSX. The second, "Advanced Mac OS X Programming", discusses more advanced topics. See BookCoreMacOSXAndUnix. Their website is http://www.bignerdranch.com.

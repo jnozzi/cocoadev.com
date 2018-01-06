@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Apparently I'm the only nitpick here... go on the road for a week and it all goes to hell! :)

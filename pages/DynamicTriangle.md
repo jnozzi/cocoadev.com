@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am posting this program I wrote sometime back, which makes a triangle using OpenGl. There are three text boxes, where the user can enter the initial velocities for each of the three triangle nodes. Then I specify the number of time steps this triangle should redraw itself doing what I ask it to do in the program (which normally is to change its angle randomly and move eaach node). I am using a button to start this process after I specify the velocities and the timesteps. This button is a "toggle" type NSButton which has its alternate title set to Pause. however once I start the program and once the program start redrawing the triangle, I cannot stop it in between. I am looking for ways in which I might be able to discontinue this operation/program by pressing the button again when it displays the "pause" state
 
     #import "Triangle.h"

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to clear up a lack of understanding that I clearly have about subclassing.
 
 I have an General/NSMatrix of General/NSButtonCells already set up.  Works fine - as expected.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can someone tell me how to load and play a movie in NSView
 
 NSMovieView

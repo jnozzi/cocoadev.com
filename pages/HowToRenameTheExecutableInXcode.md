@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Assume you have created an Xcode project named Foo, which builds a Cocoa app named Foo.

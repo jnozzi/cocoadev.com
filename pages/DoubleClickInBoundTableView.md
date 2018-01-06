@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is the easiest way to display a sheet if a table row is double clicked (and the table is bound)? I think I can do it by hand, but I thought there might be an easier way using Bindings.
 
 ----

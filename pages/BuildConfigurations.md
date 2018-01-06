@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 New concept introduced with Xcode 2.1

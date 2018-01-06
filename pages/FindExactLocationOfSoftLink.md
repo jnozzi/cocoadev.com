@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I find the location of the file a soft link links to by code, made with:
 
     

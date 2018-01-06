@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am a little uncertain to when I should use panels and modal dialogs.
 
 For example I have an application where the user can record a script. After this he can execute it (and it works on the active document), he may also select to save it -- since it is not saved as a file, a custom dialog appears, asking for a name and optionally lets him select a hotkey for this script.

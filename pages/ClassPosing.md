@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 NSObject's poseAsClass: method lets you take a class of your own and use it to replace an existing class.  This is useful for changing behaviour of an existing class.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi
 I have the following problem: From a Core Data class I want to access an object in MyDocument.nib.
 Since I'm new to Coca the only thing I could figure out so far is to use something like this:

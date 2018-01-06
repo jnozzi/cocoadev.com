@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a partially-transparent custom view, which has several subviews (General/NSButtons). The subviews show up with the same transparency as their superview -- is there any way to make the subviews opaque? Thanks.
 
 ----

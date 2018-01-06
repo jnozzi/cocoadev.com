@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Relatively new to General/ObjC and Cocoa. I've been dabbling in it since Jaguar and General/ProjectBuilder though, but I have yet to release anything serious.

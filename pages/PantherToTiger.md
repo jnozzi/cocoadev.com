@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page is for recording "gotchas" that you have experienced in moving your application from Panther to Tiger. These may be problems that surfaced due to an undocumented (or poorly documented) change to an API. Or just problems due to bugs in your code that didn't have any significant effect until Tiger. This is *not* the place for discussion of new APIs in Tiger.
 
 

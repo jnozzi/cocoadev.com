@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My application has two parts, data entry and sound playback. The data entry part is something I can take care of. However, the sound playback seems very confusing although the task at hand is very simple.
 
 1) All I need to do is take a playlist or an individual song from any location in the computer and have the application play the sounds according to some control that I have on my application. 

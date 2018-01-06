@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Part of the DOSAStrategy... for info on DOSA see DOScriptingArchitecture
 
 This is a command line interface to DistributedObjects for scripting and other fun.. note if the method returns something I dump it as an xml plist on stdout for now.  I considered the old ascii style might be easier to parse for some languages but most languages are getting better and better xml support, and many don't have good RegularExpression support...

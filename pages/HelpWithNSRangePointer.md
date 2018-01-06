@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My program sometimes crashes when the following code is called and I can't figure out why.  I get a sigbus error from NSIntersectionRange().  When I break on my method and try to step through it everything is fine, the program doesn't crash.  Can someone with a better understanding of pointers help me figure this out?
 
 The code below is supposed to remove the NSLinkTextAttribute from an NSAttributedString in my textView.

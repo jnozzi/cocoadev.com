@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 EsounD, the Enlightened Sound Daemon, is a server process that mixes several audio streams for playback by a single audio device. For example, if you're listening to music on a CD and you receive a  sound-related event from ICQ, the two applications won't have to jockey for the use of your sound card.
 
 More information is available at http://www.tux.org/~ricdude/EsounD.html but the latest source is available from the Gnome project.

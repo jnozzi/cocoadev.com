@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Taken from Apple's Online Documentation:
 
 *CFUUID objects are used by plug-ins to uniquely identify types, interfaces, and factories. When creating a new type, host developers must generate UUIDs to identify the type as well as its interfaces and factories.

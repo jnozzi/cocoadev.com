@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **The real question is though...is it worth it to stop <1% of the population?**

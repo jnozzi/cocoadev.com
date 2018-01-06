@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am fairly new to IOS Dev so please bear with me.  I am using X Code 4, and I have tried to upgrade my project to IOS 5, although I think that has little to do with anything.  I am calling an Odata Service that is returning data and I am calling [self.TableName reloadData].  The debugger does NOT get into the Cell Creation method...It just pops back out to the main application position and gives me a SigKill message or if I click on the arrow to keep debugging, I get the EXC_BAD_ACCESS method.  I know I am probably autoreleasing wrong or incorrectly...I've seen notes on using Zombies, but I don't think I enabled it correctly because it did not connect until I "attached to process" and pointed it at xcode.  It looked like it was doing something, but I didn't see anything that pointed to my bad objects...I have included my code below.  Any help would be greatly appreciated.
 
 thanks

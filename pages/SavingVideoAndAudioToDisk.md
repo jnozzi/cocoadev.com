@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There are a number of sample projects for saving live video to disk, but none that I can find that also include an audio channel.  Saving the video and audio such that they are in sync seems to be a bit of a tricky proposition.  Anyone aware of a tutorial project out there?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Features/fixes to existing non-Apple tools, or just tools you wish you had but don't have time to make (and maybe someone else will!)
 
 ----

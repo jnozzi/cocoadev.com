@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to add cover art to an mp3 or an aac file. I am using the QTKit on Tiger but of course have to use C in order to use the metadata api's. I see QTMetaDataAddItem but I have no idea how to use this method. I am not very proficient on using C. Can anyone help?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can anyone direct me to information regarding using ColorSync in cocoa?
 Specifically, what I want to do is convert color values with ICC profiles. For example, taking an RGB, CMYK (or LAB value, for that matter) and converting it to some device dependent RGB or CMYK value.
 ----

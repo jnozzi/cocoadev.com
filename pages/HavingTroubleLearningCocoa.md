@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *Editor's Note:* The prior content of this page has been refactored and added as discussion to the GoodBeginnerTutorial page
 
 ----

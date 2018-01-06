@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Right now, I'm desperately trying to understand what is the use of retaining objects. Since it's something so obviously basic knowledge, there must be some reason to implement it. I want my object to "hold" an instance variable created in a method so this variable can be used in another method of this same object.
 
 For example, I have an object, call it Obj...

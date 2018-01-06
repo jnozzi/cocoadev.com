@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 
 I'm creating a custom Tempalte project in Xcode 2.0 .  I have declared all the files that have tags that needs to be replaced in the General/TemplateInfo?.plist file inside my .xcode bundle.  All seems well and i can create a new project from my custom template, however i get a few files that haven't had their tags being replaced.

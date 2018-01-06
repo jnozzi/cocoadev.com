@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am using the CurlHandle framework to upload files through FTP. The one problem I am having is that I cannot upload files that contain spaces in the name. Anybody know how to fix this?
 
 ----

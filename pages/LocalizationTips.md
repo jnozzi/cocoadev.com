@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here is a localization tip. Instead of using hard coded strings in your source files, use the NSLocalizedString* macros: 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The makers of Java, the SPARC, Solaris, and other fun things.

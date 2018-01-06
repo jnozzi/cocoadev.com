@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Text editor included with Mac OS X. Supports rich text, basic HTML display, pictures, embedded applications, kerning, ligatures and other such Cocoa text-related features. The full source of General/TextEdit, both in Objective-C and in Java, is included with the Developer Tools ([file://localhost/Developer/Examples/General/AppKit/General/TextEdit/] - has not been updated for Panther).
 
 General/TextEdit made its debut with General/OpenStep. General/NeXTSTEP included a far superior (for developers, and IMO) editor called Edit.app. It had features like piping text to external scripts,  code folding and so on.

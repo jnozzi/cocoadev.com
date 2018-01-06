@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, I am writing an application, that needs to crash :)
 But every time it crashes, it suggest to send crash log to Apple :)
 How can I avoid this?

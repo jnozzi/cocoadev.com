@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A datatype used to hold four bytes like a creator code.
 
 They are used like:     FourCharCode myApp = 'myAp'

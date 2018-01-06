@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've written some code which builds a quicktime movie ( and/or exports an image sequence ) from frames grabbed from OpenGL. The recording mechanism saves the framebuffer, raw, to a cache file in NSTemporaryDirectory and that works just fine.
 
 The encoding phase extracts images one by one, flips them vertically, and then does whatever ( e.g., adding to the quicktime movie or saving to a numbered image in a sequence ). The encoding phase is threaded, performed by a fire and forget thread context as such:

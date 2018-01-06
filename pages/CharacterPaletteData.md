@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm interested in accessing the data that the character palette displays. Does anyone know where this is kept? There's a lot of interesting data on japanese characters in there, such as readings, radicals, and stroke count. Where does it find this data? Is there a central (open!) data file in Mac OS where I could find this data? Or is it a private file in the Character Palette that I'd need to reverse engineer?
 
 Thanks!

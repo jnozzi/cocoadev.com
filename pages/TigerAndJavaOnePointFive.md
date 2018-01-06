@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 From http://developer.apple.com/java/faq/#anchor2 I quote:
 
 *

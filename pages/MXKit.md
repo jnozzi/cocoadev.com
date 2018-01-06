@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MXKit is a set of Cocoa classes for doing arbitrary precision things (and much more) -- http://www.synthemesc.com
 
 Released under LGPL.

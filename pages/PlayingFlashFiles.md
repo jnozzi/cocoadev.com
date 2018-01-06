@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey again.
 
 I'm working on an application which plays flash files... in fact, it's basically its whole purpose to play flash files.  I tried to do it through quicktime, but it always returns YES for isPlaying... whether or not the flash file is playing.  This isn't true for the MOV-type of files.

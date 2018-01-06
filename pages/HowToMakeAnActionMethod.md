@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is the meat of Objective-C programming!  Here is how you create an action method using XCode.  For an action method to work, you must
 
 * declare your action method in the header file (.h) - see HowToDeclareAnActionMethod,

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to sort an NSMutableArray of NSStrings numerically. I tried using     compare: options:NSNumericSearch as a sort selector in Interface Builder, but it wouldn't let me.
 
 I have an idea that I could make a convenience method for     -(NSComparisonResult)compare:(NSString *)*aString* options:(unsigned)NSNumericSearch called     -(NSComparisonResult)numericalCompare:(NSString *)*aString*, but I have no idea how to get Interface Builder to use this custom method as a sort selector. 

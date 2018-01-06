@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm writing an application that saves settings using Cocoa's archiver, which I found to be extremely useful and easy for this. I'd like to eventually write a Windows/Linux/Etc version that could read the Mac settings and vice-versa. Is there an type of module available for cross-platform reading of Cocoa plist settings/archives, or would I have to parse the file (since it's all XML in the end) manually instead? -Seb

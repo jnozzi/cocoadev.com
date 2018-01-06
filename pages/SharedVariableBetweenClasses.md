@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need some help on how to share/communicate variable between classes.
 Let's say i have 2 classes, Controller1 and Controller2.  
 In Controller1, I have methods getUserID, setUserID and a variable NSString* _userid in my header file.

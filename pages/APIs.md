@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Plural of API, Application Programming Interface. To my knowledge frameworks don't fall into this *per se* since API refers more to, for instance, the headers you'd write for plugin developers for your app. So FoundationKit, CoreFoundation, et cetera aren't really APIs, are they? -- RobRix

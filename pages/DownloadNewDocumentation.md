@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I noticed recently that the documentation ( particularly, the "Concepts" articles ) on developer.apple.com are more up to date than the docs shipped with the XCode cd when I bought panther. That's all well and good -- and I'm happy apple has active documentation.
 
 What I'm wondering is, how can I download it? I poked around developer.apple.com and the best info I could find was this:

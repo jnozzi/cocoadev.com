@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See also DesignMatrix.
 
 I have passed a varible KTMutableMatrix * clientClusterMatrix  when window is load, it receives Okay. But when I  try to obtain it  in later methods, 

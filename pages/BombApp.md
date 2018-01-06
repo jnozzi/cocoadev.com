@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Application Crashing 101: click the button in BombApp!
 
 Included with the DeveloperTools.

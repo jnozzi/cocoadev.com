@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I tried to open a new sheet with:
 
 [NSApp beginSheet:loeschenSheet modalForWindow:mainWindow modalDelegate:self didEndSelector:NULL contextInfo:nil];

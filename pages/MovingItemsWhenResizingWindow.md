@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How does one move items (say buttons) along with the window when the window is resized?  My app looks a lot like iTunes, and so consider that as an example.  When I drag the bottom right corner the main song list area resizes appropriately. (I did this by turning on Autosizing in the horiz and vert directions in Interface Builder.)  But buttons are not the same.  They should move with the resizing action, but not resize themselves.  More precisely, the effect I want to get is to lock the right edge of a button to a fixed distance away from the right edge of the window.  Thanks!
 
 ----

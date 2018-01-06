@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I had gotten my hopes up about using NSWorkspace's slideImage:from:to: method to provide visual feedback to a user when they click a button to add an object to a list, rather than drag it. I wanted to use the same image as the one I compose as my drag image. Basically, I want to slide the drag image from tableViewA to tableViewB without DnD when a button is pressed.
 
 Unfortunately, the devil is in the details. The last line in the docs said "Currently has no effect." Sure enough, the docs are accurate. ;-)

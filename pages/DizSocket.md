@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 DizSocket is a class for working with sockets in cocoa.  For other alternatives see SocketClasses.
 
 This page's original author had this to say:

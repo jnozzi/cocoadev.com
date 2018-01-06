@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Having problems with using a SQLite wrapper, SQLDatabase.
 I put it into use in a NSTableView protocol based class, on awakfrom nib it opens the database and puts some test entries in it.
 Then sets up the columns as the returned SQL columns too, this all works successfully

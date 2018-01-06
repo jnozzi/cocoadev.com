@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/StepWise is a very helpful site for anyone who uses or develops for for General/MacOSX. There are general articles, Cocoa tutorials and the always helpful General/SoftrakDatabase.

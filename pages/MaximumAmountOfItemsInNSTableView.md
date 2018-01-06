@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My application is powered by SQLLite in the backend so handling millions of objects should not be a problem, however apparently NSTableViews do have such a limit.
 
 Does anyone here know the exact limit of items in an NSTableView so that I may if at all possible notify the user when some of the items will have to be removed (Thank god for the search function)?

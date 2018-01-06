@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here is my scenario. I have a management application that I decided to write as my first app using Cocoa. I have some experience with Java but am new to Objective-C. I have two questions that have been causing me some grief.

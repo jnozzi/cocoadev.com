@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In my app, I have an array of NSData objects containing data (array of floats) that must not be changed.  I need copies of this that can be changed, so I used the copy method.  However to my surprise I found that the "bytes" pointer is exactly the same in the copy-ed object, and so changes to the bytes of the copied object obviously change the original. I can't imagine ever wanting this (otherwise I'd use a reference to the original object) so I implemented a category method on NSData overriding the NSCopying protocol, to actually copy:
 
     

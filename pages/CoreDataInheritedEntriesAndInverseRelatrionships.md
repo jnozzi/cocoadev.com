@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I'm having a small problem with Core Data.

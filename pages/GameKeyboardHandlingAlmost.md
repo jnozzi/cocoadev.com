@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I provide an alternate solution I believe to be much easier at GameKeyBoardHandling.
 --AlainODea
 ----

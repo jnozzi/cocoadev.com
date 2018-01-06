@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is strange (to me) .. I'm extending the NSMutableArray class, which in a simple example only overrides the count method.  But I'm getting the following runtime exception:
 
 <NSInvalidArgumentException> *** -count only defined for abstract class.  Define -[IndexableMutableArray count]!

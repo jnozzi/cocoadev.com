@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there a way to have Xcode display memory as a block of bytes when debugging? I need to see the changes to a block of memory as I step through code, and Xcode's variable window simply doesn't cut it for this.

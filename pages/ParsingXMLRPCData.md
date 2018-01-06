@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been trying to get a reply from an XML-RPC class parsed out into an NSArray and was having absolutely no luck and now it won't even run with just a simple string.  I get either a segmentation fault, or a bus error.  Obviously I'm missing something but I have no idea what it is.  The data *does* display just fine.  The segmentation fault comes almost exactly one second after the window with the data is drawn.
 
 *edit*

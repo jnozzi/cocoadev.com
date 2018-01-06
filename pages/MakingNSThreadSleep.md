@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I recently poked around a bit with using NSThread instead of timers.
 
 Now, I'm fairly comfortable with Qt's threading API ( not QuickTime, TrollTech's Qt GUI Toolkit ). Qt's threading API allowed one to force a specific thread to sleep for a number of seconds/milliseconds via a static QThread::msleep ( http://doc.trolltech.com/3.3/qthread.html#msleep )

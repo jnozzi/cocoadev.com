@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have downloaded the source of an application from sourceforge with the intention to make some slight improvements. I tried to build it but I get over a hundred errors along the lines of file Cocoa/Cocoa.h doesn't exist.  I tried to remove the references in the project and then add framework->Cocoa.framework back into the project, but it still wouldn't file Cocoa/Cocoa.h... other builds find it fine, it seems to be just this app... Anyways I may create a new project and import all the files to make it work, but any thoughts on why this would happen?  (the app is FeedMe... the example app for IconaraDOM, I am adding a window and browser view... or would if it would compile...)
 
 ----

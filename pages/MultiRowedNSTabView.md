@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Once upon a time I wanted a Tab View with 4 rows of tabs.  Unsuccessful at finding a way of getting this functionality in the basic NSTabView, I tried stacking 4 Tab Views on top of each other and coding them to switch positions accordingly when selected.  It worked well...until...the new style tabs were introduced.  The old type were opaque and effectively covered the views behind.  The new views are not and don't.  Is there a simple way to make the tab views opaque, or, have multiple rows of tabs?  *--Migrant Firm Worker*
 ----
 *Do you mean like in Windows? I personally dislike this "feature", especially when clicking on a tab in the back brings it in front of the others, changing its position. So, how are you going to use the tab view, anyway? (That said, I have no idea how to do it :) --JediKnil*

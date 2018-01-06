@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd like to begin a discussion about when one should create a new page and when one should not. I would like to have some kind of consensus on what is considered useful or worthwhile to the site and what is useless and shouldn't be bothered with.
 
 On one side of the fence, I trashed a page created that referred to the NSModule API as being useless and talking about an obsolete API. After some discussion with the creator of the page, I changed my mind and realized that it could be useful to have, just to warn people away from it, or to satisfy the curious, or some other thing I couldn't think of.

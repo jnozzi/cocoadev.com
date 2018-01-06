@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The Apple documentation is unclear discussing valueForKeyPath:

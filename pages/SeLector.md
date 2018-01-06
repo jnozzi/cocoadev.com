@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A selector is the "name" of a method used in source code as an ObjectMessage to AnObject, or the unique identifier that replaces the source code name when it is compiled.

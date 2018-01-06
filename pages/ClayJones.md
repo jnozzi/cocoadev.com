@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello all, I'm new here at the time of writing this.
 
 I've been programming for a few years, I know Objective-C, C++, Python, PHP, HTML/CSS. Javascript, a tiny bit of Java (But who cares :D). I aspire to be a programmer or computer engineer or something along the lines of computer science when I get older, but for now I'm just enjoying my little projects. I own a company* and I do some software development, but more on that later.

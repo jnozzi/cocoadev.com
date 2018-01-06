@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 This is something that most applications do, but I cannot figure out how to implement it. The program I am working on has templates that I want to be user edit/add able. The convention seems to be storing them in the Application Support folder if they are not there. They are automatically created either programmatically or by copying from the bundle. I need to be able to store a standard templates file in the application bundle, and automatically copy it to Application Support if it is not there. Is there a Cocoa way to make an Application Support folder (Like [NSUserDefaults standardUserDefaults])? 
 

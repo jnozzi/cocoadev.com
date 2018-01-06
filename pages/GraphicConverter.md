@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 GraphicConverter converts pictures to different formats.
 Also it contains many useful features for picture manipulation.
 

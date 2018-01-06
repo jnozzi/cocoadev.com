@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to develop a GUI builder. So far I can drag around views fine, but when I draw a bounds rectangle it's often much larger than the rect that InterfaceBuilder draws.
 
 IB's rect is usually snug right up to the edge of the visible part of the control. My rects are a few pixels out from the visible part, but I think they do represent the true frameRect of the view. Im guessing the empty border is where the controls draw the highlites to indicate focus. 

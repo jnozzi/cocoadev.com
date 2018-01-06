@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I would like to create a custom NSOutlineView where I would control the look of the items but I don't know where to start to accomplish this. Also, can I use a custom NSView as an item? Where can I find some info/tutorial/code sample to learn how to do this? Do I have to create my own custom view or I can start with NSOutlineView and tell it how to display its items?

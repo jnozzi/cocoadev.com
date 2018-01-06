@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This code is a keydown code for 1 key
     
 case 32:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 FDObjectiveMethod is a class which allows you to treat a method as an object. It's not just an invocation, because it runs the invocation you pass it in another thread, and allows you to start, halt, and restart the progress of the method referenced to by the invocation you pass the FDObjectiveMethod.
 
 What that means is that FDObjectiveMethod provides you with very easy multithreading for worker threads. It is not suitable for splitting off a thread that will need to do a lot of communicating, but that's something I'm looking into.

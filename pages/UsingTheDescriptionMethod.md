@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a tip for debugging. Use General/NSLog calls instead of printf calls since General/NSLog can print out objects. Also override - (General/NSString *)description for your class objects so that you can get something more meaningful than objectclass<address> when calling General/NSLog like so.

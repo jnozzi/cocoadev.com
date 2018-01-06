@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Type-ahead is that nifty feature that allows you to begin typing the first few letters of an item in a list (such as a table) and have the selection jump to that entry as you type. Much like the Finder - type the first few letters of a file or folder and it's automatically selected. I'd like to start a discussion on how one might go about adding type-ahead to widgets such as General/NSTableView. I know the Omni frameworks include this but I know I'm not the only one who would rather be shown the basics and add my own flare without depending on someone else's work in my software. Any takers?
 
 ----

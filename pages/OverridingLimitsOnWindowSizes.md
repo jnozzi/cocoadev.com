@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Right now, I'm trying to create a really narrow utility panel that is available system-wide.  I've got most of the behavior working right, but I'm having trouble getting the panel as thin as I want.  I'd like to set     minSize of my panel with a width of 27px, but something keeps bumping it up to 59px.
 
 I've tried setting the minimum width from Interface Builder and from a few places in my code, but I've been unsuccessful.
@@ -200,20 +204,20 @@ I also tried to subclass NSPanel and overriding     constrainFrameRect: toScreen
     
 //MyPanel.m
 
-#import "MyPanel.h"
+	#import "MyPanel.h"
 
-@implementation MyPanel
+	@implementation MyPanel
 
--(NSRect)constrainFrameRect:(NSRect)frameRect toScreen:(NSScreen *)screen
-{
-	NSLog(@"constrainFrameRect:{{%f, %f} {%f, %f}} toScreen:%@",
-		  frameRect.size.width,frameRect.size.height,
-		  frameRect.origin.x,frameRect.origin.y,
-		  screen);
-	return frameRect;
-}
+	-(NSRect)constrainFrameRect:(NSRect)frameRect toScreen:(NSScreen *)screen
+	{
+		NSLog(@"constrainFrameRect:{{ "{{%" }}f, %f} {{ "{%" }}f, %f}} toScreen:%@",
+			  frameRect.size.width,frameRect.size.height,
+			  frameRect.origin.x,frameRect.origin.y,
+			  screen);
+		return frameRect;
+	}
 
-@end
+	@end
 
 
 
@@ -221,18 +225,18 @@ Here is the run log, with my comments after double slashes:
     
 [Session started at 2008-03-24 15:25:15 -0500.]
 2008-03-24 15:25:15.422 My App[4798] constrainFrameRect:
-	{{360.000000, 256.000000} {396.000000, 264.000000}} toScreen:(null)
+	{{"{{"}}360.000000, 256.000000} {396.000000, 264.000000}} toScreen:(null)
 2008-03-24 15:25:15.441 My App[4798] Window buttons hidden
 2008-03-24 15:25:15.443 My App[4798] constrainFrameRect:
-	{{30.000000, 104.000000} {396.000000, 264.000000}} toScreen:(null)
+	{{"{{"}}30.000000, 104.000000} {396.000000, 264.000000}} toScreen:(null)
 2008-03-24 15:25:15.537 My App[4798] constrainFrameRect:
-	{{30.000000, 104.000000} {396.000000, 264.000000}} toScreen:(null) 
+	{{"{{"}}30.000000, 104.000000} {396.000000, 264.000000}} toScreen:(null) 
 	// My code sets the window size
 2008-03-24 15:25:36.593 My App[4798] constrainFrameRect:
-	{{30.000000, 104.000000} {548.000000, 223.000000}} toScreen:(null) 
+	{{"{{"}}30.000000, 104.000000} {548.000000, 223.000000}} toScreen:(null) 
 	// I move the window w/o changing the window size.
 2008-03-24 15:25:45.169 My App[4798] constrainFrameRect:
-	{{136.000000, 135.000000} {502.000000, 170.000000}} toScreen:(null) 
+	{{"{{"}}136.000000, 135.000000} {502.000000, 170.000000}} toScreen:(null) 
 	// This came only after I had resized, then moved the window.  
 	// (No new log entry was added when I resized the window.)
 

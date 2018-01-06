@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have done a bit of development work here and there.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know a way (or have an script) that can count all the lines of code in an General/XCode project? Just curious.
 
 *Just write an app that runs through all the files in your project folder, sees if it is a .m or .h, and count the number of /n's.*

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 We know that Apple says that it's a good idea to just have one app bundle, for drag-and-drop install. Some apps require separate little plugins or apps, but those are contained within the app's bundle, so there's just one item in your Applications folder for that program.
 I want to be able to run a small server app from within my program, and have the server's .app bundle stored within the main program's bundle. No need to hide it from the curious, just keep it in there to have the simple drag-and-drop install, and less file clutter.
 How do I launch it, get it ready to recieve distributed object commands, and then kill the app safely when I'm done, all programmatically within the main app?

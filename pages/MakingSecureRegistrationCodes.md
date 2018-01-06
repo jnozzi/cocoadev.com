@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Suggestions so far:

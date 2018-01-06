@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Apple's archive of the WorldWideDeveloperConference classes -- available at the AppleDeveloperConnection website.
 
 The classes include topics from Cocoa to Carbon to Quicktime and other cool stuff.

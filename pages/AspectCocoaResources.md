@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *http://www.ccs.neu.edu/home/lorenz/center/aop.html

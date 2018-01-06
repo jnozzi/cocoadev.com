@@ -1,4 +1,8 @@
-{{#Del:}}
+---
+layout: page
+---
+
+{{"{{"}}#Del:}}
 
 <span style="color:red">**This is irrelevant in 10.5+ and not worth a topic since it's a simply an option in IB.**</span>
 

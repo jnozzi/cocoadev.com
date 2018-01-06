@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've written a model viewer for halo. It correctly loads the models, and applies the textures. However, there was a problem with the depth buffer - when you looked at the model from certain angles, the depth buffer would be messed up. It was a long time before I realized that you need to give the context a depth buffer in the nib. Okay, problem solved, right? Well, for some reason, whenever i turn on the depth buffer in the nib, the View only shows black. Nothing but black. It IS drawing the vertices, but it only shows black. Does anyone know why this might be?
 
 BobInDaShadows

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When making a program (or framework), you sometimes run into a need to keep your classes visibly separate from all the other classes. Some ways of doing this are to use no prefix (so have, for instance, AppController, SomeKindOfDocument, et cetera as your classes), or to use the My prefix (as described in MyApp), or to ChooseYourOwnPrefix.
 
 Choosing a prefix is a mix of looking at which frameworks you're including now (e.g. FoundationKit or AppKit; so you probably never want to prefix your class names with NS), and which frameworks you might conceivably include later. It's all a matter of marking out "namespaces", though it's admittedly not the best way of doing it (Java seems to have done it pretty well, but that's not so helpful to the ObjC coders).

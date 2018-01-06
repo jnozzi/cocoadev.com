@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AirTunes uses Bonjour to announce remote speakers to the network. To browse for available AirTunes instances, type:
     
 mDNS -B _raop._tcp

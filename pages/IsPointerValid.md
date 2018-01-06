@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there anyway to check whether the object to which a pointer is pointing to has already been deallocated without generating a sigbus error (obviously) and without doing anything like enabling NSZombies?
 
 **

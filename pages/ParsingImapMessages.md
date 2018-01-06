@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I extract the attachments from an IMAP message? I've read, that there is a way to use the boundaries.
 Do you have any code samples or hints?
 

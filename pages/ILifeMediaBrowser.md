@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **NOTE:** This page is now obsolete.  See IMediaBrowser for an implementation of the iLife Media Browser.
 
 Does anyone have a good idea of how I can implement a Keynote-style media browser that shows iTunes songs, iPhoto photos, and the contents of the Movies folder in the user's home directory? I can't seem to find anything on the Internet that does this and is open source. I know that Keynote has the NSPopUpButton in a Nib and then a single custom view beneath it for the playlist/album list and then the browser. Thanks. --LoganCollins

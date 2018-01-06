@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSPopupButton in an NSToolbar which allows the user to select one of several items. Items can be added, removed and renamed through various means.
 
 Can I delay the creation of the submenu (for the NSPopupButton) until it actually opens, or will I have to add some hooks for every function that can insert, remove or rename an item, and let this hook trigger a notify or similar which instructs me to recreate the menu?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My app calls a method to each of its plugins, and each plugin is assigned it's own thread to execute this method in. So 8-9 threads are created instantly and each plugin's code is going on at once. Each plugin is sent 2 objects, which it can then access and call methods from (one object is General/NSUserDefaults).
 
 So when this is all going on, sometimes I will get random errors, and sometimes it works perfectly fine. The errors are always the same few, and many times it has something to do with the General/NSTask I am running (I have a few methods that call General/NSTask).

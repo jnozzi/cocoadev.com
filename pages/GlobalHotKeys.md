@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to write a program that will intercept keystrokes no matter what program you are currently using so that I can make custom hotkeys. Does anybody know how to do this? I saw that there were other discussions about this topic but I thought maybe someone would see this new topic in recent changes and might know the answer.
 
 ----

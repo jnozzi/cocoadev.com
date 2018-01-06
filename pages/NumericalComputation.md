@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://hpc.sourceforge.net/ lists a number of useful packages.  This is a partial description:
 
 <quote>

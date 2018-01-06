@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 I'm a real inexperienced programmer so please bare with me.  I'm trying to get some information from a file that is written after 5 different General/NSTasks end.  Now if this was only one General/NSTask I have no problem but with the code I'm using right now:
 

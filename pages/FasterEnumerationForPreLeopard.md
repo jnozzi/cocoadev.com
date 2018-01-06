@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The new FastEnumeration feature of Objective-C 2.0 is really nice. Besides the syntactic sugar, its performance with several collection classes (NSSet especially) is way better.
 
 The only problem is that it is completely incompatible with systems older than 10.5. Personally, I'm not ready to stop supporting 10.4 quite yet, so I looked for a way to get better performance when enumerating while maintaining backwards compatibility. The best solution I've found is to take advantage of the "toll-free bridging" between the Cocoa Foundation collection classes and the Core Foundation collection types. Unlike Cocoa, Core Foundation provides functions for obtaining a C array from a collection. This is much, much faster than obtaining an NSEnumerator, but it also really mucks up your code. It's also pretty inconvenient because the function for each type has a different name and different arguments.

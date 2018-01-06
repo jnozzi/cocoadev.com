@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to make an app which can fetch the machine's IP Address, Fully Qualified Domain Name (FQDN), and Serial Number.
 I've managed to make the interface, but I'm lost with the code...
 I have no idea where to go from there.

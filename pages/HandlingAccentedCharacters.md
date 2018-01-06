@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My app needs to store individual letters for which I'm using NSStrings. This works great for single character letters but doesn't handle accented characters correctly. Is there an easy way to treat accented characters as single entities? I looked at NSString's -precomposedStringWithCanonicalMapping which appears to convert the decomposed form to the composed form, but it wasn't that simple (is it ever ;-).
 
 Basically I have an -insertText: method in my class which receives the typed input from the user via the usual route (keyDown, which calls interpretKeyEvents). Accented characters arrive as separate events... so I guess my question is how do I correctly coalesce these events into a single precomposed string for accented characters? (GrahamCox)

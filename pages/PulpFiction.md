@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One of the many RSSNewsReaders for the Mac...
 
 Created by Freshly Squeezed Software: http://freshsqueeze.com/products/pulpfiction/

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a small program that depends on a few (pre-packaged) data files being present for it to work properly.  To that end, I've added them to my Xcode project and now they show up in General/MyApp.app/Contents.  How do I access them? Do I use General/NSApplication to find out the location of my program, then append Contents/General/MyDataFileName to the end of it? Or is there some better way I should be doing this?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is a simple example of how you can copy formatted text in an NSTextView to the clipboard/pasteboard. The default copy: method only copies plain text. --KevinWojniak
 
     

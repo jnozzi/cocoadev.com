@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 It's pretty obvious, but the more people we can get participating here, the more useful this site becomes.  I've posted a couple of times to macosx-dev about this place, but I don't want to become a pest there.  Anyone have any creative ideas on how to get more people here?

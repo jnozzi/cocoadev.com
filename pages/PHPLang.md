@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 PHP is a scripting language used mostly for creating dynamic web pages. PHP is open source and exists on many platforms, including Mac OS X/Darwin. It comes preinstalled on Mac OS X Server, but may require activation in the httpd configuration file. Also, binary packages can be downloaded from the following URL:

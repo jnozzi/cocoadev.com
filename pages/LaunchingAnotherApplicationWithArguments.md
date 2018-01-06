@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's the dilemma. I want to execute another application from within my app and pass it some arguments.
 
 - Launch Services would be great, but I can't pass it any arguments other than file URL's.

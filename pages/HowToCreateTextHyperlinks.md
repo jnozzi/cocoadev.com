@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See especially NSTextViewAsWiki
 
 I want to create hyperlinks in text documents so that clicking on a given link will bring the reader to another location in the same document, or in another document in the same Cocoa application.

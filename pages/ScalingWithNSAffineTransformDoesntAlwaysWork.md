@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to create a thumbnail image of a view by drawing a scaled version of it into a new NSImage, but drawing subviews don't get scaled in the process:

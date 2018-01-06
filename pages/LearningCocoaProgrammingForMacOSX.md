@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see BookCocoaProgMacOSX
 
 Far surpasses Apple's own BookLearningCocoa and is appropriate over a range of experience levels.

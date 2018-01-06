@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm attempting to draw a window beneath the icons on the desktop (above the wallpaper). The http://www.cocoadev.com/index.pl?NSWindowLevel page lists the constant that will draw a window beneath the desktop icons (kCGDesktopWindowLevel), but, as noted, windows created with this constant will still accept mouse down events even when clicking on an icon. Ie: you will be unable to select your desktop icons that happen to be located above one of these windows. Any idea what I need to do to get the result I'm after?
 
 Essentially I'm after the appearance of Stevenf's WebDesktop application (without the whole "web browser on the desktop thing").

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The question: should I retain or copy an object?

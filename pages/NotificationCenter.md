@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 To understand what the NotificationCenter is, we first need to understand Notifications:

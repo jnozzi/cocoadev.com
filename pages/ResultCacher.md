@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This idea comes from function programming and is really a design pattern I suppose. I'm not aware of whether this has been done before in Obj-C or in any other language other then Haskell. I haven't done and extensive search. If anyone knows otherwise then please correct me.

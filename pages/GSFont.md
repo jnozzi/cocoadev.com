@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe GSFont here.
 
 You can get a GSFont like this:

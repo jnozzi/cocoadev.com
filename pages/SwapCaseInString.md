@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wish to change uppercase letters to lowercase and vice versa.
 
 Currently I have this code in use:

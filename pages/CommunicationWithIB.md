@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Got myself into a bit of a pickle!

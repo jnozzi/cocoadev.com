@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi there, I am saving plain text files and so, I cannot store any meta data for these files in the file itself.
 
 Is there any reason to favor a central repository for file metadata over resource forks?

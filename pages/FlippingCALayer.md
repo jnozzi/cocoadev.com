@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have tried for some time now get the "isFlipped" behaviour of NSView into CALayer.
 The recent try doesn't work at all:
 

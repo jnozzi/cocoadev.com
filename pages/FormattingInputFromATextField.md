@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm a little stuck right now. I've been subclassing NSTextField and implementing -textDidChange: , handling formatting that I need to do in that function (stripping unsupported attributes, etc.) However, some of the formatting I need to do involves replacing substrings (e.g. "#SA") with images. I've been using the following code:
 
     

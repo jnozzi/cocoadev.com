@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe IKImageView here.
 
 Excellent article with the stuff Apple forgot to mention in the documentation:

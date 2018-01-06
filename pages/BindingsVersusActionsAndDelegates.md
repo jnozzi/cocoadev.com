@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've wondered about possible conflicts between CocoaBindings and controls' action methods and delegates.
 
 For example, if you bind an NSTableView's column values, and also set the NSTableView's data source, which does the table use, the binding or the data source?

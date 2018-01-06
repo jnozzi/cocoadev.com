@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have recently written a Viewer and a Spotlight Plugin for a filetype that I work with frequently.  These files have two possible file extensions(unfortunately I cannot reveal the filetype and extensions, so for the sake of this page I will call the extensions: MICK and MCK).  In both my viewer and mdimporter Info.plists I have added both these extensions as well as the UTI I wanted to apply to them, let's call it "com.mycompany.mick".
 
 I have two accounts on my machine; one for work and one for home.  On my home account the Spotlight Plugin correctly indexes both MICK and MCK files.  Also when I get "More Info..." from the Finder, it reccommends my viewer for either type of file.  On my work account the Spotlight Plugin only indexes MICK files and the same "More Info..." interaction does not suggest my viewer as a recommended type for MCK files, only for MICKs.

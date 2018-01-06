@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi there, I've been trying to figure out how to get the current time since 1970 in microseconds, as a NSString. Any help for this noob would be appreciated.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Basic introduction to drawing in Cocoa:
 
 [http://developer.apple.com/documentation/Cocoa/Conceptual/DrawViews/index.html] 

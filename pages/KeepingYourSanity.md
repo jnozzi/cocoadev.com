@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A question to Cocoa developers, seasoned and un-:
 
 When the worries of making connections in IB get you down... when something 'just doesn't work', when your code randomly breaks...  What do you do?  Where do you turn to get away from it all, or to let your subconscious mind work on the problem?  This is a little-mentioned programming practice, but one I feel to be quite important.

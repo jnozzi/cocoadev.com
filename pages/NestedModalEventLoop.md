@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to implement menu-like behaviour using a pop-up window. It 99% works, but there's one thing causing problems. I will usually want to pop up a menu on a mouseDown event in some view. Having figured out where to place the "menu" window, its size and all that, I hand over to its own internal event tracking method. That implements a modal loop which basically hands out mouseDown, dragged and mouseUp events to a nominated view inside that window. The idea is that you could put any view here and it will be none the wiser - it will just get mouse events as usual.

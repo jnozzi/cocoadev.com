@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 HyperTalk was the scripting language for AppleComputer's HyperCard system. HyperCard was a tool for creating small applications (known as "stacks") which were capable of surprising complexity.

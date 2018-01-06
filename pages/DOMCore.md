@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Cocoa's DOM (DocumentObjectModel) implementation.

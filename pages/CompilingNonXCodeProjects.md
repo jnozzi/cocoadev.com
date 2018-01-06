@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hey, guys, This is a total newbie question but I'm trying to get a binary of the LAME MP3 encoder on my system.  Source Forge just offers the source (as far as I can tell, but the site kind of confuses me). I managed to do it somehow on another system, but I had a pretty decent tutorial in front of me at the time.  I have an AppleScriptStudio project that uses the Lame binary (via the DoShellScript command).  I believe the AppleScript part should compile on this new system fine but I dont have the Lame binary anymore.

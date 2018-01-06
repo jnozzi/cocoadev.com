@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 a cocoa newbie and computer science student from Germany.

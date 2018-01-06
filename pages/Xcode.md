@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Xcode is Apple's IDE for making OS X and iOS software.
 

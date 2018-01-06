@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I just had a fun bug that caught me totally off gaurd. I know many cocoa programmers use the following condition throughout their code:
 
     

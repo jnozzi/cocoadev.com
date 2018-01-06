@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In almost all software, the requirements are constantly changing and it is therefore important that the design be flexible to those changes.

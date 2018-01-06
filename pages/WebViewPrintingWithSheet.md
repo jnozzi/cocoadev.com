@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm seeing something strange, and I need some help. I'm using a General/WebView object in my code to generate content that I then print or save. I'm using 
     
 	General/m_webView mainFrame] loadHTMLString:m_theHtml baseURL:nil];

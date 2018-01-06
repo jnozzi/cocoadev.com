@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What's new at General/CocoaDev?
 
 **May 6, 2008** - Please read this possible plan for General/CocoaDev and send feedback if you like: http://stevenf.com/archive/cocoadev-refresh.php (Sorry, I haven't had much time to work on the site refresh.  I haven't forgotten about it.  It's still on my to-do list.)

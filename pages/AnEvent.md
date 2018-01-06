@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Events are occurrences that the system recognizes: things such as mouse clicks, key hits, and the like.

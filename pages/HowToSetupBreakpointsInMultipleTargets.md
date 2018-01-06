@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone have problems with XCode not stopping at breakpoints in sub targets (like plugins). Old development environemt DevTools was fine. If you create 2 targets one containing another, XCode will not stop at breakpoints in the second one.
 
 ----

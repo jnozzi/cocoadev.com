@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, 
 
 I am a Cocoa newbie and I'm wondering why the default code that's given in a cocoa application in Xcode creates and deallocates an NSAutoreleasePool. Do you always need to create an NSAutoreleasePool even if you never explicitly use the NSAutoreleasePool object that's been initialised?  I'm looking through "Cocoa Programming for Mac OS X" and it does the same thing in the 'LotteryEntry' exercise -- creating an NSAutoreleasePool 'pool' object even though that object is never explicitly used, as far as I can see.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey all, is there an Obj C method that would get the loginname of the current user?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hit Detection
 
 It's often necessary to be able to detect if a point lies on an arbitrary path. At first glance, the -[NSBezierPath containsPoint:] selector might appear to be just the ticket.  Unfortunately, it only tells you if your point is contained within the path, not on the path.  What seems to be needed is an -[NSBezierPath intersectsPoint] method.

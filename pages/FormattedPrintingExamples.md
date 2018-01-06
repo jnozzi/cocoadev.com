@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to improve my printed output for a small app of mine.    I am taking data which is displayed in an NSTableView, and trying to print out a similarly formatted view of the data.   I have basically replicated the print example from the Hillegass book, and I can print my data.   But, it's pretty ugly.     I've searched around, and found some good tips here, but code examples seem to be pretty sparse.

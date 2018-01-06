@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Xcode (and Project Builder before it) has project templates which are presented when creating a new project. One of the neat features of such templates is the ability to automatically insert stuff, like the author's name, or the title of the project. Project templates are located in /Library/Application Support/Apple/Developer Tools/Project Templates/. 

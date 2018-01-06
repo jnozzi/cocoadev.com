@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you double-click on a prefpane, it is installed in System Preferences. Double-clicking a newer version of the same prefpane will give you an option to replace the older prefpane with the newer one that you just double-clicked. Now, is there any way at all to determine if the prefpane was double-clicked and subsequently installed/updated? As opposed to just selected in System Preferences, that is.
 
 I have been struggling with this for weeks now, and have found no solution, or even a single clue. I have been experimenting with most of the methods in NSPreferencePane, but no good.

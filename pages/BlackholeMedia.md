@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Blackhole Media is this small pseudo-company that comprises three mac programmers. We mostly do Carbon programming right now, but we're eager to make the switch to Cocoa.

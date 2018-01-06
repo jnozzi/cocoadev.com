@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **AspectCocoaExamples** - part of AspectCocoa
 
 A place for examples of what we intend for Aspects to be able to accomplish, and examples of what we'd like to be able to have Aspects accomplish.

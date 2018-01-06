@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do YOU make those beautiful icons for your latest application?  Tell us here...
 
 ----

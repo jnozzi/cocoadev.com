@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any available class that duplicates the metallic looking slider found in say, iTunes?
 
 *Not that I'm aware of, at least not publically and supported, but you could see if ProKit has anything to offer.*

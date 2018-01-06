@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to perform a conditional sum from the Data Model Editor and Interface Builder? I.e., something in the vein of:
 
     

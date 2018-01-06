@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Really called LDAP. See http://www.openldap.org for an open-source implementation. LDAP forms the basis for Apple's OpenDirectory architecture on MacOSXServer.

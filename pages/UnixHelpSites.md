@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know of good Unix (OS X) sites that are as useful as General/CocoaDev?  You know, say you want to limit a user's disk quota and you're running client in stead of server and you don't have the GUI so you're wondering how to pull that off from the command line... and you don't know how... where would a question like that find a quick (and useful) reply?
 ----
 http://www.macosxhints.com/index.php?topic=unix - which has OS X UNIX hints.

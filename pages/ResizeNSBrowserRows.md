@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an NSBrowser in which I would like to display larger (64 x 64) icons along with the usual text for selection. Is there are way to change the height of the rows in the NSBrowser view so that the large images fit?

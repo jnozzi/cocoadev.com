@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Do the simplest thing that could possibly work ... and no simpler.**
 
 To solve a particular programming problem, implement the simplest solution that effectively solves the problem for all the cases necessary to satisfy current needs. Do not implement a solution that solves problems you don't have yet, and DO make sure that all real, current needs are met by the solution

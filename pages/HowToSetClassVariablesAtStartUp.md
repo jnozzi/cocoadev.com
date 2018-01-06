@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've looked in many places trying to find the answer to this question. I know it is a simple question, but I just can't find the answer. Forgive me if it has already been answered.
 I have classes that have their own instance variables. How can I set the values of these variables at start up?
 

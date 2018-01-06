@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've worked with AppKit since late 1994. Nowadays, we don't get that many non-WebObjects projects, unfortunately, so if I program under Cocoa it's in my spare time.

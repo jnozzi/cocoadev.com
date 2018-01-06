@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is it possible to display a different tooltip for each row in an General/NSTableView? I've got an General/NSTableView with a bunch of rows (700) and some of the entries are fairly long - too wide for the General/NSTableView, and making the view wider isn't an option. I'd like to have it so that hovering over a row displays a tooltip containing the full contents of that row. How would I go about doing that?

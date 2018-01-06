@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I think this has come up before, and the answers are generally something like use CVS, use symbolic links, use hard links, add the files to Xcode but uncheck "Copy" etc.
 
 This I think is generally too much work. E.g. when I want to use     printf all I do is     #include <stdio.h>.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an NSPopUpButtonCell attached to a table column and I need to change the bindings of it programatically. However IB won't let me connect it to an outlet on my File Owner class and it keeps selecting the table column header instead? Does anyone know how you can connect them to an outlet?

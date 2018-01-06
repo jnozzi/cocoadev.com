@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to write or find an application that would flip the entire OS X user interface about the Y-axis so that it appears as if in a mirror and remains usable as usual. 
 
 I know this must be possible because of the negate function (ctrl+option+apple+8); it must be a simple thing in core image to add a transform to the rendering. 

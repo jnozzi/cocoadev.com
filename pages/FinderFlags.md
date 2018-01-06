@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can I set the finder flag for a file to invisible (in case some one has the unfortunate need to boot into os 9) in a cocoa application? Thanks!
 ----
 Same way you do it in a carbon application.

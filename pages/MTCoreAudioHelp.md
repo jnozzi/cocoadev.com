@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am a newbie have been really trying to get MTCoreAudio to work and so far I have come up with this code. It runs(compiles with no errors or warnings) but the sound that comes out of the speakers is garbage noise. I understand that the problem is with not converting the buffer I create to a format that the input output callback will understand. However, I really don't know how to do it. Can someone please give me a small snippet of code to accomplish this task. Its been a real challenge coming up with this and any help is really appreciated.
 
 The Interface File

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anybody experimented with using OpenGL views inside an overlay window. I'm thinking this could be an interesting way to add effects to Cocoa based views/windows?
 
 I'll give it a try but before I do I was wonder if anybody else has tried?

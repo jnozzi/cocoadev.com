@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In Interface Builder, select the window you want to metalize.  Choose "Show Info" by typing shift-apple-I or going to the "Tools" menu and choosing "Show Info".  Then choose "Attributes" in the pull down menu, go to the "Options" area and click "Textured Window" checkbox.  If it is checked, the window becomes metalicised, if not, it has the white pinstripe look.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I currently have an NSMutableArray of NSMutableDictionary objects.  I want to sort the array based on one of the fields from the mutable dictionaries.  For example the dicationary has 2 keys "filename" and "filepath" I would like to be able to sort the array based on the values of those keys for the dictionary.  Any help is much appreciated.  Thanks
 
 ----

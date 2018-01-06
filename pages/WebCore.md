@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/WebCore is a framework for Mac OS X that takes the cross-platform KHTML library (part of the KDE project) and combines it with an adapter library specific to General/WebCore called KWQ that makes it work with Mac OS X technologies. KHTML is written in C++ and KWQ is written in Objective C++, but General/WebCore presents an Objective C programming interface. General/WebCore requires the General/JavaScriptCore framework.

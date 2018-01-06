@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 PDF Browser Plugin: http://www.schubert-it.com/pluginpdf/
 
 *Allows you to view PDF files in browsers (and applications using the WebKit).*

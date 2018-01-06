@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey
 
 I am not sure I am asking the correct thing here (terminology wise), but I was woundering if there is a way that I could temporarily grab a View's focus. Now, in case I am using the wrong term, I am playing around with some core image transitions. I have seen some nice examples all over the place and am writing my own library. One problem I have noticed however is when I go to capture a screen shot of the view I am about to change (both before an after) that one of the views has lost focus, so things like scroll bars which are usually blue with focus are now gray. To solve this other libraries/frameworks have simply provided helper functions in which you can add the initial and final images at different times. So for example, one library I have seen goes:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 While 2-letter prefixes were a good idea in the late eighties, nowadays there's just not enough flexibility there.
 
 There are those who suggest 4-letter suffixes for their library prefixes.

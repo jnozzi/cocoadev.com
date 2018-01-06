@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an app that stores it's NSTableView information in a .plist PropertyList. But it won't work because of a image colomn. Any Help?
 
 ----

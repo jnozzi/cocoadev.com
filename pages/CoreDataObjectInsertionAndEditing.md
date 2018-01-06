@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 [ Page re-factored to be a how-to. ]

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaPods � an Objective-C library manager
 
 CocoaPods manages library dependencies for your Xcode project.

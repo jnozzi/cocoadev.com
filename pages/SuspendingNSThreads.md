@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm writing a program that has movie video playback which cannot, under any circumstances, drop a frame during playback. If it does drop frames, it stops playback and posts an alert to that effect.

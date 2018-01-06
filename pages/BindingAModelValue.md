@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a configurable menu, where the menu item titles can be edited in a table view.
 
 I let an array controller handle this table view, fetching the actual array from my model (so that the menu will be stored/retrieved from user defaults).

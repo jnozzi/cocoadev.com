@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Apple's documentation:
 http://developer.apple.com/documentation/CoreFoundation/Reference/CFStringRef/Reference/reference.html
 ----

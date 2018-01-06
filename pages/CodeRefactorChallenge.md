@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CodeRefactorChallenge - the solving of this problem is specicifically related to improving the size of AspectCocoa.
 
 I challenge any developer to succesfully refactor the following code into shorter methods (and thus, a presumably smaller compiled size)

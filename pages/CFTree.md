@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Apple documentation:
 
 *http://developer.apple.com/documentation/CoreFoundation/Conceptual/CFCollections/Concepts/types.html

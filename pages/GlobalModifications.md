@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Nostalgic for windowshade from MacOS 9? well, beats me how to get it systemwide**[1]**

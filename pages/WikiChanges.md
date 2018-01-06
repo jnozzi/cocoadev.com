@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Feel free to add more stuff that should/could be done here.
 
 

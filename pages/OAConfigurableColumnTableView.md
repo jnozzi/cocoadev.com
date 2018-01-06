@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OAConfigurableColumnTableView is a subclass of NSTableView that supports adding and removing table columns via a contextual menu and programmatically. 

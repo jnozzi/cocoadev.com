@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Okay, so here's my situation.  I'm building a smallish app to help a client organize a collection of photos.  Never mind the details, but know that a 'regular' solution like iPhoto won't cut it.  ANYWAY, here's the deal.  Through the app, photos can be 'tagged' with small bits of extra data to help organize them.  This data is added both through the XATTR attribute and by adding them to the Finder's 'Spotlight Comment' field.  This tagging is mostly restricted to a categorical sense, so it's hardly complicated.  For instance, a photo might be tagged as "cat1", "cat2", etc.  This classification is designed to be unbelievably simple.
 

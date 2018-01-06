@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, I'm having trouble with my webView's downloadDelegate. This is probably because of my inexperience with delegates, but anyway -

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Suppose you want to cause a mouse event, without actually touching the mouse.  A simple working code example is hard to find.  Does anyone have an example that could be cut and pasted, so those who want to use this feature of cocoa could at least have something that actually works to begin their own customization?

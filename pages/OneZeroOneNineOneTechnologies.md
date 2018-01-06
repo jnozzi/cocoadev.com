@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 10191 Technologies is an innovative semi-company based in France that writes Cocoa software.

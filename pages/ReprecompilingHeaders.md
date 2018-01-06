@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I recently installed Safari 1.0 (basically as soon as it was available), and since I haven't been coding much lately, I only just noticed that its changes to Foundation broke my code. Well, the actual breaking stuff was easy to fix, just typecasts, and although it's bloody annoying, I suppose I can live with it. What I'm not wanting to live with is the fact that the precomps are all broken now.
 
 I haven't updated to GCC 3.3, I'm still using 3.1. This problem is making my builds take forever.

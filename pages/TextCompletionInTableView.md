@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'd like to set the text completions in a column of a table view. What I've seen about text completion implies that I need to subclass General/NSTextView, and General/NSTableView isn't a subclass of General/NSTextView and doesn't seem to have a way of obtaining its textView either.  

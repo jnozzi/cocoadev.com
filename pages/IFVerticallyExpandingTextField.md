@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
    This textfield expands and contracts as it is edited and resized, and behaves
    in a similar manner to the input field in Apple's iChat message windows.
 

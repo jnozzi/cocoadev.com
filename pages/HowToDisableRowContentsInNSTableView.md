@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to make certain rows in NSTableView to be disabled.  I have tried to use setEnabled method, which didn't work for me.  Can someone help me to solve this problem?  Thanks

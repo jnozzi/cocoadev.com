@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to merge (in memory, not on the screen) two (or more) images into one and then draw it on the screen (as a Dock icon, for example). How can I do that? Thanks in advance for any help.

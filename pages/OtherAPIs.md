@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As well as Cocoa and the Carbon High-Level Toolbox, there are many other APIs in Mac OS X. A lot of these will be useful from Cocoa, and are simple C APIs. The more modern of these use the standard CFTypeRefs which are of course TollFreeBridged to their respective Foundation classes. This is done much like CocoaGlossary.
 
 System Frameworks come with the OS and are fine for you to use.

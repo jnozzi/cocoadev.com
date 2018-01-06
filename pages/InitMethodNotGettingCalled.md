@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a document based application that uses a subclass of an NSTextView.  Does anyone have an idea as to why my initWithFrame: method isn't getting called?
 
 ----

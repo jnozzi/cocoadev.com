@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 my new app should run as a sort of networking daemon - and should not reveal itself in the task switcher or in the dock.  how can I suppress this?
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Excuse me for my bad, bad English, sometimes it seems unpolite simply because I don't know the words to appear polite.
 
 I want to ask wether you can make a Italian version of CocoaDev, I think that there are very expert Italian programmers and now there isn't a real reference site for the Italian Programming for Mac OS X. There are only (very good) tutorials, a blog, an a well-known (for Italians) forum. Other resources include sites that are not part of the Mac community.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/SynchronizationPoints is an issue arising from running multiple threads in the same memory space simultaneously.
 
 When a piece of memory needs to be shared between threads, a naive approach is to ignore potential problems and just have each thread access the memory when needed. This creates a *data race*, where the following can happen: 

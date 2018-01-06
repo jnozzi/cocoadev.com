@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When we write code like this:
     
 struct Base

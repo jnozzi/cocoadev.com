@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question: How do I programmatically create a user interface ?  Specifically, how do I create a radio button matrix ?**
 
 **Answer:**

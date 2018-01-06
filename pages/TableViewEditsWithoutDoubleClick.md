@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to provide edit-in-place for a General/NSTableView, however, I do not want it on double click, since editing is the lessor of two desired actions.
 
 The problem is twofold, first of all, if I want to trigger edit-in-place simply by clicking an already selected item, how can I do that? i.e. when the action is sent, the item is already selected, so I do not know if it was selected previously to the click.

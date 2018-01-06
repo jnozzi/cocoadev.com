@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Do read the Apple Human Interface Guidelines found at http://developer.apple.com/documentation/UserExperience/Conceptual/OSXHIGuidelines/index.html
 
 After doing so, you might be a little frustrated that Apple do on occasion fail to honor these guidelines. This is no excuse for you to do the same, but this page serves as an outlet to document Apple's apparent lack of respect toward their own guidelines.

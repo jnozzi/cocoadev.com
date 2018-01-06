@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a program which uses AppleScript to issue commands to a remote computer. I want to be able to find all of the computers on a network which support this. How would I do that? If you don't know how to do that, then can you tell me how to find all of the computers or devices connected to a network. Any help will be greatly appreciated.
 
 ----

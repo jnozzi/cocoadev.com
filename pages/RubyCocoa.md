@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://rubycocoa.sourceforge.net/doc/

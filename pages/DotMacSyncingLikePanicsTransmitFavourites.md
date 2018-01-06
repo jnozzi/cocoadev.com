@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I searched the web but only found sites about how to put data onto the idisk, but that's not what I'm interested in. I'm interested in syncing stuff like Panic does with Transmit's Favourites (click on the .Mac panel in the System Preferences and there'll be a Transmit Favourite entry if you have it installed... at least on leopard there is).
 Thanks.
 

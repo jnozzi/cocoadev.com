@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to make an instance of class A switch to being an instance of class B, if class B is a subclass of class A, or if class B is a super class of class A, but class A defines no new instance members?
 
 *Yes, if you're into hacking the runtime. Look at     struct objc_object in     /usr/include/objc/objc.h - if you cast any object to     id, you can change its     isa Class to the one you want.*

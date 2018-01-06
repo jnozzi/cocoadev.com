@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A CFStreamError is defined as the following :
     
 typedef struct {

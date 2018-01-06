@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is still a work in progress (isn't everything) so bear with me. This is the bottom up view. For the top down view look at "Text System Architecture" at Apple http://developer.apple.com/techpubs/macosx/Cocoa/General/TasksAndConcepts/General/ProgrammingTopics/General/TextArchitecture/index.html
 
 *The link above does not work anymore. Is this one the same document? http://developer.apple.com/documentation/Cocoa/Conceptual/General/TextArchitecture/ *

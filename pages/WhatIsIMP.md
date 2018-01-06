@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What's IMP?  And can I use it from a method to obtain the selector of the method within which the calling code resides?
 
 ----

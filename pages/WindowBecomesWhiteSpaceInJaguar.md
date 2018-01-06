@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've got this strange problem that's happening in Jaguar, and not in Tiger. I have a modal window running above a sheet, and when I close the modal, I want to end and close the sheet too. This works fine on Tiger, but on Jaguar after the sheet closes, a big white rectangle shows up on the screen where the modal window was. Here's the code for closing the modal and sheet. Anyone have a clue why it's happening? It only happens after the sheet closes.

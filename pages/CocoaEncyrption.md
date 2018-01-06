@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NSWorkspaceCompressOperation	Compress file. Currently unavailable.
 NSWorkspaceDecompressOperation	Decompress file. Currently unavailable.
 NSWorkspaceEncryptOperation	Encrypt file. Currently unavailable.

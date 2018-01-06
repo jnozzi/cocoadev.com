@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There seems to be very little example code on how to use this. Does anyone have a link to something I can look at as an example?
 
 Is there some documentation of the DVDPlaybackFramework?
@@ -20,7 +24,7 @@ I've been playing with the DVDPlaybackFramework lately, and I happened to get th
 The DVD plays, and I know it is because I can tell it's spinning. I've been using a window to try to display the video, and that doesn't work. However, the sound works. Here's my code:
 
     
-
+{% raw %}
 DVDInitialize();
 	
 	CGDirectDisplayID displays[MAX_DISPLAYS];
@@ -45,7 +49,7 @@ DVDInitialize();
 		DVDOpenMediaVolume(&fsref);
 	
 	DVDPlay();
-
+{% endraw %}
 
 
 This is in my controller's awakeFromNib method, and it's simply using a window ("mainWindow") and a view drawn in IB ("displayBox"). Nothing special. The fileURL points to a disk in the drive. Again, I know it's working somewhat, since I can hear it, but not see it.

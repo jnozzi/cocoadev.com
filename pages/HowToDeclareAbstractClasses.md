@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Well, I suppose this is an easy one, but, don't know why, i haven't found it anywhere.
 I need an abstract class but I don't know how to declare it (something like "public abstract class className" in Java).

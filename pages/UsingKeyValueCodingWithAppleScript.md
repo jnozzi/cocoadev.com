@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to enable Applescripting in an Application I'm working on.  But I can't seem to get it to work.  When I access a variable with General/AppleScript in my application, I get the following error:
 
 General/AppleScript Error:

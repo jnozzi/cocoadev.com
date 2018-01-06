@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi. Trying to make an existing app save rtfd files as html (*not* a webarchive). I managed to get it to more or less work using code like this:

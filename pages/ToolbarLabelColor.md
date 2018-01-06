@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to change the color of the toolbar text labels?
 
 ----

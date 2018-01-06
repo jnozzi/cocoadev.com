@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NSSocketPort and NSFileHandle work fine and are compact, buffered and easy to implement.  Why are there so many alternative socket/networking APIs?  what do the others (smallsockets etc) offer?
 
 I use something like this for the server socket:

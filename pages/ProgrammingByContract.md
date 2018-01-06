@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ProgrammingByContract
 
 a main feature of the EiffelProgrammingLanguage

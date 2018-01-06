@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Inspired by http://aldebaran.armory.com/~zenomt/macosx/General/KeyBindings.html and my continual frustration of not being able to use my instinctive vi editing habits in OS X apps, I've been thinking about writing an General/InputManager (at least I suppose this is the way to do it in Cocoa) to implement vi style command mode and mode switching (and binding General/NSRepeatCountBinding to any numerical input while in command mode).

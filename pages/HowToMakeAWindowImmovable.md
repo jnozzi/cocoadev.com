@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 
 Is there a way to make window immovable, even upon dragging the window?

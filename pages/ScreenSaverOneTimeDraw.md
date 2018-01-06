@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to do something very simple with a screensaver, yet I can't figure how to make it work.
 
 I want my screensaver to draw a blue rectangle (see below) on screen at the beginning, and never redraw it afterwards. I tried to put it in initWithFrame, in animateOneFrame, in startAnimation, nothing seems to work.

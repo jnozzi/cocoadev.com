@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I use an General/NSTableView and I'm creating the columns on launch. The problem is that the cells all draw a background of white, when I add rows to the table. As you would guess this creates issues using a striped rows. Do I have to tell the cells to draw transparent backgrounds? Or is there something that I'm missing?
 ----
 I just ran into the issue for the first time myself. A quick search through Apple's cocoa-dev mailing list archives revealed that this behavior seems to be a bug and can be worked around by telling your new columns data cells not to draw their backgrounds. e.g.      General/yourNewColumn dataCell] setDrawsBackground:NO]; 

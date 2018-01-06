@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CFStream works with sockets, memory, and files. It is documented at file:///Developer/ADC%20Reference%20Library/documentation/Networking/Conceptual/CFNetwork/index.html#//apple_ref/doc/uid/TP30001132
 
 See also CFNetwork.

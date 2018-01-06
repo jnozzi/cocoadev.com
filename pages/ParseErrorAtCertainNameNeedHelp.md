@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **ParseError because of old-style compiler prohibitions on declaring variables after executable code starts**
 
 I have an error message :

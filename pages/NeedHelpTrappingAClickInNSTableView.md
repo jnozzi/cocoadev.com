@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to change some various data fields in other objects in a window whenever the user clicks any particular row in a tableview.
 
 Does anyone have any sample code on how to trap the click even in the tableview?

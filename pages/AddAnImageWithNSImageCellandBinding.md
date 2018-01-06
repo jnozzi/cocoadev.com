@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I load an Image into an NSImageCell.?
 I want to add an NSImage I open previously to a Table using an NSTableController.
 

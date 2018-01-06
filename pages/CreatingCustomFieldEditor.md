@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **See CustomFieldEditor for working example code for setting a custom FieldEditor.**
 
 ----

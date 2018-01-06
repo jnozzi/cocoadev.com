@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello i am trying to write a small netClipboard app with Rendevous.
 
 Did anybody know a way to get informed when the General/[NSPasteboard generalPasteboard] gets changed.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm currently working on a browser project to get up to par with writing stuff in Cocoa. I've done plenty of ObjC programs on my own to learn the language, but most of them involved heavy amounts of C code in the end, and I figure this would be an excellent way to learn how to write a program entirely in ObjC. Right now, I have an SearchField (subclass of NSSearchField) in my toolbar which has a menu. In the menu is a list of search sites that it can access, such as "Google" "Wikipedia" "Wiktionary". What I want to do is, when the user picks one from the list, it marks it with a check box. Simple, right? 

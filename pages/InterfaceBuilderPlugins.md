@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *This page is a list of existing Interface Builder plug-ins. For information on creating your own plug-in, see IBPlugin.*
 
 ----

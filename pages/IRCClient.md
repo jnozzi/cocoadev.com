@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, I have made my simple IRC Client. It has 2 NSTextFields (serverHost & serverPort) and NSTextView (clientConsole) and a pushbutton (Connect)
 
 I have made a sub class of NSObject called "Controller" with 3 outlets (for the text field/views) and an action (connect:). I have linked the Connect button to the action connect:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ACAdviceList - part of AspectCocoa
 
 ACAdviceList objects can be compared to JoinPoints.  At any given time, there should be a one-to-one correspondence between advice lists and join points.  In fact it would not be incorrect to rename the class ACAdviceList to ACJoinPoint.  The difference is a matter of terminoligy.  We use the term JoinPoint to refer to a particular point in code where we would like to apply advice.  We use the term advice list to refer to a list of AdviceObjects that apply to a particular JoinPoint.

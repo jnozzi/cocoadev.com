@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Consists of a single class, NSMailDelivery, which enables you to send e-mail messages using the user's default SMTP server. See also SendingEmail and SendingEmailMessages. (Note: Message Framework is deprecated as of 10.5.)

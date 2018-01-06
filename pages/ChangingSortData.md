@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've got the following code, which, when a table column is clicked, will sort the table:

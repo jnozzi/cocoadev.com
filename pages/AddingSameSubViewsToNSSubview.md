@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I add same subviews to NSView?
 
 I have write font library, which produces glyphs in NSView<nowiki/>s. Next, when I want to create string of them, same chars shows only once, as [NSView addSubview:] don't add same views twice! How do I overcome this?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know of a method of getting the free disk space on a volume?
 
 Cheers.

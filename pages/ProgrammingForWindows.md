@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a question:
 
 Currently, I am programming my app in Cocoa and obviously it's only available for Mac OS X. However, many people have emailed me and requested a Windows version. This, to me, seems like an overwhelming task (which it probably is).

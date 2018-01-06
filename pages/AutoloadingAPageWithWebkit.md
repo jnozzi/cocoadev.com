@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I followed the following instructions to get an app to load a page automatically.
 
 To write a Cocoa program to display a web page (in this example, it is http://www.apple.com, but it could be anything.)

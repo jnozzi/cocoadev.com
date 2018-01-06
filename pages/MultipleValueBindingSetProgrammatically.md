@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  I�ve got to set some bindings programmatically, everything was ok so far using the documentation but now I don�t find the recipe to program a multiple value binding without IB.
 
 I tried:

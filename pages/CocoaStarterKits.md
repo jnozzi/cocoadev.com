@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I don't know how many of you have done any .NET programming, but Microsoft provides many useful "Starter Kits" that are full fledged well architecture applications that you can model yours after and copy or extend. It would be cool if Apple or someone else would create some CocoaStarterKits that served the same purpose. Apple has a lot of theory on their site but very little concrete examples other than the over simplified Currency Converter. 
 
 ----

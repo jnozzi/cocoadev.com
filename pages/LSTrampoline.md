@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 LSTrampoline is an implementation of a TrampolineObject for the purpose of HigherOrderMessaging. Enjoy!

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 
 How to find out if any of the path component is a alias or not?

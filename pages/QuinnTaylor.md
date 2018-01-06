@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm a Cocoa enthusiast, although I'm usually not able to spend as much time with it as I'd like at the moment. I'm a graduate student in Computer Science at Brigham Young University, heading to work at Apple after graduation.

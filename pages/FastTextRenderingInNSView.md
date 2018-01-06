@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've recently implemented a threadsafe variable tracing API for my AI runtime; the back-end is done, but I'm ready now to build a window to display the traced variables. The window would be simple, just a bunch of strings showing the name, type and value of the traced variable -- probably in a grid. 

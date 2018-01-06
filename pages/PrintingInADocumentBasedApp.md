@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a visualization app for datasets resultant from a learning algorithm for my AI development -- because, frankly, I need to understand what my bots are *learning*, and looking at a hex-dump or post-order traversals on the command line aren't cutting it.
 
 I'm curious about adding printing facilities. Also because if I have to trace out a really complex graph, it'll be easier on paper than on my meager 12" powerbook's screen. The trouble is, the app has two nibs. MainMenu.nib and ReflexDocument.nib ( renamed from MyDocument.nib ). The Print... menu item is in MainMenu.nib -- it needs to be connected to whatever's the current main window and print the visualization from there.

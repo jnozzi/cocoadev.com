@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A PropertyList is a file--generally ending in .plist--which contains, guess what, properties. They are commonly used by NSUserDefaults to store preferences. For more information, see the Property List Programming Guide for Cocoa:

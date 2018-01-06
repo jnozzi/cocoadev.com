@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an object called Crossword.  Inside this object I have typdef'ed a struct like this
 
     

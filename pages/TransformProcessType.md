@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Apple has some documentation on General/TransformProcessType: http://developer.apple.com/documentation/General/ReleaseNotes/Carbon/General/HIToolbox.html
 
 Process Manager

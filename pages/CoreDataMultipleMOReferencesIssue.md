@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In Brief: When saving a core data app, an object which appears on the receiving end of multiple relationships will have all of those relationships broken except one.
 
 Synopsis:

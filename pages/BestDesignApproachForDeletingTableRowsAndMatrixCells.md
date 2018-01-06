@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A table view's data source is supposed to conform to the data source protocol. This protocol defines methods that a table view will need to retrieve and modify the data to display. The only thing that is not part of this protocol is a design approach for deleting and adding rows. How should the delete key event be handled. Should the table handle user requests to add rows? Should you subclass a table view and then add methods that the data source needs to respond to when the number of rows/cells are increased/decreased, or is there already support in AppKit to coordinate adding and deleting rows and cells between table views/matrices and their data source.
 
 I guess an NSArrayController is the way to go. Putting off reading up on bindings was a mistake. 

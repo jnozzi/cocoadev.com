@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *My parts in this discussion are those of a person who was just beginning to learn to code; view this discussion as a learning-experience-in-progress from several years ago. -  JoeOsborn*
 
 Most of this page references a former revision of an article which suggested many poor programming practices.  Mike and others were very right- NSTimer is perfectly suitable for games. I cannot recommend any approach to animation that requires while() loops.  The article has since been fixed.-- JoeOsborn

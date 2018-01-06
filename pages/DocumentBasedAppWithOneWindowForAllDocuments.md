@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 was: DocumentBasedAppWithOneWindowPerDocument  (I thought this was so interesting that it deserved to be titled correctly)
 
 I am developing a Cocoa app that is document-based. the special thing about it is that I want multiple documents to share just one window. If one document is shown the others should be hidden but may be revealed in the same window as the visible document through the items in the 'Window' menu. also the controls state (buttons, ...) should be bound to values stored inside each document.

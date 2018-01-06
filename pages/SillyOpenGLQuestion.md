@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 My simulation framework was running much faster than realtime (3.5x, on average), and so  -- alongside writing a frame-rate capper -- I decided to add full antialiasing.

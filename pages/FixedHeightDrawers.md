@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This one is from the Mac OS X list, from a posting by Douglas Davidson:

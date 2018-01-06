@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you have an General/NSDocument derived class and you want to save out a single object from your class, you can use the code below in your     dataRepresentationOfType: method.
 
     

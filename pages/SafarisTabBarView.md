@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anybody recreated something similar to Safari's TabBarView class?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Using a scheme where enum values increase by the power of two
 
 

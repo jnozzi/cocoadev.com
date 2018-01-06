@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is probably a very basic thing, but I have seen in code used (see "- (unsigned)lineCount" function on NSStringCategory page) that uses variables with an "&" pre-pended to them.  I could only guess that this incremented them somehow.  Can someone tell me how they work, or better yet, point me to a place on this site that I have missed in my search?
 
 ----

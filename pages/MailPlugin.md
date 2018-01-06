@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's an XCode template for creating a Mail.app plugin:

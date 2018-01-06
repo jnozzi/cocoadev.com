@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have trace amounts of experience in all kinds of langauages. I have enough to amount to anything in Java, C++ and cocoa.

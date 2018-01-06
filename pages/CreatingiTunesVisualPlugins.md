@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, this isn't strictly Cocoa related, but I can't find any better place to ask it.  Does anyone know how I would go about making an iTunes visual plug-in?  The Apple iTunes Visual Plug-ins SDK ( http://developer.apple.com/sdk/index.html ) is where you'd think to go for the neccessary files, but the sample plug-in they have doesn't work, even though it builds without errors.  Can anyone point me in the right direction?
 
 -- BrianMoore

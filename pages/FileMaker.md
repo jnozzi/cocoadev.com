@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 So, I'm supposed to write about FileMaker... Oh, dear. Um, FileMaker is a database application, written by Claris Inc (originally, now renamed FileMaker, Inc), Apple's wholly-owned subsidiary.
 FileMaker has been a very intuitive, simple database solution, where you can define fields (text, numeric, date, time, container, etc.), scripts and layouts, though not tables: one database file may only contain one table. [This is no longer true as of Version 7! One file can contain multiple tables. Version 7 isn't compatible with earlier versions, though it can convert earlier databases into the new format. However, you can't convert your old databases into one database of many tables, unfortunately.] One database can reference another: it can have one-to-one or one-to-many relationships to it, and run each other's scripts.
 You can run scripts by selecting them from the Script menu, or by pushing buttons you define as part of your layout.

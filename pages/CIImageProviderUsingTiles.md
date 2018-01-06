@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **UPDATE: I found the problem. Since size_t is unsigned, the value of "-x" is only valid for x = 0 (which corresponds to the left-most column).**
 
 **So in the provideImageData method, the line:**

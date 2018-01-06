@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 First I'll explain what I'm trying to do, to avoid any confusion. My company has developed a system which allows users to upload files through a web site, automatically storing the files in the right place, sending out notification emails, etc. That system exists; it's fine. This question isn't about that. 

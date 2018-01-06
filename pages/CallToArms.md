@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CallToArms - Metaphorically speaking of course.
 
 Apple has created for itself the best situation possible. 

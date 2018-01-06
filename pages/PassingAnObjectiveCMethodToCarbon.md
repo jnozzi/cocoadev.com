@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I pass a pointer to an Objective-C method to a Carbon function?
 
 The Carbon function normally would take a pointer to a function like "&myFunctionName" to use it as a callback.

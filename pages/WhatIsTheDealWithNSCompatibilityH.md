@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Open <Foundation/General/NSCompatibility.h>
 
 This is probably totally trivial, but what were the declarations that used to be there?? And why hasn't it been removed??? <eerie music sounding like it is from an old horror movie echoes throughout the room> It is just so mysterious..... :-)

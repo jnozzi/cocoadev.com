@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Apple's Technical Publications Feedback page is at http://developer.apple.com/documentation/techpubsfeedback.html.
 
 ----

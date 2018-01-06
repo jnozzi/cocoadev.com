@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can I create a window that is just above the desktop but below desktop icons, and doesn't go away with Expos�?
 
 *Write a new operating system... Seriously this seems like a gargantuan hacking task. I know that Finder is responsible for displaying desktop icons (right...?) and Finder is a C++ application, hence it probably lacks runtime hooks like Cocoa applications have. Is there an ActiveDesktop-like OS-X feature people? I never used it in windows 97 but it might be cool on my fancy Mac (which can render graphics 40009009909 bajillion-zillion times faster than my old p133)* - JeremyJurksztowicz

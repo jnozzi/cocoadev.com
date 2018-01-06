@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CSMail is a mail delivery framework intended to make it easy for applications to send e-mail without tying themselves to a specific mail client.
 
 It supports plug-in back-ends; currently there are three back-ends in the distribution: Entourage, Eudora and NSMailDelivery (Mail.app).

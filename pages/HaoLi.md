@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Love MacOSX and try to make something useful for it...

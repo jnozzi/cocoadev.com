@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 If you have a page which isn't strictly related to Cocoa development, but you feel is of interest to the community at large, you can add it here by adding "\\%\\%BEGINENTRY\\%\\%OffTopic\\%\\%ENDENTRY\\%\\%" to the top of your page. Please keep these pages to a minimum, because there are very few topics not related to Cocoa development which are of interest to the community at large.

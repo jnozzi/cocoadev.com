@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.  I'm trying to create a seating chart creator.  I'd like to be able to draw the desks and make it so the user can drag it around and enter the names on the desks wherever on the page.  I can draw the desks but I have no idea how to make it clickable and editable like the rectangles are in Appleworks or Pages.  Any help will be appreciated.
 
 Gabe

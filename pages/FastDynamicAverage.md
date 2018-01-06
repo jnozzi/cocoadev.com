@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is probably more of a C question since "fast" and "cocoa" don't usually belong in the same sentence.  What's a very fast way to report a dynamic average.  Suppose I push a number into an object that stores a list of those numbers.  The behavior comes in one of two flavors.  The list grows until it is emptied it, or it grows until a certain size beyond which the head of the list is removed to make room for the new tail.  At any point I can call average.  There's the obvious naive way to implement this functionality, but there must be a good way to do this that would make Fibonacci proud.
 
 ----

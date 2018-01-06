@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 First of all, I know hardly any Cocoa. But, I believe I have a great concept for a rather complex application. I would love to start an open source project for this app (I'm a big fan of open source), but I don't know how to do so, noting that there's no existing code.
 
 Does anyone have any suggestions as to how I might start this? I'd love to get devs interested in this project, but I don't know where to get started.

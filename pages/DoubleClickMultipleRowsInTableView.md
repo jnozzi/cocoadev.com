@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One of the windows in my app contains a table view with a list of files. I have a <code>doubleAction</code> set up so that I can double-click on a row to open that file. The problem is: if multiple rows are selected, a double-click changes the selection so that only the clicked-on row is selected. This means that I can't select several files and then double-click once to open them all; I have to double-click on each one separately.
 
 I hasten to note that this behavior is "correct" according to the AquaHumanInterfaceGuidelines: a double-click is supposed to be an extension of a single-click, which deselects all rows except the one clicked on. The guidelines notwithstanding, many applications (Finder among them) allow double-clicking on several table rows at once.

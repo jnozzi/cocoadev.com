@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am just entering the wide, wonderful world of Cocoa and am trying to figure out how to make an embedded framework. The application is an off-the-shelf Cocoa document-based application with very few changes (pretty much just     Info.plist and     InfoPlist.strings changed), with a framework target (with no files to its name besides     Info.plist and     InfoPlist.strings) added to the project. The framework gets installed into the application bundle (using     @executable_path/../Frameworks as the install path; the framework shows up in     *application*.app/Contents/Frameworks), but I get an error from     ld when building:

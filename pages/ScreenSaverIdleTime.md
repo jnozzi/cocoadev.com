@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone had luck setting the ScreenSaver idle activation time outside of the SystemPreferences application -- and having the value change be correctly observed by the system?  The following bit of code makes the requisite changes in the ~/Library/Preferences/ByHost/com.apple.screensaver.xxxxx.plist file:
 
     

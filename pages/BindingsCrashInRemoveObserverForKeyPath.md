@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm seeing an odd and frustrating bindings related crash, with the following stack:
 
     

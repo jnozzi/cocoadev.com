@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to create a custom size grip like that found at the bottom of Mail 2.0. I already have the one-pixel split view bar, etc. and all is working well there. I found the following example for handling continuous dragging events in the Cocoa docs and adapted it to my purposes. The problem is that it works *too* well. In other words, if I drag anywhere in the view, the resizing code is executed.

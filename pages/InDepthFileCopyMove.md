@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What i am trying to investigate and document are all the methods for copying and moving files on osx and all their implications.
 
 Obviously this is all regarding the HFS/HFS+ file system and osx 10.4 and on.

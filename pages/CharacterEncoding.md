@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Character Encoding 101 starts NOW.
 
 0) A character is an abstract idea.  It has nothing to do with what you see on the screen.  The letter D is the letter D no matter if its block text or drawn like the Detroit Tigers do on their ball caps.

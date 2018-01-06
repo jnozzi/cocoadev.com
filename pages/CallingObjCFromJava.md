@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Created by JediKnil

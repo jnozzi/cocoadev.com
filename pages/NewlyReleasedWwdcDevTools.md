@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to find out if there are any significant changes in the dev tools recently released on the ADC from the  WWDC.

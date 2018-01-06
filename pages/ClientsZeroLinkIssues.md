@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A friend of mine tried my beta program on his machine, and got this error in his terminal:

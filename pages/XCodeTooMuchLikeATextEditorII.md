@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *Continued from:* General/XCodeTooMuchLikeATextEditor

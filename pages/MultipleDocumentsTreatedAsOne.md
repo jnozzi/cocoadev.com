@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have been digging through this site and Apple docs, but I am still lost. 

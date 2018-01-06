@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working on a project that involves syncing an SQLite database of persons with Address Book.  I have read (and re-read) the Address Book Programming Guide at the Apple Developer site, and I am pretty darn sure that I have my code correct.  I will post it below anyway.
 
 At this point, adding new persons to the Address Book works, but I continue to receive the following messages in the console.  They are repeated multiple times, and these are just examples.  For a database of 684 persons, the text of the console log makes a 164kb TextEdit document.

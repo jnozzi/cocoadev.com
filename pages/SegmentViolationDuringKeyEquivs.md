@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Okay - strangeness. I've got a document-based cocoa app here. The problem:

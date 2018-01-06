@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Given a WebView that's loaded (for example) google.com. Let's say I click on maps.google.com. Is there a way to get the URL out of that click when it starts to load? Or even a polling solution would be fine. I just need to be able to query a WebView and have it return its current URL address. Any ideas?

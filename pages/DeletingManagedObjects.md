@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a master detail view where the detail contains a table of transactions -- the table data is bound to an NSArrayController -- this controller's contentSet is in turn bound to the selection of the master list.  When deleting from the table of transactions with this code:
 
     

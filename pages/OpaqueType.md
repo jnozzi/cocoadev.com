@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CoreFoundation's "objects" are all instances of some OpaqueType or other. And that's the limit of my knowledge. Does it just use a pointer-abstracted structure? -- RobRix

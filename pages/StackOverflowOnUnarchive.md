@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a very, very, very (did I say "very"?) large object graph, which I need to encode.  The graph, has a set of objects all stored in a collection, and thos eobjects in turn have as instance members pointers to each other.  My probelm when archiving was that I'd get a stack overflow because the minute you start encoding the first object in the collection you end up encoding them all, without ever returning from the main call... That was easy enough to fix by calling a conditional encode from inside the nodes, and an uncodintional encode of the container class.  However I can't seem to find a matching solution when unarchiving, and so, I get a stack overflow.  I'm using NSKeyedArchiver and Unarchiver.  Without modifying my data structure or delving into the nitty gritty of the undocumented world of subclassing NSCoder what else can I do?
 
 ----

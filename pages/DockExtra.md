@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Found this resource on DockExtra: http://jens.ayton.se/blag/the-mysteries-of-ical-revealed/
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is the best way to get a listing of all users known on a system (even if they are only local domain ones, that is still useful)?  Is this functionality exposed within Cocoa or should I look to the lower-level APIs?
 
 ----

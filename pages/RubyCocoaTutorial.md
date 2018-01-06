@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Alright, so we all love Cocoa. Cocoa is good. However, Apple built Cocoa for one language, and that language doesn't "support" some things it should. Blocks... err, blocks... Well, okay, so mostly blocks and less other stuff. But the more languages the better, right? This tutorial is about RubyCocoa, what it is, how to install it, and how you can make wonderful applications with it. 

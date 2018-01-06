@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi there !
 
 I have set up an General/NSTextView so that it doesn't wrap long lines by passing General/NSTextView's setMaxSize: and General/NSTextContainer's setContainerSize: a very large size (FLT_MAX). Which is the method I've seen in numerous examples around.

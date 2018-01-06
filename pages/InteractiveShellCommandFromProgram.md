@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd like to launch a shell command from my program, but this command may need user input (i.e. be interactive like ssh, CVS, /usr/bin/sh or whatever).
 
 Is there anyone who can point me toward what I need to know for this setup? I realise it might be complex, allocating tty-devices, terminal emulation and such -- but I am ready to do it all (basically a full terminal emulation), I just have not been able to find any canonical information guide to which steps one must take, and since shell/terminals have like 30 years of history with a lot of legacy protocols, it's really a rather diverse subject with dozen of blind ends.

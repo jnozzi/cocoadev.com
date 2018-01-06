@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Could somebody tell me how I should start off to create the page layout view used by Microsoft Word? NSView subclass?
 
 The view should be able to be resized, be able to have text written to it, and just look like a piece of paper. Thanks.

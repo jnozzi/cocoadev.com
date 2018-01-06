@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Ok, total novice, non programmer here but trying to learn.  I am following the guide lines from these two tutorials: http://cocoadevcentral.com/articles/000085.php#21 and http://www.macgeekery.com/gspot/2005-40/core_data_as_a_cheap_database.

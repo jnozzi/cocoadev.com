@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi! Help is highly appreciated. I'm stuck here:
 
 I need to examine a response before I start loading an URL in my UIWebView. However a synchronous NSURLConnection will first download the data and then let me access the response, which is bad.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, here is what I have. I have a list of items in an General/NSTableView, specifically categories that each contain a list of items in another tableview. What I want to accomplish is to compile these items into one list of the items, and turn the categories into iTunes-style smart lists and/or regular lists. I'm using General/CoreData and Bindings, so is there any easy way to do this? I looked into Fetched properties, but I'm not sure if that is the way to go. I also want to have an "Entire Library" item at the top of the list, which I suspect would be a list with no predicate. Any ideas? Thanks. --General/LoganCollins
 
 *This is no different than a "master/detail" design. Your smart list object has a to-many relationship to the contained objects and the contained objects have a to-many relationship to container objects (if you want one contained object to belong to more than one list/container). The first table pulls from the smart list objects' "name" property while the second table's array controller gets its content from the first array controller's 'selection' key. The second table's column (that lists the names of the contained objects) pulls from the arrangedObjects.name ... since the second table's array controller gets its arranged objects from the first array controller's selected container object. Simple, straight-forward, and can be set up in less than five minutes by following the examples in the Core Data Programming Guide. But 'static list' or no, you still have to create the objects.*

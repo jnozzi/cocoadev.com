@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm working on an app which has a live console, into which tracing type calls from plugins is shown in real time. For reference, the app's a testbed for embodied AI in a simulated physical environment, and as such it's easier to trace what's going on if the "brains" can log what they're thinking to a more user-friendly output than stdout on a command line. http://goo.gl/OeSCu

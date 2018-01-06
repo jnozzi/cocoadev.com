@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The new kid here for COCOA Programming environment. Handling the system level projects these days to integrate with rich set of GUI programming aspects of COCOA
 
 ----

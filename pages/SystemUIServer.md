@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/SystemUIServer runs the System Menu Bar.
 
 Or at least the part on the right that handles General/NSMenuExtra<nowiki/>s and General/NSStatusItem<nowiki/>s (including the Spotlight menu). The part on the left is the application menu bar.

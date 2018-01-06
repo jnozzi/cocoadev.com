@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There are various pages on the site offering sample code, these are the most important collections:
 
 *CocoaDevUsersAdditions - Extensions to Apple's frameworks

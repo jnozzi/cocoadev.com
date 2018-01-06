@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to make an action button similarly to the one in the Finder and Mail, and am completely lost on what I need to subclass for NSPopUpButtonCell. I had a working button that was just a subclass of NSButton and it had it's own NSPopUpButtonCell to show the menu, but that method wasn't working smoothly. Could anyone point me in the direction I need to go with using an NSPopUpButtonCell and NSPopUpButton? I'm very confused at this point. Thanks.
 
 ----

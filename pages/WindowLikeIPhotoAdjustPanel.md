@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How to make a window like the Adjust Panel of iPhoto? I've tried "setBackground:", but it changes only the background of the window, it does not change the title bar. In a subclass of General/NSWindow where I can write the code for the title bar and the close button?
 
 ----

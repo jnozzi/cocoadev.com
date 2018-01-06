@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Much like NSZombieEnabled, CFZombie allows you to debug over- and premature-release situations by trapping accesses to released objects. NSZombieEnabled fails to catch Cocoa classes which are really CoreFoundation classes, and CFZombie picks up the slack.
 
 To enable CFZombie, set the CFZombieLevel environment variable to a number indicating what options you want. A good number is 3. Each bit in the number indicates an option, and the available bits are:

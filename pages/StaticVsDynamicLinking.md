@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *Very important article...must read!*

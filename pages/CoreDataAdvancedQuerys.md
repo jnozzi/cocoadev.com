@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I love CoreData, its so easy for simple lookups. But I'm trying to do some more advanced things now and running into trouble.
 
 Namely I'd like something like MYSQL GROUP BY function, if I have a managed object of structured like this:

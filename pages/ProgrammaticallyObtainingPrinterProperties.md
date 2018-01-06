@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to determine at run time whether the printer the user is printing to is a color printer or not. Is there any way to do this? I am using OS 10.1.5.
 
 Based on reading the Apple documentation on printing in OS X I thought the following code would work:

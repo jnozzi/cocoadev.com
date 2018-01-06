@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Greetings, Everyone!
 
 It's a beautiful day in central NY. All of the clouds have gathered in my office...

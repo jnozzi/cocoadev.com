@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to transfer a string of numbers into an integer. How can I achieve this?
 
 ----

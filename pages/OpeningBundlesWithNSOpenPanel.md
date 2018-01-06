@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaDiscussions  - How do I open a bundle with NSOpenPanel
 I'd like to navigate into application bundles with NSOpenPanel. I've seen it done in Resourcerer, but I can't find any information on how to do it.
 

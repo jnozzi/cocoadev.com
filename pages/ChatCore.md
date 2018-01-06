@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Chat Core (part of the Colloquy project) is a BSD licensed open source ObjC IRC and SILC framework.
 
 http://project.colloquy.info/trac/wiki/Source%20Code

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Wrapper for General/UITable that implements "sections", like the Contacts list.

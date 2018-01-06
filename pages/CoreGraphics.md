@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CoreGraphics (AKA Quartz) is the framework representation of the window server. The framework is part of the ApplicationServices umbrella framework.

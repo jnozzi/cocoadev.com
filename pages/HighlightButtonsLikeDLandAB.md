@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd like to create those custom popup buttons and action buttons that Delicious Library and Address Book use. You know, in that side panel - they highlight blue, which I think looks nicer than the Address Book style. How can I create a subclass that I can easily reuse of both nsbutton and nspopupbutton? Should I involve nsbuttoncell, or am I supposed to use those cell subclasses? I want to be able to set a regular button in IB or programmatically, and still use setTitle: on it. How can I do this? Where do I start? -- JasonTerhorst
 
 BTW, here are some example screen shots to give you a rough idea:

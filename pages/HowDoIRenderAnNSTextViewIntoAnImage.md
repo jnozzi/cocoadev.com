@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been using a technique to draw an NSTextView in an NSPanel, grab an image snapshot, and then close the NSPanel. The problem with that is, 1) even when the panel's rect is set for -10000 on both its x and y positions, the user can still see parts of the window occasionally, and 2) there are bugs in the implementation that cause parts of the window to appear in the image when the view is scaled above a certain size.
 In addition, I wanted transparency (so I would only get the text in the image, no background), and merely creating the panel and text view programmatically didn't work with transparency. I had to attach them in the nib. I don't know why.
 

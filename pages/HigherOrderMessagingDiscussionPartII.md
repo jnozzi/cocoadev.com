@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To continue the discussion at HigherOrderMessagingDiscussion (which got to the max size):
 
     forward:: indeed eliminates all the problems with NSInvocation and NSMethodSignature, and it's also much faster, but it still has the problem of generating a warning when doing     NSArray *a = collection select] hasPrefix:@"a"];

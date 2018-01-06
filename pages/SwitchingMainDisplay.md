@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a few questions, and I can't find the answers anywhere!

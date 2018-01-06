@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Outlets are used to place information into interface objects or into another class. For instance, you might want to change the name of a button or an NSTextField programmatically.  To do this you would create an outlet for this button or NSTextField in your class.  Or you might want to access the variables or methods from another class.  All this is possible through the magic of outlets.
 
 ** Prerequisite to creating an outlet **

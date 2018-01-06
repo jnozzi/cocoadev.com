@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a really dumb question, but, how do I force my single window application to display as the frontmost application and get the event focus from within the application (Objective C)?
 
 -k

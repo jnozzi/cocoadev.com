@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a simple drag and drop example for filenames dragged from the finder --zootbobbalu

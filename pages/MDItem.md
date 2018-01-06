@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A Carbon object that represents the metadata of a file.
 
 ----

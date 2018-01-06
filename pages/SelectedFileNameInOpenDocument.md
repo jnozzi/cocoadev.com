@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am developing a document based cocoa application. I want to get the list of all the files selected from OpenPanel. Is there a way to get the list of files selected from the open panel.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I use XCode all the time, and my current project has about 13 targets within it (mostly plugins). Every time I open the project, Xcode takes quite a while to finally let me do something in the window (a few minutes). Then, when I add or remove a file from a target, it sits for about another minute or so until I can continue doing whatever I was doing. I have an eMac 1Ghz with 640MB (all I could afford!), but am wondering how Xcode would compare on a dual GeeFive. I'm sure it would be faster, but does the dual processor make much of a difference? Thanks -KevinWojniak

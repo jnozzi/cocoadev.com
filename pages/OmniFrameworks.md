@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Very powerful Cocoa frameworks for networking and more, provided by TheOmniGroup.  Re-usable in your own apps under an extremely liberal license, the OmniSourceLicense.

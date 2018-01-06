@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 WebObjects and Cocoa developer currently working for http://www.easyshadow.com

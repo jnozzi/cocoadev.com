@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A test function for LSTrampoline.

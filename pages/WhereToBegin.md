@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm new to cocoa programming and I've been browsing through tutorials for hours but they all seem to talk about specific issues for people who already use cocoa - is there any beginner tutorial to help me through building a simple program with GUI...?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone have any ideas on how to create an iTunes Music Store-like online catalog for an application? Nothing nearly as fancy at this point, however. I know iTunes uses WebObjects, but I don't need that big of a system. Just a basic listing of items. I want to user to be able to upload and download items to and from the catalog. I thought about just serving XML files from a web server so the app downloads them when the user access the catalog, but then the issue of multiple edits on the file came up. I need some kind of server, probably. MySQL isn't the best known to work with Cocoa. Is there any easy to implement server database that I can use for this? --LoganCollins
 
 ----

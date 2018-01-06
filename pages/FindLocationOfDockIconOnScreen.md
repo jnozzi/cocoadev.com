@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi everyone,
@@ -25,11 +29,11 @@ Now I do not know how to do this exactly. But this may help you. Each icon in th
 
 ----
     
-int processWindow;
-CoreDockGetProcessWindow(&processWindow);
-CGRect rect;
-CGSGetScreenRectForWindow(_CGSDefaultConnection(), processWindow, &rect);
-NSLog(NSStringFromRect(*(NSRect *)&rect));
+	int processWindow;
+	CoreDockGetProcessWindow(&processWindow);
+	CGRect rect;
+	CGSGetScreenRectForWindow(_CGSDefaultConnection(), processWindow, &rect);
+	NSLog(NSStringFromRect(*(NSRect *)&rect));
 
 The code simply prints the frame of the window for the current process. It uses private functions, but I think that's what you were expecting anyway. Look at CoreGraphicsServices, or http://alacatialabs.com/files/CoreDock.h if you want to know more about those.
 To get (some? all?) updates to the Dock, register as an observer for the notification "com.apple.dock.prefchanged" using NSDistributedNotificationCenter. -- QwertyDenzel
@@ -54,4 +58,4 @@ I don't have any idea if this would work, but have you tried touching the dock's
 Have a look at the new DockPrefsPrivate page. -- QwertyDenzel
 
 ----
-The code above doesn't seem to work anymore, returns      {{inf, inf}, {0, 0}}  (running Leopard). Any update on this?
+The code above doesn't seem to work anymore, returns {{ "{{" }}inf, inf}, {0, 0}}  (running Leopard). Any update on this?

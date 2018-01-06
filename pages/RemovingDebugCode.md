@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **Reader's Digest version of this page:**

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey all.
 
 I am making a project that requires some plugins to be installed from the Resource directory of my app to the Application Support dir. This is easy enough when these are just files. But how do I get my bundle plugins that are really directories to copy to my Resources directory in my app during a copy phase? What ends up hapening is the files inside the directory end up getting copied...but that is pointless. Adium does it. They include folders in the copy phase. They are blue and not Tan...how do I get those blue folders in my copy phase? Thanks.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a Cocoa class to manage newspaper ads and would like to provide a method to generate very simple placeholder TIFFs for ads that have not been completed yet. The tiffs aren't for display in my app (they'll be imported into Quark picture boxes), so they don't need a window or view during creation. 
 
 I read the NSGraphicsContext documentation along with the NSBezierPath but can't figure out how to set up a context and draw to it. 
@@ -10,53 +14,53 @@ Basically here's what I'm trying to do:
 
 And here's the create placeholder method so far (such as it):
     
-- (void) placeholderImage
-{
-	NSMutableData			*data;
-	NSDictionary			*contextAttributes;
-									
-	NSGraphicsContext		*placeholderContext,
-					*inContext;
-						
-	BOOL				inAntialias;
-	NSImageInterpolation		inInterpolation;
+	- (void) placeholderImage
+	{
+		NSMutableData			*data;
+		NSDictionary			*contextAttributes;
+										
+		NSGraphicsContext		*placeholderContext,
+						*inContext;
+							
+		BOOL				inAntialias;
+		NSImageInterpolation		inInterpolation;
 
-	int				centH   = [self height] / 2,
-					centV   = [self width] / 2;
-					
-	NSRect				bounds  = {{0, 0}, {[self height], [self width]}};
-	NSBezierPath			*temp   = [NSBezierPath bezierPathWithRect: bounds];
-	
-	
-	data				= [[NSMutableData alloc] init];
-	contextAttributes		= [NSDictionary dictionaryWithObjectsAndKeys: 
-						data, NSGraphicsContextDestinationAttributeName,
-						NSGraphicsContextPDFFormat, NSGraphicsContextRepresentationFormatAttributeName,
-						nil];
-									
-	placeholderContext		= [NSGraphicsContext graphicsContextWithAttributes: contextAttributes],
-	inContext			= [NSGraphicsContext currentContext];
+		int				centH   = [self height] / 2,
+						centV   = [self width] / 2;
 						
-	inAntialias			= [inContext shouldAntialias];
-	inInterpolation			= [inContext imageInterpolation];
-	
-	// set up the drawing environment
-	[placeholderContext setShouldAntialias: YES];
-	[placeholderContext setImageInterpolation: NSImageInterpolationHigh];
-	[placeholderContext saveGraphicsState];
-	
-	self color] setStroke];
-	
-	[[[[NSColor blackColor] setStroke];
-	
-	[temp setLineWidth: 5];
-	[NSBezierPath strokeRect: bounds];
-	
-	[data writeToFile: @"System (OS X)/Users/kentozier/Desktop/bobo.pdf" atomically: YES];
-	[inContext restoreGraphicsState];
-	[inContext setShouldAntialias: inAntialias];
-	[inContext setImageInterpolation: inInterpolation];
-}
+		NSRect				bounds  = {{"{{"}}0, 0}, {[self height], [self width]}};
+		NSBezierPath			*temp   = [NSBezierPath bezierPathWithRect: bounds];
+		
+		
+		data				= [[NSMutableData alloc] init];
+		contextAttributes		= [NSDictionary dictionaryWithObjectsAndKeys: 
+							data, NSGraphicsContextDestinationAttributeName,
+							NSGraphicsContextPDFFormat, NSGraphicsContextRepresentationFormatAttributeName,
+							nil];
+										
+		placeholderContext		= [NSGraphicsContext graphicsContextWithAttributes: contextAttributes],
+		inContext			= [NSGraphicsContext currentContext];
+							
+		inAntialias			= [inContext shouldAntialias];
+		inInterpolation			= [inContext imageInterpolation];
+		
+		// set up the drawing environment
+		[placeholderContext setShouldAntialias: YES];
+		[placeholderContext setImageInterpolation: NSImageInterpolationHigh];
+		[placeholderContext saveGraphicsState];
+		
+		self color] setStroke];
+		
+		[[[[NSColor blackColor] setStroke];
+		
+		[temp setLineWidth: 5];
+		[NSBezierPath strokeRect: bounds];
+		
+		[data writeToFile: @"System (OS X)/Users/kentozier/Desktop/bobo.pdf" atomically: YES];
+		[inContext restoreGraphicsState];
+		[inContext setShouldAntialias: inAntialias];
+		[inContext setImageInterpolation: inInterpolation];
+	}
 
 
 Thanks for any help,
@@ -84,33 +88,33 @@ also, that path is wrong. remove 'System (OS X)' and it will be correct. *--bore
 Here's an example of drawing into an image:
 
     
-- (NSImage *) placeholderImageOfSize:(NSSize)aSize
-{
-    NSString  *text = @"Placeholder Text";
-    NSDictionary *textAttributes = nil; // Lucida Grande 13pt. see NSAttributedString for dict keys...
+	- (NSImage *) placeholderImageOfSize:(NSSize)aSize
+	{
+	    NSString  *text = @"Placeholder Text";
+	    NSDictionary *textAttributes = nil; // Lucida Grande 13pt. see NSAttributedString for dict keys...
 
-    NSSize     textSize = [text sizeWithAttributes:textAttributes];
+	    NSSize     textSize = [text sizeWithAttributes:textAttributes];
 
-    NSPoint   midpoint = NSMakePoint(aSize.width / 2.0, aSize.height / 2.0);
-    NSPoint   textOrigin = NSMakePoint(midpoint.x - (textSize.width / 2.0), midpoint.y - (textSize.height / 2.0));
+	    NSPoint   midpoint = NSMakePoint(aSize.width / 2.0, aSize.height / 2.0);
+	    NSPoint   textOrigin = NSMakePoint(midpoint.x - (textSize.width / 2.0), midpoint.y - (textSize.height / 2.0));
 
-    NSImage *placeholder = [[NSImage alloc] initWithSize:aSize];
+	    NSImage *placeholder = [[NSImage alloc] initWithSize:aSize];
 
-    [placeholder setFlipped:YES]; // text likes to be drawn in flipped coords...
-    [placeholder lockFocus];
+	    [placeholder setFlipped:YES]; // text likes to be drawn in flipped coords...
+	    [placeholder lockFocus];
 
-    [text drawAtPoint:textOrigin withAttributes:textAttributes];
+	    [text drawAtPoint:textOrigin withAttributes:textAttributes];
 
-    [placeholder unlockFocus];
+	    [placeholder unlockFocus];
 
-    return [placeholder autorelease];
-}
+	    return [placeholder autorelease];
+	}
 
-// To actually save the tiff file out ...
-- (void)saveTiffFileOut
-{
-   // Assumes someSize is a valid NSSize
-   // Assumes path is a valid file path like @"~/Desktop/MyPic.tiff"
-   [self placeholderImageOfSize:someSize] [[TIFFRepresentation] writeToFile:path atomically:YES];
-}
+	// To actually save the tiff file out ...
+	- (void)saveTiffFileOut
+	{
+	   // Assumes someSize is a valid NSSize
+	   // Assumes path is a valid file path like @"~/Desktop/MyPic.tiff"
+	   [self placeholderImageOfSize:someSize] [[TIFFRepresentation] writeToFile:path atomically:YES];
+	}
 

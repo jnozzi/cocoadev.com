@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to run a serveur on a port < 1024 so I need root permissions.
 I wrote a tool to launch launchctl and load or unload my Launch Daemon (/bin/launchctl  load -w /....)
 Here is the problem :

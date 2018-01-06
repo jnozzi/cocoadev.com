@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Sketch sample code produces a fairly complete scriptable text and graphics application with lots of functionality, an MVC architecture and undo. The project is located at:
 
 * http://developer.apple.com/library/mac/#samplecode/Sketch/Introduction/Intro.html

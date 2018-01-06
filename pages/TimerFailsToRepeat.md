@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Having declared lightTimer in my header:
 
     

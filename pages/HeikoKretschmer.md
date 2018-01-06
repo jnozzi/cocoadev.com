@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm a 29 year old free time developer. I mainly focus on more or less useful screen savers. You can visit my homepage to learn more: http://www.wurst-wasser.net/

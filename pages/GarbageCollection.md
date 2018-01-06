@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Garbage collection (hereinafter GC) refers to memory management schemes that relieve the user from having to explicitly free memory in their programs. There are several kinds of GC, and pros and cons to them all. Prior to Leopard, NSObject, from which all Cocoa objects are derived, uses retain-release memory management (object refcounting), which is not a form of *automatic* garbage collection.  Starting with 10.5, the developer can enable automatic generational garbage collection, but still use standard retain-release MemoryManagement techniques to maintain source compatibility when targeting versions of MacOSX prior to 10.5.
 
 The core problem every GC scheme tries to solve is how to identify which objects are still live (will be needed in the future) and which are dead (the memory can be safely released because no one references it anymore).

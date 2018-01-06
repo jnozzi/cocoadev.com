@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Somebody needs help, so he posts a long description of what he's doing. Of course, it's all in English, and so necessarily leaves out a great many details. Hence, the reaction of a typical person who wants to help but is unable: PostYourCode!

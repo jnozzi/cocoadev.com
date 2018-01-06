@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 You can get the current document in a multi-document app from your shared document controller instance by sending it the message     currentDocument. One frequently does this because model data need to be associated with the "right" document. Here are some situations that have arisen in the past which are related to these matters.
 
 **[[NSDocumentController sharedDocumentController] currentDocument]**

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Reviews of horrible software. Legitimate criticism veiled in insane rants. Or was that the other way around?
 
 http://perversiontracker.com

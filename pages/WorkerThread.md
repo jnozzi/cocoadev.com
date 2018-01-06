@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 , 
 
 **The problem**: My single-threaded application processes a lot of data, and the GUI becomes completely unresponsive during this period.

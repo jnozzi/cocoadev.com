@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 We have seen examples of Core Animation based software that does nice animation with hundreds of NSViews.

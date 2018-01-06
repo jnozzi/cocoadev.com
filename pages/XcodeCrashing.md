@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 All of a sudden the other day Xcode crashed on me. Now when I open my project file, General/XCode crashes after a few minutes and shows this hundreds of times in the crash report:
     
 508 com.apple.Xcode.General/DevToolsCore 	0x98be4824 -General/[PBXProjectIndex(General/PBXIndexingEngineCallbacks) shouldBeginFileForPathEntry:] + 0x588

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey
 
 Was wondering if there is a way to determine if a key , based on its virtual key code is a modifier key. E.g. I have the virtual key code for shift, I put it through UCKeyTranslate and I get back the wrong character. I understand that I need to map these myself, but is there a quick way to determine which keys are modifier keys without simply making a large switch case statement?

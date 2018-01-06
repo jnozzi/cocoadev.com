@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to use regular expressions in my code, to test for patterns, I found the MoKit Framework.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 You can't return an array in C. Assuming you don't want to use an NSArray with its associated enormous (for this sort of task) overhead, you have to pass the array into the method by reference:
 
     

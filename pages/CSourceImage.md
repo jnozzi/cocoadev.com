@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 how do I make a NSImage from a C-Source image? (like the ones you can make with GIMP or GraphicConverter)
 
 I have a struct like this:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When is the right time to optimize? Well...
 
 

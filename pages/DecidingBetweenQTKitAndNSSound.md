@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hello, owner of the skiTunes project (http://skitunes.iindigo3d.com/) here.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 QuickDraw is deprecated as of Mac OS X 10.4.  See http://developer.apple.com/documentation/Carbon/Conceptual/QuickDrawToQuartz2D/index.html for tips on moving to Quartz (aka CoreGraphics).

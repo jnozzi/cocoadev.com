@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In my application I am trying to draw thumbnails of different images on another image.

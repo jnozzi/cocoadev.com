@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A quick question about mathematics in Cocoa. I can't find a good answer to this. What I want to do is take a set of values, either in an NSArray, NSSet, or by themselves, and average them. Specifically, I have several NSTextFields which can be filled in with a number. They will be NSDecimalNumber values. The user will click "Calculate" and they will be averaged. Is there a good way to do this? Do I have to perform the mathematical operations or can I just take the average? Also, if some of the fields are blank, will the averaging take this into account, or will it see them as zero, and mess up the average? Much appreciated, --LoganCollins
 
 

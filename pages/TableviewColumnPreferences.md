@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to add and remove tableview columns using bindings. The "Apple preferences tutorial" showes how to change text size and text colours stricktly using bindings(no code required). just wondering if you can add and remove tableColumns the same way???
 
 DSG

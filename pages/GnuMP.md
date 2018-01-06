@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 GMP is the GNU Multiple Precision Arithmetic Library. It's an LGPL big-number library. It does arithmetic on integers, rational numbers, and floating-point numbers with size and precision limited only by available memory.
 
 http://gmplib.org/

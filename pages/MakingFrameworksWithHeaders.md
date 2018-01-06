@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to make a framework so I can reuse my code. The thing, is , I have no idea how to "correctly" do it. I tried on something else before, but the resulting framework didn't have any .h files or a /sources directory, so I couldn't include my classes and use them. Are there any tutorials about frameworks hanging somewhere around the internet where I can't find them?
 
 ----

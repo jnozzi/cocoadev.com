@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *From Apple's docs:*
 
 If this key exists and is set to "1", Launch Services runs the application in the background only. You can use this key to create faceless background applications. You should also use this key if your application uses higher-level frameworks that connect to the window server, but are not intended to be visible to users. Background applications must be compiled as Mach-O executables. This option is not available for CFM applications.

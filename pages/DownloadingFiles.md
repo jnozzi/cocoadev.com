@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A really simple example for downloading files in Cocoa. (Thanks to Austin Shoemaker!)
 
     

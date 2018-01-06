@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A tool from AppleComputer that allows you to trace allocation and de-allocation of objects in your application, helping you to pin down MemoryLeaks.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can I force an application that uses my own framework to use other frameworks needed by it? I'm looking for a way to make it automatically, if that's possible. I mean, I know I can include the requiered frameworks  by hand but wouldn't it be nice if the application didn't know about the components required by my framework?!?
 
 ----

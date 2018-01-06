@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I suggest that the newest "recent changes" are on the top of the page and the older ones at the bottom.  Since they are currently in the opposite order, the reader has to scroll down to see the most recent of the "recent changes". --General/AlexanderD
 
 Wow, speak and you will be heard.  Thank you, whoever is in charge of the Wiki underbelly!  Now General/RecentChanges is more user friendly (to me).  May I retire this page? --General/AlexanderD

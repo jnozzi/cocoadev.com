@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Pietro Gagliardi
 
 Personal: http://web.mac.com/pietro10

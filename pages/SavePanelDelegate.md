@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a document based Cocoa app created in PB and I would like to set the delegate for the shared NSSavePanel the entire application uses. 
 
 I'm assuming that the NSSavePanel returned from:

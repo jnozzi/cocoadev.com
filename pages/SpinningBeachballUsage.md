@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I just spent a while looking online for official information about the use of the spinning beachball cursor in order to reply definitively to this: http://sophos.ca/pipermail/gnumail-users/2003-October/000285.html email, which I believe is wrong.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 HowToOpenAFileUsingCStdLib deals with the use of standard C function fopen()
 
 To clarify, this page will tell you how to query the user for a file using the Open panel.  If you are more interested in archiving your own files and retrieving them, check out HowToSave, which explains how to do that.

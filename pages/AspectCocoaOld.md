@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Following: LookupAspects and SingleInstanceAspects, are the AOP for Cocoa possibilities currently being pursued. So far, the other approaches to solving the problem of enabling aspects for Objective-C are too restrictive.
 
 **LookupAspects**

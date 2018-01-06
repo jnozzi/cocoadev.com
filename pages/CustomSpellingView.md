@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This article describes how to support spell checking and grammer checking in a custom view. This view supports checking spelling using the Spelling pane and the Edit menu.
 
 There aren't a lot of examples of how to do this. The best one I could find was WebKit:

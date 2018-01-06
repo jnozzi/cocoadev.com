@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 After some research, I'm a bit confused about what I should use to gain the most control on fonts, sizes, text, glyphs, etc... There's plain Quartz 2D, General/CoreGraphics, ATSUI... ATSUI is a bit complicated and it seems to be Carbon only, and I'd like to avoid carbon for the moment, unless it's essential for what I'm asking for. Yet, ATSUI seems to be quite low-level and fitting. Is there something equivalent to ATSUI in the Cocoa world ?
 
 -- Trax

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ABPeoplePickerView is a new Cocoa class released in 10.3. It show all of your contacts in AddressBook. It has been used in Apple Mail, and Apple iCal. 
 
 http://developer.apple.com/documentation/UserExperience/Reference/AddressBook/ObjC_classic/Classes/ABPeoplePickerView.html

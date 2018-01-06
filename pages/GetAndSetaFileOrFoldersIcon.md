@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What I am trying to do is take a icon from a folder/file and put it on another one. I can't seem to find anything on how to do this in either the Cocoa or Carbon documentation. Any help would be greatly apreciated.

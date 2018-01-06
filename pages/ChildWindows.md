@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm an experienced Windows and Web developer but new to Cocoa. After creating a bunch of test projects, I decided to try to create a simple RSS reader application as a learning project. During this process, Ive become unsure how to handle a pop-up window and wanted to get others advice. Here's the details:
 
 I've created a Cocoa Application (not-document based). I've defined a "Feed" class with accessor methods for it's properties. Inside my MainMenu nib file I've got my main window with an NSTableView and an Add button. I've also defined an AppController object which has the outlets and actions required to handle the main window's functionality. The idea is that the NSTableView would list all feeds that the user has subscribed to. The Add button would pop up another window and ask them for the URL to the RSS feed and for a name for the feed. When they enter this, it would be added to the table. 

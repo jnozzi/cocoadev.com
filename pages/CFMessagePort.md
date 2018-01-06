@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See: http://developer.apple.com/techpubs/macosx/Essentials/SystemOverview/InverEnvironissues/chapter_14_section_9.html
 
 ----

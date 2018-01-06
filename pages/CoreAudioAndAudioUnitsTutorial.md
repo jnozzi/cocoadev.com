@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This space available to write a CoreAudio tutorial or add insights. Some areas in which the original poster was interested:
 
 - Reading an audio file (actually using QTSoundFilePlayer)

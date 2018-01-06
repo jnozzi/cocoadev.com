@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 HighCohesion is a GRASP*-pattern** which says that a method should do a precise single task. This is to maximise readability, extensibility and reusability. One rule is that if you can't easily name a method, it's not cohesive and should be rewritten.
 
 See: http://www.ugolandini.net/AccoppiamentoCoesioneE.html, http://c2.com/cgi/wiki?CouplingAndCohesion

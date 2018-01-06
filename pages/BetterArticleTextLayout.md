@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OK ... I've been lurking CocoaDev for years now and I am finally totally fed up with the way we're laying out text. We all know the problem: some piece of code uses some really long nested Objective-C statement which requires lots of horizontal space to lay out properly.
 
      void *pixmap = [[[[UltraCoolObject alloc] initWithThing:thing foo:foo timeToLive:kFOREVER - kTimeSinceUNIXEpoch] autorelease] pixmapForSize:window contentView] frameSize;

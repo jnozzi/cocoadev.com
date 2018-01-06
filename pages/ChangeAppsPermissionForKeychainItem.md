@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm new to Keychain and, in general, the security framework, but I've made a bit of headway recently. I have my app storing the user's password for a particular internet service, using the SecKeychainAddInternetPassword, SecKeychainItemModifyContent, SecKeychainFindInternetPassword functions. When the user enters a new username/password combination, it creates the keychain item, and when they change the password field for an existing username, it modifies the combination. However, it does so without prompting the user for permission. I want to make the user have to log in to keychain in order to modify the password, but since my application created the keychain item, it automatically receives "always allow decryption" status in the Keychain system. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I need some help, I want to make a NSTextView that has a picture as its background, and when you resize the view, then picture is also resized (just like in Terminal).

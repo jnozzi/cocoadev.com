@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **AspectOnSketch** - an example usage of AspectCocoa
 
 The Example application Sketch that comes with Apple's Dev tools has undo functionality scaterred throughout...

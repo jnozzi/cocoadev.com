@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This might be better off on some other site but I'm hoping it might be useful to some cocoa person out there enough that they might help.
 
 I am trying to build a Yacc parser to parse Objective C code. The parser would simply parse Objective C code. 

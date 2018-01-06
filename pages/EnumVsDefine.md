@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When watching an old WWDC session, I remember the speaker talking about using     typedef enum and     #define to label integer constants. She stated that     typedef enum was better than using macros. Does anyone know why this is?
 
 ----

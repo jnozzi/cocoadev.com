@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Because even with reference counting, retain cycles are unavoidable, in certain situations. For those situations, the memory usage is unbounded, which leads, eventually, to a crash. So if you don't want your app to crash, ever, you need a garbage collector. OK, so retain counts are fast and they usually work. That is not good enough. Memory management should *always* work.
 
 Look at what a garbage collector offers: you won't need to think about memory management again. Look at what it did for Java.

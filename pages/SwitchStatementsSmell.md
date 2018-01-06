@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Just a note from my current project - I'm sure someone can fill this topic in more comprehensively.
 
 A common Cocoa use of switch statements is in menu selections. Something like:

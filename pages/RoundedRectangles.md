@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A category for NSBezierPath which allows for very simple drawing of rectangles with arced corners -- like the bezel service popups.
 
 "Ouch. Didn't notice this page until I added NSBezierPathCategory. Sorry."

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to use the buttons on the iPod, (Play, Stop, etc.) as input via the FireWire cable for the OS?
 
 ----

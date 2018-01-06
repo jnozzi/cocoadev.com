@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 After some more thought and discussions with MikeAmy I have decided that templates on classes are not as necessary. I think people should be encouraged to use protocols more often having a similar effect as what I wanted with templates.
 
 *Formal or informal protocols? we already had a discussion on this (sorta): WhyDoesObjCNeedInterfacesWhenItHasProtocols -- formal protocols just add constraints on the flexibility and more typing by the programmer.*

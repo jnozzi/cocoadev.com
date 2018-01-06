@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What's a good way for me to know, from inside my app, how much memory I'm consuming?  For example, if I want a unit tests that runs some piece of code a whole bunch of times and tests if there is a memory leak by checking if there is an unexpected rise in memory consumption inside the loop, how do I get that value?
 
 ----

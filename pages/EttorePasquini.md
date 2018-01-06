@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I used Cocoa here and there, and I love the elegance of Objective-C. 

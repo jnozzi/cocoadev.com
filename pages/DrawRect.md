@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The     -drawRect: method is where all drawing should take place in an NSView subclass. An example would look like this:
 
     

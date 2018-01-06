@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got a peculiar string formatting problem -- one which I could certainly fix with a little manual string parsing, but I'm curious if there's a better way; perhaps one to circumvent the issue altogether.
 
 Now, the trouble is in the area with the red circle. I've got some code tracking the position, velocity, and delta-velocity of objects in my simulation and I'm using NSString stringWithFormat to write to an NSTextField this information.

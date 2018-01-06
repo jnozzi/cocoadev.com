@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am the President of Ripple Software, LLC.  I WAS also an Apple Computer retail employee until 6/6/05.  None of my group's applications have been publicly released as yet, we are refining them, but I hope for them to make a splash when they are released. I also now work for Trivantis Corporation (http://www.trivantis.com/ ), and happily am in product QA for our software there.

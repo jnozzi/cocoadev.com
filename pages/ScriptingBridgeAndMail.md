@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've been playing around with the new Scripting Bridge in Leopard and trying to send an email through Apples Mail, but for some reason I can't specify recipients in e-mails.

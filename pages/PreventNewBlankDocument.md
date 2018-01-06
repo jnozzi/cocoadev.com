@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Ok, this is probably a simple, no-brainer kind of thing and I promise I'll stop asking that kind of question soon. 

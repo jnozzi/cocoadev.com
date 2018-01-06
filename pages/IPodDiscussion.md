@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This is a simple discussion on a few ideas. Feel free to vote or comment.

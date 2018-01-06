@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is more of a unix question, but anyway...
 
 From a Cocoa app I am launching a process using     fork()/    system() (yes, I also tried NSTask, but with the same problem).  The problem is, that the process I launch will also launch a process, and so, when I kill the process I launched, the child of it will stay around.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This may be just a little bit off-topic, but as OpenGL is well integrated with Cocoa, why not?

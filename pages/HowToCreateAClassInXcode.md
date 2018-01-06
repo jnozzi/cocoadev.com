@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Open your project in XCode. If you need to create a project see HowToCreateANewProjectInXCode.

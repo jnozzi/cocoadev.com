@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to start a Perl script at the end of my compilation, and I need to know 10.4 or 10.5 OS (because svninfo is under /usr/local/bin or /usr/bin)
 
 How can I do this with $ENV variable ?

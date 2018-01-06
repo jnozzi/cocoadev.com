@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a General/NSTableView that I want to behave like the Dock when items are dragged out of it - the item disappears in a puff of smoke and is removed from the view. Any pointers on how to do that?
 ----
 Have a look at the General/NSShowAnimationEffect function.

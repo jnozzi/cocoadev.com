@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I seem to have forgotten something about the use of dealloc and it is not coming to mind.
 
 I have an object which is instantiated in the nib file of a non-document-based app, and its dealloc is not getting called

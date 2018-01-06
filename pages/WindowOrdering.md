@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been messing around with orderWindow:relativeTo: and orderBack and orderFront and makeKeyAndOrderFront and I just can't get the behavior I'm looking for.
 
 What I want to have happen is this:

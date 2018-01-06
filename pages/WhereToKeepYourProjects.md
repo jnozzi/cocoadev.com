@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is how I have my programming stuff organized. It works for me, and I thought others could benefit from it too. This is just a suggestion - as always, use whatever works for you.
 
 

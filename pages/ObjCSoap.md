@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I am trying to create an Objective C project to make SOAP requests and receive SOAP responses from a web service.

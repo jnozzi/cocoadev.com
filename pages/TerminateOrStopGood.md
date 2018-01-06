@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If like me, you have a time limited demo app that you want terminate programmatically, then you'll probably have discovered that General/NSApplication's     terminate: is often ineffective, particularly when a modal dialog or sheet is running. In fact, anyone in the responder chain only has to return NO to the     applicationShouldTerminate: message to cancel the process.
 
 There's not much else in Cocoa to help you with the task, except the promising sounding     stop: which is also an General/NSApplication instance method. Unfortunately     stop: is also foiled by modal sessions. However, while it doesn't quit the app if a modal session is active, it does stop the current modal General/RunLoop.

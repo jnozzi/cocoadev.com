@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a tableView in which I want to enable variable row heights.  I am using the method - (float)tableView:(NSTableView *)tableView heightOfRow:(int)row, but once within that I can't find a way to determine the optimal size for the cell. 
 
 Basically, the tableColumn has a set width, and each cell has a string value.  I want to determine how many lines of text the cell would use if it could be as big as it wants.  I can't for the life of me find any methods to this effect; it seems like everything is geared towards you telling the table and its cell everything.  I was shocked to find that there is no way to get the cellforrow:column:, which of course is impossible because unlike NSMatrix, the tablecolumn only has 1 cell.

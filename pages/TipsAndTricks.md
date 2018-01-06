@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Untuk kegunaan lain dari Rumah, lihat Rumah (disambiguasi).
 
 Rumah bergaya minimalis di Jakarta.

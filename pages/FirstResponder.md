@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The FirstResponder is the first object in the ResponderChain that is given the opportunity to respond to AnEvent.

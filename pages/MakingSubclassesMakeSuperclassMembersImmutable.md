@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible for Class B to inherit from Class A, and override the mutability of Class A's instance members?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I going crazy trying to figure out how to constrain the minimum size of a subview in a split view. I can control the size without any problem with constrainSplitPosition and constrainMinCoordinate in a delegate but these two methods do not control resizing when the window is resized (for that your delegate is supposed to respond to the splitView:resizeSubviewsWithOldSize: method) 
 
     

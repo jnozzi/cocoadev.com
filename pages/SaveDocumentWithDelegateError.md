@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm having problems when I need to be sure that all my documents are saved before the program continues executing:
 The example method below says it all. 
 I need to be sure that all documents are saved before I continue but after sending the message

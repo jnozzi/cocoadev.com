@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In AspectCocoa, an aspect is created as follows:

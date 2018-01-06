@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Unless I'm missing something in the Cocoa Docs, there is no list of methods that throw exceptions. It'd be nice to have a per-Class list of methods that might throw an exception, so it'd be easy to check if your code is dealing with exceptions properly.

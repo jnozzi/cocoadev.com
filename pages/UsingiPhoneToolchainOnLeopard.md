@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Leopard is out, so you if you have successfully compiled the toolchain on leopard, you are encouraged to share your knowledge.
 
 ----

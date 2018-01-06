@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know how to set __MyCompanyName__ in newly created project builder files to something meaningful?  Can I specify an var somewhere to have that automatically replaced with something else?
 
 Type     defaults write com.apple.ProjectBuilder 'PBXCustomTemplateMacroDefinitions' "{ORGANIZATIONNAME = 'your Company Name'; }" into the terminal (replacing yourCompanyName with your company name of course).  -- Bo

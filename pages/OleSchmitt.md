@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *Freelance multitasker living in Sao Paulo City, Brazil*
 
 

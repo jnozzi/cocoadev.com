@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 (This page is hopelessly outdated. Does anyone mind if we cull out the obsolete -- and heavily opinionated -- discussion? Perhaps this should become one of the RetiredDiscussions ...)
 ----
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Bundles in Mac OS X provide a way to store resources an application may need like sounds, images, and configuration files without exposing the user to a useless mess of files.
 
 To have a file be automatically included in your application's bundle at compile time, place it in the "Resources" group.  You can then access this bundle using the NSBundle class.  The general strategy for accessing a bundle resource is to send an instance of NSBundle a message that returns a path to the specified resource, and then we access the resource using the returned path.

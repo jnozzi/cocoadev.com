@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  <-- is that OK??
 
 

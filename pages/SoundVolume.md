@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In something related to KeyCodesAndCharCodes, I've been trying to work out how to set the system volume from within an objective-c app.  While it seems easy enough to tie into the applescript Sripting Additions volume thing, that has the disadvantage that it's only stored in the OS9 System Folder's scripting application folder.  So, no classic install - no sound volume changes.  Can anyone recommend the best way of changing the system volume from a cocoa app?  Ideally, how would one do so not to set levels but relative to current levels? http://goo.gl/OeSCu
 
 The best way of achieving this would be to use the same calls as the keyboard volume buttons do, so that the user also gets the lovely visual feedback as to the volume level.  How does one call that event, or is it only possible to do this via faking the key presses themselves?  That might be possible using CGPostKeyboardEvent (see KeyCodesAndCharCodes)...

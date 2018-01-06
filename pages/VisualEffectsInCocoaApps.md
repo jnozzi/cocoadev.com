@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Brought over from the hotly-debated General/NewsFire page ...

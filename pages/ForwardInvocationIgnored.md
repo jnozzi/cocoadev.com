@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am attempting  to forward the message drawRect: on an NSView subclass to another selector on the same object, but my implementation is not working.  Apparently the drawRect: message is being called in some special way.  If I call it myself I get the forwarding I expect.  But if It gets called by the application it's in. (to actually draw) the forwarding is not invoked and I end up with an NSView drawRect:..  (I don't see "my drawrect" get logged)  here's an example:
 
 I have confirmed by category on NSObject that instanceMethodForSelector: and methodForSelector: are not being used to retrieve drawRect:

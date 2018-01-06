@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to parse a file which contains little-endian double values in a way that works on all varieties of Mac OS. It seems there are a bewildering array of endian swappers available, but nothing that can quite deal with this situation, which tells me I've missed something obvious! I thought NSSwapLittleDoubleToHost would be the one, but it accepts a type called an NSSwappedDouble, not an ordinary double. Is it just a case of casting it? Trying that with other similar functions such as EndianS64_LtoN doesn't work properly - I either get scrambled values that are very very large or very, very small, or else truncated to an integer. --GrahamCox
 
 ----

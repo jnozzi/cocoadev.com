@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 From http://developer.apple.com/documentation/Cocoa/Conceptual/AppCustomization/index.html :
 
 *This topic describes how a Cocoa application can customize its behavior by detecting the operating system version.*

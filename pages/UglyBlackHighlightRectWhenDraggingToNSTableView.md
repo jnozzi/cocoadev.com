@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I looked all over the General/NSCell class but can't figure out what to change to modify that ugly black highlight rectangle that you get when you drag something onto it (eg onto a tableview row).  What I want is something like the Finder in Panther, a nice cell highlight.  What a strange choice for default behaviour in this class with no apparent way to overrule it!
 
 General/EcumeDesJours

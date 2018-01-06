@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OggVorbis is the patent-free audio format written and sponsored by Xiph.org [http://www.Xiph.org].
 
 It uses the OggContainer multimedia file format (which is also used for other Xiph.org projects such as OggTarkin, OggTheora, and OggSpeex.

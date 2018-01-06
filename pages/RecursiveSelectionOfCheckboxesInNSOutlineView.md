@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello I'm kinda stuck on a problem I've been working on.  This is my first entry on CocoaDev so bear with me :)
 I created a NSOutlineview with two columns.  One has an NSSwitchButton (checkbox) data cell, the other one a text and image data cell.
 Everything so far works fine. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know if there's some special magic trick to using a frameset for a help guide for Help Viewer?

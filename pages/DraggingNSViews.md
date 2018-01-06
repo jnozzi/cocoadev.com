@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hey everyone, I have a question for the community. I'm trying to drag an NSView around a window. I have it working 80% correctly, but there is a problem. While dragging, a negative set of coordinates is sent, and the view jitters all over the place. Here's the code I have (it is mainly adapted from Sketch code): http://goo.gl/OeSCu

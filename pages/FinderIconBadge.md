@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can anyone point me to adding custom badge for  Finder icons.
 
 I tried the one below:

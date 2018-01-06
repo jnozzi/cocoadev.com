@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
     - (void)activate:(id)sender;
 
     - (void)setFilePath:(CFURLRef)url;

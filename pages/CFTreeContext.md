@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CFTreeContext is a basic structure used to refer back to the data stored in the tree structure.
 
 What/Which tree?  Where/When would someone use a CFTreeContext?

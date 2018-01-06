@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi. I am making a raster graphics editor to compete with Photoshop (with all the features :-) ), and I decided to use the Quartz API for drawing. The thing is, I saw on some documentation that you can draw directly onto a General/NSWindow using Quartz. Instead, I want to have a separate space for drawing. How do I do so? - Pietro Gagliardi http://web.mac.com/pietro10
 
 ----

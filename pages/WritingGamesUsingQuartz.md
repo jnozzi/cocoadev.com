@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi! I'm looking for info regarding writing a 2D shootergame.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm going crazy... For the last two days I've been googling for a solution to my problem with a custom IB palette and change of font - here we go:

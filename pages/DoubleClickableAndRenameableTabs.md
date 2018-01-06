@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm looking for a way to implement a tab-control that catches a double-click on the tabs and then opens a lineeditor in place (a sheet would work too, while it wouldn't be as pretty) which then
 allows me to rename the tab.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know how to completely disable focus ring around a cell in a table column when it's being edited? (Yes, I want to draw my custom focus ring).

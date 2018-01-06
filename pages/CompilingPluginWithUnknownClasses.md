@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What i'm trying to do is to create a plugin (loadable cocoa bundle) that will be loaded to a cocoa app. When my plugin loads, it does [m<nowiki/>ySubclass poseAsClass:[o<nowiki/>riginalClass class]] and places my subclass as the original class. The only problem is that i can't manage to get my plugin to compile. I tried specifying the path to the original app, which loads my plugin, as the "Bundle Loader" but i'm still getting an undefined symbols error (my subclass is a subclass of a class that the main app owns so it does exist). I also tried to compile using "-flat_namespace -undefined suppress" and it managed to compile, but then i started getting weird random crashes in the main app at places that my plugin has nothing to do with them.

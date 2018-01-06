@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a Cocoa application in which I would like to print patterns as view backgrounds (like the old PAT# resource in OS 9 and earlier). Since NSPatternColor isn't documented (at least not that I can find) and may not be implemented, I have had to resort to using QuickDraw. In OS 9 and earlier a set of standard patterns was stored in the system file and could be accessed using QuickDraw routines. It turns out these patterns are also in the OS X system file, but there appear to be no Cocoa routines to access them. IF I AM WRONG ABOUT THIS I WOULD LOVE TO HEAR ABOUT IT!
 
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A nice hack by RobertChin and NicholasRiley
 
 http://web.sabi.net/nriley/software/

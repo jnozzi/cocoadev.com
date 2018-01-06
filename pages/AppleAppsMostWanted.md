@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Apps you want apple to write and don't want to write yourself (either because you don't want to, can't or feel that Apple should take the lead).  This is kind of interesting for me because I'm curious about what kind of apps developers are willing to develop and what kind of apps developers want Apple to develop...
 ----
 I am DESPERATE for a proper Word Processor.  MS Word stinks: it crashes, the UI is kinda sucky, and it is slow, and it hogs cycles even when it's backgrounded.  WTF!?  And to any of you opensource geeks, let me tell you this: OpenOffice looks like a rejected MS Word interface from the 80s.  To its credit, it is significanlty more stable than MS Word and isn't half as slow... but  OS X deserves better than something that is that ugly...  I would like to see a nice Apple word processor... and puh-lease do not tell me about AppleWorks.  AppleWorks is so not Aqua it's not funny... not to mention it has no features and hasn't changed much since MacWrite II which I actually DID use in the 80s on a Mac Classic...  I want iWrite.app!

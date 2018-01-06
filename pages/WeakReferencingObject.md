@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 <insert>Can anyone tell me why this example is allowed to ignore the "must be the same size" rule of poseAsClass: by adding an extra int to the definition? Incidentally, I reformatted the code to stop it adding a horizontal scrollbar on my screen. --General/KritTer </insert>
 
 Have written it, I can't tell you that. It compiles... or did... maybe bit rot has set in, I'm not certain. As it is, I don't really have any use for it, so it's fallen by the proverbial wayside; thank you for the formatting, however (the horizontal scrollbar is bloody *evil*). -- General/RobRix

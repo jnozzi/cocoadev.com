@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I am building an application that I never want to take focus. I have my NSWindow setup so that when the user clicks on it it will never take focus. I also have some Dock Menu items that when clicked on will also not steal focus. However, if I click on the dock menu by itself it will always take focus. This includes launching the application and when the application is already running. I am more concerned with someone clicking it once the application is already running. Currently I have:
 
 

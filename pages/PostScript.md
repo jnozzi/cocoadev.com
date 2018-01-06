@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 High quality, device independent graphic display language and the industry-standard
 printing and imaging technology from Adobe.
 

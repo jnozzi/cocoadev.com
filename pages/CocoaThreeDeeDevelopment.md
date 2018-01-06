@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 3D development in Cocoa is mosly about working with OpenGL, but OpenGL is very low-level and not at all ObjectOriented.
 
 I'm looking for a framework that does away with the, in my view, tedious low-level coding of OpenGL programming. What I'm looking for is something that replaces the OpenGL     glBegin(...); ...; glEnd(); code with an ObjectOriented interface, something like:

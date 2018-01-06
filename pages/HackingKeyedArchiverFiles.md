@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am really wanting to automatically generate iMovie projects based on content/settings in an application.  Unfortunately, iMovie has no AppleScript support, so that route is of no help.
 
 My thought was to try to create the file "iMovie Project.rcproject/Project" automatically so that iMovie could recognize it.  To do this, I was going to need to be able to write the ./Project file myself in the app.  And the first step to do this, since the file format is not documented, is try to hack up the file format and figure out where all the data is stored.

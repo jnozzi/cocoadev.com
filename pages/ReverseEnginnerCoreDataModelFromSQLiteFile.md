@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Before opening a 'CoreData' file (and I am more specifically interested in an SQLite file), you need to provide a NSManagedObjectModel, to get a NSManagedObjectContext, which can then get some data from files. What if you have an SQLite file that was saved using CoreData (not by an application you wrote, obiously), and just want to read it and get all the NSManagedObjectModel from it, with the entities and their connection and stuff? Has anyone figured that out yet? Maybe it is very simple for people familiar with SQLite? Thanks for your insights :-)
 
 (NB: I realize that some of the classes in the CoreData application might be NSManagedObject subclasses, with other ivars etc..., but at least I could get the basic structure with just the CoreData compatible properties and relationships)

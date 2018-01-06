@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to gracefully handle mounting a new volume inside a cocoa application.
 Eventually I want to mount a volume using 'mount_smbfs' or 'mount_webdav' whatever from inside the application but for now I'm just trying to handle manual mounts (Finder - Connect to Server)
 

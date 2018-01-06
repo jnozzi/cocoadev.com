@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to create a full screen window which has an alpha value of 0 (fully transparent) but which is opaque to mouse events?
 I have thus far found that setting the window alpha below 0.06 or so causes mouse events to pass through the window.
 

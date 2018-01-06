@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone got any ideas why NSRunLoop or actually CFRunLoop crashes with the following backtrace when running on 10.2? I'm trying to do a cmd-line only, no-GUI application. It's running on a server, which doesn't have a GUI session running. I run it over ssh. On my local 10.3 box the program works just fine.
 
 I couldn't even find any mention of BindCGSToRunLoop one the web with Google ar Altavista.

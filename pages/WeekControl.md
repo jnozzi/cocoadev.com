@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/WeekControl is a subproject of General/CalendarControl hosted at http://code.google.com/p/calendarcontrol. It draws a more convenient way of representing the weekdays than having seven separate checkboxes. The control is fully resolution independent and is available under the New BSD license.
 
 General/WeekControl is dependent on another one of my projects Amber.framework which is available at http://code.google.com/p/amber-framework.

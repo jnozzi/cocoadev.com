@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I create a General/NSPanel which displays with its titlebar on the left hand side?  I know that I've seen this style of window before on multiple occasions and I'm pretty sure some of those have been in cocoa apps.  It's usually used for floating toolbars (I think it's used this way in Word, among other applications) and that's exactly what I need to use it for.
 --Reid Beels
 

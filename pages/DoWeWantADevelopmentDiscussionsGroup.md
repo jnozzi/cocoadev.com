@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been involved in a discussion of sorts regarding unit testing. I had considered making it a CocoaDiscussion, then I realized that it **wasn't** Cocoa related. Still, it is a discussion closely associated with development of any kind. I'm not one to ask for organization to the nth degree, but this topic certainly deserves a quick straw poll.
 
 So - consider this a free-form poll. What do you think about creating one more 'Discussions' type grouping? Possibly Discussions:Development Practices? Other ideas? - TimHart

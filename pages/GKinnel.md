@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hobby Macintosh programmer since Lightspeed Pascal days. Never really managed to produce anything all that useful, but I've moved from Pascal to C to ObjectiveC, pouring money down the drain all the while. Considering toying with Java *(But I came to my senses and abandoned that idea)*. I actually have Perl cgi code in production, which is a scary thought.

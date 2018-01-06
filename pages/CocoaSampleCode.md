@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Please add more! See also TipsAndTricks for snippets of useful information.

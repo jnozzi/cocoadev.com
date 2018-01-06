@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to get General/XCode working with CVS.  I don't even mean necessarily using the CVS GUI stuff that's built into General/XCode.  The command line will do.  I've started by copying /Developer/Tools/cvswrappers to CVSROOT (see General/CvsWrappers).  And that helped, but now, after I checkout the project and make  a change to the General/MainMenu.nib, I run a "cvs update" and then a "cvs commit" and get: 

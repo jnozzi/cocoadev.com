@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I'm trying to use performSelector:withObject:afterDelay: in my .mailbundle, but it hasn't been working correctly.  Using performSelector:withObject:  works just fine, but once I add a delay, such as     [self performSelector:@selector(mySelector) withObject:nil afterDelay:0.5];, the selector does not get called.  I thought that maybe it had to do with the modes that are available through performSelector:withObject:afterDelay:inModes: and the fact that I'm running this in a .mailbundle, but after limited testing, that didn't work either.  Does anyone have any suggestions into getting this to work?  Thanks!
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you're looking for the book from O'Reilly, see BookLearningCocoa
 
 If you're HavingTroubleLearningCocoa, see that page, or CocoaIntroduction or HowToProgramInOSX

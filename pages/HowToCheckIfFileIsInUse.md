@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 
 Is there to check if a file is used by other application or not before deleting it from the disk. 

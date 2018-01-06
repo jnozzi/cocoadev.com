@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Private frameworks are no different from other frameworks. Select them in ProjectBuilder as if you were selecting a public framework, and ProjectBuilder will take care of the rest for you (i.e., it will add /S/L/PrivateFrameworks to your framework search path).

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello!
 
 Let's say I have two Table views in a split view. They are proportioned 30/70% so one table is a bit wider than the other.

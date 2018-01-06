@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any rules on when to use remove instead of delete? Login Items and Mail preferences use 'Remove' when an item can be removed from a list, but e.g. Project Builder uses 'Delete' for what to me seems like the same thing.
 
 If I were to formulate a rule myself, it would be that 'delete' will not only remove the item from the list, but the item will disappear, i.e. one cannot just add it again (as is the case with e.g. Login Items), but e.g. in Mail it uses remove about removing filter rules and accounts, which are lost, whereas Project Builder uses Delete for e.g. Bundle Resources, which are not deleted, but simply removed from the inclusion list.

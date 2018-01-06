@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **What are MemoryLeaks?**

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I think it would be a very useful community resource to be able to find a list of localizers who are willing to translate in exchange for a license or whatever else.  If you would like to help start this list, add your name and a way to contact you (and maybe what other languages you speak). Hopefully this list will help out us small Cocoa devs who don't know where to find localizers! 
 [http://littletods.com/en/content/4-perlengkapan-bayi Perlengkapan Bayi] | [http://subconscious-therapy.com/hipnoterapi-surabaya/ Hipnoterapi Surabaya] | [http://www.pbtaxand.com/our-services/tax-advisory-services Konsultan Pajak] | [http://www.tiraimodern.com/product/roller-blind Roller Blind] | [http://www.tiraimodern.com/product/vertical-blind Vertical Blind] | [http://www.doxapest.co.id/index.php/pest-control-dan-anti-rayap Anti Rayap]
 **Localizers:**

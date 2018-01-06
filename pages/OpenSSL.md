@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OpenSSL is a library for doing Secure Sockets Layer communications. It also supports Transport Layer Security, and includes a fully-featured set of cryptography functions. Among other things, OpenSSL can do AES, RSA, MD5, SHA-1, and much more. It also includes a command-line tool capable of these things, called oddly enough     openssl.
 
 The OpenSSL web site is located at http://www.openssl.org/

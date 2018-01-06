@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Mentioning this here because it's hard to find with Google unless you speak Japanese.

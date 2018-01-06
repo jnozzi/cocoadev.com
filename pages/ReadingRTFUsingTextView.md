@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any method to convert NSData from RTF data to NSString?
 If there is some text (with or without images) displayed in textView, then I can read it that way:     [NSString stringWithString:[textView string]], but I need to get NSString from a variable containing NSData.
 

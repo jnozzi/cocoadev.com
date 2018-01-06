@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd love to find out which screen the Dock is on. How would I go about that?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 To move files to the trash and have the dock update the trash icon accordingly use the following NSWorkspace method:

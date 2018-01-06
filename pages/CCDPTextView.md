@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Required for CCDTextField (again).
 
 Used for getting the     selectedRange when the field editor returns garbage.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The ObjectLibrary page had grown to unmanageable size, and it had become impossible to add new items because the page was too big. I handled this by splitting off the two biggest sections -- Controls & View Classes and Networking -- into separate pages: ObjectLibraryViews and ObjectLibraryNetwork. The root page contains several references to each: a     \\[Topic\\]�section near the top, the change log, and their respective original positions in the list. Note the 

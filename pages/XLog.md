@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/XLog is an alternative to General/NSLog if you think General/NSLog's header is wide or you would like to log the elapsed time from a previous log.
 
 **General/XLog.h**

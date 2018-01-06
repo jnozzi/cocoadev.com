@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 (The name of this page should be L0AppleEventServices, with a zero.)
 
 A class by EmanueleVulcano that, by posing as NSAppleEventManager, can extract additional information from Apple Events sent to the application. Currently provides a way to check whether a document was opened in the Spotlight search window and what query was entered by the user (to create Preview or Mail "Do you want to search all mailboxes for 'xxx'?"-style UI).

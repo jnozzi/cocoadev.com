@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm not asking "what's wrong with my code" here I'm just wondering what a SIGSTOP is and what conditions might cause one.  Knowing that, I'll try to figure out why I'm getting one.

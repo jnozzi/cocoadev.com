@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In many ObjectOriented programming languages, ObjC among them, every object belongs to a class. That class defines what data the object can store, what methods the object can respond to, and how those methods should be implemented.

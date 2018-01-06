@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I'm implementing a document-based app where I need the user to save the document in disk as soon as a new document is created. I need that because I will use this information to save extra file to the document's bundle (ex: movies).

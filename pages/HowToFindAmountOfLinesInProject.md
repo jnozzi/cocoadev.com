@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One day I wanted to find out how many lines i wrote in a project, so I wrote this small thing, its not recursive, but it works none the less (my source files are all in the same folder).
 
     

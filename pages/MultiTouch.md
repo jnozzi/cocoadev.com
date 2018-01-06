@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MultiTouch, the IPhone touch screen interface.
 IMHO, the most exciting development in recent computer history. This is StarTrek(c) folks. How long before we find this on a MacTablet? I think very soon.
 

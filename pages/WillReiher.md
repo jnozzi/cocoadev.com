@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Will Reiher** is trying to learn to program in cocoa. (and will now stop talking about himself in third person)
 
 

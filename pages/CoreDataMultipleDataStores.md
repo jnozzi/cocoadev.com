@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all, I am facing a problem that I can't figure out. I've been at it for almost three days now. I am using CoreData for my data model, and have several entities set up, blah blah. The main entity (Group) has a relationship to another entity (Event), which in turn has a relationship to another entity (Person). Each entity in succession is the content set for the previous one (i.e. Events are contained in Groups, Persons in Events).
 
 I have set up a second, in-memory data store so I can insert a special "Library" group ala iTunes or iPhoto, which is recreated every time the app starts. Everything works fine except I cannot save objects in the Person entity upon exit. Groups that are added save, Events that are added save, but if I add a Person and then exit, I get the "Can't reassign an object to a different store once it has been saved." message in the log. If I remove the methods that create the in-memory store, it works fine. 

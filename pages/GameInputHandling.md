@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Seems to be at least three ways to handle events in Cocoa games.
 
 1.) Create your own run loop.

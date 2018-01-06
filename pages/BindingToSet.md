@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Recently I needed to bind an NSTextCell NSTableView column to a to-many property of a CoreData entity.  After banging my head against the wall for a bit when Cocoa refused to bind to the relationship as it can't possibly be KVC-compliant, I came up with the idea of using an NSValueTransformer to transform the set to a string.  Here's my value transformer:
 
     %

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how Delicious Library implements it's Details view? I know it is all one custom view, with all of the fields drawn internally in a subclass. I want something similar in my app, but I can't find a good point to start implementing one. Does it draw an NSTextFieldCell for each item, with conditional statements if it has or does not have a value for that attribute? Then it could draw it over again as editable NSTextFieldCells while in edit mode. I guess I am just trying to get a good idea how this could be done. Address Book does it, also, but not as fancy. Drawing the controls would be easy, I think, but the layout of the view is what has me stumped. Any ideas? --LoganCollins
 
 ----

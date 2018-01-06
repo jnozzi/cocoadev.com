@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have succesfully intialized the plist.
 I have successfully loaded the score onto the form with the following code.
 The last line of this code where i'm trying to put the value of score1 into the score2 textField does not work,

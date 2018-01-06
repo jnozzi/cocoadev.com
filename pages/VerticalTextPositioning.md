@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have searched everywhere and found little information on positioning text vertically. I have a General/NSButton as an example. How could I position the text at the top of the button (vertically) as opposed to the center? I am using an Attributed String to position it horizontally, but have found no similar attribute for vertical positioning. Any help or pointers in the right direction. I have a feeling I am going to need to subclass General/NSButton and do it myself. Has anyone done this before?
 
 ----

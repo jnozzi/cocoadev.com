@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've got a pretty common interface (like Mail, iTunes, etc) with the basic dual splitter. (Folder List on left, then another NSSplitView on right with contents of folder at top right and object inspector on lower right).

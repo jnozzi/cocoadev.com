@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, I'm currently using the Safari Webkit in a Cocoa program.  I have an NSView to which I have added a Webview.  I want to be able to listen for mouseDown and keyPress events on my NSView, but for some reason they never get passed down to it when the user clicks or types on the WebView.   Does anybody have any idea how I can get these events?
 ----
 Just look through the documentation on WebKit.

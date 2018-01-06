@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This is only marginally related to General/CocoaDevelopment, and is more a matter of an annoyance while typing General/ObjC code into General/XCode.

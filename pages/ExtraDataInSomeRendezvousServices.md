@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 iTunes includes lots of extra info in its rendezvous service broadcast, such as:
 
 txtver

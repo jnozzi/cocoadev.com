@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Alright, I've been trying to create a varity of regular polygons but can't seem to do it. However, I have found a site which tells how to do it in C++ (i think). But, I don't seem to be able to do what it says using NSBezierPath... Can anyone help?

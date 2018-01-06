@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/WSMethodInvocationRef is the data structure used when making XMLRPC or SOAP calls from C. The structures and related functions are C-language functions, but of course you can use them within Objective-C code.
 
 Here is an example of how to build a SOAP request and call it. Of course there are problems that we'll discuss afterward...

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 To create an umbrella framework you need at least 2 frameworks: Wrapper.framework and Sub.framework. What we want to do is make Sub a sub-framwork of the umbrella Wrapper.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 It is possible and often desirable to allow the user to globally disable display of all ToolTips in an application.� It requires swizzling a method of a private AppKit class, but this is implemented as a "safe hack" which won't break your app if Apple changes it someday.� It currently works on all Mac OS X versions thru 10.5 Leopard:

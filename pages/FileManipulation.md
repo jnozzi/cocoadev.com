@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm thinking about reading from and writing to files in one of my apps, but, after reading quite a lot on the subject, NSDocument, NSSavePanel, etc... I'm a bit confused...
 
 What I want to write to the files that will be created is : some arrays, some text, and maybe a little more data like colors...

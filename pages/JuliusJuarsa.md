@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Mail me at : ic3_sk8@yahoo.com

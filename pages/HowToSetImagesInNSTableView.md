@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSTableView, two columns one with a NSString, the other with a NSImage. I need an action that changes the NSImage column, of a selected row from its original image to a new one.
 
 ----

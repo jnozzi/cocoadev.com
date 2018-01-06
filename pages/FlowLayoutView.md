@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I had need recently to lay out a ( varying ) number of procedurally-generated same-size elements in a window such that the elements would layout out in a grid with an optimal number of rows and columns for window dimensions. These had to be NSView subclasses since some of them had to be able to hold arbitrary controls and some were just text views.
 
 Having written layout managers before for BeOS and for Qt & for Java I decided why not attempt to make a general purpose "flow layout" for Cocoa...

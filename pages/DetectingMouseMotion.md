@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I was working on a program like Pixen, but just to find the mouse's X and Y. I wrote this code to detect mouse motion:
     

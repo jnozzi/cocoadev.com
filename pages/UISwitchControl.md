@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 <code>- (void)setAlternateColors:(BOOL)flag;</code>

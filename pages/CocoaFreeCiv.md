@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 While cleaning out an old disk, I found a project that I experimented with some time ago. Since there is no way I'll find the time to finish it, I might as well pass it on:
 
 A Cocoa client for FreeCiv 

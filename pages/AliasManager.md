@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Alias Manager creates and resolves Aliases and AliasHandles. Becuase an Alias is an arbitrary description of how to find a file you need a higher level API to resolve them.
 
 It is a pity that the Alias Manager doesn't have a plugin API to add more Alias formats for different filesystems. I don't think the full portential of the Alias Manager has been met. 

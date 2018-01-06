@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What are the pros and cons of General/UnitTesting with test driven development?
 
 Pros:

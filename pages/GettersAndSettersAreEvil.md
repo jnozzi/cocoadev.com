@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In a sister-article to ExtendsIsEvil, Allen Holub [http://www.holub.com/] explains why getter and setter methods are evil, too:

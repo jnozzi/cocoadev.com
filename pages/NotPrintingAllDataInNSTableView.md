@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have written my first program (not a tutorial) using X-code - a simple amortization program.  The program logic works perfectly; I get an amortization schedule in my table view, and I get a vertical scroll bar to see the entire contents on screen. However, when I use the print menu item, all it will ever print is the "visible" view that is there when print is selected - I can't get any pagination so the entire table of data can be printed.  I created this as a simple application, not document application.  Does it have to be an NSDocument application to get the pagination for printing?  If so, is there any way to easily convert it?  Or would it be better/easier to call a print on the data array?  Thanks!

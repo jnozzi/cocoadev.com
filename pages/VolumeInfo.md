@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Maybe I'm just extremely short-sighted here, but how do I figure the total capacity of a volume? Ok, I know how to get mounted disks and get the ones I want, I also get the correct bytevalue for FREE space left on a volume (through the General/NSDictionary object containing General/FileSystemAttributes, key: General/NSFileSystemFreeSize). Now, there exists a filesystem attribute with key: General/NSFileSystemSize, which I thought would return the total capacity in bytes. It returns a value for sure, but the value is not in bytes, comparing the result divided by 1024/1024 to the Finder Info on the volume. Is the value incorrect? Or is it returned in some other form than bytes? Do I need to use a different route to get to what I want?

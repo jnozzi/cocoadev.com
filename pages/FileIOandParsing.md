@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Various concepts and techniques for reading from, writing to and parsing text files.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there any documentation anywhere on how to setup an app so that you can drag a folder/file onto its icon and have it launch the app and run a method on the path of the dragged object? I.E - the way Preview opens a file when you drag a file onto its icon, except with being able to queue up a folder as well.

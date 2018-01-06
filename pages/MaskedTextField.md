@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a requirement that could benefit greatly from a Masked Text Field Implementation. Basically it's a text field where the input characteristics are defined with a format string (definition) and are constrained by the definition. In the Windows world, it would be equivalent to a Masked Edit Control.
 
 Has anyone out there know of an existing Cocoa implementation, or should I start looking to build one from scratch?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know of an easy way to get the value for the amount of installed memory. I could just parse a log from top, but it seems like there has to be a system call you can make to get this info.
 
 ----

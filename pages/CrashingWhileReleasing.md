@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a written a program that displays images in a CustomView using Core Image.  I added two CIFilters to it, and it started leaking memory.  I believe this is because I am retaining the filters, and not releasing them.  However when I try to release both filters and the image, my program crashes.  The relevant code from my CustomView follows:
 
     

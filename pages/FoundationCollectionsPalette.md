@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The FoundationCollectionsPalette extends Apple's InterfaceBuilder with support for Foundation's collection classes; it enhances NSDictionary and NSArray, adding an attributes inspector, a connections inspector and a size inspector to both.
 
 Using all this is as easy as building this project and loading the resulting palette in IB; the inspectors themselves are as obvious as I could make them. The code itself is intended to be a rough template for creating useful palettes in IB. Feel free to use this project as you wish.

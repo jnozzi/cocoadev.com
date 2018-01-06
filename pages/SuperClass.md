@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 "General/SuperClass" refers to the parent class that a child class inherits from.

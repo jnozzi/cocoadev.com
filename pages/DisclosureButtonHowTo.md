@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I make Disclosure Buttons work? I have no idea. I'm creating an Info panel and i would like to able to collapse its sections... Any tutorial on it? Tips? Anything that might help? Thanx
 
 -FernandoLucasSantos

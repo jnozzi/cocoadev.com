@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As described in CoreGraphicsPrivate, I tried to modify the shadow bit for windows of any application.
 I use the following code for it:
     

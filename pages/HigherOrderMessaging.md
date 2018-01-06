@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 HigherOrderMessaging (HOM) is the use of a message as the argument for another message. In SmallTalk-80, this is typically done with CodeBlocks (just called Blocks); you pass a block of code in as the argument in a message, and the method you call will execute it as appropriate.

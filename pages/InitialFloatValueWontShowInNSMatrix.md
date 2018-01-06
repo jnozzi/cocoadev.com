@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 When I start my application, the text boxes in my NSMatrix don't show their values. 

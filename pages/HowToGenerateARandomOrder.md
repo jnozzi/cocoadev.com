@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a function that generates a random order. This function takes three arguments. The first argument is to set the random order count. The second argument is to set the string width of the values placed in the random order. The third and last argument is the data type you wish to get back as an array of random objects (dataType==0 returns an array of NSStrings, dataType==1 returns an array of NSNumbers, dataType==2 returns the raw range data used to sort the order).

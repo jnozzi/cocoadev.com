@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm deleting the old discussion here, since it seems a bit obsolete, and I want to start a new one.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Touchstone is not a set of additions to General/LodeStone. Instead, it is a music synthesis and composition program based upon a simple axiom, 'everything is a functor'. You could just as easily say 'unit' or 'module' rather than functor, it's of little matter. Lodestone has a similar axiom, but differs a fair amount in the implementation; it may bear rewriting to be more like General/TouchStone. (Or else I'll just generalize functors into some General/CXLCore thingy and release them into the wild.)
 
 One of the interesting developments from its, er, development, has been my writing the functor support system entirely in C (for efficiency) with much of the interface to said subsystem written in a couple of classes (for niceness). A functor is a structure which includes, among other things, a list of subfunctors, the size of the overall functor (for reasons which will become apparent), and a pointer to a function which does the 'magic'.

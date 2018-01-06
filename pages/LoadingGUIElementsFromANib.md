@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on a program in which some of the GUI elements are necessarily dynamic and need to be created programmatically at run time. E.g. not the place for IB, though I use IB to build the rest of the GUI. I've already written a crude layout manager for vertical stacking of subviews as well as scroll view management -- enough that I can add an arbitrary number of controls procedurally and they're layed out correctly (in a vertical stack). All's fine there.
 
 The actual GUI elements which are packed into the layout are written by hand (not in IB) and consists of stuff like a slider + 2 labels, one for name one for value; a checkbox, a button, etc etc. Simple GUI elements. I make the calls to setTarget and setAction and setAutoresizingMask and whatnot procedurally as well. But, building them in code seems a bad idea since localization is non-obvious and layout is, at best, a tweak/compile/test loop that takes way too long. I'd prefer to just build it in IB and have my code suck them out of a nib file and pack them into the layout.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 RandomDiskAccessSingleFile
 
 Dual 1.8 G5 / 512MB / 160GB - SATA (Seagate ST3160023AS - 7200RPM/8MB Cache/8.5 ms Avg Seek) 

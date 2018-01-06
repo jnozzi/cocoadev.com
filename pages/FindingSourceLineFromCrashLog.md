@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can I use information from my program's crash log:
 
     

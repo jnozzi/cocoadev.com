@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anyone know how the hell to use NSUncaughtExceptionHandler?? The two (highly rated) Cocoa books I have have zero mention of exceptions - it's as if the exceptions don't even exists! And apple's documentation is pathetic on the subject.
 
 Are there ANY *clear* examples ANYWHERE????

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The description pretty much says it all.  I've created an Objective-C++ based library (static linkage) which contains a custom NSView subclass (call it MyCustomView).  The public header file for this library contains the definition for MyCustomView, and I'm able to get Interface Builder to parse the header file so that it knows about the class.  I then associated an NSView instance in my interface with MyCustomView (again, no problems).  However, after I compile my application, link it with the external library, and run it, I get the following message:

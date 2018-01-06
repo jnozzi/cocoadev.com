@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 With RBSplitView, how can I get the control's subviews to scroll up/down when I'm using expandWithAnimation or collapseWithAnimation? I would like a behaviour like you can find in Safari 3.0's search view (Command-F) or in Coda's search view. When the subview expands or collapses, you can see that the controls will follow the animation (up/down) instead of simply standing there.
 
 ----

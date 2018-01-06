@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a document view that needs to a draw focus ring (non rectangular) along predetermined path that represents a focused sub-content outline (NSBezierPath).
 
 How do I actually draw a standard looking focus ring along such a path?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Call me a newbie, but I can't find a good way to encrypt a password, save it to disk, read it from disk, and decrypt it. I'd like to save it in a plist file, if possible. Is there a wrapper or something for doing this?
 
 Thanks.

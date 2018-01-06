@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got what is obviously an autorelease bug (as in, I'm releasing an object too many times).  A few seconds after I perform a certain action (which is complicated, and involves several client-server messages, and quite a few objects created), I get an "EXC_BAD_ACCESS" signal, and my stack trace shows that I'm in:
 
     

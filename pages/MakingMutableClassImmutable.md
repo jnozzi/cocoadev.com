@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any way to make a mutable class immutable? Is it even necessary? For example, in the following code:
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey, I'm writing my first Cocoa program that retrieves tide information for my local area from the internet.
 
 I needed to access a method from another part of the program (another .m file), so I made it a class method (with a + character) and #imported the .h interface file into the .m implementation file that needed to access the method. This worked nicely (though I'm not sure it's the correct way to do it), so I changed some other methods that I needed to access from across the application to class methods.

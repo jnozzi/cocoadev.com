@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 AnApplication which uses MultiThreading is capable of doing multiple things at once without them necessarily being synchronized. MultiThreading is considered an effective way of UpdatingDisplayDuringTimeConsumingTasks.

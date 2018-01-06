@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an application that only works in uLaw audio file formats (.au suffix). Since this is a less-than-common format on the Mac, I'm trying to add functionality to the app whereby it could accept AIFFs and output them as uLaws. I think I have the QuickTime code down, but the problem is that I'm not getting any product. I think somehow the saving isn't working right. It's made more difficult by the fact that I'd like this to be invisible; i.e., it's converted without prompting the user with the Save dialog.
 
     

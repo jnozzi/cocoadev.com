@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My app was compiling all right. Suddenly, just after updating to QuickTime 6.4 (I use 6.5 now and still doesn't work), when I tried to recompile my app, I got a bunch of cascading parse errors refering to the QuickTime Framework headers. 94 errors in all. All the cascading errors look like :
     
 /System/Library/Frameworks/QuickTime.framework/Headers/ImageCompression.h:5009:

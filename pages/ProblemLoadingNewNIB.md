@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What happens to the application after it launches? Which methods are called? 
 
 What method is called after the nib is loaded, so I will know which method to overwrite/delegate?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've made a framework, but the problem is how do i access the resources in that framework.

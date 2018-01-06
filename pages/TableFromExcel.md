@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd like to load some data from a Mac Excel file. I was planning to load it into General/NSArray or General/KTMatrix.  However, I would like to load each cell by rows  into an array or Matrix.  So there should be a way to  represent the "end of  a row (of the table)" ?   Also, if any of the cell in Excel file is null, could I still store it into the array, or Matrix?
 
 thank you very much for help,

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, folks. The question is how to get some roi image, buffer, from NSImage. Simply i have that buffer (void* or char* for example ), but i need to draw a rectangle in it. Making it NSImage, setting fockus, drawing a rect and unsetting fockus i thing is good, but i want to get that buffer back to my char*... And don't know how ) 

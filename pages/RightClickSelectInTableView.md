@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There seems to be no solid explanation of how to cause a right- or control-clicked NSTableView to select a row. This is especially useful for using context menus to operate on a particular cell's content. Any demonstrations or examples would be greatly appreciated.

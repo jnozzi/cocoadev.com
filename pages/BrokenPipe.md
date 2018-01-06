@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSTask and an NSPipe which I use to send data to the task. I don't think there's anything wrong with my code, since I've used it before in other situations, but sometimes when it runs, it gives me this:
 
     

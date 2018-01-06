@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Where is the Framework that has all the images for Sherlock in Panther?
 
 ----

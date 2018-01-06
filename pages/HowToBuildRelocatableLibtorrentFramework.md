@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone managed to build a relocatable boost/libtorrent framework for Mac OS X?
 
 http://www.rasterbar.com/products/libtorrent.html

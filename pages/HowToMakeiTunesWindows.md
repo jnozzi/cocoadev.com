@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm wondering what Interface Builder items iTunes uses to create the Source and Now Playing sections of the app.
 
 ----

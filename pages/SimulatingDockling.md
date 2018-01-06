@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've read the posts here on how Docklings have been deprecated by Apple.  I'd really like to simulate its functionality somehow, however.  
 
 I already know how to add dock menus (there's a good tutorial at http://cocoadevcentral.com/articles/000036.php ), so that's fine.  But what I really want is to make it so that my app doesn't become active when the user clicks on it in the dock.  I want its only interaction with the user to be thru the dock menu.  There will be no application windows, so it will just be confusing if the user clicks on the dock icon and it brings up an essentially useless app.

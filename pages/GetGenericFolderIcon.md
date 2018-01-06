@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To get a generic folder icon you have to use the NSWorkSpace API as follows:
     
             NSString *folderFileType = NSFileTypeForHFSTypeCode(kGenericFolderIcon);

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In the project I'm working on, I have to filter an image and change some colors around, then display it in a window. Problem is, the source images I use all have white backgrounds, which are somewhat annoying against the aqua-pinstripe background of the window. Basically, I'm looking for a way to make all the white pixels in an NSImage(Rep) transparent. So far I've had no success trying to access the alpha channel while munging through the image, even though NSImageRep has a -setAlpha: method. I have the feeling I'm missing something painfully obvious. Any suggestions? 
 ----
 The description for setAlpha: is 

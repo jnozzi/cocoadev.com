@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to write a simple pdf viewer using cocoa's pdf kit. I created a project trying to emulate the PDFKitViewer example, but when I try to open a pdf file through the menu (command - O) with my application the file names are grayed and I'm unable to select a file. How do I do this? I'm new to cocoa, thanks in advance.
 
 

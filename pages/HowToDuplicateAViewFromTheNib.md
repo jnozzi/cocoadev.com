@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I can load a nib file from my project in order to make a view with the content of that nib:
 
     

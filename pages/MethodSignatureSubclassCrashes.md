@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello again. Once again tackling the TrampolineObject problem of implementing -select, I realized that of course I really ought to subclass NSMethodSignature and override -methodReturnType and -methodReturnLength to return @encode(id) and sizeof(id) respectively.
 
 So far so hoopy, except that it SIGBUSes in Apple's code now; I wonder if perhaps the runtime is making use of e.g. the @defs() mechanism.

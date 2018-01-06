@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone have any idea how to make a rounded dotted border like in the empty TextMate project drawer?
 
 I really have no idea where to begin.

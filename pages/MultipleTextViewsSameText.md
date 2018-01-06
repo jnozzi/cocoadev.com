@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Displaying the same text in multiple text views is as easy as replacing the text storage object of a text view with a shared     NSTextStorage object.

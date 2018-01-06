@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Recently I came across a problem with the plug-in architecture I'm using.

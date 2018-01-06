@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do I change the size of a control (in this case a WebView) programmatically? It's probably something stupidly simple, but googling, searching this site, and searching the documentation yielded nothing.

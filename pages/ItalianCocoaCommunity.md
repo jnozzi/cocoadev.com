@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **[In progress...lavori in corso][mod.19/06/2001|09:00 p.m.]**
 
 ----

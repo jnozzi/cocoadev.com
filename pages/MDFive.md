@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What's the best (easiest) way to perform an MD5 hash of a string in Cocoa/Objective-C?
 
 Thanks.

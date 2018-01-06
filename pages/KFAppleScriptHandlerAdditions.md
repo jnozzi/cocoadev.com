@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 KFAppleScriptHandlerAdditions
 Makes it easy to call subroutines (with arguments) of compiled AppleScript scripts. Certain simple argument types and returns are translated. Here's an (artificial) example:
     

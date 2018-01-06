@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do I do this? I'm familiar with addItemAtIndex, but I'm not all that sure how to automatically add every item in my bookmarks plist. Also, how would I save all the menu items and their representedObjects in my menu into a plist?

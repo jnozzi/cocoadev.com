@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on a ScreenSaver and I have a few NSImage<nowiki/>s that are allocated in the initialization. I need them in every AnimateOneFrame method, so is there a method I can use to release it when the screensaver stops?
 
 ----

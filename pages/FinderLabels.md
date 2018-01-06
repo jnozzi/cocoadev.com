@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to get/set the flag for a file's label in the finder? I was hoping it was just a simple attribute in NSFileWrapper, but it's not. Any ideas?
 Thanks, 
 BrandonDelcamp

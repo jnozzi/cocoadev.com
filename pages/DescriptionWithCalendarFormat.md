@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The following is a list of standard formatters for use with NSCalendarDate's     -descriptionWithCalendarFormat: method.
 
 

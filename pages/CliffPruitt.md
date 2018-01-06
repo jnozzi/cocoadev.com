@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Mostly I do web application development & web/print design work.

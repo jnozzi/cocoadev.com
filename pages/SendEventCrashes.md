@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Things that can cause your application to crash when NSApp is trying to send an event. 
 
 

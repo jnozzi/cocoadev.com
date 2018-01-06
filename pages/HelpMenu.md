@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I found the conventional way to add 'Help' to an application a bit difficult. Recently I did the following:
 in the .h file (of the windows controller, myDocument or whatever)
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey everyone,
 
 I'm looking into writing some sort of Finder plugin to extend its functionality, so here is a couple of questions:

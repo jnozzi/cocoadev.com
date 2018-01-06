@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to learn how to make plugins for General/WebKit apps, namely
 Safari.  Using the General/WebKitMoviePlugin example from here as a starting
 point:

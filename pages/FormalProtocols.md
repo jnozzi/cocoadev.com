@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 FormalProtocols are constructs which allow you to define the interface for a set of methods, but not the implementation or any data members.

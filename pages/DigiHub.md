@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Private framework that seems to handle disk/dvd/ipod insertion. It's preferences are stored in com.apple.digihub
 
 It's preferences have a numeric value. When I change the default action from Opening iTunes to ignore, the value of [com.apple.digihub.cd.music.appeared key:action] changes to 1 (is 101 when you set it to open iTunes)

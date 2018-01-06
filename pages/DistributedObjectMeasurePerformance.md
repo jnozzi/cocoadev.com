@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey
 
 Everyone knows that distributed objects suffer a performance hit when compared with just using typical sockets. Has anyone measured what this performance hit is?

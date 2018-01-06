@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to get my feet wet with Cocoa, and I've managed to work my way through setting up a simple golf handicap calculator using Bindings.  A lot of the basic functionality is working, but I got stuck on sharing some of the data between my two classes / NSTableViews.  

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is the preferred manner of setting metadata tags on files already in the filesystem?  I would like to go through the files in a directory and set their kMDItemCreator and kMDItemFinderComment values, for example.  I don't see why I would write a whole spotlight importer to do this, especially since the metadata isn't going to be derived from file content, but rather set at run time.  I've been looking at NSMetadataItem and MDItem and can only find methods for getting the attributes, not setting them.  I must be really missing the boat on this.
 
 ----

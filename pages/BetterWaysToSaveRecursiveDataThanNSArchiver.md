@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NSArchiver is easily one of the easier classes to use for saving stuff....but it gets horribly slow when saving a lot of data (I mean a LOT).  Is there a faster way to do this?  I figure considering Apple uses it in IB, it would be faster.  Thanks 
 
 ----

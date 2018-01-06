@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 NSStringFormatFlags discusses this in detail

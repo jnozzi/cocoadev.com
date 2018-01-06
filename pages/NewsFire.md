@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One of many RSSNewsReaders for OS X....
 
 Created by Dave Watanabe: http://www.newsfirerss.com

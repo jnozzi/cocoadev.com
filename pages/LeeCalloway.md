@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A zoologist by education.
 A computer programmer first by hobby and now by trade.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also HowToAskQuestions - How to ask a good question to get a good answer
 
 Newbie questions about the basics and frequently-recurring questions (at all levels of sophistication) are part of life on a development wiki.

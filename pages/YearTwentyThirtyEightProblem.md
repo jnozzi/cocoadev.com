@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What are all of the issues related to moving from 32 bit computing to 64 bit computing? I've been using time_t to generate timestamps for logging purposes. While cleaning up some code that timestamps record entries, I started to wonder how things will change when we start to compile in a 64 bit environment. Will     long stay four bytes? If it does, when will time_t be defined as a 64 bit type? Stories about the Y2038 bug often make the comment that this "unix" issue will not be a problem when 64 bit computing becomes main stream. Well the G5 is here, so what are the growing pains we will have to endure? 

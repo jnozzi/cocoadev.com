@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi all. I hope somebody can help me. I'm trying to send an HTTP POST request to an ASP.NET server. I get the following error: Error receiving response: NSError "POSIX error: Connection reset by peer" Domain=NSPOSIXErrorDomain.

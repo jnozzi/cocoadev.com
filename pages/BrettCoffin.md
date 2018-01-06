@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Cocoa programmer. Interested in learning much more about Mac OS X and Cocoa.

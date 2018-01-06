@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a number of images in my Nib file and I dragged an NSImageView object from the Controls panel
 into my dialog. I want to set each image into the same NSImageView such that each image lays on top of
 the previous producing something like a totem pole when finished. I use setImage: but I don't

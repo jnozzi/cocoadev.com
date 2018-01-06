@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Deusty Designs recently released the HTTP server they use to power their Mojo app.  It has:

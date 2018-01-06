@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See General/SafelyNamingFiles, General/NSStringCategory, General/NSFileManagerCategory http://goo.gl/General/OeSCu
 
 ----

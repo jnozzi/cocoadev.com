@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 index: 
 * part1 - The Atomic Stack/Queue
 * stackSQ

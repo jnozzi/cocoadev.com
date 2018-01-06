@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Warning**: this is completely deprecated and useless now, since Xgrid TP2 can not be downloaded from Apple anymore, is not supported at all, and has been supplanted b y Xgrid 1.0 in Tiger and Xgrid 2.0 in Leopard.
 
 

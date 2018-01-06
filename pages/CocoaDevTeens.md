@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Teen Developers:**
 
 To add yourself to this listing, put \\%\\%BEGINENTRY\\%\\%CocoaDevTeens:<year of birth> - <brief comment>\\%\\%ENDENTRY\\%\\% somewhere on your page.

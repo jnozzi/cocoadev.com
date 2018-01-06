@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My application needs to check if packets are being streamed from a particular external site or not. At the very least I need to be able to check whether a plug-in of my own application is receiving packets but I'd also like to be able to monitor another application in this way. The application would be on the same host and owned by the same user so security *shouldn't* be a propblem. While I'd prefer Cocoa classes or C functions to do this, I'm not averse to running external commands via NSTask.
 
 This is what I've found out so far:

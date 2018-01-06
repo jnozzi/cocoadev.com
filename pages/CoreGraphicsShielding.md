@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hello. I was trying to make an app that disabled the CGS for a game so that I could put a window in front of it. (Like an iChat or something). I have looked at the documentation for if, but I cannot figure it out. Please help me.

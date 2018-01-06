@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Q: I would like my Cocoa app to be able to upgrade itself automatically.  Specifcally, I want that when the program starts up, it connects to the web to check for updates.  If it finds one, then it performs the binary patch and relaunches under the new version.  If it cannot connect to the internet, or cannot for some other reason get the updated version, then the program will not be able to run.  In other words, I will have a guarantee that all of my users are running the most current version, and thus I won't have to support multiple versions.  Does anyone know how to do this?  Can you give me some pointers, or direct me to a tutorial or documentation?  Thanks!

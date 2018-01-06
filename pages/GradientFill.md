@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In Mac OS X 10.3 and later, use NSGradient. ~~ Alex Akers

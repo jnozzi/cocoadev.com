@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 &I've been trying to find out how to get the proper uptime tonite, this is what i have so far:
 
     

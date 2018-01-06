@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 If I move an General/NSView programatically (say I have a ball I made by doing an oval in the bounds of the General/NSView subclass, and I move it like this)

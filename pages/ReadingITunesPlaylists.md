@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What would be the proper way to integrate with iTunes playlists, so that I can get a list of songs/playlists in my application? Ie. like iLife apps.

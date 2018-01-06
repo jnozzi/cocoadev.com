@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Drawing in the system menu bar.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Frequently asked CoreData questions. See also, CoreDataQuestions

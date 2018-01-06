@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A FileID is a number HFS+ uses to index a file. FileIDs are thus equivalent to a file path on a UNIX file system, while the path on a HFS+ volume is more like a file attribute.
 
 There are several advantages to FileIDs as opposed to file paths. The main advantage is when referencing a file or folder by it's ID, you don't lose track of it when the path changes. This has human interface implications.

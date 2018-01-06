@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 IOBluetoothUI constains subclasses of NSWindowController which provide access to the Built-in Apple User Interface for Paring, Device Selection, Service Browsing and Object Push.

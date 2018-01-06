@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know if there's an implementation of the gray/blue-white progress indicator sitting in the lower right corner of Xcode? You know, the round one visible when compiling.
 
 ----

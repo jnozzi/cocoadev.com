@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This may be an easy question and I'm just missing the concept. What would be the best way to create a custom view ala iTunes Videos where you have your objects grouped in a matrix-esque style, almost like pagination, where they fill according to width of the pane? Delicious Library is famous for this with its cover view.
 
 I can't seem to find a good way to implement it. I've looked into subclassing NSView and drawing everything myself. If I do that, I'd have to set up selection, dragging, and everything to fit the paradigm, almost like re-implementing NSTableView completely, but for a different design.

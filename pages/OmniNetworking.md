@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OmniNetworking provides a simple and extensible Objective-C wrapper to a multitude of complex networking constructs. Communication over several internet standard protocols is supported, including TCP, UDP and Multicast. Writing a simple FTP client, or custom TCP/IP-based server program becomes a trivial task using OmniNetworking.

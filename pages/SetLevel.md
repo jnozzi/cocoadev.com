@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am very new to Cocoa programming, and for a little bit of an experiment I wanted to create a kiosk'ed window i.e. a Window floating above a black background, kind of like the Authenticate window when you wake a mac from sleep.

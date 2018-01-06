@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OaxacaHom is Yet Another HigherOrderMessaging implementation.  It is available at:

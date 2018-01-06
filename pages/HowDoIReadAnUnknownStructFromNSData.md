@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to use geometry structures (below) in SQLite. SQLite can store a BLOB and return an NSData container. My question is how can I read the structure returned? I've read about using @encode, but that seems to only apply for known structures. My database fields have any of the following types as a possibility and I don't know beforehand which is stored. I tried 
 
     

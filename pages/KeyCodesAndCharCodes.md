@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Following a lost posting on the cocoa-dev lists, I figured I'd ask here, as I feel more comfortable railing on for a fair time and still having a chance of getting an answer! http://goo.gl/OeSCu
 
 This is all for a little internal project, but I can so easily see other uses.  We're trying to send key presses to any application, which can be achieved by CGPostKeyboardEvent - in CGRemoteOperation.h - for the frontmost app, and AXUIElementPostKeyboardEvent for any app, although the whole AXUI thing is a totally different kettle of fish and one I'll tackle later.

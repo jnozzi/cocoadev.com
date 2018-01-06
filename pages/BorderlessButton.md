@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 hey i was just wondering how i could make a borderless button with a custom image in it and a custom size.  I already know how to make a button with an image in it, by subclassing NSButton.  But i was just wondering how i could get rid of the bezel and border that the buttons have.  i was also wondering how i could make the buttons different sizes than the ones available by default in IB.  Maybe there is a different pallete i have to load or something, but i haven't found any information on that.
 
 Sorry if this is kind of a newbie question.  I just haven't been able to find any information by surfing the web.

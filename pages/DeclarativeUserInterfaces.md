@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I had a long discussion today about declarative user interfaces with a fellow hacker. We started off in web applications and why Model2 sucks, and tried to find alternatives (like Model2X), and discussed why they suck too. Then we started arguing about HTML and declarative user interfaces, it was a very interesting discussion, and I'd like to continue it here.

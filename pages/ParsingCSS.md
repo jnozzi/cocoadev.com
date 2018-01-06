@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've found a few open-source CSS parsing packages, including SAC, which lives here:
 
 http://www.w3.org/Style/CSS/SAC/

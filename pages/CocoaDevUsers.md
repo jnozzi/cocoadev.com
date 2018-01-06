@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Make your own homepage on this site here (see HowToCreateNewPages): [New] To add it to this listing, put \\%\\%BEGINENTRY\\%\\%CocoaDevUsers - brief comment\\%\\%ENDENTRY\\%\\% somewhere on the page. You will **not** need to edit *this* page. Alternatively, if you don't want a page, edit this page and add yourself to the "currently homeless" list (in alphabetical order, please).
 Users with homepages: [Topic]

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I am getting to grips with Cocoa/ObjC and have the following conundrum...
 
 In my simple project I have three classes I have created, TWO of them I am using as controllers. One is a controller for the main interface, the other is a controller for a sheet I am using for some simple options.

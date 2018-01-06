@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Introduced with the December 2001 developer tools and/or OS X 10.1.2, AppleScriptStudio (or - short and naughty - ASS) refers to the combination of tools (ProjectBuilder and InterfaceBuilder) and frameworks that allow an AppleScript application to access Cocoa objects. You can even mix AppleScript and Cocoa code within the same application.

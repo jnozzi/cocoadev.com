@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A General/WebView is part of General/WebKit, similar to a browser view in Safari - allows an app to display a web page (obviously). You can even allow the General/WebView to edit HTML pages by setting its editable flag to YES. For a quick tutorial, check out: http://www.cocoadevcentral.com/articles/000077.php
 
 ----

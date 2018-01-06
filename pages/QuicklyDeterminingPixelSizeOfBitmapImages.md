@@ -1,4 +1,6 @@
-
+---
+layout: page
+---
 
 I'm wondering if there is a way to quickly find the exact size of an bitmap image file stored in arbitrary format.  Specifically I have large .tif, .png, and .jpg images on the disk, and I want to find the height and width.  Right now, my kloogy solution is to load in the image, determine the size, then throw away:
 
@@ -133,7 +135,7 @@ Don't forget to release objects you "own". --zootbobbalu
 		CFRelease(item);
 	}
 	
-	NSLog(@"hasDimensions: %@ wh {%i, %i}", (hasDimensions) ? @"YES" : @"NO", width, height);
+	NSLog(@"hasDimensions: %@ wh {{"{%"}}i, %i}", (hasDimensions) ? @"YES" : @"NO", width, height);
 
 
 ----

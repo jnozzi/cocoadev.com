@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, in my current program I had an array that is saved into the user defaults.  That works all fine and dandy while the application is running.  But when I quit and reload the application, the array defaults back to it's set values.  Here's the code that runs at start: (NOTE:  I know this isn't the best way to do it, that's why I'm asking you all.  I can't figure out the 'right' way.)
 
 ----

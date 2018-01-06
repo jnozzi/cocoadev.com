@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Apple-provided class clusters:
 
 NSArray

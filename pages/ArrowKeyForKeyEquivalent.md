@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I had been trying to make Cocoa use an arrow key for a key command when building menus dynamically. (Using NSMenu) 
 I figured out how and thought I'd share it here in case anyone else ever tries this.
 

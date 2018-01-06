@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaDiscussions - Determine Input Menu Setting
 
 Hello,

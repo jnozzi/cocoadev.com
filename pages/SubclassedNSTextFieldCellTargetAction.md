@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have subclassed General/NSTextFieldCell to use in my General/NSTableView - just want to center my text vertically, so very simple.

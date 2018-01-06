@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This article shows you the code that will open a movie file in the finder, assign the movie to an NSMovie, and then put this movie into an NSMovieView.
 
 In addition to this code, you need to create an outlet for an NSMovieView (named myMovieView) in your header file.  You also need to put this code in a method that you attach to perhaps the "Open" item in the "File" menu.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got a bit of a pickle of a situation going on. So before I carry on, let me attempt to describe my situation.
 
 I've got a slider which controls a real-world device (A servo) -- on dragging the slider, positional updates are sent to the servo. The granularity is not important, as the slider's only there to verify a connection and range boundings. This all works fine. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to figure out how to create a Sub Project.  Let me explain the situation:
 
 

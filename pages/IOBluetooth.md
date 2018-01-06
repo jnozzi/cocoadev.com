@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 IOBluetooth is the API for Apple's BlueTooth implementation.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CCDAppKit contains some AppKit improvements for your enjoyment.
 
 ----

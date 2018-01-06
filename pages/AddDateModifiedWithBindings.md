@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I have a question regarding bindings, key-value-observing, and updating the persisting document.

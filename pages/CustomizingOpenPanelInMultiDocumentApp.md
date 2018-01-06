@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I thought I wanted to do a simple thing: Customize the OpenPanel, so that I can give the option to open other document types than in my info.plist.
 Is it really the case that subclassing the NSDocumentController (namely the openDocument: method) is what I have to do?
 

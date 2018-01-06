@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone had experience using Radio Buttons in a table column? I am constructing a question/answer paradigm, specifically, I have the questions table, then for each question I have a table of objects that have a column for answer title and a column for "correct", the radio button will be used to choose the correct answer. I use bindings with CoreData, and I can't seem to figure out how to get it working with the radio buttons. I just want the items to either have YES or NO for their "correct" attribute. Is this the wrong approach or is there something I'm missing? --LoganCollins
 
 *Why not use an NSMatrix of radio buttons?*

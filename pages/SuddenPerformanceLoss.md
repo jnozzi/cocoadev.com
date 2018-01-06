@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I just installed 10.3.3 on a test machine and found that my program suddenly performs about 50% slower ( on average ) than before. My program's a huge ornery mass of General/OpenGL and physics, 99% C++, and has up until now performed excellently.

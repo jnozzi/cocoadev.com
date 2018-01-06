@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on General/VocableTrainerX (http://www.sourceforge.net/projects/vocx), an easy to use Open Source Flash Card program.
 
 A user sent me a cool suggestion: he wants the textfields in the software to have a "General/StickyKeyboardLayout".

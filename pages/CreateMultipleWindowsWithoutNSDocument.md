@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am looking to have a multiwindow application without the need for NSDocuments.  I just don't need the Save/Open, etc. functionality that it offers.
 
 Here is what I would like to do.  Create a master Controller that would create instances of NSWindowControllers in a nib, and display the windows.  Of course this would happen dynamically as the user chooses 'New' from the Menu.  So, when a user chooses New, a new NSWindowController derivative would be created (via the master controller), which would in turn display a new window being controlled by that controller.

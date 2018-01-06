@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to connect to a web service using cocoa. I've used the General/WSMakeStub tool in the developer tools to generate the stubs, but the simple Hello World method which has no parameters does not accept a simple call. I'm just trying to call it using the line..
 (General/NSString*)[Service1Service Helloworld] ; 
 

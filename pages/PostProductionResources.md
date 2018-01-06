@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I though it might be a good idea to have a centralized place for some wrap up information for our programs.  I've started some sections to give you guys an idea what I mean.  - FranciscoTolmasky
 
 

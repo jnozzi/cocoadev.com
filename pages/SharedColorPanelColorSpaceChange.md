@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 My application makes use of a sharedColorPanel.  I get a colorChanged message when the color changes in the colorPanel, but how do I know when the color space changes, from RGB to CMYK for example, if the color sliders aren't moved?

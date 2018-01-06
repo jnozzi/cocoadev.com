@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can someone explain why sigmoid summing is necessary for backpropagation learning methods?
 
 ----

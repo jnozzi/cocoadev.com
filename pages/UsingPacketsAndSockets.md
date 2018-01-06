@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, I'm writing my first socketbased app ever and I have some wonderings...

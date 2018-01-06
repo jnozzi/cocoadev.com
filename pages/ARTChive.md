@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm currently writing an app that reads/writes album artwork to the ARTChive (~/Library/Images/Music) and I haven't been able to find any documentation for it so I was hoping you guys could verify that I'm doing it correctly, here's the way I make the directory structure:
 
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I would like to make minimum size custom nsview can scale. I tried to subclass setFrame, but my app always crashes. Could somebody give me example on how to implent setFrame in my subclassed nsview?

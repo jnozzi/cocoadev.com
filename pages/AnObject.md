@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An object is the basic unit of data in Object Oriented Programming and Design. Unlike primitive data types, an object contains not only its data but also the methods necessary to describe and alter its data. (Code, after all, is just a special kind of data: a set of instructions given to a computer.) An object will generally have data which can be described as either an attribute or a relationship (composition (composed of data/other objects) or inheritance (derived from other objects)). 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone been able to run AppleScript from within a standard Cocoa app in XCode?  The tutorial at Cocoa Dev Central seems no longer to apply.  I found the page on NSAppleScript and was able to get that working, but using this technique you have to write the source in quotes directly.  I want to be able to execute a compiled applescript.  Thanks all.
 
 ----

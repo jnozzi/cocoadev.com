@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to create a similar effect as used in the finder: when dragging a file onto a folder in the sidebar, the files sort of zooms into it.  This is also done in Address Book, which leads me to believe there is a Cocoa (private?) way of doing this.  Any ideas?
 
 ----

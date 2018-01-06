@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is just a simple NSTextField that resizes to fit its contents.
 
     

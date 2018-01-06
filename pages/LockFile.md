@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 <<Need example of LockFile or PID file for using in Cocoa/Foundation programs.>>
 
 ----

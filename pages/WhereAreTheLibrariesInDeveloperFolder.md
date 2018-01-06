@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I include a library such as stdio.h, the C program compiles correctly.  Where is this library file stored on my hard drive?  When I search for it, I do not see it.  I also can't find math.h either.  Where are these files stored?
 
 ----

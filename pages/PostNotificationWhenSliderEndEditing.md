@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you need to have a continuous slider that updates one thing on the fly but has a major process you want done only when the user is done adjusting the slider, implement the following function in a category on NSSliderCell.
 
     

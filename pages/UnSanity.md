@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://www.unsanity.com/link/logo/small.gif

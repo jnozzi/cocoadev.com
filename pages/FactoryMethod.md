@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A class that inherits from NSObject has three roles. The first role is to act as a "factory" for objects the class intends to create, the second role is to define how objects manufactured by the "factory" behave and interface with other objects and the last role of a class is to define services that the "factory" and products of the "factory" implement for other objects. The "factory" is called the ClassObject and an object manufactured by the ClassObject is called an "instance" or InstanceObject.
 
 Creating a factory method:  (discussion follows)

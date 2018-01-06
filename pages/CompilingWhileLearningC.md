@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CompilingWhileLearningC .  My last code was written on my little llc, before hard drives  and I am now attempting to learn C, then Objective C with XCode.  Is there a way to  write some simple code in C, compile it, and run it without 1st learning all the XCode targets, instances, etc.?  
 I just want to practice some of the simpler stuff, like:
 

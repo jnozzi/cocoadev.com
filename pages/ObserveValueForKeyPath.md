@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you are getting the common error:
 *** NSRunLoop ignoring exception **** -observeValueForKeyPath:ofObject:change:context: only defined for abstract class.  Define -[%%%SOME CLASS NAME HERE%%% observeValueForKeyPath:ofObject:change:context:]!' that raised during posting of delayed perform with target 5531a80 and selector 'invokeWithTarget:'
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a program that exports PDF, TIFF, and PNG files so I followed Apple's Sketch example when declaring types in my     Info.plist file:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I access the glyph table of fonts? i.e. if I have a string which I want to draw using CGContextShowGlyphs then how would I go about transforming the string to glyphs?
 
 I do know that this transformation is not simple, i.e. several characters can result in a single glyph and a single character can result in several glyphs.

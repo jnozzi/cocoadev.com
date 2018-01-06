@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does IKImageBrowserView work with bindings? I don't see bindings documented, yet I do see that the IB provides them.
 
 If it does, what object does it expect to be given when the model key is sent to the object at the end of the model path?

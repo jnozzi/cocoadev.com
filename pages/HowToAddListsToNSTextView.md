@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've been working with NSTextView, trying to make it suitable for

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Sometimes, it's really boring to be a newbie.
 I made a NSView (inside a NSScrollView) with IB. Then i'm dynamically adding subviews in it from top to bottom (see AutomatorLikeUI).

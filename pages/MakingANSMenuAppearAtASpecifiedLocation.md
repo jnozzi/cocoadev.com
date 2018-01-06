@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.
 
 I've been playing around with NSMenu's +popUpContextMenu:withEvent:forView: but don't seem to quite reach my goal. Here's what that is:

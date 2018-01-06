@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 I have written a small application, which will use IKPictureTaker component for the image selection.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **AspectCocoaRequirements** - 
 
 **Supported Pointcuts:**

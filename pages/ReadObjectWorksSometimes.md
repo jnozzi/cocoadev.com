@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have created a file using Java Bridge in objective C and am reading the file using pure Java.  Problem is that readObject() produces an IOException(), but only when the file is on a remote machine (applet reads file ok when file is on local machine, running in project builder works fine too).
 
 Any pointers would be appreciated.

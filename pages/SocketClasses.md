@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you know of any other classes, stick 'em on here. Feel free to comment
 
 

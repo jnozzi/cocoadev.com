@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does any one know where I can get a list of all the different builds of Panther that are out there?
 
 http://www.thinksecret.com seems to be keeping up with the builds seeded to developers.  Here are the following seeds (as far as I know)

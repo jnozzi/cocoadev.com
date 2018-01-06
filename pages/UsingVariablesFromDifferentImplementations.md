@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How can i use a variable (General/NSString) "bam" from a different implementation called "bang"???

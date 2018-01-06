@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm hoping someone can help me identify these lines in my run log.
 
     

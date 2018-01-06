@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know how much memory overhead is involved with an General/NSTask. As far as I know General/NSTask is just a wrapper for fork() and exec..(). A couple of Unix books state that when a parent process forks and creates a child process the child process is a copy of the parent.  For large applications, is it better to create an General/NSTask server (launched by General/NSWorkspace) and communicate with tasks using distributed objects? 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to add a bundle to my project, just so that after compilation its located in a certain folder in my application bundle.  But every time I add the bundle to my xcode project, it just adds the files inside the bundle and creates the directory structure around it in the xCode directory listing, which is very annoying, making it so I have to go in an manually do show package contents> and add the bundle myself afterwards.  Does anyone know how to appropriately do this?
 
 ----

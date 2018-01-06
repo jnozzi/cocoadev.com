@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have spent the last nine months working on my first OS X application. Countless hours, frustration, elation and work. I can�t tell you how this feels. It feels like nothing I�ve ever felt before. I created something, from beginning to end, and now I get to share all of my hard work with you.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How is it possible to make a button have 2 alternate images to be able to cycle through 3 images by clicking the button?
 
 Should I try to subclass NSButtonCell to obtain my custom images for every state (on, off and mixed)?

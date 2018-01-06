@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Java has its little line drawing of a cup of coffee. **Also, it has Duke.**
 http://www.sun.com/960901/images/JAVA.85.GIF
 http://java.sun.com/products/jndi/javaone98/art/duke_tag.jpg

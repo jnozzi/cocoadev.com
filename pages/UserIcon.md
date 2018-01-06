@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do you find the General/NSImage for a specific user? (i.e. like that shown on the login window)
 
 ----

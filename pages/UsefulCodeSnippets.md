@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/UsefulCodeSnippets:
 
 This page is intended to group useful little bits of code intended to be used within a method's block and code patterns for beginners.

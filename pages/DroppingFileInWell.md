@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to add file dropping support to a custom NSImageView subclass.
 
     -(void)awakeFromNib

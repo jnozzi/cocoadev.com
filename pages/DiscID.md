@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm going to help a friend rip his entire CD collection (300+) into mp3 file format. The only problem is he has dialup and and a single shared phone line. I have already downloaded freeDB's database (really large if you leave all entries in uncompressed individual files), so most of the track info will be on a local HD. My only problem is getting cd-discid or discid to work on Panther. I only need the 32 bit hex id to access the database. Has anyone gotten either of these command line tools to work in Panther? Does anyone know of a way to get iTunes to reveal the "disc id" of a mounted CD?
 
 BTW, when I try to use cd-discid by passing "/dev/disk2" as the only argument I get the following error:

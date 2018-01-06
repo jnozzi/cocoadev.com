@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
    I need to create a widget which acts as plug-in for Safari. I had gone through documentation and found a webkit framework can be used as plug-in to safari. But I need to create a widget and use this widget as a plug-in to Safari. So please, could you tell me is it possible to have a widget which acts as plug-in for Safari? If yes, please give me the details.
 

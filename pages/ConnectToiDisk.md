@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I connect to an iDisk? I just want a basic mount that logs in, and then opens the Sites folder.
 
 ----

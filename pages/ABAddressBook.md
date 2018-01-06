@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
     + (ABAddressBook *)sharedAddressBook;
 
  *Returns the unique shared instance of ABAddressBook

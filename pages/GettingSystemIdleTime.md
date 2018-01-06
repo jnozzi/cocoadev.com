@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to call a method or function only after the whole machine has been idle for X length of time (just like a screen saver would do).
 
 So far I've only been able to detect when my own app is idle (using InstallEventLoopIdleTimer)

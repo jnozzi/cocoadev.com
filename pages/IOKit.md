@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 IOKit provides access to devices. It is an object-oriented framework leveraged by programmers for creating device drivers. It uses a subset of Embedded-C++ as its *lingua franca*, but the user space client API is wrapped into C APIs.

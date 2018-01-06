@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also NumericalComputation
 
 Ok this isn't Cocoa/Obj-C related, but I figured I'd ask. What's the best way to go about handling huge numbers? I need to handle extremely large numbers in decimal format that are similar in size to this (example):

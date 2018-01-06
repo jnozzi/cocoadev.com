@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm writing a small graphical calculator, that draws curves/lines based on the equation given by the user. I've already written the parser, and it works fine (I wrote it in X-Code and then i had to port it to Windows for various reasons, but since it was written in C, it works fine there as well with minimal changes).

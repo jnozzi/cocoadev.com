@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My Cocoa app would like to read from system files not readable by normal users.
 
 Question one: How does my app (or parts, threads, whatever of my app) get these privileges? This is not intended to be sneaky, I would like it to work just like the installer or similar apps: "You need to be an administrator to use this function, please identify yourself"

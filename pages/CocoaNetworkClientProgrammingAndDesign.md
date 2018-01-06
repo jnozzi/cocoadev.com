@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am writing an IRC client in order to really leran Cocoa.

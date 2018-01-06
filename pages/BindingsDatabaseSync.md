@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Any thoughts on techniques to sync the Cocoa Bindings and a Database like sqlite? 
 
 ----

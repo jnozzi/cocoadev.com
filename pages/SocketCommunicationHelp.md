@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have written an application for our company  that serves as an in/out board, production status indicator, and instant messanger.  It is a rather crude and simple application, but it works.  It was written in REALbasic and consists of a server app and client apps.  The communication is conducted via REALbasic sockets that just send character strings back and forth.
 
 I would like to write a client app in Cocoa and I can't seem to find any help with sockets.  I suspect that NSSocketPort doesn't work quite the same way as REALbasic sockets but I'd like for the cocoa client app to be able to communicate with the existing server app - that is, be able to connect to the socket (by port and ip address) and read and write text strings over the socket.

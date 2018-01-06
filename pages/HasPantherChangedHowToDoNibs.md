@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has there been a change in Panther on how IB handles multiple nibs? I have 2 Cocoa books...Learning Cocoa with Objective-C and Building Cocoa Applications. In both of them, in their sections on multiple nibs, they talk about making a controller class and then assigning the new nib's File Owner to that class by clicking on the File Owner in the Instance Panel, and choosing the class in its Attributes window. 
 
 I find though that if I click on File Owner in the new nib's Instances panel (or any nib's Instances panel), the Attributes option in its Info panel, it just says Not Applicable. Both these books were written for 10.2.8...has Panther changed this?

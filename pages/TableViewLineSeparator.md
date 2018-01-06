@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How would I go about implementing the General/TableView Line Separator now used in many apps including the finder, as shown below between 'External Storage' and 'Applications'?
 
 http://wwwusers.brookes.ac.uk/04099001/example.gif

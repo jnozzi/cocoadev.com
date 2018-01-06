@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 At the end of my textField�s IBAction method, I�d like to make another textField firstResponder�
 
 Sounds easy, but�

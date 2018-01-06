@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 You can create action methods using either Xcode (or Project Builder) or Interface Builder.

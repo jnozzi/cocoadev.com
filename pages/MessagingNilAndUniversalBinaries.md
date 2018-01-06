@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a list that I hope will start a discussion about when messagning nil is ok and when it is not. 

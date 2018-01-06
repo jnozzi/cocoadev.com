@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Howdy y'all,
 
 I have a separate thread in which I want to send a delayed message. I've tried using     performSelector:withObject:afterDelay: and     scheduledTimerWithTimeInterval:invocation:repeats:, but neither of them work, even though they DO work in the main thread. That leads me to believe no timers at all are working in the separate thread. Are there any catches or anything I have to get around to use timers in a separate thread?

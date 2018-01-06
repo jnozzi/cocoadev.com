@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know the best way to handle tracking rects when a view is in a tab view? The problem I'm having is that deselected views contained in a tab view are still tracking mouse movements. The only solution I have is to remove the view from the tab view and remove all the tracking rects (yes a view removed from its superview will still receive     mouseEntered: messages). There has to be a better way to handle this situation. Maybe creating a method like     enclosingTabView and having the view ask the enclosing tab view if it is selected would be the best solution, but this will require all views placed in a tab view to modify     mouseEntered/mouseExited. 
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, before you all jump down my throat and say that adding items into an NSOutlineView is easy, let me explain my situation.  I'm trying to add an item into a selected folder in the outline view.  i.e. I have 3 nested folders and I'm currently selecting an item in the third folder.  When I click 'Add Item' I want an item to be added into the third folder.  I tried doing this and sort of got it to work.  The problem is the new item gets added to every folder that the nested folder is in (in other words, it creates three new items).  Here's my code:
 
     

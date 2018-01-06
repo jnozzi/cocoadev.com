@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a column of check boxes in my NSTableView. when you click on one of these check boxes its tablerow gets selected and the check box is toggled.
 
 but this is not the behavior i am after ... i need them to work like the check boxes in iTunes:

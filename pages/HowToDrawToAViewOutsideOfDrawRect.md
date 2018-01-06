@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 While in an NSView subclass, how do you draw to a view created on-the-fly, and outside of the drawRect: method of the original subclass? Is this even possible? I'm trying to avoid subclassing at all costs. 

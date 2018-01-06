@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on an app that is very disc intensive and I have data files that are indexed. I was wondering if anyone knows if HFS+ tries to keeps files in the same directory group in the same area of the hard disc. The latency caused by head travel is very noticible in the performance of my app, and I would like to keep seek times as low as possible. But part of my design problem is that the indexed portion of the file and the data portion of the file vary in size dynamically, so one method for reducing the number of truncations is to have an index file and a separate data file. The obvious concern with having two separate files is the possibility that the file system might move these related files far apart from each other on disc. 
 
 Any ideas??

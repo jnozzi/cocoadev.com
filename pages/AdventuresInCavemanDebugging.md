@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I had problems with my application having a delayed crash. By delayed crash I mean I perform a few actions and the next time I try to perform a KeyEquivalent (could be command H, command Q etc) it crashes. These same methods when initiated by selecting the menu item do not result in a crash (when called again directly afterwards with a key equivalent it causes a crash). 
 
 I have tried setting the environment variable NSZombieEnabled with no luck so I do not believe it is a deallocated pointer being accessed. Actually I have little idea what it could be as I haven't had any luck in discovering the bug.

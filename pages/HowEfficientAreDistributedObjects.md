@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Yes, how efficient are distributed objects performance wise? Especially compared to Sockets, CORBA, RPC, or Java's RMI? I can imagine that sockets are faster, because they don't have the overhead for managing the underlying objects (but they are definitely not so convenient to use :). So, are there any tests, reviews, stats, opinions, experiences, or anything like that out there?
 
 --ThomasSempf

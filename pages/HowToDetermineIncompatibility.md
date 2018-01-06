@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to backport a package to Panther and further from Tiger. How can I find all the incompatibilities quickly? Attempt to compile? Oh, and by the way, I'm not on Tiger.
 
 ----

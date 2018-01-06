@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got an array in my class, and a method to resort this array, but this array is non-mutable, so I call     sortedArrayUsingFunction:context: and replace the non-sorted array with the new sorted array. However after finally getting it to work after several crashes, I am wondering if the memory management is correct, or proper (by the time this method is called,     _viewedTracks should already have a retain count of 1):
     _viewedTracks = _viewedTracks autorelease] sortedArrayUsingFunction:kSort context:@"title"];
 [_viewedTracks retain];

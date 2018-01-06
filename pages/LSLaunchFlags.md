@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Below is a code where I am trying to launch "TextEdit.app" in the Classic emulation environment. It works fine for Mac OS X 10.4.8 but not for Mac OS X 10.4.10 and later versions.
 I didn't find any apple document why it happens.
 

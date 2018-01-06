@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *This technique is also discussed further and in a more specialized context in General/BorderlessWindow*

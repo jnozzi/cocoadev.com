@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to get the spinning progress indicator images like this?
 
 

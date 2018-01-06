@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The task is to change  Posix Permissions of file owned by any user from application launched by any user... to r**r**r** - to process files in the shared folder...
 
 using NSFileManager to change  posix permissions works fine only when file is owned by user who launches application

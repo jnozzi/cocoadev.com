@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CGShading is a CoreGraphics API that allows drawing of either linear or radial gradients.
 
 http://developer.apple.com/documentation/GraphicsImaging/Reference/Quartz_2D_Ref/qref_main/function_group_27.html

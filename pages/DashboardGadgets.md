@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 People have started posting these on the web (what NDA?)...
 
 Fill in the blanks about Gadgets and Gadget Plug-in development here :)

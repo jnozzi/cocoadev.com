@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an app that is a NSView subclass.
 
 What happens is that in the init method, an array is created by means of 

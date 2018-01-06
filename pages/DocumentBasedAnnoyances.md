@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a couple questions about document-based apps. The first one is, how do I disable the document dirty state? I really don't need it in my app, and it's annoying to have the "Do you want to save?" sheet presented every time the user closes the window.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to know something that seems basic knowledge. Is it possible that an object can modify a variable of another object ? Maybe it is not, but if it is, how can I do so ?
 
 I have a subclass of NSView and a custom NSObject. I want that custom object to get access to one of the variables of NSView. In other words, I want my custom object to modify an array that is declared in the implementation of my NSView.

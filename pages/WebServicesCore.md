@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Mac OS X 10.2 includes a new General/WebServicesCore Framework (which is part of the General/CoreServices Framework) which allows one to make XML-RPC calls from Cocoa apps. (And Carbon apps, too, by the way.)

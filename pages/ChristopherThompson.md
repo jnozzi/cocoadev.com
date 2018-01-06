@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CEO, TriLateral Systems - http://www.trilateralsystems.com

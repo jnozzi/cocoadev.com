@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can anyone give me a start, or a full tutorial if there's one out there, on how to create the criteria-style views that you see in Mail, Finder, iTunes, etc. I don't need the filtering part specifically, just the way to create the repeatable criteria views, you know, click add and it adds another row, click remove and it removes it. Also, I'd like to have it so that I can change the type with an General/NSPopUpButton like Mail and Finder. If someone can give me a push in the right direction I'd appreciate it. It seems to be a common question here but without a good solid answer. --General/LoganCollins
 
 This is not really a treatment of the problem at hand, but an article on stepwise detailing how to use subviews in tableviews, uses a rule editor (criteria view, etc) to demonstrate. The source code is there.

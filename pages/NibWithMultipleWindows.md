@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This will be an easy question.
 
 If I have an app with one nib and in that nib I have more than one window, how do I refer to those different windows in code, ie. to show, close, etc.?

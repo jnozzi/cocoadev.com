@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am making an application that takes a user inputed list and fetches the definitions to the words given. This process takes quite some time, as I have it going to Dictionary.com via the curl command and parsing that result.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In the terminal, you provide a file via whatever/whatever, right? But the "true" macintosh, IE not the terminal, if you output a filepath gotten through cocoa, it will use : instead of /?
 Can someone provide conformation on this, and provide a solution for foundation programs that use file-path arguments?
 

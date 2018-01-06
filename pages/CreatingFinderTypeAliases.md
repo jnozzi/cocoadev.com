@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 How could I create Finder-like aliases? I tried to read Carbon Alias Manager ,but I can't figure out how to create aliases. I also tried to use NDAlias which uses same Carbon Alias Manager but still no luck. :(

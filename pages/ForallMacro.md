@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://sigpipe.macromates.com/2004/09/13/iterating-an-array/
 
 By AllanOdgaard. Relies on C99 mode, but lets you use forall(array, item) { ... }, which I know we all want to do.

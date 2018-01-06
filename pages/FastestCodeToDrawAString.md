@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 more discussion at FastTextRenderingInNSView
 
 I have to draw many strings and would like to know what the fastest way to do so is (NSString drawAtPoint:... is slow!).

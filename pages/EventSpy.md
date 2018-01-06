@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know if there's a tool to spy on the various events a cocoa application might receive?   If anyone here is or used to be a win32 developer, i'm thinking of something along the lines of Spy++.
 
 ----

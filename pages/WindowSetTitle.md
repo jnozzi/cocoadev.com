@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also General/SettingWindowTitle
 
 In a non-document-centered app, you can subclass     General/NSWindowController.  Inside that class, use the following code to set the title of the window which that class controls:

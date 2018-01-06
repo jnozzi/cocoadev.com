@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am a FANATIC about FURRIES! Don't believe me? Just drop me a line at mailto://osedric@aol.com
 
 

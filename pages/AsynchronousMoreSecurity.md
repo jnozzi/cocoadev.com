@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have been using Apple's M<nowiki/>oreSecurity library to run a privileged tool from a Cocoa application. The only problem I've run into is that     M<nowiki/>oreSecExecuteRequestInHelperTool does not return until the tool completes the requested operation. For lengthy operations, this means that the application will become unresponsive and the spinning wait cursor appears.

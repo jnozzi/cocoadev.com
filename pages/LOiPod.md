@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 (The title should be L0iPod with a zero.)

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm confused about the available memory. When running my Cocoa application I get a crash because it ran out of memory.

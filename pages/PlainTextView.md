@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page was dying in a spiral of political mess, it has been refactored into a NSTextView plain text editing tutorial. (If you're interested in the debate see the page history)
 
 To create a plain text formatted NSTextView you must do the following:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Any one interested in populating an iChat chat room  called CocoaDev? For more really time discussions. And if it becomes popular it could be mentioned on the home page?
 
 just an idea.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.
 
 I want my windows not to be clickable, unless a chosen key-combination is pressed (command-option or something like that). But it has to "get" that the modifiers changed even if the app is not frontmost, and the window is not the keywindow. 

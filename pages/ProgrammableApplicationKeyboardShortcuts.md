@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm looking for the best approach to allow programmable keyboard shortcuts in my application. The ideal solution will be able to handle the following:

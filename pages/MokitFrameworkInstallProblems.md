@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm having problems installing the Mokit Framework, here is what I'm doing, please let me know where I am going wrong...

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm have an General/NSMatrix with some General/NSTextFieldCells, and I'd like to center the text inside each cell both vertically and horizontally, but it doesn't seem to be working. I figured that I could use some General/NSAttributedStrings to do this, but for some reason it's not working. Here's my code.

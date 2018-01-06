@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a design related question here.
 
 I have a document based app.  I have a textview (where the editing takes place).  The textview is a custom one with a method that calls an NSLog (for testing).  I register for the textDidChange notification of the text storage inside the document subclass and call the method in the text view whenever the user modifies the text:

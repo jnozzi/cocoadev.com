@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Please excuse the exceptionally long name but it fairly well describes the problem.  I'm experiencing an odd situation where I'm using NSFileHandle to read data in the background and notify a delegate.  Once data is received, the delegate creates an object representing the data and does its stuff and releases the object when it is done.  Unfortunately, the object is not released if the application is in the background.  If I click on the application, `dealloc` gets called on all the objects that were meant to be released.  I assume that it's a threading issue due to using `readInBackgroundAndNotify` but that's only a guess.  Everything else appears to operate in that thread except for the auto-generated autorelease pool isn't being called.  Is there a sufficient workaround and/or is there a way to flush the autorelease pool without having the user bring the application to the front?
 
 -G

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSArrayController bound to an array "values" in my model object.  There is, in turn, an NSTableView bound to said NSArrayController.
 
 My problem is that there are a few times when I need to remove an item from the array in code.  I do: (and if anyone can format this to make it look like code, it'd be much appreciated)

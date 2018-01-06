@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, gang. I want to intercept (and normalize the formatting of) text as it's dropped or pasted into an NSTextView. I don't want to normalize the entire contents as this is a performance issue with lots of text. I've thought of overriding     textStorageDidEndProcessing but this won't tell me whether the text has been dropped, pasted, or just typed. In short, I need to intercept the drop operation and the paste operation so I can normalize attributed strings (or just ignore plain old strings).

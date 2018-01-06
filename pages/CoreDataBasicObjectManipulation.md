@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Good day all, I am currently trying to write a CoreData back end for one of my programs. However straight to the point I am working from the default template modified. I am attempting to get it to work reliably. Currently with the following code and the object model ( http://catsdorule.torpedobird.com/tmp/DataModel.pdf ):
 
     - init

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is my first Cocoa application:
 It is an General/AppleScript application
 

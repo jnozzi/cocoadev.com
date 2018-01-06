@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Google says:
 
 *Results 1 - 10 of about 203 from developer.apple.com for clipboard.*

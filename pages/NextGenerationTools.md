@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Improving the XCode IDE: More Than a Source Editor?**
 
 (Inspired by XCodeTooMuchLikeATextEditor)

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a table view, that is fed by an NSArrayController via bindings. The NSArrayController is fed via the nibs File's Owner which is a basic custom controller (NSObject derived).

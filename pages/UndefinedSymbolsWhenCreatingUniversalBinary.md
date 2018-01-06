@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am using Xcode 2.4.1 to build a universal binary for an application. In the debug configuration, where the architecture of the project is set to ppc, the application builds without error on my ppc. When I switch to the Release configuration, where the architectures are ppc and i386...I get the following warning/errors:

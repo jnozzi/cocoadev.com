@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 For explaination and sample use see: ClickThroughButtonInTableView
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Iconara DOM framework is a Cocoa-framework for accessing, manipulating and outputting XML-data. It's similar to the JDOM and XOM frameworks for Java. http://goo.gl/OeSCu

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working on application that creates a full screen window, has a NSMovieView taking up the full window, and then I have added a child window that contains some text fields, etc.  The idea is to have a form that is viewable/editable above the movie playing in the background.  I figured out how to make the form editable by overrding - (BOOL)canBecomeKeyWindow to return yes for the child window.  I am also using a shadow on the child window (and a clear background color obviously) so that the labels and items stand out a little more on top of the video.
 
 Everything so far is good.  However, as part of the form, I created two custom subviews, in the sense of having two steps.  When you finish the first step, you click continue, and I hide the first subview, and then show the second subview.  I'm not sure if there's a better way to do this (I didn't want to use the NSTabView because I didn't want the tab controller at the top, and couldn't find a way to hide the tab controller without hiding the NSTabViewItem children as well).  Anyway, so my solution has been to programatically show/hide these two views when the "Next" button is clicked:

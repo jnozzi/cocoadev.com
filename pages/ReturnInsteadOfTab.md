@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NSTextField responds to TAB to move to next field on the layout.
 How easy is it to make it respond to RETURN ?
 Or to respond to both Return OR tab ?

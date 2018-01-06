@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Whenever I double click _anything_ in Xcode v1.5 (e.g. source files under the groups and files, search results in a global find, build errors, even NIB files), Xcode crashes.  Any ideas on what to do to fix this problem???
 
 I've noticed this problem first after installing the latest Quicktime 6.5.2 update.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Example source code to create color checkbox like in iCal.
 
 http://homepage.mac.com/mnishikata/page4/page1/page1.html

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm looking to create a tabbed interface that is driven by a drop down menu (rather than tabs).  Exactly like the Interface Builder's 'Info Panel' works.  But I'm unsure exactly which elements to do - Currently I'm just creating 'boxes' (over the top of each other) and setting there 'initial state' to 'hidden'.  This is obviously not the way (as it's extremely cluttered to work on).

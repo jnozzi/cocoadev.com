@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 An action method can be declared either by using the Interface Builder (see HowToCreateAnActionMethod), or by using Project Builder.
 
 To declare an action method using Project Builder, go to the header file (.h) for the class in question.  Place the action method declaration between the close bracket (}) and the @end line.

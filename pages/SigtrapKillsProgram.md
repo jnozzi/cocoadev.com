@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been working on this program, and things have been going pretty steady, and I generally test my methods before moving on to the next. I did so, and then added 2 more methods, and when I tested the code, I got a sigtrap. Not cool. I comment out those 2 new methods from where they were executed, and I still get the sigtrap, meaning something is wrong with my old code, which tested fine before. Now, I understand what a sigtrap is, and that to stop it, I have to fix something with my retains/releases. The sigtrap comes from NSPopAutoreleasePool, so I think it's safe to assume that something is being autoreleased when there are no more (but I these are more Signal 10 and 11 problems). Worse, I can't debug the sigtrap easily because it isn't called in my code, it's in the autorelease code. Any help?
 
 This seems to be the offending code... what's wrong with it?

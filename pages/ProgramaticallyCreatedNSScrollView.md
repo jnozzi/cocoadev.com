@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In a Cocoa Multi-Document Application I want to create an NSScrollView That will scroll the contents of myDocument window. I can't do this by selecting all of the sub views in Interface builder and using the Layout>Make subviews of>Scroll View because it will only create a frame for the NSScrollView that will be as big as the limits of the frames of the sub views NOT the whole contents of the window. I want to include the white space around the sub views as well. Also I don't want to do it in Interface Builder because once I've made a window sub view a child of an NSScrollView it can be resized but not moved in the NSScrollView. The bottom left corner is locked and can't be dragged or changed in the Inspector. In other words once the subviews are made children of an NSScrollView they are cast in stone and changing the layout of the items is impossible. In MyDocument.h I declare an NSScrollView:
     
 @interface MyDocument : NSDocument

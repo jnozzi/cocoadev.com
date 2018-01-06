@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to port an application to Cocoa, but I'm kinda new at it.
 
 I want to make a launch sequence like this:

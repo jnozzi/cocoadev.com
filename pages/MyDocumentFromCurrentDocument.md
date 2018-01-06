@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to access the current myDocument NSDocument subclass in a Cocoa multi-document application. What I'm doing is casting the NSDocument * to a myDocument * like this:
 
     

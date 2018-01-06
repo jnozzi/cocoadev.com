@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to be able to download stock quotes into my application. I don't know where to start. Is there any information anywhere on this topic.
 
 Thanks!

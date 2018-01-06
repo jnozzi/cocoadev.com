@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you're updating the view each iteration that could be improved by simply updating every N iterations where N could be 100000 or 500000, etc.
 -B
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there an easy way to get an array listing all installed applications on the computer?
 
 ----

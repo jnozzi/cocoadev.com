@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm a Cocoa newbie and I'd like to know how to create an NSTableView which automatically sets the editing focus ring around a cell when a new entry is created. Similar to the Bookmarks panel in Safari or the "source" table in iTunes.
 
 ie. both of these views have a '+' button below the table, when pressed the newly created row is already focused for editing.

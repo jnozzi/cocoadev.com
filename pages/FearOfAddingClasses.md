@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The fear of adding classes is something that can happen to a programmer when he or she perhaps doesn't remember the full value of ReFactoring mercilessly. My recommendation for moving on from this fear is to take a deep breath, archive a complete copy of the project's folder, and then go headlong into it, adding classes as needed towards a specific, achievable goal, like adding a feature or cleaning your code.
 
 Remember, complexity in a project when it comes to the number of classes can be an indicator of *good* code design, or so says the LotsOfTinyClasses methodology.

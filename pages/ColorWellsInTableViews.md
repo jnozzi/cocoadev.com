@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, how would I go about putting a ColorWell in a TableView column? Do I need to subclass NSActionCell somehow? Thanks allot for any help you can provide!
 
 ----

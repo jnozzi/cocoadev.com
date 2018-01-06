@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a simple way to use bindings across two or more nibs? In my particular case, I have MyDocument.nib and MainMenu.nib. The main nib will have an inspector for the selected objects in a table view in the active document window. How can I use bindings with that inspector and document? Are there any examples of this? Apple encourages the use of inspector panels, so I would think that they've developed a way to do this.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi again, it's dedicated thread for problem i've asked a little later. As you can see, a have three class, one obj-c and two of cpp. If a bind my gui (cocoa) button to call UPDATE function of CLASS1 at once - it's all drawing fine! But if i call first FUNC1 from CLASS2 and so on, as a result i'll come to UPDATE function of CLASS1 too!, but i can't see that something is drawing.. Mb you can help, is i can be an error somewhere? (in  passing CPP classes mb)

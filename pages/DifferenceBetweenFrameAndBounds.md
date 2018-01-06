@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can someone kindly take the time to explain the difference between the "Frame" and the "Bounds" of an NSView?
 
 I think I understand more about the Frame, but when I start playing with the Bounds of my view strange things happen, and I can't find an easy explanation of the difference and relatedness of these two concepts, the developer documentation is a little too concise for me to extrapolate anything from.

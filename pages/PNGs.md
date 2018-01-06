@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 PNG image files support full fledged alpha channels and transparency.  Unlike a GIF, which has a 1-bit transparency mask (not technically, but in practice it acts like it), PNG looks darned good in any medium, especially the web.  Sadly though, Microsoft has not decided to let people enjoy this fabulous technology, so it will flounder and fizzle at the edges of the technological boundaries, while GIF remains steadfast, fighting people off with it's royalty fees from the annoyingly over-patented trench it has dug.
 ----
 > *Sadly though, Microsoft has not decided to let people enjoy this fabulous technology*

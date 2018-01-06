@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Announcing RegexKit - A framework for regular expressions using the PCRE library.

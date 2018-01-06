@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I am trying to write my own print panel.i have got some problem accessing the paper types. I have noticed default page layout sheet displays all kind of papers ( Legal, letter etc) even though there is no printer installed. it can even print pdf, preview etc. But when i try to do this i could not create NSPrinter when there is no printer installed. can any one tell me how to get the all paper types? How to print pdf using NSPrinter.?
 

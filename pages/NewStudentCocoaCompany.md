@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Are there any students out there interested in setting up a new company for developing funky, innovative cocoa software? The purpose of which would be purely to fund our degrees, and assist other students fund theirs through cocoa development.--LukeSands

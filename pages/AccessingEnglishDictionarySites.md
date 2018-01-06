@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also GrabbingOnlineInfo
 
 I am keen to write a small app (Cocoa) that will retrieve the definition of a provided word (if it exists), but I am not sure how to utilise the online resources such as Wiktionary for this purpose. 

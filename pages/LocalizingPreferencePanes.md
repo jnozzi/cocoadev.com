@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you are localizing a preference pane and you want to test the preference pane in the localized language, then SystemPreferences must also have a localization for that language.
 
 This is true at least for Mac OS X 10.3.3 through 10.3.8.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 LaunchServices is responsible for binding documents to applications and the system-level functionality of launching applications.

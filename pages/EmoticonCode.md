@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Slightly OT.
 
 I have been passing code between people using iChat and of course it is smart enough to recognise code fragments like this :[ or :( as unhappy faces. 

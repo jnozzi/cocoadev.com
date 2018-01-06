@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 hey! what's up Xcoders? 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Part of the iPhone General/UIKit framework. Defined in <General/UIKit/General/UIPickerView.h>

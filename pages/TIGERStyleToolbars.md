@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I am wondering if anyone has any insight on creating Tiger style toolbars as seen in Mail 2.0. I have looked into subclassing General/NSToolbar to no avail. 
 

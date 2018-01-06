@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Any hints for how I might draw the fancy badge that apple uses for drag and drop and the mail count with a bezier path rather than rely on bitmap images as resources?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Let me know if I'm going down the wrong path here, as I'm a Cocoa/General/ObjC newbie.
 
 I was examining Apple's General/UIElement Inspector which fascinated me.  What it is is a little window in which the identities and coordinates of the UI elements (like buttons and scroll thingies) of any window on your desktop come spewing out in real time as you move your mouse around those windows.  And apparently it uses the General/NSAccessibility class.  But when it comes to Content in the window, it just says:  "Content" and gives an Array size

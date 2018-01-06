@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The flavor of ObjectOrientedProgramming implemented by ObjectiveC includes two types of objects: the ClassObject and the InstanceObject.
 
 see also MethodSignature

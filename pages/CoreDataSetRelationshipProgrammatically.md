@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have two NSArrayController objects and when I add a new object in each array, I would like to set the relationship between the two objects. In the OM, the relation type is already set but I don't know how to link the newly created objects together. How can I achieve this?

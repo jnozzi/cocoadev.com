@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I *believe* that ExtremeProgramming has to do with taking your PowerBook rock-climbing. Or maybe it should be called EffectiveProgramming instead :) -- RobRix

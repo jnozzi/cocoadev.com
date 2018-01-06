@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **BeOS** - *A personal computer operating system developed by Be Incorporated in 1990 as a media OS.*
 ----
 

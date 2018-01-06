@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a custom NSView for capturing key strokes (to capture what a user wants for a custom hot key) and an a pop down menu to specify the modifiers (since I'm not confident in my ability to subclass NSApp [would this be hard?] and override the command-key keystrokes when this custom text field is in view). I was wonderinf if anyone could help with a couple of things:
 
      1) I have it so it works like a text field as far as the focus ring is concered. IE I select a different selectable item and it loses focus, but when it is in      focus and the window goes in the background, and then when it becomes key again the focus ring does not redraw.

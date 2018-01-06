@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 After a large amount of posting with essentially no profile, I've finally decided to write something about myself!

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 FileView is TomWaters' Finder replacement.  Written in ObjC and Cocoa with a little bit of CF stuff thrown in to be compatible with OS9 Finder notions.
 
 http://www.whidbeysoft.com/FileView

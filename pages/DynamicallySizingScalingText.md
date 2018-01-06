@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also DetermineSizeOfDrawnString
 
 I came up with some code I thought was neat and thought I'd share...  I have a custom NSView subclass that I want to display a string (myText) that as I resize the view (say by anchoring it to the window and changing window size) tries to make sure the text stays vertically/horizontally centered and all visible by scaling the font down if the view gets too small... I'll just show the over-ridden drawRect: method (to change default/minimum font sizes adjust fontMax/fontMin)... This code has been reformatted for your viewing pleasure ;P (update August 2, 2004.. adjustment for a single word that is longer than the width of the view to help it scale without wrapping.

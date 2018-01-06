@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I work out why a selector is not being recognized?
 
 from the OmniGroup mailing list:

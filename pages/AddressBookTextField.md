@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How does one do an expanding text field like the names in AddressBook.app? I had thought at first that this was a custom class by Apple, but Delicious Library has a text field that works exactly the same way? Is there an API for this, or do I (as DL might have had to) have to roll my own?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I know I can check if a window is key or not by using isMainWindow or isKeyWindow, but they way I understand it you'd need an NSTimer in order to get your action to fire when my app's windows change order. Are there any methods of NSWindow's that fire when it becomes inactive or changes order?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 i am trying to obtain key events sent to my window and I have been successful. By subclassing General/NSWindow etc.

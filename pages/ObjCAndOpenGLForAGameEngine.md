@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, I come from a C# and Managed DirectX background, but I'd like to start using my Mac more. I've been playing with Objective C, and feel reasonably confident with the language, but I was wandering, how practical is it to program a game engine completly in Objective C? The type of work I do is experimental stuff - like trying out new terrian rendering methods, sky work, water rendering - not full games, but more graphics engines and problems. Would I better off using C/C++ (ignoring the speed!), or is Objective C good too? From what I've seen, Objective C looks to have it's main advantages with working with Cocoa and interfaces, so I'm not sure how much I'd benefit from using Objective C...

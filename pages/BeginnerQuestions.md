@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **
 We were all beginners once, remember? Play WikiWikiNice lest you may need help someday and no one will be around to help you.
 

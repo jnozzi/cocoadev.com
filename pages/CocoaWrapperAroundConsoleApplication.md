@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 see PortingUnixAppsToCocoa for information about where to get sources (or, for that matter, pre-built binaries) to wrap, and discussion of intellectual property issues

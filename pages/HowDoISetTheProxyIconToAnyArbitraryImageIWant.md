@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hello there, I am wondering how to set the proxy icon of a window to any that i want, i know that there is -setRepresentedFilename: in NSWindow however that has it's disadvantages as it sets the window title also, not to mention if you command click it.

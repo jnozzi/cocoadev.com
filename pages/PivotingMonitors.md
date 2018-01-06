@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There are a number of pivoting monitors out there, and in fact the proportion of pivoting monitors is becoming larger due to more attention paid to ergonomic mounts.
 
 ----

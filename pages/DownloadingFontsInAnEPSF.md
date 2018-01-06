@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My application needs to create EPSFs and I have a problem with including fonts in the file. There must be system calls to get a font and convert it to postscript, as dataWithEPSInsideRect: in NSView must use it, alternatively there must be a way to get the outlines that make up a specific character and use that as part of the file.
 
 Using dataWithEPSInsideRect: is not an option as it doesn't include colour information in a way that is needed for separations, unless anyone knows differently?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 If you are unfamiliar with nib files read this article before moving on:

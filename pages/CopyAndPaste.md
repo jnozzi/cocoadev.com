@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I let people copy data from my document and paste it elsewhere?
 
 How do I provide customised cut and paste from my application?

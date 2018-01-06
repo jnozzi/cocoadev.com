@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Has anyone aside from me been bemused by the total lack of support for Foundation collections in IB? You cannot add anything to them, see their contents, and in many nibs even instantiating them is disabled, for no visible reason. And yet I know for a fact that NSDictionary requires no hacking to fit in a nib, and creating a new connector type to add nib objects to a dictionary is trivial, a ten-line segment of code.

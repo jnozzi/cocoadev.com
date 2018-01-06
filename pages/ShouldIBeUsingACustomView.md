@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm new to mac and Cocoa (though I do develop in other languages e.g Java) and could do with some insight into the best way of designing an Interface. I've been reading a lot of forums and web sites and I think I haven't got the hang of it yet. Let me explain.

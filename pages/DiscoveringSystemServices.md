@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'd like to write a command-line tool to invoke Cocoa system services -- the things usually found in the Services Menu.  It seems easy to invoke them using the function

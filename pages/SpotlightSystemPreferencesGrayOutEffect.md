@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to recreate the gray-out effect in Tiger's System Preferences where typing a term in the System Preferences search bar highlights matching panels while graying out the rest.

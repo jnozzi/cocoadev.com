@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Since CocoaDev is a community site, we could use some direction.
 
 Add any tasks/guidelines you think are needed that don't require modification to how the site works, and use this page to get some ideas on what you can do for the site.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 [Newbie first-time post alert! Feel free to inform of etiquette violations]
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I noticed that neither NSWorkspace nor NSFileManager appear to have any way with which to programatically display the Finder's "Get Info" window. This seems a bit of an oversight (either on my part or on Apple's, your pick!) so I present for your consumption a category off NSWorkspace for programmatically displaying said window given any file or folder path. As with other code I've posted here, I've used my own whitespace/brace style rather than Apple's. -JonathanGrynspan
 
 NSWorkspace+GTAdditions.h

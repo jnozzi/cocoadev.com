@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Spending time optimizing code before it's finished is called "premature optimization". This is a sandtrap that many new programmers fall into.
 
 Premature optimizations by new programmers frequently turn out to be pessimizations ... they decrease the performance of the code or destabilize it so that it no longer works quite right. Even if a premature optimization works correctly, keep in mind that most optimizations will tend to make the code less maintainable and more difficult to understand, modify, and debug. If you optimize before you're done, you're going to make it more difficult to finish.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Was wanting to use General/URLTextView , but found the apple example very complicated, it it required 10.2 (and usunually used carbon headers!?), so i decided not to use it. All i require is a simple example of how to make a piece of text in my program a link, and for the hand to come up when i hover over the link.
 
 got this far...

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Dimiter "malkia" Stanev
 malkia@mac.com
 http://homepage.mac.com/malkia

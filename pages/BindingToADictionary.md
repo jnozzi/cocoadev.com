@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to bind something (an NSDatePicker for now, but it could be anything) to an NSDictionary, like binding it to the user defaults, but I haven't been successful. What would be the way to do this?
 
 Thanks.

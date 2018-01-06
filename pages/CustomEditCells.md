@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Did anyone manage to write their own NSCell subclass for use in NSTableViews, which support editing (and not just display)?
 
 I have several problems:

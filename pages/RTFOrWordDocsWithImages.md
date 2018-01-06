@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 Does anybody know of any code out there that would allow me to export to RTF or .doc format from a text view/attributed string in such a way that images, tables and attachments are preserved?

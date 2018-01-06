@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do I accept/recieve files dropped on my applications program. I mean icon.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Part of the iPhone UIKit framework.
 
 Little is known about the elusive yet omnipresent GSEvent, though researchers believe the GS stands for "GraphicsServices". One very useful function is

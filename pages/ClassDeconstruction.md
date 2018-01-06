@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **Note: The title of this page is a bit misleading. The actual topic has to do with a small part of introspection. Not class deallocation/destruction and dealloc method semantics.**

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to get started in using core audio. I created a tone generator using HAL functions, which works very nicely. I now need to convert the sounds into MP3 format and write into a file.
 
 I can't get going at all. I never felt so stupid in my life. I can't find the solution to a problem, which gives me the following compile error:

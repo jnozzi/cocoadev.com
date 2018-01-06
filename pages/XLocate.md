@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/JeremyK's first Cocoa application! create a long time ago for 10.1 I think, no longer functions completely. 
 
 Better locate General/GUIs are now available anyway, so it remains in storage as a code reference

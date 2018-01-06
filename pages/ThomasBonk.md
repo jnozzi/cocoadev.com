@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm mostly reading articles here at General/CocoaDev. It's a great ressource for beginning Cocoa developpers.
 
 My blog is at http://www.meandmymac.de.

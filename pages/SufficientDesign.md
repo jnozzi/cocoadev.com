@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A General/SufficientDesign satisfies the current requirements. This is the most important point and should be the primary goal for any design.

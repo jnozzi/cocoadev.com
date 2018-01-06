@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The Flash environment has this ActionScript "helper" that's like a drawer connected to the scripting window where you can scroll down through a list of methods and classes and double click on the one you want and the relevant snippet of code pops up in the scripting window.  It's cool not only because there's less typing involved but also because the listing of classes/methods is handy to have right in front of you (you double click on icons and drill down a hierarchy) .  Is there anything like that in the Cocoa environment?  Thanks. Gerald 

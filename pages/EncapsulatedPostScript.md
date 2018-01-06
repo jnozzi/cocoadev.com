@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know exactly *what* kind of output
     dataWithEPSInsideRect:
 produces?

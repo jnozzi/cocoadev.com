@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am a web developer learning Cocoa. I've been using Hillegass and recent O'Reilly books and have made progress. I wrote a simple fractal generator that I need to polish still.
 
 I want to write a very simple game as my next learning app.  It's a port of an old Apple II game called "Sabotage," similar to a game on the 3G/mini iPods.  The game has a black field with some moving characters that you shoot from a turret.  Simplish.  But what's the best view to use?

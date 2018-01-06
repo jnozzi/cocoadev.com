@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all. The addition of [NSTable selectedRowIndexes] has frustrated many, particularly when trying to run through the set and *do something* with each index at a time. Well that time has come to an end.
 
 Code: With comments.

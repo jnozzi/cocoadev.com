@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/TheLeaksTool (/usr/bin/leaks) is a UNIX tool that can help uncover memory leaks in your unix process. Leaks works best when malloc's stack logging is activated via the General/MallocStackLogging shell variable (set the General/MallocHelp environment variable and run some command-line tool).
 
 ----

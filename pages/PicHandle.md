@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  Please help me
   How to get PicHandle
   I  can get image Width, Height,Resolution&image data Buffer.But I don't know How to get "PicHandle".

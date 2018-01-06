@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Objective-Pascal is a Pascal variant that has been designed by the Mac Pascal community. It has been implemented in the Free Pascal Compiler.

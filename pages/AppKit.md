@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The AppKit is a set of classes, first developed by NeXT Computer, and now by AppleComputer, for rapidly developing applications. The majority of AppKit classes deal with user interface elements, such as windows, buttons, and menus. InterfaceBuilder lets you work with many of these classes visually.

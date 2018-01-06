@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 I'm having a trouble. I'd want to call the Finder's info window from my cocoa application, but i can't figure out how to do.
 I've googled and searched in the Apple documentation, but nothing came out.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have some troubles with this source: http://cocoa.karelia.com/AppKit_Classes/NSMovieView_subclas.m
 I get two warnings when I compile:
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Binary Minded Software is at http://www.binaryminded.com and makes unique free and cheap software.  Past and present stuff:

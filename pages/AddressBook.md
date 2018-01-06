@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In Panther there is a AddressBook Pallete for InterfaceBuilder that displays the AddressBook Content like in Mail, and iCal.  It provides a view known as the people picker.

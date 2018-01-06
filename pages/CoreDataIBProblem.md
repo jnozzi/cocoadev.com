@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've run into a problem, looked for documentation, and then pared down the problem, and looked for documentation. 
 as far as I can tell the documentation suggests that what I want to do is both possible and easy.  At no point does any documentation explain it, and at no point is it self evident.
 

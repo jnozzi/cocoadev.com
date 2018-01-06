@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A ClassMethod is a method performed by a ClassObject.

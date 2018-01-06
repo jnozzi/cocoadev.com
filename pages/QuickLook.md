@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've done a write-up on how to use Quick Look in your app, including source code: http://ciaranwal.sh/2007/12/07/quick-look-apis -CiaranWalsh
 
 

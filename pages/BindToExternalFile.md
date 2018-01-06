@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hello all. Here's my scenario: I have a NSArrayController, in a MyDocument.nib, which I'd like to bind from a Main Menu Item (which is, obviously, located in MainMenu.nib), to make the item to be enabled or not according to the NSArrayController's canRemove key. Could someone please tell me how can I do such a thing?
 

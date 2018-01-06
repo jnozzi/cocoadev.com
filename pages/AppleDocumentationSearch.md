@@ -1,6 +1,11 @@
+---
+layout: page
+---
+
+
 Today I got fed up with apples documentation search, more precisely I got fed up with WebObjects items always coming up first (try NSMutableArray, the Cocoa classes come up 7th!) so I wrote myself a nice bookmarklet. In fact if you place this as the first item in your bookmark bar you can access it with cmd 1!
 
-    javascript:q%20=%20prompt(%22Enter%20a%20search%20phrase:%22,%20%22%22);%20if(q)%20{%20location%20=%20%22http://developer.apple.com/cgi-bin/search.pl?&q=%22+q+%22&as_q=filetype:html%20OR%20filetype:htm&num=20&lr=lang_en&ie=utf8&oe=utf8&site=(cocoa)|(carbon)|(corefoundation)|(accessibility)%22;}%20else%20{%20}
+    javascript:q%20=%20prompt(%22Enter%20a%20search%20phrase:%22,%20%22%22);%20if(q)%20{{"{%"}}20location%20=%20%22http://developer.apple.com/cgi-bin/search.pl?&q=%22+q+%22&as_q=filetype:html%20OR%20filetype:htm&num=20&lr=lang_en&ie=utf8&oe=utf8&site=(cocoa)|(carbon)|(corefoundation)|(accessibility)%22;}%20else%20{{"{%"}}20}
 
 Enjoy.
 

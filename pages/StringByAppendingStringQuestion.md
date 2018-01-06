@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is wrong with the following code:
     
 General/NSString *aString = @"test";

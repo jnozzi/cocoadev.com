@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi everyone,
 I'm trying to get the color under the cursor without an NSColorWell or Panel.
 For instance, if there is a blue square on my screen and I hover (or click) it, I'll get a "blue" NSColor.

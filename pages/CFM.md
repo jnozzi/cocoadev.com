@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Code Fragment Manager.  An ABI/shared library standard introduced with
 the PowerPC Macintosh and later ported back to 68K.  Provides better
 performance than Mach-O, but wasn't supported by gcc, the NeXT linker

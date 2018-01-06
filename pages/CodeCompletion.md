@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know of a good code editor for Mac OS X that includes code completion with context sensitive popup menus. Almost all the All-Java editors like NetBeans/Forte, IDEA, JBuilder etc. has this feature. The main problem with these is that you can't write { }, [ ] or any char that requires a combination with the alt-key to be written... The F5 key in Project Builder is a blind code completion feature.

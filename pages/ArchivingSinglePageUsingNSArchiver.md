@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 
 I am working on a Editor (Cocoa Document Based application). Each document contains mutiple pages (mutable array of pages). I am using NSArchiver to  archive these pages.  I have to support saving a single page. For the purpose i need to archive only the current page. If the current page is already archived it should be overwritten (without modifying other pages content). Otherwise if it is a new page, the archive data should be appended to the existing archives of other pages. Is there a way to do this?

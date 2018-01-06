@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's the implementation for a screen saver that installs transparent windows. This screen saver does no animation, and is useful for locking the screen with the screen saver system's password feature without actually covering the screen (although I don't know why you'd want that ;-) )
 
 In General/TransparentView.h:

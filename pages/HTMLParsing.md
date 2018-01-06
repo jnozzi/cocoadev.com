@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 
 I am now an experienced Cocoa programmer, but one thing has been bugging me for a quite a while now. I moved from VB and VC++, and there was a function which allowed me to call in a file and read through line by line and do something with these lines (usually save into an array). I was wondering, is there any equivalent for Cocoa? I really need it for parsing an HTML file.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 New Release: **General/UnfiledBaby** a plugin for Panther's Address Book, providing a new meta-group "unfiled", showing all users that have not been placed into any groups. See http://dirtoy.sourceforge.net/General/UnfiledBaby.html
 
 

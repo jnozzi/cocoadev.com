@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 So, basically, if I want to send the data from a NSTextField to my dictionary, I do this code:
 
     [Dictionary setObject:[TextField stringValue] forKey:@"MyKey"];

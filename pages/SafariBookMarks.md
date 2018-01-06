@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need my app to get a list of all bookmarks from Safari, does anyone know how Safari stores bookmarks, and how to extract that data?
 
 ----

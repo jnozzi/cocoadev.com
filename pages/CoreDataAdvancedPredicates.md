@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 For the purposes of this issue, I have two entities, Foo and Bar. Foo has a to-many relationship to Bar, called *bars*.

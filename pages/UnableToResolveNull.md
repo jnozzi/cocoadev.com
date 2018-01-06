@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone seen the warning below when debugging? 
 I think it has something to do with IB. (My IB is 2.4.2 (v364))
 

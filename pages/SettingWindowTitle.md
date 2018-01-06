@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also WindowSetTitle
 
 I'm (very) new to Cocoa, and I'm making a simple document-based app. I'd like to call new windows something more descriptive than "Untitled" - how might I go about doing that?

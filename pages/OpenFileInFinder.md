@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I know I would use Applescript for this, but does anyone know the exact script to open a selected file in a new finder window, aka acquisition, omniweb, etc.
 
 ----

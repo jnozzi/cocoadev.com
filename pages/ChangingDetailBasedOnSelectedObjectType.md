@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm creating what is hopefully a simple testing application (Core Data document app).  I have a simple interface so far (although I am not opposed to trashing it and starting over if I've eliminated my options).

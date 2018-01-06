@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do you start creating a Cocoa application? Many of us start with the user interface in Interface Builder. We then connect controls to methods and write the code to do whatever we want the user interface to do. This practice produces code that is driven from the GUI, and it becomes difficult to separate the Model layer from the View and Controller layers - or the non-interface related logic from the interface logic.

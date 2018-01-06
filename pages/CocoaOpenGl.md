@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How about some basic OpenGL Examples for MacOSX. Please comment your code.
 
 ----

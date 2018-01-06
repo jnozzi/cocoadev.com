@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm having a strange error when I run my application:
 
 2005-03-14 20:13:37.855 blah[3102] Could not connect the action logIn: to target of class General/NSApplication

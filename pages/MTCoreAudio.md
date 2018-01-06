@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The MTCoreAudio framework is a Cocoa-flavored Objective-C wrapping around the Hardware Abstraction Layer (HAL) of Apple's CoreAudio library.
 
 http://aldebaran.armory.com/~zenomt/macosx/MTCoreAudio/

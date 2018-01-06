@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am attempting to alter a NSView's frame and bounds as the view is scrolled to simulate it being clipped by another object which is not an NSView... so as my NSView slides into this other object, I shrink the frame and re-position the bounds.  But shrinking the frame causes the bounds to shrink to match the frame, then when I change the coordinate origin by the setBoundsOrigin call, the actual bounds width or height is too small.  So then I set the bounds width and height back to what I wanted in the first place, but this changes the transformation matrix in the view... Arrgh.  I try setting the scale back to 100% (or more specifically the same as the window), and now the bounds are changed again.
 
 Is there any way to set the frame and bounds independently of each other without affecting the view's scale?

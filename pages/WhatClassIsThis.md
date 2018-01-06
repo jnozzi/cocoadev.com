@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Along the way to General/AspectCocoa I've encountered an interesting problem...
 
 If I declare a method somewhere, and then use the runtime functions to lookup that method and add it to another class.  I have no way of knowing from within that method body exactly which class I am in.  I know which object I am in (self) but if I add a function to a class... and then I add it to it's superclass, I'll have no way of telling from within that methods implmentation which class it is in.  This becomes a problem if I want to lookup something specific to that class.  it's easy enough to get the class from self, and traverse the inheritance tree to find superclasses.  But If a method is added to a class and identically to it's superclass... there is no way to tell them apart.  This is most detrimental when an added method is required to call it superclass.  In which case we can have a method calling itself over and over again...

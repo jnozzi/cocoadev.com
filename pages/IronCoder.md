@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A mac programming competition (typically entries are in Cocoa), see http://ironcoder.org
 
 After each competition the source code is available for all entries - and is a chance to see tricks and techniques used throughout the community.

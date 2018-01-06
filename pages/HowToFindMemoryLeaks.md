@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Some tips and threaded discussion about using such tools as the *leaks* program and links to other DeveloperTools for the purpose at hand:

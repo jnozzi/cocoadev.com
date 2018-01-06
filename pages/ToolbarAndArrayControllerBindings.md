@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Handling General/NSToolbar controls in a General/CocoaBindings context is not documented well. Neither available examples nor top-level documentation offer much help.

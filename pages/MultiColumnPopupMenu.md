@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I know that this violates Apple Human Interface Guidelines, but I want to create a multi-column menu.
 
 In particular this is for the Cocoa app Fire http://fire.sf.net.  I want the popup menu to display all of the smileys in one convenient rectangular grid and call the appropriate selector based upon the chosen smiley.  So far we are using NSMenu with submenus/etc, and it is painful to use.

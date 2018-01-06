@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CCDProgressIndicator is a simple subclass for drawing rounded progress bars.
 
     

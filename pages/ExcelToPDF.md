@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to extract properties of Excel images (text, tables, charts), make changes and convert to pdf using Cocoa and/or AppleScript?  Thanks.
 
 ----

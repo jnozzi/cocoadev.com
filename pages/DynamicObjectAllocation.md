@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 Is there a way to allocate a class based just on its name?

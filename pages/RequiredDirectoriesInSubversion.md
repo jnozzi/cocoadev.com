@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Ok, so I've written a small application and have decided it's high time to move it to subversion to manage tags for each version I release. Plus the redundancy of having a repository for backup and just to rollback when I do stupid things.

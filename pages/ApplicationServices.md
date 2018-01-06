@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ApplicationServices is an umbrella framework for higher-level APIs that can be used by both Carbon and Cocoa. It contains the following subframeworks:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 AppleDeveloperConnection is AppleComputer's very own site about all things related to developing *anything* for Macs.

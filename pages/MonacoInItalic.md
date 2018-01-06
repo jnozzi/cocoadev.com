@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have tried various things to make the Monaco font appear in italic, but w/o results... I have noticed that TextEdit simply disable the italic choice for this font, and also seen a mailing list reply state that Monaco is simply not drawn in italic.
 
 Then today I played with WorldText, and guess what: it *can* apply both italic and bold to the Monaco font.

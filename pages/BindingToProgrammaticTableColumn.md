@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to bind an array controller to some table columns that I will generally be creating (or removing) programmatically.

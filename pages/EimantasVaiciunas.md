@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 First time ObjC developer. Wannabe game developer for iPhone OS.
 
 Thanks to whoever replied to this \o/

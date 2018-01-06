@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing an application that accepts images dragged onto it from the Finder.  I've implemented drag-and-drop and end up with an array of paths to each file.  That's perfect!  However, I need to get the UTI for each file -- if it's not     public.image, I want to ignore it.
 
 Is there an efficient way to do this?  I've found bits and pieces that indicate that I should be able to do this from the NSPasteboard but it tells me that I'm accepting a file, not what that file's type is.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See: http://developer.apple.com/documentation/Carbon/Conceptual/UnderstandTextInput_TSM/tinptsm_intro/chapter_1_section_1.html
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Gustavo Moya (gumoz) is a software developer & software architect.
 
 He currently develops software for Mac OS X and Microsoft Windows.

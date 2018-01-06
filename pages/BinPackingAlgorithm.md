@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know if there is a library function for bin packing? I have read that "order and fill" produces reasonable results. Any advice would be appreciated. --zootbobbalu 

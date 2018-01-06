@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got some problem with programmatically creating a window showing a NSOutlineView object.
 
 For some reason I do not want to use Interface Builder to create that window and view.

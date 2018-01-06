@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ----
 
 This is a simple HTTP server framework written in Objective-C which you can 

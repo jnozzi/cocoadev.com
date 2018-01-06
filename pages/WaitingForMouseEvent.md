@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I used to program in JAVA where I could write a method that would wait until the mouse had been clicked somewhere in a desired position, and then return the coordinates in some form.  You could call that method every time you wanted the program to "pause" and wait for user mouse input.

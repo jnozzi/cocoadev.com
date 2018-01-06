@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page lists local user groups for Cocoa or Mac OS X programming. If you don't see one in your area, consider starting your own! Use the area towards the bottom of the page for finding other people in your local area who might be interested.
 
 ----

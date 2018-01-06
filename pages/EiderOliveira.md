@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm a experienced C++ developer, right now jumping into Cocoa world.

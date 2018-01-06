@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Now that we are getting 'clovertown' and with it threads more and more a must, can someone come up with an object (NSForLoop  ? or ThreadEnumerator that directs (f.e. the outer for loop) in threads? Until now threads are nice, but far from simple.  PaulC.
 
 ----

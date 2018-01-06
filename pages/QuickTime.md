@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://developer.apple.com/quicktime/

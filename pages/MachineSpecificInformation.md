@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been tasked with producing a tool for an IT department which will collect all of our computer systems' Serial Numbers, MAC (ethernet) address IDs (the primary/active ones), the computer's subnet, it's IP address, and some other information.
 
 I am currently using: 

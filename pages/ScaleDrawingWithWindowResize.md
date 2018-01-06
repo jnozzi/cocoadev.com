@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a custom view in a window and I would like to have the drawing in the view scale as the window is resized.  How might that best be achieved?

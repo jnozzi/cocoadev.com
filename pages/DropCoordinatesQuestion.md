@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to find out how get the mouse coordinates when dropping an item into a custom view. I expected to get a mouseUp after concludeDragOperation that I could use, but it does not occur.
 
 This development project is on a tight deadline, and any help would be greatly appreciated.

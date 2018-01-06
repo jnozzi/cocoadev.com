@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I have a parent window to which I've attached a drawer, and I resize my parent window, and the drawer is attached to the right side of the parent window and I want to the drawer to remain the same size regardless of the parent window's size (or resize), what can I do?
 
 

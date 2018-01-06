@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I get the default localization for my computer?  e.g. English, French, Japanese or whatever the user usually wants to see.
 
 Found the answer to my own question.  Straight from the horse's ass... er, mouth.

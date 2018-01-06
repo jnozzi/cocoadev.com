@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I had a problem where I was using performSelectorOnMainThread:... to update UI but was getting exceptions when an update occurred whilst the mouse was down for a user. Using the modes parameter of performSelectorOnMainThread:... doesn't work since even though NSTextView's mouseDown function runs the event loop in NSEventTrackingRunLoopMode, the queuePeriodicEvent framework function gets called which runs the loop in NSDefaultRunLoopMode.
 
 To workaround the problem, I've used the following code, i.e. basically sub-classed NSApplication and overridden sendEvent.

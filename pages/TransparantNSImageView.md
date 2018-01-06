@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have created a very simple test project to try and get this to work.
 
 In the main.nib I created a borderless General/NSImageView, which I then connected to an outlet in an General/AppController I created.  The implementation for my General/AppController looks like this

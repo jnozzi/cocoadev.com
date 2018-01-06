@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've just started to learn Cocoa programming with Objective-C. I've created the sample Currency Converter application and now I would like to use the setFrameAutosaveName delegate to remember the last position of the window. First of all, can someone give me a simple definition of a delegate. I've read some definitions about it, but still don't really understand it well (I'll give an example further on).

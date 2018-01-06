@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a CheesyXOREncryption scheme, which I call a "scrambling" scheme, since I don't like suggesting this is some kind of secure encryption. This snippet originally appeared in the ProtectingResources page

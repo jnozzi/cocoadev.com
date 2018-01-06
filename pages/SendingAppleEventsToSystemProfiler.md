@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 (Based on mailing list posts by Nathan Day and Cynthia Copenhagen)
 
 **Q: **

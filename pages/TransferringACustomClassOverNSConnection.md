@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is it possible to transfer a custom class, a subclass of General/NSObject over an General/NSConnection?

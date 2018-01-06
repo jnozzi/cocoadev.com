@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OK. Here we go. All I need to do is take several floats in an array - let's call it myArray [6] - and concatenate them into a single string, separated by a delimiter. This will be sent out to a text field (called myTextField). I'd like to do something like

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/TextExtras is a freeware Cocoa General/InputManager bundle that enhances the standard text-input boxes of all Cocoa Applications.
 
 It can be installed per-application, per user, or per system, by placing it in the appropriate folder.

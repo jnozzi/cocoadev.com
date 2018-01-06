@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Graham Miln is a software engineer and businessman.
 
 Graham runs an energy saving company called Dragon Systems Software Limited (DssW).

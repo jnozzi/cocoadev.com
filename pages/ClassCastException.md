@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm using a NSMutableArray to hold a bunch of Integers for a program Cocoa-Java, so I can save and reload them easily enough using NSUserDefaults.
 
 I'm putting Integers into the Array, the .plist describes an array of <integer>s, but when I try to cast any object which I pull out of the Array with NSArray.objectAtIndex(int index) back to an Integer I get a ClassCastException thrown.

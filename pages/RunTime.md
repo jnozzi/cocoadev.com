@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The RunTime is an important part of ObjC. It is the underlying system that implements passing messages and determining object types while your application is running.  It is more or less invisibly linked to your application code.  

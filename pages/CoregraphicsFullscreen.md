@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I need help on howto make an cocoa application go into fullscreen with coregraphics like the iphoto slideshow or dvd player fullscreen

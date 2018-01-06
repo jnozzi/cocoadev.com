@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I thought I'd share something I just learned about autoscrolling.
 
 Let's suppose you have an NSView and are implementing the mouseDown:, mouseDragged: and mouseUp: methods. The naive way to autoscroll is to call [self autoscroll:event] in the mouseDragged: method. This only partially works - it will autoscroll, as long as the mouse is kept moving.

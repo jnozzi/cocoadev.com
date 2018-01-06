@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Im trying to save sort descriptors for a NSTableView created with Cocoa Bindings. I see there is an option to bind the sort descriptors in a table, but trying to bind the sort descriptors to a key name in the preferences results in some strange error message "attempt to insert non-property value" and for some reason Mac OS X keeps preventing me from saving the sort descritptors any other way. What are the best ways to save sort descriptors through Cocoa Bindings so they can be restored to a table upon the next launch of the app?
 
 *Didn't someone just ask about this? See SettingArrayInDefaults...although this name is more descriptive.*

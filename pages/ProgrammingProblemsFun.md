@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This is a discussion where people discuss their problems that are funny.

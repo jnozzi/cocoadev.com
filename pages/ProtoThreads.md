@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ProtoThreads is a lightweight cooperative threading model to simplify programming against asynchronous APIs.
 
 An Objective-C version of this library (http://www.frameworklabs.de/protothreads.html ) is available to evaluate the usefulness of this concept on OS X. Material hosted at (http://www.sics.se/~adam/pt/ ) might also be useful.

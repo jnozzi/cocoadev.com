@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 I was wondering if there's a relatively simple way of having an NSTableView (or NSOutlineView) where the rows rather than being single lines, can hold multiple lines of text.  I know NSTableView can have variably sized rows, but it's the jamming of an NSTextArea into the rows that I'm unsure of.  If this is easy can someone give me some pointers, and if it's hard, can someone give some more pointers? :)  I'm hoping in the end for something along the lines of the OmniOutliner outline view.  I'm assuming it will involve changing the field editor but I'm not so up on how to do that.
 

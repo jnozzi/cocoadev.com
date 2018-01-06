@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I get a standard UI object like NSButton to respond to "mouse entered" events in a custom manner?
 
 (I know that in direct NSView subclasses you override the mouseEntered: method from NSResponder.)

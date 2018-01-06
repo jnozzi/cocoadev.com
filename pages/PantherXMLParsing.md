@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know whether Panther provides an Objective-C wrapper for the Core Foundation XML parser? I've put together a wrapper for the low-level parser, but given the impending release of Panther I'm not sure how much more effort to put into it.
 
 ----

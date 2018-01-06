@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The General/NSNetService class has all sorts of methods for extracting General/TXTRecords, but the creating step is mysteriously absent, unless you have an General/NSData object with the General/TXTRecord conveniently already formatted.  how do I take a simple General/NSDictionary and convert that to a General/TXTRecord?

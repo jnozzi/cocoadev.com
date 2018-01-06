@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a nicer split button than NSSegmentedControl?
 
 Like in iCal, it's:

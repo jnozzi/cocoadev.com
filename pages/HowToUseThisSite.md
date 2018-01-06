@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The site is a http://www.mediawiki.org/wiki/Help:Editing_pages | MediaWiki site, which is something you may not be familiar with. 
 
 The first thing you need to know is that technically anyone can edit any page on this site.  It's as simple as clicking the [Edit] button in the navigation bar of the page.

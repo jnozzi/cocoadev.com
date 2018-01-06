@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **New:** Please start any new discussion threads on the forums page:
 
 http://cocoadev.com/forums/

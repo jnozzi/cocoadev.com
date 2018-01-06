@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm looking for a capable freelance Cocoa developer to assist me in completing a project. Any interested parties, please submit your contact information. Thanks!
 I'm not really understanding the basis for this Wiki site, so I'm hoping I posted this in the right place - in the right manner.
 

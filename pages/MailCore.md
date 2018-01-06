@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MailCore is a Cocoa e-mail framework built by Matt Ronge that is the core of the e-mail client Kiwi. MailCore provides a nice set of objects for working with IMAP, MIME and SMTP, all of which use the C e-mail library LibEtPan.
 
 Documentation is available: [http://www.theronge.com/MailCore/API/]

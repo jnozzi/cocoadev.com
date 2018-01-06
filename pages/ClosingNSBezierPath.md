@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a program that parses a data file and generates an NSBezierPath based on the coordinates it finds. Unfortunately, I do not generate these coordinate files and have to account for the possibility that shapes are not described with consecutive elements. This is easily overcome by prepending moveToPoint: messages before appending a line or curve, but doing so only helps me generate an outline. If I want to fill this path, the insides of curves and various slivers of the shape will be filled-- not the entire shape.
 
 I don't really need to reinvent the wheel; if someone else has already done this please point me along. However, if anyone could help me conceptualize a proper flow to rearrange NSBezierPathElements to form a consecutively constructed closed path, I would greatly appreciate it. --adc

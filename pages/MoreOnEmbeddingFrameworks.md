@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a quick HowTo on embedding frameworks into an application. This example will use MOKit framework project.

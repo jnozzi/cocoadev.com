@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have several sub menus with dynamic content, similar to the Recent Items controlled by General/NSDocumentController.  Each sub menu is controlled by a category (extension).
 
 I'm looking for suggestions on handling this scenario which would make everyone (except the category) ignorant about a particular sub menu (so that the handling of the sub menu can be isolated into one source file).

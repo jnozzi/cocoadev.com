@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
       I was curious if there was any possible way to use cocoa to check any printer's ink levels. If there is, could someone lend me the code and maybe some directions on how to put it in an application? I'm a little new, so please help me out! Thanks!
 
 ----

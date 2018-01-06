@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there a way to determine the current version of a Framework? For example I'd like to check if WebKit is of a minimum version in my code.

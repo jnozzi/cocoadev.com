@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question: How do I print an NSOpenGLView ?**
 
 **Answer:**

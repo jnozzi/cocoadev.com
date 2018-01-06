@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is pulled from an e-mail on the gnustep-dev mailing list:
 
 http://mail.gnu.org/pipermail/gnustep-dev/2001-October/000401.html

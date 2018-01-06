@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSView custom subclass with several subviews of a certain type, they in turn have several subviews of their own, and everything works, except that whenever I mouse enter a tracking rect (all of the aforementioned objects have tracking rects) the other subViews flicker a bit and their stroke outlines (0.5px) become slightly darker.
 
 I have tried to setNeedsDisplay on everything even after every mouse entered event, but no luck it seems. What's happening is hard to explain clearly.

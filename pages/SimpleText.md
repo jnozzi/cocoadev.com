@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A text-editor (which replaced an older, more limited editor named TeachText) on the classic MacOS. Launched bloody quickly, but wasn't terribly interoperable with other OSes, and was limited to only 32K of text. But hey, you could have the computer read the text to you, so I guess it's not all bad.
 
 I think it's actually been Carbonized, if you look in /Developer/Applications/Extras.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How does one initialize an General/NSData object with General/NSString data? (or integer data or any other data type?)
 ----
 The easiest way is to use General/NSArchiver / General/NSUnarchiver or General/NSKeyedArchiver / General/NSKeyedUnarchiver. Look up this page on archives for more information: http://developer.apple.com/documentation/Cocoa/Conceptual/Archiving/index.html --General/JediKnil

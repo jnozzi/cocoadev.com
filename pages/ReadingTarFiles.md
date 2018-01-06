@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm looking for a way to read tar (and tar.gz) files without using NSTask, fork or exec. I'm only interested in a listing of the contents, so some kind of data structure containing the equivalent of     tar -tf file.tar would be nice. Is there a C API for tar? /usr/include/tar.h was not very helpful.
 
 --TheoHultberg/Iconara

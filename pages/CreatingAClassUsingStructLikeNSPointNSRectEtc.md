@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I know how to use structs in the traditional C way. My question is how does one develop a class (correct terminology?) using a struct in the vein of NSPoint, NSRect, etc? Say, for example, I want a 4-D point:
 
 struct PointInSpaceTime

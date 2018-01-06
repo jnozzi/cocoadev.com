@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I try to create a dataWithPDFInsideRect representation of a view while printing, the applications bombs. It seems that using this method while printing is not legal. Is there anyway to access it from within a printing context?
 
 Any help appreciated.

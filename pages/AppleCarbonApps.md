@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is a list of Carbon apps produced by Apple.
 
 

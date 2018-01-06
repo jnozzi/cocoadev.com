@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to find out what the build address range is for a framework so I can space mutiple frameworks accordingly when I prebind and specify the segments with the flag "seg1addr".
 
 --zootbobbalu

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been writing a program and I have like 600 hundred lines of code in my Controller class. That is pretty much my only class in the whole program. I only have one more class for a TableView item and that class only has about 100 lines of code. Is it a bad thing that most of my code is in my Controller class, or do you some times need to do that? If it is a bad thing, what advice can you give me to keep myself from putting all of the code in the Controller class?
 
 ----

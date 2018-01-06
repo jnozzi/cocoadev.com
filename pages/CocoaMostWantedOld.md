@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 --------
 
 This is an archive copy of the now retired C**'ocoaMostWanted page. See CocoaDevelopersMostWanted for a list of the current "most wanted" pages.

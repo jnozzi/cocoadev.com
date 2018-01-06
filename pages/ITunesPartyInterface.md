@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone else think that using an NSTableHeaderCell to indicate the *selection* of an NSTableView is a bad UI idea?  This site is primarily devoted to implemention in Cocoa, but I wonder if it might be nice to start up some discussion about **design**.  It's been mentioned here and there, but I'd like to see a bit more.  Comments?  Questions?
 ----
 I like it, it's all transparent and stuff too. However, it certainly could've been done better.

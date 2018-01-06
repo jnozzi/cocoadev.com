@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/XCode 1.2 was released with little fanfare late this afternoon (april 2004).

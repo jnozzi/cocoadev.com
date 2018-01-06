@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an NSTextField where a user can enter a date in any format desired, and it is automatically formatted into an NSDate.  What this also means is that the user does not have to put in a year.  What I want to happen when the year is omitted is that the date that is created is the next (year's) occurrence of the date entered.

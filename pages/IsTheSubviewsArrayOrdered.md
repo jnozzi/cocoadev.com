@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Quick question, I'm writing a program that, currently, depends on the order of the array returned by NSView's subviews method, and the order of which subviews are added to the superview (I enumerate through the array to reposition view elements after a resize). Now, I haven't had any problems yet, but does anyone know if this might cause trouble later on? I just need to know that Cocoa won't have some strange behavior that only occurs in rare conditions. :)

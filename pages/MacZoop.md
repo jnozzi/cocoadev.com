@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MacZoop ( http://www.maczoop.com ) is an application framework for classic MacOS and Carbon, based on C++, which was designed to be simpler than Metrowerks' PowerPlant but still full-featured. It is now in "maintenance mode", i.e. no new features, but it'll be kept running, and the author suggests using Cocoa if MacZoop doesn't suffice. 
 
 RobRix cut his teeth on it... and then he got ObjC.pdf.

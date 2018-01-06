@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know the equivelant pair of the two guys bellow using keyed archiving?
 
 [coder encodeValueOfObjCType:@encode(Class) at:&someClassVar]

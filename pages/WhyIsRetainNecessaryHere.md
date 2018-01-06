@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 It doesn't seem like it should be necessary....
 
 Folks; 

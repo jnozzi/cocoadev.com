@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hey guys... I was wondering if anyone could point me in the right direction.  I've been looking around a little but I dont know the right termonology to look for.

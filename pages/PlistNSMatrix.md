@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi All,
        I've been recently working with Plists and I have a NSMatrix (2 radio buttons) and i was wondering how to set in my Plist which is the selected cell/RadioButton??
 

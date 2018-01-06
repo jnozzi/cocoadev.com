@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Defined in General/WebCore, available as part of Darwin.
 
 From the header file:

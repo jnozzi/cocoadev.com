@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there anyway to show and hide a specific tab that is part of an NSTabView?
 
 ----

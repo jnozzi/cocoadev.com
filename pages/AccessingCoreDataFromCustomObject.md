@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a question about how to access the data in core data from a custom object.
 
 I have been successful at doing the following:

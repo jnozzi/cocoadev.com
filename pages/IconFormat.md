@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 So, I'm trying to learn cocoa, and I thought a good little project would be to make an app that would play with icons.  The problem is I can't find any information or documentation on the icon format.  Could someone point me in the right direction?  Thanks.
 
 ----

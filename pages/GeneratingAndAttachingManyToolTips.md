@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a program which is subdivided into many parts. Each part has its own GUI(Or should I say View?) of several NSViews and NSWindows, and executes its own NSTask. Each part also has its own Controller.
 
 The essential problem is this: each part, with its own NSView and NSWindows, is full of NSTextFields that need tooltips. For the whole program, this probably adds up to 300+ or so tooltips. A lot of these NSTextFields are repeats of each other, and can use the same tooltip strings. What I'm looking for is a good way to set all these tooltips without having to explicitly say, [<NSTextField name> setToolTip:<blah>] a ton of times in each Controller. I already have the IBOutlets to the NSTextFields in NSArrays for every Controller.

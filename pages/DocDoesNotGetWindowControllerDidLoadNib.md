@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ...automatically, unless you call it explicitly, except under the simplest of circumstances (i.e., no subclassing of NSWindowController)
 
 I have subclassed both NSDocument and NSWindowController. My document does not get a windowControllerDidLoadNib message when a new document is created or an old one is loaded.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How can a running cocoa app remove itself from the Command-tab list?

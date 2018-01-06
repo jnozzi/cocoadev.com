@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Peter Maurer** is...
 
 

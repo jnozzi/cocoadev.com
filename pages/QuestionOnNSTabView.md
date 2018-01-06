@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSTabView with 2 items (one, two). My question is: How do I find out which tab the user clicked on?
 I tried to draw a connection between the tab and the object controller, which didn't work.
 

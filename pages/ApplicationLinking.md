@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ApplicationLinking, or just linking, is the final stage in the build process for binaries built with C and C-like languages, as well as other languages (such as many Pascal and assembly variants) which use a C-like build process. The linking stage is when external libraries are included in the binary. Linking can also refer to dynamic or runtime linking, which happens when a program is launched and is when dynamic libraries are loaded into the process's address space.
 
 This page will give an overview of what linking is, how it works on OS X, and how it relates to Cocoa.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to make the header cells of an NSTableView editable? I want users to be able to edit them like any other table cell.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here are some simple Macros that allow blocks of code to be timed, then logged in bulk later on with the duration and assigned name of each step.
 This results in simpler code, cleaner logging output, and removes the delay from the timing that General/NSLog or printf can sometimes cause.
 An example is shown below.

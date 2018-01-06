@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to make a simple app that's got two text fields and one tableview. So you type a name in one field (called nameField) and the URL on the URLField. Then you press a button and both informations go through an array to the table view. Everything is done, even the dataSource and button actions.
 
 So, I would like to know how do I get to make the URLs in the tableView be opened by a browser, when you click on it. The bad part is that I have no clue at all of how to do it.

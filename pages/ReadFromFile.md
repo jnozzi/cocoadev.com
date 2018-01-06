@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
     
 <key>cubes</key>
 		<array>

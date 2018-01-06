@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 From http://www.barebones.com/support/develop/odbsuite.shtml
 
 *[...] an Apple Event-based interface that developers may take advantage of in order to provide better integration between their products and BBEdit*

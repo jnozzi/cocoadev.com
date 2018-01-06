@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
     
 #!/usr/local/bin/ioDesktop
 

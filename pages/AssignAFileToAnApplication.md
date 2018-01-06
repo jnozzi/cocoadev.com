@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to assign a file without an extension to an application, so it always opens with the specified app? In the way of Finder's "Get Info" of a file and changing the dedicated application for that file and clicking on "Change for all..."?
 I'm creating a file myself and I need it not to have an extension, which is the reason I'm asking all this.
 

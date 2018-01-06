@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I use the following function in my application:
 
 (header file can be found at: http://www.opendarwin.org/cgi-bin/cvsweb.cgi/src/CoreFoundation/StringEncodings.subproj/CFStringEncodingConverter.h?rev=1.1.1.3 )

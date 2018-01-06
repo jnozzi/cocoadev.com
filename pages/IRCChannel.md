@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anyone interested in use the channel #obj-c on undernet? I've got one of my machine sat there on it. Be a good place to bounce ideas around on.
 
 ----

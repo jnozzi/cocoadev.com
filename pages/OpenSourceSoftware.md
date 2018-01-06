@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OpenSourceSoftware is software whose source code is made publicly available. It has sparked quite a few debates of late, but probably, the most balanced view is that it has its place, just like closed source software does.

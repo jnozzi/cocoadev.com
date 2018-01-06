@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Small, "Universal" badges to mark your Intel-ready binaries on your web sites. Released under an Attribution-General/ShareAlike Creative Commons license (yes, that means commercial use is OK, see http://creativecommons.org/licenses/by-sa/2.5/ ).
 
 http://millenomi.altervista.org/Extras/General/UniversalBadges/Image/

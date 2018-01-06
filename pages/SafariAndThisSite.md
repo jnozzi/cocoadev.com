@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Am I the only one who has trouble saving changes to wiki pages on this site with safari? It happens mostly when I try to use WikiTalk (or whatever you call the %% stuff, probably syntax), it is very annoying.
 
 ----

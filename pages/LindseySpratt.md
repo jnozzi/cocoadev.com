@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to learn enough about Cocoa to do simple UNIX ports to the OSX GUI.

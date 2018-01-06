@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been working on an application that does the following operation.
 
 The application has long running NSTask that communicates with the server

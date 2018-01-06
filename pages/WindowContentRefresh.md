@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do i update the content of a window with code?

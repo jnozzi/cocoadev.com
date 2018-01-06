@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 We don't want to seem like a bunch of thankless mooches, but this page is for ideas that might make CocoaDev even radder. For those who are searching, the phrase 'feature request' should be on here.  And now it is. :)
 
 See also CocoaDevToDoList.

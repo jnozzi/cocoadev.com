@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Name of the old Communities.com Palace server software, now defunct and no longer supported, and was bought by OpenText I believe.
 
 Palace is maintained at http://www.thepalace.com , but the software is no longer updated, 3rd party projects have been underway to emulate Palace and eventually produce a new one, including some already attempts at doing new palace protocols and software.

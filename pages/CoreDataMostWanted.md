@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'll start the ball rolling with a few wishes for CoreData. I'll number them CDMWnn -  U2 please. 
 Keith
 

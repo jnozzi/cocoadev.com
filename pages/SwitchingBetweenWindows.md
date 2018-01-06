@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am writing an application that has a login screen and the main gui.  Right now, I have the login window visible at launch and not visible for the main window.
 
 code:

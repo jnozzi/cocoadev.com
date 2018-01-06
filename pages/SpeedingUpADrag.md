@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm learning drag and drop now. I have several subviews (of the same class) in a view. I can drag these subviews using this code :

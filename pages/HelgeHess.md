@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Well, seems like I'm the project lead of OpenGroupware.org until I can pass over the job to someone more qualified and concentrate on development tasks ;-)

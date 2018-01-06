@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is your favorite programming font and size?
 
 Monaco 9

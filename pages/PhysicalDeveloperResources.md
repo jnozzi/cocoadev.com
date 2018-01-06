@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would just like to make a note that funmac.com is willing to give free website hosting (via subdomains or via a .com) for any developer. This hosting includes your own area of the server (many gb's of space) and a free forum all set up free of charge (yes, lots of free's).
 
 There are no catches to the deal.

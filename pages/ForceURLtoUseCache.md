@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I use WebView to load page, and some pages have cache-control dirrectives (pragma no-cache, etc.)
 WebView follows this dirrectives, so when I load them, there are no access to data via
 

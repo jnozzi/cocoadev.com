@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm having some problems with an application I'm writing.  When the user invokes a menu action using the keyboard (or possibly the mouse) the focus does not stay on the control that was in focus before the action occurred.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 So, just as the page title suggests, how can I programmatically control expose? When my application is activating another, iIt'd be nice to have (based on user-preferences, of course) expose activate, then automatically choose the target app's main window as if the user had exposed all windows and chosen the app's main window themselves. Arguably good idea, but that aside, is it possible to accomplish this in a non-clunky way?
 
 ----

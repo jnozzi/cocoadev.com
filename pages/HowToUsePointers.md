@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *Bob: How do you use pointers?

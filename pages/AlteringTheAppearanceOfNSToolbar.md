@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to alter the Appearance of the NSToolBar? What i would ideally want is to be able to set the appearance of it to be a transparent grey.
 
 Is this possible? 

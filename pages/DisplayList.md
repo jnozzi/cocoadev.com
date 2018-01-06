@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A DisplayList is an OpenGL entity which caches drawing instructions for later use. It is perhaps the most basic optimization available in OpenGL, and it's also very effective; Apple's put a lot of work into making sure that display lists are speedy on MacOSX.

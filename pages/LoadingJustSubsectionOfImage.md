@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there a way to load just part, e.g. bottom right quarter, of an image into an NSImage?  My goal is to display several small tiles (~128X128 pixels) taken from large images (~6000X6000).  Currently I load in the entire image, crop it, and display the cropped version.  The problem is that the NSImage initWithContentsOfFile: method takes several seconds to run on big images. Several seconds each for several tiles really adds up. This is frustrating since most of the full image will not be used anyway.  Ideally I'd like some method like initWithContentsOfFile: withRowRange: columnRange:.  For simple image formats, I could imagine carefully extracting the raw data, and creating and inserting a NSBitmapImageRep, but this would be difficult to do for arbitrary image formats. Any suggestions?

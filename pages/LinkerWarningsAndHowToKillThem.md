@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hullo. My project consists of two targets, an application and a framework target which is used in the application. At the moment I'm focusing on getting the framework target working properly.
 
 It compiles perfectly reasonably, including my nice prefix header and all the other goodness I have set up, but when it gets to linking it pops up a strange warning I've not seen before:

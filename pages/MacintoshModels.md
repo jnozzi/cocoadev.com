@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page maintains an up-to-date ASCII property list for translating sysctl hw.model into human-readable strings.
 
 Save the following text as a file named "Macintosh.dict", and add it to your app's (localized) Resources folder.

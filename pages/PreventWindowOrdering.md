@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Adding these methods to your NSView subclass will prevent the window from becoming active when clicking on it.
 
     

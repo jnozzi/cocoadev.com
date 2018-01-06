@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To add an outlet to your class in Project Builder, make sure you have a class and are in Project Builder.  Open up the header file for your class (Foo.h).  Now, add the following code in between the braces that follow the "@interface" line.
     
 IBOutlet id myOutlet;

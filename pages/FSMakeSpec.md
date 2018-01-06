@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a QuickTime tool in Cocoa, and I'm going crazy trying to figure out why I'm getting an OSErr=-37 when I try to FSMakeFSSpec an FSSpec for a simple full path. The error code descriptions are at the link below:
 
 http://developer.apple.com/documentation/Carbon/Reference/File_Manager/file_manager/ResultCodes.html

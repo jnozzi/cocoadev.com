@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey,
 
 I have a table with a few rows of multi-line text.  I want it so that when the user resizes the table, the text does not wrap.  How do I do this?  Thankyou.

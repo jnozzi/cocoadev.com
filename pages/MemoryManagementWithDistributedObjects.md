@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Still no solution! Need help :)
 
 retainCount on server side is 2! but when I do release recieved object, it sigbuses�

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am intersted in having a window with multi-Palettes much like what IB has. Thus each palette would have its own set of buttons and also text boxes, etc.

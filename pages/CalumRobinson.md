@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 DoomLegacy for MacOS9 & X:

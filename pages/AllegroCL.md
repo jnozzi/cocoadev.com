@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Franz Inc. [http://www.franz.com/] has been developing Allegro Common Lisp for many years.  A trial version is

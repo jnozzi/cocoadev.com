@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A good article on Reading, Writing and Coding: "The key to writing readable code is developing good coding style. ..."
 
 Original: http://www.acmqueue.org/modules.php?name=Content&pa=showpage&pid=84

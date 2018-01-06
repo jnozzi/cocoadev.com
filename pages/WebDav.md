@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/WebDAV stands for "Web-based Distributed Authoring and Versioning". It is a set of extensions to the HTTP protocol which allows users to collaboratively edit and manage files on remote web servers. See http://www.webdav.org/ for more details.
 
 Apple uses the webDav protocol for iDisk.

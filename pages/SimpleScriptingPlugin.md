@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 The SimpleScriptingPlugin sample project is located at
 

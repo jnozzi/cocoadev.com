@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on a project that has a General/NSTableView with a list of items (everything's in General/CoreData and Bindings). The items have a "date due" attribute that I want to alter the color of the row when the current date is near and/or past that date. I'm guessing it would probably change the color as the table popluates from the Array Controller. I know I can just do it with an if-else statement, but I can't seem to find what to subclass. I tried subclassing General/NSTableView, but didn't seem to find anything. I know this question has probably been asked a billion times, but I can't seem to find a good solid answer. I've seen it in a few good apps and hope it's easier to implement that it seems. Thanks, --General/LoganCollins
 
 ----

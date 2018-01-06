@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a variant of the RealTimeStreamingProtocol (RTSP), but it seems to be on TCP ports 5000 (control) and 6000 (data) instead of the RFC ports. The iTunes app connects to the RTSP server on 5000, tells it to record an Apple Lossless stream, tells it an RSA key, and then switches to 6000 to send the data.
 
 *It defaults to 6000, but the airport tells the client the port to use in the RTSP SETUP exchange; I've had it use 6001.*

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Reasons a "Dependency Analysis" warning says that it can't precompile a header:

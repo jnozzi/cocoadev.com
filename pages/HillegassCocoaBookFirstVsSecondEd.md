@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have gone thru the first edition of Aaron Hillegass' "Cocoa Programming for Mac OS X."  It has been a help - but I think I slightly prefer some of the more recent O'Reilly books.  The new Second Edition is out and it's XCode-centric.  Does it have compelling content changes to prompt a purchase of it, as I've got the first?  

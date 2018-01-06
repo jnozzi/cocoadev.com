@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to say something like:
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does some body know how to create a NSTextView who contains HTML source code with colors for each tags ? OmniGroup's frameworks maybe do it but which ones ?
 Thanks.
 

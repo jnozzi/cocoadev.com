@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am having a frustrating time trying to set up an NSComboBox or NSPopUpButton to do something I think should be quite simple.

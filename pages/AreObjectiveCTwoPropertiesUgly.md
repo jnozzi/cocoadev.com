@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Maybe this discussion has raged elsewhere for days, maybe I'm just resisting change, but I do find the new Objective-C 2 @property implementation to be ugly and confusing. I think it makes a mess of a fine, simple and elegant language.  Do you agree or disagree?

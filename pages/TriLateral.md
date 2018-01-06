@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/TriLateral Systems develops ecclectic software.  With the impending release of Montever� (theft retrieval) and Sinon� (malware detection), we've moved into the consumer security space.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://www.zeroconf.org/
 
 Zeroconf is a proposed standard for bringing General/AppleTalk-style ease of use to typical IP networks. To make that a little bit clearer: it makes it tremendously easy to set up a self-configuring network. Nothing special required.

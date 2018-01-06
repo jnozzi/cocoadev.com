@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am getting a weird crasher which is apparently caused by something in a subclass of General/NSWindow. The crash dump gives me 508 lines of the same message:
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an app which stores an array of dictionaries in the user defaults.
 
 During load I make a mutable copy of this array and may change the contents of some of the dictionaries throught the program.

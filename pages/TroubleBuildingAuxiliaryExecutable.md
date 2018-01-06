@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Please bear with be here, because I'm sort of a noob...
 
 I'm trying to add an auxiliary executable to my project. So I added a new Target, selecting Tool. But when I try to build it, I get two errors:

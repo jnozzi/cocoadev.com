@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 STLport � http://stlport.org/
 
 Did anyone successfully use this with GCC 3.3? I unpacked it and tried:     g++ main.cc -I/tmp/stlport but I get a dozen compiler errors (related to includes).

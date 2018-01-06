@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [ Off Topic, my apologies -- MikeTrent ]
 
 ActiveSpamKiller is an OpenSource project on SourceForge that helps you filter spam at the server. It's basically a collection of python scripts that sorts through your incoming mail and intercepts messages that come from an unknown, or known to be evil, source. No more procmail hacking!

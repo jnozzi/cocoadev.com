@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The following classes are toll-free bridged:
 
 *Foundation

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to check and see if the user actively selecting text in an NSTextView, as in they are in the process of dragging?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaBindings has eliminated so much code for me that I no longer have a convenient place to update my document-changed status.
 
 App uses a table view without any fancy stuff, targeted to add and delete rows with default implementations in the array controller object

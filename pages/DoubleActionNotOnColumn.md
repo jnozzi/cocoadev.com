@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've got this associated as my doubleAction for my NSTableView:

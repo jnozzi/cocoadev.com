@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Currently i have a semitransparent General/NSView subclass which contains other custom General/NSView's. The interior views draw properly the first time, but then when they are redrawn they have weird fully transparent sections around the curved corners. This also happens with a normal General/NSTextField.
 
 Images of what the window looks like before and after the redraw:

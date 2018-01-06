@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to add an gutter view to an NSScrollView. I can draw the gutter in the main content of the scrollview, but when the scrollview gets bigger than the content view (and the vertical scrollbar becomes disabled) the gutter of course only draws in the content view of the scrollview, leaving a gap at the below the view and the bottom of the scrollview. I have tried to do something with NSClipView, but I don't fully understand much about it. I need the view to go from the top to the bottom of the visible rect of the scrollview.

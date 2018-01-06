@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was wondering how I would write Mircrosoft's on screen keyboard program for mac os x.
 My main question is how to make the app interact with all other app's that accept text input ?
 

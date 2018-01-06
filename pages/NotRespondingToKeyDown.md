@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm not able to get my sheet window to respond to - (void)keyDown:(NSEvent *)theEvent.  I verified that the first responder is the class where I have put my definition of keyDown.  I have
 
 - (BOOL)acceptsFirstResponder {

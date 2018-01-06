@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ClassInheritance is a central concept to ObjectOrientedDesign. It allows an exceptional amount of code reuse by allowing classes to inherit properties and behaviours from other classes.

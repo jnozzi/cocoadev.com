@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was wondering wether one can change dynamically the content of a pop-up menu and/or table view.
 
 Here is the problem:

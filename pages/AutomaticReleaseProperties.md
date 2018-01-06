@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all.
 
 I'm not interested in using GC at the moment but I really like properties. Using them frees you from all that mucky setter/getter coding. Nice.

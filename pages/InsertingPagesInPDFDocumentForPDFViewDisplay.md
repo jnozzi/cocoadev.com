@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to find a better way to insert numerous pages into a PDFDocument for display in a PDFView.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Today, I discovered the magic of NSViewAnimation. But I found it rather awkward to use on a quick basis, so I cooked up a lovely category on NSView that allows you to send it messages like fadeOut and animateToFrame in about 1/10th the characters. Sensible defaults are provided for everything, but you can change them if necessary. MIT License.
 
 

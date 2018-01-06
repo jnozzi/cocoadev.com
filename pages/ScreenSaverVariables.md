@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to make a SIMPLE screen saver with a SIMPLE NSBezierPath. I got the path, I got a color, but I can't get variables that will make my shape move. Here is my code so far :
 
     

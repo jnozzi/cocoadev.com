@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how much memory an NSObject takes up?  An NSArray when empty?  How big is NSObject's struct and does anything else besides that struct suck up memory?
 
 ----

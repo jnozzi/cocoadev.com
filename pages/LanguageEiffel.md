@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Eiffel is an Object Oriented Programming language.

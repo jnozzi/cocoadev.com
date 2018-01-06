@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CFHost allows you to asynchronously resolve a name or address without the main thread blocking. CFNetwork will spawn the thread for you in the background and fire a notification back to the main thread once it acquires the information.
 
 

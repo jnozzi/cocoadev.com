@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The key view loop can be problematic to deal with. It is designed to just work magically, so in most cases it's not an issue. But if it doesn't work, it's pretty difficult to figure out why not. Here are some guidelines for getting a working key view loop.

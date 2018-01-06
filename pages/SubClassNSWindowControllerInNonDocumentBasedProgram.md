@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I feel really stupid. I'm trying to create an extremely simple program with just one window (besides the menu). I need to subclass General/NSWindowController. But, as this is my main NIB, File's Owner is General/NSApplication.
 
 I understand that, normally, one would make File's Owner a subclass of General/NSWindowController, but obviously, you also need an General/NSApplication, so that doesn't seem to apply in this case. I've spent hours scouring the net, including Apple's Developer site, and it certainly mentions that an General/NSWindowController can be used alone or in conjunction with a Document-based application, but everyone only talks about Document-based applications. How do I cause an General/NSWindowController to be instantiated without the rest of the Document stuff?

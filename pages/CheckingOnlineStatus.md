@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How does one check if the user of an application is currently on the internet?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 PowerMac - Short for PowerMacintosh!
 
 The long time product brand for Apple's line of professional desktop systems.

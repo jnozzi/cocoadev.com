@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do I set the miniwindow image, to display the windows content, when the content is an openglview?

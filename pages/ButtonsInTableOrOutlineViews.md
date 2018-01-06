@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's a simple example of how to incorporate a column of checkboxes in an outline or table view.
 
 This project does nothing more than serve as an example of how to hook things up so that an NSTableView or an NSOutlineView can have a column of NSB**'uttonCell objects.

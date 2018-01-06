@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One of the things about NSImage that completely mystifies me is why on earth there's no way to tell it to use the highest image interpolation possible. You know how icons in the Finder and in the Dock scale really beautifully, i. e., the icons are smooth at all sizes? Now try loading an icon file into an NSImage, displayed in an NSImageView of course, and scaling it up and down. It looks awful at any size other than 128x128, 64x64, 32x32, etc.
 
 So I decided to write my own image view. It was very simple; it just composited the properly-scaled image into its view area. Scaling the image using the highest interpolation was the only tricky part. On hindsight, I suppose I could have put that code outside of the image view and just used a regular NSImageView. Maybe I'll do that next time.

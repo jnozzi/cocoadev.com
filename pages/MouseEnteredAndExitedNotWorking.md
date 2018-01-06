@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a subclassed NSButton, and I can't get mouseEntered: and mouseExited: to work, though mouseDown: does work. I'd post my code, but there isn't really anything to show, since the only other method I have is drawRect:. Unless drawRect: could have an effect on the mouse tracking?
 If anyone has any idea of what could be wrong, please help.
 Thanks.

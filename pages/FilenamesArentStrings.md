@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I recently added drag-and-drop to an app so that a user can drag a list of files onto the app's icon. I found though that apparently when drag-and-drop is used, files don't come in order as they would if you used an NSOpenPanel - they come in pell-mell.

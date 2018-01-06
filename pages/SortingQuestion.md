@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Seeing the recent posting about BubbleSort prompted me to look up some of the details of other sorting algorithms, like MergeSort and QuickSort.  In the process, however, I noticed something odd:  My Java textbook states that MergeSort is O(n*log(n)), and that QuickSort's average case is O(n*log(n)) also.  However, it goes on to say that QuickSort's worst case is O(n^2).  If this is the case, why is QuickSort considered the standard "fast" algorithm instead of MergeSort?  What makes it better? --OwenAnderson
 
 *I am not sure it is the standard "fast" algorithm, ANSI-C does not require that qsort equals quick sort, and STL's std::sort is a hybrid of several sorting algorithms.*

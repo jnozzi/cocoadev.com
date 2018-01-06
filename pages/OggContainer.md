@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The OggContainer format is the general purpose multimedia file format developed at Xiph.org and used by OggVorbis, OggTarkin, OggTheora, and OggSpeex. This page is linked from the FileExtensions page.
 
 ----

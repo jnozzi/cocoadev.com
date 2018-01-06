@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi again! I have Xcode 2.4, and I noticed that it places a default About box in my program. The last line of this About box reads "� __MyCompanyName__, 2007". How do I replace __MyCompanyName__ with my company's name (Ampersand Laboratories)? - Pietro Gagliardi, http://web.mac.com/pietro10
 
 ----

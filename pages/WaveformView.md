@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am interested in creating a simple view to draw the waveform of the song that is selected/currently being played in iTunes. I am planning on using the General/EyeTunes framework for the interaction between my app and iTunes, but I was wondering if anyone would have any pointers on where to start to draw a waveform. I would rather not load the file and analyze it myself. Anyone have any experience with General/ArkonnektSound's waveform view? Is it stable?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am a MFC programmer starting to write cocoa code. Can anyone tell me how to write a wizard dialog in cocoa?, like in most software installation, with "Back", "Next", "Finish" buttons.
 
 ----

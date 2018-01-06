@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am building an iTunes-like browser for my biblographic app.

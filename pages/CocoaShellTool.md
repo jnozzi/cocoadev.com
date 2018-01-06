@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Xcode will allow you to create a Cocoa target of type "Shell Tool" (Project->New Target->Cocoa->Shell Tool). A Cocoa shell tool has access to the AppKit API after calling     NSApplicationLoad(). This is useful if you would like to write tiny helper apps that don't need workspace support. A simple app created this way can launch very fast. 
 
     

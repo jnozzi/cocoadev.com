@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This topic is not very Cocoa-related; it's more of a MacOSX power user article. However, it's nice and informative and may be of interest to Cocoa developers. As a professional software developer, I personally use my     /Network directory a lot... I frequently switch between machines for testing purposes, and having the right server setup makes it easy to keep the same environment across machines.
 
 ----

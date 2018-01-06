@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've tried to find a tutorial describing how to do rubber-banding using Cocoa but havn't found any. Do you know where I can find one? It's mentioned in the documentation for NSBezierPath but not explained.
 
 Thanks,

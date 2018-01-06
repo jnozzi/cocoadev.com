@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 (I hope the title is not confusing: this is not about *distributed* builds)
 
 I would like to do the following in Xcode:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I was recently playing around with the Xcode data/class designer and was wondering how those neat flow chart views were made. I then found an even cooler implementation of a flow chart in the Quartz Composer app that comes with recent versions of the developer tools. Does anyone have any hints on how to create something similar (but simpler :P)

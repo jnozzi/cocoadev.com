@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Create a MATLAB .MAT / .MEX file using Xcode
 
 Several people have posted tips on the web on techniques to link to MATLAB dylibs using Xcode. The root problem is that MathWorks uses localized embedded names, and also relative path references to other linked MathWorks libraries. The libraries are in located in the /Applications/MATLAB??/bin/maci directory. In my case, I'm using MATLAB74, so what follows is most relevant for that release and creating an environment to support building a ".mat" file. However, the technique can clearly be extended to new versions, and / or .mex files.

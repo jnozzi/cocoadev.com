@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 
 I'd like to respectfully request feedback for a comprehensive higher order message framework for Cocoa, which is nearing completion (ie, passing most unit tests without memory leaks).

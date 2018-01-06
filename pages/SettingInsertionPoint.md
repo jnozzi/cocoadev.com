@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As a first project, I'm building a custom HTML editor (for myself, for now).  I'd like it to be able to insert empty HTML elements with a single keystroke.  I'm pretty sure I know how to connect menu items with functions that will do this via key equivalents.  My problem is that I can't figure out how to move the cursor programmatically so that it will be placed between the HTML start and end tags once the element has been added.  I've read the docs for NSTextView and superclasses, but haven't found anything that tells me how to move the insertion point.
 
 Any ideas?

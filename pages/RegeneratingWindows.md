@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to get the behavior of, for example, iCal.  Click the red close button of the main iCal window and the calendar closes.  Now, without choosing another app, click iCal's icon on the dock, and iCal's window regenerates.  The problem I'm having is that 
 
      (void)applicationDidBecomeActive:(NSNotification *)aNotification

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Part of CocoaDevelopersMostWanted (It would be cool to have a category "Most Wanted" or something, no?)
 
 **If you want any of these changes, please submit them to [https://bugreport.apple.com/cgi-bin/WebObjects/RadarWeb.woa Radar]. Simply posting them here is great for discussion and raising awareness, but submitting them to Apple's bug tracker is what will get them implemented. In addition, the more people submit a given issue, the more likely Apple is to do something about it.**

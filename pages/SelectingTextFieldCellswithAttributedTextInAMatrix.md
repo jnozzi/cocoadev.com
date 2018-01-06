@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Test case: When I run it the text string is 20 point blue.  When I click on a cell the text reverts to the default point size and color.
 What I'd like is to display some text in these cells that one can select and drag but I want the text to remain displayed as blue 20 point.  I must be missing something obvious.
 

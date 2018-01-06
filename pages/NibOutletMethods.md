@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In the relatively short while I've been coding in Cocoa, I've always provided accessor and mutator methods for my IBOutlet<nowiki/>s.  This is as per the documentation, which says that NSNib looks for the mutator first, falling back on directly setting the InstanceVariable if a mutator is not found.   Since the default scope of ivars is protected, I assumed that I was required (and it would be safest) to provide accessors and mutators for all of my outlets.
 
 Any time I've seen code involving IBOutlet<nowiki/>s, there are never any accessors or mutators, nor @public directives.  I would love to dispense with the annoying practice of implementing stub accessors and mutators, but how will NSNib set my ivars?  Does NSObject provide some default implementation for KVC-style accessors and mutators that will spare me?

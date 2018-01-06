@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's my situation:  I have an NSTextView in a window that I want to display data for the user, but at the same time have the NSTextView uneditable.  
 I had been using -insertText, but discovered that I cannot when I have the NSTextView set to be uneditable.  Short of surrounding all my inserts with [myTextView setEditable:YES];
 and

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am having a memory leak associated with an NSOpenGLView subclass. This is a document based application and each document window has an NSOpenGLView. When a document window closes, the NSOpenGLView is deallocated, but the NSOpenGLContext is not released. I tried to call     [NSOpenGLContext clearCurrentContext] to release the current context, but this does not do anything.
 
 Also, each NSOpenGLView generates textures using     glGenTextures() and deletes these textures using     glDeleteTextures(). Is there any other cleanup I need to do before I dealloc my subclass?

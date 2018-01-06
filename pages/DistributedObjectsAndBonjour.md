@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi folks. Running into a perplexing problem here with an app I'm working on...
 
 I've set up a scheme by which distributed objects are published and then listed via Rendezvous. It seems to work well enough in tests from local-machine to local-machine when I'm NOT connected to the net as I am now (via dialup). However it breaks down whenever I'm online, which is immensely disconcerting :)

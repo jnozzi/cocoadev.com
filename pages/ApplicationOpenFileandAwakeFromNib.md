@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, this must be simple but I can't figure it out:
 
 I am adding a shareware license thing to my program. But I can't get everything to work at the same time There are two parts. 

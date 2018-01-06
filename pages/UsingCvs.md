@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I would be interested in starting some discussion about using CVS with Mac OS X, especially with General/ProjectBuilder's built-in support for it.

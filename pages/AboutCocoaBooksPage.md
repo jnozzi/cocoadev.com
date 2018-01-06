@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **retired**
 
 Should we redesign CocoaBooks? Thing is, I never know what's changed on that page any more, it's too big.

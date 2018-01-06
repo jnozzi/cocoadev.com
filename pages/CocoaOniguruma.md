@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://limechat.net/cocoaoniguruma/
 
 CocoaOniguruma is an Objective-C binding of Oniguruma regular expression engine.

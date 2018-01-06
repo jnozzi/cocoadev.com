@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Sorry, it's somewhat "off-topic", but since I could not find any help, I try here because I know people will answer kindly.
 
 I updated to Mac OS X.2.8 recently, and since then, everything seems to be screwed up. Many apps, including Safari and QuickTime suddenly quit with no apparent reason. And the most important Cocoa project on my HD doesn't work since the update. I get at least 94 errors when I try to compile. Most of them look like this :

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 While there are more sophisticated routines and objects for parsing HTML (note the OmniFrameworks ), you can do simple parsing in an NSTextView with the help of NSAttributedString:
 
     

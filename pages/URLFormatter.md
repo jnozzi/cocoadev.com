@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a subclass of General/NSFormatter that will auto-complete General/URLs based on the string passed by the user, much like Safari will do.
 
 It will also accept properly-formatted General/URLs of any other type and do simple percent escape corrections.

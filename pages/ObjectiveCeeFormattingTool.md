@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone have an indent.pro file that works with Objective-C code? Or know of another tool with similar functionality? I'm using the one below (which I got from [http://mail.gnu.org/archive/html/discuss-gnustep/2003-04/msg00085.html]) but it doesn't work very well, for the reason discussed in the thread at that link. (It doesn't deal too well with Objective-C @... directives. The suggested fix doesn't help.)
 
 **indent.pro**

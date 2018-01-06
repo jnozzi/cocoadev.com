@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to put the system time into a text field and have it update automatically in real time.
 
 ----

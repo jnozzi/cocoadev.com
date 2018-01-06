@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/XPath is a sort of query language for XML. You can access any node within a document with a simple expression. The shorthand form looks much like a UNIX file path.
 
 

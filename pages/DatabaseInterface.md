@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there anything like java's JDBC or perls DBI for Cocoa?  It would be nice to have a common database API to program to.
 
 ----

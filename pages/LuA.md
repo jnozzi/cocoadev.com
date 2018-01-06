@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 LuA (Spelled "Lua", the Portuguese word for "moon", from Latin "luna") is a cool scripting language built to run within existing applications. It's main purpose is to contain preferences, but it can do so much more.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Lately, I've noticed that many of my coding implementations strive to minimize the number of instance variables, because that I somehow get the notion that many of those are wrong, just like global variables are wrong. Or, at least a bit like that; you don't want ivars that don't have anything to do with the _data_ state of your object.

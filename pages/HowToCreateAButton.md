@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Make sure you are running Interface Builder in which your project is open.  Interface Builder is where you add all the user interface widgets to windows you create.  There should be a blank window there already, waiting for you to put stuff on.  In addition you might also see the "MainMenu.nib" window, the "Cocoa-" window, perhaps the info window and also perhaps the diminutive menu window.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have created my own GLview and am happily displaying simple primitives.  I've also implemented a handy camera management scheme.  What I'd like to do is report the various numbers that describe the camera using NSTextfields.

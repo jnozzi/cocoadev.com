@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do you perform reverse engineering on Cocoa applications? 

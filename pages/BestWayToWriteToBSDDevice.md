@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 What is the best solution to write/read to a bsd device (like /dev/cu.modem)?

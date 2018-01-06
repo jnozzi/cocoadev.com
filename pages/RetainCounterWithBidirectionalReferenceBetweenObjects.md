@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 just wonder what a good way to handle bidirectional aggregation between two objects is under objective-c's retain counter system Here's an example of what i mean (i'ved used a psudeo-c++ example as it is less typing):
     
 class A

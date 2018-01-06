@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The University of Michigan - http://www.umich.edu/
 
 Also see the General/UMich College of Engineering - http://www.engin.umich.edu/

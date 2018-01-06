@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Basically, I have a Save Panel, that saves a .ics file.  What I want is to be able to, once the file is saved, automatically open the file in iCal, not my own application.  The path to the file can be a standard place (like ~/Library/Application Support/myApp/), but it would be nice if it could use NSSavePanel fuctions directory and filename to open it.  Thanks for the help...

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I want some information about CFUser notifications,because In my project I want to show alert message  with "ok" & "cancel" buttons. 
 
 so can anyone idea how to create alert message through dialogue box and when click on either [ok or cancel] buttons to show the  message  when

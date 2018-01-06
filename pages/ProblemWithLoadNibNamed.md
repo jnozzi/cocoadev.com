@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm having a problem creating a custom view. I make a new empty nib and throw some stuff into it.  Then I make a subclass of NSView to be the File owner:
 
     

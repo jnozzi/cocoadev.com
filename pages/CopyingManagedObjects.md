@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Well, it's been a long two or three days, but I've finally got a working method to copy arbitrary graphs of NSManagedObjects (and subclasses). It relies on you having set ownership properly via the delete rule-- that is, a cascade delete rule says "I own this object", since the referenced object will go away if you delete the receiver. But that's all-- you just set up your model and run.

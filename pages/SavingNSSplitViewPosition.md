@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's some simple code to save and restore the position of an NSSplitView (which unfortunately don't save their position). You can call these from your window controller's awakeFromNib/windowDidLoad and termination code.
 
     @interface NSSplitView (Defaults)

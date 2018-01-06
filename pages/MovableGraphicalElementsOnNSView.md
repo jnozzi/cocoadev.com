@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to make a program that will have an NSView instance and 10-100 little graphical elements (that will probably look like filled squares at this point) that I will need to create, drag around that NSView and delete. 
 
 At this point, I have a custom NSView class that facilitates all that, but the mouse hit checks and movement is made rather ackwardly, imho. That is, on mouseDown, NSView goes through an array of elements, and checks which one got the hit, then it relocates it on every mouseDragged.

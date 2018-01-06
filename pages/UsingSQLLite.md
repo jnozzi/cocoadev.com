@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to use the General/SQLLite wrapper classes from Blackhole Media with Cocoa as I need a embedded database for my application. However I am having trouble in installing it. I did download the SQL Lite library from http://www.hwaci.com/sw/sqlite/download.html but I don't a have a clue how to install it. Can someone please give me detailed step by step instructions on doing that.
 
 Thanks Saad R. Abbasi

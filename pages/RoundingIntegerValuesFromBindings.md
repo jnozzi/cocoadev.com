@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there away to round integer values accessed using bindings to 0 decimal places?
 
 ----

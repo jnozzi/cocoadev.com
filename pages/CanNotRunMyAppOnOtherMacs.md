@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I can not distribute my app either as an image then an Archive. On my G5, where I developed my app, I dont have problems. It's not a big application, so it should run also on a G3 or G4.
 I cleaned my target before I built it in release mode, like always. On my G4 the app crashes always at the same time: When I start it from Desktop then it crashes at a
 

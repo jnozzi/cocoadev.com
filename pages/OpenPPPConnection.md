@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi guys,
 Can anyone tell me how to simply tell Mac OS X to connect to the internet using the current settings?
 I don't need to change any of the users settings, I just want it to connect.

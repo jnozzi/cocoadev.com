@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An AbstractSuperClass is a class that defines some useful behaviours and/or interface for an object, but does not specialize. Generally, these classes aren't useful to you unless you subclass them and inherit the behaviours and/or interface, and then specialize those to your needs.

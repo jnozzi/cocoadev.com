@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 Can I somehow accept scrollwheel events when the mouse is over my window, even though the window is not in the foreground?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
     if( [nameField stringValue] == [NSString stringWithString:@"name"] )...

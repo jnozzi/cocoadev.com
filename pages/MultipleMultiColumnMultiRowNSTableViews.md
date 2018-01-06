@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey
 
 I need to create multiple table views or multiple matrix's inside of a table view or matrix's. E.g. I would like to have one encompassing, lets say NSMatrix. Each cell in the Matrix would contain a NSTableView or another NSMatrix.

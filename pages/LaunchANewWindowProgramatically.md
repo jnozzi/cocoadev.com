@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
     
 
 - (void)myAction:(id)sender

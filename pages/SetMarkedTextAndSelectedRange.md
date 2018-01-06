@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How should the selectedRange argument of the NSTextInput selector     - (void)setMarkedText:(id)aString selectedRange:(NSRange)selRange be interpreted?
 
 As far as I understand marked text is not the same as selected text, so I would think that Cocoa wants me to insert 'aString' as marked, and then perhaps use 'selectedRange' as the insertion point?

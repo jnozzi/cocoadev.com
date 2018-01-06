@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've added an IKImageBrowserView to my app in a Utility Panel.  I want to be able to drag and drop files onto it, so I set the delegate using the 
     
 - (void) setDraggingDestinationDelegate:(id) delegate;

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I just figured out a problem with an app that was freezing because mutiple threads were waiting on the same lock. I have a GUI that draws a bunch of icons in a separate thread. This wasn't a problem when I wasn't drawing that many icons while the display was being refreshed, but every now and then the app would hang. After sampling the app when it was in a frozen state, I noticed the problem was multiple NSImages trying to draw at the same time. 
 
 Apple's documentation says that NSImage is thread safe, so I was kind of caught off guard. 

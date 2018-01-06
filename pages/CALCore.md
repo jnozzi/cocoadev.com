@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CALCore is Apple's private framework used with iCal and iSync.
 
 Use ClassDump to output the interfaces to all the classes in the framework.

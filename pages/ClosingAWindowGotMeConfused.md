@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As far as I can tell, there are lots of methods to close a window.
 performClose:
 orderOut:

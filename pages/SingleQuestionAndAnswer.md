@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Since it's more a place to discuss than to answer questions, what are the places where we can ask questions and get quick answers ?
 
 ----

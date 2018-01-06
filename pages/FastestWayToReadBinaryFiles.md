@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've been working on some code that reads a binary file (close to 3MB in size) and was wondering if anyone has any experiences with using straight C to read the file with fseek vs dumping the entire file into an NSData object and then reading it using NSData's     bytes method (which is what I do now). Do you think using straight C (functions such as fseek, fgetc, etc) would be faster?

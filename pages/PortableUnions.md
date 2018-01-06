@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Since I can't test my UniversalBinaries on an x86 Mac, I hope someone can clarify how unions will align on x86.

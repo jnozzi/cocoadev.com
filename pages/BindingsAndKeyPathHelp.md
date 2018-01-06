@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm working on a simple project to mine an iTunes Library file and present the information to the user.  This is mostly just an extended experiment with bindings.  I've managed to link my NSArrayController so that my tableView displays the names of playlists correctly.  Each playlist is an MJPlaylist object with name and NSMutableArray tracks ivars.  

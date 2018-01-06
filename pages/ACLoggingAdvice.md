@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **ACLoggingAdvice** - an example AdviceObject related to AspectCocoa
 
 ACLoggingAdvice is a simple class intended for use as an AdviceObject.  The result of applying an instance of this class as the AdviceObject to a given PointCut (via the loading of an Aspect), will be that whenever any method within the scope of that PointCut gets called, we will NSLog before it gets called, and after it has returned.

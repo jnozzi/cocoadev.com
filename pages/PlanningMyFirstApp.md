@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The process of application design is a daunting one; we've all been there, and you are probably not going to escape making some real blunders in your early designs. The more planning and specific design decisions (even bad ones!) you commit to *before actually starting to code* the more you will learn-by-doing. We are here with advice to help you fix those mistakes once you get stuck on them. The following is a representative example of the process:
 
 ----

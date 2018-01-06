@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Can anyone explain to me what this compile error means or what could have caused it?

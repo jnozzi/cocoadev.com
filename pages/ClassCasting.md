@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OK, here's the deal:
 
 I have 2 NSDocument subclasses, one for dealing with HTML documents, one for dealing with text documents. Both implement the same methods, with HTML being treated slightly differently (saving with a .html extension, for one thing). I have some code that looks like:

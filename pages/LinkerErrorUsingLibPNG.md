@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm transitioning an OpenGL game I'm writing from using targa images to PNGs. I tried using NSImage to load the pngs, but unfortunately, NSImage premultiplies the alpha channel which makes it useless for me. For what it's worth, I do have some quicktime code which will load pngs, but I find Quicktime to be a horrible mess, on the order of Win32 and I'd like to avoid it as much as possible.

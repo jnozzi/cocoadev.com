@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to create an app that recognizes keystrokes across all applications. I am not convinced that the Carbon methods for this work in a Cocoa app, I have yet to see an example application where they do or read about anybody successfully doing this. And I've looked.

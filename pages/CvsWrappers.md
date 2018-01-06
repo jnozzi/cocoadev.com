@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CVS only offers its version control services for text files.  CVS must be told which files are binary, so that it knows to leave them alone.  For a better explanation of this, refer to the more in-depth CVS documentation listed on CvsBasics.
 
 One way to achieve the separation of text and binary files is with a file called cvswrappers.

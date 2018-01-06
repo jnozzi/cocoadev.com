@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a framework for iSight barcode scanning, or can anyone explain how it's done?
 
 Thanks.

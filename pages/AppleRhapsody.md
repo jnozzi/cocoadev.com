@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Rhapsody was the "next-generation" operating system that AppleComputer had been working on before they renamed it MacOSX.

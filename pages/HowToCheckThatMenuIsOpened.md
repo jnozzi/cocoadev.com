@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I would like to know, that a user opened some menu (Dock's menu for example). How can I check that?

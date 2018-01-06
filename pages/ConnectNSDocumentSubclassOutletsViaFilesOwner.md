@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm writing a document-based application using NSDocument as my "document controller" and I'm experiencing some weird things.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am writing a program and the other day it suddenly hang during normal operation. I have done all what I could to try and reproduce, but without luck.
 
 Today I then found a bug in my program which would cause one past the last element in a std::vector to be read -- so I have tried to access *v.end() in a separate program, but generally this does not lead to the behaviour I experienced. In general a random value is just returned (since the entire page of memory is probably granted to my task), except when no storage is allocated for the vector, but this instantly gives an exception (which abort the program) -- no hang...

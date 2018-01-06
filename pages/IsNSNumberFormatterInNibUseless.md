@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In my NIB file, I can drag an NSNumberFormatter on a text field or table column to format its content. However, the formats proposed are all US-centric. I clearly don't want to hard code number formats in my NIB or in my code. How can I make the NSNumberFormatter format numbers using the system defaults? The localize check box doesn't seem to do anything.
 
 � OlivierScherler

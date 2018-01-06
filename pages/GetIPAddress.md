@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 hey, i am trying to get the ip address of a computer...i dont meen the local address, eg 10.0.0...i meen the wan address, eg 654.456...
 
 thanks,

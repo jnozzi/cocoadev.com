@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is it possible to intercept notifications coming to and from other applications?  I think I saw some code somewhere on how to do this..  I'd like to be able to intercept the messages in iChat for when people come online and go offline and change status (I assume this is done through notifications)

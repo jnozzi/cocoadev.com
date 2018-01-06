@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a question about multiple screen setups.
 
 Is the (0,0) coordinate ALWAYS in the far left screen, even if the menu bar is not there? Is the Bottom Right Point of all Screens (allScreenWidthsAdded,0) ?

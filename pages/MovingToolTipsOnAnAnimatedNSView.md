@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSView that is being animated (text scrolls across it) and I want to be able to have tooltips follow (ie. work properly) with the moving objects. I cannot find a way to do this, because when I use setToolTip as needed, I cannot get it to re-display the ToolTip with the new text. So what happens is the old tooltip remains until i move the mouse out of the NSView, and re-enter, then the new ToolTip is finally displayed.
 
 So, how can I get the current ToolTip to fade out and re-display with new text?

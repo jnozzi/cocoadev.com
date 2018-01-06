@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you want your custom view Palette to support "Size To Fit" from the Layout menu in Interface Builder add a category on your custom view in your IB Palette code that implements
 
     

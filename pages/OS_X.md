@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OS X (which Apple called Mac OS X into the Lion days, but OS X thereafter) is Apple's desktop operating system for its Mac computers.
 
 Although its version number series follows on from Apple's previous OS, Mac OS (the last version of which was 9.2.2), it actually is more of a descendant of NeXT's last OS, OPENSTEP.

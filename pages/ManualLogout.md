@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anybody know how to tell OS X to logout a user logged in the GUI?
 instead of say the auto-logout feature, i want to have my own program/script that logs them out  based on a duration fetched from a reservation system.
 

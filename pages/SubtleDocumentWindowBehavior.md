@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Taking a look at how General/TextEdit handles multiple documents, I've found the following subtle behavior when it comes to opening documents:
 
 Case 1: If you launch General/TextEdit without a document, it will create an empty document window titled "Untitled".  If you then open another document (without modifying the empty document), the initial document window contents are replaced with the opened document contents (rather than having a new document window created).

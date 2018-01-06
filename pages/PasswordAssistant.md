@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Password Assistant is the window that tells you the security of a password entered into an NSSecureTextField. In 10.3, it features a numeric indicator (from 0-128, though it can go higher for very long passwords), and a bar (like a progress bar) that is red for insecure passwords up to green for very secure passwords. It also provides tips such as 'This is a word in the dictionary', 'This is too similar to your old password', etc. In 10.4, it can also generate random and memorably-random passwords.
 
 The Password Assistant can be accessed through two Apple applications:

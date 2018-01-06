@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 You can turn on CocoaScripting debugging with the     NSScriptingDebugLogLevel preference. This preference can be set for a single app or for the entire system:

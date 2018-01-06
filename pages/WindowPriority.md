@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a window that opens up in my application that I want the user to interact with. How do you make it so that user must close this window before he can do anything else? I believe they call it modal. 
 
 ----

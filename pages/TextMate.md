@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://manual.macromates.com/images/project_window_with_tabs.png

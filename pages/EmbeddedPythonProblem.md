@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 December 15, 2007
 
 Please excuse me if you think this is a Python problem and not one for CocoaDev, but I'm trying to put an embedded Python interpreter into Objective-C and I get to watch it crash every time when importing the PyObjC libraries.  Here's the simplest possible code that causes the crash:

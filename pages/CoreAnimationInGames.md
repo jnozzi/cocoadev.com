@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What do you guys think?

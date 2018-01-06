@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Long time Unix/C/C++/Java hacker getting excited by Cocoa

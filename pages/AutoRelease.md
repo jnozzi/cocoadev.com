@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 When RetainingAndReleasing objects, if you don't know how long you are going to need an object reference (for instance, when you     return an object),

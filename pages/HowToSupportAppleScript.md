@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Apple's latest (as of December 2012) guidance on Cocoa AppleScript support is at http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ScriptableCocoaApplications/SApps_intro/SAppsIntro.html
 

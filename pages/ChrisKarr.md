@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm the developer of BooksForMacOSX [http://books.aetherial.net/]. I'm interested in creating and growing a community of Cocoa open source programmers who are interested in developing compatible applications (where it makes sense) and are interested in sharing experience and tips with each other.
 
 In my real life, I'm a software developer for Northwestern University [http://www.at.northwestern.edu] and I manage the technical side of the Oyez project [http://www.oyez.org]. I also keep a personal weblog at [http://www.aetherial.net/].

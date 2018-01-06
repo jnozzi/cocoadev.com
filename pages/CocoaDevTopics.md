@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Well, for better or for worse we've got Topics on this site now. I've run through and made lots of changes to get it all working, as the history of RecentChanges can testify (even though I made all the changes to CocoaDiscussions and CocoaDevUsers without telling RecentChanges), and it looks to be working well. I've added HowToUseTopics, but this page remains for now to discuss what people think of the new system.
 
 Is it well-formulated? The actual topic tags \\%\\%BEGINENTRY\\%\\% and \\%\\%ENDENTRY\\%\\% are fixed in stone, but I can mod the format of it very easily (one of the benefits of the system), so comments there would be appreciated.

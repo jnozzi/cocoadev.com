@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Herewith, a place to cite all the articles with questions asked-and-answered about such things as:

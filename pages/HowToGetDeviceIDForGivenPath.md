@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How can I get the device ID (i.e. /dev/diskX) for a given path? I think you have to use the stat() function, but not 100% sure. Currently I'm just parsing the output of "/sbin/mount" which is ugly.

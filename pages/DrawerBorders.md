@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm developing a children's application and all the windows are relatively odd shaped.  The problem I'm having is with the border around drawers.  Unfortunately, I do require the drawers.  I'm able to remove the opacity from the drawer's content view and give it a clear color.  However, I have yet to figure out how to get rid of that border.  I was wondering if anyone has had any luck with this.
 
 ----

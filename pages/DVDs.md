@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See DVDPlaybackFramework if you are looking for help in using Apple's DVDP<nowiki/>layback.framework
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi. I joined the AbiWord project (http://www.abiword.com/) and decided to fix Bug #285 - add Yes to All to Save and Quit dialog box ( http://bugzilla.abisource.com/show_bug.cgi?id=285 ). In order to do so I had to do a lot because NSAlertPanel only allows 3 buttons, no more. I have everything ready, but when I go to run the project, I get this error when I choose to quit - they appear in Terminal when I run it from there:

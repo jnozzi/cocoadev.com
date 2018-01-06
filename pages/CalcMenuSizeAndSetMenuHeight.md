@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got a menu, but I need to re-size its height in some cases. This is the thing: I have to query the menu's size. For that, I need to call CalcMenuSize. If it's larger than a certain height, then I want to use SetMenuHeight to set the menus height. However, after calling CalcMenuSize, it doesn't work - it doesn't use the size I set. If I don't call CalcMenuSize it works, but then I can not query it for its size before I set the new height... What am I doing wrong?
     
 MenuRef myRef = [aMen menuReference]; //this is a category using NSGetCarbonMenu

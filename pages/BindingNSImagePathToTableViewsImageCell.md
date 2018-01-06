@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello
 
 I'm trying to bind a NSTableView's NSImageCell via Cocoa Bindings. I have a getter method in MyDocument that sets the image path of my image to be a tiff icon file that exists at the application bundle:

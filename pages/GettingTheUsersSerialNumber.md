@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to programmatically get the user's machine serial number.  I'm writing a client program which interacts with one server.  And the user potentially could run the client from many different machines.  I'd like to know when they are connecting from a different machine.  Thanks!
 
 ----

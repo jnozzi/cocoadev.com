@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Let's say you have a list of items (perhaps displayed in an General/NSTableView) with methods to add and remove an item. You want to add undo/redo support so you implement the following in your controller class.
 
     

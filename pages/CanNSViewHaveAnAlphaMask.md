@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Just wondering whether I can have transparent areas in an NSView, allowing its parent view to show through it, or is this not possible? Would [NSColor clear] set an area to transparent in this manner?
 
 - Peter

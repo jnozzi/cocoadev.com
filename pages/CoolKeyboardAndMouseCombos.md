@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This is a posting I used to keep up to date at http://www.macosx.com but I rarely visit it anymore. I just thought I'd post it here to see if anyone has any additions I haven't heard of.  

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is this like using printf() and system() instead of NSLog() and NSTask??? *More like non-dairy cheese than anything.*
 
 No that is using C from Obj-c. You can't have NonObjectiveObjectiveCee or you have c.
@@ -22,7 +26,7 @@ That is also OO, it's also shoddy design.
 
     NSLog(@"size: %@", NSStringFromSize(theSize));
 
-    NSLog(@"size: {%i,%i}", theSize.width, theSize.height);
+    NSLog(@"size: {{ "{%" }}i,%i}", theSize.width, theSize.height);
 
 Well, in a true OO language (like Java or SmallTalk), NSRect and NSSize would be objects. Probably Apple figured that pass-by-value worked a lot better, but it does require a slightly different mindset that's less OO. --JediKnil
 

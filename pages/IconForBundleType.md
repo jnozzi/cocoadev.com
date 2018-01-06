@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 It's easy enough to get the icon for a particular file type using:
     
 NSString *type = @"html";

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi everybody! I'm Billy Doyle, known as SphereCat1 around the web. (Unfortunately no numbers allowed in page names here, so...)

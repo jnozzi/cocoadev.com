@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on a drug wars game for my first Cocoa project, and the following code returns an error:
 
     

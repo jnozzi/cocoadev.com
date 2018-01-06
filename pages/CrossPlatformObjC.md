@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Despite the loss of the YellowBox, we (Cocoa developers) do have some options for writing CrossPlatform code.
 
 

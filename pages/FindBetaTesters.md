@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I hope I'm not doing something wrong by posting at the top instead of at the bottom, but here goes.
 
 I need testers for a program I'm working on. It's called LiveDict, and it's an add-on for Safari that lets you conveniently look up words in a dictionary from the browser. It includes a general English dictionary, a dictionary of computer terms, and a bunch of bilingual dictionaries.

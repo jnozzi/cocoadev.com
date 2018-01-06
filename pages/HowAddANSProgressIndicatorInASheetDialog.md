@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I make a custom sheet dialog with a NSProgressIndicator to wait until my App is connected to a MySQL server. But because the sheet is a modal window, I can't do jobs for testing the connexion while the sheet runs. 
 Can sombebody give me a starting point to implement this? 
 Have I to use NSThread to accomplish this ?

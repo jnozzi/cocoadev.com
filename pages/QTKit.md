@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 QTKit is  an Objective-C interface to QuickTime available on Tiger, and also available with QT7 on Panther. It supercedes the Cocoa classes NSMovieView and NSMovie with a larger set of classes which provide a comprehensive interface into QuickTime from Objective-C. In addition to basic playback and tweaking, QTKit allows full-blown editing and other such goodies.

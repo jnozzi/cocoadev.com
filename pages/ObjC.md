@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Objective-C is the primary language used for programming with Cocoa.  It is based somewhat on the SmallTalk programming language.

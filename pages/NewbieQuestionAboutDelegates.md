@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm just now starting to learn Cocoa and I have been reading O'Reilly's Learning Cocoa book.  I am a little confused as to the difference between using conditional statements and delegates to determine if an action should be performed or not.  Are they interchangeable? Are there some times where one is a little better than the other? or are they used in completely separate situations (if so, which situations?)
 -GorillaPaws
 ----

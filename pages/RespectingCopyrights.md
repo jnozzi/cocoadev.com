@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Just a question regarding adding new content:

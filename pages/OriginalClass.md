@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **OriginalClass** -part of AspectCocoa
 
 Here we define an example Class as a reference.. as an example of a Class that we might want to apply some Aspects too.  Other pages related to AspectCocoa will make reference to this Class.

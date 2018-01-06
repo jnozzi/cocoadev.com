@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What does everybody think about some of us working together to write an app create/view/modify discussions without having to go through a web browser?
 
 ----

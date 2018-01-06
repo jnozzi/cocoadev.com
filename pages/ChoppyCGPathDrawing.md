@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have some drawing code that interacts with a library that returns paths created via Core Graphics; and I noticed that when I scroll around in my document I start getting artifacts like the following. It would seem that the anti-aliasing is fubar. Anyone out there know how to resolve this?
 
 http://homepage.mac.com/vannote/images/ChoppySnap.gif

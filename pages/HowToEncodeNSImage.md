@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need help on how to encode NSImages so I can store them in a NSMutableArray.
 
 ----

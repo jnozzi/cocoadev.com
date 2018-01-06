@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got a custom view that draws pretty round rects (via NSBezierPath) of varying height with controls in them. Using     [self scrollRectToVisible:selectedRoundRect]; (where selectedRoundRect is the round rectangle control a user is moving to via up/down arrow), it works fine if I'm scrolling to a rectangle "higher" in the view (toward the max y in a non-flipped view), but doesn't do a thing if I move to a "lower" view (closer to y=0). Of course, I'm talking about rects that are beyond the visible rect of the clip view. 
 
 Why is this? What am I incorrectly ASS-uming? ;-)

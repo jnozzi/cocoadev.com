@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Learning a lot! Wishing to work as a full-time Cocoa developer, if such a (paid) job is available.

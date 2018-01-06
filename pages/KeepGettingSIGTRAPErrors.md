@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OK, I keep getting a SIGTRAP 5 error when I try and run my application using iLifeControls.framework. When I uncheck the framework, the problem goes away but obviously I can't access the framework in the application as it wasn't included in the build. How can I get this framework to work properly?

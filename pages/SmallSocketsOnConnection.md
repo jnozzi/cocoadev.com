@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
 Is there any way using smallsockets to do something like this:
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've made a command line tool, that i'll launch with NSTask like this:

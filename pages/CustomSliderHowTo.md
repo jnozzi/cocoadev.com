@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Could not find this using search, so forgive me if this already exists.
 
 I would like to make a similar slider like QuickTime / iTunes has, How is this done?

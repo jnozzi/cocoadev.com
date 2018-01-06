@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I know we haven't finished with HowDoIDoRadioButtonsWithRegularButtons, but this has driven me crazy all day long. I can't seem to get this code to work.

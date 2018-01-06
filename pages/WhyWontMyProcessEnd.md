@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question: I have a Cocoa application that processes large data files.  When I force-quit my application, it won't end.  Why ?**
 
 **Answer:**

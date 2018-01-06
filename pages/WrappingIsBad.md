@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 "Wrapping" is when one class makes another class its ivar and passes messages sent to it directly onto the ivar, adding nothing but call overhead.  Example follows:

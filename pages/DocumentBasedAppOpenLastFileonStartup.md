@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a document based app, which opens a blank document when I start it.  

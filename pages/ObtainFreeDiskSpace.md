@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I am looking for some function calls(cocoa/carbon or bsd) to obtain the free disk space on a machine.
 

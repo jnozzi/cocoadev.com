@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What do people know about "Spaces" and how Leopard determines where Windows are visible?  From what I've been able to determine (not much, I hope) there is a new method:
 
      - (void) setCollectionBehavior: (General/NSWindowCollectionBehavior)collectionBehavior; 

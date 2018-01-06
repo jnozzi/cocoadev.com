@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Did you know you can use the "F5" key to "auto-complete" strings in ProjectBuilder.app and in the Open panel? When editing a source file in ProjectBuilder, you can use F5 to complete to other words in the source file. This seems to only work in ProjectBuilder. When you type in the "Go to:" field in Open or Save panel, you can use F5 to match to files (i.e., typing "/Dev" and F5 matches to /Developer). This seems to only work in Cocoa apps. 

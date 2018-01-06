@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 My app is generating a log file, what would be the best place to store my log file?  Is there a folder just for all apps' log files?

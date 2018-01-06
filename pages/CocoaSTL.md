@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 http://www.top-house.dk/~aae0030/cocoastl/

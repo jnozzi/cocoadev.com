@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Extending a class may be evil because the subclass is the coupled to the inherited class.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an odd problem.  I have created a table of URL bookmarks.  Using bindings, I can add and remove bookmarks without any trouble.  I can also save them.

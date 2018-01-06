@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [From the Mandelbrot set] A bug whose underlying causes are so complex and obscure as to make its behaviour appear chaotic or even nondeterministic. This term implies that the speaker thinks it is a BohrBug, rather than a HeisenBug. 
 
 See also: SchroedinBug.

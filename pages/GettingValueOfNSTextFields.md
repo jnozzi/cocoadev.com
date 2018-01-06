@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi!
 
 I'm starting to get the jist of Obj-C, Cocoa, Xcode, and IB, and I'm doing a simple project that copies the text from one text field to another. It's not really useful; it's just for the learning expierience.

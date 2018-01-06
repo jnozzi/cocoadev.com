@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a General/WebView which loads a web address, when the user clicks on a link I wish the link to open a page in Safari (or whatever browser is  the default). How would I achieve this?
 
 ----

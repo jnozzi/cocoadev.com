@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Filesystem notifications is the mechanism that Mac OS X and the Finder uses to keep an updated view of the filesystem. In Mac OS 9, the Finder conducted a lot of polling, to check for changes in the file system. This approach was dropped in X, probably for performance reasons. It is now the responsibility of all processes to notify each other of changes (file creations, deletions, etc).

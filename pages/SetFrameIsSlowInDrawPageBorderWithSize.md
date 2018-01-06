@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi everybody. I've got a problem. I'm printing a subclass of NSTextView and in subclass I use this method:

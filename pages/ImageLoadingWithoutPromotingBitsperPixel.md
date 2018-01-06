@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm loading textures for OpenGL and up until now I've relied on 32 bit PNG images with alpha channels. Now, to save a little texture memory, many of them can be drawn additively as grayscale 8-bit images -- thereby saving some texture memory.

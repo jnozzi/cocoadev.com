@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to find out if there's a way to get the contents of a view (only the contents, not the whole view) as an image. Specifically I'd like to get the rendered content of a webview as an image (and since a WebView is also an NSView, I assume this can be applied to views in general).

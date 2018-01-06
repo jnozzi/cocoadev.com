@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can I find the remainder of the division of two numbers?
 
 (I'm just starting to learn Cocoa after using REALbasic for years... Just about 100% of the documentation provided assumes the reader knows c/c++ inside and out. A C reference manual said % would do it, as in num1 % num2 = remainder, but Project Builder didn't like that)

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm having a problem with a General/NSMatrix of General/NSTextField. The matrix is part of a program which displays its data as a 12x11 matrix. The problem lies in displaying the data when it changes. I could make an outlet for every cell, but that'd mean 132 Outlets, and I imagine that can't be good.
 
 My thought was to use the methods of General/NSMatrix to select a cell, and then change its value. But I'm not sure how or if this is possible (I'm very new to Cocoa). I tried something like General/matrix selectRow: column:] setIntValue] (the data I'm displaying are     int) but that crashes.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Q: I set my applications name using setApplicationNameForUserAgent: but customUserAgent returns nil. Does it work?
 
 A: ...

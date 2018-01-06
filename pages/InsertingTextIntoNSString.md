@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How would I go about examining an NSString, and if it contains any spaces ' ', then insert a '+' sign, where the space was?
 
 Example:

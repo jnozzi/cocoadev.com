@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Discussion moved from General/HowToDeclareAbstractClasses

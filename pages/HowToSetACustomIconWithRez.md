@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been wondering about this for a while, and I finally got something to work.  
 
 To set an icns file *<source.icns>* to be the custom icon of a file *<target_file>*, do this:

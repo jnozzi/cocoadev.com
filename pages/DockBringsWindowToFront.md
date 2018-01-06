@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I use a click on the dock icon to open a closed window and bring it to the front?
 
 Thanks.

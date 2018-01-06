@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to use the CHUD framework to turn on and off profiling of my code by Shark (chudStartRemotePerfMonitor). I can't seem to find the framework nor headers on the 10.4 sdk. I can see it in the 10.3 SDK. Any tips on where it could be hiding? I ran the CHUD installer and it said I had everything installed already. Any ideas on what I need to do to get the headers in place?
 Thanks,
 Jason Rusoff

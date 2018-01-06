@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I created a subclass of General/NSImageView - General/ImageViewObject, then set my onscreen's Image View's Custom Class to that class after reading it into General/ImageBuilder.

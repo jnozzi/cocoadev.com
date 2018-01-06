@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to create a simple image view application. I'm having a problem using NSImage initWithContentsOfFile.  They keep going to nil when I try to load the file.  I know that I can read the file, because I can load a NSData object using initWithContentsOfFile.  However, if I try to NSImage initWithData, the NSImage object still comes out nil.
 
 I tried using the + [NSImage imageFileTypes] which should return an array of file types that NSImage should be able to read.  I keep getting an empty NSArray.

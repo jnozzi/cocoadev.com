@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I hope it's okay to ask questions here...  If not, sorry, and where should I go for that?

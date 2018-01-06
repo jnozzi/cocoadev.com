@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am wanting to develop an application that makes it easy for users to fill out a form, which is represented by a PDF. I am wanting to place controls (text fields, checkboxes, etc) over parts on the form where you would normally write. Would it be best to use a PDFView and add subviews to it, or just draw the PDF as a normal image in my own NSView that handles everything? I want it to look like the user is typing directly onto the form.

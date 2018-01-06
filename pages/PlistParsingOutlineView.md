@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Before I go and reinvent the wheel, does anyone have any code to parse a .plist file and display it in a NSOutlineView? I need to do something similar to PropertyListEditor.
 ----
 Here is something to start with... I did not write it to the end, because I am almost as lazy as you! :)

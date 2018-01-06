@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi folks,
 does anyone know how to use use ktrace/kdump combination to react to some system calls? For example, I want to be informed if some program creates a directory on the disk...- BobC
 

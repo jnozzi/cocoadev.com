@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am a bit confused about how resolution independent I can make my own custom views.
 
 Imagine I need to display a label, I can use NSFont's labelFontSize to get the font size, but am I in fact not making a mistake by using this selector, as my graphics will be drawn for the size that my own system reports, and the size of my entire custom view is set in InterfaceBuilder, and does not change, even if the label font has twice the size on the end users system!?!

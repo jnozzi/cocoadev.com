@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm writing a Spotlight importer for an application. The program plays sound files in a special format. The files all have the extension .snd

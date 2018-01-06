@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, everybody!
 
 I was wondering, if one of you knew how to change the dock icon of an application (not of your own, but.. let's say, iTunes' dock icon)... I would love to set iTunes' dock icon to the cover art... Is that possible?

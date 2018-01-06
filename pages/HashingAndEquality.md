@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 All objects in Cocoa have a hash value returned by **hash** and an equality method **isEqual:**. They are related. If you implement one, you have to implement the other, to make it work right in collections. Here are the rules:

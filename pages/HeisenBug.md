@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [From Heisenberg's Uncertainty Principle in quantum physics] A bug that disappears or alters its behaviour when one attempts to probe or isolate it. (This usage is not even particularly fanciful; the use of a debugger sometimes alters a program's operating environment significantly enough that buggy code, such as that which relies on the values of uninitialised memory, behaves quite differently.) 
 
 Some significant causes of heisenbugs:

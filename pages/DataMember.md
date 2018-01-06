@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A DataMember, also InstanceVariable or ivar, is a data variable which is a part of AnObject. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [New]
 To create a NewPage on this site, simply edit an existing page, and type WordsJammedTogether where you want to create a new link.  (Any words will do, as long as there are at least two, and they begin with capital letters.  The words will become the title of the new page.)
 

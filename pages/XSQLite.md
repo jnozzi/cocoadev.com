@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A Cocoa app currently under development by General/JeremyK that is just a nice native OS X GUI for General/SQLite databases.
 
 http://zeratul.asap.um.maine.edu/cgi-bin/index.pl?General/XSQLite

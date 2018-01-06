@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is a script that parses an Info.plist file and outputs the XML code needed to export those UTIs that the system does not know about. It uses the ListAllDeclaredTypeIdentifiers program to find out which UTIs are already declared on your system. It is a bit hackish, but it can save you a lot of work if you declare a whole lot of new types. It relies on the Info.plist being indented with tabs in the same way that Xcode does! 
 
 It takes the path to an Info.plist file as an argument, and optionally you can list any UTIs you want to conform to.

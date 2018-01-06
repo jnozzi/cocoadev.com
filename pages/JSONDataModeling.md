@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I currently am working on developing a set of libraries for work to handle communication with Twitter. I have most of the twitter communication with twitter sorted out and working properly. The issue I am having is this, I am working on creating native data models for the returned data so that the rest of the people I work with don't have to know a damn thing about what the twitter API returns as JSON data. I generally create my data models like this: Create a class that represents the data returned, where each attribute maps to a ObjC property. I add an initWithDictionary/initWithArray method that I use to translate the dictionary or array into an object. Generally the initWithDictionary method just calls [self setValuesForKeysWithDictionary:] and everything gets taken care of. Its lean, its mean and its quick to code. The problem I run into is when I have fields that are arrays or other objects? How do I get my code to walk down the tree of data instantiating objects as need be.
 
 

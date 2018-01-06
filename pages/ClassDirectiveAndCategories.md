@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is the idea what I am using.
 
 My mainController.h file

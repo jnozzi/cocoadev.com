@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have created a data model similar to the following:

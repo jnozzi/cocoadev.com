@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Some applications (e.g. OmniOutliner) will highlight text when you perform a Spotlight search and open a particular file.
 
 e.g. Performing a Spotlight search for "chocolate" and opening a matching OmniOutliner document will result in "chocolate" appearing in the search box. The result is the document shows you where the terms you were looking for exist.

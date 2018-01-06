@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 So, I'm playing around with threads. And in Leopard, threads are kind of revamped. You can instantiate a new thread and then start and cancel it. But:
 How exactly does this cancelling work? I tried sending     -cancel to one instance of a thread I started with     -start and it didn't do anything - am I missing something?
 

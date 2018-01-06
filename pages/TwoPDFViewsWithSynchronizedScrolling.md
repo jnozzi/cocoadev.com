@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to synchronize the scrolling of two General/PDFViews.

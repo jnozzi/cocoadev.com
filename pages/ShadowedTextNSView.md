@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I've been using cocoa now for 6 months, but have only just come across the need for drawing text in an NSView which is shadowed. Now i know how to draw the text in the first place, i just need to be able to draw the shadow.What do i need to use to get this working?

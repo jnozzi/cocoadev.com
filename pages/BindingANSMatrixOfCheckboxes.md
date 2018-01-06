@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 My script is working good if i use radiobuttons :
 It's a very simple thing : a controller with an array, a NSObjectController in my nib with a NSArrayController binded to it.

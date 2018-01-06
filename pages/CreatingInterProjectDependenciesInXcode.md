@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a nice QuickTime movie that talks about how to create embedded frameworks. 

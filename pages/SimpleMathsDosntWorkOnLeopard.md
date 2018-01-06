@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's a weird one. I have code that has worked perfectly from time immemorial:
 
     

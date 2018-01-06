@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **The new General/MusicKit and General/SndKit, are they good?**
 
 Yes, that�s the question. How are this both kits in usage and performance?

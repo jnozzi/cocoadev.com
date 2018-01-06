@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Let's create an Objective-C Design Patterns repository ala: the PortlandPatternRepository .  If you have a design pattern for Obj-C or Cocoa, create a page for it, and then add it here.
 
 See also: BadSmellsInObjC, DesignPatternsElementsOfReusableObjectOrientedSoftware, PortlandPatternRepository

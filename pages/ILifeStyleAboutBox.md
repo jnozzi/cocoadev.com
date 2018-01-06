@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is probably a stupid question, but how do I create an about box like in the iLife and iWork apps? It looks pretty simple, but I have no idea how to make the scrolling credits.
 
 Any suggestions?

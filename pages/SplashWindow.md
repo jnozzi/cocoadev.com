@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is this the best way to create a splash window?
 
 *

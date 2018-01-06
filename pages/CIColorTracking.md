@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone have a copy of the sample code that used to be located on Apple's site that did color tracking using CoreImage? Apple seems to have removed the code, but I wanted to have a look at it now that I have a MacBook Pro with the iSight.
 
 I'd really like to see any type of image recognition software for OS X, what's out there?

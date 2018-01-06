@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm wondering why I can't initialize everything I want in the method initWithFrame: of my screen saver. Here is my code :

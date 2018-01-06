@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is a list of Cocoa apps produced by Apple.
 
 

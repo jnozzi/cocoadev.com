@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I thought this would only take 5 mins, but I've spent hours on it now... and it's really having a great time frustrating me. I am just trying to write some resize code for a borderless window (without any normal NSWindow chrome such as title bars or resize jobbies - hence the reason I am re-writing the resize code).

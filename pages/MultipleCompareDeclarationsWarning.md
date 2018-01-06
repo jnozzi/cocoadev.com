@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Take a simple program like this:
     
 /* main.m */

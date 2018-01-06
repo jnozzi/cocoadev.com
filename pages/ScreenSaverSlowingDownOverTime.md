@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Right now, I've got a nifty screen saver going, it's a nice flag flapping in the wind. I took it from an NSOpenGLView, and used MikeTrent's "FadeFromBlack2" to model it as a screensaver. Right now, it works fine, though I had to add a, and a glFlush(), because it wasn't updating. After it ran for about an hour, it was lagging horrendously, like down to about 5 frames. Any idea why this might be, and how to speed it up? The only code in the DrawRect: method is that which draws the GL_QUADS and then shifts the Z values from each point to the next. (so vertex[3].z = vertex[2].z, in a for loop kind of like that.) the animateOneFrame method has a [self setNeedsDisplay:YES]. Any tips?
 
 � BobInDaShadows

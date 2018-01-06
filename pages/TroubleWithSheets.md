@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In the console when I try to invoke a sheet I get this warning:
 
 2004-09-21 19:57:19.285 General/HarborMaster[26862] *** -General/[NSView _setSheet:]: selector not recognized

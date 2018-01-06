@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I know this has been amply discussed elsewhere and there are various solutions, but thought this might be useful to somebody else out there. I wanted Mail 2.0/iTunes-style gradient selections in the NSOutlineView in my app. Thanks to others who have posted here and elsewhere, this wasn't too difficult. My implementation doesn't use an external image, and allows you to specify whether the gradient is contiguous across multiple selected rows, whether to have a one pixel gap between selected rows, and whether - like in Mail - the outline view (or table view) should only ever show the disabled/unfocused grey gradient colour and never turn blue even when you click on a row.

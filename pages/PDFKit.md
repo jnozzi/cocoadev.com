@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 PDFKit (Tiger only) is Apple's framework for creating / editing PDFs. 
 
 PDFKit Programming Guide:

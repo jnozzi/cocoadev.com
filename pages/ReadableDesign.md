@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 One thing that greatly aids in a ReadableDesign is proper naming of variables, methods, and classes. Names should not be too short with unusual abbreviations. Neither should they be too long and hard to read/type. They should concisely and clearly define the role the piece plays in the design.

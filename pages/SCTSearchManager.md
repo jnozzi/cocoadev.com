@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 SCTSearchManager is a class in Apple's Shortcut.framework. It's used to control the Help menu introduced in Mac OS 10.5.
 
 For more info see ProgramaticallyShowMenuInMenuBar. --SaileshAgrawal

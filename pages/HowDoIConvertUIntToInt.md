@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a strange case that I'm dealing with. I'm using the DVD framework, which returns UInt32 and UInt16 values for the time codes when you ask it the current title, frame, time, etc. I've never seen these before, and my Google searches don't reveal any information about them. My question is: how do I convert these types to a standard int? My reason for this is that I need to be able to feed the converted values into NSNumber and other methods that require an int to start with. Any ideas? Right now, when I grab the number for the current title of the playing disc, which is 1, NSLog  displays it as 65536.
 
 ----

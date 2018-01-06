@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There are lots of examples for capturing audio from a live input (ie microphone or line-in) to AIFF, but nowhere can I find documentation to capture audio using one of quicktime's audio codecs (such as AAC).  Several applications, such as QTBroadcaster, allow for this.  In theory it can't be that difficult: record into a buffer, convert the contents of the buffer chunk-by-chunk, into destination format, and write to a file...  Can anyone point me in the right direction?

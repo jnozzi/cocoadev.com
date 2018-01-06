@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there anyway to know if a QTMovie is a referenced or flattened one?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm using a project that I have written and compiled with XCode 1.5.  Worked fine then, in both development and deployment builds.

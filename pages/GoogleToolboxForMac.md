@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Google Toolbox For Mac: http://code.google.com/p/google-toolbox-for-mac/
 
 A collection of source from different Google projects that may be of use to developers working other Mac projects.

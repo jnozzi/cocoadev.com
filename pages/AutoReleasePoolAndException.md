@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 <code>Released autorelease pools, if not on the top of the stack, cause all (unreleased) autorelease pools above them on the stack to be released, along with all their objects. If you neglect to send release to an autorelease pool when you are finished with it (something not recommended), it is released when one of the autorelease pools in which it nests is released.
 
 

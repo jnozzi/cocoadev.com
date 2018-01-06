@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I tried to make my own IB Palette according to the description in http://cocoadevcentral.com/articles/000046.php. But just like the feedback of that article, when I drag my control to the window in IB, the control just freeze at the edge of the window and stay there!
 
 Any suggestions?

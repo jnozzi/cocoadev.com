@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to use the DiscBurning APIs to do packet-writing with the standard Apple CD-R drives?  Or does anyone know of an OSS package that will do this?  I found the XCDRoast on SourceForge, but it's beta for UNIX, so I figure it would be quite difficult to convert it to OSX.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *Additional discussion in WindowsWithoutDecoration and SetMovableByWindowBackground*

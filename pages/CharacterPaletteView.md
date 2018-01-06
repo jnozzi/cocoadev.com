@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a simple program to help myself (and eventually others) learn the Japanese Kanji, and I'm looking for a view similar to the one in the character palette. I was thinking maybe I'd want something a bit like the icon view in finder, but I can find no mention of either of these views anywhere. I tracked down the character palette in the System folder, but alas it does not have a nib file I can examine :( Since I'll be wanting large, hi-res character glyphs in each of the cells, will I be needing ATSUI? The cells do not need captions, unlike the ones in the finder's icon view.
 
 Does anyone have any suggestions? 

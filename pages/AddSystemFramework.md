@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The following is the code mentioned in the example that I talk about in PerlObjCBridge
 
 In Project Builder, create a new 'cocoa framework' named 'AddSystemFramework'.

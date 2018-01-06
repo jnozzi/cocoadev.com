@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi. I'm trying to create a program that loads a huge file with thousands of objects in NSMutableArray form.  However, when I try to load the file and then load that data to NSTableView it obviously overloads the memory etc.  I was wondering how to do this since it seems to be possible with programs like EarthDesk and the cities.  Is it possible? If so how?
 
 Thanks.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I love OmniNetworking, but sometimes it seems like killing a fly with an axe -- fun, but a little excessive.  I went looking for a simpler replacement, but to my surprise, didn't turn up anything.  

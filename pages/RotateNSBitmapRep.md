@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 I am applying border to a image. To do so I am using the bitmaprep (NSBitmapRep) of both image and merging them into one. For wider images i need to rotate border image by 90 degrees & then apply the border. Is there a way to rotate NSBitmapRep?
 

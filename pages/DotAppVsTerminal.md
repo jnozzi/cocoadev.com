@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 hi. so, the problem. i have an Cocoa/Carbon/C++ application, which is normal with running from the terminal - application is starting. but when i'm trying to start it by clicking on .app icon - it crashes with "may be damaged or incomplete"... what's wrong?

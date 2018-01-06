@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am creating a little program that has this data structure:

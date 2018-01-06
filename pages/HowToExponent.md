@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do you do exponents in Cocoa? Thanks.
 
 Specifically, a square-root, or ^0.5.

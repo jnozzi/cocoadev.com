@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am currently trying to create a simple formatting panel like that in programs such as Microsoft Word, where the user can format selected text on the screen, in my case inside an editable General/WebView.
 
 I wish to be able to have buttons that Align the text (Left, Right, Centre and Justified) as well as have a button that shows the Font Panel, and a colour chooser.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The following describe the direction the content moves--that is, the opposite direction of the viewport. When transitioning into a submenu, use UIT<nowiki/>ransitionShiftLeft; when navigating back, use UIT<nowiki/>ransitionShiftRight.

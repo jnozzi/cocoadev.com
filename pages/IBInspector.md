@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See IBInspector.
 
 Someone's idea of a joke?

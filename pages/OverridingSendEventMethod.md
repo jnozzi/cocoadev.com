@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a custom NSView subclass and want to control keyboard input from that custom view.  keyDown: won't work until the view becomes the firstResponder -- looking at books I have I don't see one sure-fire way to do this.  Once FirstResponder is set, keyDown: should work, yes?
 
 Tnx.

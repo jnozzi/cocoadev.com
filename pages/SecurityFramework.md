@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 SecurityFramework can do several things, which all fall under the header of "Security" and the CDSA (Common Data Security Architecture).

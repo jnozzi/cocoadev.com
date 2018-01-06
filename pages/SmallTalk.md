@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Correct name is Smalltalk (the "t" is not a capital letter).

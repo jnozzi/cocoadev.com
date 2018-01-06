@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm playing about with openssl at the moment, and things like key generation can take a while... I've got a progress bar (in indeterminate mode, sadly!) which will happily spin in threaded mode while the key is being generated, but the rest of the UI doesn't get updated.
 
 I know that threads is the proper way to fix this, and I'll do that next - for the sake of convenience while hacking about I was going to use this method I came across before... Unfortunately, I can't remember where I found it! If I recall correctly, it allowed updates to the UI while doing things like sitting in loops around blocking sockets and that sort of thing, and I think 'yield' may have been in the method name - I've been googling for some time and still haven't found *anything* like it, though... If I programmed in assembly language, I wouldn't get nearly as many false positives in my searches! ;) - *false positives* hmmmm is that possible? :p

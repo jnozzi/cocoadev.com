@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How would I create General/WindowShade functionality?
 
 Would this be a good starting point?

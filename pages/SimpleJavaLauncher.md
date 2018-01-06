@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to write a simple Java launcher program.  I've been looking at some of Apple's sample code.  This is my first Objective C and Cocoa program so please forgive any newbie questions.

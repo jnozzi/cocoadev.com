@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am beginning to learn cocoa programming to develop an application that will stream any system wide sound directly to an Airport Express base station. The idea I had in mind was a system menu bar that would automatically detect any Airtunes networks (Living Room, Bedroom, etc) and allow you to easily stream the audio output of your powerbook to the base station. Is anyone aware of any projects already underway to do this? If not, does anybody believe this a feasible open source project?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know how to check the number of processors the computer is running from Cocoa?  I thought maybe NSWorkspace might provide some handy call, but nothing.  This is imporant if you want to spawn a separate thread for each processor you have to get some extra performance, but don't want to spawn threads if you don't have the processors to support them, in which case cycling through threads will just slow you down.  Thanks!
 
 ----

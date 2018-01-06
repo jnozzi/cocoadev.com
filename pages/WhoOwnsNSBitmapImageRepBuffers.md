@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am not clear on when  to release data buffers in an General/NSBitmapImageRep. If I create the object 
 from a file like this:
 

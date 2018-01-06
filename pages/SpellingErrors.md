@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As folks add new content to CocoaDev SpellingErrors are likely to occur. Here are some tips for dealing with SpellingErrors:
 
 

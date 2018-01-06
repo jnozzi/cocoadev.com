@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A country in Scandinavia.
 
 General/RobRix claims ancestry from Sweden, though no one is really sure. He just likes believing he's got Norse blood in him.

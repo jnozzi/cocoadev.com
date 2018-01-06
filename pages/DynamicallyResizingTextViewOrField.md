@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have been looking to create an NSTextField or NSTextView that dynamically resizes its vertical height based on text entered. An example of this can be seen in iChat's and Adium's message entering view.

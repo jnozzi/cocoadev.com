@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OSXTiger 
 
 I think that since Tiger will be released soon, be outta start converting this page over to actually having information abut OS 10.4 Tiger. For example have an area describing Spotlight, Core Data, Core Image, etc... for now of course, we could only post stuff that Apple has on their main Tiger pages (ie. not from within the ADC website or pre-release builds), and then could expand on it after release. **(yea:2 nay:0)** http://goo.gl/OeSCu

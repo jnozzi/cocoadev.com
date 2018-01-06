@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 Recently I have found myself very lazy with interfaces recently. I was writing a class which had an array as an internal structure, I instinctively started to write accessors like     -(id)controllerAtIndex:(int)n; and     -(void)setController:(id)cont atIndex:(int)indx;. Then I got a brain-fart and just put     -(NSMutableArray*) controllers;. I did the same thing with an NSMutableDictionary * but only exposed the immutable base. I used to get flack for doing the same thing in C++, my rationale then was that C++ coders know how to use     std::vector or     std::map already, so why not let them use them, and spare them the trouble of a new interface. I see the same thing with NSArray, NSDictionary and other cocoa clases. So other than post-processing needs (which sometimes can be solved with     [NSTimer scheduledTimerWithTimeInterval:MY_SMALL_TIME target:self selector:@selector(myPostProcessing:) userInfo:nil repeats:NO];. Combined with     NSNotificationQueue's this can also improve efficiency), is this just laziness, or does it make sense to do this (sometimes)? Where might it be dangerous/safe, where does the appkit use it (    self subviews] count])?

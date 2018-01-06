@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/WikiRape: Gross misuse of Wiki boards.
 
 Those who abuse the system of Wiki, the nigh-sacred trust placed in, really, all who visit the site, are horrible, bad people- Wiki Rapists, if you will(separated the terms to avoid defining more things). 

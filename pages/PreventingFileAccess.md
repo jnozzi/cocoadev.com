@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I will be writing some code that will be writing some large files.  While these files are being written, I'd like to prevent other threads and/or applications from accessing the files.  How can I lock the files to achieve this?  Changing file permissions isn't going to do the job, because one process/thread needs write access, while all others shouldn't be allowed access at all.

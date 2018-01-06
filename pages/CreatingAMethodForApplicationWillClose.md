@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need some help to build a Notification method for applicationWillClose. I want to insert an action on that event, so when the app closes it executes a method. I've never used any notification methods and have no idea on how to build them.
 
 ----

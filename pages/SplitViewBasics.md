@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 While it may seem obvious to more experienced Cocoa programmers, creating a NSSplitView in InterfaceBuilder is not as obvious to people new to the tools. Luckily it is rather easy:

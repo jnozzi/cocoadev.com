@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a NSDocument based CoreData application.  There are a set of system wide default entities that should be added to every new document and that users should be unable to delete.  What is the best way to to do this?

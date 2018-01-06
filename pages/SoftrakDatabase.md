@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A database maintained by StepWise founder Scott Anguish. It contains a steadily growing list of applications for Mac OS X, Mac OS X Server and OpenStep. (Not sure if the list for the last ones is still growing steadily. :) )

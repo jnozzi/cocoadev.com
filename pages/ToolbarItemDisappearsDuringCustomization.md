@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When clicking customize for my toolbar, all items which are represented by custom views suddenly disappear, or rather are moved to inside the customization sheet.  Moving them around happens as would be expected, except that the view can only be in one place at a time.  
 
 http://idisk.mac.com/omnius/Sites/General/DisappearingToolbarItem.tiff

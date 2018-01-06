@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A single instance of AnObject. An InstanceObject is commonly created by sending alloc and init messages to a dynamically or statically typed object pointer, or by calling a ClassMethod which handles creation of objects.

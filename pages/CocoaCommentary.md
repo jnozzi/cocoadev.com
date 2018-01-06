@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://www.drunkenbatman.com/drunkenblog-archives/000257.html
 
 Wow. What a read. 

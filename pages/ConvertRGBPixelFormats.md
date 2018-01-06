@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm reading some RGB565 data from a binary file, and am needing to convert it to RGB888 (supposedly NSBitmapImageRep doesn't handle RGB565) and found some code from the Cocoa mailing list that attempts to do this. Now in the beginning I didn't really know what I was doing with RGB data at all, so I had to read up on it and now I have a fairly well understanding of the differences of RGB 555, 565, and 888 data. This function below gives me images that looks really screwy from what they should be, although I can tell that most of the colors are there in the image (just not in the right pixel location). Am I correct in saying that with RGB565/888 pixels are laid out from left to right, top to bottom? Anyways, if someone could give me a few pointers for reading RGB565 data, or why this method is not working properly, or anything I would really appreciate it. BTW, I've attempted to just hard code my own RGB888 into the code (like 0xFF0000FF for red) and that works fine. I think there's just something wrong with how its reading the data (or maybe my RGB565 data is screwy??). Thanks.
 
     // swizzle pixels from RGB565 to RGBA8888

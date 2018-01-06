@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In the action for an NSPopUpButton, I do this:
 
     

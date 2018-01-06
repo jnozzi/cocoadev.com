@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to build a basic development editor.  Simply, I would like to turn off the antialising in the code editing window ala Xcode and General/SubEthaEdit.  I've sniffed around the Quartz and General/NSTextView docs online, but don't seem to be finding anything.
 
 ----

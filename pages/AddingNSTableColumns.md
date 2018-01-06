@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm dynamically adding columns to a table view, but I'm having tremendous problems. Every time I delete all columns and add one column, it adds two! Any idea?
 
     

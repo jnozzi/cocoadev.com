@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am using some custom-built objects in an array and would like to save the array as a file. Do I have to write my own file format for this or will NSObject's methods work fine or maybe do I need to override the description method of the NSObject class? Any suggestions?
 
 Thanks

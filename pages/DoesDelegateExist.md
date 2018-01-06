@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I'm working on an app to be run on Tiger and Panther, and I'd like to test if my tableView delegate actually *recognizes* the "tableView:heightOfRow:" method.  This delegate is new to Tiger 10.4, so when my app is run on Panther I want to check and see that it isn't recognized and then respond accordingly.

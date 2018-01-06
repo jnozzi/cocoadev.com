@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In the app I am writing (a document based application) I was originally going to write my application using a subclass of General/NSWindowController to control on-screen elements and their connections to the data in the application.  Before a Save was executed by the user I was going to synchronize my data objects from the General/NSWindowController to similar objects in the document itself, then encode the document and save it.  The reverse would be true on an Open operation.
 
 After much discussion, I was convinced by various programmers on more than one forum to scrap the seperate General/NSWindowController and simply use the document itself to control the window--that way I would only need one set of data at any one time and would not have to synchronize the controller's (and thus the application's) data to the document's data objects before encoding (and the reverse).

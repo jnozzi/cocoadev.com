@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I set an alternate image of a button in InterfaceBuilder?
 
 I've tried this      [myButton setImage:@"myImage"]; It doesn't work!

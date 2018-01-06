@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am a Student of Computer Science at the University of Applied Science in Sankt Augustin, Germany.
 
 I am developing mainly some convenient Frameworks for general and special use, like for QuickTime, SQLite and OpenGL.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 After ForceFrontmostApplication, is it possible to resign from the position of frontmost application, and return focus to the previous application and object? I suppose before forcing anything I could see who is frontmost, then return to it, but that might be a messy way to accomplish this.
 
 -- RyanGovostes

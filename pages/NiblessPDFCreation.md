@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi Everyone,
 I'm attempting to write a small commandline program that will generate small PDFs for me.  I figured it might be worth a go to write this in PyObjC.  If you guys think it'd be easier to do this in normal ObjC I'd be more than happy to.  I've gotten things to a point where it will spit out a PDF the size I want, but unfortunately it's an empty PDF.  I was wondering if you guys had any idea why it won't draw anything.  Here's what I've got so far:
     

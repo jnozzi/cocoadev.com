@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an application with a window as such:

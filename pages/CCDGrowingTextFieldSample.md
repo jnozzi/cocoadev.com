@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a slightly modified version of CCDGrowingTextField that supports auto resizing text fields. It also doesn't reset the width of an empty text field to the default width until the user stops editing. --SaileshAgrawal
 
     

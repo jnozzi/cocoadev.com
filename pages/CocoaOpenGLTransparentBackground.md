@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I wonder if it's possible to make opengl view to be with transparent background? I would like to draw triangle or something like that.

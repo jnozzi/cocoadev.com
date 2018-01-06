@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm using DistributedObjects with NSSocketPorts to build a fairly simple client server app.  I'd like the server to figure out when someone is connected to the server and what their IP address is.  What's the simplest way of recovering the remote client's info?
 
 Follow up: Is there any way to use DistributedObjects AND know the IP address of of the remote proxy?  This has to work over TCP/IP.

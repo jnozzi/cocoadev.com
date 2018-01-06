@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Web Services  - See General/WebServicesCore
 
 Hello,

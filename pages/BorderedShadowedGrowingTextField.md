@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have modified the code at FieldEditorIssues to produce a text field which has the appearance of the AddressBook / Library text fields mentioned in HighlightButtonsLikeDLandAB.
 
 I'm completely at a loss as to how to go about turning one of these into a view with many editable text fields. Does anyone have any suggestions as to the best way to approach this? My preliminary thoughts are:

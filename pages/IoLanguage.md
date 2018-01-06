@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://www.iolanguage.com/
 
 Io is a really nifty little language, claiming inspiration from languages like Lisp, Smalltalk, Self, Lua, and I believe some others. It's a pure-object language, like Smalltalk, prototype-based like Self, has support for coroutines and futures (async messages), which are pretty neat, and has a very simple syntax.

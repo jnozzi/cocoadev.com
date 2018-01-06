@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've subclassed NSTableView to get keyDown events.

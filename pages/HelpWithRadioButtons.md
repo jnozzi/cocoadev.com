@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I'm a beginner cocoa programmer and I'm need some help with radio buttons, I' have tow questions.
 How do I create tags for radio buttons using IB?
 How do I creat a Matrix of more than 2 radio buttons using IB?

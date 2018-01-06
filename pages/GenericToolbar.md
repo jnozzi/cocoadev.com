@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Created by JediKnil
 ----
 *Quick summary: GenericToolbar contains NSCoding-compliant subclasses of NSToolbar and NSToolbarItem for use in Interface Builder, as well as a palette (also for use in Interface Builder).  http://goo.gl/Cx9sQAlternatives include UliKusterer's UKToolbarFactory...and just creating toolbars by hand (read: programmatically). Current Version == 1.0*

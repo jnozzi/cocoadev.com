@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ShadowKiller is an UnsanityHaxie that kills all shadows.
 
 *You don't say!*

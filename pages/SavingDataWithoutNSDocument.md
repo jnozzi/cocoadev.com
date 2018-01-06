@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I am not building a document based application, and so have not built one (plain Cocoa app chosen in XCode, not Doc based).

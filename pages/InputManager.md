@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Officially, an InputManager is a plugin that allows the development of alternate input methods which work in any (Cocoa) application. Unofficially, the InputManager mechanism is one of the simplest and most popular ways to load arbitrary external code into other applications. Used in this way, it is similar to ApplicationEnhancer, but built in to the system and lacking ApplicationEnhancer's sophisticated function patching facilities.

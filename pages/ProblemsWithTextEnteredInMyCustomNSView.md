@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am having a problem with an NSTextView subclass.

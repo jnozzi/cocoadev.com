@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Dashboard zooms on top of your Desktop with a click of a function key and, like Expos�, disappears just as quickly and easily. Use the Dashboard to access nifty new mini-applications called Widgets.
 
 http://www.apple.com/macosx/tiger/dashboard.html

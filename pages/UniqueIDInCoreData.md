@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to understand how best to implement a uniqueID for records inserted in General/CoreData entities (sql store if it matters).
 
 I can't seem to find any relevant verbiage in the Apple docs or google or here.

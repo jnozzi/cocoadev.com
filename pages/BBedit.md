@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 BBEdit is one of the more popular text editors for Mac OS, developed by BareBones Software. It's been around for a while and has aquired quite a lot of nice features.

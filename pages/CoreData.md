@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The technically correct way to describe Core Data is as an object-graph management and persistence framework. In down-to-earth terms, this means that Core Data organizes the application's model layer into a set of defined in-memory data objects. Core Data tracks changes to these objects and can reverse those changes on demand, such as when a user performs an undo command. Then, when it is time to save changes to your application's data, Core Data takes care of archiving the objects to a persistent store. And, it saves data into regular files that users can manage with the Finder, search with Spotlight(1), backup to CD, and email to friends, family, and coworkers.
 
 (1) Actually my understanding of things was you'd need to write your own spotlight importer for your core data files. Perhaps if you use XML as your deployment file type Spotlight would index those (being plain text XML and all), but if you use Binary or SQL (which I think the majority will) you'd have to write an importer for those. If I'm wrong please link to the docs I'm missing.

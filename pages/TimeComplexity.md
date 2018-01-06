@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *I am using my own (inconsistent) pseudo code on this page! Also, this is written as a tutorial instead of a definition.*
 
 An algorithm is the process of mechanically applying (i.e., without a humans reasoning involved) operations to some input in order to produce output.

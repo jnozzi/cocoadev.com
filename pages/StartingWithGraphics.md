@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A place to begin. There is also a CocoaDrawing page which references several useful discussions...
 
 Then there is the old standby tutorial at oreillynet: http://www.macdevcenter.com/pub/a/mac/2001/10/19/cocoa.html

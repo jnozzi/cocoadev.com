@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to arrange some XmlFileReading (using the CocoaDev.com page, of course), to save and retrieve an array I have.  However, the XCode Documentation says that "the array representation must contain only property list objects (NSString, NSData, NSArray, or NSDictionary objects)."  So what can I do in order to save this information?  Thanks.

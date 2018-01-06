@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can any body know how to get NSData from CIImage?
 
 

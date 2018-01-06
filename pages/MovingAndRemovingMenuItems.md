@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a problem that is completely baffling me; I'm putting in a feature in my app that allows a menu item from the menu bar to be moved to the application's menu as a submenu (to save menu bar real estate if the user needs it) and back again if desired. I've got this working (in the code below) pretty well: if the menu in question is initially a top level (in the menu bar) menu, when I select to move it as a submenu, it disappears from the menu bar and appears as a submenu as expected. When I move it back, it disappears from the submenu, appears in menu bar. But this is where it stop working correctly; if I try to move it once again off the menu bar and into a submenu, it does get added as a submenu in the app's menu item, but also remains in the menu bar, and is still usable even tough the log message shows it is no longer in the main menu structure in memory, and I can no longer get rid of it from the menu bar (though trying to move it back and forth still removes it when a submenu as expected).

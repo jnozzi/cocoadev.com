@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I try to let my NSCell hold an object, according to the documentation of objectValue: *To be valid, the receiver must have a formatter capable of converting the object to and from its textual representation.* -- this is rather problematic, because the textual representation is lossy, but without a formatter it will not use objectValue, instead it will use stringValue, even though my NSCell uses [self setObjectValue:obj] after each edit (but after completed edit, the data source will receive the textual representation).
 
 So how to work around this limitation? perhaps provide attributed string with custom data in it or similar?

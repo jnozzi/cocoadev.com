@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to make an NSTableView with "fat" cells. Something a bit like the feeds view in NewsFire. I don't need the NSOutlineView behavior they use there, but I'd like my cells to be taller than usual, so as to allow a line of text below the main text. I know I'll probably have to subclass the NSCell that goes into the NSTableView but I'm not quite sure how to actually do that.
 
 Thank you!

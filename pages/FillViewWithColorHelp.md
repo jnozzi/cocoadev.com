@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I never worked with views and color before in any application, and I was wondering what a good start would be?
 Thanks in advance. : )
 

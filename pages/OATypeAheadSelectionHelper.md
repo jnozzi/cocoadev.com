@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This class provides a nice generic method for implementing type-ahead selection in any collection of selectable objects. An example is in the Finder, where you can start typing a file's name and it will be highlighted.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anybody have any suggestions on how I can easily use AppleScript to execute one line of code?
 
 I'm trying to get my program to tell System Preferences to quit, and I think the best way to go about doing so is by using AppleScript.

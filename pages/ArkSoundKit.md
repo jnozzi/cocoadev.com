@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hi, trollbot 3000 here,
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a window with two tables on it.  I need to do different things when the user clicks on a line in either table which my General/NSArrayControllers can't handle.  This was easy enough when I only had one table:  in the controller object for that window (in this case it is actually my document acting as the controller--simple app in this case) I overrode the tableViewSelectionDidChange method to do what I needed to happen when a table row was selected.
 
 With two tables, though, this won't work.

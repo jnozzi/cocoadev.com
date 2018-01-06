@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Posted on CocoaDevTopics:

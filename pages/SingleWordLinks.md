@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 More and more often, I've been running into the difficulty of coming up with creative ways to get single words into links (think "AnObject", and then thing how we'd go about making a link for Protocols). While I think that the WordsJammedTogether route is truly excellent, I, and others as well, I think, would appreciate one of two things:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NodObjC is the "The Objective-C <--> NodeJS bridge".
 
 A bridge to the Objective-C runtime for NodeJS.

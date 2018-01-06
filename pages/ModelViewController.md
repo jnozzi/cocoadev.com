@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ModelViewController is a programming model widely used in Cocoa.

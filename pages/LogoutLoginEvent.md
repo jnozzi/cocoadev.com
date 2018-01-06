@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to catch the login/logout event.  Does cocoa have any method to handle that? Thanks.

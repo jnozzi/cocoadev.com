@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 hi,
 does somebody around here know how to implant the Omnigroup OAInspector's ?
 i've tried asking on the omni-dev-list but nobody there knows (odd...)

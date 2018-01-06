@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This is derived from a mail by Peter Ammon on the MacOsxDev list:

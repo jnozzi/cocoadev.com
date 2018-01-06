@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do you get the text selected in an General/NSTextView, and put it into an General/NSString?
 
 ----

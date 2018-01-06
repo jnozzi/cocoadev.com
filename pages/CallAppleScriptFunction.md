@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm hoping to load an AppleScript file (compiled or not) at a specific point in my program and then call a function therein (assuming that the author implemented it, which is a safe assumption to make). I've gotten up to the point of setting up the NSAppleScript, but my only options for running it are simply calling executeAndReturnError: or executeAppleEvent:...
 
 I'm guessing that I have to use the latter, but I'm not sure how to form the AppleEvent, as all I know is the function name and its parameters. If this is the way I need to go, could someone explain or provide an example of passing an AppleScript file data type from an NSString path?

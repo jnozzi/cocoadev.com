@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 How can I use data in a popup multiple times, but with different content sets?
 

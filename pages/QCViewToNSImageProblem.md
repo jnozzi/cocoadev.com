@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There hasn't been very much mention of Quartz Composer or QCView and its related materials on CocoaDev, but I'll ask the question anyway:
 When I try using any of the various methods of grabbing an NSImage from an NSView, it doesn't work - instead, I just get a solid white image. Of course, changing the aspect ratio of the view changes the image's shape, but it's still white when I ask it to spit out into an image well. Here's the code:
 

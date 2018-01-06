@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am Xavier and I want to edit an existing NSImage.
 Actually I need to mask a particular rect in the Image.
 For that I locked the Image and did the Following Operation.

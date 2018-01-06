@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a quick question, and I haven't found a definitive answer through Google, so I thought I'd ask here: Is there a fast, easy way to get an NSImage from CGImageRef? A method I want to use in my program returns this.
 
 ----

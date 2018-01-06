@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to convert NSCachedImageRep to NSBitmapImageRep. Is there any API or method to do so?
 
 Thanks,

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 For a database app I'm writing I need text fields to preserve NULL values.
 
 In a normal text field, [NSNull null] as the value renders to the empty string, and tabbing through a field set to null will convert the field's value to the empty string. What we want is for the field to stay null if the value isn't changed, as some database columns may allow NULL as a value. I coded a solution by subclassing NSFormatter to preserve null values, and render them in a different color.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I load an .obj file into opengl in objective c /cocoa?
 ----
 

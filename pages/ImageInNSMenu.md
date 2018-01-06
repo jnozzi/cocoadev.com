@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 It's a simple question, but I can't find any help anywhere for it - I have an NSMenu, very basic, I want to attribute Images to some of the individual menu items. How can I achieve this? 

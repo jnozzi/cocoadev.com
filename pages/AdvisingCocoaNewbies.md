@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Just some tips on things Cocoa beginners may not pick up. When giving advice, look for signs that they may have misunderstood such basic issues, and pick them up on it to be sure. Above all, be patient: no matter how many places you write something, there is always a path of learning which manages to miss them all. (See HowToWriteHelpfulAnswers.)
 
 This page is intended for non-newbies who want to give advice; as such, it should identify areas newbies have problems with, and how to spot when a newbie is missing something really basic, not explain things in newbie-comprehensible terms.

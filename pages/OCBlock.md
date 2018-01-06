@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An implementation of Smalltalk-style CodeBlocks in Objective-C.  At its guts is, for all intents and purposes, an Objective-C interpreter. This object enables HigherOrderMessaging, and creation of blocks is pretty easy, using OCBlock.h's ocblock() and ocblockc() macros.

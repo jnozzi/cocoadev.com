@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A screen saver module is a special NSBundle. Building them is fairly easy once you know what to do. You should be able to get a good idea of what's involved by reading the ScreenSaver documentation. Otherwise this page describes how to set up a ProjectBuilder project to build a screen saver module. 
 
 See also:

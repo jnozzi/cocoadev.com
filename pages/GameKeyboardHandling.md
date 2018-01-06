@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I propose here what I think is a simpler solution than that proposed in GameKeyboardHandlingAlmost.
 
 Game Keyboard Handling Solution

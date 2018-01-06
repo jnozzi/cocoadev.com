@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Please help if you can. I don't have much hair left.
 
 I have a project with a document called iDMDocument, a window controller called iDMController and on my main document window I have a tableview that uses an NSObject called CombatTableDataSource as its data source.

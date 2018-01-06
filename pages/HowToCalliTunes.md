@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am writing an application that needs to call other applications. What I am trying to do as an experiment to start with is call iTunes and get it to do something. What is the best way of going about this? Is there some way of adding applescript to my code to achieve this?
 
 ----

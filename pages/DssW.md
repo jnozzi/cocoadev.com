@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 DssW is a Mac software company based in the UK. The company is owned by GrahamMiln a regular CocoaDev visitor.

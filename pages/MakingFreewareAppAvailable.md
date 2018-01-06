@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a couple small apps that I want to make available to others.    I'm wondering if there are any 'best practices' recommendations, or any tips for making it look a little more professional?

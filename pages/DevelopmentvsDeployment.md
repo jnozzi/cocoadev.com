@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Development version of a program runs fine but the Deployment Version Fails To Call awakeFromNib.

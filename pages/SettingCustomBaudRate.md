@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am not sure if this is a good place to ask this question or not but here goes...
 
 I am trying to write a small Cocoa app to communicate with a serial device. I am using a KeySpan USB to Serial adapter. The main problem I have is that the device I am connecting to uses a non-standard speed (8192bps) and I get errors when I try to set the speed. Is there any way to set the speed to 8192?

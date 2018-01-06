@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Well, I'm still struggling to understand just how to include code to recognize that a particular USB device has been plugged in, and how to access the file descriptor for that device. I am not a programmer by trade, so I'm sort of in over my head, but I really need this part to work. I'd REALLY appreciate any help you folks can offer. Here's the story: I have a Cocoa app that is supposed to respond to keyboard input (that works great) and to data coming from a custom-designed box that sends a serial stream to a Keyspan serial to USB converter. I know the General/VendorID, General/ProductID, and everything else from the General/IORegistryExplorer, but I don't know how to write the code to get the Mac to hand me the /dev name for the device. I even have a sense of how to get the program to read from that file (I think I have an example somewhere), but this whole iterator concept has me stumped. Apple's otherwise excellent documentation really leaves me confused here. Can this be done as part of my General/ObjC program? Do I need to write separate code instead? If anyone has a sample chunk of code that would show me how to pull the /dev path from the above info, I'd be grateful. As it is, this is what I've been able to piece together, although I don't think it does anything given the debugger values I've seen....
     
 	General/CFMutableDictionaryRef myUSBMatchDictionary = General/IOServiceMatching("Keyspan USA-19QW");    

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CFBundleTypeRole is a document type property within a dictionary in a CFBundleDocumentTypes array in Info.plist.
 
 It is mainly used on the Mac; it may be unused on iOS, where it isn't mentioned in any of that platform's Programming Guides.

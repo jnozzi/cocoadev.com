@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I like the notion of CoreData. I like the simplicity of the API. I like the Obj-C.

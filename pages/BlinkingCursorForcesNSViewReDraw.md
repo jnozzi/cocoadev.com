@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've got  an NSView subclass on my page, and alongside it are a couple of text boxes... but every time the cursor blinks in the text box it forces a redraw of the NSView subclass next to it. This shouldn't really happen. The two aren't overlapping. Is this normal behaviour? It seems a bit strange.
 
 Thanks for any advice!

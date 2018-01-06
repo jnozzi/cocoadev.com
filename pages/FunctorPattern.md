@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Functors are small objects that encapsulate an algorithm, almost like a function-turned-object. Define a class for each of the operations that you can apply to your data set, make the method that performs the calculations take an array of values and return an array with the new values (or the same array if the calculation is in-place). The advantage with functors over having named methods or functions that encapsulates the algorithm is that you can use the power of polymorphism, you don't need to know which algorithm you are applying to your data set, you can add new algorithms at any time without changing the code that applies them to your dataset. Functors can also be chained easily (the output of one becomes the input of another, essentially creating a new functor).
 
 Some basic pseudo-code:

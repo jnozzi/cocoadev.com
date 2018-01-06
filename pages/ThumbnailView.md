@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Creating a thumbnail view for a bunch of images seems to be a very common task, yet I can't find any code examples. Does anyone have any? 
 
 -- Erik

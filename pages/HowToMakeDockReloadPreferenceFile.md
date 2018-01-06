@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I just wanted to ask you guys something:
 
 When you use the System Preferences Panel "Dock", and you set a new value for, say, a slider, the Dock.app doesn't have to be restarted but seems to receive a notification called com.apple.dock.prefchanged.

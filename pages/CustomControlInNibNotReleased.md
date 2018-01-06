@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I checked my application with ObjectAlloc.app and discovered that not all my custom objects in a nib file are released.
 I fixed this by adding a
 

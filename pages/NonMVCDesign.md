@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hia, 
 
 Just an informal poll. How many people strictly stick to MVC? I am in the midst (near end) of a large Cocoa/C++ project which has C++ as the model layer, and Cocoa as the view and controller layers. There were a few design dilemmas (as in any large project), and I found that many of them were simply there because of my over-strict adherence to MVC. For example, my app uses a lot of AudioUnit<nowiki/>s, (wrapped in a AudioUnit Obj-C class), and I was trying to figure out how to make a MVC compliant view system for the AU's. One important caveat was that each single AudioUnit instance was to have 1 and ONLY 1 editor window. Having more would not harm the system, but they would waste resources for zero added value. So I was thinking of a way in which I could associate the editors somehow with the units, to enforce the 1 editor per unit policy. I came up with all sorts of ways, including having a singleton ensure a 1 to 1 relationship, but each one suffered from one subtle problem or another. Finally I realised that the best way would be to screw MVC (this time) and embed the editor in the AU class:

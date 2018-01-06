@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Program 1:
     
 #include <stdint.h>

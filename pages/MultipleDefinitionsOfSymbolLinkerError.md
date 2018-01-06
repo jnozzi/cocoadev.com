@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hello there, I'm having trouble with my framework and I've encountered an error that http://goo.gl/Cx9sQ I haven't before:

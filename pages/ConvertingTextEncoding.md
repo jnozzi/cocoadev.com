@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to convert existing strings' encoding type to others.
 For example, I would like to change UTF-8 encoded NSString string to EUC-KR string.
 Additionally, I would like to figure out what encoding method a given string has.

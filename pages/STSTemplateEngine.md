@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **STSTemplateEngine** is a universal template engine in Objective-C/Cocoa for embedding into Cocoa applications.
 
 It features its own macro language for conditional template expansion and it supports unicode.

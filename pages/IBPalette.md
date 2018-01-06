@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://cocoadevcentral.com/articles/000046.php

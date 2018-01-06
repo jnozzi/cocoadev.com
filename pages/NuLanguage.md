@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Nu is a Lisp-like programming language meant to be a higher-level interface to Cocoa and Objective-C. It is not yet available to the public, but a blog post describing it is located here: http://blog.neontology.com/posts/2007/08/11/whats-nu
 
 Nu has a Lisp-like syntax, a SmallTalk-like object model, and sits directly on top of the Objective-C runtime. Due to this design, there is no language "bridge", as such, but rather any classes written in Objective-C are directly visible in Nu and vice versa. Basic Cocoa types such as NSString and NSNumber are used directly in Nu, rather than having to be converted during the bridging process.

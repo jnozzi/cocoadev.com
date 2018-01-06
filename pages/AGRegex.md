@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://sourceforge.net/projects/agkit
 
 A Perl-compatible regular expression framework using the PCRE library.

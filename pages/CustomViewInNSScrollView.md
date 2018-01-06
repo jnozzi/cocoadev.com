@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've recently written a layout managing subclass of NSView to position subviews in an automatic flowing-grid like fashion, in a move to implement the response by RyanBates for OverComplexGuiSimplification. 
 
 Now, my layout manager works, but it's entirely possible that more views will be inserted than there is room to position so I'd like to have the layout view grow vertically to acommodate all the subviews, and let an NSScrollView do the dirty work of managing scrollbar size and whatnot.

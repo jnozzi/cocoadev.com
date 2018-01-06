@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The document at http://developer.apple.com/documentation/Cocoa/Conceptual/CodingGuidelines/Articles/NamingIvarsAndTypes.html says about naming instance variables:
 
 *Do not use the underscore character as a prefix meaning that the instance variable is private*

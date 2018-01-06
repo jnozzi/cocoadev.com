@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Stupid (but understandable) problem afflicting Wikis all over. Example:
     
 contents of page S<nowiki/>omePageOnCocoaDev

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To resize a window, you must send it a     -setFrame: passing a valid NSRect using the screen's coordinate system. This is most often accomplished by getting the window's frame first, then modifying it.
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 b.1992-d.1996. NuKernel was the microkernel heart of the new Mac OS (Copland/Maxwell/OS 8): a microkernel-based, multiple-server design.

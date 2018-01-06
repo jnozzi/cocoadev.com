@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have 34px tall rows and they look bad with their text on the top of the row. Also, I'd like to change the color of the text on selected items to white. All of this needs to be done from within my General/NSTableView subclass.

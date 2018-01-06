@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The following is the actual Objective C class that implements a doubly-linked list (a variation of LinkedList). It can do the following:

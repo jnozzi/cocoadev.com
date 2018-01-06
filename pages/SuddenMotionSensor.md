@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was looking around the site and couldn't find any information about the Apple laptops' built in motion sensor, so I am writing what I have found.  As far as integrating this motion sensor into to Cocoa apps, there are two implementations I could find.
 
 General/UniMotion http://unimotion.sourceforge.net

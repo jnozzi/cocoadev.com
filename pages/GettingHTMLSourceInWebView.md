@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What would be the best way to retrieve the HTML source for a web page in a WebView?
 
 Thanks, and merry Christmas.

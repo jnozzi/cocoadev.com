@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When do I have to use namespaces in my app? If I have an IB action called defineString: should I make it something like General/GFDefineString: in case some General/InputManager or something adds a global defineString: selector? Do my controller classes need a prefix? I'm confused about what the proper usage is for all this. - Glenn
 
 ----

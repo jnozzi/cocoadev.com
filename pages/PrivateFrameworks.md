@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The ultimate     Description forthcoming. These live in /System/Library/PrivateFrameworks. Use them at your own risk, because Apple will feel free to pull the rug completely out from under your feet.
 
 Private frameworks are a frequent topic on UndocumentedGoodness pages

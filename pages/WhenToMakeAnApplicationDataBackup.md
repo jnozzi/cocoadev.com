@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I save my app's data in a keyed archive and I wonder when it is the best time to make an auto backup - right before it quits or just after launch? When are the most chances that my keyed archive can be messed up and corrupted?

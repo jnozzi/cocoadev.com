@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Stop!**
 
 Before creating a new page ...

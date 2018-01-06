@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a subclass of NSImageView called GelImageView. The class has a number of standard methods to be activated from the menu bar, and is part of a large project. Amongst others, it has the following methods:

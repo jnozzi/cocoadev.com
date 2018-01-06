@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello all; I'm trying to implement a fractal-drawing cocoa app and I want to use a  popup menu to choose which type of fractal to draw. The fractals are different classes, but following the same general protocol. I thought I could name the items in the popup menu after the classes and then simply use:
 
 @classfromstring([sender title]) alloc] init]

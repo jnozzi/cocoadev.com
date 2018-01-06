@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can a custom view get the managed object context for its document from within a document-based application?
 
 I would have thought that the following code would get the managed object context.  It is being used from within a custom view.

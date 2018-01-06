@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi -- I would like to have a document based application with a menu that has several mutually-exclusive options in it.  Selecting one of these menu items should cause a checkmark to be placed next to it and any previous checkmark cleared.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello there, I've been working on an application that uses one outline view and one table view, I use a custom cell to display the information for each row, however I also need the editor to show in a specific rect.
 
 Does anyone here have any experience in this area, I've been reading the docs and there doesn't seem to be anything specific on the subject.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to make use of the BezelServices framework?  It is a private framework, and I assume it is the one that provides OS X with the ability to display feedback images for changes in volume, display brightness, etc (the images are located in /System/Library/CoreServices/BezelUI/Images/).  I would like to provide this functionality for one of my applications.  Any ideas or feedback would be appreciated.
 
 ----

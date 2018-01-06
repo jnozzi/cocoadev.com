@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have posted this question a while before, still looking for a solution.
 
 I need to display a report in the General/TextView field. Something like this:

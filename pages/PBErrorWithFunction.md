@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a method, and then a function:
 
     -(void)update;

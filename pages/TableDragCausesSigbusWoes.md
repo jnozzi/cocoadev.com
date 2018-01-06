@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 It happens after the drop onto the table.
 
 *On what line?*

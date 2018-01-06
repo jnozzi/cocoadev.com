@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Custom General/NSView created by Apple for Safari's Tab implementation.
 
 *Is it possible to find the source for this class?*

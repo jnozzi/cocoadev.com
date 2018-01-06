@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A number of tools that makes dealing with Core Data objects easier in app-delegate-has-single-NSManagedObjectContext apps.
 
 Docs inline with the code. Consider them public domain -- EmanueleVulcano aka millenomi

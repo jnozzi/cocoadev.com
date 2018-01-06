@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to draw some thing like what quick model draws. So i want to know wether there is any framework for drawing these kind of rectagles, arraows etc. I know we can achieve this using bezierpath. but it would be easy if any opensource drawing framework exist. any one know ablout this?
 
 ----

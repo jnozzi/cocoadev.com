@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There is scant (or hard to find) information on how to support undo within a modal sheet in a Cocoa application. I've managed to get it working, so thought I'd document it here.
 
 I came across the NSPersistentDocument Core Data Tutorial (http://developer.apple.com/documentation/Cocoa/Conceptual/NSPersistentDocumentTutorial/08_CreationSheet/chapter_9_section_6.html), which has a section on supporting Undo in a sheet.

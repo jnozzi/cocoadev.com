@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Good day.
 
 I have some questions:

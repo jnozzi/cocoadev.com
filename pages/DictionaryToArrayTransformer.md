@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a simpe value transformer that lets you bind dictionaries to array controllers. The dictionary is transformed into an array of dictionaries with the keys 'key' and 'value'.

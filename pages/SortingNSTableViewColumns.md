@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This page is a resource for techniques used in sorting the contents of an NSTableView by row based on the sort order of one of its columns.

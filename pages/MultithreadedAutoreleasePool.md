@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey, this here is an NSAutoreleasePool subclass which sends objects to another thread to be released. Normal warnings about multithreaded code apply. I just found this useful for UI response in one part of my program, so here you are, use at your own risk. I am lazy and am just using volatile integers for my FIFO implementation. They work fine on my uniprocessor system, but you really need to change them to true atomic variables in shipping code.
 
 Oh yeah, FastAutoreleasePool is most likely a misnomer, but it is shorter than MultithreadedAutoreleasePool, and I beleive MT is taken as a prefix by a very cool coreaudio library writer. 

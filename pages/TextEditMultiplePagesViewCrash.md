@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm using the General/MultiplePageView class from General/TextEdit to paginate and print text pages. It works great except for when you try to include an attachment that's taller then the text container. In that case the app (both mine and General/TextEdit) goes into a loop and freezes. You can see the problem by pasting a tall (taller then a page) image into General/TextEdit and then choose Format > Wrap To Page, that should crash the app every time. It appears that the text layout machinery doesn't know what to do when a single character won't fit within a text container and it goes into an infinite loop calling this delegate method:
 
 - (void)layoutManager:(General/NSLayoutManager *)layoutManager didCompleteLayoutForTextContainer:(General/NSTextContainer *)textContainer atEnd:(BOOL)layoutFinishedFlag {

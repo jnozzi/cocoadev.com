@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How does one make the preference panes like iTunes? I guess they are bundles..
 How is the framework used and called?
 

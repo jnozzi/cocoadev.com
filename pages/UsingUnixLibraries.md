@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There's an open source C++ media library I would like to use in my application; it's designed for linux, but the author stated it should work under OSX. With that in mind, how do I incorporate the library into my project? I assume I would have to build the library and link it to the app; what steps would I need to take in General/XCode to accomplish this? This library will not be installed on the end user's system; do I need to package it with the application somehow, or will everything be built into the executable?

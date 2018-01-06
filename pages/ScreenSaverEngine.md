@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ScreenSaverEngine is the Cocoa application that displays screen saver modules at the appropriate times (after so many minutes, when the cursor is in a hot-corner, etc.). It is part of the ScreenSaver system.
 
 If necessary you can run the ScreenSaverEngine from Terminal:

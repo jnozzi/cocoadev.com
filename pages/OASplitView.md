@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A subclass of NSSplitView that adds auto-saving of the sizes of its subviews.

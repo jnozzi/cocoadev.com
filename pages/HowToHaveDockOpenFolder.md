@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to have the dock accept folders for a drop event? I would like to have my application open a folder's contents, not a particular file.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Inheritance, Multiple Inheritance, and Coupling**
 
 The goal of object-oriented programming is to maximize programmer productivity by simplifying software development and reducing lifetime software maintenance costs. The principal technique used to achieve the goal is object reuse. An object that is reused saves the programmer 

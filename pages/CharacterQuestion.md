@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have this:
 
 \\u201a\\304\\364

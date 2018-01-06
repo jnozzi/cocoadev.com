@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Perhaps this would be a good place for a discussion of Squeak's Morph design pattern.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is my introduction to a UI application builder. Anyway, the project can be downloaded from http://homepage.mac.com/lichach/OvalsForYou.zip  (link is no longer valid)
 
 If you take a look at it some of you may recognize it from a challenge in Aaron Hillegass' Cocoa programming book. I can't figure out how to load a sub-class of NSView that is an outlet on the .nib file. What seems to be happening is that no matter what instance the application creates I have no influence over it. The problem is that I have already saved a NSView subclass called OvalView into a file. Now when I read from that file I can't seem to get the data onto the UI. I save it okay, I load it okay, but I can't seem to get the object to display as the IBOutlet that I have pointed to. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's the basic steps to add a tracking rect to a custom view.     boundsTrackingTag is an ivar for the tracking rect associated with the bounds of the view (if you would like to receive a mouseEntered/mouseExited event when the cursor enters the visible rect of the view).
 
     

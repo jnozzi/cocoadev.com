@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working on a project that will make use of a view similar to iPhoto's main photo-view. Problem is, I haven't done much with views in the past and I don't know what to subclass...
 NSView? NSControl? NSScroller?
 That's not the only issue I'm having.

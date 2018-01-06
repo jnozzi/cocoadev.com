@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AddMethodAspects - part of AspectCocoa
 
 The idea here is that you could call     [ACReplaceAspect wrapAllMethodsOfClass: [MyClass class]], and get a nice little stack trace of all the methods being called in your class.  You can get an example of something that should work here: http://www.ccs.neu.edu/home/igotimac/ReplaceAspect.zip  But for some reason the extra replace, before and after methods aren't getting added to MyClass.  Presumably this would be a much more interesting example if     class_addMethods() actually worked right, and we could put an aspect on something like NSObject or NSDocument.

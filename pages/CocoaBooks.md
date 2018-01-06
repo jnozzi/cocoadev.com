@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's a list of published (or soon to be) books on Cocoa Programming.  If you have an opinion, please VOTE* on each book!  Books appear in ALPHABETICAL order.  If you know of any other books please add them this list.  If you know of any additional links on where to purchase the books feel free to add those as well.  Don't pay too much attention to the List Price as online book retaillers will often sell the book for much less than this.  You might even get lucky and be able to snag a copy for cheap off of eBay if you put a little effort into searching for it. --> K. McClanahan Pour vous joindre garder le numéro, vous aurez peuvent avoir compte driver ( code de programme ) [http://obtenir-rio.info rio bouygues]. Vous obtiendrez êtes certain d'obtenir pour par contacter du serveur ou du service à la clientèle clientèle votre propre entreprise [http://obtenir-rio.info/rio-bouygues code rio bouygues] . Vous ne mai recevez immédiatement un SMS utilisant votre. Avec votre [http://obtenir-rio.info/rio-orange code rio orange], alors vous êtes capable d' vers le offre de de votre choix respectifs en rouge.
 
 *About the voting section:

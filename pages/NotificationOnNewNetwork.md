@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to understand how to get notifications when my airport detects a new network. I don't want to poll (bad practise, you know). I've looked for a notification, without luck. I have also looked at KernelEventAgent, but I can't find any documentation on how to use it.
 
 Anyone?

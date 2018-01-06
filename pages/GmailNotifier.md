@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Google's first MacOSX application, available at http://toolbar.google.com/gmail-helper/index?promo=gdl-en.
 
 Interesting things about it from a Cocoa developer's point of view:

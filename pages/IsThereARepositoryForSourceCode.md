@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have (with the help of some CocoaDev folks) finished a simple but potentially useful program. Is there a site where one can post source code in case someone else wanted to use it? It's not important / sophisticated enough for sourceForge, I think, but if there's a simple post-what-you-wrote site, it might fit there. If you know of such a place, please direct me! Thanks. -dan

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to get a notification when a background application (in this case BOMArchiveHelper) closes, I tried using the NSWorkspace notificationCenter, however it does not seem to get events from applications that are currently closed. Is there any preferably simple way to accomplish this? Or alternatively is there a way to open finder created zips and decompress them while still retaining the resource fork.
 
 ----

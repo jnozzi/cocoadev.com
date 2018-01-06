@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How does Apple benefit from keeping it's new General/SDKs (Spotlight etc) away from the bulk - the non-paying - of it's software developers?
 
 *Why is a raven like a writing desk?* http://www.straightdope.com/classics/a5_266.html (for the people, like myself, who didn't get the ungettable riddle).

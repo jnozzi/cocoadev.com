@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 DistributedObjects (aka DO) refers to FoundationKit's Object Oriented RemoteProcedureCall (RPC) mechanism. It allows objects in one process on one machine to talk to objects in other processes on other machines. For more information on using this powerful system, see the FoundationKit's NSConnection object.

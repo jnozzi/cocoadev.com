@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The only Cocoa programmer at Northern Kentucky University (http://www.nku.edu/ ).
 
 Personal homepage/weblog: Among Other Things (http://www.interalia.org/ ).

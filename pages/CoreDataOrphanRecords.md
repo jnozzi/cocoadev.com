@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Core data appears to be orphaning detail records on a very simple Master->Detail type of data application. To verify what I was seeing, I built a very small, simple application as a Core Data Document based application. The model is simple:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am using a save panel to get the user's desired directory and filename. I would like to pass these two NSString values to a function that requires an FSRef for the directory name and a CFStringRef for the filename. What can I do to get these two strings in a format that is compatible with FSRef and CFStringRef? 

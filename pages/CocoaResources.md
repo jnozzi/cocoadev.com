@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Valuable resources for the Cocoa programmer:
 
 

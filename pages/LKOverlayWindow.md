@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 LKOverlayWindow is a class for the creation of a custom overlay windows which appear as though they are nested within a NSScrollView. 
 (But they're actually not!! Haha take that cocoa!)
 

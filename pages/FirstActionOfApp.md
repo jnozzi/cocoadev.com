@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I'm having a small problem.
 
 I'm trying to get my program to execute a function in the controller immediately after launch, and I tried setting the controller to the window's delegate and then using applicationDidFinishLaunching but that didn't have any effect.  How do I make this function work?

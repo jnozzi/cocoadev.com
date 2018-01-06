@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Subclassing NSImageRep to import unknown picture formats is reasonably well documented. In my icon program I wanted to have the ability to read Windows XP icons. They normally have the .ico file format extension, and as such are already recognized by Cocoa programs as images. However, the built-in image import does not take into account the transparency channel.
 
 As I am interested in the transparency information, I decided I needed to write my own image import routine. The ico file format is documented in MSDN, so that wasn't a problem.

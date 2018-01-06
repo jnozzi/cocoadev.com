@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a plist file (any suffix, any location) and want to edit its properties.
 
     <key>Name</key>

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hello folks,
 I am trying to replicte the addressBook.app interface.

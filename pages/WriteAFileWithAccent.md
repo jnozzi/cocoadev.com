@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I developped an little piece of software called General/MeNotes (you can download it on www.bougnatware.com) that let's you manage little personnal notes. One of the feature it's to export a note to a text file, for example to put it on an iPod.
 
 But I have problem with accent (�,�,etc.) that don't be displayed correctly. I try to fix this bug for a long time, without success : i begin to be desesperate ! :-)

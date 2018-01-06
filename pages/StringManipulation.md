@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Ok, is it just me or does Cocoa utterly blow at slicing up strings?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 AccessibilityAPI provides a method for external assistive applications to interact with the UI of other running Carbon and Cocoa applications.

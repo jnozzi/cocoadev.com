@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is a simple example of sorting an array using NSC**'omparisonResult in the context of displaying it in an NSTableView:
 
 This sorts a list of student grades by either name or by their grade percentages.  We assume you are familiar with actually creating, displaying and updating a NSTableView object through its NSMutableArray contents.  Assume that your NSTableView is fed by a NSMutableArray containing Student objects and you want to sort them by either grade or name.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Quick Poll. Which editor do you use to edit code? Please add to the list if your editor isn't listed.
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I am using NSDictionary initWithContentsOfFile: to read the contents of my file. It takes so much time! Is there any way to speed this up?

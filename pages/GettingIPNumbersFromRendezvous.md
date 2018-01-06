@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've just started using NetSocket in the place of SocketPort and have run into a weird problem.  I would like to use rendezvous to discover client apps and establish NetSocket connections to them.
 
 NetSocket needs an IP number (or host) to create the socket.  Rendezvous (at least in all the examples and tutorials I could find) resolves services and gives you the socket Struct as a bunch of bytes, which works fine with SocketPort but not with NetSocket (which wants a plain old IP number).  How to get human readable (ie not a socket struct) IP number from rendezvous'  "did resolve address'" delegate?

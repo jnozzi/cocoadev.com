@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I noticed that everytime I play a sound in one of my apps, there is a delay before the sound is played for the first time after the app is launched.
 Is there a way to preload a sound so there isn't any loading delay ?
 

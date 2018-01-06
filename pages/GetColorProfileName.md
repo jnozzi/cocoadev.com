@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 Given a NSBitmapImageRep, outputs the name of the color profile (if any):

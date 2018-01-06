@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Your text will appear exactly as you enter it.  HTML tags are not processed. To include double-percents, precede each one with double-backslash, like so: \\\\%\\\\%
 
 Any fully-qualified General/URLs you enter into the text will automatically become links.  If the URL is that of a GIF or JPEG image file, that image will be inserted into the page, rather than a link. (*Note the URL parser doesn't understand fragment identifiers (#).*)
@@ -32,7 +36,7 @@ Note that undefined General/WordsJammedTogether are not marked with a ? in code 
 
 * **\\%\\%BEGINCODESTYLE\\%\\%** begins monospaced text
 * **\\%\\%ENDCODESTYLE\\%\\%** ends monospaced text
-* Paired triple-brackets (**{<nowiki/>{{...}}<nowiki/>}**) can also create a monospace section of text on a single line
+* Paired triple-brackets (**{<nowiki/>{{"{{"}}...}}<nowiki/>}**) can also create a monospace section of text on a single line
 
 
 

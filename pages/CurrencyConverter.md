@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 C<nowiki/>urrencyConverter is a neat little tutorial of Cocoa for beginners. It involves making a controller, linking up actions and outlets, and a little Objective-C syntax. This is useful for a beginner, but not enough for anyone else. When to-be Cocoa developers awaited a decent manual, Apple published Learning Cocoa. The aforementioned developers were upset to find that a majority of the text was C<nowiki/>urrencyConverter :-(
 
 C<nowiki/>urrencyConverter: http://developer.apple.com/documentation/Cocoa/Conceptual/ObjCTutorial/chapter01/chapter_1_section_1.html

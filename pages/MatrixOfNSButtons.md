@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 When making an NSMatrix of NSButtons, can you alter the size of the buttons?

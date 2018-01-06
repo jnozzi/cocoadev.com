@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here is some code i wrote to play around with and experiment with animation using NSTimer.  I don't know much about efficient animation, so what you see here is probably nothing ideal.  But what the hell...

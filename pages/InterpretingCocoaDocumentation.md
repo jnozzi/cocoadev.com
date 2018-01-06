@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm not a comp sci major, I'm actually network administration so I don't have much programming experience, however, I've always been interested in development in some way shape or form and ever since I've made the "switch" I have been extremely fascinated with Cocoa.  Next semester I'm taking a independent study in Cocoa development, the course will totally be up to me and I'm hoping to make the best of it.  I'll be using the infamous Hillegass book.
 
 When working with Java I found the documentation to be a great resource (duh) and I hope to use the Apple Cocoa documentation a lot throughout the semester.  I might be jumping the gun but reviewing the documentation for Obj-C I can't quite put it together.  Does anyone have a good explanation on utilizing the Apple documentation or how to read it?

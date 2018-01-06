@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 RBSplitView => [http://www.brockerhoff.net/src/rbs.html] A NSSplitView replacement that, hopefully, fixes all problems people have been complaining about in NSSplitView ;-). Creative Commons Attribution license, full source code, IBPalette, documentation. Send feedback to Rainer Brockerhoff => [mailto:rainer@brockerhoff.net].

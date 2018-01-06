@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OmniAppKit is TheOmniGroup's set of extensions to Apple's AppKit.framework, full of cool stuff to make Mac OS X application development even easier. Some highlights:

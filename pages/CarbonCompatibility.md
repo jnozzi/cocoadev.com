@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a list of classes by different authors that provide functionality that is not available as Cocoa Objective-C classes from Apple, for example Carbon technologies.
 
 This is being integrated with OtherAPIs and CocoaWrappers.

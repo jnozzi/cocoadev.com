@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://neuron.blogdns.com:8080/

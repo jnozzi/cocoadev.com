@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'll try to describe the issue I'm having but I'd be more than happy to share my code with anyone willing to have a look and help me out.

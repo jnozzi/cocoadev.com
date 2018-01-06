@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi There...
 
 Im having some issues with returning a integer through a method.

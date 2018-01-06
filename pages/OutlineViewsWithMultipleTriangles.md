@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to have an  NSOutlineView with two triangles in one row, where each triangle expands a different data set?
 
 ----

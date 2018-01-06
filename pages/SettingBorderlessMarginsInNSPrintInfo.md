@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The following article was posted on Apple's printing mailing list by Dan Messing. ( http://lists.apple.com/archives/printing/2007/Jan/msg00000.html )

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Time to give back to the Cocoa communauty.
 
 Here is a piece of code to add click-through button (like in itunes or safari (download panel)) in a tableview

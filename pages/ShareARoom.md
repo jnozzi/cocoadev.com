@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A place for folks to meet up for hotel room sharing at conferences:
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
  I had a requirement that I need to ship my application in the form of a package(.pkg). And also I need to set a custom icon for the created package. Creation of package and setting custom icon is working fine.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The     fork() call looks innocent enough when you first see it. It simply copies your process, breaking it into two pieces which appear to be identical, except that one is now the parent and the other is now the child. In terms of code flow,     fork() is simply a function which is called once and returns twice. The OS support required to accomplish this is far from simple, but the concept itself is easy enough.

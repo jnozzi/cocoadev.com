@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 It is possible to use variable length argument lists (also known as varargs and stdarg) in General/ObjectiveCee.
 
 Here is an example:

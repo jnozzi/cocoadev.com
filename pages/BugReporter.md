@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Radar, Apple's on-line bug reporting database. See http://developer.apple.com/bugreporter
 
 In order to access RadarWeb, you must be an AppleDeveloperConnection member. You can register for free (Online) membership at http://connect.apple.com (As long as you're old enough!!).

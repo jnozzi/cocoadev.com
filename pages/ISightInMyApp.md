@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a nice API to capturing iSight input?  Also, does anybody know if it's possible to have two iSights and get stereo vision?
 ----
 I believe it behaves just like other firewire cameras, and so you can access it through the Quicktime APIs, just like other cameras.

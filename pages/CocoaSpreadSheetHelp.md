@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There is a spread sheet class being worked on, by Tim Ritchey. This is the announcement he sent to macosx-dev@omnigroup.com (-- DavidRemahl):
 
 I have put up a disk image of a first cut at a spreadsheet control at:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 HowToUseThisSite introduces you to the CocoaDev culture and offers tips for avoiding Wiki gaffes.
 
 HowToAskQuestions discusses how to make your questions as specific as possible.

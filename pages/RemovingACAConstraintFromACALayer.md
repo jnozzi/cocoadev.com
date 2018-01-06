@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was wondering if there was a way to remove / modify a CAConstraint I added to a CALayer somewhere in code before.
 I think it's weird there's a -addConstraint method for CALayer, but no -removeConstraint.
 

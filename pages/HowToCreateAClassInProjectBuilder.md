@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Open your project in ProjectBuilder.  If you need to create a project see HowToCreateANewProjectInProjectBuilder.

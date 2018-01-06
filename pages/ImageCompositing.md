@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I can draw/composite an image in (or on) a view, but how do I composite an image onto another image?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, I'm new to ObjC and I was wondering how to do something.

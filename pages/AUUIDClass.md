@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a simple UUID class.
 SimonAndreasMenke
 

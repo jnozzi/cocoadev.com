@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on an OpenGL-cocoa project, and as soon as I add new code, I get a SIGBUS 10 error. If I move around the code and switch its positions, I might sometimes get it to work. Not this time though.  I allways get a SIGBUS error!
 
 I have a method, that loads data from a file and makes an GL_COMPILE list of it. The problem seems to be in this method, since if I don't call it in my app, I don't get any SIGBUS-error!  But why? There are no syntax errors in the method and when I run the app, the method completes successfully (I see things in the window just before the app terminates).  By the way, it seems to terminate just on the moment when it's supposed to call the applicationWillFinishLaunching: selector, but I don't know really.

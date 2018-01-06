@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hi, I'm rather new at Cocoa...is there a way to get multiple images, join it together...and create a quicktime movie in cocoa programming?  When the movie is played...it will be shown like a film strip..with the images streaming from right to left continuously.
 

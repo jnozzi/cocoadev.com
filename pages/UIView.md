@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Part of the iPhone General/UIKit framework. Subclass of General/UIResponder. So very much like General/NSView.

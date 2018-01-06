@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In order to produce SketchDotAppUndoTrace to solve SketchDotAppUndo, we changed Sketch_main.m as follows:
 
     

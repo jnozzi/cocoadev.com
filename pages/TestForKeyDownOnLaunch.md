@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I can not figure out how to get my program to pick up a key down event on launch. Ideally, I want to be able to test to see if a key is down at any given time.  I have been overriding General/NSResponders keyDown: (General/NSEvent *) event method from within in a window. I think I tried doing it in General/NSApp too. I don't know. If you have not been able to figure it out, I am rather new to cocoa--and make no attempt at hiding my newbieness. I can not find any useful documentation/tutorials. Everything in Apple's is "forthcoming".

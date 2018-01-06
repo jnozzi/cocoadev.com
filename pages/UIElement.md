@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 An application with General/LSUIElement set to 1 in its Info.plist dictionary, thus suppressing the application in the dock and its menu bar.
 
 See:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey guys, very new to Obj-C >.<
 
 I've written a Chess game in Obj-C. Now I'm writing the UI to it. I've been following the Hillegas book to learn Cocoa. 

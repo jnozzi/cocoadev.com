@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also DisplayingSheets
 
 When a sheet is displayed, you can�t quit. Why isn�t the Quit menu item disabled, then??

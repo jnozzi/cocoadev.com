@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to subclass General/NSData or General/NSMutableData.
 
 #import <Cocoa/Cocoa.h>

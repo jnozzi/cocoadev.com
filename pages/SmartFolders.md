@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How does one go about creating a smart folder on the filesystem programmatically from a Cocoa app?  It doesn't appear that NSFileManager got any new methods in Tiger that will support this functionality.
 
 ----

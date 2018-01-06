@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Subclassing apparently has pitfalls. Anybody care to let us in on 'em?
 
 

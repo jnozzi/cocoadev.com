@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The "menu" outlet for NSBrowser doesn't seem to do very much, but in a similar way to the code for RightClickSelectInTableView you can make it work for NSBrowser cells (actually NSMatrix cells).

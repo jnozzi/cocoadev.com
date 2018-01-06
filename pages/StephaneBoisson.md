@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I live in Paris, France.

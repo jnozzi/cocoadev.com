@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The art of making computers usable.
 
 The thing that separates Mac OS from Windows and other operating systems. Not the same as interface design, although interface design is a part of HCI.

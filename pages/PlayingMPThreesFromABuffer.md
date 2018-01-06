@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In my app, I need to figure out some way to play an MP3 file that I decrypt into RAM. I have already looked into MPEG123 - I'm already using it to play normal MP3s in my app, but I don't think it will decode from a buffer. I can't just write the buffer out to a temp file, as there are legal complications with doing that. Any suggestions? I would REALLY like to refrain from using the QuickTime framework.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey!
 
 I have a file that I need to get the size of.  NSFileManager does not account for resource forks, so using it is not optimal when determining and displaying an accurate file size is necessary for the user.  How can I go about retrieving the actual amount of bytes a file is, even if it contains a resource fork.  I realize that using a carbon call may be neccessary, but I have absolutely no idea as to how to go about doing this.  If anyone could provide assistantce/code I would greatly appreciate it.

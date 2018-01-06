@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to extract the metadata tags (name, artist, album, etc) from an M4P file using QuickTimes carbon UserData functions. However unlike MP3's which return a nice bunch of tags it M4P's return a massive blob of data with no obvious use,. Does anyone have any idea what this blob of data is and how to interpret it? The code i am using is as follows
 
     

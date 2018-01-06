@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to use NSWorkspace's selectFile: method to select a file located inside a file bundle.  The method works as expected when used on a normal folder, but simply opens the folder containing the bundle if I attempt to select the file inside the bundle.  Any ideas?
 
 ----

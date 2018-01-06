@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey, I have my app set up to get MouseDown and MouseUp events in a NSView. 
 
 - (void)mouseUp:(NSEvent *)theEvent; {

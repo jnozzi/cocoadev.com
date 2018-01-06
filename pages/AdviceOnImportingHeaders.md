@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm confused as to how to properly include all the headers in my project to make everybody happy.

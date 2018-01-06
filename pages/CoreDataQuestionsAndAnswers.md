@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question:
 Whose idea  was it try to eliminate the controller layer?
 ** 

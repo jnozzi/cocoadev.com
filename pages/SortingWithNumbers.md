@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSArrayController that controls the objects of an array and displays them in a NSTableView. To sort the objects I set the NSArrayController's sort descriptor to a default ascending sort descriptor. The problems is that the objects are being sorted like this:
 
 Object 1

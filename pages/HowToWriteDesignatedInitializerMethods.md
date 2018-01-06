@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Many classes in Cocoa have the concept of a 'designated initializer'. This is the method that is guaranteed to return a fully-initialized instance of the receiving class. For example,     - (id)initWithWindow:(NSWindow *)window is the designated initializer for the NSWindowController class. The other init... methods (    initWithWindowNibName:,     initWithWindowNibName:owner:, and     initWithWindowNibPath:owner: simply retrieve an NSWindow object from whatever they're given and pass it to the designated initializer. Apple's documentation is usually pretty good about describing exactly what the various init methods do.
 
 It's not hard to write designated and convenience init methods for your own classes. Your     init... methods will usually 'cascade' from the one with the fewest to the one with the most parameters, with the last one calling     [super init] and returning self - this is your designated initializer. Any other     init... methods should simply return the result of calling the designated initializer, either passing some reasonable default values to it, or passing nil and letting the designated initializer set up its own defaults.

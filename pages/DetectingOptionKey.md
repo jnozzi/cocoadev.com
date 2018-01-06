@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to get a Cocoa application to implement an iTunes like behaviour: when you hold down the Option key, the

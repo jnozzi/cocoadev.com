@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here�s a tool that edits the new references to Cocoa that comes with the development tools distributed with Panther. This tool places useful buttons and tables to help you navigate the docs more efficiently. It�s in the spirit of SaveTheTrees, except you can now choose the number of columns you would like to view. To use the tool do the following:
 
 

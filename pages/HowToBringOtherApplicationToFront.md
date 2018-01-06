@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Let's say I want to bring Mail.app to front -- how would I do that?
 
 If I use NSWorkSpace to launch it, it probably gets a re-activate event, which could cause opening of a new window and currently I have the problem that even though the application does activate, the windows are not brought to front.

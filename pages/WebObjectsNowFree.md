@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi. I'm learning the basics of Cocoa. I have a specific kind of app in mind (one that I'd eventually start developing), and it would need multiuser database access. I was happy to see General/CoreData appear, but that's apparently for single-user data files only, despite the SQL touch (General/SQLite). 

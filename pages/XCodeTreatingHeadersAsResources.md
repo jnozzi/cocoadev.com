@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Has any one noticed Xcode 1.5 treating header files as resources? By resources I mean they are getting get copied into the Apps Resources directory by default during a build. If this is localized to my install, how do I fix it. Every header I add ends up in the targets 'Bundle Resources' step. Help!

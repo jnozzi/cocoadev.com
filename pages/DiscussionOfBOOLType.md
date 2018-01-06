@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also TypeIDDoesNotCastToTypeBOOL, a very important point made by MikeTrent
 
 **BOOL is a scalar type, not an object type**

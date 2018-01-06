@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Let's say i have two classes "class1" and "class2" and they need to know about each other.
 More specifically, they needs to share variables.

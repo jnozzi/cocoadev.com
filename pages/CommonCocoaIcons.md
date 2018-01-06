@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Recreating common Cocoa icons is a pain and wastes alot of time. Here's a list of common icons people have released that can be used without restriction in your application:
 
 

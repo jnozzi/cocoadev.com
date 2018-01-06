@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can I identify the processor that is running the application so I could execute a fragment of code only if it's running on a G4?
     --Angel Puerto
 

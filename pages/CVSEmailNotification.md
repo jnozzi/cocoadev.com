@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know how to keep a list of users who are notified everytime a CVS commit is made?  Thanks in advance!
 
 ----

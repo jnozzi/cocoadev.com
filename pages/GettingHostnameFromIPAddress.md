@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 At some point, you may want to convert an IP address to a set of hostnames.  This is known as a reverse lookup; it is implemented using PTR records in your DNS server.  For example, say you have the IP address 17.149.160.49 and want to display its hostname(s) (apple.com).  You have a few options:
 
 

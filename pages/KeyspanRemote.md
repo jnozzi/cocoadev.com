@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's a simple class that lets your app respond to a Keyspan remote (URM - 15T).
 
     

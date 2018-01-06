@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Just want to know how to get the memory footprint of an object.

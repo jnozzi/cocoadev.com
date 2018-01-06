@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone used Apple's new Rendezvous technology in Cocoa?  I'm trying to figure the best way to get started to add the capability to a game I have been writing.  Ideally communicating on a peer-to-peer basis, perhaps with one of the players acting as a server for the others who respond as clients.  The end goal being able to play head-to-head over the internet.  (Initially tested on a local LAN)  Rendezvous seems to be the best method as it can be added to a Windows version should I decide it makes sense.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm working with NSXMLParser, and I'm getting an error during parsing.  The NSError has the following information:

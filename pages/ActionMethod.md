@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An action method is simply a method (see: InstanceMethod) that is attached to a control object, either in InterfaceBuilder or programmatically. When the user interacts with the control, he causes it to invoke the method; hence, the term 'action method'.

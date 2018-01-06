@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What I want to do is get the 4-character creator-code of the application that is requesting my application to open a document.  In my applicationWillFinishLaunching method, I set one of my methods to be a handler for the open-document event; in my handler method, I get the processSignature field of the ProcessInfoRec structure from the ProcessSerialNumber of the event like:

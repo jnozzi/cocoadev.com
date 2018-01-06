@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a document based application where each document consists of several windows that all have drawers. Each drawer contains an NSTableView with two columns, ID and Name, and lists resources of a certain kind from the resfork of the document. When one of the items is clicked, it loads that resource's data into the window. Now the data can be edited and saved. If the data isn't saved and another resource in the list is clicked, the desired behaviour is this:
 
 1. In selectionShouldChangeInTableView:, the unsaved status is recognised and a sheet or panel appears asking to save. If Save, the data is saved and the selection is allowed to change. If Don't Save, the selection is allowed to change. If cancel, selectionShouldChangeInTableView: returns NO. 

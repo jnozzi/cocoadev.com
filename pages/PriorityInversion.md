@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 PriorityInversion occurs when a high priority thread has to wait around for a low priority thread to finish what it is doing before it can continue itself. Thus the perceived priority of the thread is temporarily inverted.
 
 This term is most commonly used in reference to locks, when a low-priority thread holds a lock and thus blocks out a high-priority one. This situation is actually the most easily fixed - just temporarily raise the priority of the thread holding the lock.

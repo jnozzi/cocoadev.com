@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I used NSColorPicker <NSColorPickingCustom> to create my custom color picker.

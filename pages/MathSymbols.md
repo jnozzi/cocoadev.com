@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.  I'm making a program that allows people to practice the chemistry symbols and valences.  To make a program like this though I have to be able to write things like NH4 +1 or something like that except the 4 should be smaller and at the bottom corner of H and +1 should act like an exponent.  Does anyone know how to format a text field to act like this?
 
 Gabe

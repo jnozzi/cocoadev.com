@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 So I've implemented the     - (void)tableView:(General/NSTableView *)aTableView willDisplayCell:(id)aCell forTableColumn:(General/NSTableColumn *)aTableColumn row:(int)rowIndex delegate method to change the text color of the General/NSTableView's cells to red.  However, this delegate method seems to only be called for one of my 4 columns, not all of them.  As a result, only one column of my table is red, while the rest remain black.  Why is this?  Thanks for the help.

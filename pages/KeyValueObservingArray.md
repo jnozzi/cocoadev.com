@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm having a little trouble using KVO in my code. I'm not using bindings here, the purpose of it is really to handle undo, where the observer sends the observed old value up to the undo manager (basically the code in Hillegass, pp 147-149). Let's say I have a class <foo> that has a few properties of its own. I can add observers of those properties and all is fine. In addition, <foo> has an array of further sub-objects, let's call them <bar>. I'd like to be able to observe changes to these too, so I tried:

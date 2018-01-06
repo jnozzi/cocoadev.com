@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Subclass of General/UITable.

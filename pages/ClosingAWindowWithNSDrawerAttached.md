@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What is a good way to close an NSWindow which has an NSDrawer attached, so that the drawer is in the same state when the window reopens?

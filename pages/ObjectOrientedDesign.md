@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ObjectOrientedDesign is program design that makes effective use of ObjectOrientedProgramming techniques to give a good balance between factors such as code reuse, modularity, et cetera.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See also the related discussion in OpeningDataFileInAuxiliaryExecutable
 
 I have a resource file that I am using fopen() to open.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As added comfort to the user you might want to offer the possibility of restoring all the documents that where open at the time of quitting at startup. This can be accomplished through various means. Here most of the work is done by the application controller, a delegate of the NSApplication instance, the defaults and the shared instance of the NSDocumentController. All the coding is done in the application controller http://goo.gl/OeSCu
 
 ----

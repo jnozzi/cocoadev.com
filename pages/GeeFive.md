@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A very fast 64-bit chip (or a shortened name for the PowerMac GeeFive).
 
 See http://developer.apple.com/hardware/g5/ for more technical details.

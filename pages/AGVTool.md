@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AppleGenericVersioningTool.
 
 see: /Developer/Tools/agvtool help

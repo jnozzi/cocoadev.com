@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Part of the iPhone General/UIKit framework. Represents a column in a General/UITable.

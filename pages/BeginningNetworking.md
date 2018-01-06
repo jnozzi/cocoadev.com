@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to create a very simple logging application. I want to learn about unix sockets and network programming.

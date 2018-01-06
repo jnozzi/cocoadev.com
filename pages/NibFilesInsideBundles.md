@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 (Based on a mailing list post by Scott Herz.)
 
 Usually the windows you display in your application will come from a NibFile inside your application's main bundle. But this may not always be the case; sometimes it might be better to load a window from some other bundle than your own.

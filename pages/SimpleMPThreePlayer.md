@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want my app to play MP3 files, from a path to the music file. I know there's something called MPG123 that can be annexed to my project, but of course, it didn't work. I downloaded a patch to make an executable from the source files, but in the terminal entry building, I got an error.
 
 Anyway, I still don't understand why the source comes in some 70 different files. I really don't know which file is important, neither which one can make my app play a MP3 file...

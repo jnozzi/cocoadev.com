@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Some web pages force the browser to reload its contents after a period of time. Is there any way to tell a webview not to reload a page?
 
 ----

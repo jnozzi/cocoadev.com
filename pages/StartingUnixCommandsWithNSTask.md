@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I use ruby from within a cocoa application to do some stuff but I realized that ruby might be installed at different paths on different computers. Some might have the most recent version of ruby in /usr/local/bin instead of /usr/bin. How do I run a unix command like it would run on the user's command line?
 
 One alternative I have thought of is launching "which" which in turn gives me the correct path. The problem is that NSTask doesn't get all the extra search paths defined in my .bash_profile so running "which" in an NSTask will yield "/usr/bin/ruby" even though running "ruby" in a terminal will launch "/usr/local/bin/ruby".

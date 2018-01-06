@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 DICOM Viewer / PACS Workstation software for MacOS X.
 
 Cocoa source code is available on sourceforge.net:

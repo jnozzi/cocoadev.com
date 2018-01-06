@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a menu item "Import" in the main menu.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Apple's protocol. I don't know much about AppleTalk...I didn't learn networks till I was using OS X and IP heavily. Can anybody fill this in a wee bit more? -- RobRix

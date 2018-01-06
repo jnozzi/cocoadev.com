@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a C app that gets the "model" string from sysctl.
 
 This code works fine:

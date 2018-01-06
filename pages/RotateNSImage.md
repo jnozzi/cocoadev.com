@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I can't seem to find any information on how to rotate an NSImage (either in documentation or searching these pages),  Is it not so simple to do?  How would someone, for example, rotate an NSImage 180 degrees?
 
 ----

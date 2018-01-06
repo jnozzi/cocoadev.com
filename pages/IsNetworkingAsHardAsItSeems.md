@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My question is as follows.  Is the only way to set up a simple client/server connection to use bsd sockets, about which whole books could be written, or is there something simpler?  Is there anything which just lets me start as a server in one line, or connect to one with one line?  Is there any easy way to send bytes, and know when there are bytes available?
 
 -Charlie

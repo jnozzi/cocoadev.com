@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hello,
 I'm not sure if this is the right place to post but here goes(if it doesn't belong here I can delete the page). 

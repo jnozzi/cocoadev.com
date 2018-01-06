@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Using x-Code 2.1
 
 I am designing a nestled interface, being  one large tabbed view (Not showing tabs)

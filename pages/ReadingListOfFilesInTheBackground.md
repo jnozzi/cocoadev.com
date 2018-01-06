@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi I am trying to get a listing of a folder using NSFileManager's subpathsAtPath command.  Then when I get a listing in a NSArray I use loops to weed out certain file paths.  After that I use copyPath to copy the files to a new location.  All this works fine but when I do it everything in the GUI freezes.  Nothing is responsive.  Even when I put in ways of updating information through NSProgressIndicator and NSTextFields as shown below, it still does not work.  Is there anyway to run these commands in the background or in a way so the GUI will still be responsive?
 
 

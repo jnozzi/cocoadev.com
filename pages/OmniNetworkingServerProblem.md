@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've been trying to set up a simple server app to better my knowledge of networking.  After trying to work directly with BSD sockets I opted for a more Cocoa-like approach.  OMniNetworking seemed to be just the thing for me so I installed all of the necessary frameworks and tried a simple little program.  That worked like a charm so I decided to try something a bit more complex.  My idea was to have a server that would accept connections, write them a little welcome message, add them to an array, then loop through the array to read from each connection.  Anything that was recieved from the connection would be echoed back to the same connection.  If the connection sent the string "quit" it would shut down the server.

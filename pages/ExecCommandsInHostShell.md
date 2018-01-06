@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I'm trying to exec commands in the host shell after established ssh connection. Like this: 

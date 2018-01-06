@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Maybe somebody can advice me. I have to read in files and process them. Those files has to be checked conform a syntax.
 What is the best approache to get his working, is this using NSScanner or is out there a better way? I would like to create a self contained class.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any rule on which colours to use for non-focused controls?
 
 E.g. if I draw selected text (normally using General/NSColor's selectedTextBackgroundColor for a focused view) then which colour should I use when my view no longer have focus/is key?

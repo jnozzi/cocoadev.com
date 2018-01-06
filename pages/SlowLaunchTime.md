@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a nice, small application (under 11k of code) that has one window.
 
 I don't have it do anything on startup, but it takes about a second after the window is drawn on the screen for it to become responsive (when the window comes up, a text field is active - I can type a few letters, but the window won't update for about a second. After this, it becomes totally responsive.

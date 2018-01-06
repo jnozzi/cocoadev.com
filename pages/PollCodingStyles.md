@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm just curious how people (that care about coding styles) actually code:
 
 APPL - Apple's documentation, K+R - (Kernighan & Ritchie), ABY - Anguish/Buck/Yacktman, RS - Richard Stevens, ST - Smalltalk, AH - Aaron Hillegass

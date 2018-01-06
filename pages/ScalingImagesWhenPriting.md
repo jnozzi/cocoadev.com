@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The following code takes a pdf file, creates a NSPDFImageRep from it, stores it in a series of subviews of a NSImageView, then displays the grid within that view.  The screen image scales ok, and when printing, the mainView is scaled ok, but the scaling code doesn't seem to work at all when printing within the subviews.  Mike Trent suggested I needed to subclass my own NSView instead of creating all of the subviews, but I'm not sure I know how.  
 
 Can someone see why the image isn't scaling while printing?  The whole purpose is to create a singled page pdf file from a multi-page pdf file.  Any pointers would be appreciated, especiallly if you can explain why it's not scaling the subviews during printing.

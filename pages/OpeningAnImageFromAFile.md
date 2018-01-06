@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to open an image from a file using a standard open dialog and using the resulting path in an -initWithContentsOfFile method.  When I test the NSImage that I just created with -isValid I get 'NO'.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A ScriptingLanguage is the counterpart of a compiled language. ScriptingLanguages are interpreted, whilst compiled languages are, well, compiled, turned into machine code.
 
 Examples of ScriptingLanguages: PerlLang, PythonLang, RubyLang, PHPLang, JavaScript

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To set an open panel to only select directories, do the following:
 
     

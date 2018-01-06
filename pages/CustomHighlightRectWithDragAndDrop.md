@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How to make a custom highlighting of the drop target? For example like Address Book does when dropping contact to some group. I am subclassing the NSTableView to see which of the draw methods makes that ugly black drop destination rectangle. No luck. I can get rid of it only if I make an empty drawRect --AndreyBabak

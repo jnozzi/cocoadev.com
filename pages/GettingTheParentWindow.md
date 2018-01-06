@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi there,
 
 I'm doing an application which opens two windows(nib based), Window A and Window B... Window B is opened from Window A, i.e. a button inside Window A! My question is now:

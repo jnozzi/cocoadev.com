@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 As cocoa-dev list subscribers undoubtedly are aware, unless you download the FULL Xcode Tools 1.1 package, you're only getting the Xcode IDE update, not the complete 1.1 developer tools. 

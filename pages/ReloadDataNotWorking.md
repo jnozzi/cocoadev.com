@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello all,
 
 I am new to Cocoa programming (and to this site) so please be gentle.

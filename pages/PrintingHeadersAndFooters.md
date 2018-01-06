@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question: Does the Cocoa Printing architecture have support for headers and footers, in the sense of it shows on every page automatically like you'd expect in a word processor? I seem to recall reading in the AppKit docs that it does, but I can't find it again. If so, how do you implement it? Any help's appreciated. --LoganCollins** 
 
 **Answer:** 

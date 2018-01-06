@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To reveal the current working directory in the Finder, type     open .
 
 open is very practical,     open <file> will simulate a doubleclick, but one can also do e.g.     open http://apple.com  to open that page (in the default browser), and one can also specify the application to use, e.g.     open -a VLC someMovie.avi to open the movie with VLC.

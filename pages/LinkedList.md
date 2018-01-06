@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A linked list is a collection of objects or structs similar to an array. It's like opening a mailbox at a house containing a note telling you (among other things) the address of the next mailbox to look in, without the implication that the next house is right next door.

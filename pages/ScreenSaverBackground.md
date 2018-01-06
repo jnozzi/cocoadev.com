@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am having some trouble setting the background picture of my screensaver. I have an image (.pdf) in a known path that I want to set to the background when my screensaver starts. Also, I am guessing it is quite possible to draw on top of that with bezier paths. Correct? Thanks for your help. (XCode, 10.3).  -Zac
 
 ----

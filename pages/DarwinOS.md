@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Darwin is basically everything below the GUI in MacOSX. It's an OperatingSystem on its own, I know, I have it running on a PowerMac 7300/180 directly to my left. Nice to work in a familiar UNIX!

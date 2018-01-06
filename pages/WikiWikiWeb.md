@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What the heck is a General/WikiWikiWeb?
 
 A Wiki Wiki Web (or Wiki for short) is a unique way of sharing information on the web.

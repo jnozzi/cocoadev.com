@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AJRDatabase is an opensource replacement for EOF (EntrepriseObjectFramework)
 
 Latest CVS (recommended): http://sourceforge.net/projects/ajrdatabase/

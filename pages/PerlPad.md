@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 PerlPad is a Cocoa app (based on CamelBones) that lets you execute Perl statements as a System Service.
 
 It allows you (among other things) to use all the power of Perl to manipulate text in input fields of any Cocoa application (such as Mail, TextEdit, SubEthaEdit) or the system pasteboard.

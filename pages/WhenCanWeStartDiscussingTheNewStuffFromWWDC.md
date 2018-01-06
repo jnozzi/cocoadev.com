@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to hear about the new API additions!  when is it legal to start discussing that?
 
 Right now. Just don't put your name on it.

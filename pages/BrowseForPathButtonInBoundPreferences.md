@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have panel represent my defaults via binding!

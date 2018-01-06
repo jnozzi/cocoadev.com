@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 It occurred to me recently that I might want to hammer out a quick utility to sync specific folders on my laptop against my iPod, with my iPod acting as a backup, but should I modify them on another machine ( my work machine ) they'd then overwrite the same files on my laptop. Basic stuff. 
 
 So, I thought, iSync's obviously the place to go. It "knows" when my iPod is inserted. Presumably it has timestamping functions and all that hoo-ha. But, as far as I can tell, there's no developer documentation. I searched apple's docs, I went into the KB, so on and so forth. WTF?

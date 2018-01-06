@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am new to using the SenTestingKit provided by XCode and have been working through a simple project to gain experience.  The project contains two targets; a framework and its associated unit test bundle.  The unit test bundle contains a single objc test case class file with about five tests in it.  Everything works.
 
 Adding a second, objc test case class (new .m/.h files) and immediately building, causes the following linking error.

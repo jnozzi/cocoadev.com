@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Anybody have an idea how you can export data to an iPod from a Cocoa app? OmniOutliner can do this, and several other apps I've seen. I'd love to have this feature, at least for future reference. Is there a framework or some other form of easy way to do it? --LoganCollins

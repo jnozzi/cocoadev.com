@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Popular open source SQL database: http://www.mysql.com/
 
 ----

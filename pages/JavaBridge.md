@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Cocoa Developer Documentation page on Apple's web site: 
    developer.apple.com/techpubs/macosx/Cocoa/CocoaTopics.html
 isted Java bridge as a legacy programming topics.  Is it dead?  Will it be updated?  Can we rely on this core piece of technology to be there in the future? 

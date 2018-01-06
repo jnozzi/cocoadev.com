@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an application (not document-based) which allows you to open a certain file type in it, but when I drag the file into the app's icon, it logs     *** +[Controller readableTypes]: selector not recognized, even though everything works fine. Should I igonore this, or is there something I'm missing?
 
 See DebuggingTechniques, particularly the section on debugging uncaught exceptions.

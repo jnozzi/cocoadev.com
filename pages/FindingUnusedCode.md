@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know a good way in Xcode (or otherwise) to find all the functions and methods in a project that aren't called from anywhere in the code.  It would be nice to have a clean way of shaving off the extra flab.
 ----
 A deployment (release) build will perform dead code elimination. Considering the dynamic nature of Objective-C/C++ I am not sure if this applies to those method entries as well, it may if they are defined within the application and not part of a framework.

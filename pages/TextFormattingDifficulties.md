@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Okay, I've been doing a little writing about a project I'm working on in my page. A couple of difficulties have presented themselves:

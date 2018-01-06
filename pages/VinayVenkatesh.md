@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Yeah I've worked on a number of projects including Pic2Icon, MP3 Alarm Clock, Cocoa Sprite Kit (which is still currently being worked on), General/MacAMP, and a bunch more

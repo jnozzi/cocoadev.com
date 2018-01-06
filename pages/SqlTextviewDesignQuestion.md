@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working on a textview that links to SQLite. The behavior I would like is as follows:
 
 - sqlTextview is either empty (new) or has past statements that are uneditable

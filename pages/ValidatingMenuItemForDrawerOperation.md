@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know of a better way in a document-based app?
 
 The only way I could figure out to do it for this simple example was (using General/NSNotificationCenter):

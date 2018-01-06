@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 How would I determine whether an NSColor object is either an RGB or CMYK color?  My thought was to query a component and if it returned non nil then it is in that color space.  That doesn't seem to work, though, as it raises an exception if the component isn't defined for that color.
 

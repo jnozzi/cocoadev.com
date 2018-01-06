@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I just installed Xcode v1.2 and I can no longer do text searches. Xcode's find progress indicator just spins and no search results get posted. Anyone else experience this?
 
 ----

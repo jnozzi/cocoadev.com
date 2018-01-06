@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I understand how to include C files in Obj-C programs. But can I do the opposite and add Obj-C files into an existing C program. And if so, how? For my case, I want to add a geometry class to SQLite. I have developed the geometry objects and methods. Now how can I call these files and pass information in the form of C strings from the established SQLite code in C to the Obj-C files and back?
 
 Here is an example:

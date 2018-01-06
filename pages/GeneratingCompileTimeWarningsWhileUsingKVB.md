@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 KVB is really cool.  So is CoreData.  If you need to whip up a fully functioning protocol of something FAST (RAD) both technologies are a huge timesaver.  However, especially when using CoreData a lot of time savings comes from not having to write all your accessor methods.  That's great -- accessor methods are pretty straight forward (even when they are more than simple getters and setters) and as such CoreData is long pastdue.  What I'm having problems with is typos in my KVC keys, or changes in the type returned.  Short of having to write out actual accessor methods, what have you done to get warnings or errors at compile time?
 
 Let me rephrase: what do you guys do to mitigate the step backward from type safety that KVC presents?

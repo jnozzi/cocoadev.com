@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi people... I got a small interrogation about antialiasing in a screen saver. Well, actually, it doesn't seem to work. Here's the line I use :
     
 [[NSGraphicsContext currentContext] setShouldAntialias:YES];

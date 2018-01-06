@@ -1,4 +1,8 @@
-{{#Del:}}
+---
+layout: page
+---
+
+{{ "{{" }}#Del:}}
 
 **This is no longer relevant. The resizing is properly constrained.**
 

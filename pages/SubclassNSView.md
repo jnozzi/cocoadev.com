@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I created a custom class from General/NSView and did all my drawing in drawRect.  Also, inside this class I export the drawing to pdf and gif.  I currently have the custom view inside a window.  Here is my question:  Since I just need to render my drawing to pdf and gif, is there a way to accomplish this without displaying the view.  Aslo, why does my gif have a gray background when I already set to white.  Thanks so much.
 ----
 Have you heard of General/NSImage?

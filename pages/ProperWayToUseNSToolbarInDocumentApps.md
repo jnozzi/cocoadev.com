@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 My task today was to learn the basics of NSToolbar and succeed in implementing a toolbar in the document window of a Document-based application. I studied a variety of sources including several open source applications. From that I came up with two different implementations. I am curious if one is/may be preferred and the reason(s) why. Please excuse the verbose details as I want to make sure that even the most inexperienced will be able to use these methods. All of my explanations use the PB and the IB as I haven't moved to XCode.

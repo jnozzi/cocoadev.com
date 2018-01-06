@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In Objective-C, you can declare a variable in two places.  First, you can declare it in between the braces of the header file for your class.  Then it becomes an *instance variable*. Second, you can declare it within a method in the implementation file for your class.

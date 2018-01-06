@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm new to Cocoa.  I'm currently designing an app that uses a subclassed NSTextField and an NSTableView to present a list of choices to the user and filter those choices.  That all works fine.  My only problem is that I want the arrow keys to arrow up and down the list of possible items in the table view and do a few other nice goodies, but I can't seem to get notified of those key presses no matter what I do.  I found:
 
 http://www.cocoabuilder.com/archive/message/cocoa/2004/10/27/120330

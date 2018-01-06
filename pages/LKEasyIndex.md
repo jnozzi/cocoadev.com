@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 LouisKlaassen - LKEasyIndex
 
 This class can be used to create a new filtered array from another array based on an index set.

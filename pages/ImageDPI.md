@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am reading a tiff into an NSImage.

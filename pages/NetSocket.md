@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NetSocket is a free piece of code from BlackholeMedia.
 
 An Objective-C TCP socket class that greatly simplifies asynchronous networking in Cocoa applications. NetSocket will do buffering of both reads and writes behind the scenes allowing you to use the data at the most convenient time and not worry if a call to send will  block or not. Through a series of optional callbacks, a delegate can be notified of socket events ( e.g. connected, disconnected, data available for reading ).

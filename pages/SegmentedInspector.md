@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am eager to build a segmented inspector palette for my app, as seen in a lot of the Omni products like OmniGraffle, where sections of the inspector can be unfurled or hidden depending on what you desire to see. (Also seen in the finder when you Command-i on any file or folder).
 
 Does anyone have any pointers or tutorials to approach this problem?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 You know how when you say      General/NSAssert(NO, @"Some message");  You get a pretty little dispplay of where in the code the exception was thrown?  You know, class, method, line number...  well, how can I General/NSLog something like that -- that's dynamically gotten out of the compiler -- and please, please don't say to handle a false assertion locally!  :)
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 from the cocoabuilder list - something many of us need on a regular basis - thanks Uli!
 
 *cocoabuilder is an archive of Apple's CocoaDevMailingList, not an entity unto itself.*

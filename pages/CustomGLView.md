@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here is an example of how to do Cocoa OpenGL drawing without using Apple's NSOpenGLView class. It requires that you drag an NSView custom view into the window in InterfaceBuilder and then set it to the customGLView class. This example also uses the customGLView as the application delegate in order to initialize the context's view to itself when the application is finished launching.

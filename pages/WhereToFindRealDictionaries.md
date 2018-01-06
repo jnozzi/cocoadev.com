@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm looking for dictionaries to transform them into General/NSDictionary or General/NSArray objects. If they can be found already formatted, it's even better. Does anyone know where I can find this ? I want to make a prog that can verify if a certain word exists. Also, if possible, a french list of words. In fact, as many languages as possible...
 
 -- Trax

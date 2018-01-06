@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSNetService object and have resolved it. I need to find out the IP of the NSNetService so that I can use it in an AppleScript in a format like 192.168.1.1. Can someone please tell me how to do this. Thanks in advance.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you pile your stack frames a mile high you will get a crash -- but it has to be an INSANELY large amount of frames; eg a recursive call gone bonkers.  How can I tell how many frames my system will permit me?
 
 ----

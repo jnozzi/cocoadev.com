@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The app I'm currently working on will use CoreData. However, I will do some custom drawing within my views (NSOutlineView, NSTableView) and these views may/will contain items that may not be of the same data type. For example, the NSOutlineView will have a Leopard's Finder style and along with data from the CoreData model, it could/will contain other items such as filters and a trash. Obviously these items aren't related to the data model so I was wondering if that was still possible with bindings or I will have to use some glue code to implement the behavior I intend for the views?

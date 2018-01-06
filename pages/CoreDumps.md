@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 To enable core dumps from Aqua applications, set     COREDUMPS=-YES- in /etc/hostconfig. Core files are created in /cores. They don't get cleaned up automatically on startup, so be careful that you don't collect too many of them.

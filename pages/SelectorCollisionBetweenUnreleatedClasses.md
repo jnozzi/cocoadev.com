@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm brand new to the Objective-C platform, and I've run into the following error that has really left me scratching my head, and I'm pretty sure that I'm missing something fundemental.  So I've put together the following example that produces the problem (this was done with Xcode 2.4 on 10.4.10)

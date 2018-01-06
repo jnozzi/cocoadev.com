@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 New filesystem slated to be released with General/MicrosoftWindows General/CodenameLonghorn, based around General/SQLServer allowing for detailed file attributes, etc. *Oh yea and it's been pushed back to the 2010 release of Windoze.*
 
 Who cares, oh and I've used Longhorn and it really sucks... Mac OS X for Ever! *Did you ever try any of the betas or developer previews for Mac OS X? They were terrible. Longhorn is in beta, and betas always suck. At the moment, all we can say about the final version of Longhorn is that it will not happen for a long time; the quality of the betas says nothing about the quality of the release.*

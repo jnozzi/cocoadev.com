@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've tried searching around for any classes or code that parses a POP email message, but haven't had much luck. Does anyone know of any? I'm basically only need to get the text of an email, and leave all the other stuff out (i.e. attachments, strip HTML formatting, etc). Oh, and I could use Perl/C/C++ code too, not just Objective-C. Thanks.

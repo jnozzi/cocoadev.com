@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm having an interesting problem.  I have a basic CoreData app that uses an NSArrayController to manage some data in a table view.  I wanted to add reordering of the data, so I subclassed NSArrayController, and implemented some table view data source methods, hooked them up... and it sort of works.  When I drag reorder a row, I can see it appear where it should be for a second - then it's deleted, instantly!  I've tried this both with my code and a modified version of stuff on mmalcom's site.  At first I figured it was just a problem with my app, so I made a simple test project:
 
 New CoreData app, add an entity called "Test", with a string attribute for "name."  Insert an array controller, an add button, a table view.  Hook them up.  Insert my drag reorder stuff, reorder, row appears there for a split second, then the object is removed from the store.  My code is below -- any leads would be very much appreciated.

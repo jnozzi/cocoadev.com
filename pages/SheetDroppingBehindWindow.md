@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a single-window application.  I am bringing up a sheet using
     
 [NSApp beginSheet:sheet modalForWindow:[self window] modalDelegate:self didEndSelector:nil contextInfo:nil];

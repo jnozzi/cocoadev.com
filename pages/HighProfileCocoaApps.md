@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Strictly out of curiosity, does anyone know of any non-Apple high profile Cocoa apps, comparable to say, Photoshop for example?  I'm not asking for a Carbon vs. Cocoa discussion or anything, I was just wondering whether any big companies have decided to go the Cocoa path.
 
 ----

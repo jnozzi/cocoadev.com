@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 aka Wiki 
 
 great article at Wired on PKD!!

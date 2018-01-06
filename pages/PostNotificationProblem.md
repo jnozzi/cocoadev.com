@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hmm, one thing I just came across, if you post a notification with [NSNotificationCenter postNotificationName:object:userInfo:], what will the notification center do with the dictionary you give as a value for the userInfo parameter. I normally autorelease those objects, but now I get memory errors during the autorelease phase of the notifications. I looked through the documentation and the internet, but I couldn't find anything about it. If I don't release the dictionary, it will work, of course. Anyone out there with deeper knowledge about it?
 
 --ThomasSempf

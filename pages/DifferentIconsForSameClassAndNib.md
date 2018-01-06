@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to use the same class and just one nib file (file owner) with different icons?
 My application handles two type of files almost 100% the same. 
 However, they should have a different extension and different icons.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a grid of NSTextField<nowiki/>s. The fields wrap and change height based on the number of lines of text in them. I would like to automatically indent lines of text after the first line to visually distinguish fields in the same column from each other (i.e. so it is obvious that a 3-line field is in fact only one field, not 3 different ones).

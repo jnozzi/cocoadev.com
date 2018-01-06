@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any way to figure out how large a standard text file will be just by using the text in an NSTextView? I want to have a display showing the current size a file will be if saved at that time.
 
 ----

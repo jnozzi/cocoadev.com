@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, so I have a problem with bindings... I have to use only bindings.  I have a dialog with for specifying two files, one of which could be a default.  So the dialog has a checkbox to determine whether or not to use the default, a popup button to select between whether it's file a, or file b, and two text fields one for each to type in a path.  The popup button's enabled state is bound to the checkbox.  The popup button's selected tag value is bound to a seperate key. I want file a's enabled binding to be NOT(checkbox AND NOTpopup), and file b's enabled binding to be NOT(checkbox AND popup)... Heres the thing, for each binding I can only supply a negative or positive to that binding, and each binding is ANDed, and finally, I have forgotten my boolean algebra, having not used it for quite a while ^_^;... can somebody help me change this into a series of AND and NOT relationships.. no parentheses allowed in the final answer.
 
 ----

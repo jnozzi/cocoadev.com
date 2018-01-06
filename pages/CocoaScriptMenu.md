@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 So here�s a riddle, what do iTunes, DVD Player, Xcode, FlySketch, NetNewsWire, MarsEdit and BBEdit all have in common?
 
 Give up?

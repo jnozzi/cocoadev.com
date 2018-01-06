@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I put a NSTextView in a modal dialog window. Everything is working fine with the "for free" Find panel.

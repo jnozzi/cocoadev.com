@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I guess my real question is: Is CFDictionary a wrapper for NSDictionary or is it the other way around?
 
 Apple says that both Carbon and Cocoa are based on Core Foundation and AFAIK the source for several collection classes are part of Darwin -- so that would imply that the NS collections are actually CF collections.

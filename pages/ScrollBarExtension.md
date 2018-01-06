@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm polishing up the gui for a project I've been working on, and am trying conserve space where available ( to give maximum space to the components which need it more ). So last night, it occurred to me that I could, in principle, put a button *into* the scrollbar area like you see in XCode and MS Word. I'm attaching a screenshot of Word so you can get the picture:
 
 http://home.earthlink.net/~zakariya/images/scrollbar-extra.gif

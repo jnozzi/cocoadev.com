@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A surprising number of things can be done in Cocoa by just using a line or two of code, or sometimes no code at all.  Unfortunately saving is not one of them.  In this article, I will give you the essential methods for encoding, archiving, retrieving, and decoding information stored in a class.
 
 Basically, when you archive a class, you are saving the values of instance variables (not the methods) for that class into a file .  A file that is saved in this way, needs to be opened by an application that has the same class that was used to save it.

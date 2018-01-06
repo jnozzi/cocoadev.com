@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When using OmniWeb, and other OmniApps, I noticed a few differences between OmniToolbars, and AppKit NSToolbar.
 
 Please Explain this.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know how to embed perl in a cocoa app?  I'm trying to find and replace certain text in a very long file (without the user even seeing the file) and I think the easiest way to do it would be to use string matching and replacing capabilities of perl.  I've been looking through the documentation for perl (perldoc perlembed) but much of it is a little over my head.  Can anyone give me an example or point me to a better way of doing this?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 iTunes uses RSA and AES to encrypt the data channel. The encryption details are exchanged in the ANNOUNCE block of the RemoteAudioOutputProtocol.
 
 iTunes sends a 342 bytes (2736 bits) long RSA/AES key (*rsaaeskey*) and a 22 bytes (176 bits) long AES initialization vector (*aesiv*) to the AirPortExpress.

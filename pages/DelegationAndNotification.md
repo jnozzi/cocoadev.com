@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 See http://www.stepwise.com/Articles/Technical/2000-03-03.01.html for a thorough

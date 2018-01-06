@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've scanned through some of the pages that mention OpenGL on CocoaDev.  None that I saw seem to have a good source for learning OpenGL under cocoa.  Cocoa doesn't really have glut (although I just built a glut) framework, and would like something that integrates with NSOpenGLView...  any recs?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ABSearchElement inherits from NSObject
 ----
 

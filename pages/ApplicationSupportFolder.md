@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Application Support folder is, according to Apple, to be used for any data that supports an application but is not required for it to run. Each application should create its own folder within the Application Support folder. The files should be application-specific but should *never* store user data.
 
 In practice, the Application Support folder has been used and abused in quite a lot of ways, sometimes including user data.

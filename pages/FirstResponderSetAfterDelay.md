@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am really going crazy over this...
 
 I have a nib file containing my 'document window'. I have set the first responder outlet of the window to some view, but in my NSWindowController subclass it is nil when printed, and when my window opens, the view in question does not have focus.

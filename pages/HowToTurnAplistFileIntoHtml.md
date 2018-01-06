@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I made an app that saves data from a table in a plist file.  I would like to add a function to export this plist to an html file.  
 Is it possible?  If so please provide some guidence!!!     EricColon
 ----

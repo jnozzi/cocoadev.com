@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi yal!
 
 Im creating an app that utilizes CoreData for the structure, but I need to create 5 objects at the "first startup" eg when theres no XML file yet.

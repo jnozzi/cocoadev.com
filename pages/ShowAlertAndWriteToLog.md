@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This code will show an alert panel, and if the user clicks the OK button, write to the log file.
 
     

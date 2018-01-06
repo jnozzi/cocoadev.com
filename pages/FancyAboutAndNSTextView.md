@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I am trying to apply the animated scrolling of text from Apple's FancyAbout sample code example to a window with an NSTextView object and a button to instigate the scrolling.
 

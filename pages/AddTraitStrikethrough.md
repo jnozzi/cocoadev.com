@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there still no easy way to create a menu item that adds strikethrough to text in a textView?
 
 I see the option in the font panel, but I see no easy way to replicate it into a menu item in the Fonts menu of my app.

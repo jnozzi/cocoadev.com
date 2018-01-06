@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 add this method as a category or subclass method of NSOutlineView
 
     

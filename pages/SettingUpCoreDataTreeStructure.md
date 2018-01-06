@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've tried wrapping my head around this for over a week now. Basically, I want to create a tree data structure using CoreData, and I want to display it in an NSOutlineView. I have two entities, "Item" and "Folder" and I can't figure out what relationships I need to create between these. I want folders to be able to contain items and other folders (recursively), but items must not contain other stuff. Also, I can't figure out how to display both my folders and items in one single NSOutlineView. Someone hinted that I might need an extra "RootFolder" parent entity to get the tree structure right...?
 
 ----

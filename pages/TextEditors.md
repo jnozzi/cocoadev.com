@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An essential part of any developer's toolkit. Here's a list of editors for General/MacOSX development (alphabetical):

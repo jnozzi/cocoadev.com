@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 FSCopyObject is obsolete Apple sample code for Mac OS 9 through Mac OS X 10.3:
 
 http://developer.apple.com/samplecode/FSCopyObject/index.html

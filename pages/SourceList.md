@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 SourceList is an open-source iLife '08 based NSView subclass hosted at http://code.google.com/p/sourcelist. Let me know here if you use it and I can link you from my site at http://www.33software.com.
 
 SourceList is really easy to use, it exposes three content bindings and one for selection:

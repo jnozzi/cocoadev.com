@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working on implementing a vertical CustomNSScroller for my app.  So far I have the following code:
 
     

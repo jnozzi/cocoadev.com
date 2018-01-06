@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a framework for using the "GD" graphics library in Objective-C.
 You can use this library for reading and writing images in GIF, JPEG and PNG
 formats. You can resize and crop images, draw within them and render

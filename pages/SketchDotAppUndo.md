@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 SketchDotAppUndo
 
 I am having trouble figuring out how parts of the example application Sketch.app work with undo.

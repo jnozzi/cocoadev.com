@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how you can change the background color of only the selected text?  I searched the NSTextView.html / NSTextField.html / NSColor.html and none of them explain how to do it.  Through NSColor.html you can find the color of the background of the selected text, but there's no way to set it.  I think I'm just missing something.  Can someone please enlighten me?  Thanks.
 
 Cheers,

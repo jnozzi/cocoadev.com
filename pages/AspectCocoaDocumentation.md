@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AspectCocoaDocumentation - Documentation for AspectCocoa
 
 Creating an Apsect consists of three pieces: an AdviceObject, a PointCut, and the Aspect(ACAspect) itself

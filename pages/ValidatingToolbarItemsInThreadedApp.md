@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I just finished developing a not-too-complicated (single window, not document-based) threaded app that has
 
 1. A main thread that runs the controller class, i.e., the UI controls, as well as displaying data (graphically) in a custom view, and...

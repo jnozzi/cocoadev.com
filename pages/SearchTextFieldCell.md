@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ----
 
 I've left my starter code here, but would suggest interested programers checkout:

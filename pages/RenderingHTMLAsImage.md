@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is it possible to render HTML directly as an image?  I've been trying to do the following:

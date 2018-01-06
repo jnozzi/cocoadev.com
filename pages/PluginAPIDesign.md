@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm developing a plugin API for my document-based app. I've never had to do one before, and I want to do it right. My plugins are loadable bundles which implement a FormalProtocol to provide information about themselves to my app, and my documents implement a document protocol that the plugin can use to obtain the document's data. Is this a good design? It's working well so far, but there could be demons lurking just around the corner...

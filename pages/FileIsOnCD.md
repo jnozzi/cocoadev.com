@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi everybody,
 
 does anyone know an elegant way to test if a file is on a CD/DVD-drive?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have made two windows in my nib file and I only want the second one display at certain time.  What is the function call to activate the second window?

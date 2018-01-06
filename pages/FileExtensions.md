@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Could everyone help me create a list of common file extensions used in programming? I'll get things started off.

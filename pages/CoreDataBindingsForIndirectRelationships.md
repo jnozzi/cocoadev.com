@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I am trying to build an iTunes-like data browser for my bibliographic app. 
 My app is based on a core data model: book <--->> passage <<--->> topics. The databrowser is made up of three columns, bind to 3 NSArrayController; these controllers are bind to the managedObjectContext; I am using the contentSet binding to link every controller to the one preceding it; this produces the very same behaviour that is observed in iTunes when one selcts a genre, then artist, etc.

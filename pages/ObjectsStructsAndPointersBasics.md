@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Why does NSString have a pointer when things like NSRect and NSRange don't? http://goo.gl/OeSCu
 
 ----

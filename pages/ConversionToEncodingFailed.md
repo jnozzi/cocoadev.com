@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am getting the following in the Run Log:
 
     TestApp[760] Conversion to encoding 30 failed for string "Bandyta wymuszaj?cy ..."

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to build a cell to use in a table view that has multiple controls in it, except that it seems to be better to use cells, otherwise I'd just stack a bunch of views together in a scrollview and call it a day. Since that's heavy-weight and I'm all for lightweight, I thought about a cell that used other cells to draw it's parts in an attractive layout, along with images.
 
 I'm looking for something like that seen in the Mac OS X Bittorrent client, which is called a DLCell -- except that class indeed seems to use actual control objects and possibly even an NSBox as it's content, thereby defeating the purpose of a cell (except of course that the cell can easily be put into a table).

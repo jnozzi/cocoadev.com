@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [Bindings Portion of the question moved to BindingsBehindTheScenes]
 
 I still have this KVC/KVO question which I can't seem to find the specifics to: If I observe a keyPath, will I receive a notification when *any* object in the path is changed, and if so how is this internally supported (e.g. if I observe a.b.count and I change a (which thus changes count), do I find out?  and if I do does this mean that a/b/and count were all actually being observed?)

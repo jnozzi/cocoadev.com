@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A Japanese Mac nerd learning programming.

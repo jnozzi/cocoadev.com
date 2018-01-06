@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Q.:** How do I make use of webView in other thread?
 I decided to make a `spider' object, running in separate thread, wich will feed webView with desired General/URLs, but this idea failed -- webView seems to be not thread safe at all. Using General/NSTextField seems to work.
 

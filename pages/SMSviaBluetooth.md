@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hi,
 I checked the API docs and all the 'tutorials' and sample I could find about Bluetooth.

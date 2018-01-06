@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can I encode an General/NSString in the correct form to send it as an argument in an HTTP POST operation?
 
 The following Core Foundation function works just fine:

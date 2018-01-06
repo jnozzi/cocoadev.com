@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In the NSMenuItem documentation, it says it's currently unsupported in OS X. Now I wonder, is there a way to make it work? A carbon-call maybe so I can use my custom-drawn NSImage as onStateImage, additional to the "normal" image?
 
 ----

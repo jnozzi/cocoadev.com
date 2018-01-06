@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a wrapper for the UNIX bc command which is "a language that supports arbitrary precision numbers with interactive execution of statements." It can support huge numbers, and is built-in to OS X, and is much easier to figure out then using all the other classes.

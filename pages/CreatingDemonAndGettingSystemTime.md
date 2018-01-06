@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to create a daemon process in Mac OS Xfrom which i can get the system time periodically. I need step by step procedure to create the daemon process. If any one know the solution please feel free to guide me.
 
 ----

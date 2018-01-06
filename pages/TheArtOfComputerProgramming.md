@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Art Of Computer Programming [http://www-cs-faculty.stanford.edu/~knuth/taocp.html] is a series of books by Donald E. Knuth (the creator of the General/TeX typesetting system) that explain how programming should be done.  Knuth is also known as the father of computer science.
 
 It's the seminal work describing the basic algorithms and data structures that underly most all programming.  The code samples are in a pseudo assembly language called MIX, which makes following the code samples more difficult than if they were presented in a more common language (I guess FORTRAN or Algol at the time).  These days, you'd probably be better off getting a more modern data structures book (like the one by Sedgewick), and browsing through Knuth at your local university library.  The advantage of using MIX is that you can exactly compute the runtime cost of the algorithm.  These days most books will gloss over details and only state the order cost of computation.

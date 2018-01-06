@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Image Capture Architecture (ICA) provides system level support for image input devices, such as cameras and scanners. It is used by the Image Capture application and iPhoto. Developers can create their modules for cameras and scanners to use this interface.

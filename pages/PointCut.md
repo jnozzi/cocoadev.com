@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A PointCut is an object that defines a set of methods and classes, by responding to the selector     joinPoints
 
     joinPoints is expected to return an NSArray of ACClass objects, each containing some number of ACMethod objects.

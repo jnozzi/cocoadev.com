@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *The increasing use of the Internet for global commerce renders the need to efficiently transmit,store, and manipulate multi-lingual data ever more urgent. It is no longer acceptable for companies wishing to do business on a worldwide basis to impose a single language (i.e. English) as a common denominator. They must be able to communicate with potential customers in the customer's native language. Unicode is the first character set that enables all the world's languages to be encoded in the same data set. Prior to the introduction of Unicode, if users wanted to store data in, for example, Chinese, they were required to choose a character set appropriate for that language - to the exclusion of most other languages. It was not possible (or in any case, highly impractical) to mix character sets, and thus diverse languages, in the same data set.* http://goo.gl/General/OeSCu
 
 taken from -> http://www.sybase.com/content/1013476/4073UNI-chorwpaperv3.pdf

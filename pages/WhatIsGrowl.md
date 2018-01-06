@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Growl is a global notification system for Mac OS X. Any application can send a notification to Growl using General/NSConnection, General/NSDistributedNotificationCenter, General/CFDistributedNotificationCenter, General/AppleScript, or UDP. Growl will then display an attractive message on your screen, or send you an email, or log to a file - it's up to you.
 
 Growl works with a growing number of applications. There is a list here: http://growl.info/applications.php

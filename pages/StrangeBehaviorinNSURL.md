@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello i was trying to use a NSURL like this :
      
 NSURL *dicturl;

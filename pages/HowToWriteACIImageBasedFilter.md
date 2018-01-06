@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm currently trying to create a real-time CIImage-based filter for a captured video-stream. The basic task is this: take a CIImage of size (sx, sy) and apply a mapping that yields an CIImage of size (dx, dy), where dx > sx, dy > sy.
 
 The mapping is basically an array of coordinates with dimension (dx, dy). At each point, the source-pixel is stored. This is the inner loop of my mapping, just to make you grasp the idea:

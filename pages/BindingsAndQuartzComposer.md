@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I currently have a Quartz Composition as my main view and I have a input "string".  I have that input bound to a NSTextField and when I update the textfield and hit enter it updates the value on the Quartz Composition however if I use the following in my code:

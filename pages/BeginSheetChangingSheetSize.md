@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to programmatically change the height of my sheet, but an interesting thing happens.  The first time I open the sheet, it is about 20 pixels too short, cutting off the top.  But, every time it is opened after that, it's the correct height.

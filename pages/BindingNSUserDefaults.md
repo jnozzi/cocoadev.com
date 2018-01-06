@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to bind an instance of NSUserDefaultsController to manage/store the widths of table columns.  Rather than have each table column bind to a key that's stored in the defaults property file, I'd like to bind to a key in a dictionary that's stored in the property file.  So rather than having:
 
     

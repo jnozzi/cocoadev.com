@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 (excuse me, I mean "AquaInterfaceChangesToCome" - how do I change that?) **You don't. You could just switch to using the other page and put a "oops" or "see such and such" note here, but eh**
 
 iTunes 4 appears to have some button/interface changes.  Is this a sneak peek into an interface shift in Panther?

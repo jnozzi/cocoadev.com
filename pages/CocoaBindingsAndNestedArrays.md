@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, I've been working in a app that uses Cocoa Bindings (not Core Data). The GUI is composed of two NSTableViews and a series of textFields. The first TableView allows the selection of an object from a list, and the remaining interface elements allow editing the information for the selected item.
 
 An NSArrayController controls the content that is presented by the first NSTableView; the content is basically an array of custom objects (ex: Employee); each employee has many properties, most of them strings. But one of them is a NSMutableArray which has another group of objects.

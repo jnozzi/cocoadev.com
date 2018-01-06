@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I need to transform an integer into a string. At the moment, I have no clue how to do this and am using this code:

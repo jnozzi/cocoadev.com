@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The folks in the AIM room Cocodev and I got to talking, and we realized something. Apple's included GCC has the C99 standards turned off. The C99 standards make C a lot more bearable, adding support for a few C++ features we all like including:
 
 

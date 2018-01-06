@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Good evening everyone. I am recently getting into the world of drawing with Cocoa. I've programmed a few easy apps just for fun, but never drawn anything myself - always used InterfaceBuilder for that.

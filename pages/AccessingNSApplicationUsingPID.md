@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I'm looking for a way to get all the windows of all the running apps.

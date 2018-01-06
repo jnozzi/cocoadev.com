@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Seems there's something fundamentally flawed with Cocoa's KVO implementation. Or more likely, I'm just not getting something. My situation is somewhat complex, but it boils down to this:

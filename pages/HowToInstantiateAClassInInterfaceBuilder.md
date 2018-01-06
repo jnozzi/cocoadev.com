@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 If the class in question already has an IBPalette, you can create the instance the same way you would a button. See HowToCreateAButton.

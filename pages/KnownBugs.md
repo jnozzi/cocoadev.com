@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **List of Known Cocoa Bugs**
 
 

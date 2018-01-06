@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Mac OS X software updates, updated many times during the day!

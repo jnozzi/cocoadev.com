@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 After reading the ClassClusters tutorial (great reading, thanks!), I still have a design question.

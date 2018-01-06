@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 BreakItDown is one of the fundamental processes of programming.
 
 Much of programming consists of breaking larger problems into smaller problems. Large programming problems are impossible to solve on their own. It is vitally important for every programmer to be able to break these problems down into smaller problems, then break those smaller problems into still smaller problems, on a continuing basis, until the individual problems can be solved directly in code.

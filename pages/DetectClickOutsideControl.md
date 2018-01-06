@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been implementing a custom control as a pair of NSActionCell / NSControl subclasses and have hit a bit of a snag.
 
 My control displays a drop-down box similarly to an NSComboBox, which I want to dismiss if a mouseDown action is detected anywhere outside my controls cell. However I can currently only track mouse actions originating in my cell. I did think that a notification might be posted when clicking on the window, but I can't find one.

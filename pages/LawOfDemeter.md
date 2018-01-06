@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 c2 describes it best:
 
 http://c2.com/cgi/wiki?LawOfDemeter

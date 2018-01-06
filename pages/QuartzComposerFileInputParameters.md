@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A QTMovie initalized with a QuartzComposerFile can be customized by modifying the input parameters of the file. Quartz Composer allows you to publish input ports. At the root patch level, select any input port on any patch. If you control click on the port, the popup menu will give you the option to publish the input. After you select the input port to publish, you will be asked to name this input. Now save the file and open this file as an NSMutableDictionary. 

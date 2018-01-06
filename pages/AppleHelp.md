@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 See the article at http://www.oreillynet.com/pub/a/mac/2001/05/25/mac_help.html for information on how to get basic Apple Help working for your application. 

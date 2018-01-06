@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am porting an OS 9 Application that was developed in C with Code Warrior to OS X with Cocoa. I need to draw NSImages masked so that they are opaque and clipped to their outline. The obvious way to do this is to get a CGImageRef with a method such as this:
 
     

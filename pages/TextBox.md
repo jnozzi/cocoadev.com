@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hard to describe, pretty easy to use. If you need a box with some text in it, give this a whirl.
 
 screenshots..

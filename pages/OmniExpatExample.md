@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Omni Group has a small library that can be downloaded that includes calls for the Expat XML library. 
 
 The simplest way of working with this framework is to use this nice encapsulated call:

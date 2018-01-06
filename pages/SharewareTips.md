@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page is for insightful comments, mistakes and other goodies that can assist people writing shareware.
 
 

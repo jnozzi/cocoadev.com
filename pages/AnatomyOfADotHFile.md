@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is the layout for a header (interface) file.  For this example, we will assume that the name of your class is Foo.
 
     

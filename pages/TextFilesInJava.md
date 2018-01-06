@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am at a loss to figure out how to read a text file into a String in Java. I am new to Java, so maybe I am just really missing something in the documentation. Also, I was wondering if anybody has step by step instructions on how to get the Java Bridge working in Cocoa (using both Objective-C and Java classes in the same project).
 
 -- General/JamesGlenlake

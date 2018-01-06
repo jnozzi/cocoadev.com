@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/XMLTree is a Public Domain Objective-C wrapper for Apple's General/CFXMLParser which is provided in the General/CoreFoundation. Only basic access to the XML trees are available with v0.2.1 (December 2002).
 
 http://iharder.net/macosx/xmltree/

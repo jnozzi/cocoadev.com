@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://www.noderunner.net/~sparks/freda.gif
 
 **WHO AM I?**

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There are some kernel functions which could be useful in normal Cocoa applications. But the API seems to be completely undocumented? not even the headers in /usr/include/mach/ carries any interesting comments, and using Google to search for some of the functions turns up < 5 hits...
 
 Is the Darwin API undocumented? is there perhaps some documentation for the Mach or BSD APIs which can be used instead?

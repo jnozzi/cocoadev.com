@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My Cocoa application should be able to open any plain text document, even without an extension.
 I have for example a file created with MacSOUP which has TEXT for OSType but I can not manage to make it selectable in my openPanel without enabling other files like pdf, tiff, etc.
 The file is listed in the finder as a plain text document so I really can not understand why I can not select it in my openPanel from my NSDocument based cocoa application.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to implement Applescript support in a Cocoa Document-based application, and I've run into an unexpected problem.  Here's the (general) layout:
 
 "MyApp" (an NSApplication) has a ToManyRelationships with the class "MyDocument".

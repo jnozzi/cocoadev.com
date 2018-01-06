@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Just getting started with developing with Applescript & Cocoa.  Need all the help I can get.

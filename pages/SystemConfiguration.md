@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The General/SystemConfiguration framework has several uses:

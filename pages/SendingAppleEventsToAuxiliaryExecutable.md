@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an auxiliary executable in my bundle which needs to receive AppleEvents.
 
 The problem is how do I set the signature for this helper application (which is used to return the AppleEvents)? Normally the signature is taken from tne Info.plist, but that one belongs to the real application and not the helper.

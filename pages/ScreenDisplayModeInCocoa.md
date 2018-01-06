@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How would I go about programatically changing the screen size? I.E. it is at 1024X768 and I want to make it 800X600
 
 The CGDirectDisplay API.

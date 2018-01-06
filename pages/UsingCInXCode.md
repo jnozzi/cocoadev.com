@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I tried the following code in Xcode. The problem is that the printf statements print out AFTER the scanf function asks for a response.

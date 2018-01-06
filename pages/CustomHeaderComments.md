@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Peter Hosey posted an article at http://boredzo.org/blog/archives/2006-03-28/how-to-evict-__mycompanyname__-from-their-office-building showing how to get rid of that pesky __MyCompanyName__ text from the comments section at the top of new Xcode documents (he in turn found the information in the book "Step Into Xcode" and the Xcode release notes page).

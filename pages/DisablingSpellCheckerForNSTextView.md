@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm having the problem that my NSTextView's always have the spell checker enabled.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm using General/QTKit in my media player program, and while I'm thankful General/QTKit is much better with CPU use, it seems to have an odd glitch: The volume is unspeakably loud when I try to control it via a slider. The slider is set to 100.0 and here's the code I'm using:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Sorry for going a little off-topic, but I need an AppleScript to save all modified documents in Interface Builder (i.e. like Xcode does before you do a build), but I can't figure out how.

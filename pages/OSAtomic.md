@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OSAtomic.h is located at     /usr/include/libkern/OSAtomic.h. Despite the name of the enclosing directory, regular userland applications can use it by simply doing     #import <libkern/OSAtomic.h>.
 
 OSAtomic.h provides wrappers for processor primitives such as test-and-set, compare-and-swap, and memory barriers. It also provides services built on top of these such as atomic increments, various other atomic arithmetic operations, and spinlocks.

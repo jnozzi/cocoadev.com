@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a program which stores preference data in arrays, which are stored in two dictionaries, which are stored in yet *another* dictionary.  To wit:

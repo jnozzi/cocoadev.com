@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all.
 
 I have the need to add a networking facility to my app, I wish to be able to transfer an NSData object from one application to another, and have the appls see all other apps on the network via rendezvous.

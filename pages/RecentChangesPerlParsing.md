@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is some Perl code I wrote a while ago to parse the RecentChanges page - it doesn't put it into RSS or anything. Probably not that great of parsing but I'm new(b) to Perl. --KevinWojniak
 
 Execute it from Terminal like:

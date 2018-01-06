@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There are currently two (or maybe three) competing designs for inspector windows that contain a medium to large amount of information.
 
 On the one hand, there is Finder, along with older versions of OmniGraffle, and Microsoft Office, which use disclosure triangles (or buttons containing a disclosure triangle) to show or hide segments. OmniGraffle is slightly more sophisticated in that you can dock or undock individual segments, but it's basically the same style.

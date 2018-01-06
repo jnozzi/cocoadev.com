@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *Use Of Strong Encryption Schemes -- see also AquaticPrime

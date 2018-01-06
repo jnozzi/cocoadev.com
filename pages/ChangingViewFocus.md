@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.  I have a window that contains an NSBrowser and three NSTableView view objects.  I expected to be able to tab to change keyboard focus to each view, but this is not the case.  How would I be able to cycle through each focus view?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello there, I am having trouble getting my code to detect the current operating system using Gestalt, I am running 10.3.
 
 General/NSProcessInfo Category:    typedef enum {

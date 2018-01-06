@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a requirement to use X11 and ApplicationServices framework in a single  Application.
 
 When I tried to compile, I m getting the error : conflicting types for 'BOOL'.

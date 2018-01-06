@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on some silly little app that draws text in random spots in a subclass of General/NSView
 the number of strings drawn to the view could be come huge...
 

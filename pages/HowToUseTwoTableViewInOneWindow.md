@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe HowToUseTwoTableViewInOneWindow here.
 
 I need to use two table view in one vindow ... how i do ?

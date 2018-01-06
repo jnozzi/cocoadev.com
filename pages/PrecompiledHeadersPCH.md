@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This discussion is to help me write an article on PCH files and how to write frameworks with them. With a properly configured PCH file, you no longer have to import hearders in source files contained within a framework target. Some of the questions I have about PCH files are:
 
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *This discussion assumes knowledge of the General/VisitorPattern. Check out the General/PortlandPatternRepository or the General/GangOfFour book for more info on the actual pattern.*
 
 The General/VisitorPattern and General/ObjectiveC: Since General/ObjC does not support method overloading, proper implementation of the General/VisitorPattern is not possible. By proper, I mean that the pattern cannot be implemented without introspection hacks or by making it less powerful than it could be.

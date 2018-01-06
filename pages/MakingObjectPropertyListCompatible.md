@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I have a custom object and I would like it to be property list compatible, so I could add it to nsdictionary or nsarray and it would be human-readable. I guess NSObject's description should help me but how do I read object again from property list?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Proposed rules of thumb, with discussion.

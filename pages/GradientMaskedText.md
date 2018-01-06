@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Say I have, for example, I'm drawing text in a transparent layer. How would one make the text fade out in a particular direction, assuming the fact that we know nothing about the background?
 
 ----

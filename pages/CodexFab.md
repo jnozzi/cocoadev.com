@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CodexFab is a DSA based alternative to AquaticPrime. 
 
 CodexFab aims to make it simple for you to add automatic PotionStore licensing support to your Cocoa app.

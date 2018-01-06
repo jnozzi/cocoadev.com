@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Can I somehow make an NSTableView (bound via Cocoa Bindings) column of checkboxes (all of them, the entire column) become disabled?

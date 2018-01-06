@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to play a sound in my screen saver, but it doesn't seem to work. I converted the sound to an aiff, 44.1 kHz, 16 bits, st�r�o... I coded like this :
     
 [[NSSound soundNamed:@"paf"] play];

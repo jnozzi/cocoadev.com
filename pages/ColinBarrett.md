@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A more current bio is at http://trac.adiumx.com/wiki/cbarrett

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Note that this makes a good study of AspectCocoa for those interested, but the information that this lets you access is already given to you (I just didn't know it)... the current selector is _cmd, the current target is self, the class that implements the method called is easily discovered by other means, as is the NSMethodSignature.... If this is loaded across the board for every method of every class one could extend this to discover the caller of the method, but that isn't what I needed it for when I made it (see below).   
 

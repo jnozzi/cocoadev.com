@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Editor's Note: This lengthy design-related discussion, moved from an ill-named initial page, eventually settled on using the GangOfFour FunctorPattern. It contains a lot of detail about the specifics of the problem, but is educational.
 
 ----

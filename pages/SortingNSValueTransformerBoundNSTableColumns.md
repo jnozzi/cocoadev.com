@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This might also be called : Sorting Core Data-based Table by to-many relationships.
 
 I was having problems sorting an NSTableView bound to an NSArrayController (also an NSOutlineView/NSTreeController issue).

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AspectCocoa actually employs two different mechanisms under the hood for intercepting method calls.  One mechanism is slower and less reliable, but the faster one sometimes requires that sometimes code be generated.  This code can be generated based on a pointcut as follows:
     
 [ACCodeGenerator generateCodeForPointCut: somePointcut writeTo: @"someoutputfilename"];

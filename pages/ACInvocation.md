@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 For all AspectCocoa related purposes, an ACInvocation is the same thing as an NSInvocation except that it is not actually an NSInvocation (not a subclass of NSInvocation).  Otherwise it has nearly the same interface.

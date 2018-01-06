@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I know this has to be something very simple, and I'm sure I'm making it a lot harder than I need to.  I can't seem to find a site that says "Here's the way This Is Done in Cocoa", so here I go.

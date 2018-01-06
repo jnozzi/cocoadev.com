@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to make the rectangular selection box (commonly known as "the walking ants")?  Which Cocoa classes and methods might be helpful?  I have a custom view in which I would like the user to be able to click and drag a rectangular selection box.  -- AlexanderD
 
 ----

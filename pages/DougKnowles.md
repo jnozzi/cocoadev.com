@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Doug Knowles has been a Mac developer since 1984 and a programmer since... well, never mind.  I have never owned a Wintel machine.

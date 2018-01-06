@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Sending messages to nil is okay unless the documentation for a method states otherwise. One thing this can be used for is sending nil to your set accessor methods in your dealloc method thereby increasing readability of your code by maintaining consistent usage of accessors in your code. Of course this only works if you've written your set method to properly dispose of unused objects.

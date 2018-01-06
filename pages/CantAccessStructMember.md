@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I believe the struct member **stuList** somehow doesn't exist.  I can't figure out why not, and it is likely a simple thing but I am completely frustrated tying to make it go.
 
     

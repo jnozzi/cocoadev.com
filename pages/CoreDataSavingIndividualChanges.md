@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a basic but working app with a few entities and windows for editing them (made by option-dragging to IB). I know it is possible to save / rollback all changes which are in memory but not yet committed to disk.
 
 Is it possible to just save/rollback certain changes?

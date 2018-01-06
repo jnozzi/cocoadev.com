@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A basic non blocking download snippet:
 
     

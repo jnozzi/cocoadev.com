@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Someone wanted to learn Cocoa. This 'someone' sent a message to a mailing list discussing Mac OS X in Sweden asking if there were any others like him interested in starting a study group.
 
 DavidRemahl responded and about a dozen more. Not too bad for a relatively small city of 500 000 citizens...So we started meeting every Monday or so. Many people had little or no prior experience in programming, so we decided to start learning C. In record-breaking speed we had gone through the C material in 2 meetings, and we started studying the Cocoa Programming for Mac OS X. 

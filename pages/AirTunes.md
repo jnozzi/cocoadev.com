@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AirTunes: http://www.apple.com/airportexpress/features/airtunes.html
 
 The Airtunes 2 protocol is in the process of being described:

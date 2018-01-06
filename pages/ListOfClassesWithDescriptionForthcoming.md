@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *This page is out of date.* Anybody want to redo it?
 
 HOW DOES ONE LINEBREAK??? You don't or rather you use multiple linebreaks.

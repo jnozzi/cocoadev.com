@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I have a slider that is connected to text while using bindings. The slider controls the textSize of the text. The slider does work with the bindings this far. I am also creating a 'restore all settings' button. I have put this code into the code for the action of the restore button,       [textSize (the slider) setIntValue:16];   **the "(the slider)" is not part of my code** That code does change the value of my slider, BUT does NOT change the text size. How do i change the size of the text while changing the value of the slider?
 
 I have tried many different combinations, too many to count and to type, so anything would be appreciated. If you dont understand what I have said, feel free to email me, mamiller93@gmail.com thanks!

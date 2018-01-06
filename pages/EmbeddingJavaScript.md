@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi. I'm curious about how to embed JavaScript in my application. I know about JavaScriptCore and SpiderMonkey and Rhino. How do I do it?

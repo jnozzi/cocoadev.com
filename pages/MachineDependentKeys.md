@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 * Machine-dependent keys

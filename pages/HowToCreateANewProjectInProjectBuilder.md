@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Open Project Builder, choose "New Project".  This should give you the "Assistant" window with "New Project" as its heading.  Choose "Cocoa Application".  Type in the name of the project.  There is a bug in the Developer's Tools that makes it difficult to give a name with a space in it to a project.  You can do it, but you will have to do a workaround later to get it to run.  Your choice.  Now, choose the directory you want it to be in.  Then press "Finish".

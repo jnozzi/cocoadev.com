@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need a way to convert an audio file (usually an MP3) to an AAC file. Is iTunes (via AppleScript) the best way to do this? Or is there a framework out there that can do this? Thanks --KevinWojniak
 
 ----

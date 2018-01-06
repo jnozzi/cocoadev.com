@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Did anyone create code to set a default tab chain/key view loop?

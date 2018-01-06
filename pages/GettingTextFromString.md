@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I have a string containing about 20 lines of text, I want to get a substring that is between two ()'s on the ninth line how would I go about doing this?
 
 ----

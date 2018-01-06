@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The Omni Group is the creator of General/OmniWeb, General/OmniGraffle, General/OmniOutliner, and other applications for Mac OS X.  Omni also does custom development and consulting. Their tools for developers include free software (including much of the source code used in our own products), such as General/OmniFrameworks, General/OmniObjectMeter (a tool that makes it easy for Cocoa and Unix developers to find and fix performance issues), and noise-controlled mailing lists on a variety of programming topics.

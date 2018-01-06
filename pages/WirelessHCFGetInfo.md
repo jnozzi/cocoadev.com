@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to use WirelessHCR_GetInfo() from the General/AppleEightOhTwoEleven header to get the channel of the currently joined wireless network. I have the following code:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to incorporate into my audio app the feature to use and display iTunes Visual plug-ins:
 I do have audio/freq/levs information, and I want to pass it to this "object" and I want to use it a Custom NSView...
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey Does anyone know how to get a Window above the screen saver window? I can put Apps at the same level, but not above. I have a warning window I want to appear and will then fade away. I have tried just adding + 1 to the screen saver level when adding the window but no success. I have also tried subtracting 1 :). Also, does anyone know how to ensure my App/Window does not fly away with Expose? Instead it remains... Like the dock does?.
 
 ----

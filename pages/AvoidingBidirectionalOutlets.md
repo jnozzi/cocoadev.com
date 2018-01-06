@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hi all, I've been struggling with this for a while, and it seems there's some basic misunderstanding on my part. Here's what I'm trying to do:
 

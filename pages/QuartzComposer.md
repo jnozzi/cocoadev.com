@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 QuartzComposer is a free application that is bundled with Apple's latest developer tools since Tiger. 
 
 [Topic]

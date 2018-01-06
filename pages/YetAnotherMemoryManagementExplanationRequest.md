@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Sorry to ask this     autorelease question for what must be the pow(n, n) th time...
 
 1) Object A implements a     description method in which the returned string is (assumed to be) autoreleased

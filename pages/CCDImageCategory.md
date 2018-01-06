@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This allows us to pass an NSImage to a cell's drawWithFrame:inView: instead of an NSView.
 
     

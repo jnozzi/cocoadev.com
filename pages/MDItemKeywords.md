@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how you can get the words that a single file provides to SpotLight for indexing? After playing with     MDItem I figured out that     kMDItemKeywords is only used for "KEYwords" and not for indexing the file. 
 
 ----

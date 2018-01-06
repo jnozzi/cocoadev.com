@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In my subclass of General/NSTableView I wrote this:
 
     

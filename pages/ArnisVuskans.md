@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Arnis Vuskans (ampatspell)
 
 I'm 23 years old, living in Latvia (it's in Europe, one of three Baltic states, member of EU).

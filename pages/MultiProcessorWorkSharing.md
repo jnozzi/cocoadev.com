@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Wondering how to take advantage of multiple processor macs in a systematic, simple way? Want some fine-grained parallelism in your app?
 
 Here are some classes and protocols to help you achieve it. Any class implementing the protocol Schedulable can be scheduled on multiple processors by a Scheduler object. A Schedulable object must break the work it needs done up into a number of work units, which must be independent of one another. The Scheduler will create the threads required, and calls to the Schedulable object requesting that it perform certain work units in each thread.

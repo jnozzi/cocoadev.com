@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody Know how to make a clock change the seconds,Hours,and minutes using custom number?
 As instead of 12 hour clock It dispalys a different number for each second,minute and hour?
 

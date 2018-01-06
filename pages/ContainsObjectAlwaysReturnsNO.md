@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am new to Cooa programming. I use Aaron Hillegass' book. Having gone through the lottery example (Ch. 3), I was trying to play around, and modified the code so as to have an array of unique random numbers, i.e., each number appears once, and only once, in the array. If a new random number exists already in the array, it is discarded, and a new one is generated. The code looks like this:
 
     

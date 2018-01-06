@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Note:** The name of this page is misleading, as AutoDoc can generate more than just HTML. Sorry, my bad. -- MichaelMcCracken
 ----
 Answering the question: * Anybody know the best way to build generated documentation automatically from Objective-C source files? *  

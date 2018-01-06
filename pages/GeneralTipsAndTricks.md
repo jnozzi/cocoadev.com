@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Web sites containing tips and tricks for the Mac:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know if there is the equivalent of the PostScript operator, "strokepath", which replaces the current path with a path which describes the outline of the line itself? Maybe I haven't described it very well, but, if strokepath were to exist, then bezierpath strokepath] fill] would be the equivalent of [bezierpath fill].
 
 The reason I want this is that I want to invalidate the region occupied by the keyboard focus ring and I figure that saying [[self superview] needsDisplayInRect: rect] won't cut it.

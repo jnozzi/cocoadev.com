@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Mostly a web monkey, but dipping into Cocoa and OSX has me thinking writing desktop apps might just be fun.

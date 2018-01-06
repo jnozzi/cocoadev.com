@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Cocoa reads and write RTF - but ignores the writing direction. 
 
 For example, you can set writing direction in a NSMutableParagraphStyle:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I append text to a file instead of rewrite?
 
 ----

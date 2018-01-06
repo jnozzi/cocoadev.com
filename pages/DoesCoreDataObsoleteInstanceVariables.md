@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *"CoreData organizes the application's model layer into a set of defined in-memory data objects."*

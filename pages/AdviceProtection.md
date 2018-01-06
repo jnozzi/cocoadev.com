@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AdviceProtection - part of AspectCocoa and AspectCocoaDocumentation
 
 Often times when writting an aspect, we may run into infinite loops of execution.  Here's simple example:

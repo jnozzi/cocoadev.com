@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 First a disclaimer: I'm new to Cocoa and Xcode, but I've been playing with it in the past, and never had this problem before.

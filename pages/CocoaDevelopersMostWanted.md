@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Guidelines**
 
 Please try to maintain this in an orderly fashion. Don't add new wishes here. Either use one of the existing sub-pages or create a new one. Anything that relates to Apple should also (maybe even first and foremost) be submitted to the Bug Reporter

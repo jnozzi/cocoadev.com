@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to be able to read out enum declarations (identifiers AND values) from bundles that I am importing into an application as plugins. Header files in the plugin bundle and precompiled headers will be available in the usual /Headers directory. 
 
 I see 3 options to explore:

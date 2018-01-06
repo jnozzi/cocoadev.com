@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also NSCopying
 
 and interesting discussion in MutableDeepCopyAndUserDefaults

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 On this page I've posted a small image that best explains the problem that I'm seeing:
 
 	http://www.hogbaysoftware.com/badgediconbug.gif

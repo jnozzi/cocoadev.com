@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 an example for loading frameworks dynamically:
 
     NSString *frameworkPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"ObjCOSC" ofType:@"framework"];

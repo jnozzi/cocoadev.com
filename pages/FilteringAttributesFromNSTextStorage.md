@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to write a routine to normalize text in a text view. I'm using something like the pseudo code below. I'd like to be able to provide a list of the stuff to *keep* and remove everything else for efficiency's sake. I'm only interested in setting a standard font, size, and paragraph style. 

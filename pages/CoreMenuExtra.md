@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here are some useful private APIs for manipulating the Menu Extras currently in the menu bar:
     
 typedef struct _OpaqueMenuExtra OpaqueMenuExtra;

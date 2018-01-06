@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A page describing some other 'must-have' (or just plain useful) programming books for those dabbling in Cocoa.
 
 ----

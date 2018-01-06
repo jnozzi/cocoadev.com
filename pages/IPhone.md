@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I guess someone has to start this page. Let's try to keep it organized. Only links to web pages and links to topics on top. --zootbobbalu
 
 

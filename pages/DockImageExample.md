@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 It's really simple to manipulate the image that show up in the Dock.
 In your AppKit application you only need to call :
 

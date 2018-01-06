@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Another simple one I'm afraid...
 
 (sorry if these irritate some people... I truly try to find answers elsewhere, but while its dead easy to find tutorials & samples for the key parts of Cocoa, it's the little details that are difficult to discover)

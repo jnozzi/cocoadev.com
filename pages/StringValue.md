@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a question about stringValue.  What I want to do is take a username and password from an General/NSTextField and an General/NSSecureTextField in a Preferences Panel.  I want the user to enter in their credentials into the panel and allow that user to log into the system.  My problem is getting the actual strings/values the user enters in those fields for later use (i.e. logging in).  Here's the code I've messed around with so far:
     
 - (General/IBAction)getEmail:(id)sender;

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anyone else having problems compiling the OmniBase, OmniFoundation, etc. with XCode.  I generally get a bunch of warnings/errors, then it doesn't build.  I did OmniBase first, put its foundation into /System/Library/Frameworks
 Then I try OmniFoundation, and I get all these warnings/errors.  XCode then, apparently, doesn't like this and craps out on me.  Using 10.2's project builder, it would wade through those, and compile ok.  Suggestions?
 

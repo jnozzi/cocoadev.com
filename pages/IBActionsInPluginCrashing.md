@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 My app loads several plugins, and each plugin has an NSView which has IBOutlets in it. Now the view gets loaded fine, shows up in the app, but whenever I click a button that loads a nib, it crashes. My plugins work 100% when they reside in the built-in plugins folder, but when loaded from outside of the app, it crashes on IBActions.

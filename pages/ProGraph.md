@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The most visual language/IDE I've ever used. Hasn't been available on the Mac in some time, but when I used it it was... stellar. Complex but beautiful. The tutorial was kind of wretched, though.
 
 Any other ProGraph pseudoveterans out there?

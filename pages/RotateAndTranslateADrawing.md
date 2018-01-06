@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's an example that shows how to spin an object centered about a point in a view. 

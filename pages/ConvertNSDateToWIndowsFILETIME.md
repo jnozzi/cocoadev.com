@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to be able to convert from an NSDate to a Windows FILETIME struct. I get the timeintervalsince1970, and then run it through this function, which is supposed to work (got it from the MS website).
 
     

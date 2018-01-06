@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 There once was a software that could make any cocoa app's window float / stay on top of all the other ones. However, I can't find it anymore.

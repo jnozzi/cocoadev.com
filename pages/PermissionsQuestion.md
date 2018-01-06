@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, All--
 
 I'm creating a new app which has to  be able to have full permissions to make changes to folders at the root of a remote volume currently mounted on the desktop. I know there's a way to do this, as I've seen other apps which seem to be able to do it, without prior setup on the remote machine, but simply an install on the local machine, but I can't see how. Anyone?

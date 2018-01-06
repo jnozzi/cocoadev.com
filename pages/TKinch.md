@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am the author of Avenir (http://returnself.com/), The Writer's Workshop.

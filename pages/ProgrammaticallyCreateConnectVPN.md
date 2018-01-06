@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 The title says it all. I need to programmatically create / connect VPN connections without running Internet Connect. I have looked at the MoreSCF modules - in fact I am using some of that to create/connect PPP links. However, there is no documentation or sample code for VPN configuration or link management. Anyone have any info on what's required ?

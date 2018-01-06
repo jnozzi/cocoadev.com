@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 With the increase in multi core machines and the example by google and their distributed MapReduce implementation( http://labs.google.com/papers/mapreduce.html ) why not have the same thing but on a local multiprocessor machine. 
 
 **HOM integration**

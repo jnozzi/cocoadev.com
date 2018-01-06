@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Please help! I've been struggling with this problem all day and have yet to find a solution. I have narrowed the problem down to this:
 
 In Panther only, if you immediately     resolve an address after the NSNetService has been found, then it will resolve it to the address that the service was last used under. However, if you resolve a service about a second after that, then it will resolve under the correct address. Try this:

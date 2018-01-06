@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know of a royalty free gear icon (similar to what is used in the Finder etc) that is available?
 
 Any talented artists out there who would like to contribute one? My design skills couldn't be worse ;-)

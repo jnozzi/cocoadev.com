@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I want to ask about good practices of sending out press releases.

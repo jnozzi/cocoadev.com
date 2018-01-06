@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm writing a method to return a point (in screen coordinates) relative to a view in my application, so I can position a second window there. This should be simple stuff, but for some reason I'm having trouble getting the proper coordinates from the view. The view hierarchy in my application looks a little like this:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The following code illustrates an example showing how the printing page dimensions of a PDF file can be extracted from an existing PDF document that is stored on the disk.  This code assumes that the path to the file to be interpreted is passed to the following method as an instance of NSURL.  Also note that this method assumes that the user is only interested in the dimensions of the first page of the PDF file - if page dimensions of the other pages in the file are required then it will be necessary to amend the code to iterate through the pages of the PDFDocument instance and return the size of the pages in a collection, such an NSArray containing the NSSize structs.
 
     

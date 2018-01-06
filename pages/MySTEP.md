@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 mySTEP is a runtime library to run Cocoa based applications on ARM based Linux (e.g., Sharp Zaurus)
 http://www.dsitri.de/wiki.php?page=mySTEP
 

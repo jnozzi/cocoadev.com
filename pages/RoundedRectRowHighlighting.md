@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  Anyone know how to implement custom row highlighting using RoundedRectangles?
 I have the BezierPath sorted with:
  [[NSBezierPath bezierPathWithRoundedRect:[self rectOfRow:row] cornerRadius:50] fill];

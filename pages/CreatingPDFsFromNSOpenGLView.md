@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm writing an application wich plots graphics, and one of its features is saving graphics as PDF files. 2D graphics are drawn in a subclass of NSView and I use NSView's dataWithPDFInsideRect: method to create the PDF. It works perfectly. But it doesn't work with NSOpenGLView. When  calling an NSOpenGLView's dataWithPDFInsideRect: method (since NSOpenGLView is a subclass of NSView i thought it would work) only get a PDF file with no drawing. 

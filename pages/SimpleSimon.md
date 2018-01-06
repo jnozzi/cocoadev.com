@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Experienced C programmer.  Cocoa beginner.

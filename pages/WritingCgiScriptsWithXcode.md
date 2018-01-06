@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'd like to try my hand at writing CGI scripts with Xcode, if it's possible. I'd prefer to do it in C, but I can do it in C++ if I have to. However, the web server I'm intending to use the scripts on runs Linux (Red Hat 7.3). It has cgi-bin support, but I'm doubtful that Xcode can compile progs that can run on Linux. If it can, that's great - could somebody point me to examples of how to write General/CGIs with Xcode?

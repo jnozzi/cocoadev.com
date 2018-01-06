@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am new to cocoa. The only coding I have done is with Actionscript, CSS, HTML, some General/JavaScript, some XML and PHP. I am trying out the core data feature in xcode and have made a few things. Sometimes my apps wont work on any computer except the one it was created on. What exactly would contribute to that in the build settings?
 
 email me at info@shadelandstudios.com if you have any helpful information.

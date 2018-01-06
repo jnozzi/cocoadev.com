@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  I want to know if there's a way to programatically select an menu item, but NOT activate it.  The context is the Camino "Create Bookmark" popup, which contains two broad categories, the bookmark menu, and the bookmark bar.  It would be nice if one could click on the menu, then his either Cmd-M or Cmd-B to select the "Menu" or "Bar" item, then perhaps use the arrow keys to navigate to folders underneath each,  and then hit return.  A lot of times, I just want to add an item to the bar (but not drag it - I like the keyboard), so I could just hit Cmd-D (Add Bookmark), Cmd-B (bookmark bar, perhaps I'd have to open the menu before that), and then return, then return to close the box.
 
   Ideally, I'd like Cmd-M and Cmd-B to work while the menu is open, as well as when it isn't - with just the dialog open, hitting either would pop up the menu and pre-select the appropriate item.

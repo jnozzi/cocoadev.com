@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I�ve got one object that contains an array of objects of another custom class.
 
 I�d like to be able to establish a binding between the two kinds of obects:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The Mac system hacker's resource.

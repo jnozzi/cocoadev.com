@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How can i get the Full Username of the User Logged in in OS X?

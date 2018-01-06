@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The URL from Apple's web site appears to be:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/XCode 2.2 has been released:

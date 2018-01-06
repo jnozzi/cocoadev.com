@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 With java, I am attempting to load an image from a URL (.jpg) and display it in a NSImageView.  Everything appears to load properly, but my application crashes after a few seconds.  I am positive that the URL is correct.  I can even get the size of the image and it does return the correct size.  Here is some code:

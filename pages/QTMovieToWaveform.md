@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Any thoughts on how to generate a standard amplitude waveform I could draw from a QTMovie?
 
 Use the MovieAudioExtraction API <http://developer.apple.com/quicktime/audioextraction.html > to get successive buffers of 32-bit floating point PCM data corresponding to the summary mix of your movie's audio tracks.

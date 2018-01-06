@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been trying to code an efficient proxy object, and thought I would put my thoughts and findings on a page on this site in case others are interested.
 
 Using a generic proxy object Apple-style is very inefficient, I guess around a thousand times slower than a simple method call. I decided to try optimizing out this time.

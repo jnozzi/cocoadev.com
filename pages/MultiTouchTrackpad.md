@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This page describes the private API for working with the multi-touch trackpad. An in depth discussion is available at my blog here: http://cocoadex.com/2008/02/nsevent-modifications-swipe-ro.html

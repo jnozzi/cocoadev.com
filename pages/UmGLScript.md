@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 click here to go back -> General/OpenGLScript
 
     

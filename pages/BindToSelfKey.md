@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I recently discovered that you can bind to an object's "self" key.  I'm a little worried that I'm doing something dangerous or something?  Is binding to "self" a good idea?  I'm doing this in order to create an NSValueTransformer that transforms more than one attribute into a new composite attribute that's only useful as a view binding for a table column.  The technique likely has other uses.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.
 
 I have a toolbar in my app, one of the NSToolBarItems is used like a button. This is great - NSToolBar is doing a great job. However, I want this NSToolBar item to be able to change its displayed title string (and its icon too hopefully) because it toggles a process on and off - and I want the button to show the status of the process. (ie. I want the text of the NSToolBarItem to toggle between "Start process" and "Stop process"). Unfortunately, I can find no way of forcing the NSToolbar to refresh.

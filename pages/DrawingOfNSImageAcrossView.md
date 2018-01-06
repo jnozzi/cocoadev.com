@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know a good way to draw an NSImage so that it repeats accross and down a view, i.e. a background image for a view that is a pattern? I toyed with some while() functions but had problems with overlapping and spacing. Is there a built in method for this that I am just not seeing? I couldn't seem to find anything on the subject here or on other sites. Thanks, --LoganCollins
 
 ----

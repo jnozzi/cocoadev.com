@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to work out how to execute encrypted code on the fly. Here's the basic idea:

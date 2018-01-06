@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've got an NSArrayController that manages my NSTableView content, however, when i use the NSArrayController add: method, the row that's added is not made editable by default (so the user has to double click). Can I somehow tell a certain cell to become editable when a new row is added?

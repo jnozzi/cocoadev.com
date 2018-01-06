@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello Cocoa Gurus!
 
 I have a question for the Dock Icon badge. This is pure cocoa app btw

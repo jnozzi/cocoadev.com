@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 lets say i have a file like this

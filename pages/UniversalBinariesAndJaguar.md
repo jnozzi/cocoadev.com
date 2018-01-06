@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Will a universal binary run under Jaguar? I don't have Jaguar here to test, but I believe you need to use GCC 4.0 to compile a universal binary, and GCC uses some libraries (possibly /usr/lib/libmx.A.dylib) that aren't available on Jaguar. If this is right, then either you compile for universal binaries for the future, or you compile under GCC 3.3 for the past. Is this correct? Or is there a way to compile a universal binary that will run on Jaguar?

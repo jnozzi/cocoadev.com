@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OpenDirectory is Apple's directory and authentication services architecture. It is designed to enable easy integration with a wide variety of technologies such as LdAp, NetInfo, ActiveDirectory, and more. The Directory Services API provides an abstraction layer which can be used to access these various systems, which are all implemented as plug-ins to the framework.

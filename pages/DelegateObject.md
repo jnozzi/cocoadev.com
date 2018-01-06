@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A delegate object is AnObject which acts on behalf of another object by implementing ObjectMessages which allow the delegate to interfere in the normal flow of events, unlike notifications which only allow the receiver to react to the event.

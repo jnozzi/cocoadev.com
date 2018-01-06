@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to draw a pattern in the background of an NSScrollView with
 
 if (backgroundImage = [[[NSImage alloc] initWithContentsOfFile:path] autorelease]) {  [scrollView setBackgroundColor:[NSColor colorWithPatternImage:backgroundImage]; }

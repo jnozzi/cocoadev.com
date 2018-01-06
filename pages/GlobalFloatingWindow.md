@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to get a global floating window in my app, that works along the same lines as DragThing or Quicksilver does- a window comes up in the current application, but any mouse events to it does not cause my application to come front.
 
 I've got the first part working fine (subclass NSPanel, [window setLevel:kCGUtilityWindowLevel], but anytime I hit a button in my window, my app comes to the front.  I don't want that.  I want it to stay in the background so the menu bar for the current application stays the same.

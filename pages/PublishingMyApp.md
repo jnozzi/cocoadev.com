@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Ex post factoid: SharewareTips has a lot of sage advice, once you get past the mechanics of hosting your project...

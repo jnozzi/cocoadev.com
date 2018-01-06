@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is the best way to implement disappearing views just like in PB or IE? -- peacha
 
 ----

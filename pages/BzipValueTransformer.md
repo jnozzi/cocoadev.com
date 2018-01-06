@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 An NSValueTransformer that decompresses NSData into an NSString using my NSData+Bzip2 category (see NSDataPlusBzip). It is reversible. � BryanWoods
 
     

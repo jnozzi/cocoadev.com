@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am implementing spring loaded folders in my finder replacement, and would like to get the space bar presses sent to my app whenever any other app is dragging over me.  At present, I have it working after a delay by using the validateDrop messages in my tableView delegate, but I would like to support the classic finder style keyboard actions.

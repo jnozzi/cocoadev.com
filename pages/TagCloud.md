@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A General/TagCloud is a way of displaying a set of terms that allows for perusal alphabetically and by frequency. See http://en.wikipedia.org/wiki/Tag_cloud.
 
 A Cocoa implementation is available at http://www.fernlightning.com/doku.php?id=randd:tcloud:start.

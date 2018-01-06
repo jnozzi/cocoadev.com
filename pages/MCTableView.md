@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *Please remember to properly format your pages! :-) Also, please post some sort of explanation of this class!!!*
 
 Yes, it's done now, i was a bit too slow :-))

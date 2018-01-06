@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There is a good article on accessor methods at http://www.stepwise.com/Articles/Technical/2002-06-11.01.html

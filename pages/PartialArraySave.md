@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an array of dictionaries. I want to save to disk an equivalent array with a subset of the keys on those dictionaries. So, if each NSDictionary has 25 keys, I might need to save like 15. I am thinking about creating a new array and process each single dictionary, get the keys and values that I really want to save into the array, and save this new array. Does not sound like too good of a way. Is there a better way to do it?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm working on an application that needs to make blocks of RGB color and save them to a PDF file.  When I open the PDF file, in Adobe Illustrator for example, I need for the colors to have specific RGB values.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One way to sort a table view that is expected by many users is to be able to click on a table column header cell to toggle the sort order. A prime example of this is found in the iTunes application.
 
 ----

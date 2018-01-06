@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question: How do I get mouse position changes during a drag and drop operation in a table view ?**
 
 **Answer:**

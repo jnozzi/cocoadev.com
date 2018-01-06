@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm having a really bizarre problem with NSWindow's     setToolbar: method. I have two windows which I want to appear as being the same window, but with different behavior. Only one of them is onscreen at any given time. I want them to share the toolbar. Since NSToolbar apparently doesn't appreciate being set in two windows at once (I get weird drawing behavior that way), I swap out the toolbar like this when I switch:

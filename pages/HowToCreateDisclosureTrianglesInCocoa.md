@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 You can steal a disclosure triangle from another app's .nib.  For example, there's one in:     /Applications/Utilities/Process Viewer.app/Contents/Resources/English.lproj/ProcessViewer.nib

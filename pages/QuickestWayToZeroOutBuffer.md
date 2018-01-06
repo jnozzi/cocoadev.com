@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know the quickest way to zero out a large buffer (1MB+). 
 
 The following code takes about 4 milliseconds to zero out 1MB on a 450MHz GeeFour.

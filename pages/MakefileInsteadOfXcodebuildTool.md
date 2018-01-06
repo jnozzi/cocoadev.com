@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 So. 'Xcodebuild' is nice, but i'd like to use makefiles. Before using gcc and pbxcp, it makes directory (mean builds) like "./build/proj.build/Release/..." self, and i dont know how to repeat this action
     

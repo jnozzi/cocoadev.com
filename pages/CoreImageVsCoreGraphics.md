@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey
 
 Not a 100% cocoa question, but I have been trying to make gradients appear on a NSView background for some time now. I am trying to also do it as quickly as possible with minimal effort from the CPU. I have stumbled upon numerous examples and solutions and have read up on all of them. One method, the method used by a library called CTGradient utilizes Core Graphics (CG methods). Another method uses Core Image. I was wondering, whats the difference between Core Image and Core Graphics. I cannot find anything comparing them. Is Core Image simply a higher abstraction of Core Graphics, but designed for images?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://www.diggory.net/grazing/General/SystemPrefsIcon.jpg
 
 http://developer.apple.com/documentation/General/UserExperience/Conceptual/General/PreferencePanes/index.html

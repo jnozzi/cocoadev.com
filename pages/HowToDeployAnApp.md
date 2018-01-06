@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am a newbie Cocoa programmer. I created a small application on XCode 2.1 on my computer running OS 10.4, and it works fine. When I move the built application to another computer in the lab, which is running 10.3, it does not work. The crash log reveals that it is trying to find the zerolink framework, even though I built it under deployment mode with zerolink supposedly turned off. Also, no matter what target OS SDK I build for (i.e. if I use the compiler default 10.4 or if I change it to 10.3) the same problem occurs. Is there something obvious I am missing? 

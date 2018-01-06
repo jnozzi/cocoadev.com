@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CarbonSound is an old sound API, largely superseded by CoreAudio and QuickTime.

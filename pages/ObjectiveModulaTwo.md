@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **Objective Modula-2**

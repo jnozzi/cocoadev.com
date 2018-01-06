@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I know this can be cleaner, but I have to go to sleep.

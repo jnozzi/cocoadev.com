@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A personal Wiki... includes General/FScript support, and a General/DOScriptingArchitecture interface (see Contents/Resources/General/DOSAInfo.html) requires the General/FScript framework installed in Library/Frameworks...
 
 http://homepage.mac.com/mooresan/General/McSoft/General/WikiPad.zip

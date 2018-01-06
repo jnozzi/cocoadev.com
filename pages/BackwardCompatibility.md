@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page is for information on maintaining backward compatibility with previous Mac OS versions.
 
 Typical reasons for applications failing to launch on an older operating system are of two types. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi i am new to cocoa, How can i put a window background color in cocoa? 
 
 Thanks for any help,

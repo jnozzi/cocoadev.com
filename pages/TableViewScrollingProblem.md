@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have been trying to scroll a table view from code. I can change the bounds of the clip view successfully, but the header view does not update. I tried sending     tile and     reflectScrolledClipView, but these methods do not update the header view. The only thing that is working is creating a dummy scrollWheel event to force the table view to update it's scroll state. 

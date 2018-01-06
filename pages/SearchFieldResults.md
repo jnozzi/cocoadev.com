@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, Wanted to see if there is any way to do what System Preferences does in Tiger. When you do a search in the search field it brings down a list of results that pertain to the search. How does it do that? Also is there a way to do the spotlight look on the results like the wasy system preferences does when you select the result and a spotlight hovers the icon? Thanks in advanced
 
 ----

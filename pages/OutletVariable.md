@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An outlet variable is a specialized InstanceVariable of AnObject which is connected to an instance of a ResponderObject. In other words, an outlet is a variable whose value is an object in the UserInterface, such as, a window, a control or a view.  

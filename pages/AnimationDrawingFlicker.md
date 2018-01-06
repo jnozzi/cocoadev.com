@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been learning Cocoa recently by writing a simple screen saver involving moving objects rapidly around the screen (think Planets from NextStep).  One thing I've noticed in my implementation is that the individual planets seems to flicker between where they were in the previous frame and where they've moved in the current frame.  I know that this is generally solved in other graphical systems by double buffering, but I can't seem to figure out how this works exactly in Cocoa.  Can anyone point me in the right direction?  Thanks!
 
 ----

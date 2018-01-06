@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've built an app pretty much to the spec outlined in O'Reilly's "Building Cocoa Applications", made myself a nice little controller, instantiated, built it, and every time I try to test the interface or run the program I get the following error in my console:

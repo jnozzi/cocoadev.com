@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Aperture SDK lets you write your customized plugin's and it also allows you to export images to a remote or a local destination.
 You cannot write an application or your own action apart from exporting your images.
 

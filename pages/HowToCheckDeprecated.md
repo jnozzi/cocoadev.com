@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Well, I just want to see if my Cocoa project use deprecated (10.4) API function.
 Like JAVA_COMPILER_DEPRECATED_WARNINGS
 

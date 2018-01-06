@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am writing a little GUI frontend to MySQL; I need to access libmysqlclient.a and libz.a. Initially I wrote a little command line test bed on Linux compiled with GCC; then did the same on OS X; then tried to do it in Project Builder.

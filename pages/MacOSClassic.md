@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Any MacOS pre- MacOSX, Excluding A/UX
 
 Had the luxury of being able to back up your system with a option drag, so you could safely meddle with everything you were not supposed to.

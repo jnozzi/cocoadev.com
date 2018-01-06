@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This area is designed to help people get started programming in Cocoa in OSX.  No programming experience necessary! It is designed around questions someone starting in Cocoa might have.  Anyone is welcome to try to improve the utility of this page.
 
 This page assumes you are running OSX 10.3 (Panther), 10.4 (Tiger), or 10.5 (Leopard) and will be using Apple's IDE XCode.  The most current version of XCode is 3.0 (as of 12/11/07).  If you are using OSX 10.2 or earlier, you be using ProjectBuilder instead of XCode.  Much of the following still applies, if this is the case.

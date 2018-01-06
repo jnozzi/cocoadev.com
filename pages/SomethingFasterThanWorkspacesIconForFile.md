@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a faster way to get an application's/folder's/file's icon than     [[NSWorkspace sharedWorkspace] iconForFile:someFilePath]?
 
 ----

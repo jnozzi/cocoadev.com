@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to prefix the lines in an outline view with an integer value which consist of a variable number of digits.
 
 To make it look good I want the values to be right aligned, e.g.:

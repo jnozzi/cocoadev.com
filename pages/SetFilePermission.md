@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  I need to unset the read only flag on a file that is on a network mount.  chflags is not supported for net mounts (of the samba kind anyway) chmod will not work either. any suggestions?
 
 ----

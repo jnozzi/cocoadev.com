@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, I have recently developed a program on my powerbook g3 500. I am running Mac OS 10.2.8.
 
 The program runs perfectly on my system however I am getting some feedback from my customers that when using the program their system will suddenly slow down and and ultimately ask them to restart their Mac.

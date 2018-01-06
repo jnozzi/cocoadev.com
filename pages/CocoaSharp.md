@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Cocoa# (CocoaSharp) appears to be the planned language for working with Mono (dotNet clone) on OS X.

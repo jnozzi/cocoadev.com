@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ObjectDecomposition is used to break a problem into its components and relationships. Solving problems using ObjectDecomposition is a fundamental piece of the ObjectOrientedProgramming and ObjectOrientedDesign paradigms.
 
 An example -- given the following algorithm:

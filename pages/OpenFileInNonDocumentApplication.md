@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working on a non-document based application and I am looking for an alternative to loadDataRepresentation.
 When I double-click a file with associated file-tye, the application get focus but what is the method I should implement ? In which instance.. appcontroller ?
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **PoseAsAspects** - 
 
 The idea here is that you could call [ACPoser wrapAllMethodsOfClass: [MyClass class]], and get a nice little stack trace of all the methods being called in your class.  And this bit of code does appear to work very well for that purpose, especially if you haven't done anything with MyClass before that point.  Also, you could subclass ACPoser and override the before: and after: methods to perform some specific aspect functionality.  You can get an example of that here: http://www.ccs.neu.edu/home/igotimac/PoseAspect.zip

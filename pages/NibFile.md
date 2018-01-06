@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A NibFile is a file bundle created by InterfaceBuilder which contains information about an application's user interface and object interactions. One application may have many nib files, for each of its various windows, supported document types, et cetera.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Division by zero is an undefined operation, and as such its result is literally Not a Number (NaN). RobRix has taken to signing his e-mails with "R / 0" for just this reason.
 
 ----

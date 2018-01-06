@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm looking to create a plugin for Mail.app that will give users access to some new web services directly from the message window.
 
 Ideally, I'd like to add a toolbar that appears above every message window (and view).  

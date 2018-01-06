@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 When I have time, I program in Cocoa. But it doesn't happen very often...

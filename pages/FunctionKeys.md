@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an basic Cocoa app in which I'd like to take over the function keys (F1-F12) whenever when my app is active.  For example, if my app is active when F1 is pressed I'd like to detect, then "eat" that event so that it is not processed by the system.
 
 Any pointers would be much appreciated,

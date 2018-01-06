@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Let's say someone was wanting to sell their software to another company. This software is a low cost, yet popular shareware program that was originally developed in this user's spare time as a hobby, but it turned into a profitable shareware program that has great potential. If ABC Company wanted to buy this product and turn it into a more commerial product, how would one accurately give a price for it? And let's also say that ABC Company wanted to take this product and release a similar product for The Dark Side (Windows). What factors would help determine the value of the software?

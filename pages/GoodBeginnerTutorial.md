@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *Redirect from GettingStarted*
 
 Discussion and recommendations for pre-ObjectiveC and concurrent tutorials http://goo.gl/OeSCu

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
    I'm currently working on an document based application using TableView , NSArrayController and bindings. Some of the data in the column headings are the result of using an operand to get the result. ( eg. column1 = statically typed =3, column2 = staticaly typed = 2, and column3 is the result of  method:  -(double)column3{return (double)(column1 + column2) which returns 5 (the sum of the two values).
       In the bindings info window for each column header the header is bound to: NSArrayController, controller key :arranged objects, and Model Key Path:Column1,2or3. Also using the setKeys init method outlined in the Currncy Converter tutorial is used to update the values. Basic stuff and everything works fine up to this point. When I go to use the result for column 3 for the next calculation for another column, it won't work. I'm not sure if the result in column3 is a read only value and if it is, how do you get it into a usable number???
         I'm also using another window, through KVO, who's textFields mirror the Tableview values, to enter values to the tableView and it also add new rows. The second problem is that the table won't update the programmed values until another blank row is added to the table. If I type the values directly into the table and hit enter the programed values update. I've set continuous update and validate in the bindings window but it still won't work.   How do you get the programmed values to update from entering data from another window????

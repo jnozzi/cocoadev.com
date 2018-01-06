@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 QetiPadgu writes Cocoa software. ...
 He has been "programming" for a while, starting with hypertalk. It's funny when you don't have proper instruction and made all your stacks from background fields instead of variables...
 

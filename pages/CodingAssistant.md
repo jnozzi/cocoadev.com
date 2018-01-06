@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to create an IDE with the same support offered by IDEA, Eclipse or Visual Assist. This means auto inserting closing brackets, quotes, braces, parenthesis etc. Intelligent indenting (extra indent after { or an if), inserting extra quotes when splitting strings and so on.
 
 The main problem with ObjectiveC is the pre-processor. And thinking about it, I don't think it can easily be ignored. E.g. I have the following header named Debug.h:

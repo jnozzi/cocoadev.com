@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Tufty, AKA Simon Stapleton
 
 

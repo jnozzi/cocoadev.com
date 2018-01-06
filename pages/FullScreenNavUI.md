@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.  I'm new to cocoa and mac development in general.  I was wondering if someone could just point me in the right direction.
 I'd like to build an application around a full screen UI similar to front row.  Where you have a list of items that may or may not take you to a deeper list in a tree hierarchy. Is cocoa the right framework for this or would I have to use carbon? Not really sure where to get started.
 

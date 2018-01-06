@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 KiB � Kilobinary Byte. See http://physics.nist.gov/cuu/Units/binary.html for more definitions.
 
 I recently bought a 120 GB harddisk and it was only 111 GiB, so since then I try to use the "new" abbreviations.

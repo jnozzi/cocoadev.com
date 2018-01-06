@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do you change the project name of an existing project? Simply changing the name in the project inspector does nothing.

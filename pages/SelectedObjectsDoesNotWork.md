@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi. I just got BookCocoaProgMacOSX and have reached Chapter 12. I am trying to implement the custom alert panel features, but the program repeatily claims that none of the items in the table view are selected, even though I have Mutliple Selection on. And the odd thing: **the program does not crash**, Xcode doesn't spit out a warning or error and Interface Builder validated the interface! Here is the remove: code:
 
     

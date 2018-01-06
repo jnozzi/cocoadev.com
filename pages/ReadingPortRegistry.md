@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When you vend an object and register the port's name it gets registered system wide so you can pass in the port's name and get a connection in another process etc.  There must be something somewhere that tracks the vended ports and what their names are.  Does somebody know a way to get a list of the names of the named ports?
 
 it appears you can get them with the function mach_port_names in the header /usr/include/mach/mach_port.h...  I am not sure about all the arguments you need to pass or what the return type is.

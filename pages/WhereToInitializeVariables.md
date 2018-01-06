@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Thank you to all who helped me answer some Cocoa programing questions!  If it is alright with all of you, I am going to retire this discussion.   -- General/AlexanderD
 
 ----

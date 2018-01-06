@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See ObjC.
 
 (why is there a separate, empty page for ObjectiveCee?)

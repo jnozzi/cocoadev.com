@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is how to refresh a custom view when the data from an NSArrayController is changed.
 
 Here is what I did (and it works!)

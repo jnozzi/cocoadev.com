@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I make something like listening on specified port socket with cocoa (NSSomeThingClass?)
 
 I found smallsockets.sf.net -- very usefull

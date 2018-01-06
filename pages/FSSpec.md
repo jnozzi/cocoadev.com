@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 FSSpec is a structure used to refer to a file on disk. In this respect it works much like a path.
 
 FSSpec<nowiki/>s are deprecated on Mac OS X and their use is highly discouraged. They have trouble with internationalization and cannot support some files with more than 31 characters in their name. Avoid them at all costs.

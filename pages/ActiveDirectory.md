@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ActiveDirectory is Microsoft's directory service (other directory services include LdAp and NetInfo).
 
 As of Mac OS X 10.3, it is supported by OpenDirectory.

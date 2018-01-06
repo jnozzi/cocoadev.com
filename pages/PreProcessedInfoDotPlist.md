@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
     
 http://devworld.apple.com/documentation/DeveloperTools/Conceptual/XcodeUserGuide21/Contents/Resources/en.lproj/05_02_bs_targets/chapter_30_section_6.html
 

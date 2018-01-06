@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The General/UIButtonBar initializer works with a list of items (withItemList: parameter). From what I can 

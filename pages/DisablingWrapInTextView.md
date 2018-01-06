@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there an easy way to prevent an NSTextView from wrapping it's contents... so it shows the horizontal scrollbar?

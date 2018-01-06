@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any method to show/hide an NSPopUpButton like the "Hidden" checkbox in Interface Builder does?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am using General/NSScrollView so that users can enter in Text on multiple lines and format it with whatever fonts/styles they want.
 I want to be able however to make the View transparent so that if there is a background pictures for example it comes through.
 I noticed that the General/NSTextField is by default transparent. I also tried setting the background color's opacity of the General/NSScrollView to 0% but all that does is set the background colour to black.

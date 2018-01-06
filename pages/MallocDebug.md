@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Utility for monitoring memory allocation using malloc() and free() calls. Can be used to help track down all kinds of MemoryLeaks. 

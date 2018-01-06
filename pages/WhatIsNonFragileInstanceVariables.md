@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe General/WhatIsNonFragileInstanceVariables here.
 
 Can anybody know the non-fragile instance variables? What it does and how to use in a program?

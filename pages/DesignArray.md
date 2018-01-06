@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Object Design:** *Array collection class*
 
 ----

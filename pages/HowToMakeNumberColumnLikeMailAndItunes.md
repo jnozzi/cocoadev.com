@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am new to this and I have tried to search the site with no luck.
 
 What I wonder is how you can make a column in a list view have a bordered/colored background like the counter in Mail 's Mailbox list.

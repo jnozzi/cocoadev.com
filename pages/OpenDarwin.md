@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 From http://www.opendarwin.org
 
 ----

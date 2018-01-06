@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have argued to a friend that 'Cocoa' is in fact pronounced 'co-co'--not, as he insists, 'co-co-uh'. Please help set the record straight.
 
 'Cocoa' is pronounced:

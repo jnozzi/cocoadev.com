@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 All the software which makes your system operate. I guess it's technically referring to processes and not to frameworks/libraries. For example MacOSX is an Operating System (OS).  A typical OS is responsible for handling files and processes

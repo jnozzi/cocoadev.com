@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://www.usemod.com/cgi-bin/mb.pl
 
 A self-proclaimed *meta-wiki*, or a Wiki for discussing Wikis.

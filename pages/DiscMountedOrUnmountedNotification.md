@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to receive a notification when a disk (specifically an ipod) is mounted or unmounted?
 
 ----

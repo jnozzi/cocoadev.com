@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  I want my program be able to download new plugins from a server. I've got the idea to know what plugins that the client doesn't have are in the server, got it from cocoadevcentral's "Internet version checking" tutorial. Now i must download the files, but i don't want the user to have to open any webpage and select the desired files; i want the download to start automatically, but i don't know how. It is possible to use FTP to make this? Is there any other way?
 
 Thanks in advance

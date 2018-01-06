@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello all! 
 uuhare available. If you have 2 years experience with Cocoa, and strong C++ programming (OOP), and have worked on commercial projects, we'd would be happy to receive your resume and begin exploring these opportunities with you.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 While going through New features of Objective C-2.0, I came across "Fast Enumeration" in objective C-2.0 which we will be using in Leopard. How can I implement a custom class that supports fast enumeration, I tried by implementing the NSFastEnumeration protocol. The protocol comprised a single method�countByEnumeratingWithState:objects:count:. Still I could not able to use. 
 Please feel free to enlighten me.
 

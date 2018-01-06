@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe PalmOSDevelopment here. - It's frustrating!
 
 *From a discussion on PalmOS*:

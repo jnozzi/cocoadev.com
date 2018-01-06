@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have to do some altivec optimizations on a cocoa code for a G4. It's the first time I'm doing this, so I'm a bit lost.
 All data in the source code is stored in an NSArray, and I suppose I must move it to vectors. Am I right? Is there any method or function which does this for me?
 Do you know any tutorial, explanation of operations with vectors, or sample code besides those in apple's website?

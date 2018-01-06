@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have my main application, and within this application (in its Resources folder) I have another application. I have a framework that is used for both applications but I have the framework in both applications, making duplicates of it. Is there a way I can share one framework between both applications?
 
 Know what I'm talking about? Could someone help? Thanks. --KevinWojniak

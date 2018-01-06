@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 No offense intended - just thought it might be nice to have a page for Aussies and other Southern Hemispherians to list ourselves on.

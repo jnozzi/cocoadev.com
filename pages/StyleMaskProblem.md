@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Ive tried to set General/NSBorderlessWindowMask (styleMask value) when i create an General/NSPanel.
 After that ive set setFloatingPanel:YES because i need a borderless panel which stays on

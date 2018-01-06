@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know how to open up the ~/Library/General/StickiesDatabase file and work with it? I tried General/NSUnarchiver, couldn't get that to work. Anybody have an idea? It looks like sometype of General/NSArray is in there but I don't know how to get it out.
 
 ----

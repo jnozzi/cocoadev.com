@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An interface file is the file containing InstanceVariable and InstanceMethod declarations for a class.

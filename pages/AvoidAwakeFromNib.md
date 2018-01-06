@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have two nib files, and from one of them I call the other. But when the other gets loaded, the first's awakeFromNib executes. How can I avoid this ?
 I reckon it has something to do with the owner in loadNibNamed - can it be nil ?
 

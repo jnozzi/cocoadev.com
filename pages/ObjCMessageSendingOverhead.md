@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was wondering how much overhead is associated with sending an ObjC message. I estimate the message is sent about 10^5 times in a process that takes about 30 seconds to complete. I reimplemented the method as a C function, and the messages as C function calls, and did not see any measurable difference in performance, relative to the 30 seconds, that is.
 
 Noted in passing: In transforming the method to C, it was necessary to go from a method that has four arguments to a function

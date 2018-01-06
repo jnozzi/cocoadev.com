@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I have a simple question. I have an NSArrayController driving the contents of an NSTableView, and I want a separate controller to be informed when the selection in the tableview changes.

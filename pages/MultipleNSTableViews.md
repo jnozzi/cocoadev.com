@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What would be the best way to have 2 NSTableView's interact with each other? for instance, when the selection of one changes, the other one reloads to reflect the new selction, kind of like changing a playlist in iTunes. Would 2 datasources be necessary, or is there a better way to accomplish this?
 
 TIA,

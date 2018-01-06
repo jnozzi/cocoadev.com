@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know of a **fast** way of telling whether a window is visible.  Not if it's open, but if you can see any single part of it onscreen.  So long as no other window (or group of windows) obscures myWindow completely, I want the method to return yes, otherwise no.
 
 ----

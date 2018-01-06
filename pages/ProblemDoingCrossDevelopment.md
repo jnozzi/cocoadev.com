@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm running through Step Into Xcode, and am in the chapter on cross development.
 I'm trying to build a 10.2.8 application on an Intel 10.4.7 machine running Xcode 
 2.3.  

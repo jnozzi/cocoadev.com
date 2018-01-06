@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to add an externally-generated object file to an existing Xcode project. The object file was generated from a Fortran program (don't ask) using g77. The rest of the program is in C. Under Project Builder I just added the object file to the project and it was linked in correctly. Under Xcode the object files don't seem to be included!
 
 As an experiment you can try this at home. Create a project for a standard tool. Compile and run the resulting HelloWorld program. Now change main.c to look like this:

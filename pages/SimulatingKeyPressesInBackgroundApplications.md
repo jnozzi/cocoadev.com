@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 While I am running certain applications, they seem to swallow all the key presses including global hot keys.  What I am trying to do is simulate a key press in a background application so that while I am running one of these applications certain key presses can be routed to these background applications.

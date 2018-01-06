@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ABRecord is a child of NSObject
 ----
 an ABRecord object represents a row in the AddressBook database.

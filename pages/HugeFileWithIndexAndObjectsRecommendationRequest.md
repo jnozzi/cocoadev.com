@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello
 
 We developing a app like a workgroup app ( its not but it looks like ). The file will be on each laptop cq desktop and syncronized with a server where the users can connect at. There are a lot of mobile users. Because of this there is no option to use a central db.

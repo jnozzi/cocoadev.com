@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am sure this has been answered but I can't seem to ask this question quite right.
 
 I have a class that has a method to write a file.

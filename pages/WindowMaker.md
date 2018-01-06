@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/WindowMaker is something that many UNIX people use. It's a window manager for X11 that emulates the General/NextComputer interface. It's reasonably small, and fast, too.

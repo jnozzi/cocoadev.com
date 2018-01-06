@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Cocoa's default key bindings are here: <code> file:///System/Library/Frameworks/AppKit.framework/Resources/StandardKeyBinding.dict </code>

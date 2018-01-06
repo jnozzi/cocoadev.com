@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The capability of the operating system to effectively have two "Desktops" running, so you can switch quickly between them. A user's applications stay running in the background while another user's desktop becomes active.
 
 ----

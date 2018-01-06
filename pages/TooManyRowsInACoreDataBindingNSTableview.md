@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm changing a non document based application to use core data, to gain some of core data's freebie advantages.

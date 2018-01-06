@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AEVTBuilder is a small Objective-C library for building AppleEvents. It is vaguely similar to Apple's AEBuild function, except that AEVTBuilder uses Objective-C syntax instead of an embedded format string. AEVTBuilder is built with the philosophy of creating a mini-language to accomplish the task. As such, while it is completely legal Objective-C code, it looks completely different from "real" Objective-C.
 
 The code can be downloaded from http://www.mikeash.com/software/AEVTBuilder/AEVTBuilder.zip

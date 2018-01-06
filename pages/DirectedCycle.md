@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A directed graph is a collection of vertices (points) and a collection of directed edges (lines with arrowheads) joining them. A directed graph, like many abstract mathematical concepts, is useful because of the properties it makes obvious.
 
 A DirectedCycle is simply a sequence of directed edges each of which ends where the next one starts, and the last one ends where the first one starts, so that you can follow them around forever.

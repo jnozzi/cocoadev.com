@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to get the line number of a range of text as displayed in a NSTextView. I've done some research and found NSString's 
 
     

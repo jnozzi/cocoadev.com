@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to use pmset in my app, but when I use the 'schedule' argument, it just says "Badly formatted date". However, if I use 'repeat', it works fine. Here's my code:
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a question..
 
 Why dosent OS X support (and Im not totally sure if it does not) cool animatable dock apps (like in NeXT). I wanted to know if it was possible to make a dock icon an openGL window with crazy 3D movement in the dock. I have not seen anything like this, and I am wondering why it is not possible (like it is with the openStep dock).

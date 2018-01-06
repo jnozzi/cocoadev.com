@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Im trying to output a gif, the colors are all messed up. I figured it was because I passed nil to the properties in the following:
 
     

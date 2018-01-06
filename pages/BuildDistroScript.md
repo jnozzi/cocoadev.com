@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I use a Perl script to help me build distribution versions of LiveDictionary. It builds all of the various pieces and automatically creates a disk image that is ready to be uploaded to the server. It was a bit of work to get it working properly, but it's tremendously useful. Part of this is because LiveDictionary has an extremely complicated build process due to the fact that it consists of a lot of different components that have to be built in a specific order, but I believe a script like this could be useful for more straightforward projects as well, so I'm posting an amended version that you can use as a starting point for your own script. I will intersperse code with commentary. Perl is not my native language so it may be ugly; I mostly use it as a glorified shell script.
     
 #!/usr/bin/perl

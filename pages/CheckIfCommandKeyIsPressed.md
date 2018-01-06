@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there any simple way to determine if the command key is being held when selecting a menu item?  Thanks in advance.  (newbie).

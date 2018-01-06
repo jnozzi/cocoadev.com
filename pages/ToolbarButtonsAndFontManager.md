@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was trying to create B / I / U formatting buttons, rather than use the standard General/NSToolbarShowFontsItemIdentifier to pop up a font palette. I know that General/NSFontManager changes the actions of its font menu automagically, but it allows only one font menu.
 
 My solution (which I thought was pretty damned smart at the time) was to use the following to simulate the Cmd-B, Cmd-I, and Cmd-U keystrokes of a user when the corresponding toolbar item is clicked:

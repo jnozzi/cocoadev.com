@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **NOTE: this posting needs a little organization that it does not presently have. I will get to work organizing it once I have time, but I'm a little busy as of now. -- RobRix**
 
 Dennis C. De Mars answered a question on one of the development lists (either AppleComputer's cocoadev list or TheOmniGroup's macosx-dev list), and I followed up on it. He kindly provided some example code, as well as some general comments about the code. It may well be useful to you if you're interested in fractals, or if you want to know how to draw into an NSImage one pixel at a time (did anybody say image filters?).

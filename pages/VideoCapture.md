@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am interested in making a free (possibly open source) video capturing application, but I am having trouble finding fast screen capture code.  Does anyone know how to effieciently capture frames and then string them together into a quicktime movie?  Any help, comments, tips are appreciated.
 
 ----

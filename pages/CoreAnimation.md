@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **Core Animation** is a new technology in Mac OS X 10.5 that provides facilities for animation.  It provides for a hierarchy of layers (2D surfaces) -- each with its own 3D transformation matrix -- as well as control over the compositing process that renders one layer on top of another.  Core Animation provides a timer facility to actually make time-dependent animations.

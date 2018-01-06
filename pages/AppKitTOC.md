@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AppKitTOC.html is the AppKit table of contents index file.
 
 The online version is:

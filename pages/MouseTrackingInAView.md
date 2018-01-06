@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There are two general techniques for     NSView subclasses to handle clicks and drags. MouseTrackingInACell is separate and more complex (although some techniques transfer).
 
 **Modal style**: your function does not return until the mouse goes up.

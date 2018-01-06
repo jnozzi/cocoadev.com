@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In a recent project (remaking the iTunes controller window for my brother), I needed to have a view with scrolling text, so that if you shrunk the window, the song title would scroll across it. After much trial and error with NSTextField, I declared it impossible...using those ideas. Instead, I created a new subclass of NSView called (what else) ScrollingText. I didn't choose S<nowiki/>crollingTextView because that sounds like a subclass of NSTextView. It basically works by eating a character for each increment (calling the     scrollOneGlyph method increases the offset), and stopping once the offset goes past the edge of the view. I had to learn about the Cocoa Text System to finish this, basically creating my own NSTextView (that didn't subclass NSText).
 
 Someone might point out that it is more economic to use the     mutableString function of NSTextStorage (really of NSMutableAttributedString). I agree; so if someone figures out why it crashes every time I try, then please update the code accordingly (test your solution first!)

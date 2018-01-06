@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.
 
 I'd like to know how Apple gets those crisp strings drawn when moving the mouse above a Dock tile. Note that I'm not interested in the backdrop, the rounded rect the string's written in.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *LaTeX is a high-quality typesetting system, with features designed for the production of technical and scientific documentation. LaTeX is the de facto standard for the communication and publication of scientific documents.*
 
 More information: http://www.latex-project.org/ and http://www.macdevcenter.com/lpt/a/4589 (02/03/2004) which covers Latex and the "Integrated LaTeX Environments" available for the Mac.

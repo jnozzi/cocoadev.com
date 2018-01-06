@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I search for a binary file editor software with template concept.

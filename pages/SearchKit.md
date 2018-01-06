@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 SearchKit Documentation
 
 *Conceptual � http://developer.apple.com/documentation/UserExperience/Conceptual/SearchKitConcepts/index.html

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am facing an extremely annoying problem that I hope some brainy individual could help me sort out.
 
 I have an app with an NSView subclass, call it oldView.

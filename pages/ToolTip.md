@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Cocoa provides only almost static tooltips. When you want to implement something like Keynote tooltips in a canvas while editing, in mouseDown events, you are out of luck. To remedy that, I created a small class to do it. It tries to imitate as much as possible the Keynote look and feels. -- General/EricForget
 
 See also General/LittleYellowBox.

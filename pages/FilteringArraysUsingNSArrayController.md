@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to create a to-do list application that displays a list of tasks for a given day. Tasks should appear from they day they were created until the day they're checked off, and I have a nice function that checks for this and does the right thing. This is all well and good, but my problem is how I should display this.
 
 The first thing I tried was creating two array controllers, one for tasks and one for days. Tasks were bound to days and by switching through days you can see each task. This works great if tasks are created and finished on the same day, but they don't carry over to the next one.

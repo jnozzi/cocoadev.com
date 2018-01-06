@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 .ZIP File Format Specification
 
 http://www.pkware.com/products/enterprise/white_papers/appnote.html

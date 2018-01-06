@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OpenScripting is the Open Scripting Architecture and Carbon AppleScript API.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 perhaps this is just not part of the l&f guidelines for aqua (if so, please tell me), but i can't seem to find a way to have a disabled tab view item. in otherwords, let's say i have a tab view with 3 tabs; i want to have the third tab be disabled (one would think the font colour for the tab title would then be the aqua l&f disabled menu item foreground colour).
 the best i seem to be able to do (in a somewhat gross design way), is to be the delegate of the tab view, and intercept the selection via:
 tabView:shouldSelectTabViewItem:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 If I want my app to run on Jaguar, as well as Tiger, but use specific technologies only for Tiger users, should I build using the Tiger SDK or the Jaguar SDK? Basically, what's the best way to build an app that will run equally well on Jaguar, Panther, and Tiger?

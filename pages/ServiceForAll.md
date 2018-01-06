@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How, if possible, can I make my service show up in every applications service menu? Any particular SendTypes or what not? I dont want something to have to be higlighted either for it to be enabled. Also can I tell what application asked for the service?
 
 ----

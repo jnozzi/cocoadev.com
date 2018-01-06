@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've moved some method declarations out of the @interface block into a @protocol block for Objective-C++ issues (long story).  I have a file with just
 
     

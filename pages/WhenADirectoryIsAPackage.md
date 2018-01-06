@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a fast way to determine if a file is a bundle or wrapper, or is this impossible to always predict?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 First, I'd like to say off the bat that I know this is a Bad Thing. It also happens to be pretty damn close to unavoidable, so please I ask in advance to consider my situation and not lecture me on design.
 
 The situation is this -- I've got a very, very, very complicated physical simulation & OpenGL drawing system that acts as a simulation environment for  AI test bed development. The actual "agents" are threaded, they run happily on their own and the API they use to control motors, read sensors etc is threadsafe by design; my simulator is just one backend for their IO. The host simulation program however has proven by testing not to be particularly threadsafe, even though I've attempted my best ( and I do have a fair amount of multithreaded dev experience; mostly from my BeOS days ).

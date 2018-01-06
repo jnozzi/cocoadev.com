@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 To StevenFrank in particular: is there any way an easier navigation system could be set up?

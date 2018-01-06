@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is just a curiosity of mine, it's not actually relevant ATM to what I'm working on. But, anyway, I'm curious how Mac OS X signals to a cocoa app that the user wants it to open a file by dropping a file onto either the app's dock icon or the app icon in the finder ( both while the app's running and when it's not running ) or double clicking the file if it's associated to your app.
 
 I'm just curious since I've developed for several toolkits before finally coming to Cocoa. In BeOS, you could parse command line args, but you could also trust in the application object receiving a standard "open" type message with parameters describing the file list dropped -- this would always occur, wether the app was started by a drop event or if the app was running when it occurred. Other toolkits, like Qt on linux, just had command-line argument token parsers, albeit good ones.

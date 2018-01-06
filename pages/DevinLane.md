@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 19 year old Objective-C/Cocoa programmer.
 
 

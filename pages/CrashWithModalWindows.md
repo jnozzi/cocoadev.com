@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am having a problem using runModalForWindow: in my app. First off, let me 

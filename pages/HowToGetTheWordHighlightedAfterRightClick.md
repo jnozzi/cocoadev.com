@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 When you right-click on a word in NSTextView the word is immediately highlighted and then contextual menu appears. I need to get the highlighted word before menu appears, so depending on this word I can insert a menu item into contextual menu. There should be some way to do it, but I can't find any. Any help?
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 I'm trying to create a screen color picker in my app (like the one in the standard color picker when you click on the magnifying glass), and I was wondering if there is any way to run the NSColorPanel screen picker from code and get the returned color?  Does anyone know if this is even possible?  Thanks for any insight!

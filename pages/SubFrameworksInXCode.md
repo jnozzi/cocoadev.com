@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 .
 
 Defining a proper, logical structure to a new project is an important early step. It will save time later, when you realise you really need to enforce a bit of order, and will make development easier over the life span of the project.

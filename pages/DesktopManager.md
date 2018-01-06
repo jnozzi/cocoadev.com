@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Freeware Virtual Desktops incuding active edges, quartz transitions (including the cube), and many other features.
 
 See:

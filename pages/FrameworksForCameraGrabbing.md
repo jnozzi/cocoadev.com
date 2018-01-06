@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, folks :) sorry my english again

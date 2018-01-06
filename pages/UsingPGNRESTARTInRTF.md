@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hey guys.  I'm writing a screenwriting program right now that exports RTF files.  I'm trying to get everything in standard screenplay format, and have been mostly successful thusfar.  The biggest problem I have been having is with page numbering.  I can't seem to find the proper syntax for \pgnrestart.  I want the titlepage to be unnumbered and then the numbers to start from 1 on the next page (which is technically the second page of the document).  Unfortunately, RTF does not seem to be well documented.  All I have found are specifications and a couple of primers, but nothing that has helped me solve this problem.

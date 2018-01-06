@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I am trying to scan a text file using nsscanner. but it failed somehow and i don't know why.
 
 here is the file example : 

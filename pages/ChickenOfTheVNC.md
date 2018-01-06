@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you've used VNC under OSX you've probably found **Chicken of the VNC** - you'd probably remember it! ;)
 
 VNC has just received a major version update (June 2004), and the corresponding Chicken update has not yet been released. It's in CVS on sourceforge, though, and is an interesting read for networking things, Cocoa things (dynamic building of GUI elements, Keychain access) and more...

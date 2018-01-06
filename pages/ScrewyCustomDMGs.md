@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 EVERY time I create a custom DMG, using any way I can think of, when I mount it the folder shows up in column view. This is not good considering I need it to be in 128x128 icon view.
 
 I've set it that way, and it works fine if the image is read/write, but the moment I convert it to compressed, it changes to column view.

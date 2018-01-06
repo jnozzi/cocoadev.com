@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was wondering whether anyone could tell me the easiest way to interface MySQL through cocoa. 
 
 I found this: http://mysql-cocoa.sourceforge.net/ 

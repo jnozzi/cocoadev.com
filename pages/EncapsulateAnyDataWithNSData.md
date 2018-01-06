@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to make a simple app to encapsulate anything that is dragged onto its icon and send it to another machine on a LAN - much the way you can send data using iChat.  Everything works fine using NSData if the file I am sending is a text file, but if the object I drag to the icon is a folder (or .app) then  NSData doesn't handle it, at least not with 'dataWithContentsOfFile:' (of course).  Any ideas?  should I make a zip archive of the dragged items and send that?
 
 ----

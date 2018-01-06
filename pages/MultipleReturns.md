@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Dicsuss the wisdom of having multiple returns in a function or method.  (Taken from PollCodingStyles)

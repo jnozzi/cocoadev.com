@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm a Computer Science graduate, currently trying to find a job coding Java or (not that it'll ever happen) Objective-C.

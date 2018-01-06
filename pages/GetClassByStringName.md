@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Can I get an object for a class by a string name?

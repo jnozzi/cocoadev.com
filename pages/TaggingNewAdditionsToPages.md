@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Every time I check General/CocoaDev for new material, I am pointed to pages that have changed. However, there's no indication of WHAT has changed! is there any way that changes can be tagged in another color?
 
 *No, but you **can** use the History option at the top of each page to do a direct comparison.

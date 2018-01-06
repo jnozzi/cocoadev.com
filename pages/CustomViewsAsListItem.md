@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Doing some fair bit of searching, I am sure I still missed this one.
 
 I have seen in some apps that one column contains a lot of elements (buttons, progress bar etc).

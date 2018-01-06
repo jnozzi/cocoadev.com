@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My program just went into the weird zone.  It has an embedded framework.  It works great, except for a bug I found - so I tried to debug it.  But whenever I try, it crashes even before it gets to the main routine.  I built and ran the application again, and it worked great except for the bug.  It only crashes when I debug it, on some routine that's called     __dyld_link_edit_error It started doing this after I added only 2 lines of code, then it blew up.  Any help would be greatly appreciated. -RossDude
 
 ----

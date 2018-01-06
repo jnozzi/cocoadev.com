@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My AddressBook is binding with a LDAP server and I can't see the description attribut of inetOrgPerson into the notes field.
 All other fields works fine.
 

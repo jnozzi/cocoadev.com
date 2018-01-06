@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MooreSan 
 
 I like the EiffelProgrammingLanguage for ProgrammingByContract and clean MultipleInheritance.  I like AppleScript for ConversationalProgramming.  I like JavaScript for runtime fun with closures, everything being an object (including functions) and runtime overridable inheritance ^_^.  I like CPlusPlus for introducing me to templates (STLGoodness).  I like LangPerl because it's like awk but better!  I like LangBasic because I started programming on an AppleII (and QBasic for F5.. did I mention I made use of mouse, images, and sound in my QBasic programs...).  I like Cocoa, because of the DevelopmentEnvironment (XCode, InterfaceBuilder) and the clean division between OOCode and C.  (At first I thought it was silly to have the [reciever message] syntax as being inconsistant with the C underpinnings.  Now I think that because it's seperate it makes it very clear when you are working on an object, versus touching member variables etc.)

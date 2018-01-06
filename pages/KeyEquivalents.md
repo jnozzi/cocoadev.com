@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Should not this page really be titled E**'scapeSequences ??
 
 "\r" for carriage return (ASCII 13)

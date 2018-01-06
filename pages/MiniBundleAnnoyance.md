@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, so I have a few little mini bundles in my program to provide some runtime components (for example, a few extra resources that I can change or have multiple versions of, like a theming system).  As of right now, I only have one "default".  Anyways, I have it added into my project so that it gets added into the internals of my program.  The problem is, changes in this (such as an xml file, or a plist) are not reflected when I recompile.  I have to manually clean, and build, which is a pain since the whole point is for it to be runtime and thus quick, not slower than making changes in code!  So anyways, my question is, how do I set some sort of dirty flag or something so that everything in my default folder (bundle) is replaced in the build application, so I dont have to clean.  Thank you.
 
 - FranciscoTolmasky

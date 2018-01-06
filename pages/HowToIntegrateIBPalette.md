@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can anyone help me in integrating multiple controls into single Palette.
 
 I have created many controls and I want to add these controls into a single palette.

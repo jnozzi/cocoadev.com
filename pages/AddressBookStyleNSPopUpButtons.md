@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to make an NSPopUpButton like in Address Book, where it gets a gray background when you hover the mouse over it, but it also makes the background color of the corresponding data field a lighter shade of gray?
 
 Also, I can't figure out how change the foreground color of an NSPopUpButton's title; the setAttributedTitle: method seems to not work in NSPopUpButton.

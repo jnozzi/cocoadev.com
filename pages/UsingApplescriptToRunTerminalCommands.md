@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Getting results from a shell command in General/AppleScript:
 
     

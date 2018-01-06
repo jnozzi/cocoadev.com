@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a program that opens a file in a normal window with title, etc.; the user can also go to full screen.  I do it by closing the first window and then creating another window that is full screen and has the exactly same contentView.  The problem i am coming accross is that i can never seem to access the full screen's window controller afterwords.  My application keeps exiting from a SIGTRAP.
 Here is he code that gets the key window to make a call to make it full Screen.
 

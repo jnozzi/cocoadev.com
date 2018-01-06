@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello
 
 I need to write an application that sits in the background and performs a task given input from another application. I am however having some difficulties deciding how to build this application. My first thought was a kext, but thats in the kernel and the kernel is really not needed. Thats where cocoa comes in. I then thought of doing a background cocoa application, but the issue I have with this is that the application should start as soon as the system boots and require nothing by the user. This then lead me to look at launchd daemons, but I have an issue of properly communicating with the launchd daemons. I want other programs to be able to modify how the background program behaves.

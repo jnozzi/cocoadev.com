@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm interested in accessing the CharacterPalette programmatically. Ie, if someone activates an NSButton in some way, the CharacterPalette will show up on their screen. 
 
 I'm assuming that the user has the CharacterPalette installed and that they are able to use the particular language my application is built for.

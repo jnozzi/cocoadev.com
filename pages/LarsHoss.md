@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 My name is Lars Hoss. I'm 26 years old and I'm from Munich, Germany.

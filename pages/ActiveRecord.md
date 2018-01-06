@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **ActiveRecord** is a very easy to use database framework written by ninja kitten ( http://ninjakitten.us )
 It should look very familiar to developers that have worked with rails.
 

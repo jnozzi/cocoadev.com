@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Radix Sort is a type of BucketSort which is often used to sort tables of integers.
 
 (this description is idealized to assume only non-negative integers but can be applied to all integers)

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 If you find yourself using     isKindOfClass, stop! First, think whether you would be better off using categories and polymorphism. Second, consider using     respondsToSelector or even     conformsToProtocol.

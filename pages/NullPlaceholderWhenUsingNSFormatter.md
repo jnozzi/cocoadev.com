@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to display a date nicely, one from my user defaults (last time my application performed a software update) so it may be NULL, in which case I want to show a placeholder string. How can I do that (only using bindings) when I've attached an NSFormatter to the text field which displays the date?
 
 Solution: Create two text fields, one with the formatter, the other having the placeholder string. Bind the isHidden to the date in the user defaults and use the NSIsNil and NSIsNotNil value transformer.

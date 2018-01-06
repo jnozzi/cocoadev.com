@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 DTrace is a dynamic tracing facility originating at Sun which ships with Mac OS X Leopard. Given its incredible utility to developers and the fact that there is an ObjC provider (making it easy to probe ObjC methods), I thought we should start putting some information on how to use it in debugging, measuring, and exploring your Cocoa programs. I'll start off:
 
 I'm using the following dtrace invocation on the command-line to print the stack trace of any exceptions:

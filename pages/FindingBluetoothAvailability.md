@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know how to find out if Bluetooth is available on the machine? I can't seem to find an IOBluetooth or IOKit call to search for it. Anybody have some hints?
 
 ----

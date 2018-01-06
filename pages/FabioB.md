@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaDevUsers 
 
 Mac OS X beginner Programmer

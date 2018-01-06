@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm a bit puzzled about how General/NSControls and their cells receive activation and deactivation "events" from their underlying windows. There is no explicit General/NSEvent for this, but nevertheless controls usually seem to know when their underlying window state changes.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a useful snippet from the CocoaDev mailing list -- KritTer

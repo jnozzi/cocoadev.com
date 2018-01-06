@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Are there any tools for developing Core Animations?  I'm relatively new to Objective-C, but in my mind developing an animation 100% in code and not having any kind of GUI to preview or at least assist in the development of animations seems like it would involve a very steep learning curve.  Are there any tools to simplify this process?  If not, what about good resources for samples/demos?  I learn best by seeing examples, so any sites with more examples than just the 2 that come with XCode would be greatly appreciated.  Or good books (if they exist yet on the subject?)

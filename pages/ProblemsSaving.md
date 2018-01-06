@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The short discussion that was here was moved into NS_MenuItem_Discussion, where it is more on-topic.
 
 Suggest this page can be kept useful by being given some material related to basic problems with the document architecture or some such, and given a link from the CommonProblem page or perhaps some other intro page.

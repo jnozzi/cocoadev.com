@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A book being written by CharlieMiller, which will help people with no former programming experience become proficiant with cocoa.  It will teach people the Obj-C way of doing things (why teach malloc() and free() when you never use them in Obj-C?).  If anyone wants to help with it, contact CharlieMiller.
 
 ----

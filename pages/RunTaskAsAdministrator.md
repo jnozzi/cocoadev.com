@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *If security (and system stability) are not an issue at present, then build your app in Distribution style (so zero-link doesn't catch you up), log in as root (assuming you've enabled it using NetInfo) and run your app. **BE CAREFUL** - running anything as root can be extremely dangerous. Be sure you know precisely what you're doing - in most cases, you won't get a second chance.*
 
 

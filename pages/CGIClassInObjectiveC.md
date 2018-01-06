@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I thought it would be interesting to write a CGI application in Objective C.   However, I was unable to find an Objective C class for handling CGI parameters so I wrote one myself.
 
 You just create a Foundation tool and then work your way from the main function using the class.  For example, the following code will print out the name/value pairs passed to the CGI program:

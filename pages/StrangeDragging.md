@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 On my current project a certain section view has dragging between teo points.

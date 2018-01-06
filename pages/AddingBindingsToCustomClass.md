@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have read that to add a binding to a custom class (like a custom view) you can put code like this into the implementation file (.m):
 
     

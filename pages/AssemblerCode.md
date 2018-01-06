@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Taken from the AtomicThreadSafety page:
 
 I believe assembly code is lame because it makes your code less portable. Mac OS X is interesting because its core operating system layer is cross platform: darwin can compile and run on PowerPC and Intel systems. Not a few years ago, Cocoa (then called YellowBox) was available on Mach for PowerPC, Mach for Intel, and Windows (Intel). While now it's available only for PowerPC, seeing PowerPC-specific coding tips presented as a general purpose Cocoa programming tips seem even more lame. 

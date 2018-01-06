@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 for other window level constants see General/NSWindowLevel
 
 I want to make a certain window always! always! always! always! always! (is that enough times for you?) on top

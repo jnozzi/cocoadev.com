@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is this possible?  I have a Data.m and Categories.m files, and I want a delete button that removes all Data and Categories, which are stored as NSMutableArrays in their respective files.  Is this possible, with the one button?  Thanks...

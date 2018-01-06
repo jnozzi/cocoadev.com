@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The problem with ANY auto-gbc is the performance hit. No matter how fast you run auto-gbc there will be a lag on it with lots of objects. C#'s algorithm is no exception (generation reference counting isn't exactly brain surgery btw). Until someone commits to making a real GC scheme that can be turned on and off, Apple should avoid making a cruddy system. I'd rather see Apple finish everything else and tackle the gc problem with a lot of engineers as a main project. Autorelease works plenty well for right now, it's a nice tradeoff between ease of use and performance. -- DaveFayram
 
 ----

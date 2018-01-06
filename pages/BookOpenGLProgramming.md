@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OpenGL Programming on Mac OS X : Architecture, Performance, and Integration

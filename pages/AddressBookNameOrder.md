@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to write an app that is localized for both Japanese and English (for now), and I need to construct full names for people in the AddressBook.
 
 The problem is that in Japanese and who knows what else, last names go before first names in a full name.

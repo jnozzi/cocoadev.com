@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My question is, in Apple Mail when you select a message ((NSTableRow) -- What is that?)it shows different information in the NSTextField depending on the selected row. How is that done?
 
 --JoshaChapmanDodson

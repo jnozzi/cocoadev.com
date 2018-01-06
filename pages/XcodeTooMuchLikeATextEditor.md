@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I think Xcode is far less user-friendly than it should be, dwelling too much on your ".h" and ".m" files as text files, working like a text editor and compiler, instead of treating the units of your code separately. I think it could really become a more intuitive, visual, simple-to-use and powerful application.

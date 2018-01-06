@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a custom subclass of <code>NSView</code> in which my users draw lines with the mouse.  These lines are converted into one or more <code>NSBezierPath</code> objects and are drawn into the <code>NSView</code> subclass.  When the user clicks a save button, I would like to convert whatever doodlings they have made into a bitmap and save them to the hard disk.  Currently my code looks like this:

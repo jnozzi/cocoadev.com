@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to create a drag-and-drop interface.  The interface is an icon that tells the user what to drop there; for example, a text icon tells the user to drop text there.  Relevant snippets of code are:
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working on a framework with 25-30 classes, and right now I'm in a testing phase, writing nice test cases for most of the classes. While doing this I discover lots of memory leaks, and fix them. However, I only discover the leaks as a result of testing the other code, so I'm probably missing some. In one of the cases, I wrote a simple addition to one of my classes, so that it incremented a counter whenever it was alloc'ed and decremented the same counter when it was dealloc'ed, effectively giving me a counter telling me how many instances of this class that were around at any given time. Then I calculated the difference between the number of instances before the tested code, and compared that to the number after (making sure that I had allocated a new autorelease pool for that code, and released it before the comparation). This was very handy for detecting where the memory leaks actually occured.
 
 Now, I want to do this with any class. I know that there are two utilities called OmniObjectMeter and ObjectAlloc, that can do something like this. But what I want to do is to include this check in my testcases, which means that running ObjectAlloc or whatever is not an option. What I want to do is call a function that gives me the current instance count of a named class (any class, not just my own), then execute some code and compare the new result from that function with the old in an assertion or something. Then I can select the test target in my project, type command-r and just wait for the message "All tests passed".

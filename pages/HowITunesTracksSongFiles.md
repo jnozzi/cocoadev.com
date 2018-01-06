@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How does iTunes track the music files? For example if I go to iTunes Music folder and change a name of a music file, iTunes is still able to play and show it in Finder.

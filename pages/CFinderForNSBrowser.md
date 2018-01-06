@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's a simple finder for an NSBrowser view using basic C function calls. You can find many of the icons in the systems folder by searching for ".icns" file extensions. Check out NSBrowserIcons for info on how to create images that are more suited for being displayed in an NSBrowser view --zootbobbalu

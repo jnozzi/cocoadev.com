@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A simple General/WorkerThread can be managed with General/NSObject's     performSelectorOnMainThread:withObject:waitUntilDone:. Arbitrary communication can be handled with General/DistributedObjects (see General/DistributedObjectsSampleCode, or http://lachand.free.fr/cocoa/Threads.html ), or with the libraries that other industrious people have written.

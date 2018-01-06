@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Computer programmers often like to play fun computer games. Cocoa programmers are no exception. Here's a list of fun computer games CocoaDevUsers have been known to ramble on and on about.

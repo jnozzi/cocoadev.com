@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm creating a Core Data app and I successfully managed to get part of the interface working. I have 2 classes: Person and Address. The classes were defined on Xcode so that one person can have multiple addresses (one-to-many). When designing the GUI, I dragged two array controllers, one for the person list (will populate a NSTableView) and the other one for the address list (another TableView). This second tableView, along with some other controls (like NSTextFields) are all linked to the selection on the first NSTableView.
 
 The problem that I get is that the second NSTableView (addresses) never works; everything else works fine.

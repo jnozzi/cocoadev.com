@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An AppleScript command's target depends on its direct parameter. The direct parameter can be a *constant* or an *application-provided object*. A parameter like     third word of "do re mi fa" is a constant, but a parameter like     name of application is an application-provided object, though they are both string values. If the command's direct parameter is a constant, then the command's target will be the nearest enclosing tell block, but if it is an application-provided object, it will be that object.

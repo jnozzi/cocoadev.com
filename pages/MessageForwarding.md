@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 NSObject defines quite a few methods which are given default implementations that you can override if you choose to. For instance, the -forwardInvocation: method.

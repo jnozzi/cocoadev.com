@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you're looking for a very quick and simple way to add synchronous ICMP ping support to your app, here's how:
 
 

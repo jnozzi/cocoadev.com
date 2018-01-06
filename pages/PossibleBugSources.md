@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's a brief list of possible bugs:
 
 

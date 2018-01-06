@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This is VERY easy.  First, go into Interface Builder.  Go to the "Cocoa-" panel and choose "Windows."  Drag a drawer object into the MainMenu.nib window.  Go to the "Cocoa-Containter-Views" panel and drag a CustomView to the MainMenu.nib window.  Control-drag from the NSDrawer to the View.  Select ContentView in the info panel and hit the connect button.  Control-drag from the NSDrawer to the window you want the drawer to be under.  Select ParentWindow in the info panel and hit the connect button.

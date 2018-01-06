@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 ----
 After reading so many things about glyphs still i am able to distinguish between glyph, and charecter.

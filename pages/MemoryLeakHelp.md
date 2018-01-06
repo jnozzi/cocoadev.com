@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a method which resizes an image and adds a drop shadow to it.
 I've determined that it is leaking several NSImage instances.
 I've read up on retain counts, and I think that when I retain "resizedImage," I

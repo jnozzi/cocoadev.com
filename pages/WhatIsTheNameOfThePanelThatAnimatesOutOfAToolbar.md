@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is the term of a alert panel that animates out of a toolbar, like the one found in Mail.app when it asks a confirmation when you delete the thrash content? It's kind of like an alert sheet but instead of simply pulling down it leaps out...
 
 ----

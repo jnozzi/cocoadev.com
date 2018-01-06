@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NaNreturned 
 
 I have a method where I want to divide one value by another. Each of these values is the result of the sum of a table column in a tableView. Everything works fine with   add , subtract and multiply operands. When I use the divide operand I get a NaN in the textField; eg

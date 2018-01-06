@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Please add information about languages which support Cocoa natively in CocoaLanguages, and those which do so via a bridge in CocoaBridges**
 
 Native support means the language uses the Objective-C object model and hooks into the Objective-C runtime directly - no translation.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OAFontCache is a nice program-wide solution to the problem that getting NSFonts is slow. (very slow). It supports lookups of NSFonts by family, name, and other attributes.

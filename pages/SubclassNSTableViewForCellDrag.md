@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can General/NSTableView be subclassed so cells are draggable instead of just rows?  How would I go about that?
 
 ----

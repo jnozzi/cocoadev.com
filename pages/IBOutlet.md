@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Defined in <AppKit/NSNibDeclarations.h> as

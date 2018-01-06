@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A small (partial) implementation of what follows, under a BSD license, is available at http://millenomi.altervista.org/Extras/Claims to be used as a basis for uninstallers.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Credit where credit is due: This is MichaelMeer's original MMRandomEnumerator class

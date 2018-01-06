@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/OpenGLScript
 
     

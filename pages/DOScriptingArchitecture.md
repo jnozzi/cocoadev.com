@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AppleScript is really nice... really, I like it and have used it to create small launcher-y scripts to full applications... But it has some serious problems too... The dictionary that you get from applications is supposed to tell you what commands an application supports and make it clear how to use it to script with... For this task it utterly FAILS... The syntax is often guess-work for the user, and for the provider, well... lets just say I haven't found a very clear tutorial on making AppleScriptSupport a reality in my application... it's just too much work!  Here's my proposed solution... Have applications vend objects using DistributedObjects, register them with the bundle identifier, publish the api with a header in the bundle that declares a supported protocol, and then the external client uses DO to connect and use the interface.  This sounds like it limits things only to ObjC... but it doesn't.  FScript would be great at this; perl, ruby, and python all have access to Cocoa interfaces as well, and an AppleScript wrapper isn't out of the question either.  For the scripting provider, you do almost nothing to support scripting... the following suffices:
 
     

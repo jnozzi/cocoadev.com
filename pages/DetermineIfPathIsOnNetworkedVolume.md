@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Given any path, is there a way to determine if it's on a network volume (i.e. iDisk)?

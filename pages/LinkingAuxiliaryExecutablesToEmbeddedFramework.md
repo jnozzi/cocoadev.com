@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This topic will discuss how to link auxiliary executables to a framework that is embedded in an application. The tricky part about doing this is dealing with linker warnings caused by "missing files". Three target types will be covered here:

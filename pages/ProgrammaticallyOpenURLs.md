@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to use NSWorkspace to open a URL in Safari, but it appears that the method openURL is probably intended for fileURLs.  Is it necessary to create a file with the URL, then open the file with NSWorkspace?  I don't know any applescript and I want to be able to send info to other apps, or at the very minimum use the workspace to open various types of data.  
 For example, printing sends PDF data to preview without creating a file anywhere.  How can I do this?
 

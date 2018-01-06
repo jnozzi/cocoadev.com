@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm not really sure what to call this title.  This might be a retain count problem I'm dealing with.  I'll try to describe the problem.  Here is a section of code that calls the method "findLongestRoad:throughIntersection:" twice.  I pass a NSMutableArray object both times.  (POSITIVE and NEGATIVE are just two integer #define tags and aren't relevant)
 
     

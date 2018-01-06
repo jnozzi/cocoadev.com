@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Not really a cocoa question, but maybe one many of us could benefit from having answered.  Is there a wikipedia or something like it online where coders can get answers to IP patent and copyright questions?
 
 *It is likely that you will have to hire qualified legal counsel just like everyone else. Mostly it helps to stay under the radar by not becoming too successful. That alone will help to keep you out of the courtroom. If you become successful enough to need legal services, you will be able to afford them at that time. Of course this is too glib. You can either research it yourself and google away, or hire someone else to do your research for you. Understanding patent law is not every developer's cup of tea, but there hardly can be shortcuts to doing so. I would rather ask if there is a wikipedia or something like it online where my interlocutor can go to obtain some common sense and something resembling a work ethic.*

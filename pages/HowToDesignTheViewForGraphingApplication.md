@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm a beginner at OS X Cocoa development, and I would like to develop an application that is much like a 'graphing' application. It would have X and Y axes and the user would be able to plot points on this graph.

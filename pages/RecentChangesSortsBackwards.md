@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 From about 2-4 February 2005, the RecentChanges page got messed up and was sorting new dates toward the bottom of the list. Since the fix was apparently simple, I've created this page to preserve it in case the same thing happens again.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can anyone direct me to what I need to know in order to draw a custom NSSplitView divider, ala Mail or iTunes 5 browser. I have been looking at drawDividerInRect, but I can't seem to get it working. Sample code would be much appreciated, just to give me and idea of where to start.
 
 *Look at the NSSplitView page, particularly the alternatives section. This doesn't directly tell you "how," but it will solve the problem.*

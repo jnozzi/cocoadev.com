@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Would it be at all possible for the implementers of Objective-C to provide the option to have static linking when we know what object will be used for sure.  The equivalent of not having the "virtual" keyword in C++.  This could be a great optimization code, especially at the end when you are absolutely certain about a few method calls.
 
 @static([anObject someMessage]);

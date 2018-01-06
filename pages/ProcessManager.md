@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ProcessManager is the Carbon API for, well, process management, though the most common use is merely to retrieve information about processes for other uses. Since 10.2 it has been part of the HIServices framework under ApplicationServices; before that you actually had to link to Carbon to use it.

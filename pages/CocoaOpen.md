@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **Note to Cocoa OpenSource Developers:** If you release the source code to your project, please make the code available as a tar/gz archive, not DMG or StuffIt. Your GNUStep-using friends will thank you. Also be sure to check out ObjectLibrary. http://goo.gl/OeSCu

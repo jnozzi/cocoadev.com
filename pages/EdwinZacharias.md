@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 One time Cocoa developer.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey, all!
 
 I want to play around some with pathfinding in order to make my own little 'strategy' game. I have a tile-based map system and I want to know how to calculate the path from one point to another avoiding obstacles. I have tried searching pretty much on the net, but all the things I've found is above my level of knowledge. =)

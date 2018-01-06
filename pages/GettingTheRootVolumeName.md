@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm using beginSheetForDirectory to obtain a file name that will be passed in an AppleScript invocation.
 For volumes OTHER than the root volume, I get something like:
 

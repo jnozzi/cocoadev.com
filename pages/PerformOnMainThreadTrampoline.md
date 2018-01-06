@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I got tired of having to build NSInvocation wrappers using the handleInvocation trick as seen in ThreadCommunication. What follows is an implementation for a trivial TrampolineObject that will automatically bounce any message it gets to the main thread.
 
     

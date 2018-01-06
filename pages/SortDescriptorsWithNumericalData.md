@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This describes a document-based app using NSTableView to display floating point numerical data that can be positive or negative.

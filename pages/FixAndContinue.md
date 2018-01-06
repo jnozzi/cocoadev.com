@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 file:///Developer/Documentation/DeveloperTools/Conceptual/XcodeQuickTour/qt_fix/index.html

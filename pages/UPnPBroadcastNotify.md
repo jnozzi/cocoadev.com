@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to write General/UPnP support for my app, and I seem to be running into some trouble.  The code I have broadcasts, but the General/UPnP device I am using will not respond.  I know the message is correct, as I have copied the message from a working General/UPnPMediaServer app.  Below is the code for the broadcast of Notification.  This is to show the device that my app is a Media Server.  It broadcasts, but it will not make a TCP request for the file path included.  I think it may be that I need to set some additional socket flags, but I do not know what they may be.  Thanks for any help.
 
 variable a through e are char **s with the messages. Here is an example of one.

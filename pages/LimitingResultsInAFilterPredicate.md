@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Using CoreData, I'm modelling the recent changes to Wikipedia. I have 3 entities: Articles, Users and Edits. Thing is, I want to only show the top 10 edits that match a certain criteria. I've set the filterPredicate on my NSArrayController to filter based on my criteria, but I'm unsure as to how to go about limiting the number of results. I know it's possible to limit the number of results on a fetch request, but I'm not doing any fetches.

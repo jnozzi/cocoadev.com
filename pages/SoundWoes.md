@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have created a program that uses sound, After analyzing it with the MallocDebug program it seems I'm getting memory leaks from these sounds.
 
 Can someone tell me if the following code would be required to be freed from memory, and if so, how would it be done?

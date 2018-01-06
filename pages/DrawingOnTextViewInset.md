@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a subclass of NSTextView.  I'd like it to basically draw its own margins so that the user can see those margins, but I'd also like to draw on those margins.  Currently, when I call [self setTextContainerInset] it works just fine, but any drawing I do (even after I call [super drawRect]) doesn't show up and the inset simply remains the original color.  Is there any way to draw on the inset, or a better way to impose margins on the text view so that I can draw in them?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hopefully a very easy question from a fledgling developer...
 
 every time i try to start project builder it bounces twice and crashes with no error.  the crash log says..

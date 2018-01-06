@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I'm looking for a way to launch a terminal windows or command prompt window and pass a command directly to it from a cocoa GUI.  More specifically I'm looking to create a putty type applet for some of my users that sends the command "telnet <some IP address>", to a window that behaves like a terminal window.  The terminal windows should then stay open and allow the user to continue working on the telnet session.  I thought this would be a relatively easy applet to code, but I cant find any info on it. 
 

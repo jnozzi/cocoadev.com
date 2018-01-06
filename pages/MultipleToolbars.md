@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to create a document window with one toolbar for each of its major modes, like XCode. 

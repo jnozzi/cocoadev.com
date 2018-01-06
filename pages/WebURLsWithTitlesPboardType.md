@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is put onto the pasteboard by Safari (1.0, probably also earlier).
 
 It contains (for a single link), a property list that represents an array containing two arrays.

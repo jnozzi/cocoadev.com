@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 PosingClasses is where you take one class and have it used in place of another class throughout your program. You do this by sending the +poseAsClass: message to the class you want to pose.
 
 If you think PosingClasses might be useful in your program, consider first whether or not you could achieve what you want with ClassCategories, as PosingClasses is a bit more in-depth.

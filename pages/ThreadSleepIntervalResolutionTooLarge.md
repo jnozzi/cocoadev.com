@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The maximum precision for thread sleep intervals created by sleepUntilDate is about 0.0025 sec.
 I suppose that reducing that interval starts to interfere with updating the UI while the thread is running.
 

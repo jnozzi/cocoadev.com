@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 In my multi-document application when I press the Esc key at any time, my window disappears--data and all.  Gone forever.
 

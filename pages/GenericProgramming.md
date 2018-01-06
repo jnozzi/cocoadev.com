@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 GenericProgramming is a way to write code that does not rely on the underlying types.

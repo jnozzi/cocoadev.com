@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wish to have General/WebKit running without connection to real window. I want to have just General/WebKit engine, with no output to window.
 Is it possible?
 

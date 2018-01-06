@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd like to keep the selection of a table view when I click on it to focus it, does anyone know how to do it?
 
 Gustaf

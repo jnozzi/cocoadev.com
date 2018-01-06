@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to figure out who's calling you.  So:  for instance
 
 - (void)methodA

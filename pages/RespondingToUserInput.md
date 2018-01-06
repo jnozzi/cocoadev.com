@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey everyone!  I'm quite new to Cocoa, and I'm a little embarrassed to say that I'm having trouble understanding how to get my program to respond to keystrokes.  As such, I'm trying to write a program that draws a black rectangle that increases in length every time the user hits the 'c' key.  So far it just draws a black rectangle on a blue background, and nothing at all happens when the user hits 'c'.  
 
 Here is what I have thus far:

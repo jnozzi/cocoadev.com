@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Learning Carbon,
 Apple Computer,
 O'Reilly,

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to modify the contents of my text view programatically but also allow the user to undo the operation - how do you do this?
 ----
 Before you modify the text view, manually push the opposite operation onto the General/NSUndoManager stack. Write a small method along the lines of this:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been REALLY trying to learn bindings by following CoreData documentation and the sample code provided by Apple.
 
 Last night I upgraded to Tiger 10.4.3 which notes some improvements to CoreData.

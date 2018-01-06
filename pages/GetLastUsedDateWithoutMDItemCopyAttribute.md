@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you've ever had to use MDCopyItemAttribute in a method that should be rather fast, you know how slow it is. NSFileManager's fileAttributesAtPath:traverseLink:, on the other hand, is really fast compared to it.
 
 So I'm using the kMDItemLastUsedDate attribute to sort my NSMenuItems in a menu, based on when they were last used. However, sorting the items of a menu takes very long if I use MDItemRef, etc. If I use NSFileManger's methods, it's much, much faster.

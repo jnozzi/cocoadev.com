@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is bothering me because its too simple...
 Ok I have this code in **MyDocument.h**
     

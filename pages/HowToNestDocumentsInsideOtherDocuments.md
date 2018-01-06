@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 * Note: Sorry this is long.  I couldn't think of how to explain it in a shorter post so I tried breaking it up a bit to make it more readable.

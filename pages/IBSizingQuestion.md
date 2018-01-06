@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 hi.
 
 I've noticed this behaviour in IB, I think Its a bug, hopefully someone could verify it?

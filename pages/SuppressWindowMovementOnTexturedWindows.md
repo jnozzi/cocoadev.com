@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a textured window, and in this window I have a custom view object on which the user can draw using the mouse.  If I set the window to use the normal window model (i.e. non-textured) then everything works fine.  However, if I change the window to textured, then when the user goes to draw on the custom view object, the window moves along with the mouse.
 
 I would still like the user to be able to move the window around by grabbing outside of my view object.  How can I suppress mouse clicks and drags inside my custom view object from going to the window it is sitting on?

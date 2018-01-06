@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have this recurring problem when developing client/server apps that when the server quits the listening port becomes blocked.  Attempting to release the listening socket on 'applicationWillTerminate' doesnt seem to remedy this.  If I quit the app and relaunch it right away its listening port is blocked and it cannot start listening.  Obviously the client then cannot connect to it until I quit the server and wait for some timeout.  Is there a way to make sure the port gets freed when the applicaton quits or else to reset the port before attempting to listen upon launch?
 
 EcumeDesJours

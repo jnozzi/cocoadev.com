@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I change my application menu titles on the menu bar dynamically?
 
 Based on reading the Cocoa AppKit documentation, I thought I could get the main menu using NSApplication's mainMenu method. Then I sent itemArray to the main menu. Then, using an iterator, I sent setTitle to each item in the array.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question: How can I enable or disable controls within a utility window (floating tool bar) based on the selection in the front most document?** 
 
 **Answer:** 

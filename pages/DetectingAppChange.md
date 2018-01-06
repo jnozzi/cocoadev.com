@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way in ObjC / Cocoa to detect that the current app has changed (and find out which app the user has changed to)?  Note that I don't just mean *my* app... I mean that I want to know whenever a user makes a new app active, and I want to know which app it is she activated.  The best I can come up with is an NSTimer/Applescript solution, but I don't really like that one because without making the timer frequency super-high, it will be wrong if the user switches too fast.  Thanks!
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The title is pretty self explanatory, but would you guys help people like me (newbies) by creating a list of projects you think would be both simple and yet still complicated enough to broaden our cocoa horizons? Maybe projects you have done and found interesting? Basically a list of projects that will help us ignorant folk become cocoa masters.
 --JohnDevor
 

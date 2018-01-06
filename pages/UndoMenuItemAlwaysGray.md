@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm creating an General/NSDocument based app, and no matter what I do, the Undo menu item always stays gray.  In my code I'm calling registerUndoWithTarget: and I'm sure that's all working because my document knows it's been changed when I try to close out of the app.

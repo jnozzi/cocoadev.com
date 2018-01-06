@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a project that runs a rather processor-intensive loop (it reads and archives IPTC data on photos while archiving them both to an archive server and a CD). During the loop, I want my project to update an General/NSTextView with a single line that says "archiving (photo filename)..." so the user knows something is actually going on.
 I can get the General/NSTextView to display text in other parts of the program (for instance, if the user hasn't inserted a blank CD, the textview displays text instructing the user to insert a CD before he/she can continue). The method I use to display that text is the SAME method I call at the end of each iteration of the archiving loop, so I know the method itself works, but it doesn't work while the loop is active.
 Is there something I'm missing that would tell the General/NSTextView to display its text each iteration of the loop?

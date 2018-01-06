@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a runtime function that can give the size of a type by name? I am working on a sprintf like function and would like an easier way to type the va_list when scanning the format. I guess I could create a lookup table for a limited number of types (e.g. "%i", "%f", "%s"), but I would like to allow full type descriptions. Here's a crude example of what I would like to do.
 
     

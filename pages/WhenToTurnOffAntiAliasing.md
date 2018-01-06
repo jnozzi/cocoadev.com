@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I recently wrote a view which "magnifies" its contents by changing the frame of the view in relation to the view's bounds. Unfortunately, I need the view's contents to be magnified without any sort of interpolation or antialiasing (the view is in a raster drawing application).
 
 My drawing code is something like the following:

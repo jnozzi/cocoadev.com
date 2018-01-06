@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe IncludeLibExifInApp here.
 
 

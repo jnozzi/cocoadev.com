@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This page is for tracking re-usable Cocoa view and control classes. It is a subpage of ObjectLibrary.

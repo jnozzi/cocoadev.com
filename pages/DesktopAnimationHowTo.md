@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm looking for some beginner level examples of how to do animations on the desktop. much like NekoOnDesktop and iLuxo.
 
 while Neko has source, it is way too complex to digest at this point.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 I searched around and couldn't find a straightforward answer to this question so I'm going to ask it again.  My apologies in advance if the answer is already out there.  I am trying to have an General/NSOutlineView where one of my General/TableColumns has cells which have both a checkbox, and an editable General/TextField.  I've managed to get it to display exactly like what I'd like all on my own, but am having trouble whenever one of the rows is clicked.  Here's how I've done things:
 

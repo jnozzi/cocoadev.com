@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Using WebKit to print data can be a lot easier than printing using the AppKit NSView classes.  I used this code to print tabular data from out application and it was much easier than mucking with NSTableView
 
 

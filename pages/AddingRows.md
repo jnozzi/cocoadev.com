@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The developer documentation says the addRow method adds a row to a matrix below the last one.  In my app everytime I call addRow it adds a cell above the last one.  This is more of an asthetic thing but does anyone know why this is happening?
 ----
 OK I looked a little closer, it does add below, but it pushes the first row up.  What I need to do is keep the first row where it is and have added rows add below, do i need to just move the entire matrix down every time i add a new row??

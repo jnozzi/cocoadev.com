@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Started out as Hydra, won an General/AppleDesignAward and is arguably the best collaborative editing tool out there. General/SubEthaEdit used to be free for non-commercial use, but now is **$35**.

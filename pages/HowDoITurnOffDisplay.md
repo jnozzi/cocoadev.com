@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way for an application to turn off / dim the display, and then turn it back on again later?
 
 Thanks.

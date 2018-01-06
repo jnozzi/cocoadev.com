@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey there, I've written this method that changes an NSTimeInterval into a human readable NSString. It all works fine and dandy until we try to use it on a NSTimeInterval of a negative value.
 
 Does anyone know of a solution?

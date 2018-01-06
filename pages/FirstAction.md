@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 is there anyway to get a program to invoke a button action or a menu action immediately after starting?
 
 ----

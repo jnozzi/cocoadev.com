@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 I just released the source code to my latest work in progress. It is a portable sound engine written in C++, with Cocoa AppKit extensions including a wave view and wave overview class (you know the kind you see in audio editors/multitrackers). A lot of the code is incomplete, but a few of the bits and pieces might be useful to Cocoa coders in general.
 

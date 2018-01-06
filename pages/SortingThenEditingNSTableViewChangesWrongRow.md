@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm working on a bug-tracking application using an NSTableView. When I click on a column header to change the sorting order, and then change an entry in one of the rows, the change shows up in the wrong row. I'm using key-value observing, and here's observing code that makes the changes so they're undoable. 

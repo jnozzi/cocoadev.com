@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ----
 
 This is a framework to programmatically call Apple's "Compressor" application. 

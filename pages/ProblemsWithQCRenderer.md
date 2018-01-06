@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have some refreshing problems with QCRenderer.  I get small lines running down the screen and the it doesn't look as if the views refreshing correctly. Also I'm using 2 QCRenderers one streaming video to the other, because I'm constantly loading a new Quartz Composition and want the video to continue.  I use an NSTimer but maybe a CVDisplayLink would be better, as used in the apple Performer sample code.
 
 Heres my code:

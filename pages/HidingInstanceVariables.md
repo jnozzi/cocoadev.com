@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How would one go about hiding the InstanceVariables in the header for a class like Apple does with many core Cocoa classes?  
 
 For example, if you look at NSArray.h, there are no InstanceVariable declarations visible, only methods. How would I do the same in my classes?

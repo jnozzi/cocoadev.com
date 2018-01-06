@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm building frameworks, and I'm deploying to /Library/Frameworks/MyFramework.framework and PB likes to set a -w perm on the framework preventing my from cleaning and building without kicking back to a terminal and either sudoing or chmod u+w on MyFramework... which is annoying to say the least.  I can also sudo pbxbuild and what not, but is there anything I can do to say out of the terminal and have PB either not set those perms or have it unset those perms on rebuild and clean?  Thanks!  Anybody?
 
 ----

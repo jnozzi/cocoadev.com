@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Aliases are driving me nuts! How does one go about resolving aliases in a path string and getting the proper path string?

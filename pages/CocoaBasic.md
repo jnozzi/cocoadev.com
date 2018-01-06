@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Integrated Software development Environment for the Cocoa Framework using a modified BASIC language.    
 
 [http://www.dsitri.de/wiki.php?page=CocoaBasic]

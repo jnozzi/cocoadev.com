@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **SimpleAspects** - part of AspectCocoa
 
 MethodSwizzling provides some useful information pertaining to my implementation...

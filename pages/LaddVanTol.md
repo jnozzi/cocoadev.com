@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Projects grubbily pawed by Ladd:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to create a daemon process that launches a specific application at regular intervals. I need a step by step procecdure to create a daemon.
 
  I tried with creating a plist file and placed it in LaunchDaemons folder. I didn"t get it.

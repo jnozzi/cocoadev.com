@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I searched the site for using zip files in Cocoa and all I came up with was using ditto. Does anyone have an example of something like this:

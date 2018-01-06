@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CodeSense is Xcode's code autocompletion feature. It's rather spiffy (and speedy in Xcode 1.1), but sadly doesn't work with Java.
 
 ----

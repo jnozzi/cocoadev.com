@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The "Anatomy of a Complex Thread Method" is well documented at Apple's web site and in many web and book examples (ThreadWorker and BookCocoaProgramming). All of the examples I have found so far do not address the need to create an autonomous worker object that can be called upon to exit and to be released from memory after all ports have been removed and all thread cleanup has been successfully accomplished. After using Apple's example on how to form connections between threads using DO and an NSRunLoop and using the exit strategy implemented in the ThreadWorker example, I was having problems getting the thread to exit completely. Anyone familiar with the basic design of setting up communcation between threads using an NSConnection should be able to follow the source below: 

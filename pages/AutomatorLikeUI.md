@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hey, i would be very interested by creating an Automator (cf. Tiger preview) like interface, which means:

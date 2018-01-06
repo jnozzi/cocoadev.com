@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://developer.apple.com/documentation/CoreFoundation/Conceptual/CFPreferences/index.html
 ----
 The CoreFoundation Preference Services.

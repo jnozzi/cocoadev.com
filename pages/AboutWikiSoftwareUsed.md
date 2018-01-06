@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **This site is a great WIKI implementation**  

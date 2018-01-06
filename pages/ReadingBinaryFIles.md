@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a binary file that represents some information (surprise!) and I would like to parse its values into an NSDictionary for use in my Cocoa application. I have the C code necessary to parse the file, however I want to do it using Cocoa. 

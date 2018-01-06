@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I just reinstalled Developer Tools and none of the given examples or anything that I create on my is compling. The complier gives a Zerolink error. I am running Mac OS X 10.3.5 with X-Code version 1.0. I don't know whats causing this so any help will be appreciated.
 
 ----

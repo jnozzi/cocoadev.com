@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 SQLite is self-contained, serverless, zero-configuration, transactional SQL database engine. Cocoa does not include any framework wrappers around SQLite, though Core Data can use it as a data store. 
 

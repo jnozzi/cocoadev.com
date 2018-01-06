@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One of the limitations with Apple's implementation of General/NSThread is that threads are not stoppable or joinable.  After a few months I finally came up with the following code and examples.  Thought I'd share it to the world.
 
 **F<nowiki/>B<nowiki/>T<nowiki/>hread.h**

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Unlike NSMutableString, NSTextView has not implemented a convenient method to append text to its existing text object.
 
 You can append text to an NSTextView by creating a category on NSTextView and using code similar to that shown below:

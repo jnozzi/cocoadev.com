@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm developing a document based application using CoreData, but I have some questions about how to best model my data.  The issue I'm having is that I need to support plugins that should be able to also store data in the document's object context.  In essence, plugins loaded at runtime (only once at the start of the program) need to be able to extend the managed object model of my document.  However, I get the sense that modifying object models is not the best way to go, and although it may be permissible before the model is used, I don't know what kind of problems I will run into if the user adds or removes plugins, and then attempts to open an older document.

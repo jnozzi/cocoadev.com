@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was wondering how I would put an image in a NSTableHeaderCell. Thanks.
 ----
 Never mind, I found it out. I'll share.

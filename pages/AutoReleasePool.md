@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 To understand any of the stuff I'm talking about here, you should be familiar with the basic concept of RetainingAndReleasing objects.

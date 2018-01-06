@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **What Is It?**
 
 From their website: PostgreSQL is a sophisticated Object-Relational DBMS, supporting almost all SQL constructs, including subselects, transactions, and user-defined types and functions. It is the most advanced open-source database available anywhere.

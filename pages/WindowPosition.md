@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A window has a **frame** (an General/NSRect data structure obtained by something like the following:
 
     General/NSRect myWinFrame = [ myWindow frame ];

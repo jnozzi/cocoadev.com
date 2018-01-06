@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Inventivesoft is a union of a few passionated German developers.
 http://inventivesoft.eu
 

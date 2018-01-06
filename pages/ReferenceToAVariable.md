@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm not even sure to call what I need help with. However, I will explain it. 
 
 In my program I have a NSDictionary, one of the dicitonary keys is an array. In this array each object can be an id key or another array depending on the situation. I have a method that is called to when a new item is found and it contains the position of the object down the tree.. so i have a for loop that loops through each position but I need the current MutableArray that the loop is working with. I have figured out how I can do it, just not how it can be implemented. 

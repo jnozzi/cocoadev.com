@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 These programs allow for parsing of XML data with specific tags, designed to display simple information from a web server - often a summary of the latest stories or articles of the day. Can also be used to link against hosted audio files to create podcasts, which are then treated as a series of episodes. There exist a number of useful classes within Cocoa that, when tied together, allow a programmer to easily create a news reader. This is a good idea for a newbie to try, since it's relatively simple compared to an app like Keynote, yet covers more than a simple text editor - think "intermediate Cocoa".
 
 See more info in the wikipedia article: http://en.wikipedia.org/wiki/News_aggregator

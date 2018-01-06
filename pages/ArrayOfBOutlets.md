@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was wondering if it is possible to create an array of IBOutlets such that Interface Builder will let me select these as outlets.
 
 Currently, I've tried this, I declare

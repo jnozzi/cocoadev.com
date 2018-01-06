@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Back in Project Builder there was an info view or an inspector on some item, maybe the active target or something, that gave you a single place to set things like the icon your app uses, the extensions for documents, the name and version of the application, and that kind of stuff.  I believe it's just a view to edit Info.plist.

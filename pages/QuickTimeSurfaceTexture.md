@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is it  possible to use the NSMovieView as a surface texture in an opengl application?  Could i use the method createTexture:fromView:internalFormat: of class NSOpenGLContext to do this so far my i cant seem to get a to work properly.  I want to to this so i use the quicktime movie as a texture in my 3d scene.  Thanks.

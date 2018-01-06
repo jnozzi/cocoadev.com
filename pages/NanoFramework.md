@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Nano is a C++ framework for developing high-performance applications for Mac OS X.
 
 Nano provides a complete set of classes for application development, allowing you to build full-featured, extensible, and maintainable applications for Mac OS X using the industry-standard C++ language.

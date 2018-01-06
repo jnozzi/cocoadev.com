@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I recently heard (and saw the Apple web site) about Xgrid.  There have been a lot of rumors circling around Xgrid, and now that it's finally out, I'm wondering how I can write an app that makes use of Xgrid and automatically distributes itself over my cluster.  Basically, what I'm asking about is some kind of API documentation.  I wasn't able to find any.  How do I instruct my program to spawn processes on other available machines?  Thanks.

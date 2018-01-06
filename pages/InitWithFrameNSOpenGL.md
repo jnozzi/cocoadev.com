@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe InitWithFrameNSOpenGL here.
 
 Any particular reason why my custom NSOpenGLView is not getting it's (id)initWithFrame:(NSRect)frameRect method called? All my other overriden methods are getting called just fine (like mouseDown:, keyDown:).  I know it's something simple, but I can't figure it out.

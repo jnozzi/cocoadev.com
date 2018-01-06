@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hello. I have written a simple program using Core Data and a document-based format (choose New Project > Core Data Document based application). I thought I was done, but then I clicked the red window close button for the sole window that was open. The program crashed. I poked around in the source code for a bit and discovered that if I created a -(void) dealloc method for the MyDocument class, but did NOT call [super dealloc] (it's commented out in the version below...), the program did NOT crash. Also, if I close any window but the last one, it doesn't crash. Since I hadn't sent any retains, releases, or autoreleases to anything I thought was useful here, I don't understand what's happening. Have I done something wrong in my code? I'd appreciate any insight you might have. Additional note: just created a blank project. It does NOT crash when I click the close button on the boilerplate window. Thanks! -Dan http://goo.gl/OeSCu
 The offending MyDocument class:

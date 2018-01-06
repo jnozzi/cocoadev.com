@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/UIKit is the UI framework in the General/IPhoneRuntime, the equivalent of General/AppKit for traditional OS X apps. Most of the classes are more or less equivalent to their NS- prefixed General/AppKit counterparts.

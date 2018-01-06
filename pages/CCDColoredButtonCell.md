@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CCDColoredButtonCell is an NSButtonCell subclass that lets you apply color to your buttons.

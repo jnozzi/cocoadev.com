@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 It's like an NSArray, but crunchier. You have to type a lot more to use one.
 
  http://developer.apple.com/documentation/CoreFoundation/Reference/CFArrayRef/

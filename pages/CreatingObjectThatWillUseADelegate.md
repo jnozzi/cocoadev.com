@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [ see also DelegationAndNotification ]
 
 I am about to start writing my first big NSView subclass that will draw simple Gantt charts given some info. I would like my class to act a bit like NSTableView, using a delegate to describe to the GanttView how many projects it should display, and when these projects start and finish in time so that it knows how to draw the chart.

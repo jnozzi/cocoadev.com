@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Common Cocoa Problems**
 
 This page is a listing of common problems experienced while learning Cocoa or simply working with it.

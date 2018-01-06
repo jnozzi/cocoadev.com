@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to build a (background?) cocoa application that will allow me to send events to the current application based on key presses and mouse movements.

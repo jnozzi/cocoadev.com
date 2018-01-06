@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am putting together a dictionary with attributes to use with an attributed string:
 
     

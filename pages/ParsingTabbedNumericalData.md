@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a model class with exactly five NSNumber keys plus an optional label key for a row of data, to be displayed in a table.

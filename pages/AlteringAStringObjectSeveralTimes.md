@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSString that I modify several times (eg. trim, replace occurrences of string etc.). Is it assumed that I will end up with the exact number of autoreleased strings that is equal to the number of modifications? What if I use a huge string? 
 Is there a better solution?
 

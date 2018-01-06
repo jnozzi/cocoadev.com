@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What would be the best way to get the date for a certain day of the week? In other words, if I want to calculate the date for the next Monday, how should I do this?
 Thanks,
 

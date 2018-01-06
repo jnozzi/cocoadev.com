@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm getting an odd linker error:
 
     

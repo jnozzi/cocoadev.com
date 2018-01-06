@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MBTableGrid is an easy-to-use spreadsheet control.
 
 [http://aroisnack.wordpress.com kue kering]

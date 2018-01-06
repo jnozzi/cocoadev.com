@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Do you mean java beans? *<-- You know, seperate from all the flamebait "discussion" going on here, this is just classic.*

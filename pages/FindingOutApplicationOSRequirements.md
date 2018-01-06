@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have developed an application that right now has around 10.000 lines of code. To build it, I have gathered information from different sources.
 
 My question is: how do I find out, without having to try it on every single one, for which Mac OS X version this app is valid? Is there some sort of analytical tool that helps you find the required OS X version for your apps?

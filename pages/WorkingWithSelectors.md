@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/NSSelectorFromString is a Foundation Framework function used to convert the name of a method into the actual selector value (almost like a pointer to a function) of type SEL, which you can then use to test if a certain object has that method  which you want to call (using the General/NSObject method respondsToSelector).
 
 **Function Prototype:**

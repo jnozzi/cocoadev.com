@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Maybe I'm thinking about this too hard or approaching it the wrong way but i can't figure out how to solve this binding problem.

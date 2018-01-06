@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, I have an application that uses multiple .rtf files and switches them through a text view.  I'm using the readRTFDFromFile method to read the files off my HD.  How would I make this work on other macs as well as mine?  Could I send the files to a server and have the application read them from there?  This would be an alternative because I want the application to run without be connected to the internet.
 
 ----

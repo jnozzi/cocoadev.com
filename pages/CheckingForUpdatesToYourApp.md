@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Check out the sample code called TLAFUpdate.
 
 *where?*

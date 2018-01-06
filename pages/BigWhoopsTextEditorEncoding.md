@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I was trying to insert a subscript "2" into one of my .m files because I wanted to add an item to a popup button (specifically, a chemical compound thing). When I tried this, XCode asked me if I wanted to upgrade the encoding of the text editor to Unicode to allow this. I said okay. Then I tried building my project, and every single line produces an error or warning!
 

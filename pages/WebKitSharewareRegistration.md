@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Apple's posted a tutorial on using General/WebKit to register an application online from within the app:
 
 [http://developer.apple.com/internet/webservices/webkitreg.html]

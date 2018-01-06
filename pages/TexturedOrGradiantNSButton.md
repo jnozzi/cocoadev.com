@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to create a button with a similar look and feel to the iPhone button. Is there an easy way to create a General/NSButton with the blue type of gradients that something like the keyboard has? Can we specify the gradient or texture a button is suppose to use as its backdrop. I originally tried just taking an image and setting it as the icon, but then I got the button border around it still and if I removed the border I lost the nice roundness.
 
 Thanks

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This isn't so much of a question as something I think is worth sharing about XCode, which I haven't seen described elsewhere. I wanted to create a reusable framework which can be included in other people's applications, which includes code from a static library (say, libmysqlclient.a). But I didn't want to have people install the MySQL client libraries in addition to the reusable framework.

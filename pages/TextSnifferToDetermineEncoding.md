@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ok, so I'm trying to write some code to determine what text encoding was used to encode a certain text file.  So When I open I call this message:
 
     

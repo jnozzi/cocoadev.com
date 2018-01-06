@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I guess this has already been asked in TrackPasteboardChanges
 
 My problem is that my app uses the find pasteboard, and I want a potentially open find-requester to update the text field when the pasteboard changes. This can either be the result of my own app placing data on the pasteboard, or another app.

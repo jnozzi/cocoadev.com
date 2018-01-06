@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A question came up about how to have a delegate of a NSOutlineView (this will work for NSTableView as well) detect when a delete key was pressed.  So here's some code that I use to perform this, along with enter or space keys.  Stick it in a subclass of NSOutlineView or NSTableView and season to taste.  Corrections or enhancements are welcome, just make sure to mark them so I know what to steal back. ( - GusMueller )
 
     

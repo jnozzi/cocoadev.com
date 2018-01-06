@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **At least with Panther, it would seem that the NSTableView draw its own FocusRing � so perhaps this page is only useful for pre-Panther development?**
 ----
 Here is a way to draw a focus ring around an NSTableView when it is the FirstResponder:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there any way to programmatically set window texture?

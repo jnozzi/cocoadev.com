@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Have any ideas for Cocoa apps? Something you'd like to have but can't find a version that runs on your Mac? Want to get your idea read by hundreds (maybe thousands) of incredibly brilliant developers? **You've come to the right place!**
 
 If you're a newbie looking for something to practice your cocoa on, be sure to check out the ideas over at NewbieProjectIdeas.

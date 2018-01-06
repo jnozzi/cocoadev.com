@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question:** How do I SEND/RECEIVE a SOAP message via Cocoa, to a WSDL server that normally expects  Java I/O?
 
 **Background:** I'm given some Java code that sends/receives a SOAP envelope (XML data) to a server:

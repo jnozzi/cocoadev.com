@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm newish to Cocoa, but advanced in AppleScript and I have a problem. I use ACGI Dispatcher to trigger AppleScript from the internet. I also have a xServe on the internet where people can upload ACGI. The thing is I need a way to stop unapproved ACGI from running.

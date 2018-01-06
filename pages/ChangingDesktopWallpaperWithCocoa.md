@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is it a large undertaking to write a Cocoa app that will change out the current desktop wallpaper to a specified image?  Is accessing a system setting like this quite a challenge?  Giving thought to an app that will change desktop wallpaper for multiple monitor folks - keeping a pair (or set of 3, 4, etc.) of images tied so that a scheduled change can take place in pairs (or sets of 3, 4, etc.).  OS X's built in wallpaper changer does not allow tied images for dual or more screen folks.  

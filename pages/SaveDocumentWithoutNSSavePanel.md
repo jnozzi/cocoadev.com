@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is it possible to save a document in a document-based application without an NSSavePanel being displayed? I want to do this as soon as the document has been created. You'll just have to take my word that what I'm doing doesn't break interface guidelines. I am imagining something similar to what Xcode does when you create a project.

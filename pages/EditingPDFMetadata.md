@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm hoping someone can give me a bit of advice. I've been working on an application to edit the metadata in existing PDF files. By combining and adding to the ideas in the PDFKitView and PDFLinker2 applications, I have the PDF view, outline view, and search functions working beautifully.

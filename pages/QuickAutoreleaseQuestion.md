@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a really, really quick autorelease question that I can't seem to figure out. Does autorelease only send the release message to its object once its retain count is 1, or is there some other method it uses to determine when it should send the release message? http://goo.gl/OeSCu

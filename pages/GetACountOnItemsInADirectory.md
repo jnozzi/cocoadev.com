@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a faster way to get the count of items in a directory than     [[[NSFileManager defaultManager] directoryContentsAtPath:aPath] count]; ? Because I'm not interested in the items but only in the amount of items in that folder.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A data storage location used by the CoreData framework's PersistentStoreCoordinator. The PersistentStoreCoordinator can add and remove PersistentStore instances on the fly, giving the appearance of a single storage location.
 
 There is no official public PersistentStore class in CoreData 1.0, so the PersistentStoreCoordinator uses the id type to represent it.

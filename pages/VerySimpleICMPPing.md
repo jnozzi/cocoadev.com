@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 For learning some basic networking skills, i'm trying to put together a small class that will let me perform some standard testing on a network like pinging and connecting to specific ports. I'm using the BSD Sockets API. Can anyone tell me the simplest way to ping a host to see if it is up? Cheers!

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wanted my application to be able to execute Perl scripts that in turn are supposed to communicate with it.
 My first thought was using Distributed Objects, so I set up an NSConnection using ObjC, registered it and set a root Object.
 Then on the Perl part my approach was supposed to be:

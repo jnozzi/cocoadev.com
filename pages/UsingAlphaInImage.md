@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This little example should copy my image, which is a clear image with a rectangle, to my window. The background of the window is gray and the image consists of a red rectangle.
 The horizontal lines are copied like I would expect but the vertical lines are not drawn or a white bar is added.
 If I understand things correct, General/NSCompositeSourceOver should copy my image over my gray background (like it does for the horizontal lines).

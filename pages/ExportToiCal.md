@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anyone have a good idea or way of exporting information to iCal? I've seen apps which have this functionality, where you just export and it opens iCal and asks you which calendar the new data should be put into. Is there a framework that iCal uses for this or something? Any help is much appreciated. --LoganCollins
 
 *No framework, just simple Apple Events (usually sent in form of AppleScript<nowiki/>ing). -- EmanueleVulcano aka l0ne*

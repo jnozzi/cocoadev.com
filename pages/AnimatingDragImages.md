@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Short version: I'd like to animate a drag image mid-DnD. I've tried simply modifying the dragImage of the draggingInfo, but to no avail. Ideas?
 
 Long version: Hey, all. I and a few others have recently finished adding a brand new backgrounds configurator to Pixen (http://www.opensword.org/pixen). Here's a screenshot (still somewhat work in progress):

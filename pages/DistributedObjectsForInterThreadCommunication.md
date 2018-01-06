@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Example code for server and client threads communication using DistributedObjects. 
 
 The code is based on Apple article (http://developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/articles/CocoaDOComm.html) and DistributedObjectsForInterThreadCommsCrash.

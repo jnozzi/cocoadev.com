@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm a long-time mac user. My programming has been mostly for web or server-side: HTML, javascript, php, perl, PostgreSQL. I've also developed a database app for a client in MS Access.
 
 I'm wanting to find a development environment for DB apps on the Mac (if possible, a x-platform IDE). I've researched Filemaker (though I haven't been able to get a copy of v 6 to play with), and from the threads it seems FM is quite limited as a programming language; MS Access seems to be much more flexible and powerful.

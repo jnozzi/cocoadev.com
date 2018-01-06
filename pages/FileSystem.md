@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Every volume has a filesystem type that tells how files and data in that volume are organized, and how the OS accesses the data.

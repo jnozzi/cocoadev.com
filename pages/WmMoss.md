@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/WmMoss is into programming Cocoa.
 
 

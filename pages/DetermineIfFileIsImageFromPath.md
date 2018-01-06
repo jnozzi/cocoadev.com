@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am having difficulties my first real Cocoa program.  
 
 In one function I am tryign to determine all the images in a  folder so thta I can copy them into a ScreenSaver.  I receive the path to the folder from an NSOpenPanel.  My idea was to get the array of files at the path then check each for their extensions.  This would be quite difficult cause I don't even know all the possible image types.  

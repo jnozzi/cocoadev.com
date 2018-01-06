@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ABGroup inherits from ABRecord.
 ----
 

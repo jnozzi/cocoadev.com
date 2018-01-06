@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How (in programming) can you utilize the microphone built in to most macs? I can't find any API for it. And please, if there is any other way, SPARE me from General/CoreAudio... there must be something else that uses the mic. 3rd party frameworks are great...
 
 ----

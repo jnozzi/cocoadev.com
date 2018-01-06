@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I want to know if it's possible to get the default printer status. Perhaps with CUPS ? Is there a class that implements this?

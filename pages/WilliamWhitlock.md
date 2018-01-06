@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Program in Shell Script (BASH, SH), Objective-C 2.0, XHTML, CSS, PBASIC, and BASIC. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to run a OpenGL program from the command line with:
 
     

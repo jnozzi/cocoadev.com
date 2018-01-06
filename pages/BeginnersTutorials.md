@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi, I would like to inform all the users that I have been creating / hosting a new series of tutorials for beginners based on Mac OS X programming.

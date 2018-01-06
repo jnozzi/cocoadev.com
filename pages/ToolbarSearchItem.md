@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am creating a program that uses a toolbar. I would like to put a search item into it but have encountered problems. I have tried many ways : Use a General/NSView with a General/NSSearchField inside it; then creating a custom General/NSToolbarItem. Use General/GenericToolbar and try to find and modify the code to insert a custom item. Look at Xcode examples and then piece together information enough to create it all by myself. None of these have worked and the process for doing it is hard. In pre-reply: Yes, looked at the cocoa docs in Xcode. Yes, I have been to Cocoa Dev Central and in the archives. Yes, I have been General/MacDevCenter. I would like someone to shed some light on the subject if htey have been successful where I have failed.

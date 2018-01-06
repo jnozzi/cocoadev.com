@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/XCode 2.1 has come with a LOT of new improvements:

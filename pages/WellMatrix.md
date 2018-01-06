@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello.
 
 I have an General/NSMatrix made up of General/NSImageCells.  I am using these cells as a sort of well, for the user to drop things.  I have two problems.

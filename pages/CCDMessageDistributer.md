@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CCDMessageDistributer is a TrampolineObject which started as a (premature?) refactoring of BSTrampoline by ThomasCastiglione.

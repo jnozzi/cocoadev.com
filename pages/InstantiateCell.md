@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi
 
 	Does anyone know why one can't instantiate a NSCell in the Classes tab of a nib file in IB ?

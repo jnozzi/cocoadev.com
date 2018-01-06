@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My program has a main controller, a NSWindowController and a NSView.
 The main controller task is to calculate and create an array of NSPoint so it can be drawn on the NSView.
 After the array is created, the main controller create a NSWindowController and hopefully display the array on the NSView

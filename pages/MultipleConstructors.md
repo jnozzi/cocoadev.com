@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My class has around twenty instance variables which are initialized through three different constructor methods depending on how the object needs to be built.  In all three cases, though, around eighteen or nineteen of the variables are identical.  
 
 What I would like to do is eliminate having to repeat the code that sets the common valued variables in each constructor (somehow only include the common code once).  The only thing I want the three different constructors to do is set the one or two variables that could have a different value depending on which constructor is called.  Of course, the object then has to be returned.

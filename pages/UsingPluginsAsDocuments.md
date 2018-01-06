@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have created a document-based Cocoa project. I show a list of available plug-ins when the user selects the menu option, the user selects a plug-in and loads it. To load the plug-in I want to use the class that inherits from General/NSDocument that project builder has created. There I created a method which is called when the user loads a plug-in. This method creates a new document window to show the plug-in's interface inside General/NSTabView. I didn't know exactly how I must create the document window programmatically, so allocated a new General/NSWindowController, used the initWithWindowNibName: method. Once the General/NSWindowController is  initialized, I add it to the General/NSDocument using addWindowController:. The problem now is that the outlets which refer the General/NSTabView inside the document window aren't succesfully bound and I have no access to these interface elements. I don�t know if there's a better way to load the document window manually, or how I can bind the General/NSTabView to the outlet programmatically.
 
 This is my method to load the document window. It's inside the General/NSDocument subclass created by PB:

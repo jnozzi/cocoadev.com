@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey guys,
 I am having a wierd problem with my app. I have an NSView with an MUPhotoview (thanks Blake Seely) on it. At startup I add the NSView to a NSTabView because there are many views to handle. Everything works fine until i subview the MUPhotoview into an NSScrollerView in the IB. The wierdness I am having is that the app is not responding at all. It launches and I see the main window, but I cannot click on anything. It just sits there. What could cause this? Thanks for the help.
 

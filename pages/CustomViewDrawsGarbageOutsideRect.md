@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 When Drawing a custom view in my App, scrolling the view causes artifacts to extend beyond the view rect. http://goo.gl/OeSCu

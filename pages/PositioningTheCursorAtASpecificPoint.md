@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to set the location of the mouse? I am attempting to make resize code as accurate as possible so i must place the cursor at a specific point at the start of the resize.
 
 Thanks.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Java appkit does not implement NSURL, although NSWorkspace does implement the OpenURL method. OpenURL takes a java.net.URL instead of an NSURL. Therefore you can cause the system to open an URL using code like this:
 
     

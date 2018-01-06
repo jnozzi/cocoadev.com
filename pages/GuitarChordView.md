@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Andrew Choi has posted some screenshots of a MIDI project that he's working on to his blog:
 
 http://www.sixthhappiness.ca/blog/2004/05-09/index.html#6

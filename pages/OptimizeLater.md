@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A recent thread (CreatingAClassUsingStructLikeNSPointNSRectEtc), reminded me of this concept...
 
 http://c2.com/cgi/wiki?OptimizeLater

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Could someone explain to me how to use cocoa bindings to bind a set of NSTextFields to individual Elements of an NSArray? 

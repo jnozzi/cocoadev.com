@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page lists recent tutorial pages added to this site.
 
 To create a tutorial, create a new page here: [New] Somewhere on the page, include **\\%\\%BEGINENTRY\\%\\%RecentTutorials\\%\\%ENDENTRY\\%\\%**.

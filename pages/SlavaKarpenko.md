@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Slava Karpenko is a peaceful lurker from UnSanity who enjoys browsing through this site without contributing much.

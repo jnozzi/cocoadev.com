@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm a graphic designer (for an advertising & PR agency -- "which one?" : "A major one") by day, and a monomaniacal programmer by night. I'm new to cocoa, having only come to mac (as a dev platform) in february 2003. Previously I developed in c/c++ on linux and before that BeOS. On the other hand, I've used macs since about 1990 for graphic design; and I learned c and pascal on a mac classic way back when in high school. You know, back when the machines had so little memory you had to do dirty tricks like using the display as a memory buffer. I've also held a job writing device diagnostics and interface code in c and assembler for digital set-top boxes.

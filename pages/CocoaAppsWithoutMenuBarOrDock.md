@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What is the easiest way to have an app that doesn't display any menu bar or it's icon in the dock, only a status item. I can do the the status item. I just need to know how to do the rest.

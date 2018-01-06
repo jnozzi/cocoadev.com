@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Just wanted to let everyone know that i've created a new HOM implementation (BSD licensed). It's available at http://www.dpompa.com.

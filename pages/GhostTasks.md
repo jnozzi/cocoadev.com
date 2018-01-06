@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a very bizarre problem and the solution has eluded me for a week or so now and i can't figure out what is going wrong. In a nutshell the application processes through a list of items and launches unix binaries to accomplish its tasks. One task pipes to another and the second task creates the output file. (we'll call them task_one and task_two)
 
 In the main class we create the dictionary with all the information to be passed to a sub class that handles all the processing. (im sorry im awful at describing how code works)

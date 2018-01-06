@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A regular expression is:
 
 *  a string whose pattern describes a set of strings. 

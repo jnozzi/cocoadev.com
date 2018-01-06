@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Before you go any farther, see the FSSpec page and do everything you can to eliminate all use of FSSpec from your application.
 
 If you really need to get an FSSpec from a path, here's how (warning: untested code, error checking eliminated for breity):

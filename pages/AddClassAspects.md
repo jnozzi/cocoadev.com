@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **AddClassAspects**  - 
 
 So PoseAsAspects won't work on NSObject and need to be loaded before Object get instantiated.  AddMethodAspects aren't working because class_addMethods isn't working.  So let's create a new class for the class we're loading an aspect on.  And instead of posing this new class as the other one, we set up the IMP pointers of the original class to point to replacement methods we define.  These replacement methods then lookup the original IMP pointers by looking to the replacement class that we've created.  here goes...

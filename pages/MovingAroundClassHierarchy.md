@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Ho hum,
 
 I was wondering how you can go about sending a message to a super->super class? I need to decode something with NSCoder,  but must call the objects [super->super initWithCoder:coder], and not the super's. The [super->super call] and super super] call] do not work. Aside: how can I send a message to a specific class in the hierarchy? In C++ you could make sure that specific method implementations were called like this: [[BaseClassName::MemberFunc(Args); So how do I do this in Objective-C?

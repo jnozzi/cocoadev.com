@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a question about adding binary data (non-standard attributes) to CoreData. On other pages, and in the docs, I've read that it's possible to use other types of data in the model, and some people even give little bits of code, but I'm still plagued with questions... How do I take my data, for example an NSColor, that I've set in the CoreData model, and "plug it in" to my UI via bindings? There are various code clippings on this site, but I couldn't figure out what method they would be placed in into the delegate, so that the NSColor (or whatever object it is) would be placed into the NSColorWell in the UI, and changed on selection change with the bindings and the NSOutlineView/NSTableView selection? Also, is it different between a regular Cocoa app and a document-based app?

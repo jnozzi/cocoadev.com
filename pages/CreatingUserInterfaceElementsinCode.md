@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have some code I am using to create a new testView (which is an NSView subclass created through project builder):
 
     

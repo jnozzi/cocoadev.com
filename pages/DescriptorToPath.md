@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What do you do when some part of your program keeps track of open file descriptors only and for whatever reason suddenly needs to access the referring file by its full path? Well, you're in luck! Such a feature is available in Darwin from **user space!** Just call fcntl on it with the F_GETPATH command like so:

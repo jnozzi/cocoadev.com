@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Subclass of General/UIControl. Part of the General/UIKit iPhone framework.

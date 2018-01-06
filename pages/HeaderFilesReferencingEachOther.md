@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I know that there are better ways to do what I was attempting to do, but I still would like to know:
 It seems to me that one cannot define two objective C classes that either have fields of the other class or have methods that accept parameters of the other class.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Perl n.
 aka The Pathologically Eclectic Rubbish Lister 
 

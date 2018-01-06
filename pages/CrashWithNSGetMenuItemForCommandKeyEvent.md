@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Two users have sent me identical crash logs, they look like this:

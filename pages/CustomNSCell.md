@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I am trying to design a custom NSCell that has two fields on top of each other. How do I do this

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I prefer to use Emacs for Cocoa Development.  Here's some elisp I use.  Please add your own as you wish:
 
 -- General/JivaDeVoe

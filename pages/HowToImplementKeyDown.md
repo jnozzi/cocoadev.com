@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to implement keyDown in my custom view class.  I put the following code in the implementation file...
 
     

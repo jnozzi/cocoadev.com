@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I read this article about General/GlobalVariablesInCocoa. I try to make a global variable to share the General/NSMutableArray in the new nib i created at runtime. I create 3 classes to achieve this:
 
     

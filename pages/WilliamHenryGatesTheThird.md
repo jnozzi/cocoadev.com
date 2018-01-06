@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Bill Gates. Otherwise known as Mr. Big.

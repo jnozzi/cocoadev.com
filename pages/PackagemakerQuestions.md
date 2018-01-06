@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I recently needed to create an installer for OS X.   I really havent done anything for a mac for awhile (5 years ago, some applescripting) but we have a director application I need an installer for.  I'm having a hard time finding good resources/discussion groups on what I'm trying to do (tried applescript forums... thinking in the future I can use the applescript studio -which looks like you can build interfaces for with another tool, not facespan) so I apoligize if I'm in the wrong spot here.  Any sense of direction would be appreciated. I was directed here from a post in apples disscusion groups.

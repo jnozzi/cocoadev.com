@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AtomicThreadSafety is something which you should not be concerened with in Cocoa.
 Use mutex's and semaphores, don't bother with using atomic (lock-free) techniques, as they are VERY hard, little understood and usually unneeded. You might want to make use of them in a time-constrained process, but Cocoa is unsuitable for that anyways, because of it's unpredictable memory behavior. Alternatively, what  (relatively) little research has been done indicates that atomic techniques seem to scale much better than lock based techniques, so if you are writing a server dealing with a potentially large amount of processors, it might be worth your while to investigate. Most portable atomic techniques use the compare and swap - like functions available on modern PC processors and embedded processors alike. You might be able to get away with more processor specific routines, or assembly language if you know your target platform, but this will make your code HIGHLY unportable. This is worse than it sounds because some very cool atomic techniques rely on operations that many processors simply cannot support (like DCAS, double compare and swap), and thus you cannot port your code at all, as the very architecture may depend on these operations. --JeremyJurksztowicz
 

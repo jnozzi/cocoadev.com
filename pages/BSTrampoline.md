@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An implentation of a TrampolineObject as described in HigherOrderMessaging. Notes follow below.

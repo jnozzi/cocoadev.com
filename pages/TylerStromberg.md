@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ichat/email: tylers<[at]>mac<[dot]>com

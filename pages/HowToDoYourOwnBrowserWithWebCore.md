@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This tutorial is obsolete as of Safari 1.0.
 
 A new, easier tutorial is to find at HowToDoYourOwnBrowserWithWebKit

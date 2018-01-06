@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In my application I'm using:
     
 - (NSArray *)toolbarSelectableItemIdentifiers:(NSToolbar *)toolbar

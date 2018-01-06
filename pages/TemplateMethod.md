@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/TemplateMethod is a General/DesignPattern which defines the steps of an algorithm and allows another class to provide the implementation for one or more steps.  This is typically implemented by using an General/AbstractSuperclass which calls abstract methods from its template methods, effectively deferring steps in an algorithm to its subclasses.

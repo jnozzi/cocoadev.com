@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I make my outline view look like Mail.App's milabox drawer.
 Meaning that the root row is a large one and the subfolders are smaller?
 ----

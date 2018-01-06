@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wan't to implement something like Activity Window in Safari, so I do:
 
     

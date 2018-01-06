@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a subclass of NSTextView that I am drawing some text to (drawAtPoint::) and graphics (NSRectFill).  When I enable the scroller in IB it does seem to function as I would expect, ie. the scroller doesn't change as I draw beyond the bounds of the view.
 
 *(I suppose that it might have been better for me to subclass NSView and wrap that view in a scrollView, but when I first started this little project I was having trouble getting what I wanted out of my NSView subclass.)*

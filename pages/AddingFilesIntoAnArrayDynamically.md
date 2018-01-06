@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a code provide by apple...in loading filepath of  type jpg from the resource direcoty into an Array.
     
  NSArray *imageBundlePathArray = [[NSBundle mainBundle] pathsForResourcesOfType:@"jpg" inDirectory:nil];

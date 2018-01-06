@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have decided to broaden my Cocoa knowledge a little by creating an NSObject subclass that abides by NSCopying and NSCoding. Part of this experimentation was to provide my class with the ability to be archived to disk and unarchived, which I have succeeded except when throwing around multiple objects.
 
 I want to copy the items into an array (they are distinct items) so I can reuse them later. I call NSKeyedUnarchiver which calls this:

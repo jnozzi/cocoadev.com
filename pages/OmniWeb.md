@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OmniWeb is a Cocoa web browser by TheOmniGroup. Currently, it has the best localization support, the best ad blocking, and has a wonderful interface. Version 4.5, which was recently released, uses WebCore as its rendering engine, finally bringing it up to par with other browsers as far as speed and standards go.
 
 http://www.omnigroup.com/applications/omniweb/

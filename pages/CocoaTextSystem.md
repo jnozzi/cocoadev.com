@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The network of classes that give Cocoa its powerful text handling capabilities

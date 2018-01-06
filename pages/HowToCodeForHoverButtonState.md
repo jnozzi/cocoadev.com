@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know how to code so that when I hover the mouse over a button the "image" changes?

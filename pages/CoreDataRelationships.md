@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am probably thinking about this wrong as I am new to Core Data. 

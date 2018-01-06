@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been trying to find a way to access either a directory, or a text file with a list of file paths and be able to order them in to a hierarchical list in an NSDictionary.
 
 For instance, if I open a folder that contains one file, my dictionary would look something like this:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I wonder if there is a way to remove PreferencePanes or deactivate them, if there is some kind of toggle. I notice that putting a .(dot) infront doesn't change anything... and i'm not sure if i want to move them to another location

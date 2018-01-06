@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Extended attributes extend the basic attributes associated with files and directories in the file system. They are stored as name:data pairs associated with file system objects (files, directories, symlinks, etc).
 ----
 Can we write a spotlight importer for extended attributes and make it searchable using spotlight? if so can one tell how to go about it?

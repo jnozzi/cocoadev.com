@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Started doing QBASIC on DOS.
 Moved to Visual Basic on Windows 3.1.
 Moved to Visual C++ on Windows 95.

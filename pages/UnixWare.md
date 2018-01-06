@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **SCO General/UnixWare**
 ----
 SCO (The Santa Cruz Operation) General/UnixWare.

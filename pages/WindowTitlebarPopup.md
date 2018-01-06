@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I create a window titlebar popup (with associated icon) when the popup isn't a represented filename?
 
 General/OmniWeb and Safari do this.

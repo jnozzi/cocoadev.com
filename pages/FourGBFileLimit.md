@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If I create a normal document application the system will load files and provide me with an NSData which seems to have been initialized with a memory mapped file.
 
 The problem is that with this scheme there is no way to load files larger than 4 GB (probably less).

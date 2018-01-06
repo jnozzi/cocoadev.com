@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question: I am trying to implement a console-like display with scrolling  
 behavior similar to Xcode's debug console and build windows: as  
 text gets added to the view, and the view is already at the end, the view  

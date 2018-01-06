@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've created a custom view together with an IBPalette and an Inspector.  I've successfully loaded the IBPalette into InterfaceBuilder & it correctly displays the view in the Palette window.  However when I insert the view into a nib file, by dragging it from the Palette window into an Interface, it doesn't get properly rendered.  When I test the interface it does.  

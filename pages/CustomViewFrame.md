@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In the application I'm writing, I need to check the mouse coordinates to insure they are within the bounds of a custom view before an action can be taken.  Yet, when compiling the code there is an error that says the custom view might not respond to "frame".
 
     

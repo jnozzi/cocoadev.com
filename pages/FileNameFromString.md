@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is the proper way to create a valid filename from a string? For example I have a string containing "My happy :) invalid filename" and I want to convert that to something valid, namely, the colon might have to be replaced by something else.... or in other cases, length of string may be too long or the string might contain a slash. 
 
 Does Cocoa provide something for this? Or is there at least a way to check if a filename is valid?

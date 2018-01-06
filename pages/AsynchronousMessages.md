@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I (JonathanGrynspan) put together this code to allow any object to asynchronously perform a method. You use it similarly to how you use -[NSUndoManager prepareWithInvocationTarget:]:
     
 anObject gt_asynchronously] downloadSomeHugeFile];

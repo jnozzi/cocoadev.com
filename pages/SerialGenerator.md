@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to build a number generator that creates 16 character serials by using input from a NSTextField. So I can create SN for my app,
 For Example
 

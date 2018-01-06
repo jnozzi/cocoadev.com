@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question: I want to programatically add a custom view (created  and populated with controls in IB) to an General/NSScrollView, 
 but when I add my  custom view to the scroll view (using -setDocumentView: ), it remains  stuck in the bottom-left corner !**
 

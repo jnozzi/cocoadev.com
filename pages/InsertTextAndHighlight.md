@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I'm a newbie writing my second app, a HTML/JavaScript Editor.
 I have two questions:
 

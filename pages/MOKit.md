@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MOKit is a Mac OS X framework that extends the Cocoa development frameworks. The project includes the framework itself as well as several supporting pieces that are all built by a single Project Builder project.
 
 More information:

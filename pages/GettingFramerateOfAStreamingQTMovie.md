@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 getting the rate of a QTMovie which has been inited with an RTSP stream is proving difficult.  The Quicktime Player has no problem providing this info.  how do they do it?  the standard QTMovie calls like 'rate' aren't working for me.  Nor does attributeForKey:@"QTMovieRateAttribute" return anything other than 0.00000

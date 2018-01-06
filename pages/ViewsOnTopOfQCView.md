@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an application that makes heavy use of a General/QCView that loads a custom Quartz Composition. I want to overlay that General/QCView with other views (like a progress bar, etc), but no view I attempt to place "on top" is ever seen.

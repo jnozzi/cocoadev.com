@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 libcurl is a static library to integrate curl functionality into an application.
 
 See StaticLibraries for infomation about XCode issues related to ZeroLink runtime errors

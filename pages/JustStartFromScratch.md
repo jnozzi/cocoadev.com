@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *Though it is difficult for beginners to spot, some bugs beg to be interpreted as a corruption of your InterfaceBuilder or XCode project files:*
 
 After enabling zoom (and resize) in IB, resizing my NSWindow causes the window to immediately jump in width by about 50 pixels.  Resizing wider than this works as expected, but the window will not resize back down to its original size (always about 50 pixels or so wider).  I have the min width/height settings set to the current window size, as shown in IB.  I'd like to get rid of this initial jump in width and have the window resize smoothly down to the original size.  This occurs even when testing the interface in IB.  Has anyone seen this before?  Thanks in advance.

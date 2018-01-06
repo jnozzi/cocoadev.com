@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 A comment on the General/SparkleUpdater page spawned this topic for me -> "Frameworks are unwieldy"
 

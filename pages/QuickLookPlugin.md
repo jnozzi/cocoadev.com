@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wrote a QuickLook plug-in today for eps files, put it in the /Library/QuickLook folder, restarted my Mac, but eps files still just show their normal "Preview.app"-icon, and the standard QuickLook-window (icon on the left with description on the right)... What am I doing wrong? Do I have to tell the system that there's this new plugin somehow?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have used tableviews many times without problems. I have 2 nibs in my current app, mainNib and tableNib. I set up a tableview in a window in tableNib, set the datasource and delegate to the tableNib controller, and the outlet from the contoller in tableNib to the tableview. However, this particular tableview is for some reason trying reload data from mainNib. Is there something I am missing? Are there any connections between the 2 nibs that would cause this? I am completely vexed and would appreciate any ideas.
 
 *Could you explain a little more on how the table view is attempting to reload data from the mainNib? What exactly is happening?*

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am using they security spy application (www.securityspy.com) that pushes live video to my browser using 'server-push stream'. The software author describes this as quote: "One connection to the server is opened and a stream of live images is continuously transmitted and displayed in the browser. ". This works great for me and I stream these images to a General/WebView in a cocoa application I have created. However, if the network connection is disrupted for any reason then the General/WebView shows the blue box with a question mark indicating a broken or missing image and remains in this state. At this point I would like to be able to detect that the live images have stopped being transmitted and refresh the browser to try to recapture the stream. The way it seems to make sense is to approach this problem is to try to determine using either an event raised by the General/WebView, or polling it on an General/NSTimer is to try to discover when the image is broken and then trigger a General/WebView refresh. It would be great if I could have the General/WebView tell me about the problem by raising some event rather than have to poll.
 
 Does anyone know how to determine if there are broken image links in General/WebView? Any help (or suggestions for another approach) would be greatly appreciated!

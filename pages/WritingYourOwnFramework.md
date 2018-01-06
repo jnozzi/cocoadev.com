@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been toying around with creating my own framework to share code amung a suite of tools I am writing. I create a new framework type project, wrote a bunch of classes, compiled it and included it in an application. Now how do I access the classes? I tried this:
     
 #import <General/NameOfFramework/General/NameofClass> 

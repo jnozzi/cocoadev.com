@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Application Enhancer (APE) is a system by UnSanity allowing developers to create Application Enhancer Modules, that would extend the way applications work. Most of UnsanityHaxie products are created using the technology behind APE, and being migrated to APE module format as of time of this writing (mid-August 2002).
 
 The SDK is available for licensing now, and provides facilities for loading your code into any application's context, patching (including objc methods), and messaging between patched processes.

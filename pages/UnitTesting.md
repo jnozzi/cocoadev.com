@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/UnitTesting is a way of testing your own software while developing. Using a fairly simple Framework each class gets exercised as thoroughly as necessary. The testing code is separate from the class code but can be run at any time. It is a Tool for General/TestFirstProgramming, a methodology that is part of General/ExtremeProgramming. http://goo.gl/General/OeSCu

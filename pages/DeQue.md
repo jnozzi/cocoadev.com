@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 From: http://www.nist.gov/dads/HTML/deque.html
 
 **Definition:** A data structure in which items may be added to or deleted from the head or the tail.

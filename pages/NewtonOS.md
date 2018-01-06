@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Don't you people remember that Apple Handheld called Newton?

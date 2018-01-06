@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/XCode has a powerful feature to script actions in the text editor, similar to General/BBEdit's Unix Filters.

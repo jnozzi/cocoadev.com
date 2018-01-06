@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Programs like iCal and Mozilla Calendar use the iCalendar format to store events.  iCalendar is an open standard, see http://www.ietf.org/rfc/rfc2445.txt.  This page is list of all resources on OS X to work with the format.
 
 vCalendar is an older version of the iCalendar format.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I know things about many memory management systems but I am little fuzzy on C's...I am working on the interesting bit of FSObject right now and I think the main logic is okay, but I have no idea at all about memory issues.  If I malloc(3)ate a new objc_method struct, objc_method_list struct, and calloc(3)ate the array of objc_method pointers am I responsible for freeing them? I want them to stay alive as long as the process does so my options are thus:
 
 A) don't worry about it... unix will reclaim all the memory the process grabbed when tearing down the process... (????)

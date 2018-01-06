@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to load a movie from a URL and I am having a problem I don't quite understand.  

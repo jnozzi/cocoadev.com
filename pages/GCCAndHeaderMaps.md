@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know what the headermap is all about?
 
 It seems to be a cache of headers or similar consulted by GCC (Xcode provide special undocumented preprocessor instructions to point at these headers).

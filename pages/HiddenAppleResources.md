@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to get a copy of the images that Spaces uses when switching spaces with the control+arrow key.  It displays a box and and an arrow.  I looked in the bundle for spaces but there are no images in it.  I also poked around in /System but couldn't find it.  

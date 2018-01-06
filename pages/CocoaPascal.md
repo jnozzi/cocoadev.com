@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Recently I wanted to try out Pascal, so I downloaded FreePascal [http://www.freepascal.org/fpcmac.html].
 Wonderful.
 But one problem: I was hoping I could use some pascal in real development, IE Cocoa. The only packages for GUI available on the FreePascal site are for GTK. OK, so there is "Generalized Graphics Interface" but that is linux only.

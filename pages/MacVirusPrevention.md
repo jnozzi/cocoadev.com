@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Everyone knows that there are virtually no viruses for Mac OS X. I believe as Mac developers, we can help keep this how it is by exposing areas of the OS that could be taken advantage by virus writers, so that Apple and others can correct them.
 
 I'm not talking about trojans - programs disguised as something else, but when run can do bad things to your system. I'm talking about the ones that can be activated automatically via email or web, or another method.

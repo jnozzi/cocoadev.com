@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/TeX is a typesetting system written by Donald E. Knuth [http://sunburn.stanford.edu/~knuth/]. It is often used for the processing of mathematical and scientific texts.
 
 Wikipedia has a good page on General/TeX: http://www.wikipedia.org/wiki/General/TeX

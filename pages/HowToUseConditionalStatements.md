@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here are some conditional statements that are used often in C and Objective-C
 
 

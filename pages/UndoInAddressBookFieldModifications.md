@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
   This isn't really a programming question (well, maybe it is, using APE..), but one thing I've noticed about AB that *really* bugs me (I consider it a bug) is this behavor:

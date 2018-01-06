@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Collection of error messages using Core Data and what caused them (including incorrect bindings). Feel free to add your own - hopefully next time you see one of these, this will remind you why. **See also CoreDataBindingsProblems** - PaulCollins

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 Hey,
 I'm trying to write my first home grown Cocoa program, and all is not going smoothly.

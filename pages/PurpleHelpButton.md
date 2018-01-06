@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do I programmatically link to my app's help docs, and ask it to load a specific page? Or, on the side, could I load a web site with Safari? ... How do I do either of those things in code when the user clicks on the purple button?

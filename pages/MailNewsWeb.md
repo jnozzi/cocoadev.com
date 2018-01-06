@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm starting a project that will involve a rather unusual client interface to email, newsgroups, and retrieving and posting webpages. I'm deciding on a platform, and OS X looks about ideal, though my experience so far is on Windows. I've done socket communications before, but would rather not - this project will be hairy enough without reinventing the wheel.

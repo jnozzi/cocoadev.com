@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My program leaks memory (according to MallocDebug) on calls to [NSArray objectEnumerator] is this normal?  Given, it's only a few hundred bytes... but my program is meant to stay running indefinitely (so these few hundred bytes might add up).  Any ideas why this might be happening and if there's anything I can do to plug the leak?
 
 Thanks,

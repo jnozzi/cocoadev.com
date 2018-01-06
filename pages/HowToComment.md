@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Quite easy. There are two methods of commenting. The straight
 
 // Which is for one line and

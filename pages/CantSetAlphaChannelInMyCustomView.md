@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Here's the background...

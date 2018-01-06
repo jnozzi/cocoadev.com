@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Just wanted to give you guys something back.
 
 Here's LocalizationTester - an app with which you can test your localizations of your apps one by one, without having to change system language or moving .lproj folders around. It's freeware, but I greatly appreciate donations :D

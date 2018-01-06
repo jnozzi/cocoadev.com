@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 <span class="plainlinks">[http://www.propertykita.com/rumah.html<span style="color:black;font-weight:normal; text-decoration:none!important; background:none!important; text-decoration:none;">Rumah Dijual]</span>
 CoreFoundation is an API, which is part of the CoreServices which sits underneath both Carbon and Cocoa, and above the Core OS (MachMicroKernel/BSD).

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This sample code shows how to upload a file from a Cocoa application using HTTP POST. This code is meant to make it as easy as possible to upload files to your own webserver. To use this code you will need to do these things:
 
 * Add the Uploader class to your application.

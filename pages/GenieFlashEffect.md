@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 For anyone who has used the private CGS Framework (http://dev.lipidity.com/apple/the-ultimate-core-graphics-resource) or done the Genie Affect on there own, does anyone know why there is a brief flash of white just when it finishes the Genie minimize. I get this on the sample application as well. I cannot see anything that would be causing this.

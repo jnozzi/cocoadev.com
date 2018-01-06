@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Many OpenGL screen savers floating around the internet have a bad habit of starting off with a harsh white screen when the screen saver engine fades up from black. This problem is caused by improperly initializing OpenGL in the screen saver module. Many modules defer initialization until - (void)startAnimation or -(void)animateOneFrame, when initialization, at least basic initialization, should be done at init time. 
 
 I have put together some simple examples of how to write OpenGL screen savers that do not exhibit this problem. The modules themselves merely display a scene from a trivial GLUT app, so I haven't bothered to compile the examples. But you can do that yourself ;-)

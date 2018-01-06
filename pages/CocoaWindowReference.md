@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to get a window instance without using interface builder? I have tried creating a new instance using objective -C documentation but have not been successful.
 
 ----

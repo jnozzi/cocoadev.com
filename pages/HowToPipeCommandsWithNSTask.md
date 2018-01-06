@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How can I use NSTask for a command with a pipe?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A collection of symmetric ciphers and digests wrapped into a convenient ObjectiveCee interface.
 
 Contents:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Topologic data structure proposed by Leonidas Guibas and Jorge Stolfi, Primitives for the manipulation of general subdivisions and the computation of Voronoi diagrams, ACM Transactions on Graphics, 4(2), 1985, 75-123.
 
 Quick overview here:

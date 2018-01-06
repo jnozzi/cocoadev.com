@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi Guys,
 
 I am trying to write an internet chess client using Cocoa. I am an experienced programmer from the Smalltalk world (and hence I love Cocoa) but am unfamiliar with the exact protocol needed to communicate with one of these chess sites (freechess.org).If I open Terminal, and type "ftp freechess.org 5000", it finds the site and gives me a login prompt. So I guess I need to write something that will communicate simple text over tcp/ip but I am not totally sure. There is a program already written that does this called Chessic but it will only connect to a different site, I want to write on for the above site. Any advise, suggestions, etc. would really be apprciated. I looked through the Cocoa API and didn't see anything that jumped out at me. Thanks, Scott McLaughin

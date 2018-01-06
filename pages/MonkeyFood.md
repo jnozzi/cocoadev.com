@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://www.monkeyfood.com
 
 DiggoryLaycock publishes stuff there.

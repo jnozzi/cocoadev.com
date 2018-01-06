@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 LiveLock is when a thread (or several threads) runs through a loop that fails without any "progress in the system as a whole" occurring. These terms are somewhat hazy because progress is itself a hazy concept, but essentially if a system repeats itself to no effect (or *spins*), that's LiveLock.
 
 One example of LiveLock occurs in AtomicThreadSafety if one accessor locks the system then sleeps. Because there is no mechanism in place to block another thread if it tries to access the data, that thread will spin over the same instructions until it is slept automatically - a simple case of LiveLock.

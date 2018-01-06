@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What I have is an NSTableView that represents an array of Foo objects. This is in one window. In another window, I have an editor of Bar objects, with a drawer to received dropped Foos, which links many Foos to one Bar. I have a Foo pasteboard registered and drag-n-drop works just fine when a Foo is dropped on the receiving table in the drawer. There can be an arbitrary number of Bar editor windows open at once but only one window containing Foos.

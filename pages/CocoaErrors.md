@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A page to post error messages, and the solutions that fixed them.
 
 ---- 

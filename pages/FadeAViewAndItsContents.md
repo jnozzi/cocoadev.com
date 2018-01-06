@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to fade (with alpha) a few views in and out based on mouse-over actions.  Which part of the View's drawRect function do I need to set to do this.
 I also want the content of the views (some NSTable views) to be affected as well.  Is there an easy way to do this?
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
   How can I capture the HTML content coming to and from a particular application, like InterArchie does (for the whole TCP/UDP stream), but on a per-aplication basis?  I know there's an answer to this *somewhere* in one of the Apple lists (probably student-dev (I asked it a couple of years ago), but I for the life of me can't find it in Apple's archives (or my own)..  I figure it's something simple like just tapping into whatever TCP socket a particular app is using..
 
 I have know nothing about BSD sockets, but I've seen operating systems where you had to be in the same address space as the one in which the socket was instantiated in order to get your hands on it... I would hope that BSD is the same. 

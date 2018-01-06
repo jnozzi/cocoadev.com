@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Since 10.3, when a menu is pulled down from the menubar, all animation in the application's window is paused until the menu goes away. I remember reading someplace that some piece of code needs to be added to main(), does anyone know what it is?
 
 Thanks :)

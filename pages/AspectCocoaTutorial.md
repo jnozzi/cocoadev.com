@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A Tutorial for using AspectCocoa.
 
 The framework as availble from http://www.ccs.neu.edu/home/igotimac/AspectCocoa.zip is compiled as an embedable framework.  This tutorial assumes you are using XCode on Tiger, but there's no particular reason why it won't work on older setups. (If you're trying to get it working on an older setup, you can ask me for help JacobBurkhart). 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 (This page derives from the ScanningStrings question, but because the question itself is very different, I felt it deserved it's own page.)
 
 I'm working on a piece of code that goes into a TextView subclass and highlights quotes (and handles escapes quotes and checks for being in a comment first, etc.).  It works, almost perfectly - except for a rather minor snag.  I can scan up to a '#' (A PHP one-line comment character) and it works fine.  But I cannot for the life of me figure out how to be able to scan up to multiple characters (i.e. a "//").  So basically, how would I go about making the scanner recognize a //, /*, and */ even though they are not single characters.  My code is below.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Questions relating to CoreData.

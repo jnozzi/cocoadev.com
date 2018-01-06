@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I looked through NSWorkspace and some other obvious ones, like NSFileManager, but no luck.  I can do this in (cr)applescript - is there no cocoa solution?
 
 *The position of icons is managed by the Finder. If you want a Cocoa solution, I believe you'll have to send AppleEvents to Finder.*

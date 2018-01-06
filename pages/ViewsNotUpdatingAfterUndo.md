@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am trying to improve the undo function in my app and I'm having quite a lot of trouble. Basically a user can add/delete a page in a document and each page has several fields to it. Now I added the undo to the add/delete page a while ago with no problems, but now I'm adding it to the fields and I'm having some trouble with getting the views to update. The undo/redo works and the content is changed but none of the General/NSTextField, General/NSTextView or General/NSPopUpButton's are updating, but the General/NSTableView which shows the page titles does update.

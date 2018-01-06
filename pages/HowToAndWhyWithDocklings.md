@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 HowToAndWhyWithDocklings - Trying to make a good resource for developing docklings... unless anyone know of such a place already?
 
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any function in the Sequence Grabber API that would help me grab an image and create a CIImage?
 
 ----

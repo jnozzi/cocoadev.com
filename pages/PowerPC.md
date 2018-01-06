@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does it rock? Or does it suck? (You know it rocks!)  -- MikeTrent 
 
 PowerPC is a 32- and 64-bit RISC *microprocessor architecture* originally developed by the AIM alliance (a partnership between **A**pple, **I**BM, and **M**otorola) in 1991.

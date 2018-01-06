@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a very preliminary page, for people who will be working on integrating Emacs/Scheme with MacOSX/Cocoa. I have no clue if this will take off. 
 
 Quick notes on getting started with MIT-Scheme (on other platforms): 

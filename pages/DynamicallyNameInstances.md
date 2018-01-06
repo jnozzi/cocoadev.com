@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is driving me crazy: if I want to instantiate a number of instances of an object called OSCPort based on the names and number of items in an array how can I do this?
 
 something like this:

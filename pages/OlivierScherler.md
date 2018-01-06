@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ** Olivier Scherler, a.k.a. �lbaum the Bold **

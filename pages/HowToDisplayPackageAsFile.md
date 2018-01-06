@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The discussion is essentially closed. The answerToTheQuestion was found!! Feel free to add any comment at the end.
 
 ----

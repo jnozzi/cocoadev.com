@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working on a subclass of NSTextField to give me functions like the editing of addresses in Address Book. 
 
 I have a small problem though, I always get the focus ring around my object (something that Address Book does not have) and when I call the object to switch off editing, it remains in the editing mode. 

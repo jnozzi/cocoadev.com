@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm sorry if this is an easy question, but how do you make a window resize in a smooth fashion with new contents? If you don't know what I'm talking about, iTunes, Safari, and Acquisition all do it (check the pref. pane)... They all use a NSToolBar I believe. I can set up a toolbar easily, but the whole smoothieness is just out of my league. This is a really cool feature and I want it.  ; D
 
 -- JohnDevor

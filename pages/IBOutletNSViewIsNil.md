@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have two projects.  One uses a toolbar to switch between two views that can be displayed in the main part of a window. Kinda like a tab view but the views are selected by toolbar items (and menu items) instead.  This project works fine.
 
 I tried to do the same thing in a second project and can't make it work. I have outlets on my controller class that are connected to the views (and yes, I quintuple-checked, they really are connected).  At runtime, the outlet variables are nil, verified by the debugger in awakeFromNib.  I changed the views to use a custom subclass and put an NSLog in their initializers and the NSLog is being printed; the views are being instantiated, but they are NOT being hooked up to my outlets, in spite of the fact that (yes, I sextuple-checked), Interface Builder shows them as being connected.

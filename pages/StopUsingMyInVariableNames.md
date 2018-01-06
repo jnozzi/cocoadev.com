@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Some people use a "my"-prefix for variable, function, and typedef names, believing it a good convention for keeping their code separate from other people's code ("it's MY variable, not YOUR variable"). Other people believe the "my"-prefix is an abomination and should be eradicated from the Earth. Discuss Below:

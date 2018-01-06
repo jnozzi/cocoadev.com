@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe General/XcodeDebuggerPO here.
 
 The command **gdb>po <NS obj>** doesn't work.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see HowToKillAFrozenThread for the discussion that motivates this discussion
 
 I have decided to use subprocesses to perform tasks for a server. I was wondering if using a process group will count as a single process toward the process table. I'm would like to keep the amount of overhead each subprocess creates down to a minimum. 

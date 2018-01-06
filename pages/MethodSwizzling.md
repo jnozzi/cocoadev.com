@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The Objective-C runtime lets you modify the mappings from a selector (method name) to an implementation (the method code itself).  This allows you to "patch" methods in code you don't have the source to (AppKit, FoundationKit, etc).  Unlike creating a category method with the same name as the original method (effectively replacing the original method), MethodSwizzling lets your replacement method make use of the original method, almost like subclassing.

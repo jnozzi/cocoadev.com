@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The system returns /private/tmp as part of the path when files are located in /tmp, but calling     stringByStandardizingPath will remove it.
 
 What is the point of this "private" directory? Is it best to remove it (using     stringByStandardizingPath) when e.g. saving references to files?

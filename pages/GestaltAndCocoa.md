@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've recently been fidling with Gestalt.  I'm looking to capture certain information from my user's machine so they can send me proper bug reports on my software.  Gestalt is a Carbon idiom, and has been brought over from the Old Mac days, however it's perfect for what I need.
 
 I'm grabbing the User's OS Version and OS Build information, neither of which require Gestalt.  However, Gestalt comes in when I need to grab my User's RAM levels, their Machine's clock speed, and their processor type.

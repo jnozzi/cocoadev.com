@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The macros below make it faster to write KVC accessors. They are used as follows:
 
     

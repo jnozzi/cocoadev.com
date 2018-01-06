@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 You can drag to a menu; you can drag to the dock - but can you drag to a Dock Menu?  eg to open a document different ways based on which item in a dock menu you drag to.
 

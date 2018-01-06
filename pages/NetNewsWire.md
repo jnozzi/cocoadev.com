@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One of the many RSSNewsReaders for the Mac...
 
 Created by Ranchero software: http://www.ranchero.com/

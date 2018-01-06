@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A scripting language used on web pages, and originally created by Netscape. JavaScript offers basic interaction, but no file system access. If you're interested in adding JavaScript capabilities to your applications, the Mozilla JavaScript engine is open-source - get it from http://www.mozilla.org/

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Glossary of Cocoa terms**
 
 Something missing?  Add it!! To add a page to this one, first create it here (type name then return): [New] 

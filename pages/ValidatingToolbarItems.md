@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Am I misunderstanding how validateToolbarItem gets called? The items are still connected to actions but the items don't get disabled!! 
 
     

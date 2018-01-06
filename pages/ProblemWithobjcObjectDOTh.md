@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've recently upgraded my mac to Tiger ( Upgrade for Jag ) and am haveing a few dramas.
 
  I Don't know if Xcode2.0 has broken something but whenever i go to comile i get the error 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am still learning the basics of Cocoa, and I want to build a simple menu extra that puts the display to sleep. 

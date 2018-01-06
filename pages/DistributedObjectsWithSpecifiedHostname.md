@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I can't get any vended objects if I specify a hostname. Can anyone tell me what I'm doing wrongly ?
 
 In my server application I vend an object as described in Apple's documentation 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm really new to Cocoa but this is the direction I'm heading so I'd like to kind of start getting my head into this as early as possible.   I have a bunch of data in CSV format (several Bible translations).  Its basically arranged into a four level hiararchy like:
 
 

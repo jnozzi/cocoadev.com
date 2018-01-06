@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to do something rather odd. In my application i am trying to listen for incoming phone calls as to run a method. I honestly have no idea where to begin on this there isn't really much documentation on modem anything on apples developer site, i would imagine it requires use of the BSD sockets. Does anybody have any idea where to begin on this?
 
 Peter

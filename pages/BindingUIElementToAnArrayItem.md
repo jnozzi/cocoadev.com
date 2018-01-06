@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I bind the value of an NSTextField to a plist array item? The plist in question is my application defaults dictionary (in ~/Library/Preferences).
 I have a bunch of text fields in a window and would like to map their contents to key-value pairs contained in the plist array, either in UI Builder or programmatically. I'm not sure how to specify the array index in the keypath either...
 

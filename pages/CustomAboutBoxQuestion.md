@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to create a custom About Box using its own NIB in a Cocoa app that only has a custom NSView subclass.  Looking at "Cocoa Applications" from O'Reilly, on p.192, they give a procedure for doing it when there is a Controller in the app (Controller.h/.m).  If I just have the NSView code (.h/.m) - can I follow same procedure but work within the custom view files or must I use a controller?  Thanks
 
 bp

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Tiger includes support for AccessControlLists (ACL) which adds new complexity to file security. 
 
 Note: you have to turn it on first using the command line tool "fsaclctl"

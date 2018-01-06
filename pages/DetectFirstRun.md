@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also SetADateForAnAppToExpire for application of this idea
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A book or manual that reflects red light but absorbs all other wavelengths.
 
 Colloquially, TheOpenGLRedBook.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was wondering what the best way to store a dictionary of classes was.  I've tried putting a Class object in an NSMutableDictionary and it didn't work out too well.  Preferably I would want to hold the actual classes themselves and not their string names (to avoid having to do a lookup every time).
 
 Thank you!

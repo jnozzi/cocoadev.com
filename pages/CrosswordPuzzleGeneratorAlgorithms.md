@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am playing around with the idea of making a crossword puzzle generator.  I have two NSMutableArrays.  One is filled with NSString clues and the other is filled with NSString answers.  Does anyone know any good algorithms for weaving the answers together to form a crossword puzzle?  Thanks in advance for any leads.  --AlexanderD
 
 ----

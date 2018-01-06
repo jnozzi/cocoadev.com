@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I couldn't find any documentation on FolderView. Is it safe to assume there is no official documentation about it? Can anyone offer any suggestions on how it should be implemented? 
 Also, i was wondering if it was necessary go gather all the data before I try to lay out something using NSOutlineView. Anyone have any experience in this area?
 ----

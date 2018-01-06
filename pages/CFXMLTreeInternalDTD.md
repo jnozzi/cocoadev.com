@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible that the Core Foundation XML Parser, namely CFXMLTree, chokes on internal DTDs?
 
 I had my XML validated with XMLLint, and Safari displays it as good as it can. Any ideas?

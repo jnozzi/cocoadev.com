@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm working on an app that contains within its Resources folder some very sensitive information.  I've been looking into ways to prevent people from poke around with it by exploring the package with little or no success.  I am not aware of anyway to block access to the file itself, so I have been looking for methods of encrypting it.  Anyone got any suggestions on what to  use? Cocoa/ObjC things are best, but I can use plain C if necessary. --OwenAnderson

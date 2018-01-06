@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Turns out the AIM room is a ghost-town. Use the #macdev room on freenode. Seems to be pretty much the only chat around.
 
 And, if you are a noob like me, visit http://www.mikeash.com/getting_answers.html for some helpful hints prior to jumping in. :)

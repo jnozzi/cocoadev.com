@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, I'm currently trying to implement a delayed invocation of a method that takes an id and a boolean, my code is as follows:
 
     NSMethodSignature * signature = [self methodSignatureForSelector:@selector(saveDocument:closeAfter:)];

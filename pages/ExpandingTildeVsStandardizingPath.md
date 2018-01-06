@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Isn't it better to use     stringByStandardizingPath than     stringByExpandingTildeInPath? The former will follow symlinks and the latter won't, but I always see     stringByExpandingTildeInPath and hardly ever the other one. How come?
 
 

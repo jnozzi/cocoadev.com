@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The following is from http://www.lucasnewman.com/iphone/

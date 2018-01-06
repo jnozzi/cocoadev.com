@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you have a full screen application and you don't want the dock to get in the way (such as iMovie 2), set the LSUIPresentationMode in your info.plist to 1 as is below:
 
     	<key>LSUIPresentationMode</key>

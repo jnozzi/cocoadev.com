@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there any way to be notified when a textView is scrolled by user?

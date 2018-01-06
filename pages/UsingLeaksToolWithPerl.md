@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 You can use the leaks tools with perl to create terminal output that is easier to read (at least for me).
 
 I am not a Cocoa or Perl expert, so I imagine there is a simpler and/or more elegant implementation of the following.  However, I thought I would share it as it is has been very useful for me.

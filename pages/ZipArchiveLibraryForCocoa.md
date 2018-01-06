@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know of a Zip class, library, framework, etc... for Cocoa? I want to be able to Zip files and folders with my program, and I am currently General/NSTask-ing to Unix to the built in Zip tool. The only problem is that when the files are decompressed, the Mac headers have been stripped, so Mac OS dosen't recognize the file!! (i.e. I zip an application and it stripps the "appl" from the file. When I unzip it, it is unusable.) The files need to be compatible with windows and Mac systems. I know that the stripping is not part of the Zip format, since utilities such as General/ZipIt seem to create zip files that unzip just fine.
 
 --FD

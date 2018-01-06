@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a long, wide table spanning two pages which I wish to print in a  Document application.  I use the code below straight out of Hillegass (2d Ed).  It works flawlessly in landscape mode producing two perfectly printed pages EXCEPT that the column header titles are not printed although they are part of the table view.   
 
 How can I get the column header titles to print? (I don't want to print the entire window because it contains irrelevant stuff.)

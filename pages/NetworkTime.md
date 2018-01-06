@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am attempting to synchronize to a network time server from a cocoa application, but have not been able to.

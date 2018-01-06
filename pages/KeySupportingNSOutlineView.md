@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Below is an NSOutlineView subclass which overloads keyDown: so that

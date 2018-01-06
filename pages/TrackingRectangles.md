@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Tracking rectangles are a feature of     General/NSView and     General/NSWindow which allows you to specify a set of rectangles within an     General/NSView that will trigger method calls when the mouse pointer either enters or exits the rectangle.
 
 General/CursorRects are a closely related concept. They are a kind of tracking rectangle that specifies which cursor will be displayed when the mouse is within them.

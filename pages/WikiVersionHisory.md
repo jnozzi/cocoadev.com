@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Server's down now.
 
 On the plus side, this site is now using the modifications. Cheers Steven! -- General/KritTer

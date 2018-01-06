@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 It is high time that CocoaDev had an organized approach to discussing product security and registration issues. People's livelihoods are at stake. But that does not mean that people's *lives* are at stake. Perspective is important.

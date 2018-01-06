@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 See also SignalsSentOnCrash.
 
 To include a page in this list, put \\%\\%BEGINENTRY\\%\\%ErrorsAndWarnings\\%\\%ENDENTRY\\%\\% on the page.

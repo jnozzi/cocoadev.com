@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, I'm wondering if I can ask everyone a couple questions. First, how did you learn Cocoa? and second, how long did it take to develop any level of proficiency in it?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know where I can find a format guideline for PSD (Photoshop Document), or if the graphics API that Cocoa uses supports PSD as a layered document?
 
 

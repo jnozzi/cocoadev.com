@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey,
 I've been using this class for a while, and thought that someone might find this useful. It is a hack up if various sample code from a long time ago, but I gave it the once over, and it works.
 
@@ -101,7 +105,7 @@ static OSStatus WindowClosedHandler (
 // --------------------------------------------------------------------------------------------
 - (BOOL) installWindowCloseHandler
 {
-	EventTypeSpec eventList[] = {{kEventClassWindow, kEventWindowClose}};	
+	EventTypeSpec eventList[] = {{ "{{" }}kEventClassWindow, kEventWindowClose}};	
 	EventHandlerUPP	handlerUPP = NewEventHandlerUPP(WindowClosedHandler);
 	
 	OSStatus err = InstallWindowEventHandler(

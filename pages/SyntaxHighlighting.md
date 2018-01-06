@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/SyntaxHighlighting is something that a lot of good code editors do to highlight different bits of code at a glance. To illustrate, use of Xcode with syntax highlighting will turn words like "int" and "id" one colour, but items in quotes will go quite another one.

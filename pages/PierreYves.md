@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, I'm Pierre-Yves Rivaille, I'm a GNUstep developper. You can reach me at
 <pyrivail at ens-lyon dot fr>.
 

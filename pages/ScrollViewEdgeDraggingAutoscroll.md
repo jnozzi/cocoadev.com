@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This topic discusses how a scroll view automatically scrolls its document view when a drag and drop action is in progress and the item (being dragged) is over an edge of a scroll view. The default behavior is for the scroll view to nudge its contents over in the direction of the edge (e.g. if the dragged item is hovering over the left edge of a scroll view the document view will scroll to the left automatically). Below, is one way you can override this behavior. 

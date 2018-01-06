@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 StevenFrank asked me to summarize an answer I gave on MacOsxDev.

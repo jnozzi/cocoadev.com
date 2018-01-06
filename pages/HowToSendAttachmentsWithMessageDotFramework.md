@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey,
 
 Working with Message.framework I've noted some difficulties sending and working with attachments.  Has anyone else has this problem, or dealt with this?  I know that there was a post to this effect in the tutorials area, I made a post there a few days ago but there hasn't been much attention payed to it.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm new to making cocoa development and am not too familiar with this, so I would really appreciate the help.
 
 The problem:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have created an NSPanel in IB which I use as a sheet.
 
 I want this sheet to have a resizable width, but fixed height. Unfortunately if I set the minimum and maximum height to the same value in IB, that value will be for the window *with* a title bar.

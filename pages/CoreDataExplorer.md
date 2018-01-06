@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Core Data Explorer, which is part of FScript, provides interactive access to the new Core Data layer in Mac OS X 10.4. 

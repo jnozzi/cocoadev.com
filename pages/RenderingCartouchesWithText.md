@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know how I can get nice little rounded cartouche like boxes with text in them?  You know how the new panther mail has the little round boxes for email addresses, or how, Safari toolbar items get rounded highlights when they're moused over?  How can I draw those and preferable have them as Cells so that I can stick them in Outline views?  Thanks!
 
 ----

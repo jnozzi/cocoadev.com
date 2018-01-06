@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Similar to how e.g. the "Edit" menu title highlights when the user press cmd-c (Copy) I want to highlight the title of another menu, when the key equivalent of an item in this menu is pressed.
 
 The problem is that the key equivalent is actually sort of a sequence, so it's too complex to be handled by the item itself. So I handle it in the NSResponder which is the target for the menu item.

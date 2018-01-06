@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 So, I've been writing an application that uses a physics simulator and a lot of opengl as well as a "brain" engine -- these are all safely & separately threaded and work beautifully. However, my GUI, which is pure Cocoa ( the physics, the brain and the graphics are c++), needs to keep updated to reflect what's happening in the simulation -- since I can't really use callbacks as the environment is continually changing, I use timers to poll the simulation and keep the GUI synchronized. 
 
 *What do you mean by �the environment is continually changing�? That there is no natural place to make the callback?*

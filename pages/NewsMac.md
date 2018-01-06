@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 One of the many RSSNewsReaders for OS X...
 
 Created in the UK by T**'hinkMac software.

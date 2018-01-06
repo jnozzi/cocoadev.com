@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Wiki sites work because of collaboration. They work because of respect. They work because of people tidying things without drawing attention to themselves.
 
 PageCops are those who, despite the fact that the system is resilient to almost any sort of attack, still take it upon themselves to loudly discourage PageCriminals.

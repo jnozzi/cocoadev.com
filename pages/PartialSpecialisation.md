@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In CPlusPlus you can write a generic function or structure using templates. PartialSpecialisation refers to providing code for the generic function or structure (class) when one or more of the template parameters are more specialised.

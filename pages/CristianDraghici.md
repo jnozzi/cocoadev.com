@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Relatively new to Cocoa (2 yrs), living in Bucharest.

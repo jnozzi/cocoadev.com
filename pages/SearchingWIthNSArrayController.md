@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a problem with NSArrayController. Specifically I have (1) a Controller class (2) an NSObjectController (3) a NSArrayController which ties to an array in the controller class through the object contoller, this array controller is also responsible for displaying the contents of a NSTableView because each table column is bound to the array controller. I could easily create, update and remove records in this table view using Cocoa bindings which worked excellently.

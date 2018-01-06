@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a document-based application. 
 
 However, the "save"and "print "button I need to implement are NOT in the main window--- this means that I can not implement print and save by overwrite NSDocuments' methods?? 

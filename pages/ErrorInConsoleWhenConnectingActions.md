@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When I compile my app I get this error:
 
     

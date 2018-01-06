@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 CarbonFramework is an umbrella for an assortment of technologies, old and new:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NeXTSTEP, OpenStep, and Rhapsody used a formatted ASCII text file as its PropertyListFormat. Mac OS X still supports this format for some things, although the preferred file format is XmlPropertyLists. The format looks like this: 
 
     

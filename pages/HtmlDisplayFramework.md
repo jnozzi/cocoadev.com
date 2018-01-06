@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ParsingHtmlInTextView works fine for local documents, but if you want to load a document from another machine there are issues, images not refreshing after they load for example.
 
 There is a private framework that Apple has in /System/Library/PrivateFrameworks named HTMLDisplay.framework. If you do a ClassDump on this framework, you will notice a boat load of handy classes and methods for dealing with HTML.

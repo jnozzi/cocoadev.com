@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
   
 
 I have written a plugin project using the article on cocoadevcentral. I want other people to create plugins easily by changing the code i wrote. To make it simple i prefer other programmers don't have to create a new project and change project 's settings and variables, so the idea is to copy the project and only change the code. I've heard about saving projects as templates. When the template is loaded, a copy of the project is created, so the developer can work on this copy. Do you know anything about these templates? How do i save a project as a template?

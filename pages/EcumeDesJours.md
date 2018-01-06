@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 communities like this make it all come together! 

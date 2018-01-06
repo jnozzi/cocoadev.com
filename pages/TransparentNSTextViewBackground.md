@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you want to see through an General/NSTextView instance that is the document view of a scroll view, use the following code:
 
     

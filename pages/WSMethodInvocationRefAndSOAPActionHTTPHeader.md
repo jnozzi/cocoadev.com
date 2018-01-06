@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've discovered how to make SOAP calls with the General/WSMethodInvocationRef and related functions, but I cannot make a General/SOAPAction appear in the outgoing HTTP header. Does anyone know how to do this?
 
 It seems like it ought to be     General/WSMethodInvocationSetProperty( 

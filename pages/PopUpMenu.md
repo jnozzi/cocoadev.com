@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NSView's have a method to associate an event with a context menu (    menuForEvent:). Here's an example of how you can use this method: --zootbobbalu
 
 *some custom view*

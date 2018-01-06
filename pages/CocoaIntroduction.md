@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **New to Cocoa? - Don't be afraid!**
 
 We're here to help, after all. While this site doesn't offer all the things you'll ever need, it *does* offer some useful articles to get you started:

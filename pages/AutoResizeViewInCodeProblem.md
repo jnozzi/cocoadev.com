@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 having problems with autoresize.

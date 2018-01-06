@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Ask Solem Hoel**
 *-- developer/reverser*
 ----

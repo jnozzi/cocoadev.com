@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi there. I have discovered a annoying bug of NSTableView, but I'm not very sure if its really NSTableView<nowiki/>'s problem. I've written a little test app to reproduce this behaviour. It consists of a simple cocoa app with a single main window, with a custom view inside, that has a tracking rectangle that covers its entire bounds rectangle and accepts dragging of filenames. This is the code of the subview: 
     
 /* MyView.h */

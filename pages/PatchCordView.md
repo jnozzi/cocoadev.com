@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do you make a patch cord interface? Something like Quartz Composer / MAX MSP / PD
 
 ----

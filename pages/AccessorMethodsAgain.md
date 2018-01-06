@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I can't find any info on the web or in my O'Reilly books about why you need accessor methods at all.  why can you not just access the variable values directly?  what is an accessor method good for?
 
 in other words:

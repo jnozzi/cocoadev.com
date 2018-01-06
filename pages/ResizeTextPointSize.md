@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wanted my text to scale with my NSTextView, so I tried to pull it off with the following methods. I came fairly close, and I think the resulting issues may be with the NSScrollView. If anyone has any suggestions on how to improve or increase the accuracy, it would be very much apreciated. 
 
 Updated Oct. 12, 10:51PM -- Major speed boost

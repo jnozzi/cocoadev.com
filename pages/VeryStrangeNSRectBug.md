@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've used General/NSRect (via General/NSMakeRect) many times before without any problem. Until now. I have four floats that are the result of various calculations. The rect I'm creating is meant to be the bounds of an object drawn in a view, and as the view scales, so will the objects drawn within it. Here is the code I've worked with thus far:

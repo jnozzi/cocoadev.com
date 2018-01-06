@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The physics library I'm using for my simulation system has a tendency to become numerically unstable when peculiar things happen in a simulation. The library, when things get too hairy, calls abort() to close up shop. Now, my app uses this library and that means that if a simulation goes gonzo the whole app comes down with the appearance of a crash -- e.g. it brings up the crash dialog with the SIGABRT message. Of course, I could do a search-n-replace in the physics library's code to replace abort calls with something more flexible, but I'd rather keep the physics library as is, since I don't have CVS write access to the repository and I think it'd be unlikely the maintainers would accept such a large patch for something which is avoidable through setting up of signal handlers.
 
 So, what I'd like is to be able to catch the abort with a handler, and in my handler stifle it and gracefully stop the simulation and put up an error/warning dialog. 

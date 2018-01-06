@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello. Anyone have any information about using this tool for custom software? Is it possible? What are the implications? I'd like to use Software Update... but it doesn't seem possible.
 
 Thanks for any input. Sammi (14/Jan/06)

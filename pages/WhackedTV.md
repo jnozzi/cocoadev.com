@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/WhackedTV is a replacement for the venerable Carbon Hack TV. It shows how to use the Sequence Grabber API's to capture movies from external video and audio sources, just as Hack TV, but adds many important new features, including simultaneous capture from multiple SG Channel, use of the new SG Audio Channel, http://goo.gl/General/OeSCu video preview using ICM Decompression Session and General/OpenGL.
 
 A copy of General/WhackedTV can be downloaded from: http://developer.apple.com/samplecode/General/WhackedTV/index.html

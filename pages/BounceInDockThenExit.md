@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm creating an application that uses an external library. I've added the library to the project and compiled, everything run fine here, but on any other computer it fails. It just bounces a few times in the dock and then retires with not a single squeek.
 
 {FrodeDanielsen}

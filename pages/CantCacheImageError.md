@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Why do I get a "Can't cache image" error when I try alloc'ing an NSImage?
 
 ----

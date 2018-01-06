@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've having some trobles with image scaling.

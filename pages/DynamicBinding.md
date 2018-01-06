@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 DynamicBinding is a system that puts off decisions about what method is being called until the program is running. This is done by deciding first what type an object is, and what method is being called.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can somebody give me anything that can help me understand Collision Detection in OpenGL.
 I've tried NEHE but I didn't understand it because it also used .cpp files wich I don't understand!
 Anything but that will be great!

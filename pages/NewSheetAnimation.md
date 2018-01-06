@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Okay, so Panther brings a new sheet animation style (where the sheet seems to curl out), but I can't see how to get my current sheets to do this.
 
 Anyone have any idea? -- GarrettMurray

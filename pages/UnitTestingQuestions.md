@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do we test code which use floating points? E.g. we may have a function which return the intersection(s) between two lines. But floating points can only be compared within a given epsilon, and what good is our test if it is not exact?
 
 *

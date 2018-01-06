@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There have been many times when I have debated over whether to use Java (JaVA) or Objective-C (ObjC) to write a Cocoa program.  This page is here to list and discuss the pros and cons of using each language with the Cocoa frameworks.

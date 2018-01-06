@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Description** 
 
 I am trying to get the printing to work in a Document-based Application. So far I have not succeeded. Is there someone that has an easy example on this...

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How can I get an FSSpec for STDOUT in Carbon?

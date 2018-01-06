@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 NiAccess used to be the framework for manipulating NetInfo from Cocoa applications (it's what NetInfoManager uses), but it has been deprecated and is going away.

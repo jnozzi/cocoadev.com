@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Guidelines** 
 
 You'll keep this page easy to read and update for everyone by using the following guidelines:

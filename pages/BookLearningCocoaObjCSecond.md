@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 (See BookLearningCocoa for the old version of this book.)

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Internet-enabled disk images are described at http://developer.apple.com/documentation/DeveloperTools/Conceptual/SoftwareDistribution/Concepts/sd_disk_images.html
 
 ----

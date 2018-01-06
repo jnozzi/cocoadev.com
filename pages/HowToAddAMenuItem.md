@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 All you do to change the menus and menu items for your program is go into Interface Builder and play around with the "MainMenu.nib - Main Menu" window.  It is the smallest window of the four or so windows that are present.  It looks like a menu bar.

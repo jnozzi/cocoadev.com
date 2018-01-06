@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OpenBSD is the third branch of the BSD family, and also the newest.  It was created as a fork of NetBSD a few years ago, and they now peacefully coexist.  OpenBSD, despite its name, places great emphasis on security and is widely regarded as one of the most secure systems out of the box.  It also has a reputation for being fairly difficult to install.  Its most common use is in servers that will be widely exposed to the world and require the tightest security possible. --OwenAnderson
 
 Our Quadra 650 runs OpenBSD. It doesn't run anything under OpenBSD, but hey, one thing at a time. -- RobRix

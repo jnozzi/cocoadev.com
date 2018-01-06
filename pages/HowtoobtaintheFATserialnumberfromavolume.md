@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to retrieve the FAT serial number from a volume mounted on Mac OS X  from a C program.  Here is how one can do it from the command line.
 
 dd if=/dev/disk4s1 skip=67 bs=1 count=4 | hexdump -v -e '1/1 "%02X" " "'

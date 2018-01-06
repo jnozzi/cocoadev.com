@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have developed an Objective-C code which does some processing on images. I have a UI for the code. Currently several parameters are hard coded into the code. I would like the parameters to be user customizable. What is the most elegant way to approach this?

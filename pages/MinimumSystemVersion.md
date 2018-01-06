@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 You can set the minimum required system version in your application's Info.plist, the key being "LSMinimumSystemVersion". The list of available keys are on this page : http://developer.apple.com/documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/PListKeys.html.
 
 Note that LSMinimumSystemVersion is completely broken on Panther, making it more or less useless if you require 10.4 and up, and has various other bugs as well which make it useless in most situations.

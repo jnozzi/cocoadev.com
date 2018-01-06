@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a project with a class that conforms to NSCoding.  encodeWithCoder encodes three NSStrings and an NSMutableArray.

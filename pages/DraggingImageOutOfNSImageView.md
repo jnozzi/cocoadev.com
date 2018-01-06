@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any sample code to demonstrate being able to drag an image OUT of an NSImageView and drop it into other apps as an image?
 
 ----

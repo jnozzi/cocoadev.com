@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 For a few of the applications I've been working on lately, I've been creating some views in code rather than IB, just because it makes a few things easier for me. I've had no problems EXCEPT for this one, which I've spent hours trying to solve. To make this easy to understand, take a look at this picture:
@@ -67,21 +71,21 @@ The way it's looking, I might just have to give trying to fix this and use IB. I
 
     
 IB OutlineView:
-     ScrollView Frame: {{0, 0}, {480, 360}}
-     DocumentView Frame: {{0, 0}, {463, 342}}
-     ClipView Frame: {{1, 17}, {463, 342}}
-         ClipView documentRect: {{0, 0}, {463, 342}}
-         ClipView documentVisibleRect: {{0, 0}, {463, 342}}
-     HeaderView Frame: {{0, 0}, {463, 17}}
-     CornerView Frame: {{464, 0}, {16, 17}}
+     ScrollView Frame: {{"{{"}}0, 0}, {480, 360}}
+     DocumentView Frame: {{"{{"}}0, 0}, {463, 342}}
+     ClipView Frame: {{"{{"}}1, 17}, {463, 342}}
+         ClipView documentRect: {{"{{"}}0, 0}, {463, 342}}
+         ClipView documentVisibleRect: {{"{{"}}0, 0}, {463, 342}}
+     HeaderView Frame: {{"{{"}}0, 0}, {463, 17}}
+     CornerView Frame: {{"{{"}}464, 0}, {16, 17}}
 Coded OutlineView:
-     ScrollView Frame: {{0, 0}, {480, 360}}
-     DocumentView Frame: {{0, 0}, {465, 343}}
-     ClipView Frame: {{0, 17}, {465, 343}}
-         ClipView documentRect: {{0, 0}, {465, 343}}
-         ClipView documentVisibleRect: {{0, 0}, {465, 343}}
-     HeaderView Frame: {{0, 0}, {465, 17}}
-     CornerView Frame: {{465, 0}, {16, 17}}
+     ScrollView Frame: {{"{{"}}0, 0}, {480, 360}}
+     DocumentView Frame: {{"{{"}}0, 0}, {465, 343}}
+     ClipView Frame: {{"{{"}}0, 17}, {465, 343}}
+         ClipView documentRect: {{"{{"}}0, 0}, {465, 343}}
+         ClipView documentVisibleRect: {{"{{"}}0, 0}, {465, 343}}
+     HeaderView Frame: {{"{{"}}0, 0}, {465, 17}}
+     CornerView Frame: {{"{{"}}465, 0}, {16, 17}}
 
 
 Although there are a few 1px differences in spacing, there are no major differences. They're not listed above, but the bounds as well as the scrollers both had the same results; things may be spaced 1 pixel differently, but mostly they turned out to be the same.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have something like this in my application:
     
 if(FILE* fp = popen(..., "r"))

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When you save preferences, where do you put them? Which ones do you save in the user defaults? When you save them to a file, do you put it in the preferences folder in the user's library and call it com.companysite.program or do you save it in the resources folder for your program?
 
 ----

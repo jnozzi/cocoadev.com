@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **SnoizeMIDI**
 
 http://www.snoize.com/MIDIMonitor/Source/

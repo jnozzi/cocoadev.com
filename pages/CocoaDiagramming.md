@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Are there any software development tools that can be used to diagram the MVC paradigm? 
 
 ----

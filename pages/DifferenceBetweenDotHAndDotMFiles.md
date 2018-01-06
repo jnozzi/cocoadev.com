@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Not too much to it here. 
 
 .h is the header file (also known as an interface file) where you can declare your action and outlet methods as well as any methods that you will create yourself.

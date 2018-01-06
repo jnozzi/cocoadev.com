@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 With the release of v1.1 of our first iPhone application we encountered the following problem: where to put a user readable version number without introducing some kind of �splash screen�?
 
 One solution for this is, to put a text with the version number on the �Default.png�. This is an image which is displayed immediately when launching an iPhone app until the application is fully loaded and initialized. Usually this image is a �neutral� screenshot of the application itself.

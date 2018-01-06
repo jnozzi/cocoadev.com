@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The PowerBook is Apple's professional level laptop.
 
 http://www.apple.com/powerbook/

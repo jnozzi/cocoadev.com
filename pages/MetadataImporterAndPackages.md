@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 So, I have an application that saves a project in package format. The saved package consists of multiple RTF files and a single project data file. All that's working just fine. The trouble starts in the very beginning - the conceptual level. ;-) I'm trying to create a metadata importer that, when indexed by spotlight, the *content* of the RTF files can be searched, but is represented by the package itself. In other words, if I have the word 'foo' in one or more of the RTF documents in the package, I want the package itself to show up in a spotlight search. It's also worth mentioning that I'm doing it this way, rather than storing the RTF data all in the same file, because there could be many LARGE RTF files in any given 'project' package.

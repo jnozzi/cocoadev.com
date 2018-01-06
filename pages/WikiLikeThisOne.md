@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm absolutely loving this format. And I want to start one (or seven) of my own.  

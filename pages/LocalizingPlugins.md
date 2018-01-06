@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm working on a dynamically loaded Cocoa plugin which loads into a variety of applications.  The plugin is localized into a handful of languages using the normal Cocoa resource localization system of .lproj directories and uses the normal CFBundleCopyLocalizedString routines to get at its localized strings.  

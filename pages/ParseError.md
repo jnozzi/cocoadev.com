@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Original discussion pre-pended to ParseErrorAtCertainNameNeedHelp, which contains other examples of how to fix a ParseError
 
 ----

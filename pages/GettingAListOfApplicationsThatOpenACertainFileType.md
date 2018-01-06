@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I am looking for a way of finding a list of applications that will open a certain data type. For instance, if i have an image, and I want to give the users the ability to pass it off and open it in another image app like photoshop or preview, how do I get a viable list of those applications? I have searched for a while in the cocoa API's and I can't find anything yet. Please Help!

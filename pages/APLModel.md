@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A closed XML-based file format used by Apple for defining layout, options, and behavior for printing. So far, it's only been used in iCal, where it can be seen in dayview.aplmodel, fullview.aplmodel, and weekview.aplmodel. The format appears to consist of a bundle containing standard info.plist and version.plist files. In the resources directory of the bundle is the model.xml file, the most important part of the format and the file that actually defines the printing behavior. Associated .lproj directories also live here for localized strings.
 
 This format seems to be related to another mysterious format that's also only used in iCal: calcols, which appears to define gradient and shading behaviors.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There are many ways to use this site.
 
 First, and most obvious, is to start at the main page (CocoaDev), use the jumping-off points, and just browse around.  If you are a linear thinker, this is probably your preferred approach.

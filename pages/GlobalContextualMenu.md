@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to write a global contextual menu (well, one that works in the finder at least). Any suggestions on where to start? Are there any API's available, how should the bundle look and where to put it?
 
 

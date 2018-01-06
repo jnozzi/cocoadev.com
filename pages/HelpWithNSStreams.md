@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm a first-time cocoadev user, so please bear with me.  (My name's Adam Lang, in case anyone cares.)
 
 I'm using NSStream's class method 'getStreamToHost:port:inputStream:outputStream' to get streams to and from a remote host. From all indications, that's what they're for: the documentation says: 

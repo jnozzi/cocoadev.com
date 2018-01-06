@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Sorry, I've tried the docs, searching the CocoaDev website and the Cocoa-dev list archives, but haven't found much pertaining to my problem. This must be a really strange request. 

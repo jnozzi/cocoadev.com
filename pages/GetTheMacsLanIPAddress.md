@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Anyone know the easiest way to get the local IPv4 address of
 
 the Mac an application is running on as an NSString ?

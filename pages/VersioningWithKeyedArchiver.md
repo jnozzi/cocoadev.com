@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I am trying to get versioning going now on a Application already distributed to many people. My App saves 2 arrays to a file which is then retrieved on startup. However now trying to add versioning is causing problems as I cannot get any version information to saved with the archvied information saved with General/NSKeyedArchiver. I thought a while ago I'd read that for some reason you can't save version information with General/NSKeyedArchiver and I was wondering if thats true? I've been trying using versioning with the same code that most people probably use:
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Objective Smalltalk is a project by MarcelWeiher to integrate Smalltalk directly with the Objective-C runtine.

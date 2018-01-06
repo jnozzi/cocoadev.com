@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Are there any OpenSourceMailClients? If not, anyone interested in creating one?
 
 Ofcourse there is. Thunderbird from mozilla is open source, even though it isn't built on cocoa.. 

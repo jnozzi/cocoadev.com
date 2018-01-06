@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The NObjective bridge provides the necessary tools to develop and run .NET applications (written in C#, VB.NET, etc.) that interact with Objective-C frameworks and libraries under Mac OS X. 
 
 

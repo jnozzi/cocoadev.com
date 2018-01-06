@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NSRange  fixRange=[fileName rangeOfString:@"."];
 NSString  *fileRealExtension=[fileName substringFromIndex:fixRange.location];
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a working document-based app which handles the viewing and editing of two different ( but related ) document types. Both are registered to the app and in both cases the correct nib file is loaded. 
 
 The issue is that when I click File->New... the app makes a new document of the first type. But what if I want to make a new document of the second type, or maybe a third in the future?

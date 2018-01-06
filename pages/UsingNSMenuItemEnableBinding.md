@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Having a (working) General/NSArrayController that feeds an General/NSTableView, I'd like to have a menu item, that is enabled only when something is selected in that General/NSTableView / General/NSArrayController.
 
 I fire up IB and chose the General/NSMenuItem. Under bindings I choose 'enabled':

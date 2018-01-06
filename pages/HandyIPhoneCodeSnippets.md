@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 slerp has a whole mess of handy snippets: http://phonedev.tumblr.com

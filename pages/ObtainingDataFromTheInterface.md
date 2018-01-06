@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My program will store what a user inputs in a text box into a variable after they click the enter button. How do I set things up so that the data will go into one of my program variables when the user enters something in the text field?
 
 ----

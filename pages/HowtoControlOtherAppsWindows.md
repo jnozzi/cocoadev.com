@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How can I control the windows of other applications?  I am attempting to write a true virtual desktop pager in Cocoa that will work like any standard UNIX virtual desktop pager (as in KDE, Gnome, blackbox, etc.)  Workspaces can be added or removed, each workspace shows an outline of the windows in it, and windows can be dragged (in the pager) from one workspace to another.
 
 One problem is that I cannot just do this at a process level.  Hiding and un-hiding processes would work, but what about applications with multiple windows such as mozilla (or terminal!)  I wouldn't want to limit a user to having all his terminal windows in just one desktop.

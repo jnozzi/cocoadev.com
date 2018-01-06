@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have seen plenty of examples of archiving, but all show only a single type of object being used.   I'm trying to save multiple objects used in my app, but it's not clear how to do this.

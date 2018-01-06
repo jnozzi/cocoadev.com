@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hope someone who has experience with designing large databases will see this. I have finished a parser that can pull artist, album, song and genre information from a cddb formated album information file. I'm going to create a database for these fields for about 2 million albums. What would be the best approach for entering all of this data. Should I create individual tables for each artist? Or is there a more clever approach that will yield the quickest searches? I like the way iTunes automatically searches all fields (artist, album, song...) when you type something into the search text field. It seems like this would be a really slow search if I had to search every field of every album info. I feel like I should maybe create two tables. One table is composed of entries for each album and another table is composed of entries for each word. The first table is used to search for artists and the second table is used for a general text search. Is this a poor design?
 
  ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I am a new developer and working my way through Cocoa Programming with XCode (2.4.1).
 

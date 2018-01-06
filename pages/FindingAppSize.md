@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am currently working on a gui wrapper for pbxbuild, and am wondering if anyone knows how I could programmatically find the size off an anygiven app within its projects build directory?
 
 jhazelgrove

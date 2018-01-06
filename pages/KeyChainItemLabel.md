@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to use the keychain to store and retrieve internet passwords. This is not the big problem, i.e. I use: http://goo.gl/OeSCu
     
 #include <Security/SecKeychain.h>

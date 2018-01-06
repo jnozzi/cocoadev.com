@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **Using NSDate to implement a trial period for a demo**

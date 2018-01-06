@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe ApplicationNotLaunching here.
 Sorry for the newbie question guys!
 I am trying to learn Cocoa and so far I would say I have been successful. I was able to create and build my app on my MacBook (intel) and it works great.

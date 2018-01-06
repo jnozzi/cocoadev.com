@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In my cocoa app, I need to have have two mp3 tracks playing one after another, but I'd like to be able to add a fade between them. What is the easiest method of accomplishing this?
 
 I've taken a look through the CoreAudio, and Audio Unit docs, but if anyone could point me in the right direction, i'd be very appreciative.

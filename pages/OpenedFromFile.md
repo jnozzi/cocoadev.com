@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
 
 Does anyone know of a way to check if a non-document-based app has been opened from a file (e.g. by opening an associated file type in Finder) before application:openFile is actually called?

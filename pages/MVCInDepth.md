@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I understand the basics of the MVC (Model-View-Controller) paradigm, but when one starts creating large applications that require multiple controllers, the distinction between the three object types seems to fade for me. I was wondering, does anyone know of an in-depth source for the MVC design pattern? Particularly targeted toward larger projects.
 
 Is it safe to say that data (model) objects "talk" to no other objects except those which they create? In other words, they are completely independent and self contained. It would be nice to say that data objects cannot contain objects in the AppKit framework, but I believe one can rightly store an NSImage in a data object. Would NSDocument be considered a controller object or a data object?

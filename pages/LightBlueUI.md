@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd like to do a tabbed window with a light blue background, instead of the standard background or brushed metal.
 
 Is there a way to do this?

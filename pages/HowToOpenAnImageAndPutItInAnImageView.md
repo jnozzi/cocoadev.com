@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This article shows you the code that will open an image file (jpg, gif, pdf, etc) in the finder, assign the image to an NSImage, and then put this image into an NSImageView.
 
 In addition to this code, you need to create an outlet for an NSImageView (named myImageView) in your header file.  You also need to put this code in a method that you attach to perhaps the "Open" item in the "File" menu.

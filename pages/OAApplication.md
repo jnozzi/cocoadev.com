@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Part of the OmniAppKit.
 
 OAApplication is a subclass of NSApplication that provides some useful functionality for applications using the OmniAppKit.

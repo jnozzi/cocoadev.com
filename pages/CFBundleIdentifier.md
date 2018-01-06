@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A Java package style name (like "com.myCompany.MyBundle") which is used to uniquely identify bundles.
 
 In ProjectBuilder, under "Targets", "Application Settings" set the CFBundleIdentifier in the "Identifier" textfield.

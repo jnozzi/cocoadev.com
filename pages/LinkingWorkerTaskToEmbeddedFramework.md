@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know how to link a Cocoa Shell Tool to an embedded framework? I have an application with a worker task that I would like to link against an embedded framework. The problem I'm having is getting Xcode to compile the tool against the embedded framework. I get "ld" errors even though I have placed the framework in a directory relative to the tool's path (@executable_path/../Frameworks). 

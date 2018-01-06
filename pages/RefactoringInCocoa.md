@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 in CocoaMostWanted, the topic of adding automatic refactoring support was mentioned.
 
 This page is a place to discuss refactoring in cocoa/obj-C.

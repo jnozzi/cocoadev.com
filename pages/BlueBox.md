@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The name for the full-screen environment in AppleRhapsody that enabled you to run previous editions of the Mac OS side-by-side with the AppleRhapsody desktop. This was the predecessor of Classic in MacOSX.

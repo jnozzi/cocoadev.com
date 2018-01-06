@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm using some code I got from Nehe tutorials
 
     

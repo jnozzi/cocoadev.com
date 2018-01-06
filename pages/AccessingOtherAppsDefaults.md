@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an application in which I need to determine if Safari's tabbed browsing is enabled.  This is in its defaults as the key "TabbedBrowsing."  However, there seems to be no way to programmatically determine what the value is.  Is there an easy way to that I'm missing?  Basically, I'd like to do something like "defaults read com.apple.Safari TabbedBrowsing" programmatically; in pseudocode (that doesn't work), that's     [[NSUserDefaults userDefaultsForDomain:@"com.apple.Safari"] boolForKey:@"TabbedBrowsing"]  Any help is greatly appreciated.

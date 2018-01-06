@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 I need some advice with Cocoa drawing. I have an NSView that is very complex. A single drawRect call involves hundreds of thousands of NSBezierPath calls. Here's my problem. I would like to have an independent graphic element move across the complex NSView drawing. How can I do this without having to redraw the complex NSView in the regions the independent graphics element is hovering over?

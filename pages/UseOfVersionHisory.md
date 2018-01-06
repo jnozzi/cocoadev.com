@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I thought as we now have version history on pages, we should discuss what it is acceptable to use it for. Here is what I think.
 
 Acceptable:

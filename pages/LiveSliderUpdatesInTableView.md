@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've made a sample program in which an NSTableView has two columns -- one has sliders, and the other displays the value of the slider. 
 
 Here's an example if my description isn't clear

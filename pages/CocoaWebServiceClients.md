@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I am interested in creating some SOAP web service client applications using Cocoa.  I have WSDL files that describe the interfaces to the service methods.  Doing some investigation with Google and on the Apple Developer web site I came across the following options.  
 

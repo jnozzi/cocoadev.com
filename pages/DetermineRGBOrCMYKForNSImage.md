@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi.
 
 I want to determine the color space for any NSImage object - [myImage representations] objectAtIndex:0] colorSpaceName] doesn't quite cut it, it shows me [[RGBColorSpace for nearly every image, even if they are CMYK...

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a Cocoa API that can deal with sound data in the form of a snd resource?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm starting a personal project to familiarize myself with GUI
 components and string handling in the Cocoa framework.  I figured
 it would be interesting to create a pair of simplistic ASCII

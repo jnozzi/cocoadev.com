@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I had a question on Object Creation and Disposal.

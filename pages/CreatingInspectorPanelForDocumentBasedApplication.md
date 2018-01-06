@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 With the term "inspector panel/palette" i mean singleton NSPanel window with it's NSWindowController, Nib, what is used represent some aspects of active NSSDocument subclass or just the window as seen in Photoshop (for example layers panel), Pages (Inspector) and so on. To create that shiny, shaddow casting panel, use the same technique as for other singleton windows+controller+nib packs (think "Preferences..." window).
 
 Here I'll try to describe how i set up synchronizing the document window with inspector panel.

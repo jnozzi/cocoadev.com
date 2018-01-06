@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Any time you're coding, you can split your code into two conceptual groups:
 
 

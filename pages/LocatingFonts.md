@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 Is there any way I could create a font with NSFont fontWithFontName or use a font from the shared font library (or any other method) and locate it's path then show it in the finder?

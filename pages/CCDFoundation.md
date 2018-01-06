@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *oops*
 ----
 Okay, there are going to be some naysayers for this one, but hear me out.

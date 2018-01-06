@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is just the code for a scenario described in NSFileWrapper. Hopefully, this is a scenario that other might find useful! Now, I want some Comments (see  bottom of the page).
 
 It only saves the 'Main' part of a document. The rest of the document consists of 'Jobs' files that are being manipulated elsewhere and saved on the fly. The code to save those job files is not here, but this is not the point of that page, and is relatively trivial.

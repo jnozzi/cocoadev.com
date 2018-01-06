@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've always found cocoa text-rendering slow, especially when using NSLayoutManager, so I started an open source (MIT) wrapper for the carbon ATSUI.
 
 Its in C++.  I have made an objective-c wrapper, but its alot slower (comparitivly, it still flies past NSLayoutManager).

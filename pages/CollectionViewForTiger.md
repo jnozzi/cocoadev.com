@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a NSCollectionView like class that works on Tiger. It derives directly from NSView. I tried to customize NSTableView but there were too many bugs with drag/drop and scrollbars for it too work. If you don't need those features then you might want to start there first (see  http://www.joar.com/code ). --SaileshAgrawal
 
 This is written specifically with the requirements I had in mind. It has the following features and limitations hard coded into it:

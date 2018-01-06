@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Someone originally posted this over the HowToCreateNewPages page. I have reverted the page, and have created this discussion for the question.
 
 ----

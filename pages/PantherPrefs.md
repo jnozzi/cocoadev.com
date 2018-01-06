@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How did the System Prefs get those dark boxes? --JoshaChapmanDodson
 
 *See NSToolbar's toolbarSelectableItemIdentifiers and related methods*

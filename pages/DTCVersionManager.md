@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 DTCVersionManager by DanielToddCurrie -  Line of Sight Software http://los.dtcurrie.net
 
 DTCVersionManager is an open source class that can be used freely by any Cocoa/Objective-C developers. It allows the programmer to easily add version management to their OS X application, using a simple online text file containing version information.  It is threaded so that fetching the text file will not stall the application, and is written so that the user will not be interrupted if their internet connection is inactive, or if the text file is unavailable. The DTCVersionManager alert can be displayed as either a sheet or a modal panel. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [http://www.dozingcatsoftware.com/]
 
 An invaluable tool for ScreenSaver development. Runs your saver in a normal window.

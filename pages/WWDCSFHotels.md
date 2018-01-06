@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hotels for the General/WorldWideDevelopersConference in San Francisco. A wiki version of this blog entry: http://goo.gl/General/OeSu http://www.thefunnyquotessayings.com/cool-hilarious-funny-quotes-sayings/
 
 http://rentzsch.com/notes/wwdc2004HotelBrainDump

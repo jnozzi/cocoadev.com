@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 All right here is my predicament this time, originally I was using -setRepresentedFilename: to set the proxy icon for my program, however it leaks and naturally this isn't acceptable! Thus I have tried to go into carbon to get what I need done, but I have failed, here is what I have attempted:
 
     		NSURL * URLPath = [NSURL URLWithString:@"/Applications"];

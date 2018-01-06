@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I access the IrDA port using Cocoa?  There are various discussions on building lists of i/o devices using Carbon routines, but is there a Cocoa API?
 
 The IOKit is not Carbon. It is a C API, but it isn't Carbon. Look it up on Apple's site, or in the /Developer/Documetation or /Developer/Examples folders.

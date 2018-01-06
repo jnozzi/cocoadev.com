@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A ResponderChain is an hierarchy of objects that have the opportunity to respond to events received.

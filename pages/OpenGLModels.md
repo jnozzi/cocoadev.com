@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hey all,
          I've been getting back into OpenGL in cocoa again . I'm trying to find some tutorials/source code for importing 3D OpenGL compatible models.
  

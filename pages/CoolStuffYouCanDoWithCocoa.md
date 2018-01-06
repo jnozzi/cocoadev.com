@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To give an overall sense of the power of Cocoa, add in some of the cool stuff you can do with Cocoa that would be rather more difficult with more common systems. Please provide some clear examples with your comments.
 
 ----

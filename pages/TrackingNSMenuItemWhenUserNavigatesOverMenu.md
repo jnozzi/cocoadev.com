@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a way to get the current selected General/NSMenuItem when the user is navigating over the main menu?
 I want to display a small window beside the current highlighted menu with an example of what that specific option will do.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anybody know how to modify a va_list.  And in particular, how to append (or insert) items to an already existing va_list?
 
 ----

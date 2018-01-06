@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm creating an app, and I'm wondering how to make Cocoa automatically populate my "Window" menu.
 
 My dock menu populates with the contents of General/NSApp:windowsMenu, but how do I put this into my "Window" menu, which I'm creating manually through API (as opposed to to Interface Builder).

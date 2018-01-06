@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 With the help of CocoaDev folks, I finished a program that watches the USB port for a serial device, then it creates notifications when data are sent from the distant device. The data are 2-digit numbers, and they trigger a QuickTime movie to play or stop, depending on the first digit (which movie) and the second (play or stop). Unfortunately, in the "Real World," sometimes the movie keeps playing despite the fact that the electrical contact (the trigger to play the movie) has been opened. Since the hardware A->D converter only sends an "open/closed" circuit message (via a serial to USB converter), I can't recover from the loss of an event such as "open circuit."
 
 I'm using a fileHandle and readInBackgroundAndNotify to extract the serial stream from the USB port. Is this an efficient way to capture asynchronous data? Should I use a different method (readToEndOfFileInBackgroundAndNotify)? Are any of these methods superior for making sure that no data are lost? Perhaps there is a better way? I'd appreciate any advice that might be out there!

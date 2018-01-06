@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is it possible to use a number of images to create a multipage PDF file? I've seen some things around the net using text from an NSTextView, where adding images shouldn't be a problem, but it's not really a viable solution. Does anyone know how this could be accomplished?

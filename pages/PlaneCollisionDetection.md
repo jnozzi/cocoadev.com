@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm working on an OpenGL first-person project.

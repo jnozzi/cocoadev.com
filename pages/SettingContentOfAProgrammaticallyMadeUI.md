@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a listView NSView in my window. The purpose of this view is to hold a list of elementView NSViews.

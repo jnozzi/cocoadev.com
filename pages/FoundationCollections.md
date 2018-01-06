@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Foundation Collections classes are used for storing arbitrary numbers of objects in one place. There are several kinds of collection: an array, a dictionary, a set, and (ObjC only) a counted set. http://goo.gl/OeSCu
 
 Apple's documentation is at https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/Collections/Collections.html

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How to use check_compile_time() function and where is it ?
 
 ----

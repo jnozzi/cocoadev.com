@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Is there a simple clean way to get the progress (ie. bytes copied) of a file copy that is occuring in the background?

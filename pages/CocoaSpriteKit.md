@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Cocoa Sprite Kit is an "Artistic License" (very close to generic public source) 2D Sprite Gaming Kit for OS X. It handles user input, timing, graphics display, and collision detection.
 
 See http://csk.sourceforge.net/

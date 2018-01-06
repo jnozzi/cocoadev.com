@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/WebKit is available as an API as of Safari 1.0. Safari 1.0 installs a new version of Foundation with some URL loading gubbins. You'll need the General/WebKit SDK from http://connect.apple.com/ and, of course, your users will need to have Safari installed. I suspect Safari and General/WebKit will be included in the system in the next major release, and the headers/docs will be in the developer tools, but you never can tell.

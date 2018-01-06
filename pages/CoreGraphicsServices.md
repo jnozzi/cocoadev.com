@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
     
 /*
     Call 			no# args	arg 			type

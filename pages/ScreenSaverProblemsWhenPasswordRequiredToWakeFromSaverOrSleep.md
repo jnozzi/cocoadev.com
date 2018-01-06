@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I use something like TransparentScreenSaver  [1]
 
 for my screensavers - but with Mac OS X 10.3.x (Panther) something broke.

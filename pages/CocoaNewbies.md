@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 For anyone who is new to Cocoa and is afraid to post a discussion (I know I was long ago), feel free to contact myself or anyone who adds their name to this list.
 
 

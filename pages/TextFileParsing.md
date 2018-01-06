@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a simple txt file that contains a word list. There's something like 350,000 words in the file, each separated by a line break.
 I want to perform database style search in that word list.
 What kind of object would be the most efficient for that kind of task ?

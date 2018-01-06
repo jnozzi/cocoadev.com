@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know where on my mac I can find the source image for the spinning progress indicator?
 http://www.music-inspiration.com/progress.png
 

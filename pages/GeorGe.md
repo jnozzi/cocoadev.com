@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've visited this site quite a lot of times and it's great. It's one of the places I look when I'm stuck with my programming...

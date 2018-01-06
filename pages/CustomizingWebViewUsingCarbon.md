@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My goal is to customize the contextual menus in WebView within a Carbon application. I'd like to know upfront if this is even possible. HIWebViewGetWebView can be used to access WebView methods like     -reload and     -goback, but what about     -contextMenuItemsForElement?
 
 I need to use Carbon because I'm trying to accomplish this with REALbasic, which currently makes its apps in Carbon (though I believe this will change soon). It already has a control that accessed WebView, but it isn't able to customize contextual menus, which means I'll probably have to somehow make a plugin that uses contextMenuItemsForElement.

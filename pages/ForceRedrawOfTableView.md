@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Having some trouble with NSTableView.  It won't display the scrollbar properly, even though there are enough rows for it to be needed.  It shows the scrollbar as if there aren't enough rows for one to be necessary.  Here's the code I've used for a program which will display the fonts in a tableview.
 
     

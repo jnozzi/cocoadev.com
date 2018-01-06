@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm creating my UI in code (for "security through obscurity" as well as educational purposes). I have a table with a column that has an NSPopUpButtonCell as its data cell. The popup cell's content, contentObjects, and contentValues bindings are all bound to a controller that controls a list of "status" items. The list pops up and works just fine. The table column's selectedObject is bound to my table's array controller via arrangedObjects.status. Again, this works fine.

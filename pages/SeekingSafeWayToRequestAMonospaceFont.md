@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there a "reasonably safe" (i.e., "somewhat general", non-installation-specific)
 way to ask for a monospace font when using the NSFont class?
 

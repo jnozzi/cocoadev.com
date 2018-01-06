@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can I do the following:
 
     

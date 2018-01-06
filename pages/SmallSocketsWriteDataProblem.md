@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to write a DICT dictionary client using SmallSockets, and can connect to a DICT server properly, and retrieve the welcoming response from the server, all messages from the server I pop into a textview.
 
     

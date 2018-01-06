@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Just a placeholder for now - more to come later.

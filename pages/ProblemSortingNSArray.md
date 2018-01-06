@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am a beginner at this so sorry in advance for dificulties explaining this.
 
 I have an NSMutableArray with just numbers, and I have been trying to find out how to sort them.  I used the addObject method and added NSNumbers.  Is there anyway I can sort them before displaying the information on a table or textview?

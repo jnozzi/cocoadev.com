@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello,
  
  I'm not sure if any of you were ever familiar with Project-Dolphin, now Project-Orca, just basically a project where you download a program to run and it counts how many keys you type, as a fun little statistic, nothing too useful.

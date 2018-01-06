@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The easiest way to capture the EscapeKeyEvent from a text object (e.g. NSTextField or NSTextView) is to set the delegate to an object that responds to     control:textView:doCommandBySelector:. Here's an example:
 
     

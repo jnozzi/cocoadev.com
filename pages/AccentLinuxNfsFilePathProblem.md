@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I�m working with existing code that opens audio files for analysis using Cocoa.  I have a problem opening files that have accented characters in them, but only when the file resides in an nfs mounted folder and only if the nfs mounted folder is hosted from a Linux machine (A<nowiki/>ccentLinuxNfs).  The only other host I�ve tested was another Mac.
 
 I have noticed that finder also has a problem with A<nowiki/>ccentLinuxNfs files. I can�t copy these file by dragging and dropping it to my desktop, and finder does not display their name correctly.  I can, however,  copy the files from a console window if I use wild cards to avoid the accented characters. I can also run �sum� on these files from a console window and get the correct results.  The exact same file on a Mac hosted nfs mounted folder, and on a local folder can be opened with no problems and also display almost correctly and drag and drop/copy correctly in the browser.  All files without the accented characters in the L<nowiki/>inuxNfs folder also have no problems.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm interested in creating a sort of map building application.  Basically it will have a height map document (ie a gif), a terrain map document (ie a jpeg), and a master application document to keep track of the former two.  When the user opens a master document, a new UI opens with it's height and terrain maps loaded too.  When the user opens a height or terrain map document, that document is loaded into the current master document.  This is where my problem is.

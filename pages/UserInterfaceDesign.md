@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 QUOTE = Any computer-savvy eye can determine, at a glance, the usefulness and quality of an interface.
 *Whoa!!! I have to respectfully disagree. My first reaction to emacs' interface was *barf*. It is still *gag*, but I am now well aware of the remarkable effectiveness of it's UI. Remember folks that computer interface ergonomics is not just 'pretty layout' but a hard and fast discipline. An ugly layout of buttons can sometimes be quantitatively more effective than a minimal and pretty 'Apple-like' UI. Of course, if you are not sure, stick to the Apple UI guidelines, they have quite a bit of research behind them.* --General/JeremyJurksztowicz
 

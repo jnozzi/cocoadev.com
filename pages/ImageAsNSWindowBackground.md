@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 It looks like a simple problem, but I can't solve it. I need to set an image (a gradient) as window background. The problem is that in NSWindow method     setBackgroundColor: the image is tiled across the window. And when I try to draw image in window's content view     drawRect:, then the image is drawn everywhere except the toolbar.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a page to collect links to weblogs that are at least occasionally about Cocoa or Mac OS X programming. Please try to keep this list in general alphabetic order. 
 
 Podcasts:

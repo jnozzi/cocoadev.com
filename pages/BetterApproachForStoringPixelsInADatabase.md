@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have potentially large 2-D arrays of integer values with eac value representing a pixel on a grid, large being defined as processing 3+ arrays of int grid[30000][30000] integers each. These matrices represent a map surface. I would like to store this information inside a database for various reasons. 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working on a program that needs to scroll large (ie. long and with a variable font-size, ie. could be small could be large) text across the screen in a looping fashion.
 
 Currently, I am using an NSTextField that I simply slide across the Window to scroll. The text within the NSTextField is repeated twice and I simply loop back to the start once it gets to the middle point.

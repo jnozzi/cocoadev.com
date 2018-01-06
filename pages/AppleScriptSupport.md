@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have posted the source for an extremely simple AppleScript enabled Cocoa app on my site.  Interested parties can download it and read about it here:
 
 http://www.scifihifi.com/weblog/mac/AppleScriptDummies.html -link is not working anymore

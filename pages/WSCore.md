@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/WSCore is short for Web Services Core, which is an Apple-provided framework for accessing XML-RPC and SOAP web services that ships with Mac OS X. Apple's Web Services Core Programming Guide is located here: http://developer.apple.com/documentation/Networking/Conceptual/General/UsingWebservices/
 
 ----

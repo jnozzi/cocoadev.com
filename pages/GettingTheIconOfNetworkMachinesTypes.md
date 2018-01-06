@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In my application I wanted to show the proper machine icon for the networked machines on my lan that have bonjour records.
 it turns out it was one week worth or research. and a lot of people involved in the mailing lists helped me out with this.
 

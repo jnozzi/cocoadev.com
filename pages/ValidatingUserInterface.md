@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This page can collect various General/UserInterface validation techniques.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm starting with Cocoa and i'm getting mad trying to communicate between my classes.
 I use controllers -as i learnt to- for most of sources. Here is my problem :
 

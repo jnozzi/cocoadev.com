@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NSImage wont resize and save to disc correctly
 
 I'm trying load an image into memory, resise it then save it back to disc. However I appear unable to resize the image as the copy I'm saving to disc ends up with the same dimensions as the original image. 

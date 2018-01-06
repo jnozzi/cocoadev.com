@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What's the difference between compositing an image and just plain drawing it?

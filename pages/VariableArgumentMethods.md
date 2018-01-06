@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 General/VariableArgumentMethods are methods that take a variable number of arguments, such as General/NSString stringWithFormat:.
 
 stringWithFormat: accepts a formating argument, and then a number of arguments after that.

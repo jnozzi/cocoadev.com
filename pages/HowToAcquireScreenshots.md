@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To get a screenshot of your screen try this :
     
 Please port to Cocoa

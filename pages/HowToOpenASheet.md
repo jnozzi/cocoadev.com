@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To open a sheet you need to have two things, the window the sheet will be attached to and the window that's the sheet's contents.
 
 To open the sheet:

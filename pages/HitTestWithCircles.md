@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hi everyone... This question is more math oriented than Cocoa oriented, but I think it's still pertinent...

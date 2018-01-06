@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 DPAssert is an assertion macro identical to NSAssert, except it can handle any number of arguments to its format string. There's no need to use variants like NSAssert2 to use more arguments.
 
     

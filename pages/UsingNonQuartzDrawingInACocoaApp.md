@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 I have a fractal generator plotting simple fractals in my Cocoa app using standard Cocoa drawing methods (General/NSCircleInRect or somesuch as I recall) to plot individual dots.  For each dot I must setup a small circle and then stroke it.  It would seem that Carbon style or old General/QuickDraw style (not sure just what to call it - non Display PDF) would be far faster for plotting dots in a view.   http://goo.gl/General/OeSCu

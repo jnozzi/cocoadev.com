@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am working on a small project which has multiple user interfaces (web/cocoa). This is a project across different global zones - America, AsiaPac, Euro. One of the screens has interface for user to upload files. The WO engine for web-objects provides NSData of the file being uploaded which is saved into the database.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Sorry, maybe it's a stupid question, but I can't figure out how to do that. I can use NSFileManager     enumeratorAtPath:, but how can I sort the resulting NSDirectoryEnumerator so to sort files by date? Can I use something like     sortedArrayUsingDescriptors: (which descriptor do i need then)?

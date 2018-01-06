@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 PSMTabBarControl is an easy-to-use controller for an NSTabView that allows your app to have Safari-like tabs. Also see TabBarView class. PSMTabBarControl is used in Adium, iTerm, M<nowiki/>acVim, Vienna, Sequel Pro.
 
 Originally created by John Pannell [http://www.positivespinmedia.com/dev/PSMTabBarControl.html], Currently hosted at: http://code.google.com/p/maccode/ .

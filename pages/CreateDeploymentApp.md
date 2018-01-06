@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 How do you create a simple distributable Application with Xcode? I have tried to do this but when I move the application to another computer, it starts up and bounces and then goes away with a err=22 message in the console log. When I build the application in Xcode, I make sure its on deployment mode and ZeroLink is off just like I've found in other instructions. I'm running Xcode 1.5 on a G4. 

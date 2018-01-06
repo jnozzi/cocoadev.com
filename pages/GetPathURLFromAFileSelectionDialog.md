@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Snippet for getting a path url from selection dialog box
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to subclass General/NSDocumentController. Apple's docs at
 
     [http://developer.apple.com/documentation/Cocoa/Conceptual/Documents/Tasks/General/SubclassController.html] say

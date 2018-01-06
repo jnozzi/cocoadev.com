@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A 20-year-old student living in Milan, Italy. Also, sometimes a Cocoa developer. Mostly, a Cocoa English <-> Italian localizer.
 
 

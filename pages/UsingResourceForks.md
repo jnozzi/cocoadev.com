@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 General/ResourceForks were common under Classic applications, but they were unsupported by any other platform than General/MacOS. I'd like to be able to modify General/ResourceForks and read data from them from Cocoa, and if possible the new .rsrc files which have the General/ResourceFork data in the General/DataFork.

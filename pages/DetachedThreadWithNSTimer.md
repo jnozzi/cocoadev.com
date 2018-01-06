@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do I catch NSTimer messages within a detached thread?
 
 I have a timerController object with 2 methods: startTimer (which sets up an autorelease pool and then starts a repeating NSTimer) and timerClick (which updates the UI).  If this is run in the main thread, all is fine.  If I detach the thread (using startTimer as the selector) the timer starts but the clicks are never received by the timerController method.  

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To archive and unarchive from property lists, use the Foundation class NSPropertyListSerialization, available in 10.2 and later.
 
 Property lists are also used for nib files, keyed archives, and in methods such as -[NSDictionary writeToURL:atomically:], but this should be regarded as an implementation detail.  A dictionary saves itself in its own format to disk, which happens to today be a plist.  Similarly, -[NSDictionary description] returns a plist (provided all the objects in the dictionary can be written to a plist), but that shouldn't be relied on.  There is no guarantee that the description of an object won't change between system versions.  description methods are not for parsing, or really anything other than debugging.  

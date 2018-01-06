@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 There was a long thread on the cocoa list on how to "fix" NSDocument's untitled document name, which it returns (in English) as "Untitled". Now, the HIG say the first letter should be uncapitalized. One person (m) suggested some code to fix the problem in a subclass, and special cased German:
 
     

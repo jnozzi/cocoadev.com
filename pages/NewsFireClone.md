@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 *This is an attempt to create a free alternative to NewsFire, with similar effects. If you want more info on the various newsreader apps for our platform, see RSSNewsReaders. Some of that information was originally posted here, but has been moved to that page.*
 
 To get off the ground with RSS parsing, start with this example: http://ranchero.com/cocoa/rss/. Atom feeds may require something else.

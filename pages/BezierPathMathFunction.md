@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Can anyone tell me what are the mathematical algorithms used to draw Bezier paths ?
 I want to locate any possible coordinates along the curve with a defined resolution...
 

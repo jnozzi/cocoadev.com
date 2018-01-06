@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A fast processor (G4), now obsolete because of the GeeFive (G5).
 
 Has been used in the GeeFourCube, GeeFourPowerBook (Titanium and Aluminum incarnations), GeeFourPowerMac, GeeFourXserve, GeeFouriMac, GeeFoureMac, and now, the GeeFouriBook.

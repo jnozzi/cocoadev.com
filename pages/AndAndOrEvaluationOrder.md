@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is really a C question in the context of gcc3.3.  If I have something like:
     
  if (a || b)

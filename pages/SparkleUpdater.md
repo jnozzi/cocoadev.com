@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Sparkle is a module that developers can stick in their Cocoa applications to get instant (five-step install!) self-update functionality. By that, I mean that your app will be able to update itself, not just check for new versions: it�ll read the update information from an appcast on your server, download, extract, install, restart, and even offer to show the users release notes before they decide if they want to update.
 
 You can download it and see a movie of it in action at http://andymatuschak.org/pages/sparkle.

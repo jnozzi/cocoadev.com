@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to make an NSOpenPanel show hidden files.
 
 ----

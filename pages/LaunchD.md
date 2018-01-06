@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 launchd is the Apple-preferred way to launch background processes on OS X 10.4 or later, termed "Launch-On-Demand Daemons and Agents". launchd is in part a replacement for using inetd or cron.
 
 Under launchd, a daemon/background process does not need to fork/exec, call daemon() or do many other daemonish housekeeping things. It just does it's work and quits, to be launched again when the next scheduled run (cron-like) or registered port is opened. Although launchd has an API in launch.h, this is for use by daemons running under launchd and not required.

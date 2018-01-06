@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am writing some software for work that edits jpeg IPTC data and I've run into a bit of an issue near the end here. (I've had lots of issues, but this one is really "hexing" me.
 
 I feel like the solution should be simple, and that it's just me forgetting my C/C++, so I thought this would be a good place to ask.

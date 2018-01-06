@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am developing in PyObjC, but the mailing list for is kind of sleeping. Because this is a Cocoa-related issue I thougt why not try it here...

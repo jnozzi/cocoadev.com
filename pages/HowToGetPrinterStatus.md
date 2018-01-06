@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I make a code to send poscript files to printer.
 It's work fine but when the printer is not ready, the user send and send file to it and request stay into printer queue.
 

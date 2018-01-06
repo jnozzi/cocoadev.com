@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Implementing ClassCategories**
 
 This sample code comes from a mailing list post by Uli Zappe and shows how to implement ClassCategories:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://www.staronesw.com/CardMachine.zip

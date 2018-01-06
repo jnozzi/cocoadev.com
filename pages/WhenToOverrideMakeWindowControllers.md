@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, been fighting with this one for several hours.  I have an General/NSDocument which has multiple nibs.  Each nib has an associated General/NSWindowController. I want to show one of these nibs (windows) when the document loads, but not the others.
 
 I've overridden     makeWindowControllers in the General/NSDocument, initialized all of my General/NSWindowControllers, and called     addWindowController on each.  I'm thinking this is not the way to go about it, since every General/NSWindowController subclass that overrides     windowNibName shows itself when I create a new document or load one.  I just want ONE of them to show.  Ticking "visible at launch" on the windows doesn't seem to make any difference.

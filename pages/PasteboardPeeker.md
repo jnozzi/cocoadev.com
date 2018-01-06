@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An example application that demonstrates working with pasteboards using PasteboardManager. Can also be used to discover new UniformTypeIdentifiers.

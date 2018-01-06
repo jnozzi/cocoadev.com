@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been engrossed in Cocoa for a time now...and obviously there is the continued problem of memory management. 
 
 I was wondering, is there any way of showing how many times an object has been retained via an NSLog statement of some sort? For instance, I may have an NSArray and I want to check how many times it is retained. Is there some way of putting in a statement like NSLog([arrayName numAlloc]); or something similar?

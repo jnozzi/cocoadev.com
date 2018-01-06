@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A subclass of NSTableView that displays the ITunesStyleGradient.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have recently compiled my app for Intel Macs, and brought over all the frameworks and whatnot.  Finder info states that the app is Universal and it launches and runs on my brother's Macbook Pro fine (My development machine is my Powerbook).  But a certain action causes it to crash (and here's where it gets weird).
 
     

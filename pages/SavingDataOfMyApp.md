@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello.
 I need to save some data of my cocoaApp in the system library (I think in the system library....).
 I have done the app preference with a .plist file in library -> preferences and it works fine.

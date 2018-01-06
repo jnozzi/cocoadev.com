@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello everybody,
 
 I'm fairly new at Cocoa programming and have a question about the new CocoaComponent class in Java 1.4.1.

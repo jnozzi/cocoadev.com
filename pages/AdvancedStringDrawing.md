@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to move into some more advanced drawing in my views, and one of the first things I want to create is a mirrored text effect, similar to the mirroring of the video chat image in iChat, where it looks like a reflection. iTunes does this also in several places in the Music Store with images. (Yes, I know iTunes is Carbon). I am looking for a way to do it with text, just reflect it below the drawn text. How can I do this? I haven't worked with CoreGraphics too much. Any help is much appreciated. --LoganCollins
 
 ----

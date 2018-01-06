@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am not entirely sure what it is I need to ask, so instead I will describe what I want to do and list my possible solutions with their various issues. There are a few questions mingled in here, plus a general plea for advice - I hope this doesn't break the rules of the wiki.

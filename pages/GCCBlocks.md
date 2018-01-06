@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been wanting Blocks in ObjC for a long time. These would be syntax-supported closures, like the ones in PortableObjectCompiler, that are discussed on the CodeBlock page. I believe my approach is different from the other ones proposed here, and I want to see whether it makes any sense. (And I want to see if I can trick some unsuspecting people into implementing it for me.)
 
 The proposal is to integrate Block support directly into the compiler by modifying GCC. This would involve some syntax support and make the compiler depend on some externally-provided classes, much like the current @"" constant-string syntax, except more complicated.

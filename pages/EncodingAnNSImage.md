@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to encode an NSImage in a file with other data using NSKeyedArchiver?
 ----
 Yes.

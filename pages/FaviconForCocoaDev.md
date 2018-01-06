@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 There should be a favicon for CocoaDev so it's easier to find among bookmarks, which I am sure all of us have lots of. I whipped up a quick suggestion as a starting point: http://kovs.shacknet.nu/~markus/cocoadev-favicon.png

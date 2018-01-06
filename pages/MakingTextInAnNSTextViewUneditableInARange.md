@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm looking for a way to basically call setEditable:NO on an NSTextView for a specific range of text.  I'm writing a music score editor and using the text view to render the music, and I don't want them to be able to delete the Treble Clef, key signature, etc.  I'm working in a subclass of NSTextView of course.
 
 So, any ideas how to basically implement setEditable:range: ?  Any other solutions?

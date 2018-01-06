@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  (Begun November, 2004)
 ----
 SimpleSolutions -- **Table of Contents Page**.

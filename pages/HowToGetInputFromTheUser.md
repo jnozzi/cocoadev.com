@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The user can give input in many ways, through buttons, menu items, typing text in a text box, etc.  To handle the user input stuff, I would suggest putting it all in one place in your code.  To do this, you can create a class such as "MyController".  In this class you can set up all the things you want the buttons to do.  For example, you can set it up so that when the user presses a button, then a particular action is taken by your program.  You give this action a name and you configure this action so that it does exactly what you want.
 
 To get input from the user, make sure you are in Interface Builder.  Then...

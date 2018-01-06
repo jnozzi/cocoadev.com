@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I had reason recently to want to get inside Safari's favicon cache but I couldn't find any information about how to do it.  I came up with a method that could probably be greatly improved, especially since I was (am) utterly unfamiliar with the format that Apple stores them in.  The result seems hackish to me but it works.  I hope someone can use this and that many more can improve it or provide a better method.
 
     

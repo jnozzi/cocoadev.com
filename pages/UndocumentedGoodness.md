@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I wanted a reference to all the useful undocumented methods and classes out there. So, since this is Wiki, I created it.
 
 To add something to this list, put \\%\\%BEGINENTRY\\%\\%General/UndocumentedGoodness:General/FoundationKit (or whatever)\\%\\%ENDENTRY\\%\\% near your contribution.

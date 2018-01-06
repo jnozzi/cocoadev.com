@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 is there a way i could find the identifier for an application by it's name.  i.e. "iCal" would return com.apple.ical or whatever.
 
 thanks!

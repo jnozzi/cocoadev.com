@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 From http://ellkro.jot.com/General/WikiHome/iPhoneDevDocs/General/UIPushButton

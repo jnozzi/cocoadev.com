@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To understand DOSA see DOScriptingArchitecture.  The basic concept is to use Cocoa's built-in DistributedObjects APIs to implement scripting for applications on MacOSX with less code, more convenience, regularity, cross-language than the OpenScriptingArchitecture (AppleScript), and many other benefits besides.
 
 Some key pieces that I see as requirements and am working to build are:

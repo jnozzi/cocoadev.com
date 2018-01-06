@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone have information about using Cocoa Bindings with an NSOutlineView?

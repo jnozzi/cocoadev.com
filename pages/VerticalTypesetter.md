@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Has anyone tried to make a vertical typesetter?

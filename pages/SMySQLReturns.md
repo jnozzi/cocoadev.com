@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi all,
        I'm building a cocoa program in Objective C and I'm using the SMySQL framework to interact with my mysql server. Though I am having some problems.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've been looking to make a finder modification to add another contextual menu option but from what I've read around it seems that this can only be done in carbon.  Granted a lot of the reading I have found is from 10.1 and previous.

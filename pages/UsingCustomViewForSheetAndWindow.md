@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I had a need to display an interface as either a sheet or a stand-alone window depending on the context it's used it.

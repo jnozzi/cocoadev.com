@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A collection of information on how to implement distributed computing with Cocoa, i.e. write applications that solve a problem by dividing into many tasks, each of which is solved by one or more Macs.
 
 

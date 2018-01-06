@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I don't want the calendar selector, like in the lower left hand corner of iCal.  I want the big-time Calendar, where I can put appointments in and the user views them by month.  How would you suggest going about doing this?
 
 ----

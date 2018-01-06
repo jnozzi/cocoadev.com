@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 In order to program in OSX, you need a computer running OSX and a compiler (an application that converts source code to binary machine-readable code). For your development environment, why not use Apple's IDE, called General/XCode. It is free as part of your OSX system software and you can install it from your system installation disks (CD or DVD). The Developer Tools are installed  a folder on your boot drive called "Developer". The General/XCode IDE application will be in the /Developer/Applications folder. The Developer Tools also includes General/InterfaceBuilder, an application for prototyping your graphical user interface and more.

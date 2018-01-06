@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writting a Foundation framework program and wanted to use <stack.h> however it seems to not exist in the standard developer release.  Has Apple provided something to its equivalent? 
 
 ----

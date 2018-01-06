@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do you sub-class General/NSWindow in order to handle key-presses that aren't handled elsewhere?
 
 ----

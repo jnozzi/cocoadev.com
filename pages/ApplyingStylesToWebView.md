@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there an easy way to apply a CSS style to a page in a WebView?
 
 Thanks.

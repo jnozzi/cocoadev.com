@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The Panther General/CoreFoundation release notes mention a new General/CFHost. I can't find it anywhere, though. Where is it?
 
 �General/DustinVoss

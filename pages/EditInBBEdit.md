@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 You might have seen some applications that have an "Edit in BBEdit" menu option, where a file off a ftp server is sent to BBEdit for editing, and then when saved it is uploaded to its originating spot.
 
 This is done using the ODB Editor Suite - "an Apple Event-based interface that developers may take advantage of in order to provide better integration between their products and BBEdit"

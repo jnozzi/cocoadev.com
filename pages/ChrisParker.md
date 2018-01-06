@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Chris Parker has had a long and varied computer career to the point where he's pretty much almost a platform agnostic most days.

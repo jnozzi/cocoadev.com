@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello
 
 I have a method that checks against 2 of the three kinds of file visibility (prefixed with a . and the name of the file being in a folder called .hidden) - but how do you check against the last type, the invisible flag embedded in the file.

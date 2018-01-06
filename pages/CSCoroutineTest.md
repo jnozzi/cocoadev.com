@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a small test for CSCoroutine. It simply runs two interleaved loops that count up and down.
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I struggled with this for a long time, and the solution was a bit hard to find elsewhere in General/CocoaDev, so I thought I'd add a separate topic.

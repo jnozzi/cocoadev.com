@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A man’s sexual health is not only about sex but also about mental health and that is why when erectile dysfunction hits it could be a depressing time in a man’s life. The good news is that you can buy Cialis online and Cialis is probably the best ED drug that exist. You can get other brands of ED treatment yet many reasons exist why Cialis has to be the drug of choice. About 35% of men has ED. Listed here are several reasons why Cialis is the best one to use.
 
 An Overview About ED

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a one-column table into which I read several doubles as strings. I would like to format these doubles as dollars and cents---dollar sign, comma separated triplets, etc.  I realize that I could drop a formatter on the table column header, but I would like to do the formatting cell by cell as the doubles are read in because the column will also contain other kind of quantities.

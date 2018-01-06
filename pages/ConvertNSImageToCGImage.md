@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
   I've been searching for a simple way to convert an NSImage into a CGImage(CoreGraphics) but couldn't find anything. So this is the neatest way I could figure via the toll free bridging functions of NSData and CFData. 
 
     

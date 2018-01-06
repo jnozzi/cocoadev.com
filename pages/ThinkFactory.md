@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The General/ThinkFactory is a set of tools written by General/OneZeroOneNineOneTechnologies (10191 Tech) for developers interested in writing General/ArtificialIntelligence-using software.

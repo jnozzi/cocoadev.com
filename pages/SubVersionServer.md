@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I did found several pages about General/SubVersion acting as a client. None about a server setup. So I hope nobody will complain that I created a new page for this.
 
 For now I use a localy reposistory, but would like to use a server setup. I did find other pages about svnserver but used with apache cq webdav, but I do not want to use that. Also I have no experience with Fink, if that is what I also needs to use. Is it posible that someone would love to write down the steps or a tutorial to set this up? Thanks

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 A basic override of drawRect which will show you how much of the view is being redrawn in a given pass.  Useful to help minimize drawing.
 
     

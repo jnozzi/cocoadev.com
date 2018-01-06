@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a large General/NSArray which is made up of several custom class objects. I occasionally archive the array (using General/NSKeyedArchiver) then save it to a file. Archiving the array takes several seconds and therefore halts the UI. As a result, I want to handle the archiving in a separate thread.
 
 What is the best way to do this? Is it sufficient enough to simply make the accessor methods thread-safe in my custom class? Are there any unexpected thread-safety issues when using General/NSKeyedArchiver?

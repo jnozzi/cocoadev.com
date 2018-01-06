@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I've been having a problem with providing storage for plugins in my document based apps.  Basically, I want to allow loaded plugins to store additional data in a document.  That seems simple enough; I simply add some mutable dictionary to my document class, and reveal it to plugins.  However, various problems arise when other plugin makers decide to use custom classes.  What happens is they add instances of some custom class to the mutable dictionary in the document, and then later on, after they have stopped using the plugin, they try loading the document and it fails, because the class description no longer exists.  This is also an issue I have been having when considering a change over to using Core Data, since it seems to choke when it doesn't have an entity description for something in a data store.

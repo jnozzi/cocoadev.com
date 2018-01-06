@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi, i am creating a search function for my program and i need the results to display in a menu under the searchfield, but i have no clue on how to force it to open when there is results and to close when there is none. Any help would be great.
 
 --TomHancocks

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have written a Cocoa adaptation of a board game and have been running it and testing it on a 1280x1024 resolution screen where most of the screen is used up by the various windows of the game.  My question is what coding techniques should be used so that the application will look as good and scalable down to 1024x768 and 800x600.  I can scale my custom view fairly easily, but I am unsure about the various windows in the NIB file that have fonts assigned by dragging the resource objects onto them.
 
 ----

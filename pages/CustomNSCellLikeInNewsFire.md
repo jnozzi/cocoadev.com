@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to figure out how they created the cell in the tableview on the left hand side in news fire.  It has a title in black, a sub title below it in light grey and a badge on the right with the number of unread articles for that feed.  Any help would be much appreciated.

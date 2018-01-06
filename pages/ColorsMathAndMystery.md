@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Long story short: I've been working on a program that does a lot with color comparisons. I've been using a computational intelligence method (particle swarm optimization) to find factors that can be applied against a color's red, blue and green components to give an accurate measure of some color aspect (e.g., how bright it is compared to another color).
 
 The following is one of the results (with the long floating point numbers being the "factors"). What I'm doing is, for each color component I'm comparing it to the other 2 components and applying a factor. So, for red I take red minus green and multiply it by a factor and then red minus blue, multiplied by another factor -- i.e., ((r-g)*rg + (r-b)*rb) where rg and rb are factors -- and I do the same for the green and blue components and then add everything up.

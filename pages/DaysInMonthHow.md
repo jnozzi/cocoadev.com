@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 How could I get number of days in any month?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A rapid development environment, similar to Visual Basic, published by REALSoftware. It is available at realbasic.com.

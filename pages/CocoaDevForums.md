@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In an effort to get a little more discussion going in the Cocoa Community I created a forum on SocialDetour.com
 You can access it here:
 

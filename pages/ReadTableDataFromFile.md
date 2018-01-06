@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 What is the best approach to reading ascii data (delimited by space, comma, tab, etc.) from files using Obj-C/Cocoa?
 
 Example file format: (actual files will be much, much larger)

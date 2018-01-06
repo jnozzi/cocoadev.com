@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to accomplish a fairly complex task using Regular Expressions and the OgreKit framework. http://goo.gl/OeSCu

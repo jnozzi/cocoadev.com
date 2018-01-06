@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone know how to create a NSPDFImageRep from a series of drawing commands (such as [bezier stroke] etc.)?

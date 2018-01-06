@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm wanting to create some new widget types that have the correct Aqua look (including being responsive to user preferences for tinting, etc.) As far as I can tell, the only "Theme" information that I can find is the Carbon Theme Manager API, which is someone limited for my purposes (doesn't give access to the actual brush patterns or gradients for example). I've tried calling the theme manager from my Cocoa application, but I haven't managed to get it to work, I suspect that it might be due to the fact that Carbon uses a different coordinate system?
 
 Here's one example of what I would like to do (there are others):

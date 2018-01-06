@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm interested in accepting plugins or extensions or what-ever-you-want-to-call-it in my application. The first one could be an implementation of a console, which should catch all notifications flying between my objects. Could anyone show a simple sample of it? -BobC. 

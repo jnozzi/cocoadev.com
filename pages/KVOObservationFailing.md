@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Greetings all,
 
 I seem to be having a problem with a manually registered observation.

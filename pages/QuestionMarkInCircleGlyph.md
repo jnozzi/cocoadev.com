@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have seen Apple use a question mark embedded in a circle (in textual context), which I think is a glyph somewhere, but I cannot find it.
 
 Does anybody know if this glyph has a legal unicode mapping?

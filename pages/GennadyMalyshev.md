@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Gennady Malyshev is me. I am new to this Cocoa buisness, and my spelling is bad. Yup. Thats about it.

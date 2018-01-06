@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My background has mainly been in PHP, which allows for very dynamic code like $object->$methodName(); where $methodName is the name of a method stored as a string.  You can also do $object = new $className(); where $className is the name of a class.
 
 I am currently working on a project where I am reading data from an XML file and would be creating instances of various classes based on this data.  I have looked into the Objective-C runtime to see how I might be able to do this, but I am wondering if there is a better way to do this that might not use the runtime library?

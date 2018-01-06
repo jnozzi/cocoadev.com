@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I want to get the URL from a file I have in my Sites folder. I've tried with fileURLWithPath in NSURL, but what I get is file://localhost/Users/username/Sites/filename and I want the adress that could be used from another machine; something like http://www.domainname.com/~username/filename.
 How can I get this address?
 

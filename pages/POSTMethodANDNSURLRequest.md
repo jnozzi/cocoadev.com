@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'd like to use the HTTP POST method to get my Cocoa app to communicate with my server.  I've already written code using NSURLConnection and NSURLRequest to download a given URL, but now I want to extend this to be able to request a URL that has POST data in the body.  Eventually, I want to be able to send a file from my Cocoa client to my server through POST.
 
 I see that there is a method 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 It is almost impossible to imagine a Cocoa program that does not use C loops.  They are just too useful.  Here are the different kinds.  Wonder what each of them does?
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Continuing string literals across lines in source code files; auto-concatenation of a series of individual string literals**
 
 Given ObjC code like:

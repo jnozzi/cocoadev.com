@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm using CoreData, and I have an NSTableView with an NSImageCell column. What I want to do is programmatically set a default image to be displayed until it is changed by the end user. I have subclassed my controller and set it up to where it sets a value right after creation of a new object using KeyValueCoding. What I need to know is how to change an NSImage to NSData so that the NSImageCell can understand it when the program runs. Can anyone help me? --LoganCollins
 
 ---- 

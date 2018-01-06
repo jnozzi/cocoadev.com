@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Chris loves Openstep and therefore, Cocoa.

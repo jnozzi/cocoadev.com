@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 NSPopupButton does not seem have delegate methods.  I need to know when the user has clicked on it and changed their selection.
 
 If it makes it any easier, it's bound to the selection/selection index of an NSArrayController.  It correctly changes the array controller, etc. but I also need something else to happen to the same window whenever the selection of the NSArrayController changes.  It doesn't look like NSArrayController has delegate methods, either.

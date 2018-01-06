@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have an app that uses the Spotlight API, but now I want to limit my search to certain folders e.g ~/Movies or ~/Photos

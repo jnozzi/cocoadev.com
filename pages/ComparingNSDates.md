@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I have two NSDates... I want to check if they both reference the same calendar day. They will always be at different *times*, but I want a simple way of checking that they are/are not times on the same day. I know I could do an isEqualToString: after cutting out the day-month-year part of the NSDate via descriptionWithCalendarFormat: ... but this seems rather intensive to convert a NSDate to a string just to check whether they are on the same day.

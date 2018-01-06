@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone know how to make a button like the tools button in finder.
 
 I have the graphical buttons (Up/Down state) but when I try to use this in IB, it looks ugly.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Will this work if  'id' could be any obj-c class. -- JP
 
     

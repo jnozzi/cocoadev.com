@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have written a simple NSDocument-based program in Cocoa/Obj-C. Now, I've realized that I should include other information in the document. Initially, there were two dictionaries of data: One is a day-by-day schedule, while the other is a series of objects containing various bits of other information. Version 2 will contain these pieces along with another dictionary of information. The documents are saved by basic coding then archiving routines, as described by Apple. My questions are: (1) If I load an "old" document into the new version, what happens? Will the program simply generate empty data structures for those pieces that aren't included when I     initWithContentsOfFile? (2) If not, how can I even load an old file so I can convert it to a new type? Must I make a whole document class to match the original as well as the document class to match the current version? For this purpose, the new file types will always contain all the elements of the old file type, plus others. Thanks for any insight. I've managed to cobble together some code that allows the "new" program to load "old" files, but I don't know if it's working because of luck or because it's basically OK to load files that are missing pieces as long as one doesn't try to ACCESS those pieces.... 

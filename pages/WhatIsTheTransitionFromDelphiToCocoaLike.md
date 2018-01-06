@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question:**
 
 What is the transition from Delphi to Cocoa like?

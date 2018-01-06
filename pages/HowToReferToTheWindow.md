@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Inside of a document-based program, how do you refer to the window that the document is in?  Or, the window a custom view is in?  --AlexanderD
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is it possible to locate the download folder in Cocoa (and/or Carbon) without having to delve in InternetConfig? None of the usual candidates (NSSearchPathForDirectoriesInDomains, FSFindFolder) do this, and InternetConfig makes it a pain by requiring me to use FSSpec -- a type that was marked as deprecated in the PowerPC -> IntelCore transition, thus making me worry about the portability of my code.
 What should I do? -- EmanueleVulcano aka l0ne
 

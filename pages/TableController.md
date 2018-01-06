@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 'taint no such thang. See General/NSTableDataSource.
 
 General/NSTableDataSource is an informal protocol implemented by objects acting as a data source for an General/NSTableView to provide the table view with data to display.

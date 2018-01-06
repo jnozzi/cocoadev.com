@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I have been getting some Signal 5 SIGTRAP errors... and have been over and over the code and simply can't see what is creating them.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An approach to programming wherein development of the lowest-level primitives required in a problem are written before the higher-level components that require them.

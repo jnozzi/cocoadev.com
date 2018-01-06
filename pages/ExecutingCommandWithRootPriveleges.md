@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am creating an application (and perhaps later a preference pane) to control an Apache web server. However, I need the user to have administrator priveleges to (a) start and stop the server and (b) save to the configuration file. However, Apple's Authorization Services documentation seemed very complicated. All I want is a quick and to the point method of executing an NSTask with administrator privileges and saving a text file with administrator privileges.
 
 ----

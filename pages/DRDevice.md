@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 http://developer.apple.com/documentation/Carbon/Reference/discrecording/CocoaDoc/DRDevice/Classes/DRDevice/index.html
 
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a pretty simple window that has a custom view inside a scrollview, and a progress bar and "%complete" text field under it.

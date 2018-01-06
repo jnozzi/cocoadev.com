@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My app needs to authenticate the user frequently to run a task that requires root priveleges (specifically, pmset). Would it be terrible to store the user's account login and password in the Keychain? Is there any good way of making it so the user doesn't have to type their password every time? Thanks in advance.
 
 ----

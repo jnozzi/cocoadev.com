@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AspectOnSketchOutput - part of AspectCocoa
 
 the following is the output of AspectOnSketch, the result of an ACFileLoggingAdvice as the AdviceObject to an LookupAspect on the program Sketch with a PointCut specifying all classes not in Foundation/Application/AspectCocoa

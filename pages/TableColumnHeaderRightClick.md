@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Describe General/TableColumnHeaderRightClick here.
 
 im trying to get a contextual menu to pop-up when a column header is right clicked to add and remove columns ala itunes. i've already added view options where you can add and remove columns via checkboxes (like itunes) but i also want to have right click work in the column header and can't figure it out for the life of me. the tables themselves have contextual menus so i already have that taken care of (thanks to alot of the information on cocoadev :) ) any help would be super appreciated.

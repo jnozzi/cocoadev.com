@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Understanding variables is essential to C as well as objective-C.  They are used the same in each language.
 
 A variable is a word that refers to something such as a number or a word.

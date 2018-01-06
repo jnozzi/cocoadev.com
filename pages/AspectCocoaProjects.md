@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 AspectCocoa is a way to intercept method calls and apply advice, this section is for all of you out there that think AspectCocoa might be usefull for something but don't know how to do it yourself to provide suggestions to help us whip up some good examples.
 ----
 

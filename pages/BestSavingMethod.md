@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hello, I have a question to ask.
 
 I have an array of dictionaries as my root source of data that is used throughout my app.  This works perfectly.  I don't use any custom objects (just a bunch of nested dictionaries and arrays) and on quit and startup I load/save with NSCoder.  This works too, but��� I am potentially dealing with a large amount of data.  My question is simply this, what would the benefit to using CoreData and an SQLite method - and would it require a major restructuring, or could I simply tell it to manage my array of dictionaries?  Thanks a bunch.

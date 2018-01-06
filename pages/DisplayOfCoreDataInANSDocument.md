@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have a NSDocument (not a NSPersistentDocument) where I load a data base file into for viewing (defined in a xcdatamodel).  I do define a NSManagedObjectContext variable (managedObjectContext) and a NSManagedObjectModel variable (managedObjectContext) with the appropriate Accessor methods.  In IB I bind the ArrayController (that controls the table that displays the data) two the managedObjectContext of the File's owner (the NSDocument).  The array is set to load the data automatically "automatically prepares content".
 
 When I open the document, it loads the data file I indicate just fine (that is because the accessor method (NSManagedObjectContext *)managedObjectContext is called during the loading of the nib file and loads a dummy file [if managedObjectContext == nil)] ) - and the data is displayed.

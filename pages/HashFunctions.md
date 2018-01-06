@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 here's some hash functions for those who like to optimize there core foundation dictionaries. These are C versions of the C++ versions post here -> http://www.partow.net/programming/hashfunctions/
 
 When you supply the hash hook function for CFDictionaryHashCallBack you have to cast the function correctly (e.g.     keyCallbacks.hash = (CFHashCode (*)(const void *))ELFHash;)

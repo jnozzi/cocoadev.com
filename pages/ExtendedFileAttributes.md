@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Tiger includes support for the "xattr" family of low-level C 
 functions in the BSD layer: getxattr(), setxattr(), removexattr(), listxattr()
 

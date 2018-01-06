@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Applications are the grouping of compiled, executable code and data files in a bundle given the .app filename extension. When you write a program in Cocoa, you are writing AnApplication.

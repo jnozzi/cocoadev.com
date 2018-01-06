@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been looking all over, but can't seem to find the answer to this simple question: How do I write to a file that doesn't exist yet in Objective C?  That is, how do I create a new file and then write to it?  The closest answer I can find is this post, here: General/FileIOandParsing.
 
 But I don't really understand what's going on with the call to "open".  Plus, I'm just shocked that there isn't some easy way with the General/NSFileHandle class.

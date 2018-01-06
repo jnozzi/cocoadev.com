@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Signals are a common UNIX facility which are used to signal a process about certain events. Common signals that programmers see are SIGSEGV (segmentation fault), SIGBUS (bus error), SIGABRT (abort program), SIGTSTP (stop process, what happens when you press ^Z in Terminal), and many others.

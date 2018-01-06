@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 When a discussion concludes, there are several ways we can reintegrate the discussion into the General/CocoaDev site. 
 * If you have asked a question and received insight, either from a response or through your own further efforts, make sure **all** the relevant information is on the page.
 * If it is a somewhat esoteric but very involved discussion, retire it to General/RetiredDiscussions.

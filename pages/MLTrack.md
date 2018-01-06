@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Part of the iPhone MusicLibraryFramework. An MLTrack represents a track in the phone's iPod library.

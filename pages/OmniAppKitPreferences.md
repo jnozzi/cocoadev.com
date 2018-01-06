@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I downloaded Omni's 10 public frameworks the other day and they seem really cool, but unfortunately, they're virtually undocumented and I don't even know where to start playing with them. The first thing that I'd like to do is use them to create a Preferences panel like Project Builder's, which seems to be possible with OAPreferenceController. If anyone could give me some tips on using this or other Omni classes, it would be very helpful(to others, too, I'm sure)

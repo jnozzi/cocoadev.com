@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm trying to code a drag-n-drop org-chart into my app. Basically, you'll be able to create departments and groups within those departments and be able to drag your personnel between them. Here is a basic drawing of what I want to accomplish:

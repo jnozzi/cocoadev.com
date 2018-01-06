@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Miguel de Icaza, Gnome and Mono project founder, had this to say during an article (< http://primates.ximian.com/~miguel/archive/2004/Sep-09.html >) critiquing Avalon:

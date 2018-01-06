@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CocoaDev RecentChanges, available as RSS 1.0 and Atom. Hosted by TheoHultberg/Iconara.
 
 http://www.oreillynet.com/images/icons/rss1.gif

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  see also the pages AppleHelp (about how to register your help pages with the Help system) and HelpViewer
 
 Some weeks ago I wrote the initial help book for my application. I placed a �CFBundleHelpBookName = "MyApp Help"� entry in my InfoPlist.strings and a �CFBundleHelpBookFolder = "MyApp Help Book"� entry in my info.plist.

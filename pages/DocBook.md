@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 DocBook is a SGML and XML-format for documents. Many programming books are written in DocBook (for example BookCocoaProgMacOSX and BookCoreMacOSXandUnix). The SGML-version is being phased-out (I believe) in favour of the XML-version.
 
 Being XML, DocBook can be transformed into any other XML-format, for example XHTML (and HTML), XSL-FO or text. XSL-FO, in turn can be converted to PDF (even though that does not work very well with current non-commercial tools).

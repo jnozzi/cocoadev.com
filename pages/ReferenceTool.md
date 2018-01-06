@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Tools for viewing development reference materials:
 
 

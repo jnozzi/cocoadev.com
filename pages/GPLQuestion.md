@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Are you allowed to use GPL code in a program that you sell? Couldn't you just distribute the GPL'd code with your program? Or does your entire program have to be open source if you include GPL'd code?
 
 ----

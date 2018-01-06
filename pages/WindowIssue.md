@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been coding Cocoa for many a year now and was just writing an app for someone else...but I highly embarrassed myself.
 
 Here is the dilemma. I have three windows that I need to display at varying times based on load conditions. None are set for 'Visible at Launch Time' and therefore I am meant to control them via code.

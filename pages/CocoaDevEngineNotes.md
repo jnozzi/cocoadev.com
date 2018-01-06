@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In an attempt to get CocoaDev working again, I rewrote the engine somewhat. While I was in there anyway, I got the multiple reverse indexes on eg AppleScript working. Just so people know. I think the rest of the changes were all behind-the-scenes - we can now easily wipe version histories to save space, etc.
 
 All together now. "We hate Perl DBM." Good.

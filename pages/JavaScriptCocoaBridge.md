@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 As of version 10.4 "Tiger", MacOS X includes a JavaScript Cocoa bridge which allows Dashboard Widgets to communicate with Objective-C objects.

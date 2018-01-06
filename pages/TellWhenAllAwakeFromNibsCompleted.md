@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 My application has several General/NSObject's instantiated within Interface Builder that act as the controllers for the different parts of my app. Pretty simple stuff.

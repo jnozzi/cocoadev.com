@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Program is based on a series of NSMutableArray (P0-P11 on the code below). They're global, and given a retain message upon initialization. If I print them out via <array> description] UTF8String] in either the initWithCoder, encodeWithCoder, or the methods for saving and loaded data representations, they always come out blank. Arrays only get a release message in my dealloc statement. Saved document loads without crashing but always comes up blank since the arrays are encoded empty. I've put print statements in other methods I've made in the code, and the arrays print out with their proper values. It seems only the methods responsible for saving and opening see them as blank.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 If you have a bad smell pattern, ala: something that needs to be refactored.  Add it here, like ObjCDesignPatterns.
 
 ----

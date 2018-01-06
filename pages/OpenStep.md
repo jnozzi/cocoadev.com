@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 OpenStep is the set of libraries that eventually became the YellowBox in AppleRhapsody, and finally, Cocoa.

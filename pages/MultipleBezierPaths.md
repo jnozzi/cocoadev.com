@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I don't understand why Objective-C cannot permit for() loops in the drawRect: method of a NSView...
 
 I can't do what I want to do without a for() loop. Here's a description of what I have done yet :

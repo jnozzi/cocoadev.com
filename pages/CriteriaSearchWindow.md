@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm trying to create a window like the Rules window in Mail or Search window in Finder, where clicking a + button adds a new criteria row. I've got as far as adding the new rows via addSubview but I can't make the new rows show up in the display. Does anybody have an implementation of this that I can review to see what I'm missing.
 
 Here's the code I have that adds a new subview:

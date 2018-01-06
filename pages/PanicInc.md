@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Panic, Inc has been a cutting-edge Mac software developer since 1997.  Please visit their home page to learn more about them:
 
 http://www.panic.com/

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi--
 
 I'm just building my first interface, and find that when I look in the Attributes for a pop-up menu, it doesn't show how to add additional items to the menu other than the default number of three. I looked through the help files and online at Apple's dev site, and there's no information (that I can find) there either.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hey, this might be beyond my current ability in Cocoa, but I found myself wondering if the WebView from WebKit could be loaded in such a way as to use it with the screen saver module template in XCode.  I see that the template doesn't include a nib (understandable) but thus far I haven't yet learned how to load a view programatically.  Is WebView even able to do what I'm thinking (just load & display a full screen page from a URL as a screen saver)?

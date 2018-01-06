@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 An FSRef is an opaque data structure that refers to an existing file system object (i.e. file, directory, volume). It is part of the CoreServices File Manager (aka Carbon File Manager).
 
 An FSRef can only refer to existing objects, and it is not a permanent reference. As such:

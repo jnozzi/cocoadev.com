@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am having problems regarding the quality of images I manipulate with NSImage and I would really appreciate some advice...

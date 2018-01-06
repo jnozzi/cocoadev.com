@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone have any freaking idea how Apple managed to get classic Apps to display properly under OS X?
 
 It seems that the two types of drawing (QuickDraw vs. Quartz) would lead to some pretty messy situations.

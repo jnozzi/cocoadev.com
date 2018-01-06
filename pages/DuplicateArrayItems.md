@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Probably a really simple question, but I can't get a good answer. How do you duplicate items in an array? I have an NSArrayController, and I set up an action to do as follows:
 
     

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ACProblemOfVariableTypes - related to LookupAspects part of AspectCocoa also see CodeRefactorChallenge
 
 Our general approach to implementing aspects has been to replace the IMP pointers of certain method with "replacement" methods.  Originally, we thought we would only have to define a few "replacement" methods something like this...

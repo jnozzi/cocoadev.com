@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Howdy,
 	I want to obtain an NSImage (or other image data suitable for posting to the pasteboard) of the contents of a subclass of NSView, and include transparency.  The caveat is that the contents of the NSView are drawn by NSBezierPath objects (not some existing image), and the frame of the view does not equal its bounds (so that to the user the contents appear scaled or translated).  Ultimately I would like for the resultant image to include an intersection of the path's bounds and the view's bounds, so space is not wasted, but out-of-bounds paths are not drawn.  This final step, however, seems trivial once I can obtain an image of the view in the bounds coordinates.
 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I think I have found the #1 fastest way to download a file (anything you want). I have been using CURLHandle for a long time, but it started to tick me off and I began to look for better methods. I tested out just the plain ol' built-in initWithContentsOfURL methods for NSData and NSString, but those weren't any better (and you have less control of the download - even with NSURLHandle). So I started looking into NSURLDownload and NSURLConnection - people these are the best methods I believe for downloading. NSURLDownload basically downloads a NSURL to a file while NSURLConnection downloads to data (asynchronously or synchronously).
 
 Here's what I used (in a thread) for CURLHandle:

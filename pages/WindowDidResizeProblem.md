@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 As i'v said, i wish to know new sizes of window ( of General/NSImageView element exactly ) after resizing it. I suppose i need to use windowDidResize function as an event... But i don't know how to use it. General/NSWindowController? Must i connect it and how? I'm just newb with Cocoa, so i have such stupid questions. You are wellcome )

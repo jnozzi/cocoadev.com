@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 My NSApplication delegate method is not getting called here.  Can someone tell me what I am doing wrong here? Thanks.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is possible to have a separate colour for a segment of an NSBezierPath?
 
 Also I am wondering if it is possible to have a separate line width per bezier path segment.

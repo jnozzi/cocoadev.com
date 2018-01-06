@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A handful of programs are immune to Expos�, such as the Dock, B<nowiki/>ezelUI, and Konfabulator. However, there is no mention on Apple's site of how to exclude a program (or window) from Expos�. The trick relies on some undocumented CoreGraphics functions. You can accomplish this with a call to <code>[self setSticky:YES];</code>, once you've made a subclass of NSWindow which implements the following code:

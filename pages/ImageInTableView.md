@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Its pretty easy to setDataCell on an entire column in NSTableView but to add images as the table is updated, should you not create a cell and then add the cell using this method:
 
     

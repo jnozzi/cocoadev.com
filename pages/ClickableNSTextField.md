@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to make a clickable URL using an NSTextField. I've seen Apple's example using an NSTextView, but it seems overblown. My basic assumption is that an NSTextField descends from NSControl, and I should be able to enable it and set up its action so my controller gets clicks. Here is my code. Are my assumptions just wrong?
 
     

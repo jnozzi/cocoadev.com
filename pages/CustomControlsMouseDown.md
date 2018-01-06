@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question: **I have just recently started working on drawing my own controls with drawRect:, and I think I've got the hang of it, except for mouseDown events. For example, I have a subclassed NSPopUpButton that I want to display different images for when the user clicks on it. I am guessing that I use mouseDown, and then tell the superclass to send its mouseDown event, while implementing my own code along with it. How would I tell the control to redraw itself with different images? Any help is much apprecitated. --LoganCollins
 
 *Have a look at NSPopUpButtonCell and the NSCell superclass (you'll need the documentation for both). You want to be doing this in the cell, not its control view (the NSPopUpButton itself, a subclass of NSView).*

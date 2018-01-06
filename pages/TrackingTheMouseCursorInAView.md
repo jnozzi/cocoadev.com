@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 I was wondering if anyone knew how one could track the location of the mouser in a View. I have a subclass of General/NSOpenGLView and wish to get the location of the mouse whenever the mouse movers around it(as in many drawing programs). Can anyone suggest some pointers? I've seen trackingrectangles but i don't thats helping me.
 Thanks

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 *http://www.alastairs-place.net/cocoa/faq.txt - Unofficial Cocoa-Dev (mailing list) FAQ
 *ftp://rtfm.mit.edu/pub/faqs/computer-lang/Objective-C/faq - Objective-C FAQ

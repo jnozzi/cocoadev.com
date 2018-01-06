@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm creating an application in which the user can select portions of a view. The selection is stored as an NSBezierPath and is indicated to the user using [path stroke]; My problem comes when I add to the selection: by holding the shift key, the user can define a new selection to add to the existing selection. I combine the two using: 
     
 [path appendBezierPath:path2];

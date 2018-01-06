@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 *Discussion moved here because it did not fit on the CPlusPlusInCocoa page.*

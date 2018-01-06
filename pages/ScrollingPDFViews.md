@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have been working with the PDFView example from the Apple developer site.
 
 I have a complete understanding of this application, how it works, etc. and I can almost recreate it from scratch.  However, there is one issue.

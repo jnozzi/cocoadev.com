@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Cover Flow is a three-dimensional graphical user interface included with iTunes, the Macintosh Finder, and other Apple Inc. products for visually rummaging through files and digital media libraries via cover artwork.
 
 Some information on the undocumented API:

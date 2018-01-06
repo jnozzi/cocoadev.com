@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 To quote Bill Cheeseman:

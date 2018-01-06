@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here's a piece of code to help changing the main display with Quartz Display Services for a 2 displays configuration
 
     

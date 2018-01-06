@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 hi, fellow cocoa programmers.
 
 I'm currently working on an application that deals with very large files (meaning a gigabyte and above). Now, it very often throws me this:

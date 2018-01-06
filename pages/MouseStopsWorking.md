@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a problem with my first Cocoa app.  In one of the windows, which contains a few buttons and text areas (all standard), the mouse sometimes stops working.  The keyboard continues to work in that window, and other parts of the application respond fine (menus, drag and drop in another window).  I have no idea how to debug this.  I've searched online, I've tried to figure out where mouse clicks are going, and have had no success.  The behavior is not consistent.  It often starts happening after the program does a large batch of computation, but not consistently.

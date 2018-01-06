@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 The LinkBack project is an open-source Cocoa framework that provides a way to allow for external applications to edit content embedded in another application's documents.
 
 http://www.linkbackproject.org/

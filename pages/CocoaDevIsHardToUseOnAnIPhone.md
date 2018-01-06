@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Well, it is.  On largish pages it's difficult to read and impossible to edit.
 
 Also, the "Edit / New / Search" section gets way too small to use.

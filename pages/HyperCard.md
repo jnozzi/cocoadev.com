@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 AppleComputer's stack development environment, which used HyperTalk to script the Object Oriented environment.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Mac OS X uses XML as its General/PropertyListFormat. The format looks like this:
 
     

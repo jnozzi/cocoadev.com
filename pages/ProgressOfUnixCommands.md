@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I was playing with both AppleScript and Python (PythonLang), wraping unix commands like pax gzip and bzip2. It quite easy to build a one click solution to using these tools.

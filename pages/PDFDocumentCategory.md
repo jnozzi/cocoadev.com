@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This lets you easily make a PDFDocument from an array containing PDFPage objects.

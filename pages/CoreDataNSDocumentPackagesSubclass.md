@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Moved from FolderBasedDocuments... A (possible) method to have CoreData-based documents that are folders
 
 I followed the above instructions to create an app that would open packaged documents, and then modified the MyDocument class so that the document has a managedObjectContext just like an NSPersistentDocument would. Let me know what you think. A bug that I've found is that it doesn't show the black dot in the close button when there are unsaved changes. Other than that, it seems to work for me... Here's the code:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm writing a plugin for a carbon app.  my plugin is a mach-o carbon framework plugin ( C ).  that plugin needs to in turn launch a Cocoa application and be able to pipe data to and from that cocoa application.  What looks ideal to me is the NSTask class in cocoa, however I need something in the carbon lib.   is there such a thing?  thanks in advance for any help and suggestions!

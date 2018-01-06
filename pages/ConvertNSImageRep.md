@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do you convert one NSImageRep type into another NSImageRep type? Specifically, I want to convert a TIFF sourced NSImage into a PDF sourced NSImage. What is the best way to do this?
 
 Thanks for any help!

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hello, I have a View, a subclassed NSTabView in fact that I want to be able to get notified and able to accept all drags, no matter what is on the pasteboard. I've made it register for all standard Drag Types, but I want it to be able to recieve drags of custom types too.

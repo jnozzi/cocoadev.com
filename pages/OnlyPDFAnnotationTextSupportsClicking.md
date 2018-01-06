@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am working with PDFKit, using PDFAnnotations, to, well, annotate my PDFs.

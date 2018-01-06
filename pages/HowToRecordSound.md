@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 see also (especially) CoreAudio and CoreAudioAndAudioUnitsTutorial
 
 Can someone give me a heads up for how to get grab sound input?

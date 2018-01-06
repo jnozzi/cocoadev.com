@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://www.ithinksw.com/logo.gif

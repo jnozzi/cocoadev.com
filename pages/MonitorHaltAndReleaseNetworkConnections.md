@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi there!
 
 I'm trying to write a cocoa app that will monitor all outgoing network connections to a particular address, or collection of addresses. When a connection occurs, it will hold the connection and ask for your permission for it to continue. Depending on the choice, the app will terminate the connection or let it continue. Before you say Little Snitch, I want to be able to monitor local network connections rather than WAN connections.

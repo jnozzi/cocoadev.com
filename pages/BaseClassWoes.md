@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Just to try to learn more about objC I'm trying to "write" a base class, this crashes even through from what I can see it should work.
 
     @interface MyObject

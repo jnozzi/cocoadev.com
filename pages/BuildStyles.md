@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 XCode has changed how build settings are made. There are global settings and target settings. These settings can be changed by using the "Inspector" window. This window is context sensitive, so you have to pay attention to what the inpector window is actually inspecting. 

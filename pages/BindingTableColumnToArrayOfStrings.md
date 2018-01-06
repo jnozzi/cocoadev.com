@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am working from the O'Reilly MacDevCenter article on Bindings.
 
 I understand the example, in which the model objects have KVC-enabled keys, and an array of model objects is controlled by an NSArrayController instance with columns in a table view bound to the model keys, and the content array of the array controller specified

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is the target-action formalism strictly for visible user interface objects?
 
 Are there programmatic means of accomplishing the same thing?

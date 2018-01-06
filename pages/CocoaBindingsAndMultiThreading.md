@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I cannot for the life of me get Cocoa bindings and threading to work at the same time reliably... I've tried NSLock to no avail... perhaps I am doing something wrong, but I really don't think so as I locked the entire section where data is modified, so the Ui shouldn't be reading or writing to it while that is happening, right? Yet it crashes very happily. Now that I write this, I have an idea as to what it might be... But I still wonder, can anyone provide the proper way for working with the two in combination?

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 An nil targeted action is an ActionMethod attached to a control but whose target is unknown until runtime. Nil targeted actions are created by adding actions to the FirstResponder proxy in InterfaceBuilder and connecting them to controls. Most often menu items are connected to nil targets.

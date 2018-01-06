@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I wrote a program in another IDE (realBasic). I used a view (rb's canvas) to display records for data entry. I had roughly 5 records displayed in the view at a time. It was scrollable, but I simply populated the static view with data that changed as I adjusted a scrollbar. It was not implemented like a true NSScrollView. I created hotspots that could open a pop up window, reveal an  textfield for data entry. These hotspots were statically placed in the view, so whenever I adjusted the scrollbar, the hotspots would invariably be in the same place.

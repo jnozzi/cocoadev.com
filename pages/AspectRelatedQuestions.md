@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **AspectRelatedQuestions** - Burning questions about the Objective-C runtime and other snags all related to helping me fully implement AspectCocoa
 
 * How does class posing actually work, and why is it that if I pose as a class that already has some instances instantiated, those instances don't get changed to the type of the new posing class?  

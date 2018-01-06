@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To know if your application was launched because it is a login item, as opposed to being launched explicitly by the user from the Finder, use the code below:
 
     

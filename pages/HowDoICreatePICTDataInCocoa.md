@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 **This provides some useful methods you can use if you want to make a PICT object in Cocoa.**

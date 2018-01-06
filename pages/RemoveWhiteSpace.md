@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is some code that removes white space from a string, like new lines, tabs, and double spaces (not single spaces). It's intended as to be used in an NSString category. Example could be [@"   h\nello\r" removeWhiteSpace] would return @"hello"
 
 Note: this is not to use as a trim function, for that use CFStringTrimWhitespace ((CFMutableStringRef) yourStringHere);

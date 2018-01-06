@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This page contains notes about the methods you need to implement to use DragAndDrop in an NSTableView.
 
 Please note that all information contained herein, while applicable to NSOutlineview in principle, is often implemented with its own methods.  Specifically, note the NSOutlineViewDataSource protocol defines its own, equivalent drag and drop methods which function equivalently to those listed bel ow. http://goo.gl/OeSCu

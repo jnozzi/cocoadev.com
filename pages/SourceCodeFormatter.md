@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Does anyone have recommendations for a easy to use source code formatter? I'd like to batch reformat some source I've inherited that is nearly unreadable in its current state.
 
 ----

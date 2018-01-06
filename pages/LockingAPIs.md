@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Mac OS X contains various locking APIs with different capabilities and interfaces. This page examines four locking strategies that would be suitable for writing thread-safe AccessorMethods, although they can all be used for other situations as well.
 
 Writing thread-safe AccessorMethods is almost never the right way to achieve ThreadSafety. The granularity is far too low and it's normally far more productive to use a larger model-specific locking strategy instead of protecting accessors. With that in mind, however, here are some ways to do it if you wanted to.

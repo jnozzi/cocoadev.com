@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CavemanDebugging is my term for sprinkling printfs or NSLogs into code to get an ad-hoc code trace and peering in on the state of program variables.  Crude, but effective at times.  ++MarkDalrymple
 
 ----

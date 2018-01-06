@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 IOBlueToothDevice
 file:///System/Library/Frameworks/IOBluetooth.framework/Versions/A/Resources/English.lproj/Documentation/Reference/IOBluetoothDevice/Classes/IOBluetoothDevice/index.html
 ----

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 To make your class always return a single instance of itself, use this init routine.
 
 See also SingletonDesignPattern, SingletonAlternatives, 

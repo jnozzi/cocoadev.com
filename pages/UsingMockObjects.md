@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am interested in using General/OCMock but there is little documentation and I am unsure of how to begin.  I have been using General/OCUnit successfully.  The reason I think I need to use mock objects is that I am designing an object that will function in response to user input.  I want the object (functioning as a controller) I am going to test to present some choice to the user, then respond to the user's choice by manipulating model objects.  I want to be able to tell the object what the user's choices were and then test what it will do based on these choices.  I think I need a General/MockObject to substitute for the view object.Can anyone point me to a useful tutorial or at least post a few hints?  ----Martin Fowler has a very good article on Mock Objects here:http://www.martinfowler.com/articles/mocksArentStubs.html Basically, you're right - if you want to test that a controller properly interacts with a view - without actually using the view, than Mock Objects are a good way to go.--General/TimHart!
 ----
 Original Poster (or anybody else): Have you had success?  Anybody care to write up a brief HOWTO for General/OCMock?  I'm in the same boat.

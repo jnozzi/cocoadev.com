@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there some way to cancel the effect that a dead-key (like option-e on a US keyboard) has on the input server?
 
 If I have this code in a custom non-text control

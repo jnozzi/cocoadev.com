@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 In my work, which is mainly around simulations, I have a number of mechanisms like pistons and servos which are controlled by sliders, but which ( since they're representations of "real" physical devices ) cannot immediately respond.
 
 To give the user feedback, I came up with a subclass of General/NSSlider I call General/TrackingSlider. Here's a screenshot of it in action:

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 AdHoc is the new name for MacHack, the annual Mac programming/hacking conference. It's being renamed for 3 reasons (if I remember corectly):

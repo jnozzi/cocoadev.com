@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I have a subclass of NSView, and I'd like to have it receive the scrollWheel: event, however it does nothing... it receives other events such as mouseDown:, mouseUp: just fine... but scrollWheel:, nada, zip. Even overriding it on NSWindow doesn't work!

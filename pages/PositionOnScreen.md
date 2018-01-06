@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Just trying to see if the mouse is within my tableview when a particular method is called, here's my code it is within an NSView subclass, 

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 http://www.diggory.net/grazing/xgrid.jpg

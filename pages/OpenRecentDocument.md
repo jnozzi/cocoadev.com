@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I want to trap (NSDocumentController) _openRecentDocument in my document based application.

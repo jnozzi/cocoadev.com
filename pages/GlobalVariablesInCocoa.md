@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 As a newbie Cocoa programmer, it was difficult to find information about global variables anywhere, without being treated with a condescending 'go learn C' type of response. Everyone tells you that global declaration is such a stupidly simple thing to do, and yet, no one is interested in spending the 10 minutes needed to tell you just HOW to do it...
 
 While globals, in general, should be avoided, the truth is that there *will* be times, in just about *every* program, when global variables (or constants) are needed. For one, if you use a global constant, instead of a simple string literal, the compiler will warn you of any typing mistakes! http://goo.gl/OeSCu

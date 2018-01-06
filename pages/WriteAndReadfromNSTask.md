@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I know it's possible to redirect a task output from the terminal *./task >> /output.log*

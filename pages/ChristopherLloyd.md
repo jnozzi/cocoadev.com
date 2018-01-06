@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Christopher Lloyd created and maintains The Cocotron (http://www.cocotron.org), an open source effort to create a cross-platform implementation of Cocoa.

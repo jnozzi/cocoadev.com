@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Hope folks find this code useful. Please point out any defects or improvements. -ShawnErickson

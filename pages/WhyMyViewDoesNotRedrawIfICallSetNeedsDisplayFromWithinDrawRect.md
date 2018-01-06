@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **Question:
 I am calling [self setNeedsDisplay:YES] from within my view's implementation of -drawRect:, but my view doesn't redraw.  Why ?**
 

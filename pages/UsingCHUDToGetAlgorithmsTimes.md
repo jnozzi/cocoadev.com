@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I need to measure an algorithm's times and I've heard about CHUD. I've taken a look at it, but i don't know which tool i must use nor how do they work. Does anyone know it?

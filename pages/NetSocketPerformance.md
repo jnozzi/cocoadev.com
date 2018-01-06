@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am building an application to send binaries around to specific locations on a LAN and was using the NetSocket class.  All well with smallish files (<20megs) and I was getting about 80% of the performance of copying the equivalent file with AFP.  With large files (>100megs) performance is really not very good on a gigabit network, something like 10% or less performance ratio compated with AFP (ie mounting the remote drive on your desktop and dragging the file over).  What could this mean?  perhaps I need to scale the packet size in some way to send larger packets?  right now I am just writing the entire file to the netsocket and getting it via a filehandle on the other end.  The initial packet I send contains metadata about what the file is, how large it is, etc and I am filtering that out by looking for a packet corresponding to my metadata size and then writing anything else to the filehandle.  Everything works fine - it is just slow and bogs down the system considerably with large files.  Anyone tried to do something like this before with one of the higher level CFSocket networking wrappers?
 
 EcumeDesJours

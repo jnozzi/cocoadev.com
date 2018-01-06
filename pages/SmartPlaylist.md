@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I would like to create an iTunes like Smart Playlist.  I have two controllers.  One for the source table view and another for the content on the right.  The interface looks exactly like iTunes.  I would like to create a smart playlist right from the search field.  How can I create a "smart playlist" so that when the user selects the "smart playlist", it would create a live search on the library's contents.  I also want it to automatically update it's contents if there is another entry added to the library.  Thanks for the help, if any.  Thanks.
 
 *That is such an astoundingly broad question. It's unlikely that anyone could answer something like that with so little information.*

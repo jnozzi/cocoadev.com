@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 FSPathMakeRef is a function which creates an FSRef from a POSIX path. This is probably the simplest way to get an FSRef from an NSString containing a path. Example:
 
     

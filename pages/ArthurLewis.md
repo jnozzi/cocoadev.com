@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 One year out of college. Lost at sea.
 

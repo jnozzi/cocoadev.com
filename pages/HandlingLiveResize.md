@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
  
 
 I need a view to be notified when the user clicks the mouse button in its window but outside the view.

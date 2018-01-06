@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 [This page contains information extracted from a discussion of Cocoa menu support: NSMenuView]
 See also OpenStep
 

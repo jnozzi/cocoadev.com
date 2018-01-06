@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 This is a newbie question.  I was wondering what is the trick to instantiate an object extended from NSArrayController. What I'm doing:
 
 1) From the NIB, choose to subclass NSArrayController.

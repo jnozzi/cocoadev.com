@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Allright... I could use a little bit of help here.  For the last month or two, I've been studying cocoa, and have gotten fairly good at it.  The only thing is, I don't feel like I'm creating anything.  I feel like I'm just using the NS classes, and not doing much on my own.  All my own classes are just ones which use NS something-or-another.  How can someone create completely new things, such as a completely new or custom button from scratch?  I want to have a thorough understanding of how this stuff works, not just that I can say [myTextField setStringValue:@"Hi"];... I want to know what's going on as it sets it to "hi".  I want to know how to make something like the General/NSTextField.  I think you guys can see what I'm getting at.  I want to go from someone who uses these things to someone who creates them.  Unfortunately, I don't even know how drivers work, and I learned C for two days before starting on Cocoa.  I know how to make ints and so on, but I don't know enough about C... or at least I don't think I do.
 
 I recently made a calculator from scratch, and a little program to manage "records"... just to see if I could.  Still, I don't know enough about how to make customviews which are actual controls, and not just crazy lines and shapes.

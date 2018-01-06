@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is a partial list of logical operators. They are fundamental to conditional operations (if/else if/switch) and loops. They either return true or false (a boolean value), nothing else.
 
 

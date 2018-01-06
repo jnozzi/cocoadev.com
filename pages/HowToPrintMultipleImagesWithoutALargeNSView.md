@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 I have an NSView with an NSImage as background and some text that will display someones address from a database. 
 

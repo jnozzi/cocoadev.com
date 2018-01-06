@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I was just wondering how to change the focus (focus ring and cursor) to an object in the nib. Can anyone enlighten me?
 
 ----

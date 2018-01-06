@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I get an error: Illegal Use of 'super' when I try to compile this.  What am I forgetting?  BTW: this is in codewarrior.
 
 

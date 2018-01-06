@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am currently writing a Prefs Pane for some tools that need to run as root. Adhering to ADC's suggestions, I am using a separate 'helper' tool, designed to be used to perform the privileged operations.

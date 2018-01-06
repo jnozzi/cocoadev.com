@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 (Please answer this by adding replies at the end of the page and not inside the text, or the discussion will quickly become unreadable.)0

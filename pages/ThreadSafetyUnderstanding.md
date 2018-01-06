@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I need to clear some things up about General/ThreadSafety. The documentation says General/NSUserDefaults is not thread safe... so if I were to use that in a thread, would I need to a) subclass it and implement an General/NSLock in the subclass, or b) make my own generic user defaults system that reads and writes to the normal user defaults before and after the thread is complete, or c) simply call performSelectorOnMainThread on the user defauts object? Also, with General/NSFileManager, what's the best way to make that thread safe? (threads are so annoying... ) :) Thanks --General/KevinWojniak
 
 ----

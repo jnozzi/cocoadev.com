@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Has anyone else had problems using images in NIBs in the version of Interface Builder that ships with Xcode?
 
 I am trying to use images as icons for buttons and for some reason they aren't working. I have even tried using images from Apple's own apps, and no dice.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 On WWDC '06 they said we'd be able to run Xcode 2.4.1 and Xcode 3.0 simultaneously on Leopard to be able to write software for Mac OS X 10.4.x
 
 However, I just tried installing Xcode 2.4.1 and it just told me that no copy of mac os x 10.4 was found so it couldn't install...

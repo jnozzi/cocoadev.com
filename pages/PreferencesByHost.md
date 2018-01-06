@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am writing a program that creates ScreenSaver modules.  I am using the .slideSaver bundle to create the actual ScreenSaver.  One option I am trying to implement is the ability to configure the standard apple .slideSaver options in my program.  
 
 I have located the preferences file created by System Preferences>Screen Effects.  The preference files are stored in $(HOME)/Library/Preferences/ByHost.  The problem is that all these files have a an odd entry in their names.  For example one file I have is com.apple.screensaver.Beach.0050e4eea57e.plist I have no idea what this (0050e4eea57e) entry is or how to determine it.  

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 **AVItem**
 
     - (id)initWithPath:(NSString*)path error:(NSError**)outError;

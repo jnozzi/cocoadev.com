@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I am in need of converting a fraction contained in an General/NSString to a float, I could write up something with General/NSScanner myself however due to the nature of General/NSScanner and it's speed i'd rather not.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ; 
 
 UK Student, trying to learn Cocoa as Ia realised how useless BASIC was! Run a Little Hosting business at http://www.qlehosting.com/

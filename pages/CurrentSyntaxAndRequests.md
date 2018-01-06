@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 OpenGLScript
 
 Here's the current syntax. Each entry represents the syntax involved for a particular glCall. The shortHand is to help you write OpenGL code faster (remember this project will eventually allow you to export to C source). You can place requests here if you want a function added to this interpreter. You cannot simple add a dictionary entry for a new command because a switch statement is involved for the execution of the compiled code (not exactly inline, but pretty close). Compiled scripts are linked stuctures that provide an enumeration for a "while" loop. Links in the chain provide an integer (the command number) for the switch statement. Each link also provides a pointer to the next link. No message calls are made during the execution of the interpretation. The only overhead involved is a switch statement, the while loop and the time required to inject parameter values from links into gl function calls (only pointer operations are involved in the injection process). The switch statement essentially acts as a function lookup table, but some form of dynamic binding is needed because many glCalls do not except argument vectors (as far as I know). 

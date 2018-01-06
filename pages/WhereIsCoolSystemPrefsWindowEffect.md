@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 This is linked from the more basic topic General/WindowPosition and is discussed again in General/AutoWindowResizing

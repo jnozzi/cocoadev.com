@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I think people who ever programmed with General/HyperCard will recognize the title of this page. In General/HyperCard, you could type this on a line :
     
 wait until the mouseclick

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I've been exploring WebKit and WebCore a bit and I was wondering if there's a way to access or traverse the DOM tree for a document loaded in a web frame?
 
 ----

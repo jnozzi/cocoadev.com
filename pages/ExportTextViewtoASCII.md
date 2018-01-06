@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to find out how to export the contents of a NSTextView to an ascii format like a txt file. Can anyone show me code that does this or refer me to some page that has this information on it ? Thanks!
 
 ----

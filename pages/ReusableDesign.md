@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 ReusableDesign code can be easily applied to other projects. This means it is well encapsulated which complements FlexibleDesign.

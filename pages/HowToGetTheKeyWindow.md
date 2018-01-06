@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 From a background app, I need to obtain ANY kind of handle to what the Apple documentation calls the "key window" of the "active application".  Not necessarily my own app; in fact almost never my app.

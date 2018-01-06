@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ** AEBuildAppleEvent()**  is a Carbon function for creating an Apple Event, including parameters, in a single call (available in OS X 10.0 and above). The event's direct parameter and other parameters can be included in the arguments to the call in a printf-like string format either as literals, or with substitution operators (think "%d", except this uses "@" and "@@"). 
 
 AEBuildAppleEvent is a replacement for using a series of Apple Event Manager calls to create an event ( AECreateDesc, AECreateAppleEvent, etc.)

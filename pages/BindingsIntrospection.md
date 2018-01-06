@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Q: How do you take an object, find out what it's bound to, and retrieve values for the bound properties?
 
 A: There is no documented, supported method.

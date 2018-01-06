@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Developing a driver for ImageCapture is tricky, and there is little info on it. Including few work arounds for common  problems.  This page contains some information on making an ImageCapture scanner plugin, and some trick that might help
 
 1) If you have trouble with breakpoints, Don't start the debugger with breakpoints enabled.use the 'Deactivate' button in debug view to disable breakpoints, and enable them once the driver is running

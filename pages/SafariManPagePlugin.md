@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 The Linux web browser/file manager/universal document viewer Konqueror (from which Safari's KHTML originates) has a nice protocol handler for man pages.  If you type "man:bash" then you get a nice HTML version of the bash man page, complete with cross links to other man pages.  I always found this tremendously useful and it seems like a fun thing to try to do with Safari as well.  

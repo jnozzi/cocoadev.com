@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm using an NSOutlineView in my program.  I am new to using NSOutlineView, so maybe there's something I missed, but I don't think so.  I want to be able to do deletion in the NSOutlineView.  My NSWindowController subclass is set up as the delegate and data source of the NSOutlineView.  I cannot for the life of me figure out how to do the basic things: cut, copy, paste, and deleting items.  How do you do it? -RossDude

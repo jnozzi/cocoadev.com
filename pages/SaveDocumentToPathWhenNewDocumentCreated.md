@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 ----
 Sorry, Ignore this page please...  I had some other code that was causing the problem.
 

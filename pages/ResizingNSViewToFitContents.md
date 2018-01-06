@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I have an NSView which contains a variable number of subviews. Is there any way to have the view resize to fit all of its contents?
 
 ----

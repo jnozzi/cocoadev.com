@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm creating a wrapper for the ftp tool provided with MacOS X 10.3 (just to teach me some more basics).
 
 I want to call the ftp application using one string, like: ftp://user:password@url

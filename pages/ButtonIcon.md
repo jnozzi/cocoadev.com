@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 My question is simple: How to add an icon to a button using Interface builder?
 I didn't found any valuale information about this in books related to Cocoa programming and developing aplications for Mac OS.
 I know that I can simply drag and drop icon file to a button, but I don't know in which format should be button icon:

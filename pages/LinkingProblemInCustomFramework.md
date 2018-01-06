@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Hi,
 
 I am working on a custom framework. This framework is linked to a static library, which is internally linked to a dynamic library (relocatable). Linking structure is as follows: 

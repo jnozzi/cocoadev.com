@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 What's the best way to use AuthorizationExecuteWithPrivileges in a Cocoa application and have access to the stdout of the task?

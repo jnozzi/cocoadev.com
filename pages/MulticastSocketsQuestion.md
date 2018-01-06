@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm going to be building an app that deals with transmitting audio from a central computer to other computer(s), starting with a one-to-one connection and building from there as this will be the first network-enabled app I've written.

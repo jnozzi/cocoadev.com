@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 MAKeyedArchiver is a mostly drop-in replacement for NSKeyedArchiver. Keyed archiving is great, but NSKeyedArchiver is really slow for large object graphs. MAKeyedArchiver does pretty much everything NSKeyedArchiver does, but is a lot faster. It also produces smaller archives. It does not use the same file format; the APIs are compatible but the files are not. I thought others might benefit from my work. I've read CocoaDev a lot, but never posted anything, so here's some code!
 
 You can download MAKeyedArchiver from http://www.mikeash.com/software/MAKeyedArchiver/MAKeyedArchiver.tgz

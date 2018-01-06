@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Is there any way to add rows to a listview without tons of overhead (i.e. NSArrays and NSDictionaries) for "demo data" in a simple, non-functional interface demo? I can use NSDictionaries and the like but would like to avoid doing so since the project I'm working on is nothing but a mere non-functional interface demo -
 
 ----

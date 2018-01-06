@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 CFString is the CoreFoundation version of NSString, and is used in much the same way. Like many other basic CoreFoundation types, CFString is toll-free bridged with NSString, which means that you can safely cast a     CFStringRef to an     NSString * and vice versa.
 
 Simple examples of calling various CFString functions can be found at

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm currently developing an application that will more likely be released *after* Leopard becomes available. So I wondering if I should stick to support Tiger or get an ADC Select membership and concentrate on Leopard only? What would you guys suggest?

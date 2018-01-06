@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm working with an existing C++ library which I would like to extend to support unicode filenames.  In Cocoa, I can just use General/NSFileHandle, and everything is happy.  But from C++, I'm stuck with open or fopen, which only accept "char *".  Is there a low level API somewhere that accepts "unichar  *" or "wchar_t *"?
 
 - General/WendellHicken

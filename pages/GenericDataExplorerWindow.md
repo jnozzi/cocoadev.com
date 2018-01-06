@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I know this site primarily deals with coding issues but my question deals with program design. Please forgive if this is out of line, but I'm at wit's end.
 
 I have a project that initially deals with 3 primary data records (eg A, B & C). I plan on using CoreData to store the information. I want to create a generic window that is initialized with settings that configure its title, the records it manages and most importantly, the "view" it should display to edit the data.

@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I'm writing a Data Model for an NSOutlineView that I'm using in my app.  The NSOutlineView comes with checkboxes and I need to save their states.  Since there will be many, many items in the NSOutlineView I cannot use an individual FileSystemItem for each entry, that uses too much RAM.  So I decided to store each Pathname String together with the associated button state in a NSDictionary. Here's how I do it:
 
     

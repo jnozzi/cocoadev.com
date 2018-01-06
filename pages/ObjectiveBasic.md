@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 So this new Objective-Basic came out http://www.objective-basic.com/. What do you make of it ? All of the reviews or random comments I can find sound the same. How do you start using it !
 Sure it has a manual http://www.objective-basic.com/manual.html but it's virtually useless with out a beginning tutorial or something tangible to go from. And emails seem to not reach him them at all. Any one happe to have a clue for it? 
 

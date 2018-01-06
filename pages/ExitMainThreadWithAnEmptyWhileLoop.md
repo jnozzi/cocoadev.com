@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I am trying to run a very simple multithreaded tool. I have an array of jobs, where a job is simply some calculation I can start with     [job runJob], which takes several minutes on average for each job. To take advantage of multiple processor, I decided to make this very simple     MultiJob class. I am not looking for fancy multithreading here. I know there are plenty of super-robust multithreading classes out there, but I want to understand what is going on in my particular class.
 
 The first question: is it true that I need two threads to take advantage of two processors? If the answer is NO, well, maybe I can just forget about the whole thing, but I would still like to understand.

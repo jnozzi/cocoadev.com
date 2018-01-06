@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 I'm beginner to Cocoa Application by using ObjectiveC.

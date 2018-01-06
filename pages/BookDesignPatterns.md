@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Design Patterns; Elements of Reusable Object-Oriented Software. Gamma, Helm, Johnson, Vlissides. 1995. ISBN 0-201-63361-2.
 
 Published by Addison-Wesley

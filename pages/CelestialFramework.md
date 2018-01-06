@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Celestial is the iPhone's high-level audio interface.

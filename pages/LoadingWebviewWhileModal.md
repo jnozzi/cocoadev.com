@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I noticed that loading in a WebView does not work when the application is running a modal, is this a bug or is it supposed to be that way? And is there a way to force the WebView to load even while the application is running a modal? Thanks in advance, PabloGomez
 
 I just found the answer to my question. Apparently NSURLConnection does not work while not in the main run loop. It seems to be a known issue, but if anyone has any workarounds please let me know. PabloGomez

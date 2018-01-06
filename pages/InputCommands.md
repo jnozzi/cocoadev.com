@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 I cant figure out an way to make commands like typing somthing and then hitting enter so somthing happens, can somebody help me?
 
 ----

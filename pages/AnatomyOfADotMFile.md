@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 Here is the layout for the implementation file.  In this case, it is an implemenation file for the class Foo.
 
     

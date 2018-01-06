@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 Does anyone have any information about the format of the regular expressions used in Find in Xcode? I've tried to look, but I haven't found any documentation explaining the format.

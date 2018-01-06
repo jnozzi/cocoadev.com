@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 
 
 A complete explanation of Continuous Integration can be found here:

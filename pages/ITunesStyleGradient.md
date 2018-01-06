@@ -1,3 +1,7 @@
+---
+layout: page
+---
+
 How do you make that cool iTunes-style gradient? 
 
 [http://mattgemmell.com/source] (under iTableView)
